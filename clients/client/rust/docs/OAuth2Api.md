@@ -463,7 +463,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_o_auth2_consent_sessions
 
-> Vec<crate::models::OAuth2ConsentSession> list_o_auth2_consent_sessions(subject, page_size, page_token)
+> Vec<crate::models::OAuth2ConsentSession> list_o_auth2_consent_sessions(subject, page_size, page_token, login_session_id)
 List OAuth 2.0 Consent Sessions of a Subject
 
 This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.
@@ -476,6 +476,7 @@ Name | Type | Description  | Required | Notes
 **subject** | **String** | The subject to list the consent sessions for. | [required] |
 **page_size** | Option<**i64**> | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
 **page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
+**login_session_id** | Option<**String**> | The login session id to list the consent sessions for. |  |
 
 ### Return type
 
@@ -773,7 +774,7 @@ Name | Type | Description  | Required | Notes
 
 ## revoke_o_auth2_token
 
-> revoke_o_auth2_token(token)
+> revoke_o_auth2_token(token, client_id, client_secret)
 Revoke OAuth 2.0 Access or Refresh Token
 
 Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
@@ -784,6 +785,8 @@ Revoking a token (both access and refresh) means that the tokens will be invalid
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **token** | **String** |  | [required] |
+**client_id** | Option<**String**> |  |  |
+**client_secret** | Option<**String**> |  |  |
 
 ### Return type
 

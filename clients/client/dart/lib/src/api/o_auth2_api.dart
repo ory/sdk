@@ -1216,6 +1216,7 @@ class OAuth2Api {
   /// * [subject] - The subject to list the consent sessions for.
   /// * [pageSize] - Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [loginSessionId] - The login session id to list the consent sessions for.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1229,6 +1230,7 @@ class OAuth2Api {
     required String subject,
     int? pageSize = 250,
     String? pageToken = '1',
+    String? loginSessionId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1259,6 +1261,7 @@ class OAuth2Api {
       if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
       if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
+      if (loginSessionId != null) r'login_session_id': encodeQueryParameter(_serializers, loginSessionId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -2078,6 +2081,8 @@ class OAuth2Api {
   ///
   /// Parameters:
   /// * [token] 
+  /// * [clientId] 
+  /// * [clientSecret] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -2089,6 +2094,8 @@ class OAuth2Api {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<void>> revokeOAuth2Token({ 
     required String token,
+    String? clientId,
+    String? clientSecret,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -2123,6 +2130,8 @@ class OAuth2Api {
 
     try {
       _bodyData = <String, dynamic>{
+        if (clientId != null) r'client_id': encodeQueryParameter(_serializers, clientId, const FullType(String)),
+        if (clientSecret != null) r'client_secret': encodeQueryParameter(_serializers, clientSecret, const FullType(String)),
         r'token': encodeQueryParameter(_serializers, token, const FullType(String)),
       };
 

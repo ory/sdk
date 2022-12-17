@@ -80,6 +80,7 @@ docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
 docs/ManagedIdentitySchemas.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
@@ -153,6 +154,7 @@ docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
 docs/SessionAuthenticationMethods.md
+docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
@@ -310,6 +312,7 @@ ory_client/model/managed_identity_schema.py
 ory_client/model/managed_identity_schema_validation_result.py
 ory_client/model/managed_identity_schemas.py
 ory_client/model/message.py
+ory_client/model/message_dispatch.py
 ory_client/model/namespace.py
 ory_client/model/needs_privileged_session_error.py
 ory_client/model/normalized_project.py
@@ -377,6 +380,7 @@ ory_client/model/self_service_flow_expired_error.py
 ory_client/model/session.py
 ory_client/model/session_authentication_method.py
 ory_client/model/session_authentication_methods.py
+ory_client/model/session_caching_quota.py
 ory_client/model/session_device.py
 ory_client/model/set_active_project_in_console_body.py
 ory_client/model/set_custom_domain_body.py
@@ -526,6 +530,7 @@ test/test_managed_identity_schema.py
 test/test_managed_identity_schema_validation_result.py
 test/test_managed_identity_schemas.py
 test/test_message.py
+test/test_message_dispatch.py
 test/test_metadata_api.py
 test/test_namespace.py
 test/test_needs_privileged_session_error.py
@@ -599,6 +604,7 @@ test/test_self_service_flow_expired_error.py
 test/test_session.py
 test/test_session_authentication_method.py
 test/test_session_authentication_methods.py
+test/test_session_caching_quota.py
 test/test_session_device.py
 test/test_set_active_project_in_console_body.py
 test/test_set_custom_domain_body.py

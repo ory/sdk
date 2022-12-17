@@ -11,6 +11,7 @@ defmodule Ory.Model.Message do
   defstruct [
     :body,
     :created_at,
+    :dispatches,
     :id,
     :recipient,
     :send_count,
@@ -22,16 +23,17 @@ defmodule Ory.Model.Message do
   ]
 
   @type t :: %__MODULE__{
-    :body => String.t | nil,
-    :created_at => DateTime.t | nil,
-    :id => String.t | nil,
-    :recipient => String.t | nil,
-    :send_count => integer() | nil,
-    :status => Ory.Model.CourierMessageStatus.t | nil,
-    :subject => String.t | nil,
-    :template_type => String.t | nil,
-    :type => Ory.Model.CourierMessageType.t | nil,
-    :updated_at => DateTime.t | nil
+    :body => String.t,
+    :created_at => DateTime.t,
+    :dispatches => [Ory.Model.MessageDispatch.t] | nil,
+    :id => String.t,
+    :recipient => String.t,
+    :send_count => integer(),
+    :status => Ory.Model.CourierMessageStatus.t,
+    :subject => String.t,
+    :template_type => String.t,
+    :type => Ory.Model.CourierMessageType.t,
+    :updated_at => DateTime.t
   }
 end
 
@@ -39,6 +41,7 @@ defimpl Poison.Decoder, for: Ory.Model.Message do
   import Ory.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:dispatches, :list, Ory.Model.MessageDispatch, options)
     |> deserialize(:status, :struct, Ory.Model.CourierMessageStatus, options)
     |> deserialize(:type, :struct, Ory.Model.CourierMessageType, options)
   end

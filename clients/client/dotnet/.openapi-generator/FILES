@@ -70,6 +70,7 @@ docs/ClientLogoutFlow.md
 docs/ClientManagedIdentitySchema.md
 docs/ClientManagedIdentitySchemaValidationResult.md
 docs/ClientMessage.md
+docs/ClientMessageDispatch.md
 docs/ClientNamespace.md
 docs/ClientNeedsPrivilegedSessionError.md
 docs/ClientNormalizedProject.md
@@ -121,6 +122,7 @@ docs/ClientSchemaPatch.md
 docs/ClientSelfServiceFlowExpiredError.md
 docs/ClientSession.md
 docs/ClientSessionAuthenticationMethod.md
+docs/ClientSessionCachingQuota.md
 docs/ClientSessionDevice.md
 docs/ClientSetActiveProjectInConsoleBody.md
 docs/ClientSetCustomDomainBody.md
@@ -270,6 +272,7 @@ src/Ory.Client.Test/Model/ClientLoginFlowTests.cs
 src/Ory.Client.Test/Model/ClientLogoutFlowTests.cs
 src/Ory.Client.Test/Model/ClientManagedIdentitySchemaTests.cs
 src/Ory.Client.Test/Model/ClientManagedIdentitySchemaValidationResultTests.cs
+src/Ory.Client.Test/Model/ClientMessageDispatchTests.cs
 src/Ory.Client.Test/Model/ClientMessageTests.cs
 src/Ory.Client.Test/Model/ClientNamespaceTests.cs
 src/Ory.Client.Test/Model/ClientNeedsPrivilegedSessionErrorTests.cs
@@ -321,6 +324,7 @@ src/Ory.Client.Test/Model/ClientRelationshipsTests.cs
 src/Ory.Client.Test/Model/ClientSchemaPatchTests.cs
 src/Ory.Client.Test/Model/ClientSelfServiceFlowExpiredErrorTests.cs
 src/Ory.Client.Test/Model/ClientSessionAuthenticationMethodTests.cs
+src/Ory.Client.Test/Model/ClientSessionCachingQuotaTests.cs
 src/Ory.Client.Test/Model/ClientSessionDeviceTests.cs
 src/Ory.Client.Test/Model/ClientSessionTests.cs
 src/Ory.Client.Test/Model/ClientSetActiveProjectInConsoleBodyTests.cs
@@ -478,6 +482,7 @@ src/Ory.Client/Model/ClientLogoutFlow.cs
 src/Ory.Client/Model/ClientManagedIdentitySchema.cs
 src/Ory.Client/Model/ClientManagedIdentitySchemaValidationResult.cs
 src/Ory.Client/Model/ClientMessage.cs
+src/Ory.Client/Model/ClientMessageDispatch.cs
 src/Ory.Client/Model/ClientNamespace.cs
 src/Ory.Client/Model/ClientNeedsPrivilegedSessionError.cs
 src/Ory.Client/Model/ClientNormalizedProject.cs
@@ -529,6 +534,7 @@ src/Ory.Client/Model/ClientSchemaPatch.cs
 src/Ory.Client/Model/ClientSelfServiceFlowExpiredError.cs
 src/Ory.Client/Model/ClientSession.cs
 src/Ory.Client/Model/ClientSessionAuthenticationMethod.cs
+src/Ory.Client/Model/ClientSessionCachingQuota.cs
 src/Ory.Client/Model/ClientSessionDevice.cs
 src/Ory.Client/Model/ClientSetActiveProjectInConsoleBody.cs
 src/Ory.Client/Model/ClientSetCustomDomainBody.cs

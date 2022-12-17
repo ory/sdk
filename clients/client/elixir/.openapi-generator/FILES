@@ -84,6 +84,7 @@ lib/ory/model/logout_flow.ex
 lib/ory/model/managed_identity_schema.ex
 lib/ory/model/managed_identity_schema_validation_result.ex
 lib/ory/model/message.ex
+lib/ory/model/message_dispatch.ex
 lib/ory/model/namespace.ex
 lib/ory/model/needs_privileged_session_error.ex
 lib/ory/model/normalized_project.ex
@@ -135,6 +136,7 @@ lib/ory/model/schema_patch.ex
 lib/ory/model/self_service_flow_expired_error.ex
 lib/ory/model/session.ex
 lib/ory/model/session_authentication_method.ex
+lib/ory/model/session_caching_quota.ex
 lib/ory/model/session_device.ex
 lib/ory/model/set_active_project_in_console_body.ex
 lib/ory/model/set_custom_domain_body.ex

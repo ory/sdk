@@ -7,16 +7,17 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**body** | **String** |  |  [optional] |
-|**createdAt** | **OffsetDateTime** | CreatedAt is a helper struct field for gobuffalo.pop. |  [optional] |
-|**id** | **String** |  |  [optional] |
-|**recipient** | **String** |  |  [optional] |
-|**sendCount** | **Long** |  |  [optional] |
-|**status** | **CourierMessageStatus** |  |  [optional] |
-|**subject** | **String** |  |  [optional] |
-|**templateType** | [**TemplateTypeEnum**](#TemplateTypeEnum) |  |  [optional] |
-|**type** | **CourierMessageType** |  |  [optional] |
-|**updatedAt** | **OffsetDateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. |  [optional] |
+|**body** | **String** |  |  |
+|**createdAt** | **OffsetDateTime** | CreatedAt is a helper struct field for gobuffalo.pop. |  |
+|**dispatches** | [**List&lt;MessageDispatch&gt;**](MessageDispatch.md) | Dispatches store information about the attempts of delivering a message May contain an error if any happened, or just the &#x60;success&#x60; state. |  [optional] |
+|**id** | **String** |  |  |
+|**recipient** | **String** |  |  |
+|**sendCount** | **Long** |  |  |
+|**status** | **CourierMessageStatus** |  |  |
+|**subject** | **String** |  |  |
+|**templateType** | [**TemplateTypeEnum**](#TemplateTypeEnum) |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub |  |
+|**type** | **CourierMessageType** |  |  |
+|**updatedAt** | **OffsetDateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. |  |
 
 
 

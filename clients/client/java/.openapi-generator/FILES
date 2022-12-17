@@ -77,6 +77,7 @@ docs/LogoutFlow.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
@@ -134,6 +135,7 @@ docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
+docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
@@ -304,6 +306,7 @@ src/main/java/sh/ory/model/LogoutFlow.java
 src/main/java/sh/ory/model/ManagedIdentitySchema.java
 src/main/java/sh/ory/model/ManagedIdentitySchemaValidationResult.java
 src/main/java/sh/ory/model/Message.java
+src/main/java/sh/ory/model/MessageDispatch.java
 src/main/java/sh/ory/model/Namespace.java
 src/main/java/sh/ory/model/NeedsPrivilegedSessionError.java
 src/main/java/sh/ory/model/NormalizedProject.java
@@ -355,6 +358,7 @@ src/main/java/sh/ory/model/SchemaPatch.java
 src/main/java/sh/ory/model/SelfServiceFlowExpiredError.java
 src/main/java/sh/ory/model/Session.java
 src/main/java/sh/ory/model/SessionAuthenticationMethod.java
+src/main/java/sh/ory/model/SessionCachingQuota.java
 src/main/java/sh/ory/model/SessionDevice.java
 src/main/java/sh/ory/model/SetActiveProjectInConsoleBody.java
 src/main/java/sh/ory/model/SetCustomDomainBody.java
@@ -492,6 +496,7 @@ src/test/java/sh/ory/model/LoginFlowTest.java
 src/test/java/sh/ory/model/LogoutFlowTest.java
 src/test/java/sh/ory/model/ManagedIdentitySchemaTest.java
 src/test/java/sh/ory/model/ManagedIdentitySchemaValidationResultTest.java
+src/test/java/sh/ory/model/MessageDispatchTest.java
 src/test/java/sh/ory/model/MessageTest.java
 src/test/java/sh/ory/model/NamespaceTest.java
 src/test/java/sh/ory/model/NeedsPrivilegedSessionErrorTest.java
@@ -543,6 +548,7 @@ src/test/java/sh/ory/model/RelationshipsTest.java
 src/test/java/sh/ory/model/SchemaPatchTest.java
 src/test/java/sh/ory/model/SelfServiceFlowExpiredErrorTest.java
 src/test/java/sh/ory/model/SessionAuthenticationMethodTest.java
+src/test/java/sh/ory/model/SessionCachingQuotaTest.java
 src/test/java/sh/ory/model/SessionDeviceTest.java
 src/test/java/sh/ory/model/SessionTest.java
 src/test/java/sh/ory/model/SetActiveProjectInConsoleBodyTest.java

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.0
+API version: v1.1.1
 Contact: support@ory.sh
 */
 
@@ -158,6 +158,8 @@ type NormalizedProjectRevision struct {
 	KratosCourierTemplatesVerificationValidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_valid_email_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
 	KratosCourierTemplatesVerificationValidEmailSubject *string `json:"kratos_courier_templates_verification_valid_email_subject,omitempty"`
+	// Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
+	KratosFeatureFlagsCacheableSessions *bool `json:"kratos_feature_flags_cacheable_sessions,omitempty"`
 	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
 	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 	KratosOauth2ProviderHeaders map[string]interface{} `json:"kratos_oauth2_provider_headers,omitempty"`
@@ -2792,6 +2794,38 @@ func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationValidEm
 	o.KratosCourierTemplatesVerificationValidEmailSubject = &v
 }
 
+// GetKratosFeatureFlagsCacheableSessions returns the KratosFeatureFlagsCacheableSessions field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsCacheableSessions() bool {
+	if o == nil || o.KratosFeatureFlagsCacheableSessions == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosFeatureFlagsCacheableSessions
+}
+
+// GetKratosFeatureFlagsCacheableSessionsOk returns a tuple with the KratosFeatureFlagsCacheableSessions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsCacheableSessionsOk() (*bool, bool) {
+	if o == nil || o.KratosFeatureFlagsCacheableSessions == nil {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsCacheableSessions, true
+}
+
+// HasKratosFeatureFlagsCacheableSessions returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosFeatureFlagsCacheableSessions() bool {
+	if o != nil && o.KratosFeatureFlagsCacheableSessions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsCacheableSessions gets a reference to the given bool and assigns it to the KratosFeatureFlagsCacheableSessions field.
+func (o *NormalizedProjectRevision) SetKratosFeatureFlagsCacheableSessions(v bool) {
+	o.KratosFeatureFlagsCacheableSessions = &v
+}
+
 // GetKratosIdentitySchemas returns the KratosIdentitySchemas field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosIdentitySchemas() []NormalizedProjectRevisionIdentitySchema {
 	if o == nil || o.KratosIdentitySchemas == nil {
@@ -5350,6 +5384,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosCourierTemplatesVerificationValidEmailSubject != nil {
 		toSerialize["kratos_courier_templates_verification_valid_email_subject"] = o.KratosCourierTemplatesVerificationValidEmailSubject
+	}
+	if o.KratosFeatureFlagsCacheableSessions != nil {
+		toSerialize["kratos_feature_flags_cacheable_sessions"] = o.KratosFeatureFlagsCacheableSessions
 	}
 	if o.KratosIdentitySchemas != nil {
 		toSerialize["kratos_identity_schemas"] = o.KratosIdentitySchemas

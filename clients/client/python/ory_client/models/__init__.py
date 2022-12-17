@@ -82,6 +82,7 @@ from ory_client.model.managed_identity_schema import ManagedIdentitySchema
 from ory_client.model.managed_identity_schema_validation_result import ManagedIdentitySchemaValidationResult
 from ory_client.model.managed_identity_schemas import ManagedIdentitySchemas
 from ory_client.model.message import Message
+from ory_client.model.message_dispatch import MessageDispatch
 from ory_client.model.namespace import Namespace
 from ory_client.model.needs_privileged_session_error import NeedsPrivilegedSessionError
 from ory_client.model.normalized_project import NormalizedProject
@@ -149,6 +150,7 @@ from ory_client.model.self_service_flow_expired_error import SelfServiceFlowExpi
 from ory_client.model.session import Session
 from ory_client.model.session_authentication_method import SessionAuthenticationMethod
 from ory_client.model.session_authentication_methods import SessionAuthenticationMethods
+from ory_client.model.session_caching_quota import SessionCachingQuota
 from ory_client.model.session_device import SessionDevice
 from ory_client.model.set_active_project_in_console_body import SetActiveProjectInConsoleBody
 from ory_client.model.set_custom_domain_body import SetCustomDomainBody

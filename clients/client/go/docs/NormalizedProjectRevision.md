@@ -80,6 +80,7 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesVerificationValidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] 
+**KratosFeatureFlagsCacheableSessions** | Pointer to **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
 **KratosIdentitySchemas** | Pointer to [**[]NormalizedProjectRevisionIdentitySchema**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **KratosOauth2ProviderHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **KratosOauth2ProviderUrl** | Pointer to **string** | The Revisions&#39; OAuth2 Provider Integration URL  This governs the \&quot;oauth2_provider.url\&quot; setting. | [optional] 
@@ -2092,6 +2093,31 @@ SetKratosCourierTemplatesVerificationValidEmailSubject sets KratosCourierTemplat
 `func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationValidEmailSubject() bool`
 
 HasKratosCourierTemplatesVerificationValidEmailSubject returns a boolean if a field has been set.
+
+### GetKratosFeatureFlagsCacheableSessions
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsCacheableSessions() bool`
+
+GetKratosFeatureFlagsCacheableSessions returns the KratosFeatureFlagsCacheableSessions field if non-nil, zero value otherwise.
+
+### GetKratosFeatureFlagsCacheableSessionsOk
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsCacheableSessionsOk() (*bool, bool)`
+
+GetKratosFeatureFlagsCacheableSessionsOk returns a tuple with the KratosFeatureFlagsCacheableSessions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosFeatureFlagsCacheableSessions
+
+`func (o *NormalizedProjectRevision) SetKratosFeatureFlagsCacheableSessions(v bool)`
+
+SetKratosFeatureFlagsCacheableSessions sets KratosFeatureFlagsCacheableSessions field to given value.
+
+### HasKratosFeatureFlagsCacheableSessions
+
+`func (o *NormalizedProjectRevision) HasKratosFeatureFlagsCacheableSessions() bool`
+
+HasKratosFeatureFlagsCacheableSessions returns a boolean if a field has been set.
 
 ### GetKratosIdentitySchemas
 

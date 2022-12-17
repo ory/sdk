@@ -32,7 +32,7 @@ void main() {
     });
 
     // The scope of the access token
-    // int scope
+    // String scope
     test('to test the property `scope`', () async {
       // TODO
     });

@@ -78,6 +78,7 @@ docs/LogoutFlow.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
@@ -135,6 +136,7 @@ docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
+docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
@@ -279,6 +281,7 @@ lib/ory-client/models/logout_flow.rb
 lib/ory-client/models/managed_identity_schema.rb
 lib/ory-client/models/managed_identity_schema_validation_result.rb
 lib/ory-client/models/message.rb
+lib/ory-client/models/message_dispatch.rb
 lib/ory-client/models/namespace.rb
 lib/ory-client/models/needs_privileged_session_error.rb
 lib/ory-client/models/normalized_project.rb
@@ -330,6 +333,7 @@ lib/ory-client/models/schema_patch.rb
 lib/ory-client/models/self_service_flow_expired_error.rb
 lib/ory-client/models/session.rb
 lib/ory-client/models/session_authentication_method.rb
+lib/ory-client/models/session_caching_quota.rb
 lib/ory-client/models/session_device.rb
 lib/ory-client/models/set_active_project_in_console_body.rb
 lib/ory-client/models/set_custom_domain_body.rb
@@ -471,6 +475,7 @@ spec/models/login_flow_spec.rb
 spec/models/logout_flow_spec.rb
 spec/models/managed_identity_schema_spec.rb
 spec/models/managed_identity_schema_validation_result_spec.rb
+spec/models/message_dispatch_spec.rb
 spec/models/message_spec.rb
 spec/models/namespace_spec.rb
 spec/models/needs_privileged_session_error_spec.rb
@@ -522,6 +527,7 @@ spec/models/relationships_spec.rb
 spec/models/schema_patch_spec.rb
 spec/models/self_service_flow_expired_error_spec.rb
 spec/models/session_authentication_method_spec.rb
+spec/models/session_caching_quota_spec.rb
 spec/models/session_device_spec.rb
 spec/models/session_spec.rb
 spec/models/set_active_project_in_console_body_spec.rb

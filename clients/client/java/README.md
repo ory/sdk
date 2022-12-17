@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.1.0
-  - Build date: 2022-12-12T09:41:20.543832309Z[Etc/UTC]
+- API version: v1.1.1
+  - Build date: 2022-12-17T12:47:15.295740778Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.1.0</version>
+  <version>v1.1.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.1.0"
+     implementation "sh.ory:client:v1.1.1"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.1.0.jar`
+* `target/client-v1.1.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -99,15 +99,12 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     CourierApi apiInstance = new CourierApi(defaultClient);
-    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
-    Long page = 1L; // Long | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-    CourierMessageStatus status = CourierMessageStatus.fromValue("queued"); // CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
-    String recipient = "recipient_example"; // String | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter.
+    String id = "id_example"; // String | MessageID is the ID of the message.
     try {
-      List<Message> result = apiInstance.listCourierMessages(perPage, page, status, recipient);
+      Message result = apiInstance.getCourierMessage(id);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CourierApi#listCourierMessages");
+      System.err.println("Exception when calling CourierApi#getCourierMessage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -124,6 +121,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getCourierMessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages
 *FrontendApi* | [**createBrowserLoginFlow**](docs/FrontendApi.md#createBrowserLoginFlow) | **GET** /self-service/login/browser | Create Login Flow for Browsers
 *FrontendApi* | [**createBrowserLogoutFlow**](docs/FrontendApi.md#createBrowserLogoutFlow) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
@@ -311,6 +309,7 @@ Class | Method | HTTP request | Description
  - [ManagedIdentitySchema](docs/ManagedIdentitySchema.md)
  - [ManagedIdentitySchemaValidationResult](docs/ManagedIdentitySchemaValidationResult.md)
  - [Message](docs/Message.md)
+ - [MessageDispatch](docs/MessageDispatch.md)
  - [Namespace](docs/Namespace.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)
@@ -362,6 +361,7 @@ Class | Method | HTTP request | Description
  - [SelfServiceFlowExpiredError](docs/SelfServiceFlowExpiredError.md)
  - [Session](docs/Session.md)
  - [SessionAuthenticationMethod](docs/SessionAuthenticationMethod.md)
+ - [SessionCachingQuota](docs/SessionCachingQuota.md)
  - [SessionDevice](docs/SessionDevice.md)
  - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)
  - [SetCustomDomainBody](docs/SetCustomDomainBody.md)

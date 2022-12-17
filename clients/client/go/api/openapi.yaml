@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.0
+  version: v1.1.1
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -414,13 +414,11 @@ paths:
       description: Lists all messages by given status and recipient.
       operationId: listCourierMessages
       parameters:
-      - description: |-
-          Items per Page
-
-          This is the number of items per page.
+      - description: "Items per Page\n\nThis is the number of items per page to return.\n\
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination)."
         explode: true
         in: query
-        name: per_page
+        name: page_size
         required: false
         schema:
           default: 250
@@ -429,20 +427,14 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: "Pagination Page\n\nThis value is currently an integer, but it\
-          \ is not sequential. The value is not the page number, but a\nreference.\
-          \ The next page can be any number and some numbers might return an empty\
-          \ list.\n\nFor example, page 2 might not follow after page 1. And even if\
-          \ page 3 and 5 exist, but page 4 might not exist."
+      - description: "Next Page Token\n\nThe next page token.\nFor details on pagination\
+          \ please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination)."
         explode: true
         in: query
-        name: page
+        name: page_token
         required: false
         schema:
-          default: 1
-          format: int64
-          minimum: 1
-          type: integer
+          type: string
         style: form
       - description: "Status filters out messages based on status.\nIf no value is\
           \ provided, it doesn't take effect on filter."
@@ -486,6 +478,43 @@ paths:
       security:
       - oryAccessToken: []
       summary: List Messages
+      tags:
+      - courier
+  /admin/courier/messages/{id}:
+    get:
+      description: Gets a specific messages by the given ID.
+      operationId: getCourierMessage
+      parameters:
+      - description: MessageID is the ID of the message.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message'
+          description: message
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Get a Message
       tags:
       - courier
   /admin/identities:
@@ -1683,6 +1712,14 @@ paths:
         in: query
         name: subject
         required: true
+        schema:
+          type: string
+        style: form
+      - description: The login session id to list the consent sessions for.
+        explode: true
+        in: query
+        name: login_session_id
+        required: false
         schema:
           type: string
         style: form
@@ -8000,6 +8037,19 @@ components:
       type: array
     message:
       example:
+        dispatches:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          error: "{}"
+          status: failed
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          error: "{}"
+          status: failed
         updated_at: 2000-01-23T04:56:07.000+00:00
         subject: subject
         recipient: recipient
@@ -8017,6 +8067,13 @@ components:
           description: CreatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
           type: string
+        dispatches:
+          description: "Dispatches store information about the attempts of delivering\
+            \ a message\nMay contain an error if any happened, or just the `success`\
+            \ state."
+          items:
+            $ref: '#/components/schemas/messageDispatch'
+          type: array
         id:
           format: uuid
           type: string
@@ -8030,6 +8087,18 @@ components:
         subject:
           type: string
         template_type:
+          description: |2-
+
+            recovery_invalid TypeRecoveryInvalid
+            recovery_valid TypeRecoveryValid
+            recovery_code_invalid TypeRecoveryCodeInvalid
+            recovery_code_valid TypeRecoveryCodeValid
+            verification_invalid TypeVerificationInvalid
+            verification_valid TypeVerificationValid
+            verification_code_invalid TypeVerificationCodeInvalid
+            verification_code_valid TypeVerificationCodeValid
+            otp TypeOTP
+            stub TypeTestStub
           enum:
           - recovery_invalid
           - recovery_valid
@@ -8059,6 +8128,69 @@ components:
           description: UpdatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
           type: string
+      required:
+      - body
+      - created_at
+      - id
+      - recipient
+      - send_count
+      - status
+      - subject
+      - template_type
+      - type
+      - updated_at
+      type: object
+    messageDispatch:
+      description: |-
+        MessageDispatch represents an attempt of sending a courier message
+        It contains the status of the attempt (failed or successful) and the error if any occured
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
+        message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        error: "{}"
+        status: failed
+      properties:
+        created_at:
+          description: CreatedAt is a helper struct field for gobuffalo.pop.
+          format: date-time
+          type: string
+        error:
+          title: "JSONRawMessage represents a json.RawMessage that works well with\
+            \ JSON, SQL, and Swagger."
+          type: object
+        id:
+          description: The ID of this message dispatch
+          format: uuid
+          type: string
+        message_id:
+          description: The ID of the message being dispatched
+          format: uuid
+          type: string
+        status:
+          description: |-
+            The status of this dispatch
+            Either "failed" or "success"
+            failed CourierMessageDispatchStatusFailed
+            success CourierMessageDispatchStatusSuccess
+          enum:
+          - failed
+          - success
+          type: string
+          x-go-enum-desc: |-
+            failed CourierMessageDispatchStatusFailed
+            success CourierMessageDispatchStatusSuccess
+        updated_at:
+          description: UpdatedAt is a helper struct field for gobuffalo.pop.
+          format: date-time
+          type: string
+      required:
+      - created_at
+      - id
+      - message_id
+      - status
+      - updated_at
       type: object
     namespace:
       example:
@@ -8683,6 +8815,12 @@ components:
 
             This governs the "courier.smtp.templates.verification.valid.email.subject" setting.
           type: string
+        kratos_feature_flags_cacheable_sessions:
+          description: |-
+            Configures the Ory Kratos Session caching feature flag
+
+            This governs the "feature_flags.cacheable_sessions" setting.
+          type: boolean
         kratos_identity_schemas:
           items:
             $ref: '#/components/schemas/normalizedProjectRevisionIdentitySchema'
@@ -10406,7 +10544,7 @@ components:
       example:
         access_token: access_token
         refresh_token: refresh_token
-        scope: 1
+        scope: scope
         id_token: 6
         token_type: token_type
         expires_in: 0
@@ -10431,8 +10569,7 @@ components:
           type: string
         scope:
           description: The scope of the access token
-          format: int64
-          type: integer
+          type: string
         token_type:
           description: The type of the token issued
           type: string
@@ -12058,6 +12195,12 @@ components:
         $ref: '#/components/schemas/sessionAuthenticationMethod'
       title: List of (Used) AuthenticationMethods
       type: array
+    sessionCachingQuota:
+      description: Session Caching Quota
+      properties:
+        can_use:
+          type: boolean
+      type: object
     sessionDevice:
       description: Device corresponding to a Session
       example:
@@ -12709,7 +12852,7 @@ components:
       type: object
     tokenPaginationRequestParameters:
       description: "The `Link` HTTP header contains multiple links (`first`, `next`,\
-        \ `last`, `previous`) formatted as:\n`<https://{project-slug}.projects.oryapis.com/admin/clients?limit={limit}&offset={offset}>;\
+        \ `last`, `previous`) formatted as:\n`<https://{project-slug}.projects.oryapis.com/admin/clients?page_size={limit}&page_token={offset}>;\
         \ rel=\"{page}\"`\n\nFor details on pagination please head over to the [pagination\
         \ documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination)."
       properties:
@@ -12732,7 +12875,7 @@ components:
       type: object
     tokenPaginationResponseHeaders:
       description: "The `Link` HTTP header contains multiple links (`first`, `next`,\
-        \ `last`, `previous`) formatted as:\n`<https://{project-slug}.projects.oryapis.com/admin/clients?limit={limit}&offset={offset}>;\
+        \ `last`, `previous`) formatted as:\n`<https://{project-slug}.projects.oryapis.com/admin/clients?page_size={limit}&page_token={offset}>;\
         \ rel=\"{page}\"`\n\nFor details on pagination please head over to the [pagination\
         \ documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination)."
       properties:
@@ -12742,8 +12885,8 @@ components:
             next: The next page of results.\nprev: The previous page of results.\n\
             last: The last page of results.\n\nPages are omitted if they do not exist.\
             \ For example, if there is no next page, the `next` link is omitted. Examples:\n\
-            \n</clients?limit=5&offset=0>; rel=\"first\",</clients?limit=5&offset=15>;\
-            \ rel=\"next\",</clients?limit=5&offset=5>; rel=\"prev\",</clients?limit=5&offset=20>;\
+            \n</clients?page_size=5&page_token=0>; rel=\"first\",</clients?page_size=5&page_token=15>;\
+            \ rel=\"next\",</clients?page_size=5&page_token=5>; rel=\"prev\",</clients?page_size=5&page_token=20>;\
             \ rel=\"last\""
           type: string
         x-total-count:
@@ -14080,6 +14223,12 @@ components:
       type: object
     revokeOAuth2Token_request:
       properties:
+        client_id:
+          type: string
+          x-formData-name: client_id
+        client_secret:
+          type: string
+          x-formData-name: client_secret
         token:
           required:
           - token

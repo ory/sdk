@@ -73,6 +73,7 @@ doc/LogoutFlow.md
 doc/ManagedIdentitySchema.md
 doc/ManagedIdentitySchemaValidationResult.md
 doc/Message.md
+doc/MessageDispatch.md
 doc/MetadataApi.md
 doc/Namespace.md
 doc/NeedsPrivilegedSessionError.md
@@ -130,6 +131,7 @@ doc/SchemaPatch.md
 doc/SelfServiceFlowExpiredError.md
 doc/Session.md
 doc/SessionAuthenticationMethod.md
+doc/SessionCachingQuota.md
 doc/SessionDevice.md
 doc/SetActiveProjectInConsoleBody.md
 doc/SetCustomDomainBody.md
@@ -279,6 +281,7 @@ lib/src/model/logout_flow.dart
 lib/src/model/managed_identity_schema.dart
 lib/src/model/managed_identity_schema_validation_result.dart
 lib/src/model/message.dart
+lib/src/model/message_dispatch.dart
 lib/src/model/namespace.dart
 lib/src/model/needs_privileged_session_error.dart
 lib/src/model/normalized_project.dart
@@ -330,6 +333,7 @@ lib/src/model/schema_patch.dart
 lib/src/model/self_service_flow_expired_error.dart
 lib/src/model/session.dart
 lib/src/model/session_authentication_method.dart
+lib/src/model/session_caching_quota.dart
 lib/src/model/session_device.dart
 lib/src/model/set_active_project_in_console_body.dart
 lib/src/model/set_custom_domain_body.dart
@@ -462,6 +466,7 @@ test/login_flow_test.dart
 test/logout_flow_test.dart
 test/managed_identity_schema_test.dart
 test/managed_identity_schema_validation_result_test.dart
+test/message_dispatch_test.dart
 test/message_test.dart
 test/metadata_api_test.dart
 test/namespace_test.dart
@@ -519,6 +524,7 @@ test/relationships_test.dart
 test/schema_patch_test.dart
 test/self_service_flow_expired_error_test.dart
 test/session_authentication_method_test.dart
+test/session_caching_quota_test.dart
 test/session_device_test.dart
 test/session_test.dart
 test/set_active_project_in_console_body_test.dart

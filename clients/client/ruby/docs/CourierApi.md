@@ -4,7 +4,77 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**get_courier_message**](CourierApi.md#get_courier_message) | **GET** /admin/courier/messages/{id} | Get a Message |
 | [**list_courier_messages**](CourierApi.md#list_courier_messages) | **GET** /admin/courier/messages | List Messages |
+
+
+## get_courier_message
+
+> <Message> get_courier_message(id)
+
+Get a Message
+
+Gets a specific messages by the given ID.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::CourierApi.new
+id = 'id_example' # String | MessageID is the ID of the message.
+
+begin
+  # Get a Message
+  result = api_instance.get_courier_message(id)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling CourierApi->get_courier_message: #{e}"
+end
+```
+
+#### Using the get_courier_message_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Message>, Integer, Hash)> get_courier_message_with_http_info(id)
+
+```ruby
+begin
+  # Get a Message
+  data, status_code, headers = api_instance.get_courier_message_with_http_info(id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Message>
+rescue OryClient::ApiError => e
+  puts "Error when calling CourierApi->get_courier_message_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | MessageID is the ID of the message. |  |
+
+### Return type
+
+[**Message**](Message.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
 ## list_courier_messages
@@ -28,8 +98,8 @@ end
 
 api_instance = OryClient::CourierApi.new
 opts = {
-  per_page: 789, # Integer | Items per Page  This is the number of items per page.
-  page: 789, # Integer | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  page_size: 789, # Integer | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   status: OryClient::CourierMessageStatus::QUEUED, # CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
   recipient: 'recipient_example' # String | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter.
 }
@@ -65,8 +135,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
-| **page** | **Integer** | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional][default to 1] |
+| **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
+| **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **status** | [**CourierMessageStatus**](.md) | Status filters out messages based on status. If no value is provided, it doesn&#39;t take effect on filter. | [optional] |
 | **recipient** | **String** | Recipient filters out messages based on recipient. If no value is provided, it doesn&#39;t take effect on filter. | [optional] |
 

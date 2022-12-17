@@ -7,11 +7,20 @@ void main() {
   final instance = OryClient().getCourierApi();
 
   group(CourierApi, () {
+    // Get a Message
+    //
+    // Gets a specific messages by the given ID.
+    //
+    //Future<Message> getCourierMessage(String id) async
+    test('test getCourierMessage', () async {
+      // TODO
+    });
+
     // List Messages
     //
     // Lists all messages by given status and recipient.
     //
-    //Future<BuiltList<Message>> listCourierMessages({ int perPage, int page, CourierMessageStatus status, String recipient }) async
+    //Future<BuiltList<Message>> listCourierMessages({ int pageSize, String pageToken, CourierMessageStatus status, String recipient }) async
     test('test listCourierMessages', () async {
       // TODO
     });

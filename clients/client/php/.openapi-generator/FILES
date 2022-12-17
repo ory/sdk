@@ -82,6 +82,7 @@ docs/Model/LogoutFlow.md
 docs/Model/ManagedIdentitySchema.md
 docs/Model/ManagedIdentitySchemaValidationResult.md
 docs/Model/Message.md
+docs/Model/MessageDispatch.md
 docs/Model/ModelNamespace.md
 docs/Model/NeedsPrivilegedSessionError.md
 docs/Model/NormalizedProject.md
@@ -133,6 +134,7 @@ docs/Model/SchemaPatch.md
 docs/Model/SelfServiceFlowExpiredError.md
 docs/Model/Session.md
 docs/Model/SessionAuthenticationMethod.md
+docs/Model/SessionCachingQuota.md
 docs/Model/SessionDevice.md
 docs/Model/SetActiveProjectInConsoleBody.md
 docs/Model/SetCustomDomainBody.md
@@ -275,6 +277,7 @@ lib/Model/LogoutFlow.php
 lib/Model/ManagedIdentitySchema.php
 lib/Model/ManagedIdentitySchemaValidationResult.php
 lib/Model/Message.php
+lib/Model/MessageDispatch.php
 lib/Model/ModelInterface.php
 lib/Model/ModelNamespace.php
 lib/Model/NeedsPrivilegedSessionError.php
@@ -327,6 +330,7 @@ lib/Model/SchemaPatch.php
 lib/Model/SelfServiceFlowExpiredError.php
 lib/Model/Session.php
 lib/Model/SessionAuthenticationMethod.php
+lib/Model/SessionCachingQuota.php
 lib/Model/SessionDevice.php
 lib/Model/SetActiveProjectInConsoleBody.php
 lib/Model/SetCustomDomainBody.php
@@ -466,6 +470,7 @@ test/Model/LoginFlowTest.php
 test/Model/LogoutFlowTest.php
 test/Model/ManagedIdentitySchemaTest.php
 test/Model/ManagedIdentitySchemaValidationResultTest.php
+test/Model/MessageDispatchTest.php
 test/Model/MessageTest.php
 test/Model/ModelNamespaceTest.php
 test/Model/NeedsPrivilegedSessionErrorTest.php
@@ -517,6 +522,7 @@ test/Model/RelationshipsTest.php
 test/Model/SchemaPatchTest.php
 test/Model/SelfServiceFlowExpiredErrorTest.php
 test/Model/SessionAuthenticationMethodTest.php
+test/Model/SessionCachingQuotaTest.php
 test/Model/SessionDeviceTest.php
 test/Model/SessionTest.php
 test/Model/SetActiveProjectInConsoleBodyTest.php

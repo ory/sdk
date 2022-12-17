@@ -74,6 +74,7 @@ docs/LogoutFlow.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
@@ -131,6 +132,7 @@ docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
+docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
@@ -274,6 +276,7 @@ src/models/logout_flow.rs
 src/models/managed_identity_schema.rs
 src/models/managed_identity_schema_validation_result.rs
 src/models/message.rs
+src/models/message_dispatch.rs
 src/models/mod.rs
 src/models/namespace.rs
 src/models/needs_privileged_session_error.rs
@@ -326,6 +329,7 @@ src/models/schema_patch.rs
 src/models/self_service_flow_expired_error.rs
 src/models/session.rs
 src/models/session_authentication_method.rs
+src/models/session_caching_quota.rs
 src/models/session_device.rs
 src/models/set_active_project_in_console_body.rs
 src/models/set_custom_domain_body.rs

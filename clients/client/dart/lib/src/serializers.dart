@@ -81,6 +81,7 @@ import 'package:ory_client/src/model/logout_flow.dart';
 import 'package:ory_client/src/model/managed_identity_schema.dart';
 import 'package:ory_client/src/model/managed_identity_schema_validation_result.dart';
 import 'package:ory_client/src/model/message.dart';
+import 'package:ory_client/src/model/message_dispatch.dart';
 import 'package:ory_client/src/model/namespace.dart';
 import 'package:ory_client/src/model/needs_privileged_session_error.dart';
 import 'package:ory_client/src/model/normalized_project.dart';
@@ -132,6 +133,7 @@ import 'package:ory_client/src/model/schema_patch.dart';
 import 'package:ory_client/src/model/self_service_flow_expired_error.dart';
 import 'package:ory_client/src/model/session.dart';
 import 'package:ory_client/src/model/session_authentication_method.dart';
+import 'package:ory_client/src/model/session_caching_quota.dart';
 import 'package:ory_client/src/model/session_device.dart';
 import 'package:ory_client/src/model/set_active_project_in_console_body.dart';
 import 'package:ory_client/src/model/set_custom_domain_body.dart';
@@ -263,6 +265,7 @@ part 'serializers.g.dart';
   ManagedIdentitySchema,
   ManagedIdentitySchemaValidationResult,
   Message,
+  MessageDispatch,
   Namespace,
   NeedsPrivilegedSessionError,
   NormalizedProject,
@@ -314,6 +317,7 @@ part 'serializers.g.dart';
   SelfServiceFlowExpiredError,
   Session,
   SessionAuthenticationMethod,
+  SessionCachingQuota,
   SessionDevice,
   SetActiveProjectInConsoleBody,
   SetCustomDomainBody,
