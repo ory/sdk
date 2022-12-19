@@ -32,6 +32,7 @@ docs/CreateIdentityBody.md
 docs/CreateJsonWebKeySet.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
+docs/CreateProjectBranding.md
 docs/CreateProjectInvite.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
@@ -70,6 +71,7 @@ docs/IdentityWithCredentialsOidcConfig.md
 docs/IdentityWithCredentialsOidcConfigProvider.md
 docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
+docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
@@ -121,6 +123,9 @@ docs/PostCheckPermissionOrErrorBody.md
 docs/Project.md
 docs/ProjectApi.md
 docs/ProjectApiKey.md
+docs/ProjectBranding.md
+docs/ProjectBrandingColors.md
+docs/ProjectBrandingTheme.md
 docs/ProjectHost.md
 docs/ProjectInvite.md
 docs/ProjectMetadata.md
@@ -128,6 +133,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
+docs/QuotaBrandingThemes.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -150,6 +156,7 @@ docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetProject.md
+docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
@@ -225,6 +232,7 @@ model_create_identity_body.go
 model_create_json_web_key_set.go
 model_create_project_api_key_request.go
 model_create_project_body.go
+model_create_project_branding.go
 model_create_project_invite.go
 model_create_recovery_code_for_identity_body.go
 model_create_recovery_link_for_identity_body.go
@@ -261,6 +269,7 @@ model_identity_with_credentials_oidc_config.go
 model_identity_with_credentials_oidc_config_provider.go
 model_identity_with_credentials_password.go
 model_identity_with_credentials_password_config.go
+model_internal_get_project_branding_body.go
 model_internal_is_owner_for_project_by_slug_body.go
 model_internal_provision_mock_subscription.go
 model_introspected_o_auth2_token.go
@@ -306,6 +315,9 @@ model_post_check_permission_body.go
 model_post_check_permission_or_error_body.go
 model_project.go
 model_project_api_key.go
+model_project_branding.go
+model_project_branding_colors.go
+model_project_branding_theme.go
 model_project_host.go
 model_project_invite.go
 model_project_metadata.go
@@ -313,6 +325,7 @@ model_project_service_identity.go
 model_project_service_o_auth2.go
 model_project_service_permission.go
 model_project_services.go
+model_quota_branding_themes.go
 model_recovery_code_for_identity.go
 model_recovery_flow.go
 model_recovery_flow_state.go
@@ -334,6 +347,7 @@ model_session_device.go
 model_set_active_project_in_console_body.go
 model_set_custom_domain_body.go
 model_set_project.go
+model_set_project_branding_theme_body.go
 model_settings_flow.go
 model_settings_flow_state.go
 model_source_position.go

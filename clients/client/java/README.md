@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.1.1
-  - Build date: 2022-12-17T12:47:15.295740778Z[Etc/UTC]
+- API version: v1.1.2
+  - Build date: 2022-12-19T09:15:12.171345271Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.1.1</version>
+  <version>v1.1.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.1.1"
+     implementation "sh.ory:client:v1.1.2"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.1.1.jar`
+* `target/client-v1.1.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -257,6 +257,7 @@ Class | Method | HTTP request | Description
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
  - [CreateProjectApiKeyRequest](docs/CreateProjectApiKeyRequest.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
+ - [CreateProjectBranding](docs/CreateProjectBranding.md)
  - [CreateProjectInvite](docs/CreateProjectInvite.md)
  - [CreateRecoveryCodeForIdentityBody](docs/CreateRecoveryCodeForIdentityBody.md)
  - [CreateRecoveryLinkForIdentityBody](docs/CreateRecoveryLinkForIdentityBody.md)
@@ -293,6 +294,7 @@ Class | Method | HTTP request | Description
  - [IdentityWithCredentialsOidcConfigProvider](docs/IdentityWithCredentialsOidcConfigProvider.md)
  - [IdentityWithCredentialsPassword](docs/IdentityWithCredentialsPassword.md)
  - [IdentityWithCredentialsPasswordConfig](docs/IdentityWithCredentialsPasswordConfig.md)
+ - [InternalGetProjectBrandingBody](docs/InternalGetProjectBrandingBody.md)
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [InternalProvisionMockSubscription](docs/InternalProvisionMockSubscription.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
@@ -338,6 +340,9 @@ Class | Method | HTTP request | Description
  - [PostCheckPermissionOrErrorBody](docs/PostCheckPermissionOrErrorBody.md)
  - [Project](docs/Project.md)
  - [ProjectApiKey](docs/ProjectApiKey.md)
+ - [ProjectBranding](docs/ProjectBranding.md)
+ - [ProjectBrandingColors](docs/ProjectBrandingColors.md)
+ - [ProjectBrandingTheme](docs/ProjectBrandingTheme.md)
  - [ProjectHost](docs/ProjectHost.md)
  - [ProjectInvite](docs/ProjectInvite.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
@@ -345,6 +350,7 @@ Class | Method | HTTP request | Description
  - [ProjectServiceOAuth2](docs/ProjectServiceOAuth2.md)
  - [ProjectServicePermission](docs/ProjectServicePermission.md)
  - [ProjectServices](docs/ProjectServices.md)
+ - [QuotaBrandingThemes](docs/QuotaBrandingThemes.md)
  - [RecoveryCodeForIdentity](docs/RecoveryCodeForIdentity.md)
  - [RecoveryFlow](docs/RecoveryFlow.md)
  - [RecoveryFlowState](docs/RecoveryFlowState.md)
@@ -366,6 +372,7 @@ Class | Method | HTTP request | Description
  - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)
  - [SetCustomDomainBody](docs/SetCustomDomainBody.md)
  - [SetProject](docs/SetProject.md)
+ - [SetProjectBrandingThemeBody](docs/SetProjectBrandingThemeBody.md)
  - [SettingsFlow](docs/SettingsFlow.md)
  - [SettingsFlowState](docs/SettingsFlowState.md)
  - [SourcePosition](docs/SourcePosition.md)

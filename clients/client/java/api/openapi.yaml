@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.1
+  version: v1.1.2
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -6913,6 +6913,23 @@ components:
       required:
       - name
       type: object
+    createProjectBranding:
+      description: Create a Project Branding
+      properties:
+        logo_type:
+          type: string
+        logo_url:
+          type: string
+        name:
+          type: string
+        theme:
+          $ref: '#/components/schemas/projectBrandingColors'
+      type: object
+    createProjectBrandingsBody:
+      description: Create multiple Project Brandings Request Body
+      items:
+        $ref: '#/components/schemas/createProjectBranding'
+      type: array
     createProjectInvite:
       description: Create Project Invite Request Body
       properties:
@@ -7766,6 +7783,12 @@ components:
           type: string
         password:
           description: The password in plain text if no hash is available.
+          type: string
+      type: object
+    internalGetProjectBrandingBody:
+      description: Get Project Branding Request Body
+      properties:
+        hostname:
           type: string
       type: object
     internalIsOwnerForProjectBySlugBody:
@@ -11659,6 +11682,326 @@ components:
       items:
         $ref: '#/components/schemas/projectApiKey'
       type: array
+    projectBranding:
+      description: The Project Branding
+      properties:
+        created_at:
+          description: The Customization Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        default_theme:
+          $ref: '#/components/schemas/projectBrandingTheme'
+        id:
+          description: The customization ID.
+          format: uuid
+          readOnly: true
+          type: string
+        project_id:
+          description: The Project's ID this customization is associated with
+          format: uuid
+          type: string
+        themes:
+          description: The Project Branding Themes
+          items:
+            $ref: '#/components/schemas/projectBrandingTheme'
+          type: array
+        updated_at:
+          description: Last Time Branding was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - created_at
+      - default_theme
+      - id
+      - project_id
+      - themes
+      - updated_at
+      type: object
+    projectBrandingColors:
+      description: The Project Branding Colors
+      properties:
+        accent_default_color:
+          description: AccentDefaultColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        accent_disabled_color:
+          description: AccentDisabledColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        accent_emphasis_color:
+          description: AccentEmphasisColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        accent_muted_color:
+          description: AccentMutedColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        accent_subtle_color:
+          description: AccentSubtleColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        background_canvas_color:
+          description: BackgroundCanvasColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        background_subtle_color:
+          description: BackgroundSubtleColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        background_surface_color:
+          description: BackgroundSurfaceColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        border_default_color:
+          description: BorderDefaultColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        error_default_color:
+          description: ErrorDefaultColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        error_emphasis_color:
+          description: ErrorEmphasisColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        error_muted_color:
+          description: ErrorMutedColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        error_subtle_color:
+          description: ErrorSubtleColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        foreground_default_color:
+          description: ForegroundDefaultColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        foreground_disabled_color:
+          description: ForegroundDisabledColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        foreground_muted_color:
+          description: ForegroundMutedColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        foreground_on_accent_color:
+          description: ForegroundOnAccentColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        foreground_on_dark_color:
+          description: ForegroundOnDarkColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        foreground_on_disabled_color:
+          description: ForegroundOnDisabledColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        foreground_subtle_color:
+          description: ForegroundSubtleColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        input_background_color:
+          description: InputBackgroundColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        input_disabled_color:
+          description: InputDisabledColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        input_placeholder_color:
+          description: InputPlaceholderColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        input_text_color:
+          description: InputTextColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        primary_color:
+          description: Primary color is an hsla color value used to derive the other
+            colors from for the Ory Account Experience theme.
+          type: string
+        secondary_color:
+          description: Secondary color is a hsla color code used to derive the other
+            colors from for the Ory Account Experience theme.
+          type: string
+        success_emphasis_color:
+          description: SuccessEmphasisColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        text_default_color:
+          description: TextDefaultColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        text_disabled_color:
+          description: TextDisabledColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+      type: object
+    projectBrandingTheme:
+      description: The Project Branding Theme
+      properties:
+        accent_default_color:
+          description: AccentDefaultColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        accent_disabled_color:
+          description: AccentDisabledColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        accent_emphasis_color:
+          description: AccentEmphasisColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        accent_muted_color:
+          description: AccentMutedColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        accent_subtle_color:
+          description: AccentSubtleColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        background_canvas_color:
+          description: BackgroundCanvasColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        background_subtle_color:
+          description: BackgroundSubtleColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        background_surface_color:
+          description: BackgroundSurfaceColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        border_default_color:
+          description: BorderDefaultColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        created_at:
+          description: The Customiation Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        error_default_color:
+          description: ErrorDefaultColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        error_emphasis_color:
+          description: ErrorEmphasisColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        error_muted_color:
+          description: ErrorMutedColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        error_subtle_color:
+          description: ErrorSubtleColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        foreground_default_color:
+          description: ForegroundDefaultColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        foreground_disabled_color:
+          description: ForegroundDisabledColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        foreground_muted_color:
+          description: ForegroundMutedColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        foreground_on_accent_color:
+          description: ForegroundOnAccentColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        foreground_on_dark_color:
+          description: ForegroundOnDarkColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        foreground_on_disabled_color:
+          description: ForegroundOnDisabledColor is a hex color code used by the Ory
+            Account Experience theme.
+          type: string
+        foreground_subtle_color:
+          description: ForegroundSubtleColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        id:
+          description: The customization theme ID.
+          format: uuid
+          readOnly: true
+          type: string
+        input_background_color:
+          description: InputBackgroundColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        input_disabled_color:
+          description: InputDisabledColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        input_placeholder_color:
+          description: InputPlaceholderColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        input_text_color:
+          description: InputTextColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        logo_type:
+          description: |-
+            Logo Type
+            The Logo mime type.
+          type: string
+        logo_url:
+          description: |-
+            Logo URL
+            Logo can be an https:// or base64:// URL. If the URL is not allowed, the logo will be stored inside the Ory Network storage bucket.
+          type: string
+        name:
+          description: The customization theme name.
+          type: string
+        primary_color:
+          description: Primary color is an hsla color value used to derive the other
+            colors from for the Ory Account Experience theme.
+          type: string
+        project_branding_id:
+          description: The ProjectBranding ID this customization is associated with
+          format: uuid
+          type: string
+        secondary_color:
+          description: Secondary color is a hsla color code used to derive the other
+            colors from for the Ory Account Experience theme.
+          type: string
+        success_emphasis_color:
+          description: SuccessEmphasisColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        text_default_color:
+          description: TextDefaultColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        text_disabled_color:
+          description: TextDisabledColor is a hex color code used by the Ory Account
+            Experience theme.
+          type: string
+        updated_at:
+          description: Last Time Branding was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - created_at
+      - id
+      - name
+      - project_branding_id
+      - updated_at
+      type: object
+    projectBrandingThemes:
+      description: The Project Branding Themes
+      items:
+        $ref: '#/components/schemas/projectBrandingTheme'
+      type: array
     projectHost:
       properties:
         host:
@@ -11892,6 +12235,11 @@ components:
       items:
         $ref: '#/components/schemas/project'
       type: array
+    quotaBrandingThemes:
+      properties:
+        can_add:
+          type: boolean
+      type: object
     recoveryCodeForIdentity:
       description: Used when an administrator creates a recovery code for an identity.
       example:
@@ -12745,6 +13093,21 @@ components:
       required:
       - name
       - services
+      type: object
+    setProjectBrandingThemeBody:
+      description: Set Project Branding Theme Request Parameters
+      properties:
+        logo_type:
+          description: Logo type
+          type: string
+        logo_url:
+          description: Logo URL
+          type: string
+        name:
+          description: Branding name
+          type: string
+        theme:
+          $ref: '#/components/schemas/projectBrandingColors'
       type: object
     settingsFlow:
       description: |-

@@ -17,6 +17,7 @@ docs/ClientCreateCustomDomainBody.md
 docs/ClientCreateIdentityBody.md
 docs/ClientCreateJsonWebKeySet.md
 docs/ClientCreateProjectBody.md
+docs/ClientCreateProjectBranding.md
 docs/ClientCreateProjectInvite.md
 docs/ClientCreateRecoveryCodeForIdentityBody.md
 docs/ClientCreateRecoveryLinkForIdentityBody.md
@@ -56,6 +57,7 @@ docs/ClientInlineObject3.md
 docs/ClientInlineResponse200.md
 docs/ClientInlineResponse2001.md
 docs/ClientInlineResponse503.md
+docs/ClientInternalGetProjectBrandingBody.md
 docs/ClientInternalIsOwnerForProjectBySlugBody.md
 docs/ClientInternalProvisionMockSubscription.md
 docs/ClientIntrospectedOAuth2Token.md
@@ -99,6 +101,9 @@ docs/ClientPostCheckPermissionBody.md
 docs/ClientPostCheckPermissionOrErrorBody.md
 docs/ClientProject.md
 docs/ClientProjectApiKey.md
+docs/ClientProjectBranding.md
+docs/ClientProjectBrandingColors.md
+docs/ClientProjectBrandingTheme.md
 docs/ClientProjectHost.md
 docs/ClientProjectInvite.md
 docs/ClientProjectMetadata.md
@@ -106,6 +111,7 @@ docs/ClientProjectServiceIdentity.md
 docs/ClientProjectServiceOAuth2.md
 docs/ClientProjectServicePermission.md
 docs/ClientProjectServices.md
+docs/ClientQuotaBrandingThemes.md
 docs/ClientRecoveryCodeForIdentity.md
 docs/ClientRecoveryFlow.md
 docs/ClientRecoveryFlowState.md
@@ -127,6 +133,7 @@ docs/ClientSessionDevice.md
 docs/ClientSetActiveProjectInConsoleBody.md
 docs/ClientSetCustomDomainBody.md
 docs/ClientSetProject.md
+docs/ClientSetProjectBrandingThemeBody.md
 docs/ClientSettingsFlow.md
 docs/ClientSettingsFlowState.md
 docs/ClientSourcePosition.md
@@ -220,6 +227,7 @@ src/Ory.Client.Test/Model/ClientCreateCustomDomainBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateJsonWebKeySetTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectBodyTests.cs
+src/Ory.Client.Test/Model/ClientCreateProjectBrandingTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectInviteTests.cs
 src/Ory.Client.Test/Model/ClientCreateRecoveryCodeForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRecoveryLinkForIdentityBodyTests.cs
@@ -259,6 +267,7 @@ src/Ory.Client.Test/Model/ClientInlineObject3Tests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse2001Tests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse200Tests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse503Tests.cs
+src/Ory.Client.Test/Model/ClientInternalGetProjectBrandingBodyTests.cs
 src/Ory.Client.Test/Model/ClientInternalIsOwnerForProjectBySlugBodyTests.cs
 src/Ory.Client.Test/Model/ClientInternalProvisionMockSubscriptionTests.cs
 src/Ory.Client.Test/Model/ClientIntrospectedOAuth2TokenTests.cs
@@ -301,6 +310,9 @@ src/Ory.Client.Test/Model/ClientPerformNativeLogoutBodyTests.cs
 src/Ory.Client.Test/Model/ClientPostCheckPermissionBodyTests.cs
 src/Ory.Client.Test/Model/ClientPostCheckPermissionOrErrorBodyTests.cs
 src/Ory.Client.Test/Model/ClientProjectApiKeyTests.cs
+src/Ory.Client.Test/Model/ClientProjectBrandingColorsTests.cs
+src/Ory.Client.Test/Model/ClientProjectBrandingTests.cs
+src/Ory.Client.Test/Model/ClientProjectBrandingThemeTests.cs
 src/Ory.Client.Test/Model/ClientProjectHostTests.cs
 src/Ory.Client.Test/Model/ClientProjectInviteTests.cs
 src/Ory.Client.Test/Model/ClientProjectMetadataTests.cs
@@ -309,6 +321,7 @@ src/Ory.Client.Test/Model/ClientProjectServiceOAuth2Tests.cs
 src/Ory.Client.Test/Model/ClientProjectServicePermissionTests.cs
 src/Ory.Client.Test/Model/ClientProjectServicesTests.cs
 src/Ory.Client.Test/Model/ClientProjectTests.cs
+src/Ory.Client.Test/Model/ClientQuotaBrandingThemesTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryCodeForIdentityTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryFlowTests.cs
@@ -329,6 +342,7 @@ src/Ory.Client.Test/Model/ClientSessionDeviceTests.cs
 src/Ory.Client.Test/Model/ClientSessionTests.cs
 src/Ory.Client.Test/Model/ClientSetActiveProjectInConsoleBodyTests.cs
 src/Ory.Client.Test/Model/ClientSetCustomDomainBodyTests.cs
+src/Ory.Client.Test/Model/ClientSetProjectBrandingThemeBodyTests.cs
 src/Ory.Client.Test/Model/ClientSetProjectTests.cs
 src/Ory.Client.Test/Model/ClientSettingsFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientSettingsFlowTests.cs
@@ -429,6 +443,7 @@ src/Ory.Client/Model/ClientCreateCustomDomainBody.cs
 src/Ory.Client/Model/ClientCreateIdentityBody.cs
 src/Ory.Client/Model/ClientCreateJsonWebKeySet.cs
 src/Ory.Client/Model/ClientCreateProjectBody.cs
+src/Ory.Client/Model/ClientCreateProjectBranding.cs
 src/Ory.Client/Model/ClientCreateProjectInvite.cs
 src/Ory.Client/Model/ClientCreateRecoveryCodeForIdentityBody.cs
 src/Ory.Client/Model/ClientCreateRecoveryLinkForIdentityBody.cs
@@ -468,6 +483,7 @@ src/Ory.Client/Model/ClientInlineObject3.cs
 src/Ory.Client/Model/ClientInlineResponse200.cs
 src/Ory.Client/Model/ClientInlineResponse2001.cs
 src/Ory.Client/Model/ClientInlineResponse503.cs
+src/Ory.Client/Model/ClientInternalGetProjectBrandingBody.cs
 src/Ory.Client/Model/ClientInternalIsOwnerForProjectBySlugBody.cs
 src/Ory.Client/Model/ClientInternalProvisionMockSubscription.cs
 src/Ory.Client/Model/ClientIntrospectedOAuth2Token.cs
@@ -511,6 +527,9 @@ src/Ory.Client/Model/ClientPostCheckPermissionBody.cs
 src/Ory.Client/Model/ClientPostCheckPermissionOrErrorBody.cs
 src/Ory.Client/Model/ClientProject.cs
 src/Ory.Client/Model/ClientProjectApiKey.cs
+src/Ory.Client/Model/ClientProjectBranding.cs
+src/Ory.Client/Model/ClientProjectBrandingColors.cs
+src/Ory.Client/Model/ClientProjectBrandingTheme.cs
 src/Ory.Client/Model/ClientProjectHost.cs
 src/Ory.Client/Model/ClientProjectInvite.cs
 src/Ory.Client/Model/ClientProjectMetadata.cs
@@ -518,6 +537,7 @@ src/Ory.Client/Model/ClientProjectServiceIdentity.cs
 src/Ory.Client/Model/ClientProjectServiceOAuth2.cs
 src/Ory.Client/Model/ClientProjectServicePermission.cs
 src/Ory.Client/Model/ClientProjectServices.cs
+src/Ory.Client/Model/ClientQuotaBrandingThemes.cs
 src/Ory.Client/Model/ClientRecoveryCodeForIdentity.cs
 src/Ory.Client/Model/ClientRecoveryFlow.cs
 src/Ory.Client/Model/ClientRecoveryFlowState.cs
@@ -539,6 +559,7 @@ src/Ory.Client/Model/ClientSessionDevice.cs
 src/Ory.Client/Model/ClientSetActiveProjectInConsoleBody.cs
 src/Ory.Client/Model/ClientSetCustomDomainBody.cs
 src/Ory.Client/Model/ClientSetProject.cs
+src/Ory.Client/Model/ClientSetProjectBrandingThemeBody.cs
 src/Ory.Client/Model/ClientSettingsFlow.cs
 src/Ory.Client/Model/ClientSettingsFlowState.cs
 src/Ory.Client/Model/ClientSourcePosition.cs

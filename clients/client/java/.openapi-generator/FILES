@@ -22,6 +22,7 @@ docs/CreateIdentityBody.md
 docs/CreateJsonWebKeySet.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
+docs/CreateProjectBranding.md
 docs/CreateProjectInvite.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
@@ -60,6 +61,7 @@ docs/IdentityWithCredentialsOidcConfig.md
 docs/IdentityWithCredentialsOidcConfigProvider.md
 docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
+docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
@@ -111,6 +113,9 @@ docs/PostCheckPermissionOrErrorBody.md
 docs/Project.md
 docs/ProjectApi.md
 docs/ProjectApiKey.md
+docs/ProjectBranding.md
+docs/ProjectBrandingColors.md
+docs/ProjectBrandingTheme.md
 docs/ProjectHost.md
 docs/ProjectInvite.md
 docs/ProjectMetadata.md
@@ -118,6 +123,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
+docs/QuotaBrandingThemes.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -140,6 +146,7 @@ docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetProject.md
+docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
@@ -254,6 +261,7 @@ src/main/java/sh/ory/model/CreateIdentityBody.java
 src/main/java/sh/ory/model/CreateJsonWebKeySet.java
 src/main/java/sh/ory/model/CreateProjectApiKeyRequest.java
 src/main/java/sh/ory/model/CreateProjectBody.java
+src/main/java/sh/ory/model/CreateProjectBranding.java
 src/main/java/sh/ory/model/CreateProjectInvite.java
 src/main/java/sh/ory/model/CreateRecoveryCodeForIdentityBody.java
 src/main/java/sh/ory/model/CreateRecoveryLinkForIdentityBody.java
@@ -290,6 +298,7 @@ src/main/java/sh/ory/model/IdentityWithCredentialsOidcConfig.java
 src/main/java/sh/ory/model/IdentityWithCredentialsOidcConfigProvider.java
 src/main/java/sh/ory/model/IdentityWithCredentialsPassword.java
 src/main/java/sh/ory/model/IdentityWithCredentialsPasswordConfig.java
+src/main/java/sh/ory/model/InternalGetProjectBrandingBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugBody.java
 src/main/java/sh/ory/model/InternalProvisionMockSubscription.java
 src/main/java/sh/ory/model/IntrospectedOAuth2Token.java
@@ -335,6 +344,9 @@ src/main/java/sh/ory/model/PostCheckPermissionBody.java
 src/main/java/sh/ory/model/PostCheckPermissionOrErrorBody.java
 src/main/java/sh/ory/model/Project.java
 src/main/java/sh/ory/model/ProjectApiKey.java
+src/main/java/sh/ory/model/ProjectBranding.java
+src/main/java/sh/ory/model/ProjectBrandingColors.java
+src/main/java/sh/ory/model/ProjectBrandingTheme.java
 src/main/java/sh/ory/model/ProjectHost.java
 src/main/java/sh/ory/model/ProjectInvite.java
 src/main/java/sh/ory/model/ProjectMetadata.java
@@ -342,6 +354,7 @@ src/main/java/sh/ory/model/ProjectServiceIdentity.java
 src/main/java/sh/ory/model/ProjectServiceOAuth2.java
 src/main/java/sh/ory/model/ProjectServicePermission.java
 src/main/java/sh/ory/model/ProjectServices.java
+src/main/java/sh/ory/model/QuotaBrandingThemes.java
 src/main/java/sh/ory/model/RecoveryCodeForIdentity.java
 src/main/java/sh/ory/model/RecoveryFlow.java
 src/main/java/sh/ory/model/RecoveryFlowState.java
@@ -363,6 +376,7 @@ src/main/java/sh/ory/model/SessionDevice.java
 src/main/java/sh/ory/model/SetActiveProjectInConsoleBody.java
 src/main/java/sh/ory/model/SetCustomDomainBody.java
 src/main/java/sh/ory/model/SetProject.java
+src/main/java/sh/ory/model/SetProjectBrandingThemeBody.java
 src/main/java/sh/ory/model/SettingsFlow.java
 src/main/java/sh/ory/model/SettingsFlowState.java
 src/main/java/sh/ory/model/SourcePosition.java
@@ -445,6 +459,7 @@ src/test/java/sh/ory/model/CreateIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateJsonWebKeySetTest.java
 src/test/java/sh/ory/model/CreateProjectApiKeyRequestTest.java
 src/test/java/sh/ory/model/CreateProjectBodyTest.java
+src/test/java/sh/ory/model/CreateProjectBrandingTest.java
 src/test/java/sh/ory/model/CreateProjectInviteTest.java
 src/test/java/sh/ory/model/CreateRecoveryCodeForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRecoveryLinkForIdentityBodyTest.java
@@ -481,6 +496,7 @@ src/test/java/sh/ory/model/IdentityWithCredentialsOidcTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsPasswordConfigTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsPasswordTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsTest.java
+src/test/java/sh/ory/model/InternalGetProjectBrandingBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugBodyTest.java
 src/test/java/sh/ory/model/InternalProvisionMockSubscriptionTest.java
 src/test/java/sh/ory/model/IntrospectedOAuth2TokenTest.java
@@ -525,6 +541,9 @@ src/test/java/sh/ory/model/PerformNativeLogoutBodyTest.java
 src/test/java/sh/ory/model/PostCheckPermissionBodyTest.java
 src/test/java/sh/ory/model/PostCheckPermissionOrErrorBodyTest.java
 src/test/java/sh/ory/model/ProjectApiKeyTest.java
+src/test/java/sh/ory/model/ProjectBrandingColorsTest.java
+src/test/java/sh/ory/model/ProjectBrandingTest.java
+src/test/java/sh/ory/model/ProjectBrandingThemeTest.java
 src/test/java/sh/ory/model/ProjectHostTest.java
 src/test/java/sh/ory/model/ProjectInviteTest.java
 src/test/java/sh/ory/model/ProjectMetadataTest.java
@@ -533,6 +552,7 @@ src/test/java/sh/ory/model/ProjectServiceOAuth2Test.java
 src/test/java/sh/ory/model/ProjectServicePermissionTest.java
 src/test/java/sh/ory/model/ProjectServicesTest.java
 src/test/java/sh/ory/model/ProjectTest.java
+src/test/java/sh/ory/model/QuotaBrandingThemesTest.java
 src/test/java/sh/ory/model/RecoveryCodeForIdentityTest.java
 src/test/java/sh/ory/model/RecoveryFlowStateTest.java
 src/test/java/sh/ory/model/RecoveryFlowTest.java
@@ -553,6 +573,7 @@ src/test/java/sh/ory/model/SessionDeviceTest.java
 src/test/java/sh/ory/model/SessionTest.java
 src/test/java/sh/ory/model/SetActiveProjectInConsoleBodyTest.java
 src/test/java/sh/ory/model/SetCustomDomainBodyTest.java
+src/test/java/sh/ory/model/SetProjectBrandingThemeBodyTest.java
 src/test/java/sh/ory/model/SetProjectTest.java
 src/test/java/sh/ory/model/SettingsFlowStateTest.java
 src/test/java/sh/ory/model/SettingsFlowTest.java

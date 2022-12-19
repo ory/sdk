@@ -24,6 +24,8 @@ from ory_client.model.create_identity_body import CreateIdentityBody
 from ory_client.model.create_json_web_key_set import CreateJsonWebKeySet
 from ory_client.model.create_project_api_key_request import CreateProjectApiKeyRequest
 from ory_client.model.create_project_body import CreateProjectBody
+from ory_client.model.create_project_branding import CreateProjectBranding
+from ory_client.model.create_project_brandings_body import CreateProjectBrandingsBody
 from ory_client.model.create_project_invite import CreateProjectInvite
 from ory_client.model.create_recovery_code_for_identity_body import CreateRecoveryCodeForIdentityBody
 from ory_client.model.create_recovery_link_for_identity_body import CreateRecoveryLinkForIdentityBody
@@ -62,6 +64,7 @@ from ory_client.model.identity_with_credentials_oidc_config import IdentityWithC
 from ory_client.model.identity_with_credentials_oidc_config_provider import IdentityWithCredentialsOidcConfigProvider
 from ory_client.model.identity_with_credentials_password import IdentityWithCredentialsPassword
 from ory_client.model.identity_with_credentials_password_config import IdentityWithCredentialsPasswordConfig
+from ory_client.model.internal_get_project_branding_body import InternalGetProjectBrandingBody
 from ory_client.model.internal_is_owner_for_project_by_slug_body import InternalIsOwnerForProjectBySlugBody
 from ory_client.model.internal_provision_mock_subscription import InternalProvisionMockSubscription
 from ory_client.model.introspected_o_auth2_token import IntrospectedOAuth2Token
@@ -117,6 +120,10 @@ from ory_client.model.post_check_permission_or_error_body import PostCheckPermis
 from ory_client.model.project import Project
 from ory_client.model.project_api_key import ProjectApiKey
 from ory_client.model.project_api_keys import ProjectApiKeys
+from ory_client.model.project_branding import ProjectBranding
+from ory_client.model.project_branding_colors import ProjectBrandingColors
+from ory_client.model.project_branding_theme import ProjectBrandingTheme
+from ory_client.model.project_branding_themes import ProjectBrandingThemes
 from ory_client.model.project_host import ProjectHost
 from ory_client.model.project_invite import ProjectInvite
 from ory_client.model.project_invites import ProjectInvites
@@ -133,6 +140,7 @@ from ory_client.model.project_service_o_auth2 import ProjectServiceOAuth2
 from ory_client.model.project_service_permission import ProjectServicePermission
 from ory_client.model.project_services import ProjectServices
 from ory_client.model.projects import Projects
+from ory_client.model.quota_branding_themes import QuotaBrandingThemes
 from ory_client.model.recovery_code_for_identity import RecoveryCodeForIdentity
 from ory_client.model.recovery_flow import RecoveryFlow
 from ory_client.model.recovery_flow_state import RecoveryFlowState
@@ -155,6 +163,7 @@ from ory_client.model.session_device import SessionDevice
 from ory_client.model.set_active_project_in_console_body import SetActiveProjectInConsoleBody
 from ory_client.model.set_custom_domain_body import SetCustomDomainBody
 from ory_client.model.set_project import SetProject
+from ory_client.model.set_project_branding_theme_body import SetProjectBrandingThemeBody
 from ory_client.model.settings_flow import SettingsFlow
 from ory_client.model.settings_flow_state import SettingsFlowState
 from ory_client.model.source_position import SourcePosition

@@ -18,6 +18,7 @@ doc/CreateIdentityBody.md
 doc/CreateJsonWebKeySet.md
 doc/CreateProjectApiKeyRequest.md
 doc/CreateProjectBody.md
+doc/CreateProjectBranding.md
 doc/CreateProjectInvite.md
 doc/CreateRecoveryCodeForIdentityBody.md
 doc/CreateRecoveryLinkForIdentityBody.md
@@ -56,6 +57,7 @@ doc/IdentityWithCredentialsOidcConfig.md
 doc/IdentityWithCredentialsOidcConfigProvider.md
 doc/IdentityWithCredentialsPassword.md
 doc/IdentityWithCredentialsPasswordConfig.md
+doc/InternalGetProjectBrandingBody.md
 doc/InternalIsOwnerForProjectBySlugBody.md
 doc/InternalProvisionMockSubscription.md
 doc/IntrospectedOAuth2Token.md
@@ -107,6 +109,9 @@ doc/PostCheckPermissionOrErrorBody.md
 doc/Project.md
 doc/ProjectApi.md
 doc/ProjectApiKey.md
+doc/ProjectBranding.md
+doc/ProjectBrandingColors.md
+doc/ProjectBrandingTheme.md
 doc/ProjectHost.md
 doc/ProjectInvite.md
 doc/ProjectMetadata.md
@@ -114,6 +119,7 @@ doc/ProjectServiceIdentity.md
 doc/ProjectServiceOAuth2.md
 doc/ProjectServicePermission.md
 doc/ProjectServices.md
+doc/QuotaBrandingThemes.md
 doc/RecoveryCodeForIdentity.md
 doc/RecoveryFlow.md
 doc/RecoveryFlowState.md
@@ -136,6 +142,7 @@ doc/SessionDevice.md
 doc/SetActiveProjectInConsoleBody.md
 doc/SetCustomDomainBody.md
 doc/SetProject.md
+doc/SetProjectBrandingThemeBody.md
 doc/SettingsFlow.md
 doc/SettingsFlowState.md
 doc/SourcePosition.md
@@ -228,6 +235,7 @@ lib/src/model/create_identity_body.dart
 lib/src/model/create_json_web_key_set.dart
 lib/src/model/create_project_api_key_request.dart
 lib/src/model/create_project_body.dart
+lib/src/model/create_project_branding.dart
 lib/src/model/create_project_invite.dart
 lib/src/model/create_recovery_code_for_identity_body.dart
 lib/src/model/create_recovery_link_for_identity_body.dart
@@ -265,6 +273,7 @@ lib/src/model/identity_with_credentials_oidc_config.dart
 lib/src/model/identity_with_credentials_oidc_config_provider.dart
 lib/src/model/identity_with_credentials_password.dart
 lib/src/model/identity_with_credentials_password_config.dart
+lib/src/model/internal_get_project_branding_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_body.dart
 lib/src/model/internal_provision_mock_subscription.dart
 lib/src/model/introspected_o_auth2_token.dart
@@ -310,6 +319,9 @@ lib/src/model/post_check_permission_body.dart
 lib/src/model/post_check_permission_or_error_body.dart
 lib/src/model/project.dart
 lib/src/model/project_api_key.dart
+lib/src/model/project_branding.dart
+lib/src/model/project_branding_colors.dart
+lib/src/model/project_branding_theme.dart
 lib/src/model/project_host.dart
 lib/src/model/project_invite.dart
 lib/src/model/project_metadata.dart
@@ -317,6 +329,7 @@ lib/src/model/project_service_identity.dart
 lib/src/model/project_service_o_auth2.dart
 lib/src/model/project_service_permission.dart
 lib/src/model/project_services.dart
+lib/src/model/quota_branding_themes.dart
 lib/src/model/recovery_code_for_identity.dart
 lib/src/model/recovery_flow.dart
 lib/src/model/recovery_flow_state.dart
@@ -338,6 +351,7 @@ lib/src/model/session_device.dart
 lib/src/model/set_active_project_in_console_body.dart
 lib/src/model/set_custom_domain_body.dart
 lib/src/model/set_project.dart
+lib/src/model/set_project_branding_theme_body.dart
 lib/src/model/settings_flow.dart
 lib/src/model/settings_flow_state.dart
 lib/src/model/source_position.dart
@@ -412,6 +426,7 @@ test/create_identity_body_test.dart
 test/create_json_web_key_set_test.dart
 test/create_project_api_key_request_test.dart
 test/create_project_body_test.dart
+test/create_project_branding_test.dart
 test/create_project_invite_test.dart
 test/create_recovery_code_for_identity_body_test.dart
 test/create_recovery_link_for_identity_body_test.dart
@@ -450,6 +465,7 @@ test/identity_with_credentials_oidc_test.dart
 test/identity_with_credentials_password_config_test.dart
 test/identity_with_credentials_password_test.dart
 test/identity_with_credentials_test.dart
+test/internal_get_project_branding_body_test.dart
 test/internal_is_owner_for_project_by_slug_body_test.dart
 test/internal_provision_mock_subscription_test.dart
 test/introspected_o_auth2_token_test.dart
@@ -500,6 +516,9 @@ test/post_check_permission_body_test.dart
 test/post_check_permission_or_error_body_test.dart
 test/project_api_key_test.dart
 test/project_api_test.dart
+test/project_branding_colors_test.dart
+test/project_branding_test.dart
+test/project_branding_theme_test.dart
 test/project_host_test.dart
 test/project_invite_test.dart
 test/project_metadata_test.dart
@@ -508,6 +527,7 @@ test/project_service_o_auth2_test.dart
 test/project_service_permission_test.dart
 test/project_services_test.dart
 test/project_test.dart
+test/quota_branding_themes_test.dart
 test/recovery_code_for_identity_test.dart
 test/recovery_flow_state_test.dart
 test/recovery_flow_test.dart
@@ -529,6 +549,7 @@ test/session_device_test.dart
 test/session_test.dart
 test/set_active_project_in_console_body_test.dart
 test/set_custom_domain_body_test.dart
+test/set_project_branding_theme_body_test.dart
 test/set_project_test.dart
 test/settings_flow_state_test.dart
 test/settings_flow_test.dart
