@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**get_identity**](IdentityApi.md#get_identity) | **GET** /admin/identities/{id} | Get an Identity
 [**get_identity_schema**](IdentityApi.md#get_identity_schema) | **GET** /schemas/{id} | Get Identity JSON Schema
-[**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | Get Session
 [**list_identities**](IdentityApi.md#list_identities) | **GET** /admin/identities | List Identities
 [**list_identity_schemas**](IdentityApi.md#list_identity_schemas) | **GET** /schemas | Get all Identity Schemas
 [**list_identity_sessions**](IdentityApi.md#list_identity_sessions) | **GET** /admin/identities/{id}/sessions | List an Identity's Sessions
@@ -297,7 +297,7 @@ No authorization required
 ## get_session
 
 > crate::models::Session get_session(id, expand)
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 

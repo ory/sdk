@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**ExtendSession**](IdentityApi.md#extendsession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**GetIdentity**](IdentityApi.md#getidentity) | **GET** /admin/identities/{id} | Get an Identity
 [**GetIdentitySchema**](IdentityApi.md#getidentityschema) | **GET** /schemas/{id} | Get Identity JSON Schema
-[**GetSession**](IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**GetSession**](IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | Get Session
 [**ListIdentities**](IdentityApi.md#listidentities) | **GET** /admin/identities | List Identities
 [**ListIdentitySchemas**](IdentityApi.md#listidentityschemas) | **GET** /schemas | Get all Identity Schemas
 [**ListIdentitySessions**](IdentityApi.md#listidentitysessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -713,7 +713,7 @@ No authorization required
 # **GetSession**
 > ClientSession GetSession (string id, List<string> expand = null)
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 
@@ -742,7 +742,7 @@ namespace Example
 
             try
             {
-                // This endpoint returns the session object with expandables specified.
+                // Get Session
                 ClientSession result = apiInstance.GetSession(id, expand);
                 Debug.WriteLine(result);
             }

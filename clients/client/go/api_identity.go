@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.4
+API version: v1.1.5
 Contact: support@ory.sh
 */
 
@@ -164,7 +164,7 @@ include credentials (e.g. social sign in connections) in the response by using t
 	GetIdentitySchemaExecute(r IdentityApiGetIdentitySchemaRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	GetSession This endpoint returns the session object with expandables specified.
+	GetSession Get Session
 
 	This endpoint is useful for:
 
@@ -1448,7 +1448,7 @@ func (r IdentityApiGetSessionRequest) Execute() (*Session, *http.Response, error
 }
 
 /*
-GetSession This endpoint returns the session object with expandables specified.
+GetSession Get Session
 
 This endpoint is useful for:
 

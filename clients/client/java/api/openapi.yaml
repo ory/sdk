@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.4
+  version: v1.1.5
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -2352,7 +2352,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: This endpoint returns the session object with expandables specified.
+      summary: Get Session
       tags:
       - identity
       x-accepts: application/json

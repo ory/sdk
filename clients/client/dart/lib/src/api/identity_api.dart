@@ -727,7 +727,7 @@ class IdentityApi {
     );
   }
 
-  /// This endpoint returns the session object with expandables specified.
+  /// Get Session
   /// This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
   ///
   /// Parameters:
