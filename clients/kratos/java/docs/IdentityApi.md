@@ -13,7 +13,7 @@ All URIs are relative to *http://localhost*
 | [**extendSession**](IdentityApi.md#extendSession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session |
 | [**getIdentity**](IdentityApi.md#getIdentity) | **GET** /admin/identities/{id} | Get an Identity |
 | [**getIdentitySchema**](IdentityApi.md#getIdentitySchema) | **GET** /schemas/{id} | Get Identity JSON Schema |
-| [**getSession**](IdentityApi.md#getSession) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified. |
+| [**getSession**](IdentityApi.md#getSession) | **GET** /admin/sessions/{id} | Get Session |
 | [**listIdentities**](IdentityApi.md#listIdentities) | **GET** /admin/identities | List Identities |
 | [**listIdentitySchemas**](IdentityApi.md#listIdentitySchemas) | **GET** /schemas | Get all Identity Schemas |
 | [**listIdentitySessions**](IdentityApi.md#listIdentitySessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions |
@@ -108,6 +108,7 @@ This endpoint creates a recovery code which should be given to the user in order
 import sh.ory.kratos.ApiClient;
 import sh.ory.kratos.ApiException;
 import sh.ory.kratos.Configuration;
+import sh.ory.kratos.auth.*;
 import sh.ory.kratos.models.*;
 import sh.ory.kratos.api.IdentityApi;
 
@@ -115,6 +116,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     CreateRecoveryCodeForIdentityBody createRecoveryCodeForIdentityBody = new CreateRecoveryCodeForIdentityBody(); // CreateRecoveryCodeForIdentityBody | 
@@ -144,7 +151,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -173,6 +180,7 @@ This endpoint creates a recovery link which should be given to the user in order
 import sh.ory.kratos.ApiClient;
 import sh.ory.kratos.ApiException;
 import sh.ory.kratos.Configuration;
+import sh.ory.kratos.auth.*;
 import sh.ory.kratos.models.*;
 import sh.ory.kratos.api.IdentityApi;
 
@@ -180,6 +188,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody = new CreateRecoveryLinkForIdentityBody(); // CreateRecoveryLinkForIdentityBody | 
@@ -209,7 +223,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -380,6 +394,7 @@ Calling this endpoint deactivates the specified session. Session data is not del
 import sh.ory.kratos.ApiClient;
 import sh.ory.kratos.ApiException;
 import sh.ory.kratos.Configuration;
+import sh.ory.kratos.auth.*;
 import sh.ory.kratos.models.*;
 import sh.ory.kratos.api.IdentityApi;
 
@@ -387,6 +402,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID is the session's ID.
@@ -415,7 +436,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -643,7 +664,7 @@ No authorization required
 # **getSession**
 > Session getSession(id, expand)
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 

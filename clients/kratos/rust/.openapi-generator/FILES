@@ -42,6 +42,7 @@ docs/JsonPatch.md
 docs/LoginFlow.md
 docs/LogoutFlow.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/OAuth2Client.md
@@ -147,6 +148,7 @@ src/models/json_patch.rs
 src/models/login_flow.rs
 src/models/logout_flow.rs
 src/models/message.rs
+src/models/message_dispatch.rs
 src/models/mod.rs
 src/models/needs_privileged_session_error.rs
 src/models/o_auth2_client.rs

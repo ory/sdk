@@ -1,8 +1,8 @@
 # kratos-client
 
 Ory Identities API
-- API version: v0.11.0
-  - Build date: 2022-12-02T18:45:48.979434700Z[Etc/UTC]
+- API version: v0.11.1
+  - Build date: 2023-01-14T11:44:32.853203462Z[Etc/UTC]
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.kratos</groupId>
   <artifactId>kratos-client</artifactId>
-  <version>v0.11.0</version>
+  <version>v0.11.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.kratos:kratos-client:v0.11.0"
+     implementation "sh.ory.kratos:kratos-client:v0.11.1"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v0.11.0.jar`
+* `target/kratos-client-v0.11.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -100,15 +100,12 @@ public class Example {
     //oryAccessToken.setApiKeyPrefix("Token");
 
     CourierApi apiInstance = new CourierApi(defaultClient);
-    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
-    Long page = 1L; // Long | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-    CourierMessageStatus status = CourierMessageStatus.fromValue("queued"); // CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
-    String recipient = "recipient_example"; // String | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter.
+    String id = "id_example"; // String | MessageID is the ID of the message.
     try {
-      List<Message> result = apiInstance.listCourierMessages(perPage, page, status, recipient);
+      Message result = apiInstance.getCourierMessage(id);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CourierApi#listCourierMessages");
+      System.err.println("Exception when calling CourierApi#getCourierMessage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -125,6 +122,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getCourierMessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages
 *FrontendApi* | [**createBrowserLoginFlow**](docs/FrontendApi.md#createBrowserLoginFlow) | **GET** /self-service/login/browser | Create Login Flow for Browsers
 *FrontendApi* | [**createBrowserLogoutFlow**](docs/FrontendApi.md#createBrowserLogoutFlow) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
@@ -164,7 +162,7 @@ Class | Method | HTTP request | Description
 *IdentityApi* | [**extendSession**](docs/IdentityApi.md#extendSession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 *IdentityApi* | [**getIdentity**](docs/IdentityApi.md#getIdentity) | **GET** /admin/identities/{id} | Get an Identity
 *IdentityApi* | [**getIdentitySchema**](docs/IdentityApi.md#getIdentitySchema) | **GET** /schemas/{id} | Get Identity JSON Schema
-*IdentityApi* | [**getSession**](docs/IdentityApi.md#getSession) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+*IdentityApi* | [**getSession**](docs/IdentityApi.md#getSession) | **GET** /admin/sessions/{id} | Get Session
 *IdentityApi* | [**listIdentities**](docs/IdentityApi.md#listIdentities) | **GET** /admin/identities | List Identities
 *IdentityApi* | [**listIdentitySchemas**](docs/IdentityApi.md#listIdentitySchemas) | **GET** /schemas | Get all Identity Schemas
 *IdentityApi* | [**listIdentitySessions**](docs/IdentityApi.md#listIdentitySessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -214,6 +212,7 @@ Class | Method | HTTP request | Description
  - [LoginFlow](docs/LoginFlow.md)
  - [LogoutFlow](docs/LogoutFlow.md)
  - [Message](docs/Message.md)
+ - [MessageDispatch](docs/MessageDispatch.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [OAuth2Client](docs/OAuth2Client.md)
  - [OAuth2ConsentRequestOpenIDConnectContext](docs/OAuth2ConsentRequestOpenIDConnectContext.md)

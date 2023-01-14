@@ -70,6 +70,8 @@ pub mod logout_flow;
 pub use self::logout_flow::LogoutFlow;
 pub mod message;
 pub use self::message::Message;
+pub mod message_dispatch;
+pub use self::message_dispatch::MessageDispatch;
 pub mod needs_privileged_session_error;
 pub use self::needs_privileged_session_error::NeedsPrivilegedSessionError;
 pub mod o_auth2_client;

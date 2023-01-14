@@ -50,6 +50,7 @@ export 'package:ory_kratos_client/src/model/json_patch.dart';
 export 'package:ory_kratos_client/src/model/login_flow.dart';
 export 'package:ory_kratos_client/src/model/logout_flow.dart';
 export 'package:ory_kratos_client/src/model/message.dart';
+export 'package:ory_kratos_client/src/model/message_dispatch.dart';
 export 'package:ory_kratos_client/src/model/needs_privileged_session_error.dart';
 export 'package:ory_kratos_client/src/model/o_auth2_client.dart';
 export 'package:ory_kratos_client/src/model/o_auth2_consent_request_open_id_connect_context.dart';

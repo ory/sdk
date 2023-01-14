@@ -45,6 +45,7 @@ docs/JsonPatch.md
 docs/LoginFlow.md
 docs/LogoutFlow.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/OAuth2Client.md
@@ -173,6 +174,7 @@ src/main/java/sh/ory/kratos/model/JsonPatch.java
 src/main/java/sh/ory/kratos/model/LoginFlow.java
 src/main/java/sh/ory/kratos/model/LogoutFlow.java
 src/main/java/sh/ory/kratos/model/Message.java
+src/main/java/sh/ory/kratos/model/MessageDispatch.java
 src/main/java/sh/ory/kratos/model/NeedsPrivilegedSessionError.java
 src/main/java/sh/ory/kratos/model/OAuth2Client.java
 src/main/java/sh/ory/kratos/model/OAuth2ConsentRequestOpenIDConnectContext.java
@@ -272,6 +274,7 @@ src/test/java/sh/ory/kratos/model/IsReady503ResponseTest.java
 src/test/java/sh/ory/kratos/model/JsonPatchTest.java
 src/test/java/sh/ory/kratos/model/LoginFlowTest.java
 src/test/java/sh/ory/kratos/model/LogoutFlowTest.java
+src/test/java/sh/ory/kratos/model/MessageDispatchTest.java
 src/test/java/sh/ory/kratos/model/MessageTest.java
 src/test/java/sh/ory/kratos/model/NeedsPrivilegedSessionErrorTest.java
 src/test/java/sh/ory/kratos/model/OAuth2ClientTest.java

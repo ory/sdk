@@ -44,6 +44,7 @@ docs/Model/JsonPatch.md
 docs/Model/LoginFlow.md
 docs/Model/LogoutFlow.md
 docs/Model/Message.md
+docs/Model/MessageDispatch.md
 docs/Model/NeedsPrivilegedSessionError.md
 docs/Model/OAuth2Client.md
 docs/Model/OAuth2ConsentRequestOpenIDConnectContext.md
@@ -148,6 +149,7 @@ lib/Model/JsonPatch.php
 lib/Model/LoginFlow.php
 lib/Model/LogoutFlow.php
 lib/Model/Message.php
+lib/Model/MessageDispatch.php
 lib/Model/ModelInterface.php
 lib/Model/NeedsPrivilegedSessionError.php
 lib/Model/OAuth2Client.php
@@ -250,6 +252,7 @@ test/Model/InlineResponse503Test.php
 test/Model/JsonPatchTest.php
 test/Model/LoginFlowTest.php
 test/Model/LogoutFlowTest.php
+test/Model/MessageDispatchTest.php
 test/Model/MessageTest.php
 test/Model/NeedsPrivilegedSessionErrorTest.php
 test/Model/OAuth2ClientTest.php

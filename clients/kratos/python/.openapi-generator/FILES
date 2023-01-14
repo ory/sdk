@@ -44,6 +44,7 @@ docs/JsonPatchDocument.md
 docs/LoginFlow.md
 docs/LogoutFlow.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/NullDuration.md
@@ -159,6 +160,7 @@ ory_kratos_client/model/json_patch_document.py
 ory_kratos_client/model/login_flow.py
 ory_kratos_client/model/logout_flow.py
 ory_kratos_client/model/message.py
+ory_kratos_client/model/message_dispatch.py
 ory_kratos_client/model/needs_privileged_session_error.py
 ory_kratos_client/model/null_duration.py
 ory_kratos_client/model/o_auth2_client.py
@@ -272,6 +274,7 @@ test/test_json_patch_document.py
 test/test_login_flow.py
 test/test_logout_flow.py
 test/test_message.py
+test/test_message_dispatch.py
 test/test_metadata_api.py
 test/test_needs_privileged_session_error.py
 test/test_null_duration.py

@@ -46,6 +46,7 @@ lib/ory/model/json_patch.ex
 lib/ory/model/login_flow.ex
 lib/ory/model/logout_flow.ex
 lib/ory/model/message.ex
+lib/ory/model/message_dispatch.ex
 lib/ory/model/needs_privileged_session_error.ex
 lib/ory/model/o_auth2_client.ex
 lib/ory/model/o_auth2_consent_request_open_id_connect_context.ex

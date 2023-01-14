@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.11.0
+API version: v0.11.1
 Contact: office@ory.sh
 */
 
@@ -164,7 +164,7 @@ include credentials (e.g. social sign in connections) in the response by using t
 	GetIdentitySchemaExecute(r IdentityApiGetIdentitySchemaRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	GetSession This endpoint returns the session object with expandables specified.
+	GetSession Get Session
 
 	This endpoint is useful for:
 
@@ -494,6 +494,20 @@ func (a *IdentityApiService) CreateRecoveryCodeForIdentityExecute(r IdentityApiC
 	}
 	// body params
 	localVarPostBody = r.createRecoveryCodeForIdentityBody
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["oryAccessToken"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -629,6 +643,20 @@ func (a *IdentityApiService) CreateRecoveryLinkForIdentityExecute(r IdentityApiC
 	}
 	// body params
 	localVarPostBody = r.createRecoveryLinkForIdentityBody
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["oryAccessToken"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1024,6 +1052,20 @@ func (a *IdentityApiService) DisableSessionExecute(r IdentityApiDisableSessionRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["oryAccessToken"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1518,7 +1560,7 @@ func (r IdentityApiGetSessionRequest) Execute() (*Session, *http.Response, error
 }
 
 /*
-GetSession This endpoint returns the session object with expandables specified.
+GetSession Get Session
 
 This endpoint is useful for:
 

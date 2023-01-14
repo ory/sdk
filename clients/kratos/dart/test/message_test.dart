@@ -18,6 +18,12 @@ void main() {
       // TODO
     });
 
+    // Dispatches store information about the attempts of delivering a message May contain an error if any happened, or just the `success` state.
+    // BuiltList<MessageDispatch> dispatches
+    test('to test the property `dispatches`', () async {
+      // TODO
+    });
+
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -43,6 +49,7 @@ void main() {
       // TODO
     });
 
+    //  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
     // String templateType
     test('to test the property `templateType`', () async {
       // TODO

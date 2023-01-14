@@ -47,6 +47,7 @@ from ory_kratos_client.model.json_patch_document import JsonPatchDocument
 from ory_kratos_client.model.login_flow import LoginFlow
 from ory_kratos_client.model.logout_flow import LogoutFlow
 from ory_kratos_client.model.message import Message
+from ory_kratos_client.model.message_dispatch import MessageDispatch
 from ory_kratos_client.model.needs_privileged_session_error import NeedsPrivilegedSessionError
 from ory_kratos_client.model.null_duration import NullDuration
 from ory_kratos_client.model.o_auth2_client import OAuth2Client

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**get_identity**](IdentityApi.md#get_identity) | **GET** /admin/identities/{id} | Get an Identity
 [**get_identity_schema**](IdentityApi.md#get_identity_schema) | **GET** /schemas/{id} | Get Identity JSON Schema
-[**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | Get Session
 [**list_identities**](IdentityApi.md#list_identities) | **GET** /admin/identities | List Identities
 [**list_identity_schemas**](IdentityApi.md#list_identity_schemas) | **GET** /schemas | Get all Identity Schemas
 [**list_identity_sessions**](IdentityApi.md#list_identity_sessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -164,6 +164,7 @@ This endpoint creates a recovery code which should be given to the user in order
 
 ### Example
 
+* Api Key Authentication (oryAccessToken):
 
 ```python
 import time
@@ -179,9 +180,19 @@ configuration = ory_kratos_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: oryAccessToken
+configuration.api_key['oryAccessToken'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['oryAccessToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with ory_kratos_client.ApiClient() as api_client:
+with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
     create_recovery_code_for_identity_body = CreateRecoveryCodeForIdentityBody(
@@ -212,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -240,6 +251,7 @@ This endpoint creates a recovery link which should be given to the user in order
 
 ### Example
 
+* Api Key Authentication (oryAccessToken):
 
 ```python
 import time
@@ -255,9 +267,19 @@ configuration = ory_kratos_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: oryAccessToken
+configuration.api_key['oryAccessToken'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['oryAccessToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with ory_kratos_client.ApiClient() as api_client:
+with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
     create_recovery_link_for_identity_body = CreateRecoveryLinkForIdentityBody(
@@ -288,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -476,6 +498,7 @@ Calling this endpoint deactivates the specified session. Session data is not del
 
 ### Example
 
+* Api Key Authentication (oryAccessToken):
 
 ```python
 import time
@@ -489,9 +512,19 @@ configuration = ory_kratos_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: oryAccessToken
+configuration.api_key['oryAccessToken'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['oryAccessToken'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with ory_kratos_client.ApiClient() as api_client:
+with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
     id = "id_example" # str | ID is the session's ID.
@@ -517,7 +550,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -784,7 +817,7 @@ No authorization required
 # **get_session**
 > Session get_session(id)
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 
@@ -827,7 +860,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # This endpoint returns the session object with expandables specified.
+        # Get Session
         api_response = api_instance.get_session(id)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
@@ -836,7 +869,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # This endpoint returns the session object with expandables specified.
+        # Get Session
         api_response = api_instance.get_session(id, expand=expand)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:

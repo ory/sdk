@@ -42,6 +42,7 @@ docs/KratosJsonPatch.md
 docs/KratosLoginFlow.md
 docs/KratosLogoutFlow.md
 docs/KratosMessage.md
+docs/KratosMessageDispatch.md
 docs/KratosNeedsPrivilegedSessionError.md
 docs/KratosOAuth2Client.md
 docs/KratosOAuth2ConsentRequestOpenIDConnectContext.md
@@ -143,6 +144,7 @@ src/Ory.Kratos.Client.Test/Model/KratosInlineResponse503Tests.cs
 src/Ory.Kratos.Client.Test/Model/KratosJsonPatchTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosLoginFlowTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosLogoutFlowTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosMessageDispatchTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosMessageTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosNeedsPrivilegedSessionErrorTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosOAuth2ClientTests.cs
@@ -262,6 +264,7 @@ src/Ory.Kratos.Client/Model/KratosJsonPatch.cs
 src/Ory.Kratos.Client/Model/KratosLoginFlow.cs
 src/Ory.Kratos.Client/Model/KratosLogoutFlow.cs
 src/Ory.Kratos.Client/Model/KratosMessage.cs
+src/Ory.Kratos.Client/Model/KratosMessageDispatch.cs
 src/Ory.Kratos.Client/Model/KratosNeedsPrivilegedSessionError.cs
 src/Ory.Kratos.Client/Model/KratosOAuth2Client.cs
 src/Ory.Kratos.Client/Model/KratosOAuth2ConsentRequestOpenIDConnectContext.cs

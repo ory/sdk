@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**ExtendSession**](IdentityApi.md#extendsession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**GetIdentity**](IdentityApi.md#getidentity) | **GET** /admin/identities/{id} | Get an Identity
 [**GetIdentitySchema**](IdentityApi.md#getidentityschema) | **GET** /schemas/{id} | Get Identity JSON Schema
-[**GetSession**](IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**GetSession**](IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | Get Session
 [**ListIdentities**](IdentityApi.md#listidentities) | **GET** /admin/identities | List Identities
 [**ListIdentitySchemas**](IdentityApi.md#listidentityschemas) | **GET** /schemas | Get all Identity Schemas
 [**ListIdentitySessions**](IdentityApi.md#listidentitysessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -125,6 +125,11 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+
             var apiInstance = new IdentityApi(config);
             var kratosCreateRecoveryCodeForIdentityBody = new KratosCreateRecoveryCodeForIdentityBody(); // KratosCreateRecoveryCodeForIdentityBody |  (optional) 
 
@@ -157,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -199,6 +204,11 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+
             var apiInstance = new IdentityApi(config);
             var kratosCreateRecoveryLinkForIdentityBody = new KratosCreateRecoveryLinkForIdentityBody(); // KratosCreateRecoveryLinkForIdentityBody |  (optional) 
 
@@ -231,7 +241,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -429,6 +439,11 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
+            // Configure API key authorization: oryAccessToken
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+
             var apiInstance = new IdentityApi(config);
             var id = "id_example";  // string | ID is the session's ID.
 
@@ -460,7 +475,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -714,7 +729,7 @@ No authorization required
 # **GetSession**
 > KratosSession GetSession (string id, List<string> expand = null)
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 
@@ -745,7 +760,7 @@ namespace Example
 
             try
             {
-                // This endpoint returns the session object with expandables specified.
+                // Get Session
                 KratosSession result = apiInstance.GetSession(id, expand);
                 Debug.WriteLine(result);
             }
