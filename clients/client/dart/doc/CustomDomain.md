@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **verificationErrors** | **BuiltList&lt;String&gt;** |  | [optional] 
-**verificationStatus** | **String** | CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL | [optional] 
+**verificationStatus** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

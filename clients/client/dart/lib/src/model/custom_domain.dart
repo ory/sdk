@@ -20,7 +20,7 @@ part 'custom_domain.g.dart';
 /// * [id] 
 /// * [updatedAt] 
 /// * [verificationErrors] 
-/// * [verificationStatus] - CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL
+/// * [verificationStatus] 
 @BuiltValue()
 abstract class CustomDomain implements Built<CustomDomain, CustomDomainBuilder> {
   @BuiltValueField(wireName: r'cookie_domain')
@@ -47,7 +47,6 @@ abstract class CustomDomain implements Built<CustomDomain, CustomDomainBuilder> 
   @BuiltValueField(wireName: r'verification_errors')
   BuiltList<String>? get verificationErrors;
 
-  /// CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL
   @BuiltValueField(wireName: r'verification_status')
   String? get verificationStatus;
 

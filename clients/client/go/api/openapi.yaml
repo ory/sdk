@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.5
+  version: v1.1.7
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -2109,17 +2109,17 @@ paths:
           type: boolean
         style: form
       - description: "ExpandOptions is a query parameter encoded list of all properties\
-          \ that must be expanded in the Session.\nExample - ?expand=Identity&expand=Devices\n\
-          If no value is provided, the expandable properties are skipped."
+          \ that must be expanded in the Session.\nIf no value is provided, the expandable\
+          \ properties are skipped."
         explode: true
         in: query
         name: expand
         required: false
         schema:
+          enum:
+          - identity
+          - devices
           items:
-            enum:
-            - Devices
-            - Identity
             type: string
           type: array
         style: form
@@ -2208,10 +2208,10 @@ paths:
         name: expand
         required: false
         schema:
+          enum:
+          - identity
+          - devices
           items:
-            enum:
-            - Devices
-            - Identity
             type: string
           type: array
         style: form
@@ -6075,8 +6075,8 @@ components:
         The response given when listing sessions in an administrative context.
   schemas:
     CustomHostnameStatus:
-      description: CustomHostnameStatus is the enumeration of valid state values in
-        the CustomHostnameSSL
+      title: CustomHostnameStatus is the enumeration of valid state values in the
+        CustomHostnameSSL.
       type: string
     Duration:
       description: |-
@@ -6661,8 +6661,8 @@ components:
             type: string
           type: array
         verification_status:
-          description: CustomHostnameStatus is the enumeration of valid state values
-            in the CustomHostnameSSL
+          title: CustomHostnameStatus is the enumeration of valid state values in
+            the CustomHostnameSSL.
           type: string
       type: object
     customDomainQuota:

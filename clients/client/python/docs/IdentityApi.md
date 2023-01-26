@@ -846,7 +846,7 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = identity_api.IdentityApi(api_client)
     id = "id_example" # str | ID is the session's ID.
     expand = [
-        "Devices",
+        "identity",
     ] # [str] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
 
     # example passing only required values which don't have defaults set
@@ -1191,8 +1191,8 @@ with ory_client.ApiClient(configuration) as api_client:
     page_token = "page_token_example" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
     active = True # bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
     expand = [
-        "Devices",
-    ] # [str] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
+        "identity",
+    ] # [str] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -1212,7 +1212,7 @@ Name | Type | Description  | Notes
  **page_size** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
  **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]
  **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional]
- **expand** | **[str]**| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | [optional]
+ **expand** | **[str]**| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | [optional]
 
 ### Return type
 

@@ -12,7 +12,7 @@
 | **id** | **String** |  | [optional] |
 | **updated_at** | **Time** |  | [optional] |
 | **verification_errors** | **Array&lt;String&gt;** |  | [optional] |
-| **verification_status** | **String** | CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL | [optional] |
+| **verification_status** | **String** |  | [optional] |
 
 ## Example
 

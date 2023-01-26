@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.5
+API version: v1.1.7
 Contact: support@ory.sh
 */
 
@@ -2009,7 +2009,7 @@ func (r IdentityApiListSessionsRequest) Active(active bool) IdentityApiListSessi
 	return r
 }
 
-// ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped.
+// ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
 func (r IdentityApiListSessionsRequest) Expand(expand []string) IdentityApiListSessionsRequest {
 	r.expand = &expand
 	return r

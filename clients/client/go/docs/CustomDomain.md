@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **VerificationErrors** | Pointer to **[]string** |  | [optional] 
-**VerificationStatus** | Pointer to **string** | CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL | [optional] 
+**VerificationStatus** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
