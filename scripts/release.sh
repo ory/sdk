@@ -223,7 +223,7 @@ elixir() {
   (cd "${dir}"; mix local.hex --force)
   (cd "${dir}"; mix deps.get)
 
-  (cd "${dir}"; mix hex.publish --yes package)
+  (cd "${dir}"; mix hex.publish --yes)
 }
 
 
