@@ -9,11 +9,58 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**getCourierMessage**](CourierApi.md#getcouriermessage) | **GET** /admin/courier/messages/{id} | Get a Message
 [**listCourierMessages**](CourierApi.md#listcouriermessages) | **GET** /admin/courier/messages | List Messages
 
 
+# **getCourierMessage**
+> Message getCourierMessage(id)
+
+Get a Message
+
+Gets a specific messages by the given ID.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+final api = OryClient().getCourierApi();
+final String id = id_example; // String | MessageID is the ID of the message.
+
+try {
+    final response = api.getCourierMessage(id);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling CourierApi->getCourierMessage: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| MessageID is the ID of the message. | 
+
+### Return type
+
+[**Message**](Message.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **listCourierMessages**
-> BuiltList<Message> listCourierMessages(perPage, page, status, recipient)
+> BuiltList<Message> listCourierMessages(pageSize, pageToken, status, recipient)
 
 List Messages
 
@@ -27,13 +74,13 @@ import 'package:ory_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getCourierApi();
-final int perPage = 789; // int | Items per Page  This is the number of items per page.
-final int page = 789; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 final CourierMessageStatus status = ; // CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
 final String recipient = recipient_example; // String | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter.
 
 try {
-    final response = api.listCourierMessages(perPage, page, status, recipient);
+    final response = api.listCourierMessages(pageSize, pageToken, status, recipient);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling CourierApi->listCourierMessages: $e\n');
@@ -44,8 +91,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+ **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] 
  **status** | [**CourierMessageStatus**](.md)| Status filters out messages based on status. If no value is provided, it doesn't take effect on filter. | [optional] 
  **recipient** | **String**| Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter. | [optional] 
 

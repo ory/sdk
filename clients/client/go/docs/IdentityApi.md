@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**ExtendSession**](IdentityApi.md#ExtendSession) | **Patch** /admin/sessions/{id}/extend | Extend a Session
 [**GetIdentity**](IdentityApi.md#GetIdentity) | **Get** /admin/identities/{id} | Get an Identity
 [**GetIdentitySchema**](IdentityApi.md#GetIdentitySchema) | **Get** /schemas/{id} | Get Identity JSON Schema
-[**GetSession**](IdentityApi.md#GetSession) | **Get** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**GetSession**](IdentityApi.md#GetSession) | **Get** /admin/sessions/{id} | Get Session
 [**ListIdentities**](IdentityApi.md#ListIdentities) | **Get** /admin/identities | List Identities
 [**ListIdentitySchemas**](IdentityApi.md#ListIdentitySchemas) | **Get** /schemas | Get all Identity Schemas
 [**ListIdentitySessions**](IdentityApi.md#ListIdentitySessions) | **Get** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -641,7 +641,7 @@ No authorization required
 
 > Session GetSession(ctx, id).Expand(expand).Execute()
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 
 
@@ -659,7 +659,7 @@ import (
 
 func main() {
     id := "id_example" // string | ID is the session's ID.
-    expand := []string{"Expand_example"} // []string | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
+    expand := []string{"Inner_example"} // []string | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -945,7 +945,7 @@ func main() {
     pageSize := int64(789) // int64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
     pageToken := "pageToken_example" // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
     active := true // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
-    expand := []string{"Expand_example"} // []string | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
+    expand := []string{"Inner_example"} // []string | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -973,7 +973,7 @@ Name | Type | Description  | Notes
  **pageSize** | **int64** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [default to 250]
  **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | 
  **active** | **bool** | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | 
- **expand** | **[]string** | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | 
+ **expand** | **[]string** | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | 
 
 ### Return type
 

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**extendSession()**](IdentityApi.md#extendSession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**getIdentity()**](IdentityApi.md#getIdentity) | **GET** /admin/identities/{id} | Get an Identity
 [**getIdentitySchema()**](IdentityApi.md#getIdentitySchema) | **GET** /schemas/{id} | Get Identity JSON Schema
-[**getSession()**](IdentityApi.md#getSession) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**getSession()**](IdentityApi.md#getSession) | **GET** /admin/sessions/{id} | Get Session
 [**listIdentities()**](IdentityApi.md#listIdentities) | **GET** /admin/identities | List Identities
 [**listIdentitySchemas()**](IdentityApi.md#listIdentitySchemas) | **GET** /schemas | Get all Identity Schemas
 [**listIdentitySessions()**](IdentityApi.md#listIdentitySessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -563,7 +563,7 @@ No authorization required
 getSession($id, $expand): \Ory\Client\Model\Session
 ```
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 
@@ -835,7 +835,7 @@ $apiInstance = new Ory\Client\Api\IdentityApi(
 $pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $pageToken = 'pageToken_example'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $active = True; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
-$expand = array('expand_example'); // string[] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+$expand = array('expand_example'); // string[] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
 
 try {
     $result = $apiInstance->listSessions($pageSize, $pageToken, $active, $expand);
@@ -852,7 +852,7 @@ Name | Type | Description  | Notes
  **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]
  **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional]
- **expand** | [**string[]**](../Model/string.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | [optional]
+ **expand** | [**string[]**](../Model/string.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | [optional]
 
 ### Return type
 

@@ -321,7 +321,7 @@ elixir() {
 
   file="${dir}/mix.exs"
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 6.2.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g elixir \
     -o "$dir" \

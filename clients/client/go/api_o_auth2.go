@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.0
+API version: v1.1.7
 Contact: support@ory.sh
 */
 
@@ -2272,6 +2272,7 @@ type OAuth2ApiListOAuth2ConsentSessionsRequest struct {
 	subject *string
 	pageSize *int64
 	pageToken *string
+	loginSessionId *string
 }
 
 // The subject to list the consent sessions for.
@@ -2289,6 +2290,12 @@ func (r OAuth2ApiListOAuth2ConsentSessionsRequest) PageSize(pageSize int64) OAut
 // Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 func (r OAuth2ApiListOAuth2ConsentSessionsRequest) PageToken(pageToken string) OAuth2ApiListOAuth2ConsentSessionsRequest {
 	r.pageToken = &pageToken
+	return r
+}
+
+// The login session id to list the consent sessions for.
+func (r OAuth2ApiListOAuth2ConsentSessionsRequest) LoginSessionId(loginSessionId string) OAuth2ApiListOAuth2ConsentSessionsRequest {
+	r.loginSessionId = &loginSessionId
 	return r
 }
 
@@ -2344,6 +2351,9 @@ func (a *OAuth2ApiService) ListOAuth2ConsentSessionsExecute(r OAuth2ApiListOAuth
 		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
 	}
 	localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	if r.loginSessionId != nil {
+		localVarQueryParams.Add("login_session_id", parameterToString(*r.loginSessionId, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3560,10 +3570,22 @@ type OAuth2ApiRevokeOAuth2TokenRequest struct {
 	ctx context.Context
 	ApiService OAuth2Api
 	token *string
+	clientId *string
+	clientSecret *string
 }
 
 func (r OAuth2ApiRevokeOAuth2TokenRequest) Token(token string) OAuth2ApiRevokeOAuth2TokenRequest {
 	r.token = &token
+	return r
+}
+
+func (r OAuth2ApiRevokeOAuth2TokenRequest) ClientId(clientId string) OAuth2ApiRevokeOAuth2TokenRequest {
+	r.clientId = &clientId
+	return r
+}
+
+func (r OAuth2ApiRevokeOAuth2TokenRequest) ClientSecret(clientSecret string) OAuth2ApiRevokeOAuth2TokenRequest {
+	r.clientSecret = &clientSecret
 	return r
 }
 
@@ -3627,6 +3649,12 @@ func (a *OAuth2ApiService) RevokeOAuth2TokenExecute(r OAuth2ApiRevokeOAuth2Token
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.clientId != nil {
+		localVarFormParams.Add("client_id", parameterToString(*r.clientId, ""))
+	}
+	if r.clientSecret != nil {
+		localVarFormParams.Add("client_secret", parameterToString(*r.clientSecret, ""))
 	}
 	localVarFormParams.Add("token", parameterToString(*r.token, ""))
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

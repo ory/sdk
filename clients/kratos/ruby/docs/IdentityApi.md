@@ -13,7 +13,7 @@ All URIs are relative to *http://localhost*
 | [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session |
 | [**get_identity**](IdentityApi.md#get_identity) | **GET** /admin/identities/{id} | Get an Identity |
 | [**get_identity_schema**](IdentityApi.md#get_identity_schema) | **GET** /schemas/{id} | Get Identity JSON Schema |
-| [**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified. |
+| [**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | Get Session |
 | [**list_identities**](IdentityApi.md#list_identities) | **GET** /admin/identities | List Identities |
 | [**list_identity_schemas**](IdentityApi.md#list_identity_schemas) | **GET** /schemas | Get all Identity Schemas |
 | [**list_identity_sessions**](IdentityApi.md#list_identity_sessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions |
@@ -108,6 +108,13 @@ This endpoint creates a recovery code which should be given to the user in order
 ```ruby
 require 'time'
 require 'ory-kratos-client'
+# setup authorization
+OryKratosClient.configure do |config|
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+end
 
 api_instance = OryKratosClient::IdentityApi.new
 opts = {
@@ -153,7 +160,7 @@ end
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -174,6 +181,13 @@ This endpoint creates a recovery link which should be given to the user in order
 ```ruby
 require 'time'
 require 'ory-kratos-client'
+# setup authorization
+OryKratosClient.configure do |config|
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+end
 
 api_instance = OryKratosClient::IdentityApi.new
 opts = {
@@ -219,7 +233,7 @@ end
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -380,6 +394,13 @@ Calling this endpoint deactivates the specified session. Session data is not del
 ```ruby
 require 'time'
 require 'ory-kratos-client'
+# setup authorization
+OryKratosClient.configure do |config|
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+end
 
 api_instance = OryKratosClient::IdentityApi.new
 id = 'id_example' # String | ID is the session's ID.
@@ -422,7 +443,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -644,7 +665,7 @@ No authorization required
 
 > <Session> get_session(id, opts)
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 
@@ -668,7 +689,7 @@ opts = {
 }
 
 begin
-  # This endpoint returns the session object with expandables specified.
+  # Get Session
   result = api_instance.get_session(id, opts)
   p result
 rescue OryKratosClient::ApiError => e
@@ -684,7 +705,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # This endpoint returns the session object with expandables specified.
+  # Get Session
   data, status_code, headers = api_instance.get_session_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }

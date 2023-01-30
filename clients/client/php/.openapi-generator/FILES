@@ -29,6 +29,7 @@ docs/Model/CreateCustomDomainBody.md
 docs/Model/CreateIdentityBody.md
 docs/Model/CreateJsonWebKeySet.md
 docs/Model/CreateProjectBody.md
+docs/Model/CreateProjectBranding.md
 docs/Model/CreateProjectInvite.md
 docs/Model/CreateRecoveryCodeForIdentityBody.md
 docs/Model/CreateRecoveryLinkForIdentityBody.md
@@ -68,6 +69,7 @@ docs/Model/InlineObject3.md
 docs/Model/InlineResponse200.md
 docs/Model/InlineResponse2001.md
 docs/Model/InlineResponse503.md
+docs/Model/InternalGetProjectBrandingBody.md
 docs/Model/InternalIsOwnerForProjectBySlugBody.md
 docs/Model/InternalProvisionMockSubscription.md
 docs/Model/IntrospectedOAuth2Token.md
@@ -82,6 +84,7 @@ docs/Model/LogoutFlow.md
 docs/Model/ManagedIdentitySchema.md
 docs/Model/ManagedIdentitySchemaValidationResult.md
 docs/Model/Message.md
+docs/Model/MessageDispatch.md
 docs/Model/ModelNamespace.md
 docs/Model/NeedsPrivilegedSessionError.md
 docs/Model/NormalizedProject.md
@@ -110,6 +113,9 @@ docs/Model/PostCheckPermissionBody.md
 docs/Model/PostCheckPermissionOrErrorBody.md
 docs/Model/Project.md
 docs/Model/ProjectApiKey.md
+docs/Model/ProjectBranding.md
+docs/Model/ProjectBrandingColors.md
+docs/Model/ProjectBrandingTheme.md
 docs/Model/ProjectHost.md
 docs/Model/ProjectInvite.md
 docs/Model/ProjectMetadata.md
@@ -117,6 +123,7 @@ docs/Model/ProjectServiceIdentity.md
 docs/Model/ProjectServiceOAuth2.md
 docs/Model/ProjectServicePermission.md
 docs/Model/ProjectServices.md
+docs/Model/QuotaBrandingThemes.md
 docs/Model/RecoveryCodeForIdentity.md
 docs/Model/RecoveryFlow.md
 docs/Model/RecoveryFlowState.md
@@ -133,10 +140,12 @@ docs/Model/SchemaPatch.md
 docs/Model/SelfServiceFlowExpiredError.md
 docs/Model/Session.md
 docs/Model/SessionAuthenticationMethod.md
+docs/Model/SessionCachingQuota.md
 docs/Model/SessionDevice.md
 docs/Model/SetActiveProjectInConsoleBody.md
 docs/Model/SetCustomDomainBody.md
 docs/Model/SetProject.md
+docs/Model/SetProjectBrandingThemeBody.md
 docs/Model/SettingsFlow.md
 docs/Model/SettingsFlowState.md
 docs/Model/SourcePosition.md
@@ -222,6 +231,7 @@ lib/Model/CreateCustomDomainBody.php
 lib/Model/CreateIdentityBody.php
 lib/Model/CreateJsonWebKeySet.php
 lib/Model/CreateProjectBody.php
+lib/Model/CreateProjectBranding.php
 lib/Model/CreateProjectInvite.php
 lib/Model/CreateRecoveryCodeForIdentityBody.php
 lib/Model/CreateRecoveryLinkForIdentityBody.php
@@ -261,6 +271,7 @@ lib/Model/InlineObject3.php
 lib/Model/InlineResponse200.php
 lib/Model/InlineResponse2001.php
 lib/Model/InlineResponse503.php
+lib/Model/InternalGetProjectBrandingBody.php
 lib/Model/InternalIsOwnerForProjectBySlugBody.php
 lib/Model/InternalProvisionMockSubscription.php
 lib/Model/IntrospectedOAuth2Token.php
@@ -275,6 +286,7 @@ lib/Model/LogoutFlow.php
 lib/Model/ManagedIdentitySchema.php
 lib/Model/ManagedIdentitySchemaValidationResult.php
 lib/Model/Message.php
+lib/Model/MessageDispatch.php
 lib/Model/ModelInterface.php
 lib/Model/ModelNamespace.php
 lib/Model/NeedsPrivilegedSessionError.php
@@ -304,6 +316,9 @@ lib/Model/PostCheckPermissionBody.php
 lib/Model/PostCheckPermissionOrErrorBody.php
 lib/Model/Project.php
 lib/Model/ProjectApiKey.php
+lib/Model/ProjectBranding.php
+lib/Model/ProjectBrandingColors.php
+lib/Model/ProjectBrandingTheme.php
 lib/Model/ProjectHost.php
 lib/Model/ProjectInvite.php
 lib/Model/ProjectMetadata.php
@@ -311,6 +326,7 @@ lib/Model/ProjectServiceIdentity.php
 lib/Model/ProjectServiceOAuth2.php
 lib/Model/ProjectServicePermission.php
 lib/Model/ProjectServices.php
+lib/Model/QuotaBrandingThemes.php
 lib/Model/RecoveryCodeForIdentity.php
 lib/Model/RecoveryFlow.php
 lib/Model/RecoveryFlowState.php
@@ -327,10 +343,12 @@ lib/Model/SchemaPatch.php
 lib/Model/SelfServiceFlowExpiredError.php
 lib/Model/Session.php
 lib/Model/SessionAuthenticationMethod.php
+lib/Model/SessionCachingQuota.php
 lib/Model/SessionDevice.php
 lib/Model/SetActiveProjectInConsoleBody.php
 lib/Model/SetCustomDomainBody.php
 lib/Model/SetProject.php
+lib/Model/SetProjectBrandingThemeBody.php
 lib/Model/SettingsFlow.php
 lib/Model/SettingsFlowState.php
 lib/Model/SourcePosition.php
@@ -414,6 +432,7 @@ test/Model/CreateCustomDomainBodyTest.php
 test/Model/CreateIdentityBodyTest.php
 test/Model/CreateJsonWebKeySetTest.php
 test/Model/CreateProjectBodyTest.php
+test/Model/CreateProjectBrandingTest.php
 test/Model/CreateProjectInviteTest.php
 test/Model/CreateRecoveryCodeForIdentityBodyTest.php
 test/Model/CreateRecoveryLinkForIdentityBodyTest.php
@@ -453,6 +472,7 @@ test/Model/InlineObject3Test.php
 test/Model/InlineResponse2001Test.php
 test/Model/InlineResponse200Test.php
 test/Model/InlineResponse503Test.php
+test/Model/InternalGetProjectBrandingBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugBodyTest.php
 test/Model/InternalProvisionMockSubscriptionTest.php
 test/Model/IntrospectedOAuth2TokenTest.php
@@ -466,6 +486,7 @@ test/Model/LoginFlowTest.php
 test/Model/LogoutFlowTest.php
 test/Model/ManagedIdentitySchemaTest.php
 test/Model/ManagedIdentitySchemaValidationResultTest.php
+test/Model/MessageDispatchTest.php
 test/Model/MessageTest.php
 test/Model/ModelNamespaceTest.php
 test/Model/NeedsPrivilegedSessionErrorTest.php
@@ -494,6 +515,9 @@ test/Model/PerformNativeLogoutBodyTest.php
 test/Model/PostCheckPermissionBodyTest.php
 test/Model/PostCheckPermissionOrErrorBodyTest.php
 test/Model/ProjectApiKeyTest.php
+test/Model/ProjectBrandingColorsTest.php
+test/Model/ProjectBrandingTest.php
+test/Model/ProjectBrandingThemeTest.php
 test/Model/ProjectHostTest.php
 test/Model/ProjectInviteTest.php
 test/Model/ProjectMetadataTest.php
@@ -502,6 +526,7 @@ test/Model/ProjectServiceOAuth2Test.php
 test/Model/ProjectServicePermissionTest.php
 test/Model/ProjectServicesTest.php
 test/Model/ProjectTest.php
+test/Model/QuotaBrandingThemesTest.php
 test/Model/RecoveryCodeForIdentityTest.php
 test/Model/RecoveryFlowStateTest.php
 test/Model/RecoveryFlowTest.php
@@ -517,10 +542,12 @@ test/Model/RelationshipsTest.php
 test/Model/SchemaPatchTest.php
 test/Model/SelfServiceFlowExpiredErrorTest.php
 test/Model/SessionAuthenticationMethodTest.php
+test/Model/SessionCachingQuotaTest.php
 test/Model/SessionDeviceTest.php
 test/Model/SessionTest.php
 test/Model/SetActiveProjectInConsoleBodyTest.php
 test/Model/SetCustomDomainBodyTest.php
+test/Model/SetProjectBrandingThemeBodyTest.php
 test/Model/SetProjectTest.php
 test/Model/SettingsFlowStateTest.php
 test/Model/SettingsFlowTest.php

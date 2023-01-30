@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**extendSession**](IdentityApi.md#extendsession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**getIdentity**](IdentityApi.md#getidentity) | **GET** /admin/identities/{id} | Get an Identity
 [**getIdentitySchema**](IdentityApi.md#getidentityschema) | **GET** /schemas/{id} | Get Identity JSON Schema
-[**getSession**](IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**getSession**](IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | Get Session
 [**listIdentities**](IdentityApi.md#listidentities) | **GET** /admin/identities | List Identities
 [**listIdentitySchemas**](IdentityApi.md#listidentityschemas) | **GET** /schemas | Get all Identity Schemas
 [**listIdentitySessions**](IdentityApi.md#listidentitysessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -84,6 +84,10 @@ This endpoint creates a recovery code which should be given to the user in order
 ### Example
 ```dart
 import 'package:ory_kratos_client/api.dart';
+// TODO Configure API key authorization: oryAccessToken
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api = OryKratosClient().getIdentityApi();
 final CreateRecoveryCodeForIdentityBody createRecoveryCodeForIdentityBody = ; // CreateRecoveryCodeForIdentityBody | 
@@ -108,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -127,6 +131,10 @@ This endpoint creates a recovery link which should be given to the user in order
 ### Example
 ```dart
 import 'package:ory_kratos_client/api.dart';
+// TODO Configure API key authorization: oryAccessToken
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api = OryKratosClient().getIdentityApi();
 final CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody = ; // CreateRecoveryLinkForIdentityBody | 
@@ -151,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -262,6 +270,10 @@ Calling this endpoint deactivates the specified session. Session data is not del
 ### Example
 ```dart
 import 'package:ory_kratos_client/api.dart';
+// TODO Configure API key authorization: oryAccessToken
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api = OryKratosClient().getIdentityApi();
 final String id = id_example; // String | ID is the session's ID.
@@ -285,7 +297,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -436,7 +448,7 @@ No authorization required
 # **getSession**
 > Session getSession(id, expand)
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 

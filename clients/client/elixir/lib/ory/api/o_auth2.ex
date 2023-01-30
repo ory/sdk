@@ -441,6 +441,7 @@ defmodule Ory.Api.OAuth2 do
   - opts (KeywordList): [optional] Optional parameters
     - :page_size (integer()): Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - :page_token (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    - :login_session_id (String.t): The login session id to list the consent sessions for.
   ## Returns
 
   {:ok, [%OAuth2ConsentSession{}, ...]} on success
@@ -450,7 +451,8 @@ defmodule Ory.Api.OAuth2 do
   def list_o_auth2_consent_sessions(connection, subject, opts \\ []) do
     optional_params = %{
       :page_size => :query,
-      :page_token => :query
+      :page_token => :query,
+      :login_session_id => :query
     }
     %{}
     |> method(:get)
@@ -764,17 +766,24 @@ defmodule Ory.Api.OAuth2 do
   - connection (Ory.Connection): Connection to server
   - token (String.t): 
   - opts (KeywordList): [optional] Optional parameters
+    - :client_id (String.t): 
+    - :client_secret (String.t): 
   ## Returns
 
   {:ok, nil} on success
   {:error, Tesla.Env.t} on failure
   """
   @spec revoke_o_auth2_token(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorOAuth2.t} | {:error, Tesla.Env.t}
-  def revoke_o_auth2_token(connection, token, _opts \\ []) do
+  def revoke_o_auth2_token(connection, token, opts \\ []) do
+    optional_params = %{
+      :client_id => :form,
+      :client_secret => :form
+    }
     %{}
     |> method(:post)
     |> url("/oauth2/revoke")
     |> add_param(:form, :token, token)
+    |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([

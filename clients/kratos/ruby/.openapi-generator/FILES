@@ -46,6 +46,7 @@ docs/JsonPatch.md
 docs/LoginFlow.md
 docs/LogoutFlow.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/OAuth2Client.md
@@ -152,6 +153,7 @@ lib/ory-kratos-client/models/json_patch.rb
 lib/ory-kratos-client/models/login_flow.rb
 lib/ory-kratos-client/models/logout_flow.rb
 lib/ory-kratos-client/models/message.rb
+lib/ory-kratos-client/models/message_dispatch.rb
 lib/ory-kratos-client/models/needs_privileged_session_error.rb
 lib/ory-kratos-client/models/o_auth2_client.rb
 lib/ory-kratos-client/models/o_auth2_consent_request_open_id_connect_context.rb
@@ -255,6 +257,7 @@ spec/models/is_ready503_response_spec.rb
 spec/models/json_patch_spec.rb
 spec/models/login_flow_spec.rb
 spec/models/logout_flow_spec.rb
+spec/models/message_dispatch_spec.rb
 spec/models/message_spec.rb
 spec/models/needs_privileged_session_error_spec.rb
 spec/models/o_auth2_client_spec.rb

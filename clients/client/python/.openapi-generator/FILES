@@ -19,6 +19,8 @@ docs/CreateIdentityBody.md
 docs/CreateJsonWebKeySet.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
+docs/CreateProjectBranding.md
+docs/CreateProjectBrandingsBody.md
 docs/CreateProjectInvite.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
@@ -59,6 +61,7 @@ docs/IdentityWithCredentialsOidcConfig.md
 docs/IdentityWithCredentialsOidcConfigProvider.md
 docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
+docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
@@ -80,6 +83,7 @@ docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
 docs/ManagedIdentitySchemas.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
@@ -119,6 +123,10 @@ docs/Project.md
 docs/ProjectApi.md
 docs/ProjectApiKey.md
 docs/ProjectApiKeys.md
+docs/ProjectBranding.md
+docs/ProjectBrandingColors.md
+docs/ProjectBrandingTheme.md
+docs/ProjectBrandingThemes.md
 docs/ProjectHost.md
 docs/ProjectInvite.md
 docs/ProjectInvites.md
@@ -135,6 +143,7 @@ docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
 docs/Projects.md
+docs/QuotaBrandingThemes.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -153,10 +162,12 @@ docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
 docs/SessionAuthenticationMethods.md
+docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetProject.md
+docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
@@ -252,6 +263,8 @@ ory_client/model/create_identity_body.py
 ory_client/model/create_json_web_key_set.py
 ory_client/model/create_project_api_key_request.py
 ory_client/model/create_project_body.py
+ory_client/model/create_project_branding.py
+ory_client/model/create_project_brandings_body.py
 ory_client/model/create_project_invite.py
 ory_client/model/create_recovery_code_for_identity_body.py
 ory_client/model/create_recovery_link_for_identity_body.py
@@ -290,6 +303,7 @@ ory_client/model/identity_with_credentials_oidc_config.py
 ory_client/model/identity_with_credentials_oidc_config_provider.py
 ory_client/model/identity_with_credentials_password.py
 ory_client/model/identity_with_credentials_password_config.py
+ory_client/model/internal_get_project_branding_body.py
 ory_client/model/internal_is_owner_for_project_by_slug_body.py
 ory_client/model/internal_provision_mock_subscription.py
 ory_client/model/introspected_o_auth2_token.py
@@ -310,6 +324,7 @@ ory_client/model/managed_identity_schema.py
 ory_client/model/managed_identity_schema_validation_result.py
 ory_client/model/managed_identity_schemas.py
 ory_client/model/message.py
+ory_client/model/message_dispatch.py
 ory_client/model/namespace.py
 ory_client/model/needs_privileged_session_error.py
 ory_client/model/normalized_project.py
@@ -344,6 +359,10 @@ ory_client/model/post_check_permission_or_error_body.py
 ory_client/model/project.py
 ory_client/model/project_api_key.py
 ory_client/model/project_api_keys.py
+ory_client/model/project_branding.py
+ory_client/model/project_branding_colors.py
+ory_client/model/project_branding_theme.py
+ory_client/model/project_branding_themes.py
 ory_client/model/project_host.py
 ory_client/model/project_invite.py
 ory_client/model/project_invites.py
@@ -360,6 +379,7 @@ ory_client/model/project_service_o_auth2.py
 ory_client/model/project_service_permission.py
 ory_client/model/project_services.py
 ory_client/model/projects.py
+ory_client/model/quota_branding_themes.py
 ory_client/model/recovery_code_for_identity.py
 ory_client/model/recovery_flow.py
 ory_client/model/recovery_flow_state.py
@@ -377,10 +397,12 @@ ory_client/model/self_service_flow_expired_error.py
 ory_client/model/session.py
 ory_client/model/session_authentication_method.py
 ory_client/model/session_authentication_methods.py
+ory_client/model/session_caching_quota.py
 ory_client/model/session_device.py
 ory_client/model/set_active_project_in_console_body.py
 ory_client/model/set_custom_domain_body.py
 ory_client/model/set_project.py
+ory_client/model/set_project_branding_theme_body.py
 ory_client/model/settings_flow.py
 ory_client/model/settings_flow_state.py
 ory_client/model/source_position.py
@@ -465,6 +487,8 @@ test/test_create_identity_body.py
 test/test_create_json_web_key_set.py
 test/test_create_project_api_key_request.py
 test/test_create_project_body.py
+test/test_create_project_branding.py
+test/test_create_project_brandings_body.py
 test/test_create_project_invite.py
 test/test_create_recovery_code_for_identity_body.py
 test/test_create_recovery_link_for_identity_body.py
@@ -505,6 +529,7 @@ test/test_identity_with_credentials_oidc_config.py
 test/test_identity_with_credentials_oidc_config_provider.py
 test/test_identity_with_credentials_password.py
 test/test_identity_with_credentials_password_config.py
+test/test_internal_get_project_branding_body.py
 test/test_internal_is_owner_for_project_by_slug_body.py
 test/test_internal_provision_mock_subscription.py
 test/test_introspected_o_auth2_token.py
@@ -526,6 +551,7 @@ test/test_managed_identity_schema.py
 test/test_managed_identity_schema_validation_result.py
 test/test_managed_identity_schemas.py
 test/test_message.py
+test/test_message_dispatch.py
 test/test_metadata_api.py
 test/test_namespace.py
 test/test_needs_privileged_session_error.py
@@ -565,6 +591,10 @@ test/test_project.py
 test/test_project_api.py
 test/test_project_api_key.py
 test/test_project_api_keys.py
+test/test_project_branding.py
+test/test_project_branding_colors.py
+test/test_project_branding_theme.py
+test/test_project_branding_themes.py
 test/test_project_host.py
 test/test_project_invite.py
 test/test_project_invites.py
@@ -581,6 +611,7 @@ test/test_project_service_o_auth2.py
 test/test_project_service_permission.py
 test/test_project_services.py
 test/test_projects.py
+test/test_quota_branding_themes.py
 test/test_recovery_code_for_identity.py
 test/test_recovery_flow.py
 test/test_recovery_flow_state.py
@@ -599,10 +630,12 @@ test/test_self_service_flow_expired_error.py
 test/test_session.py
 test/test_session_authentication_method.py
 test/test_session_authentication_methods.py
+test/test_session_caching_quota.py
 test/test_session_device.py
 test/test_set_active_project_in_console_body.py
 test/test_set_custom_domain_body.py
 test/test_set_project.py
+test/test_set_project_branding_theme_body.py
 test/test_settings_flow.py
 test/test_settings_flow_state.py
 test/test_source_position.py

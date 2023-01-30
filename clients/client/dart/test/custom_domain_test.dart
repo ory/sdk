@@ -47,7 +47,6 @@ void main() {
       // TODO
     });
 
-    // CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL
     // String verificationStatus
     test('to test the property `verificationStatus`', () async {
       // TODO

@@ -886,7 +886,7 @@ Name | Type | Description  | Notes
 ## `listOAuth2ConsentSessions()`
 
 ```php
-listOAuth2ConsentSessions($subject, $pageSize, $pageToken): \Ory\Client\Model\OAuth2ConsentSession[]
+listOAuth2ConsentSessions($subject, $pageSize, $pageToken, $loginSessionId): \Ory\Client\Model\OAuth2ConsentSession[]
 ```
 
 List OAuth 2.0 Consent Sessions of a Subject
@@ -913,9 +913,10 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
 $subject = 'subject_example'; // string | The subject to list the consent sessions for.
 $pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $pageToken = '1'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$loginSessionId = 'loginSessionId_example'; // string | The login session id to list the consent sessions for.
 
 try {
-    $result = $apiInstance->listOAuth2ConsentSessions($subject, $pageSize, $pageToken);
+    $result = $apiInstance->listOAuth2ConsentSessions($subject, $pageSize, $pageToken, $loginSessionId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->listOAuth2ConsentSessions: ', $e->getMessage(), PHP_EOL;
@@ -929,6 +930,7 @@ Name | Type | Description  | Notes
  **subject** | **string**| The subject to list the consent sessions for. |
  **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
+ **loginSessionId** | **string**| The login session id to list the consent sessions for. | [optional]
 
 ### Return type
 
@@ -1507,7 +1509,7 @@ void (empty response body)
 ## `revokeOAuth2Token()`
 
 ```php
-revokeOAuth2Token($token)
+revokeOAuth2Token($token, $clientId, $clientSecret)
 ```
 
 Revoke OAuth 2.0 Access or Refresh Token
@@ -1537,9 +1539,11 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     $config
 );
 $token = 'token_example'; // string
+$clientId = 'clientId_example'; // string
+$clientSecret = 'clientSecret_example'; // string
 
 try {
-    $apiInstance->revokeOAuth2Token($token);
+    $apiInstance->revokeOAuth2Token($token, $clientId, $clientSecret);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->revokeOAuth2Token: ', $e->getMessage(), PHP_EOL;
 }
@@ -1550,6 +1554,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**|  |
+ **clientId** | **string**|  | [optional]
+ **clientSecret** | **string**|  | [optional]
 
 ### Return type
 

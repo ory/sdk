@@ -23,6 +23,7 @@ docs/CreateIdentityBody.md
 docs/CreateJsonWebKeySet.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
+docs/CreateProjectBranding.md
 docs/CreateProjectInvite.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
@@ -61,6 +62,7 @@ docs/IdentityWithCredentialsOidcConfig.md
 docs/IdentityWithCredentialsOidcConfigProvider.md
 docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
+docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
@@ -78,6 +80,7 @@ docs/LogoutFlow.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
@@ -111,6 +114,9 @@ docs/PostCheckPermissionOrErrorBody.md
 docs/Project.md
 docs/ProjectApi.md
 docs/ProjectApiKey.md
+docs/ProjectBranding.md
+docs/ProjectBrandingColors.md
+docs/ProjectBrandingTheme.md
 docs/ProjectHost.md
 docs/ProjectInvite.md
 docs/ProjectMetadata.md
@@ -118,6 +124,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
+docs/QuotaBrandingThemes.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -135,10 +142,12 @@ docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
+docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetProject.md
+docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
@@ -227,6 +236,7 @@ lib/ory-client/models/create_identity_body.rb
 lib/ory-client/models/create_json_web_key_set.rb
 lib/ory-client/models/create_project_api_key_request.rb
 lib/ory-client/models/create_project_body.rb
+lib/ory-client/models/create_project_branding.rb
 lib/ory-client/models/create_project_invite.rb
 lib/ory-client/models/create_recovery_code_for_identity_body.rb
 lib/ory-client/models/create_recovery_link_for_identity_body.rb
@@ -263,6 +273,7 @@ lib/ory-client/models/identity_with_credentials_oidc_config.rb
 lib/ory-client/models/identity_with_credentials_oidc_config_provider.rb
 lib/ory-client/models/identity_with_credentials_password.rb
 lib/ory-client/models/identity_with_credentials_password_config.rb
+lib/ory-client/models/internal_get_project_branding_body.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug_body.rb
 lib/ory-client/models/internal_provision_mock_subscription.rb
 lib/ory-client/models/introspected_o_auth2_token.rb
@@ -279,6 +290,7 @@ lib/ory-client/models/logout_flow.rb
 lib/ory-client/models/managed_identity_schema.rb
 lib/ory-client/models/managed_identity_schema_validation_result.rb
 lib/ory-client/models/message.rb
+lib/ory-client/models/message_dispatch.rb
 lib/ory-client/models/namespace.rb
 lib/ory-client/models/needs_privileged_session_error.rb
 lib/ory-client/models/normalized_project.rb
@@ -307,6 +319,9 @@ lib/ory-client/models/post_check_permission_body.rb
 lib/ory-client/models/post_check_permission_or_error_body.rb
 lib/ory-client/models/project.rb
 lib/ory-client/models/project_api_key.rb
+lib/ory-client/models/project_branding.rb
+lib/ory-client/models/project_branding_colors.rb
+lib/ory-client/models/project_branding_theme.rb
 lib/ory-client/models/project_host.rb
 lib/ory-client/models/project_invite.rb
 lib/ory-client/models/project_metadata.rb
@@ -314,6 +329,7 @@ lib/ory-client/models/project_service_identity.rb
 lib/ory-client/models/project_service_o_auth2.rb
 lib/ory-client/models/project_service_permission.rb
 lib/ory-client/models/project_services.rb
+lib/ory-client/models/quota_branding_themes.rb
 lib/ory-client/models/recovery_code_for_identity.rb
 lib/ory-client/models/recovery_flow.rb
 lib/ory-client/models/recovery_flow_state.rb
@@ -330,10 +346,12 @@ lib/ory-client/models/schema_patch.rb
 lib/ory-client/models/self_service_flow_expired_error.rb
 lib/ory-client/models/session.rb
 lib/ory-client/models/session_authentication_method.rb
+lib/ory-client/models/session_caching_quota.rb
 lib/ory-client/models/session_device.rb
 lib/ory-client/models/set_active_project_in_console_body.rb
 lib/ory-client/models/set_custom_domain_body.rb
 lib/ory-client/models/set_project.rb
+lib/ory-client/models/set_project_branding_theme_body.rb
 lib/ory-client/models/settings_flow.rb
 lib/ory-client/models/settings_flow_state.rb
 lib/ory-client/models/source_position.rb
@@ -420,6 +438,7 @@ spec/models/create_identity_body_spec.rb
 spec/models/create_json_web_key_set_spec.rb
 spec/models/create_project_api_key_request_spec.rb
 spec/models/create_project_body_spec.rb
+spec/models/create_project_branding_spec.rb
 spec/models/create_project_invite_spec.rb
 spec/models/create_recovery_code_for_identity_body_spec.rb
 spec/models/create_recovery_link_for_identity_body_spec.rb
@@ -456,6 +475,7 @@ spec/models/identity_with_credentials_oidc_spec.rb
 spec/models/identity_with_credentials_password_config_spec.rb
 spec/models/identity_with_credentials_password_spec.rb
 spec/models/identity_with_credentials_spec.rb
+spec/models/internal_get_project_branding_body_spec.rb
 spec/models/internal_is_owner_for_project_by_slug_body_spec.rb
 spec/models/internal_provision_mock_subscription_spec.rb
 spec/models/introspected_o_auth2_token_spec.rb
@@ -471,6 +491,7 @@ spec/models/login_flow_spec.rb
 spec/models/logout_flow_spec.rb
 spec/models/managed_identity_schema_spec.rb
 spec/models/managed_identity_schema_validation_result_spec.rb
+spec/models/message_dispatch_spec.rb
 spec/models/message_spec.rb
 spec/models/namespace_spec.rb
 spec/models/needs_privileged_session_error_spec.rb
@@ -499,6 +520,9 @@ spec/models/perform_native_logout_body_spec.rb
 spec/models/post_check_permission_body_spec.rb
 spec/models/post_check_permission_or_error_body_spec.rb
 spec/models/project_api_key_spec.rb
+spec/models/project_branding_colors_spec.rb
+spec/models/project_branding_spec.rb
+spec/models/project_branding_theme_spec.rb
 spec/models/project_host_spec.rb
 spec/models/project_invite_spec.rb
 spec/models/project_metadata_spec.rb
@@ -507,6 +531,7 @@ spec/models/project_service_o_auth2_spec.rb
 spec/models/project_service_permission_spec.rb
 spec/models/project_services_spec.rb
 spec/models/project_spec.rb
+spec/models/quota_branding_themes_spec.rb
 spec/models/recovery_code_for_identity_spec.rb
 spec/models/recovery_flow_spec.rb
 spec/models/recovery_flow_state_spec.rb
@@ -522,10 +547,12 @@ spec/models/relationships_spec.rb
 spec/models/schema_patch_spec.rb
 spec/models/self_service_flow_expired_error_spec.rb
 spec/models/session_authentication_method_spec.rb
+spec/models/session_caching_quota_spec.rb
 spec/models/session_device_spec.rb
 spec/models/session_spec.rb
 spec/models/set_active_project_in_console_body_spec.rb
 spec/models/set_custom_domain_body_spec.rb
+spec/models/set_project_branding_theme_body_spec.rb
 spec/models/set_project_spec.rb
 spec/models/settings_flow_spec.rb
 spec/models/settings_flow_state_spec.rb

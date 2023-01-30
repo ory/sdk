@@ -50,6 +50,7 @@ import 'package:ory_kratos_client/src/model/json_patch.dart';
 import 'package:ory_kratos_client/src/model/login_flow.dart';
 import 'package:ory_kratos_client/src/model/logout_flow.dart';
 import 'package:ory_kratos_client/src/model/message.dart';
+import 'package:ory_kratos_client/src/model/message_dispatch.dart';
 import 'package:ory_kratos_client/src/model/needs_privileged_session_error.dart';
 import 'package:ory_kratos_client/src/model/o_auth2_client.dart';
 import 'package:ory_kratos_client/src/model/o_auth2_consent_request_open_id_connect_context.dart';
@@ -150,6 +151,7 @@ part 'serializers.g.dart';
   LoginFlow,
   LogoutFlow,
   Message,
+  MessageDispatch,
   NeedsPrivilegedSessionError,
   OAuth2Client,
   OAuth2ConsentRequestOpenIDConnectContext,

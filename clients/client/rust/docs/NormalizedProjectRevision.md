@@ -80,6 +80,7 @@ Name | Type | Description | Notes
 **kratos_courier_templates_verification_valid_email_body_html** | Option<**String**> | Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.valid.email.body.html\" setting. | [optional]
 **kratos_courier_templates_verification_valid_email_body_plaintext** | Option<**String**> | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.valid.email.body.plaintext\" setting. | [optional]
 **kratos_courier_templates_verification_valid_email_subject** | Option<**String**> | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting. | [optional]
+**kratos_feature_flags_cacheable_sessions** | Option<**bool**> | Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting. | [optional]
 **kratos_identity_schemas** | Option<[**Vec<crate::models::NormalizedProjectRevisionIdentitySchema>**](normalizedProjectRevisionIdentitySchema.md)> |  | [optional]
 **kratos_oauth2_provider_headers** | Option<[**serde_json::Value**](.md)> | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional]
 **kratos_oauth2_provider_url** | Option<**String**> | The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting. | [optional]

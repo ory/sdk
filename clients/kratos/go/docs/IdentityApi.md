@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**ExtendSession**](IdentityApi.md#ExtendSession) | **Patch** /admin/sessions/{id}/extend | Extend a Session
 [**GetIdentity**](IdentityApi.md#GetIdentity) | **Get** /admin/identities/{id} | Get an Identity
 [**GetIdentitySchema**](IdentityApi.md#GetIdentitySchema) | **Get** /schemas/{id} | Get Identity JSON Schema
-[**GetSession**](IdentityApi.md#GetSession) | **Get** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**GetSession**](IdentityApi.md#GetSession) | **Get** /admin/sessions/{id} | Get Session
 [**ListIdentities**](IdentityApi.md#ListIdentities) | **Get** /admin/identities | List Identities
 [**ListIdentitySchemas**](IdentityApi.md#ListIdentitySchemas) | **Get** /schemas | Get all Identity Schemas
 [**ListIdentitySessions**](IdentityApi.md#ListIdentitySessions) | **Get** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -413,7 +413,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -641,7 +641,7 @@ No authorization required
 
 > Session GetSession(ctx, id).Expand(expand).Execute()
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 
 

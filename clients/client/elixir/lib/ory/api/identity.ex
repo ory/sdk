@@ -292,7 +292,7 @@ defmodule Ory.Api.Identity do
   end
 
   @doc """
-  This endpoint returns the session object with expandables specified.
+  Get Session
   This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 
   ## Parameters
@@ -439,7 +439,7 @@ defmodule Ory.Api.Identity do
     - :page_size (integer()): Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - :page_token (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - :active (boolean()): Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
-    - :expand ([String.t]): ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+    - :expand ([String.t]): ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
   ## Returns
 
   {:ok, [%Session{}, ...]} on success

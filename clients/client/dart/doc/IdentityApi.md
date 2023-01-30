@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**extendSession**](IdentityApi.md#extendsession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**getIdentity**](IdentityApi.md#getidentity) | **GET** /admin/identities/{id} | Get an Identity
 [**getIdentitySchema**](IdentityApi.md#getidentityschema) | **GET** /schemas/{id} | Get Identity JSON Schema
-[**getSession**](IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**getSession**](IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | Get Session
 [**listIdentities**](IdentityApi.md#listidentities) | **GET** /admin/identities | List Identities
 [**listIdentitySchemas**](IdentityApi.md#listidentityschemas) | **GET** /schemas | Get all Identity Schemas
 [**listIdentitySessions**](IdentityApi.md#listidentitysessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -440,7 +440,7 @@ No authorization required
 # **getSession**
 > Session getSession(id, expand)
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 
@@ -648,7 +648,7 @@ final api = OryClient().getIdentityApi();
 final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 final bool active = true; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
-final BuiltList<String> expand = ; // BuiltList<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+final BuiltList<String> expand = ; // BuiltList<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
 
 try {
     final response = api.listSessions(pageSize, pageToken, active, expand);
@@ -665,7 +665,7 @@ Name | Type | Description  | Notes
  **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] 
  **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] 
- **expand** | [**BuiltList&lt;String&gt;**](String.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. | [optional] 
+ **expand** | [**BuiltList&lt;String&gt;**](String.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | [optional] 
 
 ### Return type
 

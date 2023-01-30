@@ -1310,6 +1310,7 @@ with ory_client.ApiClient(configuration) as api_client:
     subject = "subject_example" # str | The subject to list the consent sessions for.
     page_size = 250 # int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of 250
     page_token = "1" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of "1"
+    login_session_id = "login_session_id_example" # str | The login session id to list the consent sessions for. (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -1323,7 +1324,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # List OAuth 2.0 Consent Sessions of a Subject
-        api_response = api_instance.list_o_auth2_consent_sessions(subject, page_size=page_size, page_token=page_token)
+        api_response = api_instance.list_o_auth2_consent_sessions(subject, page_size=page_size, page_token=page_token, login_session_id=login_session_id)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling OAuth2Api->list_o_auth2_consent_sessions: %s\n" % e)
@@ -1337,6 +1338,7 @@ Name | Type | Description  | Notes
  **subject** | **str**| The subject to list the consent sessions for. |
  **page_size** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
  **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of "1"
+ **login_session_id** | **str**| The login session id to list the consent sessions for. | [optional]
 
 ### Return type
 
@@ -2186,11 +2188,21 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = o_auth2_api.OAuth2Api(api_client)
     token = "token_example" # str | 
+    client_id = "client_id_example" # str |  (optional)
+    client_secret = "client_secret_example" # str |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Revoke OAuth 2.0 Access or Refresh Token
         api_instance.revoke_o_auth2_token(token)
+    except ory_client.ApiException as e:
+        print("Exception when calling OAuth2Api->revoke_o_auth2_token: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Revoke OAuth 2.0 Access or Refresh Token
+        api_instance.revoke_o_auth2_token(token, client_id=client_id, client_secret=client_secret)
     except ory_client.ApiException as e:
         print("Exception when calling OAuth2Api->revoke_o_auth2_token: %s\n" % e)
 ```
@@ -2201,6 +2213,8 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **str**|  |
+ **client_id** | **str**|  | [optional]
+ **client_secret** | **str**|  | [optional]
 
 ### Return type
 

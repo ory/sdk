@@ -451,6 +451,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
+    // bool kratosFeatureFlagsCacheableSessions
+    test('to test the property `kratosFeatureFlagsCacheableSessions`', () async {
+      // TODO
+    });
+
     // BuiltList<NormalizedProjectRevisionIdentitySchema> kratosIdentitySchemas
     test('to test the property `kratosIdentitySchemas`', () async {
       // TODO

@@ -13,7 +13,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session |
 | [**get_identity**](IdentityApi.md#get_identity) | **GET** /admin/identities/{id} | Get an Identity |
 | [**get_identity_schema**](IdentityApi.md#get_identity_schema) | **GET** /schemas/{id} | Get Identity JSON Schema |
-| [**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified. |
+| [**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | Get Session |
 | [**list_identities**](IdentityApi.md#list_identities) | **GET** /admin/identities | List Identities |
 | [**list_identity_schemas**](IdentityApi.md#list_identity_schemas) | **GET** /schemas | Get all Identity Schemas |
 | [**list_identity_sessions**](IdentityApi.md#list_identity_sessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions |
@@ -649,7 +649,7 @@ No authorization required
 
 > <Session> get_session(id, opts)
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 
@@ -667,11 +667,11 @@ end
 api_instance = OryClient::IdentityApi.new
 id = 'id_example' # String | ID is the session's ID.
 opts = {
-  expand: ['Devices'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+  expand: ['inner_example'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
 }
 
 begin
-  # This endpoint returns the session object with expandables specified.
+  # Get Session
   result = api_instance.get_session(id, opts)
   p result
 rescue OryClient::ApiError => e
@@ -687,7 +687,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # This endpoint returns the session object with expandables specified.
+  # Get Session
   data, status_code, headers = api_instance.get_session_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -960,7 +960,7 @@ opts = {
   page_size: 789, # Integer | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   active: true, # Boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
-  expand: ['Devices'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+  expand: ['inner_example'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
 }
 
 begin
@@ -997,7 +997,7 @@ end
 | **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
 | **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **active** | **Boolean** | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] |
-| **expand** | [**Array&lt;String&gt;**](String.md) | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | [optional] |
+| **expand** | [**Array&lt;String&gt;**](String.md) | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | [optional] |
 
 ### Return type
 

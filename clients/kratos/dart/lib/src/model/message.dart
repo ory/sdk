@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:ory_kratos_client/src/model/courier_message_type.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:ory_kratos_client/src/model/message_dispatch.dart';
 import 'package:ory_kratos_client/src/model/courier_message_status.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -16,50 +17,56 @@ part 'message.g.dart';
 /// Properties:
 /// * [body] 
 /// * [createdAt] - CreatedAt is a helper struct field for gobuffalo.pop.
+/// * [dispatches] - Dispatches store information about the attempts of delivering a message May contain an error if any happened, or just the `success` state.
 /// * [id] 
 /// * [recipient] 
 /// * [sendCount] 
 /// * [status] 
 /// * [subject] 
-/// * [templateType] 
+/// * [templateType] -  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
 /// * [type] 
 /// * [updatedAt] - UpdatedAt is a helper struct field for gobuffalo.pop.
 @BuiltValue()
 abstract class Message implements Built<Message, MessageBuilder> {
   @BuiltValueField(wireName: r'body')
-  String? get body;
+  String get body;
 
   /// CreatedAt is a helper struct field for gobuffalo.pop.
   @BuiltValueField(wireName: r'created_at')
-  DateTime? get createdAt;
+  DateTime get createdAt;
+
+  /// Dispatches store information about the attempts of delivering a message May contain an error if any happened, or just the `success` state.
+  @BuiltValueField(wireName: r'dispatches')
+  BuiltList<MessageDispatch>? get dispatches;
 
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   @BuiltValueField(wireName: r'recipient')
-  String? get recipient;
+  String get recipient;
 
   @BuiltValueField(wireName: r'send_count')
-  int? get sendCount;
+  int get sendCount;
 
   @BuiltValueField(wireName: r'status')
-  CourierMessageStatus? get status;
+  CourierMessageStatus get status;
   // enum statusEnum {  queued,  sent,  processing,  abandoned,  };
 
   @BuiltValueField(wireName: r'subject')
-  String? get subject;
+  String get subject;
 
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueField(wireName: r'template_type')
-  MessageTemplateTypeEnum? get templateType;
+  MessageTemplateTypeEnum get templateType;
   // enum templateTypeEnum {  recovery_invalid,  recovery_valid,  recovery_code_invalid,  recovery_code_valid,  verification_invalid,  verification_valid,  verification_code_invalid,  verification_code_valid,  otp,  stub,  };
 
   @BuiltValueField(wireName: r'type')
-  CourierMessageType? get type;
+  CourierMessageType get type;
   // enum typeEnum {  email,  phone,  };
 
   /// UpdatedAt is a helper struct field for gobuffalo.pop.
   @BuiltValueField(wireName: r'updated_at')
-  DateTime? get updatedAt;
+  DateTime get updatedAt;
 
   Message._();
 
@@ -84,76 +91,63 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
     Message object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.body != null) {
-      yield r'body';
+    yield r'body';
+    yield serializers.serialize(
+      object.body,
+      specifiedType: const FullType(String),
+    );
+    yield r'created_at';
+    yield serializers.serialize(
+      object.createdAt,
+      specifiedType: const FullType(DateTime),
+    );
+    if (object.dispatches != null) {
+      yield r'dispatches';
       yield serializers.serialize(
-        object.body,
-        specifiedType: const FullType(String),
+        object.dispatches,
+        specifiedType: const FullType(BuiltList, [FullType(MessageDispatch)]),
       );
     }
-    if (object.createdAt != null) {
-      yield r'created_at';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.recipient != null) {
-      yield r'recipient';
-      yield serializers.serialize(
-        object.recipient,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.sendCount != null) {
-      yield r'send_count';
-      yield serializers.serialize(
-        object.sendCount,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.status != null) {
-      yield r'status';
-      yield serializers.serialize(
-        object.status,
-        specifiedType: const FullType(CourierMessageStatus),
-      );
-    }
-    if (object.subject != null) {
-      yield r'subject';
-      yield serializers.serialize(
-        object.subject,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.templateType != null) {
-      yield r'template_type';
-      yield serializers.serialize(
-        object.templateType,
-        specifiedType: const FullType(MessageTemplateTypeEnum),
-      );
-    }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(CourierMessageType),
-      );
-    }
-    if (object.updatedAt != null) {
-      yield r'updated_at';
-      yield serializers.serialize(
-        object.updatedAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'recipient';
+    yield serializers.serialize(
+      object.recipient,
+      specifiedType: const FullType(String),
+    );
+    yield r'send_count';
+    yield serializers.serialize(
+      object.sendCount,
+      specifiedType: const FullType(int),
+    );
+    yield r'status';
+    yield serializers.serialize(
+      object.status,
+      specifiedType: const FullType(CourierMessageStatus),
+    );
+    yield r'subject';
+    yield serializers.serialize(
+      object.subject,
+      specifiedType: const FullType(String),
+    );
+    yield r'template_type';
+    yield serializers.serialize(
+      object.templateType,
+      specifiedType: const FullType(MessageTemplateTypeEnum),
+    );
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(CourierMessageType),
+    );
+    yield r'updated_at';
+    yield serializers.serialize(
+      object.updatedAt,
+      specifiedType: const FullType(DateTime),
+    );
   }
 
   @override
@@ -190,6 +184,13 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'dispatches':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(MessageDispatch)]),
+          ) as BuiltList<MessageDispatch>;
+          result.dispatches.replace(valueDes);
           break;
         case r'id':
           final valueDes = serializers.deserialize(
@@ -278,24 +279,34 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
 
 class MessageTemplateTypeEnum extends EnumClass {
 
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'recovery_invalid')
   static const MessageTemplateTypeEnum recoveryInvalid = _$messageTemplateTypeEnum_recoveryInvalid;
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'recovery_valid')
   static const MessageTemplateTypeEnum recoveryValid = _$messageTemplateTypeEnum_recoveryValid;
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'recovery_code_invalid')
   static const MessageTemplateTypeEnum recoveryCodeInvalid = _$messageTemplateTypeEnum_recoveryCodeInvalid;
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'recovery_code_valid')
   static const MessageTemplateTypeEnum recoveryCodeValid = _$messageTemplateTypeEnum_recoveryCodeValid;
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'verification_invalid')
   static const MessageTemplateTypeEnum verificationInvalid = _$messageTemplateTypeEnum_verificationInvalid;
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'verification_valid')
   static const MessageTemplateTypeEnum verificationValid = _$messageTemplateTypeEnum_verificationValid;
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'verification_code_invalid')
   static const MessageTemplateTypeEnum verificationCodeInvalid = _$messageTemplateTypeEnum_verificationCodeInvalid;
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'verification_code_valid')
   static const MessageTemplateTypeEnum verificationCodeValid = _$messageTemplateTypeEnum_verificationCodeValid;
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'otp')
   static const MessageTemplateTypeEnum otp = _$messageTemplateTypeEnum_otp;
+  ///  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
   @BuiltValueEnumConst(wireName: r'stub')
   static const MessageTemplateTypeEnum stub = _$messageTemplateTypeEnum_stub;
 

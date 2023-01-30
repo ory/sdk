@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**extendSession()**](IdentityApi.md#extendSession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**getIdentity()**](IdentityApi.md#getIdentity) | **GET** /admin/identities/{id} | Get an Identity
 [**getIdentitySchema()**](IdentityApi.md#getIdentitySchema) | **GET** /schemas/{id} | Get Identity JSON Schema
-[**getSession()**](IdentityApi.md#getSession) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+[**getSession()**](IdentityApi.md#getSession) | **GET** /admin/sessions/{id} | Get Session
 [**listIdentities()**](IdentityApi.md#listIdentities) | **GET** /admin/identities | List Identities
 [**listIdentitySchemas()**](IdentityApi.md#listIdentitySchemas) | **GET** /schemas | Get all Identity Schemas
 [**listIdentitySessions()**](IdentityApi.md#listIdentitySessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -101,11 +101,17 @@ This endpoint creates a recovery code which should be given to the user in order
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: oryAccessToken
+$config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Ory\Kratos\Client\Api\IdentityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $createRecoveryCodeForIdentityBody = new \Ory\Kratos\Client\Model\CreateRecoveryCodeForIdentityBody(); // \Ory\Kratos\Client\Model\CreateRecoveryCodeForIdentityBody
 
@@ -129,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -157,11 +163,17 @@ This endpoint creates a recovery link which should be given to the user in order
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: oryAccessToken
+$config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Ory\Kratos\Client\Api\IdentityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $createRecoveryLinkForIdentityBody = new \Ory\Kratos\Client\Model\CreateRecoveryLinkForIdentityBody(); // \Ory\Kratos\Client\Model\CreateRecoveryLinkForIdentityBody
 
@@ -185,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -335,11 +347,17 @@ Calling this endpoint deactivates the specified session. Session data is not del
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: oryAccessToken
+$config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Ory\Kratos\Client\Api\IdentityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $id = 'id_example'; // string | ID is the session's ID.
 
@@ -362,7 +380,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -561,7 +579,7 @@ No authorization required
 getSession($id, $expand): \Ory\Kratos\Client\Model\Session
 ```
 
-This endpoint returns the session object with expandables specified.
+Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
 

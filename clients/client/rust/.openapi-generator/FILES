@@ -19,6 +19,7 @@ docs/CreateIdentityBody.md
 docs/CreateJsonWebKeySet.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
+docs/CreateProjectBranding.md
 docs/CreateProjectInvite.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
@@ -57,6 +58,7 @@ docs/IdentityWithCredentialsOidcConfig.md
 docs/IdentityWithCredentialsOidcConfigProvider.md
 docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
+docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
@@ -74,6 +76,7 @@ docs/LogoutFlow.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
 docs/Message.md
+docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
@@ -107,6 +110,9 @@ docs/PostCheckPermissionOrErrorBody.md
 docs/Project.md
 docs/ProjectApi.md
 docs/ProjectApiKey.md
+docs/ProjectBranding.md
+docs/ProjectBrandingColors.md
+docs/ProjectBrandingTheme.md
 docs/ProjectHost.md
 docs/ProjectInvite.md
 docs/ProjectMetadata.md
@@ -114,6 +120,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
+docs/QuotaBrandingThemes.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -131,10 +138,12 @@ docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
+docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetProject.md
+docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
@@ -222,6 +231,7 @@ src/models/create_identity_body.rs
 src/models/create_json_web_key_set.rs
 src/models/create_project_api_key_request.rs
 src/models/create_project_body.rs
+src/models/create_project_branding.rs
 src/models/create_project_invite.rs
 src/models/create_recovery_code_for_identity_body.rs
 src/models/create_recovery_link_for_identity_body.rs
@@ -258,6 +268,7 @@ src/models/identity_with_credentials_oidc_config.rs
 src/models/identity_with_credentials_oidc_config_provider.rs
 src/models/identity_with_credentials_password.rs
 src/models/identity_with_credentials_password_config.rs
+src/models/internal_get_project_branding_body.rs
 src/models/internal_is_owner_for_project_by_slug_body.rs
 src/models/internal_provision_mock_subscription.rs
 src/models/introspected_o_auth2_token.rs
@@ -274,6 +285,7 @@ src/models/logout_flow.rs
 src/models/managed_identity_schema.rs
 src/models/managed_identity_schema_validation_result.rs
 src/models/message.rs
+src/models/message_dispatch.rs
 src/models/mod.rs
 src/models/namespace.rs
 src/models/needs_privileged_session_error.rs
@@ -303,6 +315,9 @@ src/models/post_check_permission_body.rs
 src/models/post_check_permission_or_error_body.rs
 src/models/project.rs
 src/models/project_api_key.rs
+src/models/project_branding.rs
+src/models/project_branding_colors.rs
+src/models/project_branding_theme.rs
 src/models/project_host.rs
 src/models/project_invite.rs
 src/models/project_metadata.rs
@@ -310,6 +325,7 @@ src/models/project_service_identity.rs
 src/models/project_service_o_auth2.rs
 src/models/project_service_permission.rs
 src/models/project_services.rs
+src/models/quota_branding_themes.rs
 src/models/recovery_code_for_identity.rs
 src/models/recovery_flow.rs
 src/models/recovery_flow_state.rs
@@ -326,10 +342,12 @@ src/models/schema_patch.rs
 src/models/self_service_flow_expired_error.rs
 src/models/session.rs
 src/models/session_authentication_method.rs
+src/models/session_caching_quota.rs
 src/models/session_device.rs
 src/models/set_active_project_in_console_body.rs
 src/models/set_custom_domain_body.rs
 src/models/set_project.rs
+src/models/set_project_branding_theme_body.rs
 src/models/settings_flow.rs
 src/models/settings_flow_state.rs
 src/models/source_position.rs

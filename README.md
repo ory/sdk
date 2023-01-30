@@ -113,6 +113,8 @@ You need to set `GEM_HOST_API_KEY`
 
 ## Java - Maven Central
 
+For keys read https://blackdoor.github.io/blog/maven-cd/
+
 Due to a
 [bug in openapi-generator](https://github.com/OpenAPITools/openapi-generator/issues/3272)
 that appears in Java11+, please disable javadoc generation:

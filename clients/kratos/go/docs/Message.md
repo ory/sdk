@@ -4,22 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Body** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**Recipient** | Pointer to **string** |  | [optional] 
-**SendCount** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to [**CourierMessageStatus**](CourierMessageStatus.md) |  | [optional] 
-**Subject** | Pointer to **string** |  | [optional] 
-**TemplateType** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to [**CourierMessageType**](CourierMessageType.md) |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
+**Body** | **string** |  | 
+**CreatedAt** | **time.Time** | CreatedAt is a helper struct field for gobuffalo.pop. | 
+**Dispatches** | Pointer to [**[]MessageDispatch**](MessageDispatch.md) | Dispatches store information about the attempts of delivering a message May contain an error if any happened, or just the &#x60;success&#x60; state. | [optional] 
+**Id** | **string** |  | 
+**Recipient** | **string** |  | 
+**SendCount** | **int64** |  | 
+**Status** | [**CourierMessageStatus**](CourierMessageStatus.md) |  | 
+**Subject** | **string** |  | 
+**TemplateType** | **string** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub | 
+**Type** | [**CourierMessageType**](CourierMessageType.md) |  | 
+**UpdatedAt** | **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | 
 
 ## Methods
 
 ### NewMessage
 
-`func NewMessage() *Message`
+`func NewMessage(body string, createdAt time.Time, id string, recipient string, sendCount int64, status CourierMessageStatus, subject string, templateType string, type_ CourierMessageType, updatedAt time.Time, ) *Message`
 
 NewMessage instantiates a new Message object
 This constructor will assign default values to properties that have it defined,
@@ -53,11 +54,6 @@ and a boolean to check if the value has been set.
 
 SetBody sets Body field to given value.
 
-### HasBody
-
-`func (o *Message) HasBody() bool`
-
-HasBody returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -78,11 +74,31 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
 
-`func (o *Message) HasCreatedAt() bool`
+### GetDispatches
 
-HasCreatedAt returns a boolean if a field has been set.
+`func (o *Message) GetDispatches() []MessageDispatch`
+
+GetDispatches returns the Dispatches field if non-nil, zero value otherwise.
+
+### GetDispatchesOk
+
+`func (o *Message) GetDispatchesOk() (*[]MessageDispatch, bool)`
+
+GetDispatchesOk returns a tuple with the Dispatches field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDispatches
+
+`func (o *Message) SetDispatches(v []MessageDispatch)`
+
+SetDispatches sets Dispatches field to given value.
+
+### HasDispatches
+
+`func (o *Message) HasDispatches() bool`
+
+HasDispatches returns a boolean if a field has been set.
 
 ### GetId
 
@@ -103,11 +119,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *Message) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetRecipient
 
@@ -128,11 +139,6 @@ and a boolean to check if the value has been set.
 
 SetRecipient sets Recipient field to given value.
 
-### HasRecipient
-
-`func (o *Message) HasRecipient() bool`
-
-HasRecipient returns a boolean if a field has been set.
 
 ### GetSendCount
 
@@ -153,11 +159,6 @@ and a boolean to check if the value has been set.
 
 SetSendCount sets SendCount field to given value.
 
-### HasSendCount
-
-`func (o *Message) HasSendCount() bool`
-
-HasSendCount returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -178,11 +179,6 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-### HasStatus
-
-`func (o *Message) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetSubject
 
@@ -203,11 +199,6 @@ and a boolean to check if the value has been set.
 
 SetSubject sets Subject field to given value.
 
-### HasSubject
-
-`func (o *Message) HasSubject() bool`
-
-HasSubject returns a boolean if a field has been set.
 
 ### GetTemplateType
 
@@ -228,11 +219,6 @@ and a boolean to check if the value has been set.
 
 SetTemplateType sets TemplateType field to given value.
 
-### HasTemplateType
-
-`func (o *Message) HasTemplateType() bool`
-
-HasTemplateType returns a boolean if a field has been set.
 
 ### GetType
 
@@ -253,11 +239,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *Message) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
@@ -278,11 +259,6 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
-### HasUpdatedAt
-
-`func (o *Message) HasUpdatedAt() bool`
-
-HasUpdatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

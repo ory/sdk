@@ -1099,7 +1099,7 @@ Name | Type | Description  | Notes
 
 <a name="listoauth2consentsessions"></a>
 # **ListOAuth2ConsentSessions**
-> List&lt;ClientOAuth2ConsentSession&gt; ListOAuth2ConsentSessions (string subject, long? pageSize = null, string pageToken = null)
+> List&lt;ClientOAuth2ConsentSession&gt; ListOAuth2ConsentSessions (string subject, long? pageSize = null, string pageToken = null, string loginSessionId = null)
 
 List OAuth 2.0 Consent Sessions of a Subject
 
@@ -1128,11 +1128,12 @@ namespace Example
             var subject = "subject_example";  // string | The subject to list the consent sessions for.
             var pageSize = 250L;  // long? | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
             var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
+            var loginSessionId = "loginSessionId_example";  // string | The login session id to list the consent sessions for. (optional) 
 
             try
             {
                 // List OAuth 2.0 Consent Sessions of a Subject
-                List<ClientOAuth2ConsentSession> result = apiInstance.ListOAuth2ConsentSessions(subject, pageSize, pageToken);
+                List<ClientOAuth2ConsentSession> result = apiInstance.ListOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1153,6 +1154,7 @@ Name | Type | Description  | Notes
  **subject** | **string**| The subject to list the consent sessions for. | 
  **pageSize** | **long?**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
+ **loginSessionId** | **string**| The login session id to list the consent sessions for. | [optional] 
 
 ### Return type
 
@@ -1869,7 +1871,7 @@ void (empty response body)
 
 <a name="revokeoauth2token"></a>
 # **RevokeOAuth2Token**
-> void RevokeOAuth2Token (string token)
+> void RevokeOAuth2Token (string token, string clientId = null, string clientSecret = null)
 
 Revoke OAuth 2.0 Access or Refresh Token
 
@@ -1899,11 +1901,13 @@ namespace Example
 
             var apiInstance = new OAuth2Api(config);
             var token = "token_example";  // string | 
+            var clientId = "clientId_example";  // string |  (optional) 
+            var clientSecret = "clientSecret_example";  // string |  (optional) 
 
             try
             {
                 // Revoke OAuth 2.0 Access or Refresh Token
-                apiInstance.RevokeOAuth2Token(token);
+                apiInstance.RevokeOAuth2Token(token, clientId, clientSecret);
             }
             catch (ApiException  e)
             {
@@ -1921,6 +1925,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**|  | 
+ **clientId** | **string**|  | [optional] 
+ **clientSecret** | **string**|  | [optional] 
 
 ### Return type
 

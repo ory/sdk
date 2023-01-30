@@ -1040,7 +1040,8 @@ api_instance = OryClient::OAuth2Api.new
 subject = 'subject_example' # String | The subject to list the consent sessions for.
 opts = {
   page_size: 789, # Integer | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-  page_token: 'page_token_example' # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  login_session_id: 'login_session_id_example' # String | The login session id to list the consent sessions for.
 }
 
 begin
@@ -1077,6 +1078,7 @@ end
 | **subject** | **String** | The subject to list the consent sessions for. |  |
 | **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
 | **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to &#39;1&#39;] |
+| **login_session_id** | **String** | The login session id to list the consent sessions for. | [optional] |
 
 ### Return type
 
@@ -1740,7 +1742,7 @@ nil (empty response body)
 
 ## revoke_o_auth2_token
 
-> revoke_o_auth2_token(token)
+> revoke_o_auth2_token(token, opts)
 
 Revoke OAuth 2.0 Access or Refresh Token
 
@@ -1763,10 +1765,14 @@ end
 
 api_instance = OryClient::OAuth2Api.new
 token = 'token_example' # String | 
+opts = {
+  client_id: 'client_id_example', # String | 
+  client_secret: 'client_secret_example' # String | 
+}
 
 begin
   # Revoke OAuth 2.0 Access or Refresh Token
-  api_instance.revoke_o_auth2_token(token)
+  api_instance.revoke_o_auth2_token(token, opts)
 rescue OryClient::ApiError => e
   puts "Error when calling OAuth2Api->revoke_o_auth2_token: #{e}"
 end
@@ -1776,12 +1782,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> revoke_o_auth2_token_with_http_info(token)
+> <Array(nil, Integer, Hash)> revoke_o_auth2_token_with_http_info(token, opts)
 
 ```ruby
 begin
   # Revoke OAuth 2.0 Access or Refresh Token
-  data, status_code, headers = api_instance.revoke_o_auth2_token_with_http_info(token)
+  data, status_code, headers = api_instance.revoke_o_auth2_token_with_http_info(token, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -1795,6 +1801,8 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **token** | **String** |  |  |
+| **client_id** | **String** |  | [optional] |
+| **client_secret** | **String** |  | [optional] |
 
 ### Return type
 

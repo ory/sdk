@@ -41,6 +41,7 @@ doc/JsonPatch.md
 doc/LoginFlow.md
 doc/LogoutFlow.md
 doc/Message.md
+doc/MessageDispatch.md
 doc/MetadataApi.md
 doc/NeedsPrivilegedSessionError.md
 doc/OAuth2Client.md
@@ -152,6 +153,7 @@ lib/src/model/json_patch.dart
 lib/src/model/login_flow.dart
 lib/src/model/logout_flow.dart
 lib/src/model/message.dart
+lib/src/model/message_dispatch.dart
 lib/src/model/needs_privileged_session_error.dart
 lib/src/model/o_auth2_client.dart
 lib/src/model/o_auth2_consent_request_open_id_connect_context.dart
@@ -252,6 +254,7 @@ test/is_ready503_response_test.dart
 test/json_patch_test.dart
 test/login_flow_test.dart
 test/logout_flow_test.dart
+test/message_dispatch_test.dart
 test/message_test.dart
 test/metadata_api_test.dart
 test/needs_privileged_session_error_test.dart

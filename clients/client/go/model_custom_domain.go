@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.0
+API version: v1.1.7
 Contact: support@ory.sh
 */
 
@@ -26,7 +26,6 @@ type CustomDomain struct {
 	Id *string `json:"id,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	VerificationErrors []string `json:"verification_errors,omitempty"`
-	// CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL
 	VerificationStatus *string `json:"verification_status,omitempty"`
 }
 

@@ -29,6 +29,7 @@ import 'package:ory_client/src/model/create_identity_body.dart';
 import 'package:ory_client/src/model/create_json_web_key_set.dart';
 import 'package:ory_client/src/model/create_project_api_key_request.dart';
 import 'package:ory_client/src/model/create_project_body.dart';
+import 'package:ory_client/src/model/create_project_branding.dart';
 import 'package:ory_client/src/model/create_project_invite.dart';
 import 'package:ory_client/src/model/create_recovery_code_for_identity_body.dart';
 import 'package:ory_client/src/model/create_recovery_link_for_identity_body.dart';
@@ -65,6 +66,7 @@ import 'package:ory_client/src/model/identity_with_credentials_oidc_config.dart'
 import 'package:ory_client/src/model/identity_with_credentials_oidc_config_provider.dart';
 import 'package:ory_client/src/model/identity_with_credentials_password.dart';
 import 'package:ory_client/src/model/identity_with_credentials_password_config.dart';
+import 'package:ory_client/src/model/internal_get_project_branding_body.dart';
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_body.dart';
 import 'package:ory_client/src/model/internal_provision_mock_subscription.dart';
 import 'package:ory_client/src/model/introspected_o_auth2_token.dart';
@@ -81,6 +83,7 @@ import 'package:ory_client/src/model/logout_flow.dart';
 import 'package:ory_client/src/model/managed_identity_schema.dart';
 import 'package:ory_client/src/model/managed_identity_schema_validation_result.dart';
 import 'package:ory_client/src/model/message.dart';
+import 'package:ory_client/src/model/message_dispatch.dart';
 import 'package:ory_client/src/model/namespace.dart';
 import 'package:ory_client/src/model/needs_privileged_session_error.dart';
 import 'package:ory_client/src/model/normalized_project.dart';
@@ -109,6 +112,9 @@ import 'package:ory_client/src/model/post_check_permission_body.dart';
 import 'package:ory_client/src/model/post_check_permission_or_error_body.dart';
 import 'package:ory_client/src/model/project.dart';
 import 'package:ory_client/src/model/project_api_key.dart';
+import 'package:ory_client/src/model/project_branding.dart';
+import 'package:ory_client/src/model/project_branding_colors.dart';
+import 'package:ory_client/src/model/project_branding_theme.dart';
 import 'package:ory_client/src/model/project_host.dart';
 import 'package:ory_client/src/model/project_invite.dart';
 import 'package:ory_client/src/model/project_metadata.dart';
@@ -116,6 +122,7 @@ import 'package:ory_client/src/model/project_service_identity.dart';
 import 'package:ory_client/src/model/project_service_o_auth2.dart';
 import 'package:ory_client/src/model/project_service_permission.dart';
 import 'package:ory_client/src/model/project_services.dart';
+import 'package:ory_client/src/model/quota_branding_themes.dart';
 import 'package:ory_client/src/model/recovery_code_for_identity.dart';
 import 'package:ory_client/src/model/recovery_flow.dart';
 import 'package:ory_client/src/model/recovery_flow_state.dart';
@@ -132,10 +139,12 @@ import 'package:ory_client/src/model/schema_patch.dart';
 import 'package:ory_client/src/model/self_service_flow_expired_error.dart';
 import 'package:ory_client/src/model/session.dart';
 import 'package:ory_client/src/model/session_authentication_method.dart';
+import 'package:ory_client/src/model/session_caching_quota.dart';
 import 'package:ory_client/src/model/session_device.dart';
 import 'package:ory_client/src/model/set_active_project_in_console_body.dart';
 import 'package:ory_client/src/model/set_custom_domain_body.dart';
 import 'package:ory_client/src/model/set_project.dart';
+import 'package:ory_client/src/model/set_project_branding_theme_body.dart';
 import 'package:ory_client/src/model/settings_flow.dart';
 import 'package:ory_client/src/model/settings_flow_state.dart';
 import 'package:ory_client/src/model/source_position.dart';
@@ -211,6 +220,7 @@ part 'serializers.g.dart';
   CreateJsonWebKeySet,
   CreateProjectApiKeyRequest,
   CreateProjectBody,
+  CreateProjectBranding,
   CreateProjectInvite,
   CreateRecoveryCodeForIdentityBody,
   CreateRecoveryLinkForIdentityBody,
@@ -247,6 +257,7 @@ part 'serializers.g.dart';
   IdentityWithCredentialsOidcConfigProvider,
   IdentityWithCredentialsPassword,
   IdentityWithCredentialsPasswordConfig,
+  InternalGetProjectBrandingBody,
   InternalIsOwnerForProjectBySlugBody,
   InternalProvisionMockSubscription,
   IntrospectedOAuth2Token,
@@ -263,6 +274,7 @@ part 'serializers.g.dart';
   ManagedIdentitySchema,
   ManagedIdentitySchemaValidationResult,
   Message,
+  MessageDispatch,
   Namespace,
   NeedsPrivilegedSessionError,
   NormalizedProject,
@@ -291,6 +303,9 @@ part 'serializers.g.dart';
   PostCheckPermissionOrErrorBody,
   Project,
   ProjectApiKey,
+  ProjectBranding,
+  ProjectBrandingColors,
+  ProjectBrandingTheme,
   ProjectHost,
   ProjectInvite,
   ProjectMetadata,
@@ -298,6 +313,7 @@ part 'serializers.g.dart';
   ProjectServiceOAuth2,
   ProjectServicePermission,
   ProjectServices,
+  QuotaBrandingThemes,
   RecoveryCodeForIdentity,
   RecoveryFlow,
   RecoveryFlowState,
@@ -314,10 +330,12 @@ part 'serializers.g.dart';
   SelfServiceFlowExpiredError,
   Session,
   SessionAuthenticationMethod,
+  SessionCachingQuota,
   SessionDevice,
   SetActiveProjectInConsoleBody,
   SetCustomDomainBody,
   SetProject,
+  SetProjectBrandingThemeBody,
   SettingsFlow,
   SettingsFlowState,
   SourcePosition,

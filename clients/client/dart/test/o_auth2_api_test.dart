@@ -137,7 +137,7 @@ void main() {
     //
     // This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.
     //
-    //Future<BuiltList<OAuth2ConsentSession>> listOAuth2ConsentSessions(String subject, { int pageSize, String pageToken }) async
+    //Future<BuiltList<OAuth2ConsentSession>> listOAuth2ConsentSessions(String subject, { int pageSize, String pageToken, String loginSessionId }) async
     test('test listOAuth2ConsentSessions', () async {
       // TODO
     });
@@ -227,7 +227,7 @@ void main() {
     //
     // Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
     //
-    //Future revokeOAuth2Token(String token) async
+    //Future revokeOAuth2Token(String token, { String clientId, String clientSecret }) async
     test('test revokeOAuth2Token', () async {
       // TODO
     });

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **id** | Option<**String**> |  | [optional]
 **updated_at** | Option<**String**> |  | [optional]
 **verification_errors** | Option<**Vec<String>**> |  | [optional]
-**verification_status** | Option<**String**> | CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL | [optional]
+**verification_status** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

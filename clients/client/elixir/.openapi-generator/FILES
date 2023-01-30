@@ -32,6 +32,7 @@ lib/ory/model/create_identity_body.ex
 lib/ory/model/create_json_web_key_set.ex
 lib/ory/model/create_project_api_key_request.ex
 lib/ory/model/create_project_body.ex
+lib/ory/model/create_project_branding.ex
 lib/ory/model/create_project_invite.ex
 lib/ory/model/create_recovery_code_for_identity_body.ex
 lib/ory/model/create_recovery_link_for_identity_body.ex
@@ -68,6 +69,7 @@ lib/ory/model/identity_with_credentials_oidc_config.ex
 lib/ory/model/identity_with_credentials_oidc_config_provider.ex
 lib/ory/model/identity_with_credentials_password.ex
 lib/ory/model/identity_with_credentials_password_config.ex
+lib/ory/model/internal_get_project_branding_body.ex
 lib/ory/model/internal_is_owner_for_project_by_slug_body.ex
 lib/ory/model/internal_provision_mock_subscription.ex
 lib/ory/model/introspected_o_auth2_token.ex
@@ -84,6 +86,7 @@ lib/ory/model/logout_flow.ex
 lib/ory/model/managed_identity_schema.ex
 lib/ory/model/managed_identity_schema_validation_result.ex
 lib/ory/model/message.ex
+lib/ory/model/message_dispatch.ex
 lib/ory/model/namespace.ex
 lib/ory/model/needs_privileged_session_error.ex
 lib/ory/model/normalized_project.ex
@@ -112,6 +115,9 @@ lib/ory/model/post_check_permission_body.ex
 lib/ory/model/post_check_permission_or_error_body.ex
 lib/ory/model/project.ex
 lib/ory/model/project_api_key.ex
+lib/ory/model/project_branding.ex
+lib/ory/model/project_branding_colors.ex
+lib/ory/model/project_branding_theme.ex
 lib/ory/model/project_host.ex
 lib/ory/model/project_invite.ex
 lib/ory/model/project_metadata.ex
@@ -119,6 +125,7 @@ lib/ory/model/project_service_identity.ex
 lib/ory/model/project_service_o_auth2.ex
 lib/ory/model/project_service_permission.ex
 lib/ory/model/project_services.ex
+lib/ory/model/quota_branding_themes.ex
 lib/ory/model/recovery_code_for_identity.ex
 lib/ory/model/recovery_flow.ex
 lib/ory/model/recovery_flow_state.ex
@@ -135,10 +142,12 @@ lib/ory/model/schema_patch.ex
 lib/ory/model/self_service_flow_expired_error.ex
 lib/ory/model/session.ex
 lib/ory/model/session_authentication_method.ex
+lib/ory/model/session_caching_quota.ex
 lib/ory/model/session_device.ex
 lib/ory/model/set_active_project_in_console_body.ex
 lib/ory/model/set_custom_domain_body.ex
 lib/ory/model/set_project.ex
+lib/ory/model/set_project_branding_theme_body.ex
 lib/ory/model/settings_flow.ex
 lib/ory/model/settings_flow_state.ex
 lib/ory/model/source_position.ex

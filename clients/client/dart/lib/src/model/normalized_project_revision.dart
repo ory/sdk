@@ -93,6 +93,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosCourierTemplatesVerificationValidEmailBodyHtml] - Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.valid.email.body.html\" setting.
 /// * [kratosCourierTemplatesVerificationValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.valid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesVerificationValidEmailSubject] - Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
+/// * [kratosFeatureFlagsCacheableSessions] - Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
 /// * [kratosIdentitySchemas] 
 /// * [kratosOauth2ProviderHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 /// * [kratosOauth2ProviderUrl] - The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
@@ -461,6 +462,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_verification_valid_email_subject')
   String? get kratosCourierTemplatesVerificationValidEmailSubject;
+
+  /// Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
+  @BuiltValueField(wireName: r'kratos_feature_flags_cacheable_sessions')
+  bool? get kratosFeatureFlagsCacheableSessions;
 
   @BuiltValueField(wireName: r'kratos_identity_schemas')
   BuiltList<NormalizedProjectRevisionIdentitySchema>? get kratosIdentitySchemas;
@@ -1308,6 +1313,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosCourierTemplatesVerificationValidEmailSubject,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosFeatureFlagsCacheableSessions != null) {
+      yield r'kratos_feature_flags_cacheable_sessions';
+      yield serializers.serialize(
+        object.kratosFeatureFlagsCacheableSessions,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosIdentitySchemas != null) {
@@ -2375,6 +2387,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosCourierTemplatesVerificationValidEmailSubject = valueDes;
+          break;
+        case r'kratos_feature_flags_cacheable_sessions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosFeatureFlagsCacheableSessions = valueDes;
           break;
         case r'kratos_identity_schemas':
           final valueDes = serializers.deserialize(

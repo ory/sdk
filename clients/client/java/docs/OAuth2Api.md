@@ -1001,7 +1001,7 @@ public class Example {
 
 <a name="listOAuth2ConsentSessions"></a>
 # **listOAuth2ConsentSessions**
-> List&lt;OAuth2ConsentSession&gt; listOAuth2ConsentSessions(subject, pageSize, pageToken)
+> List&lt;OAuth2ConsentSession&gt; listOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId)
 
 List OAuth 2.0 Consent Sessions of a Subject
 
@@ -1030,8 +1030,9 @@ public class Example {
     String subject = "subject_example"; // String | The subject to list the consent sessions for.
     Long pageSize = 250L; // Long | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     String pageToken = "1"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String loginSessionId = "loginSessionId_example"; // String | The login session id to list the consent sessions for.
     try {
-      List<OAuth2ConsentSession> result = apiInstance.listOAuth2ConsentSessions(subject, pageSize, pageToken);
+      List<OAuth2ConsentSession> result = apiInstance.listOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#listOAuth2ConsentSessions");
@@ -1051,6 +1052,7 @@ public class Example {
 | **subject** | **String**| The subject to list the consent sessions for. | |
 | **pageSize** | **Long**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
 | **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 1] |
+| **loginSessionId** | **String**| The login session id to list the consent sessions for. | [optional] |
 
 ### Return type
 
@@ -1701,7 +1703,7 @@ null (empty response body)
 
 <a name="revokeOAuth2Token"></a>
 # **revokeOAuth2Token**
-> revokeOAuth2Token(token)
+> revokeOAuth2Token(token, clientId, clientSecret)
 
 Revoke OAuth 2.0 Access or Refresh Token
 
@@ -1733,8 +1735,10 @@ public class Example {
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String token = "token_example"; // String | 
+    String clientId = "clientId_example"; // String | 
+    String clientSecret = "clientSecret_example"; // String | 
     try {
-      apiInstance.revokeOAuth2Token(token);
+      apiInstance.revokeOAuth2Token(token, clientId, clientSecret);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#revokeOAuth2Token");
       System.err.println("Status code: " + e.getCode());
@@ -1751,6 +1755,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **token** | **String**|  | |
+| **clientId** | **String**|  | [optional] |
+| **clientSecret** | **String**|  | [optional] |
 
 ### Return type
 

@@ -61,16 +61,13 @@ $apiInstance = new Ory\Client\Api\CourierApi(
     new GuzzleHttp\Client(),
     $config
 );
-$perPage = 250; // int | Items per Page  This is the number of items per page.
-$page = 1; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-$status = new \Ory\Client\Model\\Ory\Client\Model\CourierMessageStatus(); // \Ory\Client\Model\CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
-$recipient = 'recipient_example'; // string | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter.
+$id = 'id_example'; // string | MessageID is the ID of the message.
 
 try {
-    $result = $apiInstance->listCourierMessages($perPage, $page, $status, $recipient);
+    $result = $apiInstance->getCourierMessage($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling CourierApi->listCourierMessages: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling CourierApi->getCourierMessage: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -81,6 +78,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*CourierApi* | [**getCourierMessage**](docs/Api/CourierApi.md#getcouriermessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/Api/CourierApi.md#listcouriermessages) | **GET** /admin/courier/messages | List Messages
 *FrontendApi* | [**createBrowserLoginFlow**](docs/Api/FrontendApi.md#createbrowserloginflow) | **GET** /self-service/login/browser | Create Login Flow for Browsers
 *FrontendApi* | [**createBrowserLogoutFlow**](docs/Api/FrontendApi.md#createbrowserlogoutflow) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
@@ -120,7 +118,7 @@ Class | Method | HTTP request | Description
 *IdentityApi* | [**extendSession**](docs/Api/IdentityApi.md#extendsession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 *IdentityApi* | [**getIdentity**](docs/Api/IdentityApi.md#getidentity) | **GET** /admin/identities/{id} | Get an Identity
 *IdentityApi* | [**getIdentitySchema**](docs/Api/IdentityApi.md#getidentityschema) | **GET** /schemas/{id} | Get Identity JSON Schema
-*IdentityApi* | [**getSession**](docs/Api/IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | This endpoint returns the session object with expandables specified.
+*IdentityApi* | [**getSession**](docs/Api/IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | Get Session
 *IdentityApi* | [**listIdentities**](docs/Api/IdentityApi.md#listidentities) | **GET** /admin/identities | List Identities
 *IdentityApi* | [**listIdentitySchemas**](docs/Api/IdentityApi.md#listidentityschemas) | **GET** /schemas | Get all Identity Schemas
 *IdentityApi* | [**listIdentitySessions**](docs/Api/IdentityApi.md#listidentitysessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
@@ -214,6 +212,7 @@ Class | Method | HTTP request | Description
 - [CreateIdentityBody](docs/Model/CreateIdentityBody.md)
 - [CreateJsonWebKeySet](docs/Model/CreateJsonWebKeySet.md)
 - [CreateProjectBody](docs/Model/CreateProjectBody.md)
+- [CreateProjectBranding](docs/Model/CreateProjectBranding.md)
 - [CreateProjectInvite](docs/Model/CreateProjectInvite.md)
 - [CreateRecoveryCodeForIdentityBody](docs/Model/CreateRecoveryCodeForIdentityBody.md)
 - [CreateRecoveryLinkForIdentityBody](docs/Model/CreateRecoveryLinkForIdentityBody.md)
@@ -253,6 +252,7 @@ Class | Method | HTTP request | Description
 - [InlineResponse200](docs/Model/InlineResponse200.md)
 - [InlineResponse2001](docs/Model/InlineResponse2001.md)
 - [InlineResponse503](docs/Model/InlineResponse503.md)
+- [InternalGetProjectBrandingBody](docs/Model/InternalGetProjectBrandingBody.md)
 - [InternalIsOwnerForProjectBySlugBody](docs/Model/InternalIsOwnerForProjectBySlugBody.md)
 - [InternalProvisionMockSubscription](docs/Model/InternalProvisionMockSubscription.md)
 - [IntrospectedOAuth2Token](docs/Model/IntrospectedOAuth2Token.md)
@@ -267,6 +267,7 @@ Class | Method | HTTP request | Description
 - [ManagedIdentitySchema](docs/Model/ManagedIdentitySchema.md)
 - [ManagedIdentitySchemaValidationResult](docs/Model/ManagedIdentitySchemaValidationResult.md)
 - [Message](docs/Model/Message.md)
+- [MessageDispatch](docs/Model/MessageDispatch.md)
 - [ModelNamespace](docs/Model/ModelNamespace.md)
 - [NeedsPrivilegedSessionError](docs/Model/NeedsPrivilegedSessionError.md)
 - [NormalizedProject](docs/Model/NormalizedProject.md)
@@ -295,6 +296,9 @@ Class | Method | HTTP request | Description
 - [PostCheckPermissionOrErrorBody](docs/Model/PostCheckPermissionOrErrorBody.md)
 - [Project](docs/Model/Project.md)
 - [ProjectApiKey](docs/Model/ProjectApiKey.md)
+- [ProjectBranding](docs/Model/ProjectBranding.md)
+- [ProjectBrandingColors](docs/Model/ProjectBrandingColors.md)
+- [ProjectBrandingTheme](docs/Model/ProjectBrandingTheme.md)
 - [ProjectHost](docs/Model/ProjectHost.md)
 - [ProjectInvite](docs/Model/ProjectInvite.md)
 - [ProjectMetadata](docs/Model/ProjectMetadata.md)
@@ -302,6 +306,7 @@ Class | Method | HTTP request | Description
 - [ProjectServiceOAuth2](docs/Model/ProjectServiceOAuth2.md)
 - [ProjectServicePermission](docs/Model/ProjectServicePermission.md)
 - [ProjectServices](docs/Model/ProjectServices.md)
+- [QuotaBrandingThemes](docs/Model/QuotaBrandingThemes.md)
 - [RecoveryCodeForIdentity](docs/Model/RecoveryCodeForIdentity.md)
 - [RecoveryFlow](docs/Model/RecoveryFlow.md)
 - [RecoveryFlowState](docs/Model/RecoveryFlowState.md)
@@ -318,10 +323,12 @@ Class | Method | HTTP request | Description
 - [SelfServiceFlowExpiredError](docs/Model/SelfServiceFlowExpiredError.md)
 - [Session](docs/Model/Session.md)
 - [SessionAuthenticationMethod](docs/Model/SessionAuthenticationMethod.md)
+- [SessionCachingQuota](docs/Model/SessionCachingQuota.md)
 - [SessionDevice](docs/Model/SessionDevice.md)
 - [SetActiveProjectInConsoleBody](docs/Model/SetActiveProjectInConsoleBody.md)
 - [SetCustomDomainBody](docs/Model/SetCustomDomainBody.md)
 - [SetProject](docs/Model/SetProject.md)
+- [SetProjectBrandingThemeBody](docs/Model/SetProjectBrandingThemeBody.md)
 - [SettingsFlow](docs/Model/SettingsFlow.md)
 - [SettingsFlowState](docs/Model/SettingsFlowState.md)
 - [SourcePosition](docs/Model/SourcePosition.md)
@@ -423,5 +430,5 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.1.0`
+- API version: `v1.1.7`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

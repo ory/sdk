@@ -37,7 +37,7 @@ abstract class OAuth2TokenExchange implements Built<OAuth2TokenExchange, OAuth2T
 
   /// The scope of the access token
   @BuiltValueField(wireName: r'scope')
-  int? get scope;
+  String? get scope;
 
   /// The type of the token issued
   @BuiltValueField(wireName: r'token_type')
@@ -98,7 +98,7 @@ class _$OAuth2TokenExchangeSerializer implements PrimitiveSerializer<OAuth2Token
       yield r'scope';
       yield serializers.serialize(
         object.scope,
-        specifiedType: const FullType(int),
+        specifiedType: const FullType(String),
       );
     }
     if (object.tokenType != null) {
@@ -162,8 +162,8 @@ class _$OAuth2TokenExchangeSerializer implements PrimitiveSerializer<OAuth2Token
         case r'scope':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType(String),
+          ) as String;
           result.scope = valueDes;
           break;
         case r'token_type':
