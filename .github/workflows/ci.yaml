@@ -12,23 +12,23 @@ jobs:
         language: ["golang", "typescript"] # TODO: add the other languages
     steps:
       - uses: actions/checkout@v3
-      - name: "gen: client"
-        run: ./scripts/generate.sh ${{ matrix.language }} latest client
-      - name: "test: client"
-        run: ./scripts/test.sh ${{ matrix.language }} latest client
-      - name: "gen: keto"
-        run: ./scripts/generate.sh ${{ matrix.language }} latest keto
-      - name: "test: keto"
-        run: ./scripts/test.sh ${{ matrix.language }} latest keto
-      - name: "gen: kratos"
-        run: ./scripts/generate.sh ${{ matrix.language }} latest kratos
-      - name: "test: kratos"
-        run: ./scripts/test.sh ${{ matrix.language }} latest kratos
-      - name: "gen: hydra"
-        run: ./scripts/generate.sh ${{ matrix.language }} latest hydra
-      - name: "test: hydra"
-        run: ./scripts/test.sh ${{ matrix.language }} latest hydra
-      - name: "gen: oathkeeper"
-        run: ./scripts/generate.sh ${{ matrix.language }} latest oathkeeper
-      - name: "test: oathkeeper"
-        run: ./scripts/test.sh ${{ matrix.language }} latest oathkeeper
+      - uses: ./.github/actions/sdk-build-and-test
+        with:
+          project: client
+          language: ${{ matrix.language }}
+      - uses: ./.github/actions/sdk-build-and-test
+        with:
+          project: keto
+          language: ${{ matrix.language }}
+      - uses: ./.github/actions/sdk-build-and-test
+        with:
+          project: kratos
+          language: ${{ matrix.language }}
+      - uses: ./.github/actions/sdk-build-and-test
+        with:
+          project: hydra
+          language: ${{ matrix.language }}
+      - uses: ./.github/actions/sdk-build-and-test
+        with:
+          project: oathkeeper
+          language: ${{ matrix.language }}

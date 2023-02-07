@@ -1,0 +1,21 @@
+name: "sdk-build-and-test"
+description: "Generate & test SDK for a project"
+inputs:
+  language:
+    required: true
+    description: The target language of the SDK
+  version:
+    required: false
+    default: "latest"
+    description: The target version of the SDK
+  project:
+    required: true
+    description: The target project of the SDK. Can be one of client, keto, kratos, oathkeeper or hydra.
+
+runs:
+  using: composite
+  steps:
+    - name: "gen: ${{ inputs.language }}"
+      run: ./scripts/generate.sh ${{ inputs.language }} ${{ inputs.version }} ${{ inputs.project }}
+    - name: "test: ${{ inputs.language }}"
+      run: ./scripts/test.sh ${{ inputs.language }} ${{ inputs.version }} ${{ inputs.project }}
