@@ -342,7 +342,6 @@ generate() {
     FORCE_VERSION=$2
     FORCE_PROJECT=$3
     if [ $FORCE_VERSION = "latest" ]; then
-      # TODO: Make the client parameterized as well
       FORCE_VERSION=$(cat spec/$FORCE_PROJECT/latest)
     fi
 
