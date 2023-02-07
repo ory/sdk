@@ -12,23 +12,13 @@ jobs:
         language: ["golang", "typescript"] # TODO: add the other languages
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/sdk-build-and-test
-        with:
-          project: client
-          language: ${{ matrix.language }}
-      - uses: ./.github/actions/sdk-build-and-test
-        with:
-          project: keto
-          language: ${{ matrix.language }}
-      - uses: ./.github/actions/sdk-build-and-test
-        with:
-          project: kratos
-          language: ${{ matrix.language }}
-      - uses: ./.github/actions/sdk-build-and-test
-        with:
-          project: hydra
-          language: ${{ matrix.language }}
-      - uses: ./.github/actions/sdk-build-and-test
-        with:
-          project: oathkeeper
-          language: ${{ matrix.language }}
+      - name: "client"
+        run: ./scripts/generate-and-test.sh ${{ matrix.language }} latest client
+      - name: "keto"
+        run: ./scripts/generate-and-test.sh ${{ matrix.language }} latest keto
+      - name: "kratos"
+        run: ./scripts/generate-and-test.sh ${{ matrix.language }} latest kratos
+      - name: "hydra"
+        run: ./scripts/generate-and-test.sh ${{ matrix.language }} latest hydra
+      - name: "oathkeeper"
+        run: ./scripts/generate-and-test.sh ${{ matrix.language }} latest oathkeeper
