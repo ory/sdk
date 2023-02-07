@@ -1,6 +1,5 @@
 name: CI
 on:
-  # push:
   pull_request:
 
 jobs:
@@ -9,7 +8,19 @@ jobs:
     container: oryd/sdk:v0.0.50
     strategy:
       matrix:
-        language: ["golang", "typescript"] # TODO: add the other languages
+        language:
+          [
+            "elixir",
+            "typescript",
+            "rust",
+            "golang",
+            "java",
+            "php",
+            "python",
+            "ruby",
+            "dotnet",
+            "dart",
+          ]
     steps:
       - uses: actions/checkout@v3
       - name: "client"
