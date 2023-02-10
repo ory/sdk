@@ -24,8 +24,8 @@ jobs:
             # "dart",
           ]
     steps:
+      - run: cp -r /root .
       - uses: actions/checkout@v3
-      - run: echo $USER
       - name: "client"
         run: ./scripts/generate-and-test.sh ${{ matrix.language }} latest client
       - name: "keto"
