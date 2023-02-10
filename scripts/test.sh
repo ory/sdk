@@ -2,7 +2,9 @@
 
 set -Eeuxo pipefail
 
-baseDir="$(dirname "${BASH_SOURCE[0]}")/.."
+scriptsDir=$(dirname $(realpath "$0"))
+
+baseDir="$scriptsDir/.."
 
 typescript() {
   echo "Testing TypeScript..."
