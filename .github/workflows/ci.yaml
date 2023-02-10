@@ -11,20 +11,21 @@ jobs:
         shell: bash
     strategy:
       matrix:
-        language: [
-            # "elixir",
-            # "typescript",
+        language:
+          [
+            "elixir",
+            "typescript",
             "rust",
-            # "golang",
-            # "java",
-            # "php",
-            # "python",
-            # "ruby",
-            # "dotnet",
-            # "dart",
+            "golang",
+            "java",
+            "php",
+            "python",
+            "ruby",
+            "dotnet",
+            "dart",
           ]
     steps:
-      - run: cp -r /root/. $HOME
+      - run: cp -r /root/. $HOME # Workaround, because $HOME is set to /github/home inside the action run
       - run: ls -la .
       - uses: actions/checkout@v3
       - name: "client"
