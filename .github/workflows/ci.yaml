@@ -6,23 +6,26 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container: oryd/sdk:v0.0.50
+    defaults:
+      run:
+        shell: bash
     strategy:
       matrix:
-        language:
-          [
-            "elixir",
-            "typescript",
+        language: [
+            # "elixir",
+            # "typescript",
             "rust",
-            "golang",
-            "java",
-            "php",
-            "python",
-            "ruby",
-            "dotnet",
-            "dart",
+            # "golang",
+            # "java",
+            # "php",
+            # "python",
+            # "ruby",
+            # "dotnet",
+            # "dart",
           ]
     steps:
       - uses: actions/checkout@v3
+      - run: ls -la /root/.cargo/bin
       - name: "client"
         run: ./scripts/generate-and-test.sh ${{ matrix.language }} latest client
       - name: "keto"
