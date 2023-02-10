@@ -24,7 +24,8 @@ jobs:
             # "dart",
           ]
     steps:
-      - run: cp -r /root .
+      - run: cp -r /root/* .
+      - run: ls -la .
       - uses: actions/checkout@v3
       - name: "client"
         run: ./scripts/generate-and-test.sh ${{ matrix.language }} latest client
