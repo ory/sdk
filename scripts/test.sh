@@ -69,7 +69,7 @@ dart() {
   echo "Testing Dart..."
 
   dir="$baseDir/clients/${PROJECT}/dart"
-  (cd "$dir" && dart test .)
+  (cd "$dir" && /usr/bin/dart test .)
 }
 
 rust() {
