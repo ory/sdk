@@ -8,6 +8,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code |
 | [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link |
 | [**delete_identity**](IdentityApi.md#delete_identity) | **DELETE** /admin/identities/{id} | Delete an Identity |
+| [**delete_identity_credentials**](IdentityApi.md#delete_identity_credentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity |
 | [**delete_identity_sessions**](IdentityApi.md#delete_identity_sessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions |
 | [**disable_session**](IdentityApi.md#disable_session) | **DELETE** /admin/sessions/{id} | Deactivate a Session |
 | [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session |
@@ -292,6 +293,77 @@ end
 ### Return type
 
 nil (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## delete_identity_credentials
+
+> <Identity> delete_identity_credentials(id, type)
+
+Delete a credential for a specific identity
+
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::IdentityApi.new
+id = 'id_example' # String | ID is the identity's ID.
+type = 'totp' # String | Type is the credential's Type. One of totp, webauthn, lookup
+
+begin
+  # Delete a credential for a specific identity
+  result = api_instance.delete_identity_credentials(id, type)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->delete_identity_credentials: #{e}"
+end
+```
+
+#### Using the delete_identity_credentials_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Identity>, Integer, Hash)> delete_identity_credentials_with_http_info(id, type)
+
+```ruby
+begin
+  # Delete a credential for a specific identity
+  data, status_code, headers = api_instance.delete_identity_credentials_with_http_info(id, type)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Identity>
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->delete_identity_credentials_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | ID is the identity&#39;s ID. |  |
+| **type** | **String** | Type is the credential&#39;s Type. One of totp, webauthn, lookup |  |
+
+### Return type
+
+[**Identity**](Identity.md)
 
 ### Authorization
 

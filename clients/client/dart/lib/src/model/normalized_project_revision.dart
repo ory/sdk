@@ -18,15 +18,15 @@ part 'normalized_project_revision.g.dart';
 ///
 /// Properties:
 /// * [createdAt] - The Project's Revision Creation Date
+/// * [hydraOauth2AllowedTopLevelClaims] 
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
+/// * [hydraOauth2ExcludeNotBeforeClaim] - Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
 /// * [hydraOauth2GrantJwtIatOptional] - Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
 /// * [hydraOauth2GrantJwtJtiOptional] - Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
 /// * [hydraOauth2GrantJwtMaxTtl] - Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
 /// * [hydraOauth2PkceEnforced] - Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 /// * [hydraOauth2PkceEnforcedForPublicClients] - Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
 /// * [hydraOauth2RefreshTokenHook] - Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
-/// * [hydraOauth2SessionAllowedTopLevelClaims] 
-/// * [hydraOauth2SessionExcludeNotBeforeClaim] - Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.session.exclude_not_before_claim\" setting.
 /// * [hydraOidcDynamicClientRegistrationDefaultScope] 
 /// * [hydraOidcDynamicClientRegistrationEnabled] - Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
 /// * [hydraOidcSubjectIdentifiersPairwiseSalt] - Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \"oidc.subject_identifiers.pairwise_salt\" setting.
@@ -39,8 +39,8 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraServeCookiesSameSiteMode] - Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
 /// * [hydraServePublicCorsAllowedOrigins] 
 /// * [hydraServePublicCorsEnabled] - Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
-/// * [hydraStrategiesAccessToken] - Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
-/// * [hydraStrategiesScope] - Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+/// * [hydraStrategiesAccessToken] - Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+/// * [hydraStrategiesScope] - Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 /// * [hydraTtlAccessToken] - This governs the \"ttl.access_token\" setting.
 /// * [hydraTtlAuthCode] - Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
 /// * [hydraTtlIdToken] - This governs the \"ttl.id_token\" setting.
@@ -115,7 +115,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsRecoveryEnabled] - Configures the Ory Kratos Recovery Enabled Setting  This governs the \"selfservice.flows.recovery.enabled\" setting.
 /// * [kratosSelfserviceFlowsRecoveryLifespan] - Configures the Ory Kratos Recovery Lifespan  This governs the \"selfservice.flows.recovery.lifespan\" setting.
 /// * [kratosSelfserviceFlowsRecoveryUiUrl] - Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
-/// * [kratosSelfserviceFlowsRecoveryUse] - Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting.
+/// * [kratosSelfserviceFlowsRecoveryUse] - Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 /// * [kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
@@ -134,7 +134,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationEnabled] - Configures the Ory Kratos Verification Enabled Setting  This governs the \"selfservice.flows.verification.enabled\" setting.
 /// * [kratosSelfserviceFlowsVerificationLifespan] - Configures the Ory Kratos Verification Lifespan  This governs the \"selfservice.flows.verification.lifespan\" setting.
 /// * [kratosSelfserviceFlowsVerificationUiUrl] - Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
-/// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
+/// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 /// * [kratosSelfserviceMethodsCodeEnabled] - Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigBaseUrl] - Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
@@ -173,9 +173,16 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
 
+  @BuiltValueField(wireName: r'hydra_oauth2_allowed_top_level_claims')
+  BuiltList<String>? get hydraOauth2AllowedTopLevelClaims;
+
   /// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_client_credentials_default_grant_allowed_scope')
   bool? get hydraOauth2ClientCredentialsDefaultGrantAllowedScope;
+
+  /// Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
+  @BuiltValueField(wireName: r'hydra_oauth2_exclude_not_before_claim')
+  bool? get hydraOauth2ExcludeNotBeforeClaim;
 
   /// Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_grant_jwt_iat_optional')
@@ -200,13 +207,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_refresh_token_hook')
   String? get hydraOauth2RefreshTokenHook;
-
-  @BuiltValueField(wireName: r'hydra_oauth2_session_allowed_top_level_claims')
-  BuiltList<String>? get hydraOauth2SessionAllowedTopLevelClaims;
-
-  /// Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.session.exclude_not_before_claim\" setting.
-  @BuiltValueField(wireName: r'hydra_oauth2_session_exclude_not_before_claim')
-  bool? get hydraOauth2SessionExcludeNotBeforeClaim;
 
   @BuiltValueField(wireName: r'hydra_oidc_dynamic_client_registration_default_scope')
   BuiltList<String>? get hydraOidcDynamicClientRegistrationDefaultScope;
@@ -250,12 +250,12 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'hydra_serve_public_cors_enabled')
   bool? get hydraServePublicCorsEnabled;
 
-  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
   @BuiltValueField(wireName: r'hydra_strategies_access_token')
   NormalizedProjectRevisionHydraStrategiesAccessTokenEnum? get hydraStrategiesAccessToken;
   // enum hydraStrategiesAccessTokenEnum {  opaque,  jwt,  };
 
-  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
   @BuiltValueField(wireName: r'hydra_strategies_scope')
   NormalizedProjectRevisionHydraStrategiesScopeEnum? get hydraStrategiesScope;
   // enum hydraStrategiesScopeEnum {  exact,  wildcard,  };
@@ -545,9 +545,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_ui_url')
   String? get kratosSelfserviceFlowsRecoveryUiUrl;
 
-  /// Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting.
+  /// Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
   @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_use')
-  String? get kratosSelfserviceFlowsRecoveryUse;
+  NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum? get kratosSelfserviceFlowsRecoveryUse;
+  // enum kratosSelfserviceFlowsRecoveryUseEnum {  link,  code,  };
 
   /// Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_default_browser_return_url')
@@ -621,9 +622,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_ui_url')
   String? get kratosSelfserviceFlowsVerificationUiUrl;
 
-  /// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
+  /// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
   @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_use')
-  String? get kratosSelfserviceFlowsVerificationUse;
+  NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum? get kratosSelfserviceFlowsVerificationUse;
+  // enum kratosSelfserviceFlowsVerificationUseEnum {  link,  code,  };
 
   /// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_config_lifespan')
@@ -790,10 +792,24 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(DateTime),
       );
     }
+    if (object.hydraOauth2AllowedTopLevelClaims != null) {
+      yield r'hydra_oauth2_allowed_top_level_claims';
+      yield serializers.serialize(
+        object.hydraOauth2AllowedTopLevelClaims,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
     if (object.hydraOauth2ClientCredentialsDefaultGrantAllowedScope != null) {
       yield r'hydra_oauth2_client_credentials_default_grant_allowed_scope';
       yield serializers.serialize(
         object.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.hydraOauth2ExcludeNotBeforeClaim != null) {
+      yield r'hydra_oauth2_exclude_not_before_claim';
+      yield serializers.serialize(
+        object.hydraOauth2ExcludeNotBeforeClaim,
         specifiedType: const FullType(bool),
       );
     }
@@ -837,20 +853,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.hydraOauth2RefreshTokenHook,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.hydraOauth2SessionAllowedTopLevelClaims != null) {
-      yield r'hydra_oauth2_session_allowed_top_level_claims';
-      yield serializers.serialize(
-        object.hydraOauth2SessionAllowedTopLevelClaims,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.hydraOauth2SessionExcludeNotBeforeClaim != null) {
-      yield r'hydra_oauth2_session_exclude_not_before_claim';
-      yield serializers.serialize(
-        object.hydraOauth2SessionExcludeNotBeforeClaim,
-        specifiedType: const FullType(bool),
       );
     }
     if (object.hydraOidcDynamicClientRegistrationDefaultScope != null) {
@@ -1473,7 +1475,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_flows_recovery_use';
       yield serializers.serialize(
         object.kratosSelfserviceFlowsRecoveryUse,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum),
       );
     }
     if (object.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl != null) {
@@ -1606,7 +1608,7 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_flows_verification_use';
       yield serializers.serialize(
         object.kratosSelfserviceFlowsVerificationUse,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum),
       );
     }
     if (object.kratosSelfserviceMethodsCodeConfigLifespan != null) {
@@ -1861,12 +1863,26 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as DateTime;
           result.createdAt = valueDes;
           break;
+        case r'hydra_oauth2_allowed_top_level_claims':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.hydraOauth2AllowedTopLevelClaims.replace(valueDes);
+          break;
         case r'hydra_oauth2_client_credentials_default_grant_allowed_scope':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.hydraOauth2ClientCredentialsDefaultGrantAllowedScope = valueDes;
+          break;
+        case r'hydra_oauth2_exclude_not_before_claim':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.hydraOauth2ExcludeNotBeforeClaim = valueDes;
           break;
         case r'hydra_oauth2_grant_jwt_iat_optional':
           final valueDes = serializers.deserialize(
@@ -1909,20 +1925,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.hydraOauth2RefreshTokenHook = valueDes;
-          break;
-        case r'hydra_oauth2_session_allowed_top_level_claims':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
-          result.hydraOauth2SessionAllowedTopLevelClaims.replace(valueDes);
-          break;
-        case r'hydra_oauth2_session_exclude_not_before_claim':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.hydraOauth2SessionExcludeNotBeforeClaim = valueDes;
           break;
         case r'hydra_oidc_dynamic_client_registration_default_scope':
           final valueDes = serializers.deserialize(
@@ -2546,8 +2548,8 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_flows_recovery_use':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum),
+          ) as NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum;
           result.kratosSelfserviceFlowsRecoveryUse = valueDes;
           break;
         case r'kratos_selfservice_flows_registration_after_default_browser_return_url':
@@ -2679,8 +2681,8 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         case r'kratos_selfservice_flows_verification_use':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum),
+          ) as NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum;
           result.kratosSelfserviceFlowsVerificationUse = valueDes;
           break;
         case r'kratos_selfservice_methods_code_config_lifespan':
@@ -2938,10 +2940,10 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
 
 class NormalizedProjectRevisionHydraStrategiesAccessTokenEnum extends EnumClass {
 
-  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
   @BuiltValueEnumConst(wireName: r'opaque')
   static const NormalizedProjectRevisionHydraStrategiesAccessTokenEnum opaque = _$normalizedProjectRevisionHydraStrategiesAccessTokenEnum_opaque;
-  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
   @BuiltValueEnumConst(wireName: r'jwt')
   static const NormalizedProjectRevisionHydraStrategiesAccessTokenEnum jwt = _$normalizedProjectRevisionHydraStrategiesAccessTokenEnum_jwt;
 
@@ -2955,10 +2957,10 @@ class NormalizedProjectRevisionHydraStrategiesAccessTokenEnum extends EnumClass 
 
 class NormalizedProjectRevisionHydraStrategiesScopeEnum extends EnumClass {
 
-  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
   @BuiltValueEnumConst(wireName: r'exact')
   static const NormalizedProjectRevisionHydraStrategiesScopeEnum exact = _$normalizedProjectRevisionHydraStrategiesScopeEnum_exact;
-  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+  /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
   @BuiltValueEnumConst(wireName: r'wildcard')
   static const NormalizedProjectRevisionHydraStrategiesScopeEnum wildcard = _$normalizedProjectRevisionHydraStrategiesScopeEnum_wildcard;
 
@@ -2968,5 +2970,39 @@ class NormalizedProjectRevisionHydraStrategiesScopeEnum extends EnumClass {
 
   static BuiltSet<NormalizedProjectRevisionHydraStrategiesScopeEnum> get values => _$normalizedProjectRevisionHydraStrategiesScopeEnumValues;
   static NormalizedProjectRevisionHydraStrategiesScopeEnum valueOf(String name) => _$normalizedProjectRevisionHydraStrategiesScopeEnumValueOf(name);
+}
+
+class NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum extends EnumClass {
+
+  /// Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
+  @BuiltValueEnumConst(wireName: r'link')
+  static const NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum link = _$normalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum_link;
+  /// Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
+  @BuiltValueEnumConst(wireName: r'code')
+  static const NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum code = _$normalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum_code;
+
+  static Serializer<NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum> get serializer => _$normalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnumSerializer;
+
+  const NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum._(String name): super(name);
+
+  static BuiltSet<NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum> get values => _$normalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnumValues;
+  static NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum valueOf(String name) => _$normalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnumValueOf(name);
+}
+
+class NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum extends EnumClass {
+
+  /// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
+  @BuiltValueEnumConst(wireName: r'link')
+  static const NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum link = _$normalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum_link;
+  /// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
+  @BuiltValueEnumConst(wireName: r'code')
+  static const NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum code = _$normalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum_code;
+
+  static Serializer<NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum> get serializer => _$normalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnumSerializer;
+
+  const NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum._(String name): super(name);
+
+  static BuiltSet<NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum> get values => _$normalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnumValues;
+  static NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum valueOf(String name) => _$normalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnumValueOf(name);
 }
 

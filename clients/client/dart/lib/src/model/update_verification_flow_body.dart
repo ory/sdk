@@ -10,7 +10,7 @@ import 'package:one_of/one_of.dart';
 
 part 'update_verification_flow_body.g.dart';
 
-/// nolint:deadcode,unused
+/// Update Verification Flow Request Body
 ///
 /// Properties:
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.

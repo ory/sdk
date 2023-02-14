@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
 **RequestedClaims** | Pointer to **map[string]interface{}** |  | [optional] 
 **Scope** | Pointer to **[]string** |  | [optional] 
+**SubjectSource** | Pointer to **NullableString** |  | [optional] 
 **TokenUrl** | Pointer to **string** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
@@ -488,6 +489,41 @@ SetScope sets Scope field to given value.
 
 HasScope returns a boolean if a field has been set.
 
+### GetSubjectSource
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetSubjectSource() string`
+
+GetSubjectSource returns the SubjectSource field if non-nil, zero value otherwise.
+
+### GetSubjectSourceOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetSubjectSourceOk() (*string, bool)`
+
+GetSubjectSourceOk returns a tuple with the SubjectSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubjectSource
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetSubjectSource(v string)`
+
+SetSubjectSource sets SubjectSource field to given value.
+
+### HasSubjectSource
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasSubjectSource() bool`
+
+HasSubjectSource returns a boolean if a field has been set.
+
+### SetSubjectSourceNil
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetSubjectSourceNil(b bool)`
+
+ SetSubjectSourceNil sets the value for SubjectSource to be an explicit nil
+
+### UnsetSubjectSource
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetSubjectSource()`
+
+UnsetSubjectSource ensures that no value is present for SubjectSource, not even an explicit nil
 ### GetTokenUrl
 
 `func (o *NormalizedProjectRevisionThirdPartyProvider) GetTokenUrl() string`

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.10
 Contact: support@ory.sh
 */
 
@@ -20,8 +20,11 @@ import (
 type NormalizedProjectRevision struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
+	// Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
+	HydraOauth2ExcludeNotBeforeClaim *bool `json:"hydra_oauth2_exclude_not_before_claim,omitempty"`
 	// Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
 	HydraOauth2GrantJwtIatOptional *bool `json:"hydra_oauth2_grant_jwt_iat_optional,omitempty"`
 	// Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
@@ -34,9 +37,6 @@ type NormalizedProjectRevision struct {
 	HydraOauth2PkceEnforcedForPublicClients *bool `json:"hydra_oauth2_pkce_enforced_for_public_clients,omitempty"`
 	// Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
 	HydraOauth2RefreshTokenHook *string `json:"hydra_oauth2_refresh_token_hook,omitempty"`
-	HydraOauth2SessionAllowedTopLevelClaims []string `json:"hydra_oauth2_session_allowed_top_level_claims,omitempty"`
-	// Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.session.exclude_not_before_claim\" setting.
-	HydraOauth2SessionExcludeNotBeforeClaim *bool `json:"hydra_oauth2_session_exclude_not_before_claim,omitempty"`
 	HydraOidcDynamicClientRegistrationDefaultScope []string `json:"hydra_oidc_dynamic_client_registration_default_scope,omitempty"`
 	// Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
 	HydraOidcDynamicClientRegistrationEnabled *bool `json:"hydra_oidc_dynamic_client_registration_enabled,omitempty"`
@@ -55,9 +55,9 @@ type NormalizedProjectRevision struct {
 	HydraServePublicCorsAllowedOrigins []string `json:"hydra_serve_public_cors_allowed_origins,omitempty"`
 	// Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
 	HydraServePublicCorsEnabled *bool `json:"hydra_serve_public_cors_enabled,omitempty"`
-	// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+	// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
 	HydraStrategiesAccessToken *string `json:"hydra_strategies_access_token,omitempty"`
-	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 	HydraStrategiesScope *string `json:"hydra_strategies_scope,omitempty"`
 	// This governs the \"ttl.access_token\" setting.
 	HydraTtlAccessToken *string `json:"hydra_ttl_access_token,omitempty"`
@@ -196,7 +196,7 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsRecoveryLifespan *string `json:"kratos_selfservice_flows_recovery_lifespan,omitempty"`
 	// Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
 	KratosSelfserviceFlowsRecoveryUiUrl *string `json:"kratos_selfservice_flows_recovery_ui_url,omitempty"`
-	// Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting.
+	// Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 	KratosSelfserviceFlowsRecoveryUse *string `json:"kratos_selfservice_flows_recovery_use,omitempty"`
 	// Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_default_browser_return_url,omitempty"`
@@ -234,7 +234,7 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsVerificationLifespan *string `json:"kratos_selfservice_flows_verification_lifespan,omitempty"`
 	// Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
 	KratosSelfserviceFlowsVerificationUiUrl *string `json:"kratos_selfservice_flows_verification_ui_url,omitempty"`
-	// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
+	// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 	KratosSelfserviceFlowsVerificationUse *string `json:"kratos_selfservice_flows_verification_use,omitempty"`
 	// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 	KratosSelfserviceMethodsCodeConfigLifespan *string `json:"kratos_selfservice_methods_code_config_lifespan,omitempty"`
@@ -383,6 +383,38 @@ func (o *NormalizedProjectRevision) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetHydraOauth2AllowedTopLevelClaims returns the HydraOauth2AllowedTopLevelClaims field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2AllowedTopLevelClaims() []string {
+	if o == nil || o.HydraOauth2AllowedTopLevelClaims == nil {
+		var ret []string
+		return ret
+	}
+	return o.HydraOauth2AllowedTopLevelClaims
+}
+
+// GetHydraOauth2AllowedTopLevelClaimsOk returns a tuple with the HydraOauth2AllowedTopLevelClaims field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2AllowedTopLevelClaimsOk() ([]string, bool) {
+	if o == nil || o.HydraOauth2AllowedTopLevelClaims == nil {
+		return nil, false
+	}
+	return o.HydraOauth2AllowedTopLevelClaims, true
+}
+
+// HasHydraOauth2AllowedTopLevelClaims returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2AllowedTopLevelClaims() bool {
+	if o != nil && o.HydraOauth2AllowedTopLevelClaims != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2AllowedTopLevelClaims gets a reference to the given []string and assigns it to the HydraOauth2AllowedTopLevelClaims field.
+func (o *NormalizedProjectRevision) SetHydraOauth2AllowedTopLevelClaims(v []string) {
+	o.HydraOauth2AllowedTopLevelClaims = v
+}
+
 // GetHydraOauth2ClientCredentialsDefaultGrantAllowedScope returns the HydraOauth2ClientCredentialsDefaultGrantAllowedScope field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraOauth2ClientCredentialsDefaultGrantAllowedScope() bool {
 	if o == nil || o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope == nil {
@@ -413,6 +445,38 @@ func (o *NormalizedProjectRevision) HasHydraOauth2ClientCredentialsDefaultGrantA
 // SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope gets a reference to the given bool and assigns it to the HydraOauth2ClientCredentialsDefaultGrantAllowedScope field.
 func (o *NormalizedProjectRevision) SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope(v bool) {
 	o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope = &v
+}
+
+// GetHydraOauth2ExcludeNotBeforeClaim returns the HydraOauth2ExcludeNotBeforeClaim field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2ExcludeNotBeforeClaim() bool {
+	if o == nil || o.HydraOauth2ExcludeNotBeforeClaim == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2ExcludeNotBeforeClaim
+}
+
+// GetHydraOauth2ExcludeNotBeforeClaimOk returns a tuple with the HydraOauth2ExcludeNotBeforeClaim field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2ExcludeNotBeforeClaimOk() (*bool, bool) {
+	if o == nil || o.HydraOauth2ExcludeNotBeforeClaim == nil {
+		return nil, false
+	}
+	return o.HydraOauth2ExcludeNotBeforeClaim, true
+}
+
+// HasHydraOauth2ExcludeNotBeforeClaim returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2ExcludeNotBeforeClaim() bool {
+	if o != nil && o.HydraOauth2ExcludeNotBeforeClaim != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2ExcludeNotBeforeClaim gets a reference to the given bool and assigns it to the HydraOauth2ExcludeNotBeforeClaim field.
+func (o *NormalizedProjectRevision) SetHydraOauth2ExcludeNotBeforeClaim(v bool) {
+	o.HydraOauth2ExcludeNotBeforeClaim = &v
 }
 
 // GetHydraOauth2GrantJwtIatOptional returns the HydraOauth2GrantJwtIatOptional field value if set, zero value otherwise.
@@ -605,70 +669,6 @@ func (o *NormalizedProjectRevision) HasHydraOauth2RefreshTokenHook() bool {
 // SetHydraOauth2RefreshTokenHook gets a reference to the given string and assigns it to the HydraOauth2RefreshTokenHook field.
 func (o *NormalizedProjectRevision) SetHydraOauth2RefreshTokenHook(v string) {
 	o.HydraOauth2RefreshTokenHook = &v
-}
-
-// GetHydraOauth2SessionAllowedTopLevelClaims returns the HydraOauth2SessionAllowedTopLevelClaims field value if set, zero value otherwise.
-func (o *NormalizedProjectRevision) GetHydraOauth2SessionAllowedTopLevelClaims() []string {
-	if o == nil || o.HydraOauth2SessionAllowedTopLevelClaims == nil {
-		var ret []string
-		return ret
-	}
-	return o.HydraOauth2SessionAllowedTopLevelClaims
-}
-
-// GetHydraOauth2SessionAllowedTopLevelClaimsOk returns a tuple with the HydraOauth2SessionAllowedTopLevelClaims field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevision) GetHydraOauth2SessionAllowedTopLevelClaimsOk() ([]string, bool) {
-	if o == nil || o.HydraOauth2SessionAllowedTopLevelClaims == nil {
-		return nil, false
-	}
-	return o.HydraOauth2SessionAllowedTopLevelClaims, true
-}
-
-// HasHydraOauth2SessionAllowedTopLevelClaims returns a boolean if a field has been set.
-func (o *NormalizedProjectRevision) HasHydraOauth2SessionAllowedTopLevelClaims() bool {
-	if o != nil && o.HydraOauth2SessionAllowedTopLevelClaims != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHydraOauth2SessionAllowedTopLevelClaims gets a reference to the given []string and assigns it to the HydraOauth2SessionAllowedTopLevelClaims field.
-func (o *NormalizedProjectRevision) SetHydraOauth2SessionAllowedTopLevelClaims(v []string) {
-	o.HydraOauth2SessionAllowedTopLevelClaims = v
-}
-
-// GetHydraOauth2SessionExcludeNotBeforeClaim returns the HydraOauth2SessionExcludeNotBeforeClaim field value if set, zero value otherwise.
-func (o *NormalizedProjectRevision) GetHydraOauth2SessionExcludeNotBeforeClaim() bool {
-	if o == nil || o.HydraOauth2SessionExcludeNotBeforeClaim == nil {
-		var ret bool
-		return ret
-	}
-	return *o.HydraOauth2SessionExcludeNotBeforeClaim
-}
-
-// GetHydraOauth2SessionExcludeNotBeforeClaimOk returns a tuple with the HydraOauth2SessionExcludeNotBeforeClaim field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevision) GetHydraOauth2SessionExcludeNotBeforeClaimOk() (*bool, bool) {
-	if o == nil || o.HydraOauth2SessionExcludeNotBeforeClaim == nil {
-		return nil, false
-	}
-	return o.HydraOauth2SessionExcludeNotBeforeClaim, true
-}
-
-// HasHydraOauth2SessionExcludeNotBeforeClaim returns a boolean if a field has been set.
-func (o *NormalizedProjectRevision) HasHydraOauth2SessionExcludeNotBeforeClaim() bool {
-	if o != nil && o.HydraOauth2SessionExcludeNotBeforeClaim != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHydraOauth2SessionExcludeNotBeforeClaim gets a reference to the given bool and assigns it to the HydraOauth2SessionExcludeNotBeforeClaim field.
-func (o *NormalizedProjectRevision) SetHydraOauth2SessionExcludeNotBeforeClaim(v bool) {
-	o.HydraOauth2SessionExcludeNotBeforeClaim = &v
 }
 
 // GetHydraOidcDynamicClientRegistrationDefaultScope returns the HydraOidcDynamicClientRegistrationDefaultScope field value if set, zero value otherwise.
@@ -5160,8 +5160,14 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.HydraOauth2AllowedTopLevelClaims != nil {
+		toSerialize["hydra_oauth2_allowed_top_level_claims"] = o.HydraOauth2AllowedTopLevelClaims
+	}
 	if o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope != nil {
 		toSerialize["hydra_oauth2_client_credentials_default_grant_allowed_scope"] = o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope
+	}
+	if o.HydraOauth2ExcludeNotBeforeClaim != nil {
+		toSerialize["hydra_oauth2_exclude_not_before_claim"] = o.HydraOauth2ExcludeNotBeforeClaim
 	}
 	if o.HydraOauth2GrantJwtIatOptional != nil {
 		toSerialize["hydra_oauth2_grant_jwt_iat_optional"] = o.HydraOauth2GrantJwtIatOptional
@@ -5180,12 +5186,6 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.HydraOauth2RefreshTokenHook != nil {
 		toSerialize["hydra_oauth2_refresh_token_hook"] = o.HydraOauth2RefreshTokenHook
-	}
-	if o.HydraOauth2SessionAllowedTopLevelClaims != nil {
-		toSerialize["hydra_oauth2_session_allowed_top_level_claims"] = o.HydraOauth2SessionAllowedTopLevelClaims
-	}
-	if o.HydraOauth2SessionExcludeNotBeforeClaim != nil {
-		toSerialize["hydra_oauth2_session_exclude_not_before_claim"] = o.HydraOauth2SessionExcludeNotBeforeClaim
 	}
 	if o.HydraOidcDynamicClientRegistrationDefaultScope != nil {
 		toSerialize["hydra_oidc_dynamic_client_registration_default_scope"] = o.HydraOidcDynamicClientRegistrationDefaultScope

@@ -9,7 +9,7 @@ import 'package:built_value/serializer.dart';
 
 part 'update_settings_flow_with_oidc_method.g.dart';
 
-/// nolint:deadcode,unused
+/// Update Settings Flow with OpenID Connect Method
 ///
 /// Properties:
 /// * [flow] - Flow ID is the flow's ID.  in: query

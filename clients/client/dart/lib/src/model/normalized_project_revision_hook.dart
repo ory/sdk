@@ -27,6 +27,7 @@ part 'normalized_project_revision_hook.g.dart';
 /// * [webHookConfigCanInterrupt] - If enabled allows the web hook to interrupt / abort the self-service flow. It only applies to certain flows (registration/verification/login/settings) and requires a valid response format.
 /// * [webHookConfigMethod] - The HTTP method to use (GET, POST, etc) for the Web-Hook
 /// * [webHookConfigResponseIgnore] - Whether to ignore the Web Hook response
+/// * [webHookConfigResponseParse] - Whether to parse the Web Hook response
 /// * [webHookConfigUrl] - The URL the Web-Hook should call
 @BuiltValue()
 abstract class NormalizedProjectRevisionHook implements Built<NormalizedProjectRevisionHook, NormalizedProjectRevisionHookBuilder> {
@@ -93,6 +94,10 @@ abstract class NormalizedProjectRevisionHook implements Built<NormalizedProjectR
   /// Whether to ignore the Web Hook response
   @BuiltValueField(wireName: r'web_hook_config_response_ignore')
   bool? get webHookConfigResponseIgnore;
+
+  /// Whether to parse the Web Hook response
+  @BuiltValueField(wireName: r'web_hook_config_response_parse')
+  bool? get webHookConfigResponseParse;
 
   /// The URL the Web-Hook should call
   @BuiltValueField(wireName: r'web_hook_config_url')
@@ -226,6 +231,13 @@ class _$NormalizedProjectRevisionHookSerializer implements PrimitiveSerializer<N
       yield r'web_hook_config_response_ignore';
       yield serializers.serialize(
         object.webHookConfigResponseIgnore,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.webHookConfigResponseParse != null) {
+      yield r'web_hook_config_response_parse';
+      yield serializers.serialize(
+        object.webHookConfigResponseParse,
         specifiedType: const FullType(bool),
       );
     }
@@ -370,6 +382,13 @@ class _$NormalizedProjectRevisionHookSerializer implements PrimitiveSerializer<N
             specifiedType: const FullType(bool),
           ) as bool;
           result.webHookConfigResponseIgnore = valueDes;
+          break;
+        case r'web_hook_config_response_parse':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.webHookConfigResponseParse = valueDes;
           break;
         case r'web_hook_config_url':
           final valueDes = serializers.deserialize(

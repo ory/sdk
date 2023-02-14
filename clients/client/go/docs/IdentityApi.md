@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**CreateRecoveryCodeForIdentity**](IdentityApi.md#CreateRecoveryCodeForIdentity) | **Post** /admin/recovery/code | Create a Recovery Code
 [**CreateRecoveryLinkForIdentity**](IdentityApi.md#CreateRecoveryLinkForIdentity) | **Post** /admin/recovery/link | Create a Recovery Link
 [**DeleteIdentity**](IdentityApi.md#DeleteIdentity) | **Delete** /admin/identities/{id} | Delete an Identity
+[**DeleteIdentityCredentials**](IdentityApi.md#DeleteIdentityCredentials) | **Delete** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 [**DeleteIdentitySessions**](IdentityApi.md#DeleteIdentitySessions) | **Delete** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
 [**DisableSession**](IdentityApi.md#DisableSession) | **Delete** /admin/sessions/{id} | Deactivate a Session
 [**ExtendSession**](IdentityApi.md#ExtendSession) | **Patch** /admin/sessions/{id}/extend | Extend a Session
@@ -274,6 +275,79 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteIdentityCredentials
+
+> Identity DeleteIdentityCredentials(ctx, id, type_).Execute()
+
+Delete a credential for a specific identity
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | ID is the identity's ID.
+    type_ := "type__example" // string | Type is the credential's Type. One of totp, webauthn, lookup
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IdentityApi.DeleteIdentityCredentials(context.Background(), id, type_).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.DeleteIdentityCredentials``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteIdentityCredentials`: Identity
+    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.DeleteIdentityCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | ID is the identity&#39;s ID. | 
+**type_** | **string** | Type is the credential&#39;s Type. One of totp, webauthn, lookup | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteIdentityCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**Identity**](Identity.md)
 
 ### Authorization
 

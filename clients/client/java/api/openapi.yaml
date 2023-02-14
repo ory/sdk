@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.7
+  version: v1.1.10
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -866,6 +866,60 @@ paths:
       tags:
       - identity
       x-content-type: application/json
+      x-accepts: application/json
+  /admin/identities/{id}/credentials/{type}:
+    delete:
+      description: |-
+        Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type
+        You can only delete second factor (aal2) credentials.
+      operationId: deleteIdentityCredentials
+      parameters:
+      - description: ID is the identity's ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Type is the credential's Type.
+          One of totp, webauthn, lookup
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - totp
+          - webauthn
+          - lookup
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/identity'
+          description: identity
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Delete a credential for a specific identity
+      tags:
+      - identity
       x-accepts: application/json
   /admin/identities/{id}/sessions:
     delete:
@@ -8749,6 +8803,12 @@ components:
           format: date-time
           readOnly: true
           type: string
+        hydra_oauth2_allowed_top_level_claims:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         hydra_oauth2_client_credentials_default_grant_allowed_scope:
           description: |-
             Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.
@@ -8761,6 +8821,12 @@ components:
             Setting this option to true is common if you need compatibility with MITREid.
 
             This governs the "oauth2.client_credentials.default_grant_allowed_scope" setting.
+          type: boolean
+        hydra_oauth2_exclude_not_before_claim:
+          description: |-
+            Set to true if you want to exclude claim `nbf (not before)` part of access token.
+
+            This governs the "oauth2.exclude_not_before_claim" setting.
           type: boolean
         hydra_oauth2_grant_jwt_iat_optional:
           description: |-
@@ -8809,18 +8875,6 @@ components:
 
             This governs the "oauth2.refresh_token_hook" setting.
           type: string
-        hydra_oauth2_session_allowed_top_level_claims:
-          items:
-            type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
-          type: array
-        hydra_oauth2_session_exclude_not_before_claim:
-          description: |-
-            Set to true if you want to exclude claim `nbf (not before)` part of access token.
-
-            This governs the "oauth2.session.exclude_not_before_claim" setting.
-          type: boolean
         hydra_oidc_dynamic_client_registration_default_scope:
           items:
             type: string
@@ -8899,30 +8953,30 @@ components:
             Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens
 
             This governs the "strategies.access_token" setting.
-            opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE
-            jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+            opaque Oauth2AccessTokenStrategyOpaque
+            jwt Oauth2AccessTokenStrategyJwt
           enum:
           - opaque
           - jwt
           type: string
           x-go-enum-desc: |-
-            opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE
-            jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+            opaque Oauth2AccessTokenStrategyOpaque
+            jwt Oauth2AccessTokenStrategyJwt
         hydra_strategies_scope:
           default: wildcard
           description: |-
             Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes
 
             This governs the "strategies.scope" setting.
-            exact OAUTH2_SCOPE_STRATEGY_EXACT
-            wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+            exact Oauth2ScopeStrategyExact
+            wildcard Oauth2ScopeStrategyWildcard
           enum:
           - exact
           - wildcard
           type: string
           x-go-enum-desc: |-
-            exact OAUTH2_SCOPE_STRATEGY_EXACT
-            wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+            exact Oauth2ScopeStrategyExact
+            wildcard Oauth2ScopeStrategyWildcard
         hydra_ttl_access_token:
           default: 30m
           description: This governs the "ttl.access_token" setting.
@@ -9385,7 +9439,15 @@ components:
             Configures the Ory Kratos Recovery strategy to use ("link" or "code")
 
             This governs the "selfservice.flows.recovery.use" setting.
+            link SelfServiceMessageVerificationStrategyLink
+            code SelfServiceMessageVerificationStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link SelfServiceMessageVerificationStrategyLink
+            code SelfServiceMessageVerificationStrategyCode
         kratos_selfservice_flows_registration_after_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Registration Default Return URL
@@ -9499,7 +9561,15 @@ components:
             Configures the Ory Kratos Strategy to use for Verification
 
             This governs the "selfservice.flows.verification.use" setting.
+            link SelfServiceMessageVerificationStrategyLink
+            code SelfServiceMessageVerificationStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link SelfServiceMessageVerificationStrategyLink
+            code SelfServiceMessageVerificationStrategyCode
         kratos_selfservice_methods_code_config_lifespan:
           description: |-
             Configures the Ory Kratos Code Method's lifespan
@@ -9758,6 +9828,9 @@ components:
         web_hook_config_response_ignore:
           description: Whether to ignore the Web Hook response
           type: boolean
+        web_hook_config_response_parse:
+          description: Whether to parse the Web Hook response
+          type: boolean
         web_hook_config_url:
           description: The URL the Web-Hook should call
           example: https://www.example.org/web-hook-listener
@@ -9920,6 +9993,9 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        subject_source:
+          nullable: true
+          type: string
         token_url:
           description: |-
             TokenURL is the token url, typically something like: https://example.org/oauth2/token
@@ -9953,6 +10029,8 @@ components:
         \ with JSON, SQL, and Swagger and is NULLable-"
       nullable: true
       type: object
+    nullString:
+      type: string
     nullTime:
       format: date-time
       title: NullTime implements sql.NullTime functionality.
@@ -11525,7 +11603,7 @@ components:
           type: string
       type: object
     performNativeLogoutBody:
-      description: "nolint:deadcode,unused"
+      description: Perform Native Logout Request Body
       properties:
         session_token:
           description: |-
@@ -11535,7 +11613,6 @@ components:
           type: string
       required:
       - session_token
-      title: Perform Native Logout Request Body
       type: object
     permissionsOnProject:
       additionalProperties:
@@ -14709,7 +14786,7 @@ components:
       - method
       type: object
     updateSettingsFlowWithOidcMethod:
-      description: "nolint:deadcode,unused"
+      description: Update Settings Flow with OpenID Connect Method
       properties:
         flow:
           description: |-
@@ -14749,7 +14826,6 @@ components:
           type: string
       required:
       - method
-      title: Update Settings Flow with OpenID Connect Method
       type: object
     updateSettingsFlowWithPasswordMethod:
       description: Update Settings Flow with Password Method
@@ -14771,7 +14847,7 @@ components:
       - password
       type: object
     updateSettingsFlowWithProfileMethod:
-      description: "nolint:deadcode,unused"
+      description: Update Settings Flow with Profile Method
       properties:
         csrf_token:
           description: |-
@@ -14794,7 +14870,6 @@ components:
       required:
       - method
       - traits
-      title: Update Settings Flow with Profile Method
       type: object
     updateSettingsFlowWithTotpMethod:
       description: Update Settings Flow with TOTP Method
@@ -14865,14 +14940,13 @@ components:
       - plan_or_price
       type: object
     updateVerificationFlowBody:
-      description: "nolint:deadcode,unused"
+      description: Update Verification Flow Request Body
       discriminator:
         mapping:
           link: '#/components/schemas/updateVerificationFlowWithLinkMethod'
         propertyName: method
       oneOf:
       - $ref: '#/components/schemas/updateVerificationFlowWithLinkMethod'
-      title: Update Verification Flow Request Body
     updateVerificationFlowWithCodeMethodBody:
       properties:
         code:

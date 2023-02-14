@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **web_hook_config_can_interrupt** | **bool** | If enabled allows the web hook to interrupt / abort the self-service flow. It only applies to certain flows (registration/verification/login/settings) and requires a valid response format. | [optional] 
 **web_hook_config_method** | **str** | The HTTP method to use (GET, POST, etc) for the Web-Hook | [optional] 
 **web_hook_config_response_ignore** | **bool** | Whether to ignore the Web Hook response | [optional] 
+**web_hook_config_response_parse** | **bool** | Whether to parse the Web Hook response | [optional] 
 **web_hook_config_url** | **str** | The URL the Web-Hook should call | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

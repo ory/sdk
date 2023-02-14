@@ -1,5 +1,5 @@
 # Ory.Client.Model.ClientUpdateVerificationFlowBody
-nolint:deadcode,unused
+Update Verification Flow Request Body
 
 ## Properties
 

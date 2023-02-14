@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **provider_id** | Option<**String**> | ID is the provider's ID | [optional]
 **requested_claims** | Option<[**serde_json::Value**](.md)> |  | [optional]
 **scope** | Option<**Vec<String>**> |  | [optional]
+**subject_source** | Option<**String**> |  | [optional]
 **token_url** | Option<**String**> | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`. | [optional]
 **updated_at** | Option<**String**> | Last Time Project's Revision was Updated | [optional][readonly]
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.10
 Contact: support@ory.sh
 */
 
@@ -50,6 +50,8 @@ type NormalizedProjectRevisionHook struct {
 	WebHookConfigMethod *string `json:"web_hook_config_method,omitempty"`
 	// Whether to ignore the Web Hook response
 	WebHookConfigResponseIgnore *bool `json:"web_hook_config_response_ignore,omitempty"`
+	// Whether to parse the Web Hook response
+	WebHookConfigResponseParse *bool `json:"web_hook_config_response_parse,omitempty"`
 	// The URL the Web-Hook should call
 	WebHookConfigUrl *string `json:"web_hook_config_url,omitempty"`
 }
@@ -569,6 +571,38 @@ func (o *NormalizedProjectRevisionHook) SetWebHookConfigResponseIgnore(v bool) {
 	o.WebHookConfigResponseIgnore = &v
 }
 
+// GetWebHookConfigResponseParse returns the WebHookConfigResponseParse field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigResponseParse() bool {
+	if o == nil || o.WebHookConfigResponseParse == nil {
+		var ret bool
+		return ret
+	}
+	return *o.WebHookConfigResponseParse
+}
+
+// GetWebHookConfigResponseParseOk returns a tuple with the WebHookConfigResponseParse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigResponseParseOk() (*bool, bool) {
+	if o == nil || o.WebHookConfigResponseParse == nil {
+		return nil, false
+	}
+	return o.WebHookConfigResponseParse, true
+}
+
+// HasWebHookConfigResponseParse returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigResponseParse() bool {
+	if o != nil && o.WebHookConfigResponseParse != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWebHookConfigResponseParse gets a reference to the given bool and assigns it to the WebHookConfigResponseParse field.
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigResponseParse(v bool) {
+	o.WebHookConfigResponseParse = &v
+}
+
 // GetWebHookConfigUrl returns the WebHookConfigUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionHook) GetWebHookConfigUrl() string {
 	if o == nil || o.WebHookConfigUrl == nil {
@@ -650,6 +684,9 @@ func (o NormalizedProjectRevisionHook) MarshalJSON() ([]byte, error) {
 	}
 	if o.WebHookConfigResponseIgnore != nil {
 		toSerialize["web_hook_config_response_ignore"] = o.WebHookConfigResponseIgnore
+	}
+	if o.WebHookConfigResponseParse != nil {
+		toSerialize["web_hook_config_response_parse"] = o.WebHookConfigResponseParse
 	}
 	if o.WebHookConfigUrl != nil {
 		toSerialize["web_hook_config_url"] = o.WebHookConfigUrl

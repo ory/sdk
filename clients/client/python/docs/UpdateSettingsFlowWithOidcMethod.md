@@ -1,6 +1,6 @@
 # UpdateSettingsFlowWithOidcMethod
 
-nolint:deadcode,unused
+Update Settings Flow with OpenID Connect Method
 
 ## Properties
 Name | Type | Description | Notes

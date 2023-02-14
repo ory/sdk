@@ -103,6 +103,12 @@ void main() {
       // TODO
     });
 
+    // Whether to parse the Web Hook response
+    // bool webHookConfigResponseParse
+    test('to test the property `webHookConfigResponseParse`', () async {
+      // TODO
+    });
+
     // The URL the Web-Hook should call
     // String webHookConfigUrl
     test('to test the property `webHookConfigUrl`', () async {

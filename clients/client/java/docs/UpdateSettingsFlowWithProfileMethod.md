@@ -2,7 +2,7 @@
 
 # UpdateSettingsFlowWithProfileMethod
 
-nolint:deadcode,unused
+Update Settings Flow with Profile Method
 
 ## Properties
 

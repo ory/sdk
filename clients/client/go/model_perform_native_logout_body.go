@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.10
 Contact: support@ory.sh
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// PerformNativeLogoutBody nolint:deadcode,unused
+// PerformNativeLogoutBody Perform Native Logout Request Body
 type PerformNativeLogoutBody struct {
 	// The Session Token  Invalidate this session token.
 	SessionToken string `json:"session_token"`

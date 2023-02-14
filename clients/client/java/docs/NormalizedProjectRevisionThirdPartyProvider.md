@@ -24,6 +24,7 @@
 |**providerId** | **String** | ID is the provider&#39;s ID |  [optional] |
 |**requestedClaims** | **Object** |  |  [optional] |
 |**scope** | **List&lt;String&gt;** |  |  [optional] |
+|**subjectSource** | **String** |  |  [optional] |
 |**tokenUrl** | **String** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project&#39;s Revision was Updated |  [optional] [readonly] |
 

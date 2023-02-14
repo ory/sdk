@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.10
 Contact: support@ory.sh
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// UpdateSettingsFlowWithOidcMethod nolint:deadcode,unused
+// UpdateSettingsFlowWithOidcMethod Update Settings Flow with OpenID Connect Method
 type UpdateSettingsFlowWithOidcMethod struct {
 	// Flow ID is the flow's ID.  in: query
 	Flow *string `json:"flow,omitempty"`

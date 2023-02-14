@@ -43,6 +43,15 @@ void main() {
       // TODO
     });
 
+    // Delete a credential for a specific identity
+    //
+    // Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+    //
+    //Future<Identity> deleteIdentityCredentials(String id, String type) async
+    test('test deleteIdentityCredentials', () async {
+      // TODO
+    });
+
     // Delete & Invalidate an Identity's Sessions
     //
     // Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.

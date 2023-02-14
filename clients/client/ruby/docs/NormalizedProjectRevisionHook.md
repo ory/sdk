@@ -20,6 +20,7 @@
 | **web_hook_config_can_interrupt** | **Boolean** | If enabled allows the web hook to interrupt / abort the self-service flow. It only applies to certain flows (registration/verification/login/settings) and requires a valid response format. | [optional] |
 | **web_hook_config_method** | **String** | The HTTP method to use (GET, POST, etc) for the Web-Hook | [optional] |
 | **web_hook_config_response_ignore** | **Boolean** | Whether to ignore the Web Hook response | [optional] |
+| **web_hook_config_response_parse** | **Boolean** | Whether to parse the Web Hook response | [optional] |
 | **web_hook_config_url** | **String** | The URL the Web-Hook should call | [optional] |
 
 ## Example
@@ -44,6 +45,7 @@ instance = OryClient::NormalizedProjectRevisionHook.new(
   web_hook_config_can_interrupt: null,
   web_hook_config_method: POST,
   web_hook_config_response_ignore: null,
+  web_hook_config_response_parse: null,
   web_hook_config_url: https://www.example.org/web-hook-listener
 )
 ```
