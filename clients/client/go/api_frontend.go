@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.10
+API version: v1.1.11
 Contact: support@ory.sh
 */
 
@@ -1382,6 +1382,7 @@ type FrontendApiCreateBrowserRegistrationFlowRequest struct {
 	ApiService FrontendApi
 	returnTo *string
 	loginChallenge *string
+	afterVerificationReturnTo *string
 }
 
 // The URL to return the browser to after the flow was completed.
@@ -1393,6 +1394,12 @@ func (r FrontendApiCreateBrowserRegistrationFlowRequest) ReturnTo(returnTo strin
 // Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network.
 func (r FrontendApiCreateBrowserRegistrationFlowRequest) LoginChallenge(loginChallenge string) FrontendApiCreateBrowserRegistrationFlowRequest {
 	r.loginChallenge = &loginChallenge
+	return r
+}
+
+// The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value.
+func (r FrontendApiCreateBrowserRegistrationFlowRequest) AfterVerificationReturnTo(afterVerificationReturnTo string) FrontendApiCreateBrowserRegistrationFlowRequest {
+	r.afterVerificationReturnTo = &afterVerificationReturnTo
 	return r
 }
 
@@ -1465,6 +1472,9 @@ func (a *FrontendApiService) CreateBrowserRegistrationFlowExecute(r FrontendApiC
 	}
 	if r.loginChallenge != nil {
 		localVarQueryParams.Add("login_challenge", parameterToString(*r.loginChallenge, ""))
+	}
+	if r.afterVerificationReturnTo != nil {
+		localVarQueryParams.Add("after_verification_return_to", parameterToString(*r.afterVerificationReturnTo, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

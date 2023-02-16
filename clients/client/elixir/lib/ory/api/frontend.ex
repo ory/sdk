@@ -140,6 +140,7 @@ defmodule Ory.Api.Frontend do
   - `opts` (keyword): Optional parameters
     - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
     - `:login_challenge` (String.t): Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
+    - `:after_verification_return_to` (String.t): The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
 
   ### Returns
 
@@ -150,7 +151,8 @@ defmodule Ory.Api.Frontend do
   def create_browser_registration_flow(connection, opts \\ []) do
     optional_params = %{
       :return_to => :query,
-      :login_challenge => :query
+      :login_challenge => :query,
+      :after_verification_return_to => :query
     }
 
     request =

@@ -785,7 +785,7 @@ Name | Type | Description  | Notes
 
 ## ListIdentities
 
-> []Identity ListIdentities(ctx).PerPage(perPage).Page(page).Execute()
+> []Identity ListIdentities(ctx).PerPage(perPage).Page(page).Identifier(identifier).Execute()
 
 List Identities
 
@@ -806,10 +806,11 @@ import (
 func main() {
     perPage := int64(789) // int64 | Items per Page  This is the number of items per page. (optional) (default to 250)
     page := int64(789) // int64 | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional) (default to 1)
+    identifier := "identifier_example" // string | Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.ListIdentities(context.Background()).PerPage(perPage).Page(page).Execute()
+    resp, r, err := apiClient.IdentityApi.ListIdentities(context.Background()).PerPage(perPage).Page(page).Identifier(identifier).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.ListIdentities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -832,6 +833,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **perPage** | **int64** | Items per Page  This is the number of items per page. | [default to 250]
  **page** | **int64** | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [default to 1]
+ **identifier** | **string** | Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address | 
 
 ### Return type
 
@@ -1089,7 +1091,7 @@ import (
 
 func main() {
     id := "id_example" // string | ID must be set to the ID of identity you want to update
-    jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/services/identity/config/smtp/from_name")} // []JsonPatch |  (optional)
+    jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/name")} // []JsonPatch |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

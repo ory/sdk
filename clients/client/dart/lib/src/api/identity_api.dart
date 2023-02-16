@@ -902,6 +902,7 @@ class IdentityApi {
   /// Parameters:
   /// * [perPage] - Items per Page  This is the number of items per page.
   /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  /// * [identifier] - Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -914,6 +915,7 @@ class IdentityApi {
   Future<Response<BuiltList<Identity>>> listIdentities({ 
     int? perPage = 250,
     int? page = 1,
+    String? identifier,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -943,6 +945,7 @@ class IdentityApi {
     final _queryParameters = <String, dynamic>{
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (identifier != null) r'identifier': encodeQueryParameter(_serializers, identifier, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

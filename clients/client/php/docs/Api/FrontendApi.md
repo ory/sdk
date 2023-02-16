@@ -214,7 +214,7 @@ No authorization required
 ## `createBrowserRegistrationFlow()`
 
 ```php
-createBrowserRegistrationFlow($returnTo, $loginChallenge): \Ory\Client\Model\RegistrationFlow
+createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo): \Ory\Client\Model\RegistrationFlow
 ```
 
 Create Registration Flow for Browsers
@@ -236,9 +236,10 @@ $apiInstance = new Ory\Client\Api\FrontendApi(
 );
 $returnTo = 'returnTo_example'; // string | The URL to return the browser to after the flow was completed.
 $loginChallenge = 'loginChallenge_example'; // string | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
+$afterVerificationReturnTo = 'afterVerificationReturnTo_example'; // string | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
 
 try {
-    $result = $apiInstance->createBrowserRegistrationFlow($returnTo, $loginChallenge);
+    $result = $apiInstance->createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createBrowserRegistrationFlow: ', $e->getMessage(), PHP_EOL;
@@ -251,6 +252,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional]
  **loginChallenge** | **string**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional]
+ **afterVerificationReturnTo** | **string**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional]
 
 ### Return type
 

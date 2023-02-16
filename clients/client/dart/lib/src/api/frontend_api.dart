@@ -288,6 +288,7 @@ class FrontendApi {
   /// Parameters:
   /// * [returnTo] - The URL to return the browser to after the flow was completed.
   /// * [loginChallenge] - Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
+  /// * [afterVerificationReturnTo] - The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -300,6 +301,7 @@ class FrontendApi {
   Future<Response<RegistrationFlow>> createBrowserRegistrationFlow({ 
     String? returnTo,
     String? loginChallenge,
+    String? afterVerificationReturnTo,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -323,6 +325,7 @@ class FrontendApi {
     final _queryParameters = <String, dynamic>{
       if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
       if (loginChallenge != null) r'login_challenge': encodeQueryParameter(_serializers, loginChallenge, const FullType(String)),
+      if (afterVerificationReturnTo != null) r'after_verification_return_to': encodeQueryParameter(_serializers, afterVerificationReturnTo, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

@@ -410,6 +410,7 @@ defmodule Ory.Api.Identity do
   - `opts` (keyword): Optional parameters
     - `:per_page` (integer()): Items per Page  This is the number of items per page.
     - `:page` (integer()): Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+    - `:identifier` (String.t): Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address
 
   ### Returns
 
@@ -420,7 +421,8 @@ defmodule Ory.Api.Identity do
   def list_identities(connection, opts \\ []) do
     optional_params = %{
       :per_page => :query,
-      :page => :query
+      :page => :query,
+      :identifier => :query
     }
 
     request =

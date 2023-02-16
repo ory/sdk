@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.10
+  version: v1.1.11
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -593,6 +593,18 @@ paths:
           format: int64
           minimum: 1
           type: integer
+        style: form
+      - description: |-
+          Identifier
+
+          This query parameter can be used to lookup an identity using its identifier.
+          For example - an email address
+        explode: true
+        in: query
+        name: identifier
+        required: false
+        schema:
+          type: string
         style: form
       responses:
         "200":
@@ -5298,6 +5310,19 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          The URL to return the browser to after the verification flow was completed.
+
+          After the registration flow is completed, the user will be sent a verification email.
+          Upon completing the verification flow, this URL will be used to override the default
+          `selfservice.flows.verification.after.default_redirect_to` value.
+        explode: true
+        in: query
+        name: after_verification_return_to
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -8005,10 +8030,7 @@ components:
       - Subject
       type: object
     jsonPatch:
-      description: |-
-        JSON Patch allows you to target individual keys in a JSON document for updates.
-
-        For more examples see: https://jsonpatch.com
+      description: A JSONPatch document as defined by RFC 6902
       properties:
         from:
           description: |-
@@ -8018,7 +8040,8 @@ components:
           example: /name
           type: string
         op:
-          description: The JSON Patch operation
+          description: "The operation to be performed. One of \"add\", \"remove\"\
+            , \"replace\", \"move\", \"copy\", or \"test\"."
           enum:
           - add
           - remove
@@ -8029,17 +8052,21 @@ components:
           example: replace
           type: string
         path:
-          description: The JSON Pointer to the target key
-          example: /services/identity/config/smtp/from_name
+          description: |-
+            The path to the target path. Uses JSON pointer notation.
+
+            Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
+          example: /name
           type: string
         value:
-          description: The value to be used. Only available for `add` and `replace`
-            operations.
+          description: |-
+            The value to be used within the operations.
+
+            Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
           example: foobar
       required:
       - op
       - path
-      title: A JSON Patch
       type: object
     jsonPatchDocument:
       description: A JSONPatchDocument request

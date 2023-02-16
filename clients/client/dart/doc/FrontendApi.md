@@ -178,7 +178,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createBrowserRegistrationFlow**
-> RegistrationFlow createBrowserRegistrationFlow(returnTo, loginChallenge)
+> RegistrationFlow createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo)
 
 Create Registration Flow for Browsers
 
@@ -191,9 +191,10 @@ import 'package:ory_client/api.dart';
 final api = OryClient().getFrontendApi();
 final String returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 final String loginChallenge = loginChallenge_example; // String | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
+final String afterVerificationReturnTo = afterVerificationReturnTo_example; // String | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
 
 try {
-    final response = api.createBrowserRegistrationFlow(returnTo, loginChallenge);
+    final response = api.createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->createBrowserRegistrationFlow: $e\n');
@@ -206,6 +207,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] 
  **loginChallenge** | **String**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] 
+ **afterVerificationReturnTo** | **String**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. | [optional] 
 
 ### Return type
 

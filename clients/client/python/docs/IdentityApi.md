@@ -1022,12 +1022,13 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = identity_api.IdentityApi(api_client)
     per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
     page = 1 # int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional) if omitted the server will use the default value of 1
+    identifier = "identifier_example" # str | Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # List Identities
-        api_response = api_instance.list_identities(per_page=per_page, page=page)
+        api_response = api_instance.list_identities(per_page=per_page, page=page, identifier=identifier)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling IdentityApi->list_identities: %s\n" % e)
@@ -1040,6 +1041,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
  **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] if omitted the server will use the default value of 1
+ **identifier** | **str**| Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address | [optional]
 
 ### Return type
 
@@ -1365,7 +1367,7 @@ with ory_client.ApiClient(configuration) as api_client:
         JsonPatch(
             _from="/name",
             op="replace",
-            path="/services/identity/config/smtp/from_name",
+            path="/name",
             value=None,
         ),
     ]) # JsonPatchDocument |  (optional)

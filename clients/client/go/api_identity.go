@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.10
+API version: v1.1.11
 Contact: support@ory.sh
 */
 
@@ -1717,6 +1717,7 @@ type IdentityApiListIdentitiesRequest struct {
 	ApiService IdentityApi
 	perPage *int64
 	page *int64
+	identifier *string
 }
 
 // Items per Page  This is the number of items per page.
@@ -1728,6 +1729,12 @@ func (r IdentityApiListIdentitiesRequest) PerPage(perPage int64) IdentityApiList
 // Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
 func (r IdentityApiListIdentitiesRequest) Page(page int64) IdentityApiListIdentitiesRequest {
 	r.page = &page
+	return r
+}
+
+// Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address
+func (r IdentityApiListIdentitiesRequest) Identifier(identifier string) IdentityApiListIdentitiesRequest {
+	r.identifier = &identifier
 	return r
 }
 
@@ -1776,6 +1783,9 @@ func (a *IdentityApiService) ListIdentitiesExecute(r IdentityApiListIdentitiesRe
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.identifier != nil {
+		localVarQueryParams.Add("identifier", parameterToString(*r.identifier, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
