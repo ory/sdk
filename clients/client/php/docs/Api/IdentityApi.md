@@ -685,7 +685,7 @@ Name | Type | Description  | Notes
 ## `listIdentities()`
 
 ```php
-listIdentities($perPage, $page, $identifier): \Ory\Client\Model\Identity[]
+listIdentities($perPage, $page, $credentialsIdentifier): \Ory\Client\Model\Identity[]
 ```
 
 List Identities
@@ -711,10 +711,10 @@ $apiInstance = new Ory\Client\Api\IdentityApi(
 );
 $perPage = 250; // int | Items per Page  This is the number of items per page.
 $page = 1; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-$identifier = 'identifier_example'; // string | Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address
+$credentialsIdentifier = 'credentialsIdentifier_example'; // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
 
 try {
-    $result = $apiInstance->listIdentities($perPage, $page, $identifier);
+    $result = $apiInstance->listIdentities($perPage, $page, $credentialsIdentifier);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling IdentityApi->listIdentities: ', $e->getMessage(), PHP_EOL;
@@ -727,7 +727,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
  **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
- **identifier** | **string**| Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address | [optional]
+ **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional]
 
 ### Return type
 

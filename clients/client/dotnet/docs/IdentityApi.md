@@ -868,7 +868,7 @@ Name | Type | Description  | Notes
 
 <a name="listidentities"></a>
 # **ListIdentities**
-> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, string identifier = null)
+> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, string credentialsIdentifier = null)
 
 List Identities
 
@@ -896,12 +896,12 @@ namespace Example
             var apiInstance = new IdentityApi(config);
             var perPage = 250L;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 250)
             var page = 1L;  // long? | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional)  (default to 1)
-            var identifier = "identifier_example";  // string | Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address (optional) 
+            var credentialsIdentifier = "credentialsIdentifier_example";  // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. (optional) 
 
             try
             {
                 // List Identities
-                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, identifier);
+                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, credentialsIdentifier);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -921,7 +921,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **perPage** | **long?**| Items per Page  This is the number of items per page. | [optional] [default to 250]
  **page** | **long?**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
- **identifier** | **string**| Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address | [optional] 
+ **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] 
 
 ### Return type
 

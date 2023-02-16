@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.11
+API version: v1.1.12
 Contact: support@ory.sh
 */
 
@@ -1717,7 +1717,7 @@ type IdentityApiListIdentitiesRequest struct {
 	ApiService IdentityApi
 	perPage *int64
 	page *int64
-	identifier *string
+	credentialsIdentifier *string
 }
 
 // Items per Page  This is the number of items per page.
@@ -1732,9 +1732,9 @@ func (r IdentityApiListIdentitiesRequest) Page(page int64) IdentityApiListIdenti
 	return r
 }
 
-// Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address
-func (r IdentityApiListIdentitiesRequest) Identifier(identifier string) IdentityApiListIdentitiesRequest {
-	r.identifier = &identifier
+// CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
+func (r IdentityApiListIdentitiesRequest) CredentialsIdentifier(credentialsIdentifier string) IdentityApiListIdentitiesRequest {
+	r.credentialsIdentifier = &credentialsIdentifier
 	return r
 }
 
@@ -1784,8 +1784,8 @@ func (a *IdentityApiService) ListIdentitiesExecute(r IdentityApiListIdentitiesRe
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
-	if r.identifier != nil {
-		localVarQueryParams.Add("identifier", parameterToString(*r.identifier, ""))
+	if r.credentialsIdentifier != nil {
+		localVarQueryParams.Add("credentials_identifier", parameterToString(*r.credentialsIdentifier, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

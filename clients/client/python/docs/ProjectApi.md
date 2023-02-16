@@ -717,7 +717,7 @@ with ory_client.ApiClient(configuration) as api_client:
         JsonPatch(
             _from="/name",
             op="replace",
-            path="/name",
+            path="/services/identity/config/smtp/from_name",
             value=None,
         ),
     ] # [JsonPatch] |  (optional)

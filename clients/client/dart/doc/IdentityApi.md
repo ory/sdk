@@ -535,7 +535,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentities**
-> BuiltList<Identity> listIdentities(perPage, page, identifier)
+> BuiltList<Identity> listIdentities(perPage, page, credentialsIdentifier)
 
 List Identities
 
@@ -551,10 +551,10 @@ import 'package:ory_client/api.dart';
 final api = OryClient().getIdentityApi();
 final int perPage = 789; // int | Items per Page  This is the number of items per page.
 final int page = 789; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-final String identifier = identifier_example; // String | Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address
+final String credentialsIdentifier = credentialsIdentifier_example; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
 
 try {
-    final response = api.listIdentities(perPage, page, identifier);
+    final response = api.listIdentities(perPage, page, credentialsIdentifier);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling IdentityApi->listIdentities: $e\n');
@@ -567,7 +567,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
  **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
- **identifier** | **String**| Identifier  This query parameter can be used to lookup an identity using its identifier. For example - an email address | [optional] 
+ **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] 
 
 ### Return type
 

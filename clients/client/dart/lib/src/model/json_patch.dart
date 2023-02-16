@@ -10,29 +10,29 @@ import 'package:built_value/serializer.dart';
 
 part 'json_patch.g.dart';
 
-/// A JSONPatch document as defined by RFC 6902
+/// JSON Patch allows you to target individual keys in a JSON document for updates.  For more examples see: https://jsonpatch.com
 ///
 /// Properties:
 /// * [from] - This field is used together with operation \"move\" and uses JSON Pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
-/// * [op] - The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
-/// * [path] - The path to the target path. Uses JSON pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
-/// * [value] - The value to be used within the operations.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
+/// * [op] - The JSON Patch operation
+/// * [path] - The JSON Pointer to the target key
+/// * [value] - The value to be used. Only available for `add` and `replace` operations.
 @BuiltValue()
 abstract class JsonPatch implements Built<JsonPatch, JsonPatchBuilder> {
   /// This field is used together with operation \"move\" and uses JSON Pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
   @BuiltValueField(wireName: r'from')
   String? get from;
 
-  /// The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
+  /// The JSON Patch operation
   @BuiltValueField(wireName: r'op')
   JsonPatchOpEnum get op;
   // enum opEnum {  add,  remove,  replace,  move,  copy,  test,  };
 
-  /// The path to the target path. Uses JSON pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
+  /// The JSON Pointer to the target key
   @BuiltValueField(wireName: r'path')
   String get path;
 
-  /// The value to be used within the operations.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
+  /// The value to be used. Only available for `add` and `replace` operations.
   @BuiltValueField(wireName: r'value')
   JsonObject? get value;
 
@@ -166,22 +166,22 @@ class _$JsonPatchSerializer implements PrimitiveSerializer<JsonPatch> {
 
 class JsonPatchOpEnum extends EnumClass {
 
-  /// The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
+  /// The JSON Patch operation
   @BuiltValueEnumConst(wireName: r'add')
   static const JsonPatchOpEnum add = _$jsonPatchOpEnum_add;
-  /// The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
+  /// The JSON Patch operation
   @BuiltValueEnumConst(wireName: r'remove')
   static const JsonPatchOpEnum remove = _$jsonPatchOpEnum_remove;
-  /// The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
+  /// The JSON Patch operation
   @BuiltValueEnumConst(wireName: r'replace')
   static const JsonPatchOpEnum replace = _$jsonPatchOpEnum_replace;
-  /// The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
+  /// The JSON Patch operation
   @BuiltValueEnumConst(wireName: r'move')
   static const JsonPatchOpEnum move = _$jsonPatchOpEnum_move;
-  /// The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
+  /// The JSON Patch operation
   @BuiltValueEnumConst(wireName: r'copy')
   static const JsonPatchOpEnum copy = _$jsonPatchOpEnum_copy;
-  /// The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
+  /// The JSON Patch operation
   @BuiltValueEnumConst(wireName: r'test')
   static const JsonPatchOpEnum test = _$jsonPatchOpEnum_test;
 

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.11
+  version: v1.1.12
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -553,14 +553,11 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: |-
-          Identifier
-
-          This query parameter can be used to lookup an identity using its identifier.
-          For example - an email address
+      - description: "CredentialsIdentifier is the identifier (username, email) of\
+          \ the credentials to look up."
         explode: true
         in: query
-        name: identifier
+        name: credentials_identifier
         required: false
         schema:
           type: string
@@ -7635,7 +7632,8 @@ components:
       - Subject
       type: object
     jsonPatch:
-      description: A JSONPatch document as defined by RFC 6902
+      description: "JSON Patch allows you to target individual keys in a JSON document\
+        \ for updates.\n\nFor more examples see: https://jsonpatch.com"
       properties:
         from:
           description: "This field is used together with operation \"move\" and uses\
@@ -7643,8 +7641,7 @@ components:
           example: /name
           type: string
         op:
-          description: "The operation to be performed. One of \"add\", \"remove\"\
-            , \"replace\", \"move\", \"copy\", or \"test\"."
+          description: The JSON Patch operation
           enum:
           - add
           - remove
@@ -7655,17 +7652,17 @@ components:
           example: replace
           type: string
         path:
-          description: "The path to the target path. Uses JSON pointer notation.\n\
-            \nLearn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5)."
-          example: /name
+          description: The JSON Pointer to the target key
+          example: /services/identity/config/smtp/from_name
           type: string
         value:
-          description: "The value to be used within the operations.\n\nLearn more\
-            \ [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5)."
+          description: The value to be used. Only available for `add` and `replace`
+            operations.
           example: foobar
       required:
       - op
       - path
+      title: A JSON Patch
       type: object
     jsonPatchDocument:
       description: A JSONPatchDocument request
