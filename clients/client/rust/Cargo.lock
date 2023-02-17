@@ -285,7 +285,7 @@ checksum = "b7e5500299e16ebb147ae15a00a942af264cf3688f47923b8fc2cd5858f23ad3"
 
 [[package]]
 name = "ory-client"
-version = "1.1.16"
+version = "1.1.17"
 dependencies = [
  "num-traits",
  "reqwest",
