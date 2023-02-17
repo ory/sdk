@@ -1,6 +1,6 @@
 [package]
 name = "ory-client"
-version = "1.1.13"
+version = "1.1.14"
 description = "SDK Client for Ory"
 documentation = "https://www.ory.sh/docs/sdk"
 homepage = "https://www.ory.sh"
