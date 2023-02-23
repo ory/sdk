@@ -3,7 +3,7 @@ Ory Keto API
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately. 
 
-API version: v0.10.0-alpha.0
+API version: v0.11.0-alpha.0
 Contact: hi@ory.sh
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// RelationQuery struct for RelationQuery
+// RelationQuery Relation Query
 type RelationQuery struct {
 	// Namespace to query
 	Namespace *string `json:"namespace,omitempty"`

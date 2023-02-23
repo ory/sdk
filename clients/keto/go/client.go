@@ -3,7 +3,7 @@ Ory Keto API
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately. 
 
-API version: v0.10.0-alpha.0
+API version: v0.11.0-alpha.0
 Contact: hi@ory.sh
 */
 
@@ -42,7 +42,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Ory Keto API API vv0.10.0-alpha.0
+// APIClient manages communication with the Ory Keto API API vv0.11.0-alpha.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -52,9 +52,9 @@ type APIClient struct {
 
 	MetadataApi MetadataApi
 
-	ReadApi ReadApi
+	PermissionApi PermissionApi
 
-	WriteApi WriteApi
+	RelationshipApi RelationshipApi
 }
 
 type service struct {
@@ -74,8 +74,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.MetadataApi = (*MetadataApiService)(&c.common)
-	c.ReadApi = (*ReadApiService)(&c.common)
-	c.WriteApi = (*WriteApiService)(&c.common)
+	c.PermissionApi = (*PermissionApiService)(&c.common)
+	c.RelationshipApi = (*RelationshipApiService)(&c.common)
 
 	return c
 }

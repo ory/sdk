@@ -15,5 +15,5 @@
 
 # Import APIs into API package:
 from ory_keto_client.api.metadata_api import MetadataApi
-from ory_keto_client.api.read_api import ReadApi
-from ory_keto_client.api.write_api import WriteApi
+from ory_keto_client.api.permission_api import PermissionApi
+from ory_keto_client.api.relationship_api import RelationshipApi

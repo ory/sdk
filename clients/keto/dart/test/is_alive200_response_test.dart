@@ -1,28 +1,17 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_keto_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_keto_client/ory_keto_client.dart';
 
 // tests for IsAlive200Response
 void main() {
-  // final instance = IsAlive200Response();
+  final instance = IsAlive200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
-  group('test IsAlive200Response', () {
+  group(IsAlive200Response, () {
     // Always \"ok\".
     // String status
     test('to test the property `status`', () async {
       // TODO
     });
 
-
   });
-
 }
