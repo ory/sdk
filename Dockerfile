@@ -122,7 +122,7 @@ RUN td=$(mktemp) \
     && chmod +x /usr/local/bin/gh \
     && rm -rf $td $tdd
 
-RUN gem install bundler && \
+RUN gem install bundler -v 2.3.26 && \
       apt-get update && \
       apt-get install -y --no-install-recommends ruby-dev
 
