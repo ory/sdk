@@ -101,6 +101,7 @@
 | **kratos_selfservice_flows_recovery_after_default_browser_return_url** | **String** | Configures the Ory Kratos Recovery Default Return URL  This governs the \&quot;selfservice.flows.recovery.after.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_recovery_enabled** | **Boolean** | Configures the Ory Kratos Recovery Enabled Setting  This governs the \&quot;selfservice.flows.recovery.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_recovery_lifespan** | **String** | Configures the Ory Kratos Recovery Lifespan  This governs the \&quot;selfservice.flows.recovery.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_recovery_notify_unknown_recipients** | **Boolean** | Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \&quot;selfservice.flows.recovery.notify_unknown_recipients\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_recovery_ui_url** | **String** | Configures the Ory Kratos Recovery UI URL  This governs the \&quot;selfservice.flows.recovery.ui_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_recovery_use** | **String** | Configures the Ory Kratos Recovery strategy to use (\&quot;link\&quot; or \&quot;code\&quot;)  This governs the \&quot;selfservice.flows.recovery.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] |
 | **kratos_selfservice_flows_registration_after_default_browser_return_url** | **String** | Configures the Ory Kratos Registration Default Return URL  This governs the \&quot;selfservice.flows.registration.after.default_browser_return_url\&quot; setting. | [optional] |
@@ -120,6 +121,7 @@
 | **kratos_selfservice_flows_verification_after_default_browser_return_url** | **String** | Configures the Ory Kratos Verification Default Return URL  This governs the \&quot;selfservice.flows.verification.after.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_enabled** | **Boolean** | Configures the Ory Kratos Verification Enabled Setting  This governs the \&quot;selfservice.flows.verification.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_lifespan** | **String** | Configures the Ory Kratos Verification Lifespan  This governs the \&quot;selfservice.flows.verification.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_verification_notify_unknown_recipients** | **Boolean** | Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \&quot;selfservice.flows.verification.notify_unknown_recipients\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_ui_url** | **String** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_use** | **String** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] |
 | **kratos_selfservice_methods_code_config_lifespan** | **String** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] |
@@ -258,6 +260,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_flows_recovery_after_default_browser_return_url: null,
   kratos_selfservice_flows_recovery_enabled: null,
   kratos_selfservice_flows_recovery_lifespan: null,
+  kratos_selfservice_flows_recovery_notify_unknown_recipients: null,
   kratos_selfservice_flows_recovery_ui_url: null,
   kratos_selfservice_flows_recovery_use: null,
   kratos_selfservice_flows_registration_after_default_browser_return_url: null,
@@ -277,6 +280,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_flows_verification_after_default_browser_return_url: null,
   kratos_selfservice_flows_verification_enabled: null,
   kratos_selfservice_flows_verification_lifespan: null,
+  kratos_selfservice_flows_verification_notify_unknown_recipients: null,
   kratos_selfservice_flows_verification_ui_url: null,
   kratos_selfservice_flows_verification_use: null,
   kratos_selfservice_methods_code_config_lifespan: null,

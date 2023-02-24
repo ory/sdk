@@ -12,6 +12,7 @@ defmodule Ory.Model.UpdateRegistrationFlowBody do
     :method,
     :password,
     :traits,
+    :transient_payload,
     :provider,
     :webauthn_register,
     :webauthn_register_displayname
@@ -22,6 +23,7 @@ defmodule Ory.Model.UpdateRegistrationFlowBody do
     :method => String.t,
     :password => String.t,
     :traits => map(),
+    :transient_payload => map() | nil,
     :provider => String.t,
     :webauthn_register => String.t | nil,
     :webauthn_register_displayname => String.t | nil

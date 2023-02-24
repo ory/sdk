@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.17
+API version: v1.1.18
 Contact: support@ory.sh
 */
 
@@ -194,6 +194,8 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsRecoveryEnabled *bool `json:"kratos_selfservice_flows_recovery_enabled,omitempty"`
 	// Configures the Ory Kratos Recovery Lifespan  This governs the \"selfservice.flows.recovery.lifespan\" setting.
 	KratosSelfserviceFlowsRecoveryLifespan *string `json:"kratos_selfservice_flows_recovery_lifespan,omitempty"`
+	// Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \"selfservice.flows.recovery.notify_unknown_recipients\" setting.
+	KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients *bool `json:"kratos_selfservice_flows_recovery_notify_unknown_recipients,omitempty"`
 	// Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
 	KratosSelfserviceFlowsRecoveryUiUrl *string `json:"kratos_selfservice_flows_recovery_ui_url,omitempty"`
 	// Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
@@ -232,6 +234,8 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsVerificationEnabled *bool `json:"kratos_selfservice_flows_verification_enabled,omitempty"`
 	// Configures the Ory Kratos Verification Lifespan  This governs the \"selfservice.flows.verification.lifespan\" setting.
 	KratosSelfserviceFlowsVerificationLifespan *string `json:"kratos_selfservice_flows_verification_lifespan,omitempty"`
+	// Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \"selfservice.flows.verification.notify_unknown_recipients\" setting.
+	KratosSelfserviceFlowsVerificationNotifyUnknownRecipients *bool `json:"kratos_selfservice_flows_verification_notify_unknown_recipients,omitempty"`
 	// Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
 	KratosSelfserviceFlowsVerificationUiUrl *string `json:"kratos_selfservice_flows_verification_ui_url,omitempty"`
 	// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
@@ -3467,6 +3471,38 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryLifespan(v 
 	o.KratosSelfserviceFlowsRecoveryLifespan = &v
 }
 
+// GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients returns the KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients() bool {
+	if o == nil || o.KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+}
+
+// GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipientsOk returns a tuple with the KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipientsOk() (*bool, bool) {
+	if o == nil || o.KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients, true
+}
+
+// HasKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients() bool {
+	if o != nil && o.KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients(v bool) {
+	o.KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients = &v
+}
+
 // GetKratosSelfserviceFlowsRecoveryUiUrl returns the KratosSelfserviceFlowsRecoveryUiUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRecoveryUiUrl == nil {
@@ -4073,6 +4109,38 @@ func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationLifespa
 // SetKratosSelfserviceFlowsVerificationLifespan gets a reference to the given string and assigns it to the KratosSelfserviceFlowsVerificationLifespan field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationLifespan(v string) {
 	o.KratosSelfserviceFlowsVerificationLifespan = &v
+}
+
+// GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients returns the KratosSelfserviceFlowsVerificationNotifyUnknownRecipients field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients() bool {
+	if o == nil || o.KratosSelfserviceFlowsVerificationNotifyUnknownRecipients == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsVerificationNotifyUnknownRecipients
+}
+
+// GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipientsOk returns a tuple with the KratosSelfserviceFlowsVerificationNotifyUnknownRecipients field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipientsOk() (*bool, bool) {
+	if o == nil || o.KratosSelfserviceFlowsVerificationNotifyUnknownRecipients == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsVerificationNotifyUnknownRecipients, true
+}
+
+// HasKratosSelfserviceFlowsVerificationNotifyUnknownRecipients returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationNotifyUnknownRecipients() bool {
+	if o != nil && o.KratosSelfserviceFlowsVerificationNotifyUnknownRecipients != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsVerificationNotifyUnknownRecipients field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients(v bool) {
+	o.KratosSelfserviceFlowsVerificationNotifyUnknownRecipients = &v
 }
 
 // GetKratosSelfserviceFlowsVerificationUiUrl returns the KratosSelfserviceFlowsVerificationUiUrl field value if set, zero value otherwise.
@@ -5448,6 +5516,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceFlowsRecoveryLifespan != nil {
 		toSerialize["kratos_selfservice_flows_recovery_lifespan"] = o.KratosSelfserviceFlowsRecoveryLifespan
 	}
+	if o.KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients != nil {
+		toSerialize["kratos_selfservice_flows_recovery_notify_unknown_recipients"] = o.KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+	}
 	if o.KratosSelfserviceFlowsRecoveryUiUrl != nil {
 		toSerialize["kratos_selfservice_flows_recovery_ui_url"] = o.KratosSelfserviceFlowsRecoveryUiUrl
 	}
@@ -5504,6 +5575,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosSelfserviceFlowsVerificationLifespan != nil {
 		toSerialize["kratos_selfservice_flows_verification_lifespan"] = o.KratosSelfserviceFlowsVerificationLifespan
+	}
+	if o.KratosSelfserviceFlowsVerificationNotifyUnknownRecipients != nil {
+		toSerialize["kratos_selfservice_flows_verification_notify_unknown_recipients"] = o.KratosSelfserviceFlowsVerificationNotifyUnknownRecipients
 	}
 	if o.KratosSelfserviceFlowsVerificationUiUrl != nil {
 		toSerialize["kratos_selfservice_flows_verification_ui_url"] = o.KratosSelfserviceFlowsVerificationUiUrl

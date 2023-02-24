@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.17
+  version: v1.1.18
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -9030,6 +9030,12 @@ components:
 
             This governs the "selfservice.flows.recovery.lifespan" setting.
           type: string
+        kratos_selfservice_flows_recovery_notify_unknown_recipients:
+          description: |-
+            Configures whether to notify unknown recipients of a Ory Kratos recovery flow
+
+            This governs the "selfservice.flows.recovery.notify_unknown_recipients" setting.
+          type: boolean
         kratos_selfservice_flows_recovery_ui_url:
           description: |-
             Configures the Ory Kratos Recovery UI URL
@@ -9152,6 +9158,12 @@ components:
 
             This governs the "selfservice.flows.verification.lifespan" setting.
           type: string
+        kratos_selfservice_flows_verification_notify_unknown_recipients:
+          description: |-
+            Configures whether to notify unknown recipients of a Ory Kratos verification flow
+
+            This governs the "selfservice.flows.verification.notify_unknown_recipients" setting.
+          type: boolean
         kratos_selfservice_flows_verification_ui_url:
           description: |-
             Configures the Ory Kratos Verification UI URL
@@ -12153,6 +12165,7 @@ components:
           requested_scope:
           - requested_scope
           - requested_scope
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -12241,6 +12254,10 @@ components:
         return_to:
           description: ReturnTo contains the requested return_to URL.
           type: string
+        transient_payload:
+          description: TransientPayload is used to pass data from the registration
+            to a webhook
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -14173,6 +14190,9 @@ components:
         traits:
           description: The identity traits
           type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       - provider
@@ -14195,6 +14215,9 @@ components:
         traits:
           description: The identity's traits
           type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       - password
@@ -14212,6 +14235,9 @@ components:
           type: string
         traits:
           description: The identity's traits
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
           type: object
         webauthn_register:
           description: |-

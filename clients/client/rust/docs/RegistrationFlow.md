@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **oauth2_login_request** | Option<[**crate::models::OAuth2LoginRequest**](oAuth2LoginRequest.md)> |  | [optional]
 **request_url** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example. | 
 **return_to** | Option<**String**> | ReturnTo contains the requested return_to URL. | [optional]
+**transient_payload** | Option<[**serde_json::Value**](.md)> | TransientPayload is used to pass data from the registration to a webhook | [optional]
 **_type** | **String** | The flow type can either be `api` or `browser`. | 
 **ui** | [**crate::models::UiContainer**](uiContainer.md) |  | 
 

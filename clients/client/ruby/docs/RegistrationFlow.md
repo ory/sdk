@@ -12,6 +12,7 @@
 | **oauth2_login_request** | [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] |
 | **request_url** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |  |
 | **return_to** | **String** | ReturnTo contains the requested return_to URL. | [optional] |
+| **transient_payload** | **Object** | TransientPayload is used to pass data from the registration to a webhook | [optional] |
 | **type** | **String** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. |  |
 | **ui** | [**UiContainer**](UiContainer.md) |  |  |
 
@@ -29,6 +30,7 @@ instance = OryClient::RegistrationFlow.new(
   oauth2_login_request: null,
   request_url: null,
   return_to: null,
+  transient_payload: null,
   type: null,
   ui: null
 )

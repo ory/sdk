@@ -11,14 +11,16 @@ defmodule Ory.Model.UpdateRegistrationFlowWithPasswordMethod do
     :csrf_token,
     :method,
     :password,
-    :traits
+    :traits,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :method => String.t,
     :password => String.t,
-    :traits => map()
+    :traits => map(),
+    :transient_payload => map() | nil
   }
 end
 

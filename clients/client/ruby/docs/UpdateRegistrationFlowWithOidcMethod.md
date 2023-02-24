@@ -8,6 +8,7 @@
 | **method** | **String** | Method to use  This field must be set to &#x60;oidc&#x60; when using the oidc method. |  |
 | **provider** | **String** | The provider to register with |  |
 | **traits** | **Object** | The identity traits | [optional] |
+| **transient_payload** | **Object** | Transient data to pass along to any webhooks | [optional] |
 
 ## Example
 
@@ -18,7 +19,8 @@ instance = OryClient::UpdateRegistrationFlowWithOidcMethod.new(
   csrf_token: null,
   method: null,
   provider: null,
-  traits: null
+  traits: null,
+  transient_payload: null
 )
 ```
 

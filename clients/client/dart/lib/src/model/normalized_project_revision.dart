@@ -114,6 +114,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Recovery Default Return URL  This governs the \"selfservice.flows.recovery.after.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRecoveryEnabled] - Configures the Ory Kratos Recovery Enabled Setting  This governs the \"selfservice.flows.recovery.enabled\" setting.
 /// * [kratosSelfserviceFlowsRecoveryLifespan] - Configures the Ory Kratos Recovery Lifespan  This governs the \"selfservice.flows.recovery.lifespan\" setting.
+/// * [kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients] - Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \"selfservice.flows.recovery.notify_unknown_recipients\" setting.
 /// * [kratosSelfserviceFlowsRecoveryUiUrl] - Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
 /// * [kratosSelfserviceFlowsRecoveryUse] - Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 /// * [kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
@@ -133,6 +134,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Verification Default Return URL  This governs the \"selfservice.flows.verification.after.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsVerificationEnabled] - Configures the Ory Kratos Verification Enabled Setting  This governs the \"selfservice.flows.verification.enabled\" setting.
 /// * [kratosSelfserviceFlowsVerificationLifespan] - Configures the Ory Kratos Verification Lifespan  This governs the \"selfservice.flows.verification.lifespan\" setting.
+/// * [kratosSelfserviceFlowsVerificationNotifyUnknownRecipients] - Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \"selfservice.flows.verification.notify_unknown_recipients\" setting.
 /// * [kratosSelfserviceFlowsVerificationUiUrl] - Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
@@ -541,6 +543,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_lifespan')
   String? get kratosSelfserviceFlowsRecoveryLifespan;
 
+  /// Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \"selfservice.flows.recovery.notify_unknown_recipients\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_notify_unknown_recipients')
+  bool? get kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients;
+
   /// Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_ui_url')
   String? get kratosSelfserviceFlowsRecoveryUiUrl;
@@ -617,6 +623,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Verification Lifespan  This governs the \"selfservice.flows.verification.lifespan\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_lifespan')
   String? get kratosSelfserviceFlowsVerificationLifespan;
+
+  /// Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \"selfservice.flows.verification.notify_unknown_recipients\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_notify_unknown_recipients')
+  bool? get kratosSelfserviceFlowsVerificationNotifyUnknownRecipients;
 
   /// Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_ui_url')
@@ -1464,6 +1474,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients != null) {
+      yield r'kratos_selfservice_flows_recovery_notify_unknown_recipients';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.kratosSelfserviceFlowsRecoveryUiUrl != null) {
       yield r'kratos_selfservice_flows_recovery_ui_url';
       yield serializers.serialize(
@@ -1595,6 +1612,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosSelfserviceFlowsVerificationLifespan,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceFlowsVerificationNotifyUnknownRecipients != null) {
+      yield r'kratos_selfservice_flows_verification_notify_unknown_recipients';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsVerificationNotifyUnknownRecipients,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceFlowsVerificationUiUrl != null) {
@@ -2538,6 +2562,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.kratosSelfserviceFlowsRecoveryLifespan = valueDes;
           break;
+        case r'kratos_selfservice_flows_recovery_notify_unknown_recipients':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients = valueDes;
+          break;
         case r'kratos_selfservice_flows_recovery_ui_url':
           final valueDes = serializers.deserialize(
             value,
@@ -2670,6 +2701,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceFlowsVerificationLifespan = valueDes;
+          break;
+        case r'kratos_selfservice_flows_verification_notify_unknown_recipients':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceFlowsVerificationNotifyUnknownRecipients = valueDes;
           break;
         case r'kratos_selfservice_flows_verification_ui_url':
           final valueDes = serializers.deserialize(

@@ -12,6 +12,7 @@ Update Registration Flow with OpenID Connect Method
 |**method** | **String** | Method to use  This field must be set to &#x60;oidc&#x60; when using the oidc method. |  |
 |**provider** | **String** | The provider to register with |  |
 |**traits** | **Object** | The identity traits |  [optional] |
+|**transientPayload** | **Object** | Transient data to pass along to any webhooks |  [optional] |
 
 
 

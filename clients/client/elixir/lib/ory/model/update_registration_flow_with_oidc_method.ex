@@ -11,14 +11,16 @@ defmodule Ory.Model.UpdateRegistrationFlowWithOidcMethod do
     :csrf_token,
     :method,
     :provider,
-    :traits
+    :traits,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :method => String.t,
     :provider => String.t,
-    :traits => map() | nil
+    :traits => map() | nil,
+    :transient_payload => map() | nil
   }
 end
 

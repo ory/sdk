@@ -101,6 +101,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Recovery Default Return URL  This governs the \&quot;selfservice.flows.recovery.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRecoveryEnabled** | Pointer to **bool** | Configures the Ory Kratos Recovery Enabled Setting  This governs the \&quot;selfservice.flows.recovery.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRecoveryLifespan** | Pointer to **string** | Configures the Ory Kratos Recovery Lifespan  This governs the \&quot;selfservice.flows.recovery.lifespan\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients** | Pointer to **bool** | Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \&quot;selfservice.flows.recovery.notify_unknown_recipients\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRecoveryUiUrl** | Pointer to **string** | Configures the Ory Kratos Recovery UI URL  This governs the \&quot;selfservice.flows.recovery.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRecoveryUse** | Pointer to **string** | Configures the Ory Kratos Recovery strategy to use (\&quot;link\&quot; or \&quot;code\&quot;)  This governs the \&quot;selfservice.flows.recovery.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
 **KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration Default Return URL  This governs the \&quot;selfservice.flows.registration.after.default_browser_return_url\&quot; setting. | [optional] 
@@ -120,6 +121,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Verification Default Return URL  This governs the \&quot;selfservice.flows.verification.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationEnabled** | Pointer to **bool** | Configures the Ory Kratos Verification Enabled Setting  This governs the \&quot;selfservice.flows.verification.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationLifespan** | Pointer to **string** | Configures the Ory Kratos Verification Lifespan  This governs the \&quot;selfservice.flows.verification.lifespan\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsVerificationNotifyUnknownRecipients** | Pointer to **bool** | Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \&quot;selfservice.flows.verification.notify_unknown_recipients\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUiUrl** | Pointer to **string** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
 **KratosSelfserviceMethodsCodeConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
@@ -2629,6 +2631,31 @@ SetKratosSelfserviceFlowsRecoveryLifespan sets KratosSelfserviceFlowsRecoveryLif
 
 HasKratosSelfserviceFlowsRecoveryLifespan returns a boolean if a field has been set.
 
+### GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients() bool`
+
+GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients returns the KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipientsOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipientsOk() (*bool, bool)`
+
+GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipientsOk returns a tuple with the KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients(v bool)`
+
+SetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients sets KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients field to given value.
+
+### HasKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients() bool`
+
+HasKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients returns a boolean if a field has been set.
+
 ### GetKratosSelfserviceFlowsRecoveryUiUrl
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrl() string`
@@ -3103,6 +3130,31 @@ SetKratosSelfserviceFlowsVerificationLifespan sets KratosSelfserviceFlowsVerific
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationLifespan() bool`
 
 HasKratosSelfserviceFlowsVerificationLifespan returns a boolean if a field has been set.
+
+### GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients() bool`
+
+GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients returns the KratosSelfserviceFlowsVerificationNotifyUnknownRecipients field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipientsOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipientsOk() (*bool, bool)`
+
+GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipientsOk returns a tuple with the KratosSelfserviceFlowsVerificationNotifyUnknownRecipients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients(v bool)`
+
+SetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients sets KratosSelfserviceFlowsVerificationNotifyUnknownRecipients field to given value.
+
+### HasKratosSelfserviceFlowsVerificationNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationNotifyUnknownRecipients() bool`
+
+HasKratosSelfserviceFlowsVerificationNotifyUnknownRecipients returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsVerificationUiUrl
 

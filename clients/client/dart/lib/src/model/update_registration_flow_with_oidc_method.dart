@@ -16,6 +16,7 @@ part 'update_registration_flow_with_oidc_method.g.dart';
 /// * [method] - Method to use  This field must be set to `oidc` when using the oidc method.
 /// * [provider] - The provider to register with
 /// * [traits] - The identity traits
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateRegistrationFlowWithOidcMethod implements Built<UpdateRegistrationFlowWithOidcMethod, UpdateRegistrationFlowWithOidcMethodBuilder> {
   /// The CSRF Token
@@ -33,6 +34,10 @@ abstract class UpdateRegistrationFlowWithOidcMethod implements Built<UpdateRegis
   /// The identity traits
   @BuiltValueField(wireName: r'traits')
   JsonObject? get traits;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateRegistrationFlowWithOidcMethod._();
 
@@ -78,6 +83,13 @@ class _$UpdateRegistrationFlowWithOidcMethodSerializer implements PrimitiveSeria
       yield r'traits';
       yield serializers.serialize(
         object.traits,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
         specifiedType: const FullType(JsonObject),
       );
     }
@@ -131,6 +143,13 @@ class _$UpdateRegistrationFlowWithOidcMethodSerializer implements PrimitiveSeria
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.traits = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

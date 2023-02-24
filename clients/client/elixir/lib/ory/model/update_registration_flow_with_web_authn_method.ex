@@ -11,6 +11,7 @@ defmodule Ory.Model.UpdateRegistrationFlowWithWebAuthnMethod do
     :csrf_token,
     :method,
     :traits,
+    :transient_payload,
     :webauthn_register,
     :webauthn_register_displayname
   ]
@@ -19,6 +20,7 @@ defmodule Ory.Model.UpdateRegistrationFlowWithWebAuthnMethod do
     :csrf_token => String.t | nil,
     :method => String.t,
     :traits => map(),
+    :transient_payload => map() | nil,
     :webauthn_register => String.t | nil,
     :webauthn_register_displayname => String.t | nil
   }

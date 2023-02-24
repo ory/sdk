@@ -571,6 +571,12 @@ void main() {
       // TODO
     });
 
+    // Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \"selfservice.flows.recovery.notify_unknown_recipients\" setting.
+    // bool kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+    test('to test the property `kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
     // String kratosSelfserviceFlowsRecoveryUiUrl
     test('to test the property `kratosSelfserviceFlowsRecoveryUiUrl`', () async {
@@ -682,6 +688,12 @@ void main() {
     // Configures the Ory Kratos Verification Lifespan  This governs the \"selfservice.flows.verification.lifespan\" setting.
     // String kratosSelfserviceFlowsVerificationLifespan
     test('to test the property `kratosSelfserviceFlowsVerificationLifespan`', () async {
+      // TODO
+    });
+
+    // Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \"selfservice.flows.verification.notify_unknown_recipients\" setting.
+    // bool kratosSelfserviceFlowsVerificationNotifyUnknownRecipients
+    test('to test the property `kratosSelfserviceFlowsVerificationNotifyUnknownRecipients`', () async {
       // TODO
     });
 
