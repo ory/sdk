@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CookieDomain** | Pointer to **string** | The domain where cookies will be set. Has to be a parent domain of the custom hostname to work. | [optional] 
 **CorsAllowedOrigins** | Pointer to **[]string** | CORS Allowed origins for the custom hostname. | [optional] 
 **CorsEnabled** | Pointer to **bool** | CORS Enabled for the custom hostname. | [optional] 
+**CustomUiBaseUrl** | Pointer to **string** | The custom UI base URL where the UI will be exposed. | [optional] 
 **Hostname** | Pointer to **string** | The custom hostname where the API will be exposed. | [optional] 
 
 ## Methods
@@ -102,6 +103,31 @@ SetCorsEnabled sets CorsEnabled field to given value.
 `func (o *SetCustomDomainBody) HasCorsEnabled() bool`
 
 HasCorsEnabled returns a boolean if a field has been set.
+
+### GetCustomUiBaseUrl
+
+`func (o *SetCustomDomainBody) GetCustomUiBaseUrl() string`
+
+GetCustomUiBaseUrl returns the CustomUiBaseUrl field if non-nil, zero value otherwise.
+
+### GetCustomUiBaseUrlOk
+
+`func (o *SetCustomDomainBody) GetCustomUiBaseUrlOk() (*string, bool)`
+
+GetCustomUiBaseUrlOk returns a tuple with the CustomUiBaseUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomUiBaseUrl
+
+`func (o *SetCustomDomainBody) SetCustomUiBaseUrl(v string)`
+
+SetCustomUiBaseUrl sets CustomUiBaseUrl field to given value.
+
+### HasCustomUiBaseUrl
+
+`func (o *SetCustomDomainBody) HasCustomUiBaseUrl() bool`
+
+HasCustomUiBaseUrl returns a boolean if a field has been set.
 
 ### GetHostname
 

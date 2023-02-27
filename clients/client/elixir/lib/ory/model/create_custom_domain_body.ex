@@ -11,6 +11,7 @@ defmodule Ory.Model.CreateCustomDomainBody do
     :cookie_domain,
     :cors_allowed_origins,
     :cors_enabled,
+    :custom_ui_base_url,
     :hostname
   ]
 
@@ -18,6 +19,7 @@ defmodule Ory.Model.CreateCustomDomainBody do
     :cookie_domain => String.t | nil,
     :cors_allowed_origins => [String.t] | nil,
     :cors_enabled => boolean() | nil,
+    :custom_ui_base_url => String.t | nil,
     :hostname => String.t | nil
   }
 end

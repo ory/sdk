@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **cors_allowed_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **cors_enabled** | **bool** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
+**custom_ui_base_url** | **str** |  | [optional] 
 **hostname** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 

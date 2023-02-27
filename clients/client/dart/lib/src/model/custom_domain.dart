@@ -16,6 +16,7 @@ part 'custom_domain.g.dart';
 /// * [corsAllowedOrigins] 
 /// * [corsEnabled] 
 /// * [createdAt] 
+/// * [customUiBaseUrl] 
 /// * [hostname] 
 /// * [id] 
 /// * [updatedAt] 
@@ -34,6 +35,9 @@ abstract class CustomDomain implements Built<CustomDomain, CustomDomainBuilder> 
 
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
+
+  @BuiltValueField(wireName: r'custom_ui_base_url')
+  String? get customUiBaseUrl;
 
   @BuiltValueField(wireName: r'hostname')
   String? get hostname;
@@ -99,6 +103,13 @@ class _$CustomDomainSerializer implements PrimitiveSerializer<CustomDomain> {
       yield serializers.serialize(
         object.createdAt,
         specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.customUiBaseUrl != null) {
+      yield r'custom_ui_base_url';
+      yield serializers.serialize(
+        object.customUiBaseUrl,
+        specifiedType: const FullType(String),
       );
     }
     if (object.hostname != null) {
@@ -186,6 +197,13 @@ class _$CustomDomainSerializer implements PrimitiveSerializer<CustomDomain> {
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'custom_ui_base_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.customUiBaseUrl = valueDes;
           break;
         case r'hostname':
           final valueDes = serializers.deserialize(

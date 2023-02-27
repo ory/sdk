@@ -12,6 +12,7 @@ Custom Hostname
 |**corsAllowedOrigins** | **List&lt;String&gt;** |  |  [optional] |
 |**corsEnabled** | **Boolean** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
+|**customUiBaseUrl** | **String** |  |  [optional] |
 |**hostname** | **String** |  |  [optional] |
 |**id** | **String** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |

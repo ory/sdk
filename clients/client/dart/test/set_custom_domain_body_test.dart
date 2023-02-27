@@ -25,6 +25,12 @@ void main() {
       // TODO
     });
 
+    // The custom UI base URL where the UI will be exposed.
+    // String customUiBaseUrl
+    test('to test the property `customUiBaseUrl`', () async {
+      // TODO
+    });
+
     // The custom hostname where the API will be exposed.
     // String hostname
     test('to test the property `hostname`', () async {

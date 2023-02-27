@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.19
+API version: v1.1.20
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ type CustomDomain struct {
 	CorsAllowedOrigins []string `json:"cors_allowed_origins,omitempty"`
 	CorsEnabled *bool `json:"cors_enabled,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CustomUiBaseUrl *string `json:"custom_ui_base_url,omitempty"`
 	Hostname *string `json:"hostname,omitempty"`
 	Id *string `json:"id,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
@@ -172,6 +173,38 @@ func (o *CustomDomain) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *CustomDomain) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetCustomUiBaseUrl returns the CustomUiBaseUrl field value if set, zero value otherwise.
+func (o *CustomDomain) GetCustomUiBaseUrl() string {
+	if o == nil || o.CustomUiBaseUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.CustomUiBaseUrl
+}
+
+// GetCustomUiBaseUrlOk returns a tuple with the CustomUiBaseUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomDomain) GetCustomUiBaseUrlOk() (*string, bool) {
+	if o == nil || o.CustomUiBaseUrl == nil {
+		return nil, false
+	}
+	return o.CustomUiBaseUrl, true
+}
+
+// HasCustomUiBaseUrl returns a boolean if a field has been set.
+func (o *CustomDomain) HasCustomUiBaseUrl() bool {
+	if o != nil && o.CustomUiBaseUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomUiBaseUrl gets a reference to the given string and assigns it to the CustomUiBaseUrl field.
+func (o *CustomDomain) SetCustomUiBaseUrl(v string) {
+	o.CustomUiBaseUrl = &v
 }
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
@@ -347,6 +380,9 @@ func (o CustomDomain) MarshalJSON() ([]byte, error) {
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.CustomUiBaseUrl != nil {
+		toSerialize["custom_ui_base_url"] = o.CustomUiBaseUrl
 	}
 	if o.Hostname != nil {
 		toSerialize["hostname"] = o.Hostname

@@ -8,6 +8,7 @@
 | **cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
 | **cors_enabled** | **Boolean** |  | [optional] |
 | **created_at** | **Time** |  | [optional] |
+| **custom_ui_base_url** | **String** |  | [optional] |
 | **hostname** | **String** |  | [optional] |
 | **id** | **String** |  | [optional] |
 | **updated_at** | **Time** |  | [optional] |
@@ -24,6 +25,7 @@ instance = OryClient::CustomDomain.new(
   cors_allowed_origins: null,
   cors_enabled: null,
   created_at: null,
+  custom_ui_base_url: null,
   hostname: null,
   id: null,
   updated_at: null,

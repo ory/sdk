@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.19
+API version: v1.1.20
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,8 @@ type CreateCustomDomainBody struct {
 	CorsAllowedOrigins []string `json:"cors_allowed_origins,omitempty"`
 	// CORS Enabled for the custom hostname.
 	CorsEnabled *bool `json:"cors_enabled,omitempty"`
+	// The base URL where the custom user interface will be exposed.
+	CustomUiBaseUrl *string `json:"custom_ui_base_url,omitempty"`
 	// The custom hostname where the API will be exposed.
 	Hostname *string `json:"hostname,omitempty"`
 }
@@ -140,6 +142,38 @@ func (o *CreateCustomDomainBody) SetCorsEnabled(v bool) {
 	o.CorsEnabled = &v
 }
 
+// GetCustomUiBaseUrl returns the CustomUiBaseUrl field value if set, zero value otherwise.
+func (o *CreateCustomDomainBody) GetCustomUiBaseUrl() string {
+	if o == nil || o.CustomUiBaseUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.CustomUiBaseUrl
+}
+
+// GetCustomUiBaseUrlOk returns a tuple with the CustomUiBaseUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCustomDomainBody) GetCustomUiBaseUrlOk() (*string, bool) {
+	if o == nil || o.CustomUiBaseUrl == nil {
+		return nil, false
+	}
+	return o.CustomUiBaseUrl, true
+}
+
+// HasCustomUiBaseUrl returns a boolean if a field has been set.
+func (o *CreateCustomDomainBody) HasCustomUiBaseUrl() bool {
+	if o != nil && o.CustomUiBaseUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomUiBaseUrl gets a reference to the given string and assigns it to the CustomUiBaseUrl field.
+func (o *CreateCustomDomainBody) SetCustomUiBaseUrl(v string) {
+	o.CustomUiBaseUrl = &v
+}
+
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *CreateCustomDomainBody) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -182,6 +216,9 @@ func (o CreateCustomDomainBody) MarshalJSON() ([]byte, error) {
 	}
 	if o.CorsEnabled != nil {
 		toSerialize["cors_enabled"] = o.CorsEnabled
+	}
+	if o.CustomUiBaseUrl != nil {
+		toSerialize["custom_ui_base_url"] = o.CustomUiBaseUrl
 	}
 	if o.Hostname != nil {
 		toSerialize["hostname"] = o.Hostname

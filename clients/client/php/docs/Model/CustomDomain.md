@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **corsAllowedOrigins** | **string[]** |  | [optional]
 **corsEnabled** | **bool** |  | [optional]
 **createdAt** | **\DateTime** |  | [optional]
+**customUiBaseUrl** | **string** |  | [optional]
 **hostname** | **string** |  | [optional]
 **id** | **string** |  | [optional]
 **updatedAt** | **\DateTime** |  | [optional]

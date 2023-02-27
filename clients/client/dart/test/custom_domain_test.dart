@@ -27,6 +27,11 @@ void main() {
       // TODO
     });
 
+    // String customUiBaseUrl
+    test('to test the property `customUiBaseUrl`', () async {
+      // TODO
+    });
+
     // String hostname
     test('to test the property `hostname`', () async {
       // TODO

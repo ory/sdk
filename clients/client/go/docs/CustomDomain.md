@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
 **CorsEnabled** | Pointer to **bool** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CustomUiBaseUrl** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -132,6 +133,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *CustomDomain) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetCustomUiBaseUrl
+
+`func (o *CustomDomain) GetCustomUiBaseUrl() string`
+
+GetCustomUiBaseUrl returns the CustomUiBaseUrl field if non-nil, zero value otherwise.
+
+### GetCustomUiBaseUrlOk
+
+`func (o *CustomDomain) GetCustomUiBaseUrlOk() (*string, bool)`
+
+GetCustomUiBaseUrlOk returns a tuple with the CustomUiBaseUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomUiBaseUrl
+
+`func (o *CustomDomain) SetCustomUiBaseUrl(v string)`
+
+SetCustomUiBaseUrl sets CustomUiBaseUrl field to given value.
+
+### HasCustomUiBaseUrl
+
+`func (o *CustomDomain) HasCustomUiBaseUrl() bool`
+
+HasCustomUiBaseUrl returns a boolean if a field has been set.
 
 ### GetHostname
 

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **corsAllowedOrigins** | **BuiltList&lt;String&gt;** |  | [optional] 
 **corsEnabled** | **bool** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**customUiBaseUrl** | **String** |  | [optional] 
 **hostname** | **String** |  | [optional] 
 **id** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 

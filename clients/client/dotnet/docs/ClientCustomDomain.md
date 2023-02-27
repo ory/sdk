@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **CorsAllowedOrigins** | **List&lt;string&gt;** |  | [optional] 
 **CorsEnabled** | **bool** |  | [optional] 
 **CreatedAt** | **DateTime** |  | [optional] 
+**CustomUiBaseUrl** | **string** |  | [optional] 
 **Hostname** | **string** |  | [optional] 
 **Id** | **string** |  | [optional] 
 **UpdatedAt** | **DateTime** |  | [optional] 
