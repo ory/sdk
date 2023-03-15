@@ -1,5 +1,5 @@
-pub mod get_well_known_json_web_keys_500_response;
-pub use self::get_well_known_json_web_keys_500_response::GetWellKnownJsonWebKeys500Response;
+pub mod generic_error;
+pub use self::generic_error::GenericError;
 pub mod health_not_ready_status;
 pub use self::health_not_ready_status::HealthNotReadyStatus;
 pub mod health_status;

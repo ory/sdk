@@ -8,7 +8,7 @@ info:
     for validity against a set of rules. This service uses Hydra to validate access
     tokens and policies.
   title: ORY Oathkeeper
-  version: v0.39.4
+  version: v0.40.2
 servers:
 - url: /
 paths:
@@ -28,15 +28,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
-          description: The standard error format
-      summary: Lists cryptographic keys
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Lists Cryptographic Keys
       tags:
       - api
   /decisions:
     get:
       description: "> This endpoint works with all HTTP Methods (GET, POST, PUT, ...)\
-        \ and matches every path prefixed with /decision.\n\nThis endpoint mirrors\
+        \ and matches every path prefixed with /decisions.\n\nThis endpoint mirrors\
         \ the proxy capability of ORY Oathkeeper's proxy functionality but instead\
         \ of forwarding the\nrequest to the upstream server, returns 200 (request\
         \ should be allowed), 401 (unauthorized), or 403 (forbidden)\nstatus codes.\
@@ -51,26 +51,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Access Control Decision API
       tags:
       - api
@@ -94,11 +94,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Check alive status
       tags:
-      - api
+      - health
   /health/ready:
     get:
       description: "This endpoint returns a 200 status code when the HTTP server is\
@@ -123,7 +123,7 @@ paths:
           description: healthNotReadyStatus
       summary: Check readiness status
       tags:
-      - api
+      - health
   /rules:
     get:
       description: |-
@@ -156,9 +156,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
-          description: The standard error format
-      summary: List all rules
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: List All Rules
       tags:
       - api
   /rules/{id}:
@@ -183,15 +183,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWellKnownJSONWebKeys_500_response'
-          description: The standard error format
-      summary: Retrieve a rule
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Retrieve a Rule
       tags:
       - api
   /version:
@@ -211,8 +211,26 @@ paths:
           description: version
       summary: Get service version
       tags:
-      - api
+      - version
 components:
+  responses:
+    emptyResponse:
+      content: {}
+      description: An empty response
+    rule:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/rule'
+      description: A rule
+    rules:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/rule'
+            type: array
+      description: A list of rules
   schemas:
     Upstream:
       example:
@@ -232,6 +250,27 @@ components:
           type: string
         url:
           description: URL is the URL the request will be proxied to.
+          type: string
+      type: object
+    genericError:
+      description: The standard error format
+      properties:
+        code:
+          format: int64
+          type: integer
+        details:
+          items:
+            additionalProperties:
+              type: object
+            type: object
+          type: array
+        message:
+          type: string
+        reason:
+          type: string
+        request:
+          type: string
+        status:
           type: string
       type: object
     healthNotReadyStatus:
@@ -463,7 +502,6 @@ components:
           description: |-
             Config contains the configuration for the handler. Please read the user
             guide for a complete list of each handler's available settings.
-          properties: {}
           type: object
         handler:
           description: |-
@@ -509,25 +547,9 @@ components:
           description: Version is the service's version.
           type: string
       type: object
-    getWellKnownJSONWebKeys_500_response:
-      properties:
-        code:
-          format: int64
-          type: integer
-        details:
-          items:
-            properties: {}
-            type: object
-          type: array
-        message:
-          type: string
-        reason:
-          type: string
-        request:
-          type: string
-        status:
-          type: string
-      type: object
+    UUID:
+      format: uuid4
+      type: string
 x-forwarded-proto: string
 x-request-id: string
 x-original-swagger-version: "2.0"

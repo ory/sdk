@@ -1,6 +1,6 @@
 [package]
 name = "ory-oathkeeper-client"
-version = "0.39.4"
+version = "0.40.2"
 description = "SDK Client for Ory Oathkeeper"
 documentation = "https://www.ory.sh/oathkeeper/docs/sdk"
 homepage = "https://www.ory.sh"

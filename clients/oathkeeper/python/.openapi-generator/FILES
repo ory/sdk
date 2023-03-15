@@ -4,7 +4,8 @@
 .travis.yml
 README.md
 docs/ApiApi.md
-docs/GetWellKnownJSONWebKeys500Response.md
+docs/GenericError.md
+docs/HealthApi.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/JsonWebKey.md
@@ -14,16 +15,19 @@ docs/RuleHandler.md
 docs/RuleMatch.md
 docs/Upstream.md
 docs/Version.md
+docs/VersionApi.md
 git_push.sh
 ory_oathkeeper_client/__init__.py
 ory_oathkeeper_client/api/__init__.py
 ory_oathkeeper_client/api/api_api.py
+ory_oathkeeper_client/api/health_api.py
+ory_oathkeeper_client/api/version_api.py
 ory_oathkeeper_client/api_client.py
 ory_oathkeeper_client/apis/__init__.py
 ory_oathkeeper_client/configuration.py
 ory_oathkeeper_client/exceptions.py
 ory_oathkeeper_client/model/__init__.py
-ory_oathkeeper_client/model/get_well_known_json_web_keys500_response.py
+ory_oathkeeper_client/model/generic_error.py
 ory_oathkeeper_client/model/health_not_ready_status.py
 ory_oathkeeper_client/model/health_status.py
 ory_oathkeeper_client/model/json_web_key.py
@@ -42,7 +46,8 @@ setup.py
 test-requirements.txt
 test/__init__.py
 test/test_api_api.py
-test/test_get_well_known_json_web_keys500_response.py
+test/test_generic_error.py
+test/test_health_api.py
 test/test_health_not_ready_status.py
 test/test_health_status.py
 test/test_json_web_key.py
@@ -52,4 +57,5 @@ test/test_rule_handler.py
 test/test_rule_match.py
 test/test_upstream.py
 test/test_version.py
+test/test_version_api.py
 tox.ini

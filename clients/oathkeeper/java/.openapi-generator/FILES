@@ -1,3 +1,4 @@
+.github/workflows/maven.yml
 .gitignore
 .openapi-generator-ignore
 .travis.yml
@@ -6,9 +7,10 @@ api/openapi.yaml
 build.gradle
 build.sbt
 docs/ApiApi.md
+docs/GenericError.md
+docs/HealthApi.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
-docs/InlineResponse500.md
 docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/Rule.md
@@ -16,6 +18,7 @@ docs/RuleHandler.md
 docs/RuleMatch.md
 docs/Upstream.md
 docs/Version.md
+docs/VersionApi.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -39,13 +42,16 @@ src/main/java/sh/ory/oathkeeper/ServerConfiguration.java
 src/main/java/sh/ory/oathkeeper/ServerVariable.java
 src/main/java/sh/ory/oathkeeper/StringUtil.java
 src/main/java/sh/ory/oathkeeper/api/ApiApi.java
+src/main/java/sh/ory/oathkeeper/api/HealthApi.java
+src/main/java/sh/ory/oathkeeper/api/VersionApi.java
 src/main/java/sh/ory/oathkeeper/auth/ApiKeyAuth.java
 src/main/java/sh/ory/oathkeeper/auth/Authentication.java
 src/main/java/sh/ory/oathkeeper/auth/HttpBasicAuth.java
 src/main/java/sh/ory/oathkeeper/auth/HttpBearerAuth.java
+src/main/java/sh/ory/oathkeeper/model/AbstractOpenApiSchema.java
+src/main/java/sh/ory/oathkeeper/model/GenericError.java
 src/main/java/sh/ory/oathkeeper/model/HealthNotReadyStatus.java
 src/main/java/sh/ory/oathkeeper/model/HealthStatus.java
-src/main/java/sh/ory/oathkeeper/model/InlineResponse500.java
 src/main/java/sh/ory/oathkeeper/model/JsonWebKey.java
 src/main/java/sh/ory/oathkeeper/model/JsonWebKeySet.java
 src/main/java/sh/ory/oathkeeper/model/Rule.java
@@ -54,9 +60,11 @@ src/main/java/sh/ory/oathkeeper/model/RuleMatch.java
 src/main/java/sh/ory/oathkeeper/model/Upstream.java
 src/main/java/sh/ory/oathkeeper/model/Version.java
 src/test/java/sh/ory/oathkeeper/api/ApiApiTest.java
+src/test/java/sh/ory/oathkeeper/api/HealthApiTest.java
+src/test/java/sh/ory/oathkeeper/api/VersionApiTest.java
+src/test/java/sh/ory/oathkeeper/model/GenericErrorTest.java
 src/test/java/sh/ory/oathkeeper/model/HealthNotReadyStatusTest.java
 src/test/java/sh/ory/oathkeeper/model/HealthStatusTest.java
-src/test/java/sh/ory/oathkeeper/model/InlineResponse500Test.java
 src/test/java/sh/ory/oathkeeper/model/JsonWebKeySetTest.java
 src/test/java/sh/ory/oathkeeper/model/JsonWebKeyTest.java
 src/test/java/sh/ory/oathkeeper/model/RuleHandlerTest.java

@@ -1,8 +1,8 @@
 # oathkeeper-client
 
 ORY Oathkeeper
-- API version: v0.39.4
-  - Build date: 2022-08-31T12:54:53.620894906Z[Etc/UTC]
+- API version: v0.40.2
+  - Build date: 2023-03-15T16:33:40.354766651Z[Etc/UTC]
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.oathkeeper</groupId>
   <artifactId>oathkeeper-client</artifactId>
-  <version>v0.39.4</version>
+  <version>v0.40.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.oathkeeper:oathkeeper-client:v0.39.4"
+     implementation "sh.ory.oathkeeper:oathkeeper-client:v0.40.2"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/oathkeeper-client-v0.39.4.jar`
+* `target/oathkeeper-client-v0.40.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -114,19 +114,19 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ApiApi* | [**decisions**](docs/ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
-*ApiApi* | [**getRule**](docs/ApiApi.md#getRule) | **GET** /rules/{id} | Retrieve a rule
-*ApiApi* | [**getVersion**](docs/ApiApi.md#getVersion) | **GET** /version | Get service version
-*ApiApi* | [**getWellKnownJSONWebKeys**](docs/ApiApi.md#getWellKnownJSONWebKeys) | **GET** /.well-known/jwks.json | Lists cryptographic keys
-*ApiApi* | [**isInstanceAlive**](docs/ApiApi.md#isInstanceAlive) | **GET** /health/alive | Check alive status
-*ApiApi* | [**isInstanceReady**](docs/ApiApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
-*ApiApi* | [**listRules**](docs/ApiApi.md#listRules) | **GET** /rules | List all rules
+*ApiApi* | [**getRule**](docs/ApiApi.md#getRule) | **GET** /rules/{id} | Retrieve a Rule
+*ApiApi* | [**getWellKnownJSONWebKeys**](docs/ApiApi.md#getWellKnownJSONWebKeys) | **GET** /.well-known/jwks.json | Lists Cryptographic Keys
+*ApiApi* | [**listRules**](docs/ApiApi.md#listRules) | **GET** /rules | List All Rules
+*HealthApi* | [**isInstanceAlive**](docs/HealthApi.md#isInstanceAlive) | **GET** /health/alive | Check alive status
+*HealthApi* | [**isInstanceReady**](docs/HealthApi.md#isInstanceReady) | **GET** /health/ready | Check readiness status
+*VersionApi* | [**getVersion**](docs/VersionApi.md#getVersion) | **GET** /version | Get service version
 
 
 ## Documentation for Models
 
+ - [GenericError](docs/GenericError.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
- - [InlineResponse500](docs/InlineResponse500.md)
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [Rule](docs/Rule.md)

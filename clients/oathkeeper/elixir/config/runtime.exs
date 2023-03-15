@@ -7,6 +7,6 @@ import Config
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
 
-if env = System.get_env("ORY_OATHKEEPER_BASE_URI") do
-  config :ory_oathkeeper, base_url: env
+if base_url = System.get_env("ORY_OATHKEEPER_BASE_URI") do
+  config :ory_oathkeeper, base_url: base_url
 end

@@ -4,9 +4,10 @@ Ory.Oathkeeper.Client.sln
 README.md
 appveyor.yml
 docs/ApiApi.md
+docs/HealthApi.md
+docs/OathkeeperGenericError.md
 docs/OathkeeperHealthNotReadyStatus.md
 docs/OathkeeperHealthStatus.md
-docs/OathkeeperInlineResponse500.md
 docs/OathkeeperJsonWebKey.md
 docs/OathkeeperJsonWebKeySet.md
 docs/OathkeeperRule.md
@@ -14,11 +15,14 @@ docs/OathkeeperRuleHandler.md
 docs/OathkeeperRuleMatch.md
 docs/OathkeeperUpstream.md
 docs/OathkeeperVersion.md
+docs/VersionApi.md
 git_push.sh
 src/Ory.Oathkeeper.Client.Test/Api/ApiApiTests.cs
+src/Ory.Oathkeeper.Client.Test/Api/HealthApiTests.cs
+src/Ory.Oathkeeper.Client.Test/Api/VersionApiTests.cs
+src/Ory.Oathkeeper.Client.Test/Model/OathkeeperGenericErrorTests.cs
 src/Ory.Oathkeeper.Client.Test/Model/OathkeeperHealthNotReadyStatusTests.cs
 src/Ory.Oathkeeper.Client.Test/Model/OathkeeperHealthStatusTests.cs
-src/Ory.Oathkeeper.Client.Test/Model/OathkeeperInlineResponse500Tests.cs
 src/Ory.Oathkeeper.Client.Test/Model/OathkeeperJsonWebKeySetTests.cs
 src/Ory.Oathkeeper.Client.Test/Model/OathkeeperJsonWebKeyTests.cs
 src/Ory.Oathkeeper.Client.Test/Model/OathkeeperRuleHandlerTests.cs
@@ -28,6 +32,8 @@ src/Ory.Oathkeeper.Client.Test/Model/OathkeeperUpstreamTests.cs
 src/Ory.Oathkeeper.Client.Test/Model/OathkeeperVersionTests.cs
 src/Ory.Oathkeeper.Client.Test/Ory.Oathkeeper.Client.Test.csproj
 src/Ory.Oathkeeper.Client/Api/ApiApi.cs
+src/Ory.Oathkeeper.Client/Api/HealthApi.cs
+src/Ory.Oathkeeper.Client/Api/VersionApi.cs
 src/Ory.Oathkeeper.Client/Client/ApiClient.cs
 src/Ory.Oathkeeper.Client/Client/ApiException.cs
 src/Ory.Oathkeeper.Client/Client/ApiResponse.cs
@@ -45,9 +51,9 @@ src/Ory.Oathkeeper.Client/Client/OpenAPIDateConverter.cs
 src/Ory.Oathkeeper.Client/Client/RequestOptions.cs
 src/Ory.Oathkeeper.Client/Client/RetryConfiguration.cs
 src/Ory.Oathkeeper.Client/Model/AbstractOpenAPISchema.cs
+src/Ory.Oathkeeper.Client/Model/OathkeeperGenericError.cs
 src/Ory.Oathkeeper.Client/Model/OathkeeperHealthNotReadyStatus.cs
 src/Ory.Oathkeeper.Client/Model/OathkeeperHealthStatus.cs
-src/Ory.Oathkeeper.Client/Model/OathkeeperInlineResponse500.cs
 src/Ory.Oathkeeper.Client/Model/OathkeeperJsonWebKey.cs
 src/Ory.Oathkeeper.Client/Model/OathkeeperJsonWebKeySet.cs
 src/Ory.Oathkeeper.Client/Model/OathkeeperRule.cs

@@ -4,7 +4,8 @@
 Cargo.toml
 README.md
 docs/ApiApi.md
-docs/GetWellKnownJsonWebKeys500Response.md
+docs/GenericError.md
+docs/HealthApi.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/JsonWebKey.md
@@ -14,12 +15,15 @@ docs/RuleHandler.md
 docs/RuleMatch.md
 docs/Upstream.md
 docs/Version.md
+docs/VersionApi.md
 git_push.sh
 src/apis/api_api.rs
 src/apis/configuration.rs
+src/apis/health_api.rs
 src/apis/mod.rs
+src/apis/version_api.rs
 src/lib.rs
-src/models/get_well_known_json_web_keys_500_response.rs
+src/models/generic_error.rs
 src/models/health_not_ready_status.rs
 src/models/health_status.rs
 src/models/json_web_key.rs
