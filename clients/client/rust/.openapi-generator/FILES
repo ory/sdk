@@ -26,7 +26,6 @@ docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CustomDomain.md
-docs/CustomDomainQuota.md
 docs/DeleteMySessionsCount.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/ErrorBrowserLocationChangeRequired.md
@@ -38,6 +37,7 @@ docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
 docs/GenericErrorContent.md
+docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
@@ -62,7 +62,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
-docs/InviteQuota.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
 docs/IsReady503Response.md
@@ -85,7 +84,6 @@ docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
-docs/NullPlan.md
 docs/OAuth2Api.md
 docs/OAuth2Client.md
 docs/OAuth2ClientTokenLifespans.md
@@ -105,6 +103,8 @@ docs/PaginationHeaders.md
 docs/ParseError.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
+docs/Plan.md
+docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
 docs/Project.md
@@ -120,7 +120,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
-docs/QuotaBrandingThemes.md
+docs/QuotaUsage.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -138,7 +138,6 @@ docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
-docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
@@ -195,6 +194,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethodBody.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/Usage.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/VerificationFlowState.md
@@ -238,7 +238,6 @@ src/models/create_recovery_link_for_identity_body.rs
 src/models/create_relationship_body.rs
 src/models/create_subscription_body.rs
 src/models/custom_domain.rs
-src/models/custom_domain_quota.rs
 src/models/delete_my_sessions_count.rs
 src/models/error_authenticator_assurance_level_not_satisfied.rs
 src/models/error_browser_location_change_required.rs
@@ -249,6 +248,7 @@ src/models/expanded_permission_tree.rs
 src/models/flow_error.rs
 src/models/generic_error.rs
 src/models/generic_error_content.rs
+src/models/generic_usage.rs
 src/models/get_managed_identity_schema_location.rs
 src/models/get_version_200_response.rs
 src/models/health_not_ready_status.rs
@@ -272,7 +272,6 @@ src/models/internal_get_project_branding_body.rs
 src/models/internal_is_owner_for_project_by_slug_body.rs
 src/models/internal_provision_mock_subscription.rs
 src/models/introspected_o_auth2_token.rs
-src/models/invite_quota.rs
 src/models/is_owner_for_project_by_slug.rs
 src/models/is_ready_200_response.rs
 src/models/is_ready_503_response.rs
@@ -294,7 +293,6 @@ src/models/normalized_project_revision.rs
 src/models/normalized_project_revision_hook.rs
 src/models/normalized_project_revision_identity_schema.rs
 src/models/normalized_project_revision_third_party_provider.rs
-src/models/null_plan.rs
 src/models/o_auth2_client.rs
 src/models/o_auth2_client_token_lifespans.rs
 src/models/o_auth2_consent_request.rs
@@ -311,6 +309,8 @@ src/models/pagination.rs
 src/models/pagination_headers.rs
 src/models/parse_error.rs
 src/models/perform_native_logout_body.rs
+src/models/plan.rs
+src/models/plan_details.rs
 src/models/post_check_permission_body.rs
 src/models/post_check_permission_or_error_body.rs
 src/models/project.rs
@@ -325,7 +325,7 @@ src/models/project_service_identity.rs
 src/models/project_service_o_auth2.rs
 src/models/project_service_permission.rs
 src/models/project_services.rs
-src/models/quota_branding_themes.rs
+src/models/quota_usage.rs
 src/models/recovery_code_for_identity.rs
 src/models/recovery_flow.rs
 src/models/recovery_flow_state.rs
@@ -342,7 +342,6 @@ src/models/schema_patch.rs
 src/models/self_service_flow_expired_error.rs
 src/models/session.rs
 src/models/session_authentication_method.rs
-src/models/session_caching_quota.rs
 src/models/session_device.rs
 src/models/set_active_project_in_console_body.rs
 src/models/set_custom_domain_body.rs
@@ -399,6 +398,7 @@ src/models/update_subscription_body.rs
 src/models/update_verification_flow_body.rs
 src/models/update_verification_flow_with_code_method_body.rs
 src/models/update_verification_flow_with_link_method.rs
+src/models/usage.rs
 src/models/verifiable_identity_address.rs
 src/models/verification_flow.rs
 src/models/verification_flow_state.rs

@@ -30,7 +30,6 @@ docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CustomDomain.md
-docs/CustomDomainQuota.md
 docs/DeleteMySessionsCount.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/ErrorBrowserLocationChangeRequired.md
@@ -42,6 +41,7 @@ docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
 docs/GenericErrorContent.md
+docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
@@ -66,7 +66,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
-docs/InviteQuota.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
 docs/IsReady503Response.md
@@ -89,7 +88,6 @@ docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
-docs/NullPlan.md
 docs/OAuth2Api.md
 docs/OAuth2Client.md
 docs/OAuth2ClientTokenLifespans.md
@@ -109,6 +107,8 @@ docs/PaginationHeaders.md
 docs/ParseError.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
+docs/Plan.md
+docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
 docs/Project.md
@@ -124,7 +124,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
-docs/QuotaBrandingThemes.md
+docs/QuotaUsage.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -142,7 +142,6 @@ docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
-docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
@@ -199,6 +198,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethodBody.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/Usage.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/VerificationFlowState.md
@@ -243,7 +243,6 @@ lib/ory-client/models/create_recovery_link_for_identity_body.rb
 lib/ory-client/models/create_relationship_body.rb
 lib/ory-client/models/create_subscription_body.rb
 lib/ory-client/models/custom_domain.rb
-lib/ory-client/models/custom_domain_quota.rb
 lib/ory-client/models/delete_my_sessions_count.rb
 lib/ory-client/models/error_authenticator_assurance_level_not_satisfied.rb
 lib/ory-client/models/error_browser_location_change_required.rb
@@ -254,6 +253,7 @@ lib/ory-client/models/expanded_permission_tree.rb
 lib/ory-client/models/flow_error.rb
 lib/ory-client/models/generic_error.rb
 lib/ory-client/models/generic_error_content.rb
+lib/ory-client/models/generic_usage.rb
 lib/ory-client/models/get_managed_identity_schema_location.rb
 lib/ory-client/models/get_version200_response.rb
 lib/ory-client/models/health_not_ready_status.rb
@@ -277,7 +277,6 @@ lib/ory-client/models/internal_get_project_branding_body.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug_body.rb
 lib/ory-client/models/internal_provision_mock_subscription.rb
 lib/ory-client/models/introspected_o_auth2_token.rb
-lib/ory-client/models/invite_quota.rb
 lib/ory-client/models/is_owner_for_project_by_slug.rb
 lib/ory-client/models/is_ready200_response.rb
 lib/ory-client/models/is_ready503_response.rb
@@ -298,7 +297,6 @@ lib/ory-client/models/normalized_project_revision.rb
 lib/ory-client/models/normalized_project_revision_hook.rb
 lib/ory-client/models/normalized_project_revision_identity_schema.rb
 lib/ory-client/models/normalized_project_revision_third_party_provider.rb
-lib/ory-client/models/null_plan.rb
 lib/ory-client/models/o_auth2_client.rb
 lib/ory-client/models/o_auth2_client_token_lifespans.rb
 lib/ory-client/models/o_auth2_consent_request.rb
@@ -315,6 +313,8 @@ lib/ory-client/models/pagination.rb
 lib/ory-client/models/pagination_headers.rb
 lib/ory-client/models/parse_error.rb
 lib/ory-client/models/perform_native_logout_body.rb
+lib/ory-client/models/plan.rb
+lib/ory-client/models/plan_details.rb
 lib/ory-client/models/post_check_permission_body.rb
 lib/ory-client/models/post_check_permission_or_error_body.rb
 lib/ory-client/models/project.rb
@@ -329,7 +329,7 @@ lib/ory-client/models/project_service_identity.rb
 lib/ory-client/models/project_service_o_auth2.rb
 lib/ory-client/models/project_service_permission.rb
 lib/ory-client/models/project_services.rb
-lib/ory-client/models/quota_branding_themes.rb
+lib/ory-client/models/quota_usage.rb
 lib/ory-client/models/recovery_code_for_identity.rb
 lib/ory-client/models/recovery_flow.rb
 lib/ory-client/models/recovery_flow_state.rb
@@ -346,7 +346,6 @@ lib/ory-client/models/schema_patch.rb
 lib/ory-client/models/self_service_flow_expired_error.rb
 lib/ory-client/models/session.rb
 lib/ory-client/models/session_authentication_method.rb
-lib/ory-client/models/session_caching_quota.rb
 lib/ory-client/models/session_device.rb
 lib/ory-client/models/set_active_project_in_console_body.rb
 lib/ory-client/models/set_custom_domain_body.rb
@@ -403,6 +402,7 @@ lib/ory-client/models/update_subscription_body.rb
 lib/ory-client/models/update_verification_flow_body.rb
 lib/ory-client/models/update_verification_flow_with_code_method_body.rb
 lib/ory-client/models/update_verification_flow_with_link_method.rb
+lib/ory-client/models/usage.rb
 lib/ory-client/models/verifiable_identity_address.rb
 lib/ory-client/models/verification_flow.rb
 lib/ory-client/models/verification_flow_state.rb
@@ -444,7 +444,6 @@ spec/models/create_recovery_code_for_identity_body_spec.rb
 spec/models/create_recovery_link_for_identity_body_spec.rb
 spec/models/create_relationship_body_spec.rb
 spec/models/create_subscription_body_spec.rb
-spec/models/custom_domain_quota_spec.rb
 spec/models/custom_domain_spec.rb
 spec/models/delete_my_sessions_count_spec.rb
 spec/models/error_authenticator_assurance_level_not_satisfied_spec.rb
@@ -456,6 +455,7 @@ spec/models/expanded_permission_tree_spec.rb
 spec/models/flow_error_spec.rb
 spec/models/generic_error_content_spec.rb
 spec/models/generic_error_spec.rb
+spec/models/generic_usage_spec.rb
 spec/models/get_managed_identity_schema_location_spec.rb
 spec/models/get_version200_response_spec.rb
 spec/models/health_not_ready_status_spec.rb
@@ -479,7 +479,6 @@ spec/models/internal_get_project_branding_body_spec.rb
 spec/models/internal_is_owner_for_project_by_slug_body_spec.rb
 spec/models/internal_provision_mock_subscription_spec.rb
 spec/models/introspected_o_auth2_token_spec.rb
-spec/models/invite_quota_spec.rb
 spec/models/is_owner_for_project_by_slug_spec.rb
 spec/models/is_ready200_response_spec.rb
 spec/models/is_ready503_response_spec.rb
@@ -500,7 +499,6 @@ spec/models/normalized_project_revision_identity_schema_spec.rb
 spec/models/normalized_project_revision_spec.rb
 spec/models/normalized_project_revision_third_party_provider_spec.rb
 spec/models/normalized_project_spec.rb
-spec/models/null_plan_spec.rb
 spec/models/o_auth2_client_spec.rb
 spec/models/o_auth2_client_token_lifespans_spec.rb
 spec/models/o_auth2_consent_request_open_id_connect_context_spec.rb
@@ -517,6 +515,8 @@ spec/models/pagination_headers_spec.rb
 spec/models/pagination_spec.rb
 spec/models/parse_error_spec.rb
 spec/models/perform_native_logout_body_spec.rb
+spec/models/plan_details_spec.rb
+spec/models/plan_spec.rb
 spec/models/post_check_permission_body_spec.rb
 spec/models/post_check_permission_or_error_body_spec.rb
 spec/models/project_api_key_spec.rb
@@ -531,7 +531,7 @@ spec/models/project_service_o_auth2_spec.rb
 spec/models/project_service_permission_spec.rb
 spec/models/project_services_spec.rb
 spec/models/project_spec.rb
-spec/models/quota_branding_themes_spec.rb
+spec/models/quota_usage_spec.rb
 spec/models/recovery_code_for_identity_spec.rb
 spec/models/recovery_flow_spec.rb
 spec/models/recovery_flow_state_spec.rb
@@ -547,7 +547,6 @@ spec/models/relationships_spec.rb
 spec/models/schema_patch_spec.rb
 spec/models/self_service_flow_expired_error_spec.rb
 spec/models/session_authentication_method_spec.rb
-spec/models/session_caching_quota_spec.rb
 spec/models/session_device_spec.rb
 spec/models/session_spec.rb
 spec/models/set_active_project_in_console_body_spec.rb
@@ -605,6 +604,7 @@ spec/models/update_subscription_body_spec.rb
 spec/models/update_verification_flow_body_spec.rb
 spec/models/update_verification_flow_with_code_method_body_spec.rb
 spec/models/update_verification_flow_with_link_method_spec.rb
+spec/models/usage_spec.rb
 spec/models/verifiable_identity_address_spec.rb
 spec/models/verification_flow_spec.rb
 spec/models/verification_flow_state_spec.rb

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **PasswordIdentifier** | Pointer to **string** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **Provider** | **string** | The provider to register with | 
 **Traits** | Pointer to **map[string]interface{}** | The identity traits. This is a placeholder for the registration flow. | [optional] 
+**UpstreamParameters** | Pointer to **map[string]interface{}** | UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: &#x60;login_hint&#x60; (string): The &#x60;login_hint&#x60; parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. &#x60;hd&#x60; (string): The &#x60;hd&#x60; parameter limits the login/registration process to a Google Organization, e.g. &#x60;mycollege.edu&#x60;. | [optional] 
 **TotpCode** | **string** | The TOTP code. | 
 **WebauthnLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **LookupSecret** | **string** | The lookup secret. | 
@@ -188,6 +189,31 @@ SetTraits sets Traits field to given value.
 `func (o *UpdateLoginFlowBody) HasTraits() bool`
 
 HasTraits returns a boolean if a field has been set.
+
+### GetUpstreamParameters
+
+`func (o *UpdateLoginFlowBody) GetUpstreamParameters() map[string]interface{}`
+
+GetUpstreamParameters returns the UpstreamParameters field if non-nil, zero value otherwise.
+
+### GetUpstreamParametersOk
+
+`func (o *UpdateLoginFlowBody) GetUpstreamParametersOk() (*map[string]interface{}, bool)`
+
+GetUpstreamParametersOk returns a tuple with the UpstreamParameters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamParameters
+
+`func (o *UpdateLoginFlowBody) SetUpstreamParameters(v map[string]interface{})`
+
+SetUpstreamParameters sets UpstreamParameters field to given value.
+
+### HasUpstreamParameters
+
+`func (o *UpdateLoginFlowBody) HasUpstreamParameters() bool`
+
+HasUpstreamParameters returns a boolean if a field has been set.
 
 ### GetTotpCode
 

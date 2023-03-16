@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.21
+API version: v1.1.22
 Contact: support@ory.sh
 */
 
@@ -19,17 +19,20 @@ import (
 // Subscription struct for Subscription
 type Subscription struct {
 	CreatedAt time.Time `json:"created_at"`
-	// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
+	// The currently active interval of the subscription monthly Monthly yearly Yearly
+	CurrentInterval string `json:"current_interval"`
+	// The currently active plan of the subscription
 	CurrentPlan string `json:"current_plan"`
 	// The ID of the stripe customer
 	CustomerId string `json:"customer_id"`
 	// The ID of the subscription
 	Id string `json:"id"`
+	IntervalChangesTo NullableString `json:"interval_changes_to"`
 	OngoingStripeCheckoutId NullableString `json:"ongoing_stripe_checkout_id,omitempty"`
 	// Until when the subscription is payed
 	PayedUntil time.Time `json:"payed_until"`
 	PlanChangesAt *time.Time `json:"plan_changes_at,omitempty"`
-	PlanChangesTo NullPlan `json:"plan_changes_to"`
+	PlanChangesTo NullableString `json:"plan_changes_to"`
 	// For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.  A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.  If subscription `collection_method=charge_automatically` it becomes `past_due` when payment to renew it fails and `canceled` or `unpaid` (depending on your subscriptions settings) when Stripe has exhausted all payment retry attempts.  If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
 	Status string `json:"status"`
 	UpdatedAt time.Time `json:"updated_at"`
@@ -39,12 +42,14 @@ type Subscription struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscription(createdAt time.Time, currentPlan string, customerId string, id string, payedUntil time.Time, planChangesTo NullPlan, status string, updatedAt time.Time) *Subscription {
+func NewSubscription(createdAt time.Time, currentInterval string, currentPlan string, customerId string, id string, intervalChangesTo NullableString, payedUntil time.Time, planChangesTo NullableString, status string, updatedAt time.Time) *Subscription {
 	this := Subscription{}
 	this.CreatedAt = createdAt
+	this.CurrentInterval = currentInterval
 	this.CurrentPlan = currentPlan
 	this.CustomerId = customerId
 	this.Id = id
+	this.IntervalChangesTo = intervalChangesTo
 	this.PayedUntil = payedUntil
 	this.PlanChangesTo = planChangesTo
 	this.Status = status
@@ -82,6 +87,30 @@ func (o *Subscription) GetCreatedAtOk() (*time.Time, bool) {
 // SetCreatedAt sets field value
 func (o *Subscription) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
+}
+
+// GetCurrentInterval returns the CurrentInterval field value
+func (o *Subscription) GetCurrentInterval() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CurrentInterval
+}
+
+// GetCurrentIntervalOk returns a tuple with the CurrentInterval field value
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetCurrentIntervalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CurrentInterval, true
+}
+
+// SetCurrentInterval sets field value
+func (o *Subscription) SetCurrentInterval(v string) {
+	o.CurrentInterval = v
 }
 
 // GetCurrentPlan returns the CurrentPlan field value
@@ -154,6 +183,32 @@ func (o *Subscription) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *Subscription) SetId(v string) {
 	o.Id = v
+}
+
+// GetIntervalChangesTo returns the IntervalChangesTo field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Subscription) GetIntervalChangesTo() string {
+	if o == nil || o.IntervalChangesTo.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.IntervalChangesTo.Get()
+}
+
+// GetIntervalChangesToOk returns a tuple with the IntervalChangesTo field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Subscription) GetIntervalChangesToOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IntervalChangesTo.Get(), o.IntervalChangesTo.IsSet()
+}
+
+// SetIntervalChangesTo sets field value
+func (o *Subscription) SetIntervalChangesTo(v string) {
+	o.IntervalChangesTo.Set(&v)
 }
 
 // GetOngoingStripeCheckoutId returns the OngoingStripeCheckoutId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -255,27 +310,29 @@ func (o *Subscription) SetPlanChangesAt(v time.Time) {
 }
 
 // GetPlanChangesTo returns the PlanChangesTo field value
-func (o *Subscription) GetPlanChangesTo() NullPlan {
-	if o == nil {
-		var ret NullPlan
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Subscription) GetPlanChangesTo() string {
+	if o == nil || o.PlanChangesTo.Get() == nil {
+		var ret string
 		return ret
 	}
 
-	return o.PlanChangesTo
+	return *o.PlanChangesTo.Get()
 }
 
 // GetPlanChangesToOk returns a tuple with the PlanChangesTo field value
 // and a boolean to check if the value has been set.
-func (o *Subscription) GetPlanChangesToOk() (*NullPlan, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Subscription) GetPlanChangesToOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PlanChangesTo, true
+	return o.PlanChangesTo.Get(), o.PlanChangesTo.IsSet()
 }
 
 // SetPlanChangesTo sets field value
-func (o *Subscription) SetPlanChangesTo(v NullPlan) {
-	o.PlanChangesTo = v
+func (o *Subscription) SetPlanChangesTo(v string) {
+	o.PlanChangesTo.Set(&v)
 }
 
 // GetStatus returns the Status field value
@@ -332,6 +389,9 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
 	if true {
+		toSerialize["current_interval"] = o.CurrentInterval
+	}
+	if true {
 		toSerialize["current_plan"] = o.CurrentPlan
 	}
 	if true {
@@ -339,6 +399,9 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["interval_changes_to"] = o.IntervalChangesTo.Get()
 	}
 	if o.OngoingStripeCheckoutId.IsSet() {
 		toSerialize["ongoing_stripe_checkout_id"] = o.OngoingStripeCheckoutId.Get()
@@ -350,7 +413,7 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 		toSerialize["plan_changes_at"] = o.PlanChangesAt
 	}
 	if true {
-		toSerialize["plan_changes_to"] = o.PlanChangesTo
+		toSerialize["plan_changes_to"] = o.PlanChangesTo.Get()
 	}
 	if true {
 		toSerialize["status"] = o.Status

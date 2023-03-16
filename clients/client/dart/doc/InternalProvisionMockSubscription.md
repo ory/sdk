@@ -9,7 +9,8 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **identityId** | **String** | Identity ID | 
-**planOrPrice** | **String** | Plan or Price | 
+**interval** | **String** | Billing Interval monthly Monthly yearly Yearly | 
+**plan** | **String** | Plan ID | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

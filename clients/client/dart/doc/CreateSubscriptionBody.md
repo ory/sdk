@@ -8,7 +8,8 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**planOrPrice** | **String** |  | 
+**interval** | **String** |  monthly Monthly yearly Yearly | 
+**plan** | **String** |  | 
 **provisionFirstProject** | **String** |  | 
 **returnTo** | **String** |  | [optional] 
 

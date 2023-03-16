@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(OAuth2Client, () {
+    // OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens Setting the stragegy here overrides the global setting in `strategies.access_token`.
+    // String accessTokenStrategy
+    test('to test the property `accessTokenStrategy`', () async {
+      // TODO
+    });
+
     // BuiltList<String> allowedCorsOrigins
     test('to test the property `allowedCorsOrigins`', () async {
       // TODO
@@ -219,6 +225,12 @@ void main() {
     // OpenID Connect Sector Identifier URI  URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a file with a single JSON array of redirect_uri values.
     // String sectorIdentifierUri
     test('to test the property `sectorIdentifierUri`', () async {
+      // TODO
+    });
+
+    // SkipConsent skips the consent screen for this client. This field can only be set from the admin API.
+    // bool skipConsent
+    test('to test the property `skipConsent`', () async {
       // TODO
     });
 

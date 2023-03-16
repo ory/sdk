@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.1.21
-  - Build date: 2023-02-27T16:38:42.861955397Z[Etc/UTC]
+- API version: v1.1.22
+  - Build date: 2023-03-16T14:29:33.043173029Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.1.21</version>
+  <version>v1.1.22</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.1.21"
+     implementation "sh.ory:client:v1.1.22"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.1.21.jar`
+* `target/client-v1.1.22.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -265,7 +265,6 @@ Class | Method | HTTP request | Description
  - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
  - [CustomDomain](docs/CustomDomain.md)
- - [CustomDomainQuota](docs/CustomDomainQuota.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
  - [ErrorBrowserLocationChangeRequired](docs/ErrorBrowserLocationChangeRequired.md)
@@ -276,6 +275,7 @@ Class | Method | HTTP request | Description
  - [FlowError](docs/FlowError.md)
  - [GenericError](docs/GenericError.md)
  - [GenericErrorContent](docs/GenericErrorContent.md)
+ - [GenericUsage](docs/GenericUsage.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
@@ -299,7 +299,6 @@ Class | Method | HTTP request | Description
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [InternalProvisionMockSubscription](docs/InternalProvisionMockSubscription.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
- - [InviteQuota](docs/InviteQuota.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
  - [IsReady200Response](docs/IsReady200Response.md)
  - [IsReady503Response](docs/IsReady503Response.md)
@@ -320,7 +319,6 @@ Class | Method | HTTP request | Description
  - [NormalizedProjectRevisionHook](docs/NormalizedProjectRevisionHook.md)
  - [NormalizedProjectRevisionIdentitySchema](docs/NormalizedProjectRevisionIdentitySchema.md)
  - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
- - [NullPlan](docs/NullPlan.md)
  - [OAuth2Client](docs/OAuth2Client.md)
  - [OAuth2ClientTokenLifespans](docs/OAuth2ClientTokenLifespans.md)
  - [OAuth2ConsentRequest](docs/OAuth2ConsentRequest.md)
@@ -337,6 +335,8 @@ Class | Method | HTTP request | Description
  - [PaginationHeaders](docs/PaginationHeaders.md)
  - [ParseError](docs/ParseError.md)
  - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
+ - [Plan](docs/Plan.md)
+ - [PlanDetails](docs/PlanDetails.md)
  - [PostCheckPermissionBody](docs/PostCheckPermissionBody.md)
  - [PostCheckPermissionOrErrorBody](docs/PostCheckPermissionOrErrorBody.md)
  - [Project](docs/Project.md)
@@ -351,7 +351,7 @@ Class | Method | HTTP request | Description
  - [ProjectServiceOAuth2](docs/ProjectServiceOAuth2.md)
  - [ProjectServicePermission](docs/ProjectServicePermission.md)
  - [ProjectServices](docs/ProjectServices.md)
- - [QuotaBrandingThemes](docs/QuotaBrandingThemes.md)
+ - [QuotaUsage](docs/QuotaUsage.md)
  - [RecoveryCodeForIdentity](docs/RecoveryCodeForIdentity.md)
  - [RecoveryFlow](docs/RecoveryFlow.md)
  - [RecoveryFlowState](docs/RecoveryFlowState.md)
@@ -368,7 +368,6 @@ Class | Method | HTTP request | Description
  - [SelfServiceFlowExpiredError](docs/SelfServiceFlowExpiredError.md)
  - [Session](docs/Session.md)
  - [SessionAuthenticationMethod](docs/SessionAuthenticationMethod.md)
- - [SessionCachingQuota](docs/SessionCachingQuota.md)
  - [SessionDevice](docs/SessionDevice.md)
  - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)
  - [SetCustomDomainBody](docs/SetCustomDomainBody.md)
@@ -425,6 +424,7 @@ Class | Method | HTTP request | Description
  - [UpdateVerificationFlowBody](docs/UpdateVerificationFlowBody.md)
  - [UpdateVerificationFlowWithCodeMethodBody](docs/UpdateVerificationFlowWithCodeMethodBody.md)
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
+ - [Usage](docs/Usage.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
  - [VerificationFlow](docs/VerificationFlow.md)
  - [VerificationFlowState](docs/VerificationFlowState.md)

@@ -13,6 +13,7 @@ part 'o_auth2_client.g.dart';
 /// OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 ///
 /// Properties:
+/// * [accessTokenStrategy] - OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens Setting the stragegy here overrides the global setting in `strategies.access_token`.
 /// * [allowedCorsOrigins] 
 /// * [audience] 
 /// * [authorizationCodeGrantAccessTokenLifespan] 
@@ -52,6 +53,7 @@ part 'o_auth2_client.g.dart';
 /// * [responseTypes] 
 /// * [scope] - OAuth 2.0 Client Scope  Scope is a string containing a space-separated list of scope values (as described in Section 3.3 of OAuth 2.0 [RFC6749]) that the client can use when requesting access tokens.
 /// * [sectorIdentifierUri] - OpenID Connect Sector Identifier URI  URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a file with a single JSON array of redirect_uri values.
+/// * [skipConsent] - SkipConsent skips the consent screen for this client. This field can only be set from the admin API.
 /// * [subjectType] - OpenID Connect Subject Type  The `subject_types_supported` Discovery parameter contains a list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
 /// * [tokenEndpointAuthMethod] - OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_post`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `client_secret_basic`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets.
 /// * [tokenEndpointAuthSigningAlg] - OAuth 2.0 Token Endpoint Signing Algorithm  Requested Client Authentication signing algorithm for the Token Endpoint.
@@ -60,6 +62,10 @@ part 'o_auth2_client.g.dart';
 /// * [userinfoSignedResponseAlg] - OpenID Connect Request Userinfo Signed Response Algorithm  JWS alg algorithm [JWA] REQUIRED for signing UserInfo Responses. If this is specified, the response will be JWT [JWT] serialized, and signed using JWS. The default, if omitted, is for the UserInfo Response to return the Claims as a UTF-8 encoded JSON object using the application/json content-type.
 @BuiltValue()
 abstract class OAuth2Client implements Built<OAuth2Client, OAuth2ClientBuilder> {
+  /// OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens Setting the stragegy here overrides the global setting in `strategies.access_token`.
+  @BuiltValueField(wireName: r'access_token_strategy')
+  String? get accessTokenStrategy;
+
   @BuiltValueField(wireName: r'allowed_cors_origins')
   BuiltList<String>? get allowedCorsOrigins;
 
@@ -197,6 +203,10 @@ abstract class OAuth2Client implements Built<OAuth2Client, OAuth2ClientBuilder> 
   @BuiltValueField(wireName: r'sector_identifier_uri')
   String? get sectorIdentifierUri;
 
+  /// SkipConsent skips the consent screen for this client. This field can only be set from the admin API.
+  @BuiltValueField(wireName: r'skip_consent')
+  bool? get skipConsent;
+
   /// OpenID Connect Subject Type  The `subject_types_supported` Discovery parameter contains a list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
   @BuiltValueField(wireName: r'subject_type')
   String? get subjectType;
@@ -244,6 +254,13 @@ class _$OAuth2ClientSerializer implements PrimitiveSerializer<OAuth2Client> {
     OAuth2Client object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.accessTokenStrategy != null) {
+      yield r'access_token_strategy';
+      yield serializers.serialize(
+        object.accessTokenStrategy,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.allowedCorsOrigins != null) {
       yield r'allowed_cors_origins';
       yield serializers.serialize(
@@ -517,6 +534,13 @@ class _$OAuth2ClientSerializer implements PrimitiveSerializer<OAuth2Client> {
         specifiedType: const FullType(String),
       );
     }
+    if (object.skipConsent != null) {
+      yield r'skip_consent';
+      yield serializers.serialize(
+        object.skipConsent,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.subjectType != null) {
       yield r'subject_type';
       yield serializers.serialize(
@@ -582,6 +606,13 @@ class _$OAuth2ClientSerializer implements PrimitiveSerializer<OAuth2Client> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'access_token_strategy':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accessTokenStrategy = valueDes;
+          break;
         case r'allowed_cors_origins':
           final valueDes = serializers.deserialize(
             value,
@@ -865,6 +896,13 @@ class _$OAuth2ClientSerializer implements PrimitiveSerializer<OAuth2Client> {
             specifiedType: const FullType(String),
           ) as String;
           result.sectorIdentifierUri = valueDes;
+          break;
+        case r'skip_consent':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.skipConsent = valueDes;
           break;
         case r'subject_type':
           final valueDes = serializers.deserialize(

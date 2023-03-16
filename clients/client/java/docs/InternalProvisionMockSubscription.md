@@ -9,7 +9,17 @@ Internal Provision Mock Subscription Request Body
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**identityId** | **String** | Identity ID |  |
-|**planOrPrice** | **String** | Plan or Price |  |
+|**interval** | [**IntervalEnum**](#IntervalEnum) | Billing Interval monthly Monthly yearly Yearly |  |
+|**plan** | **String** | Plan ID |  |
+
+
+
+## Enum: IntervalEnum
+
+| Name | Value |
+|---- | -----|
+| MONTHLY | &quot;monthly&quot; |
+| YEARLY | &quot;yearly&quot; |
 
 
 

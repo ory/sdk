@@ -42,6 +42,7 @@ with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = oidc_api.OidcApi(api_client)
     o_auth2_client = OAuth2Client(
+        access_token_strategy="access_token_strategy_example",
         allowed_cors_origins=StringSliceJSONFormat([
             "allowed_cors_origins_example",
         ]),
@@ -97,6 +98,7 @@ with ory_client.ApiClient() as api_client:
         ]),
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
+        skip_consent=True,
         subject_type="subject_type_example",
         token_endpoint_auth_method="token_endpoint_auth_method_example",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
@@ -543,6 +545,7 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = oidc_api.OidcApi(api_client)
     id = "id_example" # str | OAuth 2.0 Client ID
     o_auth2_client = OAuth2Client(
+        access_token_strategy="access_token_strategy_example",
         allowed_cors_origins=StringSliceJSONFormat([
             "allowed_cors_origins_example",
         ]),
@@ -598,6 +601,7 @@ with ory_client.ApiClient(configuration) as api_client:
         ]),
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
+        skip_consent=True,
         subject_type="subject_type_example",
         token_endpoint_auth_method="token_endpoint_auth_method_example",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",

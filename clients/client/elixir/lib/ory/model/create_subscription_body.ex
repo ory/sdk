@@ -8,13 +8,15 @@ defmodule Ory.Model.CreateSubscriptionBody do
 
   @derive [Poison.Encoder]
   defstruct [
-    :plan_or_price,
+    :interval,
+    :plan,
     :provision_first_project,
     :return_to
   ]
 
   @type t :: %__MODULE__{
-    :plan_or_price => String.t,
+    :interval => String.t,
+    :plan => String.t,
     :provision_first_project => String.t,
     :return_to => String.t | nil
   }

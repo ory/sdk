@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,16 +13,22 @@ part 'internal_provision_mock_subscription.g.dart';
 ///
 /// Properties:
 /// * [identityId] - Identity ID
-/// * [planOrPrice] - Plan or Price
+/// * [interval] - Billing Interval monthly Monthly yearly Yearly
+/// * [plan] - Plan ID
 @BuiltValue()
 abstract class InternalProvisionMockSubscription implements Built<InternalProvisionMockSubscription, InternalProvisionMockSubscriptionBuilder> {
   /// Identity ID
   @BuiltValueField(wireName: r'identity_id')
   String get identityId;
 
-  /// Plan or Price
-  @BuiltValueField(wireName: r'plan_or_price')
-  String get planOrPrice;
+  /// Billing Interval monthly Monthly yearly Yearly
+  @BuiltValueField(wireName: r'interval')
+  InternalProvisionMockSubscriptionIntervalEnum get interval;
+  // enum intervalEnum {  monthly,  yearly,  };
+
+  /// Plan ID
+  @BuiltValueField(wireName: r'plan')
+  String get plan;
 
   InternalProvisionMockSubscription._();
 
@@ -51,9 +58,14 @@ class _$InternalProvisionMockSubscriptionSerializer implements PrimitiveSerializ
       object.identityId,
       specifiedType: const FullType(String),
     );
-    yield r'plan_or_price';
+    yield r'interval';
     yield serializers.serialize(
-      object.planOrPrice,
+      object.interval,
+      specifiedType: const FullType(InternalProvisionMockSubscriptionIntervalEnum),
+    );
+    yield r'plan';
+    yield serializers.serialize(
+      object.plan,
       specifiedType: const FullType(String),
     );
   }
@@ -86,12 +98,19 @@ class _$InternalProvisionMockSubscriptionSerializer implements PrimitiveSerializ
           ) as String;
           result.identityId = valueDes;
           break;
-        case r'plan_or_price':
+        case r'interval':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(InternalProvisionMockSubscriptionIntervalEnum),
+          ) as InternalProvisionMockSubscriptionIntervalEnum;
+          result.interval = valueDes;
+          break;
+        case r'plan':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.planOrPrice = valueDes;
+          result.plan = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -120,5 +139,22 @@ class _$InternalProvisionMockSubscriptionSerializer implements PrimitiveSerializ
     );
     return result.build();
   }
+}
+
+class InternalProvisionMockSubscriptionIntervalEnum extends EnumClass {
+
+  /// Billing Interval monthly Monthly yearly Yearly
+  @BuiltValueEnumConst(wireName: r'monthly')
+  static const InternalProvisionMockSubscriptionIntervalEnum monthly = _$internalProvisionMockSubscriptionIntervalEnum_monthly;
+  /// Billing Interval monthly Monthly yearly Yearly
+  @BuiltValueEnumConst(wireName: r'yearly')
+  static const InternalProvisionMockSubscriptionIntervalEnum yearly = _$internalProvisionMockSubscriptionIntervalEnum_yearly;
+
+  static Serializer<InternalProvisionMockSubscriptionIntervalEnum> get serializer => _$internalProvisionMockSubscriptionIntervalEnumSerializer;
+
+  const InternalProvisionMockSubscriptionIntervalEnum._(String name): super(name);
+
+  static BuiltSet<InternalProvisionMockSubscriptionIntervalEnum> get values => _$internalProvisionMockSubscriptionIntervalEnumValues;
+  static InternalProvisionMockSubscriptionIntervalEnum valueOf(String name) => _$internalProvisionMockSubscriptionIntervalEnumValueOf(name);
 }
 

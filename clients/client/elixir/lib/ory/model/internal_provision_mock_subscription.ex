@@ -9,12 +9,14 @@ defmodule Ory.Model.InternalProvisionMockSubscription do
   @derive [Poison.Encoder]
   defstruct [
     :identity_id,
-    :plan_or_price
+    :interval,
+    :plan
   ]
 
   @type t :: %__MODULE__{
     :identity_id => String.t,
-    :plan_or_price => String.t
+    :interval => String.t,
+    :plan => String.t
   }
 end
 

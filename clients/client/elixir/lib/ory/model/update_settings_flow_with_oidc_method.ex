@@ -12,7 +12,8 @@ defmodule Ory.Model.UpdateSettingsFlowWithOidcMethod do
     :link,
     :method,
     :traits,
-    :unlink
+    :unlink,
+    :upstream_parameters
   ]
 
   @type t :: %__MODULE__{
@@ -20,7 +21,8 @@ defmodule Ory.Model.UpdateSettingsFlowWithOidcMethod do
     :link => String.t | nil,
     :method => String.t,
     :traits => map() | nil,
-    :unlink => String.t | nil
+    :unlink => String.t | nil,
+    :upstream_parameters => map() | nil
   }
 end
 

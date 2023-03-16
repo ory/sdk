@@ -8,6 +8,7 @@ defmodule Ory.Model.OAuth2Client do
 
   @derive [Poison.Encoder]
   defstruct [
+    :access_token_strategy,
     :allowed_cors_origins,
     :audience,
     :authorization_code_grant_access_token_lifespan,
@@ -47,6 +48,7 @@ defmodule Ory.Model.OAuth2Client do
     :response_types,
     :scope,
     :sector_identifier_uri,
+    :skip_consent,
     :subject_type,
     :token_endpoint_auth_method,
     :token_endpoint_auth_signing_alg,
@@ -56,6 +58,7 @@ defmodule Ory.Model.OAuth2Client do
   ]
 
   @type t :: %__MODULE__{
+    :access_token_strategy => String.t | nil,
     :allowed_cors_origins => [String.t] | nil,
     :audience => [String.t] | nil,
     :authorization_code_grant_access_token_lifespan => String.t | nil,
@@ -95,6 +98,7 @@ defmodule Ory.Model.OAuth2Client do
     :response_types => [String.t] | nil,
     :scope => String.t | nil,
     :sector_identifier_uri => String.t | nil,
+    :skip_consent => boolean() | nil,
     :subject_type => String.t | nil,
     :token_endpoint_auth_method => String.t | nil,
     :token_endpoint_auth_signing_alg => String.t | nil,

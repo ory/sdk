@@ -15,6 +15,7 @@ defmodule Ory.Model.UpdateLoginFlowBody do
     :password_identifier,
     :provider,
     :traits,
+    :upstream_parameters,
     :totp_code,
     :webauthn_login,
     :lookup_secret
@@ -28,6 +29,7 @@ defmodule Ory.Model.UpdateLoginFlowBody do
     :password_identifier => String.t | nil,
     :provider => String.t,
     :traits => map() | nil,
+    :upstream_parameters => map() | nil,
     :totp_code => String.t,
     :webauthn_login => String.t | nil,
     :lookup_secret => String.t

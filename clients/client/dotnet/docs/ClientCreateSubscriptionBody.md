@@ -5,7 +5,8 @@ Create Subscription Request Body
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PlanOrPrice** | **string** |  | 
+**Interval** | **string** |  monthly Monthly yearly Yearly | 
+**Plan** | **string** |  | 
 **ProvisionFirstProject** | **string** |  | 
 **ReturnTo** | **string** |  | [optional] 
 

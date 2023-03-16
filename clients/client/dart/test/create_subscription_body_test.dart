@@ -7,8 +7,14 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreateSubscriptionBody, () {
-    // String planOrPrice
-    test('to test the property `planOrPrice`', () async {
+    //  monthly Monthly yearly Yearly
+    // String interval
+    test('to test the property `interval`', () async {
+      // TODO
+    });
+
+    // String plan
+    test('to test the property `plan`', () async {
       // TODO
     });
 

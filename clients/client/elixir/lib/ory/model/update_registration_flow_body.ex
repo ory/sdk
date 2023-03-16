@@ -14,6 +14,7 @@ defmodule Ory.Model.UpdateRegistrationFlowBody do
     :traits,
     :transient_payload,
     :provider,
+    :upstream_parameters,
     :webauthn_register,
     :webauthn_register_displayname
   ]
@@ -25,6 +26,7 @@ defmodule Ory.Model.UpdateRegistrationFlowBody do
     :traits => map(),
     :transient_payload => map() | nil,
     :provider => String.t,
+    :upstream_parameters => map() | nil,
     :webauthn_register => String.t | nil,
     :webauthn_register_displayname => String.t | nil
   }

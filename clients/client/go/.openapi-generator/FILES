@@ -39,7 +39,6 @@ docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CustomDomain.md
-docs/CustomDomainQuota.md
 docs/DeleteMySessionsCount.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/ErrorBrowserLocationChangeRequired.md
@@ -51,6 +50,7 @@ docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
 docs/GenericErrorContent.md
+docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
@@ -75,7 +75,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
-docs/InviteQuota.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
 docs/IsReady503Response.md
@@ -98,7 +97,6 @@ docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
-docs/NullPlan.md
 docs/OAuth2Api.md
 docs/OAuth2Client.md
 docs/OAuth2ClientTokenLifespans.md
@@ -118,6 +116,8 @@ docs/PaginationHeaders.md
 docs/ParseError.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
+docs/Plan.md
+docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
 docs/Project.md
@@ -133,7 +133,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
-docs/QuotaBrandingThemes.md
+docs/QuotaUsage.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -151,7 +151,6 @@ docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
-docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
@@ -208,6 +207,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethodBody.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/Usage.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/VerificationFlowState.md
@@ -239,7 +239,6 @@ model_create_recovery_link_for_identity_body.go
 model_create_relationship_body.go
 model_create_subscription_body.go
 model_custom_domain.go
-model_custom_domain_quota.go
 model_delete_my_sessions_count.go
 model_error_authenticator_assurance_level_not_satisfied.go
 model_error_browser_location_change_required.go
@@ -250,6 +249,7 @@ model_expanded_permission_tree.go
 model_flow_error.go
 model_generic_error.go
 model_generic_error_content.go
+model_generic_usage.go
 model_get_managed_identity_schema_location.go
 model_get_version_200_response.go
 model_health_not_ready_status.go
@@ -273,7 +273,6 @@ model_internal_get_project_branding_body.go
 model_internal_is_owner_for_project_by_slug_body.go
 model_internal_provision_mock_subscription.go
 model_introspected_o_auth2_token.go
-model_invite_quota.go
 model_is_owner_for_project_by_slug.go
 model_is_ready_200_response.go
 model_is_ready_503_response.go
@@ -294,7 +293,6 @@ model_normalized_project_revision.go
 model_normalized_project_revision_hook.go
 model_normalized_project_revision_identity_schema.go
 model_normalized_project_revision_third_party_provider.go
-model_null_plan.go
 model_o_auth2_client.go
 model_o_auth2_client_token_lifespans.go
 model_o_auth2_consent_request.go
@@ -311,6 +309,8 @@ model_pagination.go
 model_pagination_headers.go
 model_parse_error.go
 model_perform_native_logout_body.go
+model_plan.go
+model_plan_details.go
 model_post_check_permission_body.go
 model_post_check_permission_or_error_body.go
 model_project.go
@@ -325,7 +325,7 @@ model_project_service_identity.go
 model_project_service_o_auth2.go
 model_project_service_permission.go
 model_project_services.go
-model_quota_branding_themes.go
+model_quota_usage.go
 model_recovery_code_for_identity.go
 model_recovery_flow.go
 model_recovery_flow_state.go
@@ -342,7 +342,6 @@ model_schema_patch.go
 model_self_service_flow_expired_error.go
 model_session.go
 model_session_authentication_method.go
-model_session_caching_quota.go
 model_session_device.go
 model_set_active_project_in_console_body.go
 model_set_custom_domain_body.go
@@ -399,6 +398,7 @@ model_update_subscription_body.go
 model_update_verification_flow_body.go
 model_update_verification_flow_with_code_method_body.go
 model_update_verification_flow_with_link_method.go
+model_usage.go
 model_verifiable_identity_address.go
 model_verification_flow.go
 model_verification_flow_state.go

@@ -36,7 +36,6 @@ import 'package:ory_client/src/model/create_recovery_link_for_identity_body.dart
 import 'package:ory_client/src/model/create_relationship_body.dart';
 import 'package:ory_client/src/model/create_subscription_body.dart';
 import 'package:ory_client/src/model/custom_domain.dart';
-import 'package:ory_client/src/model/custom_domain_quota.dart';
 import 'package:ory_client/src/model/delete_my_sessions_count.dart';
 import 'package:ory_client/src/model/error_authenticator_assurance_level_not_satisfied.dart';
 import 'package:ory_client/src/model/error_browser_location_change_required.dart';
@@ -47,6 +46,7 @@ import 'package:ory_client/src/model/expanded_permission_tree.dart';
 import 'package:ory_client/src/model/flow_error.dart';
 import 'package:ory_client/src/model/generic_error.dart';
 import 'package:ory_client/src/model/generic_error_content.dart';
+import 'package:ory_client/src/model/generic_usage.dart';
 import 'package:ory_client/src/model/get_managed_identity_schema_location.dart';
 import 'package:ory_client/src/model/get_version200_response.dart';
 import 'package:ory_client/src/model/health_not_ready_status.dart';
@@ -70,7 +70,6 @@ import 'package:ory_client/src/model/internal_get_project_branding_body.dart';
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_body.dart';
 import 'package:ory_client/src/model/internal_provision_mock_subscription.dart';
 import 'package:ory_client/src/model/introspected_o_auth2_token.dart';
-import 'package:ory_client/src/model/invite_quota.dart';
 import 'package:ory_client/src/model/is_owner_for_project_by_slug.dart';
 import 'package:ory_client/src/model/is_ready200_response.dart';
 import 'package:ory_client/src/model/is_ready503_response.dart';
@@ -91,7 +90,6 @@ import 'package:ory_client/src/model/normalized_project_revision.dart';
 import 'package:ory_client/src/model/normalized_project_revision_hook.dart';
 import 'package:ory_client/src/model/normalized_project_revision_identity_schema.dart';
 import 'package:ory_client/src/model/normalized_project_revision_third_party_provider.dart';
-import 'package:ory_client/src/model/null_plan.dart';
 import 'package:ory_client/src/model/o_auth2_client.dart';
 import 'package:ory_client/src/model/o_auth2_client_token_lifespans.dart';
 import 'package:ory_client/src/model/o_auth2_consent_request.dart';
@@ -108,6 +106,8 @@ import 'package:ory_client/src/model/pagination.dart';
 import 'package:ory_client/src/model/pagination_headers.dart';
 import 'package:ory_client/src/model/parse_error.dart';
 import 'package:ory_client/src/model/perform_native_logout_body.dart';
+import 'package:ory_client/src/model/plan.dart';
+import 'package:ory_client/src/model/plan_details.dart';
 import 'package:ory_client/src/model/post_check_permission_body.dart';
 import 'package:ory_client/src/model/post_check_permission_or_error_body.dart';
 import 'package:ory_client/src/model/project.dart';
@@ -122,7 +122,7 @@ import 'package:ory_client/src/model/project_service_identity.dart';
 import 'package:ory_client/src/model/project_service_o_auth2.dart';
 import 'package:ory_client/src/model/project_service_permission.dart';
 import 'package:ory_client/src/model/project_services.dart';
-import 'package:ory_client/src/model/quota_branding_themes.dart';
+import 'package:ory_client/src/model/quota_usage.dart';
 import 'package:ory_client/src/model/recovery_code_for_identity.dart';
 import 'package:ory_client/src/model/recovery_flow.dart';
 import 'package:ory_client/src/model/recovery_flow_state.dart';
@@ -139,7 +139,6 @@ import 'package:ory_client/src/model/schema_patch.dart';
 import 'package:ory_client/src/model/self_service_flow_expired_error.dart';
 import 'package:ory_client/src/model/session.dart';
 import 'package:ory_client/src/model/session_authentication_method.dart';
-import 'package:ory_client/src/model/session_caching_quota.dart';
 import 'package:ory_client/src/model/session_device.dart';
 import 'package:ory_client/src/model/set_active_project_in_console_body.dart';
 import 'package:ory_client/src/model/set_custom_domain_body.dart';
@@ -196,6 +195,7 @@ import 'package:ory_client/src/model/update_subscription_body.dart';
 import 'package:ory_client/src/model/update_verification_flow_body.dart';
 import 'package:ory_client/src/model/update_verification_flow_with_code_method_body.dart';
 import 'package:ory_client/src/model/update_verification_flow_with_link_method.dart';
+import 'package:ory_client/src/model/usage.dart';
 import 'package:ory_client/src/model/verifiable_identity_address.dart';
 import 'package:ory_client/src/model/verification_flow.dart';
 import 'package:ory_client/src/model/verification_flow_state.dart';
@@ -227,7 +227,6 @@ part 'serializers.g.dart';
   CreateRelationshipBody,
   CreateSubscriptionBody,
   CustomDomain,
-  CustomDomainQuota,
   DeleteMySessionsCount,
   ErrorAuthenticatorAssuranceLevelNotSatisfied,
   ErrorBrowserLocationChangeRequired,
@@ -238,6 +237,7 @@ part 'serializers.g.dart';
   FlowError,
   GenericError,
   GenericErrorContent,
+  GenericUsage,
   GetManagedIdentitySchemaLocation,
   GetVersion200Response,
   HealthNotReadyStatus,
@@ -261,7 +261,6 @@ part 'serializers.g.dart';
   InternalIsOwnerForProjectBySlugBody,
   InternalProvisionMockSubscription,
   IntrospectedOAuth2Token,
-  InviteQuota,
   IsOwnerForProjectBySlug,
   IsReady200Response,
   IsReady503Response,
@@ -282,7 +281,6 @@ part 'serializers.g.dart';
   NormalizedProjectRevisionHook,
   NormalizedProjectRevisionIdentitySchema,
   NormalizedProjectRevisionThirdPartyProvider,
-  NullPlan,
   OAuth2Client,
   OAuth2ClientTokenLifespans,
   OAuth2ConsentRequest,
@@ -299,6 +297,8 @@ part 'serializers.g.dart';
   PaginationHeaders,
   ParseError,
   PerformNativeLogoutBody,
+  Plan,
+  PlanDetails,
   PostCheckPermissionBody,
   PostCheckPermissionOrErrorBody,
   Project,
@@ -313,7 +313,7 @@ part 'serializers.g.dart';
   ProjectServiceOAuth2,
   ProjectServicePermission,
   ProjectServices,
-  QuotaBrandingThemes,
+  QuotaUsage,
   RecoveryCodeForIdentity,
   RecoveryFlow,
   RecoveryFlowState,
@@ -330,7 +330,6 @@ part 'serializers.g.dart';
   SelfServiceFlowExpiredError,
   Session,
   SessionAuthenticationMethod,
-  SessionCachingQuota,
   SessionDevice,
   SetActiveProjectInConsoleBody,
   SetCustomDomainBody,
@@ -387,6 +386,7 @@ part 'serializers.g.dart';
   UpdateVerificationFlowBody,
   UpdateVerificationFlowWithCodeMethodBody,
   UpdateVerificationFlowWithLinkMethod,
+  Usage,
   VerifiableIdentityAddress,
   VerificationFlow,
   VerificationFlowState,

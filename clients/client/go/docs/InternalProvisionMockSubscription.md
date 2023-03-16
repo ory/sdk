@@ -5,13 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IdentityId** | **string** | Identity ID | 
-**PlanOrPrice** | **string** | Plan or Price | 
+**Interval** | **string** | Billing Interval monthly Monthly yearly Yearly | 
+**Plan** | **string** | Plan ID | 
 
 ## Methods
 
 ### NewInternalProvisionMockSubscription
 
-`func NewInternalProvisionMockSubscription(identityId string, planOrPrice string, ) *InternalProvisionMockSubscription`
+`func NewInternalProvisionMockSubscription(identityId string, interval string, plan string, ) *InternalProvisionMockSubscription`
 
 NewInternalProvisionMockSubscription instantiates a new InternalProvisionMockSubscription object
 This constructor will assign default values to properties that have it defined,
@@ -46,24 +47,44 @@ and a boolean to check if the value has been set.
 SetIdentityId sets IdentityId field to given value.
 
 
-### GetPlanOrPrice
+### GetInterval
 
-`func (o *InternalProvisionMockSubscription) GetPlanOrPrice() string`
+`func (o *InternalProvisionMockSubscription) GetInterval() string`
 
-GetPlanOrPrice returns the PlanOrPrice field if non-nil, zero value otherwise.
+GetInterval returns the Interval field if non-nil, zero value otherwise.
 
-### GetPlanOrPriceOk
+### GetIntervalOk
 
-`func (o *InternalProvisionMockSubscription) GetPlanOrPriceOk() (*string, bool)`
+`func (o *InternalProvisionMockSubscription) GetIntervalOk() (*string, bool)`
 
-GetPlanOrPriceOk returns a tuple with the PlanOrPrice field if it's non-nil, zero value otherwise
+GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPlanOrPrice
+### SetInterval
 
-`func (o *InternalProvisionMockSubscription) SetPlanOrPrice(v string)`
+`func (o *InternalProvisionMockSubscription) SetInterval(v string)`
 
-SetPlanOrPrice sets PlanOrPrice field to given value.
+SetInterval sets Interval field to given value.
+
+
+### GetPlan
+
+`func (o *InternalProvisionMockSubscription) GetPlan() string`
+
+GetPlan returns the Plan field if non-nil, zero value otherwise.
+
+### GetPlanOk
+
+`func (o *InternalProvisionMockSubscription) GetPlanOk() (*string, bool)`
+
+GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlan
+
+`func (o *InternalProvisionMockSubscription) SetPlan(v string)`
+
+SetPlan sets Plan field to given value.
 
 
 

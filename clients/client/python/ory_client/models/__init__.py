@@ -32,7 +32,6 @@ from ory_client.model.create_recovery_link_for_identity_body import CreateRecove
 from ory_client.model.create_relationship_body import CreateRelationshipBody
 from ory_client.model.create_subscription_body import CreateSubscriptionBody
 from ory_client.model.custom_domain import CustomDomain
-from ory_client.model.custom_domain_quota import CustomDomainQuota
 from ory_client.model.delete_my_sessions_count import DeleteMySessionsCount
 from ory_client.model.error_authenticator_assurance_level_not_satisfied import ErrorAuthenticatorAssuranceLevelNotSatisfied
 from ory_client.model.error_browser_location_change_required import ErrorBrowserLocationChangeRequired
@@ -43,6 +42,7 @@ from ory_client.model.expanded_permission_tree import ExpandedPermissionTree
 from ory_client.model.flow_error import FlowError
 from ory_client.model.generic_error import GenericError
 from ory_client.model.generic_error_content import GenericErrorContent
+from ory_client.model.generic_usage import GenericUsage
 from ory_client.model.get_managed_identity_schema_location import GetManagedIdentitySchemaLocation
 from ory_client.model.get_version200_response import GetVersion200Response
 from ory_client.model.health_not_ready_status import HealthNotReadyStatus
@@ -68,7 +68,6 @@ from ory_client.model.internal_get_project_branding_body import InternalGetProje
 from ory_client.model.internal_is_owner_for_project_by_slug_body import InternalIsOwnerForProjectBySlugBody
 from ory_client.model.internal_provision_mock_subscription import InternalProvisionMockSubscription
 from ory_client.model.introspected_o_auth2_token import IntrospectedOAuth2Token
-from ory_client.model.invite_quota import InviteQuota
 from ory_client.model.is_owner_for_project_by_slug import IsOwnerForProjectBySlug
 from ory_client.model.is_ready200_response import IsReady200Response
 from ory_client.model.is_ready503_response import IsReady503Response
@@ -96,7 +95,6 @@ from ory_client.model.normalized_project_revision_identity_schemas import Normal
 from ory_client.model.normalized_project_revision_third_party_provider import NormalizedProjectRevisionThirdPartyProvider
 from ory_client.model.normalized_projects import NormalizedProjects
 from ory_client.model.null_duration import NullDuration
-from ory_client.model.null_plan import NullPlan
 from ory_client.model.o_auth2_client import OAuth2Client
 from ory_client.model.o_auth2_client_token_lifespans import OAuth2ClientTokenLifespans
 from ory_client.model.o_auth2_consent_request import OAuth2ConsentRequest
@@ -115,8 +113,12 @@ from ory_client.model.pagination_headers import PaginationHeaders
 from ory_client.model.parse_error import ParseError
 from ory_client.model.perform_native_logout_body import PerformNativeLogoutBody
 from ory_client.model.permissions_on_project import PermissionsOnProject
+from ory_client.model.plan import Plan
+from ory_client.model.plan_details import PlanDetails
+from ory_client.model.plans import Plans
 from ory_client.model.post_check_permission_body import PostCheckPermissionBody
 from ory_client.model.post_check_permission_or_error_body import PostCheckPermissionOrErrorBody
+from ory_client.model.pricing import Pricing
 from ory_client.model.project import Project
 from ory_client.model.project_api_key import ProjectApiKey
 from ory_client.model.project_api_keys import ProjectApiKeys
@@ -140,7 +142,7 @@ from ory_client.model.project_service_o_auth2 import ProjectServiceOAuth2
 from ory_client.model.project_service_permission import ProjectServicePermission
 from ory_client.model.project_services import ProjectServices
 from ory_client.model.projects import Projects
-from ory_client.model.quota_branding_themes import QuotaBrandingThemes
+from ory_client.model.quota_usage import QuotaUsage
 from ory_client.model.recovery_code_for_identity import RecoveryCodeForIdentity
 from ory_client.model.recovery_flow import RecoveryFlow
 from ory_client.model.recovery_flow_state import RecoveryFlowState
@@ -158,7 +160,6 @@ from ory_client.model.self_service_flow_expired_error import SelfServiceFlowExpi
 from ory_client.model.session import Session
 from ory_client.model.session_authentication_method import SessionAuthenticationMethod
 from ory_client.model.session_authentication_methods import SessionAuthenticationMethods
-from ory_client.model.session_caching_quota import SessionCachingQuota
 from ory_client.model.session_device import SessionDevice
 from ory_client.model.set_active_project_in_console_body import SetActiveProjectInConsoleBody
 from ory_client.model.set_custom_domain_body import SetCustomDomainBody
@@ -219,6 +220,7 @@ from ory_client.model.update_subscription_body import UpdateSubscriptionBody
 from ory_client.model.update_verification_flow_body import UpdateVerificationFlowBody
 from ory_client.model.update_verification_flow_with_code_method_body import UpdateVerificationFlowWithCodeMethodBody
 from ory_client.model.update_verification_flow_with_link_method import UpdateVerificationFlowWithLinkMethod
+from ory_client.model.usage import Usage
 from ory_client.model.verifiable_identity_address import VerifiableIdentityAddress
 from ory_client.model.verification_flow import VerificationFlow
 from ory_client.model.verification_flow_state import VerificationFlowState

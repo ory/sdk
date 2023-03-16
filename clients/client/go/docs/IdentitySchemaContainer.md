@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | The ID of the Identity JSON Schema | [optional] 
-**Schema** | Pointer to **map[string]interface{}** | Raw JSON Schema | [optional] 
+**Schema** | Pointer to **map[string]interface{}** | The actual Identity JSON Schema | [optional] 
 
 ## Methods
 

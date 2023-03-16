@@ -8,9 +8,19 @@ Create Subscription Request Body
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**planOrPrice** | **String** |  |  |
+|**interval** | [**IntervalEnum**](#IntervalEnum) |  monthly Monthly yearly Yearly |  |
+|**plan** | **String** |  |  |
 |**provisionFirstProject** | **String** |  |  |
 |**returnTo** | **String** |  |  [optional] |
+
+
+
+## Enum: IntervalEnum
+
+| Name | Value |
+|---- | -----|
+| MONTHLY | &quot;monthly&quot; |
+| YEARLY | &quot;yearly&quot; |
 
 
 

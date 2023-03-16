@@ -353,7 +353,7 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     PermissionApi apiInstance = new PermissionApi(defaultClient);
-    Long maxDepth = 56L; // Long | 
+    Long maxDepth = 56L; // Long | nolint:deadcode,unused
     PostCheckPermissionOrErrorBody postCheckPermissionOrErrorBody = new PostCheckPermissionOrErrorBody(); // PostCheckPermissionOrErrorBody | 
     try {
       CheckPermissionResult result = apiInstance.postCheckPermissionOrError(maxDepth, postCheckPermissionOrErrorBody);
@@ -373,7 +373,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **maxDepth** | **Long**|  | [optional] |
+| **maxDepth** | **Long**| nolint:deadcode,unused | [optional] |
 | **postCheckPermissionOrErrorBody** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)|  | [optional] |
 
 ### Return type

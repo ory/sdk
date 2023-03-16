@@ -11,14 +11,16 @@ defmodule Ory.Model.UpdateLoginFlowWithOidcMethod do
     :csrf_token,
     :method,
     :provider,
-    :traits
+    :traits,
+    :upstream_parameters
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :method => String.t,
     :provider => String.t,
-    :traits => map() | nil
+    :traits => map() | nil,
+    :upstream_parameters => map() | nil
   }
 end
 

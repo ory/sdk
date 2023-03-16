@@ -12,7 +12,8 @@ defmodule Ory.Model.UpdateRegistrationFlowWithOidcMethod do
     :method,
     :provider,
     :traits,
-    :transient_payload
+    :transient_payload,
+    :upstream_parameters
   ]
 
   @type t :: %__MODULE__{
@@ -20,7 +21,8 @@ defmodule Ory.Model.UpdateRegistrationFlowWithOidcMethod do
     :method => String.t,
     :provider => String.t,
     :traits => map() | nil,
-    :transient_payload => map() | nil
+    :transient_payload => map() | nil,
+    :upstream_parameters => map() | nil
   }
 end
 
