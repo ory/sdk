@@ -41,7 +41,7 @@ typescript () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 6.3.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-fetch \
     -o "$dir" \
