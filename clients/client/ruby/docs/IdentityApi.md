@@ -1109,7 +1109,7 @@ end
 api_instance = OryClient::IdentityApi.new
 id = 'id_example' # String | ID must be set to the ID of identity you want to update
 opts = {
-  json_patch: [OryClient::JsonPatch.new({op: 'add', path: '/name'})] # Array<JsonPatch> | 
+  json_patch: [OryClient::JsonPatch.new({op: 'add', path: '/services/identity/config/smtp/from_name'})] # Array<JsonPatch> | 
 }
 
 begin

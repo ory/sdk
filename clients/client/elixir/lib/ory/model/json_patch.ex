@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.JsonPatch do
   @moduledoc """
-  A JSONPatch document as defined by RFC 6902
+  JSON Patch allows you to target individual keys in a JSON document for updates.  For more examples see: https://jsonpatch.com
   """
 
   @derive [Poison.Encoder]

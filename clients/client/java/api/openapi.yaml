@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.22
+  version: v1.1.23
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -8085,7 +8085,10 @@ components:
       - Subject
       type: object
     jsonPatch:
-      description: A JSONPatch document as defined by RFC 6902
+      description: |-
+        JSON Patch allows you to target individual keys in a JSON document for updates.
+
+        For more examples see: https://jsonpatch.com
       properties:
         from:
           description: |-
@@ -8095,8 +8098,7 @@ components:
           example: /name
           type: string
         op:
-          description: "The operation to be performed. One of \"add\", \"remove\"\
-            , \"replace\", \"move\", \"copy\", or \"test\"."
+          description: The JSON Patch operation
           enum:
           - add
           - remove
@@ -8107,21 +8109,17 @@ components:
           example: replace
           type: string
         path:
-          description: |-
-            The path to the target path. Uses JSON pointer notation.
-
-            Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
-          example: /name
+          description: The JSON Pointer to the target key
+          example: /services/identity/config/smtp/from_name
           type: string
         value:
-          description: |-
-            The value to be used within the operations.
-
-            Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
+          description: The value to be used. Only available for `add` and `replace`
+            operations.
           example: foobar
       required:
       - op
       - path
+      title: A JSON Patch
       type: object
     jsonPatchDocument:
       description: A JSONPatchDocument request

@@ -1334,7 +1334,7 @@ end
 
 api_instance = OryClient::OAuth2Api.new
 id = 'id_example' # String | The id of the OAuth 2.0 Client.
-json_patch = [OryClient::JsonPatch.new({op: 'add', path: '/name'})] # Array<JsonPatch> | OAuth 2.0 Client JSON Patch Body
+json_patch = [OryClient::JsonPatch.new({op: 'add', path: '/services/identity/config/smtp/from_name'})] # Array<JsonPatch> | OAuth 2.0 Client JSON Patch Body
 
 begin
   # Patch OAuth 2.0 Client

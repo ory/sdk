@@ -1091,7 +1091,7 @@ import (
 
 func main() {
     id := "id_example" // string | ID must be set to the ID of identity you want to update
-    jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/name")} // []JsonPatch |  (optional)
+    jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/services/identity/config/smtp/from_name")} // []JsonPatch |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
