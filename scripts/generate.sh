@@ -261,6 +261,9 @@ dart () {
     -c ./config/client/dart.yml.proc.yml
 
   cp "LICENSE" "clients/${PROJECT}/dart"
+
+  # Generate the `*.g.dart` files
+  /usr/bin/dart run build_runner build
 }
 
 rust () {
