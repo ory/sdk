@@ -8,9 +8,14 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/ActiveProjectInConsole.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BatchPatchIdentitiesResponse.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
 docs/CloudAccount.md
+docs/ContinueWith.md
+docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithVerificationUi.md
+docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
@@ -50,6 +55,8 @@ docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
+docs/IdentityPatch.md
+docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
 docs/IdentitySchemaPresets.md
@@ -63,6 +70,7 @@ docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
 docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
+docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
@@ -112,6 +120,7 @@ docs/OidcUserInfo.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/ParseError.md
+docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/PermissionsOnProject.md
@@ -255,9 +264,14 @@ ory_client/model/accept_o_auth2_consent_request_session.py
 ory_client/model/accept_o_auth2_login_request.py
 ory_client/model/active_project_in_console.py
 ory_client/model/authenticator_assurance_level.py
+ory_client/model/batch_patch_identities_response.py
 ory_client/model/check_opl_syntax_result.py
 ory_client/model/check_permission_result.py
 ory_client/model/cloud_account.py
+ory_client/model/continue_with.py
+ory_client/model/continue_with_set_ory_session_token.py
+ory_client/model/continue_with_verification_ui.py
+ory_client/model/continue_with_verification_ui_flow.py
 ory_client/model/courier_message_status.py
 ory_client/model/courier_message_type.py
 ory_client/model/create_custom_domain_body.py
@@ -294,6 +308,8 @@ ory_client/model/identity_credentials_oidc.py
 ory_client/model/identity_credentials_oidc_provider.py
 ory_client/model/identity_credentials_password.py
 ory_client/model/identity_credentials_type.py
+ory_client/model/identity_patch.py
+ory_client/model/identity_patch_response.py
 ory_client/model/identity_schema_container.py
 ory_client/model/identity_schema_preset.py
 ory_client/model/identity_schema_presets.py
@@ -307,6 +323,7 @@ ory_client/model/identity_with_credentials_password.py
 ory_client/model/identity_with_credentials_password_config.py
 ory_client/model/internal_get_project_branding_body.py
 ory_client/model/internal_is_owner_for_project_by_slug_body.py
+ory_client/model/internal_is_owner_for_project_by_slug_response.py
 ory_client/model/internal_provision_mock_subscription.py
 ory_client/model/introspected_o_auth2_token.py
 ory_client/model/is_owner_for_project_by_slug.py
@@ -352,6 +369,7 @@ ory_client/model/oidc_user_info.py
 ory_client/model/pagination.py
 ory_client/model/pagination_headers.py
 ory_client/model/parse_error.py
+ory_client/model/patch_identities_body.py
 ory_client/model/perform_native_logout_body.py
 ory_client/model/permissions_on_project.py
 ory_client/model/plan.py
@@ -480,9 +498,14 @@ test/test_accept_o_auth2_consent_request_session.py
 test/test_accept_o_auth2_login_request.py
 test/test_active_project_in_console.py
 test/test_authenticator_assurance_level.py
+test/test_batch_patch_identities_response.py
 test/test_check_opl_syntax_result.py
 test/test_check_permission_result.py
 test/test_cloud_account.py
+test/test_continue_with.py
+test/test_continue_with_set_ory_session_token.py
+test/test_continue_with_verification_ui.py
+test/test_continue_with_verification_ui_flow.py
 test/test_courier_api.py
 test/test_courier_message_status.py
 test/test_courier_message_type.py
@@ -522,6 +545,8 @@ test/test_identity_credentials_oidc.py
 test/test_identity_credentials_oidc_provider.py
 test/test_identity_credentials_password.py
 test/test_identity_credentials_type.py
+test/test_identity_patch.py
+test/test_identity_patch_response.py
 test/test_identity_schema_container.py
 test/test_identity_schema_preset.py
 test/test_identity_schema_presets.py
@@ -535,6 +560,7 @@ test/test_identity_with_credentials_password.py
 test/test_identity_with_credentials_password_config.py
 test/test_internal_get_project_branding_body.py
 test/test_internal_is_owner_for_project_by_slug_body.py
+test/test_internal_is_owner_for_project_by_slug_response.py
 test/test_internal_provision_mock_subscription.py
 test/test_introspected_o_auth2_token.py
 test/test_is_owner_for_project_by_slug.py
@@ -584,6 +610,7 @@ test/test_oidc_user_info.py
 test/test_pagination.py
 test/test_pagination_headers.py
 test/test_parse_error.py
+test/test_patch_identities_body.py
 test/test_perform_native_logout_body.py
 test/test_permission_api.py
 test/test_permissions_on_project.py

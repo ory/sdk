@@ -7,6 +7,15 @@ void main() {
   final instance = OryClient().getIdentityApi();
 
   group(IdentityApi, () {
+    // Create and deletes multiple identities
+    //
+    // Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+    //
+    //Future<BatchPatchIdentitiesResponse> batchPatchIdentities({ PatchIdentitiesBody patchIdentitiesBody }) async
+    test('test batchPatchIdentities', () async {
+      // TODO
+    });
+
     // Create an Identity
     //
     // Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.

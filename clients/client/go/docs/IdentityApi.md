@@ -4,6 +4,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**BatchPatchIdentities**](IdentityApi.md#BatchPatchIdentities) | **Patch** /admin/identities | Create and deletes multiple identities
 [**CreateIdentity**](IdentityApi.md#CreateIdentity) | **Post** /admin/identities | Create an Identity
 [**CreateRecoveryCodeForIdentity**](IdentityApi.md#CreateRecoveryCodeForIdentity) | **Post** /admin/recovery/code | Create a Recovery Code
 [**CreateRecoveryLinkForIdentity**](IdentityApi.md#CreateRecoveryLinkForIdentity) | **Post** /admin/recovery/link | Create a Recovery Link
@@ -22,6 +23,72 @@ Method | HTTP request | Description
 [**PatchIdentity**](IdentityApi.md#PatchIdentity) | **Patch** /admin/identities/{id} | Patch an Identity
 [**UpdateIdentity**](IdentityApi.md#UpdateIdentity) | **Put** /admin/identities/{id} | Update an Identity
 
+
+
+## BatchPatchIdentities
+
+> BatchPatchIdentitiesResponse BatchPatchIdentities(ctx).PatchIdentitiesBody(patchIdentitiesBody).Execute()
+
+Create and deletes multiple identities
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    patchIdentitiesBody := *openapiclient.NewPatchIdentitiesBody() // PatchIdentitiesBody |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IdentityApi.BatchPatchIdentities(context.Background()).PatchIdentitiesBody(patchIdentitiesBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.BatchPatchIdentities``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `BatchPatchIdentities`: BatchPatchIdentitiesResponse
+    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.BatchPatchIdentities`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBatchPatchIdentitiesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchIdentitiesBody** | [**PatchIdentitiesBody**](PatchIdentitiesBody.md) |  | 
+
+### Return type
+
+[**BatchPatchIdentitiesResponse**](BatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateIdentity
@@ -1091,7 +1158,7 @@ import (
 
 func main() {
     id := "id_example" // string | ID must be set to the ID of identity you want to update
-    jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/services/identity/config/smtp/from_name")} // []JsonPatch |  (optional)
+    jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/name")} // []JsonPatch |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

@@ -1280,7 +1280,7 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the OAuth 2.0 Client.
-    jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/services/identity/config/smtp/from_name")} // []JsonPatch | OAuth 2.0 Client JSON Patch Body
+    jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/name")} // []JsonPatch | OAuth 2.0 Client JSON Patch Body
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

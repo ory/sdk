@@ -19,9 +19,14 @@ import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart
 import 'package:ory_client/src/model/accept_o_auth2_login_request.dart';
 import 'package:ory_client/src/model/active_project_in_console.dart';
 import 'package:ory_client/src/model/authenticator_assurance_level.dart';
+import 'package:ory_client/src/model/batch_patch_identities_response.dart';
 import 'package:ory_client/src/model/check_opl_syntax_result.dart';
 import 'package:ory_client/src/model/check_permission_result.dart';
 import 'package:ory_client/src/model/cloud_account.dart';
+import 'package:ory_client/src/model/continue_with.dart';
+import 'package:ory_client/src/model/continue_with_set_ory_session_token.dart';
+import 'package:ory_client/src/model/continue_with_verification_ui.dart';
+import 'package:ory_client/src/model/continue_with_verification_ui_flow.dart';
 import 'package:ory_client/src/model/courier_message_status.dart';
 import 'package:ory_client/src/model/courier_message_type.dart';
 import 'package:ory_client/src/model/create_custom_domain_body.dart';
@@ -57,6 +62,8 @@ import 'package:ory_client/src/model/identity_credentials_oidc.dart';
 import 'package:ory_client/src/model/identity_credentials_oidc_provider.dart';
 import 'package:ory_client/src/model/identity_credentials_password.dart';
 import 'package:ory_client/src/model/identity_credentials_type.dart';
+import 'package:ory_client/src/model/identity_patch.dart';
+import 'package:ory_client/src/model/identity_patch_response.dart';
 import 'package:ory_client/src/model/identity_schema_container.dart';
 import 'package:ory_client/src/model/identity_schema_preset.dart';
 import 'package:ory_client/src/model/identity_state.dart';
@@ -68,6 +75,7 @@ import 'package:ory_client/src/model/identity_with_credentials_password.dart';
 import 'package:ory_client/src/model/identity_with_credentials_password_config.dart';
 import 'package:ory_client/src/model/internal_get_project_branding_body.dart';
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_body.dart';
+import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_response.dart';
 import 'package:ory_client/src/model/internal_provision_mock_subscription.dart';
 import 'package:ory_client/src/model/introspected_o_auth2_token.dart';
 import 'package:ory_client/src/model/is_owner_for_project_by_slug.dart';
@@ -105,6 +113,7 @@ import 'package:ory_client/src/model/oidc_user_info.dart';
 import 'package:ory_client/src/model/pagination.dart';
 import 'package:ory_client/src/model/pagination_headers.dart';
 import 'package:ory_client/src/model/parse_error.dart';
+import 'package:ory_client/src/model/patch_identities_body.dart';
 import 'package:ory_client/src/model/perform_native_logout_body.dart';
 import 'package:ory_client/src/model/plan.dart';
 import 'package:ory_client/src/model/plan_details.dart';
@@ -210,9 +219,14 @@ part 'serializers.g.dart';
   AcceptOAuth2LoginRequest,
   ActiveProjectInConsole,
   AuthenticatorAssuranceLevel,
+  BatchPatchIdentitiesResponse,
   CheckOplSyntaxResult,
   CheckPermissionResult,
   CloudAccount,
+  ContinueWith,
+  ContinueWithSetOrySessionToken,
+  ContinueWithVerificationUi,
+  ContinueWithVerificationUiFlow,
   CourierMessageStatus,
   CourierMessageType,
   CreateCustomDomainBody,
@@ -248,6 +262,8 @@ part 'serializers.g.dart';
   IdentityCredentialsOidcProvider,
   IdentityCredentialsPassword,
   IdentityCredentialsType,
+  IdentityPatch,
+  IdentityPatchResponse,
   IdentitySchemaContainer,
   IdentitySchemaPreset,
   IdentityState,
@@ -259,6 +275,7 @@ part 'serializers.g.dart';
   IdentityWithCredentialsPasswordConfig,
   InternalGetProjectBrandingBody,
   InternalIsOwnerForProjectBySlugBody,
+  InternalIsOwnerForProjectBySlugResponse,
   InternalProvisionMockSubscription,
   IntrospectedOAuth2Token,
   IsOwnerForProjectBySlug,
@@ -296,6 +313,7 @@ part 'serializers.g.dart';
   Pagination,
   PaginationHeaders,
   ParseError,
+  PatchIdentitiesBody,
   PerformNativeLogoutBody,
   Plan,
   PlanDetails,

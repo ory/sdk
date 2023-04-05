@@ -4,6 +4,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create and deletes multiple identities
 [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity
 [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link
@@ -22,6 +23,145 @@ Method | HTTP request | Description
 [**patch_identity**](IdentityApi.md#patch_identity) | **PATCH** /admin/identities/{id} | Patch an Identity
 [**update_identity**](IdentityApi.md#update_identity) | **PUT** /admin/identities/{id} | Update an Identity
 
+
+# **batch_patch_identities**
+> BatchPatchIdentitiesResponse batch_patch_identities()
+
+Create and deletes multiple identities
+
+Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import identity_api
+from ory_client.model.patch_identities_body import PatchIdentitiesBody
+from ory_client.model.batch_patch_identities_response import BatchPatchIdentitiesResponse
+from ory_client.model.error_generic import ErrorGeneric
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = identity_api.IdentityApi(api_client)
+    patch_identities_body = PatchIdentitiesBody(
+        identities=[
+            IdentityPatch(
+                create=CreateIdentityBody(
+                    credentials=IdentityWithCredentials(
+                        oidc=IdentityWithCredentialsOidc(
+                            config=IdentityWithCredentialsOidcConfig(
+                                config=IdentityWithCredentialsPasswordConfig(
+                                    hashed_password="hashed_password_example",
+                                    password="password_example",
+                                ),
+                                providers=[
+                                    IdentityWithCredentialsOidcConfigProvider(
+                                        provider="provider_example",
+                                        subject="subject_example",
+                                    ),
+                                ],
+                            ),
+                        ),
+                        password=IdentityWithCredentialsPassword(
+                            config=IdentityWithCredentialsPasswordConfig(
+                                hashed_password="hashed_password_example",
+                                password="password_example",
+                            ),
+                        ),
+                    ),
+                    metadata_admin=None,
+                    metadata_public=None,
+                    recovery_addresses=[
+                        RecoveryIdentityAddress(
+                            created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                            id="id_example",
+                            updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                            value="value_example",
+                            via="via_example",
+                        ),
+                    ],
+                    schema_id="schema_id_example",
+                    state=IdentityState("active"),
+                    traits={},
+                    verifiable_addresses=[
+                        VerifiableIdentityAddress(
+                            created_at=dateutil_parser('2014-01-01T23:28:56.782Z'),
+                            id="id_example",
+                            status="status_example",
+                            updated_at=dateutil_parser('2014-01-01T23:28:56.782Z'),
+                            value="value_example",
+                            verified=True,
+                            verified_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                            via="via_example",
+                        ),
+                    ],
+                ),
+                patch_id="patch_id_example",
+            ),
+        ],
+    ) # PatchIdentitiesBody |  (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create and deletes multiple identities
+        api_response = api_instance.batch_patch_identities(patch_identities_body=patch_identities_body)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling IdentityApi->batch_patch_identities: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patch_identities_body** | [**PatchIdentitiesBody**](PatchIdentitiesBody.md)|  | [optional]
+
+### Return type
+
+[**BatchPatchIdentitiesResponse**](BatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | batchPatchIdentitiesResponse |  -  |
+**400** | errorGeneric |  -  |
+**409** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_identity**
 > Identity create_identity()
@@ -1367,7 +1507,7 @@ with ory_client.ApiClient(configuration) as api_client:
         JsonPatch(
             _from="/name",
             op="replace",
-            path="/services/identity/config/smtp/from_name",
+            path="/name",
             value=None,
         ),
     ]) # JsonPatchDocument |  (optional)

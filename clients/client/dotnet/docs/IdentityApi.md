@@ -4,6 +4,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**BatchPatchIdentities**](IdentityApi.md#batchpatchidentities) | **PATCH** /admin/identities | Create and deletes multiple identities
 [**CreateIdentity**](IdentityApi.md#createidentity) | **POST** /admin/identities | Create an Identity
 [**CreateRecoveryCodeForIdentity**](IdentityApi.md#createrecoverycodeforidentity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**CreateRecoveryLinkForIdentity**](IdentityApi.md#createrecoverylinkforidentity) | **POST** /admin/recovery/link | Create a Recovery Link
@@ -22,6 +23,83 @@ Method | HTTP request | Description
 [**PatchIdentity**](IdentityApi.md#patchidentity) | **PATCH** /admin/identities/{id} | Patch an Identity
 [**UpdateIdentity**](IdentityApi.md#updateidentity) | **PUT** /admin/identities/{id} | Update an Identity
 
+
+<a name="batchpatchidentities"></a>
+# **BatchPatchIdentities**
+> ClientBatchPatchIdentitiesResponse BatchPatchIdentities (ClientPatchIdentitiesBody clientPatchIdentitiesBody = null)
+
+Create and deletes multiple identities
+
+Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class BatchPatchIdentitiesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://playground.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryAccessToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new IdentityApi(config);
+            var clientPatchIdentitiesBody = new ClientPatchIdentitiesBody(); // ClientPatchIdentitiesBody |  (optional) 
+
+            try
+            {
+                // Create and deletes multiple identities
+                ClientBatchPatchIdentitiesResponse result = apiInstance.BatchPatchIdentities(clientPatchIdentitiesBody);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling IdentityApi.BatchPatchIdentities: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clientPatchIdentitiesBody** | [**ClientPatchIdentitiesBody**](ClientPatchIdentitiesBody.md)|  | [optional] 
+
+### Return type
+
+[**ClientBatchPatchIdentitiesResponse**](ClientBatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | batchPatchIdentitiesResponse |  -  |
+| **400** | errorGeneric |  -  |
+| **409** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="createidentity"></a>
 # **CreateIdentity**

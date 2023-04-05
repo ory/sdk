@@ -4,6 +4,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create and deletes multiple identities |
 | [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity |
 | [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code |
 | [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link |
@@ -21,6 +22,77 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**list_sessions**](IdentityApi.md#list_sessions) | **GET** /admin/sessions | List All Sessions |
 | [**patch_identity**](IdentityApi.md#patch_identity) | **PATCH** /admin/identities/{id} | Patch an Identity |
 | [**update_identity**](IdentityApi.md#update_identity) | **PUT** /admin/identities/{id} | Update an Identity |
+
+
+## batch_patch_identities
+
+> <BatchPatchIdentitiesResponse> batch_patch_identities(opts)
+
+Create and deletes multiple identities
+
+Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::IdentityApi.new
+opts = {
+  patch_identities_body: OryClient::PatchIdentitiesBody.new # PatchIdentitiesBody | 
+}
+
+begin
+  # Create and deletes multiple identities
+  result = api_instance.batch_patch_identities(opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->batch_patch_identities: #{e}"
+end
+```
+
+#### Using the batch_patch_identities_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<BatchPatchIdentitiesResponse>, Integer, Hash)> batch_patch_identities_with_http_info(opts)
+
+```ruby
+begin
+  # Create and deletes multiple identities
+  data, status_code, headers = api_instance.batch_patch_identities_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <BatchPatchIdentitiesResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->batch_patch_identities_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **patch_identities_body** | [**PatchIdentitiesBody**](PatchIdentitiesBody.md) |  | [optional] |
+
+### Return type
+
+[**BatchPatchIdentitiesResponse**](BatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## create_identity
@@ -1109,7 +1181,7 @@ end
 api_instance = OryClient::IdentityApi.new
 id = 'id_example' # String | ID must be set to the ID of identity you want to update
 opts = {
-  json_patch: [OryClient::JsonPatch.new({op: 'add', path: '/services/identity/config/smtp/from_name'})] # Array<JsonPatch> | 
+  json_patch: [OryClient::JsonPatch.new({op: 'add', path: '/name'})] # Array<JsonPatch> | 
 }
 
 begin

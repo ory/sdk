@@ -8,9 +8,14 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/ActiveProjectInConsole.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BatchPatchIdentitiesResponse.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
 docs/CloudAccount.md
+docs/ContinueWith.md
+docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithVerificationUi.md
+docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
@@ -49,6 +54,8 @@ docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
+docs/IdentityPatch.md
+docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
 docs/IdentityState.md
@@ -60,6 +67,7 @@ docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
 docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
+docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
@@ -101,6 +109,7 @@ docs/OidcUserInfo.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/ParseError.md
+docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/Plan.md
@@ -221,9 +230,14 @@ src/models/accept_o_auth2_consent_request_session.rs
 src/models/accept_o_auth2_login_request.rs
 src/models/active_project_in_console.rs
 src/models/authenticator_assurance_level.rs
+src/models/batch_patch_identities_response.rs
 src/models/check_opl_syntax_result.rs
 src/models/check_permission_result.rs
 src/models/cloud_account.rs
+src/models/continue_with.rs
+src/models/continue_with_set_ory_session_token.rs
+src/models/continue_with_verification_ui.rs
+src/models/continue_with_verification_ui_flow.rs
 src/models/courier_message_status.rs
 src/models/courier_message_type.rs
 src/models/create_custom_domain_body.rs
@@ -259,6 +273,8 @@ src/models/identity_credentials_oidc.rs
 src/models/identity_credentials_oidc_provider.rs
 src/models/identity_credentials_password.rs
 src/models/identity_credentials_type.rs
+src/models/identity_patch.rs
+src/models/identity_patch_response.rs
 src/models/identity_schema_container.rs
 src/models/identity_schema_preset.rs
 src/models/identity_state.rs
@@ -270,6 +286,7 @@ src/models/identity_with_credentials_password.rs
 src/models/identity_with_credentials_password_config.rs
 src/models/internal_get_project_branding_body.rs
 src/models/internal_is_owner_for_project_by_slug_body.rs
+src/models/internal_is_owner_for_project_by_slug_response.rs
 src/models/internal_provision_mock_subscription.rs
 src/models/introspected_o_auth2_token.rs
 src/models/is_owner_for_project_by_slug.rs
@@ -308,6 +325,7 @@ src/models/oidc_user_info.rs
 src/models/pagination.rs
 src/models/pagination_headers.rs
 src/models/parse_error.rs
+src/models/patch_identities_body.rs
 src/models/perform_native_logout_body.rs
 src/models/plan.rs
 src/models/plan_details.rs

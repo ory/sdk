@@ -8,12 +8,14 @@ defmodule Ory.Model.InternalIsOwnerForProjectBySlugBody do
 
   @derive [Poison.Encoder]
   defstruct [
+    :namespace,
     :project_scope,
     :project_slug,
     :subject
   ]
 
   @type t :: %__MODULE__{
+    :namespace => String.t,
     :project_scope => String.t | nil,
     :project_slug => String.t,
     :subject => String.t

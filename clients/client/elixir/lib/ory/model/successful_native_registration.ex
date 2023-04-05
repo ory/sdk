@@ -8,12 +8,14 @@ defmodule Ory.Model.SuccessfulNativeRegistration do
 
   @derive [Poison.Encoder]
   defstruct [
+    :continue_with,
     :identity,
     :session,
     :session_token
   ]
 
   @type t :: %__MODULE__{
+    :continue_with => [Ory.Model.ContinueWith.t] | nil,
     :identity => Ory.Model.Identity.t,
     :session => Ory.Model.Session.t | nil,
     :session_token => String.t | nil
@@ -24,6 +26,7 @@ defimpl Poison.Decoder, for: Ory.Model.SuccessfulNativeRegistration do
   import Ory.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:continue_with, :list, Ory.Model.ContinueWith, options)
     |> deserialize(:identity, :struct, Ory.Model.Identity, options)
     |> deserialize(:session, :struct, Ory.Model.Session, options)
   end

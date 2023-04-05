@@ -4,6 +4,8 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/settings_flow_state.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/model/continue_with.dart';
 import 'package:ory_client/src/model/ui_container.dart';
 import 'package:ory_client/src/model/identity.dart';
 import 'package:built_value/built_value.dart';
@@ -15,6 +17,7 @@ part 'settings_flow.g.dart';
 ///
 /// Properties:
 /// * [active] - Active, if set, contains the registration method that is being used. It is initially not set.
+/// * [continueWith] - Contains a list of actions, that could follow this flow  It can, for example, contain a reference to the verification flow, created as part of the user's registration.
 /// * [expiresAt] - ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated.
 /// * [id] - ID represents the flow's unique ID. When performing the settings flow, this represents the id in the settings ui's query parameter: http://<selfservice.flows.settings.ui_url>?flow=<id>
 /// * [identity] 
@@ -29,6 +32,10 @@ abstract class SettingsFlow implements Built<SettingsFlow, SettingsFlowBuilder> 
   /// Active, if set, contains the registration method that is being used. It is initially not set.
   @BuiltValueField(wireName: r'active')
   String? get active;
+
+  /// Contains a list of actions, that could follow this flow  It can, for example, contain a reference to the verification flow, created as part of the user's registration.
+  @BuiltValueField(wireName: r'continue_with')
+  BuiltList<ContinueWith>? get continueWith;
 
   /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated.
   @BuiltValueField(wireName: r'expires_at')
@@ -92,6 +99,13 @@ class _$SettingsFlowSerializer implements PrimitiveSerializer<SettingsFlow> {
       yield serializers.serialize(
         object.active,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.continueWith != null) {
+      yield r'continue_with';
+      yield serializers.serialize(
+        object.continueWith,
+        specifiedType: const FullType(BuiltList, [FullType(ContinueWith)]),
       );
     }
     yield r'expires_at';
@@ -170,6 +184,13 @@ class _$SettingsFlowSerializer implements PrimitiveSerializer<SettingsFlow> {
             specifiedType: const FullType(String),
           ) as String;
           result.active = valueDes;
+          break;
+        case r'continue_with':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ContinueWith)]),
+          ) as BuiltList<ContinueWith>;
+          result.continueWith.replace(valueDes);
           break;
         case r'expires_at':
           final valueDes = serializers.deserialize(

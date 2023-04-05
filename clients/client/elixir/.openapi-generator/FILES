@@ -22,9 +22,14 @@ lib/ory/model/accept_o_auth2_consent_request_session.ex
 lib/ory/model/accept_o_auth2_login_request.ex
 lib/ory/model/active_project_in_console.ex
 lib/ory/model/authenticator_assurance_level.ex
+lib/ory/model/batch_patch_identities_response.ex
 lib/ory/model/check_opl_syntax_result.ex
 lib/ory/model/check_permission_result.ex
 lib/ory/model/cloud_account.ex
+lib/ory/model/continue_with.ex
+lib/ory/model/continue_with_set_ory_session_token.ex
+lib/ory/model/continue_with_verification_ui.ex
+lib/ory/model/continue_with_verification_ui_flow.ex
 lib/ory/model/courier_message_status.ex
 lib/ory/model/courier_message_type.ex
 lib/ory/model/create_custom_domain_body.ex
@@ -60,6 +65,8 @@ lib/ory/model/identity_credentials_oidc.ex
 lib/ory/model/identity_credentials_oidc_provider.ex
 lib/ory/model/identity_credentials_password.ex
 lib/ory/model/identity_credentials_type.ex
+lib/ory/model/identity_patch.ex
+lib/ory/model/identity_patch_response.ex
 lib/ory/model/identity_schema_container.ex
 lib/ory/model/identity_schema_preset.ex
 lib/ory/model/identity_state.ex
@@ -71,6 +78,7 @@ lib/ory/model/identity_with_credentials_password.ex
 lib/ory/model/identity_with_credentials_password_config.ex
 lib/ory/model/internal_get_project_branding_body.ex
 lib/ory/model/internal_is_owner_for_project_by_slug_body.ex
+lib/ory/model/internal_is_owner_for_project_by_slug_response.ex
 lib/ory/model/internal_provision_mock_subscription.ex
 lib/ory/model/introspected_o_auth2_token.ex
 lib/ory/model/is_owner_for_project_by_slug.ex
@@ -108,6 +116,7 @@ lib/ory/model/oidc_user_info.ex
 lib/ory/model/pagination.ex
 lib/ory/model/pagination_headers.ex
 lib/ory/model/parse_error.ex
+lib/ory/model/patch_identities_body.ex
 lib/ory/model/perform_native_logout_body.ex
 lib/ory/model/plan.ex
 lib/ory/model/plan_details.ex

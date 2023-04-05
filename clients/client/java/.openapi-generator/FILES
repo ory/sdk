@@ -11,9 +11,14 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/ActiveProjectInConsole.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BatchPatchIdentitiesResponse.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
 docs/CloudAccount.md
+docs/ContinueWith.md
+docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithVerificationUi.md
+docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
@@ -52,6 +57,8 @@ docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
+docs/IdentityPatch.md
+docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
 docs/IdentityState.md
@@ -63,6 +70,7 @@ docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
 docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
+docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
@@ -104,6 +112,7 @@ docs/OidcUserInfo.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/ParseError.md
+docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/Plan.md
@@ -251,9 +260,14 @@ src/main/java/sh/ory/model/AcceptOAuth2ConsentRequestSession.java
 src/main/java/sh/ory/model/AcceptOAuth2LoginRequest.java
 src/main/java/sh/ory/model/ActiveProjectInConsole.java
 src/main/java/sh/ory/model/AuthenticatorAssuranceLevel.java
+src/main/java/sh/ory/model/BatchPatchIdentitiesResponse.java
 src/main/java/sh/ory/model/CheckOplSyntaxResult.java
 src/main/java/sh/ory/model/CheckPermissionResult.java
 src/main/java/sh/ory/model/CloudAccount.java
+src/main/java/sh/ory/model/ContinueWith.java
+src/main/java/sh/ory/model/ContinueWithSetOrySessionToken.java
+src/main/java/sh/ory/model/ContinueWithVerificationUi.java
+src/main/java/sh/ory/model/ContinueWithVerificationUiFlow.java
 src/main/java/sh/ory/model/CourierMessageStatus.java
 src/main/java/sh/ory/model/CourierMessageType.java
 src/main/java/sh/ory/model/CreateCustomDomainBody.java
@@ -289,6 +303,8 @@ src/main/java/sh/ory/model/IdentityCredentialsOidc.java
 src/main/java/sh/ory/model/IdentityCredentialsOidcProvider.java
 src/main/java/sh/ory/model/IdentityCredentialsPassword.java
 src/main/java/sh/ory/model/IdentityCredentialsType.java
+src/main/java/sh/ory/model/IdentityPatch.java
+src/main/java/sh/ory/model/IdentityPatchResponse.java
 src/main/java/sh/ory/model/IdentitySchemaContainer.java
 src/main/java/sh/ory/model/IdentitySchemaPreset.java
 src/main/java/sh/ory/model/IdentityState.java
@@ -300,6 +316,7 @@ src/main/java/sh/ory/model/IdentityWithCredentialsPassword.java
 src/main/java/sh/ory/model/IdentityWithCredentialsPasswordConfig.java
 src/main/java/sh/ory/model/InternalGetProjectBrandingBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugBody.java
+src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponse.java
 src/main/java/sh/ory/model/InternalProvisionMockSubscription.java
 src/main/java/sh/ory/model/IntrospectedOAuth2Token.java
 src/main/java/sh/ory/model/IsOwnerForProjectBySlug.java
@@ -337,6 +354,7 @@ src/main/java/sh/ory/model/OidcUserInfo.java
 src/main/java/sh/ory/model/Pagination.java
 src/main/java/sh/ory/model/PaginationHeaders.java
 src/main/java/sh/ory/model/ParseError.java
+src/main/java/sh/ory/model/PatchIdentitiesBody.java
 src/main/java/sh/ory/model/PerformNativeLogoutBody.java
 src/main/java/sh/ory/model/Plan.java
 src/main/java/sh/ory/model/PlanDetails.java
@@ -449,9 +467,14 @@ src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestTest.java
 src/test/java/sh/ory/model/AcceptOAuth2LoginRequestTest.java
 src/test/java/sh/ory/model/ActiveProjectInConsoleTest.java
 src/test/java/sh/ory/model/AuthenticatorAssuranceLevelTest.java
+src/test/java/sh/ory/model/BatchPatchIdentitiesResponseTest.java
 src/test/java/sh/ory/model/CheckOplSyntaxResultTest.java
 src/test/java/sh/ory/model/CheckPermissionResultTest.java
 src/test/java/sh/ory/model/CloudAccountTest.java
+src/test/java/sh/ory/model/ContinueWithSetOrySessionTokenTest.java
+src/test/java/sh/ory/model/ContinueWithTest.java
+src/test/java/sh/ory/model/ContinueWithVerificationUiFlowTest.java
+src/test/java/sh/ory/model/ContinueWithVerificationUiTest.java
 src/test/java/sh/ory/model/CourierMessageStatusTest.java
 src/test/java/sh/ory/model/CourierMessageTypeTest.java
 src/test/java/sh/ory/model/CreateCustomDomainBodyTest.java
@@ -486,6 +509,8 @@ src/test/java/sh/ory/model/IdentityCredentialsOidcTest.java
 src/test/java/sh/ory/model/IdentityCredentialsPasswordTest.java
 src/test/java/sh/ory/model/IdentityCredentialsTest.java
 src/test/java/sh/ory/model/IdentityCredentialsTypeTest.java
+src/test/java/sh/ory/model/IdentityPatchResponseTest.java
+src/test/java/sh/ory/model/IdentityPatchTest.java
 src/test/java/sh/ory/model/IdentitySchemaContainerTest.java
 src/test/java/sh/ory/model/IdentitySchemaPresetTest.java
 src/test/java/sh/ory/model/IdentityStateTest.java
@@ -498,6 +523,7 @@ src/test/java/sh/ory/model/IdentityWithCredentialsPasswordTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsTest.java
 src/test/java/sh/ory/model/InternalGetProjectBrandingBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugBodyTest.java
+src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponseTest.java
 src/test/java/sh/ory/model/InternalProvisionMockSubscriptionTest.java
 src/test/java/sh/ory/model/IntrospectedOAuth2TokenTest.java
 src/test/java/sh/ory/model/IsOwnerForProjectBySlugTest.java
@@ -535,6 +561,7 @@ src/test/java/sh/ory/model/OidcUserInfoTest.java
 src/test/java/sh/ory/model/PaginationHeadersTest.java
 src/test/java/sh/ory/model/PaginationTest.java
 src/test/java/sh/ory/model/ParseErrorTest.java
+src/test/java/sh/ory/model/PatchIdentitiesBodyTest.java
 src/test/java/sh/ory/model/PerformNativeLogoutBodyTest.java
 src/test/java/sh/ory/model/PlanDetailsTest.java
 src/test/java/sh/ory/model/PlanTest.java

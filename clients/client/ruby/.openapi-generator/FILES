@@ -12,9 +12,14 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/ActiveProjectInConsole.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BatchPatchIdentitiesResponse.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
 docs/CloudAccount.md
+docs/ContinueWith.md
+docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithVerificationUi.md
+docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
@@ -53,6 +58,8 @@ docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
+docs/IdentityPatch.md
+docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
 docs/IdentityState.md
@@ -64,6 +71,7 @@ docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
 docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
+docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
@@ -105,6 +113,7 @@ docs/OidcUserInfo.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/ParseError.md
+docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/Plan.md
@@ -226,9 +235,14 @@ lib/ory-client/models/accept_o_auth2_consent_request_session.rb
 lib/ory-client/models/accept_o_auth2_login_request.rb
 lib/ory-client/models/active_project_in_console.rb
 lib/ory-client/models/authenticator_assurance_level.rb
+lib/ory-client/models/batch_patch_identities_response.rb
 lib/ory-client/models/check_opl_syntax_result.rb
 lib/ory-client/models/check_permission_result.rb
 lib/ory-client/models/cloud_account.rb
+lib/ory-client/models/continue_with.rb
+lib/ory-client/models/continue_with_set_ory_session_token.rb
+lib/ory-client/models/continue_with_verification_ui.rb
+lib/ory-client/models/continue_with_verification_ui_flow.rb
 lib/ory-client/models/courier_message_status.rb
 lib/ory-client/models/courier_message_type.rb
 lib/ory-client/models/create_custom_domain_body.rb
@@ -264,6 +278,8 @@ lib/ory-client/models/identity_credentials_oidc.rb
 lib/ory-client/models/identity_credentials_oidc_provider.rb
 lib/ory-client/models/identity_credentials_password.rb
 lib/ory-client/models/identity_credentials_type.rb
+lib/ory-client/models/identity_patch.rb
+lib/ory-client/models/identity_patch_response.rb
 lib/ory-client/models/identity_schema_container.rb
 lib/ory-client/models/identity_schema_preset.rb
 lib/ory-client/models/identity_state.rb
@@ -275,6 +291,7 @@ lib/ory-client/models/identity_with_credentials_password.rb
 lib/ory-client/models/identity_with_credentials_password_config.rb
 lib/ory-client/models/internal_get_project_branding_body.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug_body.rb
+lib/ory-client/models/internal_is_owner_for_project_by_slug_response.rb
 lib/ory-client/models/internal_provision_mock_subscription.rb
 lib/ory-client/models/introspected_o_auth2_token.rb
 lib/ory-client/models/is_owner_for_project_by_slug.rb
@@ -312,6 +329,7 @@ lib/ory-client/models/oidc_user_info.rb
 lib/ory-client/models/pagination.rb
 lib/ory-client/models/pagination_headers.rb
 lib/ory-client/models/parse_error.rb
+lib/ory-client/models/patch_identities_body.rb
 lib/ory-client/models/perform_native_logout_body.rb
 lib/ory-client/models/plan.rb
 lib/ory-client/models/plan_details.rb
@@ -428,9 +446,14 @@ spec/models/accept_o_auth2_consent_request_spec.rb
 spec/models/accept_o_auth2_login_request_spec.rb
 spec/models/active_project_in_console_spec.rb
 spec/models/authenticator_assurance_level_spec.rb
+spec/models/batch_patch_identities_response_spec.rb
 spec/models/check_opl_syntax_result_spec.rb
 spec/models/check_permission_result_spec.rb
 spec/models/cloud_account_spec.rb
+spec/models/continue_with_set_ory_session_token_spec.rb
+spec/models/continue_with_spec.rb
+spec/models/continue_with_verification_ui_flow_spec.rb
+spec/models/continue_with_verification_ui_spec.rb
 spec/models/courier_message_status_spec.rb
 spec/models/courier_message_type_spec.rb
 spec/models/create_custom_domain_body_spec.rb
@@ -465,6 +488,8 @@ spec/models/identity_credentials_oidc_spec.rb
 spec/models/identity_credentials_password_spec.rb
 spec/models/identity_credentials_spec.rb
 spec/models/identity_credentials_type_spec.rb
+spec/models/identity_patch_response_spec.rb
+spec/models/identity_patch_spec.rb
 spec/models/identity_schema_container_spec.rb
 spec/models/identity_schema_preset_spec.rb
 spec/models/identity_spec.rb
@@ -477,6 +502,7 @@ spec/models/identity_with_credentials_password_spec.rb
 spec/models/identity_with_credentials_spec.rb
 spec/models/internal_get_project_branding_body_spec.rb
 spec/models/internal_is_owner_for_project_by_slug_body_spec.rb
+spec/models/internal_is_owner_for_project_by_slug_response_spec.rb
 spec/models/internal_provision_mock_subscription_spec.rb
 spec/models/introspected_o_auth2_token_spec.rb
 spec/models/is_owner_for_project_by_slug_spec.rb
@@ -514,6 +540,7 @@ spec/models/oidc_user_info_spec.rb
 spec/models/pagination_headers_spec.rb
 spec/models/pagination_spec.rb
 spec/models/parse_error_spec.rb
+spec/models/patch_identities_body_spec.rb
 spec/models/perform_native_logout_body_spec.rb
 spec/models/plan_details_spec.rb
 spec/models/plan_spec.rb

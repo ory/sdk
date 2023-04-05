@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **active** | **String** | Active, if set, contains the registration method that is being used. It is initially not set. | [optional] |
+| **continue_with** | [**Array&lt;ContinueWith&gt;**](ContinueWith.md) | Contains a list of actions, that could follow this flow  It can, for example, contain a reference to the verification flow, created as part of the user&#39;s registration. | [optional] |
 | **expires_at** | **Time** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated. |  |
 | **id** | **String** | ID represents the flow&#39;s unique ID. When performing the settings flow, this represents the id in the settings ui&#39;s query parameter: http://&lt;selfservice.flows.settings.ui_url&gt;?flow&#x3D;&lt;id&gt; |  |
 | **identity** | [**Identity**](Identity.md) |  |  |
@@ -22,6 +23,7 @@ require 'ory-client'
 
 instance = OryClient::SettingsFlow.new(
   active: null,
+  continue_with: null,
   expires_at: null,
   id: null,
   identity: null,

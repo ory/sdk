@@ -10,6 +10,45 @@ defmodule Ory.Api.Identity do
   import Ory.RequestBuilder
 
   @doc """
+  Create and deletes multiple identities
+  Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+    - `:body` (PatchIdentitiesBody): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.BatchPatchIdentitiesResponse.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec batch_patch_identities(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.BatchPatchIdentitiesResponse.t} | {:error, Tesla.Env.t}
+  def batch_patch_identities(connection, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:patch)
+      |> url("/admin/identities")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, %Ory.Model.BatchPatchIdentitiesResponse{}},
+      {400, %Ory.Model.ErrorGeneric{}},
+      {409, %Ory.Model.ErrorGeneric{}},
+      {:default, %Ory.Model.ErrorGeneric{}}
+    ])
+  end
+
+  @doc """
   Create an Identity
   Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
 

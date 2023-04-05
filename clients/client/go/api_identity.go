@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.23
+API version: v1.1.24
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,24 @@ import (
 
 
 type IdentityApi interface {
+
+	/*
+	BatchPatchIdentities Create and deletes multiple identities
+
+	Creates or delete multiple
+[identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+This endpoint can also be used to [import
+credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
+for instance passwords, social sign in configurations or multifactor methods.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return IdentityApiBatchPatchIdentitiesRequest
+	*/
+	BatchPatchIdentities(ctx context.Context) IdentityApiBatchPatchIdentitiesRequest
+
+	// BatchPatchIdentitiesExecute executes the request
+	//  @return BatchPatchIdentitiesResponse
+	BatchPatchIdentitiesExecute(r IdentityApiBatchPatchIdentitiesRequest) (*BatchPatchIdentitiesResponse, *http.Response, error)
 
 	/*
 	CreateIdentity Create an Identity
@@ -289,6 +307,144 @@ payload (except credentials) is expected. It is possible to update the identity'
 
 // IdentityApiService IdentityApi service
 type IdentityApiService service
+
+type IdentityApiBatchPatchIdentitiesRequest struct {
+	ctx context.Context
+	ApiService IdentityApi
+	patchIdentitiesBody *PatchIdentitiesBody
+}
+
+func (r IdentityApiBatchPatchIdentitiesRequest) PatchIdentitiesBody(patchIdentitiesBody PatchIdentitiesBody) IdentityApiBatchPatchIdentitiesRequest {
+	r.patchIdentitiesBody = &patchIdentitiesBody
+	return r
+}
+
+func (r IdentityApiBatchPatchIdentitiesRequest) Execute() (*BatchPatchIdentitiesResponse, *http.Response, error) {
+	return r.ApiService.BatchPatchIdentitiesExecute(r)
+}
+
+/*
+BatchPatchIdentities Create and deletes multiple identities
+
+Creates or delete multiple
+[identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+This endpoint can also be used to [import
+credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
+for instance passwords, social sign in configurations or multifactor methods.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return IdentityApiBatchPatchIdentitiesRequest
+*/
+func (a *IdentityApiService) BatchPatchIdentities(ctx context.Context) IdentityApiBatchPatchIdentitiesRequest {
+	return IdentityApiBatchPatchIdentitiesRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return BatchPatchIdentitiesResponse
+func (a *IdentityApiService) BatchPatchIdentitiesExecute(r IdentityApiBatchPatchIdentitiesRequest) (*BatchPatchIdentitiesResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *BatchPatchIdentitiesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentityApiService.BatchPatchIdentities")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/identities"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.patchIdentitiesBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type IdentityApiCreateIdentityRequest struct {
 	ctx context.Context

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ContinueWith** | Pointer to [**[]ContinueWith**](ContinueWith.md) | Contains a list of actions, that could follow this flow  It can, for example, this will contain a reference to the verification flow, created as part of the user&#39;s registration or the token of the session. | [optional] 
 **Identity** | [**Identity**](Identity.md) |  | 
 **Session** | Pointer to [**Session**](Session.md) |  | [optional] 
 **SessionToken** | Pointer to **string** | The Session Token  This field is only set when the session hook is configured as a post-registration hook.  A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization Header:  Authorization: bearer ${session-token}  The session token is only issued for API flows, not for Browser flows! | [optional] 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewSuccessfulNativeRegistrationWithDefaults instantiates a new SuccessfulNativeRegistration object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetContinueWith
+
+`func (o *SuccessfulNativeRegistration) GetContinueWith() []ContinueWith`
+
+GetContinueWith returns the ContinueWith field if non-nil, zero value otherwise.
+
+### GetContinueWithOk
+
+`func (o *SuccessfulNativeRegistration) GetContinueWithOk() (*[]ContinueWith, bool)`
+
+GetContinueWithOk returns a tuple with the ContinueWith field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContinueWith
+
+`func (o *SuccessfulNativeRegistration) SetContinueWith(v []ContinueWith)`
+
+SetContinueWith sets ContinueWith field to given value.
+
+### HasContinueWith
+
+`func (o *SuccessfulNativeRegistration) HasContinueWith() bool`
+
+HasContinueWith returns a boolean if a field has been set.
 
 ### GetIdentity
 

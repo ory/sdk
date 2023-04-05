@@ -9,6 +9,7 @@ defmodule Ory.Model.SettingsFlow do
   @derive [Poison.Encoder]
   defstruct [
     :active,
+    :continue_with,
     :expires_at,
     :id,
     :identity,
@@ -22,6 +23,7 @@ defmodule Ory.Model.SettingsFlow do
 
   @type t :: %__MODULE__{
     :active => String.t | nil,
+    :continue_with => [Ory.Model.ContinueWith.t] | nil,
     :expires_at => DateTime.t,
     :id => String.t,
     :identity => Ory.Model.Identity.t,
@@ -38,6 +40,7 @@ defimpl Poison.Decoder, for: Ory.Model.SettingsFlow do
   import Ory.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:continue_with, :list, Ory.Model.ContinueWith, options)
     |> deserialize(:identity, :struct, Ory.Model.Identity, options)
     |> deserialize(:state, :struct, Ory.Model.SettingsFlowState, options)
     |> deserialize(:ui, :struct, Ory.Model.UiContainer, options)

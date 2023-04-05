@@ -4,6 +4,8 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/session.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/model/continue_with.dart';
 import 'package:ory_client/src/model/identity.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -13,11 +15,16 @@ part 'successful_native_registration.g.dart';
 /// The Response for Registration Flows via API
 ///
 /// Properties:
+/// * [continueWith] - Contains a list of actions, that could follow this flow  It can, for example, this will contain a reference to the verification flow, created as part of the user's registration or the token of the session.
 /// * [identity] 
 /// * [session] 
 /// * [sessionToken] - The Session Token  This field is only set when the session hook is configured as a post-registration hook.  A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization Header:  Authorization: bearer ${session-token}  The session token is only issued for API flows, not for Browser flows!
 @BuiltValue()
 abstract class SuccessfulNativeRegistration implements Built<SuccessfulNativeRegistration, SuccessfulNativeRegistrationBuilder> {
+  /// Contains a list of actions, that could follow this flow  It can, for example, this will contain a reference to the verification flow, created as part of the user's registration or the token of the session.
+  @BuiltValueField(wireName: r'continue_with')
+  BuiltList<ContinueWith>? get continueWith;
+
   @BuiltValueField(wireName: r'identity')
   Identity get identity;
 
@@ -51,6 +58,13 @@ class _$SuccessfulNativeRegistrationSerializer implements PrimitiveSerializer<Su
     SuccessfulNativeRegistration object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.continueWith != null) {
+      yield r'continue_with';
+      yield serializers.serialize(
+        object.continueWith,
+        specifiedType: const FullType(BuiltList, [FullType(ContinueWith)]),
+      );
+    }
     yield r'identity';
     yield serializers.serialize(
       object.identity,
@@ -93,6 +107,13 @@ class _$SuccessfulNativeRegistrationSerializer implements PrimitiveSerializer<Su
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'continue_with':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ContinueWith)]),
+          ) as BuiltList<ContinueWith>;
+          result.continueWith.replace(valueDes);
+          break;
         case r'identity':
           final valueDes = serializers.deserialize(
             value,

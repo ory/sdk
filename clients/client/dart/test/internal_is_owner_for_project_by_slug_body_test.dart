@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(InternalIsOwnerForProjectBySlugBody, () {
+    // Namespace is the namespace of the subject.
+    // String namespace
+    test('to test the property `namespace`', () async {
+      // TODO
+    });
+
     // ProjectScope is the project_id resolved from the API Token.
     // String projectScope
     test('to test the property `projectScope`', () async {
@@ -19,7 +25,7 @@ void main() {
       // TODO
     });
 
-    // Subject is the subject from the API Token.
+    // Subject is the subject acting (user or API key).
     // String subject
     test('to test the property `subject`', () async {
       // TODO

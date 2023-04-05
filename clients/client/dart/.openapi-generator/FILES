@@ -7,9 +7,14 @@ doc/AcceptOAuth2ConsentRequestSession.md
 doc/AcceptOAuth2LoginRequest.md
 doc/ActiveProjectInConsole.md
 doc/AuthenticatorAssuranceLevel.md
+doc/BatchPatchIdentitiesResponse.md
 doc/CheckOplSyntaxResult.md
 doc/CheckPermissionResult.md
 doc/CloudAccount.md
+doc/ContinueWith.md
+doc/ContinueWithSetOrySessionToken.md
+doc/ContinueWithVerificationUi.md
+doc/ContinueWithVerificationUiFlow.md
 doc/CourierApi.md
 doc/CourierMessageStatus.md
 doc/CourierMessageType.md
@@ -48,6 +53,8 @@ doc/IdentityCredentialsOidc.md
 doc/IdentityCredentialsOidcProvider.md
 doc/IdentityCredentialsPassword.md
 doc/IdentityCredentialsType.md
+doc/IdentityPatch.md
+doc/IdentityPatchResponse.md
 doc/IdentitySchemaContainer.md
 doc/IdentitySchemaPreset.md
 doc/IdentityState.md
@@ -59,6 +66,7 @@ doc/IdentityWithCredentialsPassword.md
 doc/IdentityWithCredentialsPasswordConfig.md
 doc/InternalGetProjectBrandingBody.md
 doc/InternalIsOwnerForProjectBySlugBody.md
+doc/InternalIsOwnerForProjectBySlugResponse.md
 doc/InternalProvisionMockSubscription.md
 doc/IntrospectedOAuth2Token.md
 doc/IsOwnerForProjectBySlug.md
@@ -100,6 +108,7 @@ doc/OidcUserInfo.md
 doc/Pagination.md
 doc/PaginationHeaders.md
 doc/ParseError.md
+doc/PatchIdentitiesBody.md
 doc/PerformNativeLogoutBody.md
 doc/PermissionApi.md
 doc/Plan.md
@@ -225,9 +234,14 @@ lib/src/model/accept_o_auth2_consent_request_session.dart
 lib/src/model/accept_o_auth2_login_request.dart
 lib/src/model/active_project_in_console.dart
 lib/src/model/authenticator_assurance_level.dart
+lib/src/model/batch_patch_identities_response.dart
 lib/src/model/check_opl_syntax_result.dart
 lib/src/model/check_permission_result.dart
 lib/src/model/cloud_account.dart
+lib/src/model/continue_with.dart
+lib/src/model/continue_with_set_ory_session_token.dart
+lib/src/model/continue_with_verification_ui.dart
+lib/src/model/continue_with_verification_ui_flow.dart
 lib/src/model/courier_message_status.dart
 lib/src/model/courier_message_type.dart
 lib/src/model/create_custom_domain_body.dart
@@ -264,6 +278,8 @@ lib/src/model/identity_credentials_oidc.dart
 lib/src/model/identity_credentials_oidc_provider.dart
 lib/src/model/identity_credentials_password.dart
 lib/src/model/identity_credentials_type.dart
+lib/src/model/identity_patch.dart
+lib/src/model/identity_patch_response.dart
 lib/src/model/identity_schema_container.dart
 lib/src/model/identity_schema_preset.dart
 lib/src/model/identity_state.dart
@@ -275,6 +291,7 @@ lib/src/model/identity_with_credentials_password.dart
 lib/src/model/identity_with_credentials_password_config.dart
 lib/src/model/internal_get_project_branding_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_body.dart
+lib/src/model/internal_is_owner_for_project_by_slug_response.dart
 lib/src/model/internal_provision_mock_subscription.dart
 lib/src/model/introspected_o_auth2_token.dart
 lib/src/model/is_owner_for_project_by_slug.dart
@@ -312,6 +329,7 @@ lib/src/model/oidc_user_info.dart
 lib/src/model/pagination.dart
 lib/src/model/pagination_headers.dart
 lib/src/model/parse_error.dart
+lib/src/model/patch_identities_body.dart
 lib/src/model/perform_native_logout_body.dart
 lib/src/model/plan.dart
 lib/src/model/plan_details.dart
@@ -415,9 +433,14 @@ test/accept_o_auth2_consent_request_test.dart
 test/accept_o_auth2_login_request_test.dart
 test/active_project_in_console_test.dart
 test/authenticator_assurance_level_test.dart
+test/batch_patch_identities_response_test.dart
 test/check_opl_syntax_result_test.dart
 test/check_permission_result_test.dart
 test/cloud_account_test.dart
+test/continue_with_set_ory_session_token_test.dart
+test/continue_with_test.dart
+test/continue_with_verification_ui_flow_test.dart
+test/continue_with_verification_ui_test.dart
 test/courier_api_test.dart
 test/courier_message_status_test.dart
 test/courier_message_type_test.dart
@@ -455,6 +478,8 @@ test/identity_credentials_oidc_test.dart
 test/identity_credentials_password_test.dart
 test/identity_credentials_test.dart
 test/identity_credentials_type_test.dart
+test/identity_patch_response_test.dart
+test/identity_patch_test.dart
 test/identity_schema_container_test.dart
 test/identity_schema_preset_test.dart
 test/identity_state_test.dart
@@ -467,6 +492,7 @@ test/identity_with_credentials_password_test.dart
 test/identity_with_credentials_test.dart
 test/internal_get_project_branding_body_test.dart
 test/internal_is_owner_for_project_by_slug_body_test.dart
+test/internal_is_owner_for_project_by_slug_response_test.dart
 test/internal_provision_mock_subscription_test.dart
 test/introspected_o_auth2_token_test.dart
 test/is_owner_for_project_by_slug_test.dart
@@ -508,6 +534,7 @@ test/oidc_user_info_test.dart
 test/pagination_headers_test.dart
 test/pagination_test.dart
 test/parse_error_test.dart
+test/patch_identities_body_test.dart
 test/perform_native_logout_body_test.dart
 test/permission_api_test.dart
 test/plan_details_test.dart

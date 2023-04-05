@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.23
+API version: v1.1.24
 Contact: support@ory.sh
 */
 
@@ -17,11 +17,13 @@ import (
 
 // InternalIsOwnerForProjectBySlugBody Is Owner For Project By Slug Request Body
 type InternalIsOwnerForProjectBySlugBody struct {
+	// Namespace is the namespace of the subject.
+	Namespace string `json:"namespace"`
 	// ProjectScope is the project_id resolved from the API Token.
 	ProjectScope *string `json:"project_scope,omitempty"`
 	// ProjectSlug is the project's slug.
 	ProjectSlug string `json:"project_slug"`
-	// Subject is the subject from the API Token.
+	// Subject is the subject acting (user or API key).
 	Subject string `json:"subject"`
 }
 
@@ -29,8 +31,9 @@ type InternalIsOwnerForProjectBySlugBody struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInternalIsOwnerForProjectBySlugBody(projectSlug string, subject string) *InternalIsOwnerForProjectBySlugBody {
+func NewInternalIsOwnerForProjectBySlugBody(namespace string, projectSlug string, subject string) *InternalIsOwnerForProjectBySlugBody {
 	this := InternalIsOwnerForProjectBySlugBody{}
+	this.Namespace = namespace
 	this.ProjectSlug = projectSlug
 	this.Subject = subject
 	return &this
@@ -42,6 +45,30 @@ func NewInternalIsOwnerForProjectBySlugBody(projectSlug string, subject string) 
 func NewInternalIsOwnerForProjectBySlugBodyWithDefaults() *InternalIsOwnerForProjectBySlugBody {
 	this := InternalIsOwnerForProjectBySlugBody{}
 	return &this
+}
+
+// GetNamespace returns the Namespace field value
+func (o *InternalIsOwnerForProjectBySlugBody) GetNamespace() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Namespace
+}
+
+// GetNamespaceOk returns a tuple with the Namespace field value
+// and a boolean to check if the value has been set.
+func (o *InternalIsOwnerForProjectBySlugBody) GetNamespaceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Namespace, true
+}
+
+// SetNamespace sets field value
+func (o *InternalIsOwnerForProjectBySlugBody) SetNamespace(v string) {
+	o.Namespace = v
 }
 
 // GetProjectScope returns the ProjectScope field value if set, zero value otherwise.
@@ -126,6 +153,9 @@ func (o *InternalIsOwnerForProjectBySlugBody) SetSubject(v string) {
 
 func (o InternalIsOwnerForProjectBySlugBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["namespace"] = o.Namespace
+	}
 	if o.ProjectScope != nil {
 		toSerialize["project_scope"] = o.ProjectScope
 	}
