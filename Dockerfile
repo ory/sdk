@@ -89,42 +89,42 @@ RUN apt-get install -y --no-install-recommends \
 
 # dart
 RUN \
-  apt-get -q update && apt-get install --no-install-recommends -y -q gnupg2 curl git ca-certificates apt-transport-https openssh-client && \
-  curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-  curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list && \
-  apt-get update && \
-  apt-get install dart=2.13.4-1
+	apt-get -q update && apt-get install --no-install-recommends -y -q gnupg2 curl git ca-certificates apt-transport-https openssh-client && \
+	curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+	curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list && \
+	apt-get update && \
+	apt-get install dart=2.19.6-1
 
 # elixir
 RUN \
-  wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && \
-  dpkg -i erlang-solutions_2.0_all.deb && \
-  apt-get -q update && apt-get install --no-install-recommends -y -q esl-erlang elixir && \
-  rm erlang-solutions_2.0_all.deb && \
-  mix local.hex --force
+	wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && \
+	dpkg -i erlang-solutions_2.0_all.deb && \
+	apt-get -q update && apt-get install --no-install-recommends -y -q esl-erlang elixir && \
+	rm erlang-solutions_2.0_all.deb && \
+	mix local.hex --force
 
 # rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 RUN rm -rf /var/lib/apt/lists/*
 RUN download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | \
-      jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64")) | .browser_download_url') \
-    && curl -o /usr/local/bin/swagger -L'#' "$download_url" \
-    && chmod +x /usr/local/bin/swagger
+	jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64")) | .browser_download_url') \
+	&& curl -o /usr/local/bin/swagger -L'#' "$download_url" \
+	&& chmod +x /usr/local/bin/swagger
 
 RUN td=$(mktemp) \
-    tdd=$(mktemp -d) \
-    download_url=$(curl -s https://api.github.com/repos/cli/cli/releases/latest | \
-      jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_386.tar.gz")) | .browser_download_url') \
-    && curl -o $td -L'#' "$download_url" \
-    && tar -xzf $td --strip 1 -C $tdd \
-    && mv $tdd/bin/gh /usr/local/bin/gh \
-    && chmod +x /usr/local/bin/gh \
-    && rm -rf $td $tdd
+	tdd=$(mktemp -d) \
+	download_url=$(curl -s https://api.github.com/repos/cli/cli/releases/latest | \
+	jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_386.tar.gz")) | .browser_download_url') \
+	&& curl -o $td -L'#' "$download_url" \
+	&& tar -xzf $td --strip 1 -C $tdd \
+	&& mv $tdd/bin/gh /usr/local/bin/gh \
+	&& chmod +x /usr/local/bin/gh \
+	&& rm -rf $td $tdd
 
 RUN gem install bundler -v 2.3.26 && \
-      apt-get update && \
-      apt-get install -y --no-install-recommends ruby-dev
+	apt-get update && \
+	apt-get install -y --no-install-recommends ruby-dev
 
 ADD go.mod go.mod
 ADD go.sum go.sum
