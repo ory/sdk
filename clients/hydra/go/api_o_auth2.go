@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.0.2
+API version: v2.1.0
 Contact: hi@ory.sh
 */
 
@@ -447,11 +447,16 @@ associated OAuth 2.0 Access Tokens. You may also only revoke sessions for a spec
 	RevokeOAuth2ConsentSessionsExecute(r OAuth2ApiRevokeOAuth2ConsentSessionsRequest) (*http.Response, error)
 
 	/*
-	RevokeOAuth2LoginSessions Revokes All OAuth 2.0 Login Sessions of a Subject
+	RevokeOAuth2LoginSessions Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-	This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject
-has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and
-does not work with OpenID Connect Front- or Back-channel logout.
+	This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject
+has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.
+
+If you send the subject in a query param, all authentication sessions that belong to that subject are revoked.
+No OpennID Connect Front- or Back-channel logout is performed in this case.
+
+Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
+to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return OAuth2ApiRevokeOAuth2LoginSessionsRequest
@@ -2272,6 +2277,7 @@ type OAuth2ApiListOAuth2ConsentSessionsRequest struct {
 	subject *string
 	pageSize *int64
 	pageToken *string
+	loginSessionId *string
 }
 
 // The subject to list the consent sessions for.
@@ -2289,6 +2295,12 @@ func (r OAuth2ApiListOAuth2ConsentSessionsRequest) PageSize(pageSize int64) OAut
 // Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 func (r OAuth2ApiListOAuth2ConsentSessionsRequest) PageToken(pageToken string) OAuth2ApiListOAuth2ConsentSessionsRequest {
 	r.pageToken = &pageToken
+	return r
+}
+
+// The login session id to list the consent sessions for.
+func (r OAuth2ApiListOAuth2ConsentSessionsRequest) LoginSessionId(loginSessionId string) OAuth2ApiListOAuth2ConsentSessionsRequest {
+	r.loginSessionId = &loginSessionId
 	return r
 }
 
@@ -2344,6 +2356,9 @@ func (a *OAuth2ApiService) ListOAuth2ConsentSessionsExecute(r OAuth2ApiListOAuth
 		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
 	}
 	localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	if r.loginSessionId != nil {
+		localVarQueryParams.Add("login_session_id", parameterToString(*r.loginSessionId, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3452,6 +3467,7 @@ type OAuth2ApiRevokeOAuth2LoginSessionsRequest struct {
 	ctx context.Context
 	ApiService OAuth2Api
 	subject *string
+	sid *string
 }
 
 // OAuth 2.0 Subject  The subject to revoke authentication sessions for.
@@ -3460,16 +3476,27 @@ func (r OAuth2ApiRevokeOAuth2LoginSessionsRequest) Subject(subject string) OAuth
 	return r
 }
 
+// OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+func (r OAuth2ApiRevokeOAuth2LoginSessionsRequest) Sid(sid string) OAuth2ApiRevokeOAuth2LoginSessionsRequest {
+	r.sid = &sid
+	return r
+}
+
 func (r OAuth2ApiRevokeOAuth2LoginSessionsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RevokeOAuth2LoginSessionsExecute(r)
 }
 
 /*
-RevokeOAuth2LoginSessions Revokes All OAuth 2.0 Login Sessions of a Subject
+RevokeOAuth2LoginSessions Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject
-has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and
-does not work with OpenID Connect Front- or Back-channel logout.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject
+has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.
+
+If you send the subject in a query param, all authentication sessions that belong to that subject are revoked.
+No OpennID Connect Front- or Back-channel logout is performed in this case.
+
+Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
+to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return OAuth2ApiRevokeOAuth2LoginSessionsRequest
@@ -3499,11 +3526,13 @@ func (a *OAuth2ApiService) RevokeOAuth2LoginSessionsExecute(r OAuth2ApiRevokeOAu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.subject == nil {
-		return nil, reportError("subject is required and must be specified")
-	}
 
-	localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	if r.subject != nil {
+		localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	}
+	if r.sid != nil {
+		localVarQueryParams.Add("sid", parameterToString(*r.sid, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3560,10 +3589,22 @@ type OAuth2ApiRevokeOAuth2TokenRequest struct {
 	ctx context.Context
 	ApiService OAuth2Api
 	token *string
+	clientId *string
+	clientSecret *string
 }
 
 func (r OAuth2ApiRevokeOAuth2TokenRequest) Token(token string) OAuth2ApiRevokeOAuth2TokenRequest {
 	r.token = &token
+	return r
+}
+
+func (r OAuth2ApiRevokeOAuth2TokenRequest) ClientId(clientId string) OAuth2ApiRevokeOAuth2TokenRequest {
+	r.clientId = &clientId
+	return r
+}
+
+func (r OAuth2ApiRevokeOAuth2TokenRequest) ClientSecret(clientSecret string) OAuth2ApiRevokeOAuth2TokenRequest {
+	r.clientSecret = &clientSecret
 	return r
 }
 
@@ -3627,6 +3668,12 @@ func (a *OAuth2ApiService) RevokeOAuth2TokenExecute(r OAuth2ApiRevokeOAuth2Token
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.clientId != nil {
+		localVarFormParams.Add("client_id", parameterToString(*r.clientId, ""))
+	}
+	if r.clientSecret != nil {
+		localVarFormParams.Add("client_secret", parameterToString(*r.clientSecret, ""))
 	}
 	localVarFormParams.Add("token", parameterToString(*r.token, ""))
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

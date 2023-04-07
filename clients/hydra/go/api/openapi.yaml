@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Hydra API
-  version: v2.0.2
+  version: v2.1.0
 servers:
 - url: /
 tags:
@@ -1104,6 +1104,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: The login session id to list the consent sessions for.
+        explode: true
+        in: query
+        name: login_session_id
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1122,10 +1130,15 @@ paths:
       - oAuth2
   /admin/oauth2/auth/sessions/login:
     delete:
-      description: "This endpoint invalidates a subject's authentication session.\
-        \ After revoking the authentication session, the subject\nhas to re-authenticate\
-        \ at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens\
-        \ and\ndoes not work with OpenID Connect Front- or Back-channel logout."
+      description: "This endpoint invalidates authentication sessions. After revoking\
+        \ the authentication session(s), the subject\nhas to re-authenticate at the\
+        \ Ory OAuth2 Provider. This endpoint does not invalidate any tokens.\n\nIf\
+        \ you send the subject in a query param, all authentication sessions that\
+        \ belong to that subject are revoked.\nNo OpennID Connect Front- or Back-channel\
+        \ logout is performed in this case.\n\nAlternatively, you can send a SessionID\
+        \ via `sid` query param, in which case, only the session that is connected\n\
+        to that SessionID is revoked. OpenID Connect Back-channel logout is performed\
+        \ in this case."
       operationId: revokeOAuth2LoginSessions
       parameters:
       - description: |-
@@ -1135,7 +1148,18 @@ paths:
         explode: true
         in: query
         name: subject
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          OAuth 2.0 Subject
+
+          The subject to revoke authentication sessions for.
+        explode: true
+        in: query
+        name: sid
+        required: false
         schema:
           type: string
         style: form
@@ -1149,7 +1173,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorOAuth2'
           description: errorOAuth2
-      summary: Revokes All OAuth 2.0 Login Sessions of a Subject
+      summary: Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
       tags:
       - oAuth2
   /admin/oauth2/introspect:
@@ -1852,6 +1876,13 @@ components:
         context:
           title: "JSONRawMessage represents a json.RawMessage that works well with\
             \ JSON, SQL, and Swagger."
+        extend_session_lifespan:
+          description: "Extend OAuth2 authentication session lifespan\n\nIf set to\
+            \ `true`, the OAuth2 authentication cookie lifespan is extended. This\
+            \ is for example useful if you want the user to be able to use `prompt=none`\
+            \ continuously.\n\nThis value can only be set to `true` if the user has\
+            \ an authentication, which is the case if the `skip` value is `true`."
+          type: boolean
         force_subject_identifier:
           description: "ForceSubjectIdentifier forces the \"pairwise\" user ID of\
             \ the end-user that authenticated. The \"pairwise\" user ID refers to\
@@ -2339,7 +2370,7 @@ components:
         refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
         registration_access_token: registration_access_token
         client_id: client_id
-        token_endpoint_auth_method: token_endpoint_auth_method
+        token_endpoint_auth_method: client_secret_basic
         userinfo_signed_response_alg: userinfo_signed_response_alg
         authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
         authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -2355,6 +2386,7 @@ components:
         client_name: client_name
         policy_uri: policy_uri
         owner: owner
+        skip_consent: true
         audience:
         - audience
         - audience
@@ -2377,6 +2409,7 @@ components:
         implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
         client_secret_expires_at: 0
         implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+        access_token_strategy: access_token_strategy
         jwks_uri: jwks_uri
         request_object_signing_alg: request_object_signing_alg
         tos_uri: tos_uri
@@ -2387,6 +2420,12 @@ components:
         - response_types
         - response_types
       properties:
+        access_token_strategy:
+          description: "OAuth 2.0 Access Token Strategy\n\nAccessTokenStrategy is\
+            \ the strategy used to generate access tokens.\nValid options are `jwt`\
+            \ and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens\n\
+            Setting the stragegy here overrides the global setting in `strategies.access_token`."
+          type: string
         allowed_cors_origins:
           items:
             type: string
@@ -2636,6 +2675,11 @@ components:
             URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a
             file with a single JSON array of redirect_uri values.
           type: string
+        skip_consent:
+          description: |-
+            SkipConsent skips the consent screen for this client. This field can only
+            be set from the admin API.
+          type: boolean
         subject_type:
           description: |-
             OpenID Connect Subject Type
@@ -2644,14 +2688,15 @@ components:
             list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
           type: string
         token_endpoint_auth_method:
+          default: client_secret_basic
           description: "OAuth 2.0 Token Endpoint Authentication Method\n\nRequested\
             \ Client Authentication method for the Token Endpoint. The options are:\n\
-            \n`client_secret_post`: (default) Send `client_id` and `client_secret`\
-            \ as `application/x-www-form-urlencoded` in the HTTP body.\n`client_secret_basic`:\
-            \ Send `client_id` and `client_secret` as `application/x-www-form-urlencoded`\
-            \ encoded in the HTTP Authorization header.\n`private_key_jwt`: Use JSON\
-            \ Web Tokens to authenticate the client.\n`none`: Used for public clients\
-            \ (native apps, mobile apps) which can not have secrets."
+            \n`client_secret_basic`: (default) Send `client_id` and `client_secret`\
+            \ as `application/x-www-form-urlencoded` encoded in the HTTP Authorization\
+            \ header.\n`client_secret_post`: Send `client_id` and `client_secret`\
+            \ as `application/x-www-form-urlencoded` in the HTTP body.\n`private_key_jwt`:\
+            \ Use JSON Web Tokens to authenticate the client.\n`none`: Used for public\
+            \ clients (native apps, mobile apps) which can not have secrets."
           type: string
         token_endpoint_auth_signing_alg:
           description: |-
@@ -2791,7 +2836,7 @@ components:
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
           registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: token_endpoint_auth_method
+          token_endpoint_auth_method: client_secret_basic
           userinfo_signed_response_alg: userinfo_signed_response_alg
           authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -2807,6 +2852,7 @@ components:
           client_name: client_name
           policy_uri: policy_uri
           owner: owner
+          skip_consent: true
           audience:
           - audience
           - audience
@@ -2829,6 +2875,7 @@ components:
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          access_token_strategy: access_token_strategy
           jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
@@ -3028,7 +3075,7 @@ components:
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
             registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: token_endpoint_auth_method
+            token_endpoint_auth_method: client_secret_basic
             userinfo_signed_response_alg: userinfo_signed_response_alg
             authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -3044,6 +3091,7 @@ components:
             client_name: client_name
             policy_uri: policy_uri
             owner: owner
+            skip_consent: true
             audience:
             - audience
             - audience
@@ -3066,6 +3114,7 @@ components:
             implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
             client_secret_expires_at: 0
             implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+            access_token_strategy: access_token_strategy
             jwks_uri: jwks_uri
             request_object_signing_alg: request_object_signing_alg
             tos_uri: tos_uri
@@ -3170,7 +3219,7 @@ components:
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
           registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: token_endpoint_auth_method
+          token_endpoint_auth_method: client_secret_basic
           userinfo_signed_response_alg: userinfo_signed_response_alg
           authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -3186,6 +3235,7 @@ components:
           client_name: client_name
           policy_uri: policy_uri
           owner: owner
+          skip_consent: true
           audience:
           - audience
           - audience
@@ -3208,6 +3258,7 @@ components:
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          access_token_strategy: access_token_strategy
           jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
@@ -3302,7 +3353,7 @@ components:
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
           registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: token_endpoint_auth_method
+          token_endpoint_auth_method: client_secret_basic
           userinfo_signed_response_alg: userinfo_signed_response_alg
           authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -3318,6 +3369,7 @@ components:
           client_name: client_name
           policy_uri: policy_uri
           owner: owner
+          skip_consent: true
           audience:
           - audience
           - audience
@@ -3340,6 +3392,7 @@ components:
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          access_token_strategy: access_token_strategy
           jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
@@ -4136,6 +4189,12 @@ components:
       type: object
     revokeOAuth2Token_request:
       properties:
+        client_id:
+          type: string
+          x-formData-name: client_id
+        client_secret:
+          type: string
+          x-formData-name: client_secret
         token:
           required:
           - token

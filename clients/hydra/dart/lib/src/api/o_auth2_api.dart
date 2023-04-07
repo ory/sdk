@@ -1132,6 +1132,7 @@ class OAuth2Api {
   /// * [subject] - The subject to list the consent sessions for.
   /// * [pageSize] - Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [loginSessionId] - The login session id to list the consent sessions for.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1145,6 +1146,7 @@ class OAuth2Api {
     required String subject,
     int? pageSize = 250,
     String? pageToken = '1',
+    String? loginSessionId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1169,6 +1171,7 @@ class OAuth2Api {
       if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
       if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
+      if (loginSessionId != null) r'login_session_id': encodeQueryParameter(_serializers, loginSessionId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1889,11 +1892,12 @@ class OAuth2Api {
     return _response;
   }
 
-  /// Revokes All OAuth 2.0 Login Sessions of a Subject
-  /// This endpoint invalidates a subject&#39;s authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+  /// Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+  /// This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via &#x60;sid&#x60; query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
   ///
   /// Parameters:
   /// * [subject] - OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+  /// * [sid] - OAuth 2.0 Subject  The subject to revoke authentication sessions for.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1904,7 +1908,8 @@ class OAuth2Api {
   /// Returns a [Future]
   /// Throws [DioError] if API call or serialization fails
   Future<Response<void>> revokeOAuth2LoginSessions({ 
-    required String subject,
+    String? subject,
+    String? sid,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1926,7 +1931,8 @@ class OAuth2Api {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
+      if (subject != null) r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
+      if (sid != null) r'sid': encodeQueryParameter(_serializers, sid, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1946,6 +1952,8 @@ class OAuth2Api {
   ///
   /// Parameters:
   /// * [token] 
+  /// * [clientId] 
+  /// * [clientSecret] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1957,6 +1965,8 @@ class OAuth2Api {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<void>> revokeOAuth2Token({ 
     required String token,
+    String? clientId,
+    String? clientSecret,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1991,6 +2001,8 @@ class OAuth2Api {
 
     try {
       _bodyData = <String, dynamic>{
+        if (clientId != null) r'client_id': encodeQueryParameter(_serializers, clientId, const FullType(String)),
+        if (clientSecret != null) r'client_secret': encodeQueryParameter(_serializers, clientSecret, const FullType(String)),
         r'token': encodeQueryParameter(_serializers, token, const FullType(String)),
       };
 

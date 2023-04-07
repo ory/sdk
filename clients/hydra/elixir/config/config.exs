@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-config :ory_hydra_api, base_url: "http://localhost"
+config :ory_hydra, base_url: "http://localhost"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

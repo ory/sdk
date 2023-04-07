@@ -27,7 +27,7 @@ Method | HTTP request | Description
 [**RejectOAuth2LoginRequest**](OAuth2Api.md#RejectOAuth2LoginRequest) | **Put** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**RejectOAuth2LogoutRequest**](OAuth2Api.md#RejectOAuth2LogoutRequest) | **Put** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
 [**RevokeOAuth2ConsentSessions**](OAuth2Api.md#RevokeOAuth2ConsentSessions) | **Delete** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-[**RevokeOAuth2LoginSessions**](OAuth2Api.md#RevokeOAuth2LoginSessions) | **Delete** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject
+[**RevokeOAuth2LoginSessions**](OAuth2Api.md#RevokeOAuth2LoginSessions) | **Delete** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 [**RevokeOAuth2Token**](OAuth2Api.md#RevokeOAuth2Token) | **Post** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
 [**SetOAuth2Client**](OAuth2Api.md#SetOAuth2Client) | **Put** /admin/clients/{id} | Set OAuth 2.0 Client
 [**SetOAuth2ClientLifespans**](OAuth2Api.md#SetOAuth2ClientLifespans) | **Put** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
@@ -983,7 +983,7 @@ No authorization required
 
 ## ListOAuth2ConsentSessions
 
-> []OAuth2ConsentSession ListOAuth2ConsentSessions(ctx).Subject(subject).PageSize(pageSize).PageToken(pageToken).Execute()
+> []OAuth2ConsentSession ListOAuth2ConsentSessions(ctx).Subject(subject).PageSize(pageSize).PageToken(pageToken).LoginSessionId(loginSessionId).Execute()
 
 List OAuth 2.0 Consent Sessions of a Subject
 
@@ -1005,10 +1005,11 @@ func main() {
     subject := "subject_example" // string | The subject to list the consent sessions for.
     pageSize := int64(789) // int64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
     pageToken := "pageToken_example" // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to "1")
+    loginSessionId := "loginSessionId_example" // string | The login session id to list the consent sessions for. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OAuth2Api.ListOAuth2ConsentSessions(context.Background()).Subject(subject).PageSize(pageSize).PageToken(pageToken).Execute()
+    resp, r, err := apiClient.OAuth2Api.ListOAuth2ConsentSessions(context.Background()).Subject(subject).PageSize(pageSize).PageToken(pageToken).LoginSessionId(loginSessionId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OAuth2Api.ListOAuth2ConsentSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1032,6 +1033,7 @@ Name | Type | Description  | Notes
  **subject** | **string** | The subject to list the consent sessions for. | 
  **pageSize** | **int64** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [default to 250]
  **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [default to &quot;1&quot;]
+ **loginSessionId** | **string** | The login session id to list the consent sessions for. | 
 
 ### Return type
 
@@ -1598,9 +1600,9 @@ No authorization required
 
 ## RevokeOAuth2LoginSessions
 
-> RevokeOAuth2LoginSessions(ctx).Subject(subject).Execute()
+> RevokeOAuth2LoginSessions(ctx).Subject(subject).Sid(sid).Execute()
 
-Revokes All OAuth 2.0 Login Sessions of a Subject
+Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
 
 
@@ -1617,11 +1619,12 @@ import (
 )
 
 func main() {
-    subject := "subject_example" // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+    subject := "subject_example" // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
+    sid := "sid_example" // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OAuth2Api.RevokeOAuth2LoginSessions(context.Background()).Subject(subject).Execute()
+    resp, r, err := apiClient.OAuth2Api.RevokeOAuth2LoginSessions(context.Background()).Subject(subject).Sid(sid).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OAuth2Api.RevokeOAuth2LoginSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1641,6 +1644,7 @@ Other parameters are passed through a pointer to a apiRevokeOAuth2LoginSessionsR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | 
+ **sid** | **string** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | 
 
 ### Return type
 
@@ -1662,7 +1666,7 @@ No authorization required
 
 ## RevokeOAuth2Token
 
-> RevokeOAuth2Token(ctx).Token(token).Execute()
+> RevokeOAuth2Token(ctx).Token(token).ClientId(clientId).ClientSecret(clientSecret).Execute()
 
 Revoke OAuth 2.0 Access or Refresh Token
 
@@ -1682,10 +1686,12 @@ import (
 
 func main() {
     token := "token_example" // string | 
+    clientId := "clientId_example" // string |  (optional)
+    clientSecret := "clientSecret_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OAuth2Api.RevokeOAuth2Token(context.Background()).Token(token).Execute()
+    resp, r, err := apiClient.OAuth2Api.RevokeOAuth2Token(context.Background()).Token(token).ClientId(clientId).ClientSecret(clientSecret).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OAuth2Api.RevokeOAuth2Token``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1705,6 +1711,8 @@ Other parameters are passed through a pointer to a apiRevokeOAuth2TokenRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string** |  | 
+ **clientId** | **string** |  | 
+ **clientSecret** | **string** |  | 
 
 ### Return type
 

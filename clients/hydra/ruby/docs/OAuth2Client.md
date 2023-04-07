@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **access_token_strategy** | **String** | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are &#x60;jwt&#x60; and &#x60;opaque&#x60;. &#x60;jwt&#x60; is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens Setting the stragegy here overrides the global setting in &#x60;strategies.access_token&#x60;. | [optional] |
 | **allowed_cors_origins** | **Array&lt;String&gt;** |  | [optional] |
 | **audience** | **Array&lt;String&gt;** |  | [optional] |
 | **authorization_code_grant_access_token_lifespan** | **String** | Specify a time duration in milliseconds, seconds, minutes, hours. | [optional] |
@@ -43,8 +44,9 @@
 | **response_types** | **Array&lt;String&gt;** |  | [optional] |
 | **scope** | **String** | OAuth 2.0 Client Scope  Scope is a string containing a space-separated list of scope values (as described in Section 3.3 of OAuth 2.0 [RFC6749]) that the client can use when requesting access tokens. | [optional] |
 | **sector_identifier_uri** | **String** | OpenID Connect Sector Identifier URI  URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a file with a single JSON array of redirect_uri values. | [optional] |
+| **skip_consent** | **Boolean** | SkipConsent skips the consent screen for this client. This field can only be set from the admin API. | [optional] |
 | **subject_type** | **String** | OpenID Connect Subject Type  The &#x60;subject_types_supported&#x60; Discovery parameter contains a list of the supported subject_type values for this server. Valid types include &#x60;pairwise&#x60; and &#x60;public&#x60;. | [optional] |
-| **token_endpoint_auth_method** | **String** | OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  &#x60;client_secret_post&#x60;: (default) Send &#x60;client_id&#x60; and &#x60;client_secret&#x60; as &#x60;application/x-www-form-urlencoded&#x60; in the HTTP body. &#x60;client_secret_basic&#x60;: Send &#x60;client_id&#x60; and &#x60;client_secret&#x60; as &#x60;application/x-www-form-urlencoded&#x60; encoded in the HTTP Authorization header. &#x60;private_key_jwt&#x60;: Use JSON Web Tokens to authenticate the client. &#x60;none&#x60;: Used for public clients (native apps, mobile apps) which can not have secrets. | [optional] |
+| **token_endpoint_auth_method** | **String** | OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  &#x60;client_secret_basic&#x60;: (default) Send &#x60;client_id&#x60; and &#x60;client_secret&#x60; as &#x60;application/x-www-form-urlencoded&#x60; encoded in the HTTP Authorization header. &#x60;client_secret_post&#x60;: Send &#x60;client_id&#x60; and &#x60;client_secret&#x60; as &#x60;application/x-www-form-urlencoded&#x60; in the HTTP body. &#x60;private_key_jwt&#x60;: Use JSON Web Tokens to authenticate the client. &#x60;none&#x60;: Used for public clients (native apps, mobile apps) which can not have secrets. | [optional][default to &#39;client_secret_basic&#39;] |
 | **token_endpoint_auth_signing_alg** | **String** | OAuth 2.0 Token Endpoint Signing Algorithm  Requested Client Authentication signing algorithm for the Token Endpoint. | [optional] |
 | **tos_uri** | **String** | OAuth 2.0 Client Terms of Service URI  A URL string pointing to a human-readable terms of service document for the client that describes a contractual relationship between the end-user and the client that the end-user accepts when authorizing the client. | [optional] |
 | **updated_at** | **Time** | OAuth 2.0 Client Last Update Date  UpdatedAt returns the timestamp of the last update. | [optional] |
@@ -56,6 +58,7 @@
 require 'ory-hydra-client'
 
 instance = OryHydraClient::OAuth2Client.new(
+  access_token_strategy: null,
   allowed_cors_origins: null,
   audience: null,
   authorization_code_grant_access_token_lifespan: null,
@@ -95,6 +98,7 @@ instance = OryHydraClient::OAuth2Client.new(
   response_types: null,
   scope: scope1 scope-2 scope.3 scope:4,
   sector_identifier_uri: null,
+  skip_consent: null,
   subject_type: null,
   token_endpoint_auth_method: null,
   token_endpoint_auth_signing_alg: null,
