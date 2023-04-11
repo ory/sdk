@@ -263,7 +263,7 @@ dart () {
   cp "LICENSE" "clients/${PROJECT}/dart"
 
   # Generate the `*.g.dart` files
-  (cd $dir; /usr/bin/dart run build_runner build)
+  (cd $dir; command dart run build_runner build)
 }
 
 rust () {
