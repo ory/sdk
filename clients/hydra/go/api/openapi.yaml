@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Hydra API
-  version: v2.1.0
+  version: v2.1.1
 servers:
 - url: /
 tags:

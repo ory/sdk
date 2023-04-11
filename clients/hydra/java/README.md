@@ -1,8 +1,8 @@
 # hydra-client
 
 Ory Hydra API
-- API version: v2.1.0
-  - Build date: 2023-04-07T12:17:11.135612814Z[Etc/UTC]
+- API version: v2.1.1
+  - Build date: 2023-04-11T10:57:16.155985320Z[Etc/UTC]
 
 Documentation for all of Ory Hydra's APIs.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.hydra</groupId>
   <artifactId>hydra-client</artifactId>
-  <version>v2.1.0</version>
+  <version>v2.1.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.hydra:hydra-client:v2.1.0"
+     implementation "sh.ory.hydra:hydra-client:v2.1.1"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v2.1.0.jar`
+* `target/hydra-client-v2.1.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
