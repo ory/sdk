@@ -1,0 +1,1 @@
+OpenAPI API client for Ory Keto, Ory's open source 'Zanzibar: Google's Consistent, Global Authorization System' implementation.
