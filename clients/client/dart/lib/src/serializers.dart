@@ -202,7 +202,7 @@ import 'package:ory_client/src/model/update_settings_flow_with_totp_method.dart'
 import 'package:ory_client/src/model/update_settings_flow_with_web_authn_method.dart';
 import 'package:ory_client/src/model/update_subscription_body.dart';
 import 'package:ory_client/src/model/update_verification_flow_body.dart';
-import 'package:ory_client/src/model/update_verification_flow_with_code_method_body.dart';
+import 'package:ory_client/src/model/update_verification_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_verification_flow_with_link_method.dart';
 import 'package:ory_client/src/model/usage.dart';
 import 'package:ory_client/src/model/verifiable_identity_address.dart';
@@ -402,7 +402,7 @@ part 'serializers.g.dart';
   UpdateSettingsFlowWithWebAuthnMethod,
   UpdateSubscriptionBody,
   UpdateVerificationFlowBody,
-  UpdateVerificationFlowWithCodeMethodBody,
+  UpdateVerificationFlowWithCodeMethod,
   UpdateVerificationFlowWithLinkMethod,
   Usage,
   VerifiableIdentityAddress,

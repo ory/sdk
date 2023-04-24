@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **customUiBaseUrl** | **String** |  | [optional] 
 **hostname** | **String** |  | [optional] 
 **id** | **String** |  | [optional] 
+**sslStatus** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **verificationErrors** | **BuiltList&lt;String&gt;** |  | [optional] 
 **verificationStatus** | **String** |  | [optional] 

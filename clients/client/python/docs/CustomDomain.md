@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **custom_ui_base_url** | **str** |  | [optional] 
 **hostname** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
+**ssl_status** | **str** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 **verification_errors** | **[str]** |  | [optional] 
 **verification_status** | **str** |  | [optional] 

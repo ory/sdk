@@ -204,7 +204,7 @@ docs/UpdateSettingsFlowWithTotpMethod.md
 docs/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
-docs/UpdateVerificationFlowWithCodeMethodBody.md
+docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/Usage.md
 docs/VerifiableIdentityAddress.md
@@ -443,7 +443,7 @@ src/main/java/sh/ory/model/UpdateSettingsFlowWithTotpMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithWebAuthnMethod.java
 src/main/java/sh/ory/model/UpdateSubscriptionBody.java
 src/main/java/sh/ory/model/UpdateVerificationFlowBody.java
-src/main/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodBody.java
+src/main/java/sh/ory/model/UpdateVerificationFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateVerificationFlowWithLinkMethod.java
 src/main/java/sh/ory/model/Usage.java
 src/main/java/sh/ory/model/VerifiableIdentityAddress.java
@@ -650,7 +650,7 @@ src/test/java/sh/ory/model/UpdateSettingsFlowWithTotpMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithWebAuthnMethodTest.java
 src/test/java/sh/ory/model/UpdateSubscriptionBodyTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowBodyTest.java
-src/test/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodBodyTest.java
+src/test/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowWithLinkMethodTest.java
 src/test/java/sh/ory/model/UsageTest.java
 src/test/java/sh/ory/model/VerifiableIdentityAddressTest.java

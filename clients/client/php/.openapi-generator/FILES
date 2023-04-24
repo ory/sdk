@@ -203,7 +203,7 @@ docs/Model/UpdateSettingsFlowWithTotpMethod.md
 docs/Model/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/Model/UpdateSubscriptionBody.md
 docs/Model/UpdateVerificationFlowBody.md
-docs/Model/UpdateVerificationFlowWithCodeMethodBody.md
+docs/Model/UpdateVerificationFlowWithCodeMethod.md
 docs/Model/UpdateVerificationFlowWithLinkMethod.md
 docs/Model/Usage.md
 docs/Model/VerifiableIdentityAddress.md
@@ -415,7 +415,7 @@ lib/Model/UpdateSettingsFlowWithTotpMethod.php
 lib/Model/UpdateSettingsFlowWithWebAuthnMethod.php
 lib/Model/UpdateSubscriptionBody.php
 lib/Model/UpdateVerificationFlowBody.php
-lib/Model/UpdateVerificationFlowWithCodeMethodBody.php
+lib/Model/UpdateVerificationFlowWithCodeMethod.php
 lib/Model/UpdateVerificationFlowWithLinkMethod.php
 lib/Model/Usage.php
 lib/Model/VerifiableIdentityAddress.php
@@ -624,7 +624,7 @@ test/Model/UpdateSettingsFlowWithTotpMethodTest.php
 test/Model/UpdateSettingsFlowWithWebAuthnMethodTest.php
 test/Model/UpdateSubscriptionBodyTest.php
 test/Model/UpdateVerificationFlowBodyTest.php
-test/Model/UpdateVerificationFlowWithCodeMethodBodyTest.php
+test/Model/UpdateVerificationFlowWithCodeMethodTest.php
 test/Model/UpdateVerificationFlowWithLinkMethodTest.php
 test/Model/UsageTest.php
 test/Model/VerifiableIdentityAddressTest.php

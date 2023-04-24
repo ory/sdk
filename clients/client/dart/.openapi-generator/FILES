@@ -200,7 +200,7 @@ doc/UpdateSettingsFlowWithTotpMethod.md
 doc/UpdateSettingsFlowWithWebAuthnMethod.md
 doc/UpdateSubscriptionBody.md
 doc/UpdateVerificationFlowBody.md
-doc/UpdateVerificationFlowWithCodeMethodBody.md
+doc/UpdateVerificationFlowWithCodeMethod.md
 doc/UpdateVerificationFlowWithLinkMethod.md
 doc/Usage.md
 doc/VerifiableIdentityAddress.md
@@ -418,7 +418,7 @@ lib/src/model/update_settings_flow_with_totp_method.dart
 lib/src/model/update_settings_flow_with_web_authn_method.dart
 lib/src/model/update_subscription_body.dart
 lib/src/model/update_verification_flow_body.dart
-lib/src/model/update_verification_flow_with_code_method_body.dart
+lib/src/model/update_verification_flow_with_code_method.dart
 lib/src/model/update_verification_flow_with_link_method.dart
 lib/src/model/usage.dart
 lib/src/model/verifiable_identity_address.dart
@@ -626,7 +626,7 @@ test/update_settings_flow_with_totp_method_test.dart
 test/update_settings_flow_with_web_authn_method_test.dart
 test/update_subscription_body_test.dart
 test/update_verification_flow_body_test.dart
-test/update_verification_flow_with_code_method_body_test.dart
+test/update_verification_flow_with_code_method_test.dart
 test/update_verification_flow_with_link_method_test.dart
 test/usage_test.dart
 test/verifiable_identity_address_test.dart

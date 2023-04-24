@@ -205,7 +205,7 @@ docs/UpdateSettingsFlowWithTotpMethod.md
 docs/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
-docs/UpdateVerificationFlowWithCodeMethodBody.md
+docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/Usage.md
 docs/VerifiableIdentityAddress.md
@@ -418,7 +418,7 @@ lib/ory-client/models/update_settings_flow_with_totp_method.rb
 lib/ory-client/models/update_settings_flow_with_web_authn_method.rb
 lib/ory-client/models/update_subscription_body.rb
 lib/ory-client/models/update_verification_flow_body.rb
-lib/ory-client/models/update_verification_flow_with_code_method_body.rb
+lib/ory-client/models/update_verification_flow_with_code_method.rb
 lib/ory-client/models/update_verification_flow_with_link_method.rb
 lib/ory-client/models/usage.rb
 lib/ory-client/models/verifiable_identity_address.rb
@@ -629,7 +629,7 @@ spec/models/update_settings_flow_with_totp_method_spec.rb
 spec/models/update_settings_flow_with_web_authn_method_spec.rb
 spec/models/update_subscription_body_spec.rb
 spec/models/update_verification_flow_body_spec.rb
-spec/models/update_verification_flow_with_code_method_body_spec.rb
+spec/models/update_verification_flow_with_code_method_spec.rb
 spec/models/update_verification_flow_with_link_method_spec.rb
 spec/models/usage_spec.rb
 spec/models/verifiable_identity_address_spec.rb

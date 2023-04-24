@@ -27,7 +27,7 @@ Method | HTTP request | Description
 [**reject_o_auth2_login_request**](OAuth2Api.md#reject_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**reject_o_auth2_logout_request**](OAuth2Api.md#reject_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
 [**revoke_o_auth2_consent_sessions**](OAuth2Api.md#revoke_o_auth2_consent_sessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-[**revoke_o_auth2_login_sessions**](OAuth2Api.md#revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject
+[**revoke_o_auth2_login_sessions**](OAuth2Api.md#revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 [**revoke_o_auth2_token**](OAuth2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
 [**set_o_auth2_client**](OAuth2Api.md#set_o_auth2_client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 [**set_o_auth2_client_lifespans**](OAuth2Api.md#set_o_auth2_client_lifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
@@ -185,6 +185,7 @@ with ory_client.ApiClient(configuration) as api_client:
             "amr_example",
         ]),
         context={},
+        extend_session_lifespan=True,
         force_subject_identifier="force_subject_identifier_example",
         remember=True,
         remember_for=1,
@@ -416,7 +417,7 @@ with ory_client.ApiClient(configuration) as api_client:
         sector_identifier_uri="sector_identifier_uri_example",
         skip_consent=True,
         subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
+        token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
         tos_uri="tos_uri_example",
         updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -2068,11 +2069,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_o_auth2_login_sessions**
-> revoke_o_auth2_login_sessions(subject)
+> revoke_o_auth2_login_sessions()
 
-Revokes All OAuth 2.0 Login Sessions of a Subject
+Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 
@@ -2104,12 +2105,14 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = o_auth2_api.OAuth2Api(api_client)
-    subject = "subject_example" # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+    subject = "subject_example" # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
+    sid = "sid_example" # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
 
     # example passing only required values which don't have defaults set
+    # and optional values
     try:
-        # Revokes All OAuth 2.0 Login Sessions of a Subject
-        api_instance.revoke_o_auth2_login_sessions(subject)
+        # Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+        api_instance.revoke_o_auth2_login_sessions(subject=subject, sid=sid)
     except ory_client.ApiException as e:
         print("Exception when calling OAuth2Api->revoke_o_auth2_login_sessions: %s\n" % e)
 ```
@@ -2119,7 +2122,8 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. |
+ **subject** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
+ **sid** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
 
 ### Return type
 
@@ -2339,7 +2343,7 @@ with ory_client.ApiClient(configuration) as api_client:
         sector_identifier_uri="sector_identifier_uri_example",
         skip_consent=True,
         subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
+        token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
         tos_uri="tos_uri_example",
         updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),

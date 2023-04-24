@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.24
+  version: v1.1.25
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -1934,9 +1934,14 @@ paths:
   /admin/oauth2/auth/sessions/login:
     delete:
       description: |-
-        This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject
-        has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and
-        does not work with OpenID Connect Front- or Back-channel logout.
+        This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject
+        has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.
+
+        If you send the subject in a query param, all authentication sessions that belong to that subject are revoked.
+        No OpennID Connect Front- or Back-channel logout is performed in this case.
+
+        Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
+        to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
       operationId: revokeOAuth2LoginSessions
       parameters:
       - description: |-
@@ -1946,7 +1951,18 @@ paths:
         explode: true
         in: query
         name: subject
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          OAuth 2.0 Subject
+
+          The subject to revoke authentication sessions for.
+        explode: true
+        in: query
+        name: sid
+        required: false
         schema:
           type: string
         style: form
@@ -1963,7 +1979,7 @@ paths:
           description: errorOAuth2
       security:
       - oryAccessToken: []
-      summary: Revokes All OAuth 2.0 Login Sessions of a Subject
+      summary: Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
       tags:
       - oAuth2
       x-accepts: application/json
@@ -6848,6 +6864,14 @@ components:
           title: "JSONRawMessage represents a json.RawMessage that works well with\
             \ JSON, SQL, and Swagger."
           type: object
+        extend_session_lifespan:
+          description: |-
+            Extend OAuth2 authentication session lifespan
+
+            If set to `true`, the OAuth2 authentication cookie lifespan is extended. This is for example useful if you want the user to be able to use `prompt=none` continuously.
+
+            This value can only be set to `true` if the user has an authentication, which is the case if the `skip` value is `true`.
+          type: boolean
         force_subject_identifier:
           description: |-
             ForceSubjectIdentifier forces the "pairwise" user ID of the end-user that authenticated. The "pairwise" user ID refers to the
@@ -7313,6 +7337,54 @@ components:
         id:
           format: uuid
           type: string
+        ssl_status:
+          enum:
+          - initializing
+          - pending_validation
+          - deleted
+          - pending_issuance
+          - pending_deployment
+          - pending_deletion
+          - pending_expiration
+          - expired
+          - active
+          - initializing_timed_out
+          - validation_timed_out
+          - issuance_timed_out
+          - deployment_timed_out
+          - deletion_timed_out
+          - pending_cleanup
+          - staging_deployment
+          - staging_active
+          - deactivating
+          - inactive
+          - backup_issued
+          - holding_deployment
+          - ""
+          type: string
+          x-go-enum-desc: |-
+            initializing initializing
+            pending_validation pending_validation
+            deleted deleted
+            pending_issuance pending_issuance
+            pending_deployment pending_deployment
+            pending_deletion pending_deletion
+            pending_expiration pending_expiration
+            expired expired
+            active active
+            initializing_timed_out initializing_timed_out
+            validation_timed_out validation_timed_out
+            issuance_timed_out issuance_timed_out
+            deployment_timed_out deployment_timed_out
+            deletion_timed_out deletion_timed_out
+            pending_cleanup pending_cleanup
+            staging_deployment staging_deployment
+            staging_active staging_active
+            deactivating deactivating
+            inactive inactive
+            backup_issued backup_issued
+            holding_deployment holding_deployment
+             unknown  Cloudflare sometimes returns an empty string.
         updated_at:
           format: date-time
           type: string
@@ -8541,7 +8613,7 @@ components:
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
             registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: token_endpoint_auth_method
+            token_endpoint_auth_method: client_secret_basic
             userinfo_signed_response_alg: userinfo_signed_response_alg
             authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -10339,7 +10411,7 @@ components:
         refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
         registration_access_token: registration_access_token
         client_id: client_id
-        token_endpoint_auth_method: token_endpoint_auth_method
+        token_endpoint_auth_method: client_secret_basic
         userinfo_signed_response_alg: userinfo_signed_response_alg
         authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
         authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -10655,13 +10727,14 @@ components:
             list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
           type: string
         token_endpoint_auth_method:
+          default: client_secret_basic
           description: |-
             OAuth 2.0 Token Endpoint Authentication Method
 
             Requested Client Authentication method for the Token Endpoint. The options are:
 
-            `client_secret_post`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body.
-            `client_secret_basic`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header.
+            `client_secret_basic`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header.
+            `client_secret_post`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body.
             `private_key_jwt`: Use JSON Web Tokens to authenticate the client.
             `none`: Used for public clients (native apps, mobile apps) which can not have secrets.
           type: string
@@ -10783,7 +10856,7 @@ components:
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
           registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: token_endpoint_auth_method
+          token_endpoint_auth_method: client_secret_basic
           userinfo_signed_response_alg: userinfo_signed_response_alg
           authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -11013,7 +11086,7 @@ components:
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
             registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: token_endpoint_auth_method
+            token_endpoint_auth_method: client_secret_basic
             userinfo_signed_response_alg: userinfo_signed_response_alg
             authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -11161,7 +11234,7 @@ components:
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
           registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: token_endpoint_auth_method
+          token_endpoint_auth_method: client_secret_basic
           userinfo_signed_response_alg: userinfo_signed_response_alg
           authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -11293,7 +11366,7 @@ components:
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
           registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: token_endpoint_auth_method
+          token_endpoint_auth_method: client_secret_basic
           userinfo_signed_response_alg: userinfo_signed_response_alg
           authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -12944,7 +13017,7 @@ components:
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
             registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: token_endpoint_auth_method
+            token_endpoint_auth_method: client_secret_basic
             userinfo_signed_response_alg: userinfo_signed_response_alg
             authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -15403,11 +15476,13 @@ components:
       description: Update Verification Flow Request Body
       discriminator:
         mapping:
+          code: '#/components/schemas/updateVerificationFlowWithCodeMethod'
           link: '#/components/schemas/updateVerificationFlowWithLinkMethod'
         propertyName: method
       oneOf:
       - $ref: '#/components/schemas/updateVerificationFlowWithLinkMethod'
-    updateVerificationFlowWithCodeMethodBody:
+      - $ref: '#/components/schemas/updateVerificationFlowWithCodeMethod'
+    updateVerificationFlowWithCodeMethod:
       properties:
         code:
           description: The verification code

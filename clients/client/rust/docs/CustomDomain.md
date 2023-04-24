@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **custom_ui_base_url** | Option<**String**> |  | [optional]
 **hostname** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
+**ssl_status** | Option<**String**> |  | [optional]
 **updated_at** | Option<**String**> |  | [optional]
 **verification_errors** | Option<**Vec<String>**> |  | [optional]
 **verification_status** | Option<**String**> |  | [optional]

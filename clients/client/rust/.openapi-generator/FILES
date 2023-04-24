@@ -201,7 +201,7 @@ docs/UpdateSettingsFlowWithTotpMethod.md
 docs/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
-docs/UpdateVerificationFlowWithCodeMethodBody.md
+docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/Usage.md
 docs/VerifiableIdentityAddress.md
@@ -414,7 +414,7 @@ src/models/update_settings_flow_with_totp_method.rs
 src/models/update_settings_flow_with_web_authn_method.rs
 src/models/update_subscription_body.rs
 src/models/update_verification_flow_body.rs
-src/models/update_verification_flow_with_code_method_body.rs
+src/models/update_verification_flow_with_code_method.rs
 src/models/update_verification_flow_with_link_method.rs
 src/models/usage.rs
 src/models/verifiable_identity_address.rs

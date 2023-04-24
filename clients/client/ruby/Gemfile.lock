@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-client (1.1.24)
+    ory-client (1.1.25)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -16,7 +16,7 @@ GEM
     ffi (1.15.5)
     jaro_winkler (1.5.4)
     method_source (1.0.0)
-    parallel (1.22.1)
+    parallel (1.23.0)
     parser (3.2.2.0)
       ast (~> 2.4.1)
     pry (0.13.1)
@@ -33,9 +33,9 @@ GEM
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
       rspec-mocks (~> 3.12.0)
-    rspec-core (3.12.1)
+    rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
-    rspec-expectations (3.12.2)
+    rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-mocks (3.12.5)
@@ -51,7 +51,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.6)
     ruby-progressbar (1.13.0)
-    stringio (3.0.5)
+    stringio (3.0.6)
     typhoeus (1.4.0)
       ethon (>= 0.9.0)
     unicode-display_width (1.5.0)
@@ -68,4 +68,4 @@ DEPENDENCIES
   rubocop (~> 0.66.0)
 
 BUNDLED WITH
-   2.3.14
+   2.3.26

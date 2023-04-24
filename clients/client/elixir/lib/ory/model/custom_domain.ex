@@ -15,6 +15,7 @@ defmodule Ory.Model.CustomDomain do
     :custom_ui_base_url,
     :hostname,
     :id,
+    :ssl_status,
     :updated_at,
     :verification_errors,
     :verification_status
@@ -28,6 +29,7 @@ defmodule Ory.Model.CustomDomain do
     :custom_ui_base_url => String.t | nil,
     :hostname => String.t | nil,
     :id => String.t | nil,
+    :ssl_status => String.t | nil,
     :updated_at => DateTime.t | nil,
     :verification_errors => [String.t] | nil,
     :verification_status => String.t | nil

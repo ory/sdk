@@ -1940,7 +1940,7 @@ require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
 flow = 'flow_example' # String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
-update_verification_flow_body = OryClient::UpdateVerificationFlowWithLinkMethod.new({email: 'email_example', method: 'method_example'}) # UpdateVerificationFlowBody | 
+update_verification_flow_body = OryClient::UpdateVerificationFlowWithCodeMethod.new # UpdateVerificationFlowBody | 
 opts = {
   token: 'token_example', # String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.

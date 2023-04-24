@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **customUiBaseUrl** | **string** |  | [optional]
 **hostname** | **string** |  | [optional]
 **id** | **string** |  | [optional]
+**sslStatus** | **string** |  | [optional]
 **updatedAt** | **\DateTime** |  | [optional]
 **verificationErrors** | **string[]** |  | [optional]
 **verificationStatus** | **string** |  | [optional]

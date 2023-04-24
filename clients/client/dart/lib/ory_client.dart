@@ -209,7 +209,7 @@ export 'package:ory_client/src/model/update_settings_flow_with_totp_method.dart'
 export 'package:ory_client/src/model/update_settings_flow_with_web_authn_method.dart';
 export 'package:ory_client/src/model/update_subscription_body.dart';
 export 'package:ory_client/src/model/update_verification_flow_body.dart';
-export 'package:ory_client/src/model/update_verification_flow_with_code_method_body.dart';
+export 'package:ory_client/src/model/update_verification_flow_with_code_method.dart';
 export 'package:ory_client/src/model/update_verification_flow_with_link_method.dart';
 export 'package:ory_client/src/model/usage.dart';
 export 'package:ory_client/src/model/verifiable_identity_address.dart';

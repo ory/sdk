@@ -830,27 +830,33 @@ defmodule Ory.Api.OAuth2 do
   end
 
   @doc """
-  Revokes All OAuth 2.0 Login Sessions of a Subject
-  This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+  Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+  This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
   ### Parameters
 
   - `connection` (Ory.Connection): Connection to server
-  - `subject` (String.t): OAuth 2.0 Subject  The subject to revoke authentication sessions for.
   - `opts` (keyword): Optional parameters
+    - `:subject` (String.t): OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+    - `:sid` (String.t): OAuth 2.0 Subject  The subject to revoke authentication sessions for.
 
   ### Returns
 
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec revoke_o_auth2_login_sessions(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorOAuth2.t} | {:error, Tesla.Env.t}
-  def revoke_o_auth2_login_sessions(connection, subject, _opts \\ []) do
+  @spec revoke_o_auth2_login_sessions(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorOAuth2.t} | {:error, Tesla.Env.t}
+  def revoke_o_auth2_login_sessions(connection, opts \\ []) do
+    optional_params = %{
+      :subject => :query,
+      :sid => :query
+    }
+
     request =
       %{}
       |> method(:delete)
       |> url("/admin/oauth2/auth/sessions/login")
-      |> add_param(:query, :subject, subject)
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection

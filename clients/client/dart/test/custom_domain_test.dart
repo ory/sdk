@@ -42,6 +42,11 @@ void main() {
       // TODO
     });
 
+    // String sslStatus
+    test('to test the property `sslStatus`', () async {
+      // TODO
+    });
+
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
       // TODO

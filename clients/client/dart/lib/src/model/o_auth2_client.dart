@@ -55,7 +55,7 @@ part 'o_auth2_client.g.dart';
 /// * [sectorIdentifierUri] - OpenID Connect Sector Identifier URI  URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a file with a single JSON array of redirect_uri values.
 /// * [skipConsent] - SkipConsent skips the consent screen for this client. This field can only be set from the admin API.
 /// * [subjectType] - OpenID Connect Subject Type  The `subject_types_supported` Discovery parameter contains a list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
-/// * [tokenEndpointAuthMethod] - OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_post`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `client_secret_basic`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets.
+/// * [tokenEndpointAuthMethod] - OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_basic`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `client_secret_post`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets.
 /// * [tokenEndpointAuthSigningAlg] - OAuth 2.0 Token Endpoint Signing Algorithm  Requested Client Authentication signing algorithm for the Token Endpoint.
 /// * [tosUri] - OAuth 2.0 Client Terms of Service URI  A URL string pointing to a human-readable terms of service document for the client that describes a contractual relationship between the end-user and the client that the end-user accepts when authorizing the client.
 /// * [updatedAt] - OAuth 2.0 Client Last Update Date  UpdatedAt returns the timestamp of the last update.
@@ -211,7 +211,7 @@ abstract class OAuth2Client implements Built<OAuth2Client, OAuth2ClientBuilder> 
   @BuiltValueField(wireName: r'subject_type')
   String? get subjectType;
 
-  /// OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_post`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `client_secret_basic`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets.
+  /// OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_basic`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `client_secret_post`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets.
   @BuiltValueField(wireName: r'token_endpoint_auth_method')
   String? get tokenEndpointAuthMethod;
 
@@ -236,7 +236,8 @@ abstract class OAuth2Client implements Built<OAuth2Client, OAuth2ClientBuilder> 
   factory OAuth2Client([void updates(OAuth2ClientBuilder b)]) = _$OAuth2Client;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(OAuth2ClientBuilder b) => b;
+  static void _defaults(OAuth2ClientBuilder b) => b
+      ..tokenEndpointAuthMethod = 'client_secret_basic';
 
   @BuiltValueSerializer(custom: true)
   static Serializer<OAuth2Client> get serializer => _$OAuth2ClientSerializer();

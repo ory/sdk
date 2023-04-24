@@ -231,7 +231,7 @@ docs/UpdateSettingsFlowWithTotpMethod.md
 docs/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
-docs/UpdateVerificationFlowWithCodeMethodBody.md
+docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/Usage.md
 docs/VerifiableIdentityAddress.md
@@ -477,7 +477,7 @@ ory_client/model/update_settings_flow_with_totp_method.py
 ory_client/model/update_settings_flow_with_web_authn_method.py
 ory_client/model/update_subscription_body.py
 ory_client/model/update_verification_flow_body.py
-ory_client/model/update_verification_flow_with_code_method_body.py
+ory_client/model/update_verification_flow_with_code_method.py
 ory_client/model/update_verification_flow_with_link_method.py
 ory_client/model/usage.py
 ory_client/model/verifiable_identity_address.py
@@ -721,7 +721,7 @@ test/test_update_settings_flow_with_totp_method.py
 test/test_update_settings_flow_with_web_authn_method.py
 test/test_update_subscription_body.py
 test/test_update_verification_flow_body.py
-test/test_update_verification_flow_with_code_method_body.py
+test/test_update_verification_flow_with_code_method.py
 test/test_update_verification_flow_with_link_method.py
 test/test_usage.py
 test/test_verifiable_identity_address.py

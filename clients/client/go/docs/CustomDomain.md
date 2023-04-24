@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **CustomUiBaseUrl** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
+**SslStatus** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **VerificationErrors** | Pointer to **[]string** |  | [optional] 
 **VerificationStatus** | Pointer to **string** |  | [optional] 
@@ -208,6 +209,31 @@ SetId sets Id field to given value.
 `func (o *CustomDomain) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetSslStatus
+
+`func (o *CustomDomain) GetSslStatus() string`
+
+GetSslStatus returns the SslStatus field if non-nil, zero value otherwise.
+
+### GetSslStatusOk
+
+`func (o *CustomDomain) GetSslStatusOk() (*string, bool)`
+
+GetSslStatusOk returns a tuple with the SslStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSslStatus
+
+`func (o *CustomDomain) SetSslStatus(v string)`
+
+SetSslStatus sets SslStatus field to given value.
+
+### HasSslStatus
+
+`func (o *CustomDomain) HasSslStatus() bool`
+
+HasSslStatus returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

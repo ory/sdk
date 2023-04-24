@@ -191,7 +191,7 @@ docs/ClientUpdateSettingsFlowWithTotpMethod.md
 docs/ClientUpdateSettingsFlowWithWebAuthnMethod.md
 docs/ClientUpdateSubscriptionBody.md
 docs/ClientUpdateVerificationFlowBody.md
-docs/ClientUpdateVerificationFlowWithCodeMethodBody.md
+docs/ClientUpdateVerificationFlowWithCodeMethod.md
 docs/ClientUpdateVerificationFlowWithLinkMethod.md
 docs/ClientUsage.md
 docs/ClientVerifiableIdentityAddress.md
@@ -410,7 +410,7 @@ src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithTotpMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithWebAuthnMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSubscriptionBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateVerificationFlowBodyTests.cs
-src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithCodeMethodBodyTests.cs
+src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithCodeMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithLinkMethodTests.cs
 src/Ory.Client.Test/Model/ClientUsageTests.cs
 src/Ory.Client.Test/Model/ClientVerifiableIdentityAddressTests.cs
@@ -635,7 +635,7 @@ src/Ory.Client/Model/ClientUpdateSettingsFlowWithTotpMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithWebAuthnMethod.cs
 src/Ory.Client/Model/ClientUpdateSubscriptionBody.cs
 src/Ory.Client/Model/ClientUpdateVerificationFlowBody.cs
-src/Ory.Client/Model/ClientUpdateVerificationFlowWithCodeMethodBody.cs
+src/Ory.Client/Model/ClientUpdateVerificationFlowWithCodeMethod.cs
 src/Ory.Client/Model/ClientUpdateVerificationFlowWithLinkMethod.cs
 src/Ory.Client/Model/ClientUsage.cs
 src/Ory.Client/Model/ClientVerifiableIdentityAddress.cs

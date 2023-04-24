@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.1.24
-  - Build date: 2023-04-05T12:22:30.483443628Z[Etc/UTC]
+- API version: v1.1.25
+  - Build date: 2023-04-24T08:24:45.436303324Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.1.24</version>
+  <version>v1.1.25</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.1.24"
+     implementation "sh.ory:client:v1.1.25"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.1.24.jar`
+* `target/client-v1.1.25.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -203,7 +203,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**rejectOAuth2LoginRequest**](docs/OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 *OAuth2Api* | [**rejectOAuth2LogoutRequest**](docs/OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
 *OAuth2Api* | [**revokeOAuth2ConsentSessions**](docs/OAuth2Api.md#revokeOAuth2ConsentSessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-*OAuth2Api* | [**revokeOAuth2LoginSessions**](docs/OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject
+*OAuth2Api* | [**revokeOAuth2LoginSessions**](docs/OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 *OAuth2Api* | [**revokeOAuth2Token**](docs/OAuth2Api.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
 *OAuth2Api* | [**setOAuth2Client**](docs/OAuth2Api.md#setOAuth2Client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 *OAuth2Api* | [**setOAuth2ClientLifespans**](docs/OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
@@ -432,7 +432,7 @@ Class | Method | HTTP request | Description
  - [UpdateSettingsFlowWithWebAuthnMethod](docs/UpdateSettingsFlowWithWebAuthnMethod.md)
  - [UpdateSubscriptionBody](docs/UpdateSubscriptionBody.md)
  - [UpdateVerificationFlowBody](docs/UpdateVerificationFlowBody.md)
- - [UpdateVerificationFlowWithCodeMethodBody](docs/UpdateVerificationFlowWithCodeMethodBody.md)
+ - [UpdateVerificationFlowWithCodeMethod](docs/UpdateVerificationFlowWithCodeMethod.md)
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
  - [Usage](docs/Usage.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
