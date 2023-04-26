@@ -12,7 +12,13 @@ void main() {
       // TODO
     });
 
-    // The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
+    // The currently active interval of the subscription monthly Monthly yearly Yearly
+    // String currentInterval
+    test('to test the property `currentInterval`', () async {
+      // TODO
+    });
+
+    // The currently active plan of the subscription
     // String currentPlan
     test('to test the property `currentPlan`', () async {
       // TODO
@@ -27,6 +33,11 @@ void main() {
     // The ID of the subscription
     // String id
     test('to test the property `id`', () async {
+      // TODO
+    });
+
+    // String intervalChangesTo
+    test('to test the property `intervalChangesTo`', () async {
       // TODO
     });
 
@@ -46,7 +57,7 @@ void main() {
       // TODO
     });
 
-    // NullPlan planChangesTo
+    // String planChangesTo
     test('to test the property `planChangesTo`', () async {
       // TODO
     });

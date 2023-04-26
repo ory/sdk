@@ -1,6 +1,6 @@
 # PerformNativeLogoutBody
 
-nolint:deadcode,unused
+Perform Native Logout Request Body
 
 ## Properties
 Name | Type | Description | Notes

@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:ory_client/src/api_util.dart';
+import 'package:ory_client/src/model/batch_patch_identities_response.dart';
 import 'package:ory_client/src/model/create_identity_body.dart';
 import 'package:ory_client/src/model/create_recovery_code_for_identity_body.dart';
 import 'package:ory_client/src/model/create_recovery_link_for_identity_body.dart';
@@ -17,6 +18,7 @@ import 'package:ory_client/src/model/error_generic.dart';
 import 'package:ory_client/src/model/identity.dart';
 import 'package:ory_client/src/model/identity_schema_container.dart';
 import 'package:ory_client/src/model/json_patch.dart';
+import 'package:ory_client/src/model/patch_identities_body.dart';
 import 'package:ory_client/src/model/recovery_code_for_identity.dart';
 import 'package:ory_client/src/model/recovery_link_for_identity.dart';
 import 'package:ory_client/src/model/session.dart';
@@ -29,6 +31,105 @@ class IdentityApi {
   final Serializers _serializers;
 
   const IdentityApi(this._dio, this._serializers);
+
+  /// Create and deletes multiple identities
+  /// Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+  ///
+  /// Parameters:
+  /// * [patchIdentitiesBody] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BatchPatchIdentitiesResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<BatchPatchIdentitiesResponse>> batchPatchIdentities({ 
+    PatchIdentitiesBody? patchIdentitiesBody,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/identities';
+    final _options = Options(
+      method: r'PATCH',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(PatchIdentitiesBody);
+      _bodyData = patchIdentitiesBody == null ? null : _serializers.serialize(patchIdentitiesBody, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioError(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BatchPatchIdentitiesResponse _responseData;
+
+    try {
+      const _responseType = FullType(BatchPatchIdentitiesResponse);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BatchPatchIdentitiesResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<BatchPatchIdentitiesResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
 
   /// Create an Identity
   /// Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
@@ -378,6 +479,88 @@ class IdentityApi {
     );
 
     return _response;
+  }
+
+  /// Delete a credential for a specific identity
+  /// Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+  ///
+  /// Parameters:
+  /// * [id] - ID is the identity's ID.
+  /// * [type] - Type is the credential's Type. One of totp, webauthn, lookup
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [Identity] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<Identity>> deleteIdentityCredentials({ 
+    required String id,
+    required String type,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/identities/{id}/credentials/{type}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'type' '}', type.toString());
+    final _options = Options(
+      method: r'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    Identity _responseData;
+
+    try {
+      const _responseType = FullType(Identity);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as Identity;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<Identity>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Delete &amp; Invalidate an Identity&#39;s Sessions
@@ -820,6 +1003,7 @@ class IdentityApi {
   /// Parameters:
   /// * [perPage] - Items per Page  This is the number of items per page.
   /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  /// * [credentialsIdentifier] - CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -832,6 +1016,7 @@ class IdentityApi {
   Future<Response<BuiltList<Identity>>> listIdentities({ 
     int? perPage = 250,
     int? page = 1,
+    String? credentialsIdentifier,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -861,6 +1046,7 @@ class IdentityApi {
     final _queryParameters = <String, dynamic>{
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (credentialsIdentifier != null) r'credentials_identifier': encodeQueryParameter(_serializers, credentialsIdentifier, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

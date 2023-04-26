@@ -5,7 +5,8 @@ Update Subscription Request Body
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**plan_or_price** | **str** |  | 
+**interval** | **str** |  monthly Monthly yearly Yearly | 
+**plan** | **str** |  | 
 **return_to** | **str** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

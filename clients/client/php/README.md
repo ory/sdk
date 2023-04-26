@@ -109,10 +109,12 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**updateRegistrationFlow**](docs/Api/FrontendApi.md#updateregistrationflow) | **POST** /self-service/registration | Update Registration Flow
 *FrontendApi* | [**updateSettingsFlow**](docs/Api/FrontendApi.md#updatesettingsflow) | **POST** /self-service/settings | Complete Settings Flow
 *FrontendApi* | [**updateVerificationFlow**](docs/Api/FrontendApi.md#updateverificationflow) | **POST** /self-service/verification | Complete Verification Flow
+*IdentityApi* | [**batchPatchIdentities**](docs/Api/IdentityApi.md#batchpatchidentities) | **PATCH** /admin/identities | Create and deletes multiple identities
 *IdentityApi* | [**createIdentity**](docs/Api/IdentityApi.md#createidentity) | **POST** /admin/identities | Create an Identity
 *IdentityApi* | [**createRecoveryCodeForIdentity**](docs/Api/IdentityApi.md#createrecoverycodeforidentity) | **POST** /admin/recovery/code | Create a Recovery Code
 *IdentityApi* | [**createRecoveryLinkForIdentity**](docs/Api/IdentityApi.md#createrecoverylinkforidentity) | **POST** /admin/recovery/link | Create a Recovery Link
 *IdentityApi* | [**deleteIdentity**](docs/Api/IdentityApi.md#deleteidentity) | **DELETE** /admin/identities/{id} | Delete an Identity
+*IdentityApi* | [**deleteIdentityCredentials**](docs/Api/IdentityApi.md#deleteidentitycredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 *IdentityApi* | [**deleteIdentitySessions**](docs/Api/IdentityApi.md#deleteidentitysessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
 *IdentityApi* | [**disableSession**](docs/Api/IdentityApi.md#disablesession) | **DELETE** /admin/sessions/{id} | Deactivate a Session
 *IdentityApi* | [**extendSession**](docs/Api/IdentityApi.md#extendsession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
@@ -158,7 +160,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**rejectOAuth2LoginRequest**](docs/Api/OAuth2Api.md#rejectoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 *OAuth2Api* | [**rejectOAuth2LogoutRequest**](docs/Api/OAuth2Api.md#rejectoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
 *OAuth2Api* | [**revokeOAuth2ConsentSessions**](docs/Api/OAuth2Api.md#revokeoauth2consentsessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-*OAuth2Api* | [**revokeOAuth2LoginSessions**](docs/Api/OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject
+*OAuth2Api* | [**revokeOAuth2LoginSessions**](docs/Api/OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 *OAuth2Api* | [**revokeOAuth2Token**](docs/Api/OAuth2Api.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
 *OAuth2Api* | [**setOAuth2Client**](docs/Api/OAuth2Api.md#setoauth2client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 *OAuth2Api* | [**setOAuth2ClientLifespans**](docs/Api/OAuth2Api.md#setoauth2clientlifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
@@ -203,9 +205,14 @@ Class | Method | HTTP request | Description
 - [AcceptOAuth2LoginRequest](docs/Model/AcceptOAuth2LoginRequest.md)
 - [ActiveProjectInConsole](docs/Model/ActiveProjectInConsole.md)
 - [AuthenticatorAssuranceLevel](docs/Model/AuthenticatorAssuranceLevel.md)
+- [BatchPatchIdentitiesResponse](docs/Model/BatchPatchIdentitiesResponse.md)
 - [CheckOplSyntaxResult](docs/Model/CheckOplSyntaxResult.md)
 - [CheckPermissionResult](docs/Model/CheckPermissionResult.md)
 - [CloudAccount](docs/Model/CloudAccount.md)
+- [ContinueWith](docs/Model/ContinueWith.md)
+- [ContinueWithSetOrySessionToken](docs/Model/ContinueWithSetOrySessionToken.md)
+- [ContinueWithVerificationUi](docs/Model/ContinueWithVerificationUi.md)
+- [ContinueWithVerificationUiFlow](docs/Model/ContinueWithVerificationUiFlow.md)
 - [CourierMessageStatus](docs/Model/CourierMessageStatus.md)
 - [CourierMessageType](docs/Model/CourierMessageType.md)
 - [CreateCustomDomainBody](docs/Model/CreateCustomDomainBody.md)
@@ -219,7 +226,6 @@ Class | Method | HTTP request | Description
 - [CreateRelationshipBody](docs/Model/CreateRelationshipBody.md)
 - [CreateSubscriptionBody](docs/Model/CreateSubscriptionBody.md)
 - [CustomDomain](docs/Model/CustomDomain.md)
-- [CustomDomainQuota](docs/Model/CustomDomainQuota.md)
 - [DeleteMySessionsCount](docs/Model/DeleteMySessionsCount.md)
 - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
 - [ErrorBrowserLocationChangeRequired](docs/Model/ErrorBrowserLocationChangeRequired.md)
@@ -230,6 +236,7 @@ Class | Method | HTTP request | Description
 - [FlowError](docs/Model/FlowError.md)
 - [GenericError](docs/Model/GenericError.md)
 - [GenericErrorContent](docs/Model/GenericErrorContent.md)
+- [GenericUsage](docs/Model/GenericUsage.md)
 - [GetManagedIdentitySchemaLocation](docs/Model/GetManagedIdentitySchemaLocation.md)
 - [HealthNotReadyStatus](docs/Model/HealthNotReadyStatus.md)
 - [HealthStatus](docs/Model/HealthStatus.md)
@@ -239,6 +246,8 @@ Class | Method | HTTP request | Description
 - [IdentityCredentialsOidcProvider](docs/Model/IdentityCredentialsOidcProvider.md)
 - [IdentityCredentialsPassword](docs/Model/IdentityCredentialsPassword.md)
 - [IdentityCredentialsType](docs/Model/IdentityCredentialsType.md)
+- [IdentityPatch](docs/Model/IdentityPatch.md)
+- [IdentityPatchResponse](docs/Model/IdentityPatchResponse.md)
 - [IdentitySchemaContainer](docs/Model/IdentitySchemaContainer.md)
 - [IdentitySchemaPreset](docs/Model/IdentitySchemaPreset.md)
 - [IdentityState](docs/Model/IdentityState.md)
@@ -254,9 +263,9 @@ Class | Method | HTTP request | Description
 - [InlineResponse503](docs/Model/InlineResponse503.md)
 - [InternalGetProjectBrandingBody](docs/Model/InternalGetProjectBrandingBody.md)
 - [InternalIsOwnerForProjectBySlugBody](docs/Model/InternalIsOwnerForProjectBySlugBody.md)
+- [InternalIsOwnerForProjectBySlugResponse](docs/Model/InternalIsOwnerForProjectBySlugResponse.md)
 - [InternalProvisionMockSubscription](docs/Model/InternalProvisionMockSubscription.md)
 - [IntrospectedOAuth2Token](docs/Model/IntrospectedOAuth2Token.md)
-- [InviteQuota](docs/Model/InviteQuota.md)
 - [IsOwnerForProjectBySlug](docs/Model/IsOwnerForProjectBySlug.md)
 - [JsonPatch](docs/Model/JsonPatch.md)
 - [JsonWebKey](docs/Model/JsonWebKey.md)
@@ -275,7 +284,6 @@ Class | Method | HTTP request | Description
 - [NormalizedProjectRevisionHook](docs/Model/NormalizedProjectRevisionHook.md)
 - [NormalizedProjectRevisionIdentitySchema](docs/Model/NormalizedProjectRevisionIdentitySchema.md)
 - [NormalizedProjectRevisionThirdPartyProvider](docs/Model/NormalizedProjectRevisionThirdPartyProvider.md)
-- [NullPlan](docs/Model/NullPlan.md)
 - [OAuth2Client](docs/Model/OAuth2Client.md)
 - [OAuth2ClientTokenLifespans](docs/Model/OAuth2ClientTokenLifespans.md)
 - [OAuth2ConsentRequest](docs/Model/OAuth2ConsentRequest.md)
@@ -291,7 +299,10 @@ Class | Method | HTTP request | Description
 - [Pagination](docs/Model/Pagination.md)
 - [PaginationHeaders](docs/Model/PaginationHeaders.md)
 - [ParseError](docs/Model/ParseError.md)
+- [PatchIdentitiesBody](docs/Model/PatchIdentitiesBody.md)
 - [PerformNativeLogoutBody](docs/Model/PerformNativeLogoutBody.md)
+- [Plan](docs/Model/Plan.md)
+- [PlanDetails](docs/Model/PlanDetails.md)
 - [PostCheckPermissionBody](docs/Model/PostCheckPermissionBody.md)
 - [PostCheckPermissionOrErrorBody](docs/Model/PostCheckPermissionOrErrorBody.md)
 - [Project](docs/Model/Project.md)
@@ -306,7 +317,7 @@ Class | Method | HTTP request | Description
 - [ProjectServiceOAuth2](docs/Model/ProjectServiceOAuth2.md)
 - [ProjectServicePermission](docs/Model/ProjectServicePermission.md)
 - [ProjectServices](docs/Model/ProjectServices.md)
-- [QuotaBrandingThemes](docs/Model/QuotaBrandingThemes.md)
+- [QuotaUsage](docs/Model/QuotaUsage.md)
 - [RecoveryCodeForIdentity](docs/Model/RecoveryCodeForIdentity.md)
 - [RecoveryFlow](docs/Model/RecoveryFlow.md)
 - [RecoveryFlowState](docs/Model/RecoveryFlowState.md)
@@ -323,7 +334,6 @@ Class | Method | HTTP request | Description
 - [SelfServiceFlowExpiredError](docs/Model/SelfServiceFlowExpiredError.md)
 - [Session](docs/Model/Session.md)
 - [SessionAuthenticationMethod](docs/Model/SessionAuthenticationMethod.md)
-- [SessionCachingQuota](docs/Model/SessionCachingQuota.md)
 - [SessionDevice](docs/Model/SessionDevice.md)
 - [SetActiveProjectInConsoleBody](docs/Model/SetActiveProjectInConsoleBody.md)
 - [SetCustomDomainBody](docs/Model/SetCustomDomainBody.md)
@@ -378,8 +388,9 @@ Class | Method | HTTP request | Description
 - [UpdateSettingsFlowWithWebAuthnMethod](docs/Model/UpdateSettingsFlowWithWebAuthnMethod.md)
 - [UpdateSubscriptionBody](docs/Model/UpdateSubscriptionBody.md)
 - [UpdateVerificationFlowBody](docs/Model/UpdateVerificationFlowBody.md)
-- [UpdateVerificationFlowWithCodeMethodBody](docs/Model/UpdateVerificationFlowWithCodeMethodBody.md)
+- [UpdateVerificationFlowWithCodeMethod](docs/Model/UpdateVerificationFlowWithCodeMethod.md)
 - [UpdateVerificationFlowWithLinkMethod](docs/Model/UpdateVerificationFlowWithLinkMethod.md)
+- [Usage](docs/Model/Usage.md)
 - [VerifiableIdentityAddress](docs/Model/VerifiableIdentityAddress.md)
 - [VerificationFlow](docs/Model/VerificationFlow.md)
 - [VerificationFlowState](docs/Model/VerificationFlowState.md)
@@ -430,5 +441,5 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.1.7`
+- API version: `v1.1.25`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

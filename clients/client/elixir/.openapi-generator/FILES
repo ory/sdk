@@ -22,9 +22,14 @@ lib/ory/model/accept_o_auth2_consent_request_session.ex
 lib/ory/model/accept_o_auth2_login_request.ex
 lib/ory/model/active_project_in_console.ex
 lib/ory/model/authenticator_assurance_level.ex
+lib/ory/model/batch_patch_identities_response.ex
 lib/ory/model/check_opl_syntax_result.ex
 lib/ory/model/check_permission_result.ex
 lib/ory/model/cloud_account.ex
+lib/ory/model/continue_with.ex
+lib/ory/model/continue_with_set_ory_session_token.ex
+lib/ory/model/continue_with_verification_ui.ex
+lib/ory/model/continue_with_verification_ui_flow.ex
 lib/ory/model/courier_message_status.ex
 lib/ory/model/courier_message_type.ex
 lib/ory/model/create_custom_domain_body.ex
@@ -39,7 +44,6 @@ lib/ory/model/create_recovery_link_for_identity_body.ex
 lib/ory/model/create_relationship_body.ex
 lib/ory/model/create_subscription_body.ex
 lib/ory/model/custom_domain.ex
-lib/ory/model/custom_domain_quota.ex
 lib/ory/model/delete_my_sessions_count.ex
 lib/ory/model/error_authenticator_assurance_level_not_satisfied.ex
 lib/ory/model/error_browser_location_change_required.ex
@@ -50,6 +54,7 @@ lib/ory/model/expanded_permission_tree.ex
 lib/ory/model/flow_error.ex
 lib/ory/model/generic_error.ex
 lib/ory/model/generic_error_content.ex
+lib/ory/model/generic_usage.ex
 lib/ory/model/get_managed_identity_schema_location.ex
 lib/ory/model/get_version_200_response.ex
 lib/ory/model/health_not_ready_status.ex
@@ -60,6 +65,8 @@ lib/ory/model/identity_credentials_oidc.ex
 lib/ory/model/identity_credentials_oidc_provider.ex
 lib/ory/model/identity_credentials_password.ex
 lib/ory/model/identity_credentials_type.ex
+lib/ory/model/identity_patch.ex
+lib/ory/model/identity_patch_response.ex
 lib/ory/model/identity_schema_container.ex
 lib/ory/model/identity_schema_preset.ex
 lib/ory/model/identity_state.ex
@@ -71,9 +78,9 @@ lib/ory/model/identity_with_credentials_password.ex
 lib/ory/model/identity_with_credentials_password_config.ex
 lib/ory/model/internal_get_project_branding_body.ex
 lib/ory/model/internal_is_owner_for_project_by_slug_body.ex
+lib/ory/model/internal_is_owner_for_project_by_slug_response.ex
 lib/ory/model/internal_provision_mock_subscription.ex
 lib/ory/model/introspected_o_auth2_token.ex
-lib/ory/model/invite_quota.ex
 lib/ory/model/is_owner_for_project_by_slug.ex
 lib/ory/model/is_ready_200_response.ex
 lib/ory/model/is_ready_503_response.ex
@@ -94,7 +101,6 @@ lib/ory/model/normalized_project_revision.ex
 lib/ory/model/normalized_project_revision_hook.ex
 lib/ory/model/normalized_project_revision_identity_schema.ex
 lib/ory/model/normalized_project_revision_third_party_provider.ex
-lib/ory/model/null_plan.ex
 lib/ory/model/o_auth2_client.ex
 lib/ory/model/o_auth2_client_token_lifespans.ex
 lib/ory/model/o_auth2_consent_request.ex
@@ -110,7 +116,10 @@ lib/ory/model/oidc_user_info.ex
 lib/ory/model/pagination.ex
 lib/ory/model/pagination_headers.ex
 lib/ory/model/parse_error.ex
+lib/ory/model/patch_identities_body.ex
 lib/ory/model/perform_native_logout_body.ex
+lib/ory/model/plan.ex
+lib/ory/model/plan_details.ex
 lib/ory/model/post_check_permission_body.ex
 lib/ory/model/post_check_permission_or_error_body.ex
 lib/ory/model/project.ex
@@ -125,7 +134,7 @@ lib/ory/model/project_service_identity.ex
 lib/ory/model/project_service_o_auth2.ex
 lib/ory/model/project_service_permission.ex
 lib/ory/model/project_services.ex
-lib/ory/model/quota_branding_themes.ex
+lib/ory/model/quota_usage.ex
 lib/ory/model/recovery_code_for_identity.ex
 lib/ory/model/recovery_flow.ex
 lib/ory/model/recovery_flow_state.ex
@@ -142,7 +151,6 @@ lib/ory/model/schema_patch.ex
 lib/ory/model/self_service_flow_expired_error.ex
 lib/ory/model/session.ex
 lib/ory/model/session_authentication_method.ex
-lib/ory/model/session_caching_quota.ex
 lib/ory/model/session_device.ex
 lib/ory/model/set_active_project_in_console_body.ex
 lib/ory/model/set_custom_domain_body.ex
@@ -197,8 +205,9 @@ lib/ory/model/update_settings_flow_with_totp_method.ex
 lib/ory/model/update_settings_flow_with_web_authn_method.ex
 lib/ory/model/update_subscription_body.ex
 lib/ory/model/update_verification_flow_body.ex
-lib/ory/model/update_verification_flow_with_code_method_body.ex
+lib/ory/model/update_verification_flow_with_code_method.ex
 lib/ory/model/update_verification_flow_with_link_method.ex
+lib/ory/model/usage.ex
 lib/ory/model/verifiable_identity_address.ex
 lib/ory/model/verification_flow.ex
 lib/ory/model/verification_flow_state.ex

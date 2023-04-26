@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.7
+  version: v1.1.25
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -553,6 +553,15 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: "CredentialsIdentifier is the identifier (username, email) of\
+          \ the credentials to look up."
+        explode: true
+        in: query
+        name: credentials_identifier
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -571,6 +580,47 @@ paths:
       security:
       - oryAccessToken: []
       summary: List Identities
+      tags:
+      - identity
+    patch:
+      description: "Creates or delete multiple\n[identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).\n\
+        This endpoint can also be used to [import\ncredentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)\n\
+        for instance passwords, social sign in configurations or multifactor methods."
+      operationId: batchPatchIdentities
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patchIdentitiesBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchPatchIdentitiesResponse'
+          description: batchPatchIdentitiesResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Create and deletes multiple identities
       tags:
       - identity
     post:
@@ -812,6 +862,56 @@ paths:
       security:
       - oryAccessToken: []
       summary: Update an Identity
+      tags:
+      - identity
+  /admin/identities/{id}/credentials/{type}:
+    delete:
+      description: "Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
+        \ credential by its type\nYou can only delete second factor (aal2) credentials."
+      operationId: deleteIdentityCredentials
+      parameters:
+      - description: ID is the identity's ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Type is the credential's Type.\nOne of totp, webauthn, lookup"
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - totp
+          - webauthn
+          - lookup
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/identity'
+          description: identity
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Delete a credential for a specific identity
       tags:
       - identity
   /admin/identities/{id}/sessions:
@@ -1743,10 +1843,15 @@ paths:
       - oAuth2
   /admin/oauth2/auth/sessions/login:
     delete:
-      description: "This endpoint invalidates a subject's authentication session.\
-        \ After revoking the authentication session, the subject\nhas to re-authenticate\
-        \ at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens\
-        \ and\ndoes not work with OpenID Connect Front- or Back-channel logout."
+      description: "This endpoint invalidates authentication sessions. After revoking\
+        \ the authentication session(s), the subject\nhas to re-authenticate at the\
+        \ Ory OAuth2 Provider. This endpoint does not invalidate any tokens.\n\nIf\
+        \ you send the subject in a query param, all authentication sessions that\
+        \ belong to that subject are revoked.\nNo OpennID Connect Front- or Back-channel\
+        \ logout is performed in this case.\n\nAlternatively, you can send a SessionID\
+        \ via `sid` query param, in which case, only the session that is connected\n\
+        to that SessionID is revoked. OpenID Connect Back-channel logout is performed\
+        \ in this case."
       operationId: revokeOAuth2LoginSessions
       parameters:
       - description: |-
@@ -1756,7 +1861,18 @@ paths:
         explode: true
         in: query
         name: subject
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          OAuth 2.0 Subject
+
+          The subject to revoke authentication sessions for.
+        explode: true
+        in: query
+        name: sid
+        required: false
         schema:
           type: string
         style: form
@@ -1772,7 +1888,7 @@ paths:
           description: errorOAuth2
       security:
       - oryAccessToken: []
-      summary: Revokes All OAuth 2.0 Login Sessions of a Subject
+      summary: Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
       tags:
       - oAuth2
   /admin/oauth2/introspect:
@@ -3641,7 +3757,8 @@ paths:
         \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
       operationId: postCheckPermissionOrError
       parameters:
-      - explode: true
+      - description: "nolint:deadcode,unused"
+        explode: true
         in: query
         name: max-depth
         required: false
@@ -4946,6 +5063,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: "The URL to return the browser to after the verification flow\
+          \ was completed.\n\nAfter the registration flow is completed, the user will\
+          \ be sent a verification email.\nUpon completing the verification flow,\
+          \ this URL will be used to override the default\n`selfservice.flows.verification.after.default_redirect_to`\
+          \ value."
+        explode: true
+        in: query
+        name: after_verification_return_to
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -5430,7 +5559,7 @@ paths:
         \ or a redirect to the Verification UI URL with\na new Verification Flow ID\
         \ which contains an error message that the verification link was invalid.\n\
         \nMore information can be found at [Ory Kratos Email and Phone Verification\
-        \ Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation)."
+        \ Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation)."
       operationId: updateVerificationFlow
       parameters:
       - description: |-
@@ -5552,7 +5681,7 @@ paths:
         \ is called via an AJAX request, the response contains the recovery flow without\
         \ any redirects.\n\nThis endpoint is NOT INTENDED for API clients and only\
         \ works with browsers (Chrome, Firefox, ...).\n\nMore information can be found\
-        \ at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation)."
+        \ at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation)."
       operationId: createBrowserVerificationFlow
       parameters:
       - description: The URL to return the browser to after the flow was completed.
@@ -5593,8 +5722,8 @@ paths:
         \ the incoming HTTP Cookie header to this endpoint:\n\n```js\npseudo-code\
         \ example\nrouter.get('/recovery', async function (req, res) {\nconst flow\
         \ = await client.getVerificationFlow(req.header('cookie'), req.query['flow'])\n\
-        \nres.render('verification', flow)\n})\n\nMore information can be found at\
-        \ [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation)."
+        \nres.render('verification', flow)\n})\n```\n\nMore information can be found\
+        \ at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation)."
       operationId: getVerificationFlow
       parameters:
       - description: |-
@@ -6085,6 +6214,22 @@ components:
         largest representable duration to approximately 290 years.
       format: int64
       type: integer
+    GenericUsage:
+      properties:
+        additional_price:
+          description: AdditionalPrice is the price per-unit exceeding IncludedUsage.
+            A price of 0 means that no other items can be consumed.
+          format: int64
+          type: integer
+        included_usage:
+          description: IncludedUsage is the number of included items.
+          format: int64
+          type: integer
+      required:
+      - additional_price
+      - included_usage
+      title: GenericUsage is the generic usage type that can be used for any feature.
+      type: object
     ID:
       format: int64
       type: integer
@@ -6114,33 +6259,6 @@ components:
     NullInt:
       nullable: true
       type: integer
-    NullPlan:
-      description: |2-
-
-        unknown Unknown
-        free Free
-        start_up_monthly StartUpMonthly
-        start_up_yearly StartUpYearly
-        business_monthly BusinessMonthly
-        business_yearly BusinessYearly
-        custom Custom
-      enum:
-      - unknown
-      - free
-      - start_up_monthly
-      - start_up_yearly
-      - business_monthly
-      - business_yearly
-      - custom
-      type: string
-      x-go-enum-desc: |-
-        unknown Unknown
-        free Free
-        start_up_monthly StartUpMonthly
-        start_up_yearly StartUpYearly
-        business_monthly BusinessMonthly
-        business_yearly BusinessYearly
-        custom Custom
     NullString:
       nullable: true
       type: string
@@ -6169,6 +6287,63 @@ components:
         start:
           $ref: '#/components/schemas/SourcePosition'
       type: object
+    Plan:
+      properties:
+        name:
+          description: Name is the name of the plan.
+          type: string
+        version:
+          description: Version is the version of the plan. The combination of `name@version`
+            must be unique.
+          format: int64
+          type: integer
+      required:
+      - name
+      - version
+      type: object
+    PlanDetails:
+      properties:
+        base_fee_monthly:
+          description: BaseFeeMonthly is the monthly base fee for the plan.
+          format: int64
+          type: integer
+        base_fee_yearly:
+          description: BaseFeeYearly is the yearly base fee for the plan.
+          format: int64
+          type: integer
+        custom:
+          description: Custom is true if the plan is custom. This means it will be
+            hidden from the pricing page.
+          type: boolean
+        description:
+          description: Description is the description of the plan.
+          type: string
+        features:
+          additionalProperties:
+            $ref: '#/components/schemas/GenericUsage'
+          description: Features are the feature definitions included in the plan.
+          type: object
+        name:
+          description: Name is the name of the plan.
+          type: string
+        version:
+          description: Version is the version of the plan. The combination of `name@version`
+            must be unique.
+          format: int64
+          type: integer
+      required:
+      - base_fee_monthly
+      - base_fee_yearly
+      - custom
+      - description
+      - features
+      - name
+      - version
+      type: object
+    Pricing:
+      items:
+        $ref: '#/components/schemas/PlanDetails'
+      type: array
     RecoveryAddressType:
       title: RecoveryAddressType must not exceed 16 characters as that is the limitation
         in the SQL Schema.
@@ -6221,6 +6396,11 @@ components:
     UUID:
       format: uuid4
       type: string
+    Usage:
+      properties:
+        GenericUsage:
+          $ref: '#/components/schemas/GenericUsage'
+      type: object
     Warning:
       example:
         code: 0
@@ -6301,6 +6481,13 @@ components:
           title: "JSONRawMessage represents a json.RawMessage that works well with\
             \ JSON, SQL, and Swagger."
           type: object
+        extend_session_lifespan:
+          description: "Extend OAuth2 authentication session lifespan\n\nIf set to\
+            \ `true`, the OAuth2 authentication cookie lifespan is extended. This\
+            \ is for example useful if you want the user to be able to use `prompt=none`\
+            \ continuously.\n\nThis value can only be set to `true` if the user has\
+            \ an authentication, which is the case if the `skip` value is `true`."
+          type: boolean
         force_subject_identifier:
           description: "ForceSubjectIdentifier forces the \"pairwise\" user ID of\
             \ the end-user that authenticated. The \"pairwise\" user ID refers to\
@@ -6363,6 +6550,23 @@ components:
       - aal3
       title: Authenticator Assurance Level (AAL)
       type: string
+    batchPatchIdentitiesResponse:
+      description: Patch identities response
+      example:
+        identities:
+        - patch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          identity: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          action: create
+        - patch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          identity: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          action: create
+      properties:
+        identities:
+          description: The patch responses for the individual identities.
+          items:
+            $ref: '#/components/schemas/identityPatchResponse'
+          type: array
+      type: object
     checkOplSyntaxBody:
       description: Ory Permission Language Document
       type: string
@@ -6415,6 +6619,76 @@ components:
         name:
           type: string
       type: object
+    continueWith:
+      discriminator:
+        mapping:
+          set_ory_session_token: '#/components/schemas/continueWithSetOrySessionToken'
+          show_verification_ui: '#/components/schemas/continueWithVerificationUi'
+        propertyName: action
+      oneOf:
+      - $ref: '#/components/schemas/continueWithVerificationUi'
+      - $ref: '#/components/schemas/continueWithSetOrySessionToken'
+    continueWithSetOrySessionToken:
+      description: "Indicates that a session was issued, and the application should\
+        \ use this token for authenticated requests"
+      properties:
+        action:
+          description: |-
+            Action will always be `set_ory_session_token`
+            set_ory_session_token ContinueWithActionSetOrySessionToken
+            show_verification_ui ContinueWithActionShowVerificationUI
+          enum:
+          - set_ory_session_token
+          - show_verification_ui
+          type: string
+          x-go-enum-desc: |-
+            set_ory_session_token ContinueWithActionSetOrySessionToken
+            show_verification_ui ContinueWithActionShowVerificationUI
+        ory_session_token:
+          description: Token is the token of the session
+          type: string
+      required:
+      - action
+      - ory_session_token
+      type: object
+    continueWithVerificationUi:
+      description: "Indicates, that the UI flow could be continued by showing a verification\
+        \ ui"
+      properties:
+        action:
+          description: |-
+            Action will always be `show_verification_ui`
+            set_ory_session_token ContinueWithActionSetOrySessionToken
+            show_verification_ui ContinueWithActionShowVerificationUI
+          enum:
+          - set_ory_session_token
+          - show_verification_ui
+          type: string
+          x-go-enum-desc: |-
+            set_ory_session_token ContinueWithActionSetOrySessionToken
+            show_verification_ui ContinueWithActionShowVerificationUI
+        flow:
+          $ref: '#/components/schemas/continueWithVerificationUiFlow'
+      required:
+      - action
+      - flow
+      type: object
+    continueWithVerificationUiFlow:
+      properties:
+        id:
+          description: The ID of the verification flow
+          format: uuid
+          type: string
+        url:
+          description: The URL of the verification flow
+          type: string
+        verifiable_address:
+          description: The address that should be verified in this flow
+          type: string
+      required:
+      - id
+      - verifiable_address
+      type: object
     courierMessageStatus:
       description: A Message's Status
       enum:
@@ -6445,6 +6719,9 @@ components:
         cors_enabled:
           description: CORS Enabled for the custom hostname.
           type: boolean
+        custom_ui_base_url:
+          description: The base URL where the custom user interface will be exposed.
+          type: string
         hostname:
           description: The custom hostname where the API will be exposed.
           type: string
@@ -6621,7 +6898,19 @@ components:
     createSubscriptionBody:
       description: Create Subscription Request Body
       properties:
-        plan_or_price:
+        interval:
+          description: |2-
+
+            monthly Monthly
+            yearly Yearly
+          enum:
+          - monthly
+          - yearly
+          type: string
+          x-go-enum-desc: |-
+            monthly Monthly
+            yearly Yearly
+        plan:
           type: string
         provision_first_project:
           format: uuid
@@ -6629,7 +6918,8 @@ components:
         return_to:
           type: string
       required:
-      - plan_or_price
+      - interval
+      - plan
       - provision_first_project
       type: object
     customDomain:
@@ -6648,11 +6938,61 @@ components:
         created_at:
           format: date-time
           type: string
+        custom_ui_base_url:
+          type: string
         hostname:
           type: string
         id:
           format: uuid
           type: string
+        ssl_status:
+          enum:
+          - initializing
+          - pending_validation
+          - deleted
+          - pending_issuance
+          - pending_deployment
+          - pending_deletion
+          - pending_expiration
+          - expired
+          - active
+          - initializing_timed_out
+          - validation_timed_out
+          - issuance_timed_out
+          - deployment_timed_out
+          - deletion_timed_out
+          - pending_cleanup
+          - staging_deployment
+          - staging_active
+          - deactivating
+          - inactive
+          - backup_issued
+          - holding_deployment
+          - ""
+          type: string
+          x-go-enum-desc: |-
+            initializing initializing
+            pending_validation pending_validation
+            deleted deleted
+            pending_issuance pending_issuance
+            pending_deployment pending_deployment
+            pending_deletion pending_deletion
+            pending_expiration pending_expiration
+            expired expired
+            active active
+            initializing_timed_out initializing_timed_out
+            validation_timed_out validation_timed_out
+            issuance_timed_out issuance_timed_out
+            deployment_timed_out deployment_timed_out
+            deletion_timed_out deletion_timed_out
+            pending_cleanup pending_cleanup
+            staging_deployment staging_deployment
+            staging_active staging_active
+            deactivating deactivating
+            inactive inactive
+            backup_issued backup_issued
+            holding_deployment holding_deployment
+             unknown  Cloudflare sometimes returns an empty string.
         updated_at:
           format: date-time
           type: string
@@ -6664,18 +7004,6 @@ components:
           title: CustomHostnameStatus is the enumeration of valid state values in
             the CustomHostnameSSL.
           type: string
-      type: object
-    customDomainQuota:
-      description: Custom Domain Quota
-      properties:
-        available_domains:
-          format: int64
-          type: integer
-        can_use:
-          type: boolean
-        used_domains:
-          format: int64
-          type: integer
       type: object
     deleteMySessionsCount:
       description: Deleted Session Count
@@ -7289,6 +7617,43 @@ components:
     identityMetaSchema:
       description: Identity Meta Schema
       type: object
+    identityPatch:
+      description: Payload for patching an identity
+      properties:
+        create:
+          $ref: '#/components/schemas/createIdentityBody'
+        patch_id:
+          description: "The ID of this patch.\n\nThe patch ID is optional. If specified,\
+            \ the ID will be returned in the\nresponse, so consumers of this API can\
+            \ correlate the response with the\npatch."
+          format: uuid
+          type: string
+      type: object
+    identityPatchResponse:
+      description: Response for a single identity patch
+      example:
+        patch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        identity: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        action: create
+      properties:
+        action:
+          description: |-
+            The action for this specific patch
+            create ActionCreate  Create this identity.
+          enum:
+          - create
+          type: string
+          x-go-enum-desc: create ActionCreate  Create this identity.
+        identity:
+          description: The identity ID payload of this patch
+          format: uuid
+          type: string
+        patch_id:
+          description: "The ID of this patch response, if an ID was specified in the\
+            \ patch."
+          format: uuid
+          type: string
+      type: object
     identitySchema:
       description: Raw JSON Schema
       type: object
@@ -7302,7 +7667,7 @@ components:
           description: The ID of the Identity JSON Schema
           type: string
         schema:
-          description: Raw JSON Schema
+          description: The actual Identity JSON Schema
           type: object
       type: object
     identitySchemaPreset:
@@ -7409,6 +7774,12 @@ components:
     internalIsOwnerForProjectBySlugBody:
       description: Is Owner For Project By Slug Request Body
       properties:
+        namespace:
+          description: Namespace is the namespace of the subject.
+          enum:
+          - User
+          - ' ApiKey'
+          type: string
         project_scope:
           description: |-
             ProjectScope is the project_id resolved from the
@@ -7418,11 +7789,20 @@ components:
           description: ProjectSlug is the project's slug.
           type: string
         subject:
-          description: Subject is the subject from the API Token.
+          description: Subject is the subject acting (user or API key).
           type: string
       required:
+      - namespace
       - project_slug
       - subject
+      type: object
+    internalIsOwnerForProjectBySlugResponse:
+      properties:
+        project_id:
+          description: ProjectID is the project's ID.
+          type: string
+      required:
+      - project_id
       type: object
     internalProvisionMockSubscription:
       description: Internal Provision Mock Subscription Request Body
@@ -7431,12 +7811,25 @@ components:
           description: Identity ID
           format: uuid
           type: string
-        plan_or_price:
-          description: Plan or Price
+        interval:
+          description: |-
+            Billing Interval
+            monthly Monthly
+            yearly Yearly
+          enum:
+          - monthly
+          - yearly
+          type: string
+          x-go-enum-desc: |-
+            monthly Monthly
+            yearly Yearly
+        plan:
+          description: Plan ID
           type: string
       required:
       - identity_id
-      - plan_or_price
+      - interval
+      - plan
       type: object
     introspectedOAuth2Token:
       description: "Introspection contains an access token's session data as specified\
@@ -7535,19 +7928,6 @@ components:
       required:
       - active
       type: object
-    inviteQuota:
-      description: Project invite quota
-      properties:
-        project_id:
-          format: uuid
-          type: string
-        remaining_seats:
-          format: int64
-          type: integer
-        total_seats:
-          format: int64
-          type: integer
-      type: object
     isOwnerForProjectBySlug:
       properties:
         ProjectSlug:
@@ -7561,8 +7941,7 @@ components:
       - Subject
       type: object
     jsonPatch:
-      description: "JSON Patch allows you to target individual keys in a JSON document\
-        \ for updates.\n\nFor more examples see: https://jsonpatch.com"
+      description: A JSONPatch document as defined by RFC 6902
       properties:
         from:
           description: "This field is used together with operation \"move\" and uses\
@@ -7570,7 +7949,8 @@ components:
           example: /name
           type: string
         op:
-          description: The JSON Patch operation
+          description: "The operation to be performed. One of \"add\", \"remove\"\
+            , \"replace\", \"move\", \"copy\", or \"test\"."
           enum:
           - add
           - remove
@@ -7581,17 +7961,17 @@ components:
           example: replace
           type: string
         path:
-          description: The JSON Pointer to the target key
-          example: /services/identity/config/smtp/from_name
+          description: "The path to the target path. Uses JSON pointer notation.\n\
+            \nLearn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5)."
+          example: /name
           type: string
         value:
-          description: The value to be used. Only available for `add` and `replace`
-            operations.
+          description: "The value to be used within the operations.\n\nLearn more\
+            \ [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5)."
           example: foobar
       required:
       - op
       - path
-      title: A JSON Patch
       type: object
     jsonPatchDocument:
       description: A JSONPatchDocument request
@@ -7813,7 +8193,7 @@ components:
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
             registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: token_endpoint_auth_method
+            token_endpoint_auth_method: client_secret_basic
             userinfo_signed_response_alg: userinfo_signed_response_alg
             authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -7829,6 +8209,7 @@ components:
             client_name: client_name
             policy_uri: policy_uri
             owner: owner
+            skip_consent: true
             audience:
             - audience
             - audience
@@ -7851,6 +8232,7 @@ components:
             implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
             client_secret_expires_at: 0
             implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+            access_token_strategy: access_token_strategy
             jwks_uri: jwks_uri
             request_object_signing_alg: request_object_signing_alg
             tos_uri: tos_uri
@@ -8342,6 +8724,12 @@ components:
           format: date-time
           readOnly: true
           type: string
+        hydra_oauth2_allowed_top_level_claims:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         hydra_oauth2_client_credentials_default_grant_allowed_scope:
           description: "Automatically grant authorized OAuth2 Scope in OAuth2 Client\
             \ Credentials Flow.\n\nEach OAuth2 Client is allowed to request a predefined\
@@ -8352,6 +8740,12 @@ components:
             \nSetting this option to true is common if you need compatibility with\
             \ MITREid.\n\nThis governs the \"oauth2.client_credentials.default_grant_allowed_scope\"\
             \ setting."
+          type: boolean
+        hydra_oauth2_exclude_not_before_claim:
+          description: |-
+            Set to true if you want to exclude claim `nbf (not before)` part of access token.
+
+            This governs the "oauth2.exclude_not_before_claim" setting.
           type: boolean
         hydra_oauth2_grant_jwt_iat_optional:
           description: "Configures if the issued at (`iat`) claim is required in the\
@@ -8398,18 +8792,6 @@ components:
 
             This governs the "oauth2.refresh_token_hook" setting.
           type: string
-        hydra_oauth2_session_allowed_top_level_claims:
-          items:
-            type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
-          type: array
-        hydra_oauth2_session_exclude_not_before_claim:
-          description: |-
-            Set to true if you want to exclude claim `nbf (not before)` part of access token.
-
-            This governs the "oauth2.session.exclude_not_before_claim" setting.
-          type: boolean
         hydra_oidc_dynamic_client_registration_default_scope:
           items:
             type: string
@@ -8485,30 +8867,30 @@ components:
         hydra_strategies_access_token:
           default: opaque
           description: "Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens\n\
-            \nThis governs the \"strategies.access_token\" setting.\nopaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE\n\
-            jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT"
+            \nThis governs the \"strategies.access_token\" setting.\nopaque Oauth2AccessTokenStrategyOpaque\n\
+            jwt Oauth2AccessTokenStrategyJwt"
           enum:
           - opaque
           - jwt
           type: string
           x-go-enum-desc: |-
-            opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE
-            jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+            opaque Oauth2AccessTokenStrategyOpaque
+            jwt Oauth2AccessTokenStrategyJwt
         hydra_strategies_scope:
           default: wildcard
           description: |-
             Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes
 
             This governs the "strategies.scope" setting.
-            exact OAUTH2_SCOPE_STRATEGY_EXACT
-            wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+            exact Oauth2ScopeStrategyExact
+            wildcard Oauth2ScopeStrategyWildcard
           enum:
           - exact
           - wildcard
           type: string
           x-go-enum-desc: |-
-            exact OAUTH2_SCOPE_STRATEGY_EXACT
-            wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+            exact Oauth2ScopeStrategyExact
+            wildcard Oauth2ScopeStrategyWildcard
         hydra_ttl_access_token:
           default: 30m
           description: This governs the "ttl.access_token" setting.
@@ -8959,6 +9341,12 @@ components:
 
             This governs the "selfservice.flows.recovery.lifespan" setting.
           type: string
+        kratos_selfservice_flows_recovery_notify_unknown_recipients:
+          description: |-
+            Configures whether to notify unknown recipients of a Ory Kratos recovery flow
+
+            This governs the "selfservice.flows.recovery.notify_unknown_recipients" setting.
+          type: boolean
         kratos_selfservice_flows_recovery_ui_url:
           description: |-
             Configures the Ory Kratos Recovery UI URL
@@ -8970,7 +9358,15 @@ components:
             Configures the Ory Kratos Recovery strategy to use ("link" or "code")
 
             This governs the "selfservice.flows.recovery.use" setting.
+            link SelfServiceMessageVerificationStrategyLink
+            code SelfServiceMessageVerificationStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link SelfServiceMessageVerificationStrategyLink
+            code SelfServiceMessageVerificationStrategyCode
         kratos_selfservice_flows_registration_after_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Registration Default Return URL
@@ -9073,6 +9469,12 @@ components:
 
             This governs the "selfservice.flows.verification.lifespan" setting.
           type: string
+        kratos_selfservice_flows_verification_notify_unknown_recipients:
+          description: |-
+            Configures whether to notify unknown recipients of a Ory Kratos verification flow
+
+            This governs the "selfservice.flows.verification.notify_unknown_recipients" setting.
+          type: boolean
         kratos_selfservice_flows_verification_ui_url:
           description: |-
             Configures the Ory Kratos Verification UI URL
@@ -9084,7 +9486,15 @@ components:
             Configures the Ory Kratos Strategy to use for Verification
 
             This governs the "selfservice.flows.verification.use" setting.
+            link SelfServiceMessageVerificationStrategyLink
+            code SelfServiceMessageVerificationStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link SelfServiceMessageVerificationStrategyLink
+            code SelfServiceMessageVerificationStrategyCode
         kratos_selfservice_methods_code_config_lifespan:
           description: |-
             Configures the Ory Kratos Code Method's lifespan
@@ -9340,6 +9750,9 @@ components:
         web_hook_config_response_ignore:
           description: Whether to ignore the Web Hook response
           type: boolean
+        web_hook_config_response_parse:
+          description: Whether to parse the Web Hook response
+          type: boolean
         web_hook_config_url:
           description: The URL the Web-Hook should call
           example: https://www.example.org/web-hook-listener
@@ -9495,6 +9908,9 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        subject_source:
+          nullable: true
+          type: string
         token_url:
           description: "TokenURL is the token url, typically something like: https://example.org/oauth2/token\n\
             \nShould only be used when the OAuth2 / OpenID Connect server is not supporting\
@@ -9526,6 +9942,8 @@ components:
         \ with JSON, SQL, and Swagger and is NULLable-"
       nullable: true
       type: object
+    nullString:
+      type: string
     nullTime:
       format: date-time
       title: NullTime implements sql.NullTime functionality.
@@ -9549,7 +9967,7 @@ components:
         refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
         registration_access_token: registration_access_token
         client_id: client_id
-        token_endpoint_auth_method: token_endpoint_auth_method
+        token_endpoint_auth_method: client_secret_basic
         userinfo_signed_response_alg: userinfo_signed_response_alg
         authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
         authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -9565,6 +9983,7 @@ components:
         client_name: client_name
         policy_uri: policy_uri
         owner: owner
+        skip_consent: true
         audience:
         - audience
         - audience
@@ -9587,6 +10006,7 @@ components:
         implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
         client_secret_expires_at: 0
         implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+        access_token_strategy: access_token_strategy
         jwks_uri: jwks_uri
         request_object_signing_alg: request_object_signing_alg
         tos_uri: tos_uri
@@ -9597,6 +10017,12 @@ components:
         - response_types
         - response_types
       properties:
+        access_token_strategy:
+          description: "OAuth 2.0 Access Token Strategy\n\nAccessTokenStrategy is\
+            \ the strategy used to generate access tokens.\nValid options are `jwt`\
+            \ and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens\n\
+            Setting the stragegy here overrides the global setting in `strategies.access_token`."
+          type: string
         allowed_cors_origins:
           items:
             type: string
@@ -9827,6 +10253,11 @@ components:
             URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a
             file with a single JSON array of redirect_uri values.
           type: string
+        skip_consent:
+          description: |-
+            SkipConsent skips the consent screen for this client. This field can only
+            be set from the admin API.
+          type: boolean
         subject_type:
           description: |-
             OpenID Connect Subject Type
@@ -9835,14 +10266,15 @@ components:
             list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
           type: string
         token_endpoint_auth_method:
+          default: client_secret_basic
           description: "OAuth 2.0 Token Endpoint Authentication Method\n\nRequested\
             \ Client Authentication method for the Token Endpoint. The options are:\n\
-            \n`client_secret_post`: (default) Send `client_id` and `client_secret`\
-            \ as `application/x-www-form-urlencoded` in the HTTP body.\n`client_secret_basic`:\
-            \ Send `client_id` and `client_secret` as `application/x-www-form-urlencoded`\
-            \ encoded in the HTTP Authorization header.\n`private_key_jwt`: Use JSON\
-            \ Web Tokens to authenticate the client.\n`none`: Used for public clients\
-            \ (native apps, mobile apps) which can not have secrets."
+            \n`client_secret_basic`: (default) Send `client_id` and `client_secret`\
+            \ as `application/x-www-form-urlencoded` encoded in the HTTP Authorization\
+            \ header.\n`client_secret_post`: Send `client_id` and `client_secret`\
+            \ as `application/x-www-form-urlencoded` in the HTTP body.\n`private_key_jwt`:\
+            \ Use JSON Web Tokens to authenticate the client.\n`none`: Used for public\
+            \ clients (native apps, mobile apps) which can not have secrets."
           type: string
         token_endpoint_auth_signing_alg:
           description: |-
@@ -9962,7 +10394,7 @@ components:
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
           registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: token_endpoint_auth_method
+          token_endpoint_auth_method: client_secret_basic
           userinfo_signed_response_alg: userinfo_signed_response_alg
           authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -9978,6 +10410,7 @@ components:
           client_name: client_name
           policy_uri: policy_uri
           owner: owner
+          skip_consent: true
           audience:
           - audience
           - audience
@@ -10000,6 +10433,7 @@ components:
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          access_token_strategy: access_token_strategy
           jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
@@ -10200,7 +10634,7 @@ components:
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
             registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: token_endpoint_auth_method
+            token_endpoint_auth_method: client_secret_basic
             userinfo_signed_response_alg: userinfo_signed_response_alg
             authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -10216,6 +10650,7 @@ components:
             client_name: client_name
             policy_uri: policy_uri
             owner: owner
+            skip_consent: true
             audience:
             - audience
             - audience
@@ -10238,6 +10673,7 @@ components:
             implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
             client_secret_expires_at: 0
             implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+            access_token_strategy: access_token_strategy
             jwks_uri: jwks_uri
             request_object_signing_alg: request_object_signing_alg
             tos_uri: tos_uri
@@ -10342,7 +10778,7 @@ components:
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
           registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: token_endpoint_auth_method
+          token_endpoint_auth_method: client_secret_basic
           userinfo_signed_response_alg: userinfo_signed_response_alg
           authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -10358,6 +10794,7 @@ components:
           client_name: client_name
           policy_uri: policy_uri
           owner: owner
+          skip_consent: true
           audience:
           - audience
           - audience
@@ -10380,6 +10817,7 @@ components:
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          access_token_strategy: access_token_strategy
           jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
@@ -10474,7 +10912,7 @@ components:
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
           registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: token_endpoint_auth_method
+          token_endpoint_auth_method: client_secret_basic
           userinfo_signed_response_alg: userinfo_signed_response_alg
           authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -10490,6 +10928,7 @@ components:
           client_name: client_name
           policy_uri: policy_uri
           owner: owner
+          skip_consent: true
           audience:
           - audience
           - audience
@@ -10512,6 +10951,7 @@ components:
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          access_token_strategy: access_token_strategy
           jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
@@ -11065,8 +11505,20 @@ components:
           description: "The total number of clients.\n\nin: header"
           type: string
       type: object
+    patchIdentitiesBody:
+      description: Patch Identities Body
+      properties:
+        identities:
+          description: |-
+            Identities holds the list of patches to apply
+
+            required
+          items:
+            $ref: '#/components/schemas/identityPatch'
+          type: array
+      type: object
     performNativeLogoutBody:
-      description: "nolint:deadcode,unused"
+      description: Perform Native Logout Request Body
       properties:
         session_token:
           description: |-
@@ -11076,13 +11528,14 @@ components:
           type: string
       required:
       - session_token
-      title: Perform Native Logout Request Body
       type: object
     permissionsOnProject:
       additionalProperties:
         type: boolean
       description: Get Permissions on Project Request Parameters
       type: object
+    plans:
+      $ref: '#/components/schemas/Pricing'
     postCheckPermissionBody:
       description: Check Permission using Post Request Body
       properties:
@@ -11767,10 +12220,76 @@ components:
       items:
         $ref: '#/components/schemas/project'
       type: array
-    quotaBrandingThemes:
+    quotaUsage:
       properties:
-        can_add:
+        additional_price:
+          format: int64
+          type: integer
+        can_use_more:
           type: boolean
+        feature:
+          description: |2-
+
+            region_eu RegionEU
+            region_us RegionUS
+            region_apac RegionAPAC
+            region_global RegionGlobal
+            production_projects ProductionProjects
+            daily_active_users DailyActiveUsers
+            custom_domains CustomDomains
+            sla SLA
+            collaborator_seats CollaboratorSeats
+            edge_cache EdgeCache
+            branding_themes BrandingThemes
+            zendesk_support ZendeskSupport
+            rate_limit_tier RateLimitTier
+            session_rate_limit_tier RateLimitTierSessions
+          enum:
+          - region_eu
+          - region_us
+          - region_apac
+          - region_global
+          - production_projects
+          - daily_active_users
+          - custom_domains
+          - sla
+          - collaborator_seats
+          - edge_cache
+          - branding_themes
+          - zendesk_support
+          - rate_limit_tier
+          - session_rate_limit_tier
+          type: string
+          x-go-enum-desc: |-
+            region_eu RegionEU
+            region_us RegionUS
+            region_apac RegionAPAC
+            region_global RegionGlobal
+            production_projects ProductionProjects
+            daily_active_users DailyActiveUsers
+            custom_domains CustomDomains
+            sla SLA
+            collaborator_seats CollaboratorSeats
+            edge_cache EdgeCache
+            branding_themes BrandingThemes
+            zendesk_support ZendeskSupport
+            rate_limit_tier RateLimitTier
+            session_rate_limit_tier RateLimitTierSessions
+        feature_available:
+          type: boolean
+        included:
+          format: int64
+          type: integer
+        used:
+          format: int64
+          type: integer
+      required:
+      - additional_price
+      - can_use_more
+      - feature
+      - feature_available
+      - included
+      - used
       type: object
     recoveryCodeForIdentity:
       description: Used when an administrator creates a recovery code for an identity.
@@ -12006,7 +12525,7 @@ components:
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
             registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: token_endpoint_auth_method
+            token_endpoint_auth_method: client_secret_basic
             userinfo_signed_response_alg: userinfo_signed_response_alg
             authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
@@ -12022,6 +12541,7 @@ components:
             client_name: client_name
             policy_uri: policy_uri
             owner: owner
+            skip_consent: true
             audience:
             - audience
             - audience
@@ -12044,6 +12564,7 @@ components:
             implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
             client_secret_expires_at: 0
             implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+            access_token_strategy: access_token_strategy
             jwks_uri: jwks_uri
             request_object_signing_alg: request_object_signing_alg
             tos_uri: tos_uri
@@ -12059,6 +12580,7 @@ components:
           requested_scope:
           - requested_scope
           - requested_scope
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -12147,6 +12669,10 @@ components:
         return_to:
           description: ReturnTo contains the requested return_to URL.
           type: string
+        transient_payload:
+          description: TransientPayload is used to pass data from the registration
+            to a webhook
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -12543,12 +13069,6 @@ components:
         $ref: '#/components/schemas/sessionAuthenticationMethod'
       title: List of (Used) AuthenticationMethods
       type: array
-    sessionCachingQuota:
-      description: Session Caching Quota
-      properties:
-        can_use:
-          type: boolean
-      type: object
     sessionDevice:
       description: Device corresponding to a Session
       example:
@@ -12598,6 +13118,9 @@ components:
         cors_enabled:
           description: CORS Enabled for the custom hostname.
           type: boolean
+        custom_ui_base_url:
+          description: The custom UI base URL where the UI will be exposed.
+          type: string
         hostname:
           description: The custom hostname where the API will be exposed.
           type: string
@@ -12732,6 +13255,9 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: null
           metadata_public: "{}"
+        continue_with:
+        - null
+        - null
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -12744,6 +13270,13 @@ components:
           description: "Active, if set, contains the registration method that is being\
             \ used. It is initially\nnot set."
           type: string
+        continue_with:
+          description: "Contains a list of actions, that could follow this flow\n\n\
+            It can, for example, contain a reference to the verification flow, created\
+            \ as part of the user's\nregistration."
+          items:
+            $ref: '#/components/schemas/continueWith'
+          type: array
         expires_at:
           description: "ExpiresAt is the time (UTC) when the flow expires. If the\
             \ user still wishes to update the setting,\na new flow has to be initiated."
@@ -12831,34 +13364,23 @@ components:
           format: date-time
           readOnly: true
           type: string
-        current_plan:
+        current_interval:
           description: |-
-            The currently active plan of the subscription
-            unknown Unknown
-            free Free
-            start_up_monthly StartUpMonthly
-            start_up_yearly StartUpYearly
-            business_monthly BusinessMonthly
-            business_yearly BusinessYearly
-            custom Custom
+            The currently active interval of the subscription
+            monthly Monthly
+            yearly Yearly
           enum:
-          - unknown
-          - free
-          - start_up_monthly
-          - start_up_yearly
-          - business_monthly
-          - business_yearly
-          - custom
+          - monthly
+          - yearly
           readOnly: true
           type: string
           x-go-enum-desc: |-
-            unknown Unknown
-            free Free
-            start_up_monthly StartUpMonthly
-            start_up_yearly StartUpYearly
-            business_monthly BusinessMonthly
-            business_yearly BusinessYearly
-            custom Custom
+            monthly Monthly
+            yearly Yearly
+        current_plan:
+          description: The currently active plan of the subscription
+          readOnly: true
+          type: string
         customer_id:
           description: The ID of the stripe customer
           readOnly: true
@@ -12867,6 +13389,9 @@ components:
           description: The ID of the subscription
           format: uuid
           readOnly: true
+          type: string
+        interval_changes_to:
+          nullable: true
           type: string
         ongoing_stripe_checkout_id:
           nullable: true
@@ -12880,7 +13405,8 @@ components:
           format: date-time
           type: string
         plan_changes_to:
-          $ref: '#/components/schemas/NullPlan'
+          nullable: true
+          type: string
         status:
           description: "For `collection_method=charge_automatically` a subscription\
             \ moves into `incomplete` if the initial payment attempt fails. A subscription\
@@ -12910,9 +13436,11 @@ components:
           type: string
       required:
       - created_at
+      - current_interval
       - current_plan
       - customer_id
       - id
+      - interval_changes_to
       - payed_until
       - plan_changes_to
       - status
@@ -13131,7 +13659,18 @@ components:
           active: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           issued_at: 2000-01-23T04:56:07.000+00:00
+        continue_with:
+        - null
+        - null
       properties:
+        continue_with:
+          description: "Contains a list of actions, that could follow this flow\n\n\
+            It can, for example, this will contain a reference to the verification\
+            \ flow, created as part of the user's\nregistration or the token of the\
+            \ session."
+          items:
+            $ref: '#/components/schemas/continueWith'
+          type: array
         identity:
           $ref: '#/components/schemas/identity'
         session:
@@ -13918,6 +14457,15 @@ components:
           description: The identity traits. This is a placeholder for the registration
             flow.
           type: object
+        upstream_parameters:
+          description: "UpstreamParameters are the parameters that are passed to the\
+            \ upstream identity provider.\n\nThese parameters are optional and depend\
+            \ on what the upstream identity provider supports.\nSupported parameters\
+            \ are:\n`login_hint` (string): The `login_hint` parameter suppresses the\
+            \ account chooser and either pre-fills the email box on the sign-in form,\
+            \ or selects the proper session.\n`hd` (string): The `hd` parameter limits\
+            \ the login/registration process to a Google Organization, e.g. `mycollege.edu`."
+          type: object
       required:
       - method
       - provider
@@ -14079,6 +14627,18 @@ components:
         traits:
           description: The identity traits
           type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+        upstream_parameters:
+          description: "UpstreamParameters are the parameters that are passed to the\
+            \ upstream identity provider.\n\nThese parameters are optional and depend\
+            \ on what the upstream identity provider supports.\nSupported parameters\
+            \ are:\n`login_hint` (string): The `login_hint` parameter suppresses the\
+            \ account chooser and either pre-fills the email box on the sign-in form,\
+            \ or selects the proper session.\n`hd` (string): The `hd` parameter limits\
+            \ the login/registration process to a Google Organization, e.g. `mycollege.edu`."
+          type: object
       required:
       - method
       - provider
@@ -14101,6 +14661,9 @@ components:
         traits:
           description: The identity's traits
           type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       - password
@@ -14118,6 +14681,9 @@ components:
           type: string
         traits:
           description: The identity's traits
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
           type: object
         webauthn_register:
           description: |-
@@ -14181,7 +14747,7 @@ components:
       - method
       type: object
     updateSettingsFlowWithOidcMethod:
-      description: "nolint:deadcode,unused"
+      description: Update Settings Flow with OpenID Connect Method
       properties:
         flow:
           description: "Flow ID is the flow's ID.\n\nin: query"
@@ -14203,9 +14769,17 @@ components:
           description: "Unlink this provider\n\nEither this or `link` must be set.\n\
             \ntype: string\nin: body"
           type: string
+        upstream_parameters:
+          description: "UpstreamParameters are the parameters that are passed to the\
+            \ upstream identity provider.\n\nThese parameters are optional and depend\
+            \ on what the upstream identity provider supports.\nSupported parameters\
+            \ are:\n`login_hint` (string): The `login_hint` parameter suppresses the\
+            \ account chooser and either pre-fills the email box on the sign-in form,\
+            \ or selects the proper session.\n`hd` (string): The `hd` parameter limits\
+            \ the login/registration process to a Google Organization, e.g. `mycollege.edu`."
+          type: object
       required:
       - method
-      title: Update Settings Flow with OpenID Connect Method
       type: object
     updateSettingsFlowWithPasswordMethod:
       description: Update Settings Flow with Password Method
@@ -14227,7 +14801,7 @@ components:
       - password
       type: object
     updateSettingsFlowWithProfileMethod:
-      description: "nolint:deadcode,unused"
+      description: Update Settings Flow with Profile Method
       properties:
         csrf_token:
           description: |-
@@ -14250,7 +14824,6 @@ components:
       required:
       - method
       - traits
-      title: Update Settings Flow with Profile Method
       type: object
     updateSettingsFlowWithTotpMethod:
       description: Update Settings Flow with TOTP Method
@@ -14307,23 +14880,37 @@ components:
     updateSubscriptionBody:
       description: Update Subscription Request Body
       properties:
-        plan_or_price:
+        interval:
+          description: |2-
+
+            monthly Monthly
+            yearly Yearly
+          enum:
+          - monthly
+          - yearly
+          type: string
+          x-go-enum-desc: |-
+            monthly Monthly
+            yearly Yearly
+        plan:
           type: string
         return_to:
           type: string
       required:
-      - plan_or_price
+      - interval
+      - plan
       type: object
     updateVerificationFlowBody:
-      description: "nolint:deadcode,unused"
+      description: Update Verification Flow Request Body
       discriminator:
         mapping:
+          code: '#/components/schemas/updateVerificationFlowWithCodeMethod'
           link: '#/components/schemas/updateVerificationFlowWithLinkMethod'
         propertyName: method
       oneOf:
       - $ref: '#/components/schemas/updateVerificationFlowWithLinkMethod'
-      title: Update Verification Flow Request Body
-    updateVerificationFlowWithCodeMethodBody:
+      - $ref: '#/components/schemas/updateVerificationFlowWithCodeMethod'
+    updateVerificationFlowWithCodeMethod:
       properties:
         code:
           description: The verification code
@@ -14421,7 +15008,7 @@ components:
       type: object
     verificationFlow:
       description: "Used to verify an out-of-band communication\nchannel such as an\
-        \ email address or a phone number.\n\nFor more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation"
+        \ email address or a phone number.\n\nFor more information head over to: https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation"
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
         ui:

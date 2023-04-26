@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-config :ory_apis, base_url: "https://playground.projects.oryapis.com"
+config :ory_client, base_url: "https://playground.projects.oryapis.com"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

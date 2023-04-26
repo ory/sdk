@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.25
 Contact: support@ory.sh
 */
 
@@ -19,7 +19,7 @@ import (
 type IdentitySchemaContainer struct {
 	// The ID of the Identity JSON Schema
 	Id *string `json:"id,omitempty"`
-	// Raw JSON Schema
+	// The actual Identity JSON Schema
 	Schema map[string]interface{} `json:"schema,omitempty"`
 }
 

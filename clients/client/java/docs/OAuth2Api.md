@@ -27,7 +27,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**rejectOAuth2LoginRequest**](OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request |
 | [**rejectOAuth2LogoutRequest**](OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request |
 | [**revokeOAuth2ConsentSessions**](OAuth2Api.md#revokeOAuth2ConsentSessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject |
-| [**revokeOAuth2LoginSessions**](OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject |
+| [**revokeOAuth2LoginSessions**](OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID |
 | [**revokeOAuth2Token**](OAuth2Api.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token |
 | [**setOAuth2Client**](OAuth2Api.md#setOAuth2Client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client |
 | [**setOAuth2ClientLifespans**](OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans |
@@ -1636,11 +1636,11 @@ null (empty response body)
 
 <a name="revokeOAuth2LoginSessions"></a>
 # **revokeOAuth2LoginSessions**
-> revokeOAuth2LoginSessions(subject)
+> revokeOAuth2LoginSessions(subject, sid)
 
-Revokes All OAuth 2.0 Login Sessions of a Subject
+Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates a subject&#39;s authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via &#x60;sid&#x60; query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 ```java
@@ -1663,8 +1663,9 @@ public class Example {
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String subject = "subject_example"; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+    String sid = "sid_example"; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
     try {
-      apiInstance.revokeOAuth2LoginSessions(subject);
+      apiInstance.revokeOAuth2LoginSessions(subject, sid);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#revokeOAuth2LoginSessions");
       System.err.println("Status code: " + e.getCode());
@@ -1680,7 +1681,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **subject** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | |
+| **subject** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
+| **sid** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
 
 ### Return type
 

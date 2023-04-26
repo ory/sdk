@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Namespace** | **string** | Namespace is the namespace of the subject. | 
 **ProjectScope** | Pointer to **string** | ProjectScope is the project_id resolved from the API Token. | [optional] 
 **ProjectSlug** | **string** | ProjectSlug is the project&#39;s slug. | 
-**Subject** | **string** | Subject is the subject from the API Token. | 
+**Subject** | **string** | Subject is the subject acting (user or API key). | 
 
 ## Methods
 
 ### NewInternalIsOwnerForProjectBySlugBody
 
-`func NewInternalIsOwnerForProjectBySlugBody(projectSlug string, subject string, ) *InternalIsOwnerForProjectBySlugBody`
+`func NewInternalIsOwnerForProjectBySlugBody(namespace string, projectSlug string, subject string, ) *InternalIsOwnerForProjectBySlugBody`
 
 NewInternalIsOwnerForProjectBySlugBody instantiates a new InternalIsOwnerForProjectBySlugBody object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +27,26 @@ will change when the set of required properties is changed
 NewInternalIsOwnerForProjectBySlugBodyWithDefaults instantiates a new InternalIsOwnerForProjectBySlugBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetNamespace
+
+`func (o *InternalIsOwnerForProjectBySlugBody) GetNamespace() string`
+
+GetNamespace returns the Namespace field if non-nil, zero value otherwise.
+
+### GetNamespaceOk
+
+`func (o *InternalIsOwnerForProjectBySlugBody) GetNamespaceOk() (*string, bool)`
+
+GetNamespaceOk returns a tuple with the Namespace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNamespace
+
+`func (o *InternalIsOwnerForProjectBySlugBody) SetNamespace(v string)`
+
+SetNamespace sets Namespace field to given value.
+
 
 ### GetProjectScope
 

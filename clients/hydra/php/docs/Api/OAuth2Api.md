@@ -27,7 +27,7 @@ Method | HTTP request | Description
 [**rejectOAuth2LoginRequest()**](OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**rejectOAuth2LogoutRequest()**](OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
 [**revokeOAuth2ConsentSessions()**](OAuth2Api.md#revokeOAuth2ConsentSessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-[**revokeOAuth2LoginSessions()**](OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject
+[**revokeOAuth2LoginSessions()**](OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 [**revokeOAuth2Token()**](OAuth2Api.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
 [**setOAuth2Client()**](OAuth2Api.md#setOAuth2Client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 [**setOAuth2ClientLifespans()**](OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
@@ -830,7 +830,7 @@ No authorization required
 ## `listOAuth2ConsentSessions()`
 
 ```php
-listOAuth2ConsentSessions($subject, $pageSize, $pageToken): \Ory\Hydra\Client\Model\OAuth2ConsentSession[]
+listOAuth2ConsentSessions($subject, $pageSize, $pageToken, $loginSessionId): \Ory\Hydra\Client\Model\OAuth2ConsentSession[]
 ```
 
 List OAuth 2.0 Consent Sessions of a Subject
@@ -853,9 +853,10 @@ $apiInstance = new Ory\Hydra\Client\Api\OAuth2Api(
 $subject = 'subject_example'; // string | The subject to list the consent sessions for.
 $pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $pageToken = '1'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$loginSessionId = 'loginSessionId_example'; // string | The login session id to list the consent sessions for.
 
 try {
-    $result = $apiInstance->listOAuth2ConsentSessions($subject, $pageSize, $pageToken);
+    $result = $apiInstance->listOAuth2ConsentSessions($subject, $pageSize, $pageToken, $loginSessionId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->listOAuth2ConsentSessions: ', $e->getMessage(), PHP_EOL;
@@ -869,6 +870,7 @@ Name | Type | Description  | Notes
  **subject** | **string**| The subject to list the consent sessions for. |
  **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
+ **loginSessionId** | **string**| The login session id to list the consent sessions for. | [optional]
 
 ### Return type
 
@@ -1364,12 +1366,12 @@ No authorization required
 ## `revokeOAuth2LoginSessions()`
 
 ```php
-revokeOAuth2LoginSessions($subject)
+revokeOAuth2LoginSessions($subject, $sid)
 ```
 
-Revokes All OAuth 2.0 Login Sessions of a Subject
+Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 
@@ -1385,9 +1387,10 @@ $apiInstance = new Ory\Hydra\Client\Api\OAuth2Api(
     new GuzzleHttp\Client()
 );
 $subject = 'subject_example'; // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+$sid = 'sid_example'; // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
 
 try {
-    $apiInstance->revokeOAuth2LoginSessions($subject);
+    $apiInstance->revokeOAuth2LoginSessions($subject, $sid);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->revokeOAuth2LoginSessions: ', $e->getMessage(), PHP_EOL;
 }
@@ -1397,7 +1400,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. |
+ **subject** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
+ **sid** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
 
 ### Return type
 
@@ -1419,7 +1423,7 @@ No authorization required
 ## `revokeOAuth2Token()`
 
 ```php
-revokeOAuth2Token($token)
+revokeOAuth2Token($token, $clientId, $clientSecret)
 ```
 
 Revoke OAuth 2.0 Access or Refresh Token
@@ -1449,9 +1453,11 @@ $apiInstance = new Ory\Hydra\Client\Api\OAuth2Api(
     $config
 );
 $token = 'token_example'; // string
+$clientId = 'clientId_example'; // string
+$clientSecret = 'clientSecret_example'; // string
 
 try {
-    $apiInstance->revokeOAuth2Token($token);
+    $apiInstance->revokeOAuth2Token($token, $clientId, $clientSecret);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->revokeOAuth2Token: ', $e->getMessage(), PHP_EOL;
 }
@@ -1462,6 +1468,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**|  |
+ **clientId** | **string**|  | [optional]
+ **clientSecret** | **string**|  | [optional]
 
 ### Return type
 

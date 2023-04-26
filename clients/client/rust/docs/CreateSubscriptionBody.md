@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**plan_or_price** | **String** |  | 
+**interval** | **String** |  monthly Monthly yearly Yearly | 
+**plan** | **String** |  | 
 **provision_first_project** | **String** |  | 
 **return_to** | Option<**String**> |  | [optional]
 

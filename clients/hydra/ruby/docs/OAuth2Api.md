@@ -27,7 +27,7 @@ All URIs are relative to *http://localhost*
 | [**reject_o_auth2_login_request**](OAuth2Api.md#reject_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request |
 | [**reject_o_auth2_logout_request**](OAuth2Api.md#reject_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request |
 | [**revoke_o_auth2_consent_sessions**](OAuth2Api.md#revoke_o_auth2_consent_sessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject |
-| [**revoke_o_auth2_login_sessions**](OAuth2Api.md#revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject |
+| [**revoke_o_auth2_login_sessions**](OAuth2Api.md#revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID |
 | [**revoke_o_auth2_token**](OAuth2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token |
 | [**set_o_auth2_client**](OAuth2Api.md#set_o_auth2_client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client |
 | [**set_o_auth2_client_lifespans**](OAuth2Api.md#set_o_auth2_client_lifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans |
@@ -965,7 +965,8 @@ api_instance = OryHydraClient::OAuth2Api.new
 subject = 'subject_example' # String | The subject to list the consent sessions for.
 opts = {
   page_size: 789, # Integer | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-  page_token: 'page_token_example' # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  login_session_id: 'login_session_id_example' # String | The login session id to list the consent sessions for.
 }
 
 begin
@@ -1002,6 +1003,7 @@ end
 | **subject** | **String** | The subject to list the consent sessions for. |  |
 | **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
 | **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to &#39;1&#39;] |
+| **login_session_id** | **String** | The login session id to list the consent sessions for. | [optional] |
 
 ### Return type
 
@@ -1567,11 +1569,11 @@ No authorization required
 
 ## revoke_o_auth2_login_sessions
 
-> revoke_o_auth2_login_sessions(subject)
+> revoke_o_auth2_login_sessions(opts)
 
-Revokes All OAuth 2.0 Login Sessions of a Subject
+Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Examples
 
@@ -1580,11 +1582,14 @@ require 'time'
 require 'ory-hydra-client'
 
 api_instance = OryHydraClient::OAuth2Api.new
-subject = 'subject_example' # String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+opts = {
+  subject: 'subject_example', # String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+  sid: 'sid_example' # String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+}
 
 begin
-  # Revokes All OAuth 2.0 Login Sessions of a Subject
-  api_instance.revoke_o_auth2_login_sessions(subject)
+  # Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+  api_instance.revoke_o_auth2_login_sessions(opts)
 rescue OryHydraClient::ApiError => e
   puts "Error when calling OAuth2Api->revoke_o_auth2_login_sessions: #{e}"
 end
@@ -1594,12 +1599,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> revoke_o_auth2_login_sessions_with_http_info(subject)
+> <Array(nil, Integer, Hash)> revoke_o_auth2_login_sessions_with_http_info(opts)
 
 ```ruby
 begin
-  # Revokes All OAuth 2.0 Login Sessions of a Subject
-  data, status_code, headers = api_instance.revoke_o_auth2_login_sessions_with_http_info(subject)
+  # Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+  data, status_code, headers = api_instance.revoke_o_auth2_login_sessions_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -1612,7 +1617,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **subject** | **String** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. |  |
+| **subject** | **String** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
+| **sid** | **String** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
 
 ### Return type
 
@@ -1630,7 +1636,7 @@ No authorization required
 
 ## revoke_o_auth2_token
 
-> revoke_o_auth2_token(token)
+> revoke_o_auth2_token(token, opts)
 
 Revoke OAuth 2.0 Access or Refresh Token
 
@@ -1653,10 +1659,14 @@ end
 
 api_instance = OryHydraClient::OAuth2Api.new
 token = 'token_example' # String | 
+opts = {
+  client_id: 'client_id_example', # String | 
+  client_secret: 'client_secret_example' # String | 
+}
 
 begin
   # Revoke OAuth 2.0 Access or Refresh Token
-  api_instance.revoke_o_auth2_token(token)
+  api_instance.revoke_o_auth2_token(token, opts)
 rescue OryHydraClient::ApiError => e
   puts "Error when calling OAuth2Api->revoke_o_auth2_token: #{e}"
 end
@@ -1666,12 +1676,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> revoke_o_auth2_token_with_http_info(token)
+> <Array(nil, Integer, Hash)> revoke_o_auth2_token_with_http_info(token, opts)
 
 ```ruby
 begin
   # Revoke OAuth 2.0 Access or Refresh Token
-  data, status_code, headers = api_instance.revoke_o_auth2_token_with_http_info(token)
+  data, status_code, headers = api_instance.revoke_o_auth2_token_with_http_info(token, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -1685,6 +1695,8 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **token** | **String** |  |  |
+| **client_id** | **String** |  | [optional] |
+| **client_secret** | **String** |  | [optional] |
 
 ### Return type
 

@@ -16,6 +16,7 @@ part 'update_registration_flow_with_password_method.g.dart';
 /// * [method] - Method to use  This field must be set to `password` when using the password method.
 /// * [password] - Password to sign the user up with
 /// * [traits] - The identity's traits
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateRegistrationFlowWithPasswordMethod implements Built<UpdateRegistrationFlowWithPasswordMethod, UpdateRegistrationFlowWithPasswordMethodBuilder> {
   /// The CSRF Token
@@ -33,6 +34,10 @@ abstract class UpdateRegistrationFlowWithPasswordMethod implements Built<UpdateR
   /// The identity's traits
   @BuiltValueField(wireName: r'traits')
   JsonObject get traits;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateRegistrationFlowWithPasswordMethod._();
 
@@ -79,6 +84,13 @@ class _$UpdateRegistrationFlowWithPasswordMethodSerializer implements PrimitiveS
       object.traits,
       specifiedType: const FullType(JsonObject),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
   }
 
   @override
@@ -129,6 +141,13 @@ class _$UpdateRegistrationFlowWithPasswordMethodSerializer implements PrimitiveS
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.traits = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -4,7 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **plan_or_price** | **String** |  |  |
+| **interval** | **String** |  monthly Monthly yearly Yearly |  |
+| **plan** | **String** |  |  |
 | **provision_first_project** | **String** |  |  |
 | **return_to** | **String** |  | [optional] |
 
@@ -14,7 +15,8 @@
 require 'ory-client'
 
 instance = OryClient::CreateSubscriptionBody.new(
-  plan_or_price: null,
+  interval: null,
+  plan: null,
   provision_first_project: null,
   return_to: null
 )

@@ -27,7 +27,7 @@ Method | HTTP request | Description
 [**reject_o_auth2_login_request**](OAuth2Api.md#reject_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**reject_o_auth2_logout_request**](OAuth2Api.md#reject_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
 [**revoke_o_auth2_consent_sessions**](OAuth2Api.md#revoke_o_auth2_consent_sessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-[**revoke_o_auth2_login_sessions**](OAuth2Api.md#revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject
+[**revoke_o_auth2_login_sessions**](OAuth2Api.md#revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 [**revoke_o_auth2_token**](OAuth2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
 [**set_o_auth2_client**](OAuth2Api.md#set_o_auth2_client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 [**set_o_auth2_client_lifespans**](OAuth2Api.md#set_o_auth2_client_lifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
@@ -165,6 +165,7 @@ with ory_hydra_client.ApiClient() as api_client:
             "amr_example",
         ]),
         context=None,
+        extend_session_lifespan=True,
         force_subject_identifier="force_subject_identifier_example",
         remember=True,
         remember_for=1,
@@ -318,6 +319,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = o_auth2_api.OAuth2Api(api_client)
     o_auth2_client = OAuth2Client(
+        access_token_strategy="access_token_strategy_example",
         allowed_cors_origins=StringSliceJSONFormat([
             "allowed_cors_origins_example",
         ]),
@@ -373,8 +375,9 @@ with ory_hydra_client.ApiClient() as api_client:
         ]),
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
+        skip_consent=True,
         subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
+        token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
         tos_uri="tos_uri_example",
         updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -1160,6 +1163,7 @@ with ory_hydra_client.ApiClient() as api_client:
     subject = "subject_example" # str | The subject to list the consent sessions for.
     page_size = 250 # int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of 250
     page_token = "1" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of "1"
+    login_session_id = "login_session_id_example" # str | The login session id to list the consent sessions for. (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -1173,7 +1177,7 @@ with ory_hydra_client.ApiClient() as api_client:
     # and optional values
     try:
         # List OAuth 2.0 Consent Sessions of a Subject
-        api_response = api_instance.list_o_auth2_consent_sessions(subject, page_size=page_size, page_token=page_token)
+        api_response = api_instance.list_o_auth2_consent_sessions(subject, page_size=page_size, page_token=page_token, login_session_id=login_session_id)
         pprint(api_response)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling OAuth2Api->list_o_auth2_consent_sessions: %s\n" % e)
@@ -1187,6 +1191,7 @@ Name | Type | Description  | Notes
  **subject** | **str**| The subject to list the consent sessions for. |
  **page_size** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
  **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of "1"
+ **login_session_id** | **str**| The login session id to list the consent sessions for. | [optional]
 
 ### Return type
 
@@ -1854,11 +1859,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_o_auth2_login_sessions**
-> revoke_o_auth2_login_sessions(subject)
+> revoke_o_auth2_login_sessions()
 
-Revokes All OAuth 2.0 Login Sessions of a Subject
+Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 
@@ -1880,12 +1885,14 @@ configuration = ory_hydra_client.Configuration(
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = o_auth2_api.OAuth2Api(api_client)
-    subject = "subject_example" # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+    subject = "subject_example" # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
+    sid = "sid_example" # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
 
     # example passing only required values which don't have defaults set
+    # and optional values
     try:
-        # Revokes All OAuth 2.0 Login Sessions of a Subject
-        api_instance.revoke_o_auth2_login_sessions(subject)
+        # Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+        api_instance.revoke_o_auth2_login_sessions(subject=subject, sid=sid)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling OAuth2Api->revoke_o_auth2_login_sessions: %s\n" % e)
 ```
@@ -1895,7 +1902,8 @@ with ory_hydra_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. |
+ **subject** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
+ **sid** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
 
 ### Return type
 
@@ -1966,11 +1974,21 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = o_auth2_api.OAuth2Api(api_client)
     token = "token_example" # str | 
+    client_id = "client_id_example" # str |  (optional)
+    client_secret = "client_secret_example" # str |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Revoke OAuth 2.0 Access or Refresh Token
         api_instance.revoke_o_auth2_token(token)
+    except ory_hydra_client.ApiException as e:
+        print("Exception when calling OAuth2Api->revoke_o_auth2_token: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Revoke OAuth 2.0 Access or Refresh Token
+        api_instance.revoke_o_auth2_token(token, client_id=client_id, client_secret=client_secret)
     except ory_hydra_client.ApiException as e:
         print("Exception when calling OAuth2Api->revoke_o_auth2_token: %s\n" % e)
 ```
@@ -1981,6 +1999,8 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **str**|  |
+ **client_id** | **str**|  | [optional]
+ **client_secret** | **str**|  | [optional]
 
 ### Return type
 
@@ -2035,6 +2055,7 @@ with ory_hydra_client.ApiClient() as api_client:
     api_instance = o_auth2_api.OAuth2Api(api_client)
     id = "id_example" # str | OAuth 2.0 Client ID
     o_auth2_client = OAuth2Client(
+        access_token_strategy="access_token_strategy_example",
         allowed_cors_origins=StringSliceJSONFormat([
             "allowed_cors_origins_example",
         ]),
@@ -2090,8 +2111,9 @@ with ory_hydra_client.ApiClient() as api_client:
         ]),
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
+        skip_consent=True,
         subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
+        token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
         tos_uri="tos_uri_example",
         updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),

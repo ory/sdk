@@ -15,6 +15,7 @@ part 'update_registration_flow_with_web_authn_method.g.dart';
 /// * [csrfToken] - CSRFToken is the anti-CSRF token
 /// * [method] - Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
 /// * [traits] - The identity's traits
+/// * [transientPayload] - Transient data to pass along to any webhooks
 /// * [webauthnRegister] - Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
 /// * [webauthnRegisterDisplayname] - Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
 @BuiltValue()
@@ -30,6 +31,10 @@ abstract class UpdateRegistrationFlowWithWebAuthnMethod implements Built<UpdateR
   /// The identity's traits
   @BuiltValueField(wireName: r'traits')
   JsonObject get traits;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   /// Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
   @BuiltValueField(wireName: r'webauthn_register')
@@ -79,6 +84,13 @@ class _$UpdateRegistrationFlowWithWebAuthnMethodSerializer implements PrimitiveS
       object.traits,
       specifiedType: const FullType(JsonObject),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
     if (object.webauthnRegister != null) {
       yield r'webauthn_register';
       yield serializers.serialize(
@@ -136,6 +148,13 @@ class _$UpdateRegistrationFlowWithWebAuthnMethodSerializer implements PrimitiveS
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.traits = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         case r'webauthn_register':
           final valueDes = serializers.deserialize(

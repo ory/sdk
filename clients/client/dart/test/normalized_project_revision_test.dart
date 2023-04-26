@@ -13,9 +13,20 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> hydraOauth2AllowedTopLevelClaims
+    test('to test the property `hydraOauth2AllowedTopLevelClaims`', () async {
+      // TODO
+    });
+
     // Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
     // bool hydraOauth2ClientCredentialsDefaultGrantAllowedScope
     test('to test the property `hydraOauth2ClientCredentialsDefaultGrantAllowedScope`', () async {
+      // TODO
+    });
+
+    // Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
+    // bool hydraOauth2ExcludeNotBeforeClaim
+    test('to test the property `hydraOauth2ExcludeNotBeforeClaim`', () async {
       // TODO
     });
 
@@ -52,17 +63,6 @@ void main() {
     // Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
     // String hydraOauth2RefreshTokenHook
     test('to test the property `hydraOauth2RefreshTokenHook`', () async {
-      // TODO
-    });
-
-    // BuiltList<String> hydraOauth2SessionAllowedTopLevelClaims
-    test('to test the property `hydraOauth2SessionAllowedTopLevelClaims`', () async {
-      // TODO
-    });
-
-    // Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.session.exclude_not_before_claim\" setting.
-    // bool hydraOauth2SessionExcludeNotBeforeClaim
-    test('to test the property `hydraOauth2SessionExcludeNotBeforeClaim`', () async {
       // TODO
     });
 
@@ -132,13 +132,13 @@ void main() {
       // TODO
     });
 
-    // Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT
+    // Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
     // String hydraStrategiesAccessToken (default value: 'opaque')
     test('to test the property `hydraStrategiesAccessToken`', () async {
       // TODO
     });
 
-    // Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD
+    // Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
     // String hydraStrategiesScope (default value: 'wildcard')
     test('to test the property `hydraStrategiesScope`', () async {
       // TODO
@@ -571,13 +571,19 @@ void main() {
       // TODO
     });
 
+    // Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \"selfservice.flows.recovery.notify_unknown_recipients\" setting.
+    // bool kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+    test('to test the property `kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
     // String kratosSelfserviceFlowsRecoveryUiUrl
     test('to test the property `kratosSelfserviceFlowsRecoveryUiUrl`', () async {
       // TODO
     });
 
-    // Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting.
+    // Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
     // String kratosSelfserviceFlowsRecoveryUse
     test('to test the property `kratosSelfserviceFlowsRecoveryUse`', () async {
       // TODO
@@ -685,13 +691,19 @@ void main() {
       // TODO
     });
 
+    // Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \"selfservice.flows.verification.notify_unknown_recipients\" setting.
+    // bool kratosSelfserviceFlowsVerificationNotifyUnknownRecipients
+    test('to test the property `kratosSelfserviceFlowsVerificationNotifyUnknownRecipients`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
     // String kratosSelfserviceFlowsVerificationUiUrl
     test('to test the property `kratosSelfserviceFlowsVerificationUiUrl`', () async {
       // TODO
     });
 
-    // Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting.
+    // Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
     // String kratosSelfserviceFlowsVerificationUse
     test('to test the property `kratosSelfserviceFlowsVerificationUse`', () async {
       // TODO

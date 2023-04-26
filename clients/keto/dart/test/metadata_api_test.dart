@@ -1,22 +1,12 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.12
-
-// ignore_for_file: unused_element, unused_import
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: lines_longer_than_80_chars
-
-import 'package:ory_keto_client/api.dart';
 import 'package:test/test.dart';
+import 'package:ory_keto_client/ory_keto_client.dart';
 
 
 /// tests for MetadataApi
 void main() {
-  // final instance = MetadataApi();
+  final instance = OryKetoClient().getMetadataApi();
 
-  group('tests for MetadataApi', () {
+  group(MetadataApi, () {
     // Return Running Software Version.
     //
     // This endpoint returns the version of Ory Keto.  If the service supports TLS Edge Termination, this endpoint does not require the `X-Forwarded-Proto` header to be set.  Be aware that if you are running multiple nodes of this service, the version will never refer to the cluster state, only to a single instance.

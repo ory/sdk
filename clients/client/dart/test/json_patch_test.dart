@@ -13,19 +13,19 @@ void main() {
       // TODO
     });
 
-    // The JSON Patch operation
+    // The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
     // String op
     test('to test the property `op`', () async {
       // TODO
     });
 
-    // The JSON Pointer to the target key
+    // The path to the target path. Uses JSON pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
     // String path
     test('to test the property `path`', () async {
       // TODO
     });
 
-    // The value to be used. Only available for `add` and `replace` operations.
+    // The value to be used within the operations.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
     // JsonObject value
     test('to test the property `value`', () async {
       // TODO

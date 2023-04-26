@@ -12,7 +12,7 @@
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>No Copyright</Copyright>
     <RootNamespace>Ory.Oathkeeper.Client</RootNamespace>
-    <Version>0.39.4</Version>
+    <Version>0.40.2</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Ory.Oathkeeper.Client.xml</DocumentationFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ory/sdk.git</RepositoryUrl>

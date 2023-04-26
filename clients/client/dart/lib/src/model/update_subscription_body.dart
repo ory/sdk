@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,12 +12,18 @@ part 'update_subscription_body.g.dart';
 /// Update Subscription Request Body
 ///
 /// Properties:
-/// * [planOrPrice] 
+/// * [interval] -  monthly Monthly yearly Yearly
+/// * [plan] 
 /// * [returnTo] 
 @BuiltValue()
 abstract class UpdateSubscriptionBody implements Built<UpdateSubscriptionBody, UpdateSubscriptionBodyBuilder> {
-  @BuiltValueField(wireName: r'plan_or_price')
-  String get planOrPrice;
+  ///  monthly Monthly yearly Yearly
+  @BuiltValueField(wireName: r'interval')
+  UpdateSubscriptionBodyIntervalEnum get interval;
+  // enum intervalEnum {  monthly,  yearly,  };
+
+  @BuiltValueField(wireName: r'plan')
+  String get plan;
 
   @BuiltValueField(wireName: r'return_to')
   String? get returnTo;
@@ -44,9 +51,14 @@ class _$UpdateSubscriptionBodySerializer implements PrimitiveSerializer<UpdateSu
     UpdateSubscriptionBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'plan_or_price';
+    yield r'interval';
     yield serializers.serialize(
-      object.planOrPrice,
+      object.interval,
+      specifiedType: const FullType(UpdateSubscriptionBodyIntervalEnum),
+    );
+    yield r'plan';
+    yield serializers.serialize(
+      object.plan,
       specifiedType: const FullType(String),
     );
     if (object.returnTo != null) {
@@ -79,12 +91,19 @@ class _$UpdateSubscriptionBodySerializer implements PrimitiveSerializer<UpdateSu
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'plan_or_price':
+        case r'interval':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(UpdateSubscriptionBodyIntervalEnum),
+          ) as UpdateSubscriptionBodyIntervalEnum;
+          result.interval = valueDes;
+          break;
+        case r'plan':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.planOrPrice = valueDes;
+          result.plan = valueDes;
           break;
         case r'return_to':
           final valueDes = serializers.deserialize(
@@ -120,5 +139,22 @@ class _$UpdateSubscriptionBodySerializer implements PrimitiveSerializer<UpdateSu
     );
     return result.build();
   }
+}
+
+class UpdateSubscriptionBodyIntervalEnum extends EnumClass {
+
+  ///  monthly Monthly yearly Yearly
+  @BuiltValueEnumConst(wireName: r'monthly')
+  static const UpdateSubscriptionBodyIntervalEnum monthly = _$updateSubscriptionBodyIntervalEnum_monthly;
+  ///  monthly Monthly yearly Yearly
+  @BuiltValueEnumConst(wireName: r'yearly')
+  static const UpdateSubscriptionBodyIntervalEnum yearly = _$updateSubscriptionBodyIntervalEnum_yearly;
+
+  static Serializer<UpdateSubscriptionBodyIntervalEnum> get serializer => _$updateSubscriptionBodyIntervalEnumSerializer;
+
+  const UpdateSubscriptionBodyIntervalEnum._(String name): super(name);
+
+  static BuiltSet<UpdateSubscriptionBodyIntervalEnum> get values => _$updateSubscriptionBodyIntervalEnumValues;
+  static UpdateSubscriptionBodyIntervalEnum valueOf(String name) => _$updateSubscriptionBodyIntervalEnumValueOf(name);
 }
 

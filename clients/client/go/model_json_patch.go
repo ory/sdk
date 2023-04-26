@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.25
 Contact: support@ory.sh
 */
 
@@ -15,15 +15,15 @@ import (
 	"encoding/json"
 )
 
-// JsonPatch JSON Patch allows you to target individual keys in a JSON document for updates.  For more examples see: https://jsonpatch.com
+// JsonPatch A JSONPatch document as defined by RFC 6902
 type JsonPatch struct {
 	// This field is used together with operation \"move\" and uses JSON Pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
 	From *string `json:"from,omitempty"`
-	// The JSON Patch operation
+	// The operation to be performed. One of \"add\", \"remove\", \"replace\", \"move\", \"copy\", or \"test\".
 	Op string `json:"op"`
-	// The JSON Pointer to the target key
+	// The path to the target path. Uses JSON pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
 	Path string `json:"path"`
-	// The value to be used. Only available for `add` and `replace` operations.
+	// The value to be used within the operations.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
 	Value interface{} `json:"value,omitempty"`
 }
 

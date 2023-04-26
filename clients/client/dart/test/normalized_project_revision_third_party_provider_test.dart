@@ -104,6 +104,11 @@ void main() {
       // TODO
     });
 
+    // String subjectSource
+    test('to test the property `subjectSource`', () async {
+      // TODO
+    });
+
     // TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
     // String tokenUrl
     test('to test the property `tokenUrl`', () async {

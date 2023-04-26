@@ -13,6 +13,12 @@ void main() {
       // TODO
     });
 
+    // Contains a list of actions, that could follow this flow  It can, for example, contain a reference to the verification flow, created as part of the user's registration.
+    // BuiltList<ContinueWith> continueWith
+    test('to test the property `continueWith`', () async {
+      // TODO
+    });
+
     // ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated.
     // DateTime expiresAt
     test('to test the property `expiresAt`', () async {

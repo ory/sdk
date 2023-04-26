@@ -7,9 +7,14 @@ doc/AcceptOAuth2ConsentRequestSession.md
 doc/AcceptOAuth2LoginRequest.md
 doc/ActiveProjectInConsole.md
 doc/AuthenticatorAssuranceLevel.md
+doc/BatchPatchIdentitiesResponse.md
 doc/CheckOplSyntaxResult.md
 doc/CheckPermissionResult.md
 doc/CloudAccount.md
+doc/ContinueWith.md
+doc/ContinueWithSetOrySessionToken.md
+doc/ContinueWithVerificationUi.md
+doc/ContinueWithVerificationUiFlow.md
 doc/CourierApi.md
 doc/CourierMessageStatus.md
 doc/CourierMessageType.md
@@ -25,7 +30,6 @@ doc/CreateRecoveryLinkForIdentityBody.md
 doc/CreateRelationshipBody.md
 doc/CreateSubscriptionBody.md
 doc/CustomDomain.md
-doc/CustomDomainQuota.md
 doc/DeleteMySessionsCount.md
 doc/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 doc/ErrorBrowserLocationChangeRequired.md
@@ -37,6 +41,7 @@ doc/FlowError.md
 doc/FrontendApi.md
 doc/GenericError.md
 doc/GenericErrorContent.md
+doc/GenericUsage.md
 doc/GetManagedIdentitySchemaLocation.md
 doc/GetVersion200Response.md
 doc/HealthNotReadyStatus.md
@@ -48,6 +53,8 @@ doc/IdentityCredentialsOidc.md
 doc/IdentityCredentialsOidcProvider.md
 doc/IdentityCredentialsPassword.md
 doc/IdentityCredentialsType.md
+doc/IdentityPatch.md
+doc/IdentityPatchResponse.md
 doc/IdentitySchemaContainer.md
 doc/IdentitySchemaPreset.md
 doc/IdentityState.md
@@ -59,9 +66,9 @@ doc/IdentityWithCredentialsPassword.md
 doc/IdentityWithCredentialsPasswordConfig.md
 doc/InternalGetProjectBrandingBody.md
 doc/InternalIsOwnerForProjectBySlugBody.md
+doc/InternalIsOwnerForProjectBySlugResponse.md
 doc/InternalProvisionMockSubscription.md
 doc/IntrospectedOAuth2Token.md
-doc/InviteQuota.md
 doc/IsOwnerForProjectBySlug.md
 doc/IsReady200Response.md
 doc/IsReady503Response.md
@@ -84,7 +91,6 @@ doc/NormalizedProjectRevision.md
 doc/NormalizedProjectRevisionHook.md
 doc/NormalizedProjectRevisionIdentitySchema.md
 doc/NormalizedProjectRevisionThirdPartyProvider.md
-doc/NullPlan.md
 doc/OAuth2Api.md
 doc/OAuth2Client.md
 doc/OAuth2ClientTokenLifespans.md
@@ -102,8 +108,11 @@ doc/OidcUserInfo.md
 doc/Pagination.md
 doc/PaginationHeaders.md
 doc/ParseError.md
+doc/PatchIdentitiesBody.md
 doc/PerformNativeLogoutBody.md
 doc/PermissionApi.md
+doc/Plan.md
+doc/PlanDetails.md
 doc/PostCheckPermissionBody.md
 doc/PostCheckPermissionOrErrorBody.md
 doc/Project.md
@@ -119,7 +128,7 @@ doc/ProjectServiceIdentity.md
 doc/ProjectServiceOAuth2.md
 doc/ProjectServicePermission.md
 doc/ProjectServices.md
-doc/QuotaBrandingThemes.md
+doc/QuotaUsage.md
 doc/RecoveryCodeForIdentity.md
 doc/RecoveryFlow.md
 doc/RecoveryFlowState.md
@@ -137,7 +146,6 @@ doc/SchemaPatch.md
 doc/SelfServiceFlowExpiredError.md
 doc/Session.md
 doc/SessionAuthenticationMethod.md
-doc/SessionCachingQuota.md
 doc/SessionDevice.md
 doc/SetActiveProjectInConsoleBody.md
 doc/SetCustomDomainBody.md
@@ -192,8 +200,9 @@ doc/UpdateSettingsFlowWithTotpMethod.md
 doc/UpdateSettingsFlowWithWebAuthnMethod.md
 doc/UpdateSubscriptionBody.md
 doc/UpdateVerificationFlowBody.md
-doc/UpdateVerificationFlowWithCodeMethodBody.md
+doc/UpdateVerificationFlowWithCodeMethod.md
 doc/UpdateVerificationFlowWithLinkMethod.md
+doc/Usage.md
 doc/VerifiableIdentityAddress.md
 doc/VerificationFlow.md
 doc/VerificationFlowState.md
@@ -225,9 +234,14 @@ lib/src/model/accept_o_auth2_consent_request_session.dart
 lib/src/model/accept_o_auth2_login_request.dart
 lib/src/model/active_project_in_console.dart
 lib/src/model/authenticator_assurance_level.dart
+lib/src/model/batch_patch_identities_response.dart
 lib/src/model/check_opl_syntax_result.dart
 lib/src/model/check_permission_result.dart
 lib/src/model/cloud_account.dart
+lib/src/model/continue_with.dart
+lib/src/model/continue_with_set_ory_session_token.dart
+lib/src/model/continue_with_verification_ui.dart
+lib/src/model/continue_with_verification_ui_flow.dart
 lib/src/model/courier_message_status.dart
 lib/src/model/courier_message_type.dart
 lib/src/model/create_custom_domain_body.dart
@@ -242,7 +256,6 @@ lib/src/model/create_recovery_link_for_identity_body.dart
 lib/src/model/create_relationship_body.dart
 lib/src/model/create_subscription_body.dart
 lib/src/model/custom_domain.dart
-lib/src/model/custom_domain_quota.dart
 lib/src/model/date.dart
 lib/src/model/delete_my_sessions_count.dart
 lib/src/model/error_authenticator_assurance_level_not_satisfied.dart
@@ -254,6 +267,7 @@ lib/src/model/expanded_permission_tree.dart
 lib/src/model/flow_error.dart
 lib/src/model/generic_error.dart
 lib/src/model/generic_error_content.dart
+lib/src/model/generic_usage.dart
 lib/src/model/get_managed_identity_schema_location.dart
 lib/src/model/get_version200_response.dart
 lib/src/model/health_not_ready_status.dart
@@ -264,6 +278,8 @@ lib/src/model/identity_credentials_oidc.dart
 lib/src/model/identity_credentials_oidc_provider.dart
 lib/src/model/identity_credentials_password.dart
 lib/src/model/identity_credentials_type.dart
+lib/src/model/identity_patch.dart
+lib/src/model/identity_patch_response.dart
 lib/src/model/identity_schema_container.dart
 lib/src/model/identity_schema_preset.dart
 lib/src/model/identity_state.dart
@@ -275,9 +291,9 @@ lib/src/model/identity_with_credentials_password.dart
 lib/src/model/identity_with_credentials_password_config.dart
 lib/src/model/internal_get_project_branding_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_body.dart
+lib/src/model/internal_is_owner_for_project_by_slug_response.dart
 lib/src/model/internal_provision_mock_subscription.dart
 lib/src/model/introspected_o_auth2_token.dart
-lib/src/model/invite_quota.dart
 lib/src/model/is_owner_for_project_by_slug.dart
 lib/src/model/is_ready200_response.dart
 lib/src/model/is_ready503_response.dart
@@ -298,7 +314,6 @@ lib/src/model/normalized_project_revision.dart
 lib/src/model/normalized_project_revision_hook.dart
 lib/src/model/normalized_project_revision_identity_schema.dart
 lib/src/model/normalized_project_revision_third_party_provider.dart
-lib/src/model/null_plan.dart
 lib/src/model/o_auth2_client.dart
 lib/src/model/o_auth2_client_token_lifespans.dart
 lib/src/model/o_auth2_consent_request.dart
@@ -314,7 +329,10 @@ lib/src/model/oidc_user_info.dart
 lib/src/model/pagination.dart
 lib/src/model/pagination_headers.dart
 lib/src/model/parse_error.dart
+lib/src/model/patch_identities_body.dart
 lib/src/model/perform_native_logout_body.dart
+lib/src/model/plan.dart
+lib/src/model/plan_details.dart
 lib/src/model/post_check_permission_body.dart
 lib/src/model/post_check_permission_or_error_body.dart
 lib/src/model/project.dart
@@ -329,7 +347,7 @@ lib/src/model/project_service_identity.dart
 lib/src/model/project_service_o_auth2.dart
 lib/src/model/project_service_permission.dart
 lib/src/model/project_services.dart
-lib/src/model/quota_branding_themes.dart
+lib/src/model/quota_usage.dart
 lib/src/model/recovery_code_for_identity.dart
 lib/src/model/recovery_flow.dart
 lib/src/model/recovery_flow_state.dart
@@ -346,7 +364,6 @@ lib/src/model/schema_patch.dart
 lib/src/model/self_service_flow_expired_error.dart
 lib/src/model/session.dart
 lib/src/model/session_authentication_method.dart
-lib/src/model/session_caching_quota.dart
 lib/src/model/session_device.dart
 lib/src/model/set_active_project_in_console_body.dart
 lib/src/model/set_custom_domain_body.dart
@@ -401,8 +418,9 @@ lib/src/model/update_settings_flow_with_totp_method.dart
 lib/src/model/update_settings_flow_with_web_authn_method.dart
 lib/src/model/update_subscription_body.dart
 lib/src/model/update_verification_flow_body.dart
-lib/src/model/update_verification_flow_with_code_method_body.dart
+lib/src/model/update_verification_flow_with_code_method.dart
 lib/src/model/update_verification_flow_with_link_method.dart
+lib/src/model/usage.dart
 lib/src/model/verifiable_identity_address.dart
 lib/src/model/verification_flow.dart
 lib/src/model/verification_flow_state.dart
@@ -415,9 +433,14 @@ test/accept_o_auth2_consent_request_test.dart
 test/accept_o_auth2_login_request_test.dart
 test/active_project_in_console_test.dart
 test/authenticator_assurance_level_test.dart
+test/batch_patch_identities_response_test.dart
 test/check_opl_syntax_result_test.dart
 test/check_permission_result_test.dart
 test/cloud_account_test.dart
+test/continue_with_set_ory_session_token_test.dart
+test/continue_with_test.dart
+test/continue_with_verification_ui_flow_test.dart
+test/continue_with_verification_ui_test.dart
 test/courier_api_test.dart
 test/courier_message_status_test.dart
 test/courier_message_type_test.dart
@@ -432,7 +455,6 @@ test/create_recovery_code_for_identity_body_test.dart
 test/create_recovery_link_for_identity_body_test.dart
 test/create_relationship_body_test.dart
 test/create_subscription_body_test.dart
-test/custom_domain_quota_test.dart
 test/custom_domain_test.dart
 test/delete_my_sessions_count_test.dart
 test/error_authenticator_assurance_level_not_satisfied_test.dart
@@ -445,6 +467,7 @@ test/flow_error_test.dart
 test/frontend_api_test.dart
 test/generic_error_content_test.dart
 test/generic_error_test.dart
+test/generic_usage_test.dart
 test/get_managed_identity_schema_location_test.dart
 test/get_version200_response_test.dart
 test/health_not_ready_status_test.dart
@@ -455,6 +478,8 @@ test/identity_credentials_oidc_test.dart
 test/identity_credentials_password_test.dart
 test/identity_credentials_test.dart
 test/identity_credentials_type_test.dart
+test/identity_patch_response_test.dart
+test/identity_patch_test.dart
 test/identity_schema_container_test.dart
 test/identity_schema_preset_test.dart
 test/identity_state_test.dart
@@ -467,9 +492,9 @@ test/identity_with_credentials_password_test.dart
 test/identity_with_credentials_test.dart
 test/internal_get_project_branding_body_test.dart
 test/internal_is_owner_for_project_by_slug_body_test.dart
+test/internal_is_owner_for_project_by_slug_response_test.dart
 test/internal_provision_mock_subscription_test.dart
 test/introspected_o_auth2_token_test.dart
-test/invite_quota_test.dart
 test/is_owner_for_project_by_slug_test.dart
 test/is_ready200_response_test.dart
 test/is_ready503_response_test.dart
@@ -492,7 +517,6 @@ test/normalized_project_revision_identity_schema_test.dart
 test/normalized_project_revision_test.dart
 test/normalized_project_revision_third_party_provider_test.dart
 test/normalized_project_test.dart
-test/null_plan_test.dart
 test/o_auth2_api_test.dart
 test/o_auth2_client_test.dart
 test/o_auth2_client_token_lifespans_test.dart
@@ -510,8 +534,11 @@ test/oidc_user_info_test.dart
 test/pagination_headers_test.dart
 test/pagination_test.dart
 test/parse_error_test.dart
+test/patch_identities_body_test.dart
 test/perform_native_logout_body_test.dart
 test/permission_api_test.dart
+test/plan_details_test.dart
+test/plan_test.dart
 test/post_check_permission_body_test.dart
 test/post_check_permission_or_error_body_test.dart
 test/project_api_key_test.dart
@@ -527,7 +554,7 @@ test/project_service_o_auth2_test.dart
 test/project_service_permission_test.dart
 test/project_services_test.dart
 test/project_test.dart
-test/quota_branding_themes_test.dart
+test/quota_usage_test.dart
 test/recovery_code_for_identity_test.dart
 test/recovery_flow_state_test.dart
 test/recovery_flow_test.dart
@@ -544,7 +571,6 @@ test/relationships_test.dart
 test/schema_patch_test.dart
 test/self_service_flow_expired_error_test.dart
 test/session_authentication_method_test.dart
-test/session_caching_quota_test.dart
 test/session_device_test.dart
 test/session_test.dart
 test/set_active_project_in_console_body_test.dart
@@ -600,8 +626,9 @@ test/update_settings_flow_with_totp_method_test.dart
 test/update_settings_flow_with_web_authn_method_test.dart
 test/update_subscription_body_test.dart
 test/update_verification_flow_body_test.dart
-test/update_verification_flow_with_code_method_body_test.dart
+test/update_verification_flow_with_code_method_test.dart
 test/update_verification_flow_with_link_method_test.dart
+test/usage_test.dart
 test/verifiable_identity_address_test.dart
 test/verification_flow_state_test.dart
 test/verification_flow_test.dart

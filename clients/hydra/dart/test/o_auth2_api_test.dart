@@ -137,7 +137,7 @@ void main() {
     //
     // This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.
     //
-    //Future<BuiltList<OAuth2ConsentSession>> listOAuth2ConsentSessions(String subject, { int pageSize, String pageToken }) async
+    //Future<BuiltList<OAuth2ConsentSession>> listOAuth2ConsentSessions(String subject, { int pageSize, String pageToken, String loginSessionId }) async
     test('test listOAuth2ConsentSessions', () async {
       // TODO
     });
@@ -214,11 +214,11 @@ void main() {
       // TODO
     });
 
-    // Revokes All OAuth 2.0 Login Sessions of a Subject
+    // Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
     //
-    // This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+    // This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
     //
-    //Future revokeOAuth2LoginSessions(String subject) async
+    //Future revokeOAuth2LoginSessions({ String subject, String sid }) async
     test('test revokeOAuth2LoginSessions', () async {
       // TODO
     });
@@ -227,7 +227,7 @@ void main() {
     //
     // Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
     //
-    //Future revokeOAuth2Token(String token) async
+    //Future revokeOAuth2Token(String token, { String clientId, String clientSecret }) async
     test('test revokeOAuth2Token', () async {
       // TODO
     });

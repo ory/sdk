@@ -1,5 +1,5 @@
 # Ory.Client.Model.ClientPerformNativeLogoutBody
-nolint:deadcode,unused
+Perform Native Logout Request Body
 
 ## Properties
 

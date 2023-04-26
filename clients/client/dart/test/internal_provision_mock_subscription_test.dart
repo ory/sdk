@@ -13,9 +13,15 @@ void main() {
       // TODO
     });
 
-    // Plan or Price
-    // String planOrPrice
-    test('to test the property `planOrPrice`', () async {
+    // Billing Interval monthly Monthly yearly Yearly
+    // String interval
+    test('to test the property `interval`', () async {
+      // TODO
+    });
+
+    // Plan ID
+    // String plan
+    test('to test the property `plan`', () async {
       // TODO
     });
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.25
 Contact: support@ory.sh
 */
 
@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-// VerificationFlow Used to verify an out-of-band communication channel such as an email address or a phone number.  For more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation
+// VerificationFlow Used to verify an out-of-band communication channel such as an email address or a phone number.  For more information head over to: https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation
 type VerificationFlow struct {
 	// Active, if set, contains the registration method that is being used. It is initially not set.
 	Active *string `json:"active,omitempty"`

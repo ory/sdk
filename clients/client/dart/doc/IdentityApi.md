@@ -9,10 +9,12 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**batchPatchIdentities**](IdentityApi.md#batchpatchidentities) | **PATCH** /admin/identities | Create and deletes multiple identities
 [**createIdentity**](IdentityApi.md#createidentity) | **POST** /admin/identities | Create an Identity
 [**createRecoveryCodeForIdentity**](IdentityApi.md#createrecoverycodeforidentity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**createRecoveryLinkForIdentity**](IdentityApi.md#createrecoverylinkforidentity) | **POST** /admin/recovery/link | Create a Recovery Link
 [**deleteIdentity**](IdentityApi.md#deleteidentity) | **DELETE** /admin/identities/{id} | Delete an Identity
+[**deleteIdentityCredentials**](IdentityApi.md#deleteidentitycredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 [**deleteIdentitySessions**](IdentityApi.md#deleteidentitysessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
 [**disableSession**](IdentityApi.md#disablesession) | **DELETE** /admin/sessions/{id} | Deactivate a Session
 [**extendSession**](IdentityApi.md#extendsession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
@@ -26,6 +28,52 @@ Method | HTTP request | Description
 [**patchIdentity**](IdentityApi.md#patchidentity) | **PATCH** /admin/identities/{id} | Patch an Identity
 [**updateIdentity**](IdentityApi.md#updateidentity) | **PUT** /admin/identities/{id} | Update an Identity
 
+
+# **batchPatchIdentities**
+> BatchPatchIdentitiesResponse batchPatchIdentities(patchIdentitiesBody)
+
+Create and deletes multiple identities
+
+Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+final api = OryClient().getIdentityApi();
+final PatchIdentitiesBody patchIdentitiesBody = ; // PatchIdentitiesBody | 
+
+try {
+    final response = api.batchPatchIdentities(patchIdentitiesBody);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling IdentityApi->batchPatchIdentities: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchIdentitiesBody** | [**PatchIdentitiesBody**](PatchIdentitiesBody.md)|  | [optional] 
+
+### Return type
+
+[**BatchPatchIdentitiesResponse**](BatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createIdentity**
 > Identity createIdentity(createIdentityBody)
@@ -198,6 +246,54 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteIdentityCredentials**
+> Identity deleteIdentityCredentials(id, type)
+
+Delete a credential for a specific identity
+
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+final api = OryClient().getIdentityApi();
+final String id = id_example; // String | ID is the identity's ID.
+final String type = type_example; // String | Type is the credential's Type. One of totp, webauthn, lookup
+
+try {
+    final response = api.deleteIdentityCredentials(id, type);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling IdentityApi->deleteIdentityCredentials: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID is the identity's ID. | 
+ **type** | **String**| Type is the credential's Type. One of totp, webauthn, lookup | 
+
+### Return type
+
+[**Identity**](Identity.md)
 
 ### Authorization
 
@@ -486,7 +582,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentities**
-> BuiltList<Identity> listIdentities(perPage, page)
+> BuiltList<Identity> listIdentities(perPage, page, credentialsIdentifier)
 
 List Identities
 
@@ -502,9 +598,10 @@ import 'package:ory_client/api.dart';
 final api = OryClient().getIdentityApi();
 final int perPage = 789; // int | Items per Page  This is the number of items per page.
 final int page = 789; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+final String credentialsIdentifier = credentialsIdentifier_example; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
 
 try {
-    final response = api.listIdentities(perPage, page);
+    final response = api.listIdentities(perPage, page, credentialsIdentifier);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling IdentityApi->listIdentities: $e\n');
@@ -517,6 +614,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
  **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+ **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] 
 
 ### Return type
 

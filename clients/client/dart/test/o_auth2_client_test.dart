@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(OAuth2Client, () {
+    // OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens Setting the stragegy here overrides the global setting in `strategies.access_token`.
+    // String accessTokenStrategy
+    test('to test the property `accessTokenStrategy`', () async {
+      // TODO
+    });
+
     // BuiltList<String> allowedCorsOrigins
     test('to test the property `allowedCorsOrigins`', () async {
       // TODO
@@ -222,14 +228,20 @@ void main() {
       // TODO
     });
 
+    // SkipConsent skips the consent screen for this client. This field can only be set from the admin API.
+    // bool skipConsent
+    test('to test the property `skipConsent`', () async {
+      // TODO
+    });
+
     // OpenID Connect Subject Type  The `subject_types_supported` Discovery parameter contains a list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
     // String subjectType
     test('to test the property `subjectType`', () async {
       // TODO
     });
 
-    // OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_post`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `client_secret_basic`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets.
-    // String tokenEndpointAuthMethod
+    // OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_basic`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `client_secret_post`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets.
+    // String tokenEndpointAuthMethod (default value: 'client_secret_basic')
     test('to test the property `tokenEndpointAuthMethod`', () async {
       // TODO
     });

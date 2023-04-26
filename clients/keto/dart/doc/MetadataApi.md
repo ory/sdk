@@ -25,12 +25,12 @@ This endpoint returns the version of Ory Keto.  If the service supports TLS Edge
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = MetadataApi();
+final api = OryKetoClient().getMetadataApi();
 
 try {
-    final result = api_instance.getVersion();
-    print(result);
-} catch (e) {
+    final response = api.getVersion();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling MetadataApi->getVersion: $e\n');
 }
 ```
@@ -64,12 +64,12 @@ This endpoint returns a HTTP 200 status code when Ory Keto is accepting incoming
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = MetadataApi();
+final api = OryKetoClient().getMetadataApi();
 
 try {
-    final result = api_instance.isAlive();
-    print(result);
-} catch (e) {
+    final response = api.isAlive();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling MetadataApi->isAlive: $e\n');
 }
 ```
@@ -103,12 +103,12 @@ This endpoint returns a HTTP 200 status code when Ory Keto is up running and the
 ```dart
 import 'package:ory_keto_client/api.dart';
 
-final api_instance = MetadataApi();
+final api = OryKetoClient().getMetadataApi();
 
 try {
-    final result = api_instance.isReady();
-    print(result);
-} catch (e) {
+    final response = api.isReady();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling MetadataApi->isReady: $e\n');
 }
 ```

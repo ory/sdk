@@ -30,6 +30,7 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// * [providerId] - ID is the provider's ID
 /// * [requestedClaims] 
 /// * [scope] 
+/// * [subjectSource] 
 /// * [tokenUrl] - TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
@@ -96,6 +97,9 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
 
   @BuiltValueField(wireName: r'scope')
   BuiltList<String>? get scope;
+
+  @BuiltValueField(wireName: r'subject_source')
+  String? get subjectSource;
 
   /// TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
   @BuiltValueField(wireName: r'token_url')
@@ -245,6 +249,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       yield serializers.serialize(
         object.scope,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.subjectSource != null) {
+      yield r'subject_source';
+      yield serializers.serialize(
+        object.subjectSource,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.tokenUrl != null) {
@@ -404,6 +415,14 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
             specifiedType: const FullType(BuiltList, [FullType(String)]),
           ) as BuiltList<String>;
           result.scope.replace(valueDes);
+          break;
+        case r'subject_source':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.subjectSource = valueDes;
           break;
         case r'token_url':
           final valueDes = serializers.deserialize(

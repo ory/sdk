@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.25
 Contact: support@ory.sh
 */
 
@@ -804,6 +804,7 @@ type PermissionApiPostCheckPermissionOrErrorRequest struct {
 	postCheckPermissionOrErrorBody *PostCheckPermissionOrErrorBody
 }
 
+// nolint:deadcode,unused
 func (r PermissionApiPostCheckPermissionOrErrorRequest) MaxDepth(maxDepth int64) PermissionApiPostCheckPermissionOrErrorRequest {
 	r.maxDepth = &maxDepth
 	return r

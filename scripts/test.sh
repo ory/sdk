@@ -68,8 +68,9 @@ csharp() {
 dart() {
   echo "Testing Dart..."
 
-  dir="$baseDir/clients/${PROJECT}/dart"
-  (cd "$dir" && /usr/bin/dart test .)
+  dir="clients/${PROJECT}/dart"
+  (cd "$dir" && command dart pub get)
+  (cd "$dir" && command dart test .)
 }
 
 rust() {

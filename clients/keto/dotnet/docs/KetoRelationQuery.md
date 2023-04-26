@@ -1,4 +1,5 @@
 # Ory.Keto.Client.Model.KetoRelationQuery
+Relation Query
 
 ## Properties
 

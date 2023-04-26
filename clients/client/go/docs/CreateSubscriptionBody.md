@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PlanOrPrice** | **string** |  | 
+**Interval** | **string** |  monthly Monthly yearly Yearly | 
+**Plan** | **string** |  | 
 **ProvisionFirstProject** | **string** |  | 
 **ReturnTo** | Pointer to **string** |  | [optional] 
 
@@ -12,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewCreateSubscriptionBody
 
-`func NewCreateSubscriptionBody(planOrPrice string, provisionFirstProject string, ) *CreateSubscriptionBody`
+`func NewCreateSubscriptionBody(interval string, plan string, provisionFirstProject string, ) *CreateSubscriptionBody`
 
 NewCreateSubscriptionBody instantiates a new CreateSubscriptionBody object
 This constructor will assign default values to properties that have it defined,
@@ -27,24 +28,44 @@ NewCreateSubscriptionBodyWithDefaults instantiates a new CreateSubscriptionBody 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetPlanOrPrice
+### GetInterval
 
-`func (o *CreateSubscriptionBody) GetPlanOrPrice() string`
+`func (o *CreateSubscriptionBody) GetInterval() string`
 
-GetPlanOrPrice returns the PlanOrPrice field if non-nil, zero value otherwise.
+GetInterval returns the Interval field if non-nil, zero value otherwise.
 
-### GetPlanOrPriceOk
+### GetIntervalOk
 
-`func (o *CreateSubscriptionBody) GetPlanOrPriceOk() (*string, bool)`
+`func (o *CreateSubscriptionBody) GetIntervalOk() (*string, bool)`
 
-GetPlanOrPriceOk returns a tuple with the PlanOrPrice field if it's non-nil, zero value otherwise
+GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPlanOrPrice
+### SetInterval
 
-`func (o *CreateSubscriptionBody) SetPlanOrPrice(v string)`
+`func (o *CreateSubscriptionBody) SetInterval(v string)`
 
-SetPlanOrPrice sets PlanOrPrice field to given value.
+SetInterval sets Interval field to given value.
+
+
+### GetPlan
+
+`func (o *CreateSubscriptionBody) GetPlan() string`
+
+GetPlan returns the Plan field if non-nil, zero value otherwise.
+
+### GetPlanOk
+
+`func (o *CreateSubscriptionBody) GetPlanOk() (*string, bool)`
+
+GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlan
+
+`func (o *CreateSubscriptionBody) SetPlan(v string)`
+
+SetPlan sets Plan field to given value.
 
 
 ### GetProvisionFirstProject

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.25
 Contact: support@ory.sh
 */
 
@@ -17,7 +17,9 @@ import (
 
 // CreateSubscriptionBody Create Subscription Request Body
 type CreateSubscriptionBody struct {
-	PlanOrPrice string `json:"plan_or_price"`
+	//  monthly Monthly yearly Yearly
+	Interval string `json:"interval"`
+	Plan string `json:"plan"`
 	ProvisionFirstProject string `json:"provision_first_project"`
 	ReturnTo *string `json:"return_to,omitempty"`
 }
@@ -26,9 +28,10 @@ type CreateSubscriptionBody struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateSubscriptionBody(planOrPrice string, provisionFirstProject string) *CreateSubscriptionBody {
+func NewCreateSubscriptionBody(interval string, plan string, provisionFirstProject string) *CreateSubscriptionBody {
 	this := CreateSubscriptionBody{}
-	this.PlanOrPrice = planOrPrice
+	this.Interval = interval
+	this.Plan = plan
 	this.ProvisionFirstProject = provisionFirstProject
 	return &this
 }
@@ -41,28 +44,52 @@ func NewCreateSubscriptionBodyWithDefaults() *CreateSubscriptionBody {
 	return &this
 }
 
-// GetPlanOrPrice returns the PlanOrPrice field value
-func (o *CreateSubscriptionBody) GetPlanOrPrice() string {
+// GetInterval returns the Interval field value
+func (o *CreateSubscriptionBody) GetInterval() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.PlanOrPrice
+	return o.Interval
 }
 
-// GetPlanOrPriceOk returns a tuple with the PlanOrPrice field value
+// GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubscriptionBody) GetPlanOrPriceOk() (*string, bool) {
+func (o *CreateSubscriptionBody) GetIntervalOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PlanOrPrice, true
+	return &o.Interval, true
 }
 
-// SetPlanOrPrice sets field value
-func (o *CreateSubscriptionBody) SetPlanOrPrice(v string) {
-	o.PlanOrPrice = v
+// SetInterval sets field value
+func (o *CreateSubscriptionBody) SetInterval(v string) {
+	o.Interval = v
+}
+
+// GetPlan returns the Plan field value
+func (o *CreateSubscriptionBody) GetPlan() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Plan
+}
+
+// GetPlanOk returns a tuple with the Plan field value
+// and a boolean to check if the value has been set.
+func (o *CreateSubscriptionBody) GetPlanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Plan, true
+}
+
+// SetPlan sets field value
+func (o *CreateSubscriptionBody) SetPlan(v string) {
+	o.Plan = v
 }
 
 // GetProvisionFirstProject returns the ProvisionFirstProject field value
@@ -124,7 +151,10 @@ func (o *CreateSubscriptionBody) SetReturnTo(v string) {
 func (o CreateSubscriptionBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["plan_or_price"] = o.PlanOrPrice
+		toSerialize["interval"] = o.Interval
+	}
+	if true {
+		toSerialize["plan"] = o.Plan
 	}
 	if true {
 		toSerialize["provision_first_project"] = o.ProvisionFirstProject

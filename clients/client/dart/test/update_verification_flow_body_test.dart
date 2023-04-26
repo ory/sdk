@@ -19,9 +19,21 @@ void main() {
       // TODO
     });
 
-    // Method supports `link` only right now.
+    // Method is the recovery method
     // String method
     test('to test the property `method`', () async {
+      // TODO
+    });
+
+    // The verification code
+    // String code
+    test('to test the property `code`', () async {
+      // TODO
+    });
+
+    // The id of the flow
+    // String flow
+    test('to test the property `flow`', () async {
       // TODO
     });
 

@@ -32,7 +32,7 @@ Method | HTTP request | Description
 [**rejectOAuth2LoginRequest**](OAuth2Api.md#rejectoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**rejectOAuth2LogoutRequest**](OAuth2Api.md#rejectoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
 [**revokeOAuth2ConsentSessions**](OAuth2Api.md#revokeoauth2consentsessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-[**revokeOAuth2LoginSessions**](OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject
+[**revokeOAuth2LoginSessions**](OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 [**revokeOAuth2Token**](OAuth2Api.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
 [**setOAuth2Client**](OAuth2Api.md#setoauth2client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 [**setOAuth2ClientLifespans**](OAuth2Api.md#setoauth2clientlifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
@@ -651,7 +651,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listOAuth2ConsentSessions**
-> BuiltList<OAuth2ConsentSession> listOAuth2ConsentSessions(subject, pageSize, pageToken)
+> BuiltList<OAuth2ConsentSession> listOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId)
 
 List OAuth 2.0 Consent Sessions of a Subject
 
@@ -665,9 +665,10 @@ final api = OryHydraClient().getOAuth2Api();
 final String subject = subject_example; // String | The subject to list the consent sessions for.
 final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String loginSessionId = loginSessionId_example; // String | The login session id to list the consent sessions for.
 
 try {
-    final response = api.listOAuth2ConsentSessions(subject, pageSize, pageToken);
+    final response = api.listOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling OAuth2Api->listOAuth2ConsentSessions: $e\n');
@@ -681,6 +682,7 @@ Name | Type | Description  | Notes
  **subject** | **String**| The subject to list the consent sessions for. | 
  **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to '1']
+ **loginSessionId** | **String**| The login session id to list the consent sessions for. | [optional] 
 
 ### Return type
 
@@ -1063,11 +1065,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revokeOAuth2LoginSessions**
-> revokeOAuth2LoginSessions(subject)
+> revokeOAuth2LoginSessions(subject, sid)
 
-Revokes All OAuth 2.0 Login Sessions of a Subject
+Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 ```dart
@@ -1075,9 +1077,10 @@ import 'package:ory_hydra_client/api.dart';
 
 final api = OryHydraClient().getOAuth2Api();
 final String subject = subject_example; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+final String sid = sid_example; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
 
 try {
-    api.revokeOAuth2LoginSessions(subject);
+    api.revokeOAuth2LoginSessions(subject, sid);
 } catch on DioError (e) {
     print('Exception when calling OAuth2Api->revokeOAuth2LoginSessions: $e\n');
 }
@@ -1087,7 +1090,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | 
+ **subject** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
+ **sid** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
 
 ### Return type
 
@@ -1105,7 +1109,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revokeOAuth2Token**
-> revokeOAuth2Token(token)
+> revokeOAuth2Token(token, clientId, clientSecret)
 
 Revoke OAuth 2.0 Access or Refresh Token
 
@@ -1122,9 +1126,11 @@ import 'package:ory_hydra_client/api.dart';
 
 final api = OryHydraClient().getOAuth2Api();
 final String token = token_example; // String | 
+final String clientId = clientId_example; // String | 
+final String clientSecret = clientSecret_example; // String | 
 
 try {
-    api.revokeOAuth2Token(token);
+    api.revokeOAuth2Token(token, clientId, clientSecret);
 } catch on DioError (e) {
     print('Exception when calling OAuth2Api->revokeOAuth2Token: $e\n');
 }
@@ -1135,6 +1141,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **String**|  | 
+ **clientId** | **String**|  | [optional] 
+ **clientSecret** | **String**|  | [optional] 
 
 ### Return type
 

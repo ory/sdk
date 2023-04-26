@@ -4,7 +4,6 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/src/model/null_plan.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,9 +13,11 @@ part 'subscription.g.dart';
 ///
 /// Properties:
 /// * [createdAt] 
-/// * [currentPlan] - The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
+/// * [currentInterval] - The currently active interval of the subscription monthly Monthly yearly Yearly
+/// * [currentPlan] - The currently active plan of the subscription
 /// * [customerId] - The ID of the stripe customer
 /// * [id] - The ID of the subscription
+/// * [intervalChangesTo] 
 /// * [ongoingStripeCheckoutId] 
 /// * [payedUntil] - Until when the subscription is payed
 /// * [planChangesAt] 
@@ -28,10 +29,14 @@ abstract class Subscription implements Built<Subscription, SubscriptionBuilder> 
   @BuiltValueField(wireName: r'created_at')
   DateTime get createdAt;
 
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
+  /// The currently active interval of the subscription monthly Monthly yearly Yearly
+  @BuiltValueField(wireName: r'current_interval')
+  SubscriptionCurrentIntervalEnum get currentInterval;
+  // enum currentIntervalEnum {  monthly,  yearly,  };
+
+  /// The currently active plan of the subscription
   @BuiltValueField(wireName: r'current_plan')
-  SubscriptionCurrentPlanEnum get currentPlan;
-  // enum currentPlanEnum {  unknown,  free,  start_up_monthly,  start_up_yearly,  business_monthly,  business_yearly,  custom,  };
+  String get currentPlan;
 
   /// The ID of the stripe customer
   @BuiltValueField(wireName: r'customer_id')
@@ -40,6 +45,9 @@ abstract class Subscription implements Built<Subscription, SubscriptionBuilder> 
   /// The ID of the subscription
   @BuiltValueField(wireName: r'id')
   String get id;
+
+  @BuiltValueField(wireName: r'interval_changes_to')
+  String? get intervalChangesTo;
 
   @BuiltValueField(wireName: r'ongoing_stripe_checkout_id')
   String? get ongoingStripeCheckoutId;
@@ -52,8 +60,7 @@ abstract class Subscription implements Built<Subscription, SubscriptionBuilder> 
   DateTime? get planChangesAt;
 
   @BuiltValueField(wireName: r'plan_changes_to')
-  NullPlan get planChangesTo;
-  // enum planChangesToEnum {  unknown,  free,  start_up_monthly,  start_up_yearly,  business_monthly,  business_yearly,  custom,  };
+  String? get planChangesTo;
 
   /// For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.  A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.  If subscription `collection_method=charge_automatically` it becomes `past_due` when payment to renew it fails and `canceled` or `unpaid` (depending on your subscriptions settings) when Stripe has exhausted all payment retry attempts.  If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
   @BuiltValueField(wireName: r'status')
@@ -90,10 +97,15 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
       object.createdAt,
       specifiedType: const FullType(DateTime),
     );
+    yield r'current_interval';
+    yield serializers.serialize(
+      object.currentInterval,
+      specifiedType: const FullType(SubscriptionCurrentIntervalEnum),
+    );
     yield r'current_plan';
     yield serializers.serialize(
       object.currentPlan,
-      specifiedType: const FullType(SubscriptionCurrentPlanEnum),
+      specifiedType: const FullType(String),
     );
     yield r'customer_id';
     yield serializers.serialize(
@@ -104,6 +116,11 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
     yield serializers.serialize(
       object.id,
       specifiedType: const FullType(String),
+    );
+    yield r'interval_changes_to';
+    yield object.intervalChangesTo == null ? null : serializers.serialize(
+      object.intervalChangesTo,
+      specifiedType: const FullType.nullable(String),
     );
     if (object.ongoingStripeCheckoutId != null) {
       yield r'ongoing_stripe_checkout_id';
@@ -125,9 +142,9 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
       );
     }
     yield r'plan_changes_to';
-    yield serializers.serialize(
+    yield object.planChangesTo == null ? null : serializers.serialize(
       object.planChangesTo,
-      specifiedType: const FullType(NullPlan),
+      specifiedType: const FullType.nullable(String),
     );
     yield r'status';
     yield serializers.serialize(
@@ -169,11 +186,18 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
           ) as DateTime;
           result.createdAt = valueDes;
           break;
+        case r'current_interval':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SubscriptionCurrentIntervalEnum),
+          ) as SubscriptionCurrentIntervalEnum;
+          result.currentInterval = valueDes;
+          break;
         case r'current_plan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SubscriptionCurrentPlanEnum),
-          ) as SubscriptionCurrentPlanEnum;
+            specifiedType: const FullType(String),
+          ) as String;
           result.currentPlan = valueDes;
           break;
         case r'customer_id':
@@ -189,6 +213,14 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
             specifiedType: const FullType(String),
           ) as String;
           result.id = valueDes;
+          break;
+        case r'interval_changes_to':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.intervalChangesTo = valueDes;
           break;
         case r'ongoing_stripe_checkout_id':
           final valueDes = serializers.deserialize(
@@ -215,8 +247,9 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
         case r'plan_changes_to':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(NullPlan),
-          ) as NullPlan;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.planChangesTo = valueDes;
           break;
         case r'status':
@@ -262,35 +295,20 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
   }
 }
 
-class SubscriptionCurrentPlanEnum extends EnumClass {
+class SubscriptionCurrentIntervalEnum extends EnumClass {
 
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'unknown')
-  static const SubscriptionCurrentPlanEnum unknown = _$subscriptionCurrentPlanEnum_unknown;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'free')
-  static const SubscriptionCurrentPlanEnum free = _$subscriptionCurrentPlanEnum_free;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'start_up_monthly')
-  static const SubscriptionCurrentPlanEnum startUpMonthly = _$subscriptionCurrentPlanEnum_startUpMonthly;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'start_up_yearly')
-  static const SubscriptionCurrentPlanEnum startUpYearly = _$subscriptionCurrentPlanEnum_startUpYearly;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'business_monthly')
-  static const SubscriptionCurrentPlanEnum businessMonthly = _$subscriptionCurrentPlanEnum_businessMonthly;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'business_yearly')
-  static const SubscriptionCurrentPlanEnum businessYearly = _$subscriptionCurrentPlanEnum_businessYearly;
-  /// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
-  @BuiltValueEnumConst(wireName: r'custom')
-  static const SubscriptionCurrentPlanEnum custom = _$subscriptionCurrentPlanEnum_custom;
+  /// The currently active interval of the subscription monthly Monthly yearly Yearly
+  @BuiltValueEnumConst(wireName: r'monthly')
+  static const SubscriptionCurrentIntervalEnum monthly = _$subscriptionCurrentIntervalEnum_monthly;
+  /// The currently active interval of the subscription monthly Monthly yearly Yearly
+  @BuiltValueEnumConst(wireName: r'yearly')
+  static const SubscriptionCurrentIntervalEnum yearly = _$subscriptionCurrentIntervalEnum_yearly;
 
-  static Serializer<SubscriptionCurrentPlanEnum> get serializer => _$subscriptionCurrentPlanEnumSerializer;
+  static Serializer<SubscriptionCurrentIntervalEnum> get serializer => _$subscriptionCurrentIntervalEnumSerializer;
 
-  const SubscriptionCurrentPlanEnum._(String name): super(name);
+  const SubscriptionCurrentIntervalEnum._(String name): super(name);
 
-  static BuiltSet<SubscriptionCurrentPlanEnum> get values => _$subscriptionCurrentPlanEnumValues;
-  static SubscriptionCurrentPlanEnum valueOf(String name) => _$subscriptionCurrentPlanEnumValueOf(name);
+  static BuiltSet<SubscriptionCurrentIntervalEnum> get values => _$subscriptionCurrentIntervalEnumValues;
+  static SubscriptionCurrentIntervalEnum valueOf(String name) => _$subscriptionCurrentIntervalEnumValueOf(name);
 }
 

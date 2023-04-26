@@ -8,9 +8,14 @@ docs/ClientAcceptOAuth2ConsentRequestSession.md
 docs/ClientAcceptOAuth2LoginRequest.md
 docs/ClientActiveProjectInConsole.md
 docs/ClientAuthenticatorAssuranceLevel.md
+docs/ClientBatchPatchIdentitiesResponse.md
 docs/ClientCheckOplSyntaxResult.md
 docs/ClientCheckPermissionResult.md
 docs/ClientCloudAccount.md
+docs/ClientContinueWith.md
+docs/ClientContinueWithSetOrySessionToken.md
+docs/ClientContinueWithVerificationUi.md
+docs/ClientContinueWithVerificationUiFlow.md
 docs/ClientCourierMessageStatus.md
 docs/ClientCourierMessageType.md
 docs/ClientCreateCustomDomainBody.md
@@ -24,7 +29,6 @@ docs/ClientCreateRecoveryLinkForIdentityBody.md
 docs/ClientCreateRelationshipBody.md
 docs/ClientCreateSubscriptionBody.md
 docs/ClientCustomDomain.md
-docs/ClientCustomDomainQuota.md
 docs/ClientDeleteMySessionsCount.md
 docs/ClientErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/ClientErrorBrowserLocationChangeRequired.md
@@ -35,6 +39,7 @@ docs/ClientExpandedPermissionTree.md
 docs/ClientFlowError.md
 docs/ClientGenericError.md
 docs/ClientGenericErrorContent.md
+docs/ClientGenericUsage.md
 docs/ClientGetManagedIdentitySchemaLocation.md
 docs/ClientHealthNotReadyStatus.md
 docs/ClientHealthStatus.md
@@ -44,6 +49,8 @@ docs/ClientIdentityCredentialsOidc.md
 docs/ClientIdentityCredentialsOidcProvider.md
 docs/ClientIdentityCredentialsPassword.md
 docs/ClientIdentityCredentialsType.md
+docs/ClientIdentityPatch.md
+docs/ClientIdentityPatchResponse.md
 docs/ClientIdentitySchemaContainer.md
 docs/ClientIdentitySchemaPreset.md
 docs/ClientIdentityState.md
@@ -59,9 +66,9 @@ docs/ClientInlineResponse2001.md
 docs/ClientInlineResponse503.md
 docs/ClientInternalGetProjectBrandingBody.md
 docs/ClientInternalIsOwnerForProjectBySlugBody.md
+docs/ClientInternalIsOwnerForProjectBySlugResponse.md
 docs/ClientInternalProvisionMockSubscription.md
 docs/ClientIntrospectedOAuth2Token.md
-docs/ClientInviteQuota.md
 docs/ClientIsOwnerForProjectBySlug.md
 docs/ClientJsonPatch.md
 docs/ClientJsonWebKey.md
@@ -80,7 +87,6 @@ docs/ClientNormalizedProjectRevision.md
 docs/ClientNormalizedProjectRevisionHook.md
 docs/ClientNormalizedProjectRevisionIdentitySchema.md
 docs/ClientNormalizedProjectRevisionThirdPartyProvider.md
-docs/ClientNullPlan.md
 docs/ClientOAuth2Client.md
 docs/ClientOAuth2ClientTokenLifespans.md
 docs/ClientOAuth2ConsentRequest.md
@@ -96,7 +102,10 @@ docs/ClientOidcUserInfo.md
 docs/ClientPagination.md
 docs/ClientPaginationHeaders.md
 docs/ClientParseError.md
+docs/ClientPatchIdentitiesBody.md
 docs/ClientPerformNativeLogoutBody.md
+docs/ClientPlan.md
+docs/ClientPlanDetails.md
 docs/ClientPostCheckPermissionBody.md
 docs/ClientPostCheckPermissionOrErrorBody.md
 docs/ClientProject.md
@@ -111,7 +120,7 @@ docs/ClientProjectServiceIdentity.md
 docs/ClientProjectServiceOAuth2.md
 docs/ClientProjectServicePermission.md
 docs/ClientProjectServices.md
-docs/ClientQuotaBrandingThemes.md
+docs/ClientQuotaUsage.md
 docs/ClientRecoveryCodeForIdentity.md
 docs/ClientRecoveryFlow.md
 docs/ClientRecoveryFlowState.md
@@ -128,7 +137,6 @@ docs/ClientSchemaPatch.md
 docs/ClientSelfServiceFlowExpiredError.md
 docs/ClientSession.md
 docs/ClientSessionAuthenticationMethod.md
-docs/ClientSessionCachingQuota.md
 docs/ClientSessionDevice.md
 docs/ClientSetActiveProjectInConsoleBody.md
 docs/ClientSetCustomDomainBody.md
@@ -183,8 +191,9 @@ docs/ClientUpdateSettingsFlowWithTotpMethod.md
 docs/ClientUpdateSettingsFlowWithWebAuthnMethod.md
 docs/ClientUpdateSubscriptionBody.md
 docs/ClientUpdateVerificationFlowBody.md
-docs/ClientUpdateVerificationFlowWithCodeMethodBody.md
+docs/ClientUpdateVerificationFlowWithCodeMethod.md
 docs/ClientUpdateVerificationFlowWithLinkMethod.md
+docs/ClientUsage.md
 docs/ClientVerifiableIdentityAddress.md
 docs/ClientVerificationFlow.md
 docs/ClientVerificationFlowState.md
@@ -218,9 +227,14 @@ src/Ory.Client.Test/Model/ClientAcceptOAuth2ConsentRequestTests.cs
 src/Ory.Client.Test/Model/ClientAcceptOAuth2LoginRequestTests.cs
 src/Ory.Client.Test/Model/ClientActiveProjectInConsoleTests.cs
 src/Ory.Client.Test/Model/ClientAuthenticatorAssuranceLevelTests.cs
+src/Ory.Client.Test/Model/ClientBatchPatchIdentitiesResponseTests.cs
 src/Ory.Client.Test/Model/ClientCheckOplSyntaxResultTests.cs
 src/Ory.Client.Test/Model/ClientCheckPermissionResultTests.cs
 src/Ory.Client.Test/Model/ClientCloudAccountTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithSetOrySessionTokenTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithVerificationUiFlowTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithVerificationUiTests.cs
 src/Ory.Client.Test/Model/ClientCourierMessageStatusTests.cs
 src/Ory.Client.Test/Model/ClientCourierMessageTypeTests.cs
 src/Ory.Client.Test/Model/ClientCreateCustomDomainBodyTests.cs
@@ -233,7 +247,6 @@ src/Ory.Client.Test/Model/ClientCreateRecoveryCodeForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRecoveryLinkForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRelationshipBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateSubscriptionBodyTests.cs
-src/Ory.Client.Test/Model/ClientCustomDomainQuotaTests.cs
 src/Ory.Client.Test/Model/ClientCustomDomainTests.cs
 src/Ory.Client.Test/Model/ClientDeleteMySessionsCountTests.cs
 src/Ory.Client.Test/Model/ClientErrorAuthenticatorAssuranceLevelNotSatisfiedTests.cs
@@ -245,6 +258,7 @@ src/Ory.Client.Test/Model/ClientExpandedPermissionTreeTests.cs
 src/Ory.Client.Test/Model/ClientFlowErrorTests.cs
 src/Ory.Client.Test/Model/ClientGenericErrorContentTests.cs
 src/Ory.Client.Test/Model/ClientGenericErrorTests.cs
+src/Ory.Client.Test/Model/ClientGenericUsageTests.cs
 src/Ory.Client.Test/Model/ClientGetManagedIdentitySchemaLocationTests.cs
 src/Ory.Client.Test/Model/ClientHealthNotReadyStatusTests.cs
 src/Ory.Client.Test/Model/ClientHealthStatusTests.cs
@@ -253,6 +267,8 @@ src/Ory.Client.Test/Model/ClientIdentityCredentialsOidcTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsPasswordTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsTypeTests.cs
+src/Ory.Client.Test/Model/ClientIdentityPatchResponseTests.cs
+src/Ory.Client.Test/Model/ClientIdentityPatchTests.cs
 src/Ory.Client.Test/Model/ClientIdentitySchemaContainerTests.cs
 src/Ory.Client.Test/Model/ClientIdentitySchemaPresetTests.cs
 src/Ory.Client.Test/Model/ClientIdentityStateTests.cs
@@ -269,9 +285,9 @@ src/Ory.Client.Test/Model/ClientInlineResponse200Tests.cs
 src/Ory.Client.Test/Model/ClientInlineResponse503Tests.cs
 src/Ory.Client.Test/Model/ClientInternalGetProjectBrandingBodyTests.cs
 src/Ory.Client.Test/Model/ClientInternalIsOwnerForProjectBySlugBodyTests.cs
+src/Ory.Client.Test/Model/ClientInternalIsOwnerForProjectBySlugResponseTests.cs
 src/Ory.Client.Test/Model/ClientInternalProvisionMockSubscriptionTests.cs
 src/Ory.Client.Test/Model/ClientIntrospectedOAuth2TokenTests.cs
-src/Ory.Client.Test/Model/ClientInviteQuotaTests.cs
 src/Ory.Client.Test/Model/ClientIsOwnerForProjectBySlugTests.cs
 src/Ory.Client.Test/Model/ClientJsonPatchTests.cs
 src/Ory.Client.Test/Model/ClientJsonWebKeySetTests.cs
@@ -290,7 +306,6 @@ src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionIdentitySchemaTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionThirdPartyProviderTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectTests.cs
-src/Ory.Client.Test/Model/ClientNullPlanTests.cs
 src/Ory.Client.Test/Model/ClientOAuth2ClientTests.cs
 src/Ory.Client.Test/Model/ClientOAuth2ClientTokenLifespansTests.cs
 src/Ory.Client.Test/Model/ClientOAuth2ConsentRequestOpenIDConnectContextTests.cs
@@ -306,7 +321,10 @@ src/Ory.Client.Test/Model/ClientOidcUserInfoTests.cs
 src/Ory.Client.Test/Model/ClientPaginationHeadersTests.cs
 src/Ory.Client.Test/Model/ClientPaginationTests.cs
 src/Ory.Client.Test/Model/ClientParseErrorTests.cs
+src/Ory.Client.Test/Model/ClientPatchIdentitiesBodyTests.cs
 src/Ory.Client.Test/Model/ClientPerformNativeLogoutBodyTests.cs
+src/Ory.Client.Test/Model/ClientPlanDetailsTests.cs
+src/Ory.Client.Test/Model/ClientPlanTests.cs
 src/Ory.Client.Test/Model/ClientPostCheckPermissionBodyTests.cs
 src/Ory.Client.Test/Model/ClientPostCheckPermissionOrErrorBodyTests.cs
 src/Ory.Client.Test/Model/ClientProjectApiKeyTests.cs
@@ -321,7 +339,7 @@ src/Ory.Client.Test/Model/ClientProjectServiceOAuth2Tests.cs
 src/Ory.Client.Test/Model/ClientProjectServicePermissionTests.cs
 src/Ory.Client.Test/Model/ClientProjectServicesTests.cs
 src/Ory.Client.Test/Model/ClientProjectTests.cs
-src/Ory.Client.Test/Model/ClientQuotaBrandingThemesTests.cs
+src/Ory.Client.Test/Model/ClientQuotaUsageTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryCodeForIdentityTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryFlowTests.cs
@@ -337,7 +355,6 @@ src/Ory.Client.Test/Model/ClientRelationshipsTests.cs
 src/Ory.Client.Test/Model/ClientSchemaPatchTests.cs
 src/Ory.Client.Test/Model/ClientSelfServiceFlowExpiredErrorTests.cs
 src/Ory.Client.Test/Model/ClientSessionAuthenticationMethodTests.cs
-src/Ory.Client.Test/Model/ClientSessionCachingQuotaTests.cs
 src/Ory.Client.Test/Model/ClientSessionDeviceTests.cs
 src/Ory.Client.Test/Model/ClientSessionTests.cs
 src/Ory.Client.Test/Model/ClientSetActiveProjectInConsoleBodyTests.cs
@@ -393,8 +410,9 @@ src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithTotpMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithWebAuthnMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSubscriptionBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateVerificationFlowBodyTests.cs
-src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithCodeMethodBodyTests.cs
+src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithCodeMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithLinkMethodTests.cs
+src/Ory.Client.Test/Model/ClientUsageTests.cs
 src/Ory.Client.Test/Model/ClientVerifiableIdentityAddressTests.cs
 src/Ory.Client.Test/Model/ClientVerificationFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientVerificationFlowTests.cs
@@ -434,9 +452,14 @@ src/Ory.Client/Model/ClientAcceptOAuth2ConsentRequestSession.cs
 src/Ory.Client/Model/ClientAcceptOAuth2LoginRequest.cs
 src/Ory.Client/Model/ClientActiveProjectInConsole.cs
 src/Ory.Client/Model/ClientAuthenticatorAssuranceLevel.cs
+src/Ory.Client/Model/ClientBatchPatchIdentitiesResponse.cs
 src/Ory.Client/Model/ClientCheckOplSyntaxResult.cs
 src/Ory.Client/Model/ClientCheckPermissionResult.cs
 src/Ory.Client/Model/ClientCloudAccount.cs
+src/Ory.Client/Model/ClientContinueWith.cs
+src/Ory.Client/Model/ClientContinueWithSetOrySessionToken.cs
+src/Ory.Client/Model/ClientContinueWithVerificationUi.cs
+src/Ory.Client/Model/ClientContinueWithVerificationUiFlow.cs
 src/Ory.Client/Model/ClientCourierMessageStatus.cs
 src/Ory.Client/Model/ClientCourierMessageType.cs
 src/Ory.Client/Model/ClientCreateCustomDomainBody.cs
@@ -450,7 +473,6 @@ src/Ory.Client/Model/ClientCreateRecoveryLinkForIdentityBody.cs
 src/Ory.Client/Model/ClientCreateRelationshipBody.cs
 src/Ory.Client/Model/ClientCreateSubscriptionBody.cs
 src/Ory.Client/Model/ClientCustomDomain.cs
-src/Ory.Client/Model/ClientCustomDomainQuota.cs
 src/Ory.Client/Model/ClientDeleteMySessionsCount.cs
 src/Ory.Client/Model/ClientErrorAuthenticatorAssuranceLevelNotSatisfied.cs
 src/Ory.Client/Model/ClientErrorBrowserLocationChangeRequired.cs
@@ -461,6 +483,7 @@ src/Ory.Client/Model/ClientExpandedPermissionTree.cs
 src/Ory.Client/Model/ClientFlowError.cs
 src/Ory.Client/Model/ClientGenericError.cs
 src/Ory.Client/Model/ClientGenericErrorContent.cs
+src/Ory.Client/Model/ClientGenericUsage.cs
 src/Ory.Client/Model/ClientGetManagedIdentitySchemaLocation.cs
 src/Ory.Client/Model/ClientHealthNotReadyStatus.cs
 src/Ory.Client/Model/ClientHealthStatus.cs
@@ -470,6 +493,8 @@ src/Ory.Client/Model/ClientIdentityCredentialsOidc.cs
 src/Ory.Client/Model/ClientIdentityCredentialsOidcProvider.cs
 src/Ory.Client/Model/ClientIdentityCredentialsPassword.cs
 src/Ory.Client/Model/ClientIdentityCredentialsType.cs
+src/Ory.Client/Model/ClientIdentityPatch.cs
+src/Ory.Client/Model/ClientIdentityPatchResponse.cs
 src/Ory.Client/Model/ClientIdentitySchemaContainer.cs
 src/Ory.Client/Model/ClientIdentitySchemaPreset.cs
 src/Ory.Client/Model/ClientIdentityState.cs
@@ -485,9 +510,9 @@ src/Ory.Client/Model/ClientInlineResponse2001.cs
 src/Ory.Client/Model/ClientInlineResponse503.cs
 src/Ory.Client/Model/ClientInternalGetProjectBrandingBody.cs
 src/Ory.Client/Model/ClientInternalIsOwnerForProjectBySlugBody.cs
+src/Ory.Client/Model/ClientInternalIsOwnerForProjectBySlugResponse.cs
 src/Ory.Client/Model/ClientInternalProvisionMockSubscription.cs
 src/Ory.Client/Model/ClientIntrospectedOAuth2Token.cs
-src/Ory.Client/Model/ClientInviteQuota.cs
 src/Ory.Client/Model/ClientIsOwnerForProjectBySlug.cs
 src/Ory.Client/Model/ClientJsonPatch.cs
 src/Ory.Client/Model/ClientJsonWebKey.cs
@@ -506,7 +531,6 @@ src/Ory.Client/Model/ClientNormalizedProjectRevision.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionHook.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionIdentitySchema.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionThirdPartyProvider.cs
-src/Ory.Client/Model/ClientNullPlan.cs
 src/Ory.Client/Model/ClientOAuth2Client.cs
 src/Ory.Client/Model/ClientOAuth2ClientTokenLifespans.cs
 src/Ory.Client/Model/ClientOAuth2ConsentRequest.cs
@@ -522,7 +546,10 @@ src/Ory.Client/Model/ClientOidcUserInfo.cs
 src/Ory.Client/Model/ClientPagination.cs
 src/Ory.Client/Model/ClientPaginationHeaders.cs
 src/Ory.Client/Model/ClientParseError.cs
+src/Ory.Client/Model/ClientPatchIdentitiesBody.cs
 src/Ory.Client/Model/ClientPerformNativeLogoutBody.cs
+src/Ory.Client/Model/ClientPlan.cs
+src/Ory.Client/Model/ClientPlanDetails.cs
 src/Ory.Client/Model/ClientPostCheckPermissionBody.cs
 src/Ory.Client/Model/ClientPostCheckPermissionOrErrorBody.cs
 src/Ory.Client/Model/ClientProject.cs
@@ -537,7 +564,7 @@ src/Ory.Client/Model/ClientProjectServiceIdentity.cs
 src/Ory.Client/Model/ClientProjectServiceOAuth2.cs
 src/Ory.Client/Model/ClientProjectServicePermission.cs
 src/Ory.Client/Model/ClientProjectServices.cs
-src/Ory.Client/Model/ClientQuotaBrandingThemes.cs
+src/Ory.Client/Model/ClientQuotaUsage.cs
 src/Ory.Client/Model/ClientRecoveryCodeForIdentity.cs
 src/Ory.Client/Model/ClientRecoveryFlow.cs
 src/Ory.Client/Model/ClientRecoveryFlowState.cs
@@ -554,7 +581,6 @@ src/Ory.Client/Model/ClientSchemaPatch.cs
 src/Ory.Client/Model/ClientSelfServiceFlowExpiredError.cs
 src/Ory.Client/Model/ClientSession.cs
 src/Ory.Client/Model/ClientSessionAuthenticationMethod.cs
-src/Ory.Client/Model/ClientSessionCachingQuota.cs
 src/Ory.Client/Model/ClientSessionDevice.cs
 src/Ory.Client/Model/ClientSetActiveProjectInConsoleBody.cs
 src/Ory.Client/Model/ClientSetCustomDomainBody.cs
@@ -609,8 +635,9 @@ src/Ory.Client/Model/ClientUpdateSettingsFlowWithTotpMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithWebAuthnMethod.cs
 src/Ory.Client/Model/ClientUpdateSubscriptionBody.cs
 src/Ory.Client/Model/ClientUpdateVerificationFlowBody.cs
-src/Ory.Client/Model/ClientUpdateVerificationFlowWithCodeMethodBody.cs
+src/Ory.Client/Model/ClientUpdateVerificationFlowWithCodeMethod.cs
 src/Ory.Client/Model/ClientUpdateVerificationFlowWithLinkMethod.cs
+src/Ory.Client/Model/ClientUsage.cs
 src/Ory.Client/Model/ClientVerifiableIdentityAddress.cs
 src/Ory.Client/Model/ClientVerificationFlow.cs
 src/Ory.Client/Model/ClientVerificationFlowState.cs

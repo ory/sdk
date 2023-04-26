@@ -27,7 +27,7 @@ Method | HTTP request | Description
 [**RejectOAuth2LoginRequest**](OAuth2Api.md#rejectoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**RejectOAuth2LogoutRequest**](OAuth2Api.md#rejectoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
 [**RevokeOAuth2ConsentSessions**](OAuth2Api.md#revokeoauth2consentsessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-[**RevokeOAuth2LoginSessions**](OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject
+[**RevokeOAuth2LoginSessions**](OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 [**RevokeOAuth2Token**](OAuth2Api.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
 [**SetOAuth2Client**](OAuth2Api.md#setoauth2client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 [**SetOAuth2ClientLifespans**](OAuth2Api.md#setoauth2clientlifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
@@ -1057,7 +1057,7 @@ No authorization required
 
 <a name="listoauth2consentsessions"></a>
 # **ListOAuth2ConsentSessions**
-> List&lt;HydraOAuth2ConsentSession&gt; ListOAuth2ConsentSessions (string subject, long? pageSize = null, string pageToken = null)
+> List&lt;HydraOAuth2ConsentSession&gt; ListOAuth2ConsentSessions (string subject, long? pageSize = null, string pageToken = null, string loginSessionId = null)
 
 List OAuth 2.0 Consent Sessions of a Subject
 
@@ -1083,11 +1083,12 @@ namespace Example
             var subject = "subject_example";  // string | The subject to list the consent sessions for.
             var pageSize = 250L;  // long? | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
             var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
+            var loginSessionId = "loginSessionId_example";  // string | The login session id to list the consent sessions for. (optional) 
 
             try
             {
                 // List OAuth 2.0 Consent Sessions of a Subject
-                List<HydraOAuth2ConsentSession> result = apiInstance.ListOAuth2ConsentSessions(subject, pageSize, pageToken);
+                List<HydraOAuth2ConsentSession> result = apiInstance.ListOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1108,6 +1109,7 @@ Name | Type | Description  | Notes
  **subject** | **string**| The subject to list the consent sessions for. | 
  **pageSize** | **long?**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
+ **loginSessionId** | **string**| The login session id to list the consent sessions for. | [optional] 
 
 ### Return type
 
@@ -1732,11 +1734,11 @@ No authorization required
 
 <a name="revokeoauth2loginsessions"></a>
 # **RevokeOAuth2LoginSessions**
-> void RevokeOAuth2LoginSessions (string subject)
+> void RevokeOAuth2LoginSessions (string subject = null, string sid = null)
 
-Revokes All OAuth 2.0 Login Sessions of a Subject
+Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens and does not work with OpenID Connect Front- or Back-channel logout.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 ```csharp
@@ -1755,12 +1757,13 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new OAuth2Api(config);
-            var subject = "subject_example";  // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+            var subject = "subject_example";  // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional) 
+            var sid = "sid_example";  // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional) 
 
             try
             {
-                // Revokes All OAuth 2.0 Login Sessions of a Subject
-                apiInstance.RevokeOAuth2LoginSessions(subject);
+                // Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+                apiInstance.RevokeOAuth2LoginSessions(subject, sid);
             }
             catch (ApiException  e)
             {
@@ -1777,7 +1780,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | 
+ **subject** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
+ **sid** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
 
 ### Return type
 
@@ -1803,7 +1807,7 @@ No authorization required
 
 <a name="revokeoauth2token"></a>
 # **RevokeOAuth2Token**
-> void RevokeOAuth2Token (string token)
+> void RevokeOAuth2Token (string token, string clientId = null, string clientSecret = null)
 
 Revoke OAuth 2.0 Access or Refresh Token
 
@@ -1833,11 +1837,13 @@ namespace Example
 
             var apiInstance = new OAuth2Api(config);
             var token = "token_example";  // string | 
+            var clientId = "clientId_example";  // string |  (optional) 
+            var clientSecret = "clientSecret_example";  // string |  (optional) 
 
             try
             {
                 // Revoke OAuth 2.0 Access or Refresh Token
-                apiInstance.RevokeOAuth2Token(token);
+                apiInstance.RevokeOAuth2Token(token, clientId, clientSecret);
             }
             catch (ApiException  e)
             {
@@ -1855,6 +1861,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**|  | 
+ **clientId** | **string**|  | [optional] 
+ **clientSecret** | **string**|  | [optional] 
 
 ### Return type
 

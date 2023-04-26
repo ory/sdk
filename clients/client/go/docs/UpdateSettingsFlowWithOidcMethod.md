@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Method** | **string** | Method  Should be set to profile when trying to update a profile. | 
 **Traits** | Pointer to **map[string]interface{}** | The identity&#39;s traits  in: body | [optional] 
 **Unlink** | Pointer to **string** | Unlink this provider  Either this or &#x60;link&#x60; must be set.  type: string in: body | [optional] 
+**UpstreamParameters** | Pointer to **map[string]interface{}** | UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: &#x60;login_hint&#x60; (string): The &#x60;login_hint&#x60; parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. &#x60;hd&#x60; (string): The &#x60;hd&#x60; parameter limits the login/registration process to a Google Organization, e.g. &#x60;mycollege.edu&#x60;. | [optional] 
 
 ## Methods
 
@@ -148,6 +149,31 @@ SetUnlink sets Unlink field to given value.
 `func (o *UpdateSettingsFlowWithOidcMethod) HasUnlink() bool`
 
 HasUnlink returns a boolean if a field has been set.
+
+### GetUpstreamParameters
+
+`func (o *UpdateSettingsFlowWithOidcMethod) GetUpstreamParameters() map[string]interface{}`
+
+GetUpstreamParameters returns the UpstreamParameters field if non-nil, zero value otherwise.
+
+### GetUpstreamParametersOk
+
+`func (o *UpdateSettingsFlowWithOidcMethod) GetUpstreamParametersOk() (*map[string]interface{}, bool)`
+
+GetUpstreamParametersOk returns a tuple with the UpstreamParameters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamParameters
+
+`func (o *UpdateSettingsFlowWithOidcMethod) SetUpstreamParameters(v map[string]interface{})`
+
+SetUpstreamParameters sets UpstreamParameters field to given value.
+
+### HasUpstreamParameters
+
+`func (o *UpdateSettingsFlowWithOidcMethod) HasUpstreamParameters() bool`
+
+HasUpstreamParameters returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

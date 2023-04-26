@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
+**HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** |  | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
+**HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtIatOptional** | Pointer to **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtJtiOptional** | Pointer to **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtMaxTtl** | Pointer to **string** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional] [default to "720h"]
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
-**HydraOauth2SessionAllowedTopLevelClaims** | Pointer to **[]string** |  | [optional] 
-**HydraOauth2SessionExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.session.exclude_not_before_claim\&quot; setting. | [optional] 
 **HydraOidcDynamicClientRegistrationDefaultScope** | Pointer to **[]string** |  | [optional] 
 **HydraOidcDynamicClientRegistrationEnabled** | Pointer to **bool** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] 
 **HydraOidcSubjectIdentifiersPairwiseSalt** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] 
@@ -26,8 +26,8 @@ Name | Type | Description | Notes
 **HydraServeCookiesSameSiteMode** | Pointer to **string** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] 
 **HydraServePublicCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
 **HydraServePublicCorsEnabled** | Pointer to **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
-**HydraStrategiesAccessToken** | Pointer to **string** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque OAUTH2_ACCESS_TOKEN_STRATEGY_OPAQUE jwt OAUTH2_ACCESS_TOKEN_STRATEGY_JWT | [optional] [default to "opaque"]
-**HydraStrategiesScope** | Pointer to **string** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact OAUTH2_SCOPE_STRATEGY_EXACT wildcard OAUTH2_SCOPE_STRATEGY_WILDCARD | [optional] [default to "wildcard"]
+**HydraStrategiesAccessToken** | Pointer to **string** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional] [default to "opaque"]
+**HydraStrategiesScope** | Pointer to **string** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional] [default to "wildcard"]
 **HydraTtlAccessToken** | Pointer to **string** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional] [default to "30m"]
 **HydraTtlAuthCode** | Pointer to **string** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. | [optional] [default to "720h"]
 **HydraTtlIdToken** | Pointer to **string** | This governs the \&quot;ttl.id_token\&quot; setting. | [optional] [default to "30m"]
@@ -101,8 +101,9 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Recovery Default Return URL  This governs the \&quot;selfservice.flows.recovery.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRecoveryEnabled** | Pointer to **bool** | Configures the Ory Kratos Recovery Enabled Setting  This governs the \&quot;selfservice.flows.recovery.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRecoveryLifespan** | Pointer to **string** | Configures the Ory Kratos Recovery Lifespan  This governs the \&quot;selfservice.flows.recovery.lifespan\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients** | Pointer to **bool** | Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \&quot;selfservice.flows.recovery.notify_unknown_recipients\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRecoveryUiUrl** | Pointer to **string** | Configures the Ory Kratos Recovery UI URL  This governs the \&quot;selfservice.flows.recovery.ui_url\&quot; setting. | [optional] 
-**KratosSelfserviceFlowsRecoveryUse** | Pointer to **string** | Configures the Ory Kratos Recovery strategy to use (\&quot;link\&quot; or \&quot;code\&quot;)  This governs the \&quot;selfservice.flows.recovery.use\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsRecoveryUse** | Pointer to **string** | Configures the Ory Kratos Recovery strategy to use (\&quot;link\&quot; or \&quot;code\&quot;)  This governs the \&quot;selfservice.flows.recovery.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
 **KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration Default Return URL  This governs the \&quot;selfservice.flows.registration.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \&quot;selfservice.flows.registration.after.oidc.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] 
@@ -120,8 +121,9 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Verification Default Return URL  This governs the \&quot;selfservice.flows.verification.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationEnabled** | Pointer to **bool** | Configures the Ory Kratos Verification Enabled Setting  This governs the \&quot;selfservice.flows.verification.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationLifespan** | Pointer to **string** | Configures the Ory Kratos Verification Lifespan  This governs the \&quot;selfservice.flows.verification.lifespan\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsVerificationNotifyUnknownRecipients** | Pointer to **bool** | Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \&quot;selfservice.flows.verification.notify_unknown_recipients\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUiUrl** | Pointer to **string** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] 
-**KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
 **KratosSelfserviceMethodsCodeConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeEnabled** | Pointer to **bool** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigBaseUrl** | Pointer to **string** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] 
@@ -199,6 +201,31 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### GetHydraOauth2AllowedTopLevelClaims
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2AllowedTopLevelClaims() []string`
+
+GetHydraOauth2AllowedTopLevelClaims returns the HydraOauth2AllowedTopLevelClaims field if non-nil, zero value otherwise.
+
+### GetHydraOauth2AllowedTopLevelClaimsOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2AllowedTopLevelClaimsOk() (*[]string, bool)`
+
+GetHydraOauth2AllowedTopLevelClaimsOk returns a tuple with the HydraOauth2AllowedTopLevelClaims field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2AllowedTopLevelClaims
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2AllowedTopLevelClaims(v []string)`
+
+SetHydraOauth2AllowedTopLevelClaims sets HydraOauth2AllowedTopLevelClaims field to given value.
+
+### HasHydraOauth2AllowedTopLevelClaims
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2AllowedTopLevelClaims() bool`
+
+HasHydraOauth2AllowedTopLevelClaims returns a boolean if a field has been set.
+
 ### GetHydraOauth2ClientCredentialsDefaultGrantAllowedScope
 
 `func (o *NormalizedProjectRevision) GetHydraOauth2ClientCredentialsDefaultGrantAllowedScope() bool`
@@ -223,6 +250,31 @@ SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope sets HydraOauth2ClientCr
 `func (o *NormalizedProjectRevision) HasHydraOauth2ClientCredentialsDefaultGrantAllowedScope() bool`
 
 HasHydraOauth2ClientCredentialsDefaultGrantAllowedScope returns a boolean if a field has been set.
+
+### GetHydraOauth2ExcludeNotBeforeClaim
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2ExcludeNotBeforeClaim() bool`
+
+GetHydraOauth2ExcludeNotBeforeClaim returns the HydraOauth2ExcludeNotBeforeClaim field if non-nil, zero value otherwise.
+
+### GetHydraOauth2ExcludeNotBeforeClaimOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2ExcludeNotBeforeClaimOk() (*bool, bool)`
+
+GetHydraOauth2ExcludeNotBeforeClaimOk returns a tuple with the HydraOauth2ExcludeNotBeforeClaim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2ExcludeNotBeforeClaim
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2ExcludeNotBeforeClaim(v bool)`
+
+SetHydraOauth2ExcludeNotBeforeClaim sets HydraOauth2ExcludeNotBeforeClaim field to given value.
+
+### HasHydraOauth2ExcludeNotBeforeClaim
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2ExcludeNotBeforeClaim() bool`
+
+HasHydraOauth2ExcludeNotBeforeClaim returns a boolean if a field has been set.
 
 ### GetHydraOauth2GrantJwtIatOptional
 
@@ -373,56 +425,6 @@ SetHydraOauth2RefreshTokenHook sets HydraOauth2RefreshTokenHook field to given v
 `func (o *NormalizedProjectRevision) HasHydraOauth2RefreshTokenHook() bool`
 
 HasHydraOauth2RefreshTokenHook returns a boolean if a field has been set.
-
-### GetHydraOauth2SessionAllowedTopLevelClaims
-
-`func (o *NormalizedProjectRevision) GetHydraOauth2SessionAllowedTopLevelClaims() []string`
-
-GetHydraOauth2SessionAllowedTopLevelClaims returns the HydraOauth2SessionAllowedTopLevelClaims field if non-nil, zero value otherwise.
-
-### GetHydraOauth2SessionAllowedTopLevelClaimsOk
-
-`func (o *NormalizedProjectRevision) GetHydraOauth2SessionAllowedTopLevelClaimsOk() (*[]string, bool)`
-
-GetHydraOauth2SessionAllowedTopLevelClaimsOk returns a tuple with the HydraOauth2SessionAllowedTopLevelClaims field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHydraOauth2SessionAllowedTopLevelClaims
-
-`func (o *NormalizedProjectRevision) SetHydraOauth2SessionAllowedTopLevelClaims(v []string)`
-
-SetHydraOauth2SessionAllowedTopLevelClaims sets HydraOauth2SessionAllowedTopLevelClaims field to given value.
-
-### HasHydraOauth2SessionAllowedTopLevelClaims
-
-`func (o *NormalizedProjectRevision) HasHydraOauth2SessionAllowedTopLevelClaims() bool`
-
-HasHydraOauth2SessionAllowedTopLevelClaims returns a boolean if a field has been set.
-
-### GetHydraOauth2SessionExcludeNotBeforeClaim
-
-`func (o *NormalizedProjectRevision) GetHydraOauth2SessionExcludeNotBeforeClaim() bool`
-
-GetHydraOauth2SessionExcludeNotBeforeClaim returns the HydraOauth2SessionExcludeNotBeforeClaim field if non-nil, zero value otherwise.
-
-### GetHydraOauth2SessionExcludeNotBeforeClaimOk
-
-`func (o *NormalizedProjectRevision) GetHydraOauth2SessionExcludeNotBeforeClaimOk() (*bool, bool)`
-
-GetHydraOauth2SessionExcludeNotBeforeClaimOk returns a tuple with the HydraOauth2SessionExcludeNotBeforeClaim field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHydraOauth2SessionExcludeNotBeforeClaim
-
-`func (o *NormalizedProjectRevision) SetHydraOauth2SessionExcludeNotBeforeClaim(v bool)`
-
-SetHydraOauth2SessionExcludeNotBeforeClaim sets HydraOauth2SessionExcludeNotBeforeClaim field to given value.
-
-### HasHydraOauth2SessionExcludeNotBeforeClaim
-
-`func (o *NormalizedProjectRevision) HasHydraOauth2SessionExcludeNotBeforeClaim() bool`
-
-HasHydraOauth2SessionExcludeNotBeforeClaim returns a boolean if a field has been set.
 
 ### GetHydraOidcDynamicClientRegistrationDefaultScope
 
@@ -2629,6 +2631,31 @@ SetKratosSelfserviceFlowsRecoveryLifespan sets KratosSelfserviceFlowsRecoveryLif
 
 HasKratosSelfserviceFlowsRecoveryLifespan returns a boolean if a field has been set.
 
+### GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients() bool`
+
+GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients returns the KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipientsOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipientsOk() (*bool, bool)`
+
+GetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipientsOk returns a tuple with the KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients(v bool)`
+
+SetKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients sets KratosSelfserviceFlowsRecoveryNotifyUnknownRecipients field to given value.
+
+### HasKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients() bool`
+
+HasKratosSelfserviceFlowsRecoveryNotifyUnknownRecipients returns a boolean if a field has been set.
+
 ### GetKratosSelfserviceFlowsRecoveryUiUrl
 
 `func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrl() string`
@@ -3103,6 +3130,31 @@ SetKratosSelfserviceFlowsVerificationLifespan sets KratosSelfserviceFlowsVerific
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationLifespan() bool`
 
 HasKratosSelfserviceFlowsVerificationLifespan returns a boolean if a field has been set.
+
+### GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients() bool`
+
+GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients returns the KratosSelfserviceFlowsVerificationNotifyUnknownRecipients field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipientsOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipientsOk() (*bool, bool)`
+
+GetKratosSelfserviceFlowsVerificationNotifyUnknownRecipientsOk returns a tuple with the KratosSelfserviceFlowsVerificationNotifyUnknownRecipients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients(v bool)`
+
+SetKratosSelfserviceFlowsVerificationNotifyUnknownRecipients sets KratosSelfserviceFlowsVerificationNotifyUnknownRecipients field to given value.
+
+### HasKratosSelfserviceFlowsVerificationNotifyUnknownRecipients
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationNotifyUnknownRecipients() bool`
+
+HasKratosSelfserviceFlowsVerificationNotifyUnknownRecipients returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsVerificationUiUrl
 

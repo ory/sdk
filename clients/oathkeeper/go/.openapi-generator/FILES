@@ -4,10 +4,13 @@
 README.md
 api/openapi.yaml
 api_api.go
+api_health.go
+api_version.go
 client.go
 configuration.go
 docs/ApiApi.md
-docs/GetWellKnownJSONWebKeys500Response.md
+docs/GenericError.md
+docs/HealthApi.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/JsonWebKey.md
@@ -17,10 +20,11 @@ docs/RuleHandler.md
 docs/RuleMatch.md
 docs/Upstream.md
 docs/Version.md
+docs/VersionApi.md
 git_push.sh
 go.mod
 go.sum
-model_get_well_known_json_web_keys_500_response.go
+model_generic_error.go
 model_health_not_ready_status.go
 model_health_status.go
 model_json_web_key.go

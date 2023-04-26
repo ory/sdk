@@ -4,7 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **plan_or_price** | **String** |  |  |
+| **interval** | **String** |  monthly Monthly yearly Yearly |  |
+| **plan** | **String** |  |  |
 | **return_to** | **String** |  | [optional] |
 
 ## Example
@@ -13,7 +14,8 @@
 require 'ory-client'
 
 instance = OryClient::UpdateSubscriptionBody.new(
-  plan_or_price: null,
+  interval: null,
+  plan: null,
   return_to: null
 )
 ```

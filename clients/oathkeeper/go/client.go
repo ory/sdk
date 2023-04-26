@@ -3,7 +3,7 @@ ORY Oathkeeper
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
-API version: v0.39.4
+API version: v0.40.2
 Contact: hi@ory.am
 */
 
@@ -42,7 +42,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the ORY Oathkeeper API vv0.39.4
+// APIClient manages communication with the ORY Oathkeeper API vv0.40.2
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -51,6 +51,10 @@ type APIClient struct {
 	// API Services
 
 	ApiApi ApiApi
+
+	HealthApi HealthApi
+
+	VersionApi VersionApi
 }
 
 type service struct {
@@ -70,6 +74,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.ApiApi = (*ApiApiService)(&c.common)
+	c.HealthApi = (*HealthApiService)(&c.common)
+	c.VersionApi = (*VersionApiService)(&c.common)
 
 	return c
 }

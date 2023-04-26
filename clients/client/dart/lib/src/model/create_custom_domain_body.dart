@@ -15,6 +15,7 @@ part 'create_custom_domain_body.g.dart';
 /// * [cookieDomain] - The domain where cookies will be set. Has to be a parent domain of the custom hostname to work.
 /// * [corsAllowedOrigins] - CORS Allowed origins for the custom hostname.
 /// * [corsEnabled] - CORS Enabled for the custom hostname.
+/// * [customUiBaseUrl] - The base URL where the custom user interface will be exposed.
 /// * [hostname] - The custom hostname where the API will be exposed.
 @BuiltValue()
 abstract class CreateCustomDomainBody implements Built<CreateCustomDomainBody, CreateCustomDomainBodyBuilder> {
@@ -29,6 +30,10 @@ abstract class CreateCustomDomainBody implements Built<CreateCustomDomainBody, C
   /// CORS Enabled for the custom hostname.
   @BuiltValueField(wireName: r'cors_enabled')
   bool? get corsEnabled;
+
+  /// The base URL where the custom user interface will be exposed.
+  @BuiltValueField(wireName: r'custom_ui_base_url')
+  String? get customUiBaseUrl;
 
   /// The custom hostname where the API will be exposed.
   @BuiltValueField(wireName: r'hostname')
@@ -76,6 +81,13 @@ class _$CreateCustomDomainBodySerializer implements PrimitiveSerializer<CreateCu
       yield serializers.serialize(
         object.corsEnabled,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.customUiBaseUrl != null) {
+      yield r'custom_ui_base_url';
+      yield serializers.serialize(
+        object.customUiBaseUrl,
+        specifiedType: const FullType(String),
       );
     }
     if (object.hostname != null) {
@@ -128,6 +140,13 @@ class _$CreateCustomDomainBodySerializer implements PrimitiveSerializer<CreateCu
             specifiedType: const FullType(bool),
           ) as bool;
           result.corsEnabled = valueDes;
+          break;
+        case r'custom_ui_base_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.customUiBaseUrl = valueDes;
           break;
         case r'hostname':
           final valueDes = serializers.deserialize(

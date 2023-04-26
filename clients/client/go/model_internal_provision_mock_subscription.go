@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.25
 Contact: support@ory.sh
 */
 
@@ -19,18 +19,21 @@ import (
 type InternalProvisionMockSubscription struct {
 	// Identity ID
 	IdentityId string `json:"identity_id"`
-	// Plan or Price
-	PlanOrPrice string `json:"plan_or_price"`
+	// Billing Interval monthly Monthly yearly Yearly
+	Interval string `json:"interval"`
+	// Plan ID
+	Plan string `json:"plan"`
 }
 
 // NewInternalProvisionMockSubscription instantiates a new InternalProvisionMockSubscription object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInternalProvisionMockSubscription(identityId string, planOrPrice string) *InternalProvisionMockSubscription {
+func NewInternalProvisionMockSubscription(identityId string, interval string, plan string) *InternalProvisionMockSubscription {
 	this := InternalProvisionMockSubscription{}
 	this.IdentityId = identityId
-	this.PlanOrPrice = planOrPrice
+	this.Interval = interval
+	this.Plan = plan
 	return &this
 }
 
@@ -66,28 +69,52 @@ func (o *InternalProvisionMockSubscription) SetIdentityId(v string) {
 	o.IdentityId = v
 }
 
-// GetPlanOrPrice returns the PlanOrPrice field value
-func (o *InternalProvisionMockSubscription) GetPlanOrPrice() string {
+// GetInterval returns the Interval field value
+func (o *InternalProvisionMockSubscription) GetInterval() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.PlanOrPrice
+	return o.Interval
 }
 
-// GetPlanOrPriceOk returns a tuple with the PlanOrPrice field value
+// GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
-func (o *InternalProvisionMockSubscription) GetPlanOrPriceOk() (*string, bool) {
+func (o *InternalProvisionMockSubscription) GetIntervalOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PlanOrPrice, true
+	return &o.Interval, true
 }
 
-// SetPlanOrPrice sets field value
-func (o *InternalProvisionMockSubscription) SetPlanOrPrice(v string) {
-	o.PlanOrPrice = v
+// SetInterval sets field value
+func (o *InternalProvisionMockSubscription) SetInterval(v string) {
+	o.Interval = v
+}
+
+// GetPlan returns the Plan field value
+func (o *InternalProvisionMockSubscription) GetPlan() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Plan
+}
+
+// GetPlanOk returns a tuple with the Plan field value
+// and a boolean to check if the value has been set.
+func (o *InternalProvisionMockSubscription) GetPlanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Plan, true
+}
+
+// SetPlan sets field value
+func (o *InternalProvisionMockSubscription) SetPlan(v string) {
+	o.Plan = v
 }
 
 func (o InternalProvisionMockSubscription) MarshalJSON() ([]byte, error) {
@@ -96,7 +123,10 @@ func (o InternalProvisionMockSubscription) MarshalJSON() ([]byte, error) {
 		toSerialize["identity_id"] = o.IdentityId
 	}
 	if true {
-		toSerialize["plan_or_price"] = o.PlanOrPrice
+		toSerialize["interval"] = o.Interval
+	}
+	if true {
+		toSerialize["plan"] = o.Plan
 	}
 	return json.Marshal(toSerialize)
 }

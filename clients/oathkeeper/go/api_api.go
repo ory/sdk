@@ -3,7 +3,7 @@ ORY Oathkeeper
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
-API version: v0.39.4
+API version: v0.40.2
 Contact: hi@ory.am
 */
 
@@ -26,7 +26,7 @@ type ApiApi interface {
 	/*
 	Decisions Access Control Decision API
 
-	> This endpoint works with all HTTP Methods (GET, POST, PUT, ...) and matches every path prefixed with /decision.
+	> This endpoint works with all HTTP Methods (GET, POST, PUT, ...) and matches every path prefixed with /decisions.
 
 This endpoint mirrors the proxy capability of ORY Oathkeeper's proxy functionality but instead of forwarding the
 request to the upstream server, returns 200 (request should be allowed), 401 (unauthorized), or 403 (forbidden)
@@ -41,7 +41,7 @@ status codes. This endpoint can be used to integrate with other API Proxies like
 	DecisionsExecute(r ApiApiDecisionsRequest) (*http.Response, error)
 
 	/*
-	GetRule Retrieve a rule
+	GetRule Retrieve a Rule
 
 	Use this method to retrieve a rule from the storage. If it does not exist you will receive a 404 error.
 
@@ -56,27 +56,7 @@ status codes. This endpoint can be used to integrate with other API Proxies like
 	GetRuleExecute(r ApiApiGetRuleRequest) (*Rule, *http.Response, error)
 
 	/*
-	GetVersion Get service version
-
-	This endpoint returns the service version typically notated using semantic versioning.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of this service, the health status will never
-refer to the cluster state, only to a single instance.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiApiGetVersionRequest
-	*/
-	GetVersion(ctx context.Context) ApiApiGetVersionRequest
-
-	// GetVersionExecute executes the request
-	//  @return Version
-	GetVersionExecute(r ApiApiGetVersionRequest) (*Version, *http.Response, error)
-
-	/*
-	GetWellKnownJSONWebKeys Lists cryptographic keys
+	GetWellKnownJSONWebKeys Lists Cryptographic Keys
 
 	This endpoint returns cryptographic keys that are required to, for example, verify signatures of ID Tokens.
 
@@ -90,49 +70,7 @@ refer to the cluster state, only to a single instance.
 	GetWellKnownJSONWebKeysExecute(r ApiApiGetWellKnownJSONWebKeysRequest) (*JsonWebKeySet, *http.Response, error)
 
 	/*
-	IsInstanceAlive Check alive status
-
-	This endpoint returns a 200 status code when the HTTP server is up running.
-This status does currently not include checks whether the database connection is working.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of this service, the health status will never
-refer to the cluster state, only to a single instance.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiApiIsInstanceAliveRequest
-	*/
-	IsInstanceAlive(ctx context.Context) ApiApiIsInstanceAliveRequest
-
-	// IsInstanceAliveExecute executes the request
-	//  @return HealthStatus
-	IsInstanceAliveExecute(r ApiApiIsInstanceAliveRequest) (*HealthStatus, *http.Response, error)
-
-	/*
-	IsInstanceReady Check readiness status
-
-	This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
-the database) are responsive as well.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of this service, the health status will never
-refer to the cluster state, only to a single instance.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiApiIsInstanceReadyRequest
-	*/
-	IsInstanceReady(ctx context.Context) ApiApiIsInstanceReadyRequest
-
-	// IsInstanceReadyExecute executes the request
-	//  @return HealthStatus
-	IsInstanceReadyExecute(r ApiApiIsInstanceReadyRequest) (*HealthStatus, *http.Response, error)
-
-	/*
-	ListRules List all rules
+	ListRules List All Rules
 
 	This method returns an array of all rules that are stored in the backend. This is useful if you want to get a full
 view of what rules you have currently in place.
@@ -162,7 +100,7 @@ func (r ApiApiDecisionsRequest) Execute() (*http.Response, error) {
 /*
 Decisions Access Control Decision API
 
-> This endpoint works with all HTTP Methods (GET, POST, PUT, ...) and matches every path prefixed with /decision.
+> This endpoint works with all HTTP Methods (GET, POST, PUT, ...) and matches every path prefixed with /decisions.
 
 This endpoint mirrors the proxy capability of ORY Oathkeeper's proxy functionality but instead of forwarding the
 request to the upstream server, returns 200 (request should be allowed), 401 (unauthorized), or 403 (forbidden)
@@ -237,7 +175,7 @@ func (a *ApiApiService) DecisionsExecute(r ApiApiDecisionsRequest) (*http.Respon
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetWellKnownJSONWebKeys500Response
+			var v GenericError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -247,7 +185,7 @@ func (a *ApiApiService) DecisionsExecute(r ApiApiDecisionsRequest) (*http.Respon
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetWellKnownJSONWebKeys500Response
+			var v GenericError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -257,7 +195,7 @@ func (a *ApiApiService) DecisionsExecute(r ApiApiDecisionsRequest) (*http.Respon
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetWellKnownJSONWebKeys500Response
+			var v GenericError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -267,7 +205,7 @@ func (a *ApiApiService) DecisionsExecute(r ApiApiDecisionsRequest) (*http.Respon
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GetWellKnownJSONWebKeys500Response
+			var v GenericError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -292,7 +230,7 @@ func (r ApiApiGetRuleRequest) Execute() (*Rule, *http.Response, error) {
 }
 
 /*
-GetRule Retrieve a rule
+GetRule Retrieve a Rule
 
 Use this method to retrieve a rule from the storage. If it does not exist you will receive a 404 error.
 
@@ -370,7 +308,7 @@ func (a *ApiApiService) GetRuleExecute(r ApiApiGetRuleRequest) (*Rule, *http.Res
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetWellKnownJSONWebKeys500Response
+			var v GenericError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -380,118 +318,13 @@ func (a *ApiApiService) GetRuleExecute(r ApiApiGetRuleRequest) (*Rule, *http.Res
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GetWellKnownJSONWebKeys500Response
+			var v GenericError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiApiGetVersionRequest struct {
-	ctx context.Context
-	ApiService ApiApi
-}
-
-func (r ApiApiGetVersionRequest) Execute() (*Version, *http.Response, error) {
-	return r.ApiService.GetVersionExecute(r)
-}
-
-/*
-GetVersion Get service version
-
-This endpoint returns the service version typically notated using semantic versioning.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of this service, the health status will never
-refer to the cluster state, only to a single instance.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiApiGetVersionRequest
-*/
-func (a *ApiApiService) GetVersion(ctx context.Context) ApiApiGetVersionRequest {
-	return ApiApiGetVersionRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return Version
-func (a *ApiApiService) GetVersionExecute(r ApiApiGetVersionRequest) (*Version, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Version
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiApiService.GetVersion")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/version"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -518,7 +351,7 @@ func (r ApiApiGetWellKnownJSONWebKeysRequest) Execute() (*JsonWebKeySet, *http.R
 }
 
 /*
-GetWellKnownJSONWebKeys Lists cryptographic keys
+GetWellKnownJSONWebKeys Lists Cryptographic Keys
 
 This endpoint returns cryptographic keys that are required to, for example, verify signatures of ID Tokens.
 
@@ -593,237 +426,7 @@ func (a *ApiApiService) GetWellKnownJSONWebKeysExecute(r ApiApiGetWellKnownJSONW
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GetWellKnownJSONWebKeys500Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiApiIsInstanceAliveRequest struct {
-	ctx context.Context
-	ApiService ApiApi
-}
-
-func (r ApiApiIsInstanceAliveRequest) Execute() (*HealthStatus, *http.Response, error) {
-	return r.ApiService.IsInstanceAliveExecute(r)
-}
-
-/*
-IsInstanceAlive Check alive status
-
-This endpoint returns a 200 status code when the HTTP server is up running.
-This status does currently not include checks whether the database connection is working.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of this service, the health status will never
-refer to the cluster state, only to a single instance.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiApiIsInstanceAliveRequest
-*/
-func (a *ApiApiService) IsInstanceAlive(ctx context.Context) ApiApiIsInstanceAliveRequest {
-	return ApiApiIsInstanceAliveRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return HealthStatus
-func (a *ApiApiService) IsInstanceAliveExecute(r ApiApiIsInstanceAliveRequest) (*HealthStatus, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *HealthStatus
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiApiService.IsInstanceAlive")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/health/alive"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v GetWellKnownJSONWebKeys500Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiApiIsInstanceReadyRequest struct {
-	ctx context.Context
-	ApiService ApiApi
-}
-
-func (r ApiApiIsInstanceReadyRequest) Execute() (*HealthStatus, *http.Response, error) {
-	return r.ApiService.IsInstanceReadyExecute(r)
-}
-
-/*
-IsInstanceReady Check readiness status
-
-This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
-the database) are responsive as well.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of this service, the health status will never
-refer to the cluster state, only to a single instance.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiApiIsInstanceReadyRequest
-*/
-func (a *ApiApiService) IsInstanceReady(ctx context.Context) ApiApiIsInstanceReadyRequest {
-	return ApiApiIsInstanceReadyRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return HealthStatus
-func (a *ApiApiService) IsInstanceReadyExecute(r ApiApiIsInstanceReadyRequest) (*HealthStatus, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *HealthStatus
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiApiService.IsInstanceReady")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/health/ready"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 503 {
-			var v HealthNotReadyStatus
+			var v GenericError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -870,7 +473,7 @@ func (r ApiApiListRulesRequest) Execute() ([]Rule, *http.Response, error) {
 }
 
 /*
-ListRules List all rules
+ListRules List All Rules
 
 This method returns an array of all rules that are stored in the backend. This is useful if you want to get a full
 view of what rules you have currently in place.
@@ -952,7 +555,7 @@ func (a *ApiApiService) ListRulesExecute(r ApiApiListRulesRequest) ([]Rule, *htt
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GetWellKnownJSONWebKeys500Response
+			var v GenericError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

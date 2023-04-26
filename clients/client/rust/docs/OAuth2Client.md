@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**access_token_strategy** | Option<**String**> | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens Setting the stragegy here overrides the global setting in `strategies.access_token`. | [optional]
 **allowed_cors_origins** | Option<**Vec<String>**> |  | [optional]
 **audience** | Option<**Vec<String>**> |  | [optional]
 **authorization_code_grant_access_token_lifespan** | Option<**String**> |  | [optional]
@@ -43,8 +44,9 @@ Name | Type | Description | Notes
 **response_types** | Option<**Vec<String>**> |  | [optional]
 **scope** | Option<**String**> | OAuth 2.0 Client Scope  Scope is a string containing a space-separated list of scope values (as described in Section 3.3 of OAuth 2.0 [RFC6749]) that the client can use when requesting access tokens. | [optional]
 **sector_identifier_uri** | Option<**String**> | OpenID Connect Sector Identifier URI  URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a file with a single JSON array of redirect_uri values. | [optional]
+**skip_consent** | Option<**bool**> | SkipConsent skips the consent screen for this client. This field can only be set from the admin API. | [optional]
 **subject_type** | Option<**String**> | OpenID Connect Subject Type  The `subject_types_supported` Discovery parameter contains a list of the supported subject_type values for this server. Valid types include `pairwise` and `public`. | [optional]
-**token_endpoint_auth_method** | Option<**String**> | OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_post`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `client_secret_basic`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets. | [optional]
+**token_endpoint_auth_method** | Option<**String**> | OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_basic`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `client_secret_post`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets. | [optional][default to client_secret_basic]
 **token_endpoint_auth_signing_alg** | Option<**String**> | OAuth 2.0 Token Endpoint Signing Algorithm  Requested Client Authentication signing algorithm for the Token Endpoint. | [optional]
 **tos_uri** | Option<**String**> | OAuth 2.0 Client Terms of Service URI  A URL string pointing to a human-readable terms of service document for the client that describes a contractual relationship between the end-user and the client that the end-user accepts when authorizing the client. | [optional]
 **updated_at** | Option<**String**> | OAuth 2.0 Client Last Update Date  UpdatedAt returns the timestamp of the last update. | [optional]

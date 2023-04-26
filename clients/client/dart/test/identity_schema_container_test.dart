@@ -13,7 +13,7 @@ void main() {
       // TODO
     });
 
-    // Raw JSON Schema
+    // The actual Identity JSON Schema
     // JsonObject schema
     test('to test the property `schema`', () async {
       // TODO

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.25
 Contact: support@ory.sh
 */
 
@@ -22,8 +22,10 @@ type CustomDomain struct {
 	CorsAllowedOrigins []string `json:"cors_allowed_origins,omitempty"`
 	CorsEnabled *bool `json:"cors_enabled,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CustomUiBaseUrl *string `json:"custom_ui_base_url,omitempty"`
 	Hostname *string `json:"hostname,omitempty"`
 	Id *string `json:"id,omitempty"`
+	SslStatus *string `json:"ssl_status,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	VerificationErrors []string `json:"verification_errors,omitempty"`
 	VerificationStatus *string `json:"verification_status,omitempty"`
@@ -174,6 +176,38 @@ func (o *CustomDomain) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetCustomUiBaseUrl returns the CustomUiBaseUrl field value if set, zero value otherwise.
+func (o *CustomDomain) GetCustomUiBaseUrl() string {
+	if o == nil || o.CustomUiBaseUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.CustomUiBaseUrl
+}
+
+// GetCustomUiBaseUrlOk returns a tuple with the CustomUiBaseUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomDomain) GetCustomUiBaseUrlOk() (*string, bool) {
+	if o == nil || o.CustomUiBaseUrl == nil {
+		return nil, false
+	}
+	return o.CustomUiBaseUrl, true
+}
+
+// HasCustomUiBaseUrl returns a boolean if a field has been set.
+func (o *CustomDomain) HasCustomUiBaseUrl() bool {
+	if o != nil && o.CustomUiBaseUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomUiBaseUrl gets a reference to the given string and assigns it to the CustomUiBaseUrl field.
+func (o *CustomDomain) SetCustomUiBaseUrl(v string) {
+	o.CustomUiBaseUrl = &v
+}
+
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *CustomDomain) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -236,6 +270,38 @@ func (o *CustomDomain) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *CustomDomain) SetId(v string) {
 	o.Id = &v
+}
+
+// GetSslStatus returns the SslStatus field value if set, zero value otherwise.
+func (o *CustomDomain) GetSslStatus() string {
+	if o == nil || o.SslStatus == nil {
+		var ret string
+		return ret
+	}
+	return *o.SslStatus
+}
+
+// GetSslStatusOk returns a tuple with the SslStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomDomain) GetSslStatusOk() (*string, bool) {
+	if o == nil || o.SslStatus == nil {
+		return nil, false
+	}
+	return o.SslStatus, true
+}
+
+// HasSslStatus returns a boolean if a field has been set.
+func (o *CustomDomain) HasSslStatus() bool {
+	if o != nil && o.SslStatus != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSslStatus gets a reference to the given string and assigns it to the SslStatus field.
+func (o *CustomDomain) SetSslStatus(v string) {
+	o.SslStatus = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -348,11 +414,17 @@ func (o CustomDomain) MarshalJSON() ([]byte, error) {
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.CustomUiBaseUrl != nil {
+		toSerialize["custom_ui_base_url"] = o.CustomUiBaseUrl
+	}
 	if o.Hostname != nil {
 		toSerialize["hostname"] = o.Hostname
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
+	}
+	if o.SslStatus != nil {
+		toSerialize["ssl_status"] = o.SslStatus
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt

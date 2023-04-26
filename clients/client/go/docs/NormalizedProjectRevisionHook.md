@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **WebHookConfigCanInterrupt** | Pointer to **bool** | If enabled allows the web hook to interrupt / abort the self-service flow. It only applies to certain flows (registration/verification/login/settings) and requires a valid response format. | [optional] 
 **WebHookConfigMethod** | Pointer to **string** | The HTTP method to use (GET, POST, etc) for the Web-Hook | [optional] 
 **WebHookConfigResponseIgnore** | Pointer to **bool** | Whether to ignore the Web Hook response | [optional] 
+**WebHookConfigResponseParse** | Pointer to **bool** | Whether to parse the Web Hook response | [optional] 
 **WebHookConfigUrl** | Pointer to **string** | The URL the Web-Hook should call | [optional] 
 
 ## Methods
@@ -430,6 +431,31 @@ SetWebHookConfigResponseIgnore sets WebHookConfigResponseIgnore field to given v
 `func (o *NormalizedProjectRevisionHook) HasWebHookConfigResponseIgnore() bool`
 
 HasWebHookConfigResponseIgnore returns a boolean if a field has been set.
+
+### GetWebHookConfigResponseParse
+
+`func (o *NormalizedProjectRevisionHook) GetWebHookConfigResponseParse() bool`
+
+GetWebHookConfigResponseParse returns the WebHookConfigResponseParse field if non-nil, zero value otherwise.
+
+### GetWebHookConfigResponseParseOk
+
+`func (o *NormalizedProjectRevisionHook) GetWebHookConfigResponseParseOk() (*bool, bool)`
+
+GetWebHookConfigResponseParseOk returns a tuple with the WebHookConfigResponseParse field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebHookConfigResponseParse
+
+`func (o *NormalizedProjectRevisionHook) SetWebHookConfigResponseParse(v bool)`
+
+SetWebHookConfigResponseParse sets WebHookConfigResponseParse field to given value.
+
+### HasWebHookConfigResponseParse
+
+`func (o *NormalizedProjectRevisionHook) HasWebHookConfigResponseParse() bool`
+
+HasWebHookConfigResponseParse returns a boolean if a field has been set.
 
 ### GetWebHookConfigUrl
 

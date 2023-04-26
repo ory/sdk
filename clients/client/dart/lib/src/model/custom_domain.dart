@@ -16,8 +16,10 @@ part 'custom_domain.g.dart';
 /// * [corsAllowedOrigins] 
 /// * [corsEnabled] 
 /// * [createdAt] 
+/// * [customUiBaseUrl] 
 /// * [hostname] 
 /// * [id] 
+/// * [sslStatus] 
 /// * [updatedAt] 
 /// * [verificationErrors] 
 /// * [verificationStatus] 
@@ -35,11 +37,18 @@ abstract class CustomDomain implements Built<CustomDomain, CustomDomainBuilder> 
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
 
+  @BuiltValueField(wireName: r'custom_ui_base_url')
+  String? get customUiBaseUrl;
+
   @BuiltValueField(wireName: r'hostname')
   String? get hostname;
 
   @BuiltValueField(wireName: r'id')
   String? get id;
+
+  @BuiltValueField(wireName: r'ssl_status')
+  CustomDomainSslStatusEnum? get sslStatus;
+  // enum sslStatusEnum {  initializing,  pending_validation,  deleted,  pending_issuance,  pending_deployment,  pending_deletion,  pending_expiration,  expired,  active,  initializing_timed_out,  validation_timed_out,  issuance_timed_out,  deployment_timed_out,  deletion_timed_out,  pending_cleanup,  staging_deployment,  staging_active,  deactivating,  inactive,  backup_issued,  holding_deployment,  ,  };
 
   @BuiltValueField(wireName: r'updated_at')
   DateTime? get updatedAt;
@@ -101,6 +110,13 @@ class _$CustomDomainSerializer implements PrimitiveSerializer<CustomDomain> {
         specifiedType: const FullType(DateTime),
       );
     }
+    if (object.customUiBaseUrl != null) {
+      yield r'custom_ui_base_url';
+      yield serializers.serialize(
+        object.customUiBaseUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.hostname != null) {
       yield r'hostname';
       yield serializers.serialize(
@@ -113,6 +129,13 @@ class _$CustomDomainSerializer implements PrimitiveSerializer<CustomDomain> {
       yield serializers.serialize(
         object.id,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.sslStatus != null) {
+      yield r'ssl_status';
+      yield serializers.serialize(
+        object.sslStatus,
+        specifiedType: const FullType(CustomDomainSslStatusEnum),
       );
     }
     if (object.updatedAt != null) {
@@ -187,6 +210,13 @@ class _$CustomDomainSerializer implements PrimitiveSerializer<CustomDomain> {
           ) as DateTime;
           result.createdAt = valueDes;
           break;
+        case r'custom_ui_base_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.customUiBaseUrl = valueDes;
+          break;
         case r'hostname':
           final valueDes = serializers.deserialize(
             value,
@@ -200,6 +230,13 @@ class _$CustomDomainSerializer implements PrimitiveSerializer<CustomDomain> {
             specifiedType: const FullType(String),
           ) as String;
           result.id = valueDes;
+          break;
+        case r'ssl_status':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CustomDomainSslStatusEnum),
+          ) as CustomDomainSslStatusEnum;
+          result.sslStatus = valueDes;
           break;
         case r'updated_at':
           final valueDes = serializers.deserialize(
@@ -249,5 +286,60 @@ class _$CustomDomainSerializer implements PrimitiveSerializer<CustomDomain> {
     );
     return result.build();
   }
+}
+
+class CustomDomainSslStatusEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'initializing')
+  static const CustomDomainSslStatusEnum initializing = _$customDomainSslStatusEnum_initializing;
+  @BuiltValueEnumConst(wireName: r'pending_validation')
+  static const CustomDomainSslStatusEnum pendingValidation = _$customDomainSslStatusEnum_pendingValidation;
+  @BuiltValueEnumConst(wireName: r'deleted')
+  static const CustomDomainSslStatusEnum deleted = _$customDomainSslStatusEnum_deleted;
+  @BuiltValueEnumConst(wireName: r'pending_issuance')
+  static const CustomDomainSslStatusEnum pendingIssuance = _$customDomainSslStatusEnum_pendingIssuance;
+  @BuiltValueEnumConst(wireName: r'pending_deployment')
+  static const CustomDomainSslStatusEnum pendingDeployment = _$customDomainSslStatusEnum_pendingDeployment;
+  @BuiltValueEnumConst(wireName: r'pending_deletion')
+  static const CustomDomainSslStatusEnum pendingDeletion = _$customDomainSslStatusEnum_pendingDeletion;
+  @BuiltValueEnumConst(wireName: r'pending_expiration')
+  static const CustomDomainSslStatusEnum pendingExpiration = _$customDomainSslStatusEnum_pendingExpiration;
+  @BuiltValueEnumConst(wireName: r'expired')
+  static const CustomDomainSslStatusEnum expired = _$customDomainSslStatusEnum_expired;
+  @BuiltValueEnumConst(wireName: r'active')
+  static const CustomDomainSslStatusEnum active = _$customDomainSslStatusEnum_active;
+  @BuiltValueEnumConst(wireName: r'initializing_timed_out')
+  static const CustomDomainSslStatusEnum initializingTimedOut = _$customDomainSslStatusEnum_initializingTimedOut;
+  @BuiltValueEnumConst(wireName: r'validation_timed_out')
+  static const CustomDomainSslStatusEnum validationTimedOut = _$customDomainSslStatusEnum_validationTimedOut;
+  @BuiltValueEnumConst(wireName: r'issuance_timed_out')
+  static const CustomDomainSslStatusEnum issuanceTimedOut = _$customDomainSslStatusEnum_issuanceTimedOut;
+  @BuiltValueEnumConst(wireName: r'deployment_timed_out')
+  static const CustomDomainSslStatusEnum deploymentTimedOut = _$customDomainSslStatusEnum_deploymentTimedOut;
+  @BuiltValueEnumConst(wireName: r'deletion_timed_out')
+  static const CustomDomainSslStatusEnum deletionTimedOut = _$customDomainSslStatusEnum_deletionTimedOut;
+  @BuiltValueEnumConst(wireName: r'pending_cleanup')
+  static const CustomDomainSslStatusEnum pendingCleanup = _$customDomainSslStatusEnum_pendingCleanup;
+  @BuiltValueEnumConst(wireName: r'staging_deployment')
+  static const CustomDomainSslStatusEnum stagingDeployment = _$customDomainSslStatusEnum_stagingDeployment;
+  @BuiltValueEnumConst(wireName: r'staging_active')
+  static const CustomDomainSslStatusEnum stagingActive = _$customDomainSslStatusEnum_stagingActive;
+  @BuiltValueEnumConst(wireName: r'deactivating')
+  static const CustomDomainSslStatusEnum deactivating = _$customDomainSslStatusEnum_deactivating;
+  @BuiltValueEnumConst(wireName: r'inactive')
+  static const CustomDomainSslStatusEnum inactive = _$customDomainSslStatusEnum_inactive;
+  @BuiltValueEnumConst(wireName: r'backup_issued')
+  static const CustomDomainSslStatusEnum backupIssued = _$customDomainSslStatusEnum_backupIssued;
+  @BuiltValueEnumConst(wireName: r'holding_deployment')
+  static const CustomDomainSslStatusEnum holdingDeployment = _$customDomainSslStatusEnum_holdingDeployment;
+  @BuiltValueEnumConst(wireName: r'')
+  static const CustomDomainSslStatusEnum empty = _$customDomainSslStatusEnum_empty;
+
+  static Serializer<CustomDomainSslStatusEnum> get serializer => _$customDomainSslStatusEnumSerializer;
+
+  const CustomDomainSslStatusEnum._(String name): super(name);
+
+  static BuiltSet<CustomDomainSslStatusEnum> get values => _$customDomainSslStatusEnumValues;
+  static CustomDomainSslStatusEnum valueOf(String name) => _$customDomainSslStatusEnumValueOf(name);
 }
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.7
+API version: v1.1.25
 Contact: support@ory.sh
 */
 
@@ -47,6 +47,7 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	ProviderId *string `json:"provider_id,omitempty"`
 	RequestedClaims map[string]interface{} `json:"requested_claims,omitempty"`
 	Scope []string `json:"scope,omitempty"`
+	SubjectSource NullableString `json:"subject_source,omitempty"`
 	// TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 	TokenUrl *string `json:"token_url,omitempty"`
 	// Last Time Project's Revision was Updated
@@ -634,6 +635,48 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) SetScope(v []string) {
 	o.Scope = v
 }
 
+// GetSubjectSource returns the SubjectSource field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetSubjectSource() string {
+	if o == nil || o.SubjectSource.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SubjectSource.Get()
+}
+
+// GetSubjectSourceOk returns a tuple with the SubjectSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetSubjectSourceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SubjectSource.Get(), o.SubjectSource.IsSet()
+}
+
+// HasSubjectSource returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasSubjectSource() bool {
+	if o != nil && o.SubjectSource.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubjectSource gets a reference to the given NullableString and assigns it to the SubjectSource field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetSubjectSource(v string) {
+	o.SubjectSource.Set(&v)
+}
+// SetSubjectSourceNil sets the value for SubjectSource to be an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetSubjectSourceNil() {
+	o.SubjectSource.Set(nil)
+}
+
+// UnsetSubjectSource ensures that no value is present for SubjectSource, not even an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetSubjectSource() {
+	o.SubjectSource.Unset()
+}
+
 // GetTokenUrl returns the TokenUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionThirdPartyProvider) GetTokenUrl() string {
 	if o == nil || o.TokenUrl == nil {
@@ -750,6 +793,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) MarshalJSON() ([]byte, erro
 	}
 	if o.Scope != nil {
 		toSerialize["scope"] = o.Scope
+	}
+	if o.SubjectSource.IsSet() {
+		toSerialize["subject_source"] = o.SubjectSource.Get()
 	}
 	if o.TokenUrl != nil {
 		toSerialize["token_url"] = o.TokenUrl

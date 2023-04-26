@@ -8,14 +8,14 @@ info:
     for validity against a set of rules. This service uses Hydra to validate access
     tokens and policies.
   title: ORY Oathkeeper
-  version: v0.39.4
+  version: v0.40.2
 servers:
 - url: /
 paths:
   /.well-known/jwks.json:
     get:
-      description: This endpoint returns cryptographic keys that are required to,
-        for example, verify signatures of ID Tokens.
+      description: "This endpoint returns cryptographic keys that are required to,\
+        \ for example, verify signatures of ID Tokens."
       operationId: getWellKnownJSONWebKeys
       responses:
         "200":
@@ -28,16 +28,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
-      summary: Lists cryptographic keys
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Lists Cryptographic Keys
       tags:
       - api
       x-accepts: application/json
   /decisions:
     get:
       description: |-
-        > This endpoint works with all HTTP Methods (GET, POST, PUT, ...) and matches every path prefixed with /decision.
+        > This endpoint works with all HTTP Methods (GET, POST, PUT, ...) and matches every path prefixed with /decisions.
 
         This endpoint mirrors the proxy capability of ORY Oathkeeper's proxy functionality but instead of forwarding the
         request to the upstream server, returns 200 (request should be allowed), 401 (unauthorized), or 403 (forbidden)
@@ -51,26 +51,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Access Control Decision API
       tags:
       - api
@@ -98,11 +98,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
       summary: Check alive status
       tags:
-      - api
+      - health
       x-accepts: application/json
   /health/ready:
     get:
@@ -131,7 +131,7 @@ paths:
           description: healthNotReadyStatus
       summary: Check readiness status
       tags:
-      - api
+      - health
       x-accepts: application/json
   /rules:
     get:
@@ -165,9 +165,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
-      summary: List all rules
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: List All Rules
       tags:
       - api
       x-accepts: application/json
@@ -193,15 +193,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
+                $ref: '#/components/schemas/genericError'
+          description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_500'
-          description: The standard error format
-      summary: Retrieve a rule
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Retrieve a Rule
       tags:
       - api
       x-accepts: application/json
@@ -225,9 +225,27 @@ paths:
           description: version
       summary: Get service version
       tags:
-      - api
+      - version
       x-accepts: application/json
 components:
+  responses:
+    emptyResponse:
+      content: {}
+      description: An empty response
+    rule:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/rule'
+      description: A rule
+    rules:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/rule'
+            type: array
+      description: A list of rules
   schemas:
     Upstream:
       example:
@@ -241,11 +259,32 @@ components:
             hostname of the API's upstream's URL. Setting this flag to true instructs ORY Oathkeeper not to do so.
           type: boolean
         strip_path:
-          description: StripPath if set, replaces the provided path prefix when forwarding
-            the requested URL to the upstream URL.
+          description: "StripPath if set, replaces the provided path prefix when forwarding\
+            \ the requested URL to the upstream URL."
           type: string
         url:
           description: URL is the URL the request will be proxied to.
+          type: string
+      type: object
+    genericError:
+      description: The standard error format
+      properties:
+        code:
+          format: int64
+          type: integer
+        details:
+          items:
+            additionalProperties:
+              type: object
+            type: object
+          type: array
+        message:
+          type: string
+        reason:
+          type: string
+        request:
+          type: string
+        status:
           type: string
       type: object
     healthNotReadyStatus:
@@ -278,13 +317,13 @@ components:
         k: k
         dp: dp
         dq: dq
-        n: "n"
+        "n": "n"
         p: p
         kty: kty
         q: q
         qi: qi
         x: x
-        y: "y"
+        "y": "y"
         alg: alg
       properties:
         alg:
@@ -327,7 +366,7 @@ components:
             established by [JWA] or be a value that contains a Collision-
             Resistant Name.  The "kty" value is a case-sensitive string.
           type: string
-        n:
+        "n":
           type: string
         p:
           type: string
@@ -356,7 +395,7 @@ components:
           items:
             type: string
           type: array
-        y:
+        "y":
           type: string
       type: object
     jsonWebKeySet:
@@ -373,13 +412,13 @@ components:
           k: k
           dp: dp
           dq: dq
-          n: "n"
+          "n": "n"
           p: p
           kty: kty
           q: q
           qi: qi
           x: x
-          y: "y"
+          "y": "y"
           alg: alg
         - d: d
           e: e
@@ -392,13 +431,13 @@ components:
           k: k
           dp: dp
           dq: dq
-          n: "n"
+          "n": "n"
           p: p
           kty: kty
           q: q
           qi: qi
           x: x
-          y: "y"
+          "y": "y"
           alg: alg
       properties:
         keys:
@@ -420,12 +459,12 @@ components:
           url: url
         authorizer:
           handler: handler
-          config: '{}'
+          config: "{}"
         authenticators:
         - handler: handler
-          config: '{}'
+          config: "{}"
         - handler: handler
-          config: '{}'
+          config: "{}"
         match:
           methods:
           - methods
@@ -434,9 +473,9 @@ components:
         description: description
         mutators:
         - handler: handler
-          config: '{}'
+          config: "{}"
         - handler: handler
-          config: '{}'
+          config: "{}"
         id: id
       properties:
         authenticators:
@@ -478,13 +517,12 @@ components:
     ruleHandler:
       example:
         handler: handler
-        config: '{}'
+        config: "{}"
       properties:
         config:
           description: |-
             Config contains the configuration for the handler. Please read the user
             guide for a complete list of each handler's available settings.
-          properties: {}
           type: object
         handler:
           description: |-
@@ -528,25 +566,9 @@ components:
           description: Version is the service's version.
           type: string
       type: object
-    inline_response_500:
-      properties:
-        code:
-          format: int64
-          type: integer
-        details:
-          items:
-            properties: {}
-            type: object
-          type: array
-        message:
-          type: string
-        reason:
-          type: string
-        request:
-          type: string
-        status:
-          type: string
-      type: object
+    UUID:
+      format: uuid4
+      type: string
 x-forwarded-proto: string
 x-request-id: string
 x-original-swagger-version: "2.0"

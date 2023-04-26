@@ -1,5 +1,5 @@
 # Ory.Client.Model.ClientUpdateSettingsFlowWithProfileMethod
-nolint:deadcode,unused
+Update Settings Flow with Profile Method
 
 ## Properties
 

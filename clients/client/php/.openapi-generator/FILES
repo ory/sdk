@@ -20,9 +20,14 @@ docs/Model/AcceptOAuth2ConsentRequestSession.md
 docs/Model/AcceptOAuth2LoginRequest.md
 docs/Model/ActiveProjectInConsole.md
 docs/Model/AuthenticatorAssuranceLevel.md
+docs/Model/BatchPatchIdentitiesResponse.md
 docs/Model/CheckOplSyntaxResult.md
 docs/Model/CheckPermissionResult.md
 docs/Model/CloudAccount.md
+docs/Model/ContinueWith.md
+docs/Model/ContinueWithSetOrySessionToken.md
+docs/Model/ContinueWithVerificationUi.md
+docs/Model/ContinueWithVerificationUiFlow.md
 docs/Model/CourierMessageStatus.md
 docs/Model/CourierMessageType.md
 docs/Model/CreateCustomDomainBody.md
@@ -36,7 +41,6 @@ docs/Model/CreateRecoveryLinkForIdentityBody.md
 docs/Model/CreateRelationshipBody.md
 docs/Model/CreateSubscriptionBody.md
 docs/Model/CustomDomain.md
-docs/Model/CustomDomainQuota.md
 docs/Model/DeleteMySessionsCount.md
 docs/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/Model/ErrorBrowserLocationChangeRequired.md
@@ -47,6 +51,7 @@ docs/Model/ExpandedPermissionTree.md
 docs/Model/FlowError.md
 docs/Model/GenericError.md
 docs/Model/GenericErrorContent.md
+docs/Model/GenericUsage.md
 docs/Model/GetManagedIdentitySchemaLocation.md
 docs/Model/HealthNotReadyStatus.md
 docs/Model/HealthStatus.md
@@ -56,6 +61,8 @@ docs/Model/IdentityCredentialsOidc.md
 docs/Model/IdentityCredentialsOidcProvider.md
 docs/Model/IdentityCredentialsPassword.md
 docs/Model/IdentityCredentialsType.md
+docs/Model/IdentityPatch.md
+docs/Model/IdentityPatchResponse.md
 docs/Model/IdentitySchemaContainer.md
 docs/Model/IdentitySchemaPreset.md
 docs/Model/IdentityState.md
@@ -71,9 +78,9 @@ docs/Model/InlineResponse2001.md
 docs/Model/InlineResponse503.md
 docs/Model/InternalGetProjectBrandingBody.md
 docs/Model/InternalIsOwnerForProjectBySlugBody.md
+docs/Model/InternalIsOwnerForProjectBySlugResponse.md
 docs/Model/InternalProvisionMockSubscription.md
 docs/Model/IntrospectedOAuth2Token.md
-docs/Model/InviteQuota.md
 docs/Model/IsOwnerForProjectBySlug.md
 docs/Model/JsonPatch.md
 docs/Model/JsonWebKey.md
@@ -92,7 +99,6 @@ docs/Model/NormalizedProjectRevision.md
 docs/Model/NormalizedProjectRevisionHook.md
 docs/Model/NormalizedProjectRevisionIdentitySchema.md
 docs/Model/NormalizedProjectRevisionThirdPartyProvider.md
-docs/Model/NullPlan.md
 docs/Model/OAuth2Client.md
 docs/Model/OAuth2ClientTokenLifespans.md
 docs/Model/OAuth2ConsentRequest.md
@@ -108,7 +114,10 @@ docs/Model/OidcUserInfo.md
 docs/Model/Pagination.md
 docs/Model/PaginationHeaders.md
 docs/Model/ParseError.md
+docs/Model/PatchIdentitiesBody.md
 docs/Model/PerformNativeLogoutBody.md
+docs/Model/Plan.md
+docs/Model/PlanDetails.md
 docs/Model/PostCheckPermissionBody.md
 docs/Model/PostCheckPermissionOrErrorBody.md
 docs/Model/Project.md
@@ -123,7 +132,7 @@ docs/Model/ProjectServiceIdentity.md
 docs/Model/ProjectServiceOAuth2.md
 docs/Model/ProjectServicePermission.md
 docs/Model/ProjectServices.md
-docs/Model/QuotaBrandingThemes.md
+docs/Model/QuotaUsage.md
 docs/Model/RecoveryCodeForIdentity.md
 docs/Model/RecoveryFlow.md
 docs/Model/RecoveryFlowState.md
@@ -140,7 +149,6 @@ docs/Model/SchemaPatch.md
 docs/Model/SelfServiceFlowExpiredError.md
 docs/Model/Session.md
 docs/Model/SessionAuthenticationMethod.md
-docs/Model/SessionCachingQuota.md
 docs/Model/SessionDevice.md
 docs/Model/SetActiveProjectInConsoleBody.md
 docs/Model/SetCustomDomainBody.md
@@ -195,8 +203,9 @@ docs/Model/UpdateSettingsFlowWithTotpMethod.md
 docs/Model/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/Model/UpdateSubscriptionBody.md
 docs/Model/UpdateVerificationFlowBody.md
-docs/Model/UpdateVerificationFlowWithCodeMethodBody.md
+docs/Model/UpdateVerificationFlowWithCodeMethod.md
 docs/Model/UpdateVerificationFlowWithLinkMethod.md
+docs/Model/Usage.md
 docs/Model/VerifiableIdentityAddress.md
 docs/Model/VerificationFlow.md
 docs/Model/VerificationFlowState.md
@@ -222,9 +231,14 @@ lib/Model/AcceptOAuth2ConsentRequestSession.php
 lib/Model/AcceptOAuth2LoginRequest.php
 lib/Model/ActiveProjectInConsole.php
 lib/Model/AuthenticatorAssuranceLevel.php
+lib/Model/BatchPatchIdentitiesResponse.php
 lib/Model/CheckOplSyntaxResult.php
 lib/Model/CheckPermissionResult.php
 lib/Model/CloudAccount.php
+lib/Model/ContinueWith.php
+lib/Model/ContinueWithSetOrySessionToken.php
+lib/Model/ContinueWithVerificationUi.php
+lib/Model/ContinueWithVerificationUiFlow.php
 lib/Model/CourierMessageStatus.php
 lib/Model/CourierMessageType.php
 lib/Model/CreateCustomDomainBody.php
@@ -238,7 +252,6 @@ lib/Model/CreateRecoveryLinkForIdentityBody.php
 lib/Model/CreateRelationshipBody.php
 lib/Model/CreateSubscriptionBody.php
 lib/Model/CustomDomain.php
-lib/Model/CustomDomainQuota.php
 lib/Model/DeleteMySessionsCount.php
 lib/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.php
 lib/Model/ErrorBrowserLocationChangeRequired.php
@@ -249,6 +262,7 @@ lib/Model/ExpandedPermissionTree.php
 lib/Model/FlowError.php
 lib/Model/GenericError.php
 lib/Model/GenericErrorContent.php
+lib/Model/GenericUsage.php
 lib/Model/GetManagedIdentitySchemaLocation.php
 lib/Model/HealthNotReadyStatus.php
 lib/Model/HealthStatus.php
@@ -258,6 +272,8 @@ lib/Model/IdentityCredentialsOidc.php
 lib/Model/IdentityCredentialsOidcProvider.php
 lib/Model/IdentityCredentialsPassword.php
 lib/Model/IdentityCredentialsType.php
+lib/Model/IdentityPatch.php
+lib/Model/IdentityPatchResponse.php
 lib/Model/IdentitySchemaContainer.php
 lib/Model/IdentitySchemaPreset.php
 lib/Model/IdentityState.php
@@ -273,9 +289,9 @@ lib/Model/InlineResponse2001.php
 lib/Model/InlineResponse503.php
 lib/Model/InternalGetProjectBrandingBody.php
 lib/Model/InternalIsOwnerForProjectBySlugBody.php
+lib/Model/InternalIsOwnerForProjectBySlugResponse.php
 lib/Model/InternalProvisionMockSubscription.php
 lib/Model/IntrospectedOAuth2Token.php
-lib/Model/InviteQuota.php
 lib/Model/IsOwnerForProjectBySlug.php
 lib/Model/JsonPatch.php
 lib/Model/JsonWebKey.php
@@ -295,7 +311,6 @@ lib/Model/NormalizedProjectRevision.php
 lib/Model/NormalizedProjectRevisionHook.php
 lib/Model/NormalizedProjectRevisionIdentitySchema.php
 lib/Model/NormalizedProjectRevisionThirdPartyProvider.php
-lib/Model/NullPlan.php
 lib/Model/OAuth2Client.php
 lib/Model/OAuth2ClientTokenLifespans.php
 lib/Model/OAuth2ConsentRequest.php
@@ -311,7 +326,10 @@ lib/Model/OidcUserInfo.php
 lib/Model/Pagination.php
 lib/Model/PaginationHeaders.php
 lib/Model/ParseError.php
+lib/Model/PatchIdentitiesBody.php
 lib/Model/PerformNativeLogoutBody.php
+lib/Model/Plan.php
+lib/Model/PlanDetails.php
 lib/Model/PostCheckPermissionBody.php
 lib/Model/PostCheckPermissionOrErrorBody.php
 lib/Model/Project.php
@@ -326,7 +344,7 @@ lib/Model/ProjectServiceIdentity.php
 lib/Model/ProjectServiceOAuth2.php
 lib/Model/ProjectServicePermission.php
 lib/Model/ProjectServices.php
-lib/Model/QuotaBrandingThemes.php
+lib/Model/QuotaUsage.php
 lib/Model/RecoveryCodeForIdentity.php
 lib/Model/RecoveryFlow.php
 lib/Model/RecoveryFlowState.php
@@ -343,7 +361,6 @@ lib/Model/SchemaPatch.php
 lib/Model/SelfServiceFlowExpiredError.php
 lib/Model/Session.php
 lib/Model/SessionAuthenticationMethod.php
-lib/Model/SessionCachingQuota.php
 lib/Model/SessionDevice.php
 lib/Model/SetActiveProjectInConsoleBody.php
 lib/Model/SetCustomDomainBody.php
@@ -398,8 +415,9 @@ lib/Model/UpdateSettingsFlowWithTotpMethod.php
 lib/Model/UpdateSettingsFlowWithWebAuthnMethod.php
 lib/Model/UpdateSubscriptionBody.php
 lib/Model/UpdateVerificationFlowBody.php
-lib/Model/UpdateVerificationFlowWithCodeMethodBody.php
+lib/Model/UpdateVerificationFlowWithCodeMethod.php
 lib/Model/UpdateVerificationFlowWithLinkMethod.php
+lib/Model/Usage.php
 lib/Model/VerifiableIdentityAddress.php
 lib/Model/VerificationFlow.php
 lib/Model/VerificationFlowState.php
@@ -423,9 +441,14 @@ test/Model/AcceptOAuth2ConsentRequestTest.php
 test/Model/AcceptOAuth2LoginRequestTest.php
 test/Model/ActiveProjectInConsoleTest.php
 test/Model/AuthenticatorAssuranceLevelTest.php
+test/Model/BatchPatchIdentitiesResponseTest.php
 test/Model/CheckOplSyntaxResultTest.php
 test/Model/CheckPermissionResultTest.php
 test/Model/CloudAccountTest.php
+test/Model/ContinueWithSetOrySessionTokenTest.php
+test/Model/ContinueWithTest.php
+test/Model/ContinueWithVerificationUiFlowTest.php
+test/Model/ContinueWithVerificationUiTest.php
 test/Model/CourierMessageStatusTest.php
 test/Model/CourierMessageTypeTest.php
 test/Model/CreateCustomDomainBodyTest.php
@@ -438,7 +461,6 @@ test/Model/CreateRecoveryCodeForIdentityBodyTest.php
 test/Model/CreateRecoveryLinkForIdentityBodyTest.php
 test/Model/CreateRelationshipBodyTest.php
 test/Model/CreateSubscriptionBodyTest.php
-test/Model/CustomDomainQuotaTest.php
 test/Model/CustomDomainTest.php
 test/Model/DeleteMySessionsCountTest.php
 test/Model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.php
@@ -450,6 +472,7 @@ test/Model/ExpandedPermissionTreeTest.php
 test/Model/FlowErrorTest.php
 test/Model/GenericErrorContentTest.php
 test/Model/GenericErrorTest.php
+test/Model/GenericUsageTest.php
 test/Model/GetManagedIdentitySchemaLocationTest.php
 test/Model/HealthNotReadyStatusTest.php
 test/Model/HealthStatusTest.php
@@ -458,6 +481,8 @@ test/Model/IdentityCredentialsOidcTest.php
 test/Model/IdentityCredentialsPasswordTest.php
 test/Model/IdentityCredentialsTest.php
 test/Model/IdentityCredentialsTypeTest.php
+test/Model/IdentityPatchResponseTest.php
+test/Model/IdentityPatchTest.php
 test/Model/IdentitySchemaContainerTest.php
 test/Model/IdentitySchemaPresetTest.php
 test/Model/IdentityStateTest.php
@@ -474,9 +499,9 @@ test/Model/InlineResponse200Test.php
 test/Model/InlineResponse503Test.php
 test/Model/InternalGetProjectBrandingBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugBodyTest.php
+test/Model/InternalIsOwnerForProjectBySlugResponseTest.php
 test/Model/InternalProvisionMockSubscriptionTest.php
 test/Model/IntrospectedOAuth2TokenTest.php
-test/Model/InviteQuotaTest.php
 test/Model/IsOwnerForProjectBySlugTest.php
 test/Model/JsonPatchTest.php
 test/Model/JsonWebKeySetTest.php
@@ -495,7 +520,6 @@ test/Model/NormalizedProjectRevisionIdentitySchemaTest.php
 test/Model/NormalizedProjectRevisionTest.php
 test/Model/NormalizedProjectRevisionThirdPartyProviderTest.php
 test/Model/NormalizedProjectTest.php
-test/Model/NullPlanTest.php
 test/Model/OAuth2ClientTest.php
 test/Model/OAuth2ClientTokenLifespansTest.php
 test/Model/OAuth2ConsentRequestOpenIDConnectContextTest.php
@@ -511,7 +535,10 @@ test/Model/OidcUserInfoTest.php
 test/Model/PaginationHeadersTest.php
 test/Model/PaginationTest.php
 test/Model/ParseErrorTest.php
+test/Model/PatchIdentitiesBodyTest.php
 test/Model/PerformNativeLogoutBodyTest.php
+test/Model/PlanDetailsTest.php
+test/Model/PlanTest.php
 test/Model/PostCheckPermissionBodyTest.php
 test/Model/PostCheckPermissionOrErrorBodyTest.php
 test/Model/ProjectApiKeyTest.php
@@ -526,7 +553,7 @@ test/Model/ProjectServiceOAuth2Test.php
 test/Model/ProjectServicePermissionTest.php
 test/Model/ProjectServicesTest.php
 test/Model/ProjectTest.php
-test/Model/QuotaBrandingThemesTest.php
+test/Model/QuotaUsageTest.php
 test/Model/RecoveryCodeForIdentityTest.php
 test/Model/RecoveryFlowStateTest.php
 test/Model/RecoveryFlowTest.php
@@ -542,7 +569,6 @@ test/Model/RelationshipsTest.php
 test/Model/SchemaPatchTest.php
 test/Model/SelfServiceFlowExpiredErrorTest.php
 test/Model/SessionAuthenticationMethodTest.php
-test/Model/SessionCachingQuotaTest.php
 test/Model/SessionDeviceTest.php
 test/Model/SessionTest.php
 test/Model/SetActiveProjectInConsoleBodyTest.php
@@ -598,8 +624,9 @@ test/Model/UpdateSettingsFlowWithTotpMethodTest.php
 test/Model/UpdateSettingsFlowWithWebAuthnMethodTest.php
 test/Model/UpdateSubscriptionBodyTest.php
 test/Model/UpdateVerificationFlowBodyTest.php
-test/Model/UpdateVerificationFlowWithCodeMethodBodyTest.php
+test/Model/UpdateVerificationFlowWithCodeMethodTest.php
 test/Model/UpdateVerificationFlowWithLinkMethodTest.php
+test/Model/UsageTest.php
 test/Model/VerifiableIdentityAddressTest.php
 test/Model/VerificationFlowStateTest.php
 test/Model/VerificationFlowTest.php

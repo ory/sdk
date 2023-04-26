@@ -162,7 +162,7 @@ To learn how relationship tuples and the check works, head over to [the document
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**max_depth** | Option<**i64**> |  |  |
+**max_depth** | Option<**i64**> | nolint:deadcode,unused |  |
 **post_check_permission_or_error_body** | Option<[**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)> |  |  |
 
 ### Return type

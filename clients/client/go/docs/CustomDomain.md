@@ -8,8 +8,10 @@ Name | Type | Description | Notes
 **CorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
 **CorsEnabled** | Pointer to **bool** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CustomUiBaseUrl** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
+**SslStatus** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **VerificationErrors** | Pointer to **[]string** |  | [optional] 
 **VerificationStatus** | Pointer to **string** |  | [optional] 
@@ -133,6 +135,31 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### GetCustomUiBaseUrl
+
+`func (o *CustomDomain) GetCustomUiBaseUrl() string`
+
+GetCustomUiBaseUrl returns the CustomUiBaseUrl field if non-nil, zero value otherwise.
+
+### GetCustomUiBaseUrlOk
+
+`func (o *CustomDomain) GetCustomUiBaseUrlOk() (*string, bool)`
+
+GetCustomUiBaseUrlOk returns a tuple with the CustomUiBaseUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomUiBaseUrl
+
+`func (o *CustomDomain) SetCustomUiBaseUrl(v string)`
+
+SetCustomUiBaseUrl sets CustomUiBaseUrl field to given value.
+
+### HasCustomUiBaseUrl
+
+`func (o *CustomDomain) HasCustomUiBaseUrl() bool`
+
+HasCustomUiBaseUrl returns a boolean if a field has been set.
+
 ### GetHostname
 
 `func (o *CustomDomain) GetHostname() string`
@@ -182,6 +209,31 @@ SetId sets Id field to given value.
 `func (o *CustomDomain) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetSslStatus
+
+`func (o *CustomDomain) GetSslStatus() string`
+
+GetSslStatus returns the SslStatus field if non-nil, zero value otherwise.
+
+### GetSslStatusOk
+
+`func (o *CustomDomain) GetSslStatusOk() (*string, bool)`
+
+GetSslStatusOk returns a tuple with the SslStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSslStatus
+
+`func (o *CustomDomain) SetSslStatus(v string)`
+
+SetSslStatus sets SslStatus field to given value.
+
+### HasSslStatus
+
+`func (o *CustomDomain) HasSslStatus() bool`
+
+HasSslStatus returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

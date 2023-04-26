@@ -11,9 +11,14 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/ActiveProjectInConsole.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BatchPatchIdentitiesResponse.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
 docs/CloudAccount.md
+docs/ContinueWith.md
+docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithVerificationUi.md
+docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
@@ -29,7 +34,6 @@ docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CustomDomain.md
-docs/CustomDomainQuota.md
 docs/DeleteMySessionsCount.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/ErrorBrowserLocationChangeRequired.md
@@ -41,6 +45,7 @@ docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
 docs/GenericErrorContent.md
+docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
@@ -52,6 +57,8 @@ docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
+docs/IdentityPatch.md
+docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
 docs/IdentityState.md
@@ -63,9 +70,9 @@ docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
 docs/InternalGetProjectBrandingBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
+docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
-docs/InviteQuota.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
 docs/IsReady503Response.md
@@ -88,7 +95,6 @@ docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
-docs/NullPlan.md
 docs/OAuth2Api.md
 docs/OAuth2Client.md
 docs/OAuth2ClientTokenLifespans.md
@@ -106,8 +112,11 @@ docs/OidcUserInfo.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/ParseError.md
+docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
+docs/Plan.md
+docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
 docs/Project.md
@@ -123,7 +132,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
-docs/QuotaBrandingThemes.md
+docs/QuotaUsage.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -141,7 +150,6 @@ docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
 docs/SessionAuthenticationMethod.md
-docs/SessionCachingQuota.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
@@ -196,8 +204,9 @@ docs/UpdateSettingsFlowWithTotpMethod.md
 docs/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
-docs/UpdateVerificationFlowWithCodeMethodBody.md
+docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/Usage.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/VerificationFlowState.md
@@ -251,9 +260,14 @@ src/main/java/sh/ory/model/AcceptOAuth2ConsentRequestSession.java
 src/main/java/sh/ory/model/AcceptOAuth2LoginRequest.java
 src/main/java/sh/ory/model/ActiveProjectInConsole.java
 src/main/java/sh/ory/model/AuthenticatorAssuranceLevel.java
+src/main/java/sh/ory/model/BatchPatchIdentitiesResponse.java
 src/main/java/sh/ory/model/CheckOplSyntaxResult.java
 src/main/java/sh/ory/model/CheckPermissionResult.java
 src/main/java/sh/ory/model/CloudAccount.java
+src/main/java/sh/ory/model/ContinueWith.java
+src/main/java/sh/ory/model/ContinueWithSetOrySessionToken.java
+src/main/java/sh/ory/model/ContinueWithVerificationUi.java
+src/main/java/sh/ory/model/ContinueWithVerificationUiFlow.java
 src/main/java/sh/ory/model/CourierMessageStatus.java
 src/main/java/sh/ory/model/CourierMessageType.java
 src/main/java/sh/ory/model/CreateCustomDomainBody.java
@@ -268,7 +282,6 @@ src/main/java/sh/ory/model/CreateRecoveryLinkForIdentityBody.java
 src/main/java/sh/ory/model/CreateRelationshipBody.java
 src/main/java/sh/ory/model/CreateSubscriptionBody.java
 src/main/java/sh/ory/model/CustomDomain.java
-src/main/java/sh/ory/model/CustomDomainQuota.java
 src/main/java/sh/ory/model/DeleteMySessionsCount.java
 src/main/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfied.java
 src/main/java/sh/ory/model/ErrorBrowserLocationChangeRequired.java
@@ -279,6 +292,7 @@ src/main/java/sh/ory/model/ExpandedPermissionTree.java
 src/main/java/sh/ory/model/FlowError.java
 src/main/java/sh/ory/model/GenericError.java
 src/main/java/sh/ory/model/GenericErrorContent.java
+src/main/java/sh/ory/model/GenericUsage.java
 src/main/java/sh/ory/model/GetManagedIdentitySchemaLocation.java
 src/main/java/sh/ory/model/GetVersion200Response.java
 src/main/java/sh/ory/model/HealthNotReadyStatus.java
@@ -289,6 +303,8 @@ src/main/java/sh/ory/model/IdentityCredentialsOidc.java
 src/main/java/sh/ory/model/IdentityCredentialsOidcProvider.java
 src/main/java/sh/ory/model/IdentityCredentialsPassword.java
 src/main/java/sh/ory/model/IdentityCredentialsType.java
+src/main/java/sh/ory/model/IdentityPatch.java
+src/main/java/sh/ory/model/IdentityPatchResponse.java
 src/main/java/sh/ory/model/IdentitySchemaContainer.java
 src/main/java/sh/ory/model/IdentitySchemaPreset.java
 src/main/java/sh/ory/model/IdentityState.java
@@ -300,9 +316,9 @@ src/main/java/sh/ory/model/IdentityWithCredentialsPassword.java
 src/main/java/sh/ory/model/IdentityWithCredentialsPasswordConfig.java
 src/main/java/sh/ory/model/InternalGetProjectBrandingBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugBody.java
+src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponse.java
 src/main/java/sh/ory/model/InternalProvisionMockSubscription.java
 src/main/java/sh/ory/model/IntrospectedOAuth2Token.java
-src/main/java/sh/ory/model/InviteQuota.java
 src/main/java/sh/ory/model/IsOwnerForProjectBySlug.java
 src/main/java/sh/ory/model/IsReady200Response.java
 src/main/java/sh/ory/model/IsReady503Response.java
@@ -323,7 +339,6 @@ src/main/java/sh/ory/model/NormalizedProjectRevision.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionHook.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionIdentitySchema.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionThirdPartyProvider.java
-src/main/java/sh/ory/model/NullPlan.java
 src/main/java/sh/ory/model/OAuth2Client.java
 src/main/java/sh/ory/model/OAuth2ClientTokenLifespans.java
 src/main/java/sh/ory/model/OAuth2ConsentRequest.java
@@ -339,7 +354,10 @@ src/main/java/sh/ory/model/OidcUserInfo.java
 src/main/java/sh/ory/model/Pagination.java
 src/main/java/sh/ory/model/PaginationHeaders.java
 src/main/java/sh/ory/model/ParseError.java
+src/main/java/sh/ory/model/PatchIdentitiesBody.java
 src/main/java/sh/ory/model/PerformNativeLogoutBody.java
+src/main/java/sh/ory/model/Plan.java
+src/main/java/sh/ory/model/PlanDetails.java
 src/main/java/sh/ory/model/PostCheckPermissionBody.java
 src/main/java/sh/ory/model/PostCheckPermissionOrErrorBody.java
 src/main/java/sh/ory/model/Project.java
@@ -354,7 +372,7 @@ src/main/java/sh/ory/model/ProjectServiceIdentity.java
 src/main/java/sh/ory/model/ProjectServiceOAuth2.java
 src/main/java/sh/ory/model/ProjectServicePermission.java
 src/main/java/sh/ory/model/ProjectServices.java
-src/main/java/sh/ory/model/QuotaBrandingThemes.java
+src/main/java/sh/ory/model/QuotaUsage.java
 src/main/java/sh/ory/model/RecoveryCodeForIdentity.java
 src/main/java/sh/ory/model/RecoveryFlow.java
 src/main/java/sh/ory/model/RecoveryFlowState.java
@@ -371,7 +389,6 @@ src/main/java/sh/ory/model/SchemaPatch.java
 src/main/java/sh/ory/model/SelfServiceFlowExpiredError.java
 src/main/java/sh/ory/model/Session.java
 src/main/java/sh/ory/model/SessionAuthenticationMethod.java
-src/main/java/sh/ory/model/SessionCachingQuota.java
 src/main/java/sh/ory/model/SessionDevice.java
 src/main/java/sh/ory/model/SetActiveProjectInConsoleBody.java
 src/main/java/sh/ory/model/SetCustomDomainBody.java
@@ -426,8 +443,9 @@ src/main/java/sh/ory/model/UpdateSettingsFlowWithTotpMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithWebAuthnMethod.java
 src/main/java/sh/ory/model/UpdateSubscriptionBody.java
 src/main/java/sh/ory/model/UpdateVerificationFlowBody.java
-src/main/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodBody.java
+src/main/java/sh/ory/model/UpdateVerificationFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateVerificationFlowWithLinkMethod.java
+src/main/java/sh/ory/model/Usage.java
 src/main/java/sh/ory/model/VerifiableIdentityAddress.java
 src/main/java/sh/ory/model/VerificationFlow.java
 src/main/java/sh/ory/model/VerificationFlowState.java
@@ -449,9 +467,14 @@ src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestTest.java
 src/test/java/sh/ory/model/AcceptOAuth2LoginRequestTest.java
 src/test/java/sh/ory/model/ActiveProjectInConsoleTest.java
 src/test/java/sh/ory/model/AuthenticatorAssuranceLevelTest.java
+src/test/java/sh/ory/model/BatchPatchIdentitiesResponseTest.java
 src/test/java/sh/ory/model/CheckOplSyntaxResultTest.java
 src/test/java/sh/ory/model/CheckPermissionResultTest.java
 src/test/java/sh/ory/model/CloudAccountTest.java
+src/test/java/sh/ory/model/ContinueWithSetOrySessionTokenTest.java
+src/test/java/sh/ory/model/ContinueWithTest.java
+src/test/java/sh/ory/model/ContinueWithVerificationUiFlowTest.java
+src/test/java/sh/ory/model/ContinueWithVerificationUiTest.java
 src/test/java/sh/ory/model/CourierMessageStatusTest.java
 src/test/java/sh/ory/model/CourierMessageTypeTest.java
 src/test/java/sh/ory/model/CreateCustomDomainBodyTest.java
@@ -465,7 +488,6 @@ src/test/java/sh/ory/model/CreateRecoveryCodeForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRecoveryLinkForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRelationshipBodyTest.java
 src/test/java/sh/ory/model/CreateSubscriptionBodyTest.java
-src/test/java/sh/ory/model/CustomDomainQuotaTest.java
 src/test/java/sh/ory/model/CustomDomainTest.java
 src/test/java/sh/ory/model/DeleteMySessionsCountTest.java
 src/test/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.java
@@ -477,6 +499,7 @@ src/test/java/sh/ory/model/ExpandedPermissionTreeTest.java
 src/test/java/sh/ory/model/FlowErrorTest.java
 src/test/java/sh/ory/model/GenericErrorContentTest.java
 src/test/java/sh/ory/model/GenericErrorTest.java
+src/test/java/sh/ory/model/GenericUsageTest.java
 src/test/java/sh/ory/model/GetManagedIdentitySchemaLocationTest.java
 src/test/java/sh/ory/model/GetVersion200ResponseTest.java
 src/test/java/sh/ory/model/HealthNotReadyStatusTest.java
@@ -486,6 +509,8 @@ src/test/java/sh/ory/model/IdentityCredentialsOidcTest.java
 src/test/java/sh/ory/model/IdentityCredentialsPasswordTest.java
 src/test/java/sh/ory/model/IdentityCredentialsTest.java
 src/test/java/sh/ory/model/IdentityCredentialsTypeTest.java
+src/test/java/sh/ory/model/IdentityPatchResponseTest.java
+src/test/java/sh/ory/model/IdentityPatchTest.java
 src/test/java/sh/ory/model/IdentitySchemaContainerTest.java
 src/test/java/sh/ory/model/IdentitySchemaPresetTest.java
 src/test/java/sh/ory/model/IdentityStateTest.java
@@ -498,9 +523,9 @@ src/test/java/sh/ory/model/IdentityWithCredentialsPasswordTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsTest.java
 src/test/java/sh/ory/model/InternalGetProjectBrandingBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugBodyTest.java
+src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponseTest.java
 src/test/java/sh/ory/model/InternalProvisionMockSubscriptionTest.java
 src/test/java/sh/ory/model/IntrospectedOAuth2TokenTest.java
-src/test/java/sh/ory/model/InviteQuotaTest.java
 src/test/java/sh/ory/model/IsOwnerForProjectBySlugTest.java
 src/test/java/sh/ory/model/IsReady200ResponseTest.java
 src/test/java/sh/ory/model/IsReady503ResponseTest.java
@@ -521,7 +546,6 @@ src/test/java/sh/ory/model/NormalizedProjectRevisionIdentitySchemaTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionThirdPartyProviderTest.java
 src/test/java/sh/ory/model/NormalizedProjectTest.java
-src/test/java/sh/ory/model/NullPlanTest.java
 src/test/java/sh/ory/model/OAuth2ClientTest.java
 src/test/java/sh/ory/model/OAuth2ClientTokenLifespansTest.java
 src/test/java/sh/ory/model/OAuth2ConsentRequestOpenIDConnectContextTest.java
@@ -537,7 +561,10 @@ src/test/java/sh/ory/model/OidcUserInfoTest.java
 src/test/java/sh/ory/model/PaginationHeadersTest.java
 src/test/java/sh/ory/model/PaginationTest.java
 src/test/java/sh/ory/model/ParseErrorTest.java
+src/test/java/sh/ory/model/PatchIdentitiesBodyTest.java
 src/test/java/sh/ory/model/PerformNativeLogoutBodyTest.java
+src/test/java/sh/ory/model/PlanDetailsTest.java
+src/test/java/sh/ory/model/PlanTest.java
 src/test/java/sh/ory/model/PostCheckPermissionBodyTest.java
 src/test/java/sh/ory/model/PostCheckPermissionOrErrorBodyTest.java
 src/test/java/sh/ory/model/ProjectApiKeyTest.java
@@ -552,7 +579,7 @@ src/test/java/sh/ory/model/ProjectServiceOAuth2Test.java
 src/test/java/sh/ory/model/ProjectServicePermissionTest.java
 src/test/java/sh/ory/model/ProjectServicesTest.java
 src/test/java/sh/ory/model/ProjectTest.java
-src/test/java/sh/ory/model/QuotaBrandingThemesTest.java
+src/test/java/sh/ory/model/QuotaUsageTest.java
 src/test/java/sh/ory/model/RecoveryCodeForIdentityTest.java
 src/test/java/sh/ory/model/RecoveryFlowStateTest.java
 src/test/java/sh/ory/model/RecoveryFlowTest.java
@@ -568,7 +595,6 @@ src/test/java/sh/ory/model/RelationshipsTest.java
 src/test/java/sh/ory/model/SchemaPatchTest.java
 src/test/java/sh/ory/model/SelfServiceFlowExpiredErrorTest.java
 src/test/java/sh/ory/model/SessionAuthenticationMethodTest.java
-src/test/java/sh/ory/model/SessionCachingQuotaTest.java
 src/test/java/sh/ory/model/SessionDeviceTest.java
 src/test/java/sh/ory/model/SessionTest.java
 src/test/java/sh/ory/model/SetActiveProjectInConsoleBodyTest.java
@@ -624,8 +650,9 @@ src/test/java/sh/ory/model/UpdateSettingsFlowWithTotpMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithWebAuthnMethodTest.java
 src/test/java/sh/ory/model/UpdateSubscriptionBodyTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowBodyTest.java
-src/test/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodBodyTest.java
+src/test/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowWithLinkMethodTest.java
+src/test/java/sh/ory/model/UsageTest.java
 src/test/java/sh/ory/model/VerifiableIdentityAddressTest.java
 src/test/java/sh/ory/model/VerificationFlowStateTest.java
 src/test/java/sh/ory/model/VerificationFlowTest.java

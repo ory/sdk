@@ -1,8 +1,8 @@
 # hydra-client
 
 Ory Hydra API
-- API version: v2.0.2
-  - Build date: 2022-11-10T17:15:30.879216533Z[Etc/UTC]
+- API version: v2.1.1
+  - Build date: 2023-04-11T10:57:16.155985320Z[Etc/UTC]
 
 Documentation for all of Ory Hydra's APIs.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.hydra</groupId>
   <artifactId>hydra-client</artifactId>
-  <version>v2.0.2</version>
+  <version>v2.1.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.hydra:hydra-client:v2.0.2"
+     implementation "sh.ory.hydra:hydra-client:v2.1.1"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v2.0.2.jar`
+* `target/hydra-client-v2.1.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -149,7 +149,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**rejectOAuth2LoginRequest**](docs/OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 *OAuth2Api* | [**rejectOAuth2LogoutRequest**](docs/OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
 *OAuth2Api* | [**revokeOAuth2ConsentSessions**](docs/OAuth2Api.md#revokeOAuth2ConsentSessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-*OAuth2Api* | [**revokeOAuth2LoginSessions**](docs/OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes All OAuth 2.0 Login Sessions of a Subject
+*OAuth2Api* | [**revokeOAuth2LoginSessions**](docs/OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 *OAuth2Api* | [**revokeOAuth2Token**](docs/OAuth2Api.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
 *OAuth2Api* | [**setOAuth2Client**](docs/OAuth2Api.md#setOAuth2Client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 *OAuth2Api* | [**setOAuth2ClientLifespans**](docs/OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans

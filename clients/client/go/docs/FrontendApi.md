@@ -244,7 +244,7 @@ No authorization required
 
 ## CreateBrowserRegistrationFlow
 
-> RegistrationFlow CreateBrowserRegistrationFlow(ctx).ReturnTo(returnTo).LoginChallenge(loginChallenge).Execute()
+> RegistrationFlow CreateBrowserRegistrationFlow(ctx).ReturnTo(returnTo).LoginChallenge(loginChallenge).AfterVerificationReturnTo(afterVerificationReturnTo).Execute()
 
 Create Registration Flow for Browsers
 
@@ -265,10 +265,11 @@ import (
 func main() {
     returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
     loginChallenge := "loginChallenge_example" // string | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
+    afterVerificationReturnTo := "afterVerificationReturnTo_example" // string | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserRegistrationFlow(context.Background()).ReturnTo(returnTo).LoginChallenge(loginChallenge).Execute()
+    resp, r, err := apiClient.FrontendApi.CreateBrowserRegistrationFlow(context.Background()).ReturnTo(returnTo).LoginChallenge(loginChallenge).AfterVerificationReturnTo(afterVerificationReturnTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserRegistrationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -291,6 +292,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
  **loginChallenge** | **string** | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | 
+ **afterVerificationReturnTo** | **string** | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | 
 
 ### Return type
 
@@ -1950,7 +1952,7 @@ import (
 
 func main() {
     flow := "flow_example" // string | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
-    updateVerificationFlowBody := openapiclient.updateVerificationFlowBody{UpdateVerificationFlowWithLinkMethod: openapiclient.NewUpdateVerificationFlowWithLinkMethod("Email_example", "Method_example")} // UpdateVerificationFlowBody | 
+    updateVerificationFlowBody := openapiclient.updateVerificationFlowBody{UpdateVerificationFlowWithCodeMethod: openapiclient.NewUpdateVerificationFlowWithCodeMethod()} // UpdateVerificationFlowBody | 
     token := "token_example" // string | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 

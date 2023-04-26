@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/update_verification_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_verification_flow_with_link_method.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -10,21 +11,25 @@ import 'package:one_of/one_of.dart';
 
 part 'update_verification_flow_body.g.dart';
 
-/// nolint:deadcode,unused
+/// Update Verification Flow Request Body
 ///
 /// Properties:
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
 /// * [email] - Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-/// * [method] - Method supports `link` only right now.
+/// * [method] - Method is the recovery method
+/// * [code] - The verification code
+/// * [flow] - The id of the flow
 @BuiltValue()
 abstract class UpdateVerificationFlowBody implements Built<UpdateVerificationFlowBody, UpdateVerificationFlowBodyBuilder> {
-  /// One Of [UpdateVerificationFlowWithLinkMethod]
+  /// One Of [UpdateVerificationFlowWithCodeMethod], [UpdateVerificationFlowWithLinkMethod]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'method';
 
   static const Map<String, Type> discriminatorMapping = {
+    r'code': UpdateVerificationFlowWithCodeMethod,
     r'link': UpdateVerificationFlowWithLinkMethod,
+    r'updateVerificationFlowWithCodeMethod': UpdateVerificationFlowWithCodeMethod,
     r'updateVerificationFlowWithLinkMethod': UpdateVerificationFlowWithLinkMethod,
   };
 
@@ -75,16 +80,30 @@ class _$UpdateVerificationFlowBodySerializer implements PrimitiveSerializer<Upda
     final discIndex = serializedList.indexOf(UpdateVerificationFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateVerificationFlowWithLinkMethod, UpdateVerificationFlowWithLinkMethod, ];
+    final oneOfTypes = [UpdateVerificationFlowWithCodeMethod, UpdateVerificationFlowWithLinkMethod, UpdateVerificationFlowWithCodeMethod, UpdateVerificationFlowWithLinkMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
+      case 'code':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UpdateVerificationFlowWithCodeMethod),
+        ) as UpdateVerificationFlowWithCodeMethod;
+        oneOfType = UpdateVerificationFlowWithCodeMethod;
+        break;
       case 'link':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateVerificationFlowWithLinkMethod),
         ) as UpdateVerificationFlowWithLinkMethod;
         oneOfType = UpdateVerificationFlowWithLinkMethod;
+        break;
+      case 'updateVerificationFlowWithCodeMethod':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UpdateVerificationFlowWithCodeMethod),
+        ) as UpdateVerificationFlowWithCodeMethod;
+        oneOfType = UpdateVerificationFlowWithCodeMethod;
         break;
       case 'updateVerificationFlowWithLinkMethod':
         oneOfResult = serializers.deserialize(

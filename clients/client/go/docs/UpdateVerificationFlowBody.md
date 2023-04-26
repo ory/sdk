@@ -6,7 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CsrfToken** | Pointer to **string** | Sending the anti-csrf token is only required for browser login flows. | [optional] 
 **Email** | **string** | Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email | 
-**Method** | **string** | Method supports &#x60;link&#x60; only right now. | 
+**Method** | **string** | Method is the recovery method | 
+**Code** | Pointer to **string** | The verification code | [optional] 
+**Flow** | Pointer to **string** | The id of the flow | [optional] 
 
 ## Methods
 
@@ -91,6 +93,56 @@ and a boolean to check if the value has been set.
 
 SetMethod sets Method field to given value.
 
+
+### GetCode
+
+`func (o *UpdateVerificationFlowBody) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *UpdateVerificationFlowBody) GetCodeOk() (*string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *UpdateVerificationFlowBody) SetCode(v string)`
+
+SetCode sets Code field to given value.
+
+### HasCode
+
+`func (o *UpdateVerificationFlowBody) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### GetFlow
+
+`func (o *UpdateVerificationFlowBody) GetFlow() string`
+
+GetFlow returns the Flow field if non-nil, zero value otherwise.
+
+### GetFlowOk
+
+`func (o *UpdateVerificationFlowBody) GetFlowOk() (*string, bool)`
+
+GetFlowOk returns a tuple with the Flow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFlow
+
+`func (o *UpdateVerificationFlowBody) SetFlow(v string)`
+
+SetFlow sets Flow field to given value.
+
+### HasFlow
+
+`func (o *UpdateVerificationFlowBody) HasFlow() bool`
+
+HasFlow returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

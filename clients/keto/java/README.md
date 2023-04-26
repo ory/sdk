@@ -1,8 +1,8 @@
 # keto-client
 
 Ory Keto API
-- API version: v0.10.0-alpha.0
-  - Build date: 2022-09-27T13:43:10.921931843Z[Etc/UTC]
+- API version: v0.11.0-alpha.0
+  - Build date: 2023-02-23T17:15:19.489516255Z[Etc/UTC]
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.keto</groupId>
   <artifactId>keto-client</artifactId>
-  <version>v0.10.0-alpha.0</version>
+  <version>v0.11.0-alpha.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.keto:keto-client:v0.10.0-alpha.0"
+     implementation "sh.ory.keto:keto-client:v0.11.0-alpha.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/keto-client-v0.10.0-alpha.0.jar`
+* `target/keto-client-v0.11.0-alpha.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -117,31 +117,42 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
 *MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
 *MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
-*ReadApi* | [**getCheck**](docs/ReadApi.md#getCheck) | **GET** /relation-tuples/check/openapi | Check a relation tuple
-*ReadApi* | [**getCheckMirrorStatus**](docs/ReadApi.md#getCheckMirrorStatus) | **GET** /relation-tuples/check | Check a relation tuple
-*ReadApi* | [**getExpand**](docs/ReadApi.md#getExpand) | **GET** /relation-tuples/expand | Expand a Relation Tuple
-*ReadApi* | [**getRelationTuples**](docs/ReadApi.md#getRelationTuples) | **GET** /relation-tuples | Query relation tuples
-*ReadApi* | [**postCheck**](docs/ReadApi.md#postCheck) | **POST** /relation-tuples/check/openapi | Check a relation tuple
-*ReadApi* | [**postCheckMirrorStatus**](docs/ReadApi.md#postCheckMirrorStatus) | **POST** /relation-tuples/check | Check a relation tuple
-*WriteApi* | [**createRelationTuple**](docs/WriteApi.md#createRelationTuple) | **PUT** /admin/relation-tuples | Create a Relation Tuple
-*WriteApi* | [**deleteRelationTuples**](docs/WriteApi.md#deleteRelationTuples) | **DELETE** /admin/relation-tuples | Delete Relation Tuples
-*WriteApi* | [**patchRelationTuples**](docs/WriteApi.md#patchRelationTuples) | **PATCH** /admin/relation-tuples | Patch Multiple Relation Tuples
+*PermissionApi* | [**checkPermission**](docs/PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission
+*PermissionApi* | [**checkPermissionOrError**](docs/PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission
+*PermissionApi* | [**expandPermissions**](docs/PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
+*PermissionApi* | [**postCheckPermission**](docs/PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission
+*PermissionApi* | [**postCheckPermissionOrError**](docs/PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission
+*RelationshipApi* | [**checkOplSyntax**](docs/RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
+*RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship
+*RelationshipApi* | [**deleteRelationships**](docs/RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
+*RelationshipApi* | [**getRelationships**](docs/RelationshipApi.md#getRelationships) | **GET** /relation-tuples | Query relationships
+*RelationshipApi* | [**listRelationshipNamespaces**](docs/RelationshipApi.md#listRelationshipNamespaces) | **GET** /namespaces | Query namespaces
+*RelationshipApi* | [**patchRelationships**](docs/RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships
 
 
 ## Documentation for Models
 
- - [ExpandTree](docs/ExpandTree.md)
+ - [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
+ - [CheckPermissionResult](docs/CheckPermissionResult.md)
+ - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
+ - [ErrorGeneric](docs/ErrorGeneric.md)
+ - [ExpandedPermissionTree](docs/ExpandedPermissionTree.md)
  - [GenericError](docs/GenericError.md)
- - [GetCheckResponse](docs/GetCheckResponse.md)
- - [GetRelationTuplesResponse](docs/GetRelationTuplesResponse.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [IsAlive200Response](docs/IsAlive200Response.md)
  - [IsReady503Response](docs/IsReady503Response.md)
- - [PatchDelta](docs/PatchDelta.md)
+ - [Namespace](docs/Namespace.md)
+ - [ParseError](docs/ParseError.md)
+ - [PostCheckPermissionBody](docs/PostCheckPermissionBody.md)
+ - [PostCheckPermissionOrErrorBody](docs/PostCheckPermissionOrErrorBody.md)
  - [RelationQuery](docs/RelationQuery.md)
- - [RelationTuple](docs/RelationTuple.md)
+ - [Relationship](docs/Relationship.md)
+ - [RelationshipNamespaces](docs/RelationshipNamespaces.md)
+ - [RelationshipPatch](docs/RelationshipPatch.md)
+ - [Relationships](docs/Relationships.md)
+ - [SourcePosition](docs/SourcePosition.md)
  - [SubjectSet](docs/SubjectSet.md)
  - [Version](docs/Version.md)
 
