@@ -1,0 +1,1 @@
+OpenAPI API client for Ory Kratos, Ory's central identity management solution with hardened authentication, MFA, FIDO2, TOTP, WebAuthn, SSO, profile management, and more.

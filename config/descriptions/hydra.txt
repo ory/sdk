@@ -1,0 +1,1 @@
+OpenAPI API client for Ory Hydra, Ory's open source OpenID Connect and OAuth provider.

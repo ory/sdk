@@ -1,0 +1,1 @@
+OpenAPI API client for Ory Oathkeeper, a cloud native Identity & Access Proxy and Access Control Decision API that authenticates, authorizes, and mutates incoming HTTP(s) requests.
