@@ -1,6 +1,6 @@
 name: ory_kratos_client
-version: 0.11.1
-description: OpenAPI API client
+version: 0.13.1
+description: OpenAPI API client for Ory Kratos, Ory&#39;s central identity management solution with hardened authentication, MFA, FIDO2, TOTP, WebAuthn, SSO, profile management, and more.
 homepage: https://www.ory.sh
 
 environment:

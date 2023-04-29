@@ -16,6 +16,8 @@ part 'update_registration_flow_with_oidc_method.g.dart';
 /// * [method] - Method to use  This field must be set to `oidc` when using the oidc method.
 /// * [provider] - The provider to register with
 /// * [traits] - The identity traits
+/// * [transientPayload] - Transient data to pass along to any webhooks
+/// * [upstreamParameters] - UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
 @BuiltValue()
 abstract class UpdateRegistrationFlowWithOidcMethod implements Built<UpdateRegistrationFlowWithOidcMethod, UpdateRegistrationFlowWithOidcMethodBuilder> {
   /// The CSRF Token
@@ -33,6 +35,14 @@ abstract class UpdateRegistrationFlowWithOidcMethod implements Built<UpdateRegis
   /// The identity traits
   @BuiltValueField(wireName: r'traits')
   JsonObject? get traits;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
+
+  /// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+  @BuiltValueField(wireName: r'upstream_parameters')
+  JsonObject? get upstreamParameters;
 
   UpdateRegistrationFlowWithOidcMethod._();
 
@@ -78,6 +88,20 @@ class _$UpdateRegistrationFlowWithOidcMethodSerializer implements PrimitiveSeria
       yield r'traits';
       yield serializers.serialize(
         object.traits,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
+    if (object.upstreamParameters != null) {
+      yield r'upstream_parameters';
+      yield serializers.serialize(
+        object.upstreamParameters,
         specifiedType: const FullType(JsonObject),
       );
     }
@@ -131,6 +155,20 @@ class _$UpdateRegistrationFlowWithOidcMethodSerializer implements PrimitiveSeria
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.traits = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
+          break;
+        case r'upstream_parameters':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.upstreamParameters = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -8,7 +8,7 @@ import 'package:built_value/serializer.dart';
 
 part 'perform_native_logout_body.g.dart';
 
-/// nolint:deadcode,unused
+/// Perform Native Logout Request Body
 ///
 /// Properties:
 /// * [sessionToken] - The Session Token  Invalidate this session token.

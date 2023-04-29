@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Method** | **string** | Method to use  This field must be set to &#x60;oidc&#x60; when using the oidc method. | 
 **Provider** | **string** | The provider to register with | 
 **Traits** | Pointer to **map[string]interface{}** | The identity traits | [optional] 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
+**UpstreamParameters** | Pointer to **map[string]interface{}** | UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: &#x60;login_hint&#x60; (string): The &#x60;login_hint&#x60; parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. &#x60;hd&#x60; (string): The &#x60;hd&#x60; parameter limits the login/registration process to a Google Organization, e.g. &#x60;mycollege.edu&#x60;. | [optional] 
 
 ## Methods
 
@@ -117,6 +119,56 @@ SetTraits sets Traits field to given value.
 `func (o *UpdateRegistrationFlowWithOidcMethod) HasTraits() bool`
 
 HasTraits returns a boolean if a field has been set.
+
+### GetTransientPayload
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
+
+### GetUpstreamParameters
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) GetUpstreamParameters() map[string]interface{}`
+
+GetUpstreamParameters returns the UpstreamParameters field if non-nil, zero value otherwise.
+
+### GetUpstreamParametersOk
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) GetUpstreamParametersOk() (*map[string]interface{}, bool)`
+
+GetUpstreamParametersOk returns a tuple with the UpstreamParameters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamParameters
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) SetUpstreamParameters(v map[string]interface{})`
+
+SetUpstreamParameters sets UpstreamParameters field to given value.
+
+### HasUpstreamParameters
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) HasUpstreamParameters() bool`
+
+HasUpstreamParameters returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

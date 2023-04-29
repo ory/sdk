@@ -9,7 +9,7 @@ import 'package:built_value/serializer.dart';
 
 part 'update_settings_flow_with_profile_method.g.dart';
 
-/// nolint:deadcode,unused
+/// Update Settings Flow with Profile Method
 ///
 /// Properties:
 /// * [csrfToken] - The Anti-CSRF Token  This token is only required when performing browser flows.

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | Option<**String**> | Active, if set, contains the registration method that is being used. It is initially not set. | [optional]
+**continue_with** | Option<[**Vec<crate::models::ContinueWith>**](continueWith.md)> | Contains a list of actions, that could follow this flow  It can, for example, contain a reference to the verification flow, created as part of the user's registration. | [optional]
 **expires_at** | **String** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated. | 
 **id** | **String** | ID represents the flow's unique ID. When performing the settings flow, this represents the id in the settings ui's query parameter: http://<selfservice.flows.settings.ui_url>?flow=<id> | 
 **identity** | [**crate::models::Identity**](identity.md) |  | 

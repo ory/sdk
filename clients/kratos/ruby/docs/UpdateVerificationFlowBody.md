@@ -14,6 +14,7 @@ require 'ory-kratos-client'
 OryKratosClient::UpdateVerificationFlowBody.openapi_one_of
 # =>
 # [
+#   :'UpdateVerificationFlowWithCodeMethod',
 #   :'UpdateVerificationFlowWithLinkMethod'
 # ]
 ```
@@ -43,6 +44,7 @@ require 'ory-kratos-client'
 OryKratosClient::UpdateVerificationFlowBody.openapi_discriminator_mapping
 # =>
 # {
+#   :'code' => :'UpdateVerificationFlowWithCodeMethod',
 #   :'link' => :'UpdateVerificationFlowWithLinkMethod'
 # }
 
@@ -56,7 +58,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-kratos-client'
 
 OryKratosClient::UpdateVerificationFlowBody.build(data)
-# => #<UpdateVerificationFlowWithLinkMethod:0x00007fdd4aab02a0>
+# => #<UpdateVerificationFlowWithCodeMethod:0x00007fdd4aab02a0>
 
 OryKratosClient::UpdateVerificationFlowBody.build(data_that_doesnt_match)
 # => nil
@@ -70,6 +72,7 @@ OryKratosClient::UpdateVerificationFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `UpdateVerificationFlowWithCodeMethod`
 - `UpdateVerificationFlowWithLinkMethod`
 - `nil` (if no type matches)
 

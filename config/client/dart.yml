@@ -2,4 +2,5 @@ pubAuthor: ORY GmbH
 pubAuthorEmail: opensource@ory.sh
 pubHomepage: https://www.ory.sh
 pubName: ${DART_PUB_NAME}
+pubDescription: ${DART_PUB_DESCRIPTION}
 pubVersion: $RAW_VERSION

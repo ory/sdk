@@ -52,6 +52,12 @@ void main() {
       // TODO
     });
 
+    // TransientPayload is used to pass data from the registration to a webhook
+    // JsonObject transientPayload
+    test('to test the property `transientPayload`', () async {
+      // TODO
+    });
+
     // The flow type can either be `api` or `browser`.
     // String type
     test('to test the property `type`', () async {

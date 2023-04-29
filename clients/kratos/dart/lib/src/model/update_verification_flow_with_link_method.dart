@@ -13,7 +13,7 @@ part 'update_verification_flow_with_link_method.g.dart';
 /// Properties:
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
 /// * [email] - Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-/// * [method] - Method supports `link` only right now.
+/// * [method] - Method is the method that should be used for this verification flow  Allowed values are `link` and `code`
 @BuiltValue()
 abstract class UpdateVerificationFlowWithLinkMethod implements Built<UpdateVerificationFlowWithLinkMethod, UpdateVerificationFlowWithLinkMethodBuilder> {
   /// Sending the anti-csrf token is only required for browser login flows.
@@ -24,7 +24,7 @@ abstract class UpdateVerificationFlowWithLinkMethod implements Built<UpdateVerif
   @BuiltValueField(wireName: r'email')
   String get email;
 
-  /// Method supports `link` only right now.
+  /// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`
   @BuiltValueField(wireName: r'method')
   String get method;
 

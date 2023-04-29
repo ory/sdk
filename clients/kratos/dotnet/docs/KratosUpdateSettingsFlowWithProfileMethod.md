@@ -1,5 +1,5 @@
 # Ory.Kratos.Client.Model.KratosUpdateSettingsFlowWithProfileMethod
-nolint:deadcode,unused
+Update Settings Flow with Profile Method
 
 ## Properties
 

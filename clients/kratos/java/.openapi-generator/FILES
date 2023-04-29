@@ -7,6 +7,11 @@ api/openapi.yaml
 build.gradle
 build.sbt
 docs/AuthenticatorAssuranceLevel.md
+docs/BatchPatchIdentitiesResponse.md
+docs/ContinueWith.md
+docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithVerificationUi.md
+docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
@@ -31,6 +36,8 @@ docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
+docs/IdentityPatch.md
+docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentityState.md
 docs/IdentityWithCredentials.md
@@ -52,6 +59,7 @@ docs/OAuth2Client.md
 docs/OAuth2ConsentRequestOpenIDConnectContext.md
 docs/OAuth2LoginRequest.md
 docs/Pagination.md
+docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
@@ -101,7 +109,7 @@ docs/UpdateSettingsFlowWithProfileMethod.md
 docs/UpdateSettingsFlowWithTotpMethod.md
 docs/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/UpdateVerificationFlowBody.md
-docs/UpdateVerificationFlowWithCodeMethodBody.md
+docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
@@ -139,6 +147,11 @@ src/main/java/sh/ory/kratos/auth/HttpBasicAuth.java
 src/main/java/sh/ory/kratos/auth/HttpBearerAuth.java
 src/main/java/sh/ory/kratos/model/AbstractOpenApiSchema.java
 src/main/java/sh/ory/kratos/model/AuthenticatorAssuranceLevel.java
+src/main/java/sh/ory/kratos/model/BatchPatchIdentitiesResponse.java
+src/main/java/sh/ory/kratos/model/ContinueWith.java
+src/main/java/sh/ory/kratos/model/ContinueWithSetOrySessionToken.java
+src/main/java/sh/ory/kratos/model/ContinueWithVerificationUi.java
+src/main/java/sh/ory/kratos/model/ContinueWithVerificationUiFlow.java
 src/main/java/sh/ory/kratos/model/CourierMessageStatus.java
 src/main/java/sh/ory/kratos/model/CourierMessageType.java
 src/main/java/sh/ory/kratos/model/CreateIdentityBody.java
@@ -160,6 +173,8 @@ src/main/java/sh/ory/kratos/model/IdentityCredentialsOidc.java
 src/main/java/sh/ory/kratos/model/IdentityCredentialsOidcProvider.java
 src/main/java/sh/ory/kratos/model/IdentityCredentialsPassword.java
 src/main/java/sh/ory/kratos/model/IdentityCredentialsType.java
+src/main/java/sh/ory/kratos/model/IdentityPatch.java
+src/main/java/sh/ory/kratos/model/IdentityPatchResponse.java
 src/main/java/sh/ory/kratos/model/IdentitySchemaContainer.java
 src/main/java/sh/ory/kratos/model/IdentityState.java
 src/main/java/sh/ory/kratos/model/IdentityWithCredentials.java
@@ -180,6 +195,7 @@ src/main/java/sh/ory/kratos/model/OAuth2Client.java
 src/main/java/sh/ory/kratos/model/OAuth2ConsentRequestOpenIDConnectContext.java
 src/main/java/sh/ory/kratos/model/OAuth2LoginRequest.java
 src/main/java/sh/ory/kratos/model/Pagination.java
+src/main/java/sh/ory/kratos/model/PatchIdentitiesBody.java
 src/main/java/sh/ory/kratos/model/PerformNativeLogoutBody.java
 src/main/java/sh/ory/kratos/model/RecoveryCodeForIdentity.java
 src/main/java/sh/ory/kratos/model/RecoveryFlow.java
@@ -229,7 +245,7 @@ src/main/java/sh/ory/kratos/model/UpdateSettingsFlowWithProfileMethod.java
 src/main/java/sh/ory/kratos/model/UpdateSettingsFlowWithTotpMethod.java
 src/main/java/sh/ory/kratos/model/UpdateSettingsFlowWithWebAuthnMethod.java
 src/main/java/sh/ory/kratos/model/UpdateVerificationFlowBody.java
-src/main/java/sh/ory/kratos/model/UpdateVerificationFlowWithCodeMethodBody.java
+src/main/java/sh/ory/kratos/model/UpdateVerificationFlowWithCodeMethod.java
 src/main/java/sh/ory/kratos/model/UpdateVerificationFlowWithLinkMethod.java
 src/main/java/sh/ory/kratos/model/VerifiableIdentityAddress.java
 src/main/java/sh/ory/kratos/model/VerificationFlow.java
@@ -240,6 +256,11 @@ src/test/java/sh/ory/kratos/api/FrontendApiTest.java
 src/test/java/sh/ory/kratos/api/IdentityApiTest.java
 src/test/java/sh/ory/kratos/api/MetadataApiTest.java
 src/test/java/sh/ory/kratos/model/AuthenticatorAssuranceLevelTest.java
+src/test/java/sh/ory/kratos/model/BatchPatchIdentitiesResponseTest.java
+src/test/java/sh/ory/kratos/model/ContinueWithSetOrySessionTokenTest.java
+src/test/java/sh/ory/kratos/model/ContinueWithTest.java
+src/test/java/sh/ory/kratos/model/ContinueWithVerificationUiFlowTest.java
+src/test/java/sh/ory/kratos/model/ContinueWithVerificationUiTest.java
 src/test/java/sh/ory/kratos/model/CourierMessageStatusTest.java
 src/test/java/sh/ory/kratos/model/CourierMessageTypeTest.java
 src/test/java/sh/ory/kratos/model/CreateIdentityBodyTest.java
@@ -260,6 +281,8 @@ src/test/java/sh/ory/kratos/model/IdentityCredentialsOidcTest.java
 src/test/java/sh/ory/kratos/model/IdentityCredentialsPasswordTest.java
 src/test/java/sh/ory/kratos/model/IdentityCredentialsTest.java
 src/test/java/sh/ory/kratos/model/IdentityCredentialsTypeTest.java
+src/test/java/sh/ory/kratos/model/IdentityPatchResponseTest.java
+src/test/java/sh/ory/kratos/model/IdentityPatchTest.java
 src/test/java/sh/ory/kratos/model/IdentitySchemaContainerTest.java
 src/test/java/sh/ory/kratos/model/IdentityStateTest.java
 src/test/java/sh/ory/kratos/model/IdentityTest.java
@@ -281,6 +304,7 @@ src/test/java/sh/ory/kratos/model/OAuth2ClientTest.java
 src/test/java/sh/ory/kratos/model/OAuth2ConsentRequestOpenIDConnectContextTest.java
 src/test/java/sh/ory/kratos/model/OAuth2LoginRequestTest.java
 src/test/java/sh/ory/kratos/model/PaginationTest.java
+src/test/java/sh/ory/kratos/model/PatchIdentitiesBodyTest.java
 src/test/java/sh/ory/kratos/model/PerformNativeLogoutBodyTest.java
 src/test/java/sh/ory/kratos/model/RecoveryCodeForIdentityTest.java
 src/test/java/sh/ory/kratos/model/RecoveryFlowStateTest.java
@@ -330,7 +354,7 @@ src/test/java/sh/ory/kratos/model/UpdateSettingsFlowWithProfileMethodTest.java
 src/test/java/sh/ory/kratos/model/UpdateSettingsFlowWithTotpMethodTest.java
 src/test/java/sh/ory/kratos/model/UpdateSettingsFlowWithWebAuthnMethodTest.java
 src/test/java/sh/ory/kratos/model/UpdateVerificationFlowBodyTest.java
-src/test/java/sh/ory/kratos/model/UpdateVerificationFlowWithCodeMethodBodyTest.java
+src/test/java/sh/ory/kratos/model/UpdateVerificationFlowWithCodeMethodTest.java
 src/test/java/sh/ory/kratos/model/UpdateVerificationFlowWithLinkMethodTest.java
 src/test/java/sh/ory/kratos/model/VerifiableIdentityAddressTest.java
 src/test/java/sh/ory/kratos/model/VerificationFlowStateTest.java

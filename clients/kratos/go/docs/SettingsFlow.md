@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **string** | Active, if set, contains the registration method that is being used. It is initially not set. | [optional] 
+**ContinueWith** | Pointer to [**[]ContinueWith**](ContinueWith.md) | Contains a list of actions, that could follow this flow  It can, for example, contain a reference to the verification flow, created as part of the user&#39;s registration. | [optional] 
 **ExpiresAt** | **time.Time** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting, a new flow has to be initiated. | 
 **Id** | **string** | ID represents the flow&#39;s unique ID. When performing the settings flow, this represents the id in the settings ui&#39;s query parameter: http://&lt;selfservice.flows.settings.ui_url&gt;?flow&#x3D;&lt;id&gt; | 
 **Identity** | [**Identity**](Identity.md) |  | 
@@ -58,6 +59,31 @@ SetActive sets Active field to given value.
 `func (o *SettingsFlow) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
+
+### GetContinueWith
+
+`func (o *SettingsFlow) GetContinueWith() []ContinueWith`
+
+GetContinueWith returns the ContinueWith field if non-nil, zero value otherwise.
+
+### GetContinueWithOk
+
+`func (o *SettingsFlow) GetContinueWithOk() (*[]ContinueWith, bool)`
+
+GetContinueWithOk returns a tuple with the ContinueWith field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContinueWith
+
+`func (o *SettingsFlow) SetContinueWith(v []ContinueWith)`
+
+SetContinueWith sets ContinueWith field to given value.
+
+### HasContinueWith
+
+`func (o *SettingsFlow) HasContinueWith() bool`
+
+HasContinueWith returns a boolean if a field has been set.
 
 ### GetExpiresAt
 

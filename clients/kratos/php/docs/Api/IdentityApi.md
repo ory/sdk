@@ -4,10 +4,12 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**batchPatchIdentities()**](IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create and deletes multiple identities
 [**createIdentity()**](IdentityApi.md#createIdentity) | **POST** /admin/identities | Create an Identity
 [**createRecoveryCodeForIdentity()**](IdentityApi.md#createRecoveryCodeForIdentity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**createRecoveryLinkForIdentity()**](IdentityApi.md#createRecoveryLinkForIdentity) | **POST** /admin/recovery/link | Create a Recovery Link
 [**deleteIdentity()**](IdentityApi.md#deleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity
+[**deleteIdentityCredentials()**](IdentityApi.md#deleteIdentityCredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 [**deleteIdentitySessions()**](IdentityApi.md#deleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
 [**disableSession()**](IdentityApi.md#disableSession) | **DELETE** /admin/sessions/{id} | Deactivate a Session
 [**extendSession()**](IdentityApi.md#extendSession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
@@ -21,6 +23,68 @@ Method | HTTP request | Description
 [**patchIdentity()**](IdentityApi.md#patchIdentity) | **PATCH** /admin/identities/{id} | Patch an Identity
 [**updateIdentity()**](IdentityApi.md#updateIdentity) | **PUT** /admin/identities/{id} | Update an Identity
 
+
+## `batchPatchIdentities()`
+
+```php
+batchPatchIdentities($patchIdentitiesBody): \Ory\Kratos\Client\Model\BatchPatchIdentitiesResponse
+```
+
+Create and deletes multiple identities
+
+Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: oryAccessToken
+$config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\IdentityApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$patchIdentitiesBody = new \Ory\Kratos\Client\Model\PatchIdentitiesBody(); // \Ory\Kratos\Client\Model\PatchIdentitiesBody
+
+try {
+    $result = $apiInstance->batchPatchIdentities($patchIdentitiesBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IdentityApi->batchPatchIdentities: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchIdentitiesBody** | [**\Ory\Kratos\Client\Model\PatchIdentitiesBody**](../Model/PatchIdentitiesBody.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\BatchPatchIdentitiesResponse**](../Model/BatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createIdentity()`
 
@@ -255,6 +319,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteIdentityCredentials()`
+
+```php
+deleteIdentityCredentials($id, $type): \Ory\Kratos\Client\Model\Identity
+```
+
+Delete a credential for a specific identity
+
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: oryAccessToken
+$config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Ory\Kratos\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Ory\Kratos\Client\Api\IdentityApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID is the identity's ID.
+$type = 'type_example'; // string | Type is the credential's Type. One of totp, webauthn, lookup
+
+try {
+    $result = $apiInstance->deleteIdentityCredentials($id, $type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IdentityApi->deleteIdentityCredentials: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| ID is the identity&#39;s ID. |
+ **type** | **string**| Type is the credential&#39;s Type. One of totp, webauthn, lookup |
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\Identity**](../Model/Identity.md)
 
 ### Authorization
 
@@ -640,7 +768,7 @@ Name | Type | Description  | Notes
 ## `listIdentities()`
 
 ```php
-listIdentities($perPage, $page): \Ory\Kratos\Client\Model\Identity[]
+listIdentities($perPage, $page, $credentialsIdentifier): \Ory\Kratos\Client\Model\Identity[]
 ```
 
 List Identities
@@ -668,9 +796,10 @@ $apiInstance = new Ory\Kratos\Client\Api\IdentityApi(
 );
 $perPage = 250; // int | Items per Page  This is the number of items per page.
 $page = 1; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+$credentialsIdentifier = 'credentialsIdentifier_example'; // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
 
 try {
-    $result = $apiInstance->listIdentities($perPage, $page);
+    $result = $apiInstance->listIdentities($perPage, $page, $credentialsIdentifier);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling IdentityApi->listIdentities: ', $e->getMessage(), PHP_EOL;
@@ -683,6 +812,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
  **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+ **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional]
 
 ### Return type
 
@@ -859,7 +989,7 @@ $apiInstance = new Ory\Kratos\Client\Api\IdentityApi(
 $pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $pageToken = 'pageToken_example'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $active = True; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
-$expand = array('expand_example'); // string[] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+$expand = array('expand_example'); // string[] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
 
 try {
     $result = $apiInstance->listSessions($pageSize, $pageToken, $active, $expand);
@@ -876,7 +1006,7 @@ Name | Type | Description  | Notes
  **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]
  **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional]
- **expand** | [**string[]**](../Model/string.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | [optional]
+ **expand** | [**string[]**](../Model/string.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | [optional]
 
 ### Return type
 

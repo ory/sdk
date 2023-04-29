@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**BatchPatchIdentities**](IdentityApi.md#BatchPatchIdentities) | **Patch** /admin/identities | Create and deletes multiple identities
 [**CreateIdentity**](IdentityApi.md#CreateIdentity) | **Post** /admin/identities | Create an Identity
 [**CreateRecoveryCodeForIdentity**](IdentityApi.md#CreateRecoveryCodeForIdentity) | **Post** /admin/recovery/code | Create a Recovery Code
 [**CreateRecoveryLinkForIdentity**](IdentityApi.md#CreateRecoveryLinkForIdentity) | **Post** /admin/recovery/link | Create a Recovery Link
 [**DeleteIdentity**](IdentityApi.md#DeleteIdentity) | **Delete** /admin/identities/{id} | Delete an Identity
+[**DeleteIdentityCredentials**](IdentityApi.md#DeleteIdentityCredentials) | **Delete** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 [**DeleteIdentitySessions**](IdentityApi.md#DeleteIdentitySessions) | **Delete** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
 [**DisableSession**](IdentityApi.md#DisableSession) | **Delete** /admin/sessions/{id} | Deactivate a Session
 [**ExtendSession**](IdentityApi.md#ExtendSession) | **Patch** /admin/sessions/{id}/extend | Extend a Session
@@ -21,6 +23,72 @@ Method | HTTP request | Description
 [**PatchIdentity**](IdentityApi.md#PatchIdentity) | **Patch** /admin/identities/{id} | Patch an Identity
 [**UpdateIdentity**](IdentityApi.md#UpdateIdentity) | **Put** /admin/identities/{id} | Update an Identity
 
+
+
+## BatchPatchIdentities
+
+> BatchPatchIdentitiesResponse BatchPatchIdentities(ctx).PatchIdentitiesBody(patchIdentitiesBody).Execute()
+
+Create and deletes multiple identities
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    patchIdentitiesBody := *openapiclient.NewPatchIdentitiesBody() // PatchIdentitiesBody |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IdentityApi.BatchPatchIdentities(context.Background()).PatchIdentitiesBody(patchIdentitiesBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.BatchPatchIdentities``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `BatchPatchIdentities`: BatchPatchIdentitiesResponse
+    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.BatchPatchIdentities`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBatchPatchIdentitiesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchIdentitiesBody** | [**PatchIdentitiesBody**](PatchIdentitiesBody.md) |  | 
+
+### Return type
+
+[**BatchPatchIdentitiesResponse**](BatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateIdentity
@@ -274,6 +342,79 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteIdentityCredentials
+
+> Identity DeleteIdentityCredentials(ctx, id, type_).Execute()
+
+Delete a credential for a specific identity
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | ID is the identity's ID.
+    type_ := "type__example" // string | Type is the credential's Type. One of totp, webauthn, lookup
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.IdentityApi.DeleteIdentityCredentials(context.Background(), id, type_).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.DeleteIdentityCredentials``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteIdentityCredentials`: Identity
+    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.DeleteIdentityCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | ID is the identity&#39;s ID. | 
+**type_** | **string** | Type is the credential&#39;s Type. One of totp, webauthn, lookup | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteIdentityCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**Identity**](Identity.md)
 
 ### Authorization
 
@@ -659,7 +800,7 @@ import (
 
 func main() {
     id := "id_example" // string | ID is the session's ID.
-    expand := []string{"Expand_example"} // []string | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
+    expand := []string{"Inner_example"} // []string | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -711,7 +852,7 @@ Name | Type | Description  | Notes
 
 ## ListIdentities
 
-> []Identity ListIdentities(ctx).PerPage(perPage).Page(page).Execute()
+> []Identity ListIdentities(ctx).PerPage(perPage).Page(page).CredentialsIdentifier(credentialsIdentifier).Execute()
 
 List Identities
 
@@ -732,10 +873,11 @@ import (
 func main() {
     perPage := int64(789) // int64 | Items per Page  This is the number of items per page. (optional) (default to 250)
     page := int64(789) // int64 | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional) (default to 1)
+    credentialsIdentifier := "credentialsIdentifier_example" // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.ListIdentities(context.Background()).PerPage(perPage).Page(page).Execute()
+    resp, r, err := apiClient.IdentityApi.ListIdentities(context.Background()).PerPage(perPage).Page(page).CredentialsIdentifier(credentialsIdentifier).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.ListIdentities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -758,6 +900,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **perPage** | **int64** | Items per Page  This is the number of items per page. | [default to 250]
  **page** | **int64** | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [default to 1]
+ **credentialsIdentifier** | **string** | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | 
 
 ### Return type
 
@@ -945,7 +1088,7 @@ func main() {
     pageSize := int64(789) // int64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
     pageToken := "pageToken_example" // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
     active := true // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
-    expand := []string{"Expand_example"} // []string | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
+    expand := []string{"Inner_example"} // []string | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -973,7 +1116,7 @@ Name | Type | Description  | Notes
  **pageSize** | **int64** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [default to 250]
  **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | 
  **active** | **bool** | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | 
- **expand** | **[]string** | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | 
+ **expand** | **[]string** | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | 
 
 ### Return type
 
