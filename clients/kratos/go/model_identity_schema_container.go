@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.11.1
+API version: v0.13.1
 Contact: office@ory.sh
 */
 
@@ -19,7 +19,7 @@ import (
 type IdentitySchemaContainer struct {
 	// The ID of the Identity JSON Schema
 	Id *string `json:"id,omitempty"`
-	// Raw JSON Schema
+	// The actual Identity JSON Schema
 	Schema map[string]interface{} `json:"schema,omitempty"`
 }
 

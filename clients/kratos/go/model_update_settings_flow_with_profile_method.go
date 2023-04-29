@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.11.1
+API version: v0.13.1
 Contact: office@ory.sh
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// UpdateSettingsFlowWithProfileMethod nolint:deadcode,unused
+// UpdateSettingsFlowWithProfileMethod Update Settings Flow with Profile Method
 type UpdateSettingsFlowWithProfileMethod struct {
 	// The Anti-CSRF Token  This token is only required when performing browser flows.
 	CsrfToken *string `json:"csrf_token,omitempty"`

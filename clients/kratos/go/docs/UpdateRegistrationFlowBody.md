@@ -8,7 +8,9 @@ Name | Type | Description | Notes
 **Method** | **string** | Method  Should be set to \&quot;webauthn\&quot; when trying to add, update, or remove a webAuthn pairing. | 
 **Password** | **string** | Password to sign the user up with | 
 **Traits** | **map[string]interface{}** | The identity&#39;s traits | 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 **Provider** | **string** | The provider to register with | 
+**UpstreamParameters** | Pointer to **map[string]interface{}** | UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: &#x60;login_hint&#x60; (string): The &#x60;login_hint&#x60; parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. &#x60;hd&#x60; (string): The &#x60;hd&#x60; parameter limits the login/registration process to a Google Organization, e.g. &#x60;mycollege.edu&#x60;. | [optional] 
 **WebauthnRegister** | Pointer to **string** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] 
 **WebauthnRegisterDisplayname** | Pointer to **string** | Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added. | [optional] 
 
@@ -116,6 +118,31 @@ and a boolean to check if the value has been set.
 SetTraits sets Traits field to given value.
 
 
+### GetTransientPayload
+
+`func (o *UpdateRegistrationFlowBody) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateRegistrationFlowBody) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateRegistrationFlowBody) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateRegistrationFlowBody) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
+
 ### GetProvider
 
 `func (o *UpdateRegistrationFlowBody) GetProvider() string`
@@ -135,6 +162,31 @@ and a boolean to check if the value has been set.
 
 SetProvider sets Provider field to given value.
 
+
+### GetUpstreamParameters
+
+`func (o *UpdateRegistrationFlowBody) GetUpstreamParameters() map[string]interface{}`
+
+GetUpstreamParameters returns the UpstreamParameters field if non-nil, zero value otherwise.
+
+### GetUpstreamParametersOk
+
+`func (o *UpdateRegistrationFlowBody) GetUpstreamParametersOk() (*map[string]interface{}, bool)`
+
+GetUpstreamParametersOk returns a tuple with the UpstreamParameters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamParameters
+
+`func (o *UpdateRegistrationFlowBody) SetUpstreamParameters(v map[string]interface{})`
+
+SetUpstreamParameters sets UpstreamParameters field to given value.
+
+### HasUpstreamParameters
+
+`func (o *UpdateRegistrationFlowBody) HasUpstreamParameters() bool`
+
+HasUpstreamParameters returns a boolean if a field has been set.
 
 ### GetWebauthnRegister
 

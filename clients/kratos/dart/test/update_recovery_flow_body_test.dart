@@ -13,19 +13,19 @@ void main() {
       // TODO
     });
 
-    // Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+    // The email address of the account to recover  If the email belongs to a valid account, a recovery email will be sent.  If you want to notify the email address if the account does not exist, see the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/account-recovery-password-reset#attempted-recovery-notifications)  If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.  format: email
     // String email
     test('to test the property `email`', () async {
       // TODO
     });
 
-    // Method supports `link` and `code` only right now.
+    // Method is the method that should be used for this recovery flow  Allowed values are `link` and `code`. link RecoveryStrategyLink code RecoveryStrategyCode
     // String method
     test('to test the property `method`', () async {
       // TODO
     });
 
-    // Code from recovery email  Sent to the user once a recovery has been initiated and is used to prove that the user is in possession of the email
+    // Code from the recovery email  If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
     // String code
     test('to test the property `code`', () async {
       // TODO

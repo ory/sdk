@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create and deletes multiple identities
 [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity
 [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link
 [**delete_identity**](IdentityApi.md#delete_identity) | **DELETE** /admin/identities/{id} | Delete an Identity
+[**delete_identity_credentials**](IdentityApi.md#delete_identity_credentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 [**delete_identity_sessions**](IdentityApi.md#delete_identity_sessions) | **DELETE** /admin/identities/{id}/sessions | Delete & Invalidate an Identity's Sessions
 [**disable_session**](IdentityApi.md#disable_session) | **DELETE** /admin/sessions/{id} | Deactivate a Session
 [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
@@ -21,6 +23,36 @@ Method | HTTP request | Description
 [**patch_identity**](IdentityApi.md#patch_identity) | **PATCH** /admin/identities/{id} | Patch an Identity
 [**update_identity**](IdentityApi.md#update_identity) | **PUT** /admin/identities/{id} | Update an Identity
 
+
+
+## batch_patch_identities
+
+> crate::models::BatchPatchIdentitiesResponse batch_patch_identities(patch_identities_body)
+Create and deletes multiple identities
+
+Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**patch_identities_body** | Option<[**PatchIdentitiesBody**](PatchIdentitiesBody.md)> |  |  |
+
+### Return type
+
+[**crate::models::BatchPatchIdentitiesResponse**](batchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## create_identity
@@ -130,6 +162,37 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_identity_credentials
+
+> crate::models::Identity delete_identity_credentials(id, _type)
+Delete a credential for a specific identity
+
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **String** | ID is the identity's ID. | [required] |
+**_type** | **String** | Type is the credential's Type. One of totp, webauthn, lookup | [required] |
+
+### Return type
+
+[**crate::models::Identity**](identity.md)
 
 ### Authorization
 
@@ -327,7 +390,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_identities
 
-> Vec<crate::models::Identity> list_identities(per_page, page)
+> Vec<crate::models::Identity> list_identities(per_page, page, credentials_identifier)
 List Identities
 
 Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
@@ -339,6 +402,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **per_page** | Option<**i64**> | Items per Page  This is the number of items per page. |  |[default to 250]
 **page** | Option<**i64**> | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. |  |[default to 1]
+**credentials_identifier** | Option<**String**> | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. |  |
 
 ### Return type
 
@@ -435,7 +499,7 @@ Name | Type | Description  | Required | Notes
 **page_size** | Option<**i64**> | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
 **page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |
 **active** | Option<**bool**> | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. |  |
-**expand** | Option<[**Vec<String>**](String.md)> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. |  |
+**expand** | Option<[**Vec<String>**](String.md)> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. |  |
 
 ### Return type
 

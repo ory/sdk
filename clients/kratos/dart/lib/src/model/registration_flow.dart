@@ -6,6 +6,7 @@
 import 'package:ory_kratos_client/src/model/o_auth2_login_request.dart';
 import 'package:ory_kratos_client/src/model/identity_credentials_type.dart';
 import 'package:ory_kratos_client/src/model/ui_container.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -22,6 +23,7 @@ part 'registration_flow.g.dart';
 /// * [oauth2LoginRequest] 
 /// * [requestUrl] - RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
+/// * [transientPayload] - TransientPayload is used to pass data from the registration to a webhook
 /// * [type] - The flow type can either be `api` or `browser`.
 /// * [ui] 
 @BuiltValue()
@@ -55,6 +57,10 @@ abstract class RegistrationFlow implements Built<RegistrationFlow, RegistrationF
   /// ReturnTo contains the requested return_to URL.
   @BuiltValueField(wireName: r'return_to')
   String? get returnTo;
+
+  /// TransientPayload is used to pass data from the registration to a webhook
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   /// The flow type can either be `api` or `browser`.
   @BuiltValueField(wireName: r'type')
@@ -132,6 +138,13 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
       yield serializers.serialize(
         object.returnTo,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
       );
     }
     yield r'type';
@@ -223,6 +236,13 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
             specifiedType: const FullType(String),
           ) as String;
           result.returnTo = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(

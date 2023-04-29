@@ -8,6 +8,11 @@ Gemfile
 README.md
 Rakefile
 docs/AuthenticatorAssuranceLevel.md
+docs/BatchPatchIdentitiesResponse.md
+docs/ContinueWith.md
+docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithVerificationUi.md
+docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
@@ -32,6 +37,8 @@ docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
 docs/IdentityCredentialsType.md
+docs/IdentityPatch.md
+docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentityState.md
 docs/IdentityWithCredentials.md
@@ -53,6 +60,7 @@ docs/OAuth2Client.md
 docs/OAuth2ConsentRequestOpenIDConnectContext.md
 docs/OAuth2LoginRequest.md
 docs/Pagination.md
+docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
@@ -102,7 +110,7 @@ docs/UpdateSettingsFlowWithProfileMethod.md
 docs/UpdateSettingsFlowWithTotpMethod.md
 docs/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/UpdateVerificationFlowBody.md
-docs/UpdateVerificationFlowWithCodeMethodBody.md
+docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
@@ -118,6 +126,11 @@ lib/ory-kratos-client/api_client.rb
 lib/ory-kratos-client/api_error.rb
 lib/ory-kratos-client/configuration.rb
 lib/ory-kratos-client/models/authenticator_assurance_level.rb
+lib/ory-kratos-client/models/batch_patch_identities_response.rb
+lib/ory-kratos-client/models/continue_with.rb
+lib/ory-kratos-client/models/continue_with_set_ory_session_token.rb
+lib/ory-kratos-client/models/continue_with_verification_ui.rb
+lib/ory-kratos-client/models/continue_with_verification_ui_flow.rb
 lib/ory-kratos-client/models/courier_message_status.rb
 lib/ory-kratos-client/models/courier_message_type.rb
 lib/ory-kratos-client/models/create_identity_body.rb
@@ -139,6 +152,8 @@ lib/ory-kratos-client/models/identity_credentials_oidc.rb
 lib/ory-kratos-client/models/identity_credentials_oidc_provider.rb
 lib/ory-kratos-client/models/identity_credentials_password.rb
 lib/ory-kratos-client/models/identity_credentials_type.rb
+lib/ory-kratos-client/models/identity_patch.rb
+lib/ory-kratos-client/models/identity_patch_response.rb
 lib/ory-kratos-client/models/identity_schema_container.rb
 lib/ory-kratos-client/models/identity_state.rb
 lib/ory-kratos-client/models/identity_with_credentials.rb
@@ -159,6 +174,7 @@ lib/ory-kratos-client/models/o_auth2_client.rb
 lib/ory-kratos-client/models/o_auth2_consent_request_open_id_connect_context.rb
 lib/ory-kratos-client/models/o_auth2_login_request.rb
 lib/ory-kratos-client/models/pagination.rb
+lib/ory-kratos-client/models/patch_identities_body.rb
 lib/ory-kratos-client/models/perform_native_logout_body.rb
 lib/ory-kratos-client/models/recovery_code_for_identity.rb
 lib/ory-kratos-client/models/recovery_flow.rb
@@ -208,7 +224,7 @@ lib/ory-kratos-client/models/update_settings_flow_with_profile_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_totp_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_web_authn_method.rb
 lib/ory-kratos-client/models/update_verification_flow_body.rb
-lib/ory-kratos-client/models/update_verification_flow_with_code_method_body.rb
+lib/ory-kratos-client/models/update_verification_flow_with_code_method.rb
 lib/ory-kratos-client/models/update_verification_flow_with_link_method.rb
 lib/ory-kratos-client/models/verifiable_identity_address.rb
 lib/ory-kratos-client/models/verification_flow.rb
@@ -223,6 +239,11 @@ spec/api/metadata_api_spec.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
 spec/models/authenticator_assurance_level_spec.rb
+spec/models/batch_patch_identities_response_spec.rb
+spec/models/continue_with_set_ory_session_token_spec.rb
+spec/models/continue_with_spec.rb
+spec/models/continue_with_verification_ui_flow_spec.rb
+spec/models/continue_with_verification_ui_spec.rb
 spec/models/courier_message_status_spec.rb
 spec/models/courier_message_type_spec.rb
 spec/models/create_identity_body_spec.rb
@@ -243,6 +264,8 @@ spec/models/identity_credentials_oidc_spec.rb
 spec/models/identity_credentials_password_spec.rb
 spec/models/identity_credentials_spec.rb
 spec/models/identity_credentials_type_spec.rb
+spec/models/identity_patch_response_spec.rb
+spec/models/identity_patch_spec.rb
 spec/models/identity_schema_container_spec.rb
 spec/models/identity_spec.rb
 spec/models/identity_state_spec.rb
@@ -264,6 +287,7 @@ spec/models/o_auth2_client_spec.rb
 spec/models/o_auth2_consent_request_open_id_connect_context_spec.rb
 spec/models/o_auth2_login_request_spec.rb
 spec/models/pagination_spec.rb
+spec/models/patch_identities_body_spec.rb
 spec/models/perform_native_logout_body_spec.rb
 spec/models/recovery_code_for_identity_spec.rb
 spec/models/recovery_flow_spec.rb
@@ -313,7 +337,7 @@ spec/models/update_settings_flow_with_profile_method_spec.rb
 spec/models/update_settings_flow_with_totp_method_spec.rb
 spec/models/update_settings_flow_with_web_authn_method_spec.rb
 spec/models/update_verification_flow_body_spec.rb
-spec/models/update_verification_flow_with_code_method_body_spec.rb
+spec/models/update_verification_flow_with_code_method_spec.rb
 spec/models/update_verification_flow_with_link_method_spec.rb
 spec/models/verifiable_identity_address_spec.rb
 spec/models/verification_flow_spec.rb

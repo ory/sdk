@@ -86,7 +86,6 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 import time
 import ory_kratos_client
 from ory_kratos_client.api import metadata_api
-from ory_kratos_client.model.generic_error import GenericError
 from ory_kratos_client.model.is_alive200_response import IsAlive200Response
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -125,7 +124,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 
 ### HTTP response details
@@ -133,7 +132,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Ory Kratos is ready to accept connections. |  -  |
-**500** | genericError |  -  |
+**0** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -190,7 +189,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 
 ### HTTP response details
@@ -199,6 +198,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | Ory Kratos is ready to accept requests. |  -  |
 **503** | Ory Kratos is not yet ready to accept requests. |  -  |
+**0** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

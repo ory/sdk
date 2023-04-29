@@ -7,6 +7,11 @@ docs/CourierApi.md
 docs/FrontendApi.md
 docs/IdentityApi.md
 docs/KratosAuthenticatorAssuranceLevel.md
+docs/KratosBatchPatchIdentitiesResponse.md
+docs/KratosContinueWith.md
+docs/KratosContinueWithSetOrySessionToken.md
+docs/KratosContinueWithVerificationUi.md
+docs/KratosContinueWithVerificationUiFlow.md
 docs/KratosCourierMessageStatus.md
 docs/KratosCourierMessageType.md
 docs/KratosCreateIdentityBody.md
@@ -27,6 +32,8 @@ docs/KratosIdentityCredentialsOidc.md
 docs/KratosIdentityCredentialsOidcProvider.md
 docs/KratosIdentityCredentialsPassword.md
 docs/KratosIdentityCredentialsType.md
+docs/KratosIdentityPatch.md
+docs/KratosIdentityPatchResponse.md
 docs/KratosIdentitySchemaContainer.md
 docs/KratosIdentityState.md
 docs/KratosIdentityWithCredentials.md
@@ -48,6 +55,7 @@ docs/KratosOAuth2Client.md
 docs/KratosOAuth2ConsentRequestOpenIDConnectContext.md
 docs/KratosOAuth2LoginRequest.md
 docs/KratosPagination.md
+docs/KratosPatchIdentitiesBody.md
 docs/KratosPerformNativeLogoutBody.md
 docs/KratosRecoveryCodeForIdentity.md
 docs/KratosRecoveryFlow.md
@@ -97,7 +105,7 @@ docs/KratosUpdateSettingsFlowWithProfileMethod.md
 docs/KratosUpdateSettingsFlowWithTotpMethod.md
 docs/KratosUpdateSettingsFlowWithWebAuthnMethod.md
 docs/KratosUpdateVerificationFlowBody.md
-docs/KratosUpdateVerificationFlowWithCodeMethodBody.md
+docs/KratosUpdateVerificationFlowWithCodeMethod.md
 docs/KratosUpdateVerificationFlowWithLinkMethod.md
 docs/KratosVerifiableIdentityAddress.md
 docs/KratosVerificationFlow.md
@@ -110,6 +118,11 @@ src/Ory.Kratos.Client.Test/Api/FrontendApiTests.cs
 src/Ory.Kratos.Client.Test/Api/IdentityApiTests.cs
 src/Ory.Kratos.Client.Test/Api/MetadataApiTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosAuthenticatorAssuranceLevelTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosBatchPatchIdentitiesResponseTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosContinueWithSetOrySessionTokenTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosContinueWithTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosContinueWithVerificationUiFlowTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosContinueWithVerificationUiTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosCourierMessageStatusTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosCourierMessageTypeTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosCreateIdentityBodyTests.cs
@@ -129,6 +142,8 @@ src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsOidcTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsPasswordTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsTypeTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosIdentityPatchResponseTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosIdentityPatchTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentitySchemaContainerTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityStateTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityTests.cs
@@ -151,6 +166,7 @@ src/Ory.Kratos.Client.Test/Model/KratosOAuth2ClientTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosOAuth2ConsentRequestOpenIDConnectContextTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosOAuth2LoginRequestTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosPaginationTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosPatchIdentitiesBodyTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosPerformNativeLogoutBodyTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosRecoveryCodeForIdentityTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosRecoveryFlowStateTests.cs
@@ -200,7 +216,7 @@ src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowWithProfileMethodTests.
 src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowWithTotpMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowWithWebAuthnMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateVerificationFlowBodyTests.cs
-src/Ory.Kratos.Client.Test/Model/KratosUpdateVerificationFlowWithCodeMethodBodyTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosUpdateVerificationFlowWithCodeMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateVerificationFlowWithLinkMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosVerifiableIdentityAddressTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosVerificationFlowStateTests.cs
@@ -229,6 +245,11 @@ src/Ory.Kratos.Client/Client/RequestOptions.cs
 src/Ory.Kratos.Client/Client/RetryConfiguration.cs
 src/Ory.Kratos.Client/Model/AbstractOpenAPISchema.cs
 src/Ory.Kratos.Client/Model/KratosAuthenticatorAssuranceLevel.cs
+src/Ory.Kratos.Client/Model/KratosBatchPatchIdentitiesResponse.cs
+src/Ory.Kratos.Client/Model/KratosContinueWith.cs
+src/Ory.Kratos.Client/Model/KratosContinueWithSetOrySessionToken.cs
+src/Ory.Kratos.Client/Model/KratosContinueWithVerificationUi.cs
+src/Ory.Kratos.Client/Model/KratosContinueWithVerificationUiFlow.cs
 src/Ory.Kratos.Client/Model/KratosCourierMessageStatus.cs
 src/Ory.Kratos.Client/Model/KratosCourierMessageType.cs
 src/Ory.Kratos.Client/Model/KratosCreateIdentityBody.cs
@@ -249,6 +270,8 @@ src/Ory.Kratos.Client/Model/KratosIdentityCredentialsOidc.cs
 src/Ory.Kratos.Client/Model/KratosIdentityCredentialsOidcProvider.cs
 src/Ory.Kratos.Client/Model/KratosIdentityCredentialsPassword.cs
 src/Ory.Kratos.Client/Model/KratosIdentityCredentialsType.cs
+src/Ory.Kratos.Client/Model/KratosIdentityPatch.cs
+src/Ory.Kratos.Client/Model/KratosIdentityPatchResponse.cs
 src/Ory.Kratos.Client/Model/KratosIdentitySchemaContainer.cs
 src/Ory.Kratos.Client/Model/KratosIdentityState.cs
 src/Ory.Kratos.Client/Model/KratosIdentityWithCredentials.cs
@@ -270,6 +293,7 @@ src/Ory.Kratos.Client/Model/KratosOAuth2Client.cs
 src/Ory.Kratos.Client/Model/KratosOAuth2ConsentRequestOpenIDConnectContext.cs
 src/Ory.Kratos.Client/Model/KratosOAuth2LoginRequest.cs
 src/Ory.Kratos.Client/Model/KratosPagination.cs
+src/Ory.Kratos.Client/Model/KratosPatchIdentitiesBody.cs
 src/Ory.Kratos.Client/Model/KratosPerformNativeLogoutBody.cs
 src/Ory.Kratos.Client/Model/KratosRecoveryCodeForIdentity.cs
 src/Ory.Kratos.Client/Model/KratosRecoveryFlow.cs
@@ -319,7 +343,7 @@ src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowWithProfileMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowWithTotpMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowWithWebAuthnMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateVerificationFlowBody.cs
-src/Ory.Kratos.Client/Model/KratosUpdateVerificationFlowWithCodeMethodBody.cs
+src/Ory.Kratos.Client/Model/KratosUpdateVerificationFlowWithCodeMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateVerificationFlowWithLinkMethod.cs
 src/Ory.Kratos.Client/Model/KratosVerifiableIdentityAddress.cs
 src/Ory.Kratos.Client/Model/KratosVerificationFlow.cs

@@ -4,7 +4,7 @@ apply plugin: 'java'
 apply plugin: 'com.diffplug.spotless'
 
 group = 'sh.ory.kratos'
-version = 'v0.11.1'
+version = 'v0.13.1'
 
 buildscript {
     repositories {

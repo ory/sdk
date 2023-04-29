@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-config :ory_identities_api, base_url: "http://localhost"
+config :ory_kratos, base_url: "http://localhost"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

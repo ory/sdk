@@ -15,6 +15,11 @@ import 'package:ory_kratos_client/src/date_serializer.dart';
 import 'package:ory_kratos_client/src/model/date.dart';
 
 import 'package:ory_kratos_client/src/model/authenticator_assurance_level.dart';
+import 'package:ory_kratos_client/src/model/batch_patch_identities_response.dart';
+import 'package:ory_kratos_client/src/model/continue_with.dart';
+import 'package:ory_kratos_client/src/model/continue_with_set_ory_session_token.dart';
+import 'package:ory_kratos_client/src/model/continue_with_verification_ui.dart';
+import 'package:ory_kratos_client/src/model/continue_with_verification_ui_flow.dart';
 import 'package:ory_kratos_client/src/model/courier_message_status.dart';
 import 'package:ory_kratos_client/src/model/courier_message_type.dart';
 import 'package:ory_kratos_client/src/model/create_identity_body.dart';
@@ -36,6 +41,8 @@ import 'package:ory_kratos_client/src/model/identity_credentials_oidc.dart';
 import 'package:ory_kratos_client/src/model/identity_credentials_oidc_provider.dart';
 import 'package:ory_kratos_client/src/model/identity_credentials_password.dart';
 import 'package:ory_kratos_client/src/model/identity_credentials_type.dart';
+import 'package:ory_kratos_client/src/model/identity_patch.dart';
+import 'package:ory_kratos_client/src/model/identity_patch_response.dart';
 import 'package:ory_kratos_client/src/model/identity_schema_container.dart';
 import 'package:ory_kratos_client/src/model/identity_state.dart';
 import 'package:ory_kratos_client/src/model/identity_with_credentials.dart';
@@ -56,6 +63,7 @@ import 'package:ory_kratos_client/src/model/o_auth2_client.dart';
 import 'package:ory_kratos_client/src/model/o_auth2_consent_request_open_id_connect_context.dart';
 import 'package:ory_kratos_client/src/model/o_auth2_login_request.dart';
 import 'package:ory_kratos_client/src/model/pagination.dart';
+import 'package:ory_kratos_client/src/model/patch_identities_body.dart';
 import 'package:ory_kratos_client/src/model/perform_native_logout_body.dart';
 import 'package:ory_kratos_client/src/model/recovery_code_for_identity.dart';
 import 'package:ory_kratos_client/src/model/recovery_flow.dart';
@@ -105,7 +113,7 @@ import 'package:ory_kratos_client/src/model/update_settings_flow_with_profile_me
 import 'package:ory_kratos_client/src/model/update_settings_flow_with_totp_method.dart';
 import 'package:ory_kratos_client/src/model/update_settings_flow_with_web_authn_method.dart';
 import 'package:ory_kratos_client/src/model/update_verification_flow_body.dart';
-import 'package:ory_kratos_client/src/model/update_verification_flow_with_code_method_body.dart';
+import 'package:ory_kratos_client/src/model/update_verification_flow_with_code_method.dart';
 import 'package:ory_kratos_client/src/model/update_verification_flow_with_link_method.dart';
 import 'package:ory_kratos_client/src/model/verifiable_identity_address.dart';
 import 'package:ory_kratos_client/src/model/verification_flow.dart';
@@ -116,6 +124,11 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   AuthenticatorAssuranceLevel,
+  BatchPatchIdentitiesResponse,
+  ContinueWith,
+  ContinueWithSetOrySessionToken,
+  ContinueWithVerificationUi,
+  ContinueWithVerificationUiFlow,
   CourierMessageStatus,
   CourierMessageType,
   CreateIdentityBody,
@@ -137,6 +150,8 @@ part 'serializers.g.dart';
   IdentityCredentialsOidcProvider,
   IdentityCredentialsPassword,
   IdentityCredentialsType,
+  IdentityPatch,
+  IdentityPatchResponse,
   IdentitySchemaContainer,
   IdentityState,
   IdentityWithCredentials,
@@ -157,6 +172,7 @@ part 'serializers.g.dart';
   OAuth2ConsentRequestOpenIDConnectContext,
   OAuth2LoginRequest,
   Pagination,
+  PatchIdentitiesBody,
   PerformNativeLogoutBody,
   RecoveryCodeForIdentity,
   RecoveryFlow,
@@ -206,7 +222,7 @@ part 'serializers.g.dart';
   UpdateSettingsFlowWithTotpMethod,
   UpdateSettingsFlowWithWebAuthnMethod,
   UpdateVerificationFlowBody,
-  UpdateVerificationFlowWithCodeMethodBody,
+  UpdateVerificationFlowWithCodeMethod,
   UpdateVerificationFlowWithLinkMethod,
   VerifiableIdentityAddress,
   VerificationFlow,

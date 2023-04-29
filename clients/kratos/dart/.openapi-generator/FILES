@@ -3,6 +3,11 @@
 README.md
 analysis_options.yaml
 doc/AuthenticatorAssuranceLevel.md
+doc/BatchPatchIdentitiesResponse.md
+doc/ContinueWith.md
+doc/ContinueWithSetOrySessionToken.md
+doc/ContinueWithVerificationUi.md
+doc/ContinueWithVerificationUiFlow.md
 doc/CourierApi.md
 doc/CourierMessageStatus.md
 doc/CourierMessageType.md
@@ -27,6 +32,8 @@ doc/IdentityCredentialsOidc.md
 doc/IdentityCredentialsOidcProvider.md
 doc/IdentityCredentialsPassword.md
 doc/IdentityCredentialsType.md
+doc/IdentityPatch.md
+doc/IdentityPatchResponse.md
 doc/IdentitySchemaContainer.md
 doc/IdentityState.md
 doc/IdentityWithCredentials.md
@@ -48,6 +55,7 @@ doc/OAuth2Client.md
 doc/OAuth2ConsentRequestOpenIDConnectContext.md
 doc/OAuth2LoginRequest.md
 doc/Pagination.md
+doc/PatchIdentitiesBody.md
 doc/PerformNativeLogoutBody.md
 doc/RecoveryCodeForIdentity.md
 doc/RecoveryFlow.md
@@ -97,7 +105,7 @@ doc/UpdateSettingsFlowWithProfileMethod.md
 doc/UpdateSettingsFlowWithTotpMethod.md
 doc/UpdateSettingsFlowWithWebAuthnMethod.md
 doc/UpdateVerificationFlowBody.md
-doc/UpdateVerificationFlowWithCodeMethodBody.md
+doc/UpdateVerificationFlowWithCodeMethod.md
 doc/UpdateVerificationFlowWithLinkMethod.md
 doc/VerifiableIdentityAddress.md
 doc/VerificationFlow.md
@@ -117,6 +125,11 @@ lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/authenticator_assurance_level.dart
+lib/src/model/batch_patch_identities_response.dart
+lib/src/model/continue_with.dart
+lib/src/model/continue_with_set_ory_session_token.dart
+lib/src/model/continue_with_verification_ui.dart
+lib/src/model/continue_with_verification_ui_flow.dart
 lib/src/model/courier_message_status.dart
 lib/src/model/courier_message_type.dart
 lib/src/model/create_identity_body.dart
@@ -139,6 +152,8 @@ lib/src/model/identity_credentials_oidc.dart
 lib/src/model/identity_credentials_oidc_provider.dart
 lib/src/model/identity_credentials_password.dart
 lib/src/model/identity_credentials_type.dart
+lib/src/model/identity_patch.dart
+lib/src/model/identity_patch_response.dart
 lib/src/model/identity_schema_container.dart
 lib/src/model/identity_state.dart
 lib/src/model/identity_with_credentials.dart
@@ -159,6 +174,7 @@ lib/src/model/o_auth2_client.dart
 lib/src/model/o_auth2_consent_request_open_id_connect_context.dart
 lib/src/model/o_auth2_login_request.dart
 lib/src/model/pagination.dart
+lib/src/model/patch_identities_body.dart
 lib/src/model/perform_native_logout_body.dart
 lib/src/model/recovery_code_for_identity.dart
 lib/src/model/recovery_flow.dart
@@ -208,7 +224,7 @@ lib/src/model/update_settings_flow_with_profile_method.dart
 lib/src/model/update_settings_flow_with_totp_method.dart
 lib/src/model/update_settings_flow_with_web_authn_method.dart
 lib/src/model/update_verification_flow_body.dart
-lib/src/model/update_verification_flow_with_code_method_body.dart
+lib/src/model/update_verification_flow_with_code_method.dart
 lib/src/model/update_verification_flow_with_link_method.dart
 lib/src/model/verifiable_identity_address.dart
 lib/src/model/verification_flow.dart
@@ -217,6 +233,11 @@ lib/src/model/version.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/authenticator_assurance_level_test.dart
+test/batch_patch_identities_response_test.dart
+test/continue_with_set_ory_session_token_test.dart
+test/continue_with_test.dart
+test/continue_with_verification_ui_flow_test.dart
+test/continue_with_verification_ui_test.dart
 test/courier_api_test.dart
 test/courier_message_status_test.dart
 test/courier_message_type_test.dart
@@ -240,6 +261,8 @@ test/identity_credentials_oidc_test.dart
 test/identity_credentials_password_test.dart
 test/identity_credentials_test.dart
 test/identity_credentials_type_test.dart
+test/identity_patch_response_test.dart
+test/identity_patch_test.dart
 test/identity_schema_container_test.dart
 test/identity_state_test.dart
 test/identity_test.dart
@@ -262,6 +285,7 @@ test/o_auth2_client_test.dart
 test/o_auth2_consent_request_open_id_connect_context_test.dart
 test/o_auth2_login_request_test.dart
 test/pagination_test.dart
+test/patch_identities_body_test.dart
 test/perform_native_logout_body_test.dart
 test/recovery_code_for_identity_test.dart
 test/recovery_flow_state_test.dart
@@ -311,7 +335,7 @@ test/update_settings_flow_with_profile_method_test.dart
 test/update_settings_flow_with_totp_method_test.dart
 test/update_settings_flow_with_web_authn_method_test.dart
 test/update_verification_flow_body_test.dart
-test/update_verification_flow_with_code_method_body_test.dart
+test/update_verification_flow_with_code_method_test.dart
 test/update_verification_flow_with_link_method_test.dart
 test/verifiable_identity_address_test.dart
 test/verification_flow_state_test.dart

@@ -11,6 +11,11 @@ lib/ory/api/metadata.ex
 lib/ory/connection.ex
 lib/ory/deserializer.ex
 lib/ory/model/authenticator_assurance_level.ex
+lib/ory/model/batch_patch_identities_response.ex
+lib/ory/model/continue_with.ex
+lib/ory/model/continue_with_set_ory_session_token.ex
+lib/ory/model/continue_with_verification_ui.ex
+lib/ory/model/continue_with_verification_ui_flow.ex
 lib/ory/model/courier_message_status.ex
 lib/ory/model/courier_message_type.ex
 lib/ory/model/create_identity_body.ex
@@ -32,6 +37,8 @@ lib/ory/model/identity_credentials_oidc.ex
 lib/ory/model/identity_credentials_oidc_provider.ex
 lib/ory/model/identity_credentials_password.ex
 lib/ory/model/identity_credentials_type.ex
+lib/ory/model/identity_patch.ex
+lib/ory/model/identity_patch_response.ex
 lib/ory/model/identity_schema_container.ex
 lib/ory/model/identity_state.ex
 lib/ory/model/identity_with_credentials.ex
@@ -52,6 +59,7 @@ lib/ory/model/o_auth2_client.ex
 lib/ory/model/o_auth2_consent_request_open_id_connect_context.ex
 lib/ory/model/o_auth2_login_request.ex
 lib/ory/model/pagination.ex
+lib/ory/model/patch_identities_body.ex
 lib/ory/model/perform_native_logout_body.ex
 lib/ory/model/recovery_code_for_identity.ex
 lib/ory/model/recovery_flow.ex
@@ -101,7 +109,7 @@ lib/ory/model/update_settings_flow_with_profile_method.ex
 lib/ory/model/update_settings_flow_with_totp_method.ex
 lib/ory/model/update_settings_flow_with_web_authn_method.ex
 lib/ory/model/update_verification_flow_body.ex
-lib/ory/model/update_verification_flow_with_code_method_body.ex
+lib/ory/model/update_verification_flow_with_code_method.ex
 lib/ory/model/update_verification_flow_with_link_method.ex
 lib/ory/model/verifiable_identity_address.ex
 lib/ory/model/verification_flow.ex

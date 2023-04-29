@@ -13,14 +13,14 @@ part 'identity_schema_container.g.dart';
 ///
 /// Properties:
 /// * [id] - The ID of the Identity JSON Schema
-/// * [schema] - Raw JSON Schema
+/// * [schema] - The actual Identity JSON Schema
 @BuiltValue()
 abstract class IdentitySchemaContainer implements Built<IdentitySchemaContainer, IdentitySchemaContainerBuilder> {
   /// The ID of the Identity JSON Schema
   @BuiltValueField(wireName: r'id')
   String? get id;
 
-  /// Raw JSON Schema
+  /// The actual Identity JSON Schema
   @BuiltValueField(wireName: r'schema')
   JsonObject? get schema;
 

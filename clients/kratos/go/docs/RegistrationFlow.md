@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Oauth2LoginRequest** | Pointer to [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
+**TransientPayload** | Pointer to **map[string]interface{}** | TransientPayload is used to pass data from the registration to a webhook | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
 
@@ -223,6 +224,31 @@ SetReturnTo sets ReturnTo field to given value.
 `func (o *RegistrationFlow) HasReturnTo() bool`
 
 HasReturnTo returns a boolean if a field has been set.
+
+### GetTransientPayload
+
+`func (o *RegistrationFlow) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *RegistrationFlow) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *RegistrationFlow) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *RegistrationFlow) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 ### GetType
 

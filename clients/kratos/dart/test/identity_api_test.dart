@@ -7,6 +7,15 @@ void main() {
   final instance = OryKratosClient().getIdentityApi();
 
   group(IdentityApi, () {
+    // Create and deletes multiple identities
+    //
+    // Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+    //
+    //Future<BatchPatchIdentitiesResponse> batchPatchIdentities({ PatchIdentitiesBody patchIdentitiesBody }) async
+    test('test batchPatchIdentities', () async {
+      // TODO
+    });
+
     // Create an Identity
     //
     // Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
@@ -40,6 +49,15 @@ void main() {
     //
     //Future deleteIdentity(String id) async
     test('test deleteIdentity', () async {
+      // TODO
+    });
+
+    // Delete a credential for a specific identity
+    //
+    // Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+    //
+    //Future<Identity> deleteIdentityCredentials(String id, String type) async
+    test('test deleteIdentityCredentials', () async {
       // TODO
     });
 
@@ -101,7 +119,7 @@ void main() {
     //
     // Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
     //
-    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page }) async
+    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, String credentialsIdentifier }) async
     test('test listIdentities', () async {
       // TODO
     });

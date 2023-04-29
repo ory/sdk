@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.11.1
+API version: v0.13.1
 Contact: office@ory.sh
 */
 
@@ -21,7 +21,7 @@ type UpdateVerificationFlowWithLinkMethod struct {
 	CsrfToken *string `json:"csrf_token,omitempty"`
 	// Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
 	Email string `json:"email"`
-	// Method supports `link` only right now.
+	// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`
 	Method string `json:"method"`
 }
 

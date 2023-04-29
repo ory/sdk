@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Identities API
-  version: v0.11.1
+  version: v0.13.1
 servers:
 - url: /
 tags:
@@ -202,6 +202,15 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: "CredentialsIdentifier is the identifier (username, email) of\
+          \ the credentials to look up."
+        explode: true
+        in: query
+        name: credentials_identifier
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -222,6 +231,52 @@ paths:
       summary: List Identities
       tags:
       - identity
+      x-accepts: application/json
+    patch:
+      description: |-
+        Creates or delete multiple
+        [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+        This endpoint can also be used to [import
+        credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
+        for instance passwords, social sign in configurations or multifactor methods.
+      operationId: batchPatchIdentities
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patchIdentitiesBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchPatchIdentitiesResponse'
+          description: batchPatchIdentitiesResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Create and deletes multiple identities
+      tags:
+      - identity
+      x-content-type: application/json
       x-accepts: application/json
     post:
       description: |-
@@ -473,6 +528,60 @@ paths:
       tags:
       - identity
       x-content-type: application/json
+      x-accepts: application/json
+  /admin/identities/{id}/credentials/{type}:
+    delete:
+      description: |-
+        Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type
+        You can only delete second factor (aal2) credentials.
+      operationId: deleteIdentityCredentials
+      parameters:
+      - description: ID is the identity's ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Type is the credential's Type.
+          One of totp, webauthn, lookup
+        explode: false
+        in: path
+        name: type
+        required: true
+        schema:
+          enum:
+          - totp
+          - webauthn
+          - lookup
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/identity'
+          description: identity
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Delete a credential for a specific identity
+      tags:
+      - identity
       x-accepts: application/json
   /admin/identities/{id}/sessions:
     delete:
@@ -740,17 +849,16 @@ paths:
         style: form
       - description: |-
           ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session.
-          Example - ?expand=Identity&expand=Devices
           If no value is provided, the expandable properties are skipped.
         explode: true
         in: query
         name: expand
         required: false
         schema:
+          enum:
+          - identity
+          - devices
           items:
-            enum:
-            - Devices
-            - Identity
             type: string
           type: array
         style: form
@@ -842,10 +950,10 @@ paths:
         name: expand
         required: false
         schema:
+          enum:
+          - identity
+          - devices
           items:
-            enum:
-            - Devices
-            - Identity
             type: string
           type: array
         style: form
@@ -949,12 +1057,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/isAlive_200_response'
           description: Ory Kratos is ready to accept connections.
-        "500":
+        default:
           content:
-            application/json:
+            text/plain:
               schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
+                type: string
+          description: Unexpected error
       summary: Check HTTP Server Status
       tags:
       - metadata
@@ -984,6 +1092,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/isReady_503_response'
           description: Ory Kratos is not yet ready to accept requests.
+        default:
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unexpected error
       summary: Check HTTP Server and Database Status
       tags:
       - metadata
@@ -2154,6 +2268,19 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          The URL to return the browser to after the verification flow was completed.
+
+          After the registration flow is completed, the user will be sent a verification email.
+          Upon completing the verification flow, this URL will be used to override the default
+          `selfservice.flows.verification.after.default_redirect_to` value.
+        explode: true
+        in: query
+        name: after_verification_return_to
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2670,7 +2797,7 @@ paths:
         (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with
         a new Verification Flow ID which contains an error message that the verification link was invalid.
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: updateVerificationFlow
       parameters:
       - description: |-
@@ -2802,7 +2929,7 @@ paths:
 
         This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: createBrowserVerificationFlow
       parameters:
       - description: The URL to return the browser to after the flow was completed.
@@ -2851,8 +2978,9 @@ paths:
 
         res.render('verification', flow)
         })
+        ```
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: getVerificationFlow
       parameters:
       - description: |-
@@ -3304,6 +3432,7 @@ components:
 
         The response given when listing sessions in an administrative context.
   schemas:
+    DefaultError: {}
     Duration:
       description: |-
         A Duration represents the elapsed time between two instants
@@ -3866,6 +3995,93 @@ components:
       - aal3
       title: Authenticator Assurance Level (AAL)
       type: string
+    batchPatchIdentitiesResponse:
+      description: Patch identities response
+      example:
+        identities:
+        - patch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          identity: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          action: create
+        - patch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          identity: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          action: create
+      properties:
+        identities:
+          description: The patch responses for the individual identities.
+          items:
+            $ref: '#/components/schemas/identityPatchResponse'
+          type: array
+      type: object
+    continueWith:
+      discriminator:
+        mapping:
+          set_ory_session_token: '#/components/schemas/continueWithSetOrySessionToken'
+          show_verification_ui: '#/components/schemas/continueWithVerificationUi'
+        propertyName: action
+      oneOf:
+      - $ref: '#/components/schemas/continueWithVerificationUi'
+      - $ref: '#/components/schemas/continueWithSetOrySessionToken'
+    continueWithSetOrySessionToken:
+      description: "Indicates that a session was issued, and the application should\
+        \ use this token for authenticated requests"
+      properties:
+        action:
+          description: |-
+            Action will always be `set_ory_session_token`
+            set_ory_session_token ContinueWithActionSetOrySessionToken
+            show_verification_ui ContinueWithActionShowVerificationUI
+          enum:
+          - set_ory_session_token
+          - show_verification_ui
+          type: string
+          x-go-enum-desc: |-
+            set_ory_session_token ContinueWithActionSetOrySessionToken
+            show_verification_ui ContinueWithActionShowVerificationUI
+        ory_session_token:
+          description: Token is the token of the session
+          type: string
+      required:
+      - action
+      - ory_session_token
+      type: object
+    continueWithVerificationUi:
+      description: "Indicates, that the UI flow could be continued by showing a verification\
+        \ ui"
+      properties:
+        action:
+          description: |-
+            Action will always be `show_verification_ui`
+            set_ory_session_token ContinueWithActionSetOrySessionToken
+            show_verification_ui ContinueWithActionShowVerificationUI
+          enum:
+          - set_ory_session_token
+          - show_verification_ui
+          type: string
+          x-go-enum-desc: |-
+            set_ory_session_token ContinueWithActionSetOrySessionToken
+            show_verification_ui ContinueWithActionShowVerificationUI
+        flow:
+          $ref: '#/components/schemas/continueWithVerificationUiFlow'
+      required:
+      - action
+      - flow
+      type: object
+    continueWithVerificationUiFlow:
+      properties:
+        id:
+          description: The ID of the verification flow
+          format: uuid
+          type: string
+        url:
+          description: The URL of the verification flow
+          type: string
+        verifiable_address:
+          description: The address that should be verified in this flow
+          type: string
+      required:
+      - id
+      - verifiable_address
+      type: object
     courierMessageStatus:
       description: A Message's Status
       enum:
@@ -3983,171 +4199,34 @@ components:
       type: object
     errorAuthenticatorAssuranceLevelNotSatisfied:
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
+        error:
+          $ref: '#/components/schemas/genericError'
         redirect_browser_to:
+          description: Points to where to redirect the user to next.
           type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
-          type: string
-        status:
-          description: The status description
-          example: Not Found
-          type: string
-      required:
-      - message
-      title: ErrAALNotSatisfied is returned when an active session was found but the
-        requested AAL is not satisfied.
+      title: Is returned when an active session was found but the requested AAL is
+        not satisfied.
       type: object
     errorBrowserLocationChangeRequired:
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
+        error:
+          $ref: '#/components/schemas/errorGeneric'
         redirect_browser_to:
-          description: Since when the flow has expired
+          description: Points to where to redirect the user to next.
           type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
-          type: string
-        status:
-          description: The status description
-          example: Not Found
-          type: string
-      required:
-      - message
       title: Is sent when a flow requires a browser to change its location.
       type: object
     errorFlowReplaced:
       description: Is sent when a flow is replaced by a different flow of the same
         class
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
-          type: string
-        status:
-          description: The status description
-          example: Not Found
-          type: string
+        error:
+          $ref: '#/components/schemas/genericError'
         use_flow_id:
           description: The flow ID that should be used for the new flow as it contains
             the correct messages.
           format: uuid
           type: string
-      required:
-      - message
       type: object
     errorGeneric:
       description: The standard Ory JSON API error format.
@@ -4454,6 +4533,46 @@ components:
       title: "CredentialsType  represents several different credential types, like\
         \ password credentials, passwordless credentials,"
       type: string
+    identityPatch:
+      description: Payload for patching an identity
+      properties:
+        create:
+          $ref: '#/components/schemas/createIdentityBody'
+        patch_id:
+          description: |-
+            The ID of this patch.
+
+            The patch ID is optional. If specified, the ID will be returned in the
+            response, so consumers of this API can correlate the response with the
+            patch.
+          format: uuid
+          type: string
+      type: object
+    identityPatchResponse:
+      description: Response for a single identity patch
+      example:
+        patch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        identity: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        action: create
+      properties:
+        action:
+          description: |-
+            The action for this specific patch
+            create ActionCreate  Create this identity.
+          enum:
+          - create
+          type: string
+          x-go-enum-desc: create ActionCreate  Create this identity.
+        identity:
+          description: The identity ID payload of this patch
+          format: uuid
+          type: string
+        patch_id:
+          description: "The ID of this patch response, if an ID was specified in the\
+            \ patch."
+          format: uuid
+          type: string
+      type: object
     identitySchema:
       description: Raw JSON Schema
       type: object
@@ -4467,7 +4586,7 @@ components:
           description: The ID of the Identity JSON Schema
           type: string
         schema:
-          description: Raw JSON Schema
+          description: The actual Identity JSON Schema
           type: object
       type: object
     identitySchemas:
@@ -4979,57 +5098,12 @@ components:
       type: object
     needsPrivilegedSessionError:
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
+        error:
+          $ref: '#/components/schemas/genericError'
         redirect_browser_to:
           description: Points to where to redirect the user to next.
           type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
-          type: string
-        status:
-          description: The status description
-          example: Not Found
-          type: string
       required:
-      - message
       - redirect_browser_to
       title: Is sent when a privileged session is required to perform the settings
         update.
@@ -5074,8 +5148,20 @@ components:
           minimum: 1
           type: integer
       type: object
+    patchIdentitiesBody:
+      description: Patch Identities Body
+      properties:
+        identities:
+          description: |-
+            Identities holds the list of patches to apply
+
+            required
+          items:
+            $ref: '#/components/schemas/identityPatch'
+          type: array
+      type: object
     performNativeLogoutBody:
-      description: "nolint:deadcode,unused"
+      description: Perform Native Logout Request Body
       properties:
         session_token:
           description: |-
@@ -5085,7 +5171,6 @@ components:
           type: string
       required:
       - session_token
-      title: Perform Native Logout Request Body
       type: object
     recoveryCodeForIdentity:
       description: Used when an administrator creates a recovery code for an identity.
@@ -5380,6 +5465,7 @@ components:
           requested_scope:
           - requested_scope
           - requested_scope
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -5469,6 +5555,10 @@ components:
         return_to:
           description: ReturnTo contains the requested return_to URL.
           type: string
+        transient_payload:
+          description: TransientPayload is used to pass data from the registration
+            to a webhook
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -5486,51 +5576,11 @@ components:
     selfServiceFlowExpiredError:
       description: Is sent when a flow is expired
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
+        error:
+          $ref: '#/components/schemas/genericError'
         expired_at:
           description: When the flow has expired
           format: date-time
-          type: string
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
           type: string
         since:
           description: |-
@@ -5539,17 +5589,11 @@ components:
             largest representable duration to approximately 290 years.
           format: int64
           type: integer
-        status:
-          description: The status description
-          example: Not Found
-          type: string
         use_flow_id:
           description: The flow ID that should be used for the new flow as it contains
             the correct messages.
           format: uuid
           type: string
-      required:
-      - message
       type: object
     selfServiceFlowType:
       description: The flow type can either be `api` or `browser`.
@@ -5843,6 +5887,9 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: null
           metadata_public: ""
+        continue_with:
+        - null
+        - null
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -5856,6 +5903,15 @@ components:
             Active, if set, contains the registration method that is being used. It is initially
             not set.
           type: string
+        continue_with:
+          description: |-
+            Contains a list of actions, that could follow this flow
+
+            It can, for example, contain a reference to the verification flow, created as part of the user's
+            registration.
+          items:
+            $ref: '#/components/schemas/continueWith'
+          type: array
         expires_at:
           description: |-
             ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to update the setting,
@@ -6130,7 +6186,19 @@ components:
           active: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           issued_at: 2000-01-23T04:56:07.000+00:00
+        continue_with:
+        - null
+        - null
       properties:
+        continue_with:
+          description: |-
+            Contains a list of actions, that could follow this flow
+
+            It can, for example, this will contain a reference to the verification flow, created as part of the user's
+            registration or the token of the session.
+          items:
+            $ref: '#/components/schemas/continueWith'
+          type: array
         identity:
           $ref: '#/components/schemas/identity'
         session:
@@ -6658,6 +6726,8 @@ components:
       items:
         $ref: '#/components/schemas/uiText'
       type: array
+    unexpectedError:
+      type: string
     updateIdentityBody:
       description: Update Identity Body
       properties:
@@ -6739,6 +6809,15 @@ components:
         traits:
           description: The identity traits. This is a placeholder for the registration
             flow.
+          type: object
+        upstream_parameters:
+          description: |-
+            UpstreamParameters are the parameters that are passed to the upstream identity provider.
+
+            These parameters are optional and depend on what the upstream identity provider supports.
+            Supported parameters are:
+            `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
+            `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
           type: object
       required:
       - method
@@ -6830,10 +6909,9 @@ components:
       properties:
         code:
           description: |-
-            Code from recovery email
+            Code from the recovery email
 
-            Sent to the user once a recovery has been initiated and is used to prove
-            that the user is in possession of the email
+            If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
           type: string
         csrf_token:
           description: Sending the anti-csrf token is only required for browser login
@@ -6841,17 +6919,31 @@ components:
           type: string
         email:
           description: |-
-            Email to Recover
+            The email address of the account to recover
 
-            Needs to be set when initiating the flow. If the email is a registered
-            recovery email, a recovery link will be sent. If the email is not known,
-            a email with details on what happened will be sent instead.
+            If the email belongs to a valid account, a recovery email will be sent.
+
+            If you want to notify the email address if the account does not exist, see
+            the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/account-recovery-password-reset#attempted-recovery-notifications)
+
+            If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.
 
             format: email
           type: string
         method:
-          description: Method supports `link` and `code` only right now.
+          description: |-
+            Method is the method that should be used for this recovery flow
+
+            Allowed values are `link` and `code`.
+            link RecoveryStrategyLink
+            code RecoveryStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link RecoveryStrategyLink
+            code RecoveryStrategyCode
       required:
       - method
       type: object
@@ -6873,8 +6965,19 @@ components:
             format: email
           type: string
         method:
-          description: Method supports `link` only right now.
+          description: |-
+            Method is the method that should be used for this recovery flow
+
+            Allowed values are `link` and `code`
+            link RecoveryStrategyLink
+            code RecoveryStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link RecoveryStrategyLink
+            code RecoveryStrategyCode
       required:
       - email
       - method
@@ -6909,6 +7012,18 @@ components:
         traits:
           description: The identity traits
           type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+        upstream_parameters:
+          description: |-
+            UpstreamParameters are the parameters that are passed to the upstream identity provider.
+
+            These parameters are optional and depend on what the upstream identity provider supports.
+            Supported parameters are:
+            `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
+            `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+          type: object
       required:
       - method
       - provider
@@ -6931,6 +7046,9 @@ components:
         traits:
           description: The identity's traits
           type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       - password
@@ -6950,6 +7068,9 @@ components:
           type: string
         traits:
           description: The identity's traits
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
           type: object
         webauthn_register:
           description: |-
@@ -7015,7 +7136,7 @@ components:
       - method
       type: object
     updateSettingsFlowWithOidcMethod:
-      description: "nolint:deadcode,unused"
+      description: Update Settings Flow with OpenID Connect Method
       properties:
         flow:
           description: |-
@@ -7053,9 +7174,17 @@ components:
             type: string
             in: body
           type: string
+        upstream_parameters:
+          description: |-
+            UpstreamParameters are the parameters that are passed to the upstream identity provider.
+
+            These parameters are optional and depend on what the upstream identity provider supports.
+            Supported parameters are:
+            `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
+            `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+          type: object
       required:
       - method
-      title: Update Settings Flow with OpenID Connect Method
       type: object
     updateSettingsFlowWithPasswordMethod:
       description: Update Settings Flow with Password Method
@@ -7077,7 +7206,7 @@ components:
       - password
       type: object
     updateSettingsFlowWithProfileMethod:
-      description: "nolint:deadcode,unused"
+      description: Update Settings Flow with Profile Method
       properties:
         csrf_token:
           description: |-
@@ -7100,7 +7229,6 @@ components:
       required:
       - method
       - traits
-      title: Update Settings Flow with Profile Method
       type: object
     updateSettingsFlowWithTotpMethod:
       description: Update Settings Flow with TOTP Method
@@ -7161,18 +7289,22 @@ components:
       - method
       type: object
     updateVerificationFlowBody:
-      description: "nolint:deadcode,unused"
+      description: Update Verification Flow Request Body
       discriminator:
         mapping:
+          code: '#/components/schemas/updateVerificationFlowWithCodeMethod'
           link: '#/components/schemas/updateVerificationFlowWithLinkMethod'
         propertyName: method
       oneOf:
       - $ref: '#/components/schemas/updateVerificationFlowWithLinkMethod'
-      title: Update Verification Flow Request Body
-    updateVerificationFlowWithCodeMethodBody:
+      - $ref: '#/components/schemas/updateVerificationFlowWithCodeMethod'
+    updateVerificationFlowWithCodeMethod:
       properties:
         code:
-          description: The verification code
+          description: |-
+            Code from the recovery email
+
+            If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
           type: string
         csrf_token:
           description: Sending the anti-csrf token is only required for browser login
@@ -7180,20 +7312,33 @@ components:
           type: string
         email:
           description: |-
-            Email to Verify
+            The email address to verify
 
-            Needs to be set when initiating the flow. If the email is a registered
-            verification email, a verification link will be sent. If the email is not known,
-            a email with details on what happened will be sent instead.
+            If the email belongs to a valid account, a verifiation email will be sent.
+
+            If you want to notify the email address if the account does not exist, see
+            the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)
+
+            If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.
 
             format: email
           type: string
-        flow:
-          description: The id of the flow
-          type: string
         method:
-          description: Method is the recovery method
+          description: |-
+            Method is the method that should be used for this verification flow
+
+            Allowed values are `link` and `code`.
+            link VerificationStrategyLink
+            code VerificationStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link VerificationStrategyLink
+            code VerificationStrategyCode
+      required:
+      - method
       type: object
     updateVerificationFlowWithLinkMethod:
       description: Update Verification Flow with Link Method
@@ -7213,7 +7358,10 @@ components:
             format: email
           type: string
         method:
-          description: Method supports `link` only right now.
+          description: |-
+            Method is the method that should be used for this verification flow
+
+            Allowed values are `link` and `code`
           type: string
       required:
       - email
@@ -7278,7 +7426,7 @@ components:
         Used to verify an out-of-band communication
         channel such as an email address or a phone number.
 
-        For more information head over to: https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation
+        For more information head over to: https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
         ui:

@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**batchPatchIdentities**](IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create and deletes multiple identities |
 | [**createIdentity**](IdentityApi.md#createIdentity) | **POST** /admin/identities | Create an Identity |
 | [**createRecoveryCodeForIdentity**](IdentityApi.md#createRecoveryCodeForIdentity) | **POST** /admin/recovery/code | Create a Recovery Code |
 | [**createRecoveryLinkForIdentity**](IdentityApi.md#createRecoveryLinkForIdentity) | **POST** /admin/recovery/link | Create a Recovery Link |
 | [**deleteIdentity**](IdentityApi.md#deleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity |
+| [**deleteIdentityCredentials**](IdentityApi.md#deleteIdentityCredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity |
 | [**deleteIdentitySessions**](IdentityApi.md#deleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions |
 | [**disableSession**](IdentityApi.md#disableSession) | **DELETE** /admin/sessions/{id} | Deactivate a Session |
 | [**extendSession**](IdentityApi.md#extendSession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session |
@@ -21,6 +23,78 @@ All URIs are relative to *http://localhost*
 | [**patchIdentity**](IdentityApi.md#patchIdentity) | **PATCH** /admin/identities/{id} | Patch an Identity |
 | [**updateIdentity**](IdentityApi.md#updateIdentity) | **PUT** /admin/identities/{id} | Update an Identity |
 
+
+<a name="batchPatchIdentities"></a>
+# **batchPatchIdentities**
+> BatchPatchIdentitiesResponse batchPatchIdentities(patchIdentitiesBody)
+
+Create and deletes multiple identities
+
+Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.auth.*;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.IdentityApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
+
+    IdentityApi apiInstance = new IdentityApi(defaultClient);
+    PatchIdentitiesBody patchIdentitiesBody = new PatchIdentitiesBody(); // PatchIdentitiesBody | 
+    try {
+      BatchPatchIdentitiesResponse result = apiInstance.batchPatchIdentities(patchIdentitiesBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling IdentityApi#batchPatchIdentities");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **patchIdentitiesBody** | [**PatchIdentitiesBody**](PatchIdentitiesBody.md)|  | [optional] |
+
+### Return type
+
+[**BatchPatchIdentitiesResponse**](BatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | batchPatchIdentitiesResponse |  -  |
+| **400** | errorGeneric |  -  |
+| **409** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
 
 <a name="createIdentity"></a>
 # **createIdentity**
@@ -305,6 +379,79 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **404** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a name="deleteIdentityCredentials"></a>
+# **deleteIdentityCredentials**
+> Identity deleteIdentityCredentials(id, type)
+
+Delete a credential for a specific identity
+
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+
+### Example
+```java
+// Import classes:
+import sh.ory.kratos.ApiClient;
+import sh.ory.kratos.ApiException;
+import sh.ory.kratos.Configuration;
+import sh.ory.kratos.auth.*;
+import sh.ory.kratos.models.*;
+import sh.ory.kratos.api.IdentityApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure API key authorization: oryAccessToken
+    ApiKeyAuth oryAccessToken = (ApiKeyAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //oryAccessToken.setApiKeyPrefix("Token");
+
+    IdentityApi apiInstance = new IdentityApi(defaultClient);
+    String id = "id_example"; // String | ID is the identity's ID.
+    String type = "totp"; // String | Type is the credential's Type. One of totp, webauthn, lookup
+    try {
+      Identity result = apiInstance.deleteIdentityCredentials(id, type);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling IdentityApi#deleteIdentityCredentials");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID is the identity&#39;s ID. | |
+| **type** | **String**| Type is the credential&#39;s Type. One of totp, webauthn, lookup | [enum: totp, webauthn, lookup] |
+
+### Return type
+
+[**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | identity |  -  |
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
@@ -711,7 +858,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID is the session&#39;s ID. | |
-| **expand** | [**List&lt;String&gt;**](String.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | [optional] [enum: Devices, Identity] |
+| **expand** | [**List&lt;String&gt;**](String.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | [optional] [enum: identity, devices] |
 
 ### Return type
 
@@ -735,7 +882,7 @@ public class Example {
 
 <a name="listIdentities"></a>
 # **listIdentities**
-> List&lt;Identity&gt; listIdentities(perPage, page)
+> List&lt;Identity&gt; listIdentities(perPage, page, credentialsIdentifier)
 
 List Identities
 
@@ -765,8 +912,9 @@ public class Example {
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
     Long page = 1L; // Long | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+    String credentialsIdentifier = "credentialsIdentifier_example"; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
     try {
-      List<Identity> result = apiInstance.listIdentities(perPage, page);
+      List<Identity> result = apiInstance.listIdentities(perPage, page, credentialsIdentifier);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentities");
@@ -785,6 +933,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
 | **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1] |
+| **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] |
 
 ### Return type
 
@@ -981,7 +1130,7 @@ public class Example {
     Long pageSize = 250L; // Long | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     String pageToken = "pageToken_example"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     Boolean active = true; // Boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
-    List<String> expand = Arrays.asList(); // List<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+    List<String> expand = Arrays.asList(); // List<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
     try {
       List<Session> result = apiInstance.listSessions(pageSize, pageToken, active, expand);
       System.out.println(result);
@@ -1003,7 +1152,7 @@ public class Example {
 | **pageSize** | **Long**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
 | **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **active** | **Boolean**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] |
-| **expand** | [**List&lt;String&gt;**](String.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | [optional] [enum: Devices, Identity] |
+| **expand** | [**List&lt;String&gt;**](String.md)| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | [optional] [enum: identity, devices] |
 
 ### Return type
 

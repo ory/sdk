@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create and deletes multiple identities |
 | [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity |
 | [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code |
 | [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link |
 | [**delete_identity**](IdentityApi.md#delete_identity) | **DELETE** /admin/identities/{id} | Delete an Identity |
+| [**delete_identity_credentials**](IdentityApi.md#delete_identity_credentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity |
 | [**delete_identity_sessions**](IdentityApi.md#delete_identity_sessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions |
 | [**disable_session**](IdentityApi.md#disable_session) | **DELETE** /admin/sessions/{id} | Deactivate a Session |
 | [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session |
@@ -20,6 +22,79 @@ All URIs are relative to *http://localhost*
 | [**list_sessions**](IdentityApi.md#list_sessions) | **GET** /admin/sessions | List All Sessions |
 | [**patch_identity**](IdentityApi.md#patch_identity) | **PATCH** /admin/identities/{id} | Patch an Identity |
 | [**update_identity**](IdentityApi.md#update_identity) | **PUT** /admin/identities/{id} | Update an Identity |
+
+
+## batch_patch_identities
+
+> <BatchPatchIdentitiesResponse> batch_patch_identities(opts)
+
+Create and deletes multiple identities
+
+Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-kratos-client'
+# setup authorization
+OryKratosClient.configure do |config|
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+end
+
+api_instance = OryKratosClient::IdentityApi.new
+opts = {
+  patch_identities_body: OryKratosClient::PatchIdentitiesBody.new # PatchIdentitiesBody | 
+}
+
+begin
+  # Create and deletes multiple identities
+  result = api_instance.batch_patch_identities(opts)
+  p result
+rescue OryKratosClient::ApiError => e
+  puts "Error when calling IdentityApi->batch_patch_identities: #{e}"
+end
+```
+
+#### Using the batch_patch_identities_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<BatchPatchIdentitiesResponse>, Integer, Hash)> batch_patch_identities_with_http_info(opts)
+
+```ruby
+begin
+  # Create and deletes multiple identities
+  data, status_code, headers = api_instance.batch_patch_identities_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <BatchPatchIdentitiesResponse>
+rescue OryKratosClient::ApiError => e
+  puts "Error when calling IdentityApi->batch_patch_identities_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **patch_identities_body** | [**PatchIdentitiesBody**](PatchIdentitiesBody.md) |  | [optional] |
+
+### Return type
+
+[**BatchPatchIdentitiesResponse**](BatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## create_identity
@@ -300,6 +375,79 @@ end
 ### Return type
 
 nil (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## delete_identity_credentials
+
+> <Identity> delete_identity_credentials(id, type)
+
+Delete a credential for a specific identity
+
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-kratos-client'
+# setup authorization
+OryKratosClient.configure do |config|
+  # Configure API key authorization: oryAccessToken
+  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+end
+
+api_instance = OryKratosClient::IdentityApi.new
+id = 'id_example' # String | ID is the identity's ID.
+type = 'totp' # String | Type is the credential's Type. One of totp, webauthn, lookup
+
+begin
+  # Delete a credential for a specific identity
+  result = api_instance.delete_identity_credentials(id, type)
+  p result
+rescue OryKratosClient::ApiError => e
+  puts "Error when calling IdentityApi->delete_identity_credentials: #{e}"
+end
+```
+
+#### Using the delete_identity_credentials_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Identity>, Integer, Hash)> delete_identity_credentials_with_http_info(id, type)
+
+```ruby
+begin
+  # Delete a credential for a specific identity
+  data, status_code, headers = api_instance.delete_identity_credentials_with_http_info(id, type)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Identity>
+rescue OryKratosClient::ApiError => e
+  puts "Error when calling IdentityApi->delete_identity_credentials_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | ID is the identity&#39;s ID. |  |
+| **type** | **String** | Type is the credential&#39;s Type. One of totp, webauthn, lookup |  |
+
+### Return type
+
+[**Identity**](Identity.md)
 
 ### Authorization
 
@@ -685,7 +833,7 @@ end
 api_instance = OryKratosClient::IdentityApi.new
 id = 'id_example' # String | ID is the session's ID.
 opts = {
-  expand: ['Devices'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+  expand: ['inner_example'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
 }
 
 begin
@@ -760,7 +908,8 @@ end
 api_instance = OryKratosClient::IdentityApi.new
 opts = {
   per_page: 789, # Integer | Items per Page  This is the number of items per page.
-  page: 789 # Integer | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  page: 789, # Integer | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  credentials_identifier: 'credentials_identifier_example' # String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
 }
 
 begin
@@ -796,6 +945,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **per_page** | **Integer** | Items per Page  This is the number of items per page. | [optional][default to 250] |
 | **page** | **Integer** | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional][default to 1] |
+| **credentials_identifier** | **String** | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] |
 
 ### Return type
 
@@ -984,7 +1134,7 @@ opts = {
   page_size: 789, # Integer | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   active: true, # Boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
-  expand: ['Devices'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+  expand: ['inner_example'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
 }
 
 begin
@@ -1021,7 +1171,7 @@ end
 | **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
 | **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **active** | **Boolean** | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] |
-| **expand** | [**Array&lt;String&gt;**](String.md) | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | [optional] |
+| **expand** | [**Array&lt;String&gt;**](String.md) | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | [optional] |
 
 ### Return type
 

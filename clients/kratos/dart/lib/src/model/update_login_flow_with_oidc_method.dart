@@ -16,6 +16,7 @@ part 'update_login_flow_with_oidc_method.g.dart';
 /// * [method] - Method to use  This field must be set to `oidc` when using the oidc method.
 /// * [provider] - The provider to register with
 /// * [traits] - The identity traits. This is a placeholder for the registration flow.
+/// * [upstreamParameters] - UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
 @BuiltValue()
 abstract class UpdateLoginFlowWithOidcMethod implements Built<UpdateLoginFlowWithOidcMethod, UpdateLoginFlowWithOidcMethodBuilder> {
   /// The CSRF Token
@@ -33,6 +34,10 @@ abstract class UpdateLoginFlowWithOidcMethod implements Built<UpdateLoginFlowWit
   /// The identity traits. This is a placeholder for the registration flow.
   @BuiltValueField(wireName: r'traits')
   JsonObject? get traits;
+
+  /// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+  @BuiltValueField(wireName: r'upstream_parameters')
+  JsonObject? get upstreamParameters;
 
   UpdateLoginFlowWithOidcMethod._();
 
@@ -78,6 +83,13 @@ class _$UpdateLoginFlowWithOidcMethodSerializer implements PrimitiveSerializer<U
       yield r'traits';
       yield serializers.serialize(
         object.traits,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
+    if (object.upstreamParameters != null) {
+      yield r'upstream_parameters';
+      yield serializers.serialize(
+        object.upstreamParameters,
         specifiedType: const FullType(JsonObject),
       );
     }
@@ -131,6 +143,13 @@ class _$UpdateLoginFlowWithOidcMethodSerializer implements PrimitiveSerializer<U
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.traits = valueDes;
+          break;
+        case r'upstream_parameters':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.upstreamParameters = valueDes;
           break;
         default:
           unhandled.add(key);

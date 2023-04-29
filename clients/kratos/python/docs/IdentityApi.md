@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create and deletes multiple identities
 [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity
 [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link
 [**delete_identity**](IdentityApi.md#delete_identity) | **DELETE** /admin/identities/{id} | Delete an Identity
+[**delete_identity_credentials**](IdentityApi.md#delete_identity_credentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 [**delete_identity_sessions**](IdentityApi.md#delete_identity_sessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
 [**disable_session**](IdentityApi.md#disable_session) | **DELETE** /admin/sessions/{id} | Deactivate a Session
 [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
@@ -21,6 +23,146 @@ Method | HTTP request | Description
 [**patch_identity**](IdentityApi.md#patch_identity) | **PATCH** /admin/identities/{id} | Patch an Identity
 [**update_identity**](IdentityApi.md#update_identity) | **PUT** /admin/identities/{id} | Update an Identity
 
+
+# **batch_patch_identities**
+> BatchPatchIdentitiesResponse batch_patch_identities()
+
+Create and deletes multiple identities
+
+Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+
+### Example
+
+* Api Key Authentication (oryAccessToken):
+
+```python
+import time
+import ory_kratos_client
+from ory_kratos_client.api import identity_api
+from ory_kratos_client.model.patch_identities_body import PatchIdentitiesBody
+from ory_kratos_client.model.batch_patch_identities_response import BatchPatchIdentitiesResponse
+from ory_kratos_client.model.error_generic import ErrorGeneric
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: oryAccessToken
+configuration.api_key['oryAccessToken'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['oryAccessToken'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = identity_api.IdentityApi(api_client)
+    patch_identities_body = PatchIdentitiesBody(
+        identities=[
+            IdentityPatch(
+                create=CreateIdentityBody(
+                    credentials=IdentityWithCredentials(
+                        oidc=IdentityWithCredentialsOidc(
+                            config=IdentityWithCredentialsOidcConfig(
+                                config=IdentityWithCredentialsPasswordConfig(
+                                    hashed_password="hashed_password_example",
+                                    password="password_example",
+                                ),
+                                providers=[
+                                    IdentityWithCredentialsOidcConfigProvider(
+                                        provider="provider_example",
+                                        subject="subject_example",
+                                    ),
+                                ],
+                            ),
+                        ),
+                        password=IdentityWithCredentialsPassword(
+                            config=IdentityWithCredentialsPasswordConfig(
+                                hashed_password="hashed_password_example",
+                                password="password_example",
+                            ),
+                        ),
+                    ),
+                    metadata_admin=None,
+                    metadata_public=None,
+                    recovery_addresses=[
+                        RecoveryIdentityAddress(
+                            created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                            id="id_example",
+                            updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                            value="value_example",
+                            via="via_example",
+                        ),
+                    ],
+                    schema_id="schema_id_example",
+                    state=IdentityState("active"),
+                    traits={},
+                    verifiable_addresses=[
+                        VerifiableIdentityAddress(
+                            created_at=dateutil_parser('2014-01-01T23:28:56.782Z'),
+                            id="id_example",
+                            status="status_example",
+                            updated_at=dateutil_parser('2014-01-01T23:28:56.782Z'),
+                            value="value_example",
+                            verified=True,
+                            verified_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                            via="via_example",
+                        ),
+                    ],
+                ),
+                patch_id="patch_id_example",
+            ),
+        ],
+    ) # PatchIdentitiesBody |  (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create and deletes multiple identities
+        api_response = api_instance.batch_patch_identities(patch_identities_body=patch_identities_body)
+        pprint(api_response)
+    except ory_kratos_client.ApiException as e:
+        print("Exception when calling IdentityApi->batch_patch_identities: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patch_identities_body** | [**PatchIdentitiesBody**](PatchIdentitiesBody.md)|  | [optional]
+
+### Return type
+
+[**BatchPatchIdentitiesResponse**](BatchPatchIdentitiesResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | batchPatchIdentitiesResponse |  -  |
+**400** | errorGeneric |  -  |
+**409** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_identity**
 > Identity create_identity()
@@ -403,6 +545,89 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**404** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_identity_credentials**
+> Identity delete_identity_credentials(id, type)
+
+Delete a credential for a specific identity
+
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+
+### Example
+
+* Api Key Authentication (oryAccessToken):
+
+```python
+import time
+import ory_kratos_client
+from ory_kratos_client.api import identity_api
+from ory_kratos_client.model.identity import Identity
+from ory_kratos_client.model.error_generic import ErrorGeneric
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: oryAccessToken
+configuration.api_key['oryAccessToken'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['oryAccessToken'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = identity_api.IdentityApi(api_client)
+    id = "id_example" # str | ID is the identity's ID.
+    type = "totp" # str | Type is the credential's Type. One of totp, webauthn, lookup
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Delete a credential for a specific identity
+        api_response = api_instance.delete_identity_credentials(id, type)
+        pprint(api_response)
+    except ory_kratos_client.ApiException as e:
+        print("Exception when calling IdentityApi->delete_identity_credentials: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| ID is the identity&#39;s ID. |
+ **type** | **str**| Type is the credential&#39;s Type. One of totp, webauthn, lookup |
+
+### Return type
+
+[**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | identity |  -  |
 **404** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
@@ -855,7 +1080,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     api_instance = identity_api.IdentityApi(api_client)
     id = "id_example" # str | ID is the session's ID.
     expand = [
-        "Devices",
+        "identity",
     ] # [str] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
 
     # example passing only required values which don't have defaults set
@@ -949,12 +1174,13 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     api_instance = identity_api.IdentityApi(api_client)
     per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
     page = 1 # int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional) if omitted the server will use the default value of 1
+    credentials_identifier = "credentials_identifier_example" # str | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # List Identities
-        api_response = api_instance.list_identities(per_page=per_page, page=page)
+        api_response = api_instance.list_identities(per_page=per_page, page=page, credentials_identifier=credentials_identifier)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling IdentityApi->list_identities: %s\n" % e)
@@ -967,6 +1193,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
  **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] if omitted the server will use the default value of 1
+ **credentials_identifier** | **str**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional]
 
 ### Return type
 
@@ -1203,8 +1430,8 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     page_token = "page_token_example" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
     active = True # bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
     expand = [
-        "Devices",
-    ] # [str] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
+        "identity",
+    ] # [str] | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -1224,7 +1451,7 @@ Name | Type | Description  | Notes
  **page_size** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
  **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]
  **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional]
- **expand** | **[str]**| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand&#x3D;Identity&amp;expand&#x3D;Devices If no value is provided, the expandable properties are skipped. | [optional]
+ **expand** | **[str]**| ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | [optional]
 
 ### Return type
 

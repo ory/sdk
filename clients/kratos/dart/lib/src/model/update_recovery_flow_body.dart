@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_kratos_client/src/model/update_recovery_flow_with_link_method.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:ory_kratos_client/src/model/update_recovery_flow_with_code_method.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -15,9 +16,9 @@ part 'update_recovery_flow_body.g.dart';
 ///
 /// Properties:
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
-/// * [email] - Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-/// * [method] - Method supports `link` and `code` only right now.
-/// * [code] - Code from recovery email  Sent to the user once a recovery has been initiated and is used to prove that the user is in possession of the email
+/// * [email] - The email address of the account to recover  If the email belongs to a valid account, a recovery email will be sent.  If you want to notify the email address if the account does not exist, see the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/account-recovery-password-reset#attempted-recovery-notifications)  If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.  format: email
+/// * [method] - Method is the method that should be used for this recovery flow  Allowed values are `link` and `code`. link RecoveryStrategyLink code RecoveryStrategyCode
+/// * [code] - Code from the recovery email  If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
 @BuiltValue()
 abstract class UpdateRecoveryFlowBody implements Built<UpdateRecoveryFlowBody, UpdateRecoveryFlowBodyBuilder> {
   /// One Of [UpdateRecoveryFlowWithCodeMethod], [UpdateRecoveryFlowWithLinkMethod]
@@ -117,5 +118,22 @@ class _$UpdateRecoveryFlowBodySerializer implements PrimitiveSerializer<UpdateRe
     result.oneOf = OneOfDynamic(typeIndex: oneOfTypes.indexOf(oneOfType), types: oneOfTypes, value: oneOfResult);
     return result.build();
   }
+}
+
+class UpdateRecoveryFlowBodyMethodEnum extends EnumClass {
+
+  /// Method is the method that should be used for this recovery flow  Allowed values are `link` and `code`. link RecoveryStrategyLink code RecoveryStrategyCode
+  @BuiltValueEnumConst(wireName: r'link')
+  static const UpdateRecoveryFlowBodyMethodEnum link = _$updateRecoveryFlowBodyMethodEnum_link;
+  /// Method is the method that should be used for this recovery flow  Allowed values are `link` and `code`. link RecoveryStrategyLink code RecoveryStrategyCode
+  @BuiltValueEnumConst(wireName: r'code')
+  static const UpdateRecoveryFlowBodyMethodEnum code = _$updateRecoveryFlowBodyMethodEnum_code;
+
+  static Serializer<UpdateRecoveryFlowBodyMethodEnum> get serializer => _$updateRecoveryFlowBodyMethodEnumSerializer;
+
+  const UpdateRecoveryFlowBodyMethodEnum._(String name): super(name);
+
+  static BuiltSet<UpdateRecoveryFlowBodyMethodEnum> get values => _$updateRecoveryFlowBodyMethodEnumValues;
+  static UpdateRecoveryFlowBodyMethodEnum valueOf(String name) => _$updateRecoveryFlowBodyMethodEnumValueOf(name);
 }
 
