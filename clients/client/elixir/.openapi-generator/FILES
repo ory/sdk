@@ -162,6 +162,7 @@ lib/ory/model/source_position.ex
 lib/ory/model/stripe_customer.ex
 lib/ory/model/subject_set.ex
 lib/ory/model/subscription.ex
+lib/ory/model/successful_code_exchange_response.ex
 lib/ory/model/successful_native_login.ex
 lib/ory/model/successful_native_registration.ex
 lib/ory/model/successful_project_update.ex

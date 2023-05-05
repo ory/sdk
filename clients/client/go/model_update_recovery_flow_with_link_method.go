@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.1.26
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,7 @@ type UpdateRecoveryFlowWithLinkMethod struct {
 	CsrfToken *string `json:"csrf_token,omitempty"`
 	// Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
 	Email string `json:"email"`
-	// Method supports `link` only right now.
+	// Method is the method that should be used for this recovery flow  Allowed values are `link` and `code` link RecoveryStrategyLink code RecoveryStrategyCode
 	Method string `json:"method"`
 }
 

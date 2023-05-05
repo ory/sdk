@@ -159,6 +159,7 @@ import 'package:ory_client/src/model/source_position.dart';
 import 'package:ory_client/src/model/stripe_customer.dart';
 import 'package:ory_client/src/model/subject_set.dart';
 import 'package:ory_client/src/model/subscription.dart';
+import 'package:ory_client/src/model/successful_code_exchange_response.dart';
 import 'package:ory_client/src/model/successful_native_login.dart';
 import 'package:ory_client/src/model/successful_native_registration.dart';
 import 'package:ory_client/src/model/successful_project_update.dart';
@@ -359,6 +360,7 @@ part 'serializers.g.dart';
   StripeCustomer,
   SubjectSet,
   Subscription,
+  SuccessfulCodeExchangeResponse,
   SuccessfulNativeLogin,
   SuccessfulNativeRegistration,
   SuccessfulProjectUpdate,

@@ -261,6 +261,8 @@ defmodule Ory.Api.Frontend do
     - `:refresh` (boolean()): Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
     - `:aal` (String.t): Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
     - `:"X-Session-Token"` (String.t): The Session Token of the Identity performing the settings flow.
+    - `:return_session_token_exchange_code` (boolean()): EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+    - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
 
   ### Returns
 
@@ -272,7 +274,9 @@ defmodule Ory.Api.Frontend do
     optional_params = %{
       :refresh => :query,
       :aal => :query,
-      :"X-Session-Token" => :headers
+      :"X-Session-Token" => :headers,
+      :return_session_token_exchange_code => :query,
+      :return_to => :query
     }
 
     request =
@@ -330,6 +334,8 @@ defmodule Ory.Api.Frontend do
 
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
+    - `:return_session_token_exchange_code` (boolean()): EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+    - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
 
   ### Returns
 
@@ -337,11 +343,17 @@ defmodule Ory.Api.Frontend do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_native_registration_flow(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.RegistrationFlow.t} | {:error, Tesla.Env.t}
-  def create_native_registration_flow(connection, _opts \\ []) do
+  def create_native_registration_flow(connection, opts \\ []) do
+    optional_params = %{
+      :return_session_token_exchange_code => :query,
+      :return_to => :query
+    }
+
     request =
       %{}
       |> method(:get)
       |> url("/self-service/registration/api")
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection
@@ -498,6 +510,42 @@ defmodule Ory.Api.Frontend do
       {204, false},
       {400, %Ory.Model.ErrorGeneric{}},
       {401, %Ory.Model.ErrorGeneric{}},
+      {:default, %Ory.Model.ErrorGeneric{}}
+    ])
+  end
+
+  @doc """
+  Exchange Session Token
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `init_code` (String.t): The part of the code return when initializing the flow.
+  - `return_to_code` (String.t): The part of the code returned by the return_to URL.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.SuccessfulNativeLogin.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec exchange_session_token(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.SuccessfulNativeLogin.t} | {:error, Tesla.Env.t}
+  def exchange_session_token(connection, init_code, return_to_code, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/sessions/token-exchange")
+      |> add_param(:query, :init_code, init_code)
+      |> add_param(:query, :return_to_code, return_to_code)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, %Ory.Model.SuccessfulNativeLogin{}},
+      {403, %Ory.Model.ErrorGeneric{}},
+      {404, %Ory.Model.ErrorGeneric{}},
+      {410, %Ory.Model.ErrorGeneric{}},
       {:default, %Ory.Model.ErrorGeneric{}}
     ])
   end

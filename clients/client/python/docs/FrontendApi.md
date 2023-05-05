@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**create_native_verification_flow**](FrontendApi.md#create_native_verification_flow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 [**disable_my_other_sessions**](FrontendApi.md#disable_my_other_sessions) | **DELETE** /sessions | Disable my other sessions
 [**disable_my_session**](FrontendApi.md#disable_my_session) | **DELETE** /sessions/{id} | Disable one of my sessions
+[**exchange_session_token**](FrontendApi.md#exchange_session_token) | **GET** /sessions/token-exchange | Exchange Session Token
 [**get_flow_error**](FrontendApi.md#get_flow_error) | **GET** /self-service/errors | Get User-Flow Errors
 [**get_login_flow**](FrontendApi.md#get_login_flow) | **GET** /self-service/login/flows | Get Login Flow
 [**get_recovery_flow**](FrontendApi.md#get_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -511,12 +512,14 @@ with ory_client.ApiClient() as api_client:
     refresh = True # bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
     aal = "aal_example" # str | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
     x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
+    return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+    return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Create Login Flow for Native Apps
-        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token)
+        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling FrontendApi->create_native_login_flow: %s\n" % e)
@@ -530,6 +533,8 @@ Name | Type | Description  | Notes
  **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
  **aal** | **str**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional]
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
+ **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
 
 ### Return type
 
@@ -649,11 +654,14 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = frontend_api.FrontendApi(api_client)
+    return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+    return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Create Registration Flow for Native Apps
-        api_response = api_instance.create_native_registration_flow()
+        api_response = api_instance.create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling FrontendApi->create_native_registration_flow: %s\n" % e)
@@ -661,7 +669,11 @@ with ory_client.ApiClient() as api_client:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
 
 ### Return type
 
@@ -975,6 +987,78 @@ No authorization required
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | errorGeneric |  -  |
 **401** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **exchange_session_token**
+> SuccessfulNativeLogin exchange_session_token(init_code, return_to_code)
+
+Exchange Session Token
+
+### Example
+
+
+```python
+import time
+import ory_client
+from ory_client.api import frontend_api
+from ory_client.model.error_generic import ErrorGeneric
+from ory_client.model.successful_native_login import SuccessfulNativeLogin
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = frontend_api.FrontendApi(api_client)
+    init_code = "init_code_example" # str | The part of the code return when initializing the flow.
+    return_to_code = "return_to_code_example" # str | The part of the code returned by the return_to URL.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Exchange Session Token
+        api_response = api_instance.exchange_session_token(init_code, return_to_code)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling FrontendApi->exchange_session_token: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **init_code** | **str**| The part of the code return when initializing the flow. |
+ **return_to_code** | **str**| The part of the code returned by the return_to URL. |
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successfulNativeLogin |  -  |
+**403** | errorGeneric |  -  |
+**404** | errorGeneric |  -  |
+**410** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

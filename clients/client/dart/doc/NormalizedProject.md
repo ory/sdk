@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **hosts** | **BuiltList&lt;String&gt;** |  | 
 **id** | **String** | The project's ID. | 
 **slug** | **String** | The project's slug | 
-**state** | **String** | The state of the project. running Running halted Halted | 
+**state** | **String** | The state of the project. running Running halted Halted deleted Deleted | 
 **subscriptionId** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project was Updated | 
 

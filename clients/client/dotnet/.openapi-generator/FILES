@@ -148,6 +148,7 @@ docs/ClientSourcePosition.md
 docs/ClientStripeCustomer.md
 docs/ClientSubjectSet.md
 docs/ClientSubscription.md
+docs/ClientSuccessfulCodeExchangeResponse.md
 docs/ClientSuccessfulNativeLogin.md
 docs/ClientSuccessfulNativeRegistration.md
 docs/ClientSuccessfulProjectUpdate.md
@@ -367,6 +368,7 @@ src/Ory.Client.Test/Model/ClientSourcePositionTests.cs
 src/Ory.Client.Test/Model/ClientStripeCustomerTests.cs
 src/Ory.Client.Test/Model/ClientSubjectSetTests.cs
 src/Ory.Client.Test/Model/ClientSubscriptionTests.cs
+src/Ory.Client.Test/Model/ClientSuccessfulCodeExchangeResponseTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulNativeLoginTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulNativeRegistrationTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulProjectUpdateTests.cs
@@ -592,6 +594,7 @@ src/Ory.Client/Model/ClientSourcePosition.cs
 src/Ory.Client/Model/ClientStripeCustomer.cs
 src/Ory.Client/Model/ClientSubjectSet.cs
 src/Ory.Client/Model/ClientSubscription.cs
+src/Ory.Client/Model/ClientSuccessfulCodeExchangeResponse.cs
 src/Ory.Client/Model/ClientSuccessfulNativeLogin.cs
 src/Ory.Client/Model/ClientSuccessfulNativeRegistration.cs
 src/Ory.Client/Model/ClientSuccessfulProjectUpdate.cs

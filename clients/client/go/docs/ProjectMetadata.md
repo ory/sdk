@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The project&#39;s name if set | 
 **Slug** | Pointer to **string** | The project&#39;s slug | [optional] [readonly] 
-**State** | **string** | The state of the project. running Running halted Halted | 
+**State** | **string** | The state of the project. running Running halted Halted deleted Deleted | 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | 
 

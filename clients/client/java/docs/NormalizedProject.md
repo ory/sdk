@@ -12,7 +12,7 @@
 |**hosts** | **List&lt;String&gt;** |  |  |
 |**id** | **String** | The project&#39;s ID. |  [readonly] |
 |**slug** | **String** | The project&#39;s slug |  [readonly] |
-|**state** | [**StateEnum**](#StateEnum) | The state of the project. running Running halted Halted |  [readonly] |
+|**state** | [**StateEnum**](#StateEnum) | The state of the project. running Running halted Halted deleted Deleted |  [readonly] |
 |**subscriptionId** | **String** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project was Updated |  [readonly] |
 
@@ -24,6 +24,7 @@
 |---- | -----|
 | RUNNING | &quot;running&quot; |
 | HALTED | &quot;halted&quot; |
+| DELETED | &quot;deleted&quot; |
 
 
 

@@ -10,6 +10,8 @@ const ProjectStateEnum _$projectStateEnum_running =
     const ProjectStateEnum._('running');
 const ProjectStateEnum _$projectStateEnum_halted =
     const ProjectStateEnum._('halted');
+const ProjectStateEnum _$projectStateEnum_deleted =
+    const ProjectStateEnum._('deleted');
 
 ProjectStateEnum _$projectStateEnumValueOf(String name) {
   switch (name) {
@@ -17,6 +19,8 @@ ProjectStateEnum _$projectStateEnumValueOf(String name) {
       return _$projectStateEnum_running;
     case 'halted':
       return _$projectStateEnum_halted;
+    case 'deleted':
+      return _$projectStateEnum_deleted;
     default:
       throw new ArgumentError(name);
   }
@@ -26,6 +30,7 @@ final BuiltSet<ProjectStateEnum> _$projectStateEnumValues =
     new BuiltSet<ProjectStateEnum>(const <ProjectStateEnum>[
   _$projectStateEnum_running,
   _$projectStateEnum_halted,
+  _$projectStateEnum_deleted,
 ]);
 
 Serializer<ProjectStateEnum> _$projectStateEnumSerializer =
@@ -36,10 +41,12 @@ class _$ProjectStateEnumSerializer
   static const Map<String, Object> _toWire = const <String, Object>{
     'running': 'running',
     'halted': 'halted',
+    'deleted': 'deleted',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'running': 'running',
     'halted': 'halted',
+    'deleted': 'deleted',
   };
 
   @override

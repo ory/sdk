@@ -19,7 +19,7 @@ void main() {
       // TODO
     });
 
-    // Method supports `link` only right now.
+    // Method is the method that should be used for this verification flow  Allowed values are `link` and `code`
     // String method
     test('to test the property `method`', () async {
       // TODO

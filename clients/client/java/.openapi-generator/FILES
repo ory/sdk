@@ -161,6 +161,7 @@ docs/SourcePosition.md
 docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
+docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
@@ -400,6 +401,7 @@ src/main/java/sh/ory/model/SourcePosition.java
 src/main/java/sh/ory/model/StripeCustomer.java
 src/main/java/sh/ory/model/SubjectSet.java
 src/main/java/sh/ory/model/Subscription.java
+src/main/java/sh/ory/model/SuccessfulCodeExchangeResponse.java
 src/main/java/sh/ory/model/SuccessfulNativeLogin.java
 src/main/java/sh/ory/model/SuccessfulNativeRegistration.java
 src/main/java/sh/ory/model/SuccessfulProjectUpdate.java
@@ -607,6 +609,7 @@ src/test/java/sh/ory/model/SourcePositionTest.java
 src/test/java/sh/ory/model/StripeCustomerTest.java
 src/test/java/sh/ory/model/SubjectSetTest.java
 src/test/java/sh/ory/model/SubscriptionTest.java
+src/test/java/sh/ory/model/SuccessfulCodeExchangeResponseTest.java
 src/test/java/sh/ory/model/SuccessfulNativeLoginTest.java
 src/test/java/sh/ory/model/SuccessfulNativeRegistrationTest.java
 src/test/java/sh/ory/model/SuccessfulProjectUpdateTest.java

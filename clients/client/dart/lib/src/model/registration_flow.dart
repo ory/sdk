@@ -23,6 +23,7 @@ part 'registration_flow.g.dart';
 /// * [oauth2LoginRequest] 
 /// * [requestUrl] - RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
+/// * [sessionTokenExchangeCode] - SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the flow.
 /// * [transientPayload] - TransientPayload is used to pass data from the registration to a webhook
 /// * [type] - The flow type can either be `api` or `browser`.
 /// * [ui] 
@@ -57,6 +58,10 @@ abstract class RegistrationFlow implements Built<RegistrationFlow, RegistrationF
   /// ReturnTo contains the requested return_to URL.
   @BuiltValueField(wireName: r'return_to')
   String? get returnTo;
+
+  /// SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the flow.
+  @BuiltValueField(wireName: r'session_token_exchange_code')
+  String? get sessionTokenExchangeCode;
 
   /// TransientPayload is used to pass data from the registration to a webhook
   @BuiltValueField(wireName: r'transient_payload')
@@ -137,6 +142,13 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
       yield r'return_to';
       yield serializers.serialize(
         object.returnTo,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.sessionTokenExchangeCode != null) {
+      yield r'session_token_exchange_code';
+      yield serializers.serialize(
+        object.sessionTokenExchangeCode,
         specifiedType: const FullType(String),
       );
     }
@@ -236,6 +248,13 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
             specifiedType: const FullType(String),
           ) as String;
           result.returnTo = valueDes;
+          break;
+        case r'session_token_exchange_code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.sessionTokenExchangeCode = valueDes;
           break;
         case r'transient_payload':
           final valueDes = serializers.deserialize(

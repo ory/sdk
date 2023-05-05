@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**CreateNativeVerificationFlow**](FrontendApi.md#CreateNativeVerificationFlow) | **Get** /self-service/verification/api | Create Verification Flow for Native Apps
 [**DisableMyOtherSessions**](FrontendApi.md#DisableMyOtherSessions) | **Delete** /sessions | Disable my other sessions
 [**DisableMySession**](FrontendApi.md#DisableMySession) | **Delete** /sessions/{id} | Disable one of my sessions
+[**ExchangeSessionToken**](FrontendApi.md#ExchangeSessionToken) | **Get** /sessions/token-exchange | Exchange Session Token
 [**GetFlowError**](FrontendApi.md#GetFlowError) | **Get** /self-service/errors | Get User-Flow Errors
 [**GetLoginFlow**](FrontendApi.md#GetLoginFlow) | **Get** /self-service/login/flows | Get Login Flow
 [**GetRecoveryFlow**](FrontendApi.md#GetRecoveryFlow) | **Get** /self-service/recovery/flows | Get Recovery Flow
@@ -448,7 +449,7 @@ No authorization required
 
 ## CreateNativeLoginFlow
 
-> LoginFlow CreateNativeLoginFlow(ctx).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).Execute()
+> LoginFlow CreateNativeLoginFlow(ctx).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
 
 Create Login Flow for Native Apps
 
@@ -470,10 +471,12 @@ func main() {
     refresh := true // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
     aal := "aal_example" // string | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
     xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
+    returnSessionTokenExchangeCode := true // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+    returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).Execute()
+    resp, r, err := apiClient.FrontendApi.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateNativeLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -497,6 +500,8 @@ Name | Type | Description  | Notes
  **refresh** | **bool** | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | 
  **aal** | **string** | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | 
  **xSessionToken** | **string** | The Session Token of the Identity performing the settings flow. | 
+ **returnSessionTokenExchangeCode** | **bool** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | 
+ **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
 
 ### Return type
 
@@ -579,7 +584,7 @@ No authorization required
 
 ## CreateNativeRegistrationFlow
 
-> RegistrationFlow CreateNativeRegistrationFlow(ctx).Execute()
+> RegistrationFlow CreateNativeRegistrationFlow(ctx).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
 
 Create Registration Flow for Native Apps
 
@@ -598,10 +603,12 @@ import (
 )
 
 func main() {
+    returnSessionTokenExchangeCode := true // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+    returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateNativeRegistrationFlow(context.Background()).Execute()
+    resp, r, err := apiClient.FrontendApi.CreateNativeRegistrationFlow(context.Background()).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateNativeRegistrationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -613,12 +620,17 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiCreateNativeRegistrationFlowRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **returnSessionTokenExchangeCode** | **bool** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | 
+ **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
 
 ### Return type
 
@@ -890,6 +902,72 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExchangeSessionToken
+
+> SuccessfulNativeLogin ExchangeSessionToken(ctx).InitCode(initCode).ReturnToCode(returnToCode).Execute()
+
+Exchange Session Token
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    initCode := "initCode_example" // string | The part of the code return when initializing the flow.
+    returnToCode := "returnToCode_example" // string | The part of the code returned by the return_to URL.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FrontendApi.ExchangeSessionToken(context.Background()).InitCode(initCode).ReturnToCode(returnToCode).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.ExchangeSessionToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ExchangeSessionToken`: SuccessfulNativeLogin
+    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.ExchangeSessionToken`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExchangeSessionTokenRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **initCode** | **string** | The part of the code return when initializing the flow. | 
+ **returnToCode** | **string** | The part of the code returned by the return_to URL. | 
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
 
 ### Authorization
 
@@ -1952,7 +2030,7 @@ import (
 
 func main() {
     flow := "flow_example" // string | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
-    updateVerificationFlowBody := openapiclient.updateVerificationFlowBody{UpdateVerificationFlowWithCodeMethod: openapiclient.NewUpdateVerificationFlowWithCodeMethod()} // UpdateVerificationFlowBody | 
+    updateVerificationFlowBody := openapiclient.updateVerificationFlowBody{UpdateVerificationFlowWithCodeMethod: openapiclient.NewUpdateVerificationFlowWithCodeMethod("Method_example")} // UpdateVerificationFlowBody | 
     token := "token_example" // string | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 

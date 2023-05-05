@@ -288,6 +288,8 @@ pub mod subject_set;
 pub use self::subject_set::SubjectSet;
 pub mod subscription;
 pub use self::subscription::Subscription;
+pub mod successful_code_exchange_response;
+pub use self::successful_code_exchange_response::SuccessfulCodeExchangeResponse;
 pub mod successful_native_login;
 pub use self::successful_native_login::SuccessfulNativeLogin;
 pub mod successful_native_registration;

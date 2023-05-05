@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **RequestedAal** | Pointer to [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
+**SessionTokenExchangeCode** | Pointer to **string** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the login flow. | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
 **UpdatedAt** | Pointer to **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
@@ -302,6 +303,31 @@ SetReturnTo sets ReturnTo field to given value.
 `func (o *LoginFlow) HasReturnTo() bool`
 
 HasReturnTo returns a boolean if a field has been set.
+
+### GetSessionTokenExchangeCode
+
+`func (o *LoginFlow) GetSessionTokenExchangeCode() string`
+
+GetSessionTokenExchangeCode returns the SessionTokenExchangeCode field if non-nil, zero value otherwise.
+
+### GetSessionTokenExchangeCodeOk
+
+`func (o *LoginFlow) GetSessionTokenExchangeCodeOk() (*string, bool)`
+
+GetSessionTokenExchangeCodeOk returns a tuple with the SessionTokenExchangeCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionTokenExchangeCode
+
+`func (o *LoginFlow) SetSessionTokenExchangeCode(v string)`
+
+SetSessionTokenExchangeCode sets SessionTokenExchangeCode field to given value.
+
+### HasSessionTokenExchangeCode
+
+`func (o *LoginFlow) HasSessionTokenExchangeCode() bool`
+
+HasSessionTokenExchangeCode returns a boolean if a field has been set.
 
 ### GetType
 

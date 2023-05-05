@@ -69,6 +69,12 @@ void main() {
       // TODO
     });
 
+    // SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the login flow.
+    // String sessionTokenExchangeCode
+    test('to test the property `sessionTokenExchangeCode`', () async {
+      // TODO
+    });
+
     // The flow type can either be `api` or `browser`.
     // String type
     test('to test the property `type`', () async {

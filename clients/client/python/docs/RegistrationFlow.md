@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **oauth2_login_challenge** | **str, none_type** |  | [optional] 
 **oauth2_login_request** | [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] 
 **return_to** | **str** | ReturnTo contains the requested return_to URL. | [optional] 
+**session_token_exchange_code** | **str** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the flow. | [optional] 
 **transient_payload** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | TransientPayload is used to pass data from the registration to a webhook | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

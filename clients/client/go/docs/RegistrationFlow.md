@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Oauth2LoginRequest** | Pointer to [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
+**SessionTokenExchangeCode** | Pointer to **string** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the flow. | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | TransientPayload is used to pass data from the registration to a webhook | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
@@ -224,6 +225,31 @@ SetReturnTo sets ReturnTo field to given value.
 `func (o *RegistrationFlow) HasReturnTo() bool`
 
 HasReturnTo returns a boolean if a field has been set.
+
+### GetSessionTokenExchangeCode
+
+`func (o *RegistrationFlow) GetSessionTokenExchangeCode() string`
+
+GetSessionTokenExchangeCode returns the SessionTokenExchangeCode field if non-nil, zero value otherwise.
+
+### GetSessionTokenExchangeCodeOk
+
+`func (o *RegistrationFlow) GetSessionTokenExchangeCodeOk() (*string, bool)`
+
+GetSessionTokenExchangeCodeOk returns a tuple with the SessionTokenExchangeCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionTokenExchangeCode
+
+`func (o *RegistrationFlow) SetSessionTokenExchangeCode(v string)`
+
+SetSessionTokenExchangeCode sets SessionTokenExchangeCode field to given value.
+
+### HasSessionTokenExchangeCode
+
+`func (o *RegistrationFlow) HasSessionTokenExchangeCode() bool`
+
+HasSessionTokenExchangeCode returns a boolean if a field has been set.
 
 ### GetTransientPayload
 

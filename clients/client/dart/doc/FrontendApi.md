@@ -22,6 +22,7 @@ Method | HTTP request | Description
 [**createNativeVerificationFlow**](FrontendApi.md#createnativeverificationflow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 [**disableMyOtherSessions**](FrontendApi.md#disablemyothersessions) | **DELETE** /sessions | Disable my other sessions
 [**disableMySession**](FrontendApi.md#disablemysession) | **DELETE** /sessions/{id} | Disable one of my sessions
+[**exchangeSessionToken**](FrontendApi.md#exchangesessiontoken) | **GET** /sessions/token-exchange | Exchange Session Token
 [**getFlowError**](FrontendApi.md#getflowerror) | **GET** /self-service/errors | Get User-Flow Errors
 [**getLoginFlow**](FrontendApi.md#getloginflow) | **GET** /self-service/login/flows | Get Login Flow
 [**getRecoveryFlow**](FrontendApi.md#getrecoveryflow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -313,7 +314,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createNativeLoginFlow**
-> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken)
+> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo)
 
 Create Login Flow for Native Apps
 
@@ -327,9 +328,11 @@ final api = OryClient().getFrontendApi();
 final bool refresh = true; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
 final String aal = aal_example; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
 final String xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
+final bool returnSessionTokenExchangeCode = true; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+final String returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
 try {
-    final response = api.createNativeLoginFlow(refresh, aal, xSessionToken);
+    final response = api.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->createNativeLoginFlow: $e\n');
@@ -343,6 +346,8 @@ Name | Type | Description  | Notes
  **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] 
  **aal** | **String**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". | [optional] 
  **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
+ **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
+ **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] 
 
 ### Return type
 
@@ -399,7 +404,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createNativeRegistrationFlow**
-> RegistrationFlow createNativeRegistrationFlow()
+> RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo)
 
 Create Registration Flow for Native Apps
 
@@ -410,9 +415,11 @@ This endpoint initiates a registration flow for API clients such as mobile devic
 import 'package:ory_client/api.dart';
 
 final api = OryClient().getFrontendApi();
+final bool returnSessionTokenExchangeCode = true; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+final String returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
 try {
-    final response = api.createNativeRegistrationFlow();
+    final response = api.createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->createNativeRegistrationFlow: $e\n');
@@ -420,7 +427,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
+ **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] 
 
 ### Return type
 
@@ -598,6 +609,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **exchangeSessionToken**
+> SuccessfulNativeLogin exchangeSessionToken(initCode, returnToCode)
+
+Exchange Session Token
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getFrontendApi();
+final String initCode = initCode_example; // String | The part of the code return when initializing the flow.
+final String returnToCode = returnToCode_example; // String | The part of the code returned by the return_to URL.
+
+try {
+    final response = api.exchangeSessionToken(initCode, returnToCode);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling FrontendApi->exchangeSessionToken: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **initCode** | **String**| The part of the code return when initializing the flow. | 
+ **returnToCode** | **String**| The part of the code returned by the return_to URL. | 
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
 
 ### Authorization
 

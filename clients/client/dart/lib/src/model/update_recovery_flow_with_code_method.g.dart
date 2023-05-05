@@ -6,6 +6,68 @@ part of 'update_recovery_flow_with_code_method.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UpdateRecoveryFlowWithCodeMethodMethodEnum
+    _$updateRecoveryFlowWithCodeMethodMethodEnum_link =
+    const UpdateRecoveryFlowWithCodeMethodMethodEnum._('link');
+const UpdateRecoveryFlowWithCodeMethodMethodEnum
+    _$updateRecoveryFlowWithCodeMethodMethodEnum_code =
+    const UpdateRecoveryFlowWithCodeMethodMethodEnum._('code');
+
+UpdateRecoveryFlowWithCodeMethodMethodEnum
+    _$updateRecoveryFlowWithCodeMethodMethodEnumValueOf(String name) {
+  switch (name) {
+    case 'link':
+      return _$updateRecoveryFlowWithCodeMethodMethodEnum_link;
+    case 'code':
+      return _$updateRecoveryFlowWithCodeMethodMethodEnum_code;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateRecoveryFlowWithCodeMethodMethodEnum>
+    _$updateRecoveryFlowWithCodeMethodMethodEnumValues = new BuiltSet<
+        UpdateRecoveryFlowWithCodeMethodMethodEnum>(const <UpdateRecoveryFlowWithCodeMethodMethodEnum>[
+  _$updateRecoveryFlowWithCodeMethodMethodEnum_link,
+  _$updateRecoveryFlowWithCodeMethodMethodEnum_code,
+]);
+
+Serializer<UpdateRecoveryFlowWithCodeMethodMethodEnum>
+    _$updateRecoveryFlowWithCodeMethodMethodEnumSerializer =
+    new _$UpdateRecoveryFlowWithCodeMethodMethodEnumSerializer();
+
+class _$UpdateRecoveryFlowWithCodeMethodMethodEnumSerializer
+    implements PrimitiveSerializer<UpdateRecoveryFlowWithCodeMethodMethodEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'link': 'link',
+    'code': 'code',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'link': 'link',
+    'code': 'code',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UpdateRecoveryFlowWithCodeMethodMethodEnum
+  ];
+  @override
+  final String wireName = 'UpdateRecoveryFlowWithCodeMethodMethodEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          UpdateRecoveryFlowWithCodeMethodMethodEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateRecoveryFlowWithCodeMethodMethodEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateRecoveryFlowWithCodeMethodMethodEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateRecoveryFlowWithCodeMethod
     extends UpdateRecoveryFlowWithCodeMethod {
   @override
@@ -15,7 +77,7 @@ class _$UpdateRecoveryFlowWithCodeMethod
   @override
   final String? email;
   @override
-  final String method;
+  final UpdateRecoveryFlowWithCodeMethodMethodEnum method;
 
   factory _$UpdateRecoveryFlowWithCodeMethod(
           [void Function(UpdateRecoveryFlowWithCodeMethodBuilder)? updates]) =>
@@ -87,9 +149,10 @@ class UpdateRecoveryFlowWithCodeMethodBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
-  String? _method;
-  String? get method => _$this._method;
-  set method(String? method) => _$this._method = method;
+  UpdateRecoveryFlowWithCodeMethodMethodEnum? _method;
+  UpdateRecoveryFlowWithCodeMethodMethodEnum? get method => _$this._method;
+  set method(UpdateRecoveryFlowWithCodeMethodMethodEnum? method) =>
+      _$this._method = method;
 
   UpdateRecoveryFlowWithCodeMethodBuilder() {
     UpdateRecoveryFlowWithCodeMethod._defaults(this);

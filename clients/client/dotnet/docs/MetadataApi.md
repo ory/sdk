@@ -139,7 +139,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 
 ### HTTP response details
@@ -147,6 +147,7 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Ory Kratos is ready to accept connections. |  -  |
 | **500** | genericError |  -  |
+| **0** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -210,7 +211,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 
 ### HTTP response details
@@ -218,6 +219,7 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Ory Kratos is ready to accept requests. |  -  |
 | **503** | Ory Kratos is not yet ready to accept requests. |  -  |
+| **0** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

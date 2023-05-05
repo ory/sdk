@@ -10,6 +10,8 @@ const NormalizedProjectStateEnum _$normalizedProjectStateEnum_running =
     const NormalizedProjectStateEnum._('running');
 const NormalizedProjectStateEnum _$normalizedProjectStateEnum_halted =
     const NormalizedProjectStateEnum._('halted');
+const NormalizedProjectStateEnum _$normalizedProjectStateEnum_deleted =
+    const NormalizedProjectStateEnum._('deleted');
 
 NormalizedProjectStateEnum _$normalizedProjectStateEnumValueOf(String name) {
   switch (name) {
@@ -17,6 +19,8 @@ NormalizedProjectStateEnum _$normalizedProjectStateEnumValueOf(String name) {
       return _$normalizedProjectStateEnum_running;
     case 'halted':
       return _$normalizedProjectStateEnum_halted;
+    case 'deleted':
+      return _$normalizedProjectStateEnum_deleted;
     default:
       throw new ArgumentError(name);
   }
@@ -26,6 +30,7 @@ final BuiltSet<NormalizedProjectStateEnum> _$normalizedProjectStateEnumValues =
     new BuiltSet<NormalizedProjectStateEnum>(const <NormalizedProjectStateEnum>[
   _$normalizedProjectStateEnum_running,
   _$normalizedProjectStateEnum_halted,
+  _$normalizedProjectStateEnum_deleted,
 ]);
 
 Serializer<NormalizedProjectStateEnum> _$normalizedProjectStateEnumSerializer =
@@ -36,10 +41,12 @@ class _$NormalizedProjectStateEnumSerializer
   static const Map<String, Object> _toWire = const <String, Object>{
     'running': 'running',
     'halted': 'halted',
+    'deleted': 'deleted',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'running': 'running',
     'halted': 'halted',
+    'deleted': 'deleted',
   };
 
   @override

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.25
+  version: v1.1.26
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -2766,6 +2766,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/genericError'
           description: genericError
+        default:
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unexpected error
       security:
       - oryAccessToken: []
       summary: Check HTTP Server Status
@@ -2797,6 +2803,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/isReady_503_response'
           description: Ory Kratos is not yet ready to accept requests.
+        default:
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unexpected error
       security:
       - oryAccessToken: []
       summary: Check HTTP Server and Database Status
@@ -4515,6 +4527,24 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token
+          after the login flow has been completed.
+        explode: true
+        in: query
+        name: return_session_token_exchange_code
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: The URL to return the browser to after the flow was completed.
+        explode: true
+        in: query
+        name: return_to
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -5293,6 +5323,25 @@ paths:
 
         More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
       operationId: createNativeRegistrationFlow
+      parameters:
+      - description: |-
+          EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token
+          after the login flow has been completed.
+        explode: true
+        in: query
+        name: return_session_token_exchange_code
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: The URL to return the browser to after the flow was completed.
+        explode: true
+        in: query
+        name: return_to
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -6292,6 +6341,61 @@ paths:
       tags:
       - frontend
       x-accepts: application/json
+  /sessions/token-exchange:
+    get:
+      operationId: exchangeSessionToken
+      parameters:
+      - description: The part of the code return when initializing the flow.
+        explode: true
+        in: query
+        name: init_code
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The part of the code returned by the return_to URL.
+        explode: true
+        in: query
+        name: return_to_code
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulNativeLogin'
+          description: successfulNativeLogin
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "410":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      summary: Exchange Session Token
+      tags:
+      - frontend
+      x-accepts: application/json
   /sessions/whoami:
     get:
       description: |-
@@ -6602,6 +6706,7 @@ components:
       title: CustomHostnameStatus is the enumeration of valid state values in the
         CustomHostnameSSL.
       type: string
+    DefaultError: {}
     Duration:
       description: |-
         A Duration represents the elapsed time between two instants
@@ -7409,171 +7514,34 @@ components:
       type: object
     errorAuthenticatorAssuranceLevelNotSatisfied:
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
+        error:
+          $ref: '#/components/schemas/genericError'
         redirect_browser_to:
+          description: Points to where to redirect the user to next.
           type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
-          type: string
-        status:
-          description: The status description
-          example: Not Found
-          type: string
-      required:
-      - message
-      title: ErrAALNotSatisfied is returned when an active session was found but the
-        requested AAL is not satisfied.
+      title: Is returned when an active session was found but the requested AAL is
+        not satisfied.
       type: object
     errorBrowserLocationChangeRequired:
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
+        error:
+          $ref: '#/components/schemas/errorGeneric'
         redirect_browser_to:
-          description: Since when the flow has expired
+          description: Points to where to redirect the user to next.
           type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
-          type: string
-        status:
-          description: The status description
-          example: Not Found
-          type: string
-      required:
-      - message
       title: Is sent when a flow requires a browser to change its location.
       type: object
     errorFlowReplaced:
       description: Is sent when a flow is replaced by a different flow of the same
         class
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
-          type: string
-        status:
-          description: The status description
-          example: Not Found
-          type: string
+        error:
+          $ref: '#/components/schemas/genericError'
         use_flow_id:
           description: The flow ID that should be used for the new flow as it contains
             the correct messages.
           format: uuid
           type: string
-      required:
-      - message
       type: object
     errorGeneric:
       description: The standard Ory JSON API error format.
@@ -8577,6 +8545,7 @@ components:
         created_at: 2000-01-23T04:56:07.000+00:00
         refresh: true
         return_to: return_to
+        session_token_exchange_code: session_token_exchange_code
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
         request_url: request_url
@@ -8761,6 +8730,12 @@ components:
           $ref: '#/components/schemas/authenticatorAssuranceLevel'
         return_to:
           description: ReturnTo contains the requested return_to URL.
+          type: string
+        session_token_exchange_code:
+          description: |-
+            SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed.
+            This is only set if the client has requested a session token exchange code, and if the flow is of type "api",
+            and only on creating the login flow.
           type: string
         type:
           description: The flow type can either be `api` or `browser`.
@@ -9031,57 +9006,12 @@ components:
       type: object
     needsPrivilegedSessionError:
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
+        error:
+          $ref: '#/components/schemas/genericError'
         redirect_browser_to:
           description: Points to where to redirect the user to next.
           type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
-          type: string
-        status:
-          description: The status description
-          example: Not Found
-          type: string
       required:
-      - message
       - redirect_browser_to
       title: Is sent when a privileged session is required to perform the settings
         update.
@@ -9115,14 +9045,17 @@ components:
             The state of the project.
             running Running
             halted Halted
+            deleted Deleted
           enum:
           - running
           - halted
+          - deleted
           readOnly: true
           type: string
           x-go-enum-desc: |-
             running Running
             halted Halted
+            deleted Deleted
         subscription_id:
           format: uuid4
           nullable: true
@@ -12095,14 +12028,17 @@ components:
             The state of the project.
             running Running
             halted Halted
+            deleted Deleted
           enum:
           - running
           - halted
+          - deleted
           readOnly: true
           type: string
           x-go-enum-desc: |-
             running Running
             halted Halted
+            deleted Deleted
       required:
       - id
       - name
@@ -12616,13 +12552,16 @@ components:
             The state of the project.
             running Running
             halted Halted
+            deleted Deleted
           enum:
           - running
           - halted
+          - deleted
           type: string
           x-go-enum-desc: |-
             running Running
             halted Halted
+            deleted Deleted
         subscription_id:
           format: uuid4
           nullable: true
@@ -13125,6 +13064,7 @@ components:
         oauth2_login_challenge: oauth2_login_challenge
         active: null
         return_to: return_to
+        session_token_exchange_code: session_token_exchange_code
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
@@ -13161,6 +13101,12 @@ components:
           type: string
         return_to:
           description: ReturnTo contains the requested return_to URL.
+          type: string
+        session_token_exchange_code:
+          description: |-
+            SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed.
+            This is only set if the client has requested a session token exchange code, and if the flow is of type "api",
+            and only on creating the flow.
           type: string
         transient_payload:
           description: TransientPayload is used to pass data from the registration
@@ -13337,51 +13283,11 @@ components:
     selfServiceFlowExpiredError:
       description: Is sent when a flow is expired
       properties:
-        code:
-          description: The status code
-          example: 404
-          format: int64
-          type: integer
-        debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
-          type: string
-        details:
-          additionalProperties: {}
-          description: Further error details
-          type: object
+        error:
+          $ref: '#/components/schemas/genericError'
         expired_at:
           description: When the flow has expired
           format: date-time
-          type: string
-        id:
-          description: |-
-            The error ID
-
-            Useful when trying to identify various errors in application logic.
-          type: string
-        message:
-          description: |-
-            Error message
-
-            The error's message.
-          example: The resource could not be found
-          type: string
-        reason:
-          description: A human-readable reason for the error
-          example: User with ID 1234 does not exist.
-          type: string
-        request:
-          description: |-
-            The request ID
-
-            The request ID is often exposed internally in order to trace
-            errors across service architectures. This is often a UUID.
-          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
           type: string
         since:
           description: |-
@@ -13390,17 +13296,11 @@ components:
             largest representable duration to approximately 290 years.
           format: int64
           type: integer
-        status:
-          description: The status description
-          example: Not Found
-          type: string
         use_flow_id:
           description: The flow ID that should be used for the new flow as it contains
             the correct messages.
           format: uuid
           type: string
-      required:
-      - message
       type: object
     selfServiceFlowType:
       description: The flow type can either be `api` or `browser`.
@@ -13938,6 +13838,25 @@ components:
       - plan_changes_to
       - status
       - updated_at
+      type: object
+    successfulCodeExchangeResponse:
+      description: The Response for Registration Flows via API
+      properties:
+        session:
+          $ref: '#/components/schemas/session'
+        session_token:
+          description: |-
+            The Session Token
+
+            A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization
+            Header:
+
+            Authorization: bearer ${session-token}
+
+            The session token is only issued for API flows, not for Browser flows!
+          type: string
+      required:
+      - session
       type: object
     successfulNativeLogin:
       description: The Response for Login Flows via API
@@ -14913,6 +14832,8 @@ components:
       items:
         $ref: '#/components/schemas/uiText'
       type: array
+    unexpectedError:
+      type: string
     updateIdentityBody:
       description: Update Identity Body
       properties:
@@ -15094,10 +15015,9 @@ components:
       properties:
         code:
           description: |-
-            Code from recovery email
+            Code from the recovery email
 
-            Sent to the user once a recovery has been initiated and is used to prove
-            that the user is in possession of the email
+            If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
           type: string
         csrf_token:
           description: Sending the anti-csrf token is only required for browser login
@@ -15105,17 +15025,31 @@ components:
           type: string
         email:
           description: |-
-            Email to Recover
+            The email address of the account to recover
 
-            Needs to be set when initiating the flow. If the email is a registered
-            recovery email, a recovery link will be sent. If the email is not known,
-            a email with details on what happened will be sent instead.
+            If the email belongs to a valid account, a recovery email will be sent.
+
+            If you want to notify the email address if the account does not exist, see
+            the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/account-recovery-password-reset#attempted-recovery-notifications)
+
+            If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.
 
             format: email
           type: string
         method:
-          description: Method supports `link` and `code` only right now.
+          description: |-
+            Method is the method that should be used for this recovery flow
+
+            Allowed values are `link` and `code`.
+            link RecoveryStrategyLink
+            code RecoveryStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link RecoveryStrategyLink
+            code RecoveryStrategyCode
       required:
       - method
       type: object
@@ -15137,8 +15071,19 @@ components:
             format: email
           type: string
         method:
-          description: Method supports `link` only right now.
+          description: |-
+            Method is the method that should be used for this recovery flow
+
+            Allowed values are `link` and `code`
+            link RecoveryStrategyLink
+            code RecoveryStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link RecoveryStrategyLink
+            code RecoveryStrategyCode
       required:
       - email
       - method
@@ -15485,7 +15430,10 @@ components:
     updateVerificationFlowWithCodeMethod:
       properties:
         code:
-          description: The verification code
+          description: |-
+            Code from the recovery email
+
+            If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
           type: string
         csrf_token:
           description: Sending the anti-csrf token is only required for browser login
@@ -15493,20 +15441,33 @@ components:
           type: string
         email:
           description: |-
-            Email to Verify
+            The email address to verify
 
-            Needs to be set when initiating the flow. If the email is a registered
-            verification email, a verification link will be sent. If the email is not known,
-            a email with details on what happened will be sent instead.
+            If the email belongs to a valid account, a verifiation email will be sent.
+
+            If you want to notify the email address if the account does not exist, see
+            the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)
+
+            If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.
 
             format: email
           type: string
-        flow:
-          description: The id of the flow
-          type: string
         method:
-          description: Method is the recovery method
+          description: |-
+            Method is the method that should be used for this verification flow
+
+            Allowed values are `link` and `code`.
+            link VerificationStrategyLink
+            code VerificationStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link VerificationStrategyLink
+            code VerificationStrategyCode
+      required:
+      - method
       type: object
     updateVerificationFlowWithLinkMethod:
       description: Update Verification Flow with Link Method
@@ -15526,7 +15487,10 @@ components:
             format: email
           type: string
         method:
-          description: Method supports `link` only right now.
+          description: |-
+            Method is the method that should be used for this verification flow
+
+            Allowed values are `link` and `code`
           type: string
       required:
       - email

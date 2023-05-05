@@ -166,6 +166,7 @@ export 'package:ory_client/src/model/source_position.dart';
 export 'package:ory_client/src/model/stripe_customer.dart';
 export 'package:ory_client/src/model/subject_set.dart';
 export 'package:ory_client/src/model/subscription.dart';
+export 'package:ory_client/src/model/successful_code_exchange_response.dart';
 export 'package:ory_client/src/model/successful_native_login.dart';
 export 'package:ory_client/src/model/successful_native_registration.dart';
 export 'package:ory_client/src/model/successful_project_update.dart';

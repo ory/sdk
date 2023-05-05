@@ -162,6 +162,7 @@ docs/SourcePosition.md
 docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
+docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
@@ -375,6 +376,7 @@ lib/ory-client/models/source_position.rb
 lib/ory-client/models/stripe_customer.rb
 lib/ory-client/models/subject_set.rb
 lib/ory-client/models/subscription.rb
+lib/ory-client/models/successful_code_exchange_response.rb
 lib/ory-client/models/successful_native_login.rb
 lib/ory-client/models/successful_native_registration.rb
 lib/ory-client/models/successful_project_update.rb
@@ -586,6 +588,7 @@ spec/models/source_position_spec.rb
 spec/models/stripe_customer_spec.rb
 spec/models/subject_set_spec.rb
 spec/models/subscription_spec.rb
+spec/models/successful_code_exchange_response_spec.rb
 spec/models/successful_native_login_spec.rb
 spec/models/successful_native_registration_spec.rb
 spec/models/successful_project_update_spec.rb

@@ -157,6 +157,7 @@ doc/SourcePosition.md
 doc/StripeCustomer.md
 doc/SubjectSet.md
 doc/Subscription.md
+doc/SuccessfulCodeExchangeResponse.md
 doc/SuccessfulNativeLogin.md
 doc/SuccessfulNativeRegistration.md
 doc/SuccessfulProjectUpdate.md
@@ -375,6 +376,7 @@ lib/src/model/source_position.dart
 lib/src/model/stripe_customer.dart
 lib/src/model/subject_set.dart
 lib/src/model/subscription.dart
+lib/src/model/successful_code_exchange_response.dart
 lib/src/model/successful_native_login.dart
 lib/src/model/successful_native_registration.dart
 lib/src/model/successful_project_update.dart
@@ -583,6 +585,7 @@ test/source_position_test.dart
 test/stripe_customer_test.dart
 test/subject_set_test.dart
 test/subscription_test.dart
+test/successful_code_exchange_response_test.dart
 test/successful_native_login_test.dart
 test/successful_native_registration_test.dart
 test/successful_project_update_test.dart

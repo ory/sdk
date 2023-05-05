@@ -160,6 +160,7 @@ docs/Model/SourcePosition.md
 docs/Model/StripeCustomer.md
 docs/Model/SubjectSet.md
 docs/Model/Subscription.md
+docs/Model/SuccessfulCodeExchangeResponse.md
 docs/Model/SuccessfulNativeLogin.md
 docs/Model/SuccessfulNativeRegistration.md
 docs/Model/SuccessfulProjectUpdate.md
@@ -372,6 +373,7 @@ lib/Model/SourcePosition.php
 lib/Model/StripeCustomer.php
 lib/Model/SubjectSet.php
 lib/Model/Subscription.php
+lib/Model/SuccessfulCodeExchangeResponse.php
 lib/Model/SuccessfulNativeLogin.php
 lib/Model/SuccessfulNativeRegistration.php
 lib/Model/SuccessfulProjectUpdate.php
@@ -581,6 +583,7 @@ test/Model/SourcePositionTest.php
 test/Model/StripeCustomerTest.php
 test/Model/SubjectSetTest.php
 test/Model/SubscriptionTest.php
+test/Model/SuccessfulCodeExchangeResponseTest.php
 test/Model/SuccessfulNativeLoginTest.php
 test/Model/SuccessfulNativeRegistrationTest.php
 test/Model/SuccessfulProjectUpdateTest.php

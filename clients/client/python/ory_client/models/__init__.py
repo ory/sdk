@@ -181,6 +181,7 @@ from ory_client.model.string_slice_json_format import StringSliceJSONFormat
 from ory_client.model.stripe_customer import StripeCustomer
 from ory_client.model.subject_set import SubjectSet
 from ory_client.model.subscription import Subscription
+from ory_client.model.successful_code_exchange_response import SuccessfulCodeExchangeResponse
 from ory_client.model.successful_native_login import SuccessfulNativeLogin
 from ory_client.model.successful_native_registration import SuccessfulNativeRegistration
 from ory_client.model.successful_project_update import SuccessfulProjectUpdate

@@ -11,16 +11,14 @@ defmodule Ory.Model.UpdateVerificationFlowBody do
     :csrf_token,
     :email,
     :method,
-    :code,
-    :flow
+    :code
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :email => String.t,
     :method => String.t,
-    :code => String.t | nil,
-    :flow => String.t | nil
+    :code => String.t | nil
   }
 end
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **hosts** | **Vec<String>** |  | 
 **id** | **String** | The project's ID. | [readonly]
 **slug** | **String** | The project's slug | [readonly]
-**state** | **String** | The state of the project. running Running halted Halted | [readonly]
+**state** | **String** | The state of the project. running Running halted Halted deleted Deleted | [readonly]
 **subscription_id** | Option<**String**> |  | [optional]
 **updated_at** | **String** | Last Time Project was Updated | [readonly]
 

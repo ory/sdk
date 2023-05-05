@@ -16,6 +16,7 @@ defmodule Ory.Model.RegistrationFlow do
     :oauth2_login_request,
     :request_url,
     :return_to,
+    :session_token_exchange_code,
     :transient_payload,
     :type,
     :ui
@@ -30,6 +31,7 @@ defmodule Ory.Model.RegistrationFlow do
     :oauth2_login_request => Ory.Model.OAuth2LoginRequest.t | nil,
     :request_url => String.t,
     :return_to => String.t | nil,
+    :session_token_exchange_code => String.t | nil,
     :transient_payload => map() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t

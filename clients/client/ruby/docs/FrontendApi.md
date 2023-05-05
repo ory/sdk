@@ -17,6 +17,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**create_native_verification_flow**](FrontendApi.md#create_native_verification_flow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps |
 | [**disable_my_other_sessions**](FrontendApi.md#disable_my_other_sessions) | **DELETE** /sessions | Disable my other sessions |
 | [**disable_my_session**](FrontendApi.md#disable_my_session) | **DELETE** /sessions/{id} | Disable one of my sessions |
+| [**exchange_session_token**](FrontendApi.md#exchange_session_token) | **GET** /sessions/token-exchange | Exchange Session Token |
 | [**get_flow_error**](FrontendApi.md#get_flow_error) | **GET** /self-service/errors | Get User-Flow Errors |
 | [**get_login_flow**](FrontendApi.md#get_login_flow) | **GET** /self-service/login/flows | Get Login Flow |
 | [**get_recovery_flow**](FrontendApi.md#get_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow |
@@ -463,7 +464,9 @@ api_instance = OryClient::FrontendApi.new
 opts = {
   refresh: true, # Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
   aal: 'aal_example', # String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
-  x_session_token: 'x_session_token_example' # String | The Session Token of the Identity performing the settings flow.
+  x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
+  return_session_token_exchange_code: true, # Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+  return_to: 'return_to_example' # String | The URL to return the browser to after the flow was completed.
 }
 
 begin
@@ -500,6 +503,8 @@ end
 | **refresh** | **Boolean** | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] |
 | **aal** | **String** | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional] |
 | **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
+| **return_session_token_exchange_code** | **Boolean** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
+| **return_to** | **String** | The URL to return the browser to after the flow was completed. | [optional] |
 
 ### Return type
 
@@ -578,7 +583,7 @@ No authorization required
 
 ## create_native_registration_flow
 
-> <RegistrationFlow> create_native_registration_flow
+> <RegistrationFlow> create_native_registration_flow(opts)
 
 Create Registration Flow for Native Apps
 
@@ -591,10 +596,14 @@ require 'time'
 require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
+opts = {
+  return_session_token_exchange_code: true, # Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+  return_to: 'return_to_example' # String | The URL to return the browser to after the flow was completed.
+}
 
 begin
   # Create Registration Flow for Native Apps
-  result = api_instance.create_native_registration_flow
+  result = api_instance.create_native_registration_flow(opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling FrontendApi->create_native_registration_flow: #{e}"
@@ -605,12 +614,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<RegistrationFlow>, Integer, Hash)> create_native_registration_flow_with_http_info
+> <Array(<RegistrationFlow>, Integer, Hash)> create_native_registration_flow_with_http_info(opts)
 
 ```ruby
 begin
   # Create Registration Flow for Native Apps
-  data, status_code, headers = api_instance.create_native_registration_flow_with_http_info
+  data, status_code, headers = api_instance.create_native_registration_flow_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <RegistrationFlow>
@@ -621,7 +630,10 @@ end
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **return_session_token_exchange_code** | **Boolean** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
+| **return_to** | **String** | The URL to return the browser to after the flow was completed. | [optional] |
 
 ### Return type
 
@@ -890,6 +902,70 @@ end
 ### Return type
 
 nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## exchange_session_token
+
+> <SuccessfulNativeLogin> exchange_session_token(init_code, return_to_code)
+
+Exchange Session Token
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::FrontendApi.new
+init_code = 'init_code_example' # String | The part of the code return when initializing the flow.
+return_to_code = 'return_to_code_example' # String | The part of the code returned by the return_to URL.
+
+begin
+  # Exchange Session Token
+  result = api_instance.exchange_session_token(init_code, return_to_code)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling FrontendApi->exchange_session_token: #{e}"
+end
+```
+
+#### Using the exchange_session_token_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<SuccessfulNativeLogin>, Integer, Hash)> exchange_session_token_with_http_info(init_code, return_to_code)
+
+```ruby
+begin
+  # Exchange Session Token
+  data, status_code, headers = api_instance.exchange_session_token_with_http_info(init_code, return_to_code)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <SuccessfulNativeLogin>
+rescue OryClient::ApiError => e
+  puts "Error when calling FrontendApi->exchange_session_token_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **init_code** | **String** | The part of the code return when initializing the flow. |  |
+| **return_to_code** | **String** | The part of the code returned by the return_to URL. |  |
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
 
 ### Authorization
 
@@ -1726,7 +1802,7 @@ require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
 flow = 'flow_example' # String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
-update_recovery_flow_body = OryClient::UpdateRecoveryFlowWithCodeMethod.new({method: 'method_example'}) # UpdateRecoveryFlowBody | 
+update_recovery_flow_body = OryClient::UpdateRecoveryFlowWithCodeMethod.new({method: 'link'}) # UpdateRecoveryFlowBody | 
 opts = {
   token: 'token_example', # String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
@@ -1940,7 +2016,7 @@ require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
 flow = 'flow_example' # String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
-update_verification_flow_body = OryClient::UpdateVerificationFlowWithCodeMethod.new # UpdateVerificationFlowBody | 
+update_verification_flow_body = OryClient::UpdateVerificationFlowWithCodeMethod.new({method: 'link'}) # UpdateVerificationFlowBody | 
 opts = {
   token: 'token_example', # String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call.
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.

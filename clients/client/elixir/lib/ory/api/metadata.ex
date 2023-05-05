@@ -52,7 +52,7 @@ defmodule Ory.Api.Metadata do
   - `{:ok, map()}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec is_alive(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.HealthStatus.t} | {:error, Tesla.Env.t}
+  @spec is_alive(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.HealthStatus.t} | {:ok, String.t} | {:error, Tesla.Env.t}
   def is_alive(connection, _opts \\ []) do
     request =
       %{}
@@ -64,7 +64,8 @@ defmodule Ory.Api.Metadata do
     |> Connection.request(request)
     |> evaluate_response([
       {200, %{}},
-      {500, %Ory.Model.GenericError{}}
+      {500, %Ory.Model.GenericError{}},
+      {:default, false}
     ])
   end
 
@@ -82,7 +83,7 @@ defmodule Ory.Api.Metadata do
   - `{:ok, Ory.Model.IsReady200Response.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec is_ready(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.IsReady200Response.t} | {:ok, Ory.Model.IsReady503Response.t} | {:error, Tesla.Env.t}
+  @spec is_ready(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.IsReady200Response.t} | {:ok, Ory.Model.IsReady503Response.t} | {:ok, String.t} | {:error, Tesla.Env.t}
   def is_ready(connection, _opts \\ []) do
     request =
       %{}
@@ -94,7 +95,8 @@ defmodule Ory.Api.Metadata do
     |> Connection.request(request)
     |> evaluate_response([
       {200, %Ory.Model.IsReady200Response{}},
-      {503, %Ory.Model.IsReady503Response{}}
+      {503, %Ory.Model.IsReady503Response{}},
+      {:default, false}
     ])
   end
 end

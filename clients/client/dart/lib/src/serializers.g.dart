@@ -177,6 +177,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SubjectSet.serializer)
       ..add(Subscription.serializer)
       ..add(SubscriptionCurrentIntervalEnum.serializer)
+      ..add(SuccessfulCodeExchangeResponse.serializer)
       ..add(SuccessfulNativeLogin.serializer)
       ..add(SuccessfulNativeRegistration.serializer)
       ..add(SuccessfulProjectUpdate.serializer)
@@ -211,7 +212,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UpdateLoginFlowWithWebAuthnMethod.serializer)
       ..add(UpdateRecoveryFlowBody.serializer)
       ..add(UpdateRecoveryFlowWithCodeMethod.serializer)
+      ..add(UpdateRecoveryFlowWithCodeMethodMethodEnum.serializer)
       ..add(UpdateRecoveryFlowWithLinkMethod.serializer)
+      ..add(UpdateRecoveryFlowWithLinkMethodMethodEnum.serializer)
       ..add(UpdateRegistrationFlowBody.serializer)
       ..add(UpdateRegistrationFlowWithOidcMethod.serializer)
       ..add(UpdateRegistrationFlowWithPasswordMethod.serializer)
@@ -227,6 +230,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UpdateSubscriptionBodyIntervalEnum.serializer)
       ..add(UpdateVerificationFlowBody.serializer)
       ..add(UpdateVerificationFlowWithCodeMethod.serializer)
+      ..add(UpdateVerificationFlowWithCodeMethodMethodEnum.serializer)
       ..add(UpdateVerificationFlowWithLinkMethod.serializer)
       ..add(Usage.serializer)
       ..add(VerifiableIdentityAddress.serializer)
@@ -536,37 +540,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(String)]),
-          () => new MapBuilder<String, String>())
-      ..addBuilderFactory(
-          const FullType(BuiltMap, const [
-            const FullType(String),
-            const FullType.nullable(JsonObject)
-          ]),
-          () => new MapBuilder<String, JsonObject?>())
-      ..addBuilderFactory(
-          const FullType(BuiltMap, const [
-            const FullType(String),
-            const FullType.nullable(JsonObject)
-          ]),
-          () => new MapBuilder<String, JsonObject?>())
-      ..addBuilderFactory(
-          const FullType(BuiltMap, const [
-            const FullType(String),
-            const FullType.nullable(JsonObject)
-          ]),
-          () => new MapBuilder<String, JsonObject?>())
-      ..addBuilderFactory(
-          const FullType(BuiltMap, const [
-            const FullType(String),
-            const FullType.nullable(JsonObject)
-          ]),
-          () => new MapBuilder<String, JsonObject?>())
-      ..addBuilderFactory(
-          const FullType(BuiltMap, const [
-            const FullType(String),
-            const FullType.nullable(JsonObject)
-          ]),
-          () => new MapBuilder<String, JsonObject?>()))
+          () => new MapBuilder<String, String>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

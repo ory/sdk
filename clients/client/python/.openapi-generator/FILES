@@ -185,6 +185,7 @@ docs/StringSliceJSONFormat.md
 docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
+docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
@@ -431,6 +432,7 @@ ory_client/model/string_slice_json_format.py
 ory_client/model/stripe_customer.py
 ory_client/model/subject_set.py
 ory_client/model/subscription.py
+ory_client/model/successful_code_exchange_response.py
 ory_client/model/successful_native_login.py
 ory_client/model/successful_native_registration.py
 ory_client/model/successful_project_update.py
@@ -675,6 +677,7 @@ test/test_string_slice_json_format.py
 test/test_stripe_customer.py
 test/test_subject_set.py
 test/test_subscription.py
+test/test_successful_code_exchange_response.py
 test/test_successful_native_login.py
 test/test_successful_native_registration.py
 test/test_successful_project_update.py

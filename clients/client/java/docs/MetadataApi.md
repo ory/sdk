@@ -128,13 +128,14 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ory Kratos is ready to accept connections. |  -  |
 | **500** | genericError |  -  |
+| **0** | Unexpected error |  -  |
 
 <a name="isReady"></a>
 # **isReady**
@@ -192,11 +193,12 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ory Kratos is ready to accept requests. |  -  |
 | **503** | Ory Kratos is not yet ready to accept requests. |  -  |
+| **0** | Unexpected error |  -  |
 

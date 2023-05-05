@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **revisionId** | **String** | The configuration revision ID. | 
 **services** | [**ProjectServices**](ProjectServices.md) |  | 
 **slug** | **String** | The project's slug | 
-**state** | **String** | The state of the project. running Running halted Halted | 
+**state** | **String** | The state of the project. running Running halted Halted deleted Deleted | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

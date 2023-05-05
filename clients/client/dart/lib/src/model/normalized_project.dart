@@ -18,7 +18,7 @@ part 'normalized_project.g.dart';
 /// * [hosts] 
 /// * [id] - The project's ID.
 /// * [slug] - The project's slug
-/// * [state] - The state of the project. running Running halted Halted
+/// * [state] - The state of the project. running Running halted Halted deleted Deleted
 /// * [subscriptionId] 
 /// * [updatedAt] - Last Time Project was Updated
 @BuiltValue()
@@ -41,10 +41,10 @@ abstract class NormalizedProject implements Built<NormalizedProject, NormalizedP
   @BuiltValueField(wireName: r'slug')
   String get slug;
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueField(wireName: r'state')
   NormalizedProjectStateEnum get state;
-  // enum stateEnum {  running,  halted,  };
+  // enum stateEnum {  running,  halted,  deleted,  };
 
   @BuiltValueField(wireName: r'subscription_id')
   String? get subscriptionId;
@@ -229,12 +229,15 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
 
 class NormalizedProjectStateEnum extends EnumClass {
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueEnumConst(wireName: r'running')
   static const NormalizedProjectStateEnum running = _$normalizedProjectStateEnum_running;
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueEnumConst(wireName: r'halted')
   static const NormalizedProjectStateEnum halted = _$normalizedProjectStateEnum_halted;
+  /// The state of the project. running Running halted Halted deleted Deleted
+  @BuiltValueEnumConst(wireName: r'deleted')
+  static const NormalizedProjectStateEnum deleted = _$normalizedProjectStateEnum_deleted;
 
   static Serializer<NormalizedProjectStateEnum> get serializer => _$normalizedProjectStateEnumSerializer;
 

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **oauth2LoginRequest** | [**\Ory\Client\Model\OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional]
 **requestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |
 **returnTo** | **string** | ReturnTo contains the requested return_to URL. | [optional]
+**sessionTokenExchangeCode** | **string** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the flow. | [optional]
 **transientPayload** | **object** | TransientPayload is used to pass data from the registration to a webhook | [optional]
 **type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. |
 **ui** | [**\Ory\Client\Model\UiContainer**](UiContainer.md) |  |

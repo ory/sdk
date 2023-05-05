@@ -171,6 +171,7 @@ docs/SourcePosition.md
 docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
+docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
@@ -371,6 +372,7 @@ model_source_position.go
 model_stripe_customer.go
 model_subject_set.go
 model_subscription.go
+model_successful_code_exchange_response.go
 model_successful_native_login.go
 model_successful_native_registration.go
 model_successful_project_update.go

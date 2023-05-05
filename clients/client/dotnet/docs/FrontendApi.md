@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**CreateNativeVerificationFlow**](FrontendApi.md#createnativeverificationflow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 [**DisableMyOtherSessions**](FrontendApi.md#disablemyothersessions) | **DELETE** /sessions | Disable my other sessions
 [**DisableMySession**](FrontendApi.md#disablemysession) | **DELETE** /sessions/{id} | Disable one of my sessions
+[**ExchangeSessionToken**](FrontendApi.md#exchangesessiontoken) | **GET** /sessions/token-exchange | Exchange Session Token
 [**GetFlowError**](FrontendApi.md#getflowerror) | **GET** /self-service/errors | Get User-Flow Errors
 [**GetLoginFlow**](FrontendApi.md#getloginflow) | **GET** /self-service/login/flows | Get Login Flow
 [**GetRecoveryFlow**](FrontendApi.md#getrecoveryflow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -494,7 +495,7 @@ No authorization required
 
 <a name="createnativeloginflow"></a>
 # **CreateNativeLoginFlow**
-> ClientLoginFlow CreateNativeLoginFlow (bool? refresh = null, string aal = null, string xSessionToken = null)
+> ClientLoginFlow CreateNativeLoginFlow (bool? refresh = null, string aal = null, string xSessionToken = null, bool? returnSessionTokenExchangeCode = null, string returnTo = null)
 
 Create Login Flow for Native Apps
 
@@ -520,11 +521,13 @@ namespace Example
             var refresh = true;  // bool? | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional) 
             var aal = "aal_example";  // string | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional) 
             var xSessionToken = "xSessionToken_example";  // string | The Session Token of the Identity performing the settings flow. (optional) 
+            var returnSessionTokenExchangeCode = true;  // bool? | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional) 
+            var returnTo = "returnTo_example";  // string | The URL to return the browser to after the flow was completed. (optional) 
 
             try
             {
                 // Create Login Flow for Native Apps
-                ClientLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken);
+                ClientLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -545,6 +548,8 @@ Name | Type | Description  | Notes
  **refresh** | **bool?**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] 
  **aal** | **string**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional] 
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
+ **returnSessionTokenExchangeCode** | **bool?**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
+ **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional] 
 
 ### Return type
 
@@ -640,7 +645,7 @@ No authorization required
 
 <a name="createnativeregistrationflow"></a>
 # **CreateNativeRegistrationFlow**
-> ClientRegistrationFlow CreateNativeRegistrationFlow ()
+> ClientRegistrationFlow CreateNativeRegistrationFlow (bool? returnSessionTokenExchangeCode = null, string returnTo = null)
 
 Create Registration Flow for Native Apps
 
@@ -663,11 +668,13 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
+            var returnSessionTokenExchangeCode = true;  // bool? | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional) 
+            var returnTo = "returnTo_example";  // string | The URL to return the browser to after the flow was completed. (optional) 
 
             try
             {
                 // Create Registration Flow for Native Apps
-                ClientRegistrationFlow result = apiInstance.CreateNativeRegistrationFlow();
+                ClientRegistrationFlow result = apiInstance.CreateNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -682,7 +689,11 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **returnSessionTokenExchangeCode** | **bool?**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
+ **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional] 
 
 ### Return type
 
@@ -998,6 +1009,81 @@ No authorization required
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **400** | errorGeneric |  -  |
 | **401** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="exchangesessiontoken"></a>
+# **ExchangeSessionToken**
+> ClientSuccessfulNativeLogin ExchangeSessionToken (string initCode, string returnToCode)
+
+Exchange Session Token
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ExchangeSessionTokenExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://playground.projects.oryapis.com";
+            var apiInstance = new FrontendApi(config);
+            var initCode = "initCode_example";  // string | The part of the code return when initializing the flow.
+            var returnToCode = "returnToCode_example";  // string | The part of the code returned by the return_to URL.
+
+            try
+            {
+                // Exchange Session Token
+                ClientSuccessfulNativeLogin result = apiInstance.ExchangeSessionToken(initCode, returnToCode);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FrontendApi.ExchangeSessionToken: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **initCode** | **string**| The part of the code return when initializing the flow. | 
+ **returnToCode** | **string**| The part of the code returned by the return_to URL. | 
+
+### Return type
+
+[**ClientSuccessfulNativeLogin**](ClientSuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successfulNativeLogin |  -  |
+| **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
+| **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

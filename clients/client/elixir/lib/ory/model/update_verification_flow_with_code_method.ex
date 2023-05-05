@@ -11,7 +11,6 @@ defmodule Ory.Model.UpdateVerificationFlowWithCodeMethod do
     :code,
     :csrf_token,
     :email,
-    :flow,
     :method
   ]
 
@@ -19,8 +18,7 @@ defmodule Ory.Model.UpdateVerificationFlowWithCodeMethod do
     :code => String.t | nil,
     :csrf_token => String.t | nil,
     :email => String.t | nil,
-    :flow => String.t | nil,
-    :method => String.t | nil
+    :method => String.t
   }
 end
 

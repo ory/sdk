@@ -17,7 +17,7 @@ part 'project_metadata.g.dart';
 /// * [id] - The project's ID.
 /// * [name] - The project's name if set
 /// * [slug] - The project's slug
-/// * [state] - The state of the project. running Running halted Halted
+/// * [state] - The state of the project. running Running halted Halted deleted Deleted
 /// * [subscriptionId] 
 /// * [updatedAt] - Last Time Project was Updated
 @BuiltValue()
@@ -41,10 +41,10 @@ abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadata
   @BuiltValueField(wireName: r'slug')
   String? get slug;
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueField(wireName: r'state')
   ProjectMetadataStateEnum get state;
-  // enum stateEnum {  running,  halted,  };
+  // enum stateEnum {  running,  halted,  deleted,  };
 
   @BuiltValueField(wireName: r'subscription_id')
   String? get subscriptionId;
@@ -231,12 +231,15 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
 
 class ProjectMetadataStateEnum extends EnumClass {
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueEnumConst(wireName: r'running')
   static const ProjectMetadataStateEnum running = _$projectMetadataStateEnum_running;
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueEnumConst(wireName: r'halted')
   static const ProjectMetadataStateEnum halted = _$projectMetadataStateEnum_halted;
+  /// The state of the project. running Running halted Halted deleted Deleted
+  @BuiltValueEnumConst(wireName: r'deleted')
+  static const ProjectMetadataStateEnum deleted = _$projectMetadataStateEnum_deleted;
 
   static Serializer<ProjectMetadataStateEnum> get serializer => _$projectMetadataStateEnumSerializer;
 

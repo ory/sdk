@@ -8,27 +8,13 @@ defmodule Ory.Model.NeedsPrivilegedSessionError do
 
   @derive [Poison.Encoder]
   defstruct [
-    :code,
-    :debug,
-    :details,
-    :id,
-    :message,
-    :reason,
-    :redirect_browser_to,
-    :request,
-    :status
+    :error,
+    :redirect_browser_to
   ]
 
   @type t :: %__MODULE__{
-    :code => integer() | nil,
-    :debug => String.t | nil,
-    :details => %{optional(String.t) => AnyType} | nil,
-    :id => String.t | nil,
-    :message => String.t,
-    :reason => String.t | nil,
-    :redirect_browser_to => String.t,
-    :request => String.t | nil,
-    :status => String.t | nil
+    :error => Ory.Model.GenericError.t | nil,
+    :redirect_browser_to => String.t
   }
 end
 
@@ -36,7 +22,7 @@ defimpl Poison.Decoder, for: Ory.Model.NeedsPrivilegedSessionError do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:details, :map, Ory.Model.AnyType, options)
+    |> deserialize(:error, :struct, Ory.Model.GenericError, options)
   end
 end
 

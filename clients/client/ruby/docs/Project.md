@@ -9,7 +9,7 @@
 | **revision_id** | **String** | The configuration revision ID. | [readonly] |
 | **services** | [**ProjectServices**](ProjectServices.md) |  |  |
 | **slug** | **String** | The project&#39;s slug | [readonly] |
-| **state** | **String** | The state of the project. running Running halted Halted | [readonly] |
+| **state** | **String** | The state of the project. running Running halted Halted deleted Deleted | [readonly] |
 
 ## Example
 
