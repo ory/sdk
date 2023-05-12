@@ -25,6 +25,7 @@ doc/CreateProjectApiKeyRequest.md
 doc/CreateProjectBody.md
 doc/CreateProjectBranding.md
 doc/CreateProjectInvite.md
+doc/CreateProjectInvitesResponse.md
 doc/CreateRecoveryCodeForIdentityBody.md
 doc/CreateRecoveryLinkForIdentityBody.md
 doc/CreateRelationshipBody.md
@@ -252,6 +253,7 @@ lib/src/model/create_project_api_key_request.dart
 lib/src/model/create_project_body.dart
 lib/src/model/create_project_branding.dart
 lib/src/model/create_project_invite.dart
+lib/src/model/create_project_invites_response.dart
 lib/src/model/create_recovery_code_for_identity_body.dart
 lib/src/model/create_recovery_link_for_identity_body.dart
 lib/src/model/create_relationship_body.dart
@@ -453,6 +455,7 @@ test/create_project_api_key_request_test.dart
 test/create_project_body_test.dart
 test/create_project_branding_test.dart
 test/create_project_invite_test.dart
+test/create_project_invites_response_test.dart
 test/create_recovery_code_for_identity_body_test.dart
 test/create_recovery_link_for_identity_body_test.dart
 test/create_relationship_body_test.dart

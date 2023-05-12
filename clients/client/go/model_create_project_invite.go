@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.27
+API version: v1.1.28
 Contact: support@ory.sh
 */
 
@@ -17,7 +17,8 @@ import (
 
 // CreateProjectInvite Create Project Invite Request Body
 type CreateProjectInvite struct {
-	InviteeEmail *string `json:"invitee_email,omitempty"`
+	// A list of emails to invite
+	InviteeEmails []string `json:"invitee_emails,omitempty"`
 }
 
 // NewCreateProjectInvite instantiates a new CreateProjectInvite object
@@ -37,42 +38,42 @@ func NewCreateProjectInviteWithDefaults() *CreateProjectInvite {
 	return &this
 }
 
-// GetInviteeEmail returns the InviteeEmail field value if set, zero value otherwise.
-func (o *CreateProjectInvite) GetInviteeEmail() string {
-	if o == nil || o.InviteeEmail == nil {
-		var ret string
+// GetInviteeEmails returns the InviteeEmails field value if set, zero value otherwise.
+func (o *CreateProjectInvite) GetInviteeEmails() []string {
+	if o == nil || o.InviteeEmails == nil {
+		var ret []string
 		return ret
 	}
-	return *o.InviteeEmail
+	return o.InviteeEmails
 }
 
-// GetInviteeEmailOk returns a tuple with the InviteeEmail field value if set, nil otherwise
+// GetInviteeEmailsOk returns a tuple with the InviteeEmails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateProjectInvite) GetInviteeEmailOk() (*string, bool) {
-	if o == nil || o.InviteeEmail == nil {
+func (o *CreateProjectInvite) GetInviteeEmailsOk() ([]string, bool) {
+	if o == nil || o.InviteeEmails == nil {
 		return nil, false
 	}
-	return o.InviteeEmail, true
+	return o.InviteeEmails, true
 }
 
-// HasInviteeEmail returns a boolean if a field has been set.
-func (o *CreateProjectInvite) HasInviteeEmail() bool {
-	if o != nil && o.InviteeEmail != nil {
+// HasInviteeEmails returns a boolean if a field has been set.
+func (o *CreateProjectInvite) HasInviteeEmails() bool {
+	if o != nil && o.InviteeEmails != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetInviteeEmail gets a reference to the given string and assigns it to the InviteeEmail field.
-func (o *CreateProjectInvite) SetInviteeEmail(v string) {
-	o.InviteeEmail = &v
+// SetInviteeEmails gets a reference to the given []string and assigns it to the InviteeEmails field.
+func (o *CreateProjectInvite) SetInviteeEmails(v []string) {
+	o.InviteeEmails = v
 }
 
 func (o CreateProjectInvite) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.InviteeEmail != nil {
-		toSerialize["invitee_email"] = o.InviteeEmail
+	if o.InviteeEmails != nil {
+		toSerialize["invitee_emails"] = o.InviteeEmails
 	}
 	return json.Marshal(toSerialize)
 }

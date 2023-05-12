@@ -29,6 +29,7 @@ docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectInvite.md
+docs/CreateProjectInvitesResponse.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
@@ -278,6 +279,7 @@ src/main/java/sh/ory/model/CreateProjectApiKeyRequest.java
 src/main/java/sh/ory/model/CreateProjectBody.java
 src/main/java/sh/ory/model/CreateProjectBranding.java
 src/main/java/sh/ory/model/CreateProjectInvite.java
+src/main/java/sh/ory/model/CreateProjectInvitesResponse.java
 src/main/java/sh/ory/model/CreateRecoveryCodeForIdentityBody.java
 src/main/java/sh/ory/model/CreateRecoveryLinkForIdentityBody.java
 src/main/java/sh/ory/model/CreateRelationshipBody.java
@@ -486,6 +488,7 @@ src/test/java/sh/ory/model/CreateProjectApiKeyRequestTest.java
 src/test/java/sh/ory/model/CreateProjectBodyTest.java
 src/test/java/sh/ory/model/CreateProjectBrandingTest.java
 src/test/java/sh/ory/model/CreateProjectInviteTest.java
+src/test/java/sh/ory/model/CreateProjectInvitesResponseTest.java
 src/test/java/sh/ory/model/CreateRecoveryCodeForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRecoveryLinkForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRelationshipBodyTest.java

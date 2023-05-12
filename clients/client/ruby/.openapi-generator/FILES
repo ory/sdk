@@ -30,6 +30,7 @@ docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectInvite.md
+docs/CreateProjectInvitesResponse.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
@@ -253,6 +254,7 @@ lib/ory-client/models/create_project_api_key_request.rb
 lib/ory-client/models/create_project_body.rb
 lib/ory-client/models/create_project_branding.rb
 lib/ory-client/models/create_project_invite.rb
+lib/ory-client/models/create_project_invites_response.rb
 lib/ory-client/models/create_recovery_code_for_identity_body.rb
 lib/ory-client/models/create_recovery_link_for_identity_body.rb
 lib/ory-client/models/create_relationship_body.rb
@@ -465,6 +467,7 @@ spec/models/create_project_api_key_request_spec.rb
 spec/models/create_project_body_spec.rb
 spec/models/create_project_branding_spec.rb
 spec/models/create_project_invite_spec.rb
+spec/models/create_project_invites_response_spec.rb
 spec/models/create_recovery_code_for_identity_body_spec.rb
 spec/models/create_recovery_link_for_identity_body_spec.rb
 spec/models/create_relationship_body_spec.rb

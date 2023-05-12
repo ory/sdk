@@ -7,8 +7,9 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreateProjectInvite, () {
-    // String inviteeEmail
-    test('to test the property `inviteeEmail`', () async {
+    // A list of emails to invite
+    // BuiltList<String> inviteeEmails
+    test('to test the property `inviteeEmails`', () async {
       // TODO
     });
 

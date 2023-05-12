@@ -36,6 +36,7 @@ import 'package:ory_client/src/model/create_project_api_key_request.dart';
 import 'package:ory_client/src/model/create_project_body.dart';
 import 'package:ory_client/src/model/create_project_branding.dart';
 import 'package:ory_client/src/model/create_project_invite.dart';
+import 'package:ory_client/src/model/create_project_invites_response.dart';
 import 'package:ory_client/src/model/create_recovery_code_for_identity_body.dart';
 import 'package:ory_client/src/model/create_recovery_link_for_identity_body.dart';
 import 'package:ory_client/src/model/create_relationship_body.dart';
@@ -237,6 +238,7 @@ part 'serializers.g.dart';
   CreateProjectBody,
   CreateProjectBranding,
   CreateProjectInvite,
+  CreateProjectInvitesResponse,
   CreateRecoveryCodeForIdentityBody,
   CreateRecoveryLinkForIdentityBody,
   CreateRelationshipBody,

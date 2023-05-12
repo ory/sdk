@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,11 +12,12 @@ part 'create_project_invite.g.dart';
 /// Create Project Invite Request Body
 ///
 /// Properties:
-/// * [inviteeEmail] 
+/// * [inviteeEmails] - A list of emails to invite
 @BuiltValue()
 abstract class CreateProjectInvite implements Built<CreateProjectInvite, CreateProjectInviteBuilder> {
-  @BuiltValueField(wireName: r'invitee_email')
-  String? get inviteeEmail;
+  /// A list of emails to invite
+  @BuiltValueField(wireName: r'invitee_emails')
+  BuiltList<String>? get inviteeEmails;
 
   CreateProjectInvite._();
 
@@ -40,11 +42,11 @@ class _$CreateProjectInviteSerializer implements PrimitiveSerializer<CreateProje
     CreateProjectInvite object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.inviteeEmail != null) {
-      yield r'invitee_email';
+    if (object.inviteeEmails != null) {
+      yield r'invitee_emails';
       yield serializers.serialize(
-        object.inviteeEmail,
-        specifiedType: const FullType(String),
+        object.inviteeEmails,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
   }
@@ -70,12 +72,12 @@ class _$CreateProjectInviteSerializer implements PrimitiveSerializer<CreateProje
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'invitee_email':
+        case r'invitee_emails':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.inviteeEmail = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.inviteeEmails.replace(valueDes);
           break;
         default:
           unhandled.add(key);

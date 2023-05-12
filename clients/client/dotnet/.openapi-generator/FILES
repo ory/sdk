@@ -24,6 +24,7 @@ docs/ClientCreateJsonWebKeySet.md
 docs/ClientCreateProjectBody.md
 docs/ClientCreateProjectBranding.md
 docs/ClientCreateProjectInvite.md
+docs/ClientCreateProjectInvitesResponse.md
 docs/ClientCreateRecoveryCodeForIdentityBody.md
 docs/ClientCreateRecoveryLinkForIdentityBody.md
 docs/ClientCreateRelationshipBody.md
@@ -244,6 +245,7 @@ src/Ory.Client.Test/Model/ClientCreateJsonWebKeySetTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectBrandingTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectInviteTests.cs
+src/Ory.Client.Test/Model/ClientCreateProjectInvitesResponseTests.cs
 src/Ory.Client.Test/Model/ClientCreateRecoveryCodeForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRecoveryLinkForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRelationshipBodyTests.cs
@@ -470,6 +472,7 @@ src/Ory.Client/Model/ClientCreateJsonWebKeySet.cs
 src/Ory.Client/Model/ClientCreateProjectBody.cs
 src/Ory.Client/Model/ClientCreateProjectBranding.cs
 src/Ory.Client/Model/ClientCreateProjectInvite.cs
+src/Ory.Client/Model/ClientCreateProjectInvitesResponse.cs
 src/Ory.Client/Model/ClientCreateRecoveryCodeForIdentityBody.cs
 src/Ory.Client/Model/ClientCreateRecoveryLinkForIdentityBody.cs
 src/Ory.Client/Model/ClientCreateRelationshipBody.cs

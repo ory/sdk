@@ -39,6 +39,7 @@ lib/ory/model/create_project_api_key_request.ex
 lib/ory/model/create_project_body.ex
 lib/ory/model/create_project_branding.ex
 lib/ory/model/create_project_invite.ex
+lib/ory/model/create_project_invites_response.ex
 lib/ory/model/create_recovery_code_for_identity_body.ex
 lib/ory/model/create_recovery_link_for_identity_body.ex
 lib/ory/model/create_relationship_body.ex

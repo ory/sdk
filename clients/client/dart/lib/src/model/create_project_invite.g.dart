@@ -8,13 +8,13 @@ part of 'create_project_invite.dart';
 
 class _$CreateProjectInvite extends CreateProjectInvite {
   @override
-  final String? inviteeEmail;
+  final BuiltList<String>? inviteeEmails;
 
   factory _$CreateProjectInvite(
           [void Function(CreateProjectInviteBuilder)? updates]) =>
       (new CreateProjectInviteBuilder()..update(updates))._build();
 
-  _$CreateProjectInvite._({this.inviteeEmail}) : super._();
+  _$CreateProjectInvite._({this.inviteeEmails}) : super._();
 
   @override
   CreateProjectInvite rebuild(
@@ -28,13 +28,13 @@ class _$CreateProjectInvite extends CreateProjectInvite {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is CreateProjectInvite && inviteeEmail == other.inviteeEmail;
+    return other is CreateProjectInvite && inviteeEmails == other.inviteeEmails;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, inviteeEmail.hashCode);
+    _$hash = $jc(_$hash, inviteeEmails.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -42,7 +42,7 @@ class _$CreateProjectInvite extends CreateProjectInvite {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateProjectInvite')
-          ..add('inviteeEmail', inviteeEmail))
+          ..add('inviteeEmails', inviteeEmails))
         .toString();
   }
 }
@@ -51,9 +51,11 @@ class CreateProjectInviteBuilder
     implements Builder<CreateProjectInvite, CreateProjectInviteBuilder> {
   _$CreateProjectInvite? _$v;
 
-  String? _inviteeEmail;
-  String? get inviteeEmail => _$this._inviteeEmail;
-  set inviteeEmail(String? inviteeEmail) => _$this._inviteeEmail = inviteeEmail;
+  ListBuilder<String>? _inviteeEmails;
+  ListBuilder<String> get inviteeEmails =>
+      _$this._inviteeEmails ??= new ListBuilder<String>();
+  set inviteeEmails(ListBuilder<String>? inviteeEmails) =>
+      _$this._inviteeEmails = inviteeEmails;
 
   CreateProjectInviteBuilder() {
     CreateProjectInvite._defaults(this);
@@ -62,7 +64,7 @@ class CreateProjectInviteBuilder
   CreateProjectInviteBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _inviteeEmail = $v.inviteeEmail;
+      _inviteeEmails = $v.inviteeEmails?.toBuilder();
       _$v = null;
     }
     return this;
@@ -83,8 +85,21 @@ class CreateProjectInviteBuilder
   CreateProjectInvite build() => _build();
 
   _$CreateProjectInvite _build() {
-    final _$result =
-        _$v ?? new _$CreateProjectInvite._(inviteeEmail: inviteeEmail);
+    _$CreateProjectInvite _$result;
+    try {
+      _$result = _$v ??
+          new _$CreateProjectInvite._(inviteeEmails: _inviteeEmails?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'inviteeEmails';
+        _inviteeEmails?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'CreateProjectInvite', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

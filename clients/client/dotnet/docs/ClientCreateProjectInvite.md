@@ -5,7 +5,7 @@ Create Project Invite Request Body
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InviteeEmail** | **string** |  | [optional] 
+**InviteeEmails** | **List&lt;string&gt;** | A list of emails to invite | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

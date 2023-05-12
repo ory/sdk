@@ -8,11 +8,11 @@ defmodule Ory.Model.CreateProjectInvite do
 
   @derive [Poison.Encoder]
   defstruct [
-    :invitee_email
+    :invitee_emails
   ]
 
   @type t :: %__MODULE__{
-    :invitee_email => String.t | nil
+    :invitee_emails => [String.t] | nil
   }
 end
 

@@ -31,6 +31,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CreateProjectBody.serializer)
       ..add(CreateProjectBranding.serializer)
       ..add(CreateProjectInvite.serializer)
+      ..add(CreateProjectInvitesResponse.serializer)
       ..add(CreateRecoveryCodeForIdentityBody.serializer)
       ..add(CreateRecoveryLinkForIdentityBody.serializer)
       ..add(CreateRelationshipBody.serializer)
@@ -281,6 +282,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(ProjectBrandingTheme)]),
           () => new ListBuilder<ProjectBrandingTheme>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ProjectInvite)]),
+          () => new ListBuilder<ProjectInvite>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ProjectInvite)]),
+          () => new ListBuilder<ProjectInvite>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(RecoveryIdentityAddress)]),
           () => new ListBuilder<RecoveryIdentityAddress>())
@@ -298,6 +305,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SessionDevice)]),
           () => new ListBuilder<SessionDevice>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

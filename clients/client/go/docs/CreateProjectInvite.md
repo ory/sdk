@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InviteeEmail** | Pointer to **string** |  | [optional] 
+**InviteeEmails** | Pointer to **[]string** | A list of emails to invite | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewCreateProjectInviteWithDefaults instantiates a new CreateProjectInvite object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetInviteeEmail
+### GetInviteeEmails
 
-`func (o *CreateProjectInvite) GetInviteeEmail() string`
+`func (o *CreateProjectInvite) GetInviteeEmails() []string`
 
-GetInviteeEmail returns the InviteeEmail field if non-nil, zero value otherwise.
+GetInviteeEmails returns the InviteeEmails field if non-nil, zero value otherwise.
 
-### GetInviteeEmailOk
+### GetInviteeEmailsOk
 
-`func (o *CreateProjectInvite) GetInviteeEmailOk() (*string, bool)`
+`func (o *CreateProjectInvite) GetInviteeEmailsOk() (*[]string, bool)`
 
-GetInviteeEmailOk returns a tuple with the InviteeEmail field if it's non-nil, zero value otherwise
+GetInviteeEmailsOk returns a tuple with the InviteeEmails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInviteeEmail
+### SetInviteeEmails
 
-`func (o *CreateProjectInvite) SetInviteeEmail(v string)`
+`func (o *CreateProjectInvite) SetInviteeEmails(v []string)`
 
-SetInviteeEmail sets InviteeEmail field to given value.
+SetInviteeEmails sets InviteeEmails field to given value.
 
-### HasInviteeEmail
+### HasInviteeEmails
 
-`func (o *CreateProjectInvite) HasInviteeEmail() bool`
+`func (o *CreateProjectInvite) HasInviteeEmails() bool`
 
-HasInviteeEmail returns a boolean if a field has been set.
+HasInviteeEmails returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

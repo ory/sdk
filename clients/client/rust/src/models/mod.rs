@@ -42,6 +42,8 @@ pub mod create_project_branding;
 pub use self::create_project_branding::CreateProjectBranding;
 pub mod create_project_invite;
 pub use self::create_project_invite::CreateProjectInvite;
+pub mod create_project_invites_response;
+pub use self::create_project_invites_response::CreateProjectInvitesResponse;
 pub mod create_recovery_code_for_identity_body;
 pub use self::create_recovery_code_for_identity_body::CreateRecoveryCodeForIdentityBody;
 pub mod create_recovery_link_for_identity_body;

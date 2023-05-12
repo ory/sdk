@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **invitee_email** | **String** |  | [optional] |
+| **invitee_emails** | **Array&lt;String&gt;** | A list of emails to invite | [optional] |
 
 ## Example
 
@@ -12,7 +12,7 @@
 require 'ory-client'
 
 instance = OryClient::CreateProjectInvite.new(
-  invitee_email: null
+  invitee_emails: null
 )
 ```
 

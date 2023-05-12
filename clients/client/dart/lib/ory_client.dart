@@ -43,6 +43,7 @@ export 'package:ory_client/src/model/create_project_api_key_request.dart';
 export 'package:ory_client/src/model/create_project_body.dart';
 export 'package:ory_client/src/model/create_project_branding.dart';
 export 'package:ory_client/src/model/create_project_invite.dart';
+export 'package:ory_client/src/model/create_project_invites_response.dart';
 export 'package:ory_client/src/model/create_recovery_code_for_identity_body.dart';
 export 'package:ory_client/src/model/create_recovery_link_for_identity_body.dart';
 export 'package:ory_client/src/model/create_relationship_body.dart';

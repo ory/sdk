@@ -8,7 +8,7 @@ Create Project Invite Request Body
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**inviteeEmail** | **String** |  |  [optional] |
+|**inviteeEmails** | **List&lt;String&gt;** | A list of emails to invite |  [optional] |
 
 
 

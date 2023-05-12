@@ -27,6 +27,7 @@ docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectBrandingsBody.md
 docs/CreateProjectInvite.md
+docs/CreateProjectInvitesResponse.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
@@ -283,6 +284,7 @@ ory_client/model/create_project_body.py
 ory_client/model/create_project_branding.py
 ory_client/model/create_project_brandings_body.py
 ory_client/model/create_project_invite.py
+ory_client/model/create_project_invites_response.py
 ory_client/model/create_recovery_code_for_identity_body.py
 ory_client/model/create_recovery_link_for_identity_body.py
 ory_client/model/create_relationship_body.py
@@ -519,6 +521,7 @@ test/test_create_project_body.py
 test/test_create_project_branding.py
 test/test_create_project_brandings_body.py
 test/test_create_project_invite.py
+test/test_create_project_invites_response.py
 test/test_create_recovery_code_for_identity_body.py
 test/test_create_recovery_link_for_identity_body.py
 test/test_create_relationship_body.py

@@ -26,6 +26,7 @@ docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectInvite.md
+docs/CreateProjectInvitesResponse.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
@@ -248,6 +249,7 @@ src/models/create_project_api_key_request.rs
 src/models/create_project_body.rs
 src/models/create_project_branding.rs
 src/models/create_project_invite.rs
+src/models/create_project_invites_response.rs
 src/models/create_recovery_code_for_identity_body.rs
 src/models/create_recovery_link_for_identity_body.rs
 src/models/create_relationship_body.rs

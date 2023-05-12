@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.27
+  version: v1.1.28
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -7326,8 +7326,26 @@ components:
     createProjectInvite:
       description: Create Project Invite Request Body
       properties:
-        invitee_email:
-          type: string
+        invitee_emails:
+          description: A list of emails to invite
+          items:
+            type: string
+          type: array
+      type: object
+    createProjectInvitesResponse:
+      description: Response to the create project invite request
+      properties:
+        all_invites:
+          items:
+            $ref: '#/components/schemas/projectInvite'
+          type: array
+        created_invites:
+          items:
+            $ref: '#/components/schemas/projectInvite'
+          type: array
+      required:
+      - all_invites
+      - created_invites
       type: object
     createRecoveryCodeForIdentityBody:
       description: Create Recovery Code for Identity Request Body
