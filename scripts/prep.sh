@@ -66,7 +66,7 @@ export GPG_OPTS='--pinentry-mode loopback'
 export DOTNET_PACKAGE_NAME="Ory.$PROJECT_UCF.Client"
 export DART_PUB_NAME="ory_${PROJECT}_client"
 export DART_PUB_DESCRIPTION=$(cat "config/descriptions/${PROJECT}.txt")
-export DART_PUB_REPOSITORY=$(cat "https://github.com/ory/sdk/tree/master/clients/${PROJECT}/dart")
+export DART_PUB_REPOSITORY="https://github.com/ory/sdk/tree/master/clients/${PROJECT}/dart"
 
 export JAVA_GROUP_ID=sh.ory.$PROJECT
 export JAVA_ARTIFACT_ID=$PROJECT-client
