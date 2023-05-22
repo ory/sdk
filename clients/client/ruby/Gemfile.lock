@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-client (1.1.31)
+    ory-client (1.1.32)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -14,7 +14,7 @@ GEM
     ethon (0.16.0)
       ffi (>= 1.15.0)
     ffi (1.15.5)
-    jaro_winkler (1.5.4)
+    jaro_winkler (1.5.5)
     method_source (1.0.0)
     parallel (1.23.0)
     parser (3.2.2.1)
