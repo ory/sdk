@@ -30,6 +30,7 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// * [providerId] - ID is the provider's ID
 /// * [requestedClaims] 
 /// * [scope] 
+/// * [state] - State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
 /// * [subjectSource] 
 /// * [tokenUrl] - TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 /// * [updatedAt] - Last Time Project's Revision was Updated
@@ -97,6 +98,11 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
 
   @BuiltValueField(wireName: r'scope')
   BuiltList<String>? get scope;
+
+  /// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
+  @BuiltValueField(wireName: r'state')
+  NormalizedProjectRevisionThirdPartyProviderStateEnum? get state;
+  // enum stateEnum {  enabled,  disabled,  };
 
   @BuiltValueField(wireName: r'subject_source')
   String? get subjectSource;
@@ -249,6 +255,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       yield serializers.serialize(
         object.scope,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.state != null) {
+      yield r'state';
+      yield serializers.serialize(
+        object.state,
+        specifiedType: const FullType(NormalizedProjectRevisionThirdPartyProviderStateEnum),
       );
     }
     if (object.subjectSource != null) {
@@ -416,6 +429,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
           ) as BuiltList<String>;
           result.scope.replace(valueDes);
           break;
+        case r'state':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(NormalizedProjectRevisionThirdPartyProviderStateEnum),
+          ) as NormalizedProjectRevisionThirdPartyProviderStateEnum;
+          result.state = valueDes;
+          break;
         case r'subject_source':
           final valueDes = serializers.deserialize(
             value,
@@ -465,5 +485,22 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
     );
     return result.build();
   }
+}
+
+class NormalizedProjectRevisionThirdPartyProviderStateEnum extends EnumClass {
+
+  /// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
+  @BuiltValueEnumConst(wireName: r'enabled')
+  static const NormalizedProjectRevisionThirdPartyProviderStateEnum enabled = _$normalizedProjectRevisionThirdPartyProviderStateEnum_enabled;
+  /// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
+  @BuiltValueEnumConst(wireName: r'disabled')
+  static const NormalizedProjectRevisionThirdPartyProviderStateEnum disabled = _$normalizedProjectRevisionThirdPartyProviderStateEnum_disabled;
+
+  static Serializer<NormalizedProjectRevisionThirdPartyProviderStateEnum> get serializer => _$normalizedProjectRevisionThirdPartyProviderStateEnumSerializer;
+
+  const NormalizedProjectRevisionThirdPartyProviderStateEnum._(String name): super(name);
+
+  static BuiltSet<NormalizedProjectRevisionThirdPartyProviderStateEnum> get values => _$normalizedProjectRevisionThirdPartyProviderStateEnumValues;
+  static NormalizedProjectRevisionThirdPartyProviderStateEnum valueOf(String name) => _$normalizedProjectRevisionThirdPartyProviderStateEnumValueOf(name);
 }
 

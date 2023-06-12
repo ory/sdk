@@ -13,6 +13,7 @@ part 'subscription.g.dart';
 ///
 /// Properties:
 /// * [createdAt] 
+/// * [currency] - The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro
 /// * [currentInterval] - The currently active interval of the subscription monthly Monthly yearly Yearly
 /// * [currentPlan] - The currently active plan of the subscription
 /// * [customerId] - The ID of the stripe customer
@@ -28,6 +29,11 @@ part 'subscription.g.dart';
 abstract class Subscription implements Built<Subscription, SubscriptionBuilder> {
   @BuiltValueField(wireName: r'created_at')
   DateTime get createdAt;
+
+  /// The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro
+  @BuiltValueField(wireName: r'currency')
+  SubscriptionCurrencyEnum get currency;
+  // enum currencyEnum {  usd,  eur,  };
 
   /// The currently active interval of the subscription monthly Monthly yearly Yearly
   @BuiltValueField(wireName: r'current_interval')
@@ -96,6 +102,11 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
     yield serializers.serialize(
       object.createdAt,
       specifiedType: const FullType(DateTime),
+    );
+    yield r'currency';
+    yield serializers.serialize(
+      object.currency,
+      specifiedType: const FullType(SubscriptionCurrencyEnum),
     );
     yield r'current_interval';
     yield serializers.serialize(
@@ -185,6 +196,13 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'currency':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SubscriptionCurrencyEnum),
+          ) as SubscriptionCurrencyEnum;
+          result.currency = valueDes;
           break;
         case r'current_interval':
           final valueDes = serializers.deserialize(
@@ -293,6 +311,23 @@ class _$SubscriptionSerializer implements PrimitiveSerializer<Subscription> {
     );
     return result.build();
   }
+}
+
+class SubscriptionCurrencyEnum extends EnumClass {
+
+  /// The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro
+  @BuiltValueEnumConst(wireName: r'usd')
+  static const SubscriptionCurrencyEnum usd = _$subscriptionCurrencyEnum_usd;
+  /// The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro
+  @BuiltValueEnumConst(wireName: r'eur')
+  static const SubscriptionCurrencyEnum eur = _$subscriptionCurrencyEnum_eur;
+
+  static Serializer<SubscriptionCurrencyEnum> get serializer => _$subscriptionCurrencyEnumSerializer;
+
+  const SubscriptionCurrencyEnum._(String name): super(name);
+
+  static BuiltSet<SubscriptionCurrencyEnum> get values => _$subscriptionCurrencyEnumValues;
+  static SubscriptionCurrencyEnum valueOf(String name) => _$subscriptionCurrencyEnumValueOf(name);
 }
 
 class SubscriptionCurrentIntervalEnum extends EnumClass {

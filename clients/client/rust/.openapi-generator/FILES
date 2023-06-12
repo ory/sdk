@@ -45,6 +45,7 @@ docs/GenericError.md
 docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetProjectMetricsResponse.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
@@ -86,6 +87,7 @@ docs/ManagedIdentitySchemaValidationResult.md
 docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
+docs/MetricsDatapoint.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -267,6 +269,7 @@ src/models/generic_error.rs
 src/models/generic_error_content.rs
 src/models/generic_usage.rs
 src/models/get_managed_identity_schema_location.rs
+src/models/get_project_metrics_response.rs
 src/models/get_version_200_response.rs
 src/models/health_not_ready_status.rs
 src/models/health_status.rs
@@ -305,6 +308,7 @@ src/models/managed_identity_schema.rs
 src/models/managed_identity_schema_validation_result.rs
 src/models/message.rs
 src/models/message_dispatch.rs
+src/models/metrics_datapoint.rs
 src/models/mod.rs
 src/models/namespace.rs
 src/models/needs_privileged_session_error.rs

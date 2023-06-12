@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.33
+API version: v1.1.34
 Contact: support@ory.sh
 */
 
@@ -47,6 +47,8 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	ProviderId *string `json:"provider_id,omitempty"`
 	RequestedClaims map[string]interface{} `json:"requested_claims,omitempty"`
 	Scope []string `json:"scope,omitempty"`
+	// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
+	State *string `json:"state,omitempty"`
 	SubjectSource NullableString `json:"subject_source,omitempty"`
 	// TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 	TokenUrl *string `json:"token_url,omitempty"`
@@ -635,6 +637,38 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) SetScope(v []string) {
 	o.Scope = v
 }
 
+// GetState returns the State field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetState() string {
+	if o == nil || o.State == nil {
+		var ret string
+		return ret
+	}
+	return *o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetStateOk() (*string, bool) {
+	if o == nil || o.State == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasState() bool {
+	if o != nil && o.State != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetState(v string) {
+	o.State = &v
+}
+
 // GetSubjectSource returns the SubjectSource field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NormalizedProjectRevisionThirdPartyProvider) GetSubjectSource() string {
 	if o == nil || o.SubjectSource.Get() == nil {
@@ -793,6 +827,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) MarshalJSON() ([]byte, erro
 	}
 	if o.Scope != nil {
 		toSerialize["scope"] = o.Scope
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
 	}
 	if o.SubjectSource.IsSet() {
 		toSerialize["subject_source"] = o.SubjectSource.Get()

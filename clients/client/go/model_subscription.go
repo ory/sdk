@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.33
+API version: v1.1.34
 Contact: support@ory.sh
 */
 
@@ -19,6 +19,8 @@ import (
 // Subscription struct for Subscription
 type Subscription struct {
 	CreatedAt time.Time `json:"created_at"`
+	// The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro
+	Currency string `json:"currency"`
 	// The currently active interval of the subscription monthly Monthly yearly Yearly
 	CurrentInterval string `json:"current_interval"`
 	// The currently active plan of the subscription
@@ -42,9 +44,10 @@ type Subscription struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscription(createdAt time.Time, currentInterval string, currentPlan string, customerId string, id string, intervalChangesTo NullableString, payedUntil time.Time, planChangesTo NullableString, status string, updatedAt time.Time) *Subscription {
+func NewSubscription(createdAt time.Time, currency string, currentInterval string, currentPlan string, customerId string, id string, intervalChangesTo NullableString, payedUntil time.Time, planChangesTo NullableString, status string, updatedAt time.Time) *Subscription {
 	this := Subscription{}
 	this.CreatedAt = createdAt
+	this.Currency = currency
 	this.CurrentInterval = currentInterval
 	this.CurrentPlan = currentPlan
 	this.CustomerId = customerId
@@ -87,6 +90,30 @@ func (o *Subscription) GetCreatedAtOk() (*time.Time, bool) {
 // SetCreatedAt sets field value
 func (o *Subscription) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
+}
+
+// GetCurrency returns the Currency field value
+func (o *Subscription) GetCurrency() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetCurrencyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
+// SetCurrency sets field value
+func (o *Subscription) SetCurrency(v string) {
+	o.Currency = v
 }
 
 // GetCurrentInterval returns the CurrentInterval field value
@@ -387,6 +414,9 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["currency"] = o.Currency
 	}
 	if true {
 		toSerialize["current_interval"] = o.CurrentInterval

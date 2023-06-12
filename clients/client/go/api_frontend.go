@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.33
+API version: v1.1.34
 Contact: support@ory.sh
 */
 
@@ -4869,6 +4869,7 @@ type FrontendApiUpdateLogoutFlowRequest struct {
 	ApiService FrontendApi
 	token *string
 	returnTo *string
+	cookie *string
 }
 
 // A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint.
@@ -4880,6 +4881,12 @@ func (r FrontendApiUpdateLogoutFlowRequest) Token(token string) FrontendApiUpdat
 // The URL to return to after the logout was completed.
 func (r FrontendApiUpdateLogoutFlowRequest) ReturnTo(returnTo string) FrontendApiUpdateLogoutFlowRequest {
 	r.returnTo = &returnTo
+	return r
+}
+
+// HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+func (r FrontendApiUpdateLogoutFlowRequest) Cookie(cookie string) FrontendApiUpdateLogoutFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -4955,6 +4962,9 @@ func (a *FrontendApiService) UpdateLogoutFlowExecute(r FrontendApiUpdateLogoutFl
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

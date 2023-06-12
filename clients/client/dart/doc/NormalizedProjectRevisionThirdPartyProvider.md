@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **providerId** | **String** | ID is the provider's ID | [optional] 
 **requestedClaims** | [**JsonObject**](.md) |  | [optional] 
 **scope** | **BuiltList&lt;String&gt;** |  | [optional] 
+**state** | **String** | State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **subjectSource** | **String** |  | [optional] 
 **tokenUrl** | **String** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`. | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project's Revision was Updated | [optional] 

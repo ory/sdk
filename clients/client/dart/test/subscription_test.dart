@@ -12,6 +12,12 @@ void main() {
       // TODO
     });
 
+    // The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro
+    // String currency
+    test('to test the property `currency`', () async {
+      // TODO
+    });
+
     // The currently active interval of the subscription monthly Monthly yearly Yearly
     // String currentInterval
     test('to test the property `currentInterval`', () async {

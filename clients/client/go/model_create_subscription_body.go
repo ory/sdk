@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.33
+API version: v1.1.34
 Contact: support@ory.sh
 */
 
@@ -17,6 +17,8 @@ import (
 
 // CreateSubscriptionBody Create Subscription Request Body
 type CreateSubscriptionBody struct {
+	//  usd USD eur Euro
+	Currency *string `json:"currency,omitempty"`
 	//  monthly Monthly yearly Yearly
 	Interval string `json:"interval"`
 	Plan string `json:"plan"`
@@ -42,6 +44,38 @@ func NewCreateSubscriptionBody(interval string, plan string, provisionFirstProje
 func NewCreateSubscriptionBodyWithDefaults() *CreateSubscriptionBody {
 	this := CreateSubscriptionBody{}
 	return &this
+}
+
+// GetCurrency returns the Currency field value if set, zero value otherwise.
+func (o *CreateSubscriptionBody) GetCurrency() string {
+	if o == nil || o.Currency == nil {
+		var ret string
+		return ret
+	}
+	return *o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateSubscriptionBody) GetCurrencyOk() (*string, bool) {
+	if o == nil || o.Currency == nil {
+		return nil, false
+	}
+	return o.Currency, true
+}
+
+// HasCurrency returns a boolean if a field has been set.
+func (o *CreateSubscriptionBody) HasCurrency() bool {
+	if o != nil && o.Currency != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrency gets a reference to the given string and assigns it to the Currency field.
+func (o *CreateSubscriptionBody) SetCurrency(v string) {
+	o.Currency = &v
 }
 
 // GetInterval returns the Interval field value
@@ -150,6 +184,9 @@ func (o *CreateSubscriptionBody) SetReturnTo(v string) {
 
 func (o CreateSubscriptionBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Currency != nil {
+		toSerialize["currency"] = o.Currency
+	}
 	if true {
 		toSerialize["interval"] = o.Interval
 	}

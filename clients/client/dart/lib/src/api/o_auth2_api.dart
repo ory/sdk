@@ -97,9 +97,10 @@ class OAuth2Api {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -112,22 +113,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -204,9 +206,10 @@ class OAuth2Api {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -219,22 +222,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -304,22 +308,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -389,9 +394,10 @@ class OAuth2Api {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -403,22 +409,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -647,22 +654,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -732,22 +740,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2ConsentRequest _responseData;
+    OAuth2ConsentRequest? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2ConsentRequest);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2ConsentRequest),
       ) as OAuth2ConsentRequest;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2ConsentRequest>(
@@ -817,22 +826,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2LoginRequest _responseData;
+    OAuth2LoginRequest? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2LoginRequest);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2LoginRequest),
       ) as OAuth2LoginRequest;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2LoginRequest>(
@@ -902,22 +912,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2LogoutRequest _responseData;
+    OAuth2LogoutRequest? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2LogoutRequest);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2LogoutRequest),
       ) as OAuth2LogoutRequest;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2LogoutRequest>(
@@ -982,22 +993,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    TrustedOAuth2JwtGrantIssuer _responseData;
+    TrustedOAuth2JwtGrantIssuer? _responseData;
 
     try {
-      const _responseType = FullType(TrustedOAuth2JwtGrantIssuer);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TrustedOAuth2JwtGrantIssuer),
       ) as TrustedOAuth2JwtGrantIssuer;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<TrustedOAuth2JwtGrantIssuer>(
@@ -1071,9 +1083,10 @@ class OAuth2Api {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1085,22 +1098,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    IntrospectedOAuth2Token _responseData;
+    IntrospectedOAuth2Token? _responseData;
 
     try {
-      const _responseType = FullType(IntrospectedOAuth2Token);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(IntrospectedOAuth2Token),
       ) as IntrospectedOAuth2Token;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<IntrospectedOAuth2Token>(
@@ -1179,22 +1193,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<OAuth2Client> _responseData;
+    BuiltList<OAuth2Client>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(OAuth2Client)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(OAuth2Client)]),
       ) as BuiltList<OAuth2Client>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<OAuth2Client>>(
@@ -1273,22 +1288,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<OAuth2ConsentSession> _responseData;
+    BuiltList<OAuth2ConsentSession>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(OAuth2ConsentSession)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(OAuth2ConsentSession)]),
       ) as BuiltList<OAuth2ConsentSession>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<OAuth2ConsentSession>>(
@@ -1364,22 +1380,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<TrustedOAuth2JwtGrantIssuer> _responseData;
+    BuiltList<TrustedOAuth2JwtGrantIssuer>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(TrustedOAuth2JwtGrantIssuer)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(TrustedOAuth2JwtGrantIssuer)]),
       ) as BuiltList<TrustedOAuth2JwtGrantIssuer>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<TrustedOAuth2JwtGrantIssuer>>(
@@ -1436,22 +1453,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ErrorOAuth2 _responseData;
+    ErrorOAuth2? _responseData;
 
     try {
-      const _responseType = FullType(ErrorOAuth2);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ErrorOAuth2),
       ) as ErrorOAuth2;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<ErrorOAuth2>(
@@ -1537,9 +1555,10 @@ class OAuth2Api {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1551,22 +1570,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2TokenExchange _responseData;
+    OAuth2TokenExchange? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2TokenExchange);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2TokenExchange),
       ) as OAuth2TokenExchange;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2TokenExchange>(
@@ -1638,9 +1658,10 @@ class OAuth2Api {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1652,22 +1673,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -1744,9 +1766,10 @@ class OAuth2Api {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1759,22 +1782,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -1851,9 +1875,10 @@ class OAuth2Api {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1866,22 +1891,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -2144,9 +2170,10 @@ class OAuth2Api {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2218,9 +2245,10 @@ class OAuth2Api {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2232,22 +2260,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -2319,9 +2348,10 @@ class OAuth2Api {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2333,22 +2363,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -2418,9 +2449,10 @@ class OAuth2Api {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2432,22 +2464,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    TrustedOAuth2JwtGrantIssuer _responseData;
+    TrustedOAuth2JwtGrantIssuer? _responseData;
 
     try {
-      const _responseType = FullType(TrustedOAuth2JwtGrantIssuer);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TrustedOAuth2JwtGrantIssuer),
       ) as TrustedOAuth2JwtGrantIssuer;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<TrustedOAuth2JwtGrantIssuer>(

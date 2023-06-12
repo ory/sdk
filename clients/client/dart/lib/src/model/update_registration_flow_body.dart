@@ -22,7 +22,7 @@ part 'update_registration_flow_body.g.dart';
 /// * [traits] - The identity's traits
 /// * [transientPayload] - Transient data to pass along to any webhooks
 /// * [provider] - The provider to register with
-/// * [upstreamParameters] - UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+/// * [upstreamParameters] - UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
 /// * [webauthnRegister] - Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
 /// * [webauthnRegisterDisplayname] - Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
 @BuiltValue()
@@ -35,9 +35,6 @@ abstract class UpdateRegistrationFlowBody implements Built<UpdateRegistrationFlo
   static const Map<String, Type> discriminatorMapping = {
     r'oidc': UpdateRegistrationFlowWithOidcMethod,
     r'password': UpdateRegistrationFlowWithPasswordMethod,
-    r'updateRegistrationFlowWithOidcMethod': UpdateRegistrationFlowWithOidcMethod,
-    r'updateRegistrationFlowWithPasswordMethod': UpdateRegistrationFlowWithPasswordMethod,
-    r'updateRegistrationFlowWithWebAuthnMethod': UpdateRegistrationFlowWithWebAuthnMethod,
     r'webauthn': UpdateRegistrationFlowWithWebAuthnMethod,
   };
 
@@ -50,6 +47,35 @@ abstract class UpdateRegistrationFlowBody implements Built<UpdateRegistrationFlo
 
   @BuiltValueSerializer(custom: true)
   static Serializer<UpdateRegistrationFlowBody> get serializer => _$UpdateRegistrationFlowBodySerializer();
+}
+
+extension UpdateRegistrationFlowBodyDiscriminatorExt on UpdateRegistrationFlowBody {
+    String? get discriminatorValue {
+        if (this is UpdateRegistrationFlowWithOidcMethod) {
+            return r'oidc';
+        }
+        if (this is UpdateRegistrationFlowWithPasswordMethod) {
+            return r'password';
+        }
+        if (this is UpdateRegistrationFlowWithWebAuthnMethod) {
+            return r'webauthn';
+        }
+        return null;
+    }
+}
+extension UpdateRegistrationFlowBodyBuilderDiscriminatorExt on UpdateRegistrationFlowBodyBuilder {
+    String? get discriminatorValue {
+        if (this is UpdateRegistrationFlowWithOidcMethodBuilder) {
+            return r'oidc';
+        }
+        if (this is UpdateRegistrationFlowWithPasswordMethodBuilder) {
+            return r'password';
+        }
+        if (this is UpdateRegistrationFlowWithWebAuthnMethodBuilder) {
+            return r'webauthn';
+        }
+        return null;
+    }
 }
 
 class _$UpdateRegistrationFlowBodySerializer implements PrimitiveSerializer<UpdateRegistrationFlowBody> {
@@ -88,46 +114,25 @@ class _$UpdateRegistrationFlowBodySerializer implements PrimitiveSerializer<Upda
     final discIndex = serializedList.indexOf(UpdateRegistrationFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateRegistrationFlowWithOidcMethod, UpdateRegistrationFlowWithPasswordMethod, UpdateRegistrationFlowWithOidcMethod, UpdateRegistrationFlowWithPasswordMethod, UpdateRegistrationFlowWithWebAuthnMethod, UpdateRegistrationFlowWithWebAuthnMethod, ];
+    final oneOfTypes = [UpdateRegistrationFlowWithOidcMethod, UpdateRegistrationFlowWithPasswordMethod, UpdateRegistrationFlowWithWebAuthnMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
-      case 'oidc':
+      case r'oidc':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateRegistrationFlowWithOidcMethod),
         ) as UpdateRegistrationFlowWithOidcMethod;
         oneOfType = UpdateRegistrationFlowWithOidcMethod;
         break;
-      case 'password':
+      case r'password':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateRegistrationFlowWithPasswordMethod),
         ) as UpdateRegistrationFlowWithPasswordMethod;
         oneOfType = UpdateRegistrationFlowWithPasswordMethod;
         break;
-      case 'updateRegistrationFlowWithOidcMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateRegistrationFlowWithOidcMethod),
-        ) as UpdateRegistrationFlowWithOidcMethod;
-        oneOfType = UpdateRegistrationFlowWithOidcMethod;
-        break;
-      case 'updateRegistrationFlowWithPasswordMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateRegistrationFlowWithPasswordMethod),
-        ) as UpdateRegistrationFlowWithPasswordMethod;
-        oneOfType = UpdateRegistrationFlowWithPasswordMethod;
-        break;
-      case 'updateRegistrationFlowWithWebAuthnMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateRegistrationFlowWithWebAuthnMethod),
-        ) as UpdateRegistrationFlowWithWebAuthnMethod;
-        oneOfType = UpdateRegistrationFlowWithWebAuthnMethod;
-        break;
-      case 'webauthn':
+      case r'webauthn':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateRegistrationFlowWithWebAuthnMethod),

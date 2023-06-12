@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**currency** | **string** | Currency usd USD eur Euro |
 **identityId** | **string** | Identity ID |
 **interval** | **string** | Billing Interval monthly Monthly yearly Yearly |
 **plan** | **string** | Plan ID |

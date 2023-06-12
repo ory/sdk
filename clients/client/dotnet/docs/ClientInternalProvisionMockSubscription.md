@@ -5,6 +5,7 @@ Internal Provision Mock Subscription Request Body
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Currency** | **string** | Currency usd USD eur Euro | 
 **IdentityId** | **string** | Identity ID | 
 **Interval** | **string** | Billing Interval monthly Monthly yearly Yearly | 
 **Plan** | **string** | Plan ID | 

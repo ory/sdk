@@ -79,9 +79,10 @@ class RelationshipApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -93,22 +94,23 @@ class RelationshipApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckOplSyntaxResult _responseData;
+    CheckOplSyntaxResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckOplSyntaxResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckOplSyntaxResult),
       ) as CheckOplSyntaxResult;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckOplSyntaxResult>(
@@ -178,9 +180,10 @@ class RelationshipApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -192,22 +195,23 @@ class RelationshipApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Relationship _responseData;
+    Relationship? _responseData;
 
     try {
-      const _responseType = FullType(Relationship);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Relationship),
       ) as Relationship;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Relationship>(
@@ -377,22 +381,23 @@ class RelationshipApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Relationships _responseData;
+    Relationships? _responseData;
 
     try {
-      const _responseType = FullType(Relationships);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Relationships),
       ) as Relationships;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Relationships>(
@@ -455,22 +460,23 @@ class RelationshipApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RelationshipNamespaces _responseData;
+    RelationshipNamespaces? _responseData;
 
     try {
-      const _responseType = FullType(RelationshipNamespaces);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RelationshipNamespaces),
       ) as RelationshipNamespaces;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RelationshipNamespaces>(
@@ -540,9 +546,10 @@ class RelationshipApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(

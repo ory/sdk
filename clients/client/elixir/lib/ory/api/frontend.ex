@@ -992,6 +992,7 @@ defmodule Ory.Api.Frontend do
   - `opts` (keyword): Optional parameters
     - `:token` (String.t): A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
     - `:return_to` (String.t): The URL to return to after the logout was completed.
+    - `:Cookie` (String.t): HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
   ### Returns
 
@@ -1002,7 +1003,8 @@ defmodule Ory.Api.Frontend do
   def update_logout_flow(connection, opts \\ []) do
     optional_params = %{
       :token => :query,
-      :return_to => :query
+      :return_to => :query,
+      :Cookie => :headers
     }
 
     request =

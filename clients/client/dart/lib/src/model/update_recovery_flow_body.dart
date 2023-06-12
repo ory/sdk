@@ -29,8 +29,6 @@ abstract class UpdateRecoveryFlowBody implements Built<UpdateRecoveryFlowBody, U
   static const Map<String, Type> discriminatorMapping = {
     r'code': UpdateRecoveryFlowWithCodeMethod,
     r'link': UpdateRecoveryFlowWithLinkMethod,
-    r'updateRecoveryFlowWithCodeMethod': UpdateRecoveryFlowWithCodeMethod,
-    r'updateRecoveryFlowWithLinkMethod': UpdateRecoveryFlowWithLinkMethod,
   };
 
   UpdateRecoveryFlowBody._();
@@ -42,6 +40,29 @@ abstract class UpdateRecoveryFlowBody implements Built<UpdateRecoveryFlowBody, U
 
   @BuiltValueSerializer(custom: true)
   static Serializer<UpdateRecoveryFlowBody> get serializer => _$UpdateRecoveryFlowBodySerializer();
+}
+
+extension UpdateRecoveryFlowBodyDiscriminatorExt on UpdateRecoveryFlowBody {
+    String? get discriminatorValue {
+        if (this is UpdateRecoveryFlowWithCodeMethod) {
+            return r'code';
+        }
+        if (this is UpdateRecoveryFlowWithLinkMethod) {
+            return r'link';
+        }
+        return null;
+    }
+}
+extension UpdateRecoveryFlowBodyBuilderDiscriminatorExt on UpdateRecoveryFlowBodyBuilder {
+    String? get discriminatorValue {
+        if (this is UpdateRecoveryFlowWithCodeMethodBuilder) {
+            return r'code';
+        }
+        if (this is UpdateRecoveryFlowWithLinkMethodBuilder) {
+            return r'link';
+        }
+        return null;
+    }
 }
 
 class _$UpdateRecoveryFlowBodySerializer implements PrimitiveSerializer<UpdateRecoveryFlowBody> {
@@ -80,32 +101,18 @@ class _$UpdateRecoveryFlowBodySerializer implements PrimitiveSerializer<UpdateRe
     final discIndex = serializedList.indexOf(UpdateRecoveryFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateRecoveryFlowWithCodeMethod, UpdateRecoveryFlowWithLinkMethod, UpdateRecoveryFlowWithCodeMethod, UpdateRecoveryFlowWithLinkMethod, ];
+    final oneOfTypes = [UpdateRecoveryFlowWithCodeMethod, UpdateRecoveryFlowWithLinkMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
-      case 'code':
+      case r'code':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateRecoveryFlowWithCodeMethod),
         ) as UpdateRecoveryFlowWithCodeMethod;
         oneOfType = UpdateRecoveryFlowWithCodeMethod;
         break;
-      case 'link':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateRecoveryFlowWithLinkMethod),
-        ) as UpdateRecoveryFlowWithLinkMethod;
-        oneOfType = UpdateRecoveryFlowWithLinkMethod;
-        break;
-      case 'updateRecoveryFlowWithCodeMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateRecoveryFlowWithCodeMethod),
-        ) as UpdateRecoveryFlowWithCodeMethod;
-        oneOfType = UpdateRecoveryFlowWithCodeMethod;
-        break;
-      case 'updateRecoveryFlowWithLinkMethod':
+      case r'link':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateRecoveryFlowWithLinkMethod),

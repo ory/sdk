@@ -104,6 +104,12 @@ void main() {
       // TODO
     });
 
+    // State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
+    // String state
+    test('to test the property `state`', () async {
+      // TODO
+    });
+
     // String subjectSource
     test('to test the property `subjectSource`', () async {
       // TODO

@@ -49,6 +49,7 @@ docs/GenericError.md
 docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetProjectMetricsResponse.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
@@ -90,6 +91,7 @@ docs/ManagedIdentitySchemaValidationResult.md
 docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
+docs/MetricsDatapoint.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -272,6 +274,7 @@ lib/ory-client/models/generic_error.rb
 lib/ory-client/models/generic_error_content.rb
 lib/ory-client/models/generic_usage.rb
 lib/ory-client/models/get_managed_identity_schema_location.rb
+lib/ory-client/models/get_project_metrics_response.rb
 lib/ory-client/models/get_version200_response.rb
 lib/ory-client/models/health_not_ready_status.rb
 lib/ory-client/models/health_status.rb
@@ -310,6 +313,7 @@ lib/ory-client/models/managed_identity_schema.rb
 lib/ory-client/models/managed_identity_schema_validation_result.rb
 lib/ory-client/models/message.rb
 lib/ory-client/models/message_dispatch.rb
+lib/ory-client/models/metrics_datapoint.rb
 lib/ory-client/models/namespace.rb
 lib/ory-client/models/needs_privileged_session_error.rb
 lib/ory-client/models/normalized_project.rb
@@ -485,6 +489,7 @@ spec/models/generic_error_content_spec.rb
 spec/models/generic_error_spec.rb
 spec/models/generic_usage_spec.rb
 spec/models/get_managed_identity_schema_location_spec.rb
+spec/models/get_project_metrics_response_spec.rb
 spec/models/get_version200_response_spec.rb
 spec/models/health_not_ready_status_spec.rb
 spec/models/health_status_spec.rb
@@ -523,6 +528,7 @@ spec/models/managed_identity_schema_spec.rb
 spec/models/managed_identity_schema_validation_result_spec.rb
 spec/models/message_dispatch_spec.rb
 spec/models/message_spec.rb
+spec/models/metrics_datapoint_spec.rb
 spec/models/namespace_spec.rb
 spec/models/needs_privileged_session_error_spec.rb
 spec/models/normalized_project_revision_hook_spec.rb

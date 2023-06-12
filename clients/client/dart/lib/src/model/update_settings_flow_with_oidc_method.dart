@@ -17,7 +17,7 @@ part 'update_settings_flow_with_oidc_method.g.dart';
 /// * [method] - Method  Should be set to profile when trying to update a profile.
 /// * [traits] - The identity's traits  in: body
 /// * [unlink] - Unlink this provider  Either this or `link` must be set.  type: string in: body
-/// * [upstreamParameters] - UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+/// * [upstreamParameters] - UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
 @BuiltValue()
 abstract class UpdateSettingsFlowWithOidcMethod implements Built<UpdateSettingsFlowWithOidcMethod, UpdateSettingsFlowWithOidcMethodBuilder> {
   /// Flow ID is the flow's ID.  in: query
@@ -40,7 +40,7 @@ abstract class UpdateSettingsFlowWithOidcMethod implements Built<UpdateSettingsF
   @BuiltValueField(wireName: r'unlink')
   String? get unlink;
 
-  /// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+  /// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
   @BuiltValueField(wireName: r'upstream_parameters')
   JsonObject? get upstreamParameters;
 

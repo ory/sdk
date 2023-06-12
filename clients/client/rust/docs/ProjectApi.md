@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
 [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**get_project_metrics**](ProjectApi.md#get_project_metrics) | **GET** /projects/{project_id}/metrics | 
 [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project's API Tokens
 [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects
 [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
@@ -186,6 +187,40 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<crate::models::CloudAccount>**](cloudAccount.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_project_metrics
+
+> crate::models::GetProjectMetricsResponse get_project_metrics(project_id, event_type, resolution, from, to)
+
+
+Retrieves project metrics for the specified event type and time range
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**project_id** | **String** | Project ID | [required] |
+**event_type** | **String** | The event type to query for | [required] |
+**resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 hour. | [required] |
+**from** | **String** | The start time of the time window | [required] |
+**to** | **String** | The end time of the time window | [required] |
+
+### Return type
+
+[**crate::models::GetProjectMetricsResponse**](getProjectMetricsResponse.md)
 
 ### Authorization
 

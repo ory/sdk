@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**getActiveProjectInConsole()**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**getProject()**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
 [**getProjectMembers()**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**getProjectMetrics()**](ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics | 
 [**listProjectApiKeys()**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**listProjects()**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 [**patchProject()**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
@@ -365,6 +366,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Ory\Client\Model\CloudAccount[]**](../Model/CloudAccount.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getProjectMetrics()`
+
+```php
+getProjectMetrics($projectId, $eventType, $resolution, $from, $to): \Ory\Client\Model\GetProjectMetricsResponse
+```
+
+
+
+Retrieves project metrics for the specified event type and time range
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string | Project ID
+$eventType = 'eventType_example'; // string | The event type to query for
+$resolution = 'resolution_example'; // string | The resolution of the buckets  The minimum resolution is 1 hour.
+$from = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | The start time of the time window
+$to = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | The end time of the time window
+
+try {
+    $result = $apiInstance->getProjectMetrics($projectId, $eventType, $resolution, $from, $to);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->getProjectMetrics: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **string**| Project ID |
+ **eventType** | **string**| The event type to query for |
+ **resolution** | **string**| The resolution of the buckets  The minimum resolution is 1 hour. |
+ **from** | **\DateTime**| The start time of the time window |
+ **to** | **\DateTime**| The end time of the time window |
+
+### Return type
+
+[**\Ory\Client\Model\GetProjectMetricsResponse**](../Model/GetProjectMetricsResponse.md)
 
 ### Authorization
 

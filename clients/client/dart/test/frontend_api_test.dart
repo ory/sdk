@@ -234,7 +234,7 @@ void main() {
     //
     // This endpoint logs out an identity in a self-service manner.  If the `Accept` HTTP header is not set to `application/json`, the browser will be redirected (HTTP 303 See Other) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  If the `Accept` HTTP header is set to `application/json`, a 204 No Content response will be sent on successful logout instead.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
     //
-    //Future updateLogoutFlow({ String token, String returnTo }) async
+    //Future updateLogoutFlow({ String token, String returnTo, String cookie }) async
     test('test updateLogoutFlow', () async {
       // TODO
     });

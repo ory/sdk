@@ -9,6 +9,7 @@ defmodule Ory.Model.Subscription do
   @derive [Poison.Encoder]
   defstruct [
     :created_at,
+    :currency,
     :current_interval,
     :current_plan,
     :customer_id,
@@ -24,6 +25,7 @@ defmodule Ory.Model.Subscription do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t,
+    :currency => String.t,
     :current_interval => String.t,
     :current_plan => String.t,
     :customer_id => String.t,

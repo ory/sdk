@@ -12,12 +12,18 @@ part 'create_subscription_body.g.dart';
 /// Create Subscription Request Body
 ///
 /// Properties:
+/// * [currency] -  usd USD eur Euro
 /// * [interval] -  monthly Monthly yearly Yearly
 /// * [plan] 
 /// * [provisionFirstProject] 
 /// * [returnTo] 
 @BuiltValue()
 abstract class CreateSubscriptionBody implements Built<CreateSubscriptionBody, CreateSubscriptionBodyBuilder> {
+  ///  usd USD eur Euro
+  @BuiltValueField(wireName: r'currency')
+  CreateSubscriptionBodyCurrencyEnum? get currency;
+  // enum currencyEnum {  usd,  eur,  };
+
   ///  monthly Monthly yearly Yearly
   @BuiltValueField(wireName: r'interval')
   CreateSubscriptionBodyIntervalEnum get interval;
@@ -55,6 +61,13 @@ class _$CreateSubscriptionBodySerializer implements PrimitiveSerializer<CreateSu
     CreateSubscriptionBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.currency != null) {
+      yield r'currency';
+      yield serializers.serialize(
+        object.currency,
+        specifiedType: const FullType(CreateSubscriptionBodyCurrencyEnum),
+      );
+    }
     yield r'interval';
     yield serializers.serialize(
       object.interval,
@@ -100,6 +113,13 @@ class _$CreateSubscriptionBodySerializer implements PrimitiveSerializer<CreateSu
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'currency':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CreateSubscriptionBodyCurrencyEnum),
+          ) as CreateSubscriptionBodyCurrencyEnum;
+          result.currency = valueDes;
+          break;
         case r'interval':
           final valueDes = serializers.deserialize(
             value,
@@ -155,6 +175,23 @@ class _$CreateSubscriptionBodySerializer implements PrimitiveSerializer<CreateSu
     );
     return result.build();
   }
+}
+
+class CreateSubscriptionBodyCurrencyEnum extends EnumClass {
+
+  ///  usd USD eur Euro
+  @BuiltValueEnumConst(wireName: r'usd')
+  static const CreateSubscriptionBodyCurrencyEnum usd = _$createSubscriptionBodyCurrencyEnum_usd;
+  ///  usd USD eur Euro
+  @BuiltValueEnumConst(wireName: r'eur')
+  static const CreateSubscriptionBodyCurrencyEnum eur = _$createSubscriptionBodyCurrencyEnum_eur;
+
+  static Serializer<CreateSubscriptionBodyCurrencyEnum> get serializer => _$createSubscriptionBodyCurrencyEnumSerializer;
+
+  const CreateSubscriptionBodyCurrencyEnum._(String name): super(name);
+
+  static BuiltSet<CreateSubscriptionBodyCurrencyEnum> get values => _$createSubscriptionBodyCurrencyEnumValues;
+  static CreateSubscriptionBodyCurrencyEnum valueOf(String name) => _$createSubscriptionBodyCurrencyEnumValueOf(name);
 }
 
 class CreateSubscriptionBodyIntervalEnum extends EnumClass {

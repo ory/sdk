@@ -29,8 +29,6 @@ abstract class UpdateVerificationFlowBody implements Built<UpdateVerificationFlo
   static const Map<String, Type> discriminatorMapping = {
     r'code': UpdateVerificationFlowWithCodeMethod,
     r'link': UpdateVerificationFlowWithLinkMethod,
-    r'updateVerificationFlowWithCodeMethod': UpdateVerificationFlowWithCodeMethod,
-    r'updateVerificationFlowWithLinkMethod': UpdateVerificationFlowWithLinkMethod,
   };
 
   UpdateVerificationFlowBody._();
@@ -42,6 +40,29 @@ abstract class UpdateVerificationFlowBody implements Built<UpdateVerificationFlo
 
   @BuiltValueSerializer(custom: true)
   static Serializer<UpdateVerificationFlowBody> get serializer => _$UpdateVerificationFlowBodySerializer();
+}
+
+extension UpdateVerificationFlowBodyDiscriminatorExt on UpdateVerificationFlowBody {
+    String? get discriminatorValue {
+        if (this is UpdateVerificationFlowWithCodeMethod) {
+            return r'code';
+        }
+        if (this is UpdateVerificationFlowWithLinkMethod) {
+            return r'link';
+        }
+        return null;
+    }
+}
+extension UpdateVerificationFlowBodyBuilderDiscriminatorExt on UpdateVerificationFlowBodyBuilder {
+    String? get discriminatorValue {
+        if (this is UpdateVerificationFlowWithCodeMethodBuilder) {
+            return r'code';
+        }
+        if (this is UpdateVerificationFlowWithLinkMethodBuilder) {
+            return r'link';
+        }
+        return null;
+    }
 }
 
 class _$UpdateVerificationFlowBodySerializer implements PrimitiveSerializer<UpdateVerificationFlowBody> {
@@ -80,32 +101,18 @@ class _$UpdateVerificationFlowBodySerializer implements PrimitiveSerializer<Upda
     final discIndex = serializedList.indexOf(UpdateVerificationFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateVerificationFlowWithCodeMethod, UpdateVerificationFlowWithLinkMethod, UpdateVerificationFlowWithCodeMethod, UpdateVerificationFlowWithLinkMethod, ];
+    final oneOfTypes = [UpdateVerificationFlowWithCodeMethod, UpdateVerificationFlowWithLinkMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
-      case 'code':
+      case r'code':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateVerificationFlowWithCodeMethod),
         ) as UpdateVerificationFlowWithCodeMethod;
         oneOfType = UpdateVerificationFlowWithCodeMethod;
         break;
-      case 'link':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateVerificationFlowWithLinkMethod),
-        ) as UpdateVerificationFlowWithLinkMethod;
-        oneOfType = UpdateVerificationFlowWithLinkMethod;
-        break;
-      case 'updateVerificationFlowWithCodeMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateVerificationFlowWithCodeMethod),
-        ) as UpdateVerificationFlowWithCodeMethod;
-        oneOfType = UpdateVerificationFlowWithCodeMethod;
-        break;
-      case 'updateVerificationFlowWithLinkMethod':
+      case r'link':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateVerificationFlowWithLinkMethod),

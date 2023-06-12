@@ -1955,12 +1955,13 @@ with ory_client.ApiClient() as api_client:
     api_instance = frontend_api.FrontendApi(api_client)
     token = "token_example" # str | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. (optional)
     return_to = "return_to_example" # str | The URL to return to after the logout was completed. (optional)
+    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Update Logout Flow
-        api_instance.update_logout_flow(token=token, return_to=return_to)
+        api_instance.update_logout_flow(token=token, return_to=return_to, cookie=cookie)
     except ory_client.ApiException as e:
         print("Exception when calling FrontendApi->update_logout_flow: %s\n" % e)
 ```
@@ -1972,6 +1973,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **str**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional]
  **return_to** | **str**| The URL to return to after the logout was completed. | [optional]
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 

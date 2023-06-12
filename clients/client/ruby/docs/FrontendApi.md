@@ -1736,7 +1736,8 @@ require 'ory-client'
 api_instance = OryClient::FrontendApi.new
 opts = {
   token: 'token_example', # String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
-  return_to: 'return_to_example' # String | The URL to return to after the logout was completed.
+  return_to: 'return_to_example', # String | The URL to return to after the logout was completed.
+  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }
 
 begin
@@ -1771,6 +1772,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **token** | **String** | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional] |
 | **return_to** | **String** | The URL to return to after the logout was completed. | [optional] |
+| **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 

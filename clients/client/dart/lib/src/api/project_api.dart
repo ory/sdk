@@ -8,12 +8,14 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/api_util.dart';
 import 'package:ory_client/src/model/active_project_in_console.dart';
 import 'package:ory_client/src/model/cloud_account.dart';
 import 'package:ory_client/src/model/create_project_api_key_request.dart';
 import 'package:ory_client/src/model/create_project_body.dart';
 import 'package:ory_client/src/model/error_generic.dart';
 import 'package:ory_client/src/model/generic_error.dart';
+import 'package:ory_client/src/model/get_project_metrics_response.dart';
 import 'package:ory_client/src/model/json_patch.dart';
 import 'package:ory_client/src/model/project.dart';
 import 'package:ory_client/src/model/project_api_key.dart';
@@ -85,9 +87,10 @@ class ProjectApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -99,22 +102,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Project _responseData;
+    Project? _responseData;
 
     try {
-      const _responseType = FullType(Project);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Project),
       ) as Project;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Project>(
@@ -186,9 +190,10 @@ class ProjectApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -200,22 +205,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProjectApiKey _responseData;
+    ProjectApiKey? _responseData;
 
     try {
-      const _responseType = FullType(ProjectApiKey);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ProjectApiKey),
       ) as ProjectApiKey;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<ProjectApiKey>(
@@ -333,22 +339,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ActiveProjectInConsole _responseData;
+    ActiveProjectInConsole? _responseData;
 
     try {
-      const _responseType = FullType(ActiveProjectInConsole);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ActiveProjectInConsole),
       ) as ActiveProjectInConsole;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<ActiveProjectInConsole>(
@@ -413,22 +420,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Project _responseData;
+    Project? _responseData;
 
     try {
-      const _responseType = FullType(Project);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Project),
       ) as Project;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Project>(
@@ -493,25 +501,123 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<CloudAccount> _responseData;
+    BuiltList<CloudAccount>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(CloudAccount)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(CloudAccount)]),
       ) as BuiltList<CloudAccount>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<CloudAccount>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// getProjectMetrics
+  /// Retrieves project metrics for the specified event type and time range
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID
+  /// * [eventType] - The event type to query for
+  /// * [resolution] - The resolution of the buckets  The minimum resolution is 1 hour.
+  /// * [from] - The start time of the time window
+  /// * [to] - The end time of the time window
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [GetProjectMetricsResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<GetProjectMetricsResponse>> getProjectMetrics({ 
+    required String projectId,
+    required String eventType,
+    required String resolution,
+    required DateTime from,
+    required DateTime to,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/metrics'.replaceAll('{' r'project_id' '}', projectId.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      r'event_type': encodeQueryParameter(_serializers, eventType, const FullType(String)),
+      r'resolution': encodeQueryParameter(_serializers, resolution, const FullType(String)),
+      r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
+      r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    GetProjectMetricsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetProjectMetricsResponse),
+      ) as GetProjectMetricsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<GetProjectMetricsResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -573,22 +679,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<ProjectApiKey> _responseData;
+    BuiltList<ProjectApiKey>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(ProjectApiKey)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ProjectApiKey)]),
       ) as BuiltList<ProjectApiKey>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<ProjectApiKey>>(
@@ -651,22 +758,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<ProjectMetadata> _responseData;
+    BuiltList<ProjectMetadata>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(ProjectMetadata)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ProjectMetadata)]),
       ) as BuiltList<ProjectMetadata>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<ProjectMetadata>>(
@@ -738,9 +846,10 @@ class ProjectApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -752,22 +861,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SuccessfulProjectUpdate _responseData;
+    SuccessfulProjectUpdate? _responseData;
 
     try {
-      const _responseType = FullType(SuccessfulProjectUpdate);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulProjectUpdate),
       ) as SuccessfulProjectUpdate;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SuccessfulProjectUpdate>(
@@ -945,9 +1055,10 @@ class ProjectApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1019,9 +1130,10 @@ class ProjectApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1033,22 +1145,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SuccessfulProjectUpdate _responseData;
+    SuccessfulProjectUpdate? _responseData;
 
     try {
-      const _responseType = FullType(SuccessfulProjectUpdate);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulProjectUpdate),
       ) as SuccessfulProjectUpdate;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SuccessfulProjectUpdate>(

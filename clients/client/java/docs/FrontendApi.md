@@ -1702,7 +1702,7 @@ No authorization required
 
 <a name="updateLogoutFlow"></a>
 # **updateLogoutFlow**
-> updateLogoutFlow(token, returnTo)
+> updateLogoutFlow(token, returnTo, cookie)
 
 Update Logout Flow
 
@@ -1725,8 +1725,9 @@ public class Example {
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String token = "token_example"; // String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
     String returnTo = "returnTo_example"; // String | The URL to return to after the logout was completed.
+    String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     try {
-      apiInstance.updateLogoutFlow(token, returnTo);
+      apiInstance.updateLogoutFlow(token, returnTo, cookie);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#updateLogoutFlow");
       System.err.println("Status code: " + e.getCode());
@@ -1744,6 +1745,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **token** | **String**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional] |
 | **returnTo** | **String**| The URL to return to after the logout was completed. | [optional] |
+| **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 
 ### Return type
 

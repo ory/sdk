@@ -218,6 +218,46 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
+  Retrieves project metrics for the specified event type and time range
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): Project ID
+  - `event_type` (String.t): The event type to query for
+  - `resolution` (String.t): The resolution of the buckets  The minimum resolution is 1 hour.
+  - `from` (DateTime.t): The start time of the time window
+  - `to` (DateTime.t): The end time of the time window
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.GetProjectMetricsResponse.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_project_metrics(Tesla.Env.client, String.t, String.t, String.t, DateTime.t, DateTime.t, keyword()) :: {:ok, Ory.Model.GetProjectMetricsResponse.t} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
+  def get_project_metrics(connection, project_id, event_type, resolution, from, to, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/projects/#{project_id}/metrics")
+      |> add_param(:query, :event_type, event_type)
+      |> add_param(:query, :resolution, resolution)
+      |> add_param(:query, :from, from)
+      |> add_param(:query, :to, to)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, %Ory.Model.GetProjectMetricsResponse{}},
+      {400, %Ory.Model.GenericError{}},
+      {403, %Ory.Model.GenericError{}},
+      {:default, %Ory.Model.GenericError{}}
+    ])
+  end
+
+  @doc """
   List a project's API Tokens
   A list of all the project's API tokens.
 

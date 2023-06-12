@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** |  | [readonly] |
+| **currency** | **String** | The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro | [readonly] |
 | **current_interval** | **String** | The currently active interval of the subscription monthly Monthly yearly Yearly | [readonly] |
 | **current_plan** | **String** | The currently active plan of the subscription | [readonly] |
 | **customer_id** | **String** | The ID of the stripe customer | [readonly] |
@@ -24,6 +25,7 @@ require 'ory-client'
 
 instance = OryClient::Subscription.new(
   created_at: null,
+  currency: null,
   current_interval: null,
   current_plan: null,
   customer_id: null,

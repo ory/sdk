@@ -1484,7 +1484,7 @@ No authorization required
 ## `updateLogoutFlow()`
 
 ```php
-updateLogoutFlow($token, $returnTo)
+updateLogoutFlow($token, $returnTo, $cookie)
 ```
 
 Update Logout Flow
@@ -1506,9 +1506,10 @@ $apiInstance = new Ory\Client\Api\FrontendApi(
 );
 $token = 'token_example'; // string | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
 $returnTo = 'returnTo_example'; // string | The URL to return to after the logout was completed.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    $apiInstance->updateLogoutFlow($token, $returnTo);
+    $apiInstance->updateLogoutFlow($token, $returnTo, $cookie);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->updateLogoutFlow: ', $e->getMessage(), PHP_EOL;
 }
@@ -1520,6 +1521,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional]
  **returnTo** | **string**| The URL to return to after the logout was completed. | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 

@@ -57,6 +57,7 @@ lib/ory/model/generic_error.ex
 lib/ory/model/generic_error_content.ex
 lib/ory/model/generic_usage.ex
 lib/ory/model/get_managed_identity_schema_location.ex
+lib/ory/model/get_project_metrics_response.ex
 lib/ory/model/get_version_200_response.ex
 lib/ory/model/health_not_ready_status.ex
 lib/ory/model/health_status.ex
@@ -95,6 +96,7 @@ lib/ory/model/managed_identity_schema.ex
 lib/ory/model/managed_identity_schema_validation_result.ex
 lib/ory/model/message.ex
 lib/ory/model/message_dispatch.ex
+lib/ory/model/metrics_datapoint.ex
 lib/ory/model/namespace.ex
 lib/ory/model/needs_privileged_session_error.ex
 lib/ory/model/normalized_project.ex

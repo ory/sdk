@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**GetActiveProjectInConsole**](ProjectApi.md#getactiveprojectinconsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**GetProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
 [**GetProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**GetProjectMetrics**](ProjectApi.md#getprojectmetrics) | **GET** /projects/{project_id}/metrics | 
 [**ListProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**ListProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 [**PatchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
@@ -473,6 +474,90 @@ Name | Type | Description  | Notes
 | **200** | projectMembers |  -  |
 | **401** | genericError |  -  |
 | **406** | genericError |  -  |
+| **0** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getprojectmetrics"></a>
+# **GetProjectMetrics**
+> ClientGetProjectMetricsResponse GetProjectMetrics (string projectId, string eventType, string resolution, DateTime from, DateTime to)
+
+
+
+Retrieves project metrics for the specified event type and time range
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetProjectMetricsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://playground.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryAccessToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new ProjectApi(config);
+            var projectId = "projectId_example";  // string | Project ID
+            var eventType = "eventType_example";  // string | The event type to query for
+            var resolution = "resolution_example";  // string | The resolution of the buckets  The minimum resolution is 1 hour.
+            var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The start time of the time window
+            var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The end time of the time window
+
+            try
+            {
+                ClientGetProjectMetricsResponse result = apiInstance.GetProjectMetrics(projectId, eventType, resolution, from, to);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ProjectApi.GetProjectMetrics: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **string**| Project ID | 
+ **eventType** | **string**| The event type to query for | 
+ **resolution** | **string**| The resolution of the buckets  The minimum resolution is 1 hour. | 
+ **from** | **DateTime**| The start time of the time window | 
+ **to** | **DateTime**| The end time of the time window | 
+
+### Return type
+
+[**ClientGetProjectMetricsResponse**](ClientGetProjectMetricsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | getProjectMetricsResponse |  -  |
+| **400** | genericError |  -  |
+| **403** | genericError |  -  |
 | **0** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

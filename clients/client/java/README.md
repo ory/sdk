@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.1.33
-  - Build date: 2023-05-22T13:18:59.927245844Z[Etc/UTC]
+- API version: v1.1.34
+  - Build date: 2023-06-12T19:11:50.466866580Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.1.33</version>
+  <version>v1.1.34</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.1.33"
+     implementation "sh.ory:client:v1.1.34"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.1.33.jar`
+* `target/client-v1.1.34.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -227,6 +227,7 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**getActiveProjectInConsole**](docs/ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 *ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
 *ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+*ProjectApi* | [**getProjectMetrics**](docs/ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics | 
 *ProjectApi* | [**listProjectApiKeys**](docs/ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 *ProjectApi* | [**listProjects**](docs/ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
@@ -285,6 +286,7 @@ Class | Method | HTTP request | Description
  - [GenericErrorContent](docs/GenericErrorContent.md)
  - [GenericUsage](docs/GenericUsage.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
+ - [GetProjectMetricsResponse](docs/GetProjectMetricsResponse.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
@@ -323,6 +325,7 @@ Class | Method | HTTP request | Description
  - [ManagedIdentitySchemaValidationResult](docs/ManagedIdentitySchemaValidationResult.md)
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
+ - [MetricsDatapoint](docs/MetricsDatapoint.md)
  - [Namespace](docs/Namespace.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)

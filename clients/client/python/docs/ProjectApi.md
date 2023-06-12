@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
 [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**get_project_metrics**](ProjectApi.md#get_project_metrics) | **GET** /projects/{project_id}/metrics | 
 [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects
 [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
@@ -512,6 +513,94 @@ Name | Type | Description  | Notes
 **200** | projectMembers |  -  |
 **401** | genericError |  -  |
 **406** | genericError |  -  |
+**0** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_project_metrics**
+> GetProjectMetricsResponse get_project_metrics(project_id, event_type, resolution, _from, to)
+
+
+
+Retrieves project metrics for the specified event type and time range
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import time
+import ory_client
+from ory_client.api import project_api
+from ory_client.model.get_project_metrics_response import GetProjectMetricsResponse
+from ory_client.model.generic_error import GenericError
+from pprint import pprint
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_api.ProjectApi(api_client)
+    project_id = "project_id_example" # str | Project ID
+    event_type = "event_type_example" # str | The event type to query for
+    resolution = "4ms" # str | The resolution of the buckets  The minimum resolution is 1 hour.
+    _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The start time of the time window
+    to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The end time of the time window
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_project_metrics(project_id, event_type, resolution, _from, to)
+        pprint(api_response)
+    except ory_client.ApiException as e:
+        print("Exception when calling ProjectApi->get_project_metrics: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID |
+ **event_type** | **str**| The event type to query for |
+ **resolution** | **str**| The resolution of the buckets  The minimum resolution is 1 hour. |
+ **_from** | **datetime**| The start time of the time window |
+ **to** | **datetime**| The end time of the time window |
+
+### Return type
+
+[**GetProjectMetricsResponse**](GetProjectMetricsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | getProjectMetricsResponse |  -  |
+**400** | genericError |  -  |
+**403** | genericError |  -  |
 **0** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

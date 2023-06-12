@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**currency** | **string** | usd USD eur Euro | [optional]
 **interval** | **string** | monthly Monthly yearly Yearly |
 **plan** | **string** |  |
 **provisionFirstProject** | **string** |  |

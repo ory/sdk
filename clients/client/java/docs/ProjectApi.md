@@ -10,6 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**getActiveProjectInConsole**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
 | [**getProject**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
 | [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project |
+| [**getProjectMetrics**](ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics |  |
 | [**listProjectApiKeys**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**listProjects**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects |
 | [**patchProject**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
@@ -433,6 +434,84 @@ public class Example {
 | **200** | projectMembers |  -  |
 | **401** | genericError |  -  |
 | **406** | genericError |  -  |
+| **0** | genericError |  -  |
+
+<a name="getProjectMetrics"></a>
+# **getProjectMetrics**
+> GetProjectMetricsResponse getProjectMetrics(projectId, eventType, resolution, from, to)
+
+
+
+Retrieves project metrics for the specified event type and time range
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID
+    String eventType = "eventType_example"; // String | The event type to query for
+    String resolution = "resolution_example"; // String | The resolution of the buckets  The minimum resolution is 1 hour.
+    OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | The start time of the time window
+    OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | The end time of the time window
+    try {
+      GetProjectMetricsResponse result = apiInstance.getProjectMetrics(projectId, eventType, resolution, from, to);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#getProjectMetrics");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID | |
+| **eventType** | **String**| The event type to query for | |
+| **resolution** | **String**| The resolution of the buckets  The minimum resolution is 1 hour. | |
+| **from** | **OffsetDateTime**| The start time of the time window | |
+| **to** | **OffsetDateTime**| The end time of the time window | |
+
+### Return type
+
+[**GetProjectMetricsResponse**](GetProjectMetricsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | getProjectMetricsResponse |  -  |
+| **400** | genericError |  -  |
+| **403** | genericError |  -  |
 | **0** | genericError |  -  |
 
 <a name="listProjectApiKeys"></a>

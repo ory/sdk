@@ -46,6 +46,7 @@ docs/GenericError.md
 docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetProjectMetricsResponse.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
@@ -93,6 +94,7 @@ docs/ManagedIdentitySchemas.md
 docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
+docs/MetricsDatapoint.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -302,6 +304,7 @@ ory_client/model/generic_error.py
 ory_client/model/generic_error_content.py
 ory_client/model/generic_usage.py
 ory_client/model/get_managed_identity_schema_location.py
+ory_client/model/get_project_metrics_response.py
 ory_client/model/get_version200_response.py
 ory_client/model/health_not_ready_status.py
 ory_client/model/health_status.py
@@ -346,6 +349,7 @@ ory_client/model/managed_identity_schema_validation_result.py
 ory_client/model/managed_identity_schemas.py
 ory_client/model/message.py
 ory_client/model/message_dispatch.py
+ory_client/model/metrics_datapoint.py
 ory_client/model/namespace.py
 ory_client/model/needs_privileged_session_error.py
 ory_client/model/normalized_project.py
@@ -540,6 +544,7 @@ test/test_generic_error.py
 test/test_generic_error_content.py
 test/test_generic_usage.py
 test/test_get_managed_identity_schema_location.py
+test/test_get_project_metrics_response.py
 test/test_get_version200_response.py
 test/test_health_not_ready_status.py
 test/test_health_status.py
@@ -587,6 +592,7 @@ test/test_managed_identity_schemas.py
 test/test_message.py
 test/test_message_dispatch.py
 test/test_metadata_api.py
+test/test_metrics_datapoint.py
 test/test_namespace.py
 test/test_needs_privileged_session_error.py
 test/test_normalized_project.py

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.33
+API version: v1.1.34
 Contact: support@ory.sh
 */
 
@@ -17,6 +17,8 @@ import (
 
 // InternalProvisionMockSubscription Internal Provision Mock Subscription Request Body
 type InternalProvisionMockSubscription struct {
+	// Currency usd USD eur Euro
+	Currency string `json:"currency"`
 	// Identity ID
 	IdentityId string `json:"identity_id"`
 	// Billing Interval monthly Monthly yearly Yearly
@@ -29,8 +31,9 @@ type InternalProvisionMockSubscription struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInternalProvisionMockSubscription(identityId string, interval string, plan string) *InternalProvisionMockSubscription {
+func NewInternalProvisionMockSubscription(currency string, identityId string, interval string, plan string) *InternalProvisionMockSubscription {
 	this := InternalProvisionMockSubscription{}
+	this.Currency = currency
 	this.IdentityId = identityId
 	this.Interval = interval
 	this.Plan = plan
@@ -43,6 +46,30 @@ func NewInternalProvisionMockSubscription(identityId string, interval string, pl
 func NewInternalProvisionMockSubscriptionWithDefaults() *InternalProvisionMockSubscription {
 	this := InternalProvisionMockSubscription{}
 	return &this
+}
+
+// GetCurrency returns the Currency field value
+func (o *InternalProvisionMockSubscription) GetCurrency() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *InternalProvisionMockSubscription) GetCurrencyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
+// SetCurrency sets field value
+func (o *InternalProvisionMockSubscription) SetCurrency(v string) {
+	o.Currency = v
 }
 
 // GetIdentityId returns the IdentityId field value
@@ -119,6 +146,9 @@ func (o *InternalProvisionMockSubscription) SetPlan(v string) {
 
 func (o InternalProvisionMockSubscription) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
 	if true {
 		toSerialize["identity_id"] = o.IdentityId
 	}

@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreateSubscriptionBody, () {
+    //  usd USD eur Euro
+    // String currency
+    test('to test the property `currency`', () async {
+      // TODO
+    });
+
     //  monthly Monthly yearly Yearly
     // String interval
     test('to test the property `interval`', () async {

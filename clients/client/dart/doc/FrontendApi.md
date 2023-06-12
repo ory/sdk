@@ -1159,7 +1159,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateLogoutFlow**
-> updateLogoutFlow(token, returnTo)
+> updateLogoutFlow(token, returnTo, cookie)
 
 Update Logout Flow
 
@@ -1172,9 +1172,10 @@ import 'package:ory_client/api.dart';
 final api = OryClient().getFrontendApi();
 final String token = token_example; // String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
 final String returnTo = returnTo_example; // String | The URL to return to after the logout was completed.
+final String cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    api.updateLogoutFlow(token, returnTo);
+    api.updateLogoutFlow(token, returnTo, cookie);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->updateLogoutFlow: $e\n');
 }
@@ -1186,6 +1187,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **String**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. | [optional] 
  **returnTo** | **String**| The URL to return to after the logout was completed. | [optional] 
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 

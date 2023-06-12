@@ -9,6 +9,7 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) |  | 
+**currency** | **String** | The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro | 
 **currentInterval** | **String** | The currently active interval of the subscription monthly Monthly yearly Yearly | 
 **currentPlan** | **String** | The currently active plan of the subscription | 
 **customerId** | **String** | The ID of the stripe customer | 

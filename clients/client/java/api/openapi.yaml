@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.33
+  version: v1.1.34
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -770,14 +770,20 @@ paths:
       - description: |-
           Include Credentials in Response
 
-          Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access,
-          Refresh and (optionally) OpenID Connect ID Token.
+          Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
         explode: true
         in: query
         name: include_credential
         required: false
         schema:
           items:
+            enum:
+            - password
+            - totp
+            - oidc
+            - webauthn
+            - lookup_secret
             type: string
           type: array
         style: form
@@ -3637,6 +3643,88 @@ paths:
       tags:
       - project
       x-accepts: application/json
+  /projects/{project_id}/metrics:
+    get:
+      description: Retrieves project metrics for the specified event type and time
+        range
+      operationId: getProjectMetrics
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The event type to query for
+        explode: true
+        in: query
+        name: event_type
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: |-
+          The resolution of the buckets
+
+          The minimum resolution is 1 hour.
+        explode: true
+        in: query
+        name: resolution
+        required: true
+        schema:
+          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          type: string
+        style: form
+      - description: The start time of the time window
+        explode: true
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: The end time of the time window
+        explode: true
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getProjectMetricsResponse'
+          description: getProjectMetricsResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      tags:
+      - project
+      x-accepts: application/json
   /projects/{project}/tokens:
     get:
       description: A list of all the project's API tokens.
@@ -4808,6 +4896,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "204":
           description: |-
@@ -7413,6 +7513,18 @@ components:
     createSubscriptionBody:
       description: Create Subscription Request Body
       properties:
+        currency:
+          description: |2-
+
+            usd USD
+            eur Euro
+          enum:
+          - usd
+          - eur
+          type: string
+          x-go-enum-desc: |-
+            usd USD
+            eur Euro
         interval:
           description: |2-
 
@@ -7769,6 +7881,24 @@ components:
       properties:
         location:
           type: string
+      type: object
+    getProjectMetricsResponse:
+      description: Response of the getMetrics endpoint
+      example:
+        data:
+        - count: 0
+          time: 2000-01-23T04:56:07.000+00:00
+        - count: 0
+          time: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          description: The list of data points.
+          items:
+            $ref: '#/components/schemas/metricsDatapoint'
+          readOnly: true
+          type: array
+      required:
+      - data
       type: object
     healthNotReadyStatus:
       properties:
@@ -8192,6 +8322,18 @@ components:
     internalProvisionMockSubscription:
       description: Internal Provision Mock Subscription Request Body
       properties:
+        currency:
+          description: |-
+            Currency
+            usd USD
+            eur Euro
+          enum:
+          - usd
+          - eur
+          type: string
+          x-go-enum-desc: |-
+            usd USD
+            eur Euro
         identity_id:
           description: Identity ID
           format: uuid
@@ -8212,6 +8354,7 @@ components:
           description: Plan ID
           type: string
       required:
+      - currency
       - identity_id
       - interval
       - plan
@@ -9013,6 +9156,24 @@ components:
       - message_id
       - status
       - updated_at
+      type: object
+    metricsDatapoint:
+      description: Represents a single datapoint/bucket of a time series
+      example:
+        count: 0
+        time: 2000-01-23T04:56:07.000+00:00
+      properties:
+        count:
+          description: The count of events that occured in this time
+          format: int64
+          type: integer
+        time:
+          description: The time of the bucket
+          format: date-time
+          type: string
+      required:
+      - count
+      - time
       type: object
     namespace:
       example:
@@ -10301,6 +10462,20 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        state:
+          description: |-
+            State indicates the state of the provider
+
+            Only providers with state `enabled` will be used for authentication
+            enabled ThirdPartyProviderStateEnabled
+            disabled ThirdPartyProviderStateDisabled
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-go-enum-desc: |-
+            enabled ThirdPartyProviderStateEnabled
+            disabled ThirdPartyProviderStateDisabled
         subject_source:
           nullable: true
           type: string
@@ -12685,6 +12860,7 @@ components:
             edge_cache EdgeCache
             branding_themes BrandingThemes
             zendesk_support ZendeskSupport
+            project_metrics ProjectMetrics
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
           enum:
@@ -12700,6 +12876,7 @@ components:
           - edge_cache
           - branding_themes
           - zendesk_support
+          - project_metrics
           - rate_limit_tier
           - session_rate_limit_tier
           type: string
@@ -12716,6 +12893,7 @@ components:
             edge_cache EdgeCache
             branding_themes BrandingThemes
             zendesk_support ZendeskSupport
+            project_metrics ProjectMetrics
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
         feature_available:
@@ -13340,9 +13518,11 @@ components:
         authentication_methods:
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
+          provider: provider
           aal: null
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
+          provider: provider
           aal: null
         authenticator_assurance_level: null
         identity:
@@ -13454,6 +13634,7 @@ components:
       example:
         completed_at: 2000-01-23T04:56:07.000+00:00
         method: link_recovery
+        provider: provider
         aal: null
       properties:
         aal:
@@ -13473,6 +13654,9 @@ components:
           - lookup_secret
           - v0.6_legacy_session
           title: The method used
+          type: string
+        provider:
+          description: OIDC or SAML provider id used for authentication
           type: string
       title: AuthenticationMethod identifies an authentication method
       type: object
@@ -13786,6 +13970,19 @@ components:
           format: date-time
           readOnly: true
           type: string
+        currency:
+          description: |-
+            The currency of the subscription. To change this, a new subscription must be created.
+            usd USD
+            eur Euro
+          enum:
+          - usd
+          - eur
+          readOnly: true
+          type: string
+          x-go-enum-desc: |-
+            usd USD
+            eur Euro
         current_interval:
           description: |-
             The currently active interval of the subscription
@@ -13847,6 +14044,7 @@ components:
           type: string
       required:
       - created_at
+      - currency
       - current_interval
       - current_plan
       - customer_id
@@ -13894,9 +14092,11 @@ components:
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
+            provider: provider
             aal: null
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
+            provider: provider
             aal: null
           authenticator_assurance_level: null
           identity:
@@ -14036,9 +14236,11 @@ components:
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
+            provider: provider
             aal: null
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
+            provider: provider
             aal: null
           authenticator_assurance_level: null
           identity:
@@ -14942,6 +15144,7 @@ components:
             Supported parameters are:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+            `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
           type: object
       required:
       - method
@@ -15147,6 +15350,7 @@ components:
             Supported parameters are:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+            `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
           type: object
       required:
       - method
@@ -15306,6 +15510,7 @@ components:
             Supported parameters are:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+            `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
           type: object
       required:
       - method
@@ -15509,7 +15714,15 @@ components:
             Method is the method that should be used for this verification flow
 
             Allowed values are `link` and `code`
+            link VerificationStrategyLink
+            code VerificationStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link VerificationStrategyLink
+            code VerificationStrategyCode
       required:
       - email
       - method

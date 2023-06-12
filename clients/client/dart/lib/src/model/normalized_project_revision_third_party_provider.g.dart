@@ -6,6 +6,71 @@ part of 'normalized_project_revision_third_party_provider.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const NormalizedProjectRevisionThirdPartyProviderStateEnum
+    _$normalizedProjectRevisionThirdPartyProviderStateEnum_enabled =
+    const NormalizedProjectRevisionThirdPartyProviderStateEnum._('enabled');
+const NormalizedProjectRevisionThirdPartyProviderStateEnum
+    _$normalizedProjectRevisionThirdPartyProviderStateEnum_disabled =
+    const NormalizedProjectRevisionThirdPartyProviderStateEnum._('disabled');
+
+NormalizedProjectRevisionThirdPartyProviderStateEnum
+    _$normalizedProjectRevisionThirdPartyProviderStateEnumValueOf(String name) {
+  switch (name) {
+    case 'enabled':
+      return _$normalizedProjectRevisionThirdPartyProviderStateEnum_enabled;
+    case 'disabled':
+      return _$normalizedProjectRevisionThirdPartyProviderStateEnum_disabled;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<NormalizedProjectRevisionThirdPartyProviderStateEnum>
+    _$normalizedProjectRevisionThirdPartyProviderStateEnumValues = new BuiltSet<
+        NormalizedProjectRevisionThirdPartyProviderStateEnum>(const <NormalizedProjectRevisionThirdPartyProviderStateEnum>[
+  _$normalizedProjectRevisionThirdPartyProviderStateEnum_enabled,
+  _$normalizedProjectRevisionThirdPartyProviderStateEnum_disabled,
+]);
+
+Serializer<NormalizedProjectRevisionThirdPartyProviderStateEnum>
+    _$normalizedProjectRevisionThirdPartyProviderStateEnumSerializer =
+    new _$NormalizedProjectRevisionThirdPartyProviderStateEnumSerializer();
+
+class _$NormalizedProjectRevisionThirdPartyProviderStateEnumSerializer
+    implements
+        PrimitiveSerializer<
+            NormalizedProjectRevisionThirdPartyProviderStateEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'enabled': 'enabled',
+    'disabled': 'disabled',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'enabled': 'enabled',
+    'disabled': 'disabled',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    NormalizedProjectRevisionThirdPartyProviderStateEnum
+  ];
+  @override
+  final String wireName =
+      'NormalizedProjectRevisionThirdPartyProviderStateEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          NormalizedProjectRevisionThirdPartyProviderStateEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  NormalizedProjectRevisionThirdPartyProviderStateEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      NormalizedProjectRevisionThirdPartyProviderStateEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$NormalizedProjectRevisionThirdPartyProvider
     extends NormalizedProjectRevisionThirdPartyProvider {
   @override
@@ -43,6 +108,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   @override
   final BuiltList<String>? scope;
   @override
+  final NormalizedProjectRevisionThirdPartyProviderStateEnum? state;
+  @override
   final String? subjectSource;
   @override
   final String? tokenUrl;
@@ -74,6 +141,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
       this.providerId,
       this.requestedClaims,
       this.scope,
+      this.state,
       this.subjectSource,
       this.tokenUrl,
       this.updatedAt})
@@ -110,6 +178,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
         providerId == other.providerId &&
         requestedClaims == other.requestedClaims &&
         scope == other.scope &&
+        state == other.state &&
         subjectSource == other.subjectSource &&
         tokenUrl == other.tokenUrl &&
         updatedAt == other.updatedAt;
@@ -135,6 +204,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
     _$hash = $jc(_$hash, providerId.hashCode);
     _$hash = $jc(_$hash, requestedClaims.hashCode);
     _$hash = $jc(_$hash, scope.hashCode);
+    _$hash = $jc(_$hash, state.hashCode);
     _$hash = $jc(_$hash, subjectSource.hashCode);
     _$hash = $jc(_$hash, tokenUrl.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
@@ -163,6 +233,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
           ..add('providerId', providerId)
           ..add('requestedClaims', requestedClaims)
           ..add('scope', scope)
+          ..add('state', state)
           ..add('subjectSource', subjectSource)
           ..add('tokenUrl', tokenUrl)
           ..add('updatedAt', updatedAt))
@@ -248,6 +319,12 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   ListBuilder<String> get scope => _$this._scope ??= new ListBuilder<String>();
   set scope(ListBuilder<String>? scope) => _$this._scope = scope;
 
+  NormalizedProjectRevisionThirdPartyProviderStateEnum? _state;
+  NormalizedProjectRevisionThirdPartyProviderStateEnum? get state =>
+      _$this._state;
+  set state(NormalizedProjectRevisionThirdPartyProviderStateEnum? state) =>
+      _$this._state = state;
+
   String? _subjectSource;
   String? get subjectSource => _$this._subjectSource;
   set subjectSource(String? subjectSource) =>
@@ -285,6 +362,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
       _providerId = $v.providerId;
       _requestedClaims = $v.requestedClaims;
       _scope = $v.scope?.toBuilder();
+      _state = $v.state;
       _subjectSource = $v.subjectSource;
       _tokenUrl = $v.tokenUrl;
       _updatedAt = $v.updatedAt;
@@ -331,6 +409,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
               providerId: providerId,
               requestedClaims: requestedClaims,
               scope: _scope?.build(),
+              state: state,
               subjectSource: subjectSource,
               tokenUrl: tokenUrl,
               updatedAt: updatedAt);

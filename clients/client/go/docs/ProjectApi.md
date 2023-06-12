@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**GetActiveProjectInConsole**](ProjectApi.md#GetActiveProjectInConsole) | **Get** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**GetProject**](ProjectApi.md#GetProject) | **Get** /projects/{project_id} | Get a Project
 [**GetProjectMembers**](ProjectApi.md#GetProjectMembers) | **Get** /projects/{project_id}/members | Get all members associated with this project
+[**GetProjectMetrics**](ProjectApi.md#GetProjectMetrics) | **Get** /projects/{project_id}/metrics | 
 [**ListProjectApiKeys**](ProjectApi.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**ListProjects**](ProjectApi.md#ListProjects) | **Get** /projects | List All Projects
 [**PatchProject**](ProjectApi.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
@@ -415,6 +416,85 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]CloudAccount**](CloudAccount.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetProjectMetrics
+
+> GetProjectMetricsResponse GetProjectMetrics(ctx, projectId).EventType(eventType).Resolution(resolution).From(from).To(to).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectId := "projectId_example" // string | Project ID
+    eventType := "eventType_example" // string | The event type to query for
+    resolution := "resolution_example" // string | The resolution of the buckets  The minimum resolution is 1 hour.
+    from := time.Now() // time.Time | The start time of the time window
+    to := time.Now() // time.Time | The end time of the time window
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectApi.GetProjectMetrics(context.Background(), projectId).EventType(eventType).Resolution(resolution).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.GetProjectMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetProjectMetrics`: GetProjectMetricsResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.GetProjectMetrics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetProjectMetricsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **eventType** | **string** | The event type to query for | 
+ **resolution** | **string** | The resolution of the buckets  The minimum resolution is 1 hour. | 
+ **from** | **time.Time** | The start time of the time window | 
+ **to** | **time.Time** | The end time of the time window | 
+
+### Return type
+
+[**GetProjectMetricsResponse**](GetProjectMetricsResponse.md)
 
 ### Authorization
 

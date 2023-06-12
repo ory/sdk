@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Aal** | Pointer to [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
 **CompletedAt** | Pointer to **time.Time** | When the authentication challenge was completed. | [optional] 
 **Method** | Pointer to **string** |  | [optional] 
+**Provider** | Pointer to **string** | OIDC or SAML provider id used for authentication | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetMethod sets Method field to given value.
 `func (o *SessionAuthenticationMethod) HasMethod() bool`
 
 HasMethod returns a boolean if a field has been set.
+
+### GetProvider
+
+`func (o *SessionAuthenticationMethod) GetProvider() string`
+
+GetProvider returns the Provider field if non-nil, zero value otherwise.
+
+### GetProviderOk
+
+`func (o *SessionAuthenticationMethod) GetProviderOk() (*string, bool)`
+
+GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvider
+
+`func (o *SessionAuthenticationMethod) SetProvider(v string)`
+
+SetProvider sets Provider field to given value.
+
+### HasProvider
+
+`func (o *SessionAuthenticationMethod) HasProvider() bool`
+
+HasProvider returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

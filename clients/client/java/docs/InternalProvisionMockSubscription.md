@@ -8,9 +8,19 @@ Internal Provision Mock Subscription Request Body
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**currency** | [**CurrencyEnum**](#CurrencyEnum) | Currency usd USD eur Euro |  |
 |**identityId** | **String** | Identity ID |  |
 |**interval** | [**IntervalEnum**](#IntervalEnum) | Billing Interval monthly Monthly yearly Yearly |  |
 |**plan** | **String** | Plan ID |  |
+
+
+
+## Enum: CurrencyEnum
+
+| Name | Value |
+|---- | -----|
+| USD | &quot;usd&quot; |
+| EUR | &quot;eur&quot; |
 
 
 

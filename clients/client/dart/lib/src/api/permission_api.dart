@@ -98,22 +98,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckPermissionResult _responseData;
+    CheckPermissionResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckPermissionResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckPermissionResult),
       ) as CheckPermissionResult;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckPermissionResult>(
@@ -204,22 +205,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckPermissionResult _responseData;
+    CheckPermissionResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckPermissionResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckPermissionResult),
       ) as CheckPermissionResult;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckPermissionResult>(
@@ -298,22 +300,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ExpandedPermissionTree _responseData;
+    ExpandedPermissionTree? _responseData;
 
     try {
-      const _responseType = FullType(ExpandedPermissionTree);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ExpandedPermissionTree),
       ) as ExpandedPermissionTree;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<ExpandedPermissionTree>(
@@ -390,9 +393,10 @@ class PermissionApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -405,22 +409,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckPermissionResult _responseData;
+    CheckPermissionResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckPermissionResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckPermissionResult),
       ) as CheckPermissionResult;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckPermissionResult>(
@@ -497,9 +502,10 @@ class PermissionApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -512,22 +518,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckPermissionResult _responseData;
+    CheckPermissionResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckPermissionResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckPermissionResult),
       ) as CheckPermissionResult;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckPermissionResult>(

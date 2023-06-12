@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Currency** | **string** | Currency usd USD eur Euro | 
 **IdentityId** | **string** | Identity ID | 
 **Interval** | **string** | Billing Interval monthly Monthly yearly Yearly | 
 **Plan** | **string** | Plan ID | 
@@ -12,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewInternalProvisionMockSubscription
 
-`func NewInternalProvisionMockSubscription(identityId string, interval string, plan string, ) *InternalProvisionMockSubscription`
+`func NewInternalProvisionMockSubscription(currency string, identityId string, interval string, plan string, ) *InternalProvisionMockSubscription`
 
 NewInternalProvisionMockSubscription instantiates a new InternalProvisionMockSubscription object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +27,26 @@ will change when the set of required properties is changed
 NewInternalProvisionMockSubscriptionWithDefaults instantiates a new InternalProvisionMockSubscription object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCurrency
+
+`func (o *InternalProvisionMockSubscription) GetCurrency() string`
+
+GetCurrency returns the Currency field if non-nil, zero value otherwise.
+
+### GetCurrencyOk
+
+`func (o *InternalProvisionMockSubscription) GetCurrencyOk() (*string, bool)`
+
+GetCurrencyOk returns a tuple with the Currency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrency
+
+`func (o *InternalProvisionMockSubscription) SetCurrency(v string)`
+
+SetCurrency sets Currency field to given value.
+
 
 ### GetIdentityId
 

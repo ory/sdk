@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
 **RequestedClaims** | Pointer to **map[string]interface{}** |  | [optional] 
 **Scope** | Pointer to **[]string** |  | [optional] 
+**State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **SubjectSource** | Pointer to **NullableString** |  | [optional] 
 **TokenUrl** | Pointer to **string** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
@@ -488,6 +489,31 @@ SetScope sets Scope field to given value.
 `func (o *NormalizedProjectRevisionThirdPartyProvider) HasScope() bool`
 
 HasScope returns a boolean if a field has been set.
+
+### GetState
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetState(v string)`
+
+SetState sets State field to given value.
+
+### HasState
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasState() bool`
+
+HasState returns a boolean if a field has been set.
 
 ### GetSubjectSource
 

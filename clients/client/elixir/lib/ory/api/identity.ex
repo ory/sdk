@@ -340,7 +340,7 @@ defmodule Ory.Api.Identity do
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): ID must be set to the ID of identity you want to get
   - `opts` (keyword): Optional parameters
-    - `:include_credential` ([String.t]): Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+    - `:include_credential` ([String.t]): Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 
   ### Returns
 

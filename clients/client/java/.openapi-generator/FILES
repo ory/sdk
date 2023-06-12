@@ -48,6 +48,7 @@ docs/GenericError.md
 docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetProjectMetricsResponse.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
@@ -89,6 +90,7 @@ docs/ManagedIdentitySchemaValidationResult.md
 docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
+docs/MetricsDatapoint.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -297,6 +299,7 @@ src/main/java/sh/ory/model/GenericError.java
 src/main/java/sh/ory/model/GenericErrorContent.java
 src/main/java/sh/ory/model/GenericUsage.java
 src/main/java/sh/ory/model/GetManagedIdentitySchemaLocation.java
+src/main/java/sh/ory/model/GetProjectMetricsResponse.java
 src/main/java/sh/ory/model/GetVersion200Response.java
 src/main/java/sh/ory/model/HealthNotReadyStatus.java
 src/main/java/sh/ory/model/HealthStatus.java
@@ -335,6 +338,7 @@ src/main/java/sh/ory/model/ManagedIdentitySchema.java
 src/main/java/sh/ory/model/ManagedIdentitySchemaValidationResult.java
 src/main/java/sh/ory/model/Message.java
 src/main/java/sh/ory/model/MessageDispatch.java
+src/main/java/sh/ory/model/MetricsDatapoint.java
 src/main/java/sh/ory/model/Namespace.java
 src/main/java/sh/ory/model/NeedsPrivilegedSessionError.java
 src/main/java/sh/ory/model/NormalizedProject.java
@@ -506,6 +510,7 @@ src/test/java/sh/ory/model/GenericErrorContentTest.java
 src/test/java/sh/ory/model/GenericErrorTest.java
 src/test/java/sh/ory/model/GenericUsageTest.java
 src/test/java/sh/ory/model/GetManagedIdentitySchemaLocationTest.java
+src/test/java/sh/ory/model/GetProjectMetricsResponseTest.java
 src/test/java/sh/ory/model/GetVersion200ResponseTest.java
 src/test/java/sh/ory/model/HealthNotReadyStatusTest.java
 src/test/java/sh/ory/model/HealthStatusTest.java
@@ -544,6 +549,7 @@ src/test/java/sh/ory/model/ManagedIdentitySchemaTest.java
 src/test/java/sh/ory/model/ManagedIdentitySchemaValidationResultTest.java
 src/test/java/sh/ory/model/MessageDispatchTest.java
 src/test/java/sh/ory/model/MessageTest.java
+src/test/java/sh/ory/model/MetricsDatapointTest.java
 src/test/java/sh/ory/model/NamespaceTest.java
 src/test/java/sh/ory/model/NeedsPrivilegedSessionErrorTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionHookTest.java

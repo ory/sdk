@@ -42,6 +42,7 @@ docs/ClientGenericError.md
 docs/ClientGenericErrorContent.md
 docs/ClientGenericUsage.md
 docs/ClientGetManagedIdentitySchemaLocation.md
+docs/ClientGetProjectMetricsResponse.md
 docs/ClientHealthNotReadyStatus.md
 docs/ClientHealthStatus.md
 docs/ClientIdentity.md
@@ -81,6 +82,7 @@ docs/ClientManagedIdentitySchema.md
 docs/ClientManagedIdentitySchemaValidationResult.md
 docs/ClientMessage.md
 docs/ClientMessageDispatch.md
+docs/ClientMetricsDatapoint.md
 docs/ClientNamespace.md
 docs/ClientNeedsPrivilegedSessionError.md
 docs/ClientNormalizedProject.md
@@ -263,6 +265,7 @@ src/Ory.Client.Test/Model/ClientGenericErrorContentTests.cs
 src/Ory.Client.Test/Model/ClientGenericErrorTests.cs
 src/Ory.Client.Test/Model/ClientGenericUsageTests.cs
 src/Ory.Client.Test/Model/ClientGetManagedIdentitySchemaLocationTests.cs
+src/Ory.Client.Test/Model/ClientGetProjectMetricsResponseTests.cs
 src/Ory.Client.Test/Model/ClientHealthNotReadyStatusTests.cs
 src/Ory.Client.Test/Model/ClientHealthStatusTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsOidcProviderTests.cs
@@ -302,6 +305,7 @@ src/Ory.Client.Test/Model/ClientManagedIdentitySchemaTests.cs
 src/Ory.Client.Test/Model/ClientManagedIdentitySchemaValidationResultTests.cs
 src/Ory.Client.Test/Model/ClientMessageDispatchTests.cs
 src/Ory.Client.Test/Model/ClientMessageTests.cs
+src/Ory.Client.Test/Model/ClientMetricsDatapointTests.cs
 src/Ory.Client.Test/Model/ClientNamespaceTests.cs
 src/Ory.Client.Test/Model/ClientNeedsPrivilegedSessionErrorTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionHookTests.cs
@@ -490,6 +494,7 @@ src/Ory.Client/Model/ClientGenericError.cs
 src/Ory.Client/Model/ClientGenericErrorContent.cs
 src/Ory.Client/Model/ClientGenericUsage.cs
 src/Ory.Client/Model/ClientGetManagedIdentitySchemaLocation.cs
+src/Ory.Client/Model/ClientGetProjectMetricsResponse.cs
 src/Ory.Client/Model/ClientHealthNotReadyStatus.cs
 src/Ory.Client/Model/ClientHealthStatus.cs
 src/Ory.Client/Model/ClientIdentity.cs
@@ -529,6 +534,7 @@ src/Ory.Client/Model/ClientManagedIdentitySchema.cs
 src/Ory.Client/Model/ClientManagedIdentitySchemaValidationResult.cs
 src/Ory.Client/Model/ClientMessage.cs
 src/Ory.Client/Model/ClientMessageDispatch.cs
+src/Ory.Client/Model/ClientMetricsDatapoint.cs
 src/Ory.Client/Model/ClientNamespace.cs
 src/Ory.Client/Model/ClientNeedsPrivilegedSessionError.cs
 src/Ory.Client/Model/ClientNormalizedProject.cs

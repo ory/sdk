@@ -54,6 +54,7 @@ docs/Model/GenericError.md
 docs/Model/GenericErrorContent.md
 docs/Model/GenericUsage.md
 docs/Model/GetManagedIdentitySchemaLocation.md
+docs/Model/GetProjectMetricsResponse.md
 docs/Model/HealthNotReadyStatus.md
 docs/Model/HealthStatus.md
 docs/Model/Identity.md
@@ -93,6 +94,7 @@ docs/Model/ManagedIdentitySchema.md
 docs/Model/ManagedIdentitySchemaValidationResult.md
 docs/Model/Message.md
 docs/Model/MessageDispatch.md
+docs/Model/MetricsDatapoint.md
 docs/Model/ModelNamespace.md
 docs/Model/NeedsPrivilegedSessionError.md
 docs/Model/NormalizedProject.md
@@ -267,6 +269,7 @@ lib/Model/GenericError.php
 lib/Model/GenericErrorContent.php
 lib/Model/GenericUsage.php
 lib/Model/GetManagedIdentitySchemaLocation.php
+lib/Model/GetProjectMetricsResponse.php
 lib/Model/HealthNotReadyStatus.php
 lib/Model/HealthStatus.php
 lib/Model/Identity.php
@@ -306,6 +309,7 @@ lib/Model/ManagedIdentitySchema.php
 lib/Model/ManagedIdentitySchemaValidationResult.php
 lib/Model/Message.php
 lib/Model/MessageDispatch.php
+lib/Model/MetricsDatapoint.php
 lib/Model/ModelInterface.php
 lib/Model/ModelNamespace.php
 lib/Model/NeedsPrivilegedSessionError.php
@@ -479,6 +483,7 @@ test/Model/GenericErrorContentTest.php
 test/Model/GenericErrorTest.php
 test/Model/GenericUsageTest.php
 test/Model/GetManagedIdentitySchemaLocationTest.php
+test/Model/GetProjectMetricsResponseTest.php
 test/Model/HealthNotReadyStatusTest.php
 test/Model/HealthStatusTest.php
 test/Model/IdentityCredentialsOidcProviderTest.php
@@ -518,6 +523,7 @@ test/Model/ManagedIdentitySchemaTest.php
 test/Model/ManagedIdentitySchemaValidationResultTest.php
 test/Model/MessageDispatchTest.php
 test/Model/MessageTest.php
+test/Model/MetricsDatapointTest.php
 test/Model/ModelNamespaceTest.php
 test/Model/NeedsPrivilegedSessionErrorTest.php
 test/Model/NormalizedProjectRevisionHookTest.php

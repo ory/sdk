@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [readonly] 
+**currency** | **str** | The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro | [readonly] 
 **current_interval** | **str** | The currently active interval of the subscription monthly Monthly yearly Yearly | [readonly] 
 **current_plan** | **str** | The currently active plan of the subscription | [readonly] 
 **customer_id** | **str** | The ID of the stripe customer | [readonly] 

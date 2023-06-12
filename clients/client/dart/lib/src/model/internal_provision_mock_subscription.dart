@@ -12,11 +12,17 @@ part 'internal_provision_mock_subscription.g.dart';
 /// Internal Provision Mock Subscription Request Body
 ///
 /// Properties:
+/// * [currency] - Currency usd USD eur Euro
 /// * [identityId] - Identity ID
 /// * [interval] - Billing Interval monthly Monthly yearly Yearly
 /// * [plan] - Plan ID
 @BuiltValue()
 abstract class InternalProvisionMockSubscription implements Built<InternalProvisionMockSubscription, InternalProvisionMockSubscriptionBuilder> {
+  /// Currency usd USD eur Euro
+  @BuiltValueField(wireName: r'currency')
+  InternalProvisionMockSubscriptionCurrencyEnum get currency;
+  // enum currencyEnum {  usd,  eur,  };
+
   /// Identity ID
   @BuiltValueField(wireName: r'identity_id')
   String get identityId;
@@ -53,6 +59,11 @@ class _$InternalProvisionMockSubscriptionSerializer implements PrimitiveSerializ
     InternalProvisionMockSubscription object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    yield r'currency';
+    yield serializers.serialize(
+      object.currency,
+      specifiedType: const FullType(InternalProvisionMockSubscriptionCurrencyEnum),
+    );
     yield r'identity_id';
     yield serializers.serialize(
       object.identityId,
@@ -91,6 +102,13 @@ class _$InternalProvisionMockSubscriptionSerializer implements PrimitiveSerializ
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'currency':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(InternalProvisionMockSubscriptionCurrencyEnum),
+          ) as InternalProvisionMockSubscriptionCurrencyEnum;
+          result.currency = valueDes;
+          break;
         case r'identity_id':
           final valueDes = serializers.deserialize(
             value,
@@ -139,6 +157,23 @@ class _$InternalProvisionMockSubscriptionSerializer implements PrimitiveSerializ
     );
     return result.build();
   }
+}
+
+class InternalProvisionMockSubscriptionCurrencyEnum extends EnumClass {
+
+  /// Currency usd USD eur Euro
+  @BuiltValueEnumConst(wireName: r'usd')
+  static const InternalProvisionMockSubscriptionCurrencyEnum usd = _$internalProvisionMockSubscriptionCurrencyEnum_usd;
+  /// Currency usd USD eur Euro
+  @BuiltValueEnumConst(wireName: r'eur')
+  static const InternalProvisionMockSubscriptionCurrencyEnum eur = _$internalProvisionMockSubscriptionCurrencyEnum_eur;
+
+  static Serializer<InternalProvisionMockSubscriptionCurrencyEnum> get serializer => _$internalProvisionMockSubscriptionCurrencyEnumSerializer;
+
+  const InternalProvisionMockSubscriptionCurrencyEnum._(String name): super(name);
+
+  static BuiltSet<InternalProvisionMockSubscriptionCurrencyEnum> get values => _$internalProvisionMockSubscriptionCurrencyEnumValues;
+  static InternalProvisionMockSubscriptionCurrencyEnum valueOf(String name) => _$internalProvisionMockSubscriptionCurrencyEnumValueOf(name);
 }
 
 class InternalProvisionMockSubscriptionIntervalEnum extends EnumClass {

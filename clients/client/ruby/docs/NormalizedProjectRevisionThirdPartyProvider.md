@@ -21,6 +21,7 @@
 | **provider_id** | **String** | ID is the provider&#39;s ID | [optional] |
 | **requested_claims** | **Object** |  | [optional] |
 | **scope** | **Array&lt;String&gt;** |  | [optional] |
+| **state** | **String** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] |
 | **subject_source** | **String** |  | [optional] |
 | **token_url** | **String** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
@@ -48,6 +49,7 @@ instance = OryClient::NormalizedProjectRevisionThirdPartyProvider.new(
   provider_id: null,
   requested_claims: null,
   scope: null,
+  state: null,
   subject_source: null,
   token_url: https://www.googleapis.com/oauth2/v4/token,
   updated_at: null

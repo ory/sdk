@@ -44,6 +44,7 @@ doc/GenericError.md
 doc/GenericErrorContent.md
 doc/GenericUsage.md
 doc/GetManagedIdentitySchemaLocation.md
+doc/GetProjectMetricsResponse.md
 doc/GetVersion200Response.md
 doc/HealthNotReadyStatus.md
 doc/HealthStatus.md
@@ -85,6 +86,7 @@ doc/ManagedIdentitySchemaValidationResult.md
 doc/Message.md
 doc/MessageDispatch.md
 doc/MetadataApi.md
+doc/MetricsDatapoint.md
 doc/Namespace.md
 doc/NeedsPrivilegedSessionError.md
 doc/NormalizedProject.md
@@ -272,6 +274,7 @@ lib/src/model/generic_error.dart
 lib/src/model/generic_error_content.dart
 lib/src/model/generic_usage.dart
 lib/src/model/get_managed_identity_schema_location.dart
+lib/src/model/get_project_metrics_response.dart
 lib/src/model/get_version200_response.dart
 lib/src/model/health_not_ready_status.dart
 lib/src/model/health_status.dart
@@ -310,6 +313,7 @@ lib/src/model/managed_identity_schema.dart
 lib/src/model/managed_identity_schema_validation_result.dart
 lib/src/model/message.dart
 lib/src/model/message_dispatch.dart
+lib/src/model/metrics_datapoint.dart
 lib/src/model/namespace.dart
 lib/src/model/needs_privileged_session_error.dart
 lib/src/model/normalized_project.dart
@@ -474,6 +478,7 @@ test/generic_error_content_test.dart
 test/generic_error_test.dart
 test/generic_usage_test.dart
 test/get_managed_identity_schema_location_test.dart
+test/get_project_metrics_response_test.dart
 test/get_version200_response_test.dart
 test/health_not_ready_status_test.dart
 test/health_status_test.dart
@@ -515,6 +520,7 @@ test/managed_identity_schema_validation_result_test.dart
 test/message_dispatch_test.dart
 test/message_test.dart
 test/metadata_api_test.dart
+test/metrics_datapoint_test.dart
 test/namespace_test.dart
 test/needs_privileged_session_error_test.dart
 test/normalized_project_revision_hook_test.dart

@@ -61,6 +61,13 @@ void main() {
       // TODO
     });
 
+    // Retrieves project metrics for the specified event type and time range
+    //
+    //Future<GetProjectMetricsResponse> getProjectMetrics(String projectId, String eventType, String resolution, DateTime from, DateTime to) async
+    test('test getProjectMetrics', () async {
+      // TODO
+    });
+
     // List a project's API Tokens
     //
     // A list of all the project's API tokens.

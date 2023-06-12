@@ -98,22 +98,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LoginFlow _responseData;
+    LoginFlow? _responseData;
 
     try {
-      const _responseType = FullType(LoginFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LoginFlow),
       ) as LoginFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<LoginFlow>(
@@ -173,22 +174,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LogoutFlow _responseData;
+    LogoutFlow? _responseData;
 
     try {
-      const _responseType = FullType(LogoutFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LogoutFlow),
       ) as LogoutFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<LogoutFlow>(
@@ -252,22 +254,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryFlow _responseData;
+    RecoveryFlow? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryFlow),
       ) as RecoveryFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryFlow>(
@@ -337,22 +340,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RegistrationFlow _responseData;
+    RegistrationFlow? _responseData;
 
     try {
-      const _responseType = FullType(RegistrationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RegistrationFlow),
       ) as RegistrationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RegistrationFlow>(
@@ -419,22 +423,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SettingsFlow _responseData;
+    SettingsFlow? _responseData;
 
     try {
-      const _responseType = FullType(SettingsFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SettingsFlow),
       ) as SettingsFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SettingsFlow>(
@@ -498,22 +503,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    VerificationFlow _responseData;
+    VerificationFlow? _responseData;
 
     try {
-      const _responseType = FullType(VerificationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VerificationFlow),
       ) as VerificationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<VerificationFlow>(
@@ -589,22 +595,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LoginFlow _responseData;
+    LoginFlow? _responseData;
 
     try {
-      const _responseType = FullType(LoginFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LoginFlow),
       ) as LoginFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<LoginFlow>(
@@ -661,22 +668,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryFlow _responseData;
+    RecoveryFlow? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryFlow),
       ) as RecoveryFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryFlow>(
@@ -743,22 +751,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RegistrationFlow _responseData;
+    RegistrationFlow? _responseData;
 
     try {
-      const _responseType = FullType(RegistrationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RegistrationFlow),
       ) as RegistrationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RegistrationFlow>(
@@ -818,22 +827,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SettingsFlow _responseData;
+    SettingsFlow? _responseData;
 
     try {
-      const _responseType = FullType(SettingsFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SettingsFlow),
       ) as SettingsFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SettingsFlow>(
@@ -890,22 +900,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    VerificationFlow _responseData;
+    VerificationFlow? _responseData;
 
     try {
-      const _responseType = FullType(VerificationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VerificationFlow),
       ) as VerificationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<VerificationFlow>(
@@ -968,22 +979,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    DeleteMySessionsCount _responseData;
+    DeleteMySessionsCount? _responseData;
 
     try {
-      const _responseType = FullType(DeleteMySessionsCount);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DeleteMySessionsCount),
       ) as DeleteMySessionsCount;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<DeleteMySessionsCount>(
@@ -1103,22 +1115,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SuccessfulNativeLogin _responseData;
+    SuccessfulNativeLogin? _responseData;
 
     try {
-      const _responseType = FullType(SuccessfulNativeLogin);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulNativeLogin),
       ) as SuccessfulNativeLogin;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SuccessfulNativeLogin>(
@@ -1182,22 +1195,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    FlowError _responseData;
+    FlowError? _responseData;
 
     try {
-      const _responseType = FullType(FlowError);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(FlowError),
       ) as FlowError;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<FlowError>(
@@ -1264,22 +1278,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LoginFlow _responseData;
+    LoginFlow? _responseData;
 
     try {
-      const _responseType = FullType(LoginFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LoginFlow),
       ) as LoginFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<LoginFlow>(
@@ -1346,22 +1361,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryFlow _responseData;
+    RecoveryFlow? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryFlow),
       ) as RecoveryFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryFlow>(
@@ -1428,22 +1444,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RegistrationFlow _responseData;
+    RegistrationFlow? _responseData;
 
     try {
-      const _responseType = FullType(RegistrationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RegistrationFlow),
       ) as RegistrationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RegistrationFlow>(
@@ -1513,22 +1530,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SettingsFlow _responseData;
+    SettingsFlow? _responseData;
 
     try {
-      const _responseType = FullType(SettingsFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SettingsFlow),
       ) as SettingsFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SettingsFlow>(
@@ -1595,22 +1613,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    VerificationFlow _responseData;
+    VerificationFlow? _responseData;
 
     try {
-      const _responseType = FullType(VerificationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VerificationFlow),
       ) as VerificationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<VerificationFlow>(
@@ -1667,18 +1686,20 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    String _responseData;
+    String? _responseData;
 
     try {
-      _responseData = _response.data as String;
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : rawResponse as String;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<String>(
@@ -1751,22 +1772,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Session> _responseData;
+    BuiltList<Session>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Session)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Session)]),
       ) as BuiltList<Session>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Session>>(
@@ -1830,9 +1852,10 @@ class FrontendApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1895,22 +1918,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Session _responseData;
+    Session? _responseData;
 
     try {
-      const _responseType = FullType(Session);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Session),
       ) as Session;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Session>(
@@ -1987,9 +2011,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2002,22 +2027,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SuccessfulNativeLogin _responseData;
+    SuccessfulNativeLogin? _responseData;
 
     try {
-      const _responseType = FullType(SuccessfulNativeLogin);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulNativeLogin),
       ) as SuccessfulNativeLogin;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SuccessfulNativeLogin>(
@@ -2038,6 +2064,7 @@ class FrontendApi {
   /// Parameters:
   /// * [token] - A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
   /// * [returnTo] - The URL to return to after the logout was completed.
+  /// * [cookie] - HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -2050,6 +2077,7 @@ class FrontendApi {
   Future<Response<void>> updateLogoutFlow({ 
     String? token,
     String? returnTo,
+    String? cookie,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -2061,6 +2089,7 @@ class FrontendApi {
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       extra: <String, dynamic>{
@@ -2149,9 +2178,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2164,22 +2194,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryFlow _responseData;
+    RecoveryFlow? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryFlow),
       ) as RecoveryFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryFlow>(
@@ -2253,9 +2284,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2268,22 +2300,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SuccessfulNativeRegistration _responseData;
+    SuccessfulNativeRegistration? _responseData;
 
     try {
-      const _responseType = FullType(SuccessfulNativeRegistration);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulNativeRegistration),
       ) as SuccessfulNativeRegistration;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SuccessfulNativeRegistration>(
@@ -2360,9 +2393,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2375,22 +2409,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SettingsFlow _responseData;
+    SettingsFlow? _responseData;
 
     try {
-      const _responseType = FullType(SettingsFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SettingsFlow),
       ) as SettingsFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SettingsFlow>(
@@ -2467,9 +2502,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2482,22 +2518,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    VerificationFlow _responseData;
+    VerificationFlow? _responseData;
 
     try {
-      const _responseType = FullType(VerificationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VerificationFlow),
       ) as VerificationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<VerificationFlow>(

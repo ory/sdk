@@ -24,9 +24,19 @@
 |**providerId** | **String** | ID is the provider&#39;s ID |  [optional] |
 |**requestedClaims** | **Object** |  |  [optional] |
 |**scope** | **List&lt;String&gt;** |  |  [optional] |
+|**state** | [**StateEnum**](#StateEnum) | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled |  [optional] |
 |**subjectSource** | **String** |  |  [optional] |
 |**tokenUrl** | **String** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project&#39;s Revision was Updated |  [optional] [readonly] |
+
+
+
+## Enum: StateEnum
+
+| Name | Value |
+|---- | -----|
+| ENABLED | &quot;enabled&quot; |
+| DISABLED | &quot;disabled&quot; |
 
 
 

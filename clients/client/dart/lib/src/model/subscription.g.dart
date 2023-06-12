@@ -6,6 +6,28 @@ part of 'subscription.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const SubscriptionCurrencyEnum _$subscriptionCurrencyEnum_usd =
+    const SubscriptionCurrencyEnum._('usd');
+const SubscriptionCurrencyEnum _$subscriptionCurrencyEnum_eur =
+    const SubscriptionCurrencyEnum._('eur');
+
+SubscriptionCurrencyEnum _$subscriptionCurrencyEnumValueOf(String name) {
+  switch (name) {
+    case 'usd':
+      return _$subscriptionCurrencyEnum_usd;
+    case 'eur':
+      return _$subscriptionCurrencyEnum_eur;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<SubscriptionCurrencyEnum> _$subscriptionCurrencyEnumValues =
+    new BuiltSet<SubscriptionCurrencyEnum>(const <SubscriptionCurrencyEnum>[
+  _$subscriptionCurrencyEnum_usd,
+  _$subscriptionCurrencyEnum_eur,
+]);
+
 const SubscriptionCurrentIntervalEnum
     _$subscriptionCurrentIntervalEnum_monthly =
     const SubscriptionCurrentIntervalEnum._('monthly');
@@ -31,9 +53,40 @@ final BuiltSet<SubscriptionCurrentIntervalEnum>
   _$subscriptionCurrentIntervalEnum_yearly,
 ]);
 
+Serializer<SubscriptionCurrencyEnum> _$subscriptionCurrencyEnumSerializer =
+    new _$SubscriptionCurrencyEnumSerializer();
 Serializer<SubscriptionCurrentIntervalEnum>
     _$subscriptionCurrentIntervalEnumSerializer =
     new _$SubscriptionCurrentIntervalEnumSerializer();
+
+class _$SubscriptionCurrencyEnumSerializer
+    implements PrimitiveSerializer<SubscriptionCurrencyEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'usd': 'usd',
+    'eur': 'eur',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'usd': 'usd',
+    'eur': 'eur',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[SubscriptionCurrencyEnum];
+  @override
+  final String wireName = 'SubscriptionCurrencyEnum';
+
+  @override
+  Object serialize(Serializers serializers, SubscriptionCurrencyEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  SubscriptionCurrencyEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      SubscriptionCurrencyEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
 
 class _$SubscriptionCurrentIntervalEnumSerializer
     implements PrimitiveSerializer<SubscriptionCurrentIntervalEnum> {
@@ -69,6 +122,8 @@ class _$Subscription extends Subscription {
   @override
   final DateTime createdAt;
   @override
+  final SubscriptionCurrencyEnum currency;
+  @override
   final SubscriptionCurrentIntervalEnum currentInterval;
   @override
   final String currentPlan;
@@ -96,6 +151,7 @@ class _$Subscription extends Subscription {
 
   _$Subscription._(
       {required this.createdAt,
+      required this.currency,
       required this.currentInterval,
       required this.currentPlan,
       required this.customerId,
@@ -110,6 +166,8 @@ class _$Subscription extends Subscription {
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'Subscription', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        currency, r'Subscription', 'currency');
     BuiltValueNullFieldError.checkNotNull(
         currentInterval, r'Subscription', 'currentInterval');
     BuiltValueNullFieldError.checkNotNull(
@@ -136,6 +194,7 @@ class _$Subscription extends Subscription {
     if (identical(other, this)) return true;
     return other is Subscription &&
         createdAt == other.createdAt &&
+        currency == other.currency &&
         currentInterval == other.currentInterval &&
         currentPlan == other.currentPlan &&
         customerId == other.customerId &&
@@ -153,6 +212,7 @@ class _$Subscription extends Subscription {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, currency.hashCode);
     _$hash = $jc(_$hash, currentInterval.hashCode);
     _$hash = $jc(_$hash, currentPlan.hashCode);
     _$hash = $jc(_$hash, customerId.hashCode);
@@ -172,6 +232,7 @@ class _$Subscription extends Subscription {
   String toString() {
     return (newBuiltValueToStringHelper(r'Subscription')
           ..add('createdAt', createdAt)
+          ..add('currency', currency)
           ..add('currentInterval', currentInterval)
           ..add('currentPlan', currentPlan)
           ..add('customerId', customerId)
@@ -194,6 +255,11 @@ class SubscriptionBuilder
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  SubscriptionCurrencyEnum? _currency;
+  SubscriptionCurrencyEnum? get currency => _$this._currency;
+  set currency(SubscriptionCurrencyEnum? currency) =>
+      _$this._currency = currency;
 
   SubscriptionCurrentIntervalEnum? _currentInterval;
   SubscriptionCurrentIntervalEnum? get currentInterval =>
@@ -253,6 +319,7 @@ class SubscriptionBuilder
     final $v = _$v;
     if ($v != null) {
       _createdAt = $v.createdAt;
+      _currency = $v.currency;
       _currentInterval = $v.currentInterval;
       _currentPlan = $v.currentPlan;
       _customerId = $v.customerId;
@@ -288,6 +355,8 @@ class SubscriptionBuilder
         new _$Subscription._(
             createdAt: BuiltValueNullFieldError.checkNotNull(
                 createdAt, r'Subscription', 'createdAt'),
+            currency: BuiltValueNullFieldError.checkNotNull(
+                currency, r'Subscription', 'currency'),
             currentInterval: BuiltValueNullFieldError.checkNotNull(
                 currentInterval, r'Subscription', 'currentInterval'),
             currentPlan: BuiltValueNullFieldError.checkNotNull(
@@ -304,8 +373,8 @@ class SubscriptionBuilder
             planChangesTo: planChangesTo,
             status: BuiltValueNullFieldError.checkNotNull(
                 status, r'Subscription', 'status'),
-            updatedAt: BuiltValueNullFieldError.checkNotNull(
-                updatedAt, r'Subscription', 'updatedAt'));
+            updatedAt:
+                BuiltValueNullFieldError.checkNotNull(updatedAt, r'Subscription', 'updatedAt'));
     replace(_$result);
     return _$result;
   }

@@ -30,6 +30,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_brandingThemes =
     const QuotaUsageFeatureEnum._('brandingThemes');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_zendeskSupport =
     const QuotaUsageFeatureEnum._('zendeskSupport');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetrics =
+    const QuotaUsageFeatureEnum._('projectMetrics');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
     const QuotaUsageFeatureEnum._('rateLimitTier');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_sessionRateLimitTier =
@@ -61,6 +63,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_brandingThemes;
     case 'zendeskSupport':
       return _$quotaUsageFeatureEnum_zendeskSupport;
+    case 'projectMetrics':
+      return _$quotaUsageFeatureEnum_projectMetrics;
     case 'rateLimitTier':
       return _$quotaUsageFeatureEnum_rateLimitTier;
     case 'sessionRateLimitTier':
@@ -84,6 +88,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_edgeCache,
   _$quotaUsageFeatureEnum_brandingThemes,
   _$quotaUsageFeatureEnum_zendeskSupport,
+  _$quotaUsageFeatureEnum_projectMetrics,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
 ]);
@@ -106,6 +111,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'edgeCache': 'edge_cache',
     'brandingThemes': 'branding_themes',
     'zendeskSupport': 'zendesk_support',
+    'projectMetrics': 'project_metrics',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
   };
@@ -122,6 +128,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'edge_cache': 'edgeCache',
     'branding_themes': 'brandingThemes',
     'zendesk_support': 'zendeskSupport',
+    'project_metrics': 'projectMetrics',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',
   };

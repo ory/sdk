@@ -1927,7 +1927,7 @@ No authorization required
 
 <a name="updatelogoutflow"></a>
 # **UpdateLogoutFlow**
-> void UpdateLogoutFlow (string token = null, string returnTo = null)
+> void UpdateLogoutFlow (string token = null, string returnTo = null, string cookie = null)
 
 Update Logout Flow
 
@@ -1952,11 +1952,12 @@ namespace Example
             var apiInstance = new FrontendApi(config);
             var token = "token_example";  // string | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. (optional) 
             var returnTo = "returnTo_example";  // string | The URL to return to after the logout was completed. (optional) 
+            var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
 
             try
             {
                 // Update Logout Flow
-                apiInstance.UpdateLogoutFlow(token, returnTo);
+                apiInstance.UpdateLogoutFlow(token, returnTo, cookie);
             }
             catch (ApiException  e)
             {
@@ -1975,6 +1976,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional] 
  **returnTo** | **string**| The URL to return to after the logout was completed. | [optional] 
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 

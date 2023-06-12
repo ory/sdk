@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**getActiveProjectInConsole**](ProjectApi.md#getactiveprojectinconsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**getProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
 [**getProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**getProjectMetrics**](ProjectApi.md#getprojectmetrics) | **GET** /projects/{project_id}/metrics | 
 [**listProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**listProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 [**patchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
@@ -287,6 +288,60 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BuiltList&lt;CloudAccount&gt;**](CloudAccount.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getProjectMetrics**
+> GetProjectMetricsResponse getProjectMetrics(projectId, eventType, resolution, from, to)
+
+
+
+Retrieves project metrics for the specified event type and time range
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+// TODO Configure HTTP basic authorization: oryAccessToken
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
+
+final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | Project ID
+final String eventType = eventType_example; // String | The event type to query for
+final String resolution = resolution_example; // String | The resolution of the buckets  The minimum resolution is 1 hour.
+final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | The start time of the time window
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | The end time of the time window
+
+try {
+    final response = api.getProjectMetrics(projectId, eventType, resolution, from, to);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling ProjectApi->getProjectMetrics: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID | 
+ **eventType** | **String**| The event type to query for | 
+ **resolution** | **String**| The resolution of the buckets  The minimum resolution is 1 hour. | 
+ **from** | **DateTime**| The start time of the time window | 
+ **to** | **DateTime**| The end time of the time window | 
+
+### Return type
+
+[**GetProjectMetricsResponse**](GetProjectMetricsResponse.md)
 
 ### Authorization
 

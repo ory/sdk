@@ -123,12 +123,15 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
   final DateTime? completedAt;
   @override
   final SessionAuthenticationMethodMethodEnum? method;
+  @override
+  final String? provider;
 
   factory _$SessionAuthenticationMethod(
           [void Function(SessionAuthenticationMethodBuilder)? updates]) =>
       (new SessionAuthenticationMethodBuilder()..update(updates))._build();
 
-  _$SessionAuthenticationMethod._({this.aal, this.completedAt, this.method})
+  _$SessionAuthenticationMethod._(
+      {this.aal, this.completedAt, this.method, this.provider})
       : super._();
 
   @override
@@ -146,7 +149,8 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
     return other is SessionAuthenticationMethod &&
         aal == other.aal &&
         completedAt == other.completedAt &&
-        method == other.method;
+        method == other.method &&
+        provider == other.provider;
   }
 
   @override
@@ -155,6 +159,7 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
     _$hash = $jc(_$hash, aal.hashCode);
     _$hash = $jc(_$hash, completedAt.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -164,7 +169,8 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
     return (newBuiltValueToStringHelper(r'SessionAuthenticationMethod')
           ..add('aal', aal)
           ..add('completedAt', completedAt)
-          ..add('method', method))
+          ..add('method', method)
+          ..add('provider', provider))
         .toString();
   }
 }
@@ -188,6 +194,10 @@ class SessionAuthenticationMethodBuilder
   set method(SessionAuthenticationMethodMethodEnum? method) =>
       _$this._method = method;
 
+  String? _provider;
+  String? get provider => _$this._provider;
+  set provider(String? provider) => _$this._provider = provider;
+
   SessionAuthenticationMethodBuilder() {
     SessionAuthenticationMethod._defaults(this);
   }
@@ -198,6 +208,7 @@ class SessionAuthenticationMethodBuilder
       _aal = $v.aal;
       _completedAt = $v.completedAt;
       _method = $v.method;
+      _provider = $v.provider;
       _$v = null;
     }
     return this;
@@ -220,7 +231,10 @@ class SessionAuthenticationMethodBuilder
   _$SessionAuthenticationMethod _build() {
     final _$result = _$v ??
         new _$SessionAuthenticationMethod._(
-            aal: aal, completedAt: completedAt, method: method);
+            aal: aal,
+            completedAt: completedAt,
+            method: method,
+            provider: provider);
     replace(_$result);
     return _$result;
   }

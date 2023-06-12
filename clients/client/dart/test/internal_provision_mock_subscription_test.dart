@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(InternalProvisionMockSubscription, () {
+    // Currency usd USD eur Euro
+    // String currency
+    test('to test the property `currency`', () async {
+      // TODO
+    });
+
     // Identity ID
     // String identityId
     test('to test the property `identityId`', () async {

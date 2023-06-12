@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** |  | [readonly] 
+**Currency** | **string** | The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro | [readonly] 
 **CurrentInterval** | **string** | The currently active interval of the subscription monthly Monthly yearly Yearly | [readonly] 
 **CurrentPlan** | **string** | The currently active plan of the subscription | [readonly] 
 **CustomerId** | **string** | The ID of the stripe customer | [readonly] 
@@ -21,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewSubscription
 
-`func NewSubscription(createdAt time.Time, currentInterval string, currentPlan string, customerId string, id string, intervalChangesTo NullableString, payedUntil time.Time, planChangesTo NullableString, status string, updatedAt time.Time, ) *Subscription`
+`func NewSubscription(createdAt time.Time, currency string, currentInterval string, currentPlan string, customerId string, id string, intervalChangesTo NullableString, payedUntil time.Time, planChangesTo NullableString, status string, updatedAt time.Time, ) *Subscription`
 
 NewSubscription instantiates a new Subscription object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +55,26 @@ and a boolean to check if the value has been set.
 `func (o *Subscription) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetCurrency
+
+`func (o *Subscription) GetCurrency() string`
+
+GetCurrency returns the Currency field if non-nil, zero value otherwise.
+
+### GetCurrencyOk
+
+`func (o *Subscription) GetCurrencyOk() (*string, bool)`
+
+GetCurrencyOk returns a tuple with the Currency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrency
+
+`func (o *Subscription) SetCurrency(v string)`
+
+SetCurrency sets Currency field to given value.
 
 
 ### GetCurrentInterval

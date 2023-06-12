@@ -8,6 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**currency** | **String** | Currency usd USD eur Euro | 
 **identityId** | **String** | Identity ID | 
 **interval** | **String** | Billing Interval monthly Monthly yearly Yearly | 
 **plan** | **String** | Plan ID | 

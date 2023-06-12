@@ -54,6 +54,7 @@ import 'package:ory_client/src/model/generic_error.dart';
 import 'package:ory_client/src/model/generic_error_content.dart';
 import 'package:ory_client/src/model/generic_usage.dart';
 import 'package:ory_client/src/model/get_managed_identity_schema_location.dart';
+import 'package:ory_client/src/model/get_project_metrics_response.dart';
 import 'package:ory_client/src/model/get_version200_response.dart';
 import 'package:ory_client/src/model/health_not_ready_status.dart';
 import 'package:ory_client/src/model/health_status.dart';
@@ -92,6 +93,7 @@ import 'package:ory_client/src/model/managed_identity_schema.dart';
 import 'package:ory_client/src/model/managed_identity_schema_validation_result.dart';
 import 'package:ory_client/src/model/message.dart';
 import 'package:ory_client/src/model/message_dispatch.dart';
+import 'package:ory_client/src/model/metrics_datapoint.dart';
 import 'package:ory_client/src/model/namespace.dart';
 import 'package:ory_client/src/model/needs_privileged_session_error.dart';
 import 'package:ory_client/src/model/normalized_project.dart';
@@ -256,6 +258,7 @@ part 'serializers.g.dart';
   GenericErrorContent,
   GenericUsage,
   GetManagedIdentitySchemaLocation,
+  GetProjectMetricsResponse,
   GetVersion200Response,
   HealthNotReadyStatus,
   HealthStatus,
@@ -294,6 +297,7 @@ part 'serializers.g.dart';
   ManagedIdentitySchemaValidationResult,
   Message,
   MessageDispatch,
+  MetricsDatapoint,
   Namespace,
   NeedsPrivilegedSessionError,
   NormalizedProject,

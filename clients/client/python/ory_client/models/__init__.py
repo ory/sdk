@@ -50,6 +50,7 @@ from ory_client.model.generic_error import GenericError
 from ory_client.model.generic_error_content import GenericErrorContent
 from ory_client.model.generic_usage import GenericUsage
 from ory_client.model.get_managed_identity_schema_location import GetManagedIdentitySchemaLocation
+from ory_client.model.get_project_metrics_response import GetProjectMetricsResponse
 from ory_client.model.get_version200_response import GetVersion200Response
 from ory_client.model.health_not_ready_status import HealthNotReadyStatus
 from ory_client.model.health_status import HealthStatus
@@ -94,6 +95,7 @@ from ory_client.model.managed_identity_schema_validation_result import ManagedId
 from ory_client.model.managed_identity_schemas import ManagedIdentitySchemas
 from ory_client.model.message import Message
 from ory_client.model.message_dispatch import MessageDispatch
+from ory_client.model.metrics_datapoint import MetricsDatapoint
 from ory_client.model.namespace import Namespace
 from ory_client.model.needs_privileged_session_error import NeedsPrivilegedSessionError
 from ory_client.model.normalized_project import NormalizedProject

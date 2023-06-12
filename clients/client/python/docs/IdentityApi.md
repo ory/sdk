@@ -907,8 +907,8 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = identity_api.IdentityApi(api_client)
     id = "id_example" # str | ID must be set to the ID of identity you want to get
     include_credential = [
-        "include_credential_example",
-    ] # [str] | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. (optional)
+        "password",
+    ] # [str] | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -934,7 +934,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID must be set to the ID of identity you want to get |
- **include_credential** | **[str]**| Include Credentials in Response  Currently, only &#x60;oidc&#x60; is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional]
+ **include_credential** | **[str]**| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional]
 
 ### Return type
 

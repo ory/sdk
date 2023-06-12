@@ -47,7 +47,7 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
   /// One Of [UiNodeAnchorAttributes], [UiNodeImageAttributes], [UiNodeInputAttributes], [UiNodeScriptAttributes], [UiNodeTextAttributes]
   OneOf get oneOf;
 
-  static const String discriminatorFieldName = r'nodeType';
+  static const String discriminatorFieldName = r'node_type';
 
   static const Map<String, Type> discriminatorMapping = {
     r'a': UiNodeAnchorAttributes,
@@ -55,11 +55,6 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
     r'input': UiNodeInputAttributes,
     r'script': UiNodeScriptAttributes,
     r'text': UiNodeTextAttributes,
-    r'uiNodeAnchorAttributes': UiNodeAnchorAttributes,
-    r'uiNodeImageAttributes': UiNodeImageAttributes,
-    r'uiNodeInputAttributes': UiNodeInputAttributes,
-    r'uiNodeScriptAttributes': UiNodeScriptAttributes,
-    r'uiNodeTextAttributes': UiNodeTextAttributes,
   };
 
   UiNodeAttributes._();
@@ -71,6 +66,47 @@ abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttribu
 
   @BuiltValueSerializer(custom: true)
   static Serializer<UiNodeAttributes> get serializer => _$UiNodeAttributesSerializer();
+}
+
+extension UiNodeAttributesDiscriminatorExt on UiNodeAttributes {
+    String? get discriminatorValue {
+        if (this is UiNodeAnchorAttributes) {
+            return r'a';
+        }
+        if (this is UiNodeImageAttributes) {
+            return r'img';
+        }
+        if (this is UiNodeInputAttributes) {
+            return r'input';
+        }
+        if (this is UiNodeScriptAttributes) {
+            return r'script';
+        }
+        if (this is UiNodeTextAttributes) {
+            return r'text';
+        }
+        return null;
+    }
+}
+extension UiNodeAttributesBuilderDiscriminatorExt on UiNodeAttributesBuilder {
+    String? get discriminatorValue {
+        if (this is UiNodeAnchorAttributesBuilder) {
+            return r'a';
+        }
+        if (this is UiNodeImageAttributesBuilder) {
+            return r'img';
+        }
+        if (this is UiNodeInputAttributesBuilder) {
+            return r'input';
+        }
+        if (this is UiNodeScriptAttributesBuilder) {
+            return r'script';
+        }
+        if (this is UiNodeTextAttributesBuilder) {
+            return r'text';
+        }
+        return null;
+    }
 }
 
 class _$UiNodeAttributesSerializer implements PrimitiveSerializer<UiNodeAttributes> {
@@ -109,74 +145,39 @@ class _$UiNodeAttributesSerializer implements PrimitiveSerializer<UiNodeAttribut
     final discIndex = serializedList.indexOf(UiNodeAttributes.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UiNodeAnchorAttributes, UiNodeImageAttributes, UiNodeInputAttributes, UiNodeScriptAttributes, UiNodeTextAttributes, UiNodeAnchorAttributes, UiNodeImageAttributes, UiNodeInputAttributes, UiNodeScriptAttributes, UiNodeTextAttributes, ];
+    final oneOfTypes = [UiNodeAnchorAttributes, UiNodeImageAttributes, UiNodeInputAttributes, UiNodeScriptAttributes, UiNodeTextAttributes, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
-      case 'a':
+      case r'a':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UiNodeAnchorAttributes),
         ) as UiNodeAnchorAttributes;
         oneOfType = UiNodeAnchorAttributes;
         break;
-      case 'img':
+      case r'img':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UiNodeImageAttributes),
         ) as UiNodeImageAttributes;
         oneOfType = UiNodeImageAttributes;
         break;
-      case 'input':
+      case r'input':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UiNodeInputAttributes),
         ) as UiNodeInputAttributes;
         oneOfType = UiNodeInputAttributes;
         break;
-      case 'script':
+      case r'script':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UiNodeScriptAttributes),
         ) as UiNodeScriptAttributes;
         oneOfType = UiNodeScriptAttributes;
         break;
-      case 'text':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UiNodeTextAttributes),
-        ) as UiNodeTextAttributes;
-        oneOfType = UiNodeTextAttributes;
-        break;
-      case 'uiNodeAnchorAttributes':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UiNodeAnchorAttributes),
-        ) as UiNodeAnchorAttributes;
-        oneOfType = UiNodeAnchorAttributes;
-        break;
-      case 'uiNodeImageAttributes':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UiNodeImageAttributes),
-        ) as UiNodeImageAttributes;
-        oneOfType = UiNodeImageAttributes;
-        break;
-      case 'uiNodeInputAttributes':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UiNodeInputAttributes),
-        ) as UiNodeInputAttributes;
-        oneOfType = UiNodeInputAttributes;
-        break;
-      case 'uiNodeScriptAttributes':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UiNodeScriptAttributes),
-        ) as UiNodeScriptAttributes;
-        oneOfType = UiNodeScriptAttributes;
-        break;
-      case 'uiNodeTextAttributes':
+      case r'text':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UiNodeTextAttributes),

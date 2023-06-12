@@ -10,6 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
 | [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project |
 | [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project |
+| [**get_project_metrics**](ProjectApi.md#get_project_metrics) | **GET** /projects/{project_id}/metrics |  |
 | [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects |
 | [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
@@ -426,6 +427,83 @@ end
 ### Return type
 
 [**Array&lt;CloudAccount&gt;**](CloudAccount.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_project_metrics
+
+> <GetProjectMetricsResponse> get_project_metrics(project_id, event_type, resolution, from, to)
+
+
+
+Retrieves project metrics for the specified event type and time range
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID
+event_type = 'event_type_example' # String | The event type to query for
+resolution = 'resolution_example' # String | The resolution of the buckets  The minimum resolution is 1 hour.
+from = Time.parse('2013-10-20T19:20:30+01:00') # Time | The start time of the time window
+to = Time.parse('2013-10-20T19:20:30+01:00') # Time | The end time of the time window
+
+begin
+  
+  result = api_instance.get_project_metrics(project_id, event_type, resolution, from, to)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_project_metrics: #{e}"
+end
+```
+
+#### Using the get_project_metrics_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<GetProjectMetricsResponse>, Integer, Hash)> get_project_metrics_with_http_info(project_id, event_type, resolution, from, to)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_project_metrics_with_http_info(project_id, event_type, resolution, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <GetProjectMetricsResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_project_metrics_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID |  |
+| **event_type** | **String** | The event type to query for |  |
+| **resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 hour. |  |
+| **from** | **Time** | The start time of the time window |  |
+| **to** | **Time** | The end time of the time window |  |
+
+### Return type
+
+[**GetProjectMetricsResponse**](GetProjectMetricsResponse.md)
 
 ### Authorization
 
