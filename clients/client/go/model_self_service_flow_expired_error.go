@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,10 @@ type SelfServiceFlowExpiredError struct {
 	Since *int64 `json:"since,omitempty"`
 	// The flow ID that should be used for the new flow as it contains the correct messages.
 	UseFlowId *string `json:"use_flow_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SelfServiceFlowExpiredError SelfServiceFlowExpiredError
 
 // NewSelfServiceFlowExpiredError instantiates a new SelfServiceFlowExpiredError object
 // This constructor will assign default values to properties that have it defined,
@@ -186,7 +189,32 @@ func (o SelfServiceFlowExpiredError) MarshalJSON() ([]byte, error) {
 	if o.UseFlowId != nil {
 		toSerialize["use_flow_id"] = o.UseFlowId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SelfServiceFlowExpiredError) UnmarshalJSON(bytes []byte) (err error) {
+	varSelfServiceFlowExpiredError := _SelfServiceFlowExpiredError{}
+
+	if err = json.Unmarshal(bytes, &varSelfServiceFlowExpiredError); err == nil {
+		*o = SelfServiceFlowExpiredError(varSelfServiceFlowExpiredError)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "expired_at")
+		delete(additionalProperties, "since")
+		delete(additionalProperties, "use_flow_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSelfServiceFlowExpiredError struct {

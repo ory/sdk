@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -18,7 +18,10 @@ import (
 // RelationshipNamespaces Relationship Namespace List
 type RelationshipNamespaces struct {
 	Namespaces []Namespace `json:"namespaces,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationshipNamespaces RelationshipNamespaces
 
 // NewRelationshipNamespaces instantiates a new RelationshipNamespaces object
 // This constructor will assign default values to properties that have it defined,
@@ -74,7 +77,29 @@ func (o RelationshipNamespaces) MarshalJSON() ([]byte, error) {
 	if o.Namespaces != nil {
 		toSerialize["namespaces"] = o.Namespaces
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *RelationshipNamespaces) UnmarshalJSON(bytes []byte) (err error) {
+	varRelationshipNamespaces := _RelationshipNamespaces{}
+
+	if err = json.Unmarshal(bytes, &varRelationshipNamespaces); err == nil {
+		*o = RelationshipNamespaces(varRelationshipNamespaces)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "namespaces")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRelationshipNamespaces struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,10 @@ type UpdateSettingsFlowWithProfileMethod struct {
 	Method string `json:"method"`
 	// Traits  The identity's traits.
 	Traits map[string]interface{} `json:"traits"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSettingsFlowWithProfileMethod UpdateSettingsFlowWithProfileMethod
 
 // NewUpdateSettingsFlowWithProfileMethod instantiates a new UpdateSettingsFlowWithProfileMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -135,7 +138,31 @@ func (o UpdateSettingsFlowWithProfileMethod) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["traits"] = o.Traits
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateSettingsFlowWithProfileMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateSettingsFlowWithProfileMethod := _UpdateSettingsFlowWithProfileMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithProfileMethod); err == nil {
+		*o = UpdateSettingsFlowWithProfileMethod(varUpdateSettingsFlowWithProfileMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "traits")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSettingsFlowWithProfileMethod struct {

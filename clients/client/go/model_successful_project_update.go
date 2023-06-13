@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ type SuccessfulProjectUpdate struct {
 	Project Project `json:"project"`
 	// Import Warnings  Not all configuration items can be imported to the Ory Network. For example, setting the port does not make sense because the Ory Network provides the runtime and networking.  This field contains warnings where configuration keys were found but can not be imported. These keys will be ignored by the Ory Network. This field will help you understand why certain configuration keys might not be respected!
 	Warnings []Warning `json:"warnings"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SuccessfulProjectUpdate SuccessfulProjectUpdate
 
 // NewSuccessfulProjectUpdate instantiates a new SuccessfulProjectUpdate object
 // This constructor will assign default values to properties that have it defined,
@@ -97,7 +100,30 @@ func (o SuccessfulProjectUpdate) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["warnings"] = o.Warnings
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SuccessfulProjectUpdate) UnmarshalJSON(bytes []byte) (err error) {
+	varSuccessfulProjectUpdate := _SuccessfulProjectUpdate{}
+
+	if err = json.Unmarshal(bytes, &varSuccessfulProjectUpdate); err == nil {
+		*o = SuccessfulProjectUpdate(varSuccessfulProjectUpdate)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "warnings")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSuccessfulProjectUpdate struct {

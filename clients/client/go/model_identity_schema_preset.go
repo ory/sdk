@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type IdentitySchemaPreset struct {
 	Schema map[string]interface{} `json:"schema"`
 	// URL is the preset identifier
 	Url string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentitySchemaPreset IdentitySchemaPreset
 
 // NewIdentitySchemaPreset instantiates a new IdentitySchemaPreset object
 // This constructor will assign default values to properties that have it defined,
@@ -98,7 +101,30 @@ func (o IdentitySchemaPreset) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["url"] = o.Url
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentitySchemaPreset) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentitySchemaPreset := _IdentitySchemaPreset{}
+
+	if err = json.Unmarshal(bytes, &varIdentitySchemaPreset); err == nil {
+		*o = IdentitySchemaPreset(varIdentitySchemaPreset)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "schema")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentitySchemaPreset struct {

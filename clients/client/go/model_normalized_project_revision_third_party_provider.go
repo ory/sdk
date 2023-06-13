@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -54,7 +54,10 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	TokenUrl *string `json:"token_url,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NormalizedProjectRevisionThirdPartyProvider NormalizedProjectRevisionThirdPartyProvider
 
 // NewNormalizedProjectRevisionThirdPartyProvider instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 // This constructor will assign default values to properties that have it defined,
@@ -840,7 +843,49 @@ func (o NormalizedProjectRevisionThirdPartyProvider) MarshalJSON() ([]byte, erro
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(bytes []byte) (err error) {
+	varNormalizedProjectRevisionThirdPartyProvider := _NormalizedProjectRevisionThirdPartyProvider{}
+
+	if err = json.Unmarshal(bytes, &varNormalizedProjectRevisionThirdPartyProvider); err == nil {
+		*o = NormalizedProjectRevisionThirdPartyProvider(varNormalizedProjectRevisionThirdPartyProvider)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "apple_private_key")
+		delete(additionalProperties, "apple_private_key_id")
+		delete(additionalProperties, "apple_team_id")
+		delete(additionalProperties, "auth_url")
+		delete(additionalProperties, "azure_tenant")
+		delete(additionalProperties, "client_id")
+		delete(additionalProperties, "client_secret")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "issuer_url")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "mapper_url")
+		delete(additionalProperties, "project_revision_id")
+		delete(additionalProperties, "provider")
+		delete(additionalProperties, "provider_id")
+		delete(additionalProperties, "requested_claims")
+		delete(additionalProperties, "scope")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "subject_source")
+		delete(additionalProperties, "token_url")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNormalizedProjectRevisionThirdPartyProvider struct {

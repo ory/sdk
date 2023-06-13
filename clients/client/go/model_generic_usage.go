@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type GenericUsage struct {
 	AdditionalPrice int64 `json:"additional_price"`
 	// IncludedUsage is the number of included items.
 	IncludedUsage int64 `json:"included_usage"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GenericUsage GenericUsage
 
 // NewGenericUsage instantiates a new GenericUsage object
 // This constructor will assign default values to properties that have it defined,
@@ -98,7 +101,30 @@ func (o GenericUsage) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["included_usage"] = o.IncludedUsage
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *GenericUsage) UnmarshalJSON(bytes []byte) (err error) {
+	varGenericUsage := _GenericUsage{}
+
+	if err = json.Unmarshal(bytes, &varGenericUsage); err == nil {
+		*o = GenericUsage(varGenericUsage)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "additional_price")
+		delete(additionalProperties, "included_usage")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGenericUsage struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,10 @@ type QuotaUsage struct {
 	FeatureAvailable bool `json:"feature_available"`
 	Included int64 `json:"included"`
 	Used int64 `json:"used"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _QuotaUsage QuotaUsage
 
 // NewQuotaUsage instantiates a new QuotaUsage object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,34 @@ func (o QuotaUsage) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["used"] = o.Used
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *QuotaUsage) UnmarshalJSON(bytes []byte) (err error) {
+	varQuotaUsage := _QuotaUsage{}
+
+	if err = json.Unmarshal(bytes, &varQuotaUsage); err == nil {
+		*o = QuotaUsage(varQuotaUsage)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "additional_price")
+		delete(additionalProperties, "can_use_more")
+		delete(additionalProperties, "feature")
+		delete(additionalProperties, "feature_available")
+		delete(additionalProperties, "included")
+		delete(additionalProperties, "used")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableQuotaUsage struct {

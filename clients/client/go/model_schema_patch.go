@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type SchemaPatch struct {
 	Data map[string]interface{} `json:"data"`
 	// The user defined schema name
 	Name string `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SchemaPatch SchemaPatch
 
 // NewSchemaPatch instantiates a new SchemaPatch object
 // This constructor will assign default values to properties that have it defined,
@@ -98,7 +101,30 @@ func (o SchemaPatch) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SchemaPatch) UnmarshalJSON(bytes []byte) (err error) {
+	varSchemaPatch := _SchemaPatch{}
+
+	if err = json.Unmarshal(bytes, &varSchemaPatch); err == nil {
+		*o = SchemaPatch(varSchemaPatch)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSchemaPatch struct {

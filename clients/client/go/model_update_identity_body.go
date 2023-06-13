@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -27,7 +27,10 @@ type UpdateIdentityBody struct {
 	State IdentityState `json:"state"`
 	// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_id`.
 	Traits map[string]interface{} `json:"traits"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateIdentityBody UpdateIdentityBody
 
 // NewUpdateIdentityBody instantiates a new UpdateIdentityBody object
 // This constructor will assign default values to properties that have it defined,
@@ -239,7 +242,34 @@ func (o UpdateIdentityBody) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["traits"] = o.Traits
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateIdentityBody) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateIdentityBody := _UpdateIdentityBody{}
+
+	if err = json.Unmarshal(bytes, &varUpdateIdentityBody); err == nil {
+		*o = UpdateIdentityBody(varUpdateIdentityBody)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "metadata_admin")
+		delete(additionalProperties, "metadata_public")
+		delete(additionalProperties, "schema_id")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "traits")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateIdentityBody struct {

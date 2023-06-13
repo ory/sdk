@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -27,7 +27,10 @@ type UiNodeImageAttributes struct {
 	Src string `json:"src"`
 	// Width of the image
 	Width int64 `json:"width"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNodeImageAttributes UiNodeImageAttributes
 
 // NewUiNodeImageAttributes instantiates a new UiNodeImageAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -188,7 +191,33 @@ func (o UiNodeImageAttributes) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["width"] = o.Width
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiNodeImageAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	varUiNodeImageAttributes := _UiNodeImageAttributes{}
+
+	if err = json.Unmarshal(bytes, &varUiNodeImageAttributes); err == nil {
+		*o = UiNodeImageAttributes(varUiNodeImageAttributes)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "node_type")
+		delete(additionalProperties, "src")
+		delete(additionalProperties, "width")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNodeImageAttributes struct {

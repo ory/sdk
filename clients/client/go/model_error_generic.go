@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -18,7 +18,10 @@ import (
 // ErrorGeneric The standard Ory JSON API error format.
 type ErrorGeneric struct {
 	Error GenericErrorContent `json:"error"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ErrorGeneric ErrorGeneric
 
 // NewErrorGeneric instantiates a new ErrorGeneric object
 // This constructor will assign default values to properties that have it defined,
@@ -67,7 +70,29 @@ func (o ErrorGeneric) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["error"] = o.Error
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ErrorGeneric) UnmarshalJSON(bytes []byte) (err error) {
+	varErrorGeneric := _ErrorGeneric{}
+
+	if err = json.Unmarshal(bytes, &varErrorGeneric); err == nil {
+		*o = ErrorGeneric(varErrorGeneric)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableErrorGeneric struct {

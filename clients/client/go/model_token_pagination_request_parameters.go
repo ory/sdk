@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type TokenPaginationRequestParameters struct {
 	PageSize *int64 `json:"page_size,omitempty"`
 	// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 	PageToken *string `json:"page_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TokenPaginationRequestParameters TokenPaginationRequestParameters
 
 // NewTokenPaginationRequestParameters instantiates a new TokenPaginationRequestParameters object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,30 @@ func (o TokenPaginationRequestParameters) MarshalJSON() ([]byte, error) {
 	if o.PageToken != nil {
 		toSerialize["page_token"] = o.PageToken
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *TokenPaginationRequestParameters) UnmarshalJSON(bytes []byte) (err error) {
+	varTokenPaginationRequestParameters := _TokenPaginationRequestParameters{}
+
+	if err = json.Unmarshal(bytes, &varTokenPaginationRequestParameters); err == nil {
+		*o = TokenPaginationRequestParameters(varTokenPaginationRequestParameters)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "page_size")
+		delete(additionalProperties, "page_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTokenPaginationRequestParameters struct {

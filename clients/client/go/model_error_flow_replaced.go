@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ type ErrorFlowReplaced struct {
 	Error *GenericError `json:"error,omitempty"`
 	// The flow ID that should be used for the new flow as it contains the correct messages.
 	UseFlowId *string `json:"use_flow_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ErrorFlowReplaced ErrorFlowReplaced
 
 // NewErrorFlowReplaced instantiates a new ErrorFlowReplaced object
 // This constructor will assign default values to properties that have it defined,
@@ -111,7 +114,30 @@ func (o ErrorFlowReplaced) MarshalJSON() ([]byte, error) {
 	if o.UseFlowId != nil {
 		toSerialize["use_flow_id"] = o.UseFlowId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ErrorFlowReplaced) UnmarshalJSON(bytes []byte) (err error) {
+	varErrorFlowReplaced := _ErrorFlowReplaced{}
+
+	if err = json.Unmarshal(bytes, &varErrorFlowReplaced); err == nil {
+		*o = ErrorFlowReplaced(varErrorFlowReplaced)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "use_flow_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableErrorFlowReplaced struct {

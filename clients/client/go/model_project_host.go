@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,10 @@ type ProjectHost struct {
 	Id string `json:"id"`
 	// The Revision's Project ID
 	ProjectId string `json:"project_id"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProjectHost ProjectHost
 
 // NewProjectHost instantiates a new ProjectHost object
 // This constructor will assign default values to properties that have it defined,
@@ -128,7 +131,31 @@ func (o ProjectHost) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["project_id"] = o.ProjectId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ProjectHost) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectHost := _ProjectHost{}
+
+	if err = json.Unmarshal(bytes, &varProjectHost); err == nil {
+		*o = ProjectHost(varProjectHost)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "project_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectHost struct {

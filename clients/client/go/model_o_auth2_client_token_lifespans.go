@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -27,7 +27,10 @@ type OAuth2ClientTokenLifespans struct {
 	RefreshTokenGrantAccessTokenLifespan NullableString `json:"refresh_token_grant_access_token_lifespan,omitempty"`
 	RefreshTokenGrantIdTokenLifespan NullableString `json:"refresh_token_grant_id_token_lifespan,omitempty"`
 	RefreshTokenGrantRefreshTokenLifespan NullableString `json:"refresh_token_grant_refresh_token_lifespan,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2ClientTokenLifespans OAuth2ClientTokenLifespans
 
 // NewOAuth2ClientTokenLifespans instantiates a new OAuth2ClientTokenLifespans object
 // This constructor will assign default values to properties that have it defined,
@@ -498,7 +501,38 @@ func (o OAuth2ClientTokenLifespans) MarshalJSON() ([]byte, error) {
 	if o.RefreshTokenGrantRefreshTokenLifespan.IsSet() {
 		toSerialize["refresh_token_grant_refresh_token_lifespan"] = o.RefreshTokenGrantRefreshTokenLifespan.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OAuth2ClientTokenLifespans) UnmarshalJSON(bytes []byte) (err error) {
+	varOAuth2ClientTokenLifespans := _OAuth2ClientTokenLifespans{}
+
+	if err = json.Unmarshal(bytes, &varOAuth2ClientTokenLifespans); err == nil {
+		*o = OAuth2ClientTokenLifespans(varOAuth2ClientTokenLifespans)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorization_code_grant_access_token_lifespan")
+		delete(additionalProperties, "authorization_code_grant_id_token_lifespan")
+		delete(additionalProperties, "authorization_code_grant_refresh_token_lifespan")
+		delete(additionalProperties, "client_credentials_grant_access_token_lifespan")
+		delete(additionalProperties, "implicit_grant_access_token_lifespan")
+		delete(additionalProperties, "implicit_grant_id_token_lifespan")
+		delete(additionalProperties, "jwt_bearer_grant_access_token_lifespan")
+		delete(additionalProperties, "refresh_token_grant_access_token_lifespan")
+		delete(additionalProperties, "refresh_token_grant_id_token_lifespan")
+		delete(additionalProperties, "refresh_token_grant_refresh_token_lifespan")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2ClientTokenLifespans struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type IdentityCredentialsPassword struct {
 	// HashedPassword is a hash-representation of the password.
 	HashedPassword *string `json:"hashed_password,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityCredentialsPassword IdentityCredentialsPassword
 
 // NewIdentityCredentialsPassword instantiates a new IdentityCredentialsPassword object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o IdentityCredentialsPassword) MarshalJSON() ([]byte, error) {
 	if o.HashedPassword != nil {
 		toSerialize["hashed_password"] = o.HashedPassword
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentityCredentialsPassword) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityCredentialsPassword := _IdentityCredentialsPassword{}
+
+	if err = json.Unmarshal(bytes, &varIdentityCredentialsPassword); err == nil {
+		*o = IdentityCredentialsPassword(varIdentityCredentialsPassword)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "hashed_password")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityCredentialsPassword struct {

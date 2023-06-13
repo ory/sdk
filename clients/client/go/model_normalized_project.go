@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -31,7 +31,10 @@ type NormalizedProject struct {
 	SubscriptionId NullableString `json:"subscription_id,omitempty"`
 	// Last Time Project was Updated
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NormalizedProject NormalizedProject
 
 // NewNormalizedProject instantiates a new NormalizedProject object
 // This constructor will assign default values to properties that have it defined,
@@ -293,7 +296,36 @@ func (o NormalizedProject) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
+	varNormalizedProject := _NormalizedProject{}
+
+	if err = json.Unmarshal(bytes, &varNormalizedProject); err == nil {
+		*o = NormalizedProject(varNormalizedProject)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "current_revision")
+		delete(additionalProperties, "hosts")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "slug")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "subscription_id")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNormalizedProject struct {

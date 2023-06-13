@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -26,7 +26,10 @@ type RelationQuery struct {
 	// SubjectID to query  Either SubjectSet or SubjectID can be provided.
 	SubjectId *string `json:"subject_id,omitempty"`
 	SubjectSet *SubjectSet `json:"subject_set,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationQuery RelationQuery
 
 // NewRelationQuery instantiates a new RelationQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -222,7 +225,33 @@ func (o RelationQuery) MarshalJSON() ([]byte, error) {
 	if o.SubjectSet != nil {
 		toSerialize["subject_set"] = o.SubjectSet
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *RelationQuery) UnmarshalJSON(bytes []byte) (err error) {
+	varRelationQuery := _RelationQuery{}
+
+	if err = json.Unmarshal(bytes, &varRelationQuery); err == nil {
+		*o = RelationQuery(varRelationQuery)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "namespace")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "relation")
+		delete(additionalProperties, "subject_id")
+		delete(additionalProperties, "subject_set")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRelationQuery struct {

@@ -2,3 +2,5 @@ packageName: ${ELIXIR_PACKAGE_NAME}
 packageVersion: $RAW_VERSION
 invokerPackage: Ory
 licenseId: Apache-2.0
+
+disallowAdditionalPropertiesIfNotPresent: false

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -29,7 +29,10 @@ type MessageDispatch struct {
 	Status string `json:"status"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MessageDispatch MessageDispatch
 
 // NewMessageDispatch instantiates a new MessageDispatch object
 // This constructor will assign default values to properties that have it defined,
@@ -225,7 +228,34 @@ func (o MessageDispatch) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *MessageDispatch) UnmarshalJSON(bytes []byte) (err error) {
+	varMessageDispatch := _MessageDispatch{}
+
+	if err = json.Unmarshal(bytes, &varMessageDispatch); err == nil {
+		*o = MessageDispatch(varMessageDispatch)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "message_id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMessageDispatch struct {

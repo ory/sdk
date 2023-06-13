@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type IsOwnerForProjectBySlug struct {
 	ProjectSlug string `json:"ProjectSlug"`
 	// Subject is the subject from the API Token.
 	Subject string `json:"Subject"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IsOwnerForProjectBySlug IsOwnerForProjectBySlug
 
 // NewIsOwnerForProjectBySlug instantiates a new IsOwnerForProjectBySlug object
 // This constructor will assign default values to properties that have it defined,
@@ -98,7 +101,30 @@ func (o IsOwnerForProjectBySlug) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["Subject"] = o.Subject
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IsOwnerForProjectBySlug) UnmarshalJSON(bytes []byte) (err error) {
+	varIsOwnerForProjectBySlug := _IsOwnerForProjectBySlug{}
+
+	if err = json.Unmarshal(bytes, &varIsOwnerForProjectBySlug); err == nil {
+		*o = IsOwnerForProjectBySlug(varIsOwnerForProjectBySlug)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "ProjectSlug")
+		delete(additionalProperties, "Subject")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIsOwnerForProjectBySlug struct {

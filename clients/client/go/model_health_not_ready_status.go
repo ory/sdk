@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type HealthNotReadyStatus struct {
 	// Errors contains a list of errors that caused the not ready status.
 	Errors *map[string]string `json:"errors,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HealthNotReadyStatus HealthNotReadyStatus
 
 // NewHealthNotReadyStatus instantiates a new HealthNotReadyStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o HealthNotReadyStatus) MarshalJSON() ([]byte, error) {
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *HealthNotReadyStatus) UnmarshalJSON(bytes []byte) (err error) {
+	varHealthNotReadyStatus := _HealthNotReadyStatus{}
+
+	if err = json.Unmarshal(bytes, &varHealthNotReadyStatus); err == nil {
+		*o = HealthNotReadyStatus(varHealthNotReadyStatus)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "errors")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHealthNotReadyStatus struct {

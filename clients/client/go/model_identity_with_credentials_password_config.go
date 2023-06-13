@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type IdentityWithCredentialsPasswordConfig struct {
 	HashedPassword *string `json:"hashed_password,omitempty"`
 	// The password in plain text if no hash is available.
 	Password *string `json:"password,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityWithCredentialsPasswordConfig IdentityWithCredentialsPasswordConfig
 
 // NewIdentityWithCredentialsPasswordConfig instantiates a new IdentityWithCredentialsPasswordConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o IdentityWithCredentialsPasswordConfig) MarshalJSON() ([]byte, error) {
 	if o.Password != nil {
 		toSerialize["password"] = o.Password
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentityWithCredentialsPasswordConfig) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityWithCredentialsPasswordConfig := _IdentityWithCredentialsPasswordConfig{}
+
+	if err = json.Unmarshal(bytes, &varIdentityWithCredentialsPasswordConfig); err == nil {
+		*o = IdentityWithCredentialsPasswordConfig(varIdentityWithCredentialsPasswordConfig)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "hashed_password")
+		delete(additionalProperties, "password")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityWithCredentialsPasswordConfig struct {

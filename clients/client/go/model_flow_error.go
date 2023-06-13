@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,10 @@ type FlowError struct {
 	Id string `json:"id"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FlowError FlowError
 
 // NewFlowError instantiates a new FlowError object
 // This constructor will assign default values to properties that have it defined,
@@ -179,7 +182,32 @@ func (o FlowError) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *FlowError) UnmarshalJSON(bytes []byte) (err error) {
+	varFlowError := _FlowError{}
+
+	if err = json.Unmarshal(bytes, &varFlowError); err == nil {
+		*o = FlowError(varFlowError)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFlowError struct {

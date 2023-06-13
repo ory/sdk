@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -90,7 +90,10 @@ type ProjectBrandingTheme struct {
 	TextDisabledColor *string `json:"text_disabled_color,omitempty"`
 	// Last Time Branding was Updated
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProjectBrandingTheme ProjectBrandingTheme
 
 // NewProjectBrandingTheme instantiates a new ProjectBrandingTheme object
 // This constructor will assign default values to properties that have it defined,
@@ -1336,7 +1339,64 @@ func (o ProjectBrandingTheme) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ProjectBrandingTheme) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectBrandingTheme := _ProjectBrandingTheme{}
+
+	if err = json.Unmarshal(bytes, &varProjectBrandingTheme); err == nil {
+		*o = ProjectBrandingTheme(varProjectBrandingTheme)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "accent_default_color")
+		delete(additionalProperties, "accent_disabled_color")
+		delete(additionalProperties, "accent_emphasis_color")
+		delete(additionalProperties, "accent_muted_color")
+		delete(additionalProperties, "accent_subtle_color")
+		delete(additionalProperties, "background_canvas_color")
+		delete(additionalProperties, "background_subtle_color")
+		delete(additionalProperties, "background_surface_color")
+		delete(additionalProperties, "border_default_color")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "error_default_color")
+		delete(additionalProperties, "error_emphasis_color")
+		delete(additionalProperties, "error_muted_color")
+		delete(additionalProperties, "error_subtle_color")
+		delete(additionalProperties, "foreground_default_color")
+		delete(additionalProperties, "foreground_disabled_color")
+		delete(additionalProperties, "foreground_muted_color")
+		delete(additionalProperties, "foreground_on_accent_color")
+		delete(additionalProperties, "foreground_on_dark_color")
+		delete(additionalProperties, "foreground_on_disabled_color")
+		delete(additionalProperties, "foreground_subtle_color")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "input_background_color")
+		delete(additionalProperties, "input_disabled_color")
+		delete(additionalProperties, "input_placeholder_color")
+		delete(additionalProperties, "input_text_color")
+		delete(additionalProperties, "logo_type")
+		delete(additionalProperties, "logo_url")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "primary_color")
+		delete(additionalProperties, "project_branding_id")
+		delete(additionalProperties, "secondary_color")
+		delete(additionalProperties, "success_emphasis_color")
+		delete(additionalProperties, "text_default_color")
+		delete(additionalProperties, "text_disabled_color")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectBrandingTheme struct {

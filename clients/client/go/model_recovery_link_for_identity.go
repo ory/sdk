@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -22,7 +22,10 @@ type RecoveryLinkForIdentity struct {
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	// Recovery Link  This link can be used to recover the account.
 	RecoveryLink string `json:"recovery_link"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecoveryLinkForIdentity RecoveryLinkForIdentity
 
 // NewRecoveryLinkForIdentity instantiates a new RecoveryLinkForIdentity object
 // This constructor will assign default values to properties that have it defined,
@@ -106,7 +109,30 @@ func (o RecoveryLinkForIdentity) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["recovery_link"] = o.RecoveryLink
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *RecoveryLinkForIdentity) UnmarshalJSON(bytes []byte) (err error) {
+	varRecoveryLinkForIdentity := _RecoveryLinkForIdentity{}
+
+	if err = json.Unmarshal(bytes, &varRecoveryLinkForIdentity); err == nil {
+		*o = RecoveryLinkForIdentity(varRecoveryLinkForIdentity)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "recovery_link")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecoveryLinkForIdentity struct {

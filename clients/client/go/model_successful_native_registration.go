@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,10 @@ type SuccessfulNativeRegistration struct {
 	Session *Session `json:"session,omitempty"`
 	// The Session Token  This field is only set when the session hook is configured as a post-registration hook.  A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization Header:  Authorization: bearer ${session-token}  The session token is only issued for API flows, not for Browser flows!
 	SessionToken *string `json:"session_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SuccessfulNativeRegistration SuccessfulNativeRegistration
 
 // NewSuccessfulNativeRegistration instantiates a new SuccessfulNativeRegistration object
 // This constructor will assign default values to properties that have it defined,
@@ -177,7 +180,32 @@ func (o SuccessfulNativeRegistration) MarshalJSON() ([]byte, error) {
 	if o.SessionToken != nil {
 		toSerialize["session_token"] = o.SessionToken
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SuccessfulNativeRegistration) UnmarshalJSON(bytes []byte) (err error) {
+	varSuccessfulNativeRegistration := _SuccessfulNativeRegistration{}
+
+	if err = json.Unmarshal(bytes, &varSuccessfulNativeRegistration); err == nil {
+		*o = SuccessfulNativeRegistration(varSuccessfulNativeRegistration)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "continue_with")
+		delete(additionalProperties, "identity")
+		delete(additionalProperties, "session")
+		delete(additionalProperties, "session_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSuccessfulNativeRegistration struct {

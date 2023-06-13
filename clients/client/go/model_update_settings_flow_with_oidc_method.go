@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -29,7 +29,10 @@ type UpdateSettingsFlowWithOidcMethod struct {
 	Unlink *string `json:"unlink,omitempty"`
 	// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
 	UpstreamParameters map[string]interface{} `json:"upstream_parameters,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSettingsFlowWithOidcMethod UpdateSettingsFlowWithOidcMethod
 
 // NewUpdateSettingsFlowWithOidcMethod instantiates a new UpdateSettingsFlowWithOidcMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -253,7 +256,34 @@ func (o UpdateSettingsFlowWithOidcMethod) MarshalJSON() ([]byte, error) {
 	if o.UpstreamParameters != nil {
 		toSerialize["upstream_parameters"] = o.UpstreamParameters
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateSettingsFlowWithOidcMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateSettingsFlowWithOidcMethod := _UpdateSettingsFlowWithOidcMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithOidcMethod); err == nil {
+		*o = UpdateSettingsFlowWithOidcMethod(varUpdateSettingsFlowWithOidcMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "flow")
+		delete(additionalProperties, "link")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "traits")
+		delete(additionalProperties, "unlink")
+		delete(additionalProperties, "upstream_parameters")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSettingsFlowWithOidcMethod struct {

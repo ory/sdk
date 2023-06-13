@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -75,7 +75,10 @@ type OidcConfiguration struct {
 	UserinfoSignedResponseAlg []string `json:"userinfo_signed_response_alg"`
 	// OpenID Connect Supported Userinfo Signing Algorithm  JSON array containing a list of the JWS [JWS] signing algorithms (alg values) [JWA] supported by the UserInfo Endpoint to encode the Claims in a JWT [JWT].
 	UserinfoSigningAlgValuesSupported []string `json:"userinfo_signing_alg_values_supported,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OidcConfiguration OidcConfiguration
 
 // NewOidcConfiguration instantiates a new OidcConfiguration object
 // This constructor will assign default values to properties that have it defined,
@@ -1048,7 +1051,57 @@ func (o OidcConfiguration) MarshalJSON() ([]byte, error) {
 	if o.UserinfoSigningAlgValuesSupported != nil {
 		toSerialize["userinfo_signing_alg_values_supported"] = o.UserinfoSigningAlgValuesSupported
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OidcConfiguration) UnmarshalJSON(bytes []byte) (err error) {
+	varOidcConfiguration := _OidcConfiguration{}
+
+	if err = json.Unmarshal(bytes, &varOidcConfiguration); err == nil {
+		*o = OidcConfiguration(varOidcConfiguration)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorization_endpoint")
+		delete(additionalProperties, "backchannel_logout_session_supported")
+		delete(additionalProperties, "backchannel_logout_supported")
+		delete(additionalProperties, "claims_parameter_supported")
+		delete(additionalProperties, "claims_supported")
+		delete(additionalProperties, "code_challenge_methods_supported")
+		delete(additionalProperties, "end_session_endpoint")
+		delete(additionalProperties, "frontchannel_logout_session_supported")
+		delete(additionalProperties, "frontchannel_logout_supported")
+		delete(additionalProperties, "grant_types_supported")
+		delete(additionalProperties, "id_token_signed_response_alg")
+		delete(additionalProperties, "id_token_signing_alg_values_supported")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "jwks_uri")
+		delete(additionalProperties, "registration_endpoint")
+		delete(additionalProperties, "request_object_signing_alg_values_supported")
+		delete(additionalProperties, "request_parameter_supported")
+		delete(additionalProperties, "request_uri_parameter_supported")
+		delete(additionalProperties, "require_request_uri_registration")
+		delete(additionalProperties, "response_modes_supported")
+		delete(additionalProperties, "response_types_supported")
+		delete(additionalProperties, "revocation_endpoint")
+		delete(additionalProperties, "scopes_supported")
+		delete(additionalProperties, "subject_types_supported")
+		delete(additionalProperties, "token_endpoint")
+		delete(additionalProperties, "token_endpoint_auth_methods_supported")
+		delete(additionalProperties, "userinfo_endpoint")
+		delete(additionalProperties, "userinfo_signed_response_alg")
+		delete(additionalProperties, "userinfo_signing_alg_values_supported")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOidcConfiguration struct {

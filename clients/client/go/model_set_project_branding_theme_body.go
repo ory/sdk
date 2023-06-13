@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,10 @@ type SetProjectBrandingThemeBody struct {
 	// Branding name
 	Name *string `json:"name,omitempty"`
 	Theme *ProjectBrandingColors `json:"theme,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SetProjectBrandingThemeBody SetProjectBrandingThemeBody
 
 // NewSetProjectBrandingThemeBody instantiates a new SetProjectBrandingThemeBody object
 // This constructor will assign default values to properties that have it defined,
@@ -185,7 +188,32 @@ func (o SetProjectBrandingThemeBody) MarshalJSON() ([]byte, error) {
 	if o.Theme != nil {
 		toSerialize["theme"] = o.Theme
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SetProjectBrandingThemeBody) UnmarshalJSON(bytes []byte) (err error) {
+	varSetProjectBrandingThemeBody := _SetProjectBrandingThemeBody{}
+
+	if err = json.Unmarshal(bytes, &varSetProjectBrandingThemeBody); err == nil {
+		*o = SetProjectBrandingThemeBody(varSetProjectBrandingThemeBody)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "logo_type")
+		delete(additionalProperties, "logo_url")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "theme")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSetProjectBrandingThemeBody struct {

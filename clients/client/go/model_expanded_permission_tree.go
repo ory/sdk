@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -22,7 +22,10 @@ type ExpandedPermissionTree struct {
 	Tuple *Relationship `json:"tuple,omitempty"`
 	// The type of the node. union TreeNodeUnion exclusion TreeNodeExclusion intersection TreeNodeIntersection leaf TreeNodeLeaf tuple_to_subject_set TreeNodeTupleToSubjectSet computed_subject_set TreeNodeComputedSubjectSet not TreeNodeNot unspecified TreeNodeUnspecified
 	Type string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ExpandedPermissionTree ExpandedPermissionTree
 
 // NewExpandedPermissionTree instantiates a new ExpandedPermissionTree object
 // This constructor will assign default values to properties that have it defined,
@@ -141,7 +144,31 @@ func (o ExpandedPermissionTree) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ExpandedPermissionTree) UnmarshalJSON(bytes []byte) (err error) {
+	varExpandedPermissionTree := _ExpandedPermissionTree{}
+
+	if err = json.Unmarshal(bytes, &varExpandedPermissionTree); err == nil {
+		*o = ExpandedPermissionTree(varExpandedPermissionTree)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "children")
+		delete(additionalProperties, "tuple")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableExpandedPermissionTree struct {

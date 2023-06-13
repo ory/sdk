@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -32,7 +32,10 @@ type ManagedIdentitySchema struct {
 	Name string `json:"name"`
 	// Last Time Schema was Updated
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ManagedIdentitySchema ManagedIdentitySchema
 
 // NewManagedIdentitySchema instantiates a new ManagedIdentitySchema object
 // This constructor will assign default values to properties that have it defined,
@@ -256,7 +259,35 @@ func (o ManagedIdentitySchema) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ManagedIdentitySchema) UnmarshalJSON(bytes []byte) (err error) {
+	varManagedIdentitySchema := _ManagedIdentitySchema{}
+
+	if err = json.Unmarshal(bytes, &varManagedIdentitySchema); err == nil {
+		*o = ManagedIdentitySchema(varManagedIdentitySchema)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "blob_name")
+		delete(additionalProperties, "blob_url")
+		delete(additionalProperties, "content_hash")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableManagedIdentitySchema struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -31,7 +31,10 @@ type AcceptOAuth2LoginRequest struct {
 	RememberFor *int64 `json:"remember_for,omitempty"`
 	// Subject is the user ID of the end-user that authenticated.
 	Subject string `json:"subject"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AcceptOAuth2LoginRequest AcceptOAuth2LoginRequest
 
 // NewAcceptOAuth2LoginRequest instantiates a new AcceptOAuth2LoginRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -325,7 +328,36 @@ func (o AcceptOAuth2LoginRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["subject"] = o.Subject
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *AcceptOAuth2LoginRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varAcceptOAuth2LoginRequest := _AcceptOAuth2LoginRequest{}
+
+	if err = json.Unmarshal(bytes, &varAcceptOAuth2LoginRequest); err == nil {
+		*o = AcceptOAuth2LoginRequest(varAcceptOAuth2LoginRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "acr")
+		delete(additionalProperties, "amr")
+		delete(additionalProperties, "context")
+		delete(additionalProperties, "extend_session_lifespan")
+		delete(additionalProperties, "force_subject_identifier")
+		delete(additionalProperties, "remember")
+		delete(additionalProperties, "remember_for")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAcceptOAuth2LoginRequest struct {

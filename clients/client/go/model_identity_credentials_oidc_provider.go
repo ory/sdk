@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -22,7 +22,10 @@ type IdentityCredentialsOidcProvider struct {
 	InitialRefreshToken *string `json:"initial_refresh_token,omitempty"`
 	Provider *string `json:"provider,omitempty"`
 	Subject *string `json:"subject,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityCredentialsOidcProvider IdentityCredentialsOidcProvider
 
 // NewIdentityCredentialsOidcProvider instantiates a new IdentityCredentialsOidcProvider object
 // This constructor will assign default values to properties that have it defined,
@@ -218,7 +221,33 @@ func (o IdentityCredentialsOidcProvider) MarshalJSON() ([]byte, error) {
 	if o.Subject != nil {
 		toSerialize["subject"] = o.Subject
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentityCredentialsOidcProvider) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityCredentialsOidcProvider := _IdentityCredentialsOidcProvider{}
+
+	if err = json.Unmarshal(bytes, &varIdentityCredentialsOidcProvider); err == nil {
+		*o = IdentityCredentialsOidcProvider(varIdentityCredentialsOidcProvider)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "initial_access_token")
+		delete(additionalProperties, "initial_id_token")
+		delete(additionalProperties, "initial_refresh_token")
+		delete(additionalProperties, "provider")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityCredentialsOidcProvider struct {

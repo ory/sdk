@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -18,7 +18,10 @@ import (
 // Usage struct for Usage
 type Usage struct {
 	GenericUsage *GenericUsage `json:"GenericUsage,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Usage Usage
 
 // NewUsage instantiates a new Usage object
 // This constructor will assign default values to properties that have it defined,
@@ -74,7 +77,29 @@ func (o Usage) MarshalJSON() ([]byte, error) {
 	if o.GenericUsage != nil {
 		toSerialize["GenericUsage"] = o.GenericUsage
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Usage) UnmarshalJSON(bytes []byte) (err error) {
+	varUsage := _Usage{}
+
+	if err = json.Unmarshal(bytes, &varUsage); err == nil {
+		*o = Usage(varUsage)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "GenericUsage")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUsage struct {

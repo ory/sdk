@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -35,7 +35,10 @@ type ProjectInvite struct {
 	Status string `json:"status"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProjectInvite ProjectInvite
 
 // NewProjectInvite instantiates a new ProjectInvite object
 // This constructor will assign default values to properties that have it defined,
@@ -325,7 +328,37 @@ func (o ProjectInvite) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ProjectInvite) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectInvite := _ProjectInvite{}
+
+	if err = json.Unmarshal(bytes, &varProjectInvite); err == nil {
+		*o = ProjectInvite(varProjectInvite)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "invitee_email")
+		delete(additionalProperties, "invitee_id")
+		delete(additionalProperties, "owner_email")
+		delete(additionalProperties, "owner_id")
+		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectInvite struct {

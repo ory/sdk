@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ type ParseError struct {
 	End *SourcePosition `json:"end,omitempty"`
 	Message *string `json:"message,omitempty"`
 	Start *SourcePosition `json:"start,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ParseError ParseError
 
 // NewParseError instantiates a new ParseError object
 // This constructor will assign default values to properties that have it defined,
@@ -146,7 +149,31 @@ func (o ParseError) MarshalJSON() ([]byte, error) {
 	if o.Start != nil {
 		toSerialize["start"] = o.Start
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ParseError) UnmarshalJSON(bytes []byte) (err error) {
+	varParseError := _ParseError{}
+
+	if err = json.Unmarshal(bytes, &varParseError); err == nil {
+		*o = ParseError(varParseError)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "end")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "start")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableParseError struct {

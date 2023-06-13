@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type CreateRecoveryLinkForIdentityBody struct {
 	ExpiresIn *string `json:"expires_in,omitempty"`
 	// Identity to Recover  The identity's ID you wish to recover.
 	IdentityId string `json:"identity_id"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateRecoveryLinkForIdentityBody CreateRecoveryLinkForIdentityBody
 
 // NewCreateRecoveryLinkForIdentityBody instantiates a new CreateRecoveryLinkForIdentityBody object
 // This constructor will assign default values to properties that have it defined,
@@ -105,7 +108,30 @@ func (o CreateRecoveryLinkForIdentityBody) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["identity_id"] = o.IdentityId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *CreateRecoveryLinkForIdentityBody) UnmarshalJSON(bytes []byte) (err error) {
+	varCreateRecoveryLinkForIdentityBody := _CreateRecoveryLinkForIdentityBody{}
+
+	if err = json.Unmarshal(bytes, &varCreateRecoveryLinkForIdentityBody); err == nil {
+		*o = CreateRecoveryLinkForIdentityBody(varCreateRecoveryLinkForIdentityBody)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "expires_in")
+		delete(additionalProperties, "identity_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateRecoveryLinkForIdentityBody struct {

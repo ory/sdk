@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,10 @@ type SessionDevice struct {
 	Location *string `json:"location,omitempty"`
 	// UserAgent of the client
 	UserAgent *string `json:"user_agent,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SessionDevice SessionDevice
 
 // NewSessionDevice instantiates a new SessionDevice object
 // This constructor will assign default values to properties that have it defined,
@@ -179,7 +182,32 @@ func (o SessionDevice) MarshalJSON() ([]byte, error) {
 	if o.UserAgent != nil {
 		toSerialize["user_agent"] = o.UserAgent
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SessionDevice) UnmarshalJSON(bytes []byte) (err error) {
+	varSessionDevice := _SessionDevice{}
+
+	if err = json.Unmarshal(bytes, &varSessionDevice); err == nil {
+		*o = SessionDevice(varSessionDevice)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ip_address")
+		delete(additionalProperties, "location")
+		delete(additionalProperties, "user_agent")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSessionDevice struct {

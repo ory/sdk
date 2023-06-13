@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,10 @@ type InternalIsOwnerForProjectBySlugBody struct {
 	ProjectSlug string `json:"project_slug"`
 	// Subject is the subject acting (user or API key).
 	Subject string `json:"subject"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InternalIsOwnerForProjectBySlugBody InternalIsOwnerForProjectBySlugBody
 
 // NewInternalIsOwnerForProjectBySlugBody instantiates a new InternalIsOwnerForProjectBySlugBody object
 // This constructor will assign default values to properties that have it defined,
@@ -165,7 +168,32 @@ func (o InternalIsOwnerForProjectBySlugBody) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["subject"] = o.Subject
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *InternalIsOwnerForProjectBySlugBody) UnmarshalJSON(bytes []byte) (err error) {
+	varInternalIsOwnerForProjectBySlugBody := _InternalIsOwnerForProjectBySlugBody{}
+
+	if err = json.Unmarshal(bytes, &varInternalIsOwnerForProjectBySlugBody); err == nil {
+		*o = InternalIsOwnerForProjectBySlugBody(varInternalIsOwnerForProjectBySlugBody)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "namespace")
+		delete(additionalProperties, "project_scope")
+		delete(additionalProperties, "project_slug")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInternalIsOwnerForProjectBySlugBody struct {

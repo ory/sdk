@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type IdentitySchemaContainer struct {
 	Id *string `json:"id,omitempty"`
 	// The actual Identity JSON Schema
 	Schema map[string]interface{} `json:"schema,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentitySchemaContainer IdentitySchemaContainer
 
 // NewIdentitySchemaContainer instantiates a new IdentitySchemaContainer object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o IdentitySchemaContainer) MarshalJSON() ([]byte, error) {
 	if o.Schema != nil {
 		toSerialize["schema"] = o.Schema
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentitySchemaContainer) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentitySchemaContainer := _IdentitySchemaContainer{}
+
+	if err = json.Unmarshal(bytes, &varIdentitySchemaContainer); err == nil {
+		*o = IdentitySchemaContainer(varIdentitySchemaContainer)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "schema")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentitySchemaContainer struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -27,7 +27,10 @@ type UpdateSettingsFlowWithWebAuthnMethod struct {
 	WebauthnRegisterDisplayname *string `json:"webauthn_register_displayname,omitempty"`
 	// Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
 	WebauthnRemove *string `json:"webauthn_remove,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSettingsFlowWithWebAuthnMethod UpdateSettingsFlowWithWebAuthnMethod
 
 // NewUpdateSettingsFlowWithWebAuthnMethod instantiates a new UpdateSettingsFlowWithWebAuthnMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -216,7 +219,33 @@ func (o UpdateSettingsFlowWithWebAuthnMethod) MarshalJSON() ([]byte, error) {
 	if o.WebauthnRemove != nil {
 		toSerialize["webauthn_remove"] = o.WebauthnRemove
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateSettingsFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateSettingsFlowWithWebAuthnMethod := _UpdateSettingsFlowWithWebAuthnMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithWebAuthnMethod); err == nil {
+		*o = UpdateSettingsFlowWithWebAuthnMethod(varUpdateSettingsFlowWithWebAuthnMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "webauthn_register")
+		delete(additionalProperties, "webauthn_register_displayname")
+		delete(additionalProperties, "webauthn_remove")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSettingsFlowWithWebAuthnMethod struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type Plan struct {
 	Name string `json:"name"`
 	// Version is the version of the plan. The combination of `name@version` must be unique.
 	Version int64 `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Plan Plan
 
 // NewPlan instantiates a new Plan object
 // This constructor will assign default values to properties that have it defined,
@@ -98,7 +101,30 @@ func (o Plan) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Plan) UnmarshalJSON(bytes []byte) (err error) {
+	varPlan := _Plan{}
+
+	if err = json.Unmarshal(bytes, &varPlan); err == nil {
+		*o = Plan(varPlan)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlan struct {

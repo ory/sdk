@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ type Relationships struct {
 	// The opaque token to provide in a subsequent request to get the next page. It is the empty string iff this is the last page.
 	NextPageToken *string `json:"next_page_token,omitempty"`
 	RelationTuples []Relationship `json:"relation_tuples,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Relationships Relationships
 
 // NewRelationships instantiates a new Relationships object
 // This constructor will assign default values to properties that have it defined,
@@ -111,7 +114,30 @@ func (o Relationships) MarshalJSON() ([]byte, error) {
 	if o.RelationTuples != nil {
 		toSerialize["relation_tuples"] = o.RelationTuples
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Relationships) UnmarshalJSON(bytes []byte) (err error) {
+	varRelationships := _Relationships{}
+
+	if err = json.Unmarshal(bytes, &varRelationships); err == nil {
+		*o = Relationships(varRelationships)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "next_page_token")
+		delete(additionalProperties, "relation_tuples")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRelationships struct {

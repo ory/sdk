@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,10 @@ type UiText struct {
 	Text string `json:"text"`
 	// The message type. info Info error Error success Success
 	Type string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiText UiText
 
 // NewUiText instantiates a new UiText object
 // This constructor will assign default values to properties that have it defined,
@@ -164,7 +167,32 @@ func (o UiText) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiText) UnmarshalJSON(bytes []byte) (err error) {
+	varUiText := _UiText{}
+
+	if err = json.Unmarshal(bytes, &varUiText); err == nil {
+		*o = UiText(varUiText)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "context")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiText struct {

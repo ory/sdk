@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,10 @@ type UiNode struct {
 	Meta UiNodeMeta `json:"meta"`
 	// The node's type text Text input Input img Image a Anchor script Script
 	Type string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNode UiNode
 
 // NewUiNode instantiates a new UiNode object
 // This constructor will assign default values to properties that have it defined,
@@ -185,7 +188,33 @@ func (o UiNode) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiNode) UnmarshalJSON(bytes []byte) (err error) {
+	varUiNode := _UiNode{}
+
+	if err = json.Unmarshal(bytes, &varUiNode); err == nil {
+		*o = UiNode(varUiNode)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "attributes")
+		delete(additionalProperties, "group")
+		delete(additionalProperties, "messages")
+		delete(additionalProperties, "meta")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNode struct {

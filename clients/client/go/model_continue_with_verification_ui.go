@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ type ContinueWithVerificationUi struct {
 	// Action will always be `show_verification_ui` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
 	Action string `json:"action"`
 	Flow ContinueWithVerificationUiFlow `json:"flow"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ContinueWithVerificationUi ContinueWithVerificationUi
 
 // NewContinueWithVerificationUi instantiates a new ContinueWithVerificationUi object
 // This constructor will assign default values to properties that have it defined,
@@ -97,7 +100,30 @@ func (o ContinueWithVerificationUi) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["flow"] = o.Flow
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ContinueWithVerificationUi) UnmarshalJSON(bytes []byte) (err error) {
+	varContinueWithVerificationUi := _ContinueWithVerificationUi{}
+
+	if err = json.Unmarshal(bytes, &varContinueWithVerificationUi); err == nil {
+		*o = ContinueWithVerificationUi(varContinueWithVerificationUi)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "flow")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableContinueWithVerificationUi struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,10 @@ type IdentityPatchResponse struct {
 	Identity *string `json:"identity,omitempty"`
 	// The ID of this patch response, if an ID was specified in the patch.
 	PatchId *string `json:"patch_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityPatchResponse IdentityPatchResponse
 
 // NewIdentityPatchResponse instantiates a new IdentityPatchResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -149,7 +152,31 @@ func (o IdentityPatchResponse) MarshalJSON() ([]byte, error) {
 	if o.PatchId != nil {
 		toSerialize["patch_id"] = o.PatchId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentityPatchResponse) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityPatchResponse := _IdentityPatchResponse{}
+
+	if err = json.Unmarshal(bytes, &varIdentityPatchResponse); err == nil {
+		*o = IdentityPatchResponse(varIdentityPatchResponse)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "identity")
+		delete(additionalProperties, "patch_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityPatchResponse struct {

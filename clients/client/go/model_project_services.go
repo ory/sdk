@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ type ProjectServices struct {
 	Identity *ProjectServiceIdentity `json:"identity,omitempty"`
 	Oauth2 *ProjectServiceOAuth2 `json:"oauth2,omitempty"`
 	Permission *ProjectServicePermission `json:"permission,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProjectServices ProjectServices
 
 // NewProjectServices instantiates a new ProjectServices object
 // This constructor will assign default values to properties that have it defined,
@@ -146,7 +149,31 @@ func (o ProjectServices) MarshalJSON() ([]byte, error) {
 	if o.Permission != nil {
 		toSerialize["permission"] = o.Permission
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ProjectServices) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectServices := _ProjectServices{}
+
+	if err = json.Unmarshal(bytes, &varProjectServices); err == nil {
+		*o = ProjectServices(varProjectServices)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "identity")
+		delete(additionalProperties, "oauth2")
+		delete(additionalProperties, "permission")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectServices struct {

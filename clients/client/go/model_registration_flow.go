@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -38,7 +38,10 @@ type RegistrationFlow struct {
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RegistrationFlow RegistrationFlow
 
 // NewRegistrationFlow instantiates a new RegistrationFlow object
 // This constructor will assign default values to properties that have it defined,
@@ -447,7 +450,40 @@ func (o RegistrationFlow) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["ui"] = o.Ui
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *RegistrationFlow) UnmarshalJSON(bytes []byte) (err error) {
+	varRegistrationFlow := _RegistrationFlow{}
+
+	if err = json.Unmarshal(bytes, &varRegistrationFlow); err == nil {
+		*o = RegistrationFlow(varRegistrationFlow)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "issued_at")
+		delete(additionalProperties, "oauth2_login_challenge")
+		delete(additionalProperties, "oauth2_login_request")
+		delete(additionalProperties, "request_url")
+		delete(additionalProperties, "return_to")
+		delete(additionalProperties, "session_token_exchange_code")
+		delete(additionalProperties, "transient_payload")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "ui")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRegistrationFlow struct {

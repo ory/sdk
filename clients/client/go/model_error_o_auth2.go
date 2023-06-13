@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -27,7 +27,10 @@ type ErrorOAuth2 struct {
 	ErrorHint *string `json:"error_hint,omitempty"`
 	// HTTP Status Code
 	StatusCode *int64 `json:"status_code,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ErrorOAuth2 ErrorOAuth2
 
 // NewErrorOAuth2 instantiates a new ErrorOAuth2 object
 // This constructor will assign default values to properties that have it defined,
@@ -223,7 +226,33 @@ func (o ErrorOAuth2) MarshalJSON() ([]byte, error) {
 	if o.StatusCode != nil {
 		toSerialize["status_code"] = o.StatusCode
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ErrorOAuth2) UnmarshalJSON(bytes []byte) (err error) {
+	varErrorOAuth2 := _ErrorOAuth2{}
+
+	if err = json.Unmarshal(bytes, &varErrorOAuth2); err == nil {
+		*o = ErrorOAuth2(varErrorOAuth2)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "error_debug")
+		delete(additionalProperties, "error_description")
+		delete(additionalProperties, "error_hint")
+		delete(additionalProperties, "status_code")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableErrorOAuth2 struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type TrustedOAuth2JwtGrantJsonWebKey struct {
 	Kid *string `json:"kid,omitempty"`
 	// The \"set\" is basically a name for a group(set) of keys. Will be the same as \"issuer\" in grant.
 	Set *string `json:"set,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TrustedOAuth2JwtGrantJsonWebKey TrustedOAuth2JwtGrantJsonWebKey
 
 // NewTrustedOAuth2JwtGrantJsonWebKey instantiates a new TrustedOAuth2JwtGrantJsonWebKey object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o TrustedOAuth2JwtGrantJsonWebKey) MarshalJSON() ([]byte, error) {
 	if o.Set != nil {
 		toSerialize["set"] = o.Set
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *TrustedOAuth2JwtGrantJsonWebKey) UnmarshalJSON(bytes []byte) (err error) {
+	varTrustedOAuth2JwtGrantJsonWebKey := _TrustedOAuth2JwtGrantJsonWebKey{}
+
+	if err = json.Unmarshal(bytes, &varTrustedOAuth2JwtGrantJsonWebKey); err == nil {
+		*o = TrustedOAuth2JwtGrantJsonWebKey(varTrustedOAuth2JwtGrantJsonWebKey)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "kid")
+		delete(additionalProperties, "set")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTrustedOAuth2JwtGrantJsonWebKey struct {

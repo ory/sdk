@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -28,7 +28,10 @@ type IdentityCredentials struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Version refers to the version of the credential. Useful when changing the config schema.
 	Version *int64 `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityCredentials IdentityCredentials
 
 // NewIdentityCredentials instantiates a new IdentityCredentials object
 // This constructor will assign default values to properties that have it defined,
@@ -259,7 +262,34 @@ func (o IdentityCredentials) MarshalJSON() ([]byte, error) {
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentityCredentials) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityCredentials := _IdentityCredentials{}
+
+	if err = json.Unmarshal(bytes, &varIdentityCredentials); err == nil {
+		*o = IdentityCredentials(varIdentityCredentials)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "identifiers")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityCredentials struct {

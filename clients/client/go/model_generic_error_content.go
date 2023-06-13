@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -27,7 +27,10 @@ type GenericErrorContent struct {
 	Message *string `json:"message,omitempty"`
 	// Code represents the error status code (404, 403, 401, ...).
 	StatusCode *int64 `json:"status_code,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GenericErrorContent GenericErrorContent
 
 // NewGenericErrorContent instantiates a new GenericErrorContent object
 // This constructor will assign default values to properties that have it defined,
@@ -223,7 +226,33 @@ func (o GenericErrorContent) MarshalJSON() ([]byte, error) {
 	if o.StatusCode != nil {
 		toSerialize["status_code"] = o.StatusCode
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *GenericErrorContent) UnmarshalJSON(bytes []byte) (err error) {
+	varGenericErrorContent := _GenericErrorContent{}
+
+	if err = json.Unmarshal(bytes, &varGenericErrorContent); err == nil {
+		*o = GenericErrorContent(varGenericErrorContent)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "debug")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "error_description")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "status_code")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGenericErrorContent struct {

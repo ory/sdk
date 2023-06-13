@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -38,7 +38,10 @@ type Subscription struct {
 	// For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.  A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.  If subscription `collection_method=charge_automatically` it becomes `past_due` when payment to renew it fails and `canceled` or `unpaid` (depending on your subscriptions settings) when Stripe has exhausted all payment retry attempts.  If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
 	Status string `json:"status"`
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Subscription Subscription
 
 // NewSubscription instantiates a new Subscription object
 // This constructor will assign default values to properties that have it defined,
@@ -451,7 +454,41 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Subscription) UnmarshalJSON(bytes []byte) (err error) {
+	varSubscription := _Subscription{}
+
+	if err = json.Unmarshal(bytes, &varSubscription); err == nil {
+		*o = Subscription(varSubscription)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "current_interval")
+		delete(additionalProperties, "current_plan")
+		delete(additionalProperties, "customer_id")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "interval_changes_to")
+		delete(additionalProperties, "ongoing_stripe_checkout_id")
+		delete(additionalProperties, "payed_until")
+		delete(additionalProperties, "plan_changes_at")
+		delete(additionalProperties, "plan_changes_to")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSubscription struct {

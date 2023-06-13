@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ type IdentityWithCredentialsOidcConfig struct {
 	Config *IdentityWithCredentialsPasswordConfig `json:"config,omitempty"`
 	// A list of OpenID Connect Providers
 	Providers []IdentityWithCredentialsOidcConfigProvider `json:"providers,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityWithCredentialsOidcConfig IdentityWithCredentialsOidcConfig
 
 // NewIdentityWithCredentialsOidcConfig instantiates a new IdentityWithCredentialsOidcConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -111,7 +114,30 @@ func (o IdentityWithCredentialsOidcConfig) MarshalJSON() ([]byte, error) {
 	if o.Providers != nil {
 		toSerialize["providers"] = o.Providers
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentityWithCredentialsOidcConfig) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityWithCredentialsOidcConfig := _IdentityWithCredentialsOidcConfig{}
+
+	if err = json.Unmarshal(bytes, &varIdentityWithCredentialsOidcConfig); err == nil {
+		*o = IdentityWithCredentialsOidcConfig(varIdentityWithCredentialsOidcConfig)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "providers")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityWithCredentialsOidcConfig struct {

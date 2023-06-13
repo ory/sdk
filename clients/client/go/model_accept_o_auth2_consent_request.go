@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -26,7 +26,10 @@ type AcceptOAuth2ConsentRequest struct {
 	// RememberFor sets how long the consent authorization should be remembered for in seconds. If set to `0`, the authorization will be remembered indefinitely.
 	RememberFor *int64 `json:"remember_for,omitempty"`
 	Session *AcceptOAuth2ConsentRequestSession `json:"session,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AcceptOAuth2ConsentRequest AcceptOAuth2ConsentRequest
 
 // NewAcceptOAuth2ConsentRequest instantiates a new AcceptOAuth2ConsentRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -257,7 +260,34 @@ func (o AcceptOAuth2ConsentRequest) MarshalJSON() ([]byte, error) {
 	if o.Session != nil {
 		toSerialize["session"] = o.Session
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *AcceptOAuth2ConsentRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varAcceptOAuth2ConsentRequest := _AcceptOAuth2ConsentRequest{}
+
+	if err = json.Unmarshal(bytes, &varAcceptOAuth2ConsentRequest); err == nil {
+		*o = AcceptOAuth2ConsentRequest(varAcceptOAuth2ConsentRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "grant_access_token_audience")
+		delete(additionalProperties, "grant_scope")
+		delete(additionalProperties, "handled_at")
+		delete(additionalProperties, "remember")
+		delete(additionalProperties, "remember_for")
+		delete(additionalProperties, "session")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAcceptOAuth2ConsentRequest struct {

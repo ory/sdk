@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -27,7 +27,10 @@ type UpdateLoginFlowWithPasswordMethod struct {
 	Password string `json:"password"`
 	// Identifier is the email or username of the user trying to log in. This field is deprecated!
 	PasswordIdentifier *string `json:"password_identifier,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateLoginFlowWithPasswordMethod UpdateLoginFlowWithPasswordMethod
 
 // NewUpdateLoginFlowWithPasswordMethod instantiates a new UpdateLoginFlowWithPasswordMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -202,7 +205,33 @@ func (o UpdateLoginFlowWithPasswordMethod) MarshalJSON() ([]byte, error) {
 	if o.PasswordIdentifier != nil {
 		toSerialize["password_identifier"] = o.PasswordIdentifier
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateLoginFlowWithPasswordMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateLoginFlowWithPasswordMethod := _UpdateLoginFlowWithPasswordMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateLoginFlowWithPasswordMethod); err == nil {
+		*o = UpdateLoginFlowWithPasswordMethod(varUpdateLoginFlowWithPasswordMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "password_identifier")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateLoginFlowWithPasswordMethod struct {

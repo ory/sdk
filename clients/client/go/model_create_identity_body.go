@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -31,7 +31,10 @@ type CreateIdentityBody struct {
 	Traits map[string]interface{} `json:"traits"`
 	// VerifiableAddresses contains all the addresses that can be verified by the user.  Use this structure to import verified addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
 	VerifiableAddresses []VerifiableIdentityAddress `json:"verifiable_addresses,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateIdentityBody CreateIdentityBody
 
 // NewCreateIdentityBody instantiates a new CreateIdentityBody object
 // This constructor will assign default values to properties that have it defined,
@@ -320,7 +323,36 @@ func (o CreateIdentityBody) MarshalJSON() ([]byte, error) {
 	if o.VerifiableAddresses != nil {
 		toSerialize["verifiable_addresses"] = o.VerifiableAddresses
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *CreateIdentityBody) UnmarshalJSON(bytes []byte) (err error) {
+	varCreateIdentityBody := _CreateIdentityBody{}
+
+	if err = json.Unmarshal(bytes, &varCreateIdentityBody); err == nil {
+		*o = CreateIdentityBody(varCreateIdentityBody)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "metadata_admin")
+		delete(additionalProperties, "metadata_public")
+		delete(additionalProperties, "recovery_addresses")
+		delete(additionalProperties, "schema_id")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "traits")
+		delete(additionalProperties, "verifiable_addresses")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateIdentityBody struct {

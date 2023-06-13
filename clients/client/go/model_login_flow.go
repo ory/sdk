@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -43,7 +43,10 @@ type LoginFlow struct {
 	Ui UiContainer `json:"ui"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoginFlow LoginFlow
 
 // NewLoginFlow instantiates a new LoginFlow object
 // This constructor will assign default values to properties that have it defined,
@@ -557,7 +560,43 @@ func (o LoginFlow) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *LoginFlow) UnmarshalJSON(bytes []byte) (err error) {
+	varLoginFlow := _LoginFlow{}
+
+	if err = json.Unmarshal(bytes, &varLoginFlow); err == nil {
+		*o = LoginFlow(varLoginFlow)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "issued_at")
+		delete(additionalProperties, "oauth2_login_challenge")
+		delete(additionalProperties, "oauth2_login_request")
+		delete(additionalProperties, "refresh")
+		delete(additionalProperties, "request_url")
+		delete(additionalProperties, "requested_aal")
+		delete(additionalProperties, "return_to")
+		delete(additionalProperties, "session_token_exchange_code")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "ui")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoginFlow struct {

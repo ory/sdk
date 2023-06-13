@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -303,7 +303,10 @@ type NormalizedProjectRevision struct {
 	ProjectId *string `json:"project_id,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NormalizedProjectRevision NormalizedProjectRevision
 
 // NewNormalizedProjectRevision instantiates a new NormalizedProjectRevision object
 // This constructor will assign default values to properties that have it defined,
@@ -5681,7 +5684,180 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
+	varNormalizedProjectRevision := _NormalizedProjectRevision{}
+
+	if err = json.Unmarshal(bytes, &varNormalizedProjectRevision); err == nil {
+		*o = NormalizedProjectRevision(varNormalizedProjectRevision)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "hydra_oauth2_allowed_top_level_claims")
+		delete(additionalProperties, "hydra_oauth2_client_credentials_default_grant_allowed_scope")
+		delete(additionalProperties, "hydra_oauth2_exclude_not_before_claim")
+		delete(additionalProperties, "hydra_oauth2_grant_jwt_iat_optional")
+		delete(additionalProperties, "hydra_oauth2_grant_jwt_jti_optional")
+		delete(additionalProperties, "hydra_oauth2_grant_jwt_max_ttl")
+		delete(additionalProperties, "hydra_oauth2_pkce_enforced")
+		delete(additionalProperties, "hydra_oauth2_pkce_enforced_for_public_clients")
+		delete(additionalProperties, "hydra_oauth2_refresh_token_hook")
+		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_default_scope")
+		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_enabled")
+		delete(additionalProperties, "hydra_oidc_subject_identifiers_pairwise_salt")
+		delete(additionalProperties, "hydra_oidc_subject_identifiers_supported_types")
+		delete(additionalProperties, "hydra_secrets_cookie")
+		delete(additionalProperties, "hydra_secrets_system")
+		delete(additionalProperties, "hydra_serve_admin_cors_allowed_origins")
+		delete(additionalProperties, "hydra_serve_admin_cors_enabled")
+		delete(additionalProperties, "hydra_serve_cookies_same_site_legacy_workaround")
+		delete(additionalProperties, "hydra_serve_cookies_same_site_mode")
+		delete(additionalProperties, "hydra_serve_public_cors_allowed_origins")
+		delete(additionalProperties, "hydra_serve_public_cors_enabled")
+		delete(additionalProperties, "hydra_strategies_access_token")
+		delete(additionalProperties, "hydra_strategies_scope")
+		delete(additionalProperties, "hydra_ttl_access_token")
+		delete(additionalProperties, "hydra_ttl_auth_code")
+		delete(additionalProperties, "hydra_ttl_id_token")
+		delete(additionalProperties, "hydra_ttl_login_consent_request")
+		delete(additionalProperties, "hydra_ttl_refresh_token")
+		delete(additionalProperties, "hydra_urls_consent")
+		delete(additionalProperties, "hydra_urls_error")
+		delete(additionalProperties, "hydra_urls_login")
+		delete(additionalProperties, "hydra_urls_logout")
+		delete(additionalProperties, "hydra_urls_post_logout_redirect")
+		delete(additionalProperties, "hydra_urls_self_issuer")
+		delete(additionalProperties, "hydra_webfinger_jwks_broadcast_keys")
+		delete(additionalProperties, "hydra_webfinger_oidc_discovery_auth_url")
+		delete(additionalProperties, "hydra_webfinger_oidc_discovery_client_registration_url")
+		delete(additionalProperties, "hydra_webfinger_oidc_discovery_jwks_url")
+		delete(additionalProperties, "hydra_webfinger_oidc_discovery_supported_claims")
+		delete(additionalProperties, "hydra_webfinger_oidc_discovery_supported_scope")
+		delete(additionalProperties, "hydra_webfinger_oidc_discovery_token_url")
+		delete(additionalProperties, "hydra_webfinger_oidc_discovery_userinfo_url")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "keto_namespace_configuration")
+		delete(additionalProperties, "keto_namespaces")
+		delete(additionalProperties, "keto_read_max_depth")
+		delete(additionalProperties, "kratos_cookies_same_site")
+		delete(additionalProperties, "kratos_courier_smtp_connection_uri")
+		delete(additionalProperties, "kratos_courier_smtp_from_address")
+		delete(additionalProperties, "kratos_courier_smtp_from_name")
+		delete(additionalProperties, "kratos_courier_smtp_headers")
+		delete(additionalProperties, "kratos_courier_templates_recovery_code_invalid_email_body_html")
+		delete(additionalProperties, "kratos_courier_templates_recovery_code_invalid_email_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_recovery_code_invalid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_recovery_code_valid_email_body_html")
+		delete(additionalProperties, "kratos_courier_templates_recovery_code_valid_email_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_recovery_code_valid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_recovery_invalid_email_body_html")
+		delete(additionalProperties, "kratos_courier_templates_recovery_invalid_email_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_recovery_invalid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_recovery_valid_email_body_html")
+		delete(additionalProperties, "kratos_courier_templates_recovery_valid_email_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_recovery_valid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_verification_code_invalid_email_body_html")
+		delete(additionalProperties, "kratos_courier_templates_verification_code_invalid_email_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_verification_code_invalid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_verification_code_valid_email_body_html")
+		delete(additionalProperties, "kratos_courier_templates_verification_code_valid_email_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_verification_code_valid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_verification_invalid_email_body_html")
+		delete(additionalProperties, "kratos_courier_templates_verification_invalid_email_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_verification_invalid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_verification_valid_email_body_html")
+		delete(additionalProperties, "kratos_courier_templates_verification_valid_email_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_verification_valid_email_subject")
+		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions")
+		delete(additionalProperties, "kratos_identity_schemas")
+		delete(additionalProperties, "kratos_oauth2_provider_headers")
+		delete(additionalProperties, "kratos_oauth2_provider_url")
+		delete(additionalProperties, "kratos_secrets_cipher")
+		delete(additionalProperties, "kratos_secrets_cookie")
+		delete(additionalProperties, "kratos_secrets_default")
+		delete(additionalProperties, "kratos_selfservice_allowed_return_urls")
+		delete(additionalProperties, "kratos_selfservice_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_error_ui_url")
+		delete(additionalProperties, "kratos_selfservice_flows_hooks")
+		delete(additionalProperties, "kratos_selfservice_flows_login_after_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_login_after_oidc_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_login_after_password_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_login_after_webauthn_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_login_lifespan")
+		delete(additionalProperties, "kratos_selfservice_flows_login_ui_url")
+		delete(additionalProperties, "kratos_selfservice_flows_logout_after_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_recovery_after_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_recovery_enabled")
+		delete(additionalProperties, "kratos_selfservice_flows_recovery_lifespan")
+		delete(additionalProperties, "kratos_selfservice_flows_recovery_notify_unknown_recipients")
+		delete(additionalProperties, "kratos_selfservice_flows_recovery_ui_url")
+		delete(additionalProperties, "kratos_selfservice_flows_recovery_use")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_after_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_after_oidc_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_after_password_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_enabled")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_lifespan")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_ui_url")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_after_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_after_password_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_after_profile_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_lifespan")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_privileged_session_max_age")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_required_aal")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_ui_url")
+		delete(additionalProperties, "kratos_selfservice_flows_verification_after_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_verification_enabled")
+		delete(additionalProperties, "kratos_selfservice_flows_verification_lifespan")
+		delete(additionalProperties, "kratos_selfservice_flows_verification_notify_unknown_recipients")
+		delete(additionalProperties, "kratos_selfservice_flows_verification_ui_url")
+		delete(additionalProperties, "kratos_selfservice_flows_verification_use")
+		delete(additionalProperties, "kratos_selfservice_methods_code_config_lifespan")
+		delete(additionalProperties, "kratos_selfservice_methods_code_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_link_config_base_url")
+		delete(additionalProperties, "kratos_selfservice_methods_link_config_lifespan")
+		delete(additionalProperties, "kratos_selfservice_methods_link_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_lookup_secret_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_oidc_config_base_redirect_uri")
+		delete(additionalProperties, "kratos_selfservice_methods_oidc_config_providers")
+		delete(additionalProperties, "kratos_selfservice_methods_oidc_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_password_config_haveibeenpwned_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_password_config_identifier_similarity_check_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_password_config_ignore_network_errors")
+		delete(additionalProperties, "kratos_selfservice_methods_password_config_max_breaches")
+		delete(additionalProperties, "kratos_selfservice_methods_password_config_min_password_length")
+		delete(additionalProperties, "kratos_selfservice_methods_password_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_profile_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_totp_config_issuer")
+		delete(additionalProperties, "kratos_selfservice_methods_totp_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_passwordless")
+		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_rp_display_name")
+		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_rp_icon")
+		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_rp_id")
+		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_rp_origin")
+		delete(additionalProperties, "kratos_selfservice_methods_webauthn_enabled")
+		delete(additionalProperties, "kratos_session_cookie_persistent")
+		delete(additionalProperties, "kratos_session_cookie_same_site")
+		delete(additionalProperties, "kratos_session_lifespan")
+		delete(additionalProperties, "kratos_session_whoami_required_aal")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "production")
+		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNormalizedProjectRevision struct {

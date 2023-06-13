@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -18,7 +18,10 @@ import (
 // ProjectServiceIdentity struct for ProjectServiceIdentity
 type ProjectServiceIdentity struct {
 	Config map[string]interface{} `json:"config"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProjectServiceIdentity ProjectServiceIdentity
 
 // NewProjectServiceIdentity instantiates a new ProjectServiceIdentity object
 // This constructor will assign default values to properties that have it defined,
@@ -67,7 +70,29 @@ func (o ProjectServiceIdentity) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["config"] = o.Config
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ProjectServiceIdentity) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectServiceIdentity := _ProjectServiceIdentity{}
+
+	if err = json.Unmarshal(bytes, &varProjectServiceIdentity); err == nil {
+		*o = ProjectServiceIdentity(varProjectServiceIdentity)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectServiceIdentity struct {

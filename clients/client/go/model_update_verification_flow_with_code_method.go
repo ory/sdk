@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,10 @@ type UpdateVerificationFlowWithCodeMethod struct {
 	Email *string `json:"email,omitempty"`
 	// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`. link VerificationStrategyLink code VerificationStrategyCode
 	Method string `json:"method"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateVerificationFlowWithCodeMethod UpdateVerificationFlowWithCodeMethod
 
 // NewUpdateVerificationFlowWithCodeMethod instantiates a new UpdateVerificationFlowWithCodeMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -179,7 +182,32 @@ func (o UpdateVerificationFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["method"] = o.Method
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateVerificationFlowWithCodeMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateVerificationFlowWithCodeMethod := _UpdateVerificationFlowWithCodeMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateVerificationFlowWithCodeMethod); err == nil {
+		*o = UpdateVerificationFlowWithCodeMethod(varUpdateVerificationFlowWithCodeMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "method")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateVerificationFlowWithCodeMethod struct {

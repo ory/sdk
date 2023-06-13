@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -75,7 +75,10 @@ type ProjectBrandingColors struct {
 	TextDefaultColor *string `json:"text_default_color,omitempty"`
 	// TextDisabledColor is a hex color code used by the Ory Account Experience theme.
 	TextDisabledColor *string `json:"text_disabled_color,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProjectBrandingColors ProjectBrandingColors
 
 // NewProjectBrandingColors instantiates a new ProjectBrandingColors object
 // This constructor will assign default values to properties that have it defined,
@@ -1111,7 +1114,57 @@ func (o ProjectBrandingColors) MarshalJSON() ([]byte, error) {
 	if o.TextDisabledColor != nil {
 		toSerialize["text_disabled_color"] = o.TextDisabledColor
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ProjectBrandingColors) UnmarshalJSON(bytes []byte) (err error) {
+	varProjectBrandingColors := _ProjectBrandingColors{}
+
+	if err = json.Unmarshal(bytes, &varProjectBrandingColors); err == nil {
+		*o = ProjectBrandingColors(varProjectBrandingColors)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "accent_default_color")
+		delete(additionalProperties, "accent_disabled_color")
+		delete(additionalProperties, "accent_emphasis_color")
+		delete(additionalProperties, "accent_muted_color")
+		delete(additionalProperties, "accent_subtle_color")
+		delete(additionalProperties, "background_canvas_color")
+		delete(additionalProperties, "background_subtle_color")
+		delete(additionalProperties, "background_surface_color")
+		delete(additionalProperties, "border_default_color")
+		delete(additionalProperties, "error_default_color")
+		delete(additionalProperties, "error_emphasis_color")
+		delete(additionalProperties, "error_muted_color")
+		delete(additionalProperties, "error_subtle_color")
+		delete(additionalProperties, "foreground_default_color")
+		delete(additionalProperties, "foreground_disabled_color")
+		delete(additionalProperties, "foreground_muted_color")
+		delete(additionalProperties, "foreground_on_accent_color")
+		delete(additionalProperties, "foreground_on_dark_color")
+		delete(additionalProperties, "foreground_on_disabled_color")
+		delete(additionalProperties, "foreground_subtle_color")
+		delete(additionalProperties, "input_background_color")
+		delete(additionalProperties, "input_disabled_color")
+		delete(additionalProperties, "input_placeholder_color")
+		delete(additionalProperties, "input_text_color")
+		delete(additionalProperties, "primary_color")
+		delete(additionalProperties, "secondary_color")
+		delete(additionalProperties, "success_emphasis_color")
+		delete(additionalProperties, "text_default_color")
+		delete(additionalProperties, "text_disabled_color")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectBrandingColors struct {

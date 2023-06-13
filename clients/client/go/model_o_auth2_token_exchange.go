@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -29,7 +29,10 @@ type OAuth2TokenExchange struct {
 	Scope *string `json:"scope,omitempty"`
 	// The type of the token issued
 	TokenType *string `json:"token_type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2TokenExchange OAuth2TokenExchange
 
 // NewOAuth2TokenExchange instantiates a new OAuth2TokenExchange object
 // This constructor will assign default values to properties that have it defined,
@@ -260,7 +263,34 @@ func (o OAuth2TokenExchange) MarshalJSON() ([]byte, error) {
 	if o.TokenType != nil {
 		toSerialize["token_type"] = o.TokenType
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OAuth2TokenExchange) UnmarshalJSON(bytes []byte) (err error) {
+	varOAuth2TokenExchange := _OAuth2TokenExchange{}
+
+	if err = json.Unmarshal(bytes, &varOAuth2TokenExchange); err == nil {
+		*o = OAuth2TokenExchange(varOAuth2TokenExchange)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_token")
+		delete(additionalProperties, "expires_in")
+		delete(additionalProperties, "id_token")
+		delete(additionalProperties, "refresh_token")
+		delete(additionalProperties, "scope")
+		delete(additionalProperties, "token_type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2TokenExchange struct {

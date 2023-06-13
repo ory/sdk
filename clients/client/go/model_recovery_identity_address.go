@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,10 @@ type RecoveryIdentityAddress struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	Value string `json:"value"`
 	Via string `json:"via"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecoveryIdentityAddress RecoveryIdentityAddress
 
 // NewRecoveryIdentityAddress instantiates a new RecoveryIdentityAddress object
 // This constructor will assign default values to properties that have it defined,
@@ -200,7 +203,33 @@ func (o RecoveryIdentityAddress) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["via"] = o.Via
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *RecoveryIdentityAddress) UnmarshalJSON(bytes []byte) (err error) {
+	varRecoveryIdentityAddress := _RecoveryIdentityAddress{}
+
+	if err = json.Unmarshal(bytes, &varRecoveryIdentityAddress); err == nil {
+		*o = RecoveryIdentityAddress(varRecoveryIdentityAddress)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "value")
+		delete(additionalProperties, "via")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecoveryIdentityAddress struct {

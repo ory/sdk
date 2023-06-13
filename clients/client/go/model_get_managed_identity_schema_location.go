@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -18,7 +18,10 @@ import (
 // GetManagedIdentitySchemaLocation Ory Identity Schema Location
 type GetManagedIdentitySchemaLocation struct {
 	Location *string `json:"location,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetManagedIdentitySchemaLocation GetManagedIdentitySchemaLocation
 
 // NewGetManagedIdentitySchemaLocation instantiates a new GetManagedIdentitySchemaLocation object
 // This constructor will assign default values to properties that have it defined,
@@ -74,7 +77,29 @@ func (o GetManagedIdentitySchemaLocation) MarshalJSON() ([]byte, error) {
 	if o.Location != nil {
 		toSerialize["location"] = o.Location
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *GetManagedIdentitySchemaLocation) UnmarshalJSON(bytes []byte) (err error) {
+	varGetManagedIdentitySchemaLocation := _GetManagedIdentitySchemaLocation{}
+
+	if err = json.Unmarshal(bytes, &varGetManagedIdentitySchemaLocation); err == nil {
+		*o = GetManagedIdentitySchemaLocation(varGetManagedIdentitySchemaLocation)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "location")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetManagedIdentitySchemaLocation struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -28,7 +28,10 @@ type Project struct {
 	Slug string `json:"slug"`
 	// The state of the project. running Running halted Halted deleted Deleted
 	State string `json:"state"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Project Project
 
 // NewProject instantiates a new Project object
 // This constructor will assign default values to properties that have it defined,
@@ -217,7 +220,34 @@ func (o Project) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Project) UnmarshalJSON(bytes []byte) (err error) {
+	varProject := _Project{}
+
+	if err = json.Unmarshal(bytes, &varProject); err == nil {
+		*o = Project(varProject)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "revision_id")
+		delete(additionalProperties, "services")
+		delete(additionalProperties, "slug")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProject struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,10 @@ type UpdateRecoveryFlowWithLinkMethod struct {
 	Email string `json:"email"`
 	// Method is the method that should be used for this recovery flow  Allowed values are `link` and `code` link RecoveryStrategyLink code RecoveryStrategyCode
 	Method string `json:"method"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateRecoveryFlowWithLinkMethod UpdateRecoveryFlowWithLinkMethod
 
 // NewUpdateRecoveryFlowWithLinkMethod instantiates a new UpdateRecoveryFlowWithLinkMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -135,7 +138,31 @@ func (o UpdateRecoveryFlowWithLinkMethod) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["method"] = o.Method
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateRecoveryFlowWithLinkMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateRecoveryFlowWithLinkMethod := _UpdateRecoveryFlowWithLinkMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateRecoveryFlowWithLinkMethod); err == nil {
+		*o = UpdateRecoveryFlowWithLinkMethod(varUpdateRecoveryFlowWithLinkMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "method")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateRecoveryFlowWithLinkMethod struct {

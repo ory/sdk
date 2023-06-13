@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -54,7 +54,10 @@ type NormalizedProjectRevisionHook struct {
 	WebHookConfigResponseParse *bool `json:"web_hook_config_response_parse,omitempty"`
 	// The URL the Web-Hook should call
 	WebHookConfigUrl *string `json:"web_hook_config_url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NormalizedProjectRevisionHook NormalizedProjectRevisionHook
 
 // NewNormalizedProjectRevisionHook instantiates a new NormalizedProjectRevisionHook object
 // This constructor will assign default values to properties that have it defined,
@@ -691,7 +694,46 @@ func (o NormalizedProjectRevisionHook) MarshalJSON() ([]byte, error) {
 	if o.WebHookConfigUrl != nil {
 		toSerialize["web_hook_config_url"] = o.WebHookConfigUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *NormalizedProjectRevisionHook) UnmarshalJSON(bytes []byte) (err error) {
+	varNormalizedProjectRevisionHook := _NormalizedProjectRevisionHook{}
+
+	if err = json.Unmarshal(bytes, &varNormalizedProjectRevisionHook); err == nil {
+		*o = NormalizedProjectRevisionHook(varNormalizedProjectRevisionHook)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "config_key")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "hook")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "project_revision_id")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "web_hook_config_auth_api_key_in")
+		delete(additionalProperties, "web_hook_config_auth_api_key_name")
+		delete(additionalProperties, "web_hook_config_auth_api_key_value")
+		delete(additionalProperties, "web_hook_config_auth_basic_auth_password")
+		delete(additionalProperties, "web_hook_config_auth_basic_auth_user")
+		delete(additionalProperties, "web_hook_config_auth_type")
+		delete(additionalProperties, "web_hook_config_body")
+		delete(additionalProperties, "web_hook_config_can_interrupt")
+		delete(additionalProperties, "web_hook_config_method")
+		delete(additionalProperties, "web_hook_config_response_ignore")
+		delete(additionalProperties, "web_hook_config_response_parse")
+		delete(additionalProperties, "web_hook_config_url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNormalizedProjectRevisionHook struct {

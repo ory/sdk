@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ type NeedsPrivilegedSessionError struct {
 	Error *GenericError `json:"error,omitempty"`
 	// Points to where to redirect the user to next.
 	RedirectBrowserTo string `json:"redirect_browser_to"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NeedsPrivilegedSessionError NeedsPrivilegedSessionError
 
 // NewNeedsPrivilegedSessionError instantiates a new NeedsPrivilegedSessionError object
 // This constructor will assign default values to properties that have it defined,
@@ -104,7 +107,30 @@ func (o NeedsPrivilegedSessionError) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["redirect_browser_to"] = o.RedirectBrowserTo
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *NeedsPrivilegedSessionError) UnmarshalJSON(bytes []byte) (err error) {
+	varNeedsPrivilegedSessionError := _NeedsPrivilegedSessionError{}
+
+	if err = json.Unmarshal(bytes, &varNeedsPrivilegedSessionError); err == nil {
+		*o = NeedsPrivilegedSessionError(varNeedsPrivilegedSessionError)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "redirect_browser_to")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNeedsPrivilegedSessionError struct {

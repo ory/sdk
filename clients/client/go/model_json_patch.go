@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,10 @@ type JsonPatch struct {
 	Path string `json:"path"`
 	// The value to be used within the operations.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
 	Value interface{} `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _JsonPatch JsonPatch
 
 // NewJsonPatch instantiates a new JsonPatch object
 // This constructor will assign default values to properties that have it defined,
@@ -173,7 +176,32 @@ func (o JsonPatch) MarshalJSON() ([]byte, error) {
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *JsonPatch) UnmarshalJSON(bytes []byte) (err error) {
+	varJsonPatch := _JsonPatch{}
+
+	if err = json.Unmarshal(bytes, &varJsonPatch); err == nil {
+		*o = JsonPatch(varJsonPatch)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "op")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableJsonPatch struct {

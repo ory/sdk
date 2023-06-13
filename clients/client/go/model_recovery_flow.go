@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -34,7 +34,10 @@ type RecoveryFlow struct {
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecoveryFlow RecoveryFlow
 
 // NewRecoveryFlow instantiates a new RecoveryFlow object
 // This constructor will assign default values to properties that have it defined,
@@ -321,7 +324,37 @@ func (o RecoveryFlow) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["ui"] = o.Ui
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *RecoveryFlow) UnmarshalJSON(bytes []byte) (err error) {
+	varRecoveryFlow := _RecoveryFlow{}
+
+	if err = json.Unmarshal(bytes, &varRecoveryFlow); err == nil {
+		*o = RecoveryFlow(varRecoveryFlow)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "issued_at")
+		delete(additionalProperties, "request_url")
+		delete(additionalProperties, "return_to")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "ui")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecoveryFlow struct {

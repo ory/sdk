@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type DeleteMySessionsCount struct {
 	// The number of sessions that were revoked.
 	Count *int64 `json:"count,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeleteMySessionsCount DeleteMySessionsCount
 
 // NewDeleteMySessionsCount instantiates a new DeleteMySessionsCount object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o DeleteMySessionsCount) MarshalJSON() ([]byte, error) {
 	if o.Count != nil {
 		toSerialize["count"] = o.Count
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *DeleteMySessionsCount) UnmarshalJSON(bytes []byte) (err error) {
+	varDeleteMySessionsCount := _DeleteMySessionsCount{}
+
+	if err = json.Unmarshal(bytes, &varDeleteMySessionsCount); err == nil {
+		*o = DeleteMySessionsCount(varDeleteMySessionsCount)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeleteMySessionsCount struct {

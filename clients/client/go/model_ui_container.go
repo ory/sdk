@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,10 @@ type UiContainer struct {
 	// Method is the form method (e.g. POST)
 	Method string `json:"method"`
 	Nodes []UiNode `json:"nodes"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiContainer UiContainer
 
 // NewUiContainer instantiates a new UiContainer object
 // This constructor will assign default values to properties that have it defined,
@@ -163,7 +166,32 @@ func (o UiContainer) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["nodes"] = o.Nodes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiContainer) UnmarshalJSON(bytes []byte) (err error) {
+	varUiContainer := _UiContainer{}
+
+	if err = json.Unmarshal(bytes, &varUiContainer); err == nil {
+		*o = UiContainer(varUiContainer)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "messages")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "nodes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiContainer struct {

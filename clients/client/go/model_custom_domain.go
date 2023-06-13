@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -29,7 +29,10 @@ type CustomDomain struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	VerificationErrors []string `json:"verification_errors,omitempty"`
 	VerificationStatus *string `json:"verification_status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CustomDomain CustomDomain
 
 // NewCustomDomain instantiates a new CustomDomain object
 // This constructor will assign default values to properties that have it defined,
@@ -435,7 +438,39 @@ func (o CustomDomain) MarshalJSON() ([]byte, error) {
 	if o.VerificationStatus != nil {
 		toSerialize["verification_status"] = o.VerificationStatus
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *CustomDomain) UnmarshalJSON(bytes []byte) (err error) {
+	varCustomDomain := _CustomDomain{}
+
+	if err = json.Unmarshal(bytes, &varCustomDomain); err == nil {
+		*o = CustomDomain(varCustomDomain)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "cookie_domain")
+		delete(additionalProperties, "cors_allowed_origins")
+		delete(additionalProperties, "cors_enabled")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "custom_ui_base_url")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ssl_status")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "verification_errors")
+		delete(additionalProperties, "verification_status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCustomDomain struct {

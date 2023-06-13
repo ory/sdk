@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,10 @@ type RecoveryCodeForIdentity struct {
 	RecoveryCode string `json:"recovery_code"`
 	// RecoveryLink with flow  This link opens the recovery UI with an empty `code` field.
 	RecoveryLink string `json:"recovery_link"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecoveryCodeForIdentity RecoveryCodeForIdentity
 
 // NewRecoveryCodeForIdentity instantiates a new RecoveryCodeForIdentity object
 // This constructor will assign default values to properties that have it defined,
@@ -136,7 +139,31 @@ func (o RecoveryCodeForIdentity) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["recovery_link"] = o.RecoveryLink
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *RecoveryCodeForIdentity) UnmarshalJSON(bytes []byte) (err error) {
+	varRecoveryCodeForIdentity := _RecoveryCodeForIdentity{}
+
+	if err = json.Unmarshal(bytes, &varRecoveryCodeForIdentity); err == nil {
+		*o = RecoveryCodeForIdentity(varRecoveryCodeForIdentity)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "recovery_code")
+		delete(additionalProperties, "recovery_link")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecoveryCodeForIdentity struct {

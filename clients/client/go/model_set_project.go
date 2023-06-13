@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ type SetProject struct {
 	// The name of the project.
 	Name string `json:"name"`
 	Services ProjectServices `json:"services"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SetProject SetProject
 
 // NewSetProject instantiates a new SetProject object
 // This constructor will assign default values to properties that have it defined,
@@ -97,7 +100,30 @@ func (o SetProject) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["services"] = o.Services
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SetProject) UnmarshalJSON(bytes []byte) (err error) {
+	varSetProject := _SetProject{}
+
+	if err = json.Unmarshal(bytes, &varSetProject); err == nil {
+		*o = SetProject(varSetProject)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "services")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSetProject struct {

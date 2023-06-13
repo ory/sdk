@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,10 @@ type SessionAuthenticationMethod struct {
 	Method *string `json:"method,omitempty"`
 	// OIDC or SAML provider id used for authentication
 	Provider *string `json:"provider,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SessionAuthenticationMethod SessionAuthenticationMethod
 
 // NewSessionAuthenticationMethod instantiates a new SessionAuthenticationMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -185,7 +188,32 @@ func (o SessionAuthenticationMethod) MarshalJSON() ([]byte, error) {
 	if o.Provider != nil {
 		toSerialize["provider"] = o.Provider
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SessionAuthenticationMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varSessionAuthenticationMethod := _SessionAuthenticationMethod{}
+
+	if err = json.Unmarshal(bytes, &varSessionAuthenticationMethod); err == nil {
+		*o = SessionAuthenticationMethod(varSessionAuthenticationMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "aal")
+		delete(additionalProperties, "completed_at")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "provider")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSessionAuthenticationMethod struct {

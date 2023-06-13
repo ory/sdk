@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -29,7 +29,10 @@ type UpdateSettingsFlowWithLookupMethod struct {
 	LookupSecretReveal *bool `json:"lookup_secret_reveal,omitempty"`
 	// Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
 	Method string `json:"method"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSettingsFlowWithLookupMethod UpdateSettingsFlowWithLookupMethod
 
 // NewUpdateSettingsFlowWithLookupMethod instantiates a new UpdateSettingsFlowWithLookupMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -253,7 +256,34 @@ func (o UpdateSettingsFlowWithLookupMethod) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["method"] = o.Method
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateSettingsFlowWithLookupMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateSettingsFlowWithLookupMethod := _UpdateSettingsFlowWithLookupMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithLookupMethod); err == nil {
+		*o = UpdateSettingsFlowWithLookupMethod(varUpdateSettingsFlowWithLookupMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "lookup_secret_confirm")
+		delete(additionalProperties, "lookup_secret_disable")
+		delete(additionalProperties, "lookup_secret_regenerate")
+		delete(additionalProperties, "lookup_secret_reveal")
+		delete(additionalProperties, "method")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSettingsFlowWithLookupMethod struct {

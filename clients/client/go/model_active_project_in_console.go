@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type ActiveProjectInConsole struct {
 	// The Active Project ID  format: uuid
 	ProjectId *string `json:"project_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ActiveProjectInConsole ActiveProjectInConsole
 
 // NewActiveProjectInConsole instantiates a new ActiveProjectInConsole object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o ActiveProjectInConsole) MarshalJSON() ([]byte, error) {
 	if o.ProjectId != nil {
 		toSerialize["project_id"] = o.ProjectId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ActiveProjectInConsole) UnmarshalJSON(bytes []byte) (err error) {
+	varActiveProjectInConsole := _ActiveProjectInConsole{}
+
+	if err = json.Unmarshal(bytes, &varActiveProjectInConsole); err == nil {
+		*o = ActiveProjectInConsole(varActiveProjectInConsole)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "project_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableActiveProjectInConsole struct {

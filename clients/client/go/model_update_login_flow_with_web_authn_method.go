@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,10 @@ type UpdateLoginFlowWithWebAuthnMethod struct {
 	Method string `json:"method"`
 	// Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
 	WebauthnLogin *string `json:"webauthn_login,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateLoginFlowWithWebAuthnMethod UpdateLoginFlowWithWebAuthnMethod
 
 // NewUpdateLoginFlowWithWebAuthnMethod instantiates a new UpdateLoginFlowWithWebAuthnMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -172,7 +175,32 @@ func (o UpdateLoginFlowWithWebAuthnMethod) MarshalJSON() ([]byte, error) {
 	if o.WebauthnLogin != nil {
 		toSerialize["webauthn_login"] = o.WebauthnLogin
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateLoginFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateLoginFlowWithWebAuthnMethod := _UpdateLoginFlowWithWebAuthnMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateLoginFlowWithWebAuthnMethod); err == nil {
+		*o = UpdateLoginFlowWithWebAuthnMethod(varUpdateLoginFlowWithWebAuthnMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "webauthn_login")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateLoginFlowWithWebAuthnMethod struct {

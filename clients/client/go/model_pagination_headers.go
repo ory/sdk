@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,10 @@ type PaginationHeaders struct {
 	Link *string `json:"link,omitempty"`
 	// The total number of clients.  in: header
 	XTotalCount *string `json:"x-total-count,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginationHeaders PaginationHeaders
 
 // NewPaginationHeaders instantiates a new PaginationHeaders object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o PaginationHeaders) MarshalJSON() ([]byte, error) {
 	if o.XTotalCount != nil {
 		toSerialize["x-total-count"] = o.XTotalCount
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *PaginationHeaders) UnmarshalJSON(bytes []byte) (err error) {
+	varPaginationHeaders := _PaginationHeaders{}
+
+	if err = json.Unmarshal(bytes, &varPaginationHeaders); err == nil {
+		*o = PaginationHeaders(varPaginationHeaders)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "link")
+		delete(additionalProperties, "x-total-count")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginationHeaders struct {

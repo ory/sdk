@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -31,7 +31,10 @@ type PlanDetails struct {
 	Name string `json:"name"`
 	// Version is the version of the plan. The combination of `name@version` must be unique.
 	Version int64 `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanDetails PlanDetails
 
 // NewPlanDetails instantiates a new PlanDetails object
 // This constructor will assign default values to properties that have it defined,
@@ -248,7 +251,35 @@ func (o PlanDetails) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *PlanDetails) UnmarshalJSON(bytes []byte) (err error) {
+	varPlanDetails := _PlanDetails{}
+
+	if err = json.Unmarshal(bytes, &varPlanDetails); err == nil {
+		*o = PlanDetails(varPlanDetails)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "base_fee_monthly")
+		delete(additionalProperties, "base_fee_yearly")
+		delete(additionalProperties, "custom")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "features")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanDetails struct {

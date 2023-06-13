@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,10 @@ type CreateSubscriptionBody struct {
 	Plan string `json:"plan"`
 	ProvisionFirstProject string `json:"provision_first_project"`
 	ReturnTo *string `json:"return_to,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateSubscriptionBody CreateSubscriptionBody
 
 // NewCreateSubscriptionBody instantiates a new CreateSubscriptionBody object
 // This constructor will assign default values to properties that have it defined,
@@ -199,7 +202,33 @@ func (o CreateSubscriptionBody) MarshalJSON() ([]byte, error) {
 	if o.ReturnTo != nil {
 		toSerialize["return_to"] = o.ReturnTo
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *CreateSubscriptionBody) UnmarshalJSON(bytes []byte) (err error) {
+	varCreateSubscriptionBody := _CreateSubscriptionBody{}
+
+	if err = json.Unmarshal(bytes, &varCreateSubscriptionBody); err == nil {
+		*o = CreateSubscriptionBody(varCreateSubscriptionBody)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "provision_first_project")
+		delete(additionalProperties, "return_to")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateSubscriptionBody struct {

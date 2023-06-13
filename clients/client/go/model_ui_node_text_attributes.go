@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.34
+API version: v1.1.36
 Contact: support@ory.sh
 */
 
@@ -22,7 +22,10 @@ type UiNodeTextAttributes struct {
 	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\".
 	NodeType string `json:"node_type"`
 	Text UiText `json:"text"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNodeTextAttributes UiNodeTextAttributes
 
 // NewUiNodeTextAttributes instantiates a new UiNodeTextAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -127,7 +130,31 @@ func (o UiNodeTextAttributes) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["text"] = o.Text
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiNodeTextAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	varUiNodeTextAttributes := _UiNodeTextAttributes{}
+
+	if err = json.Unmarshal(bytes, &varUiNodeTextAttributes); err == nil {
+		*o = UiNodeTextAttributes(varUiNodeTextAttributes)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "node_type")
+		delete(additionalProperties, "text")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNodeTextAttributes struct {
