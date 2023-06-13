@@ -5,3 +5,5 @@ pubName: ${DART_PUB_NAME}
 pubDescription: ${DART_PUB_DESCRIPTION}
 pubRepository: ${DART_PUB_REPOSITORY}
 pubVersion: $RAW_VERSION
+
+disallowAdditionalPropertiesIfNotPresent: false

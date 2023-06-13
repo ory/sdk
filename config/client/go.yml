@@ -1,4 +1,4 @@
-disallowAdditionalPropertiesIfNotPresent: true
+disallowAdditionalPropertiesIfNotPresent: false
 packageName: client
 generateInterfaces: true
 structPrefix: true
