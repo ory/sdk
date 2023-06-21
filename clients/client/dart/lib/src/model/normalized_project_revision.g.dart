@@ -437,6 +437,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final JsonObject? kratosOauth2ProviderHeaders;
   @override
+  final bool? kratosOauth2ProviderOverrideReturnTo;
+  @override
   final String? kratosOauth2ProviderUrl;
   @override
   final BuiltList<String>? kratosSecretsCipher;
@@ -676,6 +678,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosFeatureFlagsCacheableSessions,
       this.kratosIdentitySchemas,
       this.kratosOauth2ProviderHeaders,
+      this.kratosOauth2ProviderOverrideReturnTo,
       this.kratosOauth2ProviderUrl,
       this.kratosSecretsCipher,
       this.kratosSecretsCookie,
@@ -895,6 +898,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosFeatureFlagsCacheableSessions &&
         kratosIdentitySchemas == other.kratosIdentitySchemas &&
         kratosOauth2ProviderHeaders == other.kratosOauth2ProviderHeaders &&
+        kratosOauth2ProviderOverrideReturnTo ==
+            other.kratosOauth2ProviderOverrideReturnTo &&
         kratosOauth2ProviderUrl == other.kratosOauth2ProviderUrl &&
         kratosSecretsCipher == other.kratosSecretsCipher &&
         kratosSecretsCookie == other.kratosSecretsCookie &&
@@ -1152,6 +1157,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessions.hashCode);
     _$hash = $jc(_$hash, kratosIdentitySchemas.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderHeaders.hashCode);
+    _$hash = $jc(_$hash, kratosOauth2ProviderOverrideReturnTo.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderUrl.hashCode);
     _$hash = $jc(_$hash, kratosSecretsCipher.hashCode);
     _$hash = $jc(_$hash, kratosSecretsCookie.hashCode);
@@ -1405,6 +1411,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosFeatureFlagsCacheableSessions)
           ..add('kratosIdentitySchemas', kratosIdentitySchemas)
           ..add('kratosOauth2ProviderHeaders', kratosOauth2ProviderHeaders)
+          ..add('kratosOauth2ProviderOverrideReturnTo',
+              kratosOauth2ProviderOverrideReturnTo)
           ..add('kratosOauth2ProviderUrl', kratosOauth2ProviderUrl)
           ..add('kratosSecretsCipher', kratosSecretsCipher)
           ..add('kratosSecretsCookie', kratosSecretsCookie)
@@ -2114,6 +2122,14 @@ class NormalizedProjectRevisionBuilder
   set kratosOauth2ProviderHeaders(JsonObject? kratosOauth2ProviderHeaders) =>
       _$this._kratosOauth2ProviderHeaders = kratosOauth2ProviderHeaders;
 
+  bool? _kratosOauth2ProviderOverrideReturnTo;
+  bool? get kratosOauth2ProviderOverrideReturnTo =>
+      _$this._kratosOauth2ProviderOverrideReturnTo;
+  set kratosOauth2ProviderOverrideReturnTo(
+          bool? kratosOauth2ProviderOverrideReturnTo) =>
+      _$this._kratosOauth2ProviderOverrideReturnTo =
+          kratosOauth2ProviderOverrideReturnTo;
+
   String? _kratosOauth2ProviderUrl;
   String? get kratosOauth2ProviderUrl => _$this._kratosOauth2ProviderUrl;
   set kratosOauth2ProviderUrl(String? kratosOauth2ProviderUrl) =>
@@ -2822,6 +2838,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosFeatureFlagsCacheableSessions;
       _kratosIdentitySchemas = $v.kratosIdentitySchemas?.toBuilder();
       _kratosOauth2ProviderHeaders = $v.kratosOauth2ProviderHeaders;
+      _kratosOauth2ProviderOverrideReturnTo =
+          $v.kratosOauth2ProviderOverrideReturnTo;
       _kratosOauth2ProviderUrl = $v.kratosOauth2ProviderUrl;
       _kratosSecretsCipher = $v.kratosSecretsCipher?.toBuilder();
       _kratosSecretsCookie = $v.kratosSecretsCookie?.toBuilder();
@@ -3086,6 +3104,7 @@ class NormalizedProjectRevisionBuilder
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,
+              kratosOauth2ProviderOverrideReturnTo: kratosOauth2ProviderOverrideReturnTo,
               kratosOauth2ProviderUrl: kratosOauth2ProviderUrl,
               kratosSecretsCipher: _kratosSecretsCipher?.build(),
               kratosSecretsCookie: _kratosSecretsCookie?.build(),

@@ -96,6 +96,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosFeatureFlagsCacheableSessions] - Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
 /// * [kratosIdentitySchemas] 
 /// * [kratosOauth2ProviderHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+/// * [kratosOauth2ProviderOverrideReturnTo] - Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
 /// * [kratosOauth2ProviderUrl] - The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
 /// * [kratosSecretsCipher] 
 /// * [kratosSecretsCookie] 
@@ -475,6 +476,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
   @BuiltValueField(wireName: r'kratos_oauth2_provider_headers')
   JsonObject? get kratosOauth2ProviderHeaders;
+
+  /// Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
+  @BuiltValueField(wireName: r'kratos_oauth2_provider_override_return_to')
+  bool? get kratosOauth2ProviderOverrideReturnTo;
 
   /// The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
   @BuiltValueField(wireName: r'kratos_oauth2_provider_url')
@@ -1346,6 +1351,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosOauth2ProviderHeaders,
         specifiedType: const FullType.nullable(JsonObject),
+      );
+    }
+    if (object.kratosOauth2ProviderOverrideReturnTo != null) {
+      yield r'kratos_oauth2_provider_override_return_to';
+      yield serializers.serialize(
+        object.kratosOauth2ProviderOverrideReturnTo,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosOauth2ProviderUrl != null) {
@@ -2435,6 +2447,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.kratosOauth2ProviderHeaders = valueDes;
+          break;
+        case r'kratos_oauth2_provider_override_return_to':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosOauth2ProviderOverrideReturnTo = valueDes;
           break;
         case r'kratos_oauth2_provider_url':
           final valueDes = serializers.deserialize(

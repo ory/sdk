@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.38
+  version: v1.1.39
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -9345,6 +9345,12 @@ components:
             \ well with JSON, SQL, and Swagger and is NULLable-"
           nullable: true
           type: object
+        kratos_oauth2_provider_override_return_to:
+          description: "Kratos OAuth2 Provider Override Return To\n\nEnabling this\
+            \ allows Kratos to set the return_to parameter automatically to the OAuth2\
+            \ request URL on the login flow, allowing complex flows such as recovery\
+            \ to continue to the initial OAuth2 flow."
+          type: boolean
         kratos_oauth2_provider_url:
           description: |-
             The Revisions' OAuth2 Provider Integration URL
@@ -11762,12 +11768,19 @@ components:
       type: object
     projectApiKey:
       example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
         project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         owner_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         value: value
       properties:
+        created_at:
+          description: The token's creation date
+          format: date-time
+          readOnly: true
+          type: string
         id:
           description: The token's ID.
           format: uuid
@@ -11785,6 +11798,11 @@ components:
         project_id:
           description: The Token's Project ID
           format: uuid
+          readOnly: true
+          type: string
+        updated_at:
+          description: The token's last update date
+          format: date-time
           readOnly: true
           type: string
         value:

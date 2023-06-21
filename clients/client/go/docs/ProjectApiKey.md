@@ -4,10 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CreatedAt** | Pointer to **time.Time** | The token&#39;s creation date | [optional] [readonly] 
 **Id** | **string** | The token&#39;s ID. | [readonly] 
 **Name** | **string** | The Token&#39;s Name  Set this to help you remember, for example, where you use the token. | 
 **OwnerId** | **string** | The token&#39;s owner | [readonly] 
 **ProjectId** | Pointer to **string** | The Token&#39;s Project ID | [optional] [readonly] 
+**UpdatedAt** | Pointer to **time.Time** | The token&#39;s last update date | [optional] [readonly] 
 **Value** | Pointer to **string** | The token&#39;s value | [optional] [readonly] 
 
 ## Methods
@@ -28,6 +30,31 @@ will change when the set of required properties is changed
 NewProjectApiKeyWithDefaults instantiates a new ProjectApiKey object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCreatedAt
+
+`func (o *ProjectApiKey) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *ProjectApiKey) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *ProjectApiKey) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *ProjectApiKey) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetId
 
@@ -113,6 +140,31 @@ SetProjectId sets ProjectId field to given value.
 `func (o *ProjectApiKey) HasProjectId() bool`
 
 HasProjectId returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *ProjectApiKey) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *ProjectApiKey) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *ProjectApiKey) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *ProjectApiKey) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetValue
 

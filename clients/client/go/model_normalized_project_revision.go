@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.38
+API version: v1.1.39
 Contact: support@ory.sh
 */
 
@@ -163,6 +163,8 @@ type NormalizedProjectRevision struct {
 	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
 	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 	KratosOauth2ProviderHeaders map[string]interface{} `json:"kratos_oauth2_provider_headers,omitempty"`
+	// Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
+	KratosOauth2ProviderOverrideReturnTo *bool `json:"kratos_oauth2_provider_override_return_to,omitempty"`
 	// The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
 	KratosOauth2ProviderUrl *string `json:"kratos_oauth2_provider_url,omitempty"`
 	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
@@ -2898,6 +2900,38 @@ func (o *NormalizedProjectRevision) SetKratosOauth2ProviderHeaders(v map[string]
 	o.KratosOauth2ProviderHeaders = v
 }
 
+// GetKratosOauth2ProviderOverrideReturnTo returns the KratosOauth2ProviderOverrideReturnTo field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosOauth2ProviderOverrideReturnTo() bool {
+	if o == nil || o.KratosOauth2ProviderOverrideReturnTo == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosOauth2ProviderOverrideReturnTo
+}
+
+// GetKratosOauth2ProviderOverrideReturnToOk returns a tuple with the KratosOauth2ProviderOverrideReturnTo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosOauth2ProviderOverrideReturnToOk() (*bool, bool) {
+	if o == nil || o.KratosOauth2ProviderOverrideReturnTo == nil {
+		return nil, false
+	}
+	return o.KratosOauth2ProviderOverrideReturnTo, true
+}
+
+// HasKratosOauth2ProviderOverrideReturnTo returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosOauth2ProviderOverrideReturnTo() bool {
+	if o != nil && o.KratosOauth2ProviderOverrideReturnTo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosOauth2ProviderOverrideReturnTo gets a reference to the given bool and assigns it to the KratosOauth2ProviderOverrideReturnTo field.
+func (o *NormalizedProjectRevision) SetKratosOauth2ProviderOverrideReturnTo(v bool) {
+	o.KratosOauth2ProviderOverrideReturnTo = &v
+}
+
 // GetKratosOauth2ProviderUrl returns the KratosOauth2ProviderUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosOauth2ProviderUrl() string {
 	if o == nil || o.KratosOauth2ProviderUrl == nil {
@@ -5465,6 +5499,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosOauth2ProviderHeaders != nil {
 		toSerialize["kratos_oauth2_provider_headers"] = o.KratosOauth2ProviderHeaders
 	}
+	if o.KratosOauth2ProviderOverrideReturnTo != nil {
+		toSerialize["kratos_oauth2_provider_override_return_to"] = o.KratosOauth2ProviderOverrideReturnTo
+	}
 	if o.KratosOauth2ProviderUrl != nil {
 		toSerialize["kratos_oauth2_provider_url"] = o.KratosOauth2ProviderUrl
 	}
@@ -5781,6 +5818,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions")
 		delete(additionalProperties, "kratos_identity_schemas")
 		delete(additionalProperties, "kratos_oauth2_provider_headers")
+		delete(additionalProperties, "kratos_oauth2_provider_override_return_to")
 		delete(additionalProperties, "kratos_oauth2_provider_url")
 		delete(additionalProperties, "kratos_secrets_cipher")
 		delete(additionalProperties, "kratos_secrets_cookie")

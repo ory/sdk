@@ -8,18 +8,22 @@ defmodule Ory.Model.ProjectApiKey do
 
   @derive [Poison.Encoder]
   defstruct [
+    :created_at,
     :id,
     :name,
     :owner_id,
     :project_id,
+    :updated_at,
     :value
   ]
 
   @type t :: %__MODULE__{
+    :created_at => DateTime.t | nil,
     :id => String.t,
     :name => String.t,
     :owner_id => String.t,
     :project_id => String.t | nil,
+    :updated_at => DateTime.t | nil,
     :value => String.t | nil
   }
 end

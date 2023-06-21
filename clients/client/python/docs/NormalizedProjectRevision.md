@@ -84,6 +84,7 @@ Name | Type | Description | Notes
 **kratos_feature_flags_cacheable_sessions** | **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
 **kratos_identity_schemas** | [**ProjectRevisionIdentitySchemas**](ProjectRevisionIdentitySchemas.md) |  | [optional] 
 **kratos_oauth2_provider_headers** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**kratos_oauth2_provider_override_return_to** | **bool** | Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow. | [optional] 
 **kratos_oauth2_provider_url** | **str** | The Revisions&#39; OAuth2 Provider Integration URL  This governs the \&quot;oauth2_provider.url\&quot; setting. | [optional] 
 **kratos_secrets_cipher** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **kratos_secrets_cookie** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 

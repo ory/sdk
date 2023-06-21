@@ -83,6 +83,7 @@ Name | Type | Description | Notes
 **KratosFeatureFlagsCacheableSessions** | Pointer to **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
 **KratosIdentitySchemas** | Pointer to [**[]NormalizedProjectRevisionIdentitySchema**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **KratosOauth2ProviderHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**KratosOauth2ProviderOverrideReturnTo** | Pointer to **bool** | Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow. | [optional] 
 **KratosOauth2ProviderUrl** | Pointer to **string** | The Revisions&#39; OAuth2 Provider Integration URL  This governs the \&quot;oauth2_provider.url\&quot; setting. | [optional] 
 **KratosSecretsCipher** | Pointer to **[]string** |  | [optional] 
 **KratosSecretsCookie** | Pointer to **[]string** |  | [optional] 
@@ -2181,6 +2182,31 @@ HasKratosOauth2ProviderHeaders returns a boolean if a field has been set.
 `func (o *NormalizedProjectRevision) UnsetKratosOauth2ProviderHeaders()`
 
 UnsetKratosOauth2ProviderHeaders ensures that no value is present for KratosOauth2ProviderHeaders, not even an explicit nil
+### GetKratosOauth2ProviderOverrideReturnTo
+
+`func (o *NormalizedProjectRevision) GetKratosOauth2ProviderOverrideReturnTo() bool`
+
+GetKratosOauth2ProviderOverrideReturnTo returns the KratosOauth2ProviderOverrideReturnTo field if non-nil, zero value otherwise.
+
+### GetKratosOauth2ProviderOverrideReturnToOk
+
+`func (o *NormalizedProjectRevision) GetKratosOauth2ProviderOverrideReturnToOk() (*bool, bool)`
+
+GetKratosOauth2ProviderOverrideReturnToOk returns a tuple with the KratosOauth2ProviderOverrideReturnTo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosOauth2ProviderOverrideReturnTo
+
+`func (o *NormalizedProjectRevision) SetKratosOauth2ProviderOverrideReturnTo(v bool)`
+
+SetKratosOauth2ProviderOverrideReturnTo sets KratosOauth2ProviderOverrideReturnTo field to given value.
+
+### HasKratosOauth2ProviderOverrideReturnTo
+
+`func (o *NormalizedProjectRevision) HasKratosOauth2ProviderOverrideReturnTo() bool`
+
+HasKratosOauth2ProviderOverrideReturnTo returns a boolean if a field has been set.
+
 ### GetKratosOauth2ProviderUrl
 
 `func (o *NormalizedProjectRevision) GetKratosOauth2ProviderUrl() string`

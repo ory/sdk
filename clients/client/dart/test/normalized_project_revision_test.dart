@@ -468,6 +468,12 @@ void main() {
       // TODO
     });
 
+    // Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
+    // bool kratosOauth2ProviderOverrideReturnTo
+    test('to test the property `kratosOauth2ProviderOverrideReturnTo`', () async {
+      // TODO
+    });
+
     // The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
     // String kratosOauth2ProviderUrl
     test('to test the property `kratosOauth2ProviderUrl`', () async {

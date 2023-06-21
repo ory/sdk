@@ -11,13 +11,19 @@ part 'project_api_key.g.dart';
 /// ProjectApiKey
 ///
 /// Properties:
+/// * [createdAt] - The token's creation date
 /// * [id] - The token's ID.
 /// * [name] - The Token's Name  Set this to help you remember, for example, where you use the token.
 /// * [ownerId] - The token's owner
 /// * [projectId] - The Token's Project ID
+/// * [updatedAt] - The token's last update date
 /// * [value] - The token's value
 @BuiltValue()
 abstract class ProjectApiKey implements Built<ProjectApiKey, ProjectApiKeyBuilder> {
+  /// The token's creation date
+  @BuiltValueField(wireName: r'created_at')
+  DateTime? get createdAt;
+
   /// The token's ID.
   @BuiltValueField(wireName: r'id')
   String get id;
@@ -33,6 +39,10 @@ abstract class ProjectApiKey implements Built<ProjectApiKey, ProjectApiKeyBuilde
   /// The Token's Project ID
   @BuiltValueField(wireName: r'project_id')
   String? get projectId;
+
+  /// The token's last update date
+  @BuiltValueField(wireName: r'updated_at')
+  DateTime? get updatedAt;
 
   /// The token's value
   @BuiltValueField(wireName: r'value')
@@ -61,6 +71,13 @@ class _$ProjectApiKeySerializer implements PrimitiveSerializer<ProjectApiKey> {
     ProjectApiKey object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.createdAt != null) {
+      yield r'created_at';
+      yield serializers.serialize(
+        object.createdAt,
+        specifiedType: const FullType(DateTime),
+      );
+    }
     yield r'id';
     yield serializers.serialize(
       object.id,
@@ -81,6 +98,13 @@ class _$ProjectApiKeySerializer implements PrimitiveSerializer<ProjectApiKey> {
       yield serializers.serialize(
         object.projectId,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.updatedAt != null) {
+      yield r'updated_at';
+      yield serializers.serialize(
+        object.updatedAt,
+        specifiedType: const FullType(DateTime),
       );
     }
     if (object.value != null) {
@@ -113,6 +137,13 @@ class _$ProjectApiKeySerializer implements PrimitiveSerializer<ProjectApiKey> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'created_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.createdAt = valueDes;
+          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
@@ -140,6 +171,13 @@ class _$ProjectApiKeySerializer implements PrimitiveSerializer<ProjectApiKey> {
             specifiedType: const FullType(String),
           ) as String;
           result.projectId = valueDes;
+          break;
+        case r'updated_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.updatedAt = valueDes;
           break;
         case r'value':
           final valueDes = serializers.deserialize(

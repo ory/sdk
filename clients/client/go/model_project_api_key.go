@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.38
+API version: v1.1.39
 Contact: support@ory.sh
 */
 
@@ -13,10 +13,13 @@ package client
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // ProjectApiKey struct for ProjectApiKey
 type ProjectApiKey struct {
+	// The token's creation date
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The token's ID.
 	Id string `json:"id"`
 	// The Token's Name  Set this to help you remember, for example, where you use the token.
@@ -25,6 +28,8 @@ type ProjectApiKey struct {
 	OwnerId string `json:"owner_id"`
 	// The Token's Project ID
 	ProjectId *string `json:"project_id,omitempty"`
+	// The token's last update date
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The token's value
 	Value *string `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -50,6 +55,38 @@ func NewProjectApiKey(id string, name string, ownerId string) *ProjectApiKey {
 func NewProjectApiKeyWithDefaults() *ProjectApiKey {
 	this := ProjectApiKey{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *ProjectApiKey) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectApiKey) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *ProjectApiKey) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *ProjectApiKey) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
 }
 
 // GetId returns the Id field value
@@ -156,6 +193,38 @@ func (o *ProjectApiKey) SetProjectId(v string) {
 	o.ProjectId = &v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *ProjectApiKey) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectApiKey) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *ProjectApiKey) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *ProjectApiKey) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *ProjectApiKey) GetValue() string {
 	if o == nil || o.Value == nil {
@@ -190,6 +259,9 @@ func (o *ProjectApiKey) SetValue(v string) {
 
 func (o ProjectApiKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
@@ -201,6 +273,9 @@ func (o ProjectApiKey) MarshalJSON() ([]byte, error) {
 	}
 	if o.ProjectId != nil {
 		toSerialize["project_id"] = o.ProjectId
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
@@ -223,10 +298,12 @@ func (o *ProjectApiKey) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "owner_id")
 		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "value")
 		o.AdditionalProperties = additionalProperties
 	}
