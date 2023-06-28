@@ -64,6 +64,7 @@ defmodule Ory.Api.Frontend do
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:cookie` (String.t): HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
+    - `:return_to` (String.t): Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
 
   ### Returns
 
@@ -73,7 +74,8 @@ defmodule Ory.Api.Frontend do
   @spec create_browser_logout_flow(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.LogoutFlow.t} | {:error, Tesla.Env.t}
   def create_browser_logout_flow(connection, opts \\ []) do
     optional_params = %{
-      :cookie => :headers
+      :cookie => :headers,
+      :return_to => :query
     }
 
     request =
@@ -87,6 +89,7 @@ defmodule Ory.Api.Frontend do
     |> Connection.request(request)
     |> evaluate_response([
       {200, %Ory.Model.LogoutFlow{}},
+      {400, %Ory.Model.ErrorGeneric{}},
       {401, %Ory.Model.ErrorGeneric{}},
       {500, %Ory.Model.ErrorGeneric{}}
     ])

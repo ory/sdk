@@ -20,6 +20,7 @@ part 'normalized_project.g.dart';
 /// * [slug] - The project's slug
 /// * [state] - The state of the project. running Running halted Halted deleted Deleted
 /// * [subscriptionId] 
+/// * [subscriptionPlan] 
 /// * [updatedAt] - Last Time Project was Updated
 @BuiltValue()
 abstract class NormalizedProject implements Built<NormalizedProject, NormalizedProjectBuilder> {
@@ -48,6 +49,9 @@ abstract class NormalizedProject implements Built<NormalizedProject, NormalizedP
 
   @BuiltValueField(wireName: r'subscription_id')
   String? get subscriptionId;
+
+  @BuiltValueField(wireName: r'subscription_plan')
+  String? get subscriptionPlan;
 
   /// Last Time Project was Updated
   @BuiltValueField(wireName: r'updated_at')
@@ -110,6 +114,13 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
       yield r'subscription_id';
       yield serializers.serialize(
         object.subscriptionId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.subscriptionPlan != null) {
+      yield r'subscription_plan';
+      yield serializers.serialize(
+        object.subscriptionPlan,
         specifiedType: const FullType.nullable(String),
       );
     }
@@ -190,6 +201,14 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
           ) as String?;
           if (valueDes == null) continue;
           result.subscriptionId = valueDes;
+          break;
+        case r'subscription_plan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.subscriptionPlan = valueDes;
           break;
         case r'updated_at':
           final valueDes = serializers.deserialize(

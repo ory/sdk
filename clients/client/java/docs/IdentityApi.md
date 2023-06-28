@@ -374,7 +374,7 @@ null (empty response body)
 
 <a name="deleteIdentityCredentials"></a>
 # **deleteIdentityCredentials**
-> Identity deleteIdentityCredentials(id, type)
+> deleteIdentityCredentials(id, type)
 
 Delete a credential for a specific identity
 
@@ -403,8 +403,7 @@ public class Example {
     String id = "id_example"; // String | ID is the identity's ID.
     String type = "totp"; // String | Type is the credential's Type. One of totp, webauthn, lookup
     try {
-      Identity result = apiInstance.deleteIdentityCredentials(id, type);
-      System.out.println(result);
+      apiInstance.deleteIdentityCredentials(id, type);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#deleteIdentityCredentials");
       System.err.println("Status code: " + e.getCode());
@@ -425,7 +424,7 @@ public class Example {
 
 ### Return type
 
-[**Identity**](Identity.md)
+null (empty response body)
 
 ### Authorization
 
@@ -439,7 +438,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identity |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 

@@ -409,7 +409,7 @@ void (empty response body)
 
 <a name="deleteidentitycredentials"></a>
 # **DeleteIdentityCredentials**
-> ClientIdentity DeleteIdentityCredentials (string id, string type)
+> void DeleteIdentityCredentials (string id, string type)
 
 Delete a credential for a specific identity
 
@@ -441,8 +441,7 @@ namespace Example
             try
             {
                 // Delete a credential for a specific identity
-                ClientIdentity result = apiInstance.DeleteIdentityCredentials(id, type);
-                Debug.WriteLine(result);
+                apiInstance.DeleteIdentityCredentials(id, type);
             }
             catch (ApiException  e)
             {
@@ -464,7 +463,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClientIdentity**](ClientIdentity.md)
+void (empty response body)
 
 ### Authorization
 
@@ -479,7 +478,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identity |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 

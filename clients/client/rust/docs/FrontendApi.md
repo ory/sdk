@@ -73,7 +73,7 @@ No authorization required
 
 ## create_browser_logout_flow
 
-> crate::models::LogoutFlow create_browser_logout_flow(cookie)
+> crate::models::LogoutFlow create_browser_logout_flow(cookie, return_to)
 Create a Logout URL for Browsers
 
 This endpoint initializes a browser-based user logout flow and a URL which can be used to log out the user.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  The URL is only valid for the currently signed in user. If no user is signed in, this endpoint returns a 401 error.  When calling this endpoint from a backend, please ensure to properly forward the HTTP cookies.
@@ -84,6 +84,7 @@ This endpoint initializes a browser-based user logout flow and a URL which can b
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **cookie** | Option<**String**> | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. |  |
+**return_to** | Option<**String**> | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. |  |
 
 ### Return type
 

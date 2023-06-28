@@ -111,7 +111,7 @@ No authorization required
 
 <a name="createBrowserLogoutFlow"></a>
 # **createBrowserLogoutFlow**
-> LogoutFlow createBrowserLogoutFlow(cookie)
+> LogoutFlow createBrowserLogoutFlow(cookie, returnTo)
 
 Create a Logout URL for Browsers
 
@@ -133,8 +133,9 @@ public class Example {
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String cookie = "cookie_example"; // String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
+    String returnTo = "returnTo_example"; // String | Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
     try {
-      LogoutFlow result = apiInstance.createBrowserLogoutFlow(cookie);
+      LogoutFlow result = apiInstance.createBrowserLogoutFlow(cookie, returnTo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createBrowserLogoutFlow");
@@ -152,6 +153,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **cookie** | **String**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional] |
+| **returnTo** | **String**| Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional] |
 
 ### Return type
 
@@ -170,6 +172,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | logoutFlow |  -  |
+| **400** | errorGeneric |  -  |
 | **401** | errorGeneric |  -  |
 | **500** | errorGeneric |  -  |
 

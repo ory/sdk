@@ -20,7 +20,7 @@ void main() {
     //
     // This endpoint initializes a browser-based user logout flow and a URL which can be used to log out the user.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  The URL is only valid for the currently signed in user. If no user is signed in, this endpoint returns a 401 error.  When calling this endpoint from a backend, please ensure to properly forward the HTTP cookies.
     //
-    //Future<LogoutFlow> createBrowserLogoutFlow({ String cookie }) async
+    //Future<LogoutFlow> createBrowserLogoutFlow({ String cookie, String returnTo }) async
     test('test createBrowserLogoutFlow', () async {
       // TODO
     });

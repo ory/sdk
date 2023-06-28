@@ -1,5 +1,4 @@
 # Ory.Client.Model.ClientSetProjectBrandingThemeBody
-Set Project Branding Theme Request Parameters
 
 ## Properties
 

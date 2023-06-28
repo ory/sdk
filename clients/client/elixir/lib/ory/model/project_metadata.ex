@@ -15,6 +15,7 @@ defmodule Ory.Model.ProjectMetadata do
     :slug,
     :state,
     :subscription_id,
+    :subscription_plan,
     :updated_at
   ]
 
@@ -26,6 +27,7 @@ defmodule Ory.Model.ProjectMetadata do
     :slug => String.t | nil,
     :state => String.t,
     :subscription_id => String.t | nil,
+    :subscription_plan => String.t | nil,
     :updated_at => DateTime.t
   }
 end

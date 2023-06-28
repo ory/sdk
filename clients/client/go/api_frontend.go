@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.39
+API version: v1.1.39-alpha.0
 Contact: support@ory.sh
 */
 
@@ -1122,11 +1122,18 @@ type FrontendApiCreateBrowserLogoutFlowRequest struct {
 	ctx context.Context
 	ApiService FrontendApi
 	cookie *string
+	returnTo *string
 }
 
 // HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
 func (r FrontendApiCreateBrowserLogoutFlowRequest) Cookie(cookie string) FrontendApiCreateBrowserLogoutFlowRequest {
 	r.cookie = &cookie
+	return r
+}
+
+// Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
+func (r FrontendApiCreateBrowserLogoutFlowRequest) ReturnTo(returnTo string) FrontendApiCreateBrowserLogoutFlowRequest {
+	r.returnTo = &returnTo
 	return r
 }
 
@@ -1179,6 +1186,9 @@ func (a *FrontendApiService) CreateBrowserLogoutFlowExecute(r FrontendApiCreateB
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1220,6 +1230,16 @@ func (a *FrontendApiService) CreateBrowserLogoutFlowExecute(r FrontendApiCreateB
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorGeneric

@@ -378,7 +378,7 @@ nil (empty response body)
 
 ## delete_identity_credentials
 
-> <Identity> delete_identity_credentials(id, type)
+> delete_identity_credentials(id, type)
 
 Delete a credential for a specific identity
 
@@ -401,8 +401,7 @@ type = 'totp' # String | Type is the credential's Type. One of totp, webauthn, l
 
 begin
   # Delete a credential for a specific identity
-  result = api_instance.delete_identity_credentials(id, type)
-  p result
+  api_instance.delete_identity_credentials(id, type)
 rescue OryClient::ApiError => e
   puts "Error when calling IdentityApi->delete_identity_credentials: #{e}"
 end
@@ -410,9 +409,9 @@ end
 
 #### Using the delete_identity_credentials_with_http_info variant
 
-This returns an Array which contains the response data, status code and headers.
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(<Identity>, Integer, Hash)> delete_identity_credentials_with_http_info(id, type)
+> <Array(nil, Integer, Hash)> delete_identity_credentials_with_http_info(id, type)
 
 ```ruby
 begin
@@ -420,7 +419,7 @@ begin
   data, status_code, headers = api_instance.delete_identity_credentials_with_http_info(id, type)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Identity>
+  p data # => nil
 rescue OryClient::ApiError => e
   puts "Error when calling IdentityApi->delete_identity_credentials_with_http_info: #{e}"
 end
@@ -435,7 +434,7 @@ end
 
 ### Return type
 
-[**Identity**](Identity.md)
+nil (empty response body)
 
 ### Authorization
 

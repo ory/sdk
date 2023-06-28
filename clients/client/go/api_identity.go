@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.39
+API version: v1.1.39-alpha.0
 Contact: support@ory.sh
 */
 
@@ -118,8 +118,7 @@ You can only delete second factor (aal2) credentials.
 	DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityApiDeleteIdentityCredentialsRequest
 
 	// DeleteIdentityCredentialsExecute executes the request
-	//  @return Identity
-	DeleteIdentityCredentialsExecute(r IdentityApiDeleteIdentityCredentialsRequest) (*Identity, *http.Response, error)
+	DeleteIdentityCredentialsExecute(r IdentityApiDeleteIdentityCredentialsRequest) (*http.Response, error)
 
 	/*
 	DeleteIdentitySessions Delete & Invalidate an Identity's Sessions
@@ -970,7 +969,7 @@ type IdentityApiDeleteIdentityCredentialsRequest struct {
 	type_ string
 }
 
-func (r IdentityApiDeleteIdentityCredentialsRequest) Execute() (*Identity, *http.Response, error) {
+func (r IdentityApiDeleteIdentityCredentialsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteIdentityCredentialsExecute(r)
 }
 
@@ -995,18 +994,16 @@ func (a *IdentityApiService) DeleteIdentityCredentials(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return Identity
-func (a *IdentityApiService) DeleteIdentityCredentialsExecute(r IdentityApiDeleteIdentityCredentialsRequest) (*Identity, *http.Response, error) {
+func (a *IdentityApiService) DeleteIdentityCredentialsExecute(r IdentityApiDeleteIdentityCredentialsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Identity
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentityApiService.DeleteIdentityCredentials")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/identities/{id}/credentials/{type}"
@@ -1036,19 +1033,19 @@ func (a *IdentityApiService) DeleteIdentityCredentialsExecute(r IdentityApiDelet
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1061,31 +1058,22 @@ func (a *IdentityApiService) DeleteIdentityCredentialsExecute(r IdentityApiDelet
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 			var v ErrorGeneric
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type IdentityApiDeleteIdentitySessionsRequest struct {

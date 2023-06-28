@@ -25,7 +25,6 @@ docs/CreateJsonWebKeySet.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
-docs/CreateProjectBrandingsBody.md
 docs/CreateProjectInvite.md
 docs/CreateProjectInvitesResponse.md
 docs/CreateRecoveryCodeForIdentityBody.md
@@ -284,7 +283,6 @@ ory_client/model/create_json_web_key_set.py
 ory_client/model/create_project_api_key_request.py
 ory_client/model/create_project_body.py
 ory_client/model/create_project_branding.py
-ory_client/model/create_project_brandings_body.py
 ory_client/model/create_project_invite.py
 ory_client/model/create_project_invites_response.py
 ory_client/model/create_recovery_code_for_identity_body.py
@@ -523,7 +521,6 @@ test/test_create_json_web_key_set.py
 test/test_create_project_api_key_request.py
 test/test_create_project_body.py
 test/test_create_project_branding.py
-test/test_create_project_brandings_body.py
 test/test_create_project_invite.py
 test/test_create_project_invites_response.py
 test/test_create_recovery_code_for_identity_body.py

@@ -1,6 +1,5 @@
 # ProjectBrandingColors
 
-The Project Branding Colors
 
 ## Properties
 Name | Type | Description | Notes

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.39
+API version: v1.1.39-alpha.0
 Contact: support@ory.sh
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// SetProjectBrandingThemeBody Set Project Branding Theme Request Parameters
+// SetProjectBrandingThemeBody struct for SetProjectBrandingThemeBody
 type SetProjectBrandingThemeBody struct {
 	// Logo type
 	LogoType *string `json:"logo_type,omitempty"`
