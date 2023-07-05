@@ -93,7 +93,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createBrowserLogoutFlow**
-> LogoutFlow createBrowserLogoutFlow(cookie, returnTo)
+> LogoutFlow createBrowserLogoutFlow(cookie)
 
 Create a Logout URL for Browsers
 
@@ -105,10 +105,9 @@ import 'package:ory_client/api.dart';
 
 final api = OryClient().getFrontendApi();
 final String cookie = cookie_example; // String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
-final String returnTo = returnTo_example; // String | Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
 
 try {
-    final response = api.createBrowserLogoutFlow(cookie, returnTo);
+    final response = api.createBrowserLogoutFlow(cookie);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->createBrowserLogoutFlow: $e\n');
@@ -120,7 +119,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **String**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional] 
- **returnTo** | **String**| Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional] 
 
 ### Return type
 

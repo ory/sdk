@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.39-alpha.0
+  version: v1.1.39
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -958,10 +958,12 @@ paths:
           type: string
         style: simple
       responses:
-        "204":
-          description: |-
-            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
-            typically 201.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/identity'
+          description: identity
         "404":
           content:
             application/json:
@@ -4993,18 +4995,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: |-
-          Return to URL
-
-          The URL to which the browser should be redirected to after the logout
-          has been performed.
-        explode: true
-        in: query
-        name: return_to
-        required: false
-        schema:
-          type: string
-        style: form
       responses:
         "200":
           content:
@@ -5012,12 +5002,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/logoutFlow'
           description: logoutFlow
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorGeneric'
-          description: errorGeneric
         "401":
           content:
             application/json:
@@ -9385,18 +9369,6 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
-        hydra_serve_admin_cors_allowed_origins:
-          items:
-            type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
-          type: array
-        hydra_serve_admin_cors_enabled:
-          description: |-
-            Configures the Ory Hydra CORS Settings
-
-            This governs the "serve.admin.cors.enabled" setting.
-          type: boolean
         hydra_serve_cookies_same_site_legacy_workaround:
           description: |-
             Configures the Ory Hydra Cookie Same Site Legacy Workaround
@@ -9409,18 +9381,6 @@ components:
 
             This governs the "serve.cookies.same_site_mode" setting.
           type: string
-        hydra_serve_public_cors_allowed_origins:
-          items:
-            type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
-          type: array
-        hydra_serve_public_cors_enabled:
-          description: |-
-            Configures the Ory Hydra CORS Settings
-
-            This governs the "serve.public.cors.enabled" setting.
-          type: boolean
         hydra_strategies_access_token:
           default: opaque
           description: |-
@@ -10246,6 +10206,30 @@ components:
           description: The Revision's Project ID
           format: uuid
           type: string
+        serve_admin_cors_allowed_origins:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        serve_admin_cors_enabled:
+          description: |-
+            Enable CORS headers on all admin APIs
+
+            This governs the "serve.admin.cors.enabled" setting.
+          type: boolean
+        serve_public_cors_allowed_origins:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        serve_public_cors_enabled:
+          description: |-
+            Enable CORS headers on all public APIs
+
+            This governs the "serve.public.cors.enabled" setting.
+          type: boolean
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time

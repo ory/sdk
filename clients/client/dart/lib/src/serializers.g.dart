@@ -430,12 +430,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(KetoNamespace)]),
           () => new ListBuilder<KetoNamespace>())
       ..addBuilderFactory(
@@ -463,6 +457,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
             const FullType(NormalizedProjectRevisionThirdPartyProvider)
           ]),
           () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

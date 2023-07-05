@@ -113,7 +113,7 @@ No authorization required
 
 ## CreateBrowserLogoutFlow
 
-> LogoutFlow CreateBrowserLogoutFlow(ctx).Cookie(cookie).ReturnTo(returnTo).Execute()
+> LogoutFlow CreateBrowserLogoutFlow(ctx).Cookie(cookie).Execute()
 
 Create a Logout URL for Browsers
 
@@ -133,11 +133,10 @@ import (
 
 func main() {
     cookie := "cookie_example" // string | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional)
-    returnTo := "returnTo_example" // string | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserLogoutFlow(context.Background()).Cookie(cookie).ReturnTo(returnTo).Execute()
+    resp, r, err := apiClient.FrontendApi.CreateBrowserLogoutFlow(context.Background()).Cookie(cookie).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserLogoutFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -159,7 +158,6 @@ Other parameters are passed through a pointer to a apiCreateBrowserLogoutFlowReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **string** | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | 
- **returnTo** | **string** | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | 
 
 ### Return type
 

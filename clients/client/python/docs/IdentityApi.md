@@ -546,7 +546,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_identity_credentials**
-> delete_identity_credentials(id, type)
+> Identity delete_identity_credentials(id, type)
 
 Delete a credential for a specific identity
 
@@ -561,6 +561,7 @@ import time
 import ory_client
 from ory_client.api import identity_api
 from ory_client.model.error_generic import ErrorGeneric
+from ory_client.model.identity import Identity
 from pprint import pprint
 # Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
@@ -588,7 +589,8 @@ with ory_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Delete a credential for a specific identity
-        api_instance.delete_identity_credentials(id, type)
+        api_response = api_instance.delete_identity_credentials(id, type)
+        pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling IdentityApi->delete_identity_credentials: %s\n" % e)
 ```
@@ -603,7 +605,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**Identity**](Identity.md)
 
 ### Authorization
 
@@ -619,7 +621,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**200** | identity |  -  |
 **404** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 

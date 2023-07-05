@@ -126,8 +126,7 @@ require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
 opts = {
-  cookie: 'cookie_example', # String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
-  return_to: 'return_to_example' # String | Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
+  cookie: 'cookie_example' # String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
 }
 
 begin
@@ -162,7 +161,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **cookie** | **String** | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional] |
-| **return_to** | **String** | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional] |
 
 ### Return type
 

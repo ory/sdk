@@ -20,12 +20,8 @@ Name | Type | Description | Notes
 **HydraOidcSubjectIdentifiersSupportedTypes** | **List&lt;string&gt;** |  | [optional] 
 **HydraSecretsCookie** | **List&lt;string&gt;** |  | [optional] 
 **HydraSecretsSystem** | **List&lt;string&gt;** |  | [optional] 
-**HydraServeAdminCorsAllowedOrigins** | **List&lt;string&gt;** |  | [optional] 
-**HydraServeAdminCorsEnabled** | **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
 **HydraServeCookiesSameSiteLegacyWorkaround** | **bool** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] 
 **HydraServeCookiesSameSiteMode** | **string** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] 
-**HydraServePublicCorsAllowedOrigins** | **List&lt;string&gt;** |  | [optional] 
-**HydraServePublicCorsEnabled** | **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
 **HydraStrategiesAccessToken** | **string** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional] [default to HydraStrategiesAccessTokenEnum.Opaque]
 **HydraStrategiesScope** | **string** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional] [default to HydraStrategiesScopeEnum.Wildcard]
 **HydraTtlAccessToken** | **string** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional] [default to "30m"]
@@ -156,6 +152,10 @@ Name | Type | Description | Notes
 **Name** | **string** | The project&#39;s name. | 
 **Production** | **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] 
 **ProjectId** | **string** | The Revision&#39;s Project ID | [optional] 
+**ServeAdminCorsAllowedOrigins** | **List&lt;string&gt;** |  | [optional] 
+**ServeAdminCorsEnabled** | **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
+**ServePublicCorsAllowedOrigins** | **List&lt;string&gt;** |  | [optional] 
+**ServePublicCorsEnabled** | **bool** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
 **UpdatedAt** | **DateTime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

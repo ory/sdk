@@ -177,7 +177,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_identity_credentials
 
-> delete_identity_credentials(id, _type)
+> crate::models::Identity delete_identity_credentials(id, _type)
 Delete a credential for a specific identity
 
 Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
@@ -192,7 +192,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**crate::models::Identity**](identity.md)
 
 ### Authorization
 

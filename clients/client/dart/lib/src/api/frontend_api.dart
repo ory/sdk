@@ -134,7 +134,6 @@ class FrontendApi {
   ///
   /// Parameters:
   /// * [cookie] - HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
-  /// * [returnTo] - Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -146,7 +145,6 @@ class FrontendApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<LogoutFlow>> createBrowserLogoutFlow({ 
     String? cookie,
-    String? returnTo,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -168,14 +166,9 @@ class FrontendApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-      if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
-    };
-
     final _response = await _dio.request<Object>(
       _path,
       options: _options,
-      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,

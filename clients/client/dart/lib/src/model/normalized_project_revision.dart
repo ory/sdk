@@ -33,12 +33,8 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraOidcSubjectIdentifiersSupportedTypes] 
 /// * [hydraSecretsCookie] 
 /// * [hydraSecretsSystem] 
-/// * [hydraServeAdminCorsAllowedOrigins] 
-/// * [hydraServeAdminCorsEnabled] - Configures the Ory Hydra CORS Settings  This governs the \"serve.admin.cors.enabled\" setting.
 /// * [hydraServeCookiesSameSiteLegacyWorkaround] - Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
 /// * [hydraServeCookiesSameSiteMode] - Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
-/// * [hydraServePublicCorsAllowedOrigins] 
-/// * [hydraServePublicCorsEnabled] - Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
 /// * [hydraStrategiesAccessToken] - Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
 /// * [hydraStrategiesScope] - Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 /// * [hydraTtlAccessToken] - This governs the \"ttl.access_token\" setting.
@@ -169,6 +165,10 @@ part 'normalized_project_revision.g.dart';
 /// * [name] - The project's name.
 /// * [production] - Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
 /// * [projectId] - The Revision's Project ID
+/// * [serveAdminCorsAllowedOrigins] 
+/// * [serveAdminCorsEnabled] - Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting.
+/// * [servePublicCorsAllowedOrigins] 
+/// * [servePublicCorsEnabled] - Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting.
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevision, NormalizedProjectRevisionBuilder> {
@@ -231,13 +231,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'hydra_secrets_system')
   BuiltList<String>? get hydraSecretsSystem;
 
-  @BuiltValueField(wireName: r'hydra_serve_admin_cors_allowed_origins')
-  BuiltList<String>? get hydraServeAdminCorsAllowedOrigins;
-
-  /// Configures the Ory Hydra CORS Settings  This governs the \"serve.admin.cors.enabled\" setting.
-  @BuiltValueField(wireName: r'hydra_serve_admin_cors_enabled')
-  bool? get hydraServeAdminCorsEnabled;
-
   /// Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
   @BuiltValueField(wireName: r'hydra_serve_cookies_same_site_legacy_workaround')
   bool? get hydraServeCookiesSameSiteLegacyWorkaround;
@@ -245,13 +238,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
   @BuiltValueField(wireName: r'hydra_serve_cookies_same_site_mode')
   String? get hydraServeCookiesSameSiteMode;
-
-  @BuiltValueField(wireName: r'hydra_serve_public_cors_allowed_origins')
-  BuiltList<String>? get hydraServePublicCorsAllowedOrigins;
-
-  /// Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
-  @BuiltValueField(wireName: r'hydra_serve_public_cors_enabled')
-  bool? get hydraServePublicCorsEnabled;
 
   /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
   @BuiltValueField(wireName: r'hydra_strategies_access_token')
@@ -765,6 +751,20 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'project_id')
   String? get projectId;
 
+  @BuiltValueField(wireName: r'serve_admin_cors_allowed_origins')
+  BuiltList<String>? get serveAdminCorsAllowedOrigins;
+
+  /// Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting.
+  @BuiltValueField(wireName: r'serve_admin_cors_enabled')
+  bool? get serveAdminCorsEnabled;
+
+  @BuiltValueField(wireName: r'serve_public_cors_allowed_origins')
+  BuiltList<String>? get servePublicCorsAllowedOrigins;
+
+  /// Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting.
+  @BuiltValueField(wireName: r'serve_public_cors_enabled')
+  bool? get servePublicCorsEnabled;
+
   /// Last Time Project's Revision was Updated
   @BuiltValueField(wireName: r'updated_at')
   DateTime? get updatedAt;
@@ -912,20 +912,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
-    if (object.hydraServeAdminCorsAllowedOrigins != null) {
-      yield r'hydra_serve_admin_cors_allowed_origins';
-      yield serializers.serialize(
-        object.hydraServeAdminCorsAllowedOrigins,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.hydraServeAdminCorsEnabled != null) {
-      yield r'hydra_serve_admin_cors_enabled';
-      yield serializers.serialize(
-        object.hydraServeAdminCorsEnabled,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.hydraServeCookiesSameSiteLegacyWorkaround != null) {
       yield r'hydra_serve_cookies_same_site_legacy_workaround';
       yield serializers.serialize(
@@ -938,20 +924,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.hydraServeCookiesSameSiteMode,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.hydraServePublicCorsAllowedOrigins != null) {
-      yield r'hydra_serve_public_cors_allowed_origins';
-      yield serializers.serialize(
-        object.hydraServePublicCorsAllowedOrigins,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.hydraServePublicCorsEnabled != null) {
-      yield r'hydra_serve_public_cors_enabled';
-      yield serializers.serialize(
-        object.hydraServePublicCorsEnabled,
-        specifiedType: const FullType(bool),
       );
     }
     if (object.hydraStrategiesAccessToken != null) {
@@ -1862,6 +1834,34 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.serveAdminCorsAllowedOrigins != null) {
+      yield r'serve_admin_cors_allowed_origins';
+      yield serializers.serialize(
+        object.serveAdminCorsAllowedOrigins,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.serveAdminCorsEnabled != null) {
+      yield r'serve_admin_cors_enabled';
+      yield serializers.serialize(
+        object.serveAdminCorsEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.servePublicCorsAllowedOrigins != null) {
+      yield r'serve_public_cors_allowed_origins';
+      yield serializers.serialize(
+        object.servePublicCorsAllowedOrigins,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.servePublicCorsEnabled != null) {
+      yield r'serve_public_cors_enabled';
+      yield serializers.serialize(
+        object.servePublicCorsEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.updatedAt != null) {
       yield r'updated_at';
       yield serializers.serialize(
@@ -2004,20 +2004,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as BuiltList<String>;
           result.hydraSecretsSystem.replace(valueDes);
           break;
-        case r'hydra_serve_admin_cors_allowed_origins':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
-          result.hydraServeAdminCorsAllowedOrigins.replace(valueDes);
-          break;
-        case r'hydra_serve_admin_cors_enabled':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.hydraServeAdminCorsEnabled = valueDes;
-          break;
         case r'hydra_serve_cookies_same_site_legacy_workaround':
           final valueDes = serializers.deserialize(
             value,
@@ -2031,20 +2017,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.hydraServeCookiesSameSiteMode = valueDes;
-          break;
-        case r'hydra_serve_public_cors_allowed_origins':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
-          result.hydraServePublicCorsAllowedOrigins.replace(valueDes);
-          break;
-        case r'hydra_serve_public_cors_enabled':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.hydraServePublicCorsEnabled = valueDes;
           break;
         case r'hydra_strategies_access_token':
           final valueDes = serializers.deserialize(
@@ -2958,6 +2930,34 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.projectId = valueDes;
+          break;
+        case r'serve_admin_cors_allowed_origins':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.serveAdminCorsAllowedOrigins.replace(valueDes);
+          break;
+        case r'serve_admin_cors_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.serveAdminCorsEnabled = valueDes;
+          break;
+        case r'serve_public_cors_allowed_origins':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.servePublicCorsAllowedOrigins.replace(valueDes);
+          break;
+        case r'serve_public_cors_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.servePublicCorsEnabled = valueDes;
           break;
         case r'updated_at':
           final valueDes = serializers.deserialize(

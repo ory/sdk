@@ -326,7 +326,7 @@ void (empty response body)
 ## `deleteIdentityCredentials()`
 
 ```php
-deleteIdentityCredentials($id, $type)
+deleteIdentityCredentials($id, $type): \Ory\Client\Model\Identity
 ```
 
 Delete a credential for a specific identity
@@ -354,7 +354,8 @@ $id = 'id_example'; // string | ID is the identity's ID.
 $type = 'type_example'; // string | Type is the credential's Type. One of totp, webauthn, lookup
 
 try {
-    $apiInstance->deleteIdentityCredentials($id, $type);
+    $result = $apiInstance->deleteIdentityCredentials($id, $type);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling IdentityApi->deleteIdentityCredentials: ', $e->getMessage(), PHP_EOL;
 }
@@ -369,7 +370,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**\Ory\Client\Model\Identity**](../Model/Identity.md)
 
 ### Authorization
 

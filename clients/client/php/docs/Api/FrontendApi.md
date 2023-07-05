@@ -103,7 +103,7 @@ No authorization required
 ## `createBrowserLogoutFlow()`
 
 ```php
-createBrowserLogoutFlow($cookie, $returnTo): \Ory\Client\Model\LogoutFlow
+createBrowserLogoutFlow($cookie): \Ory\Client\Model\LogoutFlow
 ```
 
 Create a Logout URL for Browsers
@@ -124,10 +124,9 @@ $apiInstance = new Ory\Client\Api\FrontendApi(
     new GuzzleHttp\Client()
 );
 $cookie = 'cookie_example'; // string | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
-$returnTo = 'returnTo_example'; // string | Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
 
 try {
-    $result = $apiInstance->createBrowserLogoutFlow($cookie, $returnTo);
+    $result = $apiInstance->createBrowserLogoutFlow($cookie);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createBrowserLogoutFlow: ', $e->getMessage(), PHP_EOL;
@@ -139,7 +138,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **string**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional]
- **returnTo** | **string**| Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional]
 
 ### Return type
 

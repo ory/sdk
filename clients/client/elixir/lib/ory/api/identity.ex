@@ -210,10 +210,10 @@ defmodule Ory.Api.Identity do
 
   ### Returns
 
-  - `{:ok, nil}` on success
+  - `{:ok, Ory.Model.Identity.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec delete_identity_credentials(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
+  @spec delete_identity_credentials(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.Identity.t} | {:error, Tesla.Env.t}
   def delete_identity_credentials(connection, id, type, _opts \\ []) do
     request =
       %{}
@@ -224,7 +224,7 @@ defmodule Ory.Api.Identity do
     connection
     |> Connection.request(request)
     |> evaluate_response([
-      {204, false},
+      {200, %Ory.Model.Identity{}},
       {404, %Ory.Model.ErrorGeneric{}},
       {:default, %Ory.Model.ErrorGeneric{}}
     ])

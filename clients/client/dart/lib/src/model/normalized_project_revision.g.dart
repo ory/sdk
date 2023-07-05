@@ -309,17 +309,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final BuiltList<String>? hydraSecretsSystem;
   @override
-  final BuiltList<String>? hydraServeAdminCorsAllowedOrigins;
-  @override
-  final bool? hydraServeAdminCorsEnabled;
-  @override
   final bool? hydraServeCookiesSameSiteLegacyWorkaround;
   @override
   final String? hydraServeCookiesSameSiteMode;
-  @override
-  final BuiltList<String>? hydraServePublicCorsAllowedOrigins;
-  @override
-  final bool? hydraServePublicCorsEnabled;
   @override
   final NormalizedProjectRevisionHydraStrategiesAccessTokenEnum?
       hydraStrategiesAccessToken;
@@ -592,6 +584,14 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? projectId;
   @override
+  final BuiltList<String>? serveAdminCorsAllowedOrigins;
+  @override
+  final bool? serveAdminCorsEnabled;
+  @override
+  final BuiltList<String>? servePublicCorsAllowedOrigins;
+  @override
+  final bool? servePublicCorsEnabled;
+  @override
   final DateTime? updatedAt;
 
   factory _$NormalizedProjectRevision(
@@ -615,12 +615,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.hydraOidcSubjectIdentifiersSupportedTypes,
       this.hydraSecretsCookie,
       this.hydraSecretsSystem,
-      this.hydraServeAdminCorsAllowedOrigins,
-      this.hydraServeAdminCorsEnabled,
       this.hydraServeCookiesSameSiteLegacyWorkaround,
       this.hydraServeCookiesSameSiteMode,
-      this.hydraServePublicCorsAllowedOrigins,
-      this.hydraServePublicCorsEnabled,
       this.hydraStrategiesAccessToken,
       this.hydraStrategiesScope,
       this.hydraTtlAccessToken,
@@ -751,6 +747,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       required this.name,
       this.production,
       this.projectId,
+      this.serveAdminCorsAllowedOrigins,
+      this.serveAdminCorsEnabled,
+      this.servePublicCorsAllowedOrigins,
+      this.servePublicCorsEnabled,
       this.updatedAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -796,15 +796,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.hydraOidcSubjectIdentifiersSupportedTypes &&
         hydraSecretsCookie == other.hydraSecretsCookie &&
         hydraSecretsSystem == other.hydraSecretsSystem &&
-        hydraServeAdminCorsAllowedOrigins ==
-            other.hydraServeAdminCorsAllowedOrigins &&
-        hydraServeAdminCorsEnabled == other.hydraServeAdminCorsEnabled &&
         hydraServeCookiesSameSiteLegacyWorkaround ==
             other.hydraServeCookiesSameSiteLegacyWorkaround &&
         hydraServeCookiesSameSiteMode == other.hydraServeCookiesSameSiteMode &&
-        hydraServePublicCorsAllowedOrigins ==
-            other.hydraServePublicCorsAllowedOrigins &&
-        hydraServePublicCorsEnabled == other.hydraServePublicCorsEnabled &&
         hydraStrategiesAccessToken == other.hydraStrategiesAccessToken &&
         hydraStrategiesScope == other.hydraStrategiesScope &&
         hydraTtlAccessToken == other.hydraTtlAccessToken &&
@@ -1043,6 +1037,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         name == other.name &&
         production == other.production &&
         projectId == other.projectId &&
+        serveAdminCorsAllowedOrigins == other.serveAdminCorsAllowedOrigins &&
+        serveAdminCorsEnabled == other.serveAdminCorsEnabled &&
+        servePublicCorsAllowedOrigins == other.servePublicCorsAllowedOrigins &&
+        servePublicCorsEnabled == other.servePublicCorsEnabled &&
         updatedAt == other.updatedAt;
   }
 
@@ -1067,12 +1065,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, hydraOidcSubjectIdentifiersSupportedTypes.hashCode);
     _$hash = $jc(_$hash, hydraSecretsCookie.hashCode);
     _$hash = $jc(_$hash, hydraSecretsSystem.hashCode);
-    _$hash = $jc(_$hash, hydraServeAdminCorsAllowedOrigins.hashCode);
-    _$hash = $jc(_$hash, hydraServeAdminCorsEnabled.hashCode);
     _$hash = $jc(_$hash, hydraServeCookiesSameSiteLegacyWorkaround.hashCode);
     _$hash = $jc(_$hash, hydraServeCookiesSameSiteMode.hashCode);
-    _$hash = $jc(_$hash, hydraServePublicCorsAllowedOrigins.hashCode);
-    _$hash = $jc(_$hash, hydraServePublicCorsEnabled.hashCode);
     _$hash = $jc(_$hash, hydraStrategiesAccessToken.hashCode);
     _$hash = $jc(_$hash, hydraStrategiesScope.hashCode);
     _$hash = $jc(_$hash, hydraTtlAccessToken.hashCode);
@@ -1276,6 +1270,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, production.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
+    _$hash = $jc(_$hash, serveAdminCorsAllowedOrigins.hashCode);
+    _$hash = $jc(_$hash, serveAdminCorsEnabled.hashCode);
+    _$hash = $jc(_$hash, servePublicCorsAllowedOrigins.hashCode);
+    _$hash = $jc(_$hash, servePublicCorsEnabled.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -1310,15 +1308,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               hydraOidcSubjectIdentifiersSupportedTypes)
           ..add('hydraSecretsCookie', hydraSecretsCookie)
           ..add('hydraSecretsSystem', hydraSecretsSystem)
-          ..add('hydraServeAdminCorsAllowedOrigins',
-              hydraServeAdminCorsAllowedOrigins)
-          ..add('hydraServeAdminCorsEnabled', hydraServeAdminCorsEnabled)
           ..add('hydraServeCookiesSameSiteLegacyWorkaround',
               hydraServeCookiesSameSiteLegacyWorkaround)
           ..add('hydraServeCookiesSameSiteMode', hydraServeCookiesSameSiteMode)
-          ..add('hydraServePublicCorsAllowedOrigins',
-              hydraServePublicCorsAllowedOrigins)
-          ..add('hydraServePublicCorsEnabled', hydraServePublicCorsEnabled)
           ..add('hydraStrategiesAccessToken', hydraStrategiesAccessToken)
           ..add('hydraStrategiesScope', hydraStrategiesScope)
           ..add('hydraTtlAccessToken', hydraTtlAccessToken)
@@ -1556,6 +1548,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('name', name)
           ..add('production', production)
           ..add('projectId', projectId)
+          ..add('serveAdminCorsAllowedOrigins', serveAdminCorsAllowedOrigins)
+          ..add('serveAdminCorsEnabled', serveAdminCorsEnabled)
+          ..add('servePublicCorsAllowedOrigins', servePublicCorsAllowedOrigins)
+          ..add('servePublicCorsEnabled', servePublicCorsEnabled)
           ..add('updatedAt', updatedAt))
         .toString();
   }
@@ -1677,19 +1673,6 @@ class NormalizedProjectRevisionBuilder
   set hydraSecretsSystem(ListBuilder<String>? hydraSecretsSystem) =>
       _$this._hydraSecretsSystem = hydraSecretsSystem;
 
-  ListBuilder<String>? _hydraServeAdminCorsAllowedOrigins;
-  ListBuilder<String> get hydraServeAdminCorsAllowedOrigins =>
-      _$this._hydraServeAdminCorsAllowedOrigins ??= new ListBuilder<String>();
-  set hydraServeAdminCorsAllowedOrigins(
-          ListBuilder<String>? hydraServeAdminCorsAllowedOrigins) =>
-      _$this._hydraServeAdminCorsAllowedOrigins =
-          hydraServeAdminCorsAllowedOrigins;
-
-  bool? _hydraServeAdminCorsEnabled;
-  bool? get hydraServeAdminCorsEnabled => _$this._hydraServeAdminCorsEnabled;
-  set hydraServeAdminCorsEnabled(bool? hydraServeAdminCorsEnabled) =>
-      _$this._hydraServeAdminCorsEnabled = hydraServeAdminCorsEnabled;
-
   bool? _hydraServeCookiesSameSiteLegacyWorkaround;
   bool? get hydraServeCookiesSameSiteLegacyWorkaround =>
       _$this._hydraServeCookiesSameSiteLegacyWorkaround;
@@ -1703,19 +1686,6 @@ class NormalizedProjectRevisionBuilder
       _$this._hydraServeCookiesSameSiteMode;
   set hydraServeCookiesSameSiteMode(String? hydraServeCookiesSameSiteMode) =>
       _$this._hydraServeCookiesSameSiteMode = hydraServeCookiesSameSiteMode;
-
-  ListBuilder<String>? _hydraServePublicCorsAllowedOrigins;
-  ListBuilder<String> get hydraServePublicCorsAllowedOrigins =>
-      _$this._hydraServePublicCorsAllowedOrigins ??= new ListBuilder<String>();
-  set hydraServePublicCorsAllowedOrigins(
-          ListBuilder<String>? hydraServePublicCorsAllowedOrigins) =>
-      _$this._hydraServePublicCorsAllowedOrigins =
-          hydraServePublicCorsAllowedOrigins;
-
-  bool? _hydraServePublicCorsEnabled;
-  bool? get hydraServePublicCorsEnabled => _$this._hydraServePublicCorsEnabled;
-  set hydraServePublicCorsEnabled(bool? hydraServePublicCorsEnabled) =>
-      _$this._hydraServePublicCorsEnabled = hydraServePublicCorsEnabled;
 
   NormalizedProjectRevisionHydraStrategiesAccessTokenEnum?
       _hydraStrategiesAccessToken;
@@ -2705,6 +2675,30 @@ class NormalizedProjectRevisionBuilder
   String? get projectId => _$this._projectId;
   set projectId(String? projectId) => _$this._projectId = projectId;
 
+  ListBuilder<String>? _serveAdminCorsAllowedOrigins;
+  ListBuilder<String> get serveAdminCorsAllowedOrigins =>
+      _$this._serveAdminCorsAllowedOrigins ??= new ListBuilder<String>();
+  set serveAdminCorsAllowedOrigins(
+          ListBuilder<String>? serveAdminCorsAllowedOrigins) =>
+      _$this._serveAdminCorsAllowedOrigins = serveAdminCorsAllowedOrigins;
+
+  bool? _serveAdminCorsEnabled;
+  bool? get serveAdminCorsEnabled => _$this._serveAdminCorsEnabled;
+  set serveAdminCorsEnabled(bool? serveAdminCorsEnabled) =>
+      _$this._serveAdminCorsEnabled = serveAdminCorsEnabled;
+
+  ListBuilder<String>? _servePublicCorsAllowedOrigins;
+  ListBuilder<String> get servePublicCorsAllowedOrigins =>
+      _$this._servePublicCorsAllowedOrigins ??= new ListBuilder<String>();
+  set servePublicCorsAllowedOrigins(
+          ListBuilder<String>? servePublicCorsAllowedOrigins) =>
+      _$this._servePublicCorsAllowedOrigins = servePublicCorsAllowedOrigins;
+
+  bool? _servePublicCorsEnabled;
+  bool? get servePublicCorsEnabled => _$this._servePublicCorsEnabled;
+  set servePublicCorsEnabled(bool? servePublicCorsEnabled) =>
+      _$this._servePublicCorsEnabled = servePublicCorsEnabled;
+
   DateTime? _updatedAt;
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
@@ -2739,15 +2733,9 @@ class NormalizedProjectRevisionBuilder
           $v.hydraOidcSubjectIdentifiersSupportedTypes?.toBuilder();
       _hydraSecretsCookie = $v.hydraSecretsCookie?.toBuilder();
       _hydraSecretsSystem = $v.hydraSecretsSystem?.toBuilder();
-      _hydraServeAdminCorsAllowedOrigins =
-          $v.hydraServeAdminCorsAllowedOrigins?.toBuilder();
-      _hydraServeAdminCorsEnabled = $v.hydraServeAdminCorsEnabled;
       _hydraServeCookiesSameSiteLegacyWorkaround =
           $v.hydraServeCookiesSameSiteLegacyWorkaround;
       _hydraServeCookiesSameSiteMode = $v.hydraServeCookiesSameSiteMode;
-      _hydraServePublicCorsAllowedOrigins =
-          $v.hydraServePublicCorsAllowedOrigins?.toBuilder();
-      _hydraServePublicCorsEnabled = $v.hydraServePublicCorsEnabled;
       _hydraStrategiesAccessToken = $v.hydraStrategiesAccessToken;
       _hydraStrategiesScope = $v.hydraStrategiesScope;
       _hydraTtlAccessToken = $v.hydraTtlAccessToken;
@@ -2970,6 +2958,12 @@ class NormalizedProjectRevisionBuilder
       _name = $v.name;
       _production = $v.production;
       _projectId = $v.projectId;
+      _serveAdminCorsAllowedOrigins =
+          $v.serveAdminCorsAllowedOrigins?.toBuilder();
+      _serveAdminCorsEnabled = $v.serveAdminCorsEnabled;
+      _servePublicCorsAllowedOrigins =
+          $v.servePublicCorsAllowedOrigins?.toBuilder();
+      _servePublicCorsEnabled = $v.servePublicCorsEnabled;
       _updatedAt = $v.updatedAt;
       _$v = null;
     }
@@ -3019,15 +3013,9 @@ class NormalizedProjectRevisionBuilder
                   _hydraOidcSubjectIdentifiersSupportedTypes?.build(),
               hydraSecretsCookie: _hydraSecretsCookie?.build(),
               hydraSecretsSystem: _hydraSecretsSystem?.build(),
-              hydraServeAdminCorsAllowedOrigins:
-                  _hydraServeAdminCorsAllowedOrigins?.build(),
-              hydraServeAdminCorsEnabled: hydraServeAdminCorsEnabled,
               hydraServeCookiesSameSiteLegacyWorkaround:
                   hydraServeCookiesSameSiteLegacyWorkaround,
               hydraServeCookiesSameSiteMode: hydraServeCookiesSameSiteMode,
-              hydraServePublicCorsAllowedOrigins:
-                  _hydraServePublicCorsAllowedOrigins?.build(),
-              hydraServePublicCorsEnabled: hydraServePublicCorsEnabled,
               hydraStrategiesAccessToken: hydraStrategiesAccessToken,
               hydraStrategiesScope: hydraStrategiesScope,
               hydraTtlAccessToken: hydraTtlAccessToken,
@@ -3088,36 +3076,60 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesRecoveryValidEmailBodyHtml,
               kratosCourierTemplatesRecoveryValidEmailBodyPlaintext:
                   kratosCourierTemplatesRecoveryValidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryValidEmailSubject: kratosCourierTemplatesRecoveryValidEmailSubject,
-              kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml: kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
-              kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext: kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationCodeInvalidEmailSubject: kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
-              kratosCourierTemplatesVerificationCodeValidEmailBodyHtml: kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
-              kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext: kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationCodeValidEmailSubject: kratosCourierTemplatesVerificationCodeValidEmailSubject,
-              kratosCourierTemplatesVerificationInvalidEmailBodyHtml: kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
-              kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext: kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationInvalidEmailSubject: kratosCourierTemplatesVerificationInvalidEmailSubject,
-              kratosCourierTemplatesVerificationValidEmailBodyHtml: kratosCourierTemplatesVerificationValidEmailBodyHtml,
-              kratosCourierTemplatesVerificationValidEmailBodyPlaintext: kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
-              kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
+              kratosCourierTemplatesRecoveryValidEmailSubject:
+                  kratosCourierTemplatesRecoveryValidEmailSubject,
+              kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml:
+                  kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
+              kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext:
+                  kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationCodeInvalidEmailSubject:
+                  kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
+              kratosCourierTemplatesVerificationCodeValidEmailBodyHtml:
+                  kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
+              kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext:
+                  kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationCodeValidEmailSubject:
+                  kratosCourierTemplatesVerificationCodeValidEmailSubject,
+              kratosCourierTemplatesVerificationInvalidEmailBodyHtml:
+                  kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
+              kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext:
+                  kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationInvalidEmailSubject:
+                  kratosCourierTemplatesVerificationInvalidEmailSubject,
+              kratosCourierTemplatesVerificationValidEmailBodyHtml:
+                  kratosCourierTemplatesVerificationValidEmailBodyHtml,
+              kratosCourierTemplatesVerificationValidEmailBodyPlaintext:
+                  kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationValidEmailSubject:
+                  kratosCourierTemplatesVerificationValidEmailSubject,
+              kratosFeatureFlagsCacheableSessions:
+                  kratosFeatureFlagsCacheableSessions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,
-              kratosOauth2ProviderOverrideReturnTo: kratosOauth2ProviderOverrideReturnTo,
+              kratosOauth2ProviderOverrideReturnTo:
+                  kratosOauth2ProviderOverrideReturnTo,
               kratosOauth2ProviderUrl: kratosOauth2ProviderUrl,
               kratosSecretsCipher: _kratosSecretsCipher?.build(),
               kratosSecretsCookie: _kratosSecretsCookie?.build(),
               kratosSecretsDefault: _kratosSecretsDefault?.build(),
-              kratosSelfserviceAllowedReturnUrls: _kratosSelfserviceAllowedReturnUrls?.build(),
-              kratosSelfserviceDefaultBrowserReturnUrl: kratosSelfserviceDefaultBrowserReturnUrl,
-              kratosSelfserviceFlowsErrorUiUrl: kratosSelfserviceFlowsErrorUiUrl,
-              kratosSelfserviceFlowsHooks: _kratosSelfserviceFlowsHooks?.build(),
-              kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
-              kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
-              kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
-              kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
-              kratosSelfserviceFlowsLoginLifespan: kratosSelfserviceFlowsLoginLifespan,
+              kratosSelfserviceAllowedReturnUrls:
+                  _kratosSelfserviceAllowedReturnUrls?.build(),
+              kratosSelfserviceDefaultBrowserReturnUrl:
+                  kratosSelfserviceDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsErrorUiUrl:
+                  kratosSelfserviceFlowsErrorUiUrl,
+              kratosSelfserviceFlowsHooks:
+                  _kratosSelfserviceFlowsHooks?.build(),
+              kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl:
+                  kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl:
+                  kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl:
+                  kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl:
+                  kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginLifespan:
+                  kratosSelfserviceFlowsLoginLifespan,
               kratosSelfserviceFlowsLoginUiUrl: kratosSelfserviceFlowsLoginUiUrl,
               kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl,
@@ -3177,6 +3189,10 @@ class NormalizedProjectRevisionBuilder
               name: BuiltValueNullFieldError.checkNotNull(name, r'NormalizedProjectRevision', 'name'),
               production: production,
               projectId: projectId,
+              serveAdminCorsAllowedOrigins: _serveAdminCorsAllowedOrigins?.build(),
+              serveAdminCorsEnabled: serveAdminCorsEnabled,
+              servePublicCorsAllowedOrigins: _servePublicCorsAllowedOrigins?.build(),
+              servePublicCorsEnabled: servePublicCorsEnabled,
               updatedAt: updatedAt);
     } catch (_) {
       late String _$failedField;
@@ -3193,11 +3209,6 @@ class NormalizedProjectRevisionBuilder
         _hydraSecretsCookie?.build();
         _$failedField = 'hydraSecretsSystem';
         _hydraSecretsSystem?.build();
-        _$failedField = 'hydraServeAdminCorsAllowedOrigins';
-        _hydraServeAdminCorsAllowedOrigins?.build();
-
-        _$failedField = 'hydraServePublicCorsAllowedOrigins';
-        _hydraServePublicCorsAllowedOrigins?.build();
 
         _$failedField = 'hydraWebfingerJwksBroadcastKeys';
         _hydraWebfingerJwksBroadcastKeys?.build();
@@ -3227,6 +3238,12 @@ class NormalizedProjectRevisionBuilder
 
         _$failedField = 'kratosSelfserviceMethodsOidcConfigProviders';
         _kratosSelfserviceMethodsOidcConfigProviders?.build();
+
+        _$failedField = 'serveAdminCorsAllowedOrigins';
+        _serveAdminCorsAllowedOrigins?.build();
+
+        _$failedField = 'servePublicCorsAllowedOrigins';
+        _servePublicCorsAllowedOrigins?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'NormalizedProjectRevision', _$failedField, e.toString());

@@ -145,13 +145,12 @@ with ory_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = frontend_api.FrontendApi(api_client)
     cookie = "cookie_example" # str | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional)
-    return_to = "return_to_example" # str | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Create a Logout URL for Browsers
-        api_response = api_instance.create_browser_logout_flow(cookie=cookie, return_to=return_to)
+        api_response = api_instance.create_browser_logout_flow(cookie=cookie)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling FrontendApi->create_browser_logout_flow: %s\n" % e)
@@ -163,7 +162,6 @@ with ory_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **str**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional]
- **return_to** | **str**| Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional]
 
 ### Return type
 
@@ -184,7 +182,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | logoutFlow |  -  |
-**400** | errorGeneric |  -  |
 **401** | errorGeneric |  -  |
 **500** | errorGeneric |  -  |
 

@@ -56,7 +56,7 @@ void main() {
     //
     // Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
     //
-    //Future deleteIdentityCredentials(String id, String type) async
+    //Future<Identity> deleteIdentityCredentials(String id, String type) async
     test('test deleteIdentityCredentials', () async {
       // TODO
     });

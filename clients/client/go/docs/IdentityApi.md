@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 ## DeleteIdentityCredentials
 
-> DeleteIdentityCredentials(ctx, id, type_).Execute()
+> Identity DeleteIdentityCredentials(ctx, id, type_).Execute()
 
 Delete a credential for a specific identity
 
@@ -388,6 +388,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.DeleteIdentityCredentials``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `DeleteIdentityCredentials`: Identity
+    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.DeleteIdentityCredentials`: %v\n", resp)
 }
 ```
 
@@ -412,7 +414,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**Identity**](Identity.md)
 
 ### Authorization
 
