@@ -10,14 +10,14 @@ import 'package:built_value/serializer.dart';
 
 part 'project_branding.g.dart';
 
-/// ProjectBranding
+/// The Project Branding
 ///
 /// Properties:
 /// * [createdAt] - The Customization Creation Date
 /// * [defaultTheme] 
 /// * [id] - The customization ID.
 /// * [projectId] - The Project's ID this customization is associated with
-/// * [themes] 
+/// * [themes] - The Project Branding Themes
 /// * [updatedAt] - Last Time Branding was Updated
 @BuiltValue()
 abstract class ProjectBranding implements Built<ProjectBranding, ProjectBrandingBuilder> {
@@ -36,6 +36,7 @@ abstract class ProjectBranding implements Built<ProjectBranding, ProjectBranding
   @BuiltValueField(wireName: r'project_id')
   String get projectId;
 
+  /// The Project Branding Themes
   @BuiltValueField(wireName: r'themes')
   BuiltList<ProjectBrandingTheme> get themes;
 

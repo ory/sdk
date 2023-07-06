@@ -20,8 +20,12 @@
 | **hydra_oidc_subject_identifiers_supported_types** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_secrets_cookie** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_secrets_system** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_serve_admin_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_serve_admin_cors_enabled** | **Boolean** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] |
 | **hydra_serve_cookies_same_site_legacy_workaround** | **Boolean** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] |
 | **hydra_serve_cookies_same_site_mode** | **String** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] |
+| **hydra_serve_public_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_serve_public_cors_enabled** | **Boolean** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] |
 | **hydra_strategies_access_token** | **String** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional][default to &#39;opaque&#39;] |
 | **hydra_strategies_scope** | **String** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional][default to &#39;wildcard&#39;] |
 | **hydra_ttl_access_token** | **String** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional][default to &#39;30m&#39;] |
@@ -152,10 +156,6 @@
 | **name** | **String** | The project&#39;s name. |  |
 | **production** | **Boolean** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] |
 | **project_id** | **String** | The Revision&#39;s Project ID | [optional] |
-| **serve_admin_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
-| **serve_admin_cors_enabled** | **Boolean** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] |
-| **serve_public_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
-| **serve_public_cors_enabled** | **Boolean** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 
 ## Example
@@ -180,8 +180,12 @@ instance = OryClient::NormalizedProjectRevision.new(
   hydra_oidc_subject_identifiers_supported_types: null,
   hydra_secrets_cookie: null,
   hydra_secrets_system: null,
+  hydra_serve_admin_cors_allowed_origins: null,
+  hydra_serve_admin_cors_enabled: null,
   hydra_serve_cookies_same_site_legacy_workaround: null,
   hydra_serve_cookies_same_site_mode: null,
+  hydra_serve_public_cors_allowed_origins: null,
+  hydra_serve_public_cors_enabled: null,
   hydra_strategies_access_token: null,
   hydra_strategies_scope: null,
   hydra_ttl_access_token: 1h,
@@ -312,10 +316,6 @@ instance = OryClient::NormalizedProjectRevision.new(
   name: null,
   production: null,
   project_id: null,
-  serve_admin_cors_allowed_origins: null,
-  serve_admin_cors_enabled: null,
-  serve_public_cors_allowed_origins: null,
-  serve_public_cors_enabled: null,
   updated_at: null
 )
 ```

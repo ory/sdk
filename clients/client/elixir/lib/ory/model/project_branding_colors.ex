@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.ProjectBrandingColors do
   @moduledoc """
-  
+  The Project Branding Colors
   """
 
   @derive [Poison.Encoder]

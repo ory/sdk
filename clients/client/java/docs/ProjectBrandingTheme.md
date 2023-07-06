@@ -2,6 +2,7 @@
 
 # ProjectBrandingTheme
 
+The Project Branding Theme
 
 ## Properties
 

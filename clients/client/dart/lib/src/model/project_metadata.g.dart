@@ -83,8 +83,6 @@ class _$ProjectMetadata extends ProjectMetadata {
   @override
   final String? subscriptionId;
   @override
-  final String? subscriptionPlan;
-  @override
   final DateTime updatedAt;
 
   factory _$ProjectMetadata([void Function(ProjectMetadataBuilder)? updates]) =>
@@ -98,7 +96,6 @@ class _$ProjectMetadata extends ProjectMetadata {
       this.slug,
       required this.state,
       this.subscriptionId,
-      this.subscriptionPlan,
       required this.updatedAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -130,7 +127,6 @@ class _$ProjectMetadata extends ProjectMetadata {
         slug == other.slug &&
         state == other.state &&
         subscriptionId == other.subscriptionId &&
-        subscriptionPlan == other.subscriptionPlan &&
         updatedAt == other.updatedAt;
   }
 
@@ -144,7 +140,6 @@ class _$ProjectMetadata extends ProjectMetadata {
     _$hash = $jc(_$hash, slug.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
     _$hash = $jc(_$hash, subscriptionId.hashCode);
-    _$hash = $jc(_$hash, subscriptionPlan.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -160,7 +155,6 @@ class _$ProjectMetadata extends ProjectMetadata {
           ..add('slug', slug)
           ..add('state', state)
           ..add('subscriptionId', subscriptionId)
-          ..add('subscriptionPlan', subscriptionPlan)
           ..add('updatedAt', updatedAt))
         .toString();
   }
@@ -199,11 +193,6 @@ class ProjectMetadataBuilder
   set subscriptionId(String? subscriptionId) =>
       _$this._subscriptionId = subscriptionId;
 
-  String? _subscriptionPlan;
-  String? get subscriptionPlan => _$this._subscriptionPlan;
-  set subscriptionPlan(String? subscriptionPlan) =>
-      _$this._subscriptionPlan = subscriptionPlan;
-
   DateTime? _updatedAt;
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
@@ -222,7 +211,6 @@ class ProjectMetadataBuilder
       _slug = $v.slug;
       _state = $v.state;
       _subscriptionId = $v.subscriptionId;
-      _subscriptionPlan = $v.subscriptionPlan;
       _updatedAt = $v.updatedAt;
       _$v = null;
     }
@@ -259,7 +247,6 @@ class ProjectMetadataBuilder
               state: BuiltValueNullFieldError.checkNotNull(
                   state, r'ProjectMetadata', 'state'),
               subscriptionId: subscriptionId,
-              subscriptionPlan: subscriptionPlan,
               updatedAt: BuiltValueNullFieldError.checkNotNull(
                   updatedAt, r'ProjectMetadata', 'updatedAt'));
     } catch (_) {

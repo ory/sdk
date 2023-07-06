@@ -20,8 +20,12 @@ Name | Type | Description | Notes
 **hydra_oidc_subject_identifiers_supported_types** | Option<**Vec<String>**> |  | [optional]
 **hydra_secrets_cookie** | Option<**Vec<String>**> |  | [optional]
 **hydra_secrets_system** | Option<**Vec<String>**> |  | [optional]
+**hydra_serve_admin_cors_allowed_origins** | Option<**Vec<String>**> |  | [optional]
+**hydra_serve_admin_cors_enabled** | Option<**bool**> | Configures the Ory Hydra CORS Settings  This governs the \"serve.admin.cors.enabled\" setting. | [optional]
 **hydra_serve_cookies_same_site_legacy_workaround** | Option<**bool**> | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting. | [optional]
 **hydra_serve_cookies_same_site_mode** | Option<**String**> | Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting. | [optional]
+**hydra_serve_public_cors_allowed_origins** | Option<**Vec<String>**> |  | [optional]
+**hydra_serve_public_cors_enabled** | Option<**bool**> | Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting. | [optional]
 **hydra_strategies_access_token** | Option<**String**> | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional][default to HydraStrategiesAccessTokenEnum_Opaque]
 **hydra_strategies_scope** | Option<**String**> | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional][default to HydraStrategiesScopeEnum_Wildcard]
 **hydra_ttl_access_token** | Option<**String**> | This governs the \"ttl.access_token\" setting. | [optional][default to 30m]
@@ -152,10 +156,6 @@ Name | Type | Description | Notes
 **name** | **String** | The project's name. | 
 **production** | Option<**bool**> | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional]
 **project_id** | Option<**String**> | The Revision's Project ID | [optional]
-**serve_admin_cors_allowed_origins** | Option<**Vec<String>**> |  | [optional]
-**serve_admin_cors_enabled** | Option<**bool**> | Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting. | [optional]
-**serve_public_cors_allowed_origins** | Option<**Vec<String>**> |  | [optional]
-**serve_public_cors_enabled** | Option<**bool**> | Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting. | [optional]
 **updated_at** | Option<**String**> | Last Time Project's Revision was Updated | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

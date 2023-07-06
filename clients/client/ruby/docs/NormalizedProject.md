@@ -11,7 +11,6 @@
 | **slug** | **String** | The project&#39;s slug | [readonly] |
 | **state** | **String** | The state of the project. running Running halted Halted deleted Deleted | [readonly] |
 | **subscription_id** | **String** |  | [optional] |
-| **subscription_plan** | **String** |  | [optional] |
 | **updated_at** | **Time** | Last Time Project was Updated | [readonly] |
 
 ## Example
@@ -27,7 +26,6 @@ instance = OryClient::NormalizedProject.new(
   slug: null,
   state: null,
   subscription_id: null,
-  subscription_plan: null,
   updated_at: null
 )
 ```

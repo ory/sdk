@@ -36,7 +36,6 @@ void main() {
       // TODO
     });
 
-    // Ory OAuth 2.0 Login Challenge.  This value is set using the `login_challenge` query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
     // String oauth2LoginChallenge
     test('to test the property `oauth2LoginChallenge`', () async {
       // TODO

@@ -2,6 +2,7 @@
 
 # ProjectBrandingColors
 
+The Project Branding Colors
 
 ## Properties
 

@@ -98,6 +98,17 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> hydraServeAdminCorsAllowedOrigins
+    test('to test the property `hydraServeAdminCorsAllowedOrigins`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Hydra CORS Settings  This governs the \"serve.admin.cors.enabled\" setting.
+    // bool hydraServeAdminCorsEnabled
+    test('to test the property `hydraServeAdminCorsEnabled`', () async {
+      // TODO
+    });
+
     // Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
     // bool hydraServeCookiesSameSiteLegacyWorkaround
     test('to test the property `hydraServeCookiesSameSiteLegacyWorkaround`', () async {
@@ -107,6 +118,17 @@ void main() {
     // Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
     // String hydraServeCookiesSameSiteMode
     test('to test the property `hydraServeCookiesSameSiteMode`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> hydraServePublicCorsAllowedOrigins
+    test('to test the property `hydraServePublicCorsAllowedOrigins`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
+    // bool hydraServePublicCorsEnabled
+    test('to test the property `hydraServePublicCorsEnabled`', () async {
       // TODO
     });
 
@@ -875,28 +897,6 @@ void main() {
     // The Revision's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
-      // TODO
-    });
-
-    // BuiltList<String> serveAdminCorsAllowedOrigins
-    test('to test the property `serveAdminCorsAllowedOrigins`', () async {
-      // TODO
-    });
-
-    // Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting.
-    // bool serveAdminCorsEnabled
-    test('to test the property `serveAdminCorsEnabled`', () async {
-      // TODO
-    });
-
-    // BuiltList<String> servePublicCorsAllowedOrigins
-    test('to test the property `servePublicCorsAllowedOrigins`', () async {
-      // TODO
-    });
-
-    // Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting.
-    // bool servePublicCorsEnabled
-    test('to test the property `servePublicCorsEnabled`', () async {
       // TODO
     });
 

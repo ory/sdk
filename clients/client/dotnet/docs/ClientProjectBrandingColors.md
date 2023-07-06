@@ -1,4 +1,5 @@
 # Ory.Client.Model.ClientProjectBrandingColors
+The Project Branding Colors
 
 ## Properties
 

@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **slug** | **String** | The project's slug | 
 **state** | **String** | The state of the project. running Running halted Halted deleted Deleted | 
 **subscriptionId** | **String** |  | [optional] 
-**subscriptionPlan** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project was Updated | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

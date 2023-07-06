@@ -1,5 +1,6 @@
 # ProjectBranding
 
+The Project Branding
 
 ## Properties
 Name | Type | Description | Notes

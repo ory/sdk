@@ -1,4 +1,5 @@
 # Ory.Client.Model.ClientProjectBrandingTheme
+The Project Branding Theme
 
 ## Properties
 

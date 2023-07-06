@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.39
+API version: v1.1.40
 Contact: support@ory.sh
 */
 
@@ -27,8 +27,7 @@ type LoginFlow struct {
 	Id string `json:"id"`
 	// IssuedAt is the time (UTC) when the flow started.
 	IssuedAt time.Time `json:"issued_at"`
-	// Ory OAuth 2.0 Login Challenge.  This value is set using the `login_challenge` query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
-	Oauth2LoginChallenge *string `json:"oauth2_login_challenge,omitempty"`
+	Oauth2LoginChallenge NullableString `json:"oauth2_login_challenge,omitempty"`
 	Oauth2LoginRequest *OAuth2LoginRequest `json:"oauth2_login_request,omitempty"`
 	// Refresh stores whether this login flow should enforce re-authentication.
 	Refresh *bool `json:"refresh,omitempty"`
@@ -208,36 +207,46 @@ func (o *LoginFlow) SetIssuedAt(v time.Time) {
 	o.IssuedAt = v
 }
 
-// GetOauth2LoginChallenge returns the Oauth2LoginChallenge field value if set, zero value otherwise.
+// GetOauth2LoginChallenge returns the Oauth2LoginChallenge field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LoginFlow) GetOauth2LoginChallenge() string {
-	if o == nil || o.Oauth2LoginChallenge == nil {
+	if o == nil || o.Oauth2LoginChallenge.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Oauth2LoginChallenge
+	return *o.Oauth2LoginChallenge.Get()
 }
 
 // GetOauth2LoginChallengeOk returns a tuple with the Oauth2LoginChallenge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LoginFlow) GetOauth2LoginChallengeOk() (*string, bool) {
-	if o == nil || o.Oauth2LoginChallenge == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Oauth2LoginChallenge, true
+	return o.Oauth2LoginChallenge.Get(), o.Oauth2LoginChallenge.IsSet()
 }
 
 // HasOauth2LoginChallenge returns a boolean if a field has been set.
 func (o *LoginFlow) HasOauth2LoginChallenge() bool {
-	if o != nil && o.Oauth2LoginChallenge != nil {
+	if o != nil && o.Oauth2LoginChallenge.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetOauth2LoginChallenge gets a reference to the given string and assigns it to the Oauth2LoginChallenge field.
+// SetOauth2LoginChallenge gets a reference to the given NullableString and assigns it to the Oauth2LoginChallenge field.
 func (o *LoginFlow) SetOauth2LoginChallenge(v string) {
-	o.Oauth2LoginChallenge = &v
+	o.Oauth2LoginChallenge.Set(&v)
+}
+// SetOauth2LoginChallengeNil sets the value for Oauth2LoginChallenge to be an explicit nil
+func (o *LoginFlow) SetOauth2LoginChallengeNil() {
+	o.Oauth2LoginChallenge.Set(nil)
+}
+
+// UnsetOauth2LoginChallenge ensures that no value is present for Oauth2LoginChallenge, not even an explicit nil
+func (o *LoginFlow) UnsetOauth2LoginChallenge() {
+	o.Oauth2LoginChallenge.Unset()
 }
 
 // GetOauth2LoginRequest returns the Oauth2LoginRequest field value if set, zero value otherwise.
@@ -521,8 +530,8 @@ func (o LoginFlow) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["issued_at"] = o.IssuedAt
 	}
-	if o.Oauth2LoginChallenge != nil {
-		toSerialize["oauth2_login_challenge"] = o.Oauth2LoginChallenge
+	if o.Oauth2LoginChallenge.IsSet() {
+		toSerialize["oauth2_login_challenge"] = o.Oauth2LoginChallenge.Get()
 	}
 	if o.Oauth2LoginRequest != nil {
 		toSerialize["oauth2_login_request"] = o.Oauth2LoginRequest

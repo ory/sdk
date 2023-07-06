@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **ui** | [**UiContainer**](UiContainer.md) |  | 
 **active** | [**IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional] 
 **created_at** | **datetime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
-**oauth2_login_challenge** | **str** | Ory OAuth 2.0 Login Challenge.  This value is set using the &#x60;login_challenge&#x60; query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider. | [optional] 
+**oauth2_login_challenge** | **str, none_type** |  | [optional] 
 **oauth2_login_request** | [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] 
 **refresh** | **bool** | Refresh stores whether this login flow should enforce re-authentication. | [optional] 
 **requested_aal** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 

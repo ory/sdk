@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **Slug** | Pointer to **string** | The project&#39;s slug | [optional] [readonly] 
 **State** | **string** | The state of the project. running Running halted Halted deleted Deleted | 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionPlan** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | 
 
 ## Methods
@@ -193,41 +192,6 @@ HasSubscriptionId returns a boolean if a field has been set.
 `func (o *ProjectMetadata) UnsetSubscriptionId()`
 
 UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetSubscriptionPlan
-
-`func (o *ProjectMetadata) GetSubscriptionPlan() string`
-
-GetSubscriptionPlan returns the SubscriptionPlan field if non-nil, zero value otherwise.
-
-### GetSubscriptionPlanOk
-
-`func (o *ProjectMetadata) GetSubscriptionPlanOk() (*string, bool)`
-
-GetSubscriptionPlanOk returns a tuple with the SubscriptionPlan field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionPlan
-
-`func (o *ProjectMetadata) SetSubscriptionPlan(v string)`
-
-SetSubscriptionPlan sets SubscriptionPlan field to given value.
-
-### HasSubscriptionPlan
-
-`func (o *ProjectMetadata) HasSubscriptionPlan() bool`
-
-HasSubscriptionPlan returns a boolean if a field has been set.
-
-### SetSubscriptionPlanNil
-
-`func (o *ProjectMetadata) SetSubscriptionPlanNil(b bool)`
-
- SetSubscriptionPlanNil sets the value for SubscriptionPlan to be an explicit nil
-
-### UnsetSubscriptionPlan
-`func (o *ProjectMetadata) UnsetSubscriptionPlan()`
-
-UnsetSubscriptionPlan ensures that no value is present for SubscriptionPlan, not even an explicit nil
 ### GetUpdatedAt
 
 `func (o *ProjectMetadata) GetUpdatedAt() time.Time`

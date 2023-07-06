@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.ProjectBranding do
   @moduledoc """
-  
+  The Project Branding
   """
 
   @derive [Poison.Encoder]

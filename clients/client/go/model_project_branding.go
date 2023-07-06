@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.39
+API version: v1.1.40
 Contact: support@ory.sh
 */
 
@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-// ProjectBranding struct for ProjectBranding
+// ProjectBranding The Project Branding
 type ProjectBranding struct {
 	// The Customization Creation Date
 	CreatedAt time.Time `json:"created_at"`
@@ -25,6 +25,7 @@ type ProjectBranding struct {
 	Id string `json:"id"`
 	// The Project's ID this customization is associated with
 	ProjectId string `json:"project_id"`
+	// The Project Branding Themes
 	Themes []ProjectBrandingTheme `json:"themes"`
 	// Last Time Branding was Updated
 	UpdatedAt time.Time `json:"updated_at"`

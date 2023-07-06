@@ -9,7 +9,7 @@ import 'package:built_value/serializer.dart';
 
 part 'set_project_branding_theme_body.g.dart';
 
-/// SetProjectBrandingThemeBody
+/// Set Project Branding Theme Request Parameters
 ///
 /// Properties:
 /// * [logoType] - Logo type

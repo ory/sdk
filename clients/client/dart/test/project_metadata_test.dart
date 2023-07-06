@@ -47,11 +47,6 @@ void main() {
       // TODO
     });
 
-    // String subscriptionPlan
-    test('to test the property `subscriptionPlan`', () async {
-      // TODO
-    });
-
     // Last Time Project was Updated
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {

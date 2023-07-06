@@ -21,8 +21,12 @@ Name | Type | Description | Notes
 **hydra_oidc_subject_identifiers_supported_types** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **hydra_secrets_cookie** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **hydra_secrets_system** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**hydra_serve_admin_cors_allowed_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**hydra_serve_admin_cors_enabled** | **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
 **hydra_serve_cookies_same_site_legacy_workaround** | **bool** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] 
 **hydra_serve_cookies_same_site_mode** | **str** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] 
+**hydra_serve_public_cors_allowed_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**hydra_serve_public_cors_enabled** | **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
 **hydra_strategies_access_token** | **str** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional]  if omitted the server will use the default value of "opaque"
 **hydra_strategies_scope** | **str** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional]  if omitted the server will use the default value of "wildcard"
 **hydra_ttl_access_token** | **str** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional]  if omitted the server will use the default value of "30m"
@@ -152,10 +156,6 @@ Name | Type | Description | Notes
 **kratos_session_whoami_required_aal** | **str** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] 
 **production** | **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] 
 **project_id** | **str** | The Revision&#39;s Project ID | [optional] 
-**serve_admin_cors_allowed_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
-**serve_admin_cors_enabled** | **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
-**serve_public_cors_allowed_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
-**serve_public_cors_enabled** | **bool** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
 **updated_at** | **datetime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.39
+  version: v1.1.40
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -7023,6 +7023,11 @@ components:
         theme:
           $ref: '#/components/schemas/projectBrandingColors'
       type: object
+    createProjectBrandingsBody:
+      description: Create multiple Project Brandings Request Body
+      items:
+        $ref: '#/components/schemas/createProjectBranding'
+      type: array
     createProjectInvite:
       description: Create Project Invite Request Body
       properties:
@@ -8444,11 +8449,8 @@ components:
           format: date-time
           type: string
         oauth2_login_challenge:
-          description: |-
-            Ory OAuth 2.0 Login Challenge.
-
-            This value is set using the `login_challenge` query parameter of the registration and login endpoints.
-            If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
+          format: uuid4
+          nullable: true
           type: string
         oauth2_login_request:
           $ref: '#/components/schemas/oAuth2LoginRequest'
@@ -8811,9 +8813,6 @@ components:
           format: uuid4
           nullable: true
           type: string
-        subscription_plan:
-          nullable: true
-          type: string
         updated_at:
           description: Last Time Project was Updated
           format: date-time
@@ -8939,6 +8938,18 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        hydra_serve_admin_cors_allowed_origins:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        hydra_serve_admin_cors_enabled:
+          description: |-
+            Configures the Ory Hydra CORS Settings
+
+            This governs the "serve.admin.cors.enabled" setting.
+          type: boolean
         hydra_serve_cookies_same_site_legacy_workaround:
           description: |-
             Configures the Ory Hydra Cookie Same Site Legacy Workaround
@@ -8951,6 +8962,18 @@ components:
 
             This governs the "serve.cookies.same_site_mode" setting.
           type: string
+        hydra_serve_public_cors_allowed_origins:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        hydra_serve_public_cors_enabled:
+          description: |-
+            Configures the Ory Hydra CORS Settings
+
+            This governs the "serve.public.cors.enabled" setting.
+          type: boolean
         hydra_strategies_access_token:
           default: opaque
           description: "Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens\n\
@@ -9769,30 +9792,6 @@ components:
           description: The Revision's Project ID
           format: uuid
           type: string
-        serve_admin_cors_allowed_origins:
-          items:
-            type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
-          type: array
-        serve_admin_cors_enabled:
-          description: |-
-            Enable CORS headers on all admin APIs
-
-            This governs the "serve.admin.cors.enabled" setting.
-          type: boolean
-        serve_public_cors_allowed_origins:
-          items:
-            type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
-          type: array
-        serve_public_cors_enabled:
-          description: |-
-            Enable CORS headers on all public APIs
-
-            This governs the "serve.public.cors.enabled" setting.
-          type: boolean
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time
@@ -11820,6 +11819,7 @@ components:
         $ref: '#/components/schemas/projectApiKey'
       type: array
     projectBranding:
+      description: The Project Branding
       properties:
         created_at:
           description: The Customization Creation Date
@@ -11838,9 +11838,9 @@ components:
           format: uuid
           type: string
         themes:
+          description: The Project Branding Themes
           items:
             $ref: '#/components/schemas/projectBrandingTheme'
-          title: ProjectBrandingThemes is a list of ProjectBrandingTheme.
           type: array
         updated_at:
           description: Last Time Branding was Updated
@@ -11854,9 +11854,9 @@ components:
       - project_id
       - themes
       - updated_at
-      title: ProjectBranding holds all settings for customizing the Ory Account Experience.
       type: object
     projectBrandingColors:
+      description: The Project Branding Colors
       properties:
         accent_default_color:
           description: AccentDefaultColor is a hex color code used by the Ory Account
@@ -11974,10 +11974,9 @@ components:
           description: TextDisabledColor is a hex color code used by the Ory Account
             Experience theme.
           type: string
-      title: ProjectBrandingColors are the colors used by the Ory Account Experience
-        theme.
       type: object
     projectBrandingTheme:
+      description: The Project Branding Theme
       properties:
         accent_default_color:
           description: AccentDefaultColor is a hex color code used by the Ory Account
@@ -12133,12 +12132,11 @@ components:
       - name
       - project_branding_id
       - updated_at
-      title: ProjectBrandingTheme represents a Theme for the Ory Account Experience.
       type: object
     projectBrandingThemes:
+      description: The Project Branding Themes
       items:
         $ref: '#/components/schemas/projectBrandingTheme'
-      title: ProjectBrandingThemes is a list of ProjectBrandingTheme.
       type: array
     projectHost:
       properties:
@@ -12249,7 +12247,6 @@ components:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: running
         slug: slug
-        subscription_plan: subscription_plan
       properties:
         created_at:
           description: The Project's Creation Date
@@ -12290,9 +12287,6 @@ components:
             deleted Deleted
         subscription_id:
           format: uuid4
-          nullable: true
-          type: string
-        subscription_plan:
           nullable: true
           type: string
         updated_at:
@@ -12814,11 +12808,8 @@ components:
           format: date-time
           type: string
         oauth2_login_challenge:
-          description: |-
-            Ory OAuth 2.0 Login Challenge.
-
-            This value is set using the `login_challenge` query parameter of the registration and login endpoints.
-            If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
+          format: uuid4
+          nullable: true
           type: string
         oauth2_login_request:
           $ref: '#/components/schemas/oAuth2LoginRequest'
@@ -13265,6 +13256,7 @@ components:
       - services
       type: object
     setProjectBrandingThemeBody:
+      description: Set Project Branding Theme Request Parameters
       properties:
         logo_type:
           description: Logo type
@@ -13277,8 +13269,6 @@ components:
           type: string
         theme:
           $ref: '#/components/schemas/projectBrandingColors'
-      title: SetProjectBrandingThemeBody is the request body for the set project branding
-        theme endpoint.
       type: object
     settingsFlow:
       description: "This flow is used when an identity wants to update settings\n\
