@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.SetProjectBrandingThemeBody do
   @moduledoc """
-  Set Project Branding Theme Request Parameters
+  
   """
 
   @derive [Poison.Encoder]

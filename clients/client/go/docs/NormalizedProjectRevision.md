@@ -20,12 +20,8 @@ Name | Type | Description | Notes
 **HydraOidcSubjectIdentifiersSupportedTypes** | Pointer to **[]string** |  | [optional] 
 **HydraSecretsCookie** | Pointer to **[]string** |  | [optional] 
 **HydraSecretsSystem** | Pointer to **[]string** |  | [optional] 
-**HydraServeAdminCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
-**HydraServeAdminCorsEnabled** | Pointer to **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
 **HydraServeCookiesSameSiteLegacyWorkaround** | Pointer to **bool** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] 
 **HydraServeCookiesSameSiteMode** | Pointer to **string** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] 
-**HydraServePublicCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
-**HydraServePublicCorsEnabled** | Pointer to **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
 **HydraStrategiesAccessToken** | Pointer to **string** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional] [default to "opaque"]
 **HydraStrategiesScope** | Pointer to **string** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional] [default to "wildcard"]
 **HydraTtlAccessToken** | Pointer to **string** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional] [default to "30m"]
@@ -156,6 +152,10 @@ Name | Type | Description | Notes
 **Name** | **string** | The project&#39;s name. | 
 **Production** | Pointer to **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] 
 **ProjectId** | Pointer to **string** | The Revision&#39;s Project ID | [optional] 
+**ServeAdminCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
+**ServeAdminCorsEnabled** | Pointer to **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
+**ServePublicCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
+**ServePublicCorsEnabled** | Pointer to **bool** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
 ## Methods
@@ -577,56 +577,6 @@ SetHydraSecretsSystem sets HydraSecretsSystem field to given value.
 
 HasHydraSecretsSystem returns a boolean if a field has been set.
 
-### GetHydraServeAdminCorsAllowedOrigins
-
-`func (o *NormalizedProjectRevision) GetHydraServeAdminCorsAllowedOrigins() []string`
-
-GetHydraServeAdminCorsAllowedOrigins returns the HydraServeAdminCorsAllowedOrigins field if non-nil, zero value otherwise.
-
-### GetHydraServeAdminCorsAllowedOriginsOk
-
-`func (o *NormalizedProjectRevision) GetHydraServeAdminCorsAllowedOriginsOk() (*[]string, bool)`
-
-GetHydraServeAdminCorsAllowedOriginsOk returns a tuple with the HydraServeAdminCorsAllowedOrigins field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHydraServeAdminCorsAllowedOrigins
-
-`func (o *NormalizedProjectRevision) SetHydraServeAdminCorsAllowedOrigins(v []string)`
-
-SetHydraServeAdminCorsAllowedOrigins sets HydraServeAdminCorsAllowedOrigins field to given value.
-
-### HasHydraServeAdminCorsAllowedOrigins
-
-`func (o *NormalizedProjectRevision) HasHydraServeAdminCorsAllowedOrigins() bool`
-
-HasHydraServeAdminCorsAllowedOrigins returns a boolean if a field has been set.
-
-### GetHydraServeAdminCorsEnabled
-
-`func (o *NormalizedProjectRevision) GetHydraServeAdminCorsEnabled() bool`
-
-GetHydraServeAdminCorsEnabled returns the HydraServeAdminCorsEnabled field if non-nil, zero value otherwise.
-
-### GetHydraServeAdminCorsEnabledOk
-
-`func (o *NormalizedProjectRevision) GetHydraServeAdminCorsEnabledOk() (*bool, bool)`
-
-GetHydraServeAdminCorsEnabledOk returns a tuple with the HydraServeAdminCorsEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHydraServeAdminCorsEnabled
-
-`func (o *NormalizedProjectRevision) SetHydraServeAdminCorsEnabled(v bool)`
-
-SetHydraServeAdminCorsEnabled sets HydraServeAdminCorsEnabled field to given value.
-
-### HasHydraServeAdminCorsEnabled
-
-`func (o *NormalizedProjectRevision) HasHydraServeAdminCorsEnabled() bool`
-
-HasHydraServeAdminCorsEnabled returns a boolean if a field has been set.
-
 ### GetHydraServeCookiesSameSiteLegacyWorkaround
 
 `func (o *NormalizedProjectRevision) GetHydraServeCookiesSameSiteLegacyWorkaround() bool`
@@ -676,56 +626,6 @@ SetHydraServeCookiesSameSiteMode sets HydraServeCookiesSameSiteMode field to giv
 `func (o *NormalizedProjectRevision) HasHydraServeCookiesSameSiteMode() bool`
 
 HasHydraServeCookiesSameSiteMode returns a boolean if a field has been set.
-
-### GetHydraServePublicCorsAllowedOrigins
-
-`func (o *NormalizedProjectRevision) GetHydraServePublicCorsAllowedOrigins() []string`
-
-GetHydraServePublicCorsAllowedOrigins returns the HydraServePublicCorsAllowedOrigins field if non-nil, zero value otherwise.
-
-### GetHydraServePublicCorsAllowedOriginsOk
-
-`func (o *NormalizedProjectRevision) GetHydraServePublicCorsAllowedOriginsOk() (*[]string, bool)`
-
-GetHydraServePublicCorsAllowedOriginsOk returns a tuple with the HydraServePublicCorsAllowedOrigins field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHydraServePublicCorsAllowedOrigins
-
-`func (o *NormalizedProjectRevision) SetHydraServePublicCorsAllowedOrigins(v []string)`
-
-SetHydraServePublicCorsAllowedOrigins sets HydraServePublicCorsAllowedOrigins field to given value.
-
-### HasHydraServePublicCorsAllowedOrigins
-
-`func (o *NormalizedProjectRevision) HasHydraServePublicCorsAllowedOrigins() bool`
-
-HasHydraServePublicCorsAllowedOrigins returns a boolean if a field has been set.
-
-### GetHydraServePublicCorsEnabled
-
-`func (o *NormalizedProjectRevision) GetHydraServePublicCorsEnabled() bool`
-
-GetHydraServePublicCorsEnabled returns the HydraServePublicCorsEnabled field if non-nil, zero value otherwise.
-
-### GetHydraServePublicCorsEnabledOk
-
-`func (o *NormalizedProjectRevision) GetHydraServePublicCorsEnabledOk() (*bool, bool)`
-
-GetHydraServePublicCorsEnabledOk returns a tuple with the HydraServePublicCorsEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHydraServePublicCorsEnabled
-
-`func (o *NormalizedProjectRevision) SetHydraServePublicCorsEnabled(v bool)`
-
-SetHydraServePublicCorsEnabled sets HydraServePublicCorsEnabled field to given value.
-
-### HasHydraServePublicCorsEnabled
-
-`func (o *NormalizedProjectRevision) HasHydraServePublicCorsEnabled() bool`
-
-HasHydraServePublicCorsEnabled returns a boolean if a field has been set.
 
 ### GetHydraStrategiesAccessToken
 
@@ -4001,6 +3901,106 @@ SetProjectId sets ProjectId field to given value.
 `func (o *NormalizedProjectRevision) HasProjectId() bool`
 
 HasProjectId returns a boolean if a field has been set.
+
+### GetServeAdminCorsAllowedOrigins
+
+`func (o *NormalizedProjectRevision) GetServeAdminCorsAllowedOrigins() []string`
+
+GetServeAdminCorsAllowedOrigins returns the ServeAdminCorsAllowedOrigins field if non-nil, zero value otherwise.
+
+### GetServeAdminCorsAllowedOriginsOk
+
+`func (o *NormalizedProjectRevision) GetServeAdminCorsAllowedOriginsOk() (*[]string, bool)`
+
+GetServeAdminCorsAllowedOriginsOk returns a tuple with the ServeAdminCorsAllowedOrigins field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServeAdminCorsAllowedOrigins
+
+`func (o *NormalizedProjectRevision) SetServeAdminCorsAllowedOrigins(v []string)`
+
+SetServeAdminCorsAllowedOrigins sets ServeAdminCorsAllowedOrigins field to given value.
+
+### HasServeAdminCorsAllowedOrigins
+
+`func (o *NormalizedProjectRevision) HasServeAdminCorsAllowedOrigins() bool`
+
+HasServeAdminCorsAllowedOrigins returns a boolean if a field has been set.
+
+### GetServeAdminCorsEnabled
+
+`func (o *NormalizedProjectRevision) GetServeAdminCorsEnabled() bool`
+
+GetServeAdminCorsEnabled returns the ServeAdminCorsEnabled field if non-nil, zero value otherwise.
+
+### GetServeAdminCorsEnabledOk
+
+`func (o *NormalizedProjectRevision) GetServeAdminCorsEnabledOk() (*bool, bool)`
+
+GetServeAdminCorsEnabledOk returns a tuple with the ServeAdminCorsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServeAdminCorsEnabled
+
+`func (o *NormalizedProjectRevision) SetServeAdminCorsEnabled(v bool)`
+
+SetServeAdminCorsEnabled sets ServeAdminCorsEnabled field to given value.
+
+### HasServeAdminCorsEnabled
+
+`func (o *NormalizedProjectRevision) HasServeAdminCorsEnabled() bool`
+
+HasServeAdminCorsEnabled returns a boolean if a field has been set.
+
+### GetServePublicCorsAllowedOrigins
+
+`func (o *NormalizedProjectRevision) GetServePublicCorsAllowedOrigins() []string`
+
+GetServePublicCorsAllowedOrigins returns the ServePublicCorsAllowedOrigins field if non-nil, zero value otherwise.
+
+### GetServePublicCorsAllowedOriginsOk
+
+`func (o *NormalizedProjectRevision) GetServePublicCorsAllowedOriginsOk() (*[]string, bool)`
+
+GetServePublicCorsAllowedOriginsOk returns a tuple with the ServePublicCorsAllowedOrigins field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServePublicCorsAllowedOrigins
+
+`func (o *NormalizedProjectRevision) SetServePublicCorsAllowedOrigins(v []string)`
+
+SetServePublicCorsAllowedOrigins sets ServePublicCorsAllowedOrigins field to given value.
+
+### HasServePublicCorsAllowedOrigins
+
+`func (o *NormalizedProjectRevision) HasServePublicCorsAllowedOrigins() bool`
+
+HasServePublicCorsAllowedOrigins returns a boolean if a field has been set.
+
+### GetServePublicCorsEnabled
+
+`func (o *NormalizedProjectRevision) GetServePublicCorsEnabled() bool`
+
+GetServePublicCorsEnabled returns the ServePublicCorsEnabled field if non-nil, zero value otherwise.
+
+### GetServePublicCorsEnabledOk
+
+`func (o *NormalizedProjectRevision) GetServePublicCorsEnabledOk() (*bool, bool)`
+
+GetServePublicCorsEnabledOk returns a tuple with the ServePublicCorsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServePublicCorsEnabled
+
+`func (o *NormalizedProjectRevision) SetServePublicCorsEnabled(v bool)`
+
+SetServePublicCorsEnabled sets ServePublicCorsEnabled field to given value.
+
+### HasServePublicCorsEnabled
+
+`func (o *NormalizedProjectRevision) HasServePublicCorsEnabled() bool`
+
+HasServePublicCorsEnabled returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

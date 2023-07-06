@@ -8,7 +8,7 @@
 | **default_theme** | [**ProjectBrandingTheme**](ProjectBrandingTheme.md) |  |  |
 | **id** | **String** | The customization ID. | [readonly] |
 | **project_id** | **String** | The Project&#39;s ID this customization is associated with |  |
-| **themes** | [**Array&lt;ProjectBrandingTheme&gt;**](ProjectBrandingTheme.md) | The Project Branding Themes |  |
+| **themes** | [**Array&lt;ProjectBrandingTheme&gt;**](ProjectBrandingTheme.md) |  |  |
 | **updated_at** | **Time** | Last Time Branding was Updated | [readonly] |
 
 ## Example

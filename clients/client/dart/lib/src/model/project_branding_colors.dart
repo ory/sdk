@@ -8,7 +8,7 @@ import 'package:built_value/serializer.dart';
 
 part 'project_branding_colors.g.dart';
 
-/// The Project Branding Colors
+/// ProjectBrandingColors
 ///
 /// Properties:
 /// * [accentDefaultColor] - AccentDefaultColor is a hex color code used by the Ory Account Experience theme.

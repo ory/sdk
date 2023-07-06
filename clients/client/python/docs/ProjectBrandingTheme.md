@@ -1,6 +1,5 @@
 # ProjectBrandingTheme
 
-The Project Branding Theme
 
 ## Properties
 Name | Type | Description | Notes

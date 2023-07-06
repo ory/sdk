@@ -2,7 +2,6 @@
 
 # SetProjectBrandingThemeBody
 
-Set Project Branding Theme Request Parameters
 
 ## Properties
 

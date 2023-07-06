@@ -259,7 +259,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteIdentityCredentials**
-> Identity deleteIdentityCredentials(id, type)
+> deleteIdentityCredentials(id, type)
 
 Delete a credential for a specific identity
 
@@ -277,8 +277,7 @@ final String id = id_example; // String | ID is the identity's ID.
 final String type = type_example; // String | Type is the credential's Type. One of totp, webauthn, lookup
 
 try {
-    final response = api.deleteIdentityCredentials(id, type);
-    print(response);
+    api.deleteIdentityCredentials(id, type);
 } catch on DioError (e) {
     print('Exception when calling IdentityApi->deleteIdentityCredentials: $e\n');
 }
@@ -293,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Identity**](Identity.md)
+void (empty response body)
 
 ### Authorization
 

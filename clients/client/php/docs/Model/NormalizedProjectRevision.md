@@ -20,12 +20,8 @@ Name | Type | Description | Notes
 **hydraOidcSubjectIdentifiersSupportedTypes** | **string[]** |  | [optional]
 **hydraSecretsCookie** | **string[]** |  | [optional]
 **hydraSecretsSystem** | **string[]** |  | [optional]
-**hydraServeAdminCorsAllowedOrigins** | **string[]** |  | [optional]
-**hydraServeAdminCorsEnabled** | **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional]
 **hydraServeCookiesSameSiteLegacyWorkaround** | **bool** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional]
 **hydraServeCookiesSameSiteMode** | **string** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional]
-**hydraServePublicCorsAllowedOrigins** | **string[]** |  | [optional]
-**hydraServePublicCorsEnabled** | **bool** | Configures the Ory Hydra CORS Settings  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional]
 **hydraStrategiesAccessToken** | **string** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional] [default to 'opaque']
 **hydraStrategiesScope** | **string** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional] [default to 'wildcard']
 **hydraTtlAccessToken** | **string** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional] [default to '30m']
@@ -156,6 +152,10 @@ Name | Type | Description | Notes
 **name** | **string** | The project&#39;s name. |
 **production** | **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional]
 **projectId** | **string** | The Revision&#39;s Project ID | [optional]
+**serveAdminCorsAllowedOrigins** | **string[]** |  | [optional]
+**serveAdminCorsEnabled** | **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional]
+**servePublicCorsAllowedOrigins** | **string[]** |  | [optional]
+**servePublicCorsEnabled** | **bool** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional]
 **updatedAt** | **\DateTime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

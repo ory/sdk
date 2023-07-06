@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **type** | **str** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **ui** | [**UiContainer**](UiContainer.md) |  | 
 **active** | [**IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional] 
-**oauth2_login_challenge** | **str, none_type** |  | [optional] 
+**oauth2_login_challenge** | **str** | Ory OAuth 2.0 Login Challenge.  This value is set using the &#x60;login_challenge&#x60; query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider. | [optional] 
 **oauth2_login_request** | [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] 
 **return_to** | **str** | ReturnTo contains the requested return_to URL. | [optional] 
 **session_token_exchange_code** | **str** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the flow. | [optional] 

@@ -30,7 +30,6 @@ void main() {
       // TODO
     });
 
-    // The Project Branding Themes
     // BuiltList<ProjectBrandingTheme> themes
     test('to test the property `themes`', () async {
       // TODO

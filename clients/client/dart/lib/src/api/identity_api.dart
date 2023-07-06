@@ -502,9 +502,9 @@ class IdentityApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [Identity] as data
+  /// Returns a [Future]
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<Identity>> deleteIdentityCredentials({ 
+  Future<Response<void>> deleteIdentityCredentials({ 
     required String id,
     required String type,
     CancelToken? cancelToken,
@@ -541,35 +541,7 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity? _responseData;
-
-    try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(Identity),
-      ) as Identity;
-
-    } catch (error, stackTrace) {
-      throw DioError(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioErrorType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<Identity>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
+    return _response;
   }
 
   /// Delete &amp; Invalidate an Identity&#39;s Sessions

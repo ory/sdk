@@ -120,7 +120,7 @@ No authorization required
 
 <a name="createbrowserlogoutflow"></a>
 # **CreateBrowserLogoutFlow**
-> ClientLogoutFlow CreateBrowserLogoutFlow (string cookie = null)
+> ClientLogoutFlow CreateBrowserLogoutFlow (string cookie = null, string returnTo = null)
 
 Create a Logout URL for Browsers
 
@@ -144,11 +144,12 @@ namespace Example
             config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var cookie = "cookie_example";  // string | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional) 
+            var returnTo = "returnTo_example";  // string | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. (optional) 
 
             try
             {
                 // Create a Logout URL for Browsers
-                ClientLogoutFlow result = apiInstance.CreateBrowserLogoutFlow(cookie);
+                ClientLogoutFlow result = apiInstance.CreateBrowserLogoutFlow(cookie, returnTo);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -167,6 +168,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **string**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional] 
+ **returnTo** | **string**| Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional] 
 
 ### Return type
 
@@ -186,6 +188,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | logoutFlow |  -  |
+| **400** | errorGeneric |  -  |
 | **401** | errorGeneric |  -  |
 | **500** | errorGeneric |  -  |
 
