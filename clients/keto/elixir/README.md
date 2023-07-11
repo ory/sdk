@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:ory_keto, "~> v0.11.0-alpha.0"}]
+  [{:ory_keto, "~> v0.11.1-alpha.0"}]
 end
 ```
 
