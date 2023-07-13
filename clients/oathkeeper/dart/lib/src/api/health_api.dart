@@ -7,7 +7,6 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:ory_oathkeeper_client/src/model/generic_error.dart';
 import 'package:ory_oathkeeper_client/src/model/health_not_ready_status.dart';
 import 'package:ory_oathkeeper_client/src/model/health_status.dart';
 
@@ -61,22 +60,23 @@ class HealthApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    HealthStatus _responseData;
+    HealthStatus? _responseData;
 
     try {
-      const _responseType = FullType(HealthStatus);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(HealthStatus),
       ) as HealthStatus;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<HealthStatus>(
@@ -133,22 +133,23 @@ class HealthApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    HealthStatus _responseData;
+    HealthStatus? _responseData;
 
     try {
-      const _responseType = FullType(HealthStatus);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(HealthStatus),
       ) as HealthStatus;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<HealthStatus>(

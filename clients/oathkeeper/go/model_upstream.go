@@ -3,7 +3,7 @@ ORY Oathkeeper
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
-API version: v0.40.2
+API version: v0.40.4
 Contact: hi@ory.am
 */
 
@@ -23,7 +23,10 @@ type Upstream struct {
 	StripPath *string `json:"strip_path,omitempty"`
 	// URL is the URL the request will be proxied to.
 	Url *string `json:"url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Upstream Upstream
 
 // NewUpstream instantiates a new Upstream object
 // This constructor will assign default values to properties that have it defined,
@@ -149,7 +152,31 @@ func (o Upstream) MarshalJSON() ([]byte, error) {
 	if o.Url != nil {
 		toSerialize["url"] = o.Url
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Upstream) UnmarshalJSON(bytes []byte) (err error) {
+	varUpstream := _Upstream{}
+
+	if err = json.Unmarshal(bytes, &varUpstream); err == nil {
+		*o = Upstream(varUpstream)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "preserve_host")
+		delete(additionalProperties, "strip_path")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpstream struct {

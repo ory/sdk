@@ -3,7 +3,7 @@ ORY Oathkeeper
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
-API version: v0.40.2
+API version: v0.40.4
 Contact: hi@ory.am
 */
 
@@ -19,7 +19,10 @@ import (
 type JsonWebKeySet struct {
 	// The value of the \"keys\" parameter is an array of JWK values.  By default, the order of the JWK values within the array does not imply an order of preference among them, although applications of JWK Sets can choose to assign a meaning to the order for their purposes, if desired.
 	Keys []JsonWebKey `json:"keys,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _JsonWebKeySet JsonWebKeySet
 
 // NewJsonWebKeySet instantiates a new JsonWebKeySet object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o JsonWebKeySet) MarshalJSON() ([]byte, error) {
 	if o.Keys != nil {
 		toSerialize["keys"] = o.Keys
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *JsonWebKeySet) UnmarshalJSON(bytes []byte) (err error) {
+	varJsonWebKeySet := _JsonWebKeySet{}
+
+	if err = json.Unmarshal(bytes, &varJsonWebKeySet); err == nil {
+		*o = JsonWebKeySet(varJsonWebKeySet)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "keys")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableJsonWebKeySet struct {

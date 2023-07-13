@@ -23,7 +23,7 @@ defmodule Ory.Api.Health do
   - `{:ok, Ory.Model.HealthStatus.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec is_instance_alive(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.HealthStatus.t} | {:error, Tesla.Env.t}
+  @spec is_instance_alive(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.HealthStatus.t} | {:ok, String.t} | {:error, Tesla.Env.t}
   def is_instance_alive(connection, _opts \\ []) do
     request =
       %{}
@@ -35,7 +35,7 @@ defmodule Ory.Api.Health do
     |> Connection.request(request)
     |> evaluate_response([
       {200, %Ory.Model.HealthStatus{}},
-      {500, %Ory.Model.GenericError{}}
+      {:default, false}
     ])
   end
 
@@ -53,7 +53,7 @@ defmodule Ory.Api.Health do
   - `{:ok, Ory.Model.HealthStatus.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec is_instance_ready(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.HealthNotReadyStatus.t} | {:ok, Ory.Model.HealthStatus.t} | {:error, Tesla.Env.t}
+  @spec is_instance_ready(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.HealthNotReadyStatus.t} | {:ok, Ory.Model.HealthStatus.t} | {:ok, String.t} | {:error, Tesla.Env.t}
   def is_instance_ready(connection, _opts \\ []) do
     request =
       %{}
@@ -65,7 +65,8 @@ defmodule Ory.Api.Health do
     |> Connection.request(request)
     |> evaluate_response([
       {200, %Ory.Model.HealthStatus{}},
-      {503, %Ory.Model.HealthNotReadyStatus{}}
+      {503, %Ory.Model.HealthNotReadyStatus{}},
+      {:default, false}
     ])
   end
 end

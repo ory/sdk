@@ -8,7 +8,7 @@ info:
     for validity against a set of rules. This service uses Hydra to validate access
     tokens and policies.
   title: ORY Oathkeeper
-  version: v0.40.2
+  version: v0.40.4
 servers:
 - url: /
 paths:
@@ -93,13 +93,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/healthStatus'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/healthStatus'
           description: healthStatus
-        "500":
+        default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
+                $ref: '#/components/schemas/unexpectedError'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/unexpectedError'
+          description: unexpectedError
       summary: Check alive status
       tags:
       - health
@@ -122,13 +128,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/healthStatus'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/healthStatus'
           description: healthStatus
         "503":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/healthNotReadyStatus'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/healthNotReadyStatus'
           description: healthNotReadyStatus
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unexpectedError'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/unexpectedError'
+          description: unexpectedError
       summary: Check readiness status
       tags:
       - health
@@ -558,6 +579,8 @@ components:
             brackets < and >. The following example matches all paths of the domain `mydomain.com`: `https://mydomain.com/<.*>`.
           type: string
       type: object
+    unexpectedError:
+      type: string
     version:
       example:
         version: version

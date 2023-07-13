@@ -110,22 +110,23 @@ class ApiApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Rule _responseData;
+    Rule? _responseData;
 
     try {
-      const _responseType = FullType(Rule);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Rule),
       ) as Rule;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Rule>(
@@ -182,22 +183,23 @@ class ApiApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonWebKeySet _responseData;
+    JsonWebKeySet? _responseData;
 
     try {
-      const _responseType = FullType(JsonWebKeySet);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonWebKeySet),
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<JsonWebKeySet>(
@@ -264,22 +266,23 @@ class ApiApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Rule> _responseData;
+    BuiltList<Rule>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Rule)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Rule)]),
       ) as BuiltList<Rule>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Rule>>(
