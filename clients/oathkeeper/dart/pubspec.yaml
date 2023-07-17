@@ -1,5 +1,5 @@
 name: ory_oathkeeper_client
-version: 0.40.4
+version: 0.40.5
 description: OpenAPI API client for Ory Oathkeeper, a cloud native Identity &amp; Access Proxy and Access Control Decision API that authenticates, authorizes, and mutates incoming HTTP(s) requests.
 homepage: https://www.ory.sh
 repository: https://github.com/ory/sdk/tree/master/clients/oathkeeper/dart
