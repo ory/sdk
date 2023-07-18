@@ -3,7 +3,7 @@ ORY Oathkeeper
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
-API version: v0.40.5
+API version: v0.40.6
 Contact: hi@ory.am
 */
 

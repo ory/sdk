@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:ory_oathkeeper, "~> v0.40.5"}]
+  [{:ory_oathkeeper, "~> v0.40.6"}]
 end
 ```
 
