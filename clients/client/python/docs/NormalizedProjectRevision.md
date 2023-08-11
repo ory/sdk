@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The project&#39;s name. | 
 **created_at** | **datetime** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
+**disable_account_experience_welcome_screen** | **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] 
 **hydra_oauth2_allowed_top_level_claims** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **hydra_oauth2_client_credentials_default_grant_allowed_scope** | **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **hydra_oauth2_exclude_not_before_claim** | **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 **hydra_oauth2_pkce_enforced** | **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **hydra_oauth2_pkce_enforced_for_public_clients** | **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **hydra_oauth2_refresh_token_hook** | **str** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
+**hydra_oauth2_token_hook** | **str** | Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \&quot;oauth2.token_hook\&quot; setting. | [optional] 
 **hydra_oidc_dynamic_client_registration_default_scope** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **hydra_oidc_dynamic_client_registration_enabled** | **bool** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] 
 **hydra_oidc_subject_identifiers_pairwise_salt** | **str** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] 
@@ -142,9 +144,9 @@ Name | Type | Description | Notes
 **kratos_selfservice_methods_totp_enabled** | **bool** | Configures whether Ory Kratos TOTP Method is enabled  This governs the \&quot;selfservice.methods.totp.enabled\&quot; setting. | [optional] 
 **kratos_selfservice_methods_webauthn_config_passwordless** | **bool** | Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \&quot;selfservice.methods.webauthn.config.passwordless\&quot; setting. | [optional] 
 **kratos_selfservice_methods_webauthn_config_rp_display_name** | **str** | Configures the Ory Kratos Webauthn RP Display Name  This governs the \&quot;selfservice.methods.webauthn.config.rp.display_name\&quot; setting. | [optional] 
-**kratos_selfservice_methods_webauthn_config_rp_icon** | **str** | Configures the Ory Kratos Webauthn RP Icon  This governs the \&quot;selfservice.methods.webauthn.config.rp.icon\&quot; setting. | [optional] 
+**kratos_selfservice_methods_webauthn_config_rp_icon** | **str** | Configures the Ory Kratos Webauthn RP Icon  This governs the \&quot;selfservice.methods.webauthn.config.rp.icon\&quot; setting. Deprecated: This value will be ignored due to security considerations. | [optional] 
 **kratos_selfservice_methods_webauthn_config_rp_id** | **str** | Configures the Ory Kratos Webauthn RP ID  This governs the \&quot;selfservice.methods.webauthn.config.rp.id\&quot; setting. | [optional] 
-**kratos_selfservice_methods_webauthn_config_rp_origin** | **str** | Configures the Ory Kratos Webauthn RP Origin  This governs the \&quot;selfservice.methods.webauthn.config.rp.origin\&quot; setting. | [optional] 
+**kratos_selfservice_methods_webauthn_config_rp_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **kratos_selfservice_methods_webauthn_enabled** | **bool** | Configures whether Ory Kratos Webauthn is enabled  This governs the \&quot;selfservice.methods.webauthn.enabled\&quot; setting. | [optional] 
 **kratos_session_cookie_persistent** | **bool** | Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \&quot;session.cookie.persistent\&quot; setting. | [optional] 
 **kratos_session_cookie_same_site** | **str** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] 

@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.1.41
-  - Build date: 2023-07-06T14:50:40.071456895Z[Etc/UTC]
+- API version: v1.1.44
+  - Build date: 2023-08-11T08:46:31.889443934Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.1.41</version>
+  <version>v1.1.44</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.1.41"
+     implementation "sh.ory:client:v1.1.44"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.1.41.jar`
+* `target/client-v1.1.44.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -210,6 +210,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**setOAuth2ClientLifespans**](docs/OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
 *OAuth2Api* | [**trustOAuth2JwtGrantIssuer**](docs/OAuth2Api.md#trustOAuth2JwtGrantIssuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
 *OidcApi* | [**createOidcDynamicClient**](docs/OidcApi.md#createOidcDynamicClient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+*OidcApi* | [**createVerifiableCredential**](docs/OidcApi.md#createVerifiableCredential) | **POST** /credentials | Issues a Verifiable Credential
 *OidcApi* | [**deleteOidcDynamicClient**](docs/OidcApi.md#deleteOidcDynamicClient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 *OidcApi* | [**discoverOidcConfiguration**](docs/OidcApi.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 *OidcApi* | [**getOidcDynamicClient**](docs/OidcApi.md#getOidcDynamicClient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -226,13 +227,13 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**deleteProjectApiKey**](docs/ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 *ProjectApi* | [**getActiveProjectInConsole**](docs/ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 *ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
-*ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+*ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project
 *ProjectApi* | [**getProjectMetrics**](docs/ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics | 
 *ProjectApi* | [**listProjectApiKeys**](docs/ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 *ProjectApi* | [**listProjects**](docs/ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 *ProjectApi* | [**purgeProject**](docs/ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-*ProjectApi* | [**removeProjectMember**](docs/ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+*ProjectApi* | [**removeProjectMember**](docs/ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 *ProjectApi* | [**setActiveProjectInConsole**](docs/ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 *ProjectApi* | [**setProject**](docs/ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 *RelationshipApi* | [**checkOplSyntax**](docs/RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
@@ -252,6 +253,7 @@ Class | Method | HTTP request | Description
  - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
+ - [CORS](docs/CORS.md)
  - [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
  - [CheckPermissionResult](docs/CheckPermissionResult.md)
  - [CloudAccount](docs/CloudAccount.md)
@@ -263,18 +265,22 @@ Class | Method | HTTP request | Description
  - [CourierMessageType](docs/CourierMessageType.md)
  - [CreateCustomDomainBody](docs/CreateCustomDomainBody.md)
  - [CreateIdentityBody](docs/CreateIdentityBody.md)
+ - [CreateInviteResponse](docs/CreateInviteResponse.md)
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
  - [CreateProjectApiKeyRequest](docs/CreateProjectApiKeyRequest.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
  - [CreateProjectBranding](docs/CreateProjectBranding.md)
- - [CreateProjectInvite](docs/CreateProjectInvite.md)
- - [CreateProjectInvitesResponse](docs/CreateProjectInvitesResponse.md)
+ - [CreateProjectMemberInviteBody](docs/CreateProjectMemberInviteBody.md)
  - [CreateRecoveryCodeForIdentityBody](docs/CreateRecoveryCodeForIdentityBody.md)
  - [CreateRecoveryLinkForIdentityBody](docs/CreateRecoveryLinkForIdentityBody.md)
  - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
+ - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
+ - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+ - [EmailTemplateData](docs/EmailTemplateData.md)
+ - [EmailTemplateDataBody](docs/EmailTemplateDataBody.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
  - [ErrorBrowserLocationChangeRequired](docs/ErrorBrowserLocationChangeRequired.md)
  - [ErrorFlowReplaced](docs/ErrorFlowReplaced.md)
@@ -308,6 +314,7 @@ Class | Method | HTTP request | Description
  - [IdentityWithCredentialsPassword](docs/IdentityWithCredentialsPassword.md)
  - [IdentityWithCredentialsPasswordConfig](docs/IdentityWithCredentialsPasswordConfig.md)
  - [InternalGetProjectBrandingBody](docs/InternalGetProjectBrandingBody.md)
+ - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [InternalIsOwnerForProjectBySlugResponse](docs/InternalIsOwnerForProjectBySlugResponse.md)
  - [InternalProvisionMockSubscription](docs/InternalProvisionMockSubscription.md)
@@ -323,6 +330,7 @@ Class | Method | HTTP request | Description
  - [LogoutFlow](docs/LogoutFlow.md)
  - [ManagedIdentitySchema](docs/ManagedIdentitySchema.md)
  - [ManagedIdentitySchemaValidationResult](docs/ManagedIdentitySchemaValidationResult.md)
+ - [MemberInvite](docs/MemberInvite.md)
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
  - [MetricsDatapoint](docs/MetricsDatapoint.md)
@@ -360,13 +368,13 @@ Class | Method | HTTP request | Description
  - [ProjectBrandingColors](docs/ProjectBrandingColors.md)
  - [ProjectBrandingTheme](docs/ProjectBrandingTheme.md)
  - [ProjectHost](docs/ProjectHost.md)
- - [ProjectInvite](docs/ProjectInvite.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
  - [ProjectServiceOAuth2](docs/ProjectServiceOAuth2.md)
  - [ProjectServicePermission](docs/ProjectServicePermission.md)
  - [ProjectServices](docs/ProjectServices.md)
  - [QuotaUsage](docs/QuotaUsage.md)
+ - [RFC6749ErrorJson](docs/RFC6749ErrorJson.md)
  - [RecoveryCodeForIdentity](docs/RecoveryCodeForIdentity.md)
  - [RecoveryFlow](docs/RecoveryFlow.md)
  - [RecoveryFlowState](docs/RecoveryFlowState.md)
@@ -441,6 +449,9 @@ Class | Method | HTTP request | Description
  - [UpdateVerificationFlowWithCodeMethod](docs/UpdateVerificationFlowWithCodeMethod.md)
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
  - [Usage](docs/Usage.md)
+ - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)
+ - [VerifiableCredentialProof](docs/VerifiableCredentialProof.md)
+ - [VerifiableCredentialResponse](docs/VerifiableCredentialResponse.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
  - [VerificationFlow](docs/VerificationFlow.md)
  - [VerificationFlowState](docs/VerificationFlowState.md)

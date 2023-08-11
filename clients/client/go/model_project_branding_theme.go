@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.41
+API version: v1.1.44
 Contact: support@ory.sh
 */
 
@@ -36,7 +36,7 @@ type ProjectBrandingTheme struct {
 	BackgroundSurfaceColor *string `json:"background_surface_color,omitempty"`
 	// BorderDefaultColor is a hex color code used by the Ory Account Experience theme.
 	BorderDefaultColor *string `json:"border_default_color,omitempty"`
-	// The Customiation Creation Date
+	// The Customization Creation Date.
 	CreatedAt time.Time `json:"created_at"`
 	// ErrorDefaultColor is a hex color code used by the Ory Account Experience theme.
 	ErrorDefaultColor *string `json:"error_default_color,omitempty"`
@@ -78,7 +78,7 @@ type ProjectBrandingTheme struct {
 	Name string `json:"name"`
 	// Primary color is an hsla color value used to derive the other colors from for the Ory Account Experience theme.
 	PrimaryColor *string `json:"primary_color,omitempty"`
-	// The ProjectBranding ID this customization is associated with
+	// The ProjectBranding ID this customization is associated with.
 	ProjectBrandingId string `json:"project_branding_id"`
 	// Secondary color is a hsla color code used to derive the other colors from for the Ory Account Experience theme.
 	SecondaryColor *string `json:"secondary_color,omitempty"`
@@ -88,7 +88,7 @@ type ProjectBrandingTheme struct {
 	TextDefaultColor *string `json:"text_default_color,omitempty"`
 	// TextDisabledColor is a hex color code used by the Ory Account Experience theme.
 	TextDisabledColor *string `json:"text_disabled_color,omitempty"`
-	// Last Time Branding was Updated
+	// Last Time Branding was Updated.
 	UpdatedAt time.Time `json:"updated_at"`
 	AdditionalProperties map[string]interface{}
 }

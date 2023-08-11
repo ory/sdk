@@ -20,6 +20,7 @@ import 'package:ory_client/src/model/accept_o_auth2_login_request.dart';
 import 'package:ory_client/src/model/active_project_in_console.dart';
 import 'package:ory_client/src/model/authenticator_assurance_level.dart';
 import 'package:ory_client/src/model/batch_patch_identities_response.dart';
+import 'package:ory_client/src/model/cors.dart';
 import 'package:ory_client/src/model/check_opl_syntax_result.dart';
 import 'package:ory_client/src/model/check_permission_result.dart';
 import 'package:ory_client/src/model/cloud_account.dart';
@@ -31,18 +32,22 @@ import 'package:ory_client/src/model/courier_message_status.dart';
 import 'package:ory_client/src/model/courier_message_type.dart';
 import 'package:ory_client/src/model/create_custom_domain_body.dart';
 import 'package:ory_client/src/model/create_identity_body.dart';
+import 'package:ory_client/src/model/create_invite_response.dart';
 import 'package:ory_client/src/model/create_json_web_key_set.dart';
 import 'package:ory_client/src/model/create_project_api_key_request.dart';
 import 'package:ory_client/src/model/create_project_body.dart';
 import 'package:ory_client/src/model/create_project_branding.dart';
-import 'package:ory_client/src/model/create_project_invite.dart';
-import 'package:ory_client/src/model/create_project_invites_response.dart';
+import 'package:ory_client/src/model/create_project_member_invite_body.dart';
 import 'package:ory_client/src/model/create_recovery_code_for_identity_body.dart';
 import 'package:ory_client/src/model/create_recovery_link_for_identity_body.dart';
 import 'package:ory_client/src/model/create_relationship_body.dart';
 import 'package:ory_client/src/model/create_subscription_body.dart';
+import 'package:ory_client/src/model/create_verifiable_credential_request_body.dart';
+import 'package:ory_client/src/model/credential_supported_draft00.dart';
 import 'package:ory_client/src/model/custom_domain.dart';
 import 'package:ory_client/src/model/delete_my_sessions_count.dart';
+import 'package:ory_client/src/model/email_template_data.dart';
+import 'package:ory_client/src/model/email_template_data_body.dart';
 import 'package:ory_client/src/model/error_authenticator_assurance_level_not_satisfied.dart';
 import 'package:ory_client/src/model/error_browser_location_change_required.dart';
 import 'package:ory_client/src/model/error_flow_replaced.dart';
@@ -76,6 +81,7 @@ import 'package:ory_client/src/model/identity_with_credentials_oidc_config_provi
 import 'package:ory_client/src/model/identity_with_credentials_password.dart';
 import 'package:ory_client/src/model/identity_with_credentials_password_config.dart';
 import 'package:ory_client/src/model/internal_get_project_branding_body.dart';
+import 'package:ory_client/src/model/internal_is_ax_welcome_screen_enabled_for_project_body.dart';
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_body.dart';
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_response.dart';
 import 'package:ory_client/src/model/internal_provision_mock_subscription.dart';
@@ -91,6 +97,7 @@ import 'package:ory_client/src/model/login_flow.dart';
 import 'package:ory_client/src/model/logout_flow.dart';
 import 'package:ory_client/src/model/managed_identity_schema.dart';
 import 'package:ory_client/src/model/managed_identity_schema_validation_result.dart';
+import 'package:ory_client/src/model/member_invite.dart';
 import 'package:ory_client/src/model/message.dart';
 import 'package:ory_client/src/model/message_dispatch.dart';
 import 'package:ory_client/src/model/metrics_datapoint.dart';
@@ -128,13 +135,13 @@ import 'package:ory_client/src/model/project_branding.dart';
 import 'package:ory_client/src/model/project_branding_colors.dart';
 import 'package:ory_client/src/model/project_branding_theme.dart';
 import 'package:ory_client/src/model/project_host.dart';
-import 'package:ory_client/src/model/project_invite.dart';
 import 'package:ory_client/src/model/project_metadata.dart';
 import 'package:ory_client/src/model/project_service_identity.dart';
 import 'package:ory_client/src/model/project_service_o_auth2.dart';
 import 'package:ory_client/src/model/project_service_permission.dart';
 import 'package:ory_client/src/model/project_services.dart';
 import 'package:ory_client/src/model/quota_usage.dart';
+import 'package:ory_client/src/model/rfc6749_error_json.dart';
 import 'package:ory_client/src/model/recovery_code_for_identity.dart';
 import 'package:ory_client/src/model/recovery_flow.dart';
 import 'package:ory_client/src/model/recovery_flow_state.dart';
@@ -209,6 +216,9 @@ import 'package:ory_client/src/model/update_verification_flow_body.dart';
 import 'package:ory_client/src/model/update_verification_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_verification_flow_with_link_method.dart';
 import 'package:ory_client/src/model/usage.dart';
+import 'package:ory_client/src/model/verifiable_credential_priming_response.dart';
+import 'package:ory_client/src/model/verifiable_credential_proof.dart';
+import 'package:ory_client/src/model/verifiable_credential_response.dart';
 import 'package:ory_client/src/model/verifiable_identity_address.dart';
 import 'package:ory_client/src/model/verification_flow.dart';
 import 'package:ory_client/src/model/verification_flow_state.dart';
@@ -224,6 +234,7 @@ part 'serializers.g.dart';
   ActiveProjectInConsole,
   AuthenticatorAssuranceLevel,
   BatchPatchIdentitiesResponse,
+  CORS,
   CheckOplSyntaxResult,
   CheckPermissionResult,
   CloudAccount,
@@ -235,18 +246,22 @@ part 'serializers.g.dart';
   CourierMessageType,
   CreateCustomDomainBody,
   CreateIdentityBody,
+  CreateInviteResponse,
   CreateJsonWebKeySet,
   CreateProjectApiKeyRequest,
   CreateProjectBody,
   CreateProjectBranding,
-  CreateProjectInvite,
-  CreateProjectInvitesResponse,
+  CreateProjectMemberInviteBody,
   CreateRecoveryCodeForIdentityBody,
   CreateRecoveryLinkForIdentityBody,
   CreateRelationshipBody,
   CreateSubscriptionBody,
+  CreateVerifiableCredentialRequestBody,
+  CredentialSupportedDraft00,
   CustomDomain,
   DeleteMySessionsCount,
+  EmailTemplateData,
+  EmailTemplateDataBody,
   ErrorAuthenticatorAssuranceLevelNotSatisfied,
   ErrorBrowserLocationChangeRequired,
   ErrorFlowReplaced,
@@ -280,6 +295,7 @@ part 'serializers.g.dart';
   IdentityWithCredentialsPassword,
   IdentityWithCredentialsPasswordConfig,
   InternalGetProjectBrandingBody,
+  InternalIsAXWelcomeScreenEnabledForProjectBody,
   InternalIsOwnerForProjectBySlugBody,
   InternalIsOwnerForProjectBySlugResponse,
   InternalProvisionMockSubscription,
@@ -295,6 +311,7 @@ part 'serializers.g.dart';
   LogoutFlow,
   ManagedIdentitySchema,
   ManagedIdentitySchemaValidationResult,
+  MemberInvite,
   Message,
   MessageDispatch,
   MetricsDatapoint,
@@ -332,13 +349,13 @@ part 'serializers.g.dart';
   ProjectBrandingColors,
   ProjectBrandingTheme,
   ProjectHost,
-  ProjectInvite,
   ProjectMetadata,
   ProjectServiceIdentity,
   ProjectServiceOAuth2,
   ProjectServicePermission,
   ProjectServices,
   QuotaUsage,
+  RFC6749ErrorJson,
   RecoveryCodeForIdentity,
   RecoveryFlow,
   RecoveryFlowState,
@@ -413,6 +430,9 @@ part 'serializers.g.dart';
   UpdateVerificationFlowWithCodeMethod,
   UpdateVerificationFlowWithLinkMethod,
   Usage,
+  VerifiableCredentialPrimingResponse,
+  VerifiableCredentialProof,
+  VerifiableCredentialResponse,
   VerifiableIdentityAddress,
   VerificationFlow,
   VerificationFlowState,

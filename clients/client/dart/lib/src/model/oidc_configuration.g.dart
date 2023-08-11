@@ -20,6 +20,10 @@ class _$OidcConfiguration extends OidcConfiguration {
   @override
   final BuiltList<String>? codeChallengeMethodsSupported;
   @override
+  final String? credentialsEndpointDraft00;
+  @override
+  final BuiltList<CredentialSupportedDraft00>? credentialsSupportedDraft00;
+  @override
   final String? endSessionEndpoint;
   @override
   final bool? frontchannelLogoutSessionSupported;
@@ -77,6 +81,8 @@ class _$OidcConfiguration extends OidcConfiguration {
       this.claimsParameterSupported,
       this.claimsSupported,
       this.codeChallengeMethodsSupported,
+      this.credentialsEndpointDraft00,
+      this.credentialsSupportedDraft00,
       this.endSessionEndpoint,
       this.frontchannelLogoutSessionSupported,
       this.frontchannelLogoutSupported,
@@ -140,6 +146,8 @@ class _$OidcConfiguration extends OidcConfiguration {
         claimsParameterSupported == other.claimsParameterSupported &&
         claimsSupported == other.claimsSupported &&
         codeChallengeMethodsSupported == other.codeChallengeMethodsSupported &&
+        credentialsEndpointDraft00 == other.credentialsEndpointDraft00 &&
+        credentialsSupportedDraft00 == other.credentialsSupportedDraft00 &&
         endSessionEndpoint == other.endSessionEndpoint &&
         frontchannelLogoutSessionSupported ==
             other.frontchannelLogoutSessionSupported &&
@@ -179,6 +187,8 @@ class _$OidcConfiguration extends OidcConfiguration {
     _$hash = $jc(_$hash, claimsParameterSupported.hashCode);
     _$hash = $jc(_$hash, claimsSupported.hashCode);
     _$hash = $jc(_$hash, codeChallengeMethodsSupported.hashCode);
+    _$hash = $jc(_$hash, credentialsEndpointDraft00.hashCode);
+    _$hash = $jc(_$hash, credentialsSupportedDraft00.hashCode);
     _$hash = $jc(_$hash, endSessionEndpoint.hashCode);
     _$hash = $jc(_$hash, frontchannelLogoutSessionSupported.hashCode);
     _$hash = $jc(_$hash, frontchannelLogoutSupported.hashCode);
@@ -216,6 +226,8 @@ class _$OidcConfiguration extends OidcConfiguration {
           ..add('claimsParameterSupported', claimsParameterSupported)
           ..add('claimsSupported', claimsSupported)
           ..add('codeChallengeMethodsSupported', codeChallengeMethodsSupported)
+          ..add('credentialsEndpointDraft00', credentialsEndpointDraft00)
+          ..add('credentialsSupportedDraft00', credentialsSupportedDraft00)
           ..add('endSessionEndpoint', endSessionEndpoint)
           ..add('frontchannelLogoutSessionSupported',
               frontchannelLogoutSessionSupported)
@@ -287,6 +299,20 @@ class OidcConfigurationBuilder
   set codeChallengeMethodsSupported(
           ListBuilder<String>? codeChallengeMethodsSupported) =>
       _$this._codeChallengeMethodsSupported = codeChallengeMethodsSupported;
+
+  String? _credentialsEndpointDraft00;
+  String? get credentialsEndpointDraft00 => _$this._credentialsEndpointDraft00;
+  set credentialsEndpointDraft00(String? credentialsEndpointDraft00) =>
+      _$this._credentialsEndpointDraft00 = credentialsEndpointDraft00;
+
+  ListBuilder<CredentialSupportedDraft00>? _credentialsSupportedDraft00;
+  ListBuilder<CredentialSupportedDraft00> get credentialsSupportedDraft00 =>
+      _$this._credentialsSupportedDraft00 ??=
+          new ListBuilder<CredentialSupportedDraft00>();
+  set credentialsSupportedDraft00(
+          ListBuilder<CredentialSupportedDraft00>?
+              credentialsSupportedDraft00) =>
+      _$this._credentialsSupportedDraft00 = credentialsSupportedDraft00;
 
   String? _endSessionEndpoint;
   String? get endSessionEndpoint => _$this._endSessionEndpoint;
@@ -441,6 +467,9 @@ class OidcConfigurationBuilder
       _claimsSupported = $v.claimsSupported?.toBuilder();
       _codeChallengeMethodsSupported =
           $v.codeChallengeMethodsSupported?.toBuilder();
+      _credentialsEndpointDraft00 = $v.credentialsEndpointDraft00;
+      _credentialsSupportedDraft00 =
+          $v.credentialsSupportedDraft00?.toBuilder();
       _endSessionEndpoint = $v.endSessionEndpoint;
       _frontchannelLogoutSessionSupported =
           $v.frontchannelLogoutSessionSupported;
@@ -504,6 +533,9 @@ class OidcConfigurationBuilder
               claimsSupported: _claimsSupported?.build(),
               codeChallengeMethodsSupported:
                   _codeChallengeMethodsSupported?.build(),
+              credentialsEndpointDraft00: credentialsEndpointDraft00,
+              credentialsSupportedDraft00:
+                  _credentialsSupportedDraft00?.build(),
               endSessionEndpoint: endSessionEndpoint,
               frontchannelLogoutSessionSupported:
                   frontchannelLogoutSessionSupported,
@@ -542,6 +574,9 @@ class OidcConfigurationBuilder
         _claimsSupported?.build();
         _$failedField = 'codeChallengeMethodsSupported';
         _codeChallengeMethodsSupported?.build();
+
+        _$failedField = 'credentialsSupportedDraft00';
+        _credentialsSupportedDraft00?.build();
 
         _$failedField = 'grantTypesSupported';
         _grantTypesSupported?.build();

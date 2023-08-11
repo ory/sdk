@@ -9,13 +9,13 @@ Method | HTTP request | Description
 [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 [**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
-[**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project
 [**get_project_metrics**](ProjectApi.md#get_project_metrics) | **GET** /projects/{project_id}/metrics | 
 [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects
 [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**purge_project**](ProjectApi.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-[**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+[**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**set_active_project_in_console**](ProjectApi.md#set_active_project_in_console) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 
@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_members**
-> ProjectMembers get_project_members(project_id)
+> ProjectMembers get_project_members(project)
 
 Get all members associated with this project
 
@@ -474,12 +474,12 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_api.ProjectApi(api_client)
-    project_id = "project_id_example" # str | Project ID  The project's ID.
+    project = "project_example" # str | 
 
     # example passing only required values which don't have defaults set
     try:
         # Get all members associated with this project
-        api_response = api_instance.get_project_members(project_id)
+        api_response = api_instance.get_project_members(project)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling ProjectApi->get_project_members: %s\n" % e)
@@ -490,7 +490,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **str**| Project ID  The project&#39;s ID. |
+ **project** | **str**|  |
 
 ### Return type
 
@@ -945,7 +945,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remove_project_member**
-> remove_project_member(project_id, member_id)
+> remove_project_member(project, member)
 
 Remove a member associated with this project
 
@@ -981,13 +981,13 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_api.ProjectApi(api_client)
-    project_id = "project_id_example" # str | Project ID  The project's ID.
-    member_id = "member_id_example" # str | Member ID
+    project = "project_example" # str | 
+    member = "member_example" # str | 
 
     # example passing only required values which don't have defaults set
     try:
         # Remove a member associated with this project
-        api_instance.remove_project_member(project_id, member_id)
+        api_instance.remove_project_member(project, member)
     except ory_client.ApiException as e:
         print("Exception when calling ProjectApi->remove_project_member: %s\n" % e)
 ```
@@ -997,8 +997,8 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **str**| Project ID  The project&#39;s ID. |
- **member_id** | **str**| Member ID |
+ **project** | **str**|  |
+ **member** | **str**|  |
 
 ### Return type
 
@@ -1148,6 +1148,18 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = project_api.ProjectApi(api_client)
     project_id = "project_id_example" # str | Project ID  The project's ID.
     set_project = SetProject(
+        cors_admin=CORS(
+            enabled=True,
+            origins=[
+                "origins_example",
+            ],
+        ),
+        cors_public=CORS(
+            enabled=True,
+            origins=[
+                "origins_example",
+            ],
+        ),
         name="name_example",
         services=ProjectServices(
             identity=ProjectServiceIdentity(

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.41
+API version: v1.1.44
 Contact: support@ory.sh
 */
 
@@ -110,12 +110,6 @@ More information can be found at [Ory Kratos Account Recovery Documentation](../
 
 	This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate
 cookies and anti-CSRF measures required for browser-based flows.
-
-:::info
-
-This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.
-
-:::
 
 If this endpoint is opened as a link in the browser, it will be redirected to
 `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session
@@ -684,7 +678,7 @@ if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
 if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
 if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
-If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.
+If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.
 
 As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
@@ -703,13 +697,7 @@ As explained above, this request may fail due to several reasons. The `error.id`
 	/*
 	UpdateLoginFlow Submit a Login Flow
 
-	:::info
-
-This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.
-
-:::
-
-Use this endpoint to complete a login flow. This endpoint
+	Use this endpoint to complete a login flow. This endpoint
 behaves differently for API and browser flows.
 
 API flows expect `application/json` to be sent in the body and responds with
@@ -1445,12 +1433,6 @@ CreateBrowserRegistrationFlow Create Registration Flow for Browsers
 
 This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate
 cookies and anti-CSRF measures required for browser-based flows.
-
-:::info
-
-This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.
-
-:::
 
 If this endpoint is opened as a link in the browser, it will be redirected to
 `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session
@@ -4549,7 +4531,7 @@ if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
 if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
 if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
-If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.
+If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.
 
 As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
@@ -4712,12 +4694,6 @@ func (r FrontendApiUpdateLoginFlowRequest) Execute() (*SuccessfulNativeLogin, *h
 
 /*
 UpdateLoginFlow Submit a Login Flow
-
-:::info
-
-This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.
-
-:::
 
 Use this endpoint to complete a login flow. This endpoint
 behaves differently for API and browser flows.

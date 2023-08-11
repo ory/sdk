@@ -61,7 +61,7 @@ void main() {
       // TODO
     });
 
-    // The Customiation Creation Date
+    // The Customization Creation Date.
     // DateTime createdAt
     test('to test the property `createdAt`', () async {
       // TODO
@@ -187,7 +187,7 @@ void main() {
       // TODO
     });
 
-    // The ProjectBranding ID this customization is associated with
+    // The ProjectBranding ID this customization is associated with.
     // String projectBrandingId
     test('to test the property `projectBrandingId`', () async {
       // TODO
@@ -217,7 +217,7 @@ void main() {
       // TODO
     });
 
-    // Last Time Branding was Updated
+    // Last Time Branding was Updated.
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
       // TODO

@@ -10,6 +10,8 @@
 | **claims_parameter_supported** | **Boolean** | OpenID Connect Claims Parameter Parameter Supported  Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support. | [optional] |
 | **claims_supported** | **Array&lt;String&gt;** | OpenID Connect Supported Claims  JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list. | [optional] |
 | **code_challenge_methods_supported** | **Array&lt;String&gt;** | OAuth 2.0 PKCE Supported Code Challenge Methods  JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server. | [optional] |
+| **credentials_endpoint_draft_00** | **String** | OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint. | [optional] |
+| **credentials_supported_draft_00** | [**Array&lt;CredentialSupportedDraft00&gt;**](CredentialSupportedDraft00.md) | OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server. | [optional] |
 | **end_session_endpoint** | **String** | OpenID Connect End-Session Endpoint  URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP. | [optional] |
 | **frontchannel_logout_session_supported** | **Boolean** | OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also included in ID Tokens issued by the OP. | [optional] |
 | **frontchannel_logout_supported** | **Boolean** | OpenID Connect Front-Channel Logout Supported  Boolean value specifying whether the OP supports HTTP-based logout, with true indicating support. | [optional] |
@@ -46,6 +48,8 @@ instance = OryClient::OidcConfiguration.new(
   claims_parameter_supported: null,
   claims_supported: null,
   code_challenge_methods_supported: null,
+  credentials_endpoint_draft_00: null,
+  credentials_supported_draft_00: null,
   end_session_endpoint: null,
   frontchannel_logout_session_supported: null,
   frontchannel_logout_supported: null,

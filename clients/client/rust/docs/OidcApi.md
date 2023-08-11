@@ -5,6 +5,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_oidc_dynamic_client**](OidcApi.md#create_oidc_dynamic_client) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+[**create_verifiable_credential**](OidcApi.md#create_verifiable_credential) | **POST** /credentials | Issues a Verifiable Credential
 [**delete_oidc_dynamic_client**](OidcApi.md#delete_oidc_dynamic_client) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 [**discover_oidc_configuration**](OidcApi.md#discover_oidc_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 [**get_oidc_dynamic_client**](OidcApi.md#get_oidc_dynamic_client) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -31,6 +32,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::OAuth2Client**](oAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_verifiable_credential
+
+> crate::models::VerifiableCredentialResponse create_verifiable_credential(create_verifiable_credential_request_body)
+Issues a Verifiable Credential
+
+This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**create_verifiable_credential_request_body** | Option<[**CreateVerifiableCredentialRequestBody**](CreateVerifiableCredentialRequestBody.md)> |  |  |
+
+### Return type
+
+[**crate::models::VerifiableCredentialResponse**](verifiableCredentialResponse.md)
 
 ### Authorization
 

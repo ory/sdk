@@ -9,13 +9,13 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**deleteProjectApiKey**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
 | [**getActiveProjectInConsole**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
 | [**getProject**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
-| [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project |
+| [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**getProjectMetrics**](ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics |  |
 | [**listProjectApiKeys**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**listProjects**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects |
 | [**patchProject**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**purgeProject**](ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
-| [**removeProjectMember**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project |
+| [**removeProjectMember**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**setActiveProjectInConsole**](ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console |
 | [**setProject**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
 
@@ -368,7 +368,7 @@ public class Example {
 
 <a name="getProjectMembers"></a>
 # **getProjectMembers**
-> List&lt;CloudAccount&gt; getProjectMembers(projectId)
+> List&lt;CloudAccount&gt; getProjectMembers(project)
 
 Get all members associated with this project
 
@@ -394,9 +394,9 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
-    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    String project = "project_example"; // String | 
     try {
-      List<CloudAccount> result = apiInstance.getProjectMembers(projectId);
+      List<CloudAccount> result = apiInstance.getProjectMembers(project);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProjectApi#getProjectMembers");
@@ -413,7 +413,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **project** | **String**|  | |
 
 ### Return type
 
@@ -795,7 +795,7 @@ null (empty response body)
 
 <a name="removeProjectMember"></a>
 # **removeProjectMember**
-> removeProjectMember(projectId, memberId)
+> removeProjectMember(project, member)
 
 Remove a member associated with this project
 
@@ -821,10 +821,10 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
-    String projectId = "projectId_example"; // String | Project ID  The project's ID.
-    String memberId = "memberId_example"; // String | Member ID
+    String project = "project_example"; // String | 
+    String member = "member_example"; // String | 
     try {
-      apiInstance.removeProjectMember(projectId, memberId);
+      apiInstance.removeProjectMember(project, member);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProjectApi#removeProjectMember");
       System.err.println("Status code: " + e.getCode());
@@ -840,8 +840,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **projectId** | **String**| Project ID  The project&#39;s ID. | |
-| **memberId** | **String**| Member ID | |
+| **project** | **String**|  | |
+| **member** | **String**|  | |
 
 ### Return type
 

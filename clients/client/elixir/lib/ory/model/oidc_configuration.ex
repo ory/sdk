@@ -14,6 +14,8 @@ defmodule Ory.Model.OidcConfiguration do
     :claims_parameter_supported,
     :claims_supported,
     :code_challenge_methods_supported,
+    :credentials_endpoint_draft_00,
+    :credentials_supported_draft_00,
     :end_session_endpoint,
     :frontchannel_logout_session_supported,
     :frontchannel_logout_supported,
@@ -46,6 +48,8 @@ defmodule Ory.Model.OidcConfiguration do
     :claims_parameter_supported => boolean() | nil,
     :claims_supported => [String.t] | nil,
     :code_challenge_methods_supported => [String.t] | nil,
+    :credentials_endpoint_draft_00 => String.t | nil,
+    :credentials_supported_draft_00 => [Ory.Model.CredentialSupportedDraft00.t] | nil,
     :end_session_endpoint => String.t | nil,
     :frontchannel_logout_session_supported => boolean() | nil,
     :frontchannel_logout_supported => boolean() | nil,
@@ -73,8 +77,10 @@ defmodule Ory.Model.OidcConfiguration do
 end
 
 defimpl Poison.Decoder, for: Ory.Model.OidcConfiguration do
-  def decode(value, _options) do
+  import Ory.Deserializer
+  def decode(value, options) do
     value
+    |> deserialize(:credentials_supported_draft_00, :list, Ory.Model.CredentialSupportedDraft00, options)
   end
 end
 

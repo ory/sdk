@@ -10,6 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createOidcDynamicClient**](OidcApi.md#createoidcdynamicclient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+[**createVerifiableCredential**](OidcApi.md#createverifiablecredential) | **POST** /credentials | Issues a Verifiable Credential
 [**deleteOidcDynamicClient**](OidcApi.md#deleteoidcdynamicclient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 [**discoverOidcConfiguration**](OidcApi.md#discoveroidcconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 [**getOidcDynamicClient**](OidcApi.md#getoidcdynamicclient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -49,6 +50,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createVerifiableCredential**
+> VerifiableCredentialResponse createVerifiableCredential(createVerifiableCredentialRequestBody)
+
+Issues a Verifiable Credential
+
+This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getOidcApi();
+final CreateVerifiableCredentialRequestBody createVerifiableCredentialRequestBody = ; // CreateVerifiableCredentialRequestBody | 
+
+try {
+    final response = api.createVerifiableCredential(createVerifiableCredentialRequestBody);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling OidcApi->createVerifiableCredential: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createVerifiableCredentialRequestBody** | [**CreateVerifiableCredentialRequestBody**](CreateVerifiableCredentialRequestBody.md)|  | [optional] 
+
+### Return type
+
+[**VerifiableCredentialResponse**](VerifiableCredentialResponse.md)
 
 ### Authorization
 

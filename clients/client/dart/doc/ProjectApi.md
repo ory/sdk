@@ -14,13 +14,13 @@ Method | HTTP request | Description
 [**deleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 [**getActiveProjectInConsole**](ProjectApi.md#getactiveprojectinconsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**getProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
-[**getProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**getProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
 [**getProjectMetrics**](ProjectApi.md#getprojectmetrics) | **GET** /projects/{project_id}/metrics | 
 [**listProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**listProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 [**patchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**purgeProject**](ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-[**removeProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+[**removeProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**setActiveProjectInConsole**](ProjectApi.md#setactiveprojectinconsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 [**setProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 
@@ -255,7 +255,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getProjectMembers**
-> BuiltList<CloudAccount> getProjectMembers(projectId)
+> BuiltList<CloudAccount> getProjectMembers(project)
 
 Get all members associated with this project
 
@@ -269,10 +269,10 @@ import 'package:ory_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
-final String projectId = projectId_example; // String | Project ID  The project's ID.
+final String project = project_example; // String | 
 
 try {
-    final response = api.getProjectMembers(projectId);
+    final response = api.getProjectMembers(project);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling ProjectApi->getProjectMembers: $e\n');
@@ -283,7 +283,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project's ID. | 
+ **project** | **String**|  | 
 
 ### Return type
 
@@ -536,7 +536,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **removeProjectMember**
-> removeProjectMember(projectId, memberId)
+> removeProjectMember(project, member)
 
 Remove a member associated with this project
 
@@ -550,11 +550,11 @@ import 'package:ory_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
-final String projectId = projectId_example; // String | Project ID  The project's ID.
-final String memberId = memberId_example; // String | Member ID
+final String project = project_example; // String | 
+final String member = member_example; // String | 
 
 try {
-    api.removeProjectMember(projectId, memberId);
+    api.removeProjectMember(project, member);
 } catch on DioError (e) {
     print('Exception when calling ProjectApi->removeProjectMember: $e\n');
 }
@@ -564,8 +564,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project's ID. | 
- **memberId** | **String**| Member ID | 
+ **project** | **String**|  | 
+ **member** | **String**|  | 
 
 ### Return type
 

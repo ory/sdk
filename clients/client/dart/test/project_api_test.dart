@@ -56,7 +56,7 @@ void main() {
     //
     // This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
     //
-    //Future<BuiltList<CloudAccount>> getProjectMembers(String projectId) async
+    //Future<BuiltList<CloudAccount>> getProjectMembers(String project) async
     test('test getProjectMembers', () async {
       // TODO
     });
@@ -108,7 +108,7 @@ void main() {
     //
     // This also sets their invite status to `REMOVED`. This endpoint requires the user to be a member of the project with the role `OWNER`.
     //
-    //Future removeProjectMember(String projectId, String memberId) async
+    //Future removeProjectMember(String project, String member) async
     test('test removeProjectMember', () async {
       // TODO
     });

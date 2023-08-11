@@ -13,6 +13,12 @@ void main() {
       // TODO
     });
 
+    // Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+    // bool disableAccountExperienceWelcomeScreen
+    test('to test the property `disableAccountExperienceWelcomeScreen`', () async {
+      // TODO
+    });
+
     // BuiltList<String> hydraOauth2AllowedTopLevelClaims
     test('to test the property `hydraOauth2AllowedTopLevelClaims`', () async {
       // TODO
@@ -63,6 +69,12 @@ void main() {
     // Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
     // String hydraOauth2RefreshTokenHook
     test('to test the property `hydraOauth2RefreshTokenHook`', () async {
+      // TODO
+    });
+
+    // Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook\" setting.
+    // String hydraOauth2TokenHook
+    test('to test the property `hydraOauth2TokenHook`', () async {
       // TODO
     });
 
@@ -812,7 +824,7 @@ void main() {
       // TODO
     });
 
-    // Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
+    // Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting. Deprecated: This value will be ignored due to security considerations.
     // String kratosSelfserviceMethodsWebauthnConfigRpIcon
     test('to test the property `kratosSelfserviceMethodsWebauthnConfigRpIcon`', () async {
       // TODO
@@ -824,9 +836,8 @@ void main() {
       // TODO
     });
 
-    // Configures the Ory Kratos Webauthn RP Origin  This governs the \"selfservice.methods.webauthn.config.rp.origin\" setting.
-    // String kratosSelfserviceMethodsWebauthnConfigRpOrigin
-    test('to test the property `kratosSelfserviceMethodsWebauthnConfigRpOrigin`', () async {
+    // BuiltList<String> kratosSelfserviceMethodsWebauthnConfigRpOrigins
+    test('to test the property `kratosSelfserviceMethodsWebauthnConfigRpOrigins`', () async {
       // TODO
     });
 

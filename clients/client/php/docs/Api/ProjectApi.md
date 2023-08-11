@@ -9,13 +9,13 @@ Method | HTTP request | Description
 [**deleteProjectApiKey()**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 [**getActiveProjectInConsole()**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**getProject()**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
-[**getProjectMembers()**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**getProjectMembers()**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project
 [**getProjectMetrics()**](ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics | 
 [**listProjectApiKeys()**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**listProjects()**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 [**patchProject()**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**purgeProject()**](ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-[**removeProjectMember()**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+[**removeProjectMember()**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**setActiveProjectInConsole()**](ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 [**setProject()**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 ## `getProjectMembers()`
 
 ```php
-getProjectMembers($projectId): \Ory\Client\Model\CloudAccount[]
+getProjectMembers($project): \Ory\Client\Model\CloudAccount[]
 ```
 
 Get all members associated with this project
@@ -347,10 +347,10 @@ $apiInstance = new Ory\Client\Api\ProjectApi(
     new GuzzleHttp\Client(),
     $config
 );
-$projectId = 'projectId_example'; // string | Project ID  The project's ID.
+$project = 'project_example'; // string
 
 try {
-    $result = $apiInstance->getProjectMembers($projectId);
+    $result = $apiInstance->getProjectMembers($project);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectApi->getProjectMembers: ', $e->getMessage(), PHP_EOL;
@@ -361,7 +361,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. |
+ **project** | **string**|  |
 
 ### Return type
 
@@ -689,7 +689,7 @@ void (empty response body)
 ## `removeProjectMember()`
 
 ```php
-removeProjectMember($projectId, $memberId)
+removeProjectMember($project, $member)
 ```
 
 Remove a member associated with this project
@@ -713,11 +713,11 @@ $apiInstance = new Ory\Client\Api\ProjectApi(
     new GuzzleHttp\Client(),
     $config
 );
-$projectId = 'projectId_example'; // string | Project ID  The project's ID.
-$memberId = 'memberId_example'; // string | Member ID
+$project = 'project_example'; // string
+$member = 'member_example'; // string
 
 try {
-    $apiInstance->removeProjectMember($projectId, $memberId);
+    $apiInstance->removeProjectMember($project, $member);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectApi->removeProjectMember: ', $e->getMessage(), PHP_EOL;
 }
@@ -727,8 +727,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. |
- **memberId** | **string**| Member ID |
+ **project** | **string**|  |
+ **member** | **string**|  |
 
 ### Return type
 

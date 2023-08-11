@@ -9,6 +9,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
   @derive [Poison.Encoder]
   defstruct [
     :created_at,
+    :disable_account_experience_welcome_screen,
     :hydra_oauth2_allowed_top_level_claims,
     :hydra_oauth2_client_credentials_default_grant_allowed_scope,
     :hydra_oauth2_exclude_not_before_claim,
@@ -18,6 +19,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :hydra_oauth2_pkce_enforced,
     :hydra_oauth2_pkce_enforced_for_public_clients,
     :hydra_oauth2_refresh_token_hook,
+    :hydra_oauth2_token_hook,
     :hydra_oidc_dynamic_client_registration_default_scope,
     :hydra_oidc_dynamic_client_registration_enabled,
     :hydra_oidc_subject_identifiers_pairwise_salt,
@@ -147,7 +149,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_selfservice_methods_webauthn_config_rp_display_name,
     :kratos_selfservice_methods_webauthn_config_rp_icon,
     :kratos_selfservice_methods_webauthn_config_rp_id,
-    :kratos_selfservice_methods_webauthn_config_rp_origin,
+    :kratos_selfservice_methods_webauthn_config_rp_origins,
     :kratos_selfservice_methods_webauthn_enabled,
     :kratos_session_cookie_persistent,
     :kratos_session_cookie_same_site,
@@ -165,6 +167,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
+    :disable_account_experience_welcome_screen => boolean() | nil,
     :hydra_oauth2_allowed_top_level_claims => [String.t] | nil,
     :hydra_oauth2_client_credentials_default_grant_allowed_scope => boolean() | nil,
     :hydra_oauth2_exclude_not_before_claim => boolean() | nil,
@@ -174,6 +177,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :hydra_oauth2_pkce_enforced => boolean() | nil,
     :hydra_oauth2_pkce_enforced_for_public_clients => boolean() | nil,
     :hydra_oauth2_refresh_token_hook => String.t | nil,
+    :hydra_oauth2_token_hook => String.t | nil,
     :hydra_oidc_dynamic_client_registration_default_scope => [String.t] | nil,
     :hydra_oidc_dynamic_client_registration_enabled => boolean() | nil,
     :hydra_oidc_subject_identifiers_pairwise_salt => String.t | nil,
@@ -303,7 +307,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_selfservice_methods_webauthn_config_rp_display_name => String.t | nil,
     :kratos_selfservice_methods_webauthn_config_rp_icon => String.t | nil,
     :kratos_selfservice_methods_webauthn_config_rp_id => String.t | nil,
-    :kratos_selfservice_methods_webauthn_config_rp_origin => String.t | nil,
+    :kratos_selfservice_methods_webauthn_config_rp_origins => [String.t] | nil,
     :kratos_selfservice_methods_webauthn_enabled => boolean() | nil,
     :kratos_session_cookie_persistent => boolean() | nil,
     :kratos_session_cookie_same_site => String.t | nil,

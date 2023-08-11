@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**cors_admin** | [**crate::models::Cors**](CORS.md) |  | 
+**cors_public** | [**crate::models::Cors**](CORS.md) |  | 
 **id** | **String** | The project's ID. | [readonly]
 **name** | **String** | The name of the project. | 
 **revision_id** | **String** | The configuration revision ID. | [readonly]

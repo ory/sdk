@@ -18,6 +18,7 @@ part 'normalized_project_revision.g.dart';
 ///
 /// Properties:
 /// * [createdAt] - The Project's Revision Creation Date
+/// * [disableAccountExperienceWelcomeScreen] - Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
 /// * [hydraOauth2AllowedTopLevelClaims] 
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 /// * [hydraOauth2ExcludeNotBeforeClaim] - Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
@@ -27,6 +28,7 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraOauth2PkceEnforced] - Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 /// * [hydraOauth2PkceEnforcedForPublicClients] - Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
 /// * [hydraOauth2RefreshTokenHook] - Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
+/// * [hydraOauth2TokenHook] - Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook\" setting.
 /// * [hydraOidcDynamicClientRegistrationDefaultScope] 
 /// * [hydraOidcDynamicClientRegistrationEnabled] - Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
 /// * [hydraOidcSubjectIdentifiersPairwiseSalt] - Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \"oidc.subject_identifiers.pairwise_salt\" setting.
@@ -154,9 +156,9 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceMethodsTotpEnabled] - Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigPasswordless] - Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \"selfservice.methods.webauthn.config.passwordless\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpDisplayName] - Configures the Ory Kratos Webauthn RP Display Name  This governs the \"selfservice.methods.webauthn.config.rp.display_name\" setting.
-/// * [kratosSelfserviceMethodsWebauthnConfigRpIcon] - Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
+/// * [kratosSelfserviceMethodsWebauthnConfigRpIcon] - Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting. Deprecated: This value will be ignored due to security considerations.
 /// * [kratosSelfserviceMethodsWebauthnConfigRpId] - Configures the Ory Kratos Webauthn RP ID  This governs the \"selfservice.methods.webauthn.config.rp.id\" setting.
-/// * [kratosSelfserviceMethodsWebauthnConfigRpOrigin] - Configures the Ory Kratos Webauthn RP Origin  This governs the \"selfservice.methods.webauthn.config.rp.origin\" setting.
+/// * [kratosSelfserviceMethodsWebauthnConfigRpOrigins] 
 /// * [kratosSelfserviceMethodsWebauthnEnabled] - Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
 /// * [kratosSessionCookiePersistent] - Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
 /// * [kratosSessionCookieSameSite] - Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \"session.cookie.same_site\" setting.
@@ -175,6 +177,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// The Project's Revision Creation Date
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
+
+  /// Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+  @BuiltValueField(wireName: r'disable_account_experience_welcome_screen')
+  bool? get disableAccountExperienceWelcomeScreen;
 
   @BuiltValueField(wireName: r'hydra_oauth2_allowed_top_level_claims')
   BuiltList<String>? get hydraOauth2AllowedTopLevelClaims;
@@ -210,6 +216,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_refresh_token_hook')
   String? get hydraOauth2RefreshTokenHook;
+
+  /// Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook\" setting.
+  @BuiltValueField(wireName: r'hydra_oauth2_token_hook')
+  String? get hydraOauth2TokenHook;
 
   @BuiltValueField(wireName: r'hydra_oidc_dynamic_client_registration_default_scope')
   BuiltList<String>? get hydraOidcDynamicClientRegistrationDefaultScope;
@@ -707,7 +717,7 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_display_name')
   String? get kratosSelfserviceMethodsWebauthnConfigRpDisplayName;
 
-  /// Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
+  /// Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting. Deprecated: This value will be ignored due to security considerations.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_icon')
   String? get kratosSelfserviceMethodsWebauthnConfigRpIcon;
 
@@ -715,9 +725,8 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_id')
   String? get kratosSelfserviceMethodsWebauthnConfigRpId;
 
-  /// Configures the Ory Kratos Webauthn RP Origin  This governs the \"selfservice.methods.webauthn.config.rp.origin\" setting.
-  @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_origin')
-  String? get kratosSelfserviceMethodsWebauthnConfigRpOrigin;
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_config_rp_origins')
+  BuiltList<String>? get kratosSelfserviceMethodsWebauthnConfigRpOrigins;
 
   /// Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_webauthn_enabled')
@@ -807,6 +816,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(DateTime),
       );
     }
+    if (object.disableAccountExperienceWelcomeScreen != null) {
+      yield r'disable_account_experience_welcome_screen';
+      yield serializers.serialize(
+        object.disableAccountExperienceWelcomeScreen,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.hydraOauth2AllowedTopLevelClaims != null) {
       yield r'hydra_oauth2_allowed_top_level_claims';
       yield serializers.serialize(
@@ -867,6 +883,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'hydra_oauth2_refresh_token_hook';
       yield serializers.serialize(
         object.hydraOauth2RefreshTokenHook,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.hydraOauth2TokenHook != null) {
+      yield r'hydra_oauth2_token_hook';
+      yield serializers.serialize(
+        object.hydraOauth2TokenHook,
         specifiedType: const FullType(String),
       );
     }
@@ -1773,11 +1796,11 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
-    if (object.kratosSelfserviceMethodsWebauthnConfigRpOrigin != null) {
-      yield r'kratos_selfservice_methods_webauthn_config_rp_origin';
+    if (object.kratosSelfserviceMethodsWebauthnConfigRpOrigins != null) {
+      yield r'kratos_selfservice_methods_webauthn_config_rp_origins';
       yield serializers.serialize(
-        object.kratosSelfserviceMethodsWebauthnConfigRpOrigin,
-        specifiedType: const FullType(String),
+        object.kratosSelfserviceMethodsWebauthnConfigRpOrigins,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
     if (object.kratosSelfserviceMethodsWebauthnEnabled != null) {
@@ -1899,6 +1922,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as DateTime;
           result.createdAt = valueDes;
           break;
+        case r'disable_account_experience_welcome_screen':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.disableAccountExperienceWelcomeScreen = valueDes;
+          break;
         case r'hydra_oauth2_allowed_top_level_claims':
           final valueDes = serializers.deserialize(
             value,
@@ -1961,6 +1991,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.hydraOauth2RefreshTokenHook = valueDes;
+          break;
+        case r'hydra_oauth2_token_hook':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.hydraOauth2TokenHook = valueDes;
           break;
         case r'hydra_oidc_dynamic_client_registration_default_scope':
           final valueDes = serializers.deserialize(
@@ -2868,12 +2905,12 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.kratosSelfserviceMethodsWebauthnConfigRpId = valueDes;
           break;
-        case r'kratos_selfservice_methods_webauthn_config_rp_origin':
+        case r'kratos_selfservice_methods_webauthn_config_rp_origins':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.kratosSelfserviceMethodsWebauthnConfigRpOrigin = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.kratosSelfserviceMethodsWebauthnConfigRpOrigins.replace(valueDes);
           break;
         case r'kratos_selfservice_methods_webauthn_enabled':
           final valueDes = serializers.deserialize(

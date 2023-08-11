@@ -455,7 +455,7 @@ class ProjectApi {
   /// This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60; or &#x60;DEVELOPER&#x60;.
   ///
   /// Parameters:
-  /// * [projectId] - Project ID  The project's ID.
+  /// * [project] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -466,7 +466,7 @@ class ProjectApi {
   /// Returns a [Future] containing a [Response] with a [BuiltList<CloudAccount>] as data
   /// Throws [DioError] if API call or serialization fails
   Future<Response<BuiltList<CloudAccount>>> getProjectMembers({ 
-    required String projectId,
+    required String project,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -474,7 +474,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}/members'.replaceAll('{' r'project_id' '}', projectId.toString());
+    final _path = r'/projects/{project}/members'.replaceAll('{' r'project' '}', project.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -949,8 +949,8 @@ class ProjectApi {
   /// This also sets their invite status to &#x60;REMOVED&#x60;. This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60;.
   ///
   /// Parameters:
-  /// * [projectId] - Project ID  The project's ID.
-  /// * [memberId] - Member ID
+  /// * [project] 
+  /// * [member] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -961,8 +961,8 @@ class ProjectApi {
   /// Returns a [Future]
   /// Throws [DioError] if API call or serialization fails
   Future<Response<void>> removeProjectMember({ 
-    required String projectId,
-    required String memberId,
+    required String project,
+    required String member,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -970,7 +970,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}/members/{member_id}'.replaceAll('{' r'project_id' '}', projectId.toString()).replaceAll('{' r'member_id' '}', memberId.toString());
+    final _path = r'/projects/{project}/members/{member}'.replaceAll('{' r'project' '}', project.toString()).replaceAll('{' r'member' '}', member.toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{

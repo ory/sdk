@@ -9,13 +9,13 @@ Method | HTTP request | Description
 [**DeleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 [**GetActiveProjectInConsole**](ProjectApi.md#getactiveprojectinconsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**GetProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
-[**GetProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**GetProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
 [**GetProjectMetrics**](ProjectApi.md#getprojectmetrics) | **GET** /projects/{project_id}/metrics | 
 [**ListProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**ListProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 [**PatchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**PurgeProject**](ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-[**RemoveProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+[**RemoveProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**SetActiveProjectInConsole**](ProjectApi.md#setactiveprojectinconsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 [**SetProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 
@@ -403,7 +403,7 @@ Name | Type | Description  | Notes
 
 <a name="getprojectmembers"></a>
 # **GetProjectMembers**
-> List&lt;ClientCloudAccount&gt; GetProjectMembers (string projectId)
+> List&lt;ClientCloudAccount&gt; GetProjectMembers (string project)
 
 Get all members associated with this project
 
@@ -429,12 +429,12 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
-            var projectId = "projectId_example";  // string | Project ID  The project's ID.
+            var project = "project_example";  // string | 
 
             try
             {
                 // Get all members associated with this project
-                List<ClientCloudAccount> result = apiInstance.GetProjectMembers(projectId);
+                List<ClientCloudAccount> result = apiInstance.GetProjectMembers(project);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -452,7 +452,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
+ **project** | **string**|  | 
 
 ### Return type
 
@@ -871,7 +871,7 @@ void (empty response body)
 
 <a name="removeprojectmember"></a>
 # **RemoveProjectMember**
-> void RemoveProjectMember (string projectId, string memberId)
+> void RemoveProjectMember (string project, string member)
 
 Remove a member associated with this project
 
@@ -897,13 +897,13 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
-            var projectId = "projectId_example";  // string | Project ID  The project's ID.
-            var memberId = "memberId_example";  // string | Member ID
+            var project = "project_example";  // string | 
+            var member = "member_example";  // string | 
 
             try
             {
                 // Remove a member associated with this project
-                apiInstance.RemoveProjectMember(projectId, memberId);
+                apiInstance.RemoveProjectMember(project, member);
             }
             catch (ApiException  e)
             {
@@ -920,8 +920,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
- **memberId** | **string**| Member ID | 
+ **project** | **string**|  | 
+ **member** | **string**|  | 
 
 ### Return type
 

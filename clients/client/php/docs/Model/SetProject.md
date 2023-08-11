@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**corsAdmin** | [**\Ory\Client\Model\CORS**](CORS.md) |  |
+**corsPublic** | [**\Ory\Client\Model\CORS**](CORS.md) |  |
 **name** | **string** | The name of the project. |
 **services** | [**\Ory\Client\Model\ProjectServices**](ProjectServices.md) |  |
 

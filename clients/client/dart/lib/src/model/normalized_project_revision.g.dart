@@ -279,6 +279,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final DateTime? createdAt;
   @override
+  final bool? disableAccountExperienceWelcomeScreen;
+  @override
   final BuiltList<String>? hydraOauth2AllowedTopLevelClaims;
   @override
   final bool? hydraOauth2ClientCredentialsDefaultGrantAllowedScope;
@@ -296,6 +298,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final bool? hydraOauth2PkceEnforcedForPublicClients;
   @override
   final String? hydraOauth2RefreshTokenHook;
+  @override
+  final String? hydraOauth2TokenHook;
   @override
   final BuiltList<String>? hydraOidcDynamicClientRegistrationDefaultScope;
   @override
@@ -566,7 +570,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosSelfserviceMethodsWebauthnConfigRpId;
   @override
-  final String? kratosSelfserviceMethodsWebauthnConfigRpOrigin;
+  final BuiltList<String>? kratosSelfserviceMethodsWebauthnConfigRpOrigins;
   @override
   final bool? kratosSelfserviceMethodsWebauthnEnabled;
   @override
@@ -600,6 +604,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
 
   _$NormalizedProjectRevision._(
       {this.createdAt,
+      this.disableAccountExperienceWelcomeScreen,
       this.hydraOauth2AllowedTopLevelClaims,
       this.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
       this.hydraOauth2ExcludeNotBeforeClaim,
@@ -609,6 +614,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.hydraOauth2PkceEnforced,
       this.hydraOauth2PkceEnforcedForPublicClients,
       this.hydraOauth2RefreshTokenHook,
+      this.hydraOauth2TokenHook,
       this.hydraOidcDynamicClientRegistrationDefaultScope,
       this.hydraOidcDynamicClientRegistrationEnabled,
       this.hydraOidcSubjectIdentifiersPairwiseSalt,
@@ -738,7 +744,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceMethodsWebauthnConfigRpDisplayName,
       this.kratosSelfserviceMethodsWebauthnConfigRpIcon,
       this.kratosSelfserviceMethodsWebauthnConfigRpId,
-      this.kratosSelfserviceMethodsWebauthnConfigRpOrigin,
+      this.kratosSelfserviceMethodsWebauthnConfigRpOrigins,
       this.kratosSelfserviceMethodsWebauthnEnabled,
       this.kratosSessionCookiePersistent,
       this.kratosSessionCookieSameSite,
@@ -771,6 +777,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     if (identical(other, this)) return true;
     return other is NormalizedProjectRevision &&
         createdAt == other.createdAt &&
+        disableAccountExperienceWelcomeScreen ==
+            other.disableAccountExperienceWelcomeScreen &&
         hydraOauth2AllowedTopLevelClaims ==
             other.hydraOauth2AllowedTopLevelClaims &&
         hydraOauth2ClientCredentialsDefaultGrantAllowedScope ==
@@ -786,6 +794,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         hydraOauth2PkceEnforcedForPublicClients ==
             other.hydraOauth2PkceEnforcedForPublicClients &&
         hydraOauth2RefreshTokenHook == other.hydraOauth2RefreshTokenHook &&
+        hydraOauth2TokenHook == other.hydraOauth2TokenHook &&
         hydraOidcDynamicClientRegistrationDefaultScope ==
             other.hydraOidcDynamicClientRegistrationDefaultScope &&
         hydraOidcDynamicClientRegistrationEnabled ==
@@ -1025,8 +1034,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceMethodsWebauthnConfigRpIcon &&
         kratosSelfserviceMethodsWebauthnConfigRpId ==
             other.kratosSelfserviceMethodsWebauthnConfigRpId &&
-        kratosSelfserviceMethodsWebauthnConfigRpOrigin ==
-            other.kratosSelfserviceMethodsWebauthnConfigRpOrigin &&
+        kratosSelfserviceMethodsWebauthnConfigRpOrigins ==
+            other.kratosSelfserviceMethodsWebauthnConfigRpOrigins &&
         kratosSelfserviceMethodsWebauthnEnabled ==
             other.kratosSelfserviceMethodsWebauthnEnabled &&
         kratosSessionCookiePersistent == other.kratosSessionCookiePersistent &&
@@ -1048,6 +1057,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, disableAccountExperienceWelcomeScreen.hashCode);
     _$hash = $jc(_$hash, hydraOauth2AllowedTopLevelClaims.hashCode);
     _$hash = $jc(
         _$hash, hydraOauth2ClientCredentialsDefaultGrantAllowedScope.hashCode);
@@ -1058,6 +1068,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, hydraOauth2PkceEnforced.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforcedForPublicClients.hashCode);
     _$hash = $jc(_$hash, hydraOauth2RefreshTokenHook.hashCode);
+    _$hash = $jc(_$hash, hydraOauth2TokenHook.hashCode);
     _$hash =
         $jc(_$hash, hydraOidcDynamicClientRegistrationDefaultScope.hashCode);
     _$hash = $jc(_$hash, hydraOidcDynamicClientRegistrationEnabled.hashCode);
@@ -1261,7 +1272,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSelfserviceMethodsWebauthnConfigRpIcon.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsWebauthnConfigRpId.hashCode);
     _$hash =
-        $jc(_$hash, kratosSelfserviceMethodsWebauthnConfigRpOrigin.hashCode);
+        $jc(_$hash, kratosSelfserviceMethodsWebauthnConfigRpOrigins.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsWebauthnEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSessionCookiePersistent.hashCode);
     _$hash = $jc(_$hash, kratosSessionCookieSameSite.hashCode);
@@ -1283,6 +1294,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   String toString() {
     return (newBuiltValueToStringHelper(r'NormalizedProjectRevision')
           ..add('createdAt', createdAt)
+          ..add('disableAccountExperienceWelcomeScreen',
+              disableAccountExperienceWelcomeScreen)
           ..add('hydraOauth2AllowedTopLevelClaims',
               hydraOauth2AllowedTopLevelClaims)
           ..add('hydraOauth2ClientCredentialsDefaultGrantAllowedScope',
@@ -1298,6 +1311,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('hydraOauth2PkceEnforcedForPublicClients',
               hydraOauth2PkceEnforcedForPublicClients)
           ..add('hydraOauth2RefreshTokenHook', hydraOauth2RefreshTokenHook)
+          ..add('hydraOauth2TokenHook', hydraOauth2TokenHook)
           ..add('hydraOidcDynamicClientRegistrationDefaultScope',
               hydraOidcDynamicClientRegistrationDefaultScope)
           ..add('hydraOidcDynamicClientRegistrationEnabled',
@@ -1536,8 +1550,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceMethodsWebauthnConfigRpIcon)
           ..add('kratosSelfserviceMethodsWebauthnConfigRpId',
               kratosSelfserviceMethodsWebauthnConfigRpId)
-          ..add('kratosSelfserviceMethodsWebauthnConfigRpOrigin',
-              kratosSelfserviceMethodsWebauthnConfigRpOrigin)
+          ..add('kratosSelfserviceMethodsWebauthnConfigRpOrigins',
+              kratosSelfserviceMethodsWebauthnConfigRpOrigins)
           ..add('kratosSelfserviceMethodsWebauthnEnabled',
               kratosSelfserviceMethodsWebauthnEnabled)
           ..add('kratosSessionCookiePersistent', kratosSessionCookiePersistent)
@@ -1565,6 +1579,14 @@ class NormalizedProjectRevisionBuilder
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  bool? _disableAccountExperienceWelcomeScreen;
+  bool? get disableAccountExperienceWelcomeScreen =>
+      _$this._disableAccountExperienceWelcomeScreen;
+  set disableAccountExperienceWelcomeScreen(
+          bool? disableAccountExperienceWelcomeScreen) =>
+      _$this._disableAccountExperienceWelcomeScreen =
+          disableAccountExperienceWelcomeScreen;
 
   ListBuilder<String>? _hydraOauth2AllowedTopLevelClaims;
   ListBuilder<String> get hydraOauth2AllowedTopLevelClaims =>
@@ -1625,6 +1647,11 @@ class NormalizedProjectRevisionBuilder
       _$this._hydraOauth2RefreshTokenHook;
   set hydraOauth2RefreshTokenHook(String? hydraOauth2RefreshTokenHook) =>
       _$this._hydraOauth2RefreshTokenHook = hydraOauth2RefreshTokenHook;
+
+  String? _hydraOauth2TokenHook;
+  String? get hydraOauth2TokenHook => _$this._hydraOauth2TokenHook;
+  set hydraOauth2TokenHook(String? hydraOauth2TokenHook) =>
+      _$this._hydraOauth2TokenHook = hydraOauth2TokenHook;
 
   ListBuilder<String>? _hydraOidcDynamicClientRegistrationDefaultScope;
   ListBuilder<String> get hydraOidcDynamicClientRegistrationDefaultScope =>
@@ -2624,13 +2651,15 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceMethodsWebauthnConfigRpId =
           kratosSelfserviceMethodsWebauthnConfigRpId;
 
-  String? _kratosSelfserviceMethodsWebauthnConfigRpOrigin;
-  String? get kratosSelfserviceMethodsWebauthnConfigRpOrigin =>
-      _$this._kratosSelfserviceMethodsWebauthnConfigRpOrigin;
-  set kratosSelfserviceMethodsWebauthnConfigRpOrigin(
-          String? kratosSelfserviceMethodsWebauthnConfigRpOrigin) =>
-      _$this._kratosSelfserviceMethodsWebauthnConfigRpOrigin =
-          kratosSelfserviceMethodsWebauthnConfigRpOrigin;
+  ListBuilder<String>? _kratosSelfserviceMethodsWebauthnConfigRpOrigins;
+  ListBuilder<String> get kratosSelfserviceMethodsWebauthnConfigRpOrigins =>
+      _$this._kratosSelfserviceMethodsWebauthnConfigRpOrigins ??=
+          new ListBuilder<String>();
+  set kratosSelfserviceMethodsWebauthnConfigRpOrigins(
+          ListBuilder<String>?
+              kratosSelfserviceMethodsWebauthnConfigRpOrigins) =>
+      _$this._kratosSelfserviceMethodsWebauthnConfigRpOrigins =
+          kratosSelfserviceMethodsWebauthnConfigRpOrigins;
 
   bool? _kratosSelfserviceMethodsWebauthnEnabled;
   bool? get kratosSelfserviceMethodsWebauthnEnabled =>
@@ -2711,6 +2740,8 @@ class NormalizedProjectRevisionBuilder
     final $v = _$v;
     if ($v != null) {
       _createdAt = $v.createdAt;
+      _disableAccountExperienceWelcomeScreen =
+          $v.disableAccountExperienceWelcomeScreen;
       _hydraOauth2AllowedTopLevelClaims =
           $v.hydraOauth2AllowedTopLevelClaims?.toBuilder();
       _hydraOauth2ClientCredentialsDefaultGrantAllowedScope =
@@ -2723,6 +2754,7 @@ class NormalizedProjectRevisionBuilder
       _hydraOauth2PkceEnforcedForPublicClients =
           $v.hydraOauth2PkceEnforcedForPublicClients;
       _hydraOauth2RefreshTokenHook = $v.hydraOauth2RefreshTokenHook;
+      _hydraOauth2TokenHook = $v.hydraOauth2TokenHook;
       _hydraOidcDynamicClientRegistrationDefaultScope =
           $v.hydraOidcDynamicClientRegistrationDefaultScope?.toBuilder();
       _hydraOidcDynamicClientRegistrationEnabled =
@@ -2947,8 +2979,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceMethodsWebauthnConfigRpIcon;
       _kratosSelfserviceMethodsWebauthnConfigRpId =
           $v.kratosSelfserviceMethodsWebauthnConfigRpId;
-      _kratosSelfserviceMethodsWebauthnConfigRpOrigin =
-          $v.kratosSelfserviceMethodsWebauthnConfigRpOrigin;
+      _kratosSelfserviceMethodsWebauthnConfigRpOrigins =
+          $v.kratosSelfserviceMethodsWebauthnConfigRpOrigins?.toBuilder();
       _kratosSelfserviceMethodsWebauthnEnabled =
           $v.kratosSelfserviceMethodsWebauthnEnabled;
       _kratosSessionCookiePersistent = $v.kratosSessionCookiePersistent;
@@ -2990,6 +3022,8 @@ class NormalizedProjectRevisionBuilder
       _$result = _$v ??
           new _$NormalizedProjectRevision._(
               createdAt: createdAt,
+              disableAccountExperienceWelcomeScreen:
+                  disableAccountExperienceWelcomeScreen,
               hydraOauth2AllowedTopLevelClaims:
                   _hydraOauth2AllowedTopLevelClaims?.build(),
               hydraOauth2ClientCredentialsDefaultGrantAllowedScope:
@@ -3003,6 +3037,7 @@ class NormalizedProjectRevisionBuilder
               hydraOauth2PkceEnforcedForPublicClients:
                   hydraOauth2PkceEnforcedForPublicClients,
               hydraOauth2RefreshTokenHook: hydraOauth2RefreshTokenHook,
+              hydraOauth2TokenHook: hydraOauth2TokenHook,
               hydraOidcDynamicClientRegistrationDefaultScope:
                   _hydraOidcDynamicClientRegistrationDefaultScope?.build(),
               hydraOidcDynamicClientRegistrationEnabled:
@@ -3180,7 +3215,7 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceMethodsWebauthnConfigRpDisplayName: kratosSelfserviceMethodsWebauthnConfigRpDisplayName,
               kratosSelfserviceMethodsWebauthnConfigRpIcon: kratosSelfserviceMethodsWebauthnConfigRpIcon,
               kratosSelfserviceMethodsWebauthnConfigRpId: kratosSelfserviceMethodsWebauthnConfigRpId,
-              kratosSelfserviceMethodsWebauthnConfigRpOrigin: kratosSelfserviceMethodsWebauthnConfigRpOrigin,
+              kratosSelfserviceMethodsWebauthnConfigRpOrigins: _kratosSelfserviceMethodsWebauthnConfigRpOrigins?.build(),
               kratosSelfserviceMethodsWebauthnEnabled: kratosSelfserviceMethodsWebauthnEnabled,
               kratosSessionCookiePersistent: kratosSessionCookiePersistent,
               kratosSessionCookieSameSite: kratosSessionCookieSameSite,
@@ -3238,6 +3273,9 @@ class NormalizedProjectRevisionBuilder
 
         _$failedField = 'kratosSelfserviceMethodsOidcConfigProviders';
         _kratosSelfserviceMethodsOidcConfigProviders?.build();
+
+        _$failedField = 'kratosSelfserviceMethodsWebauthnConfigRpOrigins';
+        _kratosSelfserviceMethodsWebauthnConfigRpOrigins?.build();
 
         _$failedField = 'serveAdminCorsAllowedOrigins';
         _serveAdminCorsAllowedOrigins?.build();

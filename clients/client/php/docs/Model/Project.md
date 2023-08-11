@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**corsAdmin** | [**\Ory\Client\Model\CORS**](CORS.md) |  |
+**corsPublic** | [**\Ory\Client\Model\CORS**](CORS.md) |  |
 **id** | **string** | The project&#39;s ID. | [readonly]
 **name** | **string** | The name of the project. |
 **revisionId** | **string** | The configuration revision ID. | [readonly]

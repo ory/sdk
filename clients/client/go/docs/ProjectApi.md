@@ -9,13 +9,13 @@ Method | HTTP request | Description
 [**DeleteProjectApiKey**](ProjectApi.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
 [**GetActiveProjectInConsole**](ProjectApi.md#GetActiveProjectInConsole) | **Get** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**GetProject**](ProjectApi.md#GetProject) | **Get** /projects/{project_id} | Get a Project
-[**GetProjectMembers**](ProjectApi.md#GetProjectMembers) | **Get** /projects/{project_id}/members | Get all members associated with this project
+[**GetProjectMembers**](ProjectApi.md#GetProjectMembers) | **Get** /projects/{project}/members | Get all members associated with this project
 [**GetProjectMetrics**](ProjectApi.md#GetProjectMetrics) | **Get** /projects/{project_id}/metrics | 
 [**ListProjectApiKeys**](ProjectApi.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**ListProjects**](ProjectApi.md#ListProjects) | **Get** /projects | List All Projects
 [**PatchProject**](ProjectApi.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**PurgeProject**](ProjectApi.md#PurgeProject) | **Delete** /projects/{project_id} | Irrecoverably purge a project
-[**RemoveProjectMember**](ProjectApi.md#RemoveProjectMember) | **Delete** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+[**RemoveProjectMember**](ProjectApi.md#RemoveProjectMember) | **Delete** /projects/{project}/members/{member} | Remove a member associated with this project
 [**SetActiveProjectInConsole**](ProjectApi.md#SetActiveProjectInConsole) | **Put** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 [**SetProject**](ProjectApi.md#SetProject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
 
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 
 ## GetProjectMembers
 
-> []CloudAccount GetProjectMembers(ctx, projectId).Execute()
+> []CloudAccount GetProjectMembers(ctx, project).Execute()
 
 Get all members associated with this project
 
@@ -382,11 +382,11 @@ import (
 )
 
 func main() {
-    projectId := "projectId_example" // string | Project ID  The project's ID.
+    project := "project_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.GetProjectMembers(context.Background(), projectId).Execute()
+    resp, r, err := apiClient.ProjectApi.GetProjectMembers(context.Background(), project).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.GetProjectMembers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -402,7 +402,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** | Project ID  The project&#39;s ID. | 
+**project** | **string** |  | 
 
 ### Other Parameters
 
@@ -783,7 +783,7 @@ Name | Type | Description  | Notes
 
 ## RemoveProjectMember
 
-> RemoveProjectMember(ctx, projectId, memberId).Execute()
+> RemoveProjectMember(ctx, project, member).Execute()
 
 Remove a member associated with this project
 
@@ -802,12 +802,12 @@ import (
 )
 
 func main() {
-    projectId := "projectId_example" // string | Project ID  The project's ID.
-    memberId := "memberId_example" // string | Member ID
+    project := "project_example" // string | 
+    member := "member_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.RemoveProjectMember(context.Background(), projectId, memberId).Execute()
+    resp, r, err := apiClient.ProjectApi.RemoveProjectMember(context.Background(), project, member).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.RemoveProjectMember``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -821,8 +821,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** | Project ID  The project&#39;s ID. | 
-**memberId** | **string** | Member ID | 
+**project** | **string** |  | 
+**member** | **string** |  | 
 
 ### Other Parameters
 
@@ -938,7 +938,7 @@ import (
 
 func main() {
     projectId := "projectId_example" // string | Project ID  The project's ID.
-    setProject := *openapiclient.NewSetProject("Name_example", *openapiclient.NewProjectServices()) // SetProject |  (optional)
+    setProject := *openapiclient.NewSetProject(*openapiclient.NewCORS(false, []string{"Origins_example"}), *openapiclient.NewCORS(false, []string{"Origins_example"}), "Name_example", *openapiclient.NewProjectServices()) // SetProject |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

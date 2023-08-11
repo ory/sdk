@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CorsAdmin** | [**ClientCORS**](ClientCORS.md) |  | 
+**CorsPublic** | [**ClientCORS**](ClientCORS.md) |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The name of the project. | 
 **RevisionId** | **string** | The configuration revision ID. | [readonly] 

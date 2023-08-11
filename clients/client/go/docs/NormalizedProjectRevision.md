@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
+**DisableAccountExperienceWelcomeScreen** | Pointer to **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** |  | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
+**HydraOauth2TokenHook** | Pointer to **string** | Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \&quot;oauth2.token_hook\&quot; setting. | [optional] 
 **HydraOidcDynamicClientRegistrationDefaultScope** | Pointer to **[]string** |  | [optional] 
 **HydraOidcDynamicClientRegistrationEnabled** | Pointer to **bool** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] 
 **HydraOidcSubjectIdentifiersPairwiseSalt** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] 
@@ -141,9 +143,9 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsTotpEnabled** | Pointer to **bool** | Configures whether Ory Kratos TOTP Method is enabled  This governs the \&quot;selfservice.methods.totp.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigPasswordless** | Pointer to **bool** | Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \&quot;selfservice.methods.webauthn.config.passwordless\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigRpDisplayName** | Pointer to **string** | Configures the Ory Kratos Webauthn RP Display Name  This governs the \&quot;selfservice.methods.webauthn.config.rp.display_name\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsWebauthnConfigRpIcon** | Pointer to **string** | Configures the Ory Kratos Webauthn RP Icon  This governs the \&quot;selfservice.methods.webauthn.config.rp.icon\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsWebauthnConfigRpIcon** | Pointer to **string** | Configures the Ory Kratos Webauthn RP Icon  This governs the \&quot;selfservice.methods.webauthn.config.rp.icon\&quot; setting. Deprecated: This value will be ignored due to security considerations. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigRpId** | Pointer to **string** | Configures the Ory Kratos Webauthn RP ID  This governs the \&quot;selfservice.methods.webauthn.config.rp.id\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsWebauthnConfigRpOrigin** | Pointer to **string** | Configures the Ory Kratos Webauthn RP Origin  This governs the \&quot;selfservice.methods.webauthn.config.rp.origin\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsWebauthnConfigRpOrigins** | Pointer to **[]string** |  | [optional] 
 **KratosSelfserviceMethodsWebauthnEnabled** | Pointer to **bool** | Configures whether Ory Kratos Webauthn is enabled  This governs the \&quot;selfservice.methods.webauthn.enabled\&quot; setting. | [optional] 
 **KratosSessionCookiePersistent** | Pointer to **bool** | Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \&quot;session.cookie.persistent\&quot; setting. | [optional] 
 **KratosSessionCookieSameSite** | Pointer to **string** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] 
@@ -201,6 +203,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *NormalizedProjectRevision) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetDisableAccountExperienceWelcomeScreen
+
+`func (o *NormalizedProjectRevision) GetDisableAccountExperienceWelcomeScreen() bool`
+
+GetDisableAccountExperienceWelcomeScreen returns the DisableAccountExperienceWelcomeScreen field if non-nil, zero value otherwise.
+
+### GetDisableAccountExperienceWelcomeScreenOk
+
+`func (o *NormalizedProjectRevision) GetDisableAccountExperienceWelcomeScreenOk() (*bool, bool)`
+
+GetDisableAccountExperienceWelcomeScreenOk returns a tuple with the DisableAccountExperienceWelcomeScreen field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableAccountExperienceWelcomeScreen
+
+`func (o *NormalizedProjectRevision) SetDisableAccountExperienceWelcomeScreen(v bool)`
+
+SetDisableAccountExperienceWelcomeScreen sets DisableAccountExperienceWelcomeScreen field to given value.
+
+### HasDisableAccountExperienceWelcomeScreen
+
+`func (o *NormalizedProjectRevision) HasDisableAccountExperienceWelcomeScreen() bool`
+
+HasDisableAccountExperienceWelcomeScreen returns a boolean if a field has been set.
 
 ### GetHydraOauth2AllowedTopLevelClaims
 
@@ -426,6 +453,31 @@ SetHydraOauth2RefreshTokenHook sets HydraOauth2RefreshTokenHook field to given v
 `func (o *NormalizedProjectRevision) HasHydraOauth2RefreshTokenHook() bool`
 
 HasHydraOauth2RefreshTokenHook returns a boolean if a field has been set.
+
+### GetHydraOauth2TokenHook
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2TokenHook() string`
+
+GetHydraOauth2TokenHook returns the HydraOauth2TokenHook field if non-nil, zero value otherwise.
+
+### GetHydraOauth2TokenHookOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2TokenHookOk() (*string, bool)`
+
+GetHydraOauth2TokenHookOk returns a tuple with the HydraOauth2TokenHook field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2TokenHook
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2TokenHook(v string)`
+
+SetHydraOauth2TokenHook sets HydraOauth2TokenHook field to given value.
+
+### HasHydraOauth2TokenHook
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2TokenHook() bool`
+
+HasHydraOauth2TokenHook returns a boolean if a field has been set.
 
 ### GetHydraOidcDynamicClientRegistrationDefaultScope
 
@@ -3682,30 +3734,30 @@ SetKratosSelfserviceMethodsWebauthnConfigRpId sets KratosSelfserviceMethodsWebau
 
 HasKratosSelfserviceMethodsWebauthnConfigRpId returns a boolean if a field has been set.
 
-### GetKratosSelfserviceMethodsWebauthnConfigRpOrigin
+### GetKratosSelfserviceMethodsWebauthnConfigRpOrigins
 
-`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOrigin() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOrigins() []string`
 
-GetKratosSelfserviceMethodsWebauthnConfigRpOrigin returns the KratosSelfserviceMethodsWebauthnConfigRpOrigin field if non-nil, zero value otherwise.
+GetKratosSelfserviceMethodsWebauthnConfigRpOrigins returns the KratosSelfserviceMethodsWebauthnConfigRpOrigins field if non-nil, zero value otherwise.
 
-### GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk
+### GetKratosSelfserviceMethodsWebauthnConfigRpOriginsOk
 
-`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOriginsOk() (*[]string, bool)`
 
-GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpOrigin field if it's non-nil, zero value otherwise
+GetKratosSelfserviceMethodsWebauthnConfigRpOriginsOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpOrigins field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetKratosSelfserviceMethodsWebauthnConfigRpOrigin
+### SetKratosSelfserviceMethodsWebauthnConfigRpOrigins
 
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpOrigin(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpOrigins(v []string)`
 
-SetKratosSelfserviceMethodsWebauthnConfigRpOrigin sets KratosSelfserviceMethodsWebauthnConfigRpOrigin field to given value.
+SetKratosSelfserviceMethodsWebauthnConfigRpOrigins sets KratosSelfserviceMethodsWebauthnConfigRpOrigins field to given value.
 
-### HasKratosSelfserviceMethodsWebauthnConfigRpOrigin
+### HasKratosSelfserviceMethodsWebauthnConfigRpOrigins
 
-`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpOrigin() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpOrigins() bool`
 
-HasKratosSelfserviceMethodsWebauthnConfigRpOrigin returns a boolean if a field has been set.
+HasKratosSelfserviceMethodsWebauthnConfigRpOrigins returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsWebauthnEnabled
 

@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CorsAdmin** | [**CORS**](CORS.md) |  | 
+**CorsPublic** | [**CORS**](CORS.md) |  | 
 **Name** | **string** | The name of the project. | 
 **Services** | [**ProjectServices**](ProjectServices.md) |  | 
 
@@ -11,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewSetProject
 
-`func NewSetProject(name string, services ProjectServices, ) *SetProject`
+`func NewSetProject(corsAdmin CORS, corsPublic CORS, name string, services ProjectServices, ) *SetProject`
 
 NewSetProject instantiates a new SetProject object
 This constructor will assign default values to properties that have it defined,
@@ -25,6 +27,46 @@ will change when the set of required properties is changed
 NewSetProjectWithDefaults instantiates a new SetProject object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCorsAdmin
+
+`func (o *SetProject) GetCorsAdmin() CORS`
+
+GetCorsAdmin returns the CorsAdmin field if non-nil, zero value otherwise.
+
+### GetCorsAdminOk
+
+`func (o *SetProject) GetCorsAdminOk() (*CORS, bool)`
+
+GetCorsAdminOk returns a tuple with the CorsAdmin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorsAdmin
+
+`func (o *SetProject) SetCorsAdmin(v CORS)`
+
+SetCorsAdmin sets CorsAdmin field to given value.
+
+
+### GetCorsPublic
+
+`func (o *SetProject) GetCorsPublic() CORS`
+
+GetCorsPublic returns the CorsPublic field if non-nil, zero value otherwise.
+
+### GetCorsPublicOk
+
+`func (o *SetProject) GetCorsPublicOk() (*CORS, bool)`
+
+GetCorsPublicOk returns a tuple with the CorsPublic field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorsPublic
+
+`func (o *SetProject) SetCorsPublic(v CORS)`
+
+SetCorsPublic sets CorsPublic field to given value.
+
 
 ### GetName
 

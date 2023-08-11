@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.41
+API version: v1.1.44
 Contact: support@ory.sh
 */
 
@@ -103,10 +103,10 @@ type ProjectApi interface {
 	This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Project ID  The project's ID.
+	@param project
 	@return ProjectApiGetProjectMembersRequest
 	*/
-	GetProjectMembers(ctx context.Context, projectId string) ProjectApiGetProjectMembersRequest
+	GetProjectMembers(ctx context.Context, project string) ProjectApiGetProjectMembersRequest
 
 	// GetProjectMembersExecute executes the request
 	//  @return []CloudAccount
@@ -213,11 +213,11 @@ This action can not be undone and will delete ALL your data.
 This endpoint requires the user to be a member of the project with the role `OWNER`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Project ID  The project's ID.
-	@param memberId Member ID
+	@param project
+	@param member
 	@return ProjectApiRemoveProjectMemberRequest
 	*/
-	RemoveProjectMember(ctx context.Context, projectId string, memberId string) ProjectApiRemoveProjectMemberRequest
+	RemoveProjectMember(ctx context.Context, project string, member string) ProjectApiRemoveProjectMemberRequest
 
 	// RemoveProjectMemberExecute executes the request
 	RemoveProjectMemberExecute(r ProjectApiRemoveProjectMemberRequest) (*http.Response, error)
@@ -895,7 +895,7 @@ func (a *ProjectApiService) GetProjectExecute(r ProjectApiGetProjectRequest) (*P
 type ProjectApiGetProjectMembersRequest struct {
 	ctx context.Context
 	ApiService ProjectApi
-	projectId string
+	project string
 }
 
 func (r ProjectApiGetProjectMembersRequest) Execute() ([]CloudAccount, *http.Response, error) {
@@ -908,14 +908,14 @@ GetProjectMembers Get all members associated with this project
 This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project ID  The project's ID.
+ @param project
  @return ProjectApiGetProjectMembersRequest
 */
-func (a *ProjectApiService) GetProjectMembers(ctx context.Context, projectId string) ProjectApiGetProjectMembersRequest {
+func (a *ProjectApiService) GetProjectMembers(ctx context.Context, project string) ProjectApiGetProjectMembersRequest {
 	return ProjectApiGetProjectMembersRequest{
 		ApiService: a,
 		ctx: ctx,
-		projectId: projectId,
+		project: project,
 	}
 }
 
@@ -934,8 +934,8 @@ func (a *ProjectApiService) GetProjectMembersExecute(r ProjectApiGetProjectMembe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/projects/{project_id}/members"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath := localBasePath + "/projects/{project}/members"
+	localVarPath = strings.Replace(localVarPath, "{"+"project"+"}", url.PathEscape(parameterToString(r.project, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1753,8 +1753,8 @@ func (a *ProjectApiService) PurgeProjectExecute(r ProjectApiPurgeProjectRequest)
 type ProjectApiRemoveProjectMemberRequest struct {
 	ctx context.Context
 	ApiService ProjectApi
-	projectId string
-	memberId string
+	project string
+	member string
 }
 
 func (r ProjectApiRemoveProjectMemberRequest) Execute() (*http.Response, error) {
@@ -1768,16 +1768,16 @@ This also sets their invite status to `REMOVED`.
 This endpoint requires the user to be a member of the project with the role `OWNER`.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project ID  The project's ID.
- @param memberId Member ID
+ @param project
+ @param member
  @return ProjectApiRemoveProjectMemberRequest
 */
-func (a *ProjectApiService) RemoveProjectMember(ctx context.Context, projectId string, memberId string) ProjectApiRemoveProjectMemberRequest {
+func (a *ProjectApiService) RemoveProjectMember(ctx context.Context, project string, member string) ProjectApiRemoveProjectMemberRequest {
 	return ProjectApiRemoveProjectMemberRequest{
 		ApiService: a,
 		ctx: ctx,
-		projectId: projectId,
-		memberId: memberId,
+		project: project,
+		member: member,
 	}
 }
 
@@ -1794,9 +1794,9 @@ func (a *ProjectApiService) RemoveProjectMemberExecute(r ProjectApiRemoveProject
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/projects/{project_id}/members/{member_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"member_id"+"}", url.PathEscape(parameterToString(r.memberId, "")), -1)
+	localVarPath := localBasePath + "/projects/{project}/members/{member}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project"+"}", url.PathEscape(parameterToString(r.project, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member"+"}", url.PathEscape(parameterToString(r.member, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

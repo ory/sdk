@@ -68,6 +68,10 @@ class _$ProjectStateEnumSerializer
 
 class _$Project extends Project {
   @override
+  final CORS corsAdmin;
+  @override
+  final CORS corsPublic;
+  @override
   final String id;
   @override
   final String name;
@@ -84,13 +88,17 @@ class _$Project extends Project {
       (new ProjectBuilder()..update(updates))._build();
 
   _$Project._(
-      {required this.id,
+      {required this.corsAdmin,
+      required this.corsPublic,
+      required this.id,
       required this.name,
       required this.revisionId,
       required this.services,
       required this.slug,
       required this.state})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(corsAdmin, r'Project', 'corsAdmin');
+    BuiltValueNullFieldError.checkNotNull(corsPublic, r'Project', 'corsPublic');
     BuiltValueNullFieldError.checkNotNull(id, r'Project', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'Project', 'name');
     BuiltValueNullFieldError.checkNotNull(revisionId, r'Project', 'revisionId');
@@ -110,6 +118,8 @@ class _$Project extends Project {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Project &&
+        corsAdmin == other.corsAdmin &&
+        corsPublic == other.corsPublic &&
         id == other.id &&
         name == other.name &&
         revisionId == other.revisionId &&
@@ -121,6 +131,8 @@ class _$Project extends Project {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, corsAdmin.hashCode);
+    _$hash = $jc(_$hash, corsPublic.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, revisionId.hashCode);
@@ -134,6 +146,8 @@ class _$Project extends Project {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Project')
+          ..add('corsAdmin', corsAdmin)
+          ..add('corsPublic', corsPublic)
           ..add('id', id)
           ..add('name', name)
           ..add('revisionId', revisionId)
@@ -146,6 +160,14 @@ class _$Project extends Project {
 
 class ProjectBuilder implements Builder<Project, ProjectBuilder> {
   _$Project? _$v;
+
+  CORSBuilder? _corsAdmin;
+  CORSBuilder get corsAdmin => _$this._corsAdmin ??= new CORSBuilder();
+  set corsAdmin(CORSBuilder? corsAdmin) => _$this._corsAdmin = corsAdmin;
+
+  CORSBuilder? _corsPublic;
+  CORSBuilder get corsPublic => _$this._corsPublic ??= new CORSBuilder();
+  set corsPublic(CORSBuilder? corsPublic) => _$this._corsPublic = corsPublic;
 
   String? _id;
   String? get id => _$this._id;
@@ -179,6 +201,8 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
   ProjectBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _corsAdmin = $v.corsAdmin.toBuilder();
+      _corsPublic = $v.corsPublic.toBuilder();
       _id = $v.id;
       _name = $v.name;
       _revisionId = $v.revisionId;
@@ -209,6 +233,8 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
     try {
       _$result = _$v ??
           new _$Project._(
+              corsAdmin: corsAdmin.build(),
+              corsPublic: corsPublic.build(),
               id: BuiltValueNullFieldError.checkNotNull(id, r'Project', 'id'),
               name: BuiltValueNullFieldError.checkNotNull(
                   name, r'Project', 'name'),
@@ -222,6 +248,11 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'corsAdmin';
+        corsAdmin.build();
+        _$failedField = 'corsPublic';
+        corsPublic.build();
+
         _$failedField = 'services';
         services.build();
       } catch (e) {

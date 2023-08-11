@@ -167,6 +167,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**setOAuth2ClientLifespans**](docs/Api/OAuth2Api.md#setoauth2clientlifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
 *OAuth2Api* | [**trustOAuth2JwtGrantIssuer**](docs/Api/OAuth2Api.md#trustoauth2jwtgrantissuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
 *OidcApi* | [**createOidcDynamicClient**](docs/Api/OidcApi.md#createoidcdynamicclient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+*OidcApi* | [**createVerifiableCredential**](docs/Api/OidcApi.md#createverifiablecredential) | **POST** /credentials | Issues a Verifiable Credential
 *OidcApi* | [**deleteOidcDynamicClient**](docs/Api/OidcApi.md#deleteoidcdynamicclient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 *OidcApi* | [**discoverOidcConfiguration**](docs/Api/OidcApi.md#discoveroidcconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 *OidcApi* | [**getOidcDynamicClient**](docs/Api/OidcApi.md#getoidcdynamicclient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -183,13 +184,13 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**deleteProjectApiKey**](docs/Api/ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 *ProjectApi* | [**getActiveProjectInConsole**](docs/Api/ProjectApi.md#getactiveprojectinconsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 *ProjectApi* | [**getProject**](docs/Api/ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
-*ProjectApi* | [**getProjectMembers**](docs/Api/ProjectApi.md#getprojectmembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+*ProjectApi* | [**getProjectMembers**](docs/Api/ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
 *ProjectApi* | [**getProjectMetrics**](docs/Api/ProjectApi.md#getprojectmetrics) | **GET** /projects/{project_id}/metrics | 
 *ProjectApi* | [**listProjectApiKeys**](docs/Api/ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 *ProjectApi* | [**listProjects**](docs/Api/ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/Api/ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 *ProjectApi* | [**purgeProject**](docs/Api/ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-*ProjectApi* | [**removeProjectMember**](docs/Api/ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+*ProjectApi* | [**removeProjectMember**](docs/Api/ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 *ProjectApi* | [**setActiveProjectInConsole**](docs/Api/ProjectApi.md#setactiveprojectinconsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 *ProjectApi* | [**setProject**](docs/Api/ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 *RelationshipApi* | [**checkOplSyntax**](docs/Api/RelationshipApi.md#checkoplsyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
@@ -208,6 +209,7 @@ Class | Method | HTTP request | Description
 - [ActiveProjectInConsole](docs/Model/ActiveProjectInConsole.md)
 - [AuthenticatorAssuranceLevel](docs/Model/AuthenticatorAssuranceLevel.md)
 - [BatchPatchIdentitiesResponse](docs/Model/BatchPatchIdentitiesResponse.md)
+- [CORS](docs/Model/CORS.md)
 - [CheckOplSyntaxResult](docs/Model/CheckOplSyntaxResult.md)
 - [CheckPermissionResult](docs/Model/CheckPermissionResult.md)
 - [CloudAccount](docs/Model/CloudAccount.md)
@@ -219,17 +221,21 @@ Class | Method | HTTP request | Description
 - [CourierMessageType](docs/Model/CourierMessageType.md)
 - [CreateCustomDomainBody](docs/Model/CreateCustomDomainBody.md)
 - [CreateIdentityBody](docs/Model/CreateIdentityBody.md)
+- [CreateInviteResponse](docs/Model/CreateInviteResponse.md)
 - [CreateJsonWebKeySet](docs/Model/CreateJsonWebKeySet.md)
 - [CreateProjectBody](docs/Model/CreateProjectBody.md)
 - [CreateProjectBranding](docs/Model/CreateProjectBranding.md)
-- [CreateProjectInvite](docs/Model/CreateProjectInvite.md)
-- [CreateProjectInvitesResponse](docs/Model/CreateProjectInvitesResponse.md)
+- [CreateProjectMemberInviteBody](docs/Model/CreateProjectMemberInviteBody.md)
 - [CreateRecoveryCodeForIdentityBody](docs/Model/CreateRecoveryCodeForIdentityBody.md)
 - [CreateRecoveryLinkForIdentityBody](docs/Model/CreateRecoveryLinkForIdentityBody.md)
 - [CreateRelationshipBody](docs/Model/CreateRelationshipBody.md)
 - [CreateSubscriptionBody](docs/Model/CreateSubscriptionBody.md)
+- [CreateVerifiableCredentialRequestBody](docs/Model/CreateVerifiableCredentialRequestBody.md)
+- [CredentialSupportedDraft00](docs/Model/CredentialSupportedDraft00.md)
 - [CustomDomain](docs/Model/CustomDomain.md)
 - [DeleteMySessionsCount](docs/Model/DeleteMySessionsCount.md)
+- [EmailTemplateData](docs/Model/EmailTemplateData.md)
+- [EmailTemplateDataBody](docs/Model/EmailTemplateDataBody.md)
 - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
 - [ErrorBrowserLocationChangeRequired](docs/Model/ErrorBrowserLocationChangeRequired.md)
 - [ErrorFlowReplaced](docs/Model/ErrorFlowReplaced.md)
@@ -266,6 +272,7 @@ Class | Method | HTTP request | Description
 - [InlineResponse2001](docs/Model/InlineResponse2001.md)
 - [InlineResponse503](docs/Model/InlineResponse503.md)
 - [InternalGetProjectBrandingBody](docs/Model/InternalGetProjectBrandingBody.md)
+- [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
 - [InternalIsOwnerForProjectBySlugBody](docs/Model/InternalIsOwnerForProjectBySlugBody.md)
 - [InternalIsOwnerForProjectBySlugResponse](docs/Model/InternalIsOwnerForProjectBySlugResponse.md)
 - [InternalProvisionMockSubscription](docs/Model/InternalProvisionMockSubscription.md)
@@ -279,6 +286,7 @@ Class | Method | HTTP request | Description
 - [LogoutFlow](docs/Model/LogoutFlow.md)
 - [ManagedIdentitySchema](docs/Model/ManagedIdentitySchema.md)
 - [ManagedIdentitySchemaValidationResult](docs/Model/ManagedIdentitySchemaValidationResult.md)
+- [MemberInvite](docs/Model/MemberInvite.md)
 - [Message](docs/Model/Message.md)
 - [MessageDispatch](docs/Model/MessageDispatch.md)
 - [MetricsDatapoint](docs/Model/MetricsDatapoint.md)
@@ -316,13 +324,13 @@ Class | Method | HTTP request | Description
 - [ProjectBrandingColors](docs/Model/ProjectBrandingColors.md)
 - [ProjectBrandingTheme](docs/Model/ProjectBrandingTheme.md)
 - [ProjectHost](docs/Model/ProjectHost.md)
-- [ProjectInvite](docs/Model/ProjectInvite.md)
 - [ProjectMetadata](docs/Model/ProjectMetadata.md)
 - [ProjectServiceIdentity](docs/Model/ProjectServiceIdentity.md)
 - [ProjectServiceOAuth2](docs/Model/ProjectServiceOAuth2.md)
 - [ProjectServicePermission](docs/Model/ProjectServicePermission.md)
 - [ProjectServices](docs/Model/ProjectServices.md)
 - [QuotaUsage](docs/Model/QuotaUsage.md)
+- [RFC6749ErrorJson](docs/Model/RFC6749ErrorJson.md)
 - [RecoveryCodeForIdentity](docs/Model/RecoveryCodeForIdentity.md)
 - [RecoveryFlow](docs/Model/RecoveryFlow.md)
 - [RecoveryFlowState](docs/Model/RecoveryFlowState.md)
@@ -397,6 +405,9 @@ Class | Method | HTTP request | Description
 - [UpdateVerificationFlowWithCodeMethod](docs/Model/UpdateVerificationFlowWithCodeMethod.md)
 - [UpdateVerificationFlowWithLinkMethod](docs/Model/UpdateVerificationFlowWithLinkMethod.md)
 - [Usage](docs/Model/Usage.md)
+- [VerifiableCredentialPrimingResponse](docs/Model/VerifiableCredentialPrimingResponse.md)
+- [VerifiableCredentialProof](docs/Model/VerifiableCredentialProof.md)
+- [VerifiableCredentialResponse](docs/Model/VerifiableCredentialResponse.md)
 - [VerifiableIdentityAddress](docs/Model/VerifiableIdentityAddress.md)
 - [VerificationFlow](docs/Model/VerificationFlow.md)
 - [VerificationFlowState](docs/Model/VerificationFlowState.md)
@@ -447,5 +458,5 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.1.41`
+- API version: `v1.1.44`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

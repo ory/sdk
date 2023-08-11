@@ -5,6 +5,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_oidc_dynamic_client**](OidcApi.md#create_oidc_dynamic_client) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration |
+| [**create_verifiable_credential**](OidcApi.md#create_verifiable_credential) | **POST** /credentials | Issues a Verifiable Credential |
 | [**delete_oidc_dynamic_client**](OidcApi.md#delete_oidc_dynamic_client) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol |
 | [**discover_oidc_configuration**](OidcApi.md#discover_oidc_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery |
 | [**get_oidc_dynamic_client**](OidcApi.md#get_oidc_dynamic_client) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration |
@@ -66,6 +67,72 @@ end
 ### Return type
 
 [**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## create_verifiable_credential
+
+> <VerifiableCredentialResponse> create_verifiable_credential(opts)
+
+Issues a Verifiable Credential
+
+This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::OidcApi.new
+opts = {
+  create_verifiable_credential_request_body: OryClient::CreateVerifiableCredentialRequestBody.new # CreateVerifiableCredentialRequestBody | 
+}
+
+begin
+  # Issues a Verifiable Credential
+  result = api_instance.create_verifiable_credential(opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling OidcApi->create_verifiable_credential: #{e}"
+end
+```
+
+#### Using the create_verifiable_credential_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<VerifiableCredentialResponse>, Integer, Hash)> create_verifiable_credential_with_http_info(opts)
+
+```ruby
+begin
+  # Issues a Verifiable Credential
+  data, status_code, headers = api_instance.create_verifiable_credential_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <VerifiableCredentialResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling OidcApi->create_verifiable_credential_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **create_verifiable_credential_request_body** | [**CreateVerifiableCredentialRequestBody**](CreateVerifiableCredentialRequestBody.md) |  | [optional] |
+
+### Return type
+
+[**VerifiableCredentialResponse**](VerifiableCredentialResponse.md)
 
 ### Authorization
 

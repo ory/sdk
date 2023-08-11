@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.41
+API version: v1.1.44
 Contact: support@ory.sh
 */
 
@@ -17,6 +17,8 @@ import (
 
 // SetProject struct for SetProject
 type SetProject struct {
+	CorsAdmin CORS `json:"cors_admin"`
+	CorsPublic CORS `json:"cors_public"`
 	// The name of the project.
 	Name string `json:"name"`
 	Services ProjectServices `json:"services"`
@@ -29,8 +31,10 @@ type _SetProject SetProject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSetProject(name string, services ProjectServices) *SetProject {
+func NewSetProject(corsAdmin CORS, corsPublic CORS, name string, services ProjectServices) *SetProject {
 	this := SetProject{}
+	this.CorsAdmin = corsAdmin
+	this.CorsPublic = corsPublic
 	this.Name = name
 	this.Services = services
 	return &this
@@ -42,6 +46,54 @@ func NewSetProject(name string, services ProjectServices) *SetProject {
 func NewSetProjectWithDefaults() *SetProject {
 	this := SetProject{}
 	return &this
+}
+
+// GetCorsAdmin returns the CorsAdmin field value
+func (o *SetProject) GetCorsAdmin() CORS {
+	if o == nil {
+		var ret CORS
+		return ret
+	}
+
+	return o.CorsAdmin
+}
+
+// GetCorsAdminOk returns a tuple with the CorsAdmin field value
+// and a boolean to check if the value has been set.
+func (o *SetProject) GetCorsAdminOk() (*CORS, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CorsAdmin, true
+}
+
+// SetCorsAdmin sets field value
+func (o *SetProject) SetCorsAdmin(v CORS) {
+	o.CorsAdmin = v
+}
+
+// GetCorsPublic returns the CorsPublic field value
+func (o *SetProject) GetCorsPublic() CORS {
+	if o == nil {
+		var ret CORS
+		return ret
+	}
+
+	return o.CorsPublic
+}
+
+// GetCorsPublicOk returns a tuple with the CorsPublic field value
+// and a boolean to check if the value has been set.
+func (o *SetProject) GetCorsPublicOk() (*CORS, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CorsPublic, true
+}
+
+// SetCorsPublic sets field value
+func (o *SetProject) SetCorsPublic(v CORS) {
+	o.CorsPublic = v
 }
 
 // GetName returns the Name field value
@@ -95,6 +147,12 @@ func (o *SetProject) SetServices(v ProjectServices) {
 func (o SetProject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
+		toSerialize["cors_admin"] = o.CorsAdmin
+	}
+	if true {
+		toSerialize["cors_public"] = o.CorsPublic
+	}
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	if true {
@@ -118,6 +176,8 @@ func (o *SetProject) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "cors_admin")
+		delete(additionalProperties, "cors_public")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "services")
 		o.AdditionalProperties = additionalProperties

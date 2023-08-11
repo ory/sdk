@@ -191,7 +191,7 @@ defmodule Ory.Api.Project do
   ### Parameters
 
   - `connection` (Ory.Connection): Connection to server
-  - `project_id` (String.t): Project ID  The project's ID.
+  - `project` (String.t): 
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -200,11 +200,11 @@ defmodule Ory.Api.Project do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec get_project_members(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, list(Ory.Model.CloudAccount.t)} | {:error, Tesla.Env.t}
-  def get_project_members(connection, project_id, _opts \\ []) do
+  def get_project_members(connection, project, _opts \\ []) do
     request =
       %{}
       |> method(:get)
-      |> url("/projects/#{project_id}/members")
+      |> url("/projects/#{project}/members")
       |> Enum.into([])
 
     connection
@@ -404,8 +404,8 @@ defmodule Ory.Api.Project do
   ### Parameters
 
   - `connection` (Ory.Connection): Connection to server
-  - `project_id` (String.t): Project ID  The project's ID.
-  - `member_id` (String.t): Member ID
+  - `project` (String.t): 
+  - `member` (String.t): 
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -414,11 +414,11 @@ defmodule Ory.Api.Project do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec remove_project_member(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
-  def remove_project_member(connection, project_id, member_id, _opts \\ []) do
+  def remove_project_member(connection, project, member, _opts \\ []) do
     request =
       %{}
       |> method(:delete)
-      |> url("/projects/#{project_id}/members/#{member_id}")
+      |> url("/projects/#{project}/members/#{member}")
       |> Enum.into([])
 
     connection

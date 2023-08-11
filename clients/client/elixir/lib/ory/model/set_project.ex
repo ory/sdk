@@ -8,11 +8,15 @@ defmodule Ory.Model.SetProject do
 
   @derive [Poison.Encoder]
   defstruct [
+    :cors_admin,
+    :cors_public,
     :name,
     :services
   ]
 
   @type t :: %__MODULE__{
+    :cors_admin => Ory.Model.Cors.t,
+    :cors_public => Ory.Model.Cors.t,
     :name => String.t,
     :services => Ory.Model.ProjectServices.t
   }
@@ -22,6 +26,8 @@ defimpl Poison.Decoder, for: Ory.Model.SetProject do
   import Ory.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:cors_admin, :struct, Ory.Model.Cors, options)
+    |> deserialize(:cors_public, :struct, Ory.Model.Cors, options)
     |> deserialize(:services, :struct, Ory.Model.ProjectServices, options)
   end
 end

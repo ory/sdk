@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/project_services.dart';
+import 'package:ory_client/src/model/cors.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -13,6 +14,8 @@ part 'project.g.dart';
 /// Project
 ///
 /// Properties:
+/// * [corsAdmin] 
+/// * [corsPublic] 
 /// * [id] - The project's ID.
 /// * [name] - The name of the project.
 /// * [revisionId] - The configuration revision ID.
@@ -21,6 +24,12 @@ part 'project.g.dart';
 /// * [state] - The state of the project. running Running halted Halted deleted Deleted
 @BuiltValue()
 abstract class Project implements Built<Project, ProjectBuilder> {
+  @BuiltValueField(wireName: r'cors_admin')
+  CORS get corsAdmin;
+
+  @BuiltValueField(wireName: r'cors_public')
+  CORS get corsPublic;
+
   /// The project's ID.
   @BuiltValueField(wireName: r'id')
   String get id;
@@ -68,6 +77,16 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
     Project object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    yield r'cors_admin';
+    yield serializers.serialize(
+      object.corsAdmin,
+      specifiedType: const FullType(CORS),
+    );
+    yield r'cors_public';
+    yield serializers.serialize(
+      object.corsPublic,
+      specifiedType: const FullType(CORS),
+    );
     yield r'id';
     yield serializers.serialize(
       object.id,
@@ -121,6 +140,20 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'cors_admin':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CORS),
+          ) as CORS;
+          result.corsAdmin.replace(valueDes);
+          break;
+        case r'cors_public':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CORS),
+          ) as CORS;
+          result.corsPublic.replace(valueDes);
+          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,

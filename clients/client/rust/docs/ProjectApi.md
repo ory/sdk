@@ -9,13 +9,13 @@ Method | HTTP request | Description
 [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 [**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
-[**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project
 [**get_project_metrics**](ProjectApi.md#get_project_metrics) | **GET** /projects/{project_id}/metrics | 
 [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project's API Tokens
 [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects
 [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**purge_project**](ProjectApi.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-[**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
+[**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**set_active_project_in_console**](ProjectApi.md#set_active_project_in_console) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 
@@ -172,7 +172,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_project_members
 
-> Vec<crate::models::CloudAccount> get_project_members(project_id)
+> Vec<crate::models::CloudAccount> get_project_members(project)
 Get all members associated with this project
 
 This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
@@ -182,7 +182,7 @@ This endpoint requires the user to be a member of the project with the role `OWN
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**project_id** | **String** | Project ID  The project's ID. | [required] |
+**project** | **String** |  | [required] |
 
 ### Return type
 
@@ -354,7 +354,7 @@ Name | Type | Description  | Required | Notes
 
 ## remove_project_member
 
-> remove_project_member(project_id, member_id)
+> remove_project_member(project, member)
 Remove a member associated with this project
 
 This also sets their invite status to `REMOVED`. This endpoint requires the user to be a member of the project with the role `OWNER`.
@@ -364,8 +364,8 @@ This also sets their invite status to `REMOVED`. This endpoint requires the user
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**project_id** | **String** | Project ID  The project's ID. | [required] |
-**member_id** | **String** | Member ID | [required] |
+**project** | **String** |  | [required] |
+**member** | **String** |  | [required] |
 
 ### Return type
 

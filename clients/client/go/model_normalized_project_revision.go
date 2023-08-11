@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.41
+API version: v1.1.44
 Contact: support@ory.sh
 */
 
@@ -20,6 +20,8 @@ import (
 type NormalizedProjectRevision struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+	DisableAccountExperienceWelcomeScreen *bool `json:"disable_account_experience_welcome_screen,omitempty"`
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
@@ -37,6 +39,8 @@ type NormalizedProjectRevision struct {
 	HydraOauth2PkceEnforcedForPublicClients *bool `json:"hydra_oauth2_pkce_enforced_for_public_clients,omitempty"`
 	// Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
 	HydraOauth2RefreshTokenHook *string `json:"hydra_oauth2_refresh_token_hook,omitempty"`
+	// Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook\" setting.
+	HydraOauth2TokenHook *string `json:"hydra_oauth2_token_hook,omitempty"`
 	HydraOidcDynamicClientRegistrationDefaultScope []string `json:"hydra_oidc_dynamic_client_registration_default_scope,omitempty"`
 	// Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
 	HydraOidcDynamicClientRegistrationEnabled *bool `json:"hydra_oidc_dynamic_client_registration_enabled,omitempty"`
@@ -275,12 +279,11 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceMethodsWebauthnConfigPasswordless *bool `json:"kratos_selfservice_methods_webauthn_config_passwordless,omitempty"`
 	// Configures the Ory Kratos Webauthn RP Display Name  This governs the \"selfservice.methods.webauthn.config.rp.display_name\" setting.
 	KratosSelfserviceMethodsWebauthnConfigRpDisplayName *string `json:"kratos_selfservice_methods_webauthn_config_rp_display_name,omitempty"`
-	// Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
+	// Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting. Deprecated: This value will be ignored due to security considerations.
 	KratosSelfserviceMethodsWebauthnConfigRpIcon *string `json:"kratos_selfservice_methods_webauthn_config_rp_icon,omitempty"`
 	// Configures the Ory Kratos Webauthn RP ID  This governs the \"selfservice.methods.webauthn.config.rp.id\" setting.
 	KratosSelfserviceMethodsWebauthnConfigRpId *string `json:"kratos_selfservice_methods_webauthn_config_rp_id,omitempty"`
-	// Configures the Ory Kratos Webauthn RP Origin  This governs the \"selfservice.methods.webauthn.config.rp.origin\" setting.
-	KratosSelfserviceMethodsWebauthnConfigRpOrigin *string `json:"kratos_selfservice_methods_webauthn_config_rp_origin,omitempty"`
+	KratosSelfserviceMethodsWebauthnConfigRpOrigins []string `json:"kratos_selfservice_methods_webauthn_config_rp_origins,omitempty"`
 	// Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
 	KratosSelfserviceMethodsWebauthnEnabled *bool `json:"kratos_selfservice_methods_webauthn_enabled,omitempty"`
 	// Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \"session.cookie.persistent\" setting.
@@ -390,6 +393,38 @@ func (o *NormalizedProjectRevision) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *NormalizedProjectRevision) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetDisableAccountExperienceWelcomeScreen returns the DisableAccountExperienceWelcomeScreen field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetDisableAccountExperienceWelcomeScreen() bool {
+	if o == nil || o.DisableAccountExperienceWelcomeScreen == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DisableAccountExperienceWelcomeScreen
+}
+
+// GetDisableAccountExperienceWelcomeScreenOk returns a tuple with the DisableAccountExperienceWelcomeScreen field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetDisableAccountExperienceWelcomeScreenOk() (*bool, bool) {
+	if o == nil || o.DisableAccountExperienceWelcomeScreen == nil {
+		return nil, false
+	}
+	return o.DisableAccountExperienceWelcomeScreen, true
+}
+
+// HasDisableAccountExperienceWelcomeScreen returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasDisableAccountExperienceWelcomeScreen() bool {
+	if o != nil && o.DisableAccountExperienceWelcomeScreen != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDisableAccountExperienceWelcomeScreen gets a reference to the given bool and assigns it to the DisableAccountExperienceWelcomeScreen field.
+func (o *NormalizedProjectRevision) SetDisableAccountExperienceWelcomeScreen(v bool) {
+	o.DisableAccountExperienceWelcomeScreen = &v
 }
 
 // GetHydraOauth2AllowedTopLevelClaims returns the HydraOauth2AllowedTopLevelClaims field value if set, zero value otherwise.
@@ -678,6 +713,38 @@ func (o *NormalizedProjectRevision) HasHydraOauth2RefreshTokenHook() bool {
 // SetHydraOauth2RefreshTokenHook gets a reference to the given string and assigns it to the HydraOauth2RefreshTokenHook field.
 func (o *NormalizedProjectRevision) SetHydraOauth2RefreshTokenHook(v string) {
 	o.HydraOauth2RefreshTokenHook = &v
+}
+
+// GetHydraOauth2TokenHook returns the HydraOauth2TokenHook field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2TokenHook() string {
+	if o == nil || o.HydraOauth2TokenHook == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraOauth2TokenHook
+}
+
+// GetHydraOauth2TokenHookOk returns a tuple with the HydraOauth2TokenHook field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2TokenHookOk() (*string, bool) {
+	if o == nil || o.HydraOauth2TokenHook == nil {
+		return nil, false
+	}
+	return o.HydraOauth2TokenHook, true
+}
+
+// HasHydraOauth2TokenHook returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2TokenHook() bool {
+	if o != nil && o.HydraOauth2TokenHook != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2TokenHook gets a reference to the given string and assigns it to the HydraOauth2TokenHook field.
+func (o *NormalizedProjectRevision) SetHydraOauth2TokenHook(v string) {
+	o.HydraOauth2TokenHook = &v
 }
 
 // GetHydraOidcDynamicClientRegistrationDefaultScope returns the HydraOidcDynamicClientRegistrationDefaultScope field value if set, zero value otherwise.
@@ -4820,36 +4887,36 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpI
 	o.KratosSelfserviceMethodsWebauthnConfigRpId = &v
 }
 
-// GetKratosSelfserviceMethodsWebauthnConfigRpOrigin returns the KratosSelfserviceMethodsWebauthnConfigRpOrigin field value if set, zero value otherwise.
-func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOrigin() string {
-	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpOrigin == nil {
-		var ret string
+// GetKratosSelfserviceMethodsWebauthnConfigRpOrigins returns the KratosSelfserviceMethodsWebauthnConfigRpOrigins field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOrigins() []string {
+	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpOrigins == nil {
+		var ret []string
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsWebauthnConfigRpOrigin
+	return o.KratosSelfserviceMethodsWebauthnConfigRpOrigins
 }
 
-// GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpOrigin field value if set, nil otherwise
+// GetKratosSelfserviceMethodsWebauthnConfigRpOriginsOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpOrigins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk() (*string, bool) {
-	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpOrigin == nil {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOriginsOk() ([]string, bool) {
+	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpOrigins == nil {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsWebauthnConfigRpOrigin, true
+	return o.KratosSelfserviceMethodsWebauthnConfigRpOrigins, true
 }
 
-// HasKratosSelfserviceMethodsWebauthnConfigRpOrigin returns a boolean if a field has been set.
-func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpOrigin() bool {
-	if o != nil && o.KratosSelfserviceMethodsWebauthnConfigRpOrigin != nil {
+// HasKratosSelfserviceMethodsWebauthnConfigRpOrigins returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpOrigins() bool {
+	if o != nil && o.KratosSelfserviceMethodsWebauthnConfigRpOrigins != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsWebauthnConfigRpOrigin gets a reference to the given string and assigns it to the KratosSelfserviceMethodsWebauthnConfigRpOrigin field.
-func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpOrigin(v string) {
-	o.KratosSelfserviceMethodsWebauthnConfigRpOrigin = &v
+// SetKratosSelfserviceMethodsWebauthnConfigRpOrigins gets a reference to the given []string and assigns it to the KratosSelfserviceMethodsWebauthnConfigRpOrigins field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpOrigins(v []string) {
+	o.KratosSelfserviceMethodsWebauthnConfigRpOrigins = v
 }
 
 // GetKratosSelfserviceMethodsWebauthnEnabled returns the KratosSelfserviceMethodsWebauthnEnabled field value if set, zero value otherwise.
@@ -5265,6 +5332,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.DisableAccountExperienceWelcomeScreen != nil {
+		toSerialize["disable_account_experience_welcome_screen"] = o.DisableAccountExperienceWelcomeScreen
+	}
 	if o.HydraOauth2AllowedTopLevelClaims != nil {
 		toSerialize["hydra_oauth2_allowed_top_level_claims"] = o.HydraOauth2AllowedTopLevelClaims
 	}
@@ -5291,6 +5361,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.HydraOauth2RefreshTokenHook != nil {
 		toSerialize["hydra_oauth2_refresh_token_hook"] = o.HydraOauth2RefreshTokenHook
+	}
+	if o.HydraOauth2TokenHook != nil {
+		toSerialize["hydra_oauth2_token_hook"] = o.HydraOauth2TokenHook
 	}
 	if o.HydraOidcDynamicClientRegistrationDefaultScope != nil {
 		toSerialize["hydra_oidc_dynamic_client_registration_default_scope"] = o.HydraOidcDynamicClientRegistrationDefaultScope
@@ -5679,8 +5752,8 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceMethodsWebauthnConfigRpId != nil {
 		toSerialize["kratos_selfservice_methods_webauthn_config_rp_id"] = o.KratosSelfserviceMethodsWebauthnConfigRpId
 	}
-	if o.KratosSelfserviceMethodsWebauthnConfigRpOrigin != nil {
-		toSerialize["kratos_selfservice_methods_webauthn_config_rp_origin"] = o.KratosSelfserviceMethodsWebauthnConfigRpOrigin
+	if o.KratosSelfserviceMethodsWebauthnConfigRpOrigins != nil {
+		toSerialize["kratos_selfservice_methods_webauthn_config_rp_origins"] = o.KratosSelfserviceMethodsWebauthnConfigRpOrigins
 	}
 	if o.KratosSelfserviceMethodsWebauthnEnabled != nil {
 		toSerialize["kratos_selfservice_methods_webauthn_enabled"] = o.KratosSelfserviceMethodsWebauthnEnabled
@@ -5740,6 +5813,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "disable_account_experience_welcome_screen")
 		delete(additionalProperties, "hydra_oauth2_allowed_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_client_credentials_default_grant_allowed_scope")
 		delete(additionalProperties, "hydra_oauth2_exclude_not_before_claim")
@@ -5749,6 +5823,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced")
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced_for_public_clients")
 		delete(additionalProperties, "hydra_oauth2_refresh_token_hook")
+		delete(additionalProperties, "hydra_oauth2_token_hook")
 		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_default_scope")
 		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_enabled")
 		delete(additionalProperties, "hydra_oidc_subject_identifiers_pairwise_salt")
@@ -5878,7 +5953,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_rp_display_name")
 		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_rp_icon")
 		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_rp_id")
-		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_rp_origin")
+		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_rp_origins")
 		delete(additionalProperties, "kratos_selfservice_methods_webauthn_enabled")
 		delete(additionalProperties, "kratos_session_cookie_persistent")
 		delete(additionalProperties, "kratos_session_cookie_same_site")

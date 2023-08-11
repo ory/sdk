@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.41
+  version: v1.1.44
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -2745,6 +2745,46 @@ paths:
       - project
       x-content-type: application/json
       x-accepts: application/json
+  /credentials:
+    post:
+      description: |-
+        This endpoint creates a verifiable credential that attests that the user
+        authenticated with the provided access token owns a certain public/private key
+        pair.
+
+        More information can be found at
+        https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+      operationId: createVerifiableCredential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVerifiableCredentialRequestBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/verifiableCredentialResponse'
+          description: verifiableCredentialResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/verifiableCredentialPrimingResponse'
+          description: verifiableCredentialPrimingResponse
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorOAuth2'
+          description: errorOAuth2
+      summary: Issues a Verifiable Credential
+      tags:
+      - oidc
+      x-content-type: application/json
+      x-accepts: application/json
   /health/alive:
     get:
       description: |-
@@ -3538,109 +3578,6 @@ paths:
       - project
       x-content-type: application/json
       x-accepts: application/json
-  /projects/{project_id}/members:
-    get:
-      description: This endpoint requires the user to be a member of the project with
-        the role `OWNER` or `DEVELOPER`.
-      operationId: getProjectMembers
-      parameters:
-      - description: |-
-          Project ID
-
-          The project's ID.
-        explode: false
-        in: path
-        name: project_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/projectMembers'
-          description: projectMembers
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      security:
-      - oryAccessToken: []
-      summary: Get all members associated with this project
-      tags:
-      - project
-      x-accepts: application/json
-  /projects/{project_id}/members/{member_id}:
-    delete:
-      description: |-
-        This also sets their invite status to `REMOVED`.
-        This endpoint requires the user to be a member of the project with the role `OWNER`.
-      operationId: removeProjectMember
-      parameters:
-      - description: |-
-          Project ID
-
-          The project's ID.
-        explode: false
-        in: path
-        name: project_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Member ID
-        explode: false
-        in: path
-        name: member_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: |-
-            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
-            typically 201.
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      security:
-      - oryAccessToken: []
-      summary: Remove a member associated with this project
-      tags:
-      - project
-      x-accepts: application/json
   /projects/{project_id}/metrics:
     get:
       description: Retrieves project metrics for the specified event type and time
@@ -3720,6 +3657,100 @@ paths:
           description: genericError
       security:
       - oryAccessToken: []
+      tags:
+      - project
+      x-accepts: application/json
+  /projects/{project}/members:
+    get:
+      description: This endpoint requires the user to be a member of the project with
+        the role `OWNER` or `DEVELOPER`.
+      operationId: getProjectMembers
+      parameters:
+      - explode: false
+        in: path
+        name: project
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectMembers'
+          description: projectMembers
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Get all members associated with this project
+      tags:
+      - project
+      x-accepts: application/json
+  /projects/{project}/members/{member}:
+    delete:
+      description: |-
+        This also sets their invite status to `REMOVED`.
+        This endpoint requires the user to be a member of the project with the role `OWNER`.
+      operationId: removeProjectMember
+      parameters:
+      - explode: false
+        in: path
+        name: project
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: member
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Remove a member associated with this project
       tags:
       - project
       x-accepts: application/json
@@ -4436,12 +4467,6 @@ paths:
   /self-service/login:
     post:
       description: |-
-        :::info
-
-        This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.
-
-        :::
-
         Use this endpoint to complete a login flow. This endpoint
         behaves differently for API and browser flows.
 
@@ -5486,12 +5511,6 @@ paths:
       description: |-
         This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate
         cookies and anti-CSRF measures required for browser-based flows.
-
-        :::info
-
-        This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.
-
-        :::
 
         If this endpoint is opened as a link in the browser, it will be redirected to
         `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session
@@ -6558,7 +6577,7 @@ paths:
         if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
         if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
-        If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.
+        If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.
 
         As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
@@ -6818,6 +6837,68 @@ components:
 
         The response given when listing sessions in an administrative context.
   schemas:
+    CORS:
+      example:
+        origins:
+        - origins
+        - origins
+        enabled: true
+      properties:
+        enabled:
+          description: Whether CORS is enabled for this endpoint.
+          type: boolean
+        origins:
+          description: "The allowed origins. Use `*` to allow all origins. A wildcard\
+            \ can also be used in the subdomain, i.e. `https://*.example.com` will\
+            \ allow all origins on all subdomains of `example.com`."
+          items:
+            type: string
+          type: array
+      required:
+      - enabled
+      - origins
+      type: object
+    CreateInviteResponse:
+      properties:
+        all_invites:
+          description: A list of all invites for this resource
+          items:
+            $ref: '#/components/schemas/memberInvite'
+          type: array
+        created_invite:
+          $ref: '#/components/schemas/memberInvite'
+      required:
+      - all_invites
+      - created_invite
+      type: object
+    CreateProjectMemberInviteBody:
+      description: Create Project MemberInvite Request Body
+      properties:
+        invitee_email:
+          description: A email to invite
+          type: string
+      type: object
+    CreateVerifiableCredentialRequestBody:
+      example:
+        types:
+        - types
+        - types
+        format: format
+        proof:
+          proof_type: proof_type
+          jwt: jwt
+      properties:
+        format:
+          type: string
+        proof:
+          $ref: '#/components/schemas/VerifiableCredentialProof'
+        types:
+          items:
+            type: string
+          type: array
+      title: CreateVerifiableCredentialRequestBody contains the request body to request
+        a verifiable credential.
+      type: object
     CustomHostnameStatus:
       title: CustomHostnameStatus is the enumeration of valid state values in the
         CustomHostnameSSL.
@@ -6960,6 +7041,21 @@ components:
       items:
         $ref: '#/components/schemas/PlanDetails'
       type: array
+    RFC6749ErrorJson:
+      properties:
+        error:
+          type: string
+        error_debug:
+          type: string
+        error_description:
+          type: string
+        error_hint:
+          type: string
+        status_code:
+          format: int64
+          type: integer
+      title: RFC6749ErrorJson is a helper struct for JSON encoding/decoding of RFC6749Error.
+      type: object
     RecoveryAddressType:
       title: RecoveryAddressType must not exceed 16 characters as that is the limitation
         in the SQL Schema.
@@ -7006,6 +7102,17 @@ components:
       properties:
         GenericUsage:
           $ref: '#/components/schemas/GenericUsage'
+      type: object
+    VerifiableCredentialProof:
+      example:
+        proof_type: proof_type
+        jwt: jwt
+      properties:
+        jwt:
+          type: string
+        proof_type:
+          type: string
+      title: VerifiableCredentialProof contains the proof of a verifiable credential.
       type: object
     Warning:
       example:
@@ -7434,30 +7541,8 @@ components:
         theme:
           $ref: '#/components/schemas/projectBrandingColors'
       type: object
-    createProjectInvite:
-      description: Create Project Invite Request Body
-      properties:
-        invitee_emails:
-          description: A list of emails to invite
-          items:
-            type: string
-          type: array
-      type: object
-    createProjectInvitesResponse:
-      description: Response to the create project invite request
-      properties:
-        all_invites:
-          items:
-            $ref: '#/components/schemas/projectInvite'
-          type: array
-        created_invites:
-          items:
-            $ref: '#/components/schemas/projectInvite'
-          type: array
-      required:
-      - all_invites
-      - created_invites
-      type: object
+    createProjectMemberInviteResponse:
+      $ref: '#/components/schemas/CreateInviteResponse'
     createRecoveryCodeForIdentityBody:
       description: Create Recovery Code for Identity Request Body
       properties:
@@ -7560,6 +7645,52 @@ components:
       - plan
       - provision_first_project
       type: object
+    credentialSupportedDraft00:
+      description: Includes information about the supported verifiable credentials.
+      example:
+        types:
+        - types
+        - types
+        cryptographic_suites_supported:
+        - cryptographic_suites_supported
+        - cryptographic_suites_supported
+        cryptographic_binding_methods_supported:
+        - cryptographic_binding_methods_supported
+        - cryptographic_binding_methods_supported
+        format: format
+      properties:
+        cryptographic_binding_methods_supported:
+          description: |-
+            OpenID Connect Verifiable Credentials Cryptographic Binding Methods Supported
+
+            Contains a list of cryptographic binding methods supported for signing the proof.
+          items:
+            type: string
+          type: array
+        cryptographic_suites_supported:
+          description: |-
+            OpenID Connect Verifiable Credentials Cryptographic Suites Supported
+
+            Contains a list of cryptographic suites methods supported for signing the proof.
+          items:
+            type: string
+          type: array
+        format:
+          description: |-
+            OpenID Connect Verifiable Credentials Format
+
+            Contains the format that is supported by this authorization server.
+          type: string
+        types:
+          description: |-
+            OpenID Connect Verifiable Credentials Types
+
+            Contains the types of verifiable credentials supported.
+          items:
+            type: string
+          type: array
+      title: Verifiable Credentials Metadata (Draft 00)
+      type: object
     customDomain:
       description: Custom Hostname
       properties:
@@ -7652,6 +7783,28 @@ components:
           description: The number of sessions that were revoked.
           format: int64
           type: integer
+      type: object
+    emailTemplateData:
+      description: "Contains the data of the email template, including the subject\
+        \ and body in HTML and plaintext variants"
+      properties:
+        body:
+          $ref: '#/components/schemas/emailTemplateDataBody'
+        subject:
+          type: string
+      required:
+      - body
+      - subject
+      type: object
+    emailTemplateDataBody:
+      properties:
+        html:
+          type: string
+        plaintext:
+          type: string
+      required:
+      - html
+      - plaintext
       type: object
     errorAuthenticatorAssuranceLevelNotSatisfied:
       properties:
@@ -8296,6 +8449,19 @@ components:
       properties:
         hostname:
           type: string
+      type: object
+    internalIsAXWelcomeScreenEnabledForProjectBody:
+      description: Is Account Experience Enabled For Project Request Body
+      properties:
+        path:
+          description: Path is the path of the request.
+          type: string
+        project_slug:
+          description: ProjectSlug is the project's slug.
+          type: string
+      required:
+      - path
+      - project_slug
       type: object
     internalIsOwnerForProjectBySlugBody:
       description: Is Owner For Project By Slug Request Body
@@ -9014,6 +9180,84 @@ components:
       items:
         $ref: '#/components/schemas/managedIdentitySchema'
       type: array
+    memberInvite:
+      properties:
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: The invite's ID.
+          format: uuid
+          readOnly: true
+          type: string
+        invitee_email:
+          description: The invitee's email
+          type: string
+        invitee_id:
+          format: uuid4
+          nullable: true
+          type: string
+        owner_email:
+          description: |-
+            The invite owner's email
+            Usually the project's owner email
+          type: string
+        owner_id:
+          description: |-
+            The invite owner's ID
+            Usually the project's owner
+          format: uuid
+          type: string
+        project_id:
+          description: The Project's ID this invite is associated with
+          format: uuid
+          type: string
+        status:
+          description: |-
+            The invite's status
+            Keeps track of the invites status such as pending, accepted, declined, expired
+            pending PENDING
+            accepted ACCEPTED
+            declined DECLINED
+            expired EXPIRED
+            cancelled CANCELLED
+            removed REMOVED
+          enum:
+          - pending
+          - accepted
+          - declined
+          - expired
+          - cancelled
+          - removed
+          type: string
+          x-go-enum-desc: |-
+            pending PENDING
+            accepted ACCEPTED
+            declined DECLINED
+            expired EXPIRED
+            cancelled CANCELLED
+            removed REMOVED
+        updated_at:
+          description: Last Time Project's Revision was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - created_at
+      - id
+      - invitee_email
+      - owner_email
+      - owner_id
+      - project_id
+      - status
+      - updated_at
+      type: object
+    memberInvites:
+      items:
+        $ref: '#/components/schemas/memberInvite'
+      type: array
     message:
       example:
         dispatches:
@@ -9277,6 +9521,10 @@ components:
           format: date-time
           readOnly: true
           type: string
+        disable_account_experience_welcome_screen:
+          description: "Whether to disable the account experience welcome screen,\
+            \ which is hosted under `/ui/welcome`."
+          type: boolean
         hydra_oauth2_allowed_top_level_claims:
           items:
             type: string
@@ -9348,6 +9596,12 @@ components:
             Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.
 
             This governs the "oauth2.refresh_token_hook" setting.
+          type: string
+        hydra_oauth2_token_hook:
+          description: |-
+            Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.
+
+            This governs the "oauth2.token_hook" setting.
           type: string
         hydra_oidc_dynamic_client_registration_default_scope:
           items:
@@ -10166,6 +10420,7 @@ components:
             Configures the Ory Kratos Webauthn RP Icon
 
             This governs the "selfservice.methods.webauthn.config.rp.icon" setting.
+            Deprecated: This value will be ignored due to security considerations.
           type: string
         kratos_selfservice_methods_webauthn_config_rp_id:
           description: |-
@@ -10173,12 +10428,12 @@ components:
 
             This governs the "selfservice.methods.webauthn.config.rp.id" setting.
           type: string
-        kratos_selfservice_methods_webauthn_config_rp_origin:
-          description: |-
-            Configures the Ory Kratos Webauthn RP Origin
-
-            This governs the "selfservice.methods.webauthn.config.rp.origin" setting.
-          type: string
+        kratos_selfservice_methods_webauthn_config_rp_origins:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         kratos_selfservice_methods_webauthn_enabled:
           description: |-
             Configures whether Ory Kratos Webauthn is enabled
@@ -11689,8 +11944,30 @@ components:
         code_challenge_methods_supported:
         - code_challenge_methods_supported
         - code_challenge_methods_supported
+        credentials_endpoint_draft_00: credentials_endpoint_draft_00
         frontchannel_logout_session_supported: true
         jwks_uri: "https://{slug}.projects.oryapis.com/.well-known/jwks.json"
+        credentials_supported_draft_00:
+        - types:
+          - types
+          - types
+          cryptographic_suites_supported:
+          - cryptographic_suites_supported
+          - cryptographic_suites_supported
+          cryptographic_binding_methods_supported:
+          - cryptographic_binding_methods_supported
+          - cryptographic_binding_methods_supported
+          format: format
+        - types:
+          - types
+          - types
+          cryptographic_suites_supported:
+          - cryptographic_suites_supported
+          - cryptographic_suites_supported
+          cryptographic_binding_methods_supported:
+          - cryptographic_binding_methods_supported
+          - cryptographic_binding_methods_supported
+          format: format
         subject_types_supported:
         - subject_types_supported
         - subject_types_supported
@@ -11742,6 +12019,20 @@ components:
             by this authorization server.
           items:
             type: string
+          type: array
+        credentials_endpoint_draft_00:
+          description: |-
+            OpenID Connect Verifiable Credentials Endpoint
+
+            Contains the URL of the Verifiable Credentials Endpoint.
+          type: string
+        credentials_supported_draft_00:
+          description: |-
+            OpenID Connect Verifiable Credentials Supported
+
+            JSON array containing a list of the Verifiable Credentials supported by this authorization server.
+          items:
+            $ref: '#/components/schemas/credentialSupportedDraft00'
           type: array
         end_session_endpoint:
           description: |-
@@ -12208,6 +12499,11 @@ components:
     project:
       example:
         name: name
+        cors_admin:
+          origins:
+          - origins
+          - origins
+          enabled: true
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         services:
           identity:
@@ -12217,9 +12513,18 @@ components:
           oauth2:
             config: "{}"
         state: running
+        cors_public:
+          origins:
+          - origins
+          - origins
+          enabled: true
         slug: slug
         revision_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
+        cors_admin:
+          $ref: '#/components/schemas/CORS'
+        cors_public:
+          $ref: '#/components/schemas/CORS'
         id:
           description: The project's ID.
           format: uuid
@@ -12256,6 +12561,8 @@ components:
             halted Halted
             deleted Deleted
       required:
+      - cors_admin
+      - cors_public
       - id
       - name
       - revision_id
@@ -12514,7 +12821,7 @@ components:
             Experience theme.
           type: string
         created_at:
-          description: The Customiation Creation Date
+          description: The Customization Creation Date.
           format: date-time
           readOnly: true
           type: string
@@ -12601,7 +12908,7 @@ components:
             colors from for the Ory Account Experience theme.
           type: string
         project_branding_id:
-          description: The ProjectBranding ID this customization is associated with
+          description: The ProjectBranding ID this customization is associated with.
           format: uuid
           type: string
         secondary_color:
@@ -12621,7 +12928,7 @@ components:
             Experience theme.
           type: string
         updated_at:
-          description: Last Time Branding was Updated
+          description: Last Time Branding was Updated.
           format: date-time
           readOnly: true
           type: string
@@ -12657,84 +12964,6 @@ components:
       - id
       - project_id
       type: object
-    projectInvite:
-      properties:
-        created_at:
-          description: The Project's Revision Creation Date
-          format: date-time
-          readOnly: true
-          type: string
-        id:
-          description: The invite's ID.
-          format: uuid
-          readOnly: true
-          type: string
-        invitee_email:
-          description: The invitee's email
-          type: string
-        invitee_id:
-          format: uuid4
-          nullable: true
-          type: string
-        owner_email:
-          description: |-
-            The invite owner's email
-            Usually the project's owner email
-          type: string
-        owner_id:
-          description: |-
-            The invite owner's ID
-            Usually the project's owner
-          format: uuid
-          type: string
-        project_id:
-          description: The Project's ID this invite is associated with
-          format: uuid
-          type: string
-        status:
-          description: |-
-            The invite's status
-            Keeps track of the invites status such as pending, accepted, declined, expired
-            pending PENDING
-            accepted ACCEPTED
-            declined DECLINED
-            expired EXPIRED
-            cancelled CANCELLED
-            removed REMOVED
-          enum:
-          - pending
-          - accepted
-          - declined
-          - expired
-          - cancelled
-          - removed
-          type: string
-          x-go-enum-desc: |-
-            pending PENDING
-            accepted ACCEPTED
-            declined DECLINED
-            expired EXPIRED
-            cancelled CANCELLED
-            removed REMOVED
-        updated_at:
-          description: Last Time Project's Revision was Updated
-          format: date-time
-          readOnly: true
-          type: string
-      required:
-      - created_at
-      - id
-      - invitee_email
-      - owner_email
-      - owner_id
-      - project_id
-      - status
-      - updated_at
-      type: object
-    projectInvites:
-      items:
-        $ref: '#/components/schemas/projectInvite'
-      type: array
     projectMember:
       $ref: '#/components/schemas/cloudAccount'
     projectMembers:
@@ -13771,12 +14000,18 @@ components:
       type: object
     setProject:
       properties:
+        cors_admin:
+          $ref: '#/components/schemas/CORS'
+        cors_public:
+          $ref: '#/components/schemas/CORS'
         name:
           description: The name of the project.
           type: string
         services:
           $ref: '#/components/schemas/projectServices'
       required:
+      - cors_admin
+      - cors_public
       - name
       - services
       type: object
@@ -14382,6 +14617,11 @@ components:
           message: message
         project:
           name: name
+          cors_admin:
+            origins:
+            - origins
+            - origins
+            enabled: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           services:
             identity:
@@ -14391,6 +14631,11 @@ components:
             oauth2:
               config: "{}"
           state: running
+          cors_public:
+            origins:
+            - origins
+            - origins
+            enabled: true
           slug: slug
           revision_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -15770,6 +16015,40 @@ components:
       required:
       - email
       - method
+      type: object
+    verifiableCredentialPrimingResponse:
+      properties:
+        c_nonce:
+          type: string
+        c_nonce_expires_in:
+          format: int64
+          type: integer
+        error:
+          type: string
+        error_debug:
+          type: string
+        error_description:
+          type: string
+        error_hint:
+          type: string
+        format:
+          type: string
+        status_code:
+          format: int64
+          type: integer
+      title: VerifiableCredentialPrimingResponse contains the nonce to include in
+        the proof-of-possession JWT.
+      type: object
+    verifiableCredentialResponse:
+      example:
+        credential_draft_00: credential_draft_00
+        format: format
+      properties:
+        credential_draft_00:
+          type: string
+        format:
+          type: string
+      title: VerifiableCredentialResponse contains the verifiable credential.
       type: object
     verifiableIdentityAddress:
       description: VerifiableAddress is an identity's verifiable address

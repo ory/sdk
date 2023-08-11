@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **BackgroundSubtleColor** | Pointer to **string** | BackgroundSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **BackgroundSurfaceColor** | Pointer to **string** | BackgroundSurfaceColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **BorderDefaultColor** | Pointer to **string** | BorderDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional] 
-**CreatedAt** | **time.Time** | The Customiation Creation Date | [readonly] 
+**CreatedAt** | **time.Time** | The Customization Creation Date. | [readonly] 
 **ErrorDefaultColor** | Pointer to **string** | ErrorDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **ErrorEmphasisColor** | Pointer to **string** | ErrorEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **ErrorMutedColor** | Pointer to **string** | ErrorMutedColor is a hex color code used by the Ory Account Experience theme. | [optional] 
@@ -34,12 +34,12 @@ Name | Type | Description | Notes
 **LogoUrl** | Pointer to **string** | Logo URL Logo can be an https:// or base64:// URL. If the URL is not allowed, the logo will be stored inside the Ory Network storage bucket. | [optional] 
 **Name** | **string** | The customization theme name. | 
 **PrimaryColor** | Pointer to **string** | Primary color is an hsla color value used to derive the other colors from for the Ory Account Experience theme. | [optional] 
-**ProjectBrandingId** | **string** | The ProjectBranding ID this customization is associated with | 
+**ProjectBrandingId** | **string** | The ProjectBranding ID this customization is associated with. | 
 **SecondaryColor** | Pointer to **string** | Secondary color is a hsla color code used to derive the other colors from for the Ory Account Experience theme. | [optional] 
 **SuccessEmphasisColor** | Pointer to **string** | SuccessEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **TextDefaultColor** | Pointer to **string** | TextDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **TextDisabledColor** | Pointer to **string** | TextDisabledColor is a hex color code used by the Ory Account Experience theme. | [optional] 
-**UpdatedAt** | **time.Time** | Last Time Branding was Updated | [readonly] 
+**UpdatedAt** | **time.Time** | Last Time Branding was Updated. | [readonly] 
 
 ## Methods
 

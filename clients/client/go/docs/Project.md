@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CorsAdmin** | [**CORS**](CORS.md) |  | 
+**CorsPublic** | [**CORS**](CORS.md) |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The name of the project. | 
 **RevisionId** | **string** | The configuration revision ID. | [readonly] 
@@ -15,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewProject
 
-`func NewProject(id string, name string, revisionId string, services ProjectServices, slug string, state string, ) *Project`
+`func NewProject(corsAdmin CORS, corsPublic CORS, id string, name string, revisionId string, services ProjectServices, slug string, state string, ) *Project`
 
 NewProject instantiates a new Project object
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +31,46 @@ will change when the set of required properties is changed
 NewProjectWithDefaults instantiates a new Project object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCorsAdmin
+
+`func (o *Project) GetCorsAdmin() CORS`
+
+GetCorsAdmin returns the CorsAdmin field if non-nil, zero value otherwise.
+
+### GetCorsAdminOk
+
+`func (o *Project) GetCorsAdminOk() (*CORS, bool)`
+
+GetCorsAdminOk returns a tuple with the CorsAdmin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorsAdmin
+
+`func (o *Project) SetCorsAdmin(v CORS)`
+
+SetCorsAdmin sets CorsAdmin field to given value.
+
+
+### GetCorsPublic
+
+`func (o *Project) GetCorsPublic() CORS`
+
+GetCorsPublic returns the CorsPublic field if non-nil, zero value otherwise.
+
+### GetCorsPublicOk
+
+`func (o *Project) GetCorsPublicOk() (*CORS, bool)`
+
+GetCorsPublicOk returns a tuple with the CorsPublic field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCorsPublic
+
+`func (o *Project) SetCorsPublic(v CORS)`
+
+SetCorsPublic sets CorsPublic field to given value.
+
 
 ### GetId
 
