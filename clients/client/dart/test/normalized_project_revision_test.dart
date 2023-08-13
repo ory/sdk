@@ -297,6 +297,12 @@ void main() {
       // TODO
     });
 
+    // Configures the local_name to use in SMTP connections  This governs the \"courier.smtp.local_name\" setting.
+    // String kratosCourierSmtpLocalName
+    test('to test the property `kratosCourierSmtpLocalName`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
     // String kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
     test('to test the property `kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml`', () async {

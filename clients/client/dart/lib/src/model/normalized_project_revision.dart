@@ -67,6 +67,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosCourierSmtpFromAddress] - Configures the Ory Kratos SMTP From Address  This governs the \"courier.smtp.from_address\" setting.
 /// * [kratosCourierSmtpFromName] - Configures the Ory Kratos SMTP From Name  This governs the \"courier.smtp.from_name\" setting.
 /// * [kratosCourierSmtpHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+/// * [kratosCourierSmtpLocalName] - Configures the local_name to use in SMTP connections  This governs the \"courier.smtp.local_name\" setting.
 /// * [kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml] - Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
 /// * [kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext] - Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesRecoveryCodeInvalidEmailSubject] - Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
@@ -365,6 +366,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
   @BuiltValueField(wireName: r'kratos_courier_smtp_headers')
   JsonObject? get kratosCourierSmtpHeaders;
+
+  /// Configures the local_name to use in SMTP connections  This governs the \"courier.smtp.local_name\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_smtp_local_name')
+  String? get kratosCourierSmtpLocalName;
 
   /// Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_recovery_code_invalid_email_body_html')
@@ -1157,6 +1162,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosCourierSmtpHeaders,
         specifiedType: const FullType.nullable(JsonObject),
+      );
+    }
+    if (object.kratosCourierSmtpLocalName != null) {
+      yield r'kratos_courier_smtp_local_name';
+      yield serializers.serialize(
+        object.kratosCourierSmtpLocalName,
+        specifiedType: const FullType(String),
       );
     }
     if (object.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml != null) {
@@ -2266,6 +2278,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.kratosCourierSmtpHeaders = valueDes;
+          break;
+        case r'kratos_courier_smtp_local_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierSmtpLocalName = valueDes;
           break;
         case r'kratos_courier_templates_recovery_code_invalid_email_body_html':
           final valueDes = serializers.deserialize(

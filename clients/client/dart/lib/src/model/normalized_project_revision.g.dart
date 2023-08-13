@@ -378,6 +378,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final JsonObject? kratosCourierSmtpHeaders;
   @override
+  final String? kratosCourierSmtpLocalName;
+  @override
   final String? kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
   @override
   final String? kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext;
@@ -653,6 +655,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosCourierSmtpFromAddress,
       this.kratosCourierSmtpFromName,
       this.kratosCourierSmtpHeaders,
+      this.kratosCourierSmtpLocalName,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailSubject,
@@ -847,6 +850,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosCourierSmtpFromAddress == other.kratosCourierSmtpFromAddress &&
         kratosCourierSmtpFromName == other.kratosCourierSmtpFromName &&
         kratosCourierSmtpHeaders == other.kratosCourierSmtpHeaders &&
+        kratosCourierSmtpLocalName == other.kratosCourierSmtpLocalName &&
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml ==
             other.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml &&
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext ==
@@ -1109,6 +1113,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosCourierSmtpFromAddress.hashCode);
     _$hash = $jc(_$hash, kratosCourierSmtpFromName.hashCode);
     _$hash = $jc(_$hash, kratosCourierSmtpHeaders.hashCode);
+    _$hash = $jc(_$hash, kratosCourierSmtpLocalName.hashCode);
     _$hash = $jc(_$hash,
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml.hashCode);
     _$hash = $jc(_$hash,
@@ -1364,6 +1369,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('kratosCourierSmtpFromAddress', kratosCourierSmtpFromAddress)
           ..add('kratosCourierSmtpFromName', kratosCourierSmtpFromName)
           ..add('kratosCourierSmtpHeaders', kratosCourierSmtpHeaders)
+          ..add('kratosCourierSmtpLocalName', kratosCourierSmtpLocalName)
           ..add('kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml',
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml)
           ..add('kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext',
@@ -1899,6 +1905,11 @@ class NormalizedProjectRevisionBuilder
   JsonObject? get kratosCourierSmtpHeaders => _$this._kratosCourierSmtpHeaders;
   set kratosCourierSmtpHeaders(JsonObject? kratosCourierSmtpHeaders) =>
       _$this._kratosCourierSmtpHeaders = kratosCourierSmtpHeaders;
+
+  String? _kratosCourierSmtpLocalName;
+  String? get kratosCourierSmtpLocalName => _$this._kratosCourierSmtpLocalName;
+  set kratosCourierSmtpLocalName(String? kratosCourierSmtpLocalName) =>
+      _$this._kratosCourierSmtpLocalName = kratosCourierSmtpLocalName;
 
   String? _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
   String? get kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml =>
@@ -2806,6 +2817,7 @@ class NormalizedProjectRevisionBuilder
       _kratosCourierSmtpFromAddress = $v.kratosCourierSmtpFromAddress;
       _kratosCourierSmtpFromName = $v.kratosCourierSmtpFromName;
       _kratosCourierSmtpHeaders = $v.kratosCourierSmtpHeaders;
+      _kratosCourierSmtpLocalName = $v.kratosCourierSmtpLocalName;
       _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml =
           $v.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
       _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext =
@@ -3089,6 +3101,7 @@ class NormalizedProjectRevisionBuilder
               kratosCourierSmtpFromAddress: kratosCourierSmtpFromAddress,
               kratosCourierSmtpFromName: kratosCourierSmtpFromName,
               kratosCourierSmtpHeaders: kratosCourierSmtpHeaders,
+              kratosCourierSmtpLocalName: kratosCourierSmtpLocalName,
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml:
                   kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext:

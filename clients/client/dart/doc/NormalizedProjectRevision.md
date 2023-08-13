@@ -58,6 +58,7 @@ Name | Type | Description | Notes
 **kratosCourierSmtpFromAddress** | **String** | Configures the Ory Kratos SMTP From Address  This governs the \"courier.smtp.from_address\" setting. | [optional] 
 **kratosCourierSmtpFromName** | **String** | Configures the Ory Kratos SMTP From Name  This governs the \"courier.smtp.from_name\" setting. | [optional] 
 **kratosCourierSmtpHeaders** | [**JsonObject**](.md) | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**kratosCourierSmtpLocalName** | **String** | Configures the local_name to use in SMTP connections  This governs the \"courier.smtp.local_name\" setting. | [optional] 
 **kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml** | **String** | Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting. | [optional] 
 **kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext** | **String** | Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.plaintext\" setting. | [optional] 
 **kratosCourierTemplatesRecoveryCodeInvalidEmailSubject** | **String** | Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting. | [optional] 

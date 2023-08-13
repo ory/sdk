@@ -54,6 +54,7 @@ Name | Type | Description | Notes
 **KratosCourierSmtpFromAddress** | Pointer to **string** | Configures the Ory Kratos SMTP From Address  This governs the \&quot;courier.smtp.from_address\&quot; setting. | [optional] 
 **KratosCourierSmtpFromName** | Pointer to **string** | Configures the Ory Kratos SMTP From Name  This governs the \&quot;courier.smtp.from_name\&quot; setting. | [optional] 
 **KratosCourierSmtpHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**KratosCourierSmtpLocalName** | Pointer to **string** | Configures the local_name to use in SMTP connections  This governs the \&quot;courier.smtp.local_name\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryCodeInvalidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] 
@@ -1449,6 +1450,31 @@ HasKratosCourierSmtpHeaders returns a boolean if a field has been set.
 `func (o *NormalizedProjectRevision) UnsetKratosCourierSmtpHeaders()`
 
 UnsetKratosCourierSmtpHeaders ensures that no value is present for KratosCourierSmtpHeaders, not even an explicit nil
+### GetKratosCourierSmtpLocalName
+
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpLocalName() string`
+
+GetKratosCourierSmtpLocalName returns the KratosCourierSmtpLocalName field if non-nil, zero value otherwise.
+
+### GetKratosCourierSmtpLocalNameOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpLocalNameOk() (*string, bool)`
+
+GetKratosCourierSmtpLocalNameOk returns a tuple with the KratosCourierSmtpLocalName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierSmtpLocalName
+
+`func (o *NormalizedProjectRevision) SetKratosCourierSmtpLocalName(v string)`
+
+SetKratosCourierSmtpLocalName sets KratosCourierSmtpLocalName field to given value.
+
+### HasKratosCourierSmtpLocalName
+
+`func (o *NormalizedProjectRevision) HasKratosCourierSmtpLocalName() bool`
+
+HasKratosCourierSmtpLocalName returns a boolean if a field has been set.
+
 ### GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
 
 `func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml() string`

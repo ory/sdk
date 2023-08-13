@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.44
+API version: v1.1.45
 Contact: support@ory.sh
 */
 
@@ -108,6 +108,8 @@ type NormalizedProjectRevision struct {
 	KratosCourierSmtpFromName *string `json:"kratos_courier_smtp_from_name,omitempty"`
 	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 	KratosCourierSmtpHeaders map[string]interface{} `json:"kratos_courier_smtp_headers,omitempty"`
+	// Configures the local_name to use in SMTP connections  This governs the \"courier.smtp.local_name\" setting.
+	KratosCourierSmtpLocalName *string `json:"kratos_courier_smtp_local_name,omitempty"`
 	// Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
 	KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_code_invalid_email_body_html,omitempty"`
 	// Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.plaintext\" setting.
@@ -1972,6 +1974,38 @@ func (o *NormalizedProjectRevision) HasKratosCourierSmtpHeaders() bool {
 // SetKratosCourierSmtpHeaders gets a reference to the given map[string]interface{} and assigns it to the KratosCourierSmtpHeaders field.
 func (o *NormalizedProjectRevision) SetKratosCourierSmtpHeaders(v map[string]interface{}) {
 	o.KratosCourierSmtpHeaders = v
+}
+
+// GetKratosCourierSmtpLocalName returns the KratosCourierSmtpLocalName field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpLocalName() string {
+	if o == nil || o.KratosCourierSmtpLocalName == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierSmtpLocalName
+}
+
+// GetKratosCourierSmtpLocalNameOk returns a tuple with the KratosCourierSmtpLocalName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpLocalNameOk() (*string, bool) {
+	if o == nil || o.KratosCourierSmtpLocalName == nil {
+		return nil, false
+	}
+	return o.KratosCourierSmtpLocalName, true
+}
+
+// HasKratosCourierSmtpLocalName returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierSmtpLocalName() bool {
+	if o != nil && o.KratosCourierSmtpLocalName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierSmtpLocalName gets a reference to the given string and assigns it to the KratosCourierSmtpLocalName field.
+func (o *NormalizedProjectRevision) SetKratosCourierSmtpLocalName(v string) {
+	o.KratosCourierSmtpLocalName = &v
 }
 
 // GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml returns the KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml field value if set, zero value otherwise.
@@ -5479,6 +5513,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosCourierSmtpHeaders != nil {
 		toSerialize["kratos_courier_smtp_headers"] = o.KratosCourierSmtpHeaders
 	}
+	if o.KratosCourierSmtpLocalName != nil {
+		toSerialize["kratos_courier_smtp_local_name"] = o.KratosCourierSmtpLocalName
+	}
 	if o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml != nil {
 		toSerialize["kratos_courier_templates_recovery_code_invalid_email_body_html"] = o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
 	}
@@ -5862,6 +5899,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_courier_smtp_from_address")
 		delete(additionalProperties, "kratos_courier_smtp_from_name")
 		delete(additionalProperties, "kratos_courier_smtp_headers")
+		delete(additionalProperties, "kratos_courier_smtp_local_name")
 		delete(additionalProperties, "kratos_courier_templates_recovery_code_invalid_email_body_html")
 		delete(additionalProperties, "kratos_courier_templates_recovery_code_invalid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_recovery_code_invalid_email_subject")

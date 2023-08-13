@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.44
+  version: v1.1.45
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -9867,6 +9867,12 @@ components:
             \ well with JSON, SQL, and Swagger and is NULLable-"
           nullable: true
           type: object
+        kratos_courier_smtp_local_name:
+          description: |-
+            Configures the local_name to use in SMTP connections
+
+            This governs the "courier.smtp.local_name" setting.
+          type: string
         kratos_courier_templates_recovery_code_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template
