@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -45,7 +45,10 @@ type IntrospectedOAuth2Token struct {
 	TokenUse *string `json:"token_use,omitempty"`
 	// Username is a human-readable identifier for the resource owner who authorized this token.
 	Username *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IntrospectedOAuth2Token IntrospectedOAuth2Token
 
 // NewIntrospectedOAuth2Token instantiates a new IntrospectedOAuth2Token object
 // This constructor will assign default values to properties that have it defined,
@@ -549,7 +552,42 @@ func (o IntrospectedOAuth2Token) MarshalJSON() ([]byte, error) {
 	if o.Username != nil {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IntrospectedOAuth2Token) UnmarshalJSON(bytes []byte) (err error) {
+	varIntrospectedOAuth2Token := _IntrospectedOAuth2Token{}
+
+	if err = json.Unmarshal(bytes, &varIntrospectedOAuth2Token); err == nil {
+		*o = IntrospectedOAuth2Token(varIntrospectedOAuth2Token)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "aud")
+		delete(additionalProperties, "client_id")
+		delete(additionalProperties, "exp")
+		delete(additionalProperties, "ext")
+		delete(additionalProperties, "iat")
+		delete(additionalProperties, "iss")
+		delete(additionalProperties, "nbf")
+		delete(additionalProperties, "obfuscated_subject")
+		delete(additionalProperties, "scope")
+		delete(additionalProperties, "sub")
+		delete(additionalProperties, "token_type")
+		delete(additionalProperties, "token_use")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIntrospectedOAuth2Token struct {

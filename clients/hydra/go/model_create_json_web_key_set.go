@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -23,7 +23,10 @@ type CreateJsonWebKeySet struct {
 	Kid string `json:"kid"`
 	// JSON Web Key Use  The \"use\" (public key use) parameter identifies the intended use of the public key. The \"use\" parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Valid values are \"enc\" and \"sig\".
 	Use string `json:"use"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateJsonWebKeySet CreateJsonWebKeySet
 
 // NewCreateJsonWebKeySet instantiates a new CreateJsonWebKeySet object
 // This constructor will assign default values to properties that have it defined,
@@ -128,7 +131,31 @@ func (o CreateJsonWebKeySet) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["use"] = o.Use
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *CreateJsonWebKeySet) UnmarshalJSON(bytes []byte) (err error) {
+	varCreateJsonWebKeySet := _CreateJsonWebKeySet{}
+
+	if err = json.Unmarshal(bytes, &varCreateJsonWebKeySet); err == nil {
+		*o = CreateJsonWebKeySet(varCreateJsonWebKeySet)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "alg")
+		delete(additionalProperties, "kid")
+		delete(additionalProperties, "use")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateJsonWebKeySet struct {

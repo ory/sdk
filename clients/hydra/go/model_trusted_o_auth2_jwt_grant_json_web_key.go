@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -21,7 +21,10 @@ type TrustedOAuth2JwtGrantJsonWebKey struct {
 	Kid *string `json:"kid,omitempty"`
 	// The \"set\" is basically a name for a group(set) of keys. Will be the same as \"issuer\" in grant.
 	Set *string `json:"set,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TrustedOAuth2JwtGrantJsonWebKey TrustedOAuth2JwtGrantJsonWebKey
 
 // NewTrustedOAuth2JwtGrantJsonWebKey instantiates a new TrustedOAuth2JwtGrantJsonWebKey object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o TrustedOAuth2JwtGrantJsonWebKey) MarshalJSON() ([]byte, error) {
 	if o.Set != nil {
 		toSerialize["set"] = o.Set
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *TrustedOAuth2JwtGrantJsonWebKey) UnmarshalJSON(bytes []byte) (err error) {
+	varTrustedOAuth2JwtGrantJsonWebKey := _TrustedOAuth2JwtGrantJsonWebKey{}
+
+	if err = json.Unmarshal(bytes, &varTrustedOAuth2JwtGrantJsonWebKey); err == nil {
+		*o = TrustedOAuth2JwtGrantJsonWebKey(varTrustedOAuth2JwtGrantJsonWebKey)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "kid")
+		delete(additionalProperties, "set")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTrustedOAuth2JwtGrantJsonWebKey struct {

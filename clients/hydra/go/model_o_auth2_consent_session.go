@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -28,7 +28,10 @@ type OAuth2ConsentSession struct {
 	// Remember Consent For  RememberFor sets how long the consent authorization should be remembered for in seconds. If set to `0`, the authorization will be remembered indefinitely.
 	RememberFor *int64 `json:"remember_for,omitempty"`
 	Session *AcceptOAuth2ConsentRequestSession `json:"session,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2ConsentSession OAuth2ConsentSession
 
 // NewOAuth2ConsentSession instantiates a new OAuth2ConsentSession object
 // This constructor will assign default values to properties that have it defined,
@@ -329,7 +332,36 @@ func (o OAuth2ConsentSession) MarshalJSON() ([]byte, error) {
 	if o.Session != nil {
 		toSerialize["session"] = o.Session
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OAuth2ConsentSession) UnmarshalJSON(bytes []byte) (err error) {
+	varOAuth2ConsentSession := _OAuth2ConsentSession{}
+
+	if err = json.Unmarshal(bytes, &varOAuth2ConsentSession); err == nil {
+		*o = OAuth2ConsentSession(varOAuth2ConsentSession)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "consent_request")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "grant_access_token_audience")
+		delete(additionalProperties, "grant_scope")
+		delete(additionalProperties, "handled_at")
+		delete(additionalProperties, "remember")
+		delete(additionalProperties, "remember_for")
+		delete(additionalProperties, "session")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2ConsentSession struct {

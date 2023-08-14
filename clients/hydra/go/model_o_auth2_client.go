@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -103,7 +103,10 @@ type OAuth2Client struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// OpenID Connect Request Userinfo Signed Response Algorithm  JWS alg algorithm [JWA] REQUIRED for signing UserInfo Responses. If this is specified, the response will be JWT [JWT] serialized, and signed using JWS. The default, if omitted, is for the UserInfo Response to return the Claims as a UTF-8 encoded JSON object using the application/json content-type.
 	UserinfoSignedResponseAlg *string `json:"userinfo_signed_response_alg,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2Client OAuth2Client
 
 // NewOAuth2Client instantiates a new OAuth2Client object
 // This constructor will assign default values to properties that have it defined,
@@ -1775,7 +1778,75 @@ func (o OAuth2Client) MarshalJSON() ([]byte, error) {
 	if o.UserinfoSignedResponseAlg != nil {
 		toSerialize["userinfo_signed_response_alg"] = o.UserinfoSignedResponseAlg
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OAuth2Client) UnmarshalJSON(bytes []byte) (err error) {
+	varOAuth2Client := _OAuth2Client{}
+
+	if err = json.Unmarshal(bytes, &varOAuth2Client); err == nil {
+		*o = OAuth2Client(varOAuth2Client)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_token_strategy")
+		delete(additionalProperties, "allowed_cors_origins")
+		delete(additionalProperties, "audience")
+		delete(additionalProperties, "authorization_code_grant_access_token_lifespan")
+		delete(additionalProperties, "authorization_code_grant_id_token_lifespan")
+		delete(additionalProperties, "authorization_code_grant_refresh_token_lifespan")
+		delete(additionalProperties, "backchannel_logout_session_required")
+		delete(additionalProperties, "backchannel_logout_uri")
+		delete(additionalProperties, "client_credentials_grant_access_token_lifespan")
+		delete(additionalProperties, "client_id")
+		delete(additionalProperties, "client_name")
+		delete(additionalProperties, "client_secret")
+		delete(additionalProperties, "client_secret_expires_at")
+		delete(additionalProperties, "client_uri")
+		delete(additionalProperties, "contacts")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "frontchannel_logout_session_required")
+		delete(additionalProperties, "frontchannel_logout_uri")
+		delete(additionalProperties, "grant_types")
+		delete(additionalProperties, "implicit_grant_access_token_lifespan")
+		delete(additionalProperties, "implicit_grant_id_token_lifespan")
+		delete(additionalProperties, "jwks")
+		delete(additionalProperties, "jwks_uri")
+		delete(additionalProperties, "jwt_bearer_grant_access_token_lifespan")
+		delete(additionalProperties, "logo_uri")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "owner")
+		delete(additionalProperties, "policy_uri")
+		delete(additionalProperties, "post_logout_redirect_uris")
+		delete(additionalProperties, "redirect_uris")
+		delete(additionalProperties, "refresh_token_grant_access_token_lifespan")
+		delete(additionalProperties, "refresh_token_grant_id_token_lifespan")
+		delete(additionalProperties, "refresh_token_grant_refresh_token_lifespan")
+		delete(additionalProperties, "registration_access_token")
+		delete(additionalProperties, "registration_client_uri")
+		delete(additionalProperties, "request_object_signing_alg")
+		delete(additionalProperties, "request_uris")
+		delete(additionalProperties, "response_types")
+		delete(additionalProperties, "scope")
+		delete(additionalProperties, "sector_identifier_uri")
+		delete(additionalProperties, "skip_consent")
+		delete(additionalProperties, "subject_type")
+		delete(additionalProperties, "token_endpoint_auth_method")
+		delete(additionalProperties, "token_endpoint_auth_signing_alg")
+		delete(additionalProperties, "tos_uri")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "userinfo_signed_response_alg")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2Client struct {

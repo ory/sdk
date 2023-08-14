@@ -1,6 +1,6 @@
 [package]
 name = "ory-hydra-client"
-version = "2.1.1"
+version = "2.2.0-rc.3"
 description = "SDK Client for Ory Hydra"
 documentation = "https://www.ory.sh/hydra/docs/sdk"
 homepage = "https://www.ory.sh"

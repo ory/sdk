@@ -7,11 +7,14 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:ory_hydra_client/src/model/create_verifiable_credential_request_body.dart';
 import 'package:ory_hydra_client/src/model/error_o_auth2.dart';
 import 'package:ory_hydra_client/src/model/generic_error.dart';
 import 'package:ory_hydra_client/src/model/o_auth2_client.dart';
 import 'package:ory_hydra_client/src/model/oidc_configuration.dart';
 import 'package:ory_hydra_client/src/model/oidc_user_info.dart';
+import 'package:ory_hydra_client/src/model/verifiable_credential_priming_response.dart';
+import 'package:ory_hydra_client/src/model/verifiable_credential_response.dart';
 
 class OidcApi {
 
@@ -70,9 +73,10 @@ class OidcApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -84,25 +88,121 @@ class OidcApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Issues a Verifiable Credential
+  /// This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+  ///
+  /// Parameters:
+  /// * [createVerifiableCredentialRequestBody] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [VerifiableCredentialResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<VerifiableCredentialResponse>> createVerifiableCredential({ 
+    CreateVerifiableCredentialRequestBody? createVerifiableCredentialRequestBody,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/credentials';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(CreateVerifiableCredentialRequestBody);
+      _bodyData = createVerifiableCredentialRequestBody == null ? null : _serializers.serialize(createVerifiableCredentialRequestBody, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioError(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    VerifiableCredentialResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VerifiableCredentialResponse),
+      ) as VerifiableCredentialResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<VerifiableCredentialResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -209,22 +309,23 @@ class OidcApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OidcConfiguration _responseData;
+    OidcConfiguration? _responseData;
 
     try {
-      const _responseType = FullType(OidcConfiguration);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OidcConfiguration),
       ) as OidcConfiguration;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OidcConfiguration>(
@@ -289,22 +390,23 @@ class OidcApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -366,22 +468,23 @@ class OidcApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OidcUserInfo _responseData;
+    OidcUserInfo? _responseData;
 
     try {
-      const _responseType = FullType(OidcUserInfo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OidcUserInfo),
       ) as OidcUserInfo;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OidcUserInfo>(
@@ -498,9 +601,10 @@ class OidcApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -512,22 +616,23 @@ class OidcApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(

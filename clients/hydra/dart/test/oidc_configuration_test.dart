@@ -43,6 +43,18 @@ void main() {
       // TODO
     });
 
+    // OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint.
+    // String credentialsEndpointDraft00
+    test('to test the property `credentialsEndpointDraft00`', () async {
+      // TODO
+    });
+
+    // OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server.
+    // BuiltList<CredentialSupportedDraft00> credentialsSupportedDraft00
+    test('to test the property `credentialsSupportedDraft00`', () async {
+      // TODO
+    });
+
     // OpenID Connect End-Session Endpoint  URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
     // String endSessionEndpoint
     test('to test the property `endSessionEndpoint`', () async {

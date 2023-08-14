@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -55,7 +55,10 @@ type OidcUserInfo struct {
 	Website *string `json:"website,omitempty"`
 	// String from zoneinfo [zoneinfo] time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.
 	Zoneinfo *string `json:"zoneinfo,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OidcUserInfo OidcUserInfo
 
 // NewOidcUserInfo instantiates a new OidcUserInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -741,7 +744,47 @@ func (o OidcUserInfo) MarshalJSON() ([]byte, error) {
 	if o.Zoneinfo != nil {
 		toSerialize["zoneinfo"] = o.Zoneinfo
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OidcUserInfo) UnmarshalJSON(bytes []byte) (err error) {
+	varOidcUserInfo := _OidcUserInfo{}
+
+	if err = json.Unmarshal(bytes, &varOidcUserInfo); err == nil {
+		*o = OidcUserInfo(varOidcUserInfo)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "birthdate")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "email_verified")
+		delete(additionalProperties, "family_name")
+		delete(additionalProperties, "gender")
+		delete(additionalProperties, "given_name")
+		delete(additionalProperties, "locale")
+		delete(additionalProperties, "middle_name")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "nickname")
+		delete(additionalProperties, "phone_number")
+		delete(additionalProperties, "phone_number_verified")
+		delete(additionalProperties, "picture")
+		delete(additionalProperties, "preferred_username")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "sub")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "website")
+		delete(additionalProperties, "zoneinfo")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOidcUserInfo struct {

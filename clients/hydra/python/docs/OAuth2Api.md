@@ -167,6 +167,7 @@ with ory_hydra_client.ApiClient() as api_client:
         context=None,
         extend_session_lifespan=True,
         force_subject_identifier="force_subject_identifier_example",
+        identity_provider_session_id="identity_provider_session_id_example",
         remember=True,
         remember_for=1,
         subject="subject_example",

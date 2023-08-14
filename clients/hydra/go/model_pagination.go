@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -21,7 +21,10 @@ type Pagination struct {
 	PageSize *int64 `json:"page_size,omitempty"`
 	// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 	PageToken *string `json:"page_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Pagination Pagination
 
 // NewPagination instantiates a new Pagination object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,30 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 	if o.PageToken != nil {
 		toSerialize["page_token"] = o.PageToken
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
+	varPagination := _Pagination{}
+
+	if err = json.Unmarshal(bytes, &varPagination); err == nil {
+		*o = Pagination(varPagination)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "page_size")
+		delete(additionalProperties, "page_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePagination struct {

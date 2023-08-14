@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -21,7 +21,10 @@ type AcceptOAuth2ConsentRequestSession struct {
 	AccessToken interface{} `json:"access_token,omitempty"`
 	// IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable by anyone that has access to the ID Challenge. Use with care!
 	IdToken interface{} `json:"id_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AcceptOAuth2ConsentRequestSession AcceptOAuth2ConsentRequestSession
 
 // NewAcceptOAuth2ConsentRequestSession instantiates a new AcceptOAuth2ConsentRequestSession object
 // This constructor will assign default values to properties that have it defined,
@@ -114,7 +117,30 @@ func (o AcceptOAuth2ConsentRequestSession) MarshalJSON() ([]byte, error) {
 	if o.IdToken != nil {
 		toSerialize["id_token"] = o.IdToken
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *AcceptOAuth2ConsentRequestSession) UnmarshalJSON(bytes []byte) (err error) {
+	varAcceptOAuth2ConsentRequestSession := _AcceptOAuth2ConsentRequestSession{}
+
+	if err = json.Unmarshal(bytes, &varAcceptOAuth2ConsentRequestSession); err == nil {
+		*o = AcceptOAuth2ConsentRequestSession(varAcceptOAuth2ConsentRequestSession)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_token")
+		delete(additionalProperties, "id_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAcceptOAuth2ConsentRequestSession struct {

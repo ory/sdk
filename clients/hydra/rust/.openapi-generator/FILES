@@ -7,6 +7,8 @@ docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/CreateJsonWebKeySet.md
+docs/CreateVerifiableCredentialRequestBody.md
+docs/CredentialSupportedDraft00.md
 docs/ErrorOAuth2.md
 docs/GenericError.md
 docs/GetVersion200Response.md
@@ -37,6 +39,7 @@ docs/OidcUserInfo.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/RejectOAuth2Request.md
+docs/Rfc6749ErrorJson.md
 docs/TokenPagination.md
 docs/TokenPaginationHeaders.md
 docs/TokenPaginationRequestParameters.md
@@ -44,6 +47,9 @@ docs/TokenPaginationResponseHeaders.md
 docs/TrustOAuth2JwtGrantIssuer.md
 docs/TrustedOAuth2JwtGrantIssuer.md
 docs/TrustedOAuth2JwtGrantJsonWebKey.md
+docs/VerifiableCredentialPrimingResponse.md
+docs/VerifiableCredentialProof.md
+docs/VerifiableCredentialResponse.md
 docs/Version.md
 docs/WellknownApi.md
 git_push.sh
@@ -59,6 +65,8 @@ src/models/accept_o_auth2_consent_request.rs
 src/models/accept_o_auth2_consent_request_session.rs
 src/models/accept_o_auth2_login_request.rs
 src/models/create_json_web_key_set.rs
+src/models/create_verifiable_credential_request_body.rs
+src/models/credential_supported_draft00.rs
 src/models/error_o_auth2.rs
 src/models/generic_error.rs
 src/models/get_version_200_response.rs
@@ -86,6 +94,7 @@ src/models/oidc_user_info.rs
 src/models/pagination.rs
 src/models/pagination_headers.rs
 src/models/reject_o_auth2_request.rs
+src/models/rfc6749_error_json.rs
 src/models/token_pagination.rs
 src/models/token_pagination_headers.rs
 src/models/token_pagination_request_parameters.rs
@@ -93,4 +102,7 @@ src/models/token_pagination_response_headers.rs
 src/models/trust_o_auth2_jwt_grant_issuer.rs
 src/models/trusted_o_auth2_jwt_grant_issuer.rs
 src/models/trusted_o_auth2_jwt_grant_json_web_key.rs
+src/models/verifiable_credential_priming_response.rs
+src/models/verifiable_credential_proof.rs
+src/models/verifiable_credential_response.rs
 src/models/version.rs

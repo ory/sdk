@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -28,7 +28,10 @@ type OAuth2LogoutRequest struct {
 	Sid *string `json:"sid,omitempty"`
 	// Subject is the user for whom the logout was request.
 	Subject *string `json:"subject,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2LogoutRequest OAuth2LogoutRequest
 
 // NewOAuth2LogoutRequest instantiates a new OAuth2LogoutRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -259,7 +262,34 @@ func (o OAuth2LogoutRequest) MarshalJSON() ([]byte, error) {
 	if o.Subject != nil {
 		toSerialize["subject"] = o.Subject
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OAuth2LogoutRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varOAuth2LogoutRequest := _OAuth2LogoutRequest{}
+
+	if err = json.Unmarshal(bytes, &varOAuth2LogoutRequest); err == nil {
+		*o = OAuth2LogoutRequest(varOAuth2LogoutRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "challenge")
+		delete(additionalProperties, "client")
+		delete(additionalProperties, "request_url")
+		delete(additionalProperties, "rp_initiated")
+		delete(additionalProperties, "sid")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2LogoutRequest struct {

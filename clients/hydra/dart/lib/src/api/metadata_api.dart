@@ -63,22 +63,23 @@ class MetadataApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    GetVersion200Response _responseData;
+    GetVersion200Response? _responseData;
 
     try {
-      const _responseType = FullType(GetVersion200Response);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetVersion200Response),
       ) as GetVersion200Response;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<GetVersion200Response>(
@@ -135,22 +136,23 @@ class MetadataApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    HealthStatus _responseData;
+    HealthStatus? _responseData;
 
     try {
-      const _responseType = FullType(HealthStatus);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(HealthStatus),
       ) as HealthStatus;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<HealthStatus>(
@@ -207,22 +209,23 @@ class MetadataApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    IsReady200Response _responseData;
+    IsReady200Response? _responseData;
 
     try {
-      const _responseType = FullType(IsReady200Response);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(IsReady200Response),
       ) as IsReady200Response;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<IsReady200Response>(

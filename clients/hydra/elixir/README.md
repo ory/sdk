@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:ory_hydra, "~> v2.2.0-pre.0"}]
+  [{:ory_hydra, "~> v2.2.0-rc.3"}]
 end
 ```
 

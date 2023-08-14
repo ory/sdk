@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -23,7 +23,10 @@ type OAuth2ConsentSessionExpiresAt struct {
 	IdToken *time.Time `json:"id_token,omitempty"`
 	ParContext *time.Time `json:"par_context,omitempty"`
 	RefreshToken *time.Time `json:"refresh_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2ConsentSessionExpiresAt OAuth2ConsentSessionExpiresAt
 
 // NewOAuth2ConsentSessionExpiresAt instantiates a new OAuth2ConsentSessionExpiresAt object
 // This constructor will assign default values to properties that have it defined,
@@ -219,7 +222,33 @@ func (o OAuth2ConsentSessionExpiresAt) MarshalJSON() ([]byte, error) {
 	if o.RefreshToken != nil {
 		toSerialize["refresh_token"] = o.RefreshToken
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OAuth2ConsentSessionExpiresAt) UnmarshalJSON(bytes []byte) (err error) {
+	varOAuth2ConsentSessionExpiresAt := _OAuth2ConsentSessionExpiresAt{}
+
+	if err = json.Unmarshal(bytes, &varOAuth2ConsentSessionExpiresAt); err == nil {
+		*o = OAuth2ConsentSessionExpiresAt(varOAuth2ConsentSessionExpiresAt)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_token")
+		delete(additionalProperties, "authorize_code")
+		delete(additionalProperties, "id_token")
+		delete(additionalProperties, "par_context")
+		delete(additionalProperties, "refresh_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2ConsentSessionExpiresAt struct {

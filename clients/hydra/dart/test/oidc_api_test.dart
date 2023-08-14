@@ -16,6 +16,15 @@ void main() {
       // TODO
     });
 
+    // Issues a Verifiable Credential
+    //
+    // This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+    //
+    //Future<VerifiableCredentialResponse> createVerifiableCredential({ CreateVerifiableCredentialRequestBody createVerifiableCredentialRequestBody }) async
+    test('test createVerifiableCredential', () async {
+      // TODO
+    });
+
     // Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
     //
     // This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the public internet directly and can be used in self-service. It implements the OpenID Connect Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint is disabled by default. It can be enabled by an administrator.  To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query. If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.

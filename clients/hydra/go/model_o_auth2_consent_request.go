@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -37,7 +37,10 @@ type OAuth2ConsentRequest struct {
 	Skip *bool `json:"skip,omitempty"`
 	// Subject is the user ID of the end-user that authenticated. Now, that end user needs to grant or deny the scope requested by the OAuth 2.0 client.
 	Subject *string `json:"subject,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2ConsentRequest OAuth2ConsentRequest
 
 // NewOAuth2ConsentRequest instantiates a new OAuth2ConsentRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -507,7 +510,41 @@ func (o OAuth2ConsentRequest) MarshalJSON() ([]byte, error) {
 	if o.Subject != nil {
 		toSerialize["subject"] = o.Subject
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OAuth2ConsentRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varOAuth2ConsentRequest := _OAuth2ConsentRequest{}
+
+	if err = json.Unmarshal(bytes, &varOAuth2ConsentRequest); err == nil {
+		*o = OAuth2ConsentRequest(varOAuth2ConsentRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "acr")
+		delete(additionalProperties, "amr")
+		delete(additionalProperties, "challenge")
+		delete(additionalProperties, "client")
+		delete(additionalProperties, "context")
+		delete(additionalProperties, "login_challenge")
+		delete(additionalProperties, "login_session_id")
+		delete(additionalProperties, "oidc_context")
+		delete(additionalProperties, "request_url")
+		delete(additionalProperties, "requested_access_token_audience")
+		delete(additionalProperties, "requested_scope")
+		delete(additionalProperties, "skip")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2ConsentRequest struct {

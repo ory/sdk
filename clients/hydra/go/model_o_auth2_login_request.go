@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -31,7 +31,10 @@ type OAuth2LoginRequest struct {
 	Skip bool `json:"skip"`
 	// Subject is the user ID of the end-user that authenticated. Now, that end user needs to grant or deny the scope requested by the OAuth 2.0 client. If this value is set and `skip` is true, you MUST include this subject type when accepting the login request, or the request will fail.
 	Subject string `json:"subject"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2LoginRequest OAuth2LoginRequest
 
 // NewOAuth2LoginRequest instantiates a new OAuth2LoginRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -318,7 +321,37 @@ func (o OAuth2LoginRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["subject"] = o.Subject
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OAuth2LoginRequest) UnmarshalJSON(bytes []byte) (err error) {
+	varOAuth2LoginRequest := _OAuth2LoginRequest{}
+
+	if err = json.Unmarshal(bytes, &varOAuth2LoginRequest); err == nil {
+		*o = OAuth2LoginRequest(varOAuth2LoginRequest)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "challenge")
+		delete(additionalProperties, "client")
+		delete(additionalProperties, "oidc_context")
+		delete(additionalProperties, "request_url")
+		delete(additionalProperties, "requested_access_token_audience")
+		delete(additionalProperties, "requested_scope")
+		delete(additionalProperties, "session_id")
+		delete(additionalProperties, "skip")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2LoginRequest struct {

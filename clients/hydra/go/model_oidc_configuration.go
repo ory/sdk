@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -29,6 +29,10 @@ type OidcConfiguration struct {
 	ClaimsSupported []string `json:"claims_supported,omitempty"`
 	// OAuth 2.0 PKCE Supported Code Challenge Methods  JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
 	CodeChallengeMethodsSupported []string `json:"code_challenge_methods_supported,omitempty"`
+	// OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint.
+	CredentialsEndpointDraft00 *string `json:"credentials_endpoint_draft_00,omitempty"`
+	// OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server.
+	CredentialsSupportedDraft00 []CredentialSupportedDraft00 `json:"credentials_supported_draft_00,omitempty"`
 	// OpenID Connect End-Session Endpoint  URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
 	EndSessionEndpoint *string `json:"end_session_endpoint,omitempty"`
 	// OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also included in ID Tokens issued by the OP.
@@ -75,7 +79,10 @@ type OidcConfiguration struct {
 	UserinfoSignedResponseAlg []string `json:"userinfo_signed_response_alg"`
 	// OpenID Connect Supported Userinfo Signing Algorithm  JSON array containing a list of the JWS [JWS] signing algorithms (alg values) [JWA] supported by the UserInfo Endpoint to encode the Claims in a JWT [JWT].
 	UserinfoSigningAlgValuesSupported []string `json:"userinfo_signing_alg_values_supported,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OidcConfiguration OidcConfiguration
 
 // NewOidcConfiguration instantiates a new OidcConfiguration object
 // This constructor will assign default values to properties that have it defined,
@@ -285,6 +292,70 @@ func (o *OidcConfiguration) HasCodeChallengeMethodsSupported() bool {
 // SetCodeChallengeMethodsSupported gets a reference to the given []string and assigns it to the CodeChallengeMethodsSupported field.
 func (o *OidcConfiguration) SetCodeChallengeMethodsSupported(v []string) {
 	o.CodeChallengeMethodsSupported = v
+}
+
+// GetCredentialsEndpointDraft00 returns the CredentialsEndpointDraft00 field value if set, zero value otherwise.
+func (o *OidcConfiguration) GetCredentialsEndpointDraft00() string {
+	if o == nil || o.CredentialsEndpointDraft00 == nil {
+		var ret string
+		return ret
+	}
+	return *o.CredentialsEndpointDraft00
+}
+
+// GetCredentialsEndpointDraft00Ok returns a tuple with the CredentialsEndpointDraft00 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcConfiguration) GetCredentialsEndpointDraft00Ok() (*string, bool) {
+	if o == nil || o.CredentialsEndpointDraft00 == nil {
+		return nil, false
+	}
+	return o.CredentialsEndpointDraft00, true
+}
+
+// HasCredentialsEndpointDraft00 returns a boolean if a field has been set.
+func (o *OidcConfiguration) HasCredentialsEndpointDraft00() bool {
+	if o != nil && o.CredentialsEndpointDraft00 != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCredentialsEndpointDraft00 gets a reference to the given string and assigns it to the CredentialsEndpointDraft00 field.
+func (o *OidcConfiguration) SetCredentialsEndpointDraft00(v string) {
+	o.CredentialsEndpointDraft00 = &v
+}
+
+// GetCredentialsSupportedDraft00 returns the CredentialsSupportedDraft00 field value if set, zero value otherwise.
+func (o *OidcConfiguration) GetCredentialsSupportedDraft00() []CredentialSupportedDraft00 {
+	if o == nil || o.CredentialsSupportedDraft00 == nil {
+		var ret []CredentialSupportedDraft00
+		return ret
+	}
+	return o.CredentialsSupportedDraft00
+}
+
+// GetCredentialsSupportedDraft00Ok returns a tuple with the CredentialsSupportedDraft00 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcConfiguration) GetCredentialsSupportedDraft00Ok() ([]CredentialSupportedDraft00, bool) {
+	if o == nil || o.CredentialsSupportedDraft00 == nil {
+		return nil, false
+	}
+	return o.CredentialsSupportedDraft00, true
+}
+
+// HasCredentialsSupportedDraft00 returns a boolean if a field has been set.
+func (o *OidcConfiguration) HasCredentialsSupportedDraft00() bool {
+	if o != nil && o.CredentialsSupportedDraft00 != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCredentialsSupportedDraft00 gets a reference to the given []CredentialSupportedDraft00 and assigns it to the CredentialsSupportedDraft00 field.
+func (o *OidcConfiguration) SetCredentialsSupportedDraft00(v []CredentialSupportedDraft00) {
+	o.CredentialsSupportedDraft00 = v
 }
 
 // GetEndSessionEndpoint returns the EndSessionEndpoint field value if set, zero value otherwise.
@@ -979,6 +1050,12 @@ func (o OidcConfiguration) MarshalJSON() ([]byte, error) {
 	if o.CodeChallengeMethodsSupported != nil {
 		toSerialize["code_challenge_methods_supported"] = o.CodeChallengeMethodsSupported
 	}
+	if o.CredentialsEndpointDraft00 != nil {
+		toSerialize["credentials_endpoint_draft_00"] = o.CredentialsEndpointDraft00
+	}
+	if o.CredentialsSupportedDraft00 != nil {
+		toSerialize["credentials_supported_draft_00"] = o.CredentialsSupportedDraft00
+	}
 	if o.EndSessionEndpoint != nil {
 		toSerialize["end_session_endpoint"] = o.EndSessionEndpoint
 	}
@@ -1048,7 +1125,59 @@ func (o OidcConfiguration) MarshalJSON() ([]byte, error) {
 	if o.UserinfoSigningAlgValuesSupported != nil {
 		toSerialize["userinfo_signing_alg_values_supported"] = o.UserinfoSigningAlgValuesSupported
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OidcConfiguration) UnmarshalJSON(bytes []byte) (err error) {
+	varOidcConfiguration := _OidcConfiguration{}
+
+	if err = json.Unmarshal(bytes, &varOidcConfiguration); err == nil {
+		*o = OidcConfiguration(varOidcConfiguration)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorization_endpoint")
+		delete(additionalProperties, "backchannel_logout_session_supported")
+		delete(additionalProperties, "backchannel_logout_supported")
+		delete(additionalProperties, "claims_parameter_supported")
+		delete(additionalProperties, "claims_supported")
+		delete(additionalProperties, "code_challenge_methods_supported")
+		delete(additionalProperties, "credentials_endpoint_draft_00")
+		delete(additionalProperties, "credentials_supported_draft_00")
+		delete(additionalProperties, "end_session_endpoint")
+		delete(additionalProperties, "frontchannel_logout_session_supported")
+		delete(additionalProperties, "frontchannel_logout_supported")
+		delete(additionalProperties, "grant_types_supported")
+		delete(additionalProperties, "id_token_signed_response_alg")
+		delete(additionalProperties, "id_token_signing_alg_values_supported")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "jwks_uri")
+		delete(additionalProperties, "registration_endpoint")
+		delete(additionalProperties, "request_object_signing_alg_values_supported")
+		delete(additionalProperties, "request_parameter_supported")
+		delete(additionalProperties, "request_uri_parameter_supported")
+		delete(additionalProperties, "require_request_uri_registration")
+		delete(additionalProperties, "response_modes_supported")
+		delete(additionalProperties, "response_types_supported")
+		delete(additionalProperties, "revocation_endpoint")
+		delete(additionalProperties, "scopes_supported")
+		delete(additionalProperties, "subject_types_supported")
+		delete(additionalProperties, "token_endpoint")
+		delete(additionalProperties, "token_endpoint_auth_methods_supported")
+		delete(additionalProperties, "userinfo_endpoint")
+		delete(additionalProperties, "userinfo_signed_response_alg")
+		delete(additionalProperties, "userinfo_signing_alg_values_supported")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOidcConfiguration struct {

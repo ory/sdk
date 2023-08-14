@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type GetVersion200Response struct {
 	// The version of Ory Hydra.
 	Version *string `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetVersion200Response GetVersion200Response
 
 // NewGetVersion200Response instantiates a new GetVersion200Response object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o GetVersion200Response) MarshalJSON() ([]byte, error) {
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *GetVersion200Response) UnmarshalJSON(bytes []byte) (err error) {
+	varGetVersion200Response := _GetVersion200Response{}
+
+	if err = json.Unmarshal(bytes, &varGetVersion200Response); err == nil {
+		*o = GetVersion200Response(varGetVersion200Response)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetVersion200Response struct {

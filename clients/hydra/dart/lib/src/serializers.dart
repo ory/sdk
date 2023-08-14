@@ -18,6 +18,8 @@ import 'package:ory_hydra_client/src/model/accept_o_auth2_consent_request.dart';
 import 'package:ory_hydra_client/src/model/accept_o_auth2_consent_request_session.dart';
 import 'package:ory_hydra_client/src/model/accept_o_auth2_login_request.dart';
 import 'package:ory_hydra_client/src/model/create_json_web_key_set.dart';
+import 'package:ory_hydra_client/src/model/create_verifiable_credential_request_body.dart';
+import 'package:ory_hydra_client/src/model/credential_supported_draft00.dart';
 import 'package:ory_hydra_client/src/model/error_o_auth2.dart';
 import 'package:ory_hydra_client/src/model/generic_error.dart';
 import 'package:ory_hydra_client/src/model/get_version200_response.dart';
@@ -43,6 +45,7 @@ import 'package:ory_hydra_client/src/model/oidc_configuration.dart';
 import 'package:ory_hydra_client/src/model/oidc_user_info.dart';
 import 'package:ory_hydra_client/src/model/pagination.dart';
 import 'package:ory_hydra_client/src/model/pagination_headers.dart';
+import 'package:ory_hydra_client/src/model/rfc6749_error_json.dart';
 import 'package:ory_hydra_client/src/model/reject_o_auth2_request.dart';
 import 'package:ory_hydra_client/src/model/token_pagination.dart';
 import 'package:ory_hydra_client/src/model/token_pagination_headers.dart';
@@ -51,6 +54,9 @@ import 'package:ory_hydra_client/src/model/token_pagination_response_headers.dar
 import 'package:ory_hydra_client/src/model/trust_o_auth2_jwt_grant_issuer.dart';
 import 'package:ory_hydra_client/src/model/trusted_o_auth2_jwt_grant_issuer.dart';
 import 'package:ory_hydra_client/src/model/trusted_o_auth2_jwt_grant_json_web_key.dart';
+import 'package:ory_hydra_client/src/model/verifiable_credential_priming_response.dart';
+import 'package:ory_hydra_client/src/model/verifiable_credential_proof.dart';
+import 'package:ory_hydra_client/src/model/verifiable_credential_response.dart';
 import 'package:ory_hydra_client/src/model/version.dart';
 
 part 'serializers.g.dart';
@@ -60,6 +66,8 @@ part 'serializers.g.dart';
   AcceptOAuth2ConsentRequestSession,
   AcceptOAuth2LoginRequest,
   CreateJsonWebKeySet,
+  CreateVerifiableCredentialRequestBody,
+  CredentialSupportedDraft00,
   ErrorOAuth2,
   GenericError,
   GetVersion200Response,
@@ -85,6 +93,7 @@ part 'serializers.g.dart';
   OidcUserInfo,
   Pagination,
   PaginationHeaders,
+  RFC6749ErrorJson,
   RejectOAuth2Request,
   TokenPagination,
   TokenPaginationHeaders,
@@ -93,6 +102,9 @@ part 'serializers.g.dart';
   TrustOAuth2JwtGrantIssuer,
   TrustedOAuth2JwtGrantIssuer,
   TrustedOAuth2JwtGrantJsonWebKey,
+  VerifiableCredentialPrimingResponse,
+  VerifiableCredentialProof,
+  VerifiableCredentialResponse,
   Version,
 ])
 Serializers serializers = (_$serializers.toBuilder()

@@ -13,6 +13,8 @@ docs/Model/AcceptOAuth2ConsentRequest.md
 docs/Model/AcceptOAuth2ConsentRequestSession.md
 docs/Model/AcceptOAuth2LoginRequest.md
 docs/Model/CreateJsonWebKeySet.md
+docs/Model/CreateVerifiableCredentialRequestBody.md
+docs/Model/CredentialSupportedDraft00.md
 docs/Model/ErrorOAuth2.md
 docs/Model/GenericError.md
 docs/Model/HealthNotReadyStatus.md
@@ -38,6 +40,7 @@ docs/Model/OidcConfiguration.md
 docs/Model/OidcUserInfo.md
 docs/Model/Pagination.md
 docs/Model/PaginationHeaders.md
+docs/Model/RFC6749ErrorJson.md
 docs/Model/RejectOAuth2Request.md
 docs/Model/TokenPagination.md
 docs/Model/TokenPaginationHeaders.md
@@ -46,6 +49,9 @@ docs/Model/TokenPaginationResponseHeaders.md
 docs/Model/TrustOAuth2JwtGrantIssuer.md
 docs/Model/TrustedOAuth2JwtGrantIssuer.md
 docs/Model/TrustedOAuth2JwtGrantJsonWebKey.md
+docs/Model/VerifiableCredentialPrimingResponse.md
+docs/Model/VerifiableCredentialProof.md
+docs/Model/VerifiableCredentialResponse.md
 docs/Model/Version.md
 git_push.sh
 lib/Api/JwkApi.php
@@ -60,6 +66,8 @@ lib/Model/AcceptOAuth2ConsentRequest.php
 lib/Model/AcceptOAuth2ConsentRequestSession.php
 lib/Model/AcceptOAuth2LoginRequest.php
 lib/Model/CreateJsonWebKeySet.php
+lib/Model/CreateVerifiableCredentialRequestBody.php
+lib/Model/CredentialSupportedDraft00.php
 lib/Model/ErrorOAuth2.php
 lib/Model/GenericError.php
 lib/Model/HealthNotReadyStatus.php
@@ -86,6 +94,7 @@ lib/Model/OidcConfiguration.php
 lib/Model/OidcUserInfo.php
 lib/Model/Pagination.php
 lib/Model/PaginationHeaders.php
+lib/Model/RFC6749ErrorJson.php
 lib/Model/RejectOAuth2Request.php
 lib/Model/TokenPagination.php
 lib/Model/TokenPaginationHeaders.php
@@ -94,6 +103,9 @@ lib/Model/TokenPaginationResponseHeaders.php
 lib/Model/TrustOAuth2JwtGrantIssuer.php
 lib/Model/TrustedOAuth2JwtGrantIssuer.php
 lib/Model/TrustedOAuth2JwtGrantJsonWebKey.php
+lib/Model/VerifiableCredentialPrimingResponse.php
+lib/Model/VerifiableCredentialProof.php
+lib/Model/VerifiableCredentialResponse.php
 lib/Model/Version.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
@@ -106,6 +118,8 @@ test/Model/AcceptOAuth2ConsentRequestSessionTest.php
 test/Model/AcceptOAuth2ConsentRequestTest.php
 test/Model/AcceptOAuth2LoginRequestTest.php
 test/Model/CreateJsonWebKeySetTest.php
+test/Model/CreateVerifiableCredentialRequestBodyTest.php
+test/Model/CredentialSupportedDraft00Test.php
 test/Model/ErrorOAuth2Test.php
 test/Model/GenericErrorTest.php
 test/Model/HealthNotReadyStatusTest.php
@@ -131,6 +145,7 @@ test/Model/OidcConfigurationTest.php
 test/Model/OidcUserInfoTest.php
 test/Model/PaginationHeadersTest.php
 test/Model/PaginationTest.php
+test/Model/RFC6749ErrorJsonTest.php
 test/Model/RejectOAuth2RequestTest.php
 test/Model/TokenPaginationHeadersTest.php
 test/Model/TokenPaginationRequestParametersTest.php
@@ -139,4 +154,7 @@ test/Model/TokenPaginationTest.php
 test/Model/TrustOAuth2JwtGrantIssuerTest.php
 test/Model/TrustedOAuth2JwtGrantIssuerTest.php
 test/Model/TrustedOAuth2JwtGrantJsonWebKeyTest.php
+test/Model/VerifiableCredentialPrimingResponseTest.php
+test/Model/VerifiableCredentialProofTest.php
+test/Model/VerifiableCredentialResponseTest.php
 test/Model/VersionTest.php

@@ -1,13 +1,14 @@
 name: ory_hydra_client
-version: 2.1.1
-description: OpenAPI API client
+version: 2.2.0-rc.3
+description: OpenAPI API client for Ory Hydra, Ory&#39;s open source OpenID Connect and OAuth provider.
 homepage: https://www.ory.sh
+repository: https://github.com/ory/sdk/tree/master/clients/hydra/dart
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.15.0 <3.0.0'
 
 dependencies:
-  dio: '>=4.0.1 <5.0.0'
+  dio: '^5.0.0'
   one_of: '>=1.5.0 <2.0.0'
   one_of_serializer: '>=1.5.0 <2.0.0'
   built_value: '>=8.4.0 <9.0.0'

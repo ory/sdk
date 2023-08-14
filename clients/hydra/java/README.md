@@ -1,8 +1,8 @@
 # hydra-client
 
 Ory Hydra API
-- API version: v2.1.1
-  - Build date: 2023-04-11T10:57:16.155985320Z[Etc/UTC]
+- API version: v2.2.0-rc.3
+  - Build date: 2023-08-14T11:55:58.321871935Z[Etc/UTC]
 
 Documentation for all of Ory Hydra's APIs.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.hydra</groupId>
   <artifactId>hydra-client</artifactId>
-  <version>v2.1.1</version>
+  <version>v2.2.0-rc.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.hydra:hydra-client:v2.1.1"
+     implementation "sh.ory.hydra:hydra-client:v2.2.0-rc.3"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v2.1.1.jar`
+* `target/hydra-client-v2.2.0-rc.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -155,6 +155,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**setOAuth2ClientLifespans**](docs/OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
 *OAuth2Api* | [**trustOAuth2JwtGrantIssuer**](docs/OAuth2Api.md#trustOAuth2JwtGrantIssuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
 *OidcApi* | [**createOidcDynamicClient**](docs/OidcApi.md#createOidcDynamicClient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+*OidcApi* | [**createVerifiableCredential**](docs/OidcApi.md#createVerifiableCredential) | **POST** /credentials | Issues a Verifiable Credential
 *OidcApi* | [**deleteOidcDynamicClient**](docs/OidcApi.md#deleteOidcDynamicClient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 *OidcApi* | [**discoverOidcConfiguration**](docs/OidcApi.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 *OidcApi* | [**getOidcDynamicClient**](docs/OidcApi.md#getOidcDynamicClient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -170,6 +171,8 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2ConsentRequestSession](docs/AcceptOAuth2ConsentRequestSession.md)
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
+ - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
+ - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [ErrorOAuth2](docs/ErrorOAuth2.md)
  - [GenericError](docs/GenericError.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
@@ -195,6 +198,7 @@ Class | Method | HTTP request | Description
  - [OidcUserInfo](docs/OidcUserInfo.md)
  - [Pagination](docs/Pagination.md)
  - [PaginationHeaders](docs/PaginationHeaders.md)
+ - [RFC6749ErrorJson](docs/RFC6749ErrorJson.md)
  - [RejectOAuth2Request](docs/RejectOAuth2Request.md)
  - [TokenPagination](docs/TokenPagination.md)
  - [TokenPaginationHeaders](docs/TokenPaginationHeaders.md)
@@ -203,6 +207,9 @@ Class | Method | HTTP request | Description
  - [TrustOAuth2JwtGrantIssuer](docs/TrustOAuth2JwtGrantIssuer.md)
  - [TrustedOAuth2JwtGrantIssuer](docs/TrustedOAuth2JwtGrantIssuer.md)
  - [TrustedOAuth2JwtGrantJsonWebKey](docs/TrustedOAuth2JwtGrantJsonWebKey.md)
+ - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)
+ - [VerifiableCredentialProof](docs/VerifiableCredentialProof.md)
+ - [VerifiableCredentialResponse](docs/VerifiableCredentialResponse.md)
  - [Version](docs/Version.md)
 
 

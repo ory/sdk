@@ -7,6 +7,8 @@ docs/HydraAcceptOAuth2ConsentRequest.md
 docs/HydraAcceptOAuth2ConsentRequestSession.md
 docs/HydraAcceptOAuth2LoginRequest.md
 docs/HydraCreateJsonWebKeySet.md
+docs/HydraCreateVerifiableCredentialRequestBody.md
+docs/HydraCredentialSupportedDraft00.md
 docs/HydraErrorOAuth2.md
 docs/HydraGenericError.md
 docs/HydraHealthNotReadyStatus.md
@@ -32,6 +34,7 @@ docs/HydraOidcConfiguration.md
 docs/HydraOidcUserInfo.md
 docs/HydraPagination.md
 docs/HydraPaginationHeaders.md
+docs/HydraRFC6749ErrorJson.md
 docs/HydraRejectOAuth2Request.md
 docs/HydraTokenPagination.md
 docs/HydraTokenPaginationHeaders.md
@@ -40,6 +43,9 @@ docs/HydraTokenPaginationResponseHeaders.md
 docs/HydraTrustOAuth2JwtGrantIssuer.md
 docs/HydraTrustedOAuth2JwtGrantIssuer.md
 docs/HydraTrustedOAuth2JwtGrantJsonWebKey.md
+docs/HydraVerifiableCredentialPrimingResponse.md
+docs/HydraVerifiableCredentialProof.md
+docs/HydraVerifiableCredentialResponse.md
 docs/HydraVersion.md
 docs/JwkApi.md
 docs/MetadataApi.md
@@ -56,6 +62,8 @@ src/Ory.Hydra.Client.Test/Model/HydraAcceptOAuth2ConsentRequestSessionTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraAcceptOAuth2ConsentRequestTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraAcceptOAuth2LoginRequestTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraCreateJsonWebKeySetTests.cs
+src/Ory.Hydra.Client.Test/Model/HydraCreateVerifiableCredentialRequestBodyTests.cs
+src/Ory.Hydra.Client.Test/Model/HydraCredentialSupportedDraft00Tests.cs
 src/Ory.Hydra.Client.Test/Model/HydraErrorOAuth2Tests.cs
 src/Ory.Hydra.Client.Test/Model/HydraGenericErrorTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraHealthNotReadyStatusTests.cs
@@ -81,6 +89,7 @@ src/Ory.Hydra.Client.Test/Model/HydraOidcConfigurationTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraOidcUserInfoTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraPaginationHeadersTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraPaginationTests.cs
+src/Ory.Hydra.Client.Test/Model/HydraRFC6749ErrorJsonTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraRejectOAuth2RequestTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraTokenPaginationHeadersTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraTokenPaginationRequestParametersTests.cs
@@ -89,6 +98,9 @@ src/Ory.Hydra.Client.Test/Model/HydraTokenPaginationTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraTrustOAuth2JwtGrantIssuerTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraTrustedOAuth2JwtGrantIssuerTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraTrustedOAuth2JwtGrantJsonWebKeyTests.cs
+src/Ory.Hydra.Client.Test/Model/HydraVerifiableCredentialPrimingResponseTests.cs
+src/Ory.Hydra.Client.Test/Model/HydraVerifiableCredentialProofTests.cs
+src/Ory.Hydra.Client.Test/Model/HydraVerifiableCredentialResponseTests.cs
 src/Ory.Hydra.Client.Test/Model/HydraVersionTests.cs
 src/Ory.Hydra.Client.Test/Ory.Hydra.Client.Test.csproj
 src/Ory.Hydra.Client/Api/JwkApi.cs
@@ -117,6 +129,8 @@ src/Ory.Hydra.Client/Model/HydraAcceptOAuth2ConsentRequest.cs
 src/Ory.Hydra.Client/Model/HydraAcceptOAuth2ConsentRequestSession.cs
 src/Ory.Hydra.Client/Model/HydraAcceptOAuth2LoginRequest.cs
 src/Ory.Hydra.Client/Model/HydraCreateJsonWebKeySet.cs
+src/Ory.Hydra.Client/Model/HydraCreateVerifiableCredentialRequestBody.cs
+src/Ory.Hydra.Client/Model/HydraCredentialSupportedDraft00.cs
 src/Ory.Hydra.Client/Model/HydraErrorOAuth2.cs
 src/Ory.Hydra.Client/Model/HydraGenericError.cs
 src/Ory.Hydra.Client/Model/HydraHealthNotReadyStatus.cs
@@ -142,6 +156,7 @@ src/Ory.Hydra.Client/Model/HydraOidcConfiguration.cs
 src/Ory.Hydra.Client/Model/HydraOidcUserInfo.cs
 src/Ory.Hydra.Client/Model/HydraPagination.cs
 src/Ory.Hydra.Client/Model/HydraPaginationHeaders.cs
+src/Ory.Hydra.Client/Model/HydraRFC6749ErrorJson.cs
 src/Ory.Hydra.Client/Model/HydraRejectOAuth2Request.cs
 src/Ory.Hydra.Client/Model/HydraTokenPagination.cs
 src/Ory.Hydra.Client/Model/HydraTokenPaginationHeaders.cs
@@ -150,5 +165,8 @@ src/Ory.Hydra.Client/Model/HydraTokenPaginationResponseHeaders.cs
 src/Ory.Hydra.Client/Model/HydraTrustOAuth2JwtGrantIssuer.cs
 src/Ory.Hydra.Client/Model/HydraTrustedOAuth2JwtGrantIssuer.cs
 src/Ory.Hydra.Client/Model/HydraTrustedOAuth2JwtGrantJsonWebKey.cs
+src/Ory.Hydra.Client/Model/HydraVerifiableCredentialPrimingResponse.cs
+src/Ory.Hydra.Client/Model/HydraVerifiableCredentialProof.cs
+src/Ory.Hydra.Client/Model/HydraVerifiableCredentialResponse.cs
 src/Ory.Hydra.Client/Model/HydraVersion.cs
 src/Ory.Hydra.Client/Ory.Hydra.Client.csproj

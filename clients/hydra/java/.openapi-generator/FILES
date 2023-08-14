@@ -10,6 +10,8 @@ docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/CreateJsonWebKeySet.md
+docs/CreateVerifiableCredentialRequestBody.md
+docs/CredentialSupportedDraft00.md
 docs/ErrorOAuth2.md
 docs/GenericError.md
 docs/GetVersion200Response.md
@@ -39,6 +41,7 @@ docs/OidcConfiguration.md
 docs/OidcUserInfo.md
 docs/Pagination.md
 docs/PaginationHeaders.md
+docs/RFC6749ErrorJson.md
 docs/RejectOAuth2Request.md
 docs/TokenPagination.md
 docs/TokenPaginationHeaders.md
@@ -47,6 +50,9 @@ docs/TokenPaginationResponseHeaders.md
 docs/TrustOAuth2JwtGrantIssuer.md
 docs/TrustedOAuth2JwtGrantIssuer.md
 docs/TrustedOAuth2JwtGrantJsonWebKey.md
+docs/VerifiableCredentialPrimingResponse.md
+docs/VerifiableCredentialProof.md
+docs/VerifiableCredentialResponse.md
 docs/Version.md
 docs/WellknownApi.md
 git_push.sh
@@ -89,6 +95,8 @@ src/main/java/sh/ory/hydra/model/AcceptOAuth2ConsentRequest.java
 src/main/java/sh/ory/hydra/model/AcceptOAuth2ConsentRequestSession.java
 src/main/java/sh/ory/hydra/model/AcceptOAuth2LoginRequest.java
 src/main/java/sh/ory/hydra/model/CreateJsonWebKeySet.java
+src/main/java/sh/ory/hydra/model/CreateVerifiableCredentialRequestBody.java
+src/main/java/sh/ory/hydra/model/CredentialSupportedDraft00.java
 src/main/java/sh/ory/hydra/model/ErrorOAuth2.java
 src/main/java/sh/ory/hydra/model/GenericError.java
 src/main/java/sh/ory/hydra/model/GetVersion200Response.java
@@ -114,6 +122,7 @@ src/main/java/sh/ory/hydra/model/OidcConfiguration.java
 src/main/java/sh/ory/hydra/model/OidcUserInfo.java
 src/main/java/sh/ory/hydra/model/Pagination.java
 src/main/java/sh/ory/hydra/model/PaginationHeaders.java
+src/main/java/sh/ory/hydra/model/RFC6749ErrorJson.java
 src/main/java/sh/ory/hydra/model/RejectOAuth2Request.java
 src/main/java/sh/ory/hydra/model/TokenPagination.java
 src/main/java/sh/ory/hydra/model/TokenPaginationHeaders.java
@@ -122,6 +131,9 @@ src/main/java/sh/ory/hydra/model/TokenPaginationResponseHeaders.java
 src/main/java/sh/ory/hydra/model/TrustOAuth2JwtGrantIssuer.java
 src/main/java/sh/ory/hydra/model/TrustedOAuth2JwtGrantIssuer.java
 src/main/java/sh/ory/hydra/model/TrustedOAuth2JwtGrantJsonWebKey.java
+src/main/java/sh/ory/hydra/model/VerifiableCredentialPrimingResponse.java
+src/main/java/sh/ory/hydra/model/VerifiableCredentialProof.java
+src/main/java/sh/ory/hydra/model/VerifiableCredentialResponse.java
 src/main/java/sh/ory/hydra/model/Version.java
 src/test/java/sh/ory/hydra/api/JwkApiTest.java
 src/test/java/sh/ory/hydra/api/MetadataApiTest.java
@@ -132,6 +144,8 @@ src/test/java/sh/ory/hydra/model/AcceptOAuth2ConsentRequestSessionTest.java
 src/test/java/sh/ory/hydra/model/AcceptOAuth2ConsentRequestTest.java
 src/test/java/sh/ory/hydra/model/AcceptOAuth2LoginRequestTest.java
 src/test/java/sh/ory/hydra/model/CreateJsonWebKeySetTest.java
+src/test/java/sh/ory/hydra/model/CreateVerifiableCredentialRequestBodyTest.java
+src/test/java/sh/ory/hydra/model/CredentialSupportedDraft00Test.java
 src/test/java/sh/ory/hydra/model/ErrorOAuth2Test.java
 src/test/java/sh/ory/hydra/model/GenericErrorTest.java
 src/test/java/sh/ory/hydra/model/GetVersion200ResponseTest.java
@@ -157,6 +171,7 @@ src/test/java/sh/ory/hydra/model/OidcConfigurationTest.java
 src/test/java/sh/ory/hydra/model/OidcUserInfoTest.java
 src/test/java/sh/ory/hydra/model/PaginationHeadersTest.java
 src/test/java/sh/ory/hydra/model/PaginationTest.java
+src/test/java/sh/ory/hydra/model/RFC6749ErrorJsonTest.java
 src/test/java/sh/ory/hydra/model/RejectOAuth2RequestTest.java
 src/test/java/sh/ory/hydra/model/TokenPaginationHeadersTest.java
 src/test/java/sh/ory/hydra/model/TokenPaginationRequestParametersTest.java
@@ -165,4 +180,7 @@ src/test/java/sh/ory/hydra/model/TokenPaginationTest.java
 src/test/java/sh/ory/hydra/model/TrustOAuth2JwtGrantIssuerTest.java
 src/test/java/sh/ory/hydra/model/TrustedOAuth2JwtGrantIssuerTest.java
 src/test/java/sh/ory/hydra/model/TrustedOAuth2JwtGrantJsonWebKeyTest.java
+src/test/java/sh/ory/hydra/model/VerifiableCredentialPrimingResponseTest.java
+src/test/java/sh/ory/hydra/model/VerifiableCredentialProofTest.java
+src/test/java/sh/ory/hydra/model/VerifiableCredentialResponseTest.java
 src/test/java/sh/ory/hydra/model/VersionTest.java

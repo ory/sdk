@@ -15,6 +15,8 @@ lib/ory/model/accept_o_auth2_consent_request.ex
 lib/ory/model/accept_o_auth2_consent_request_session.ex
 lib/ory/model/accept_o_auth2_login_request.ex
 lib/ory/model/create_json_web_key_set.ex
+lib/ory/model/create_verifiable_credential_request_body.ex
+lib/ory/model/credential_supported_draft00.ex
 lib/ory/model/error_o_auth2.ex
 lib/ory/model/generic_error.ex
 lib/ory/model/get_version_200_response.ex
@@ -41,6 +43,7 @@ lib/ory/model/oidc_user_info.ex
 lib/ory/model/pagination.ex
 lib/ory/model/pagination_headers.ex
 lib/ory/model/reject_o_auth2_request.ex
+lib/ory/model/rfc6749_error_json.ex
 lib/ory/model/token_pagination.ex
 lib/ory/model/token_pagination_headers.ex
 lib/ory/model/token_pagination_request_parameters.ex
@@ -48,6 +51,9 @@ lib/ory/model/token_pagination_response_headers.ex
 lib/ory/model/trust_o_auth2_jwt_grant_issuer.ex
 lib/ory/model/trusted_o_auth2_jwt_grant_issuer.ex
 lib/ory/model/trusted_o_auth2_jwt_grant_json_web_key.ex
+lib/ory/model/verifiable_credential_priming_response.ex
+lib/ory/model/verifiable_credential_proof.ex
+lib/ory/model/verifiable_credential_response.ex
 lib/ory/model/version.ex
 lib/ory/request_builder.ex
 mix.exs

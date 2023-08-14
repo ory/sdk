@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0-rc.3
 Contact: hi@ory.sh
 */
 
@@ -21,7 +21,10 @@ type TokenPaginationResponseHeaders struct {
 	Link *string `json:"link,omitempty"`
 	// The X-Total-Count HTTP Header  The `X-Total-Count` header contains the total number of items in the collection.
 	XTotalCount *int64 `json:"x-total-count,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TokenPaginationResponseHeaders TokenPaginationResponseHeaders
 
 // NewTokenPaginationResponseHeaders instantiates a new TokenPaginationResponseHeaders object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o TokenPaginationResponseHeaders) MarshalJSON() ([]byte, error) {
 	if o.XTotalCount != nil {
 		toSerialize["x-total-count"] = o.XTotalCount
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *TokenPaginationResponseHeaders) UnmarshalJSON(bytes []byte) (err error) {
+	varTokenPaginationResponseHeaders := _TokenPaginationResponseHeaders{}
+
+	if err = json.Unmarshal(bytes, &varTokenPaginationResponseHeaders); err == nil {
+		*o = TokenPaginationResponseHeaders(varTokenPaginationResponseHeaders)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "link")
+		delete(additionalProperties, "x-total-count")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTokenPaginationResponseHeaders struct {
