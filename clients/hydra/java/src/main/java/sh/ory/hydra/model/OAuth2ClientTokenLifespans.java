@@ -49,7 +49,7 @@ import sh.ory.hydra.JSON;
  * Lifespans of different token types issued for this OAuth 2.0 Client.
  */
 @ApiModel(description = "Lifespans of different token types issued for this OAuth 2.0 Client.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-14T11:55:58.321871935Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-16T21:14:30.471114291Z[Etc/UTC]")
 public class OAuth2ClientTokenLifespans {
   public static final String SERIALIZED_NAME_AUTHORIZATION_CODE_GRANT_ACCESS_TOKEN_LIFESPAN = "authorization_code_grant_access_token_lifespan";
   @SerializedName(SERIALIZED_NAME_AUTHORIZATION_CODE_GRANT_ACCESS_TOKEN_LIFESPAN)

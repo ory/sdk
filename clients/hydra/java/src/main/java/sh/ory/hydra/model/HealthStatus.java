@@ -48,7 +48,7 @@ import sh.ory.hydra.JSON;
 /**
  * HealthStatus
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-14T11:55:58.321871935Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-16T21:14:30.471114291Z[Etc/UTC]")
 public class HealthStatus {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)

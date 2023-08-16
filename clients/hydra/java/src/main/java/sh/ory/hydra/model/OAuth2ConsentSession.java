@@ -55,7 +55,7 @@ import sh.ory.hydra.JSON;
  * A completed OAuth 2.0 Consent Session.
  */
 @ApiModel(description = "A completed OAuth 2.0 Consent Session.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-14T11:55:58.321871935Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-16T21:14:30.471114291Z[Etc/UTC]")
 public class OAuth2ConsentSession {
   public static final String SERIALIZED_NAME_CONSENT_REQUEST = "consent_request";
   @SerializedName(SERIALIZED_NAME_CONSENT_REQUEST)

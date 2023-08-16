@@ -53,7 +53,7 @@ import sh.ory.hydra.JSON;
  * OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
  */
 @ApiModel(description = "OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-14T11:55:58.321871935Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-16T21:14:30.471114291Z[Etc/UTC]")
 public class OAuth2Client {
   public static final String SERIALIZED_NAME_ACCESS_TOKEN_STRATEGY = "access_token_strategy";
   @SerializedName(SERIALIZED_NAME_ACCESS_TOKEN_STRATEGY)

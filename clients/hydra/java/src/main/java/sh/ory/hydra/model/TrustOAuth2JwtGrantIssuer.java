@@ -53,7 +53,7 @@ import sh.ory.hydra.JSON;
  * Trust OAuth2 JWT Bearer Grant Type Issuer Request Body
  */
 @ApiModel(description = "Trust OAuth2 JWT Bearer Grant Type Issuer Request Body")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-14T11:55:58.321871935Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-16T21:14:30.471114291Z[Etc/UTC]")
 public class TrustOAuth2JwtGrantIssuer {
   public static final String SERIALIZED_NAME_ALLOW_ANY_SUBJECT = "allow_any_subject";
   @SerializedName(SERIALIZED_NAME_ALLOW_ANY_SUBJECT)

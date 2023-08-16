@@ -51,7 +51,7 @@ import sh.ory.hydra.JSON;
  * Includes information about the supported verifiable credentials.
  */
 @ApiModel(description = "Includes information about the supported verifiable credentials.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-14T11:55:58.321871935Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-16T21:14:30.471114291Z[Etc/UTC]")
 public class CredentialSupportedDraft00 {
   public static final String SERIALIZED_NAME_CRYPTOGRAPHIC_BINDING_METHODS_SUPPORTED = "cryptographic_binding_methods_supported";
   @SerializedName(SERIALIZED_NAME_CRYPTOGRAPHIC_BINDING_METHODS_SUPPORTED)
