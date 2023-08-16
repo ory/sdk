@@ -110,6 +110,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRegistrationEnabled** | Pointer to **bool** | Configures the Whether Ory Kratos Registration is Enabled  This governs the \&quot;selfservice.flows.registration.enabled\&quot; setting.0 | [optional] 
 **KratosSelfserviceFlowsRegistrationLifespan** | Pointer to **string** | Configures the Ory Kratos Registration Lifespan  This governs the \&quot;selfservice.flows.registration.lifespan\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsRegistrationLoginHints** | Pointer to **bool** | Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \&quot;selfservice.flows.registration.login_hints\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRegistrationUiUrl** | Pointer to **string** | Configures the Ory Kratos Registration UI URL  This governs the \&quot;selfservice.flows.registration.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Settings Default Return URL  This governs the \&quot;selfservice.flows.settings.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \&quot;selfservice.flows.settings.after.password.default_browser_return_url\&quot; setting. | [optional] 
@@ -2859,6 +2860,31 @@ SetKratosSelfserviceFlowsRegistrationLifespan sets KratosSelfserviceFlowsRegistr
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationLifespan() bool`
 
 HasKratosSelfserviceFlowsRegistrationLifespan returns a boolean if a field has been set.
+
+### GetKratosSelfserviceFlowsRegistrationLoginHints
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationLoginHints() bool`
+
+GetKratosSelfserviceFlowsRegistrationLoginHints returns the KratosSelfserviceFlowsRegistrationLoginHints field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceFlowsRegistrationLoginHintsOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationLoginHintsOk() (*bool, bool)`
+
+GetKratosSelfserviceFlowsRegistrationLoginHintsOk returns a tuple with the KratosSelfserviceFlowsRegistrationLoginHints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceFlowsRegistrationLoginHints
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationLoginHints(v bool)`
+
+SetKratosSelfserviceFlowsRegistrationLoginHints sets KratosSelfserviceFlowsRegistrationLoginHints field to given value.
+
+### HasKratosSelfserviceFlowsRegistrationLoginHints
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationLoginHints() bool`
+
+HasKratosSelfserviceFlowsRegistrationLoginHints returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRegistrationUiUrl
 

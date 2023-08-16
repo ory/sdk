@@ -627,6 +627,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \"selfservice.flows.registration.login_hints\" setting.
+    // bool kratosSelfserviceFlowsRegistrationLoginHints
+    test('to test the property `kratosSelfserviceFlowsRegistrationLoginHints`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
     // String kratosSelfserviceFlowsRegistrationUiUrl
     test('to test the property `kratosSelfserviceFlowsRegistrationUiUrl`', () async {

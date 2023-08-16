@@ -110,6 +110,7 @@
 | **kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url** | **String** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_registration_enabled** | **Boolean** | Configures the Whether Ory Kratos Registration is Enabled  This governs the \&quot;selfservice.flows.registration.enabled\&quot; setting.0 | [optional] |
 | **kratos_selfservice_flows_registration_lifespan** | **String** | Configures the Ory Kratos Registration Lifespan  This governs the \&quot;selfservice.flows.registration.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_registration_login_hints** | **Boolean** | Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \&quot;selfservice.flows.registration.login_hints\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_registration_ui_url** | **String** | Configures the Ory Kratos Registration UI URL  This governs the \&quot;selfservice.flows.registration.ui_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_settings_after_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL  This governs the \&quot;selfservice.flows.settings.after.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_settings_after_password_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \&quot;selfservice.flows.settings.after.password.default_browser_return_url\&quot; setting. | [optional] |
@@ -273,6 +274,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url: null,
   kratos_selfservice_flows_registration_enabled: null,
   kratos_selfservice_flows_registration_lifespan: null,
+  kratos_selfservice_flows_registration_login_hints: null,
   kratos_selfservice_flows_registration_ui_url: null,
   kratos_selfservice_flows_settings_after_default_browser_return_url: null,
   kratos_selfservice_flows_settings_after_password_default_browser_return_url: null,

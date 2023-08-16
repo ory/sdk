@@ -123,6 +123,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationEnabled] - Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
 /// * [kratosSelfserviceFlowsRegistrationLifespan] - Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
+/// * [kratosSelfserviceFlowsRegistrationLoginHints] - Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \"selfservice.flows.registration.login_hints\" setting.
 /// * [kratosSelfserviceFlowsRegistrationUiUrl] - Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
@@ -585,6 +586,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_lifespan')
   String? get kratosSelfserviceFlowsRegistrationLifespan;
+
+  /// Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \"selfservice.flows.registration.login_hints\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_login_hints')
+  bool? get kratosSelfserviceFlowsRegistrationLoginHints;
 
   /// Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_ui_url')
@@ -1554,6 +1559,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosSelfserviceFlowsRegistrationLifespan,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceFlowsRegistrationLoginHints != null) {
+      yield r'kratos_selfservice_flows_registration_login_hints';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsRegistrationLoginHints,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceFlowsRegistrationUiUrl != null) {
@@ -2671,6 +2683,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceFlowsRegistrationLifespan = valueDes;
+          break;
+        case r'kratos_selfservice_flows_registration_login_hints':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceFlowsRegistrationLoginHints = valueDes;
           break;
         case r'kratos_selfservice_flows_registration_ui_url':
           final valueDes = serializers.deserialize(

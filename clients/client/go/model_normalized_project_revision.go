@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.46
+API version: v1.1.47
 Contact: support@ory.sh
 */
 
@@ -214,6 +214,8 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsRegistrationEnabled *bool `json:"kratos_selfservice_flows_registration_enabled,omitempty"`
 	// Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
 	KratosSelfserviceFlowsRegistrationLifespan *string `json:"kratos_selfservice_flows_registration_lifespan,omitempty"`
+	// Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \"selfservice.flows.registration.login_hints\" setting.
+	KratosSelfserviceFlowsRegistrationLoginHints *bool `json:"kratos_selfservice_flows_registration_login_hints,omitempty"`
 	// Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
 	KratosSelfserviceFlowsRegistrationUiUrl *string `json:"kratos_selfservice_flows_registration_ui_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
@@ -3769,6 +3771,38 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationLifespa
 	o.KratosSelfserviceFlowsRegistrationLifespan = &v
 }
 
+// GetKratosSelfserviceFlowsRegistrationLoginHints returns the KratosSelfserviceFlowsRegistrationLoginHints field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationLoginHints() bool {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationLoginHints == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRegistrationLoginHints
+}
+
+// GetKratosSelfserviceFlowsRegistrationLoginHintsOk returns a tuple with the KratosSelfserviceFlowsRegistrationLoginHints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationLoginHintsOk() (*bool, bool) {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationLoginHints == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRegistrationLoginHints, true
+}
+
+// HasKratosSelfserviceFlowsRegistrationLoginHints returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationLoginHints() bool {
+	if o != nil && o.KratosSelfserviceFlowsRegistrationLoginHints != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRegistrationLoginHints gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsRegistrationLoginHints field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationLoginHints(v bool) {
+	o.KratosSelfserviceFlowsRegistrationLoginHints = &v
+}
+
 // GetKratosSelfserviceFlowsRegistrationUiUrl returns the KratosSelfserviceFlowsRegistrationUiUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationUiUrl == nil {
@@ -5681,6 +5715,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceFlowsRegistrationLifespan != nil {
 		toSerialize["kratos_selfservice_flows_registration_lifespan"] = o.KratosSelfserviceFlowsRegistrationLifespan
 	}
+	if o.KratosSelfserviceFlowsRegistrationLoginHints != nil {
+		toSerialize["kratos_selfservice_flows_registration_login_hints"] = o.KratosSelfserviceFlowsRegistrationLoginHints
+	}
 	if o.KratosSelfserviceFlowsRegistrationUiUrl != nil {
 		toSerialize["kratos_selfservice_flows_registration_ui_url"] = o.KratosSelfserviceFlowsRegistrationUiUrl
 	}
@@ -5955,6 +5992,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_enabled")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_lifespan")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_login_hints")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_ui_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_password_default_browser_return_url")

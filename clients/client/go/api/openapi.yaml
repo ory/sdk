@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.46
+  version: v1.1.47
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -9772,6 +9772,14 @@ components:
 
             This governs the "selfservice.flows.registration.lifespan" setting.
           type: string
+        kratos_selfservice_flows_registration_login_hints:
+          description: |-
+            Configures the Ory Kratos Registration Login Hints
+
+            Shows helpful information when a user tries to sign up with a duplicate account.
+
+            This governs the "selfservice.flows.registration.login_hints" setting.
+          type: boolean
         kratos_selfservice_flows_registration_ui_url:
           description: |-
             Configures the Ory Kratos Registration UI URL
