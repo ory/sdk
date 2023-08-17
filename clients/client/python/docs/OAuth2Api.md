@@ -187,6 +187,7 @@ with ory_client.ApiClient(configuration) as api_client:
         context={},
         extend_session_lifespan=True,
         force_subject_identifier="force_subject_identifier_example",
+        identity_provider_session_id="identity_provider_session_id_example",
         remember=True,
         remember_for=1,
         subject="subject_example",

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.48
+  version: v1.1.49
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -6838,6 +6838,11 @@ components:
             \ on the client ID or some\nother unique value).\n\nIf you fail to compute\
             \ the proper value, then authentication processes which have id_token_hint\
             \ set might fail."
+          type: string
+        identity_provider_session_id:
+          description: "IdentityProviderSessionID is the session ID of the end-user\
+            \ that authenticated.\nIf specified, we will use this value to propagate\
+            \ the logout."
           type: string
         remember:
           description: "Remember, if set to true, tells ORY Hydra to remember this\

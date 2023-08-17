@@ -18,6 +18,8 @@ class _$AcceptOAuth2LoginRequest extends AcceptOAuth2LoginRequest {
   @override
   final String? forceSubjectIdentifier;
   @override
+  final String? identityProviderSessionId;
+  @override
   final bool? remember;
   @override
   final int? rememberFor;
@@ -34,6 +36,7 @@ class _$AcceptOAuth2LoginRequest extends AcceptOAuth2LoginRequest {
       this.context,
       this.extendSessionLifespan,
       this.forceSubjectIdentifier,
+      this.identityProviderSessionId,
       this.remember,
       this.rememberFor,
       required this.subject})
@@ -60,6 +63,7 @@ class _$AcceptOAuth2LoginRequest extends AcceptOAuth2LoginRequest {
         context == other.context &&
         extendSessionLifespan == other.extendSessionLifespan &&
         forceSubjectIdentifier == other.forceSubjectIdentifier &&
+        identityProviderSessionId == other.identityProviderSessionId &&
         remember == other.remember &&
         rememberFor == other.rememberFor &&
         subject == other.subject;
@@ -73,6 +77,7 @@ class _$AcceptOAuth2LoginRequest extends AcceptOAuth2LoginRequest {
     _$hash = $jc(_$hash, context.hashCode);
     _$hash = $jc(_$hash, extendSessionLifespan.hashCode);
     _$hash = $jc(_$hash, forceSubjectIdentifier.hashCode);
+    _$hash = $jc(_$hash, identityProviderSessionId.hashCode);
     _$hash = $jc(_$hash, remember.hashCode);
     _$hash = $jc(_$hash, rememberFor.hashCode);
     _$hash = $jc(_$hash, subject.hashCode);
@@ -88,6 +93,7 @@ class _$AcceptOAuth2LoginRequest extends AcceptOAuth2LoginRequest {
           ..add('context', context)
           ..add('extendSessionLifespan', extendSessionLifespan)
           ..add('forceSubjectIdentifier', forceSubjectIdentifier)
+          ..add('identityProviderSessionId', identityProviderSessionId)
           ..add('remember', remember)
           ..add('rememberFor', rememberFor)
           ..add('subject', subject))
@@ -122,6 +128,11 @@ class AcceptOAuth2LoginRequestBuilder
   set forceSubjectIdentifier(String? forceSubjectIdentifier) =>
       _$this._forceSubjectIdentifier = forceSubjectIdentifier;
 
+  String? _identityProviderSessionId;
+  String? get identityProviderSessionId => _$this._identityProviderSessionId;
+  set identityProviderSessionId(String? identityProviderSessionId) =>
+      _$this._identityProviderSessionId = identityProviderSessionId;
+
   bool? _remember;
   bool? get remember => _$this._remember;
   set remember(bool? remember) => _$this._remember = remember;
@@ -146,6 +157,7 @@ class AcceptOAuth2LoginRequestBuilder
       _context = $v.context;
       _extendSessionLifespan = $v.extendSessionLifespan;
       _forceSubjectIdentifier = $v.forceSubjectIdentifier;
+      _identityProviderSessionId = $v.identityProviderSessionId;
       _remember = $v.remember;
       _rememberFor = $v.rememberFor;
       _subject = $v.subject;
@@ -178,6 +190,7 @@ class AcceptOAuth2LoginRequestBuilder
               context: context,
               extendSessionLifespan: extendSessionLifespan,
               forceSubjectIdentifier: forceSubjectIdentifier,
+              identityProviderSessionId: identityProviderSessionId,
               remember: remember,
               rememberFor: rememberFor,
               subject: BuiltValueNullFieldError.checkNotNull(

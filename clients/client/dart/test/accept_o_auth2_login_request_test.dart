@@ -35,6 +35,12 @@ void main() {
       // TODO
     });
 
+    // IdentityProviderSessionID is the session ID of the end-user that authenticated. If specified, we will use this value to propagate the logout.
+    // String identityProviderSessionId
+    test('to test the property `identityProviderSessionId`', () async {
+      // TODO
+    });
+
     // Remember, if set to true, tells ORY Hydra to remember this user by telling the user agent (browser) to store a cookie with authentication data. If the same user performs another OAuth 2.0 Authorization Request, he/she will not be asked to log in again.
     // bool remember
     test('to test the property `remember`', () async {

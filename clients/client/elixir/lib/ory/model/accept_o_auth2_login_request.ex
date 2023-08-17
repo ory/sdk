@@ -13,6 +13,7 @@ defmodule Ory.Model.AcceptOAuth2LoginRequest do
     :context,
     :extend_session_lifespan,
     :force_subject_identifier,
+    :identity_provider_session_id,
     :remember,
     :remember_for,
     :subject
@@ -24,6 +25,7 @@ defmodule Ory.Model.AcceptOAuth2LoginRequest do
     :context => map() | nil,
     :extend_session_lifespan => boolean() | nil,
     :force_subject_identifier => String.t | nil,
+    :identity_provider_session_id => String.t | nil,
     :remember => boolean() | nil,
     :remember_for => integer() | nil,
     :subject => String.t
