@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.49
+API version: v1.1.50
 Contact: support@ory.sh
 */
 
@@ -100,6 +100,28 @@ type NormalizedProjectRevision struct {
 	KetoReadMaxDepth NullableInt32 `json:"keto_read_max_depth,omitempty"`
 	// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
 	KratosCookiesSameSite *string `json:"kratos_cookies_same_site,omitempty"`
+	// The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
+	KratosCourierDeliveryStrategy *string `json:"kratos_courier_delivery_strategy,omitempty"`
+	// The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.auth.config.in\" setting
+	KratosCourierHttpRequestConfigAuthApiKeyIn *string `json:"kratos_courier_http_request_config_auth_api_key_in,omitempty"`
+	// The name of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.name\" setting
+	KratosCourierHttpRequestConfigAuthApiKeyName *string `json:"kratos_courier_http_request_config_auth_api_key_name,omitempty"`
+	// The value of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.value\" setting
+	KratosCourierHttpRequestConfigAuthApiKeyValue *string `json:"kratos_courier_http_request_config_auth_api_key_value,omitempty"`
+	// The password to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.password\" setting
+	KratosCourierHttpRequestConfigAuthBasicAuthPassword *string `json:"kratos_courier_http_request_config_auth_basic_auth_password,omitempty"`
+	// The user to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.user\" setting
+	KratosCourierHttpRequestConfigAuthBasicAuthUser *string `json:"kratos_courier_http_request_config_auth_basic_auth_user,omitempty"`
+	// The authentication type to use while contacting the remote HTTP email sending service  `basic_auth`: Use Basic Authentication `api_key`: Use API Key Authentication in a header or cookie
+	KratosCourierHttpRequestConfigAuthType *string `json:"kratos_courier_http_request_config_auth_type,omitempty"`
+	// The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \"courier.http.body\" setting
+	KratosCourierHttpRequestConfigBody *string `json:"kratos_courier_http_request_config_body,omitempty"`
+	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+	KratosCourierHttpRequestConfigHeaders map[string]interface{} `json:"kratos_courier_http_request_config_headers,omitempty"`
+	// The http METHOD to use when calling the remote HTTP email sending service
+	KratosCourierHttpRequestConfigMethod *string `json:"kratos_courier_http_request_config_method,omitempty"`
+	// The URL of the remote HTTP email sending service  This governs the \"courier.http.url\" setting
+	KratosCourierHttpRequestConfigUrl *string `json:"kratos_courier_http_request_config_url,omitempty"`
 	// Configures the Ory Kratos SMTP Connection URI  This governs the \"courier.smtp.connection_uri\" setting.
 	KratosCourierSmtpConnectionUri *string `json:"kratos_courier_smtp_connection_uri,omitempty"`
 	// Configures the Ory Kratos SMTP From Address  This governs the \"courier.smtp.from_address\" setting.
@@ -339,6 +361,12 @@ func NewNormalizedProjectRevision(name string) *NormalizedProjectRevision {
 	this.HydraTtlLoginConsentRequest = &hydraTtlLoginConsentRequest
 	var hydraTtlRefreshToken string = "720h"
 	this.HydraTtlRefreshToken = &hydraTtlRefreshToken
+	var kratosCourierDeliveryStrategy string = "smtp"
+	this.KratosCourierDeliveryStrategy = &kratosCourierDeliveryStrategy
+	var kratosCourierHttpRequestConfigAuthType string = "empty (no authentication)"
+	this.KratosCourierHttpRequestConfigAuthType = &kratosCourierHttpRequestConfigAuthType
+	var kratosCourierHttpRequestConfigMethod string = "POST"
+	this.KratosCourierHttpRequestConfigMethod = &kratosCourierHttpRequestConfigMethod
 	this.Name = name
 	return &this
 }
@@ -364,6 +392,12 @@ func NewNormalizedProjectRevisionWithDefaults() *NormalizedProjectRevision {
 	this.HydraTtlLoginConsentRequest = &hydraTtlLoginConsentRequest
 	var hydraTtlRefreshToken string = "720h"
 	this.HydraTtlRefreshToken = &hydraTtlRefreshToken
+	var kratosCourierDeliveryStrategy string = "smtp"
+	this.KratosCourierDeliveryStrategy = &kratosCourierDeliveryStrategy
+	var kratosCourierHttpRequestConfigAuthType string = "empty (no authentication)"
+	this.KratosCourierHttpRequestConfigAuthType = &kratosCourierHttpRequestConfigAuthType
+	var kratosCourierHttpRequestConfigMethod string = "POST"
+	this.KratosCourierHttpRequestConfigMethod = &kratosCourierHttpRequestConfigMethod
 	return &this
 }
 
@@ -1847,6 +1881,359 @@ func (o *NormalizedProjectRevision) HasKratosCookiesSameSite() bool {
 // SetKratosCookiesSameSite gets a reference to the given string and assigns it to the KratosCookiesSameSite field.
 func (o *NormalizedProjectRevision) SetKratosCookiesSameSite(v string) {
 	o.KratosCookiesSameSite = &v
+}
+
+// GetKratosCourierDeliveryStrategy returns the KratosCourierDeliveryStrategy field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierDeliveryStrategy() string {
+	if o == nil || o.KratosCourierDeliveryStrategy == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierDeliveryStrategy
+}
+
+// GetKratosCourierDeliveryStrategyOk returns a tuple with the KratosCourierDeliveryStrategy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierDeliveryStrategyOk() (*string, bool) {
+	if o == nil || o.KratosCourierDeliveryStrategy == nil {
+		return nil, false
+	}
+	return o.KratosCourierDeliveryStrategy, true
+}
+
+// HasKratosCourierDeliveryStrategy returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierDeliveryStrategy() bool {
+	if o != nil && o.KratosCourierDeliveryStrategy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierDeliveryStrategy gets a reference to the given string and assigns it to the KratosCourierDeliveryStrategy field.
+func (o *NormalizedProjectRevision) SetKratosCourierDeliveryStrategy(v string) {
+	o.KratosCourierDeliveryStrategy = &v
+}
+
+// GetKratosCourierHttpRequestConfigAuthApiKeyIn returns the KratosCourierHttpRequestConfigAuthApiKeyIn field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthApiKeyIn() string {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthApiKeyIn == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierHttpRequestConfigAuthApiKeyIn
+}
+
+// GetKratosCourierHttpRequestConfigAuthApiKeyInOk returns a tuple with the KratosCourierHttpRequestConfigAuthApiKeyIn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthApiKeyInOk() (*string, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthApiKeyIn == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigAuthApiKeyIn, true
+}
+
+// HasKratosCourierHttpRequestConfigAuthApiKeyIn returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigAuthApiKeyIn() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigAuthApiKeyIn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigAuthApiKeyIn gets a reference to the given string and assigns it to the KratosCourierHttpRequestConfigAuthApiKeyIn field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigAuthApiKeyIn(v string) {
+	o.KratosCourierHttpRequestConfigAuthApiKeyIn = &v
+}
+
+// GetKratosCourierHttpRequestConfigAuthApiKeyName returns the KratosCourierHttpRequestConfigAuthApiKeyName field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthApiKeyName() string {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthApiKeyName == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierHttpRequestConfigAuthApiKeyName
+}
+
+// GetKratosCourierHttpRequestConfigAuthApiKeyNameOk returns a tuple with the KratosCourierHttpRequestConfigAuthApiKeyName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthApiKeyNameOk() (*string, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthApiKeyName == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigAuthApiKeyName, true
+}
+
+// HasKratosCourierHttpRequestConfigAuthApiKeyName returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigAuthApiKeyName() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigAuthApiKeyName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigAuthApiKeyName gets a reference to the given string and assigns it to the KratosCourierHttpRequestConfigAuthApiKeyName field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigAuthApiKeyName(v string) {
+	o.KratosCourierHttpRequestConfigAuthApiKeyName = &v
+}
+
+// GetKratosCourierHttpRequestConfigAuthApiKeyValue returns the KratosCourierHttpRequestConfigAuthApiKeyValue field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthApiKeyValue() string {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthApiKeyValue == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierHttpRequestConfigAuthApiKeyValue
+}
+
+// GetKratosCourierHttpRequestConfigAuthApiKeyValueOk returns a tuple with the KratosCourierHttpRequestConfigAuthApiKeyValue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthApiKeyValueOk() (*string, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthApiKeyValue == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigAuthApiKeyValue, true
+}
+
+// HasKratosCourierHttpRequestConfigAuthApiKeyValue returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigAuthApiKeyValue() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigAuthApiKeyValue != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigAuthApiKeyValue gets a reference to the given string and assigns it to the KratosCourierHttpRequestConfigAuthApiKeyValue field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigAuthApiKeyValue(v string) {
+	o.KratosCourierHttpRequestConfigAuthApiKeyValue = &v
+}
+
+// GetKratosCourierHttpRequestConfigAuthBasicAuthPassword returns the KratosCourierHttpRequestConfigAuthBasicAuthPassword field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthBasicAuthPassword() string {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthBasicAuthPassword == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierHttpRequestConfigAuthBasicAuthPassword
+}
+
+// GetKratosCourierHttpRequestConfigAuthBasicAuthPasswordOk returns a tuple with the KratosCourierHttpRequestConfigAuthBasicAuthPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthBasicAuthPasswordOk() (*string, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthBasicAuthPassword == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigAuthBasicAuthPassword, true
+}
+
+// HasKratosCourierHttpRequestConfigAuthBasicAuthPassword returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigAuthBasicAuthPassword() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigAuthBasicAuthPassword != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigAuthBasicAuthPassword gets a reference to the given string and assigns it to the KratosCourierHttpRequestConfigAuthBasicAuthPassword field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigAuthBasicAuthPassword(v string) {
+	o.KratosCourierHttpRequestConfigAuthBasicAuthPassword = &v
+}
+
+// GetKratosCourierHttpRequestConfigAuthBasicAuthUser returns the KratosCourierHttpRequestConfigAuthBasicAuthUser field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthBasicAuthUser() string {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthBasicAuthUser == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierHttpRequestConfigAuthBasicAuthUser
+}
+
+// GetKratosCourierHttpRequestConfigAuthBasicAuthUserOk returns a tuple with the KratosCourierHttpRequestConfigAuthBasicAuthUser field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthBasicAuthUserOk() (*string, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthBasicAuthUser == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigAuthBasicAuthUser, true
+}
+
+// HasKratosCourierHttpRequestConfigAuthBasicAuthUser returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigAuthBasicAuthUser() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigAuthBasicAuthUser != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigAuthBasicAuthUser gets a reference to the given string and assigns it to the KratosCourierHttpRequestConfigAuthBasicAuthUser field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigAuthBasicAuthUser(v string) {
+	o.KratosCourierHttpRequestConfigAuthBasicAuthUser = &v
+}
+
+// GetKratosCourierHttpRequestConfigAuthType returns the KratosCourierHttpRequestConfigAuthType field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthType() string {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthType == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierHttpRequestConfigAuthType
+}
+
+// GetKratosCourierHttpRequestConfigAuthTypeOk returns a tuple with the KratosCourierHttpRequestConfigAuthType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigAuthTypeOk() (*string, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigAuthType == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigAuthType, true
+}
+
+// HasKratosCourierHttpRequestConfigAuthType returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigAuthType() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigAuthType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigAuthType gets a reference to the given string and assigns it to the KratosCourierHttpRequestConfigAuthType field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigAuthType(v string) {
+	o.KratosCourierHttpRequestConfigAuthType = &v
+}
+
+// GetKratosCourierHttpRequestConfigBody returns the KratosCourierHttpRequestConfigBody field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigBody() string {
+	if o == nil || o.KratosCourierHttpRequestConfigBody == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierHttpRequestConfigBody
+}
+
+// GetKratosCourierHttpRequestConfigBodyOk returns a tuple with the KratosCourierHttpRequestConfigBody field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigBodyOk() (*string, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigBody == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigBody, true
+}
+
+// HasKratosCourierHttpRequestConfigBody returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigBody() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigBody != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigBody gets a reference to the given string and assigns it to the KratosCourierHttpRequestConfigBody field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigBody(v string) {
+	o.KratosCourierHttpRequestConfigBody = &v
+}
+
+// GetKratosCourierHttpRequestConfigHeaders returns the KratosCourierHttpRequestConfigHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigHeaders() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.KratosCourierHttpRequestConfigHeaders
+}
+
+// GetKratosCourierHttpRequestConfigHeadersOk returns a tuple with the KratosCourierHttpRequestConfigHeaders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigHeadersOk() (map[string]interface{}, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigHeaders == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigHeaders, true
+}
+
+// HasKratosCourierHttpRequestConfigHeaders returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigHeaders() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigHeaders != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigHeaders gets a reference to the given map[string]interface{} and assigns it to the KratosCourierHttpRequestConfigHeaders field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigHeaders(v map[string]interface{}) {
+	o.KratosCourierHttpRequestConfigHeaders = v
+}
+
+// GetKratosCourierHttpRequestConfigMethod returns the KratosCourierHttpRequestConfigMethod field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigMethod() string {
+	if o == nil || o.KratosCourierHttpRequestConfigMethod == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierHttpRequestConfigMethod
+}
+
+// GetKratosCourierHttpRequestConfigMethodOk returns a tuple with the KratosCourierHttpRequestConfigMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigMethodOk() (*string, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigMethod == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigMethod, true
+}
+
+// HasKratosCourierHttpRequestConfigMethod returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigMethod() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigMethod != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigMethod gets a reference to the given string and assigns it to the KratosCourierHttpRequestConfigMethod field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigMethod(v string) {
+	o.KratosCourierHttpRequestConfigMethod = &v
+}
+
+// GetKratosCourierHttpRequestConfigUrl returns the KratosCourierHttpRequestConfigUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigUrl() string {
+	if o == nil || o.KratosCourierHttpRequestConfigUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierHttpRequestConfigUrl
+}
+
+// GetKratosCourierHttpRequestConfigUrlOk returns a tuple with the KratosCourierHttpRequestConfigUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierHttpRequestConfigUrlOk() (*string, bool) {
+	if o == nil || o.KratosCourierHttpRequestConfigUrl == nil {
+		return nil, false
+	}
+	return o.KratosCourierHttpRequestConfigUrl, true
+}
+
+// HasKratosCourierHttpRequestConfigUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierHttpRequestConfigUrl() bool {
+	if o != nil && o.KratosCourierHttpRequestConfigUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierHttpRequestConfigUrl gets a reference to the given string and assigns it to the KratosCourierHttpRequestConfigUrl field.
+func (o *NormalizedProjectRevision) SetKratosCourierHttpRequestConfigUrl(v string) {
+	o.KratosCourierHttpRequestConfigUrl = &v
 }
 
 // GetKratosCourierSmtpConnectionUri returns the KratosCourierSmtpConnectionUri field value if set, zero value otherwise.
@@ -5535,6 +5922,39 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosCookiesSameSite != nil {
 		toSerialize["kratos_cookies_same_site"] = o.KratosCookiesSameSite
 	}
+	if o.KratosCourierDeliveryStrategy != nil {
+		toSerialize["kratos_courier_delivery_strategy"] = o.KratosCourierDeliveryStrategy
+	}
+	if o.KratosCourierHttpRequestConfigAuthApiKeyIn != nil {
+		toSerialize["kratos_courier_http_request_config_auth_api_key_in"] = o.KratosCourierHttpRequestConfigAuthApiKeyIn
+	}
+	if o.KratosCourierHttpRequestConfigAuthApiKeyName != nil {
+		toSerialize["kratos_courier_http_request_config_auth_api_key_name"] = o.KratosCourierHttpRequestConfigAuthApiKeyName
+	}
+	if o.KratosCourierHttpRequestConfigAuthApiKeyValue != nil {
+		toSerialize["kratos_courier_http_request_config_auth_api_key_value"] = o.KratosCourierHttpRequestConfigAuthApiKeyValue
+	}
+	if o.KratosCourierHttpRequestConfigAuthBasicAuthPassword != nil {
+		toSerialize["kratos_courier_http_request_config_auth_basic_auth_password"] = o.KratosCourierHttpRequestConfigAuthBasicAuthPassword
+	}
+	if o.KratosCourierHttpRequestConfigAuthBasicAuthUser != nil {
+		toSerialize["kratos_courier_http_request_config_auth_basic_auth_user"] = o.KratosCourierHttpRequestConfigAuthBasicAuthUser
+	}
+	if o.KratosCourierHttpRequestConfigAuthType != nil {
+		toSerialize["kratos_courier_http_request_config_auth_type"] = o.KratosCourierHttpRequestConfigAuthType
+	}
+	if o.KratosCourierHttpRequestConfigBody != nil {
+		toSerialize["kratos_courier_http_request_config_body"] = o.KratosCourierHttpRequestConfigBody
+	}
+	if o.KratosCourierHttpRequestConfigHeaders != nil {
+		toSerialize["kratos_courier_http_request_config_headers"] = o.KratosCourierHttpRequestConfigHeaders
+	}
+	if o.KratosCourierHttpRequestConfigMethod != nil {
+		toSerialize["kratos_courier_http_request_config_method"] = o.KratosCourierHttpRequestConfigMethod
+	}
+	if o.KratosCourierHttpRequestConfigUrl != nil {
+		toSerialize["kratos_courier_http_request_config_url"] = o.KratosCourierHttpRequestConfigUrl
+	}
 	if o.KratosCourierSmtpConnectionUri != nil {
 		toSerialize["kratos_courier_smtp_connection_uri"] = o.KratosCourierSmtpConnectionUri
 	}
@@ -5932,6 +6352,17 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "keto_namespaces")
 		delete(additionalProperties, "keto_read_max_depth")
 		delete(additionalProperties, "kratos_cookies_same_site")
+		delete(additionalProperties, "kratos_courier_delivery_strategy")
+		delete(additionalProperties, "kratos_courier_http_request_config_auth_api_key_in")
+		delete(additionalProperties, "kratos_courier_http_request_config_auth_api_key_name")
+		delete(additionalProperties, "kratos_courier_http_request_config_auth_api_key_value")
+		delete(additionalProperties, "kratos_courier_http_request_config_auth_basic_auth_password")
+		delete(additionalProperties, "kratos_courier_http_request_config_auth_basic_auth_user")
+		delete(additionalProperties, "kratos_courier_http_request_config_auth_type")
+		delete(additionalProperties, "kratos_courier_http_request_config_body")
+		delete(additionalProperties, "kratos_courier_http_request_config_headers")
+		delete(additionalProperties, "kratos_courier_http_request_config_method")
+		delete(additionalProperties, "kratos_courier_http_request_config_url")
 		delete(additionalProperties, "kratos_courier_smtp_connection_uri")
 		delete(additionalProperties, "kratos_courier_smtp_from_address")
 		delete(additionalProperties, "kratos_courier_smtp_from_name")

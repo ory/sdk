@@ -63,6 +63,17 @@ part 'normalized_project_revision.g.dart';
 /// * [ketoNamespaces] 
 /// * [ketoReadMaxDepth] 
 /// * [kratosCookiesSameSite] - Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
+/// * [kratosCourierDeliveryStrategy] - The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
+/// * [kratosCourierHttpRequestConfigAuthApiKeyIn] - The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.auth.config.in\" setting
+/// * [kratosCourierHttpRequestConfigAuthApiKeyName] - The name of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.name\" setting
+/// * [kratosCourierHttpRequestConfigAuthApiKeyValue] - The value of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.value\" setting
+/// * [kratosCourierHttpRequestConfigAuthBasicAuthPassword] - The password to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.password\" setting
+/// * [kratosCourierHttpRequestConfigAuthBasicAuthUser] - The user to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.user\" setting
+/// * [kratosCourierHttpRequestConfigAuthType] - The authentication type to use while contacting the remote HTTP email sending service  `basic_auth`: Use Basic Authentication `api_key`: Use API Key Authentication in a header or cookie
+/// * [kratosCourierHttpRequestConfigBody] - The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \"courier.http.body\" setting
+/// * [kratosCourierHttpRequestConfigHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+/// * [kratosCourierHttpRequestConfigMethod] - The http METHOD to use when calling the remote HTTP email sending service
+/// * [kratosCourierHttpRequestConfigUrl] - The URL of the remote HTTP email sending service  This governs the \"courier.http.url\" setting
 /// * [kratosCourierSmtpConnectionUri] - Configures the Ory Kratos SMTP Connection URI  This governs the \"courier.smtp.connection_uri\" setting.
 /// * [kratosCourierSmtpFromAddress] - Configures the Ory Kratos SMTP From Address  This governs the \"courier.smtp.from_address\" setting.
 /// * [kratosCourierSmtpFromName] - Configures the Ory Kratos SMTP From Name  This governs the \"courier.smtp.from_name\" setting.
@@ -351,6 +362,50 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
   @BuiltValueField(wireName: r'kratos_cookies_same_site')
   String? get kratosCookiesSameSite;
+
+  /// The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
+  @BuiltValueField(wireName: r'kratos_courier_delivery_strategy')
+  String? get kratosCourierDeliveryStrategy;
+
+  /// The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.auth.config.in\" setting
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_auth_api_key_in')
+  String? get kratosCourierHttpRequestConfigAuthApiKeyIn;
+
+  /// The name of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.name\" setting
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_auth_api_key_name')
+  String? get kratosCourierHttpRequestConfigAuthApiKeyName;
+
+  /// The value of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.value\" setting
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_auth_api_key_value')
+  String? get kratosCourierHttpRequestConfigAuthApiKeyValue;
+
+  /// The password to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.password\" setting
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_auth_basic_auth_password')
+  String? get kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+
+  /// The user to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.user\" setting
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_auth_basic_auth_user')
+  String? get kratosCourierHttpRequestConfigAuthBasicAuthUser;
+
+  /// The authentication type to use while contacting the remote HTTP email sending service  `basic_auth`: Use Basic Authentication `api_key`: Use API Key Authentication in a header or cookie
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_auth_type')
+  String? get kratosCourierHttpRequestConfigAuthType;
+
+  /// The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \"courier.http.body\" setting
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_body')
+  String? get kratosCourierHttpRequestConfigBody;
+
+  /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_headers')
+  JsonObject? get kratosCourierHttpRequestConfigHeaders;
+
+  /// The http METHOD to use when calling the remote HTTP email sending service
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_method')
+  String? get kratosCourierHttpRequestConfigMethod;
+
+  /// The URL of the remote HTTP email sending service  This governs the \"courier.http.url\" setting
+  @BuiltValueField(wireName: r'kratos_courier_http_request_config_url')
+  String? get kratosCourierHttpRequestConfigUrl;
 
   /// Configures the Ory Kratos SMTP Connection URI  This governs the \"courier.smtp.connection_uri\" setting.
   @BuiltValueField(wireName: r'kratos_courier_smtp_connection_uri')
@@ -801,7 +856,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
       ..hydraTtlAuthCode = '720h'
       ..hydraTtlIdToken = '30m'
       ..hydraTtlLoginConsentRequest = '30m'
-      ..hydraTtlRefreshToken = '720h';
+      ..hydraTtlRefreshToken = '720h'
+      ..kratosCourierDeliveryStrategy = 'smtp'
+      ..kratosCourierHttpRequestConfigAuthType = 'empty (no authentication)'
+      ..kratosCourierHttpRequestConfigMethod = 'POST';
 
   @BuiltValueSerializer(custom: true)
   static Serializer<NormalizedProjectRevision> get serializer => _$NormalizedProjectRevisionSerializer();
@@ -1138,6 +1196,83 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_cookies_same_site';
       yield serializers.serialize(
         object.kratosCookiesSameSite,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierDeliveryStrategy != null) {
+      yield r'kratos_courier_delivery_strategy';
+      yield serializers.serialize(
+        object.kratosCourierDeliveryStrategy,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigAuthApiKeyIn != null) {
+      yield r'kratos_courier_http_request_config_auth_api_key_in';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigAuthApiKeyIn,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigAuthApiKeyName != null) {
+      yield r'kratos_courier_http_request_config_auth_api_key_name';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigAuthApiKeyName,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigAuthApiKeyValue != null) {
+      yield r'kratos_courier_http_request_config_auth_api_key_value';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigAuthApiKeyValue,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigAuthBasicAuthPassword != null) {
+      yield r'kratos_courier_http_request_config_auth_basic_auth_password';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigAuthBasicAuthPassword,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigAuthBasicAuthUser != null) {
+      yield r'kratos_courier_http_request_config_auth_basic_auth_user';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigAuthBasicAuthUser,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigAuthType != null) {
+      yield r'kratos_courier_http_request_config_auth_type';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigAuthType,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigBody != null) {
+      yield r'kratos_courier_http_request_config_body';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigBody,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigHeaders != null) {
+      yield r'kratos_courier_http_request_config_headers';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigHeaders,
+        specifiedType: const FullType.nullable(JsonObject),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigMethod != null) {
+      yield r'kratos_courier_http_request_config_method';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigMethod,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierHttpRequestConfigUrl != null) {
+      yield r'kratos_courier_http_request_config_url';
+      yield serializers.serialize(
+        object.kratosCourierHttpRequestConfigUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -2261,6 +2396,84 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosCookiesSameSite = valueDes;
+          break;
+        case r'kratos_courier_delivery_strategy':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierDeliveryStrategy = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_auth_api_key_in':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierHttpRequestConfigAuthApiKeyIn = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_auth_api_key_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierHttpRequestConfigAuthApiKeyName = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_auth_api_key_value':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierHttpRequestConfigAuthApiKeyValue = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_auth_basic_auth_password':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierHttpRequestConfigAuthBasicAuthPassword = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_auth_basic_auth_user':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierHttpRequestConfigAuthBasicAuthUser = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_auth_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierHttpRequestConfigAuthType = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_body':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierHttpRequestConfigBody = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_headers':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
+          result.kratosCourierHttpRequestConfigHeaders = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_method':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierHttpRequestConfigMethod = valueDes;
+          break;
+        case r'kratos_courier_http_request_config_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierHttpRequestConfigUrl = valueDes;
           break;
         case r'kratos_courier_smtp_connection_uri':
           final valueDes = serializers.deserialize(

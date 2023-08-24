@@ -36,6 +36,9 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
     const QuotaUsageFeatureEnum._('rateLimitTier');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_sessionRateLimitTier =
     const QuotaUsageFeatureEnum._('sessionRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_identitiesListRateLimitTier =
+    const QuotaUsageFeatureEnum._('identitiesListRateLimitTier');
 
 QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
   switch (name) {
@@ -69,6 +72,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_rateLimitTier;
     case 'sessionRateLimitTier':
       return _$quotaUsageFeatureEnum_sessionRateLimitTier;
+    case 'identitiesListRateLimitTier':
+      return _$quotaUsageFeatureEnum_identitiesListRateLimitTier;
     default:
       throw new ArgumentError(name);
   }
@@ -91,6 +96,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_projectMetrics,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
+  _$quotaUsageFeatureEnum_identitiesListRateLimitTier,
 ]);
 
 Serializer<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumSerializer =
@@ -114,6 +120,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'projectMetrics': 'project_metrics',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
+    'identitiesListRateLimitTier': 'identities_list_rate_limit_tier',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'region_eu': 'regionEu',
@@ -131,6 +138,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'project_metrics': 'projectMetrics',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',
+    'identities_list_rate_limit_tier': 'identitiesListRateLimitTier',
   };
 
   @override

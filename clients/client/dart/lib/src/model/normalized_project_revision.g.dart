@@ -370,6 +370,28 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosCookiesSameSite;
   @override
+  final String? kratosCourierDeliveryStrategy;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthApiKeyIn;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthApiKeyName;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthApiKeyValue;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthBasicAuthUser;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthType;
+  @override
+  final String? kratosCourierHttpRequestConfigBody;
+  @override
+  final JsonObject? kratosCourierHttpRequestConfigHeaders;
+  @override
+  final String? kratosCourierHttpRequestConfigMethod;
+  @override
+  final String? kratosCourierHttpRequestConfigUrl;
+  @override
   final String? kratosCourierSmtpConnectionUri;
   @override
   final String? kratosCourierSmtpFromAddress;
@@ -653,6 +675,17 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.ketoNamespaces,
       this.ketoReadMaxDepth,
       this.kratosCookiesSameSite,
+      this.kratosCourierDeliveryStrategy,
+      this.kratosCourierHttpRequestConfigAuthApiKeyIn,
+      this.kratosCourierHttpRequestConfigAuthApiKeyName,
+      this.kratosCourierHttpRequestConfigAuthApiKeyValue,
+      this.kratosCourierHttpRequestConfigAuthBasicAuthPassword,
+      this.kratosCourierHttpRequestConfigAuthBasicAuthUser,
+      this.kratosCourierHttpRequestConfigAuthType,
+      this.kratosCourierHttpRequestConfigBody,
+      this.kratosCourierHttpRequestConfigHeaders,
+      this.kratosCourierHttpRequestConfigMethod,
+      this.kratosCourierHttpRequestConfigUrl,
       this.kratosCourierSmtpConnectionUri,
       this.kratosCourierSmtpFromAddress,
       this.kratosCourierSmtpFromName,
@@ -848,6 +881,27 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         ketoNamespaces == other.ketoNamespaces &&
         ketoReadMaxDepth == other.ketoReadMaxDepth &&
         kratosCookiesSameSite == other.kratosCookiesSameSite &&
+        kratosCourierDeliveryStrategy == other.kratosCourierDeliveryStrategy &&
+        kratosCourierHttpRequestConfigAuthApiKeyIn ==
+            other.kratosCourierHttpRequestConfigAuthApiKeyIn &&
+        kratosCourierHttpRequestConfigAuthApiKeyName ==
+            other.kratosCourierHttpRequestConfigAuthApiKeyName &&
+        kratosCourierHttpRequestConfigAuthApiKeyValue ==
+            other.kratosCourierHttpRequestConfigAuthApiKeyValue &&
+        kratosCourierHttpRequestConfigAuthBasicAuthPassword ==
+            other.kratosCourierHttpRequestConfigAuthBasicAuthPassword &&
+        kratosCourierHttpRequestConfigAuthBasicAuthUser ==
+            other.kratosCourierHttpRequestConfigAuthBasicAuthUser &&
+        kratosCourierHttpRequestConfigAuthType ==
+            other.kratosCourierHttpRequestConfigAuthType &&
+        kratosCourierHttpRequestConfigBody ==
+            other.kratosCourierHttpRequestConfigBody &&
+        kratosCourierHttpRequestConfigHeaders ==
+            other.kratosCourierHttpRequestConfigHeaders &&
+        kratosCourierHttpRequestConfigMethod ==
+            other.kratosCourierHttpRequestConfigMethod &&
+        kratosCourierHttpRequestConfigUrl ==
+            other.kratosCourierHttpRequestConfigUrl &&
         kratosCourierSmtpConnectionUri ==
             other.kratosCourierSmtpConnectionUri &&
         kratosCourierSmtpFromAddress == other.kratosCourierSmtpFromAddress &&
@@ -1114,6 +1168,20 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, ketoNamespaces.hashCode);
     _$hash = $jc(_$hash, ketoReadMaxDepth.hashCode);
     _$hash = $jc(_$hash, kratosCookiesSameSite.hashCode);
+    _$hash = $jc(_$hash, kratosCourierDeliveryStrategy.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigAuthApiKeyIn.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigAuthApiKeyName.hashCode);
+    _$hash =
+        $jc(_$hash, kratosCourierHttpRequestConfigAuthApiKeyValue.hashCode);
+    _$hash = $jc(
+        _$hash, kratosCourierHttpRequestConfigAuthBasicAuthPassword.hashCode);
+    _$hash =
+        $jc(_$hash, kratosCourierHttpRequestConfigAuthBasicAuthUser.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigAuthType.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigBody.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigHeaders.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigMethod.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigUrl.hashCode);
     _$hash = $jc(_$hash, kratosCourierSmtpConnectionUri.hashCode);
     _$hash = $jc(_$hash, kratosCourierSmtpFromAddress.hashCode);
     _$hash = $jc(_$hash, kratosCourierSmtpFromName.hashCode);
@@ -1370,6 +1438,27 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('ketoNamespaces', ketoNamespaces)
           ..add('ketoReadMaxDepth', ketoReadMaxDepth)
           ..add('kratosCookiesSameSite', kratosCookiesSameSite)
+          ..add('kratosCourierDeliveryStrategy', kratosCourierDeliveryStrategy)
+          ..add('kratosCourierHttpRequestConfigAuthApiKeyIn',
+              kratosCourierHttpRequestConfigAuthApiKeyIn)
+          ..add('kratosCourierHttpRequestConfigAuthApiKeyName',
+              kratosCourierHttpRequestConfigAuthApiKeyName)
+          ..add('kratosCourierHttpRequestConfigAuthApiKeyValue',
+              kratosCourierHttpRequestConfigAuthApiKeyValue)
+          ..add('kratosCourierHttpRequestConfigAuthBasicAuthPassword',
+              kratosCourierHttpRequestConfigAuthBasicAuthPassword)
+          ..add('kratosCourierHttpRequestConfigAuthBasicAuthUser',
+              kratosCourierHttpRequestConfigAuthBasicAuthUser)
+          ..add('kratosCourierHttpRequestConfigAuthType',
+              kratosCourierHttpRequestConfigAuthType)
+          ..add('kratosCourierHttpRequestConfigBody',
+              kratosCourierHttpRequestConfigBody)
+          ..add('kratosCourierHttpRequestConfigHeaders',
+              kratosCourierHttpRequestConfigHeaders)
+          ..add('kratosCourierHttpRequestConfigMethod',
+              kratosCourierHttpRequestConfigMethod)
+          ..add('kratosCourierHttpRequestConfigUrl',
+              kratosCourierHttpRequestConfigUrl)
           ..add(
               'kratosCourierSmtpConnectionUri', kratosCourierSmtpConnectionUri)
           ..add('kratosCourierSmtpFromAddress', kratosCourierSmtpFromAddress)
@@ -1891,6 +1980,92 @@ class NormalizedProjectRevisionBuilder
   String? get kratosCookiesSameSite => _$this._kratosCookiesSameSite;
   set kratosCookiesSameSite(String? kratosCookiesSameSite) =>
       _$this._kratosCookiesSameSite = kratosCookiesSameSite;
+
+  String? _kratosCourierDeliveryStrategy;
+  String? get kratosCourierDeliveryStrategy =>
+      _$this._kratosCourierDeliveryStrategy;
+  set kratosCourierDeliveryStrategy(String? kratosCourierDeliveryStrategy) =>
+      _$this._kratosCourierDeliveryStrategy = kratosCourierDeliveryStrategy;
+
+  String? _kratosCourierHttpRequestConfigAuthApiKeyIn;
+  String? get kratosCourierHttpRequestConfigAuthApiKeyIn =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyIn;
+  set kratosCourierHttpRequestConfigAuthApiKeyIn(
+          String? kratosCourierHttpRequestConfigAuthApiKeyIn) =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyIn =
+          kratosCourierHttpRequestConfigAuthApiKeyIn;
+
+  String? _kratosCourierHttpRequestConfigAuthApiKeyName;
+  String? get kratosCourierHttpRequestConfigAuthApiKeyName =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyName;
+  set kratosCourierHttpRequestConfigAuthApiKeyName(
+          String? kratosCourierHttpRequestConfigAuthApiKeyName) =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyName =
+          kratosCourierHttpRequestConfigAuthApiKeyName;
+
+  String? _kratosCourierHttpRequestConfigAuthApiKeyValue;
+  String? get kratosCourierHttpRequestConfigAuthApiKeyValue =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyValue;
+  set kratosCourierHttpRequestConfigAuthApiKeyValue(
+          String? kratosCourierHttpRequestConfigAuthApiKeyValue) =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyValue =
+          kratosCourierHttpRequestConfigAuthApiKeyValue;
+
+  String? _kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+  String? get kratosCourierHttpRequestConfigAuthBasicAuthPassword =>
+      _$this._kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+  set kratosCourierHttpRequestConfigAuthBasicAuthPassword(
+          String? kratosCourierHttpRequestConfigAuthBasicAuthPassword) =>
+      _$this._kratosCourierHttpRequestConfigAuthBasicAuthPassword =
+          kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+
+  String? _kratosCourierHttpRequestConfigAuthBasicAuthUser;
+  String? get kratosCourierHttpRequestConfigAuthBasicAuthUser =>
+      _$this._kratosCourierHttpRequestConfigAuthBasicAuthUser;
+  set kratosCourierHttpRequestConfigAuthBasicAuthUser(
+          String? kratosCourierHttpRequestConfigAuthBasicAuthUser) =>
+      _$this._kratosCourierHttpRequestConfigAuthBasicAuthUser =
+          kratosCourierHttpRequestConfigAuthBasicAuthUser;
+
+  String? _kratosCourierHttpRequestConfigAuthType;
+  String? get kratosCourierHttpRequestConfigAuthType =>
+      _$this._kratosCourierHttpRequestConfigAuthType;
+  set kratosCourierHttpRequestConfigAuthType(
+          String? kratosCourierHttpRequestConfigAuthType) =>
+      _$this._kratosCourierHttpRequestConfigAuthType =
+          kratosCourierHttpRequestConfigAuthType;
+
+  String? _kratosCourierHttpRequestConfigBody;
+  String? get kratosCourierHttpRequestConfigBody =>
+      _$this._kratosCourierHttpRequestConfigBody;
+  set kratosCourierHttpRequestConfigBody(
+          String? kratosCourierHttpRequestConfigBody) =>
+      _$this._kratosCourierHttpRequestConfigBody =
+          kratosCourierHttpRequestConfigBody;
+
+  JsonObject? _kratosCourierHttpRequestConfigHeaders;
+  JsonObject? get kratosCourierHttpRequestConfigHeaders =>
+      _$this._kratosCourierHttpRequestConfigHeaders;
+  set kratosCourierHttpRequestConfigHeaders(
+          JsonObject? kratosCourierHttpRequestConfigHeaders) =>
+      _$this._kratosCourierHttpRequestConfigHeaders =
+          kratosCourierHttpRequestConfigHeaders;
+
+  String? _kratosCourierHttpRequestConfigMethod;
+  String? get kratosCourierHttpRequestConfigMethod =>
+      _$this._kratosCourierHttpRequestConfigMethod;
+  set kratosCourierHttpRequestConfigMethod(
+          String? kratosCourierHttpRequestConfigMethod) =>
+      _$this._kratosCourierHttpRequestConfigMethod =
+          kratosCourierHttpRequestConfigMethod;
+
+  String? _kratosCourierHttpRequestConfigUrl;
+  String? get kratosCourierHttpRequestConfigUrl =>
+      _$this._kratosCourierHttpRequestConfigUrl;
+  set kratosCourierHttpRequestConfigUrl(
+          String? kratosCourierHttpRequestConfigUrl) =>
+      _$this._kratosCourierHttpRequestConfigUrl =
+          kratosCourierHttpRequestConfigUrl;
 
   String? _kratosCourierSmtpConnectionUri;
   String? get kratosCourierSmtpConnectionUri =>
@@ -2829,6 +3004,26 @@ class NormalizedProjectRevisionBuilder
       _ketoNamespaces = $v.ketoNamespaces?.toBuilder();
       _ketoReadMaxDepth = $v.ketoReadMaxDepth;
       _kratosCookiesSameSite = $v.kratosCookiesSameSite;
+      _kratosCourierDeliveryStrategy = $v.kratosCourierDeliveryStrategy;
+      _kratosCourierHttpRequestConfigAuthApiKeyIn =
+          $v.kratosCourierHttpRequestConfigAuthApiKeyIn;
+      _kratosCourierHttpRequestConfigAuthApiKeyName =
+          $v.kratosCourierHttpRequestConfigAuthApiKeyName;
+      _kratosCourierHttpRequestConfigAuthApiKeyValue =
+          $v.kratosCourierHttpRequestConfigAuthApiKeyValue;
+      _kratosCourierHttpRequestConfigAuthBasicAuthPassword =
+          $v.kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+      _kratosCourierHttpRequestConfigAuthBasicAuthUser =
+          $v.kratosCourierHttpRequestConfigAuthBasicAuthUser;
+      _kratosCourierHttpRequestConfigAuthType =
+          $v.kratosCourierHttpRequestConfigAuthType;
+      _kratosCourierHttpRequestConfigBody =
+          $v.kratosCourierHttpRequestConfigBody;
+      _kratosCourierHttpRequestConfigHeaders =
+          $v.kratosCourierHttpRequestConfigHeaders;
+      _kratosCourierHttpRequestConfigMethod =
+          $v.kratosCourierHttpRequestConfigMethod;
+      _kratosCourierHttpRequestConfigUrl = $v.kratosCourierHttpRequestConfigUrl;
       _kratosCourierSmtpConnectionUri = $v.kratosCourierSmtpConnectionUri;
       _kratosCourierSmtpFromAddress = $v.kratosCourierSmtpFromAddress;
       _kratosCourierSmtpFromName = $v.kratosCourierSmtpFromName;
@@ -3115,6 +3310,27 @@ class NormalizedProjectRevisionBuilder
               ketoNamespaces: _ketoNamespaces?.build(),
               ketoReadMaxDepth: ketoReadMaxDepth,
               kratosCookiesSameSite: kratosCookiesSameSite,
+              kratosCourierDeliveryStrategy: kratosCourierDeliveryStrategy,
+              kratosCourierHttpRequestConfigAuthApiKeyIn:
+                  kratosCourierHttpRequestConfigAuthApiKeyIn,
+              kratosCourierHttpRequestConfigAuthApiKeyName:
+                  kratosCourierHttpRequestConfigAuthApiKeyName,
+              kratosCourierHttpRequestConfigAuthApiKeyValue:
+                  kratosCourierHttpRequestConfigAuthApiKeyValue,
+              kratosCourierHttpRequestConfigAuthBasicAuthPassword:
+                  kratosCourierHttpRequestConfigAuthBasicAuthPassword,
+              kratosCourierHttpRequestConfigAuthBasicAuthUser:
+                  kratosCourierHttpRequestConfigAuthBasicAuthUser,
+              kratosCourierHttpRequestConfigAuthType:
+                  kratosCourierHttpRequestConfigAuthType,
+              kratosCourierHttpRequestConfigBody:
+                  kratosCourierHttpRequestConfigBody,
+              kratosCourierHttpRequestConfigHeaders:
+                  kratosCourierHttpRequestConfigHeaders,
+              kratosCourierHttpRequestConfigMethod:
+                  kratosCourierHttpRequestConfigMethod,
+              kratosCourierHttpRequestConfigUrl:
+                  kratosCourierHttpRequestConfigUrl,
               kratosCourierSmtpConnectionUri: kratosCourierSmtpConnectionUri,
               kratosCourierSmtpFromAddress: kratosCourierSmtpFromAddress,
               kratosCourierSmtpFromName: kratosCourierSmtpFromName,
@@ -3186,16 +3402,11 @@ class NormalizedProjectRevisionBuilder
                   kratosSelfserviceFlowsErrorUiUrl,
               kratosSelfserviceFlowsHooks:
                   _kratosSelfserviceFlowsHooks?.build(),
-              kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl:
-                  kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
-              kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl:
-                  kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
-              kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl:
-                  kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
-              kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl:
-                  kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
-              kratosSelfserviceFlowsLoginLifespan:
-                  kratosSelfserviceFlowsLoginLifespan,
+              kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginLifespan: kratosSelfserviceFlowsLoginLifespan,
               kratosSelfserviceFlowsLoginUiUrl: kratosSelfserviceFlowsLoginUiUrl,
               kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl,

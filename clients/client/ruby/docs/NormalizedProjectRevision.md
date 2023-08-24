@@ -50,6 +50,17 @@
 | **keto_namespaces** | [**Array&lt;KetoNamespace&gt;**](KetoNamespace.md) |  | [optional] |
 | **keto_read_max_depth** | **Integer** |  | [optional] |
 | **kratos_cookies_same_site** | **String** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] |
+| **kratos_courier_delivery_strategy** | **String** | The delivery strategy to use when sending emails  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional][default to &#39;smtp&#39;] |
+| **kratos_courier_http_request_config_auth_api_key_in** | **String** | The location of the API key to use in the HTTP email sending service&#39;s authentication  &#x60;header&#x60;: Send the key value pair as a header &#x60;cookie&#x60;: Send the key value pair as a cookie This governs the \&quot;courier.http.auth.config.in\&quot; setting | [optional] |
+| **kratos_courier_http_request_config_auth_api_key_name** | **String** | The name of the API key to use in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.name\&quot; setting | [optional] |
+| **kratos_courier_http_request_config_auth_api_key_value** | **String** | The value of the API key to use in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.value\&quot; setting | [optional] |
+| **kratos_courier_http_request_config_auth_basic_auth_password** | **String** | The password to use for basic auth in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.password\&quot; setting | [optional] |
+| **kratos_courier_http_request_config_auth_basic_auth_user** | **String** | The user to use for basic auth in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.user\&quot; setting | [optional] |
+| **kratos_courier_http_request_config_auth_type** | **String** | The authentication type to use while contacting the remote HTTP email sending service  &#x60;basic_auth&#x60;: Use Basic Authentication &#x60;api_key&#x60;: Use API Key Authentication in a header or cookie | [optional][default to &#39;empty (no authentication)&#39;] |
+| **kratos_courier_http_request_config_body** | **String** | The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \&quot;courier.http.body\&quot; setting | [optional] |
+| **kratos_courier_http_request_config_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
+| **kratos_courier_http_request_config_method** | **String** | The http METHOD to use when calling the remote HTTP email sending service | [optional][default to &#39;POST&#39;] |
+| **kratos_courier_http_request_config_url** | **String** | The URL of the remote HTTP email sending service  This governs the \&quot;courier.http.url\&quot; setting | [optional] |
 | **kratos_courier_smtp_connection_uri** | **String** | Configures the Ory Kratos SMTP Connection URI  This governs the \&quot;courier.smtp.connection_uri\&quot; setting. | [optional] |
 | **kratos_courier_smtp_from_address** | **String** | Configures the Ory Kratos SMTP From Address  This governs the \&quot;courier.smtp.from_address\&quot; setting. | [optional] |
 | **kratos_courier_smtp_from_name** | **String** | Configures the Ory Kratos SMTP From Name  This governs the \&quot;courier.smtp.from_name\&quot; setting. | [optional] |
@@ -214,6 +225,17 @@ instance = OryClient::NormalizedProjectRevision.new(
   keto_namespaces: null,
   keto_read_max_depth: null,
   kratos_cookies_same_site: null,
+  kratos_courier_delivery_strategy: null,
+  kratos_courier_http_request_config_auth_api_key_in: null,
+  kratos_courier_http_request_config_auth_api_key_name: null,
+  kratos_courier_http_request_config_auth_api_key_value: null,
+  kratos_courier_http_request_config_auth_basic_auth_password: null,
+  kratos_courier_http_request_config_auth_basic_auth_user: null,
+  kratos_courier_http_request_config_auth_type: null,
+  kratos_courier_http_request_config_body: null,
+  kratos_courier_http_request_config_headers: null,
+  kratos_courier_http_request_config_method: null,
+  kratos_courier_http_request_config_url: null,
   kratos_courier_smtp_connection_uri: null,
   kratos_courier_smtp_from_address: null,
   kratos_courier_smtp_from_name: null,

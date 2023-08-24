@@ -273,6 +273,72 @@ void main() {
       // TODO
     });
 
+    // The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
+    // String kratosCourierDeliveryStrategy (default value: 'smtp')
+    test('to test the property `kratosCourierDeliveryStrategy`', () async {
+      // TODO
+    });
+
+    // The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.auth.config.in\" setting
+    // String kratosCourierHttpRequestConfigAuthApiKeyIn
+    test('to test the property `kratosCourierHttpRequestConfigAuthApiKeyIn`', () async {
+      // TODO
+    });
+
+    // The name of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.name\" setting
+    // String kratosCourierHttpRequestConfigAuthApiKeyName
+    test('to test the property `kratosCourierHttpRequestConfigAuthApiKeyName`', () async {
+      // TODO
+    });
+
+    // The value of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.value\" setting
+    // String kratosCourierHttpRequestConfigAuthApiKeyValue
+    test('to test the property `kratosCourierHttpRequestConfigAuthApiKeyValue`', () async {
+      // TODO
+    });
+
+    // The password to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.password\" setting
+    // String kratosCourierHttpRequestConfigAuthBasicAuthPassword
+    test('to test the property `kratosCourierHttpRequestConfigAuthBasicAuthPassword`', () async {
+      // TODO
+    });
+
+    // The user to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.user\" setting
+    // String kratosCourierHttpRequestConfigAuthBasicAuthUser
+    test('to test the property `kratosCourierHttpRequestConfigAuthBasicAuthUser`', () async {
+      // TODO
+    });
+
+    // The authentication type to use while contacting the remote HTTP email sending service  `basic_auth`: Use Basic Authentication `api_key`: Use API Key Authentication in a header or cookie
+    // String kratosCourierHttpRequestConfigAuthType (default value: 'empty (no authentication)')
+    test('to test the property `kratosCourierHttpRequestConfigAuthType`', () async {
+      // TODO
+    });
+
+    // The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \"courier.http.body\" setting
+    // String kratosCourierHttpRequestConfigBody
+    test('to test the property `kratosCourierHttpRequestConfigBody`', () async {
+      // TODO
+    });
+
+    // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+    // JsonObject kratosCourierHttpRequestConfigHeaders
+    test('to test the property `kratosCourierHttpRequestConfigHeaders`', () async {
+      // TODO
+    });
+
+    // The http METHOD to use when calling the remote HTTP email sending service
+    // String kratosCourierHttpRequestConfigMethod (default value: 'POST')
+    test('to test the property `kratosCourierHttpRequestConfigMethod`', () async {
+      // TODO
+    });
+
+    // The URL of the remote HTTP email sending service  This governs the \"courier.http.url\" setting
+    // String kratosCourierHttpRequestConfigUrl
+    test('to test the property `kratosCourierHttpRequestConfigUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos SMTP Connection URI  This governs the \"courier.smtp.connection_uri\" setting.
     // String kratosCourierSmtpConnectionUri
     test('to test the property `kratosCourierSmtpConnectionUri`', () async {
