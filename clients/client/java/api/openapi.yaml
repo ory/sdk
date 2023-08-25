@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.50
+  version: v1.1.51
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -584,14 +584,14 @@ paths:
           reference. The next page can be any number and some numbers might return an empty list.
 
           For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+          The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the
+          `Link` header.
         explode: true
         in: query
         name: page
         required: false
         schema:
-          default: 1
           format: int64
-          minimum: 1
           type: integer
         style: form
       - description: "CredentialsIdentifier is the identifier (username, email) of\
@@ -1055,14 +1055,14 @@ paths:
           reference. The next page can be any number and some numbers might return an empty list.
 
           For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+          The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the
+          `Link` header.
         explode: true
         in: query
         name: page
         required: false
         schema:
-          default: 1
           format: int64
-          minimum: 1
           type: integer
         style: form
       - description: ID is the identity's ID.
@@ -4352,14 +4352,14 @@ paths:
           reference. The next page can be any number and some numbers might return an empty list.
 
           For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+          The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the
+          `Link` header.
         explode: true
         in: query
         name: page
         required: false
         schema:
-          default: 1
           format: int64
-          minimum: 1
           type: integer
         style: form
       responses:
@@ -6967,6 +6967,8 @@ components:
       format: uuid4
       nullable: true
       type: string
+    OAuth2LoginChallengeParams:
+      type: object
     ParseError:
       example:
         start:

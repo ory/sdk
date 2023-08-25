@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.50
+API version: v1.1.51
 Contact: support@ory.sh
 */
 
@@ -1870,7 +1870,7 @@ func (r IdentityApiListIdentitiesRequest) PerPage(perPage int64) IdentityApiList
 	return r
 }
 
-// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
 func (r IdentityApiListIdentitiesRequest) Page(page int64) IdentityApiListIdentitiesRequest {
 	r.page = &page
 	return r
@@ -2005,7 +2005,7 @@ func (r IdentityApiListIdentitySchemasRequest) PerPage(perPage int64) IdentityAp
 	return r
 }
 
-// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
 func (r IdentityApiListIdentitySchemasRequest) Page(page int64) IdentityApiListIdentitySchemasRequest {
 	r.page = &page
 	return r
@@ -2133,7 +2133,7 @@ func (r IdentityApiListIdentitySessionsRequest) PerPage(perPage int64) IdentityA
 	return r
 }
 
-// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
 func (r IdentityApiListIdentitySessionsRequest) Page(page int64) IdentityApiListIdentitySessionsRequest {
 	r.page = &page
 	return r

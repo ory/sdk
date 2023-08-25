@@ -987,7 +987,7 @@ class IdentityApi {
   ///
   /// Parameters:
   /// * [perPage] - Items per Page  This is the number of items per page.
-  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
   /// * [credentialsIdentifier] - CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1000,7 +1000,7 @@ class IdentityApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<BuiltList<Identity>>> listIdentities({ 
     int? perPage = 250,
-    int? page = 1,
+    int? page,
     String? credentialsIdentifier,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1079,7 +1079,7 @@ class IdentityApi {
   ///
   /// Parameters:
   /// * [perPage] - Items per Page  This is the number of items per page.
-  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1091,7 +1091,7 @@ class IdentityApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<BuiltList<IdentitySchemaContainer>>> listIdentitySchemas({ 
     int? perPage = 250,
-    int? page = 1,
+    int? page,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1163,7 +1163,7 @@ class IdentityApi {
   /// Parameters:
   /// * [id] - ID is the identity's ID.
   /// * [perPage] - Items per Page  This is the number of items per page.
-  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
   /// * [active] - Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1177,7 +1177,7 @@ class IdentityApi {
   Future<Response<BuiltList<Session>>> listIdentitySessions({ 
     required String id,
     int? perPage = 250,
-    int? page = 1,
+    int? page,
     bool? active,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
