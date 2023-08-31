@@ -8,10 +8,11 @@ Name | Type | Description | Notes
 **ExpiresAt** | **time.Time** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. | 
 **Id** | **string** | ID represents the flow&#39;s unique ID. When performing the registration flow, this represents the id in the registration ui&#39;s query parameter: http://&lt;selfservice.flows.registration.ui_url&gt;/?flow&#x3D;&lt;id&gt; | 
 **IssuedAt** | **time.Time** | IssuedAt is the time (UTC) when the flow occurred. | 
-**Oauth2LoginChallenge** | Pointer to **NullableString** |  | [optional] 
+**Oauth2LoginChallenge** | Pointer to **string** | Ory OAuth 2.0 Login Challenge.  This value is set using the &#x60;login_challenge&#x60; query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider. | [optional] 
 **Oauth2LoginRequest** | Pointer to [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
+**SessionTokenExchangeCode** | Pointer to **string** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the flow. | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | TransientPayload is used to pass data from the registration to a webhook | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
@@ -145,16 +146,6 @@ SetOauth2LoginChallenge sets Oauth2LoginChallenge field to given value.
 
 HasOauth2LoginChallenge returns a boolean if a field has been set.
 
-### SetOauth2LoginChallengeNil
-
-`func (o *RegistrationFlow) SetOauth2LoginChallengeNil(b bool)`
-
- SetOauth2LoginChallengeNil sets the value for Oauth2LoginChallenge to be an explicit nil
-
-### UnsetOauth2LoginChallenge
-`func (o *RegistrationFlow) UnsetOauth2LoginChallenge()`
-
-UnsetOauth2LoginChallenge ensures that no value is present for Oauth2LoginChallenge, not even an explicit nil
 ### GetOauth2LoginRequest
 
 `func (o *RegistrationFlow) GetOauth2LoginRequest() OAuth2LoginRequest`
@@ -224,6 +215,31 @@ SetReturnTo sets ReturnTo field to given value.
 `func (o *RegistrationFlow) HasReturnTo() bool`
 
 HasReturnTo returns a boolean if a field has been set.
+
+### GetSessionTokenExchangeCode
+
+`func (o *RegistrationFlow) GetSessionTokenExchangeCode() string`
+
+GetSessionTokenExchangeCode returns the SessionTokenExchangeCode field if non-nil, zero value otherwise.
+
+### GetSessionTokenExchangeCodeOk
+
+`func (o *RegistrationFlow) GetSessionTokenExchangeCodeOk() (*string, bool)`
+
+GetSessionTokenExchangeCodeOk returns a tuple with the SessionTokenExchangeCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionTokenExchangeCode
+
+`func (o *RegistrationFlow) SetSessionTokenExchangeCode(v string)`
+
+SetSessionTokenExchangeCode sets SessionTokenExchangeCode field to given value.
+
+### HasSessionTokenExchangeCode
+
+`func (o *RegistrationFlow) HasSessionTokenExchangeCode() bool`
+
+HasSessionTokenExchangeCode returns a boolean if a field has been set.
 
 ### GetTransientPayload
 

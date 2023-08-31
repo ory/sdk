@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -23,7 +23,10 @@ type UpdateLoginFlowWithLookupSecretMethod struct {
 	LookupSecret string `json:"lookup_secret"`
 	// Method should be set to \"lookup_secret\" when logging in using the lookup_secret strategy.
 	Method string `json:"method"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateLoginFlowWithLookupSecretMethod UpdateLoginFlowWithLookupSecretMethod
 
 // NewUpdateLoginFlowWithLookupSecretMethod instantiates a new UpdateLoginFlowWithLookupSecretMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -135,7 +138,31 @@ func (o UpdateLoginFlowWithLookupSecretMethod) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["method"] = o.Method
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateLoginFlowWithLookupSecretMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateLoginFlowWithLookupSecretMethod := _UpdateLoginFlowWithLookupSecretMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateLoginFlowWithLookupSecretMethod); err == nil {
+		*o = UpdateLoginFlowWithLookupSecretMethod(varUpdateLoginFlowWithLookupSecretMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "lookup_secret")
+		delete(additionalProperties, "method")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateLoginFlowWithLookupSecretMethod struct {

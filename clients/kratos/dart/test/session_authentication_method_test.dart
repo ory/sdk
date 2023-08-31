@@ -23,5 +23,11 @@ void main() {
       // TODO
     });
 
+    // OIDC or SAML provider id used for authentication
+    // String provider
+    test('to test the property `provider`', () async {
+      // TODO
+    });
+
   });
 }

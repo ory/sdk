@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type PatchIdentitiesBody struct {
 	// Identities holds the list of patches to apply  required
 	Identities []IdentityPatch `json:"identities,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchIdentitiesBody PatchIdentitiesBody
 
 // NewPatchIdentitiesBody instantiates a new PatchIdentitiesBody object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o PatchIdentitiesBody) MarshalJSON() ([]byte, error) {
 	if o.Identities != nil {
 		toSerialize["identities"] = o.Identities
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *PatchIdentitiesBody) UnmarshalJSON(bytes []byte) (err error) {
+	varPatchIdentitiesBody := _PatchIdentitiesBody{}
+
+	if err = json.Unmarshal(bytes, &varPatchIdentitiesBody); err == nil {
+		*o = PatchIdentitiesBody(varPatchIdentitiesBody)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "identities")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchIdentitiesBody struct {

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -35,7 +35,10 @@ type UiNodeScriptAttributes struct {
 	Src string `json:"src"`
 	// The script MIME type
 	Type string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNodeScriptAttributes UiNodeScriptAttributes
 
 // NewUiNodeScriptAttributes instantiates a new UiNodeScriptAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -308,7 +311,37 @@ func (o UiNodeScriptAttributes) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiNodeScriptAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	varUiNodeScriptAttributes := _UiNodeScriptAttributes{}
+
+	if err = json.Unmarshal(bytes, &varUiNodeScriptAttributes); err == nil {
+		*o = UiNodeScriptAttributes(varUiNodeScriptAttributes)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "async")
+		delete(additionalProperties, "crossorigin")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "integrity")
+		delete(additionalProperties, "node_type")
+		delete(additionalProperties, "nonce")
+		delete(additionalProperties, "referrerpolicy")
+		delete(additionalProperties, "src")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNodeScriptAttributes struct {

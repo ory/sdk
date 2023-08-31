@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -23,7 +23,10 @@ type UpdateSettingsFlowWithPasswordMethod struct {
 	Method string `json:"method"`
 	// Password is the updated password
 	Password string `json:"password"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSettingsFlowWithPasswordMethod UpdateSettingsFlowWithPasswordMethod
 
 // NewUpdateSettingsFlowWithPasswordMethod instantiates a new UpdateSettingsFlowWithPasswordMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -135,7 +138,31 @@ func (o UpdateSettingsFlowWithPasswordMethod) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["password"] = o.Password
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateSettingsFlowWithPasswordMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateSettingsFlowWithPasswordMethod := _UpdateSettingsFlowWithPasswordMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithPasswordMethod); err == nil {
+		*o = UpdateSettingsFlowWithPasswordMethod(varUpdateSettingsFlowWithPasswordMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "password")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSettingsFlowWithPasswordMethod struct {

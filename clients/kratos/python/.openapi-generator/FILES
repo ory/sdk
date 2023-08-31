@@ -74,6 +74,7 @@ docs/SessionAuthenticationMethods.md
 docs/SessionDevice.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
+docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/TokenPagination.md
@@ -197,6 +198,7 @@ ory_kratos_client/model/session_authentication_methods.py
 ory_kratos_client/model/session_device.py
 ory_kratos_client/model/settings_flow.py
 ory_kratos_client/model/settings_flow_state.py
+ory_kratos_client/model/successful_code_exchange_response.py
 ory_kratos_client/model/successful_native_login.py
 ory_kratos_client/model/successful_native_registration.py
 ory_kratos_client/model/token_pagination.py
@@ -320,6 +322,7 @@ test/test_session_authentication_methods.py
 test/test_session_device.py
 test/test_settings_flow.py
 test/test_settings_flow_state.py
+test/test_successful_code_exchange_response.py
 test/test_successful_native_login.py
 test/test_successful_native_registration.py
 test/test_token_pagination.py

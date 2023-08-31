@@ -1,8 +1,8 @@
 # kratos-client
 
 Ory Identities API
-- API version: v0.13.1
-  - Build date: 2023-04-29T16:30:11.172323687Z[Etc/UTC]
+- API version: v1.0.0
+  - Build date: 2023-08-31T08:34:19.158658725Z[Etc/UTC]
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.kratos</groupId>
   <artifactId>kratos-client</artifactId>
-  <version>v0.13.1</version>
+  <version>v1.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.kratos:kratos-client:v0.13.1"
+     implementation "sh.ory.kratos:kratos-client:v1.0.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v0.13.1.jar`
+* `target/kratos-client-v1.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -137,6 +137,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**createNativeVerificationFlow**](docs/FrontendApi.md#createNativeVerificationFlow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 *FrontendApi* | [**disableMyOtherSessions**](docs/FrontendApi.md#disableMyOtherSessions) | **DELETE** /sessions | Disable my other sessions
 *FrontendApi* | [**disableMySession**](docs/FrontendApi.md#disableMySession) | **DELETE** /sessions/{id} | Disable one of my sessions
+*FrontendApi* | [**exchangeSessionToken**](docs/FrontendApi.md#exchangeSessionToken) | **GET** /sessions/token-exchange | Exchange Session Token
 *FrontendApi* | [**getFlowError**](docs/FrontendApi.md#getFlowError) | **GET** /self-service/errors | Get User-Flow Errors
 *FrontendApi* | [**getLoginFlow**](docs/FrontendApi.md#getLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
 *FrontendApi* | [**getRecoveryFlow**](docs/FrontendApi.md#getRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -241,6 +242,7 @@ Class | Method | HTTP request | Description
  - [SessionDevice](docs/SessionDevice.md)
  - [SettingsFlow](docs/SettingsFlow.md)
  - [SettingsFlowState](docs/SettingsFlowState.md)
+ - [SuccessfulCodeExchangeResponse](docs/SuccessfulCodeExchangeResponse.md)
  - [SuccessfulNativeLogin](docs/SuccessfulNativeLogin.md)
  - [SuccessfulNativeRegistration](docs/SuccessfulNativeRegistration.md)
  - [TokenPagination](docs/TokenPagination.md)

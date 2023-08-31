@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -27,7 +27,10 @@ type UpdateRegistrationFlowWithPasswordMethod struct {
 	Traits map[string]interface{} `json:"traits"`
 	// Transient data to pass along to any webhooks
 	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateRegistrationFlowWithPasswordMethod UpdateRegistrationFlowWithPasswordMethod
 
 // NewUpdateRegistrationFlowWithPasswordMethod instantiates a new UpdateRegistrationFlowWithPasswordMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -202,7 +205,33 @@ func (o UpdateRegistrationFlowWithPasswordMethod) MarshalJSON() ([]byte, error) 
 	if o.TransientPayload != nil {
 		toSerialize["transient_payload"] = o.TransientPayload
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateRegistrationFlowWithPasswordMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateRegistrationFlowWithPasswordMethod := _UpdateRegistrationFlowWithPasswordMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithPasswordMethod); err == nil {
+		*o = UpdateRegistrationFlowWithPasswordMethod(varUpdateRegistrationFlowWithPasswordMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "traits")
+		delete(additionalProperties, "transient_payload")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateRegistrationFlowWithPasswordMethod struct {

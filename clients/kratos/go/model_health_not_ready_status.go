@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type HealthNotReadyStatus struct {
 	// Errors contains a list of errors that caused the not ready status.
 	Errors *map[string]string `json:"errors,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HealthNotReadyStatus HealthNotReadyStatus
 
 // NewHealthNotReadyStatus instantiates a new HealthNotReadyStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o HealthNotReadyStatus) MarshalJSON() ([]byte, error) {
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *HealthNotReadyStatus) UnmarshalJSON(bytes []byte) (err error) {
+	varHealthNotReadyStatus := _HealthNotReadyStatus{}
+
+	if err = json.Unmarshal(bytes, &varHealthNotReadyStatus); err == nil {
+		*o = HealthNotReadyStatus(varHealthNotReadyStatus)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "errors")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHealthNotReadyStatus struct {

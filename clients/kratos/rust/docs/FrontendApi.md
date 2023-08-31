@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**create_native_verification_flow**](FrontendApi.md#create_native_verification_flow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 [**disable_my_other_sessions**](FrontendApi.md#disable_my_other_sessions) | **DELETE** /sessions | Disable my other sessions
 [**disable_my_session**](FrontendApi.md#disable_my_session) | **DELETE** /sessions/{id} | Disable one of my sessions
+[**exchange_session_token**](FrontendApi.md#exchange_session_token) | **GET** /sessions/token-exchange | Exchange Session Token
 [**get_flow_error**](FrontendApi.md#get_flow_error) | **GET** /self-service/errors | Get User-Flow Errors
 [**get_login_flow**](FrontendApi.md#get_login_flow) | **GET** /self-service/login/flows | Get Login Flow
 [**get_recovery_flow**](FrontendApi.md#get_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -72,7 +73,7 @@ No authorization required
 
 ## create_browser_logout_flow
 
-> crate::models::LogoutFlow create_browser_logout_flow(cookie)
+> crate::models::LogoutFlow create_browser_logout_flow(cookie, return_to)
 Create a Logout URL for Browsers
 
 This endpoint initializes a browser-based user logout flow and a URL which can be used to log out the user.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  The URL is only valid for the currently signed in user. If no user is signed in, this endpoint returns a 401 error.  When calling this endpoint from a backend, please ensure to properly forward the HTTP cookies.
@@ -83,6 +84,7 @@ This endpoint initializes a browser-based user logout flow and a URL which can b
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **cookie** | Option<**String**> | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. |  |
+**return_to** | Option<**String**> | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. |  |
 
 ### Return type
 
@@ -225,7 +227,7 @@ No authorization required
 
 ## create_native_login_flow
 
-> crate::models::LoginFlow create_native_login_flow(refresh, aal, x_session_token)
+> crate::models::LoginFlow create_native_login_flow(refresh, aal, x_session_token, return_session_token_exchange_code, return_to)
 Create Login Flow for Native Apps
 
 This endpoint initiates a login flow for native apps that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
@@ -238,6 +240,8 @@ Name | Type | Description  | Required | Notes
 **refresh** | Option<**bool**> | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. |  |
 **aal** | Option<**String**> | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". |  |
 **x_session_token** | Option<**String**> | The Session Token of the Identity performing the settings flow. |  |
+**return_session_token_exchange_code** | Option<**bool**> | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. |  |
+**return_to** | Option<**String**> | The URL to return the browser to after the flow was completed. |  |
 
 ### Return type
 
@@ -284,14 +288,18 @@ No authorization required
 
 ## create_native_registration_flow
 
-> crate::models::RegistrationFlow create_native_registration_flow()
+> crate::models::RegistrationFlow create_native_registration_flow(return_session_token_exchange_code, return_to)
 Create Registration Flow for Native Apps
 
 This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**return_session_token_exchange_code** | Option<**bool**> | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. |  |
+**return_to** | Option<**String**> | The URL to return the browser to after the flow was completed. |  |
 
 ### Return type
 
@@ -416,6 +424,35 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## exchange_session_token
+
+> crate::models::SuccessfulNativeLogin exchange_session_token(init_code, return_to_code)
+Exchange Session Token
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**init_code** | **String** | The part of the code return when initializing the flow. | [required] |
+**return_to_code** | **String** | The part of the code returned by the return_to URL. | [required] |
+
+### Return type
+
+[**crate::models::SuccessfulNativeLogin**](successfulNativeLogin.md)
 
 ### Authorization
 
@@ -710,7 +747,7 @@ No authorization required
 > crate::models::Session to_session(x_session_token, cookie)
 Check Who the Current HTTP Session Belongs To
 
-Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 
 ### Parameters
 
@@ -771,7 +808,7 @@ No authorization required
 
 ## update_logout_flow
 
-> update_logout_flow(token, return_to)
+> update_logout_flow(token, return_to, cookie)
 Update Logout Flow
 
 This endpoint logs out an identity in a self-service manner.  If the `Accept` HTTP header is not set to `application/json`, the browser will be redirected (HTTP 303 See Other) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  If the `Accept` HTTP header is set to `application/json`, a 204 No Content response will be sent on successful logout instead.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
@@ -783,6 +820,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **token** | Option<**String**> | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. |  |
 **return_to** | Option<**String**> | The URL to return to after the logout was completed. |  |
+**cookie** | Option<**String**> | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. |  |
 
 ### Return type
 

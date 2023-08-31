@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type IsReady503Response struct {
 	// Errors contains a list of errors that caused the not ready status.
 	Errors map[string]string `json:"errors"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IsReady503Response IsReady503Response
 
 // NewIsReady503Response instantiates a new IsReady503Response object
 // This constructor will assign default values to properties that have it defined,
@@ -68,7 +71,29 @@ func (o IsReady503Response) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["errors"] = o.Errors
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IsReady503Response) UnmarshalJSON(bytes []byte) (err error) {
+	varIsReady503Response := _IsReady503Response{}
+
+	if err = json.Unmarshal(bytes, &varIsReady503Response); err == nil {
+		*o = IsReady503Response(varIsReady503Response)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "errors")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIsReady503Response struct {

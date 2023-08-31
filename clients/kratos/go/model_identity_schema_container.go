@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -21,7 +21,10 @@ type IdentitySchemaContainer struct {
 	Id *string `json:"id,omitempty"`
 	// The actual Identity JSON Schema
 	Schema map[string]interface{} `json:"schema,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentitySchemaContainer IdentitySchemaContainer
 
 // NewIdentitySchemaContainer instantiates a new IdentitySchemaContainer object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o IdentitySchemaContainer) MarshalJSON() ([]byte, error) {
 	if o.Schema != nil {
 		toSerialize["schema"] = o.Schema
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentitySchemaContainer) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentitySchemaContainer := _IdentitySchemaContainer{}
+
+	if err = json.Unmarshal(bytes, &varIdentitySchemaContainer); err == nil {
+		*o = IdentitySchemaContainer(varIdentitySchemaContainer)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "schema")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentitySchemaContainer struct {

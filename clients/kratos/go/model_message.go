@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -33,7 +33,10 @@ type Message struct {
 	Type CourierMessageType `json:"type"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Message Message
 
 // NewMessage instantiates a new Message object
 // This constructor will assign default values to properties that have it defined,
@@ -369,7 +372,39 @@ func (o Message) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Message) UnmarshalJSON(bytes []byte) (err error) {
+	varMessage := _Message{}
+
+	if err = json.Unmarshal(bytes, &varMessage); err == nil {
+		*o = Message(varMessage)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "body")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "dispatches")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "recipient")
+		delete(additionalProperties, "send_count")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "subject")
+		delete(additionalProperties, "template_type")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMessage struct {

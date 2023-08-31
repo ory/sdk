@@ -30,6 +30,8 @@ class _$LoginFlow extends LoginFlow {
   @override
   final String? returnTo;
   @override
+  final String? sessionTokenExchangeCode;
+  @override
   final String type;
   @override
   final UiContainer ui;
@@ -51,6 +53,7 @@ class _$LoginFlow extends LoginFlow {
       required this.requestUrl,
       this.requestedAal,
       this.returnTo,
+      this.sessionTokenExchangeCode,
       required this.type,
       required this.ui,
       this.updatedAt})
@@ -86,6 +89,7 @@ class _$LoginFlow extends LoginFlow {
         requestUrl == other.requestUrl &&
         requestedAal == other.requestedAal &&
         returnTo == other.returnTo &&
+        sessionTokenExchangeCode == other.sessionTokenExchangeCode &&
         type == other.type &&
         ui == other.ui &&
         updatedAt == other.updatedAt;
@@ -105,6 +109,7 @@ class _$LoginFlow extends LoginFlow {
     _$hash = $jc(_$hash, requestUrl.hashCode);
     _$hash = $jc(_$hash, requestedAal.hashCode);
     _$hash = $jc(_$hash, returnTo.hashCode);
+    _$hash = $jc(_$hash, sessionTokenExchangeCode.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, ui.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
@@ -126,6 +131,7 @@ class _$LoginFlow extends LoginFlow {
           ..add('requestUrl', requestUrl)
           ..add('requestedAal', requestedAal)
           ..add('returnTo', returnTo)
+          ..add('sessionTokenExchangeCode', sessionTokenExchangeCode)
           ..add('type', type)
           ..add('ui', ui)
           ..add('updatedAt', updatedAt))
@@ -184,6 +190,11 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
   String? get returnTo => _$this._returnTo;
   set returnTo(String? returnTo) => _$this._returnTo = returnTo;
 
+  String? _sessionTokenExchangeCode;
+  String? get sessionTokenExchangeCode => _$this._sessionTokenExchangeCode;
+  set sessionTokenExchangeCode(String? sessionTokenExchangeCode) =>
+      _$this._sessionTokenExchangeCode = sessionTokenExchangeCode;
+
   String? _type;
   String? get type => _$this._type;
   set type(String? type) => _$this._type = type;
@@ -214,6 +225,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
       _requestUrl = $v.requestUrl;
       _requestedAal = $v.requestedAal;
       _returnTo = $v.returnTo;
+      _sessionTokenExchangeCode = $v.sessionTokenExchangeCode;
       _type = $v.type;
       _ui = $v.ui.toBuilder();
       _updatedAt = $v.updatedAt;
@@ -255,6 +267,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
                   requestUrl, r'LoginFlow', 'requestUrl'),
               requestedAal: requestedAal,
               returnTo: returnTo,
+              sessionTokenExchangeCode: sessionTokenExchangeCode,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'LoginFlow', 'type'),
               ui: ui.build(),

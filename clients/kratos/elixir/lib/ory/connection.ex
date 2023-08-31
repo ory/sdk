@@ -96,7 +96,7 @@ defmodule Ory.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - Ory v0.13.0 - elixir"
+          "openapi-generator - Ory v1.0.0 - elixir"
         )
       )
 

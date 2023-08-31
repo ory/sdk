@@ -74,6 +74,7 @@ docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
+docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/TokenPagination.md
@@ -188,6 +189,7 @@ lib/ory-kratos-client/models/session_authentication_method.rb
 lib/ory-kratos-client/models/session_device.rb
 lib/ory-kratos-client/models/settings_flow.rb
 lib/ory-kratos-client/models/settings_flow_state.rb
+lib/ory-kratos-client/models/successful_code_exchange_response.rb
 lib/ory-kratos-client/models/successful_native_login.rb
 lib/ory-kratos-client/models/successful_native_registration.rb
 lib/ory-kratos-client/models/token_pagination.rb
@@ -301,6 +303,7 @@ spec/models/session_device_spec.rb
 spec/models/session_spec.rb
 spec/models/settings_flow_spec.rb
 spec/models/settings_flow_state_spec.rb
+spec/models/successful_code_exchange_response_spec.rb
 spec/models/successful_native_login_spec.rb
 spec/models/successful_native_registration_spec.rb
 spec/models/token_pagination_headers_spec.rb

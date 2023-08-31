@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**create_native_verification_flow**](FrontendApi.md#create_native_verification_flow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 [**disable_my_other_sessions**](FrontendApi.md#disable_my_other_sessions) | **DELETE** /sessions | Disable my other sessions
 [**disable_my_session**](FrontendApi.md#disable_my_session) | **DELETE** /sessions/{id} | Disable one of my sessions
+[**exchange_session_token**](FrontendApi.md#exchange_session_token) | **GET** /sessions/token-exchange | Exchange Session Token
 [**get_flow_error**](FrontendApi.md#get_flow_error) | **GET** /self-service/errors | Get User-Flow Errors
 [**get_login_flow**](FrontendApi.md#get_login_flow) | **GET** /self-service/login/flows | Get Login Flow
 [**get_recovery_flow**](FrontendApi.md#get_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -144,12 +145,13 @@ with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = frontend_api.FrontendApi(api_client)
     cookie = "cookie_example" # str | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional)
+    return_to = "return_to_example" # str | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Create a Logout URL for Browsers
-        api_response = api_instance.create_browser_logout_flow(cookie=cookie)
+        api_response = api_instance.create_browser_logout_flow(cookie=cookie, return_to=return_to)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling FrontendApi->create_browser_logout_flow: %s\n" % e)
@@ -161,6 +163,7 @@ with ory_kratos_client.ApiClient() as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **str**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional]
+ **return_to** | **str**| Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional]
 
 ### Return type
 
@@ -181,6 +184,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | logoutFlow |  -  |
+**400** | errorGeneric |  -  |
 **401** | errorGeneric |  -  |
 **500** | errorGeneric |  -  |
 
@@ -511,12 +515,14 @@ with ory_kratos_client.ApiClient() as api_client:
     refresh = True # bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
     aal = "aal_example" # str | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
     x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
+    return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+    return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Create Login Flow for Native Apps
-        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token)
+        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling FrontendApi->create_native_login_flow: %s\n" % e)
@@ -530,6 +536,8 @@ Name | Type | Description  | Notes
  **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
  **aal** | **str**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional]
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
+ **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
 
 ### Return type
 
@@ -649,11 +657,14 @@ configuration = ory_kratos_client.Configuration(
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = frontend_api.FrontendApi(api_client)
+    return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+    return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Create Registration Flow for Native Apps
-        api_response = api_instance.create_native_registration_flow()
+        api_response = api_instance.create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling FrontendApi->create_native_registration_flow: %s\n" % e)
@@ -661,7 +672,11 @@ with ory_kratos_client.ApiClient() as api_client:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
 
 ### Return type
 
@@ -975,6 +990,78 @@ No authorization required
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | errorGeneric |  -  |
 **401** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **exchange_session_token**
+> SuccessfulNativeLogin exchange_session_token(init_code, return_to_code)
+
+Exchange Session Token
+
+### Example
+
+
+```python
+import time
+import ory_kratos_client
+from ory_kratos_client.api import frontend_api
+from ory_kratos_client.model.successful_native_login import SuccessfulNativeLogin
+from ory_kratos_client.model.error_generic import ErrorGeneric
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = frontend_api.FrontendApi(api_client)
+    init_code = "init_code_example" # str | The part of the code return when initializing the flow.
+    return_to_code = "return_to_code_example" # str | The part of the code returned by the return_to URL.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Exchange Session Token
+        api_response = api_instance.exchange_session_token(init_code, return_to_code)
+        pprint(api_response)
+    except ory_kratos_client.ApiException as e:
+        print("Exception when calling FrontendApi->exchange_session_token: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **init_code** | **str**| The part of the code return when initializing the flow. |
+ **return_to_code** | **str**| The part of the code returned by the return_to URL. |
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successfulNativeLogin |  -  |
+**403** | errorGeneric |  -  |
+**404** | errorGeneric |  -  |
+**410** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1682,7 +1769,7 @@ No authorization required
 
 Check Who the Current HTTP Session Belongs To
 
-Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 
 ### Example
 
@@ -1871,12 +1958,13 @@ with ory_kratos_client.ApiClient() as api_client:
     api_instance = frontend_api.FrontendApi(api_client)
     token = "token_example" # str | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. (optional)
     return_to = "return_to_example" # str | The URL to return to after the logout was completed. (optional)
+    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Update Logout Flow
-        api_instance.update_logout_flow(token=token, return_to=return_to)
+        api_instance.update_logout_flow(token=token, return_to=return_to, cookie=cookie)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling FrontendApi->update_logout_flow: %s\n" % e)
 ```
@@ -1888,6 +1976,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **str**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional]
  **return_to** | **str**| The URL to return to after the logout was completed. | [optional]
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 

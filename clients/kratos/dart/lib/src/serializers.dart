@@ -77,6 +77,7 @@ import 'package:ory_kratos_client/src/model/session_authentication_method.dart';
 import 'package:ory_kratos_client/src/model/session_device.dart';
 import 'package:ory_kratos_client/src/model/settings_flow.dart';
 import 'package:ory_kratos_client/src/model/settings_flow_state.dart';
+import 'package:ory_kratos_client/src/model/successful_code_exchange_response.dart';
 import 'package:ory_kratos_client/src/model/successful_native_login.dart';
 import 'package:ory_kratos_client/src/model/successful_native_registration.dart';
 import 'package:ory_kratos_client/src/model/token_pagination.dart';
@@ -186,6 +187,7 @@ part 'serializers.g.dart';
   SessionDevice,
   SettingsFlow,
   SettingsFlowState,
+  SuccessfulCodeExchangeResponse,
   SuccessfulNativeLogin,
   SuccessfulNativeRegistration,
   TokenPagination,

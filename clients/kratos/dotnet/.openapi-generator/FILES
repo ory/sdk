@@ -69,6 +69,7 @@ docs/KratosSessionAuthenticationMethod.md
 docs/KratosSessionDevice.md
 docs/KratosSettingsFlow.md
 docs/KratosSettingsFlowState.md
+docs/KratosSuccessfulCodeExchangeResponse.md
 docs/KratosSuccessfulNativeLogin.md
 docs/KratosSuccessfulNativeRegistration.md
 docs/KratosTokenPagination.md
@@ -180,6 +181,7 @@ src/Ory.Kratos.Client.Test/Model/KratosSessionDeviceTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosSessionTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosSettingsFlowStateTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosSettingsFlowTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosSuccessfulCodeExchangeResponseTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosSuccessfulNativeLoginTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosSuccessfulNativeRegistrationTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosTokenPaginationHeadersTests.cs
@@ -307,6 +309,7 @@ src/Ory.Kratos.Client/Model/KratosSessionAuthenticationMethod.cs
 src/Ory.Kratos.Client/Model/KratosSessionDevice.cs
 src/Ory.Kratos.Client/Model/KratosSettingsFlow.cs
 src/Ory.Kratos.Client/Model/KratosSettingsFlowState.cs
+src/Ory.Kratos.Client/Model/KratosSuccessfulCodeExchangeResponse.cs
 src/Ory.Kratos.Client/Model/KratosSuccessfulNativeLogin.cs
 src/Ory.Kratos.Client/Model/KratosSuccessfulNativeRegistration.cs
 src/Ory.Kratos.Client/Model/KratosTokenPagination.cs

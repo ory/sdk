@@ -10,13 +10,15 @@ defmodule Ory.Model.SessionAuthenticationMethod do
   defstruct [
     :aal,
     :completed_at,
-    :method
+    :method,
+    :provider
   ]
 
   @type t :: %__MODULE__{
     :aal => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
     :completed_at => DateTime.t | nil,
-    :method => String.t | nil
+    :method => String.t | nil,
+    :provider => String.t | nil
   }
 end
 

@@ -124,6 +124,8 @@ pub mod settings_flow;
 pub use self::settings_flow::SettingsFlow;
 pub mod settings_flow_state;
 pub use self::settings_flow_state::SettingsFlowState;
+pub mod successful_code_exchange_response;
+pub use self::successful_code_exchange_response::SuccessfulCodeExchangeResponse;
 pub mod successful_native_login;
 pub use self::successful_native_login::SuccessfulNativeLogin;
 pub mod successful_native_registration;

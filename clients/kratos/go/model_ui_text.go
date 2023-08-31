@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -24,7 +24,10 @@ type UiText struct {
 	Text string `json:"text"`
 	// The message type. info Info error Error success Success
 	Type string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiText UiText
 
 // NewUiText instantiates a new UiText object
 // This constructor will assign default values to properties that have it defined,
@@ -164,7 +167,32 @@ func (o UiText) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiText) UnmarshalJSON(bytes []byte) (err error) {
+	varUiText := _UiText{}
+
+	if err = json.Unmarshal(bytes, &varUiText); err == nil {
+		*o = UiText(varUiText)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "context")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "text")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiText struct {

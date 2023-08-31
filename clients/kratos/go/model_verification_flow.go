@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -34,7 +34,10 @@ type VerificationFlow struct {
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VerificationFlow VerificationFlow
 
 // NewVerificationFlow instantiates a new VerificationFlow object
 // This constructor will assign default values to properties that have it defined,
@@ -342,7 +345,37 @@ func (o VerificationFlow) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["ui"] = o.Ui
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *VerificationFlow) UnmarshalJSON(bytes []byte) (err error) {
+	varVerificationFlow := _VerificationFlow{}
+
+	if err = json.Unmarshal(bytes, &varVerificationFlow); err == nil {
+		*o = VerificationFlow(varVerificationFlow)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "issued_at")
+		delete(additionalProperties, "request_url")
+		delete(additionalProperties, "return_to")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "ui")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVerificationFlow struct {

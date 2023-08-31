@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -18,7 +18,10 @@ import (
 // UiNodeMeta This might include a label and other information that can optionally be used to render UIs.
 type UiNodeMeta struct {
 	Label *UiText `json:"label,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNodeMeta UiNodeMeta
 
 // NewUiNodeMeta instantiates a new UiNodeMeta object
 // This constructor will assign default values to properties that have it defined,
@@ -74,7 +77,29 @@ func (o UiNodeMeta) MarshalJSON() ([]byte, error) {
 	if o.Label != nil {
 		toSerialize["label"] = o.Label
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiNodeMeta) UnmarshalJSON(bytes []byte) (err error) {
+	varUiNodeMeta := _UiNodeMeta{}
+
+	if err = json.Unmarshal(bytes, &varUiNodeMeta); err == nil {
+		*o = UiNodeMeta(varUiNodeMeta)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "label")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNodeMeta struct {

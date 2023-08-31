@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -21,7 +21,10 @@ type TokenPaginationHeaders struct {
 	Link *string `json:"link,omitempty"`
 	// The total number of clients.  in: header
 	XTotalCount *string `json:"x-total-count,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TokenPaginationHeaders TokenPaginationHeaders
 
 // NewTokenPaginationHeaders instantiates a new TokenPaginationHeaders object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o TokenPaginationHeaders) MarshalJSON() ([]byte, error) {
 	if o.XTotalCount != nil {
 		toSerialize["x-total-count"] = o.XTotalCount
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *TokenPaginationHeaders) UnmarshalJSON(bytes []byte) (err error) {
+	varTokenPaginationHeaders := _TokenPaginationHeaders{}
+
+	if err = json.Unmarshal(bytes, &varTokenPaginationHeaders); err == nil {
+		*o = TokenPaginationHeaders(varTokenPaginationHeaders)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "link")
+		delete(additionalProperties, "x-total-count")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTokenPaginationHeaders struct {

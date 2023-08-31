@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type GetVersion200Response struct {
 	// The version of Ory Kratos.
 	Version string `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetVersion200Response GetVersion200Response
 
 // NewGetVersion200Response instantiates a new GetVersion200Response object
 // This constructor will assign default values to properties that have it defined,
@@ -68,7 +71,29 @@ func (o GetVersion200Response) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *GetVersion200Response) UnmarshalJSON(bytes []byte) (err error) {
+	varGetVersion200Response := _GetVersion200Response{}
+
+	if err = json.Unmarshal(bytes, &varGetVersion200Response); err == nil {
+		*o = GetVersion200Response(varGetVersion200Response)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetVersion200Response struct {

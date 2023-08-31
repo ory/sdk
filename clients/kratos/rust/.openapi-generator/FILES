@@ -70,6 +70,7 @@ docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
+docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/TokenPagination.md
@@ -184,6 +185,7 @@ src/models/session_authentication_method.rs
 src/models/session_device.rs
 src/models/settings_flow.rs
 src/models/settings_flow_state.rs
+src/models/successful_code_exchange_response.rs
 src/models/successful_native_login.rs
 src/models/successful_native_registration.rs
 src/models/token_pagination.rs

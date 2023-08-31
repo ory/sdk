@@ -177,7 +177,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_identity_credentials
 
-> crate::models::Identity delete_identity_credentials(id, _type)
+> delete_identity_credentials(id, _type)
 Delete a credential for a specific identity
 
 Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
@@ -192,7 +192,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+ (empty response body)
 
 ### Authorization
 
@@ -309,7 +309,7 @@ Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID must be set to the ID of identity you want to get | [required] |
-**include_credential** | Option<[**Vec<String>**](String.md)> | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. |  |
+**include_credential** | Option<[**Vec<String>**](String.md)> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. |  |
 
 ### Return type
 

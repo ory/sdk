@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -384,6 +384,18 @@ Session data are not deleted.
 	DisableMySessionExecute(r FrontendApiDisableMySessionRequest) (*http.Response, error)
 
 	/*
+	ExchangeSessionToken Exchange Session Token
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return FrontendApiExchangeSessionTokenRequest
+	*/
+	ExchangeSessionToken(ctx context.Context) FrontendApiExchangeSessionTokenRequest
+
+	// ExchangeSessionTokenExecute executes the request
+	//  @return SuccessfulNativeLogin
+	ExchangeSessionTokenExecute(r FrontendApiExchangeSessionTokenRequest) (*SuccessfulNativeLogin, *http.Response, error)
+
+	/*
 	GetFlowError Get User-Flow Errors
 
 	This endpoint returns the error associated with a user-facing self service errors.
@@ -672,7 +684,7 @@ if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
 if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
 if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
-If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.
+If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.
 
 As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
@@ -1110,11 +1122,18 @@ type FrontendApiCreateBrowserLogoutFlowRequest struct {
 	ctx context.Context
 	ApiService FrontendApi
 	cookie *string
+	returnTo *string
 }
 
 // HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
 func (r FrontendApiCreateBrowserLogoutFlowRequest) Cookie(cookie string) FrontendApiCreateBrowserLogoutFlowRequest {
 	r.cookie = &cookie
+	return r
+}
+
+// Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
+func (r FrontendApiCreateBrowserLogoutFlowRequest) ReturnTo(returnTo string) FrontendApiCreateBrowserLogoutFlowRequest {
+	r.returnTo = &returnTo
 	return r
 }
 
@@ -1167,6 +1186,9 @@ func (a *FrontendApiService) CreateBrowserLogoutFlowExecute(r FrontendApiCreateB
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1208,6 +1230,16 @@ func (a *FrontendApiService) CreateBrowserLogoutFlowExecute(r FrontendApiCreateB
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorGeneric
@@ -1848,6 +1880,8 @@ type FrontendApiCreateNativeLoginFlowRequest struct {
 	refresh *bool
 	aal *string
 	xSessionToken *string
+	returnSessionTokenExchangeCode *bool
+	returnTo *string
 }
 
 // Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
@@ -1865,6 +1899,18 @@ func (r FrontendApiCreateNativeLoginFlowRequest) Aal(aal string) FrontendApiCrea
 // The Session Token of the Identity performing the settings flow.
 func (r FrontendApiCreateNativeLoginFlowRequest) XSessionToken(xSessionToken string) FrontendApiCreateNativeLoginFlowRequest {
 	r.xSessionToken = &xSessionToken
+	return r
+}
+
+// EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+func (r FrontendApiCreateNativeLoginFlowRequest) ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode bool) FrontendApiCreateNativeLoginFlowRequest {
+	r.returnSessionTokenExchangeCode = &returnSessionTokenExchangeCode
+	return r
+}
+
+// The URL to return the browser to after the flow was completed.
+func (r FrontendApiCreateNativeLoginFlowRequest) ReturnTo(returnTo string) FrontendApiCreateNativeLoginFlowRequest {
+	r.returnTo = &returnTo
 	return r
 }
 
@@ -1932,6 +1978,12 @@ func (a *FrontendApiService) CreateNativeLoginFlowExecute(r FrontendApiCreateNat
 	}
 	if r.aal != nil {
 		localVarQueryParams.Add("aal", parameterToString(*r.aal, ""))
+	}
+	if r.returnSessionTokenExchangeCode != nil {
+		localVarQueryParams.Add("return_session_token_exchange_code", parameterToString(*r.returnSessionTokenExchangeCode, ""))
+	}
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2138,6 +2190,20 @@ func (a *FrontendApiService) CreateNativeRecoveryFlowExecute(r FrontendApiCreate
 type FrontendApiCreateNativeRegistrationFlowRequest struct {
 	ctx context.Context
 	ApiService FrontendApi
+	returnSessionTokenExchangeCode *bool
+	returnTo *string
+}
+
+// EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+func (r FrontendApiCreateNativeRegistrationFlowRequest) ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode bool) FrontendApiCreateNativeRegistrationFlowRequest {
+	r.returnSessionTokenExchangeCode = &returnSessionTokenExchangeCode
+	return r
+}
+
+// The URL to return the browser to after the flow was completed.
+func (r FrontendApiCreateNativeRegistrationFlowRequest) ReturnTo(returnTo string) FrontendApiCreateNativeRegistrationFlowRequest {
+	r.returnTo = &returnTo
+	return r
 }
 
 func (r FrontendApiCreateNativeRegistrationFlowRequest) Execute() (*RegistrationFlow, *http.Response, error) {
@@ -2198,6 +2264,12 @@ func (a *FrontendApiService) CreateNativeRegistrationFlowExecute(r FrontendApiCr
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.returnSessionTokenExchangeCode != nil {
+		localVarQueryParams.Add("return_session_token_exchange_code", parameterToString(*r.returnSessionTokenExchangeCode, ""))
+	}
+	if r.returnTo != nil {
+		localVarQueryParams.Add("return_to", parameterToString(*r.returnTo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2827,6 +2899,162 @@ func (a *FrontendApiService) DisableMySessionExecute(r FrontendApiDisableMySessi
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type FrontendApiExchangeSessionTokenRequest struct {
+	ctx context.Context
+	ApiService FrontendApi
+	initCode *string
+	returnToCode *string
+}
+
+// The part of the code return when initializing the flow.
+func (r FrontendApiExchangeSessionTokenRequest) InitCode(initCode string) FrontendApiExchangeSessionTokenRequest {
+	r.initCode = &initCode
+	return r
+}
+
+// The part of the code returned by the return_to URL.
+func (r FrontendApiExchangeSessionTokenRequest) ReturnToCode(returnToCode string) FrontendApiExchangeSessionTokenRequest {
+	r.returnToCode = &returnToCode
+	return r
+}
+
+func (r FrontendApiExchangeSessionTokenRequest) Execute() (*SuccessfulNativeLogin, *http.Response, error) {
+	return r.ApiService.ExchangeSessionTokenExecute(r)
+}
+
+/*
+ExchangeSessionToken Exchange Session Token
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return FrontendApiExchangeSessionTokenRequest
+*/
+func (a *FrontendApiService) ExchangeSessionToken(ctx context.Context) FrontendApiExchangeSessionTokenRequest {
+	return FrontendApiExchangeSessionTokenRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return SuccessfulNativeLogin
+func (a *FrontendApiService) ExchangeSessionTokenExecute(r FrontendApiExchangeSessionTokenRequest) (*SuccessfulNativeLogin, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SuccessfulNativeLogin
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrontendApiService.ExchangeSessionToken")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/sessions/token-exchange"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.initCode == nil {
+		return localVarReturnValue, nil, reportError("initCode is required and must be specified")
+	}
+	if r.returnToCode == nil {
+		return localVarReturnValue, nil, reportError("returnToCode is required and must be specified")
+	}
+
+	localVarQueryParams.Add("init_code", parameterToString(*r.initCode, ""))
+	localVarQueryParams.Add("return_to_code", parameterToString(*r.returnToCode, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 410 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type FrontendApiGetFlowErrorRequest struct {
@@ -4321,7 +4549,7 @@ if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
 if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
 if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
-If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.
+If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.
 
 As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
@@ -4661,6 +4889,7 @@ type FrontendApiUpdateLogoutFlowRequest struct {
 	ApiService FrontendApi
 	token *string
 	returnTo *string
+	cookie *string
 }
 
 // A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint.
@@ -4672,6 +4901,12 @@ func (r FrontendApiUpdateLogoutFlowRequest) Token(token string) FrontendApiUpdat
 // The URL to return to after the logout was completed.
 func (r FrontendApiUpdateLogoutFlowRequest) ReturnTo(returnTo string) FrontendApiUpdateLogoutFlowRequest {
 	r.returnTo = &returnTo
+	return r
+}
+
+// HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+func (r FrontendApiUpdateLogoutFlowRequest) Cookie(cookie string) FrontendApiUpdateLogoutFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -4747,6 +4982,9 @@ func (a *FrontendApiService) UpdateLogoutFlowExecute(r FrontendApiUpdateLogoutFl
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -25,7 +25,10 @@ type RecoveryIdentityAddress struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	Value string `json:"value"`
 	Via string `json:"via"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecoveryIdentityAddress RecoveryIdentityAddress
 
 // NewRecoveryIdentityAddress instantiates a new RecoveryIdentityAddress object
 // This constructor will assign default values to properties that have it defined,
@@ -200,7 +203,33 @@ func (o RecoveryIdentityAddress) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["via"] = o.Via
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *RecoveryIdentityAddress) UnmarshalJSON(bytes []byte) (err error) {
+	varRecoveryIdentityAddress := _RecoveryIdentityAddress{}
+
+	if err = json.Unmarshal(bytes, &varRecoveryIdentityAddress); err == nil {
+		*o = RecoveryIdentityAddress(varRecoveryIdentityAddress)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "value")
+		delete(additionalProperties, "via")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecoveryIdentityAddress struct {

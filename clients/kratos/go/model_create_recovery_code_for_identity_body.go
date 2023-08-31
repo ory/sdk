@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -21,7 +21,10 @@ type CreateRecoveryCodeForIdentityBody struct {
 	ExpiresIn *string `json:"expires_in,omitempty"`
 	// Identity to Recover  The identity's ID you wish to recover.
 	IdentityId string `json:"identity_id"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateRecoveryCodeForIdentityBody CreateRecoveryCodeForIdentityBody
 
 // NewCreateRecoveryCodeForIdentityBody instantiates a new CreateRecoveryCodeForIdentityBody object
 // This constructor will assign default values to properties that have it defined,
@@ -105,7 +108,30 @@ func (o CreateRecoveryCodeForIdentityBody) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["identity_id"] = o.IdentityId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *CreateRecoveryCodeForIdentityBody) UnmarshalJSON(bytes []byte) (err error) {
+	varCreateRecoveryCodeForIdentityBody := _CreateRecoveryCodeForIdentityBody{}
+
+	if err = json.Unmarshal(bytes, &varCreateRecoveryCodeForIdentityBody); err == nil {
+		*o = CreateRecoveryCodeForIdentityBody(varCreateRecoveryCodeForIdentityBody)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "expires_in")
+		delete(additionalProperties, "identity_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateRecoveryCodeForIdentityBody struct {

@@ -27,8 +27,6 @@ abstract class ContinueWith implements Built<ContinueWith, ContinueWithBuilder> 
   static const String discriminatorFieldName = r'action';
 
   static const Map<String, Type> discriminatorMapping = {
-    r'continueWithSetOrySessionToken': ContinueWithSetOrySessionToken,
-    r'continueWithVerificationUi': ContinueWithVerificationUi,
     r'set_ory_session_token': ContinueWithSetOrySessionToken,
     r'show_verification_ui': ContinueWithVerificationUi,
   };
@@ -42,6 +40,29 @@ abstract class ContinueWith implements Built<ContinueWith, ContinueWithBuilder> 
 
   @BuiltValueSerializer(custom: true)
   static Serializer<ContinueWith> get serializer => _$ContinueWithSerializer();
+}
+
+extension ContinueWithDiscriminatorExt on ContinueWith {
+    String? get discriminatorValue {
+        if (this is ContinueWithSetOrySessionToken) {
+            return r'set_ory_session_token';
+        }
+        if (this is ContinueWithVerificationUi) {
+            return r'show_verification_ui';
+        }
+        return null;
+    }
+}
+extension ContinueWithBuilderDiscriminatorExt on ContinueWithBuilder {
+    String? get discriminatorValue {
+        if (this is ContinueWithSetOrySessionTokenBuilder) {
+            return r'set_ory_session_token';
+        }
+        if (this is ContinueWithVerificationUiBuilder) {
+            return r'show_verification_ui';
+        }
+        return null;
+    }
 }
 
 class _$ContinueWithSerializer implements PrimitiveSerializer<ContinueWith> {
@@ -80,32 +101,18 @@ class _$ContinueWithSerializer implements PrimitiveSerializer<ContinueWith> {
     final discIndex = serializedList.indexOf(ContinueWith.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [ContinueWithSetOrySessionToken, ContinueWithVerificationUi, ContinueWithSetOrySessionToken, ContinueWithVerificationUi, ];
+    final oneOfTypes = [ContinueWithSetOrySessionToken, ContinueWithVerificationUi, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
-      case 'continueWithSetOrySessionToken':
+      case r'set_ory_session_token':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(ContinueWithSetOrySessionToken),
         ) as ContinueWithSetOrySessionToken;
         oneOfType = ContinueWithSetOrySessionToken;
         break;
-      case 'continueWithVerificationUi':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(ContinueWithVerificationUi),
-        ) as ContinueWithVerificationUi;
-        oneOfType = ContinueWithVerificationUi;
-        break;
-      case 'set_ory_session_token':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(ContinueWithSetOrySessionToken),
-        ) as ContinueWithSetOrySessionToken;
-        oneOfType = ContinueWithSetOrySessionToken;
-        break;
-      case 'show_verification_ui':
+      case r'show_verification_ui':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(ContinueWithVerificationUi),

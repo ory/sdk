@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -24,7 +24,10 @@ type UiNode struct {
 	Meta UiNodeMeta `json:"meta"`
 	// The node's type text Text input Input img Image a Anchor script Script
 	Type string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNode UiNode
 
 // NewUiNode instantiates a new UiNode object
 // This constructor will assign default values to properties that have it defined,
@@ -185,7 +188,33 @@ func (o UiNode) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiNode) UnmarshalJSON(bytes []byte) (err error) {
+	varUiNode := _UiNode{}
+
+	if err = json.Unmarshal(bytes, &varUiNode); err == nil {
+		*o = UiNode(varUiNode)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "attributes")
+		delete(additionalProperties, "group")
+		delete(additionalProperties, "messages")
+		delete(additionalProperties, "meta")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNode struct {

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -21,7 +21,10 @@ type IdentityWithCredentialsPasswordConfig struct {
 	HashedPassword *string `json:"hashed_password,omitempty"`
 	// The password in plain text if no hash is available.
 	Password *string `json:"password,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityWithCredentialsPasswordConfig IdentityWithCredentialsPasswordConfig
 
 // NewIdentityWithCredentialsPasswordConfig instantiates a new IdentityWithCredentialsPasswordConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o IdentityWithCredentialsPasswordConfig) MarshalJSON() ([]byte, error) {
 	if o.Password != nil {
 		toSerialize["password"] = o.Password
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentityWithCredentialsPasswordConfig) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityWithCredentialsPasswordConfig := _IdentityWithCredentialsPasswordConfig{}
+
+	if err = json.Unmarshal(bytes, &varIdentityWithCredentialsPasswordConfig); err == nil {
+		*o = IdentityWithCredentialsPasswordConfig(varIdentityWithCredentialsPasswordConfig)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "hashed_password")
+		delete(additionalProperties, "password")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityWithCredentialsPasswordConfig struct {

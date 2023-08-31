@@ -419,7 +419,7 @@ void (empty response body)
 
 <a name="deleteidentitycredentials"></a>
 # **DeleteIdentityCredentials**
-> KratosIdentity DeleteIdentityCredentials (string id, string type)
+> void DeleteIdentityCredentials (string id, string type)
 
 Delete a credential for a specific identity
 
@@ -453,8 +453,7 @@ namespace Example
             try
             {
                 // Delete a credential for a specific identity
-                KratosIdentity result = apiInstance.DeleteIdentityCredentials(id, type);
-                Debug.WriteLine(result);
+                apiInstance.DeleteIdentityCredentials(id, type);
             }
             catch (ApiException  e)
             {
@@ -476,7 +475,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**KratosIdentity**](KratosIdentity.md)
+void (empty response body)
 
 ### Authorization
 
@@ -491,7 +490,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identity |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
@@ -764,7 +763,7 @@ namespace Example
 
             var apiInstance = new IdentityApi(config);
             var id = "id_example";  // string | ID must be set to the ID of identity you want to get
-            var includeCredential = new List<string>(); // List<string> | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. (optional) 
+            var includeCredential = new List<string>(); // List<string> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional) 
 
             try
             {
@@ -788,7 +787,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID must be set to the ID of identity you want to get | 
- **includeCredential** | [**List&lt;string&gt;**](string.md)| Include Credentials in Response  Currently, only &#x60;oidc&#x60; is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional] 
+ **includeCredential** | [**List&lt;string&gt;**](string.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
 
 ### Return type
 

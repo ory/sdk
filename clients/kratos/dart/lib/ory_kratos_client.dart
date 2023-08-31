@@ -77,6 +77,7 @@ export 'package:ory_kratos_client/src/model/session_authentication_method.dart';
 export 'package:ory_kratos_client/src/model/session_device.dart';
 export 'package:ory_kratos_client/src/model/settings_flow.dart';
 export 'package:ory_kratos_client/src/model/settings_flow_state.dart';
+export 'package:ory_kratos_client/src/model/successful_code_exchange_response.dart';
 export 'package:ory_kratos_client/src/model/successful_native_login.dart';
 export 'package:ory_kratos_client/src/model/successful_native_registration.dart';
 export 'package:ory_kratos_client/src/model/token_pagination.dart';

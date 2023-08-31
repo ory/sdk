@@ -73,6 +73,7 @@ lib/ory/model/session_authentication_method.ex
 lib/ory/model/session_device.ex
 lib/ory/model/settings_flow.ex
 lib/ory/model/settings_flow_state.ex
+lib/ory/model/successful_code_exchange_response.ex
 lib/ory/model/successful_native_login.ex
 lib/ory/model/successful_native_registration.ex
 lib/ory/model/token_pagination.ex

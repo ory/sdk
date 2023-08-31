@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -27,7 +27,10 @@ type UiNodeImageAttributes struct {
 	Src string `json:"src"`
 	// Width of the image
 	Width int64 `json:"width"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNodeImageAttributes UiNodeImageAttributes
 
 // NewUiNodeImageAttributes instantiates a new UiNodeImageAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -188,7 +191,33 @@ func (o UiNodeImageAttributes) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["width"] = o.Width
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiNodeImageAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	varUiNodeImageAttributes := _UiNodeImageAttributes{}
+
+	if err = json.Unmarshal(bytes, &varUiNodeImageAttributes); err == nil {
+		*o = UiNodeImageAttributes(varUiNodeImageAttributes)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "node_type")
+		delete(additionalProperties, "src")
+		delete(additionalProperties, "width")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNodeImageAttributes struct {

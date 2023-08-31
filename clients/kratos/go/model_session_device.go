@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -25,7 +25,10 @@ type SessionDevice struct {
 	Location *string `json:"location,omitempty"`
 	// UserAgent of the client
 	UserAgent *string `json:"user_agent,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SessionDevice SessionDevice
 
 // NewSessionDevice instantiates a new SessionDevice object
 // This constructor will assign default values to properties that have it defined,
@@ -179,7 +182,32 @@ func (o SessionDevice) MarshalJSON() ([]byte, error) {
 	if o.UserAgent != nil {
 		toSerialize["user_agent"] = o.UserAgent
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SessionDevice) UnmarshalJSON(bytes []byte) (err error) {
+	varSessionDevice := _SessionDevice{}
+
+	if err = json.Unmarshal(bytes, &varSessionDevice); err == nil {
+		*o = SessionDevice(varSessionDevice)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ip_address")
+		delete(additionalProperties, "location")
+		delete(additionalProperties, "user_agent")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSessionDevice struct {

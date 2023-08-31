@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -33,7 +33,10 @@ type GenericError struct {
 	Request *string `json:"request,omitempty"`
 	// The status description
 	Status *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GenericError GenericError
 
 // NewGenericError instantiates a new GenericError object
 // This constructor will assign default values to properties that have it defined,
@@ -327,7 +330,36 @@ func (o GenericError) MarshalJSON() ([]byte, error) {
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *GenericError) UnmarshalJSON(bytes []byte) (err error) {
+	varGenericError := _GenericError{}
+
+	if err = json.Unmarshal(bytes, &varGenericError); err == nil {
+		*o = GenericError(varGenericError)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "debug")
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "reason")
+		delete(additionalProperties, "request")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGenericError struct {

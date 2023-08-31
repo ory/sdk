@@ -336,7 +336,7 @@ void (empty response body)
 ## `deleteIdentityCredentials()`
 
 ```php
-deleteIdentityCredentials($id, $type): \Ory\Kratos\Client\Model\Identity
+deleteIdentityCredentials($id, $type)
 ```
 
 Delete a credential for a specific identity
@@ -366,8 +366,7 @@ $id = 'id_example'; // string | ID is the identity's ID.
 $type = 'type_example'; // string | Type is the credential's Type. One of totp, webauthn, lookup
 
 try {
-    $result = $apiInstance->deleteIdentityCredentials($id, $type);
-    print_r($result);
+    $apiInstance->deleteIdentityCredentials($id, $type);
 } catch (Exception $e) {
     echo 'Exception when calling IdentityApi->deleteIdentityCredentials: ', $e->getMessage(), PHP_EOL;
 }
@@ -382,7 +381,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Kratos\Client\Model\Identity**](../Model/Identity.md)
+void (empty response body)
 
 ### Authorization
 
@@ -611,7 +610,7 @@ $apiInstance = new Ory\Kratos\Client\Api\IdentityApi(
     $config
 );
 $id = 'id_example'; // string | ID must be set to the ID of identity you want to get
-$includeCredential = array('includeCredential_example'); // string[] | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+$includeCredential = array('includeCredential_example'); // string[] | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 
 try {
     $result = $apiInstance->getIdentity($id, $includeCredential);
@@ -626,7 +625,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID must be set to the ID of identity you want to get |
- **includeCredential** | [**string[]**](../Model/string.md)| Include Credentials in Response  Currently, only &#x60;oidc&#x60; is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional]
+ **includeCredential** | [**string[]**](../Model/string.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional]
 
 ### Return type
 

@@ -76,6 +76,7 @@ from ory_kratos_client.model.session_authentication_methods import SessionAuthen
 from ory_kratos_client.model.session_device import SessionDevice
 from ory_kratos_client.model.settings_flow import SettingsFlow
 from ory_kratos_client.model.settings_flow_state import SettingsFlowState
+from ory_kratos_client.model.successful_code_exchange_response import SuccessfulCodeExchangeResponse
 from ory_kratos_client.model.successful_native_login import SuccessfulNativeLogin
 from ory_kratos_client.model.successful_native_registration import SuccessfulNativeRegistration
 from ory_kratos_client.model.token_pagination import TokenPagination

@@ -6,6 +6,69 @@ part of 'update_verification_flow_with_link_method.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UpdateVerificationFlowWithLinkMethodMethodEnum
+    _$updateVerificationFlowWithLinkMethodMethodEnum_link =
+    const UpdateVerificationFlowWithLinkMethodMethodEnum._('link');
+const UpdateVerificationFlowWithLinkMethodMethodEnum
+    _$updateVerificationFlowWithLinkMethodMethodEnum_code =
+    const UpdateVerificationFlowWithLinkMethodMethodEnum._('code');
+
+UpdateVerificationFlowWithLinkMethodMethodEnum
+    _$updateVerificationFlowWithLinkMethodMethodEnumValueOf(String name) {
+  switch (name) {
+    case 'link':
+      return _$updateVerificationFlowWithLinkMethodMethodEnum_link;
+    case 'code':
+      return _$updateVerificationFlowWithLinkMethodMethodEnum_code;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateVerificationFlowWithLinkMethodMethodEnum>
+    _$updateVerificationFlowWithLinkMethodMethodEnumValues = new BuiltSet<
+        UpdateVerificationFlowWithLinkMethodMethodEnum>(const <UpdateVerificationFlowWithLinkMethodMethodEnum>[
+  _$updateVerificationFlowWithLinkMethodMethodEnum_link,
+  _$updateVerificationFlowWithLinkMethodMethodEnum_code,
+]);
+
+Serializer<UpdateVerificationFlowWithLinkMethodMethodEnum>
+    _$updateVerificationFlowWithLinkMethodMethodEnumSerializer =
+    new _$UpdateVerificationFlowWithLinkMethodMethodEnumSerializer();
+
+class _$UpdateVerificationFlowWithLinkMethodMethodEnumSerializer
+    implements
+        PrimitiveSerializer<UpdateVerificationFlowWithLinkMethodMethodEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'link': 'link',
+    'code': 'code',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'link': 'link',
+    'code': 'code',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UpdateVerificationFlowWithLinkMethodMethodEnum
+  ];
+  @override
+  final String wireName = 'UpdateVerificationFlowWithLinkMethodMethodEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          UpdateVerificationFlowWithLinkMethodMethodEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateVerificationFlowWithLinkMethodMethodEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateVerificationFlowWithLinkMethodMethodEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateVerificationFlowWithLinkMethod
     extends UpdateVerificationFlowWithLinkMethod {
   @override
@@ -13,7 +76,7 @@ class _$UpdateVerificationFlowWithLinkMethod
   @override
   final String email;
   @override
-  final String method;
+  final UpdateVerificationFlowWithLinkMethodMethodEnum method;
 
   factory _$UpdateVerificationFlowWithLinkMethod(
           [void Function(UpdateVerificationFlowWithLinkMethodBuilder)?
@@ -82,9 +145,10 @@ class UpdateVerificationFlowWithLinkMethodBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
-  String? _method;
-  String? get method => _$this._method;
-  set method(String? method) => _$this._method = method;
+  UpdateVerificationFlowWithLinkMethodMethodEnum? _method;
+  UpdateVerificationFlowWithLinkMethodMethodEnum? get method => _$this._method;
+  set method(UpdateVerificationFlowWithLinkMethodMethodEnum? method) =>
+      _$this._method = method;
 
   UpdateVerificationFlowWithLinkMethodBuilder() {
     UpdateVerificationFlowWithLinkMethod._defaults(this);

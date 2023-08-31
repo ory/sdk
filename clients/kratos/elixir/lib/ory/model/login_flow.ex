@@ -19,6 +19,7 @@ defmodule Ory.Model.LoginFlow do
     :request_url,
     :requested_aal,
     :return_to,
+    :session_token_exchange_code,
     :type,
     :ui,
     :updated_at
@@ -36,6 +37,7 @@ defmodule Ory.Model.LoginFlow do
     :request_url => String.t,
     :requested_aal => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
     :return_to => String.t | nil,
+    :session_token_exchange_code => String.t | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t,
     :updated_at => DateTime.t | nil

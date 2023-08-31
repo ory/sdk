@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -18,7 +18,10 @@ import (
 // IdentityWithCredentialsPassword Create Identity and Import Password Credentials
 type IdentityWithCredentialsPassword struct {
 	Config *IdentityWithCredentialsPasswordConfig `json:"config,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityWithCredentialsPassword IdentityWithCredentialsPassword
 
 // NewIdentityWithCredentialsPassword instantiates a new IdentityWithCredentialsPassword object
 // This constructor will assign default values to properties that have it defined,
@@ -74,7 +77,29 @@ func (o IdentityWithCredentialsPassword) MarshalJSON() ([]byte, error) {
 	if o.Config != nil {
 		toSerialize["config"] = o.Config
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentityWithCredentialsPassword) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityWithCredentialsPassword := _IdentityWithCredentialsPassword{}
+
+	if err = json.Unmarshal(bytes, &varIdentityWithCredentialsPassword); err == nil {
+		*o = IdentityWithCredentialsPassword(varIdentityWithCredentialsPassword)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityWithCredentialsPassword struct {

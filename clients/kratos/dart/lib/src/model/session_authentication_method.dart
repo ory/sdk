@@ -16,6 +16,7 @@ part 'session_authentication_method.g.dart';
 /// * [aal] 
 /// * [completedAt] - When the authentication challenge was completed.
 /// * [method] 
+/// * [provider] - OIDC or SAML provider id used for authentication
 @BuiltValue()
 abstract class SessionAuthenticationMethod implements Built<SessionAuthenticationMethod, SessionAuthenticationMethodBuilder> {
   @BuiltValueField(wireName: r'aal')
@@ -29,6 +30,10 @@ abstract class SessionAuthenticationMethod implements Built<SessionAuthenticatio
   @BuiltValueField(wireName: r'method')
   SessionAuthenticationMethodMethodEnum? get method;
   // enum methodEnum {  link_recovery,  code_recovery,  password,  totp,  oidc,  webauthn,  lookup_secret,  v0.6_legacy_session,  };
+
+  /// OIDC or SAML provider id used for authentication
+  @BuiltValueField(wireName: r'provider')
+  String? get provider;
 
   SessionAuthenticationMethod._();
 
@@ -74,6 +79,13 @@ class _$SessionAuthenticationMethodSerializer implements PrimitiveSerializer<Ses
         specifiedType: const FullType(SessionAuthenticationMethodMethodEnum),
       );
     }
+    if (object.provider != null) {
+      yield r'provider';
+      yield serializers.serialize(
+        object.provider,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
   @override
@@ -117,6 +129,13 @@ class _$SessionAuthenticationMethodSerializer implements PrimitiveSerializer<Ses
             specifiedType: const FullType(SessionAuthenticationMethodMethodEnum),
           ) as SessionAuthenticationMethodMethodEnum;
           result.method = valueDes;
+          break;
+        case r'provider':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.provider = valueDes;
           break;
         default:
           unhandled.add(key);

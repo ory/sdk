@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -25,7 +25,10 @@ type FlowError struct {
 	Id string `json:"id"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FlowError FlowError
 
 // NewFlowError instantiates a new FlowError object
 // This constructor will assign default values to properties that have it defined,
@@ -179,7 +182,32 @@ func (o FlowError) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *FlowError) UnmarshalJSON(bytes []byte) (err error) {
+	varFlowError := _FlowError{}
+
+	if err = json.Unmarshal(bytes, &varFlowError); err == nil {
+		*o = FlowError(varFlowError)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFlowError struct {

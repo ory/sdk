@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -23,7 +23,10 @@ type ContinueWithVerificationUiFlow struct {
 	Url *string `json:"url,omitempty"`
 	// The address that should be verified in this flow
 	VerifiableAddress string `json:"verifiable_address"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ContinueWithVerificationUiFlow ContinueWithVerificationUiFlow
 
 // NewContinueWithVerificationUiFlow instantiates a new ContinueWithVerificationUiFlow object
 // This constructor will assign default values to properties that have it defined,
@@ -135,7 +138,31 @@ func (o ContinueWithVerificationUiFlow) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["verifiable_address"] = o.VerifiableAddress
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ContinueWithVerificationUiFlow) UnmarshalJSON(bytes []byte) (err error) {
+	varContinueWithVerificationUiFlow := _ContinueWithVerificationUiFlow{}
+
+	if err = json.Unmarshal(bytes, &varContinueWithVerificationUiFlow); err == nil {
+		*o = ContinueWithVerificationUiFlow(varContinueWithVerificationUiFlow)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "verifiable_address")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableContinueWithVerificationUiFlow struct {

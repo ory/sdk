@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -20,7 +20,10 @@ type SuccessfulNativeLogin struct {
 	Session Session `json:"session"`
 	// The Session Token  A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization Header:  Authorization: bearer ${session-token}  The session token is only issued for API flows, not for Browser flows!
 	SessionToken *string `json:"session_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SuccessfulNativeLogin SuccessfulNativeLogin
 
 // NewSuccessfulNativeLogin instantiates a new SuccessfulNativeLogin object
 // This constructor will assign default values to properties that have it defined,
@@ -104,7 +107,30 @@ func (o SuccessfulNativeLogin) MarshalJSON() ([]byte, error) {
 	if o.SessionToken != nil {
 		toSerialize["session_token"] = o.SessionToken
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *SuccessfulNativeLogin) UnmarshalJSON(bytes []byte) (err error) {
+	varSuccessfulNativeLogin := _SuccessfulNativeLogin{}
+
+	if err = json.Unmarshal(bytes, &varSuccessfulNativeLogin); err == nil {
+		*o = SuccessfulNativeLogin(varSuccessfulNativeLogin)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "session")
+		delete(additionalProperties, "session_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSuccessfulNativeLogin struct {

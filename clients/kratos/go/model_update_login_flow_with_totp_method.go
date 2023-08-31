@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -23,7 +23,10 @@ type UpdateLoginFlowWithTotpMethod struct {
 	Method string `json:"method"`
 	// The TOTP code.
 	TotpCode string `json:"totp_code"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateLoginFlowWithTotpMethod UpdateLoginFlowWithTotpMethod
 
 // NewUpdateLoginFlowWithTotpMethod instantiates a new UpdateLoginFlowWithTotpMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -135,7 +138,31 @@ func (o UpdateLoginFlowWithTotpMethod) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["totp_code"] = o.TotpCode
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateLoginFlowWithTotpMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateLoginFlowWithTotpMethod := _UpdateLoginFlowWithTotpMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateLoginFlowWithTotpMethod); err == nil {
+		*o = UpdateLoginFlowWithTotpMethod(varUpdateLoginFlowWithTotpMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "totp_code")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateLoginFlowWithTotpMethod struct {

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -27,9 +27,12 @@ type UpdateRegistrationFlowWithOidcMethod struct {
 	Traits map[string]interface{} `json:"traits,omitempty"`
 	// Transient data to pass along to any webhooks
 	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
-	// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+	// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
 	UpstreamParameters map[string]interface{} `json:"upstream_parameters,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateRegistrationFlowWithOidcMethod UpdateRegistrationFlowWithOidcMethod
 
 // NewUpdateRegistrationFlowWithOidcMethod instantiates a new UpdateRegistrationFlowWithOidcMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -246,7 +249,34 @@ func (o UpdateRegistrationFlowWithOidcMethod) MarshalJSON() ([]byte, error) {
 	if o.UpstreamParameters != nil {
 		toSerialize["upstream_parameters"] = o.UpstreamParameters
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateRegistrationFlowWithOidcMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateRegistrationFlowWithOidcMethod := _UpdateRegistrationFlowWithOidcMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithOidcMethod); err == nil {
+		*o = UpdateRegistrationFlowWithOidcMethod(varUpdateRegistrationFlowWithOidcMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "provider")
+		delete(additionalProperties, "traits")
+		delete(additionalProperties, "transient_payload")
+		delete(additionalProperties, "upstream_parameters")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateRegistrationFlowWithOidcMethod struct {

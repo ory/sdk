@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -29,7 +29,10 @@ type UpdateRegistrationFlowWithWebAuthnMethod struct {
 	WebauthnRegister *string `json:"webauthn_register,omitempty"`
 	// Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
 	WebauthnRegisterDisplayname *string `json:"webauthn_register_displayname,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateRegistrationFlowWithWebAuthnMethod UpdateRegistrationFlowWithWebAuthnMethod
 
 // NewUpdateRegistrationFlowWithWebAuthnMethod instantiates a new UpdateRegistrationFlowWithWebAuthnMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -246,7 +249,34 @@ func (o UpdateRegistrationFlowWithWebAuthnMethod) MarshalJSON() ([]byte, error) 
 	if o.WebauthnRegisterDisplayname != nil {
 		toSerialize["webauthn_register_displayname"] = o.WebauthnRegisterDisplayname
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateRegistrationFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateRegistrationFlowWithWebAuthnMethod := _UpdateRegistrationFlowWithWebAuthnMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithWebAuthnMethod); err == nil {
+		*o = UpdateRegistrationFlowWithWebAuthnMethod(varUpdateRegistrationFlowWithWebAuthnMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "traits")
+		delete(additionalProperties, "transient_payload")
+		delete(additionalProperties, "webauthn_register")
+		delete(additionalProperties, "webauthn_register_displayname")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateRegistrationFlowWithWebAuthnMethod struct {

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type BatchPatchIdentitiesResponse struct {
 	// The patch responses for the individual identities.
 	Identities []IdentityPatchResponse `json:"identities,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BatchPatchIdentitiesResponse BatchPatchIdentitiesResponse
 
 // NewBatchPatchIdentitiesResponse instantiates a new BatchPatchIdentitiesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o BatchPatchIdentitiesResponse) MarshalJSON() ([]byte, error) {
 	if o.Identities != nil {
 		toSerialize["identities"] = o.Identities
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *BatchPatchIdentitiesResponse) UnmarshalJSON(bytes []byte) (err error) {
+	varBatchPatchIdentitiesResponse := _BatchPatchIdentitiesResponse{}
+
+	if err = json.Unmarshal(bytes, &varBatchPatchIdentitiesResponse); err == nil {
+		*o = BatchPatchIdentitiesResponse(varBatchPatchIdentitiesResponse)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "identities")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBatchPatchIdentitiesResponse struct {

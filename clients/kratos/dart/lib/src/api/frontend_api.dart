@@ -98,22 +98,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LoginFlow _responseData;
+    LoginFlow? _responseData;
 
     try {
-      const _responseType = FullType(LoginFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LoginFlow),
       ) as LoginFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<LoginFlow>(
@@ -133,6 +134,7 @@ class FrontendApi {
   ///
   /// Parameters:
   /// * [cookie] - HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
+  /// * [returnTo] - Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -144,6 +146,7 @@ class FrontendApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<LogoutFlow>> createBrowserLogoutFlow({ 
     String? cookie,
+    String? returnTo,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -165,30 +168,36 @@ class FrontendApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
+    };
+
     final _response = await _dio.request<Object>(
       _path,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
 
-    LogoutFlow _responseData;
+    LogoutFlow? _responseData;
 
     try {
-      const _responseType = FullType(LogoutFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LogoutFlow),
       ) as LogoutFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<LogoutFlow>(
@@ -252,22 +261,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryFlow _responseData;
+    RecoveryFlow? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryFlow),
       ) as RecoveryFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryFlow>(
@@ -337,22 +347,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RegistrationFlow _responseData;
+    RegistrationFlow? _responseData;
 
     try {
-      const _responseType = FullType(RegistrationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RegistrationFlow),
       ) as RegistrationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RegistrationFlow>(
@@ -419,22 +430,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SettingsFlow _responseData;
+    SettingsFlow? _responseData;
 
     try {
-      const _responseType = FullType(SettingsFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SettingsFlow),
       ) as SettingsFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SettingsFlow>(
@@ -498,22 +510,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    VerificationFlow _responseData;
+    VerificationFlow? _responseData;
 
     try {
-      const _responseType = FullType(VerificationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VerificationFlow),
       ) as VerificationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<VerificationFlow>(
@@ -535,6 +548,8 @@ class FrontendApi {
   /// * [refresh] - Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
   /// * [aal] - Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
   /// * [xSessionToken] - The Session Token of the Identity performing the settings flow.
+  /// * [returnSessionTokenExchangeCode] - EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+  /// * [returnTo] - The URL to return the browser to after the flow was completed.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -548,6 +563,8 @@ class FrontendApi {
     bool? refresh,
     String? aal,
     String? xSessionToken,
+    bool? returnSessionTokenExchangeCode,
+    String? returnTo,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -572,6 +589,8 @@ class FrontendApi {
     final _queryParameters = <String, dynamic>{
       if (refresh != null) r'refresh': encodeQueryParameter(_serializers, refresh, const FullType(bool)),
       if (aal != null) r'aal': encodeQueryParameter(_serializers, aal, const FullType(String)),
+      if (returnSessionTokenExchangeCode != null) r'return_session_token_exchange_code': encodeQueryParameter(_serializers, returnSessionTokenExchangeCode, const FullType(bool)),
+      if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -583,22 +602,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LoginFlow _responseData;
+    LoginFlow? _responseData;
 
     try {
-      const _responseType = FullType(LoginFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LoginFlow),
       ) as LoginFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<LoginFlow>(
@@ -655,22 +675,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryFlow _responseData;
+    RecoveryFlow? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryFlow),
       ) as RecoveryFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryFlow>(
@@ -689,6 +710,8 @@ class FrontendApi {
   /// This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing registration flow call &#x60;/self-service/registration/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;session_already_available&#x60;: The user is already signed in. &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
   ///
   /// Parameters:
+  /// * [returnSessionTokenExchangeCode] - EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+  /// * [returnTo] - The URL to return the browser to after the flow was completed.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -699,6 +722,8 @@ class FrontendApi {
   /// Returns a [Future] containing a [Response] with a [RegistrationFlow] as data
   /// Throws [DioError] if API call or serialization fails
   Future<Response<RegistrationFlow>> createNativeRegistrationFlow({ 
+    bool? returnSessionTokenExchangeCode,
+    String? returnTo,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -719,30 +744,37 @@ class FrontendApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      if (returnSessionTokenExchangeCode != null) r'return_session_token_exchange_code': encodeQueryParameter(_serializers, returnSessionTokenExchangeCode, const FullType(bool)),
+      if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
+    };
+
     final _response = await _dio.request<Object>(
       _path,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
 
-    RegistrationFlow _responseData;
+    RegistrationFlow? _responseData;
 
     try {
-      const _responseType = FullType(RegistrationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RegistrationFlow),
       ) as RegistrationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RegistrationFlow>(
@@ -802,22 +834,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SettingsFlow _responseData;
+    SettingsFlow? _responseData;
 
     try {
-      const _responseType = FullType(SettingsFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SettingsFlow),
       ) as SettingsFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SettingsFlow>(
@@ -874,22 +907,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    VerificationFlow _responseData;
+    VerificationFlow? _responseData;
 
     try {
-      const _responseType = FullType(VerificationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VerificationFlow),
       ) as VerificationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<VerificationFlow>(
@@ -952,22 +986,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    DeleteMySessionsCount _responseData;
+    DeleteMySessionsCount? _responseData;
 
     try {
-      const _responseType = FullType(DeleteMySessionsCount);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DeleteMySessionsCount),
       ) as DeleteMySessionsCount;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<DeleteMySessionsCount>(
@@ -1035,6 +1070,89 @@ class FrontendApi {
     return _response;
   }
 
+  /// Exchange Session Token
+  /// 
+  ///
+  /// Parameters:
+  /// * [initCode] - The part of the code return when initializing the flow.
+  /// * [returnToCode] - The part of the code returned by the return_to URL.
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [SuccessfulNativeLogin] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<SuccessfulNativeLogin>> exchangeSessionToken({ 
+    required String initCode,
+    required String returnToCode,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/sessions/token-exchange';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      r'init_code': encodeQueryParameter(_serializers, initCode, const FullType(String)),
+      r'return_to_code': encodeQueryParameter(_serializers, returnToCode, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    SuccessfulNativeLogin? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulNativeLogin),
+      ) as SuccessfulNativeLogin;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<SuccessfulNativeLogin>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Get User-Flow Errors
   /// This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  &#x60;?id&#x3D;stub:500&#x60; - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
   ///
@@ -1084,22 +1202,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    FlowError _responseData;
+    FlowError? _responseData;
 
     try {
-      const _responseType = FullType(FlowError);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(FlowError),
       ) as FlowError;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<FlowError>(
@@ -1166,22 +1285,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LoginFlow _responseData;
+    LoginFlow? _responseData;
 
     try {
-      const _responseType = FullType(LoginFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LoginFlow),
       ) as LoginFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<LoginFlow>(
@@ -1248,22 +1368,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryFlow _responseData;
+    RecoveryFlow? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryFlow),
       ) as RecoveryFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryFlow>(
@@ -1330,22 +1451,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RegistrationFlow _responseData;
+    RegistrationFlow? _responseData;
 
     try {
-      const _responseType = FullType(RegistrationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RegistrationFlow),
       ) as RegistrationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RegistrationFlow>(
@@ -1415,22 +1537,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SettingsFlow _responseData;
+    SettingsFlow? _responseData;
 
     try {
-      const _responseType = FullType(SettingsFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SettingsFlow),
       ) as SettingsFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SettingsFlow>(
@@ -1497,22 +1620,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    VerificationFlow _responseData;
+    VerificationFlow? _responseData;
 
     try {
-      const _responseType = FullType(VerificationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VerificationFlow),
       ) as VerificationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<VerificationFlow>(
@@ -1569,18 +1693,20 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    String _responseData;
+    String? _responseData;
 
     try {
-      _responseData = _response.data as String;
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : rawResponse as String;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<String>(
@@ -1653,22 +1779,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Session> _responseData;
+    BuiltList<Session>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Session)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Session)]),
       ) as BuiltList<Session>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Session>>(
@@ -1732,9 +1859,10 @@ class FrontendApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1750,7 +1878,7 @@ class FrontendApi {
   }
 
   /// Check Who the Current HTTP Session Belongs To
-  /// Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the &#39;X-Kratos-Authenticated-Identity-Id&#39; header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  &#x60;&#x60;&#x60;js pseudo-code example router.get(&#39;/protected-endpoint&#39;, async function (req, res) { const session &#x3D; await client.toSession(undefined, req.header(&#39;cookie&#39;))  console.log(session) }) &#x60;&#x60;&#x60;  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  &#x60;&#x60;&#x60;js pseudo-code example ... const session &#x3D; await client.toSession(\&quot;the-session-token\&quot;)  console.log(session) &#x60;&#x60;&#x60;  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the &#x60;X-Session-Token&#x60; header!  This endpoint authenticates users by checking:  if the &#x60;Cookie&#x60; HTTP header was set containing an Ory Kratos Session Cookie; if the &#x60;Authorization: bearer &lt;ory-session-token&gt;&#x60; HTTP header was set with a valid Ory Kratos Session Token; if the &#x60;X-Session-Token&#x60; HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The &#x60;error.id&#x60; can be one of:  &#x60;session_inactive&#x60;: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). &#x60;session_aal2_required&#x60;: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+  /// Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the &#39;X-Kratos-Authenticated-Identity-Id&#39; header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  &#x60;&#x60;&#x60;js pseudo-code example router.get(&#39;/protected-endpoint&#39;, async function (req, res) { const session &#x3D; await client.toSession(undefined, req.header(&#39;cookie&#39;))  console.log(session) }) &#x60;&#x60;&#x60;  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  &#x60;&#x60;&#x60;js pseudo-code example ... const session &#x3D; await client.toSession(\&quot;the-session-token\&quot;)  console.log(session) &#x60;&#x60;&#x60;  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the &#x60;X-Session-Token&#x60; header!  This endpoint authenticates users by checking:  if the &#x60;Cookie&#x60; HTTP header was set containing an Ory Kratos Session Cookie; if the &#x60;Authorization: bearer &lt;ory-session-token&gt;&#x60; HTTP header was set with a valid Ory Kratos Session Token; if the &#x60;X-Session-Token&#x60; HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The &#x60;error.id&#x60; can be one of:  &#x60;session_inactive&#x60;: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). &#x60;session_aal2_required&#x60;: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
   ///
   /// Parameters:
   /// * [xSessionToken] - Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
@@ -1797,22 +1925,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Session _responseData;
+    Session? _responseData;
 
     try {
-      const _responseType = FullType(Session);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Session),
       ) as Session;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Session>(
@@ -1889,9 +2018,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1904,22 +2034,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SuccessfulNativeLogin _responseData;
+    SuccessfulNativeLogin? _responseData;
 
     try {
-      const _responseType = FullType(SuccessfulNativeLogin);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulNativeLogin),
       ) as SuccessfulNativeLogin;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SuccessfulNativeLogin>(
@@ -1940,6 +2071,7 @@ class FrontendApi {
   /// Parameters:
   /// * [token] - A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
   /// * [returnTo] - The URL to return to after the logout was completed.
+  /// * [cookie] - HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1952,6 +2084,7 @@ class FrontendApi {
   Future<Response<void>> updateLogoutFlow({ 
     String? token,
     String? returnTo,
+    String? cookie,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1963,6 +2096,7 @@ class FrontendApi {
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
+        if (cookie != null) r'Cookie': cookie,
         ...?headers,
       },
       extra: <String, dynamic>{
@@ -2051,9 +2185,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2066,22 +2201,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryFlow _responseData;
+    RecoveryFlow? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryFlow),
       ) as RecoveryFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryFlow>(
@@ -2155,9 +2291,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2170,22 +2307,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SuccessfulNativeRegistration _responseData;
+    SuccessfulNativeRegistration? _responseData;
 
     try {
-      const _responseType = FullType(SuccessfulNativeRegistration);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulNativeRegistration),
       ) as SuccessfulNativeRegistration;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SuccessfulNativeRegistration>(
@@ -2262,9 +2400,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2277,22 +2416,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SettingsFlow _responseData;
+    SettingsFlow? _responseData;
 
     try {
-      const _responseType = FullType(SettingsFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SettingsFlow),
       ) as SettingsFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SettingsFlow>(
@@ -2369,9 +2509,10 @@ class FrontendApi {
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2384,22 +2525,23 @@ class FrontendApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    VerificationFlow _responseData;
+    VerificationFlow? _responseData;
 
     try {
-      const _responseType = FullType(VerificationFlow);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VerificationFlow),
       ) as VerificationFlow;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<VerificationFlow>(

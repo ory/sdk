@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -24,7 +24,10 @@ type UiNodeAnchorAttributes struct {
 	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"a\".
 	NodeType string `json:"node_type"`
 	Title UiText `json:"title"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNodeAnchorAttributes UiNodeAnchorAttributes
 
 // NewUiNodeAnchorAttributes instantiates a new UiNodeAnchorAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,32 @@ func (o UiNodeAnchorAttributes) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["title"] = o.Title
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UiNodeAnchorAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	varUiNodeAnchorAttributes := _UiNodeAnchorAttributes{}
+
+	if err = json.Unmarshal(bytes, &varUiNodeAnchorAttributes); err == nil {
+		*o = UiNodeAnchorAttributes(varUiNodeAnchorAttributes)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "node_type")
+		delete(additionalProperties, "title")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNodeAnchorAttributes struct {

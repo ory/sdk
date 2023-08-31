@@ -73,6 +73,7 @@ docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
+docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/TokenPagination.md
@@ -209,6 +210,7 @@ src/main/java/sh/ory/kratos/model/SessionAuthenticationMethod.java
 src/main/java/sh/ory/kratos/model/SessionDevice.java
 src/main/java/sh/ory/kratos/model/SettingsFlow.java
 src/main/java/sh/ory/kratos/model/SettingsFlowState.java
+src/main/java/sh/ory/kratos/model/SuccessfulCodeExchangeResponse.java
 src/main/java/sh/ory/kratos/model/SuccessfulNativeLogin.java
 src/main/java/sh/ory/kratos/model/SuccessfulNativeRegistration.java
 src/main/java/sh/ory/kratos/model/TokenPagination.java
@@ -318,6 +320,7 @@ src/test/java/sh/ory/kratos/model/SessionDeviceTest.java
 src/test/java/sh/ory/kratos/model/SessionTest.java
 src/test/java/sh/ory/kratos/model/SettingsFlowStateTest.java
 src/test/java/sh/ory/kratos/model/SettingsFlowTest.java
+src/test/java/sh/ory/kratos/model/SuccessfulCodeExchangeResponseTest.java
 src/test/java/sh/ory/kratos/model/SuccessfulNativeLoginTest.java
 src/test/java/sh/ory/kratos/model/SuccessfulNativeRegistrationTest.java
 src/test/java/sh/ory/kratos/model/TokenPaginationHeadersTest.java

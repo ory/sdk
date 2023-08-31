@@ -210,10 +210,10 @@ defmodule Ory.Api.Identity do
 
   ### Returns
 
-  - `{:ok, Ory.Model.Identity.t}` on success
+  - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec delete_identity_credentials(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.Identity.t} | {:error, Tesla.Env.t}
+  @spec delete_identity_credentials(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
   def delete_identity_credentials(connection, id, type, _opts \\ []) do
     request =
       %{}
@@ -224,7 +224,7 @@ defmodule Ory.Api.Identity do
     connection
     |> Connection.request(request)
     |> evaluate_response([
-      {200, %Ory.Model.Identity{}},
+      {204, false},
       {404, %Ory.Model.ErrorGeneric{}},
       {:default, %Ory.Model.ErrorGeneric{}}
     ])
@@ -340,7 +340,7 @@ defmodule Ory.Api.Identity do
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): ID must be set to the ID of identity you want to get
   - `opts` (keyword): Optional parameters
-    - `:include_credential` ([String.t]): Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+    - `:include_credential` ([String.t]): Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 
   ### Returns
 

@@ -69,6 +69,7 @@ doc/SessionAuthenticationMethod.md
 doc/SessionDevice.md
 doc/SettingsFlow.md
 doc/SettingsFlowState.md
+doc/SuccessfulCodeExchangeResponse.md
 doc/SuccessfulNativeLogin.md
 doc/SuccessfulNativeRegistration.md
 doc/TokenPagination.md
@@ -188,6 +189,7 @@ lib/src/model/session_authentication_method.dart
 lib/src/model/session_device.dart
 lib/src/model/settings_flow.dart
 lib/src/model/settings_flow_state.dart
+lib/src/model/successful_code_exchange_response.dart
 lib/src/model/successful_native_login.dart
 lib/src/model/successful_native_registration.dart
 lib/src/model/token_pagination.dart
@@ -299,6 +301,7 @@ test/session_device_test.dart
 test/session_test.dart
 test/settings_flow_state_test.dart
 test/settings_flow_test.dart
+test/successful_code_exchange_response_test.dart
 test/successful_native_login_test.dart
 test/successful_native_registration_test.dart
 test/token_pagination_headers_test.dart

@@ -71,6 +71,7 @@ docs/Model/SessionAuthenticationMethod.md
 docs/Model/SessionDevice.md
 docs/Model/SettingsFlow.md
 docs/Model/SettingsFlowState.md
+docs/Model/SuccessfulCodeExchangeResponse.md
 docs/Model/SuccessfulNativeLogin.md
 docs/Model/SuccessfulNativeRegistration.md
 docs/Model/TokenPagination.md
@@ -185,6 +186,7 @@ lib/Model/SessionAuthenticationMethod.php
 lib/Model/SessionDevice.php
 lib/Model/SettingsFlow.php
 lib/Model/SettingsFlowState.php
+lib/Model/SuccessfulCodeExchangeResponse.php
 lib/Model/SuccessfulNativeLogin.php
 lib/Model/SuccessfulNativeRegistration.php
 lib/Model/TokenPagination.php
@@ -296,6 +298,7 @@ test/Model/SessionDeviceTest.php
 test/Model/SessionTest.php
 test/Model/SettingsFlowStateTest.php
 test/Model/SettingsFlowTest.php
+test/Model/SuccessfulCodeExchangeResponseTest.php
 test/Model/SuccessfulNativeLoginTest.php
 test/Model/SuccessfulNativeRegistrationTest.php
 test/Model/TokenPaginationHeadersTest.php

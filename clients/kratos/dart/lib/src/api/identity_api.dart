@@ -88,9 +88,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -102,22 +103,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BatchPatchIdentitiesResponse _responseData;
+    BatchPatchIdentitiesResponse? _responseData;
 
     try {
-      const _responseType = FullType(BatchPatchIdentitiesResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BatchPatchIdentitiesResponse),
       ) as BatchPatchIdentitiesResponse;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BatchPatchIdentitiesResponse>(
@@ -188,9 +190,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -202,22 +205,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
+    Identity? _responseData;
 
     try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Identity),
       ) as Identity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Identity>(
@@ -288,9 +292,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -302,22 +307,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryCodeForIdentity _responseData;
+    RecoveryCodeForIdentity? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryCodeForIdentity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryCodeForIdentity),
       ) as RecoveryCodeForIdentity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryCodeForIdentity>(
@@ -388,9 +394,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -402,22 +409,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryLinkForIdentity _responseData;
+    RecoveryLinkForIdentity? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryLinkForIdentity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryLinkForIdentity),
       ) as RecoveryLinkForIdentity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryLinkForIdentity>(
@@ -499,9 +507,9 @@ class IdentityApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [Identity] as data
+  /// Returns a [Future]
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<Identity>> deleteIdentityCredentials({ 
+  Future<Response<void>> deleteIdentityCredentials({ 
     required String id,
     required String type,
     CancelToken? cancelToken,
@@ -539,34 +547,7 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
-
-    try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
-      ) as Identity;
-
-    } catch (error, stackTrace) {
-      throw DioError(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioErrorType.other,
-        error: error,
-      )..stackTrace = stackTrace;
-    }
-
-    return Response<Identity>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
+    return _response;
   }
 
   /// Delete &amp; Invalidate an Identity&#39;s Sessions
@@ -728,22 +709,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Session _responseData;
+    Session? _responseData;
 
     try {
-      const _responseType = FullType(Session);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Session),
       ) as Session;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Session>(
@@ -763,7 +745,7 @@ class IdentityApi {
   ///
   /// Parameters:
   /// * [id] - ID must be set to the ID of identity you want to get
-  /// * [includeCredential] - Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+  /// * [includeCredential] - Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -816,22 +798,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
+    Identity? _responseData;
 
     try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Identity),
       ) as Identity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Identity>(
@@ -890,22 +873,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<JsonObject>(
@@ -978,22 +962,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Session _responseData;
+    Session? _responseData;
 
     try {
-      const _responseType = FullType(Session);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Session),
       ) as Session;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Session>(
@@ -1070,22 +1055,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Identity> _responseData;
+    BuiltList<Identity>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Identity)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Identity)]),
       ) as BuiltList<Identity>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Identity>>(
@@ -1152,22 +1138,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<IdentitySchemaContainer> _responseData;
+    BuiltList<IdentitySchemaContainer>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(IdentitySchemaContainer)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(IdentitySchemaContainer)]),
       ) as BuiltList<IdentitySchemaContainer>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<IdentitySchemaContainer>>(
@@ -1246,22 +1233,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Session> _responseData;
+    BuiltList<Session>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Session)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Session)]),
       ) as BuiltList<Session>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Session>>(
@@ -1341,22 +1329,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Session> _responseData;
+    BuiltList<Session>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Session)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Session)]),
       ) as BuiltList<Session>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Session>>(
@@ -1429,9 +1418,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1443,22 +1433,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
+    Identity? _responseData;
 
     try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Identity),
       ) as Identity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Identity>(
@@ -1531,9 +1522,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1545,22 +1537,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
+    Identity? _responseData;
 
     try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Identity),
       ) as Identity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Identity>(

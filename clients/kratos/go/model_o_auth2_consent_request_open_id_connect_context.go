@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -27,7 +27,10 @@ type OAuth2ConsentRequestOpenIDConnectContext struct {
 	LoginHint *string `json:"login_hint,omitempty"`
 	// UILocales is the End-User'id preferred languages and scripts for the user interface, represented as a space-separated list of BCP47 [RFC5646] language tag values, ordered by preference. For instance, the value \\\"fr-CA fr en\\\" represents a preference for French as spoken in Canada, then French (without a region designation), followed by English (without a region designation). An error SHOULD NOT result if some or all of the requested locales are not supported by the OpenID Provider.
 	UiLocales []string `json:"ui_locales,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2ConsentRequestOpenIDConnectContext OAuth2ConsentRequestOpenIDConnectContext
 
 // NewOAuth2ConsentRequestOpenIDConnectContext instantiates a new OAuth2ConsentRequestOpenIDConnectContext object
 // This constructor will assign default values to properties that have it defined,
@@ -223,7 +226,33 @@ func (o OAuth2ConsentRequestOpenIDConnectContext) MarshalJSON() ([]byte, error) 
 	if o.UiLocales != nil {
 		toSerialize["ui_locales"] = o.UiLocales
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *OAuth2ConsentRequestOpenIDConnectContext) UnmarshalJSON(bytes []byte) (err error) {
+	varOAuth2ConsentRequestOpenIDConnectContext := _OAuth2ConsentRequestOpenIDConnectContext{}
+
+	if err = json.Unmarshal(bytes, &varOAuth2ConsentRequestOpenIDConnectContext); err == nil {
+		*o = OAuth2ConsentRequestOpenIDConnectContext(varOAuth2ConsentRequestOpenIDConnectContext)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "acr_values")
+		delete(additionalProperties, "display")
+		delete(additionalProperties, "id_token_hint_claims")
+		delete(additionalProperties, "login_hint")
+		delete(additionalProperties, "ui_locales")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2ConsentRequestOpenIDConnectContext struct {

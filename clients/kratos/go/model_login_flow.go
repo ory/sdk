@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -27,7 +27,8 @@ type LoginFlow struct {
 	Id string `json:"id"`
 	// IssuedAt is the time (UTC) when the flow started.
 	IssuedAt time.Time `json:"issued_at"`
-	Oauth2LoginChallenge NullableString `json:"oauth2_login_challenge,omitempty"`
+	// Ory OAuth 2.0 Login Challenge.  This value is set using the `login_challenge` query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
+	Oauth2LoginChallenge *string `json:"oauth2_login_challenge,omitempty"`
 	Oauth2LoginRequest *OAuth2LoginRequest `json:"oauth2_login_request,omitempty"`
 	// Refresh stores whether this login flow should enforce re-authentication.
 	Refresh *bool `json:"refresh,omitempty"`
@@ -36,12 +37,17 @@ type LoginFlow struct {
 	RequestedAal *AuthenticatorAssuranceLevel `json:"requested_aal,omitempty"`
 	// ReturnTo contains the requested return_to URL.
 	ReturnTo *string `json:"return_to,omitempty"`
+	// SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the login flow.
+	SessionTokenExchangeCode *string `json:"session_token_exchange_code,omitempty"`
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoginFlow LoginFlow
 
 // NewLoginFlow instantiates a new LoginFlow object
 // This constructor will assign default values to properties that have it defined,
@@ -202,46 +208,36 @@ func (o *LoginFlow) SetIssuedAt(v time.Time) {
 	o.IssuedAt = v
 }
 
-// GetOauth2LoginChallenge returns the Oauth2LoginChallenge field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOauth2LoginChallenge returns the Oauth2LoginChallenge field value if set, zero value otherwise.
 func (o *LoginFlow) GetOauth2LoginChallenge() string {
-	if o == nil || o.Oauth2LoginChallenge.Get() == nil {
+	if o == nil || o.Oauth2LoginChallenge == nil {
 		var ret string
 		return ret
 	}
-	return *o.Oauth2LoginChallenge.Get()
+	return *o.Oauth2LoginChallenge
 }
 
 // GetOauth2LoginChallengeOk returns a tuple with the Oauth2LoginChallenge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LoginFlow) GetOauth2LoginChallengeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Oauth2LoginChallenge == nil {
 		return nil, false
 	}
-	return o.Oauth2LoginChallenge.Get(), o.Oauth2LoginChallenge.IsSet()
+	return o.Oauth2LoginChallenge, true
 }
 
 // HasOauth2LoginChallenge returns a boolean if a field has been set.
 func (o *LoginFlow) HasOauth2LoginChallenge() bool {
-	if o != nil && o.Oauth2LoginChallenge.IsSet() {
+	if o != nil && o.Oauth2LoginChallenge != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetOauth2LoginChallenge gets a reference to the given NullableString and assigns it to the Oauth2LoginChallenge field.
+// SetOauth2LoginChallenge gets a reference to the given string and assigns it to the Oauth2LoginChallenge field.
 func (o *LoginFlow) SetOauth2LoginChallenge(v string) {
-	o.Oauth2LoginChallenge.Set(&v)
-}
-// SetOauth2LoginChallengeNil sets the value for Oauth2LoginChallenge to be an explicit nil
-func (o *LoginFlow) SetOauth2LoginChallengeNil() {
-	o.Oauth2LoginChallenge.Set(nil)
-}
-
-// UnsetOauth2LoginChallenge ensures that no value is present for Oauth2LoginChallenge, not even an explicit nil
-func (o *LoginFlow) UnsetOauth2LoginChallenge() {
-	o.Oauth2LoginChallenge.Unset()
+	o.Oauth2LoginChallenge = &v
 }
 
 // GetOauth2LoginRequest returns the Oauth2LoginRequest field value if set, zero value otherwise.
@@ -396,6 +392,38 @@ func (o *LoginFlow) SetReturnTo(v string) {
 	o.ReturnTo = &v
 }
 
+// GetSessionTokenExchangeCode returns the SessionTokenExchangeCode field value if set, zero value otherwise.
+func (o *LoginFlow) GetSessionTokenExchangeCode() string {
+	if o == nil || o.SessionTokenExchangeCode == nil {
+		var ret string
+		return ret
+	}
+	return *o.SessionTokenExchangeCode
+}
+
+// GetSessionTokenExchangeCodeOk returns a tuple with the SessionTokenExchangeCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoginFlow) GetSessionTokenExchangeCodeOk() (*string, bool) {
+	if o == nil || o.SessionTokenExchangeCode == nil {
+		return nil, false
+	}
+	return o.SessionTokenExchangeCode, true
+}
+
+// HasSessionTokenExchangeCode returns a boolean if a field has been set.
+func (o *LoginFlow) HasSessionTokenExchangeCode() bool {
+	if o != nil && o.SessionTokenExchangeCode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSessionTokenExchangeCode gets a reference to the given string and assigns it to the SessionTokenExchangeCode field.
+func (o *LoginFlow) SetSessionTokenExchangeCode(v string) {
+	o.SessionTokenExchangeCode = &v
+}
+
 // GetType returns the Type field value
 func (o *LoginFlow) GetType() string {
 	if o == nil {
@@ -493,8 +521,8 @@ func (o LoginFlow) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["issued_at"] = o.IssuedAt
 	}
-	if o.Oauth2LoginChallenge.IsSet() {
-		toSerialize["oauth2_login_challenge"] = o.Oauth2LoginChallenge.Get()
+	if o.Oauth2LoginChallenge != nil {
+		toSerialize["oauth2_login_challenge"] = o.Oauth2LoginChallenge
 	}
 	if o.Oauth2LoginRequest != nil {
 		toSerialize["oauth2_login_request"] = o.Oauth2LoginRequest
@@ -511,6 +539,9 @@ func (o LoginFlow) MarshalJSON() ([]byte, error) {
 	if o.ReturnTo != nil {
 		toSerialize["return_to"] = o.ReturnTo
 	}
+	if o.SessionTokenExchangeCode != nil {
+		toSerialize["session_token_exchange_code"] = o.SessionTokenExchangeCode
+	}
 	if true {
 		toSerialize["type"] = o.Type
 	}
@@ -520,7 +551,43 @@ func (o LoginFlow) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *LoginFlow) UnmarshalJSON(bytes []byte) (err error) {
+	varLoginFlow := _LoginFlow{}
+
+	if err = json.Unmarshal(bytes, &varLoginFlow); err == nil {
+		*o = LoginFlow(varLoginFlow)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "issued_at")
+		delete(additionalProperties, "oauth2_login_challenge")
+		delete(additionalProperties, "oauth2_login_request")
+		delete(additionalProperties, "refresh")
+		delete(additionalProperties, "request_url")
+		delete(additionalProperties, "requested_aal")
+		delete(additionalProperties, "return_to")
+		delete(additionalProperties, "session_token_exchange_code")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "ui")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoginFlow struct {

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -20,7 +20,10 @@ type ErrorFlowReplaced struct {
 	Error *GenericError `json:"error,omitempty"`
 	// The flow ID that should be used for the new flow as it contains the correct messages.
 	UseFlowId *string `json:"use_flow_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ErrorFlowReplaced ErrorFlowReplaced
 
 // NewErrorFlowReplaced instantiates a new ErrorFlowReplaced object
 // This constructor will assign default values to properties that have it defined,
@@ -111,7 +114,30 @@ func (o ErrorFlowReplaced) MarshalJSON() ([]byte, error) {
 	if o.UseFlowId != nil {
 		toSerialize["use_flow_id"] = o.UseFlowId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ErrorFlowReplaced) UnmarshalJSON(bytes []byte) (err error) {
+	varErrorFlowReplaced := _ErrorFlowReplaced{}
+
+	if err = json.Unmarshal(bytes, &varErrorFlowReplaced); err == nil {
+		*o = ErrorFlowReplaced(varErrorFlowReplaced)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "use_flow_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableErrorFlowReplaced struct {

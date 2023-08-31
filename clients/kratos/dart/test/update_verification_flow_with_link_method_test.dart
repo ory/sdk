@@ -19,7 +19,7 @@ void main() {
       // TODO
     });
 
-    // Method is the method that should be used for this verification flow  Allowed values are `link` and `code`
+    // Method is the method that should be used for this verification flow  Allowed values are `link` and `code` link VerificationStrategyLink code VerificationStrategyCode
     // String method
     test('to test the property `method`', () async {
       // TODO

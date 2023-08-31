@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -42,7 +42,10 @@ type Identity struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// VerifiableAddresses contains all the addresses that can be verified by the user.
 	VerifiableAddresses []VerifiableIdentityAddress `json:"verifiable_addresses,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Identity Identity
 
 // NewIdentity instantiates a new Identity object
 // This constructor will assign default values to properties that have it defined,
@@ -494,7 +497,41 @@ func (o Identity) MarshalJSON() ([]byte, error) {
 	if o.VerifiableAddresses != nil {
 		toSerialize["verifiable_addresses"] = o.VerifiableAddresses
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Identity) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentity := _Identity{}
+
+	if err = json.Unmarshal(bytes, &varIdentity); err == nil {
+		*o = Identity(varIdentity)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "metadata_admin")
+		delete(additionalProperties, "metadata_public")
+		delete(additionalProperties, "recovery_addresses")
+		delete(additionalProperties, "schema_id")
+		delete(additionalProperties, "schema_url")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "state_changed_at")
+		delete(additionalProperties, "traits")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "verifiable_addresses")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentity struct {

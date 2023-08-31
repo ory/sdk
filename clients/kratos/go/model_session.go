@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -34,7 +34,10 @@ type Session struct {
 	Identity Identity `json:"identity"`
 	// The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`.
 	IssuedAt *time.Time `json:"issued_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Session Session
 
 // NewSession instantiates a new Session object
 // This constructor will assign default values to properties that have it defined,
@@ -356,7 +359,37 @@ func (o Session) MarshalJSON() ([]byte, error) {
 	if o.IssuedAt != nil {
 		toSerialize["issued_at"] = o.IssuedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Session) UnmarshalJSON(bytes []byte) (err error) {
+	varSession := _Session{}
+
+	if err = json.Unmarshal(bytes, &varSession); err == nil {
+		*o = Session(varSession)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "authenticated_at")
+		delete(additionalProperties, "authentication_methods")
+		delete(additionalProperties, "authenticator_assurance_level")
+		delete(additionalProperties, "devices")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "identity")
+		delete(additionalProperties, "issued_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSession struct {

@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**createNativeVerificationFlow()**](FrontendApi.md#createNativeVerificationFlow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 [**disableMyOtherSessions()**](FrontendApi.md#disableMyOtherSessions) | **DELETE** /sessions | Disable my other sessions
 [**disableMySession()**](FrontendApi.md#disableMySession) | **DELETE** /sessions/{id} | Disable one of my sessions
+[**exchangeSessionToken()**](FrontendApi.md#exchangeSessionToken) | **GET** /sessions/token-exchange | Exchange Session Token
 [**getFlowError()**](FrontendApi.md#getFlowError) | **GET** /self-service/errors | Get User-Flow Errors
 [**getLoginFlow()**](FrontendApi.md#getLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
 [**getRecoveryFlow()**](FrontendApi.md#getRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -102,7 +103,7 @@ No authorization required
 ## `createBrowserLogoutFlow()`
 
 ```php
-createBrowserLogoutFlow($cookie): \Ory\Kratos\Client\Model\LogoutFlow
+createBrowserLogoutFlow($cookie, $returnTo): \Ory\Kratos\Client\Model\LogoutFlow
 ```
 
 Create a Logout URL for Browsers
@@ -123,9 +124,10 @@ $apiInstance = new Ory\Kratos\Client\Api\FrontendApi(
     new GuzzleHttp\Client()
 );
 $cookie = 'cookie_example'; // string | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
+$returnTo = 'returnTo_example'; // string | Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
 
 try {
-    $result = $apiInstance->createBrowserLogoutFlow($cookie);
+    $result = $apiInstance->createBrowserLogoutFlow($cookie, $returnTo);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createBrowserLogoutFlow: ', $e->getMessage(), PHP_EOL;
@@ -137,6 +139,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **string**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional]
+ **returnTo** | **string**| Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional]
 
 ### Return type
 
@@ -388,7 +391,7 @@ No authorization required
 ## `createNativeLoginFlow()`
 
 ```php
-createNativeLoginFlow($refresh, $aal, $xSessionToken): \Ory\Kratos\Client\Model\LoginFlow
+createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo): \Ory\Kratos\Client\Model\LoginFlow
 ```
 
 Create Login Flow for Native Apps
@@ -411,9 +414,11 @@ $apiInstance = new Ory\Kratos\Client\Api\FrontendApi(
 $refresh = True; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
 $aal = 'aal_example'; // string | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
 $xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
+$returnSessionTokenExchangeCode = True; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+$returnTo = 'returnTo_example'; // string | The URL to return the browser to after the flow was completed.
 
 try {
-    $result = $apiInstance->createNativeLoginFlow($refresh, $aal, $xSessionToken);
+    $result = $apiInstance->createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createNativeLoginFlow: ', $e->getMessage(), PHP_EOL;
@@ -427,6 +432,8 @@ Name | Type | Description  | Notes
  **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
  **aal** | **string**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional]
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
+ **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]
+ **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional]
 
 ### Return type
 
@@ -501,7 +508,7 @@ No authorization required
 ## `createNativeRegistrationFlow()`
 
 ```php
-createNativeRegistrationFlow(): \Ory\Kratos\Client\Model\RegistrationFlow
+createNativeRegistrationFlow($returnSessionTokenExchangeCode, $returnTo): \Ory\Kratos\Client\Model\RegistrationFlow
 ```
 
 Create Registration Flow for Native Apps
@@ -521,9 +528,11 @@ $apiInstance = new Ory\Kratos\Client\Api\FrontendApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$returnSessionTokenExchangeCode = True; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+$returnTo = 'returnTo_example'; // string | The URL to return the browser to after the flow was completed.
 
 try {
-    $result = $apiInstance->createNativeRegistrationFlow();
+    $result = $apiInstance->createNativeRegistrationFlow($returnSessionTokenExchangeCode, $returnTo);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createNativeRegistrationFlow: ', $e->getMessage(), PHP_EOL;
@@ -532,7 +541,10 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]
+ **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional]
 
 ### Return type
 
@@ -763,6 +775,62 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `exchangeSessionToken()`
+
+```php
+exchangeSessionToken($initCode, $returnToCode): \Ory\Kratos\Client\Model\SuccessfulNativeLogin
+```
+
+Exchange Session Token
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Kratos\Client\Api\FrontendApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$initCode = 'initCode_example'; // string | The part of the code return when initializing the flow.
+$returnToCode = 'returnToCode_example'; // string | The part of the code returned by the return_to URL.
+
+try {
+    $result = $apiInstance->exchangeSessionToken($initCode, $returnToCode);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FrontendApi->exchangeSessionToken: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **initCode** | **string**| The part of the code return when initializing the flow. |
+ **returnToCode** | **string**| The part of the code returned by the return_to URL. |
+
+### Return type
+
+[**\Ory\Kratos\Client\Model\SuccessfulNativeLogin**](../Model/SuccessfulNativeLogin.md)
 
 ### Authorization
 
@@ -1303,7 +1371,7 @@ toSession($xSessionToken, $cookie): \Ory\Kratos\Client\Model\Session
 
 Check Who the Current HTTP Session Belongs To
 
-Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 
 ### Example
 
@@ -1418,7 +1486,7 @@ No authorization required
 ## `updateLogoutFlow()`
 
 ```php
-updateLogoutFlow($token, $returnTo)
+updateLogoutFlow($token, $returnTo, $cookie)
 ```
 
 Update Logout Flow
@@ -1440,9 +1508,10 @@ $apiInstance = new Ory\Kratos\Client\Api\FrontendApi(
 );
 $token = 'token_example'; // string | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
 $returnTo = 'returnTo_example'; // string | The URL to return to after the logout was completed.
+$cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    $apiInstance->updateLogoutFlow($token, $returnTo);
+    $apiInstance->updateLogoutFlow($token, $returnTo, $cookie);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->updateLogoutFlow: ', $e->getMessage(), PHP_EOL;
 }
@@ -1454,6 +1523,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional]
  **returnTo** | **string**| The URL to return to after the logout was completed. | [optional]
+ **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
 
 ### Return type
 

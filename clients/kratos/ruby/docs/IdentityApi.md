@@ -388,7 +388,7 @@ nil (empty response body)
 
 ## delete_identity_credentials
 
-> <Identity> delete_identity_credentials(id, type)
+> delete_identity_credentials(id, type)
 
 Delete a credential for a specific identity
 
@@ -413,8 +413,7 @@ type = 'totp' # String | Type is the credential's Type. One of totp, webauthn, l
 
 begin
   # Delete a credential for a specific identity
-  result = api_instance.delete_identity_credentials(id, type)
-  p result
+  api_instance.delete_identity_credentials(id, type)
 rescue OryKratosClient::ApiError => e
   puts "Error when calling IdentityApi->delete_identity_credentials: #{e}"
 end
@@ -422,9 +421,9 @@ end
 
 #### Using the delete_identity_credentials_with_http_info variant
 
-This returns an Array which contains the response data, status code and headers.
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(<Identity>, Integer, Hash)> delete_identity_credentials_with_http_info(id, type)
+> <Array(nil, Integer, Hash)> delete_identity_credentials_with_http_info(id, type)
 
 ```ruby
 begin
@@ -432,7 +431,7 @@ begin
   data, status_code, headers = api_instance.delete_identity_credentials_with_http_info(id, type)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Identity>
+  p data # => nil
 rescue OryKratosClient::ApiError => e
   puts "Error when calling IdentityApi->delete_identity_credentials_with_http_info: #{e}"
 end
@@ -447,7 +446,7 @@ end
 
 ### Return type
 
-[**Identity**](Identity.md)
+nil (empty response body)
 
 ### Authorization
 
@@ -694,7 +693,7 @@ end
 api_instance = OryKratosClient::IdentityApi.new
 id = 'id_example' # String | ID must be set to the ID of identity you want to get
 opts = {
-  include_credential: ['inner_example'] # Array<String> | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+  include_credential: ['password'] # Array<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 }
 
 begin
@@ -729,7 +728,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID must be set to the ID of identity you want to get |  |
-| **include_credential** | [**Array&lt;String&gt;**](String.md) | Include Credentials in Response  Currently, only &#x60;oidc&#x60; is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional] |
+| **include_credential** | [**Array&lt;String&gt;**](String.md) | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
 
 ### Return type
 

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -21,7 +21,10 @@ type LogoutFlow struct {
 	LogoutToken string `json:"logout_token"`
 	// LogoutURL can be opened in a browser to sign the user out.  format: uri
 	LogoutUrl string `json:"logout_url"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogoutFlow LogoutFlow
 
 // NewLogoutFlow instantiates a new LogoutFlow object
 // This constructor will assign default values to properties that have it defined,
@@ -98,7 +101,30 @@ func (o LogoutFlow) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["logout_url"] = o.LogoutUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *LogoutFlow) UnmarshalJSON(bytes []byte) (err error) {
+	varLogoutFlow := _LogoutFlow{}
+
+	if err = json.Unmarshal(bytes, &varLogoutFlow); err == nil {
+		*o = LogoutFlow(varLogoutFlow)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "logout_token")
+		delete(additionalProperties, "logout_url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLogoutFlow struct {

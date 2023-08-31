@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -21,9 +21,12 @@ type UpdateVerificationFlowWithLinkMethod struct {
 	CsrfToken *string `json:"csrf_token,omitempty"`
 	// Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
 	Email string `json:"email"`
-	// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`
+	// Method is the method that should be used for this verification flow  Allowed values are `link` and `code` link VerificationStrategyLink code VerificationStrategyCode
 	Method string `json:"method"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateVerificationFlowWithLinkMethod UpdateVerificationFlowWithLinkMethod
 
 // NewUpdateVerificationFlowWithLinkMethod instantiates a new UpdateVerificationFlowWithLinkMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -135,7 +138,31 @@ func (o UpdateVerificationFlowWithLinkMethod) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["method"] = o.Method
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateVerificationFlowWithLinkMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateVerificationFlowWithLinkMethod := _UpdateVerificationFlowWithLinkMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateVerificationFlowWithLinkMethod); err == nil {
+		*o = UpdateVerificationFlowWithLinkMethod(varUpdateVerificationFlowWithLinkMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "method")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateVerificationFlowWithLinkMethod struct {

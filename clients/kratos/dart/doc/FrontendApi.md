@@ -22,6 +22,7 @@ Method | HTTP request | Description
 [**createNativeVerificationFlow**](FrontendApi.md#createnativeverificationflow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 [**disableMyOtherSessions**](FrontendApi.md#disablemyothersessions) | **DELETE** /sessions | Disable my other sessions
 [**disableMySession**](FrontendApi.md#disablemysession) | **DELETE** /sessions/{id} | Disable one of my sessions
+[**exchangeSessionToken**](FrontendApi.md#exchangesessiontoken) | **GET** /sessions/token-exchange | Exchange Session Token
 [**getFlowError**](FrontendApi.md#getflowerror) | **GET** /self-service/errors | Get User-Flow Errors
 [**getLoginFlow**](FrontendApi.md#getloginflow) | **GET** /self-service/login/flows | Get Login Flow
 [**getRecoveryFlow**](FrontendApi.md#getrecoveryflow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -92,7 +93,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createBrowserLogoutFlow**
-> LogoutFlow createBrowserLogoutFlow(cookie)
+> LogoutFlow createBrowserLogoutFlow(cookie, returnTo)
 
 Create a Logout URL for Browsers
 
@@ -104,9 +105,10 @@ import 'package:ory_kratos_client/api.dart';
 
 final api = OryKratosClient().getFrontendApi();
 final String cookie = cookie_example; // String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
+final String returnTo = returnTo_example; // String | Return to URL  The URL to which the browser should be redirected to after the logout has been performed.
 
 try {
-    final response = api.createBrowserLogoutFlow(cookie);
+    final response = api.createBrowserLogoutFlow(cookie, returnTo);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->createBrowserLogoutFlow: $e\n');
@@ -118,6 +120,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cookie** | **String**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional] 
+ **returnTo** | **String**| Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional] 
 
 ### Return type
 
@@ -313,7 +316,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createNativeLoginFlow**
-> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken)
+> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo)
 
 Create Login Flow for Native Apps
 
@@ -327,9 +330,11 @@ final api = OryKratosClient().getFrontendApi();
 final bool refresh = true; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
 final String aal = aal_example; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
 final String xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
+final bool returnSessionTokenExchangeCode = true; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+final String returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
 try {
-    final response = api.createNativeLoginFlow(refresh, aal, xSessionToken);
+    final response = api.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->createNativeLoginFlow: $e\n');
@@ -343,6 +348,8 @@ Name | Type | Description  | Notes
  **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] 
  **aal** | **String**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". | [optional] 
  **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
+ **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
+ **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] 
 
 ### Return type
 
@@ -399,7 +406,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createNativeRegistrationFlow**
-> RegistrationFlow createNativeRegistrationFlow()
+> RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo)
 
 Create Registration Flow for Native Apps
 
@@ -410,9 +417,11 @@ This endpoint initiates a registration flow for API clients such as mobile devic
 import 'package:ory_kratos_client/api.dart';
 
 final api = OryKratosClient().getFrontendApi();
+final bool returnSessionTokenExchangeCode = true; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
+final String returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 
 try {
-    final response = api.createNativeRegistrationFlow();
+    final response = api.createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->createNativeRegistrationFlow: $e\n');
@@ -420,7 +429,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
+ **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] 
 
 ### Return type
 
@@ -598,6 +611,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **exchangeSessionToken**
+> SuccessfulNativeLogin exchangeSessionToken(initCode, returnToCode)
+
+Exchange Session Token
+
+### Example
+```dart
+import 'package:ory_kratos_client/api.dart';
+
+final api = OryKratosClient().getFrontendApi();
+final String initCode = initCode_example; // String | The part of the code return when initializing the flow.
+final String returnToCode = returnToCode_example; // String | The part of the code returned by the return_to URL.
+
+try {
+    final response = api.exchangeSessionToken(initCode, returnToCode);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling FrontendApi->exchangeSessionToken: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **initCode** | **String**| The part of the code return when initializing the flow. | 
+ **returnToCode** | **String**| The part of the code returned by the return_to URL. | 
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
 
 ### Authorization
 
@@ -1015,7 +1071,7 @@ No authorization required
 
 Check Who the Current HTTP Session Belongs To
 
-Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 
 ### Example
 ```dart
@@ -1105,7 +1161,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateLogoutFlow**
-> updateLogoutFlow(token, returnTo)
+> updateLogoutFlow(token, returnTo, cookie)
 
 Update Logout Flow
 
@@ -1118,9 +1174,10 @@ import 'package:ory_kratos_client/api.dart';
 final api = OryKratosClient().getFrontendApi();
 final String token = token_example; // String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
 final String returnTo = returnTo_example; // String | The URL to return to after the logout was completed.
+final String cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 
 try {
-    api.updateLogoutFlow(token, returnTo);
+    api.updateLogoutFlow(token, returnTo, cookie);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->updateLogoutFlow: $e\n');
 }
@@ -1132,6 +1189,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **String**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. | [optional] 
  **returnTo** | **String**| The URL to return to after the logout was completed. | [optional] 
+ **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 

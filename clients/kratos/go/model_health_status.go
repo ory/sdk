@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -19,7 +19,10 @@ import (
 type HealthStatus struct {
 	// Status always contains \"ok\".
 	Status *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HealthStatus HealthStatus
 
 // NewHealthStatus instantiates a new HealthStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o HealthStatus) MarshalJSON() ([]byte, error) {
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *HealthStatus) UnmarshalJSON(bytes []byte) (err error) {
+	varHealthStatus := _HealthStatus{}
+
+	if err = json.Unmarshal(bytes, &varHealthStatus); err == nil {
+		*o = HealthStatus(varHealthStatus)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHealthStatus struct {

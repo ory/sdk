@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -33,7 +33,10 @@ type VerifiableIdentityAddress struct {
 	VerifiedAt *time.Time `json:"verified_at,omitempty"`
 	// VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema
 	Via string `json:"via"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VerifiableIdentityAddress VerifiableIdentityAddress
 
 // NewVerifiableIdentityAddress instantiates a new VerifiableIdentityAddress object
 // This constructor will assign default values to properties that have it defined,
@@ -306,7 +309,36 @@ func (o VerifiableIdentityAddress) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["via"] = o.Via
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *VerifiableIdentityAddress) UnmarshalJSON(bytes []byte) (err error) {
+	varVerifiableIdentityAddress := _VerifiableIdentityAddress{}
+
+	if err = json.Unmarshal(bytes, &varVerifiableIdentityAddress); err == nil {
+		*o = VerifiableIdentityAddress(varVerifiableIdentityAddress)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "value")
+		delete(additionalProperties, "verified")
+		delete(additionalProperties, "verified_at")
+		delete(additionalProperties, "via")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVerifiableIdentityAddress struct {

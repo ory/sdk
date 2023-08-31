@@ -384,7 +384,7 @@ null (empty response body)
 
 <a name="deleteIdentityCredentials"></a>
 # **deleteIdentityCredentials**
-> Identity deleteIdentityCredentials(id, type)
+> deleteIdentityCredentials(id, type)
 
 Delete a credential for a specific identity
 
@@ -415,8 +415,7 @@ public class Example {
     String id = "id_example"; // String | ID is the identity's ID.
     String type = "totp"; // String | Type is the credential's Type. One of totp, webauthn, lookup
     try {
-      Identity result = apiInstance.deleteIdentityCredentials(id, type);
-      System.out.println(result);
+      apiInstance.deleteIdentityCredentials(id, type);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#deleteIdentityCredentials");
       System.err.println("Status code: " + e.getCode());
@@ -437,7 +436,7 @@ public class Example {
 
 ### Return type
 
-[**Identity**](Identity.md)
+null (empty response body)
 
 ### Authorization
 
@@ -451,7 +450,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identity |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
@@ -701,7 +700,7 @@ public class Example {
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of identity you want to get
-    List<String> includeCredential = Arrays.asList(); // List<String> | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+    List<String> includeCredential = Arrays.asList(); // List<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
     try {
       Identity result = apiInstance.getIdentity(id, includeCredential);
       System.out.println(result);
@@ -721,7 +720,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID must be set to the ID of identity you want to get | |
-| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Currently, only &#x60;oidc&#x60; is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional] |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] [enum: password, totp, oidc, webauthn, lookup_secret] |
 
 ### Return type
 

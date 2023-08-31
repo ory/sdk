@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -27,7 +27,10 @@ type UpdateLoginFlowWithPasswordMethod struct {
 	Password string `json:"password"`
 	// Identifier is the email or username of the user trying to log in. This field is deprecated!
 	PasswordIdentifier *string `json:"password_identifier,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateLoginFlowWithPasswordMethod UpdateLoginFlowWithPasswordMethod
 
 // NewUpdateLoginFlowWithPasswordMethod instantiates a new UpdateLoginFlowWithPasswordMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -202,7 +205,33 @@ func (o UpdateLoginFlowWithPasswordMethod) MarshalJSON() ([]byte, error) {
 	if o.PasswordIdentifier != nil {
 		toSerialize["password_identifier"] = o.PasswordIdentifier
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *UpdateLoginFlowWithPasswordMethod) UnmarshalJSON(bytes []byte) (err error) {
+	varUpdateLoginFlowWithPasswordMethod := _UpdateLoginFlowWithPasswordMethod{}
+
+	if err = json.Unmarshal(bytes, &varUpdateLoginFlowWithPasswordMethod); err == nil {
+		*o = UpdateLoginFlowWithPasswordMethod(varUpdateLoginFlowWithPasswordMethod)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "password_identifier")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateLoginFlowWithPasswordMethod struct {

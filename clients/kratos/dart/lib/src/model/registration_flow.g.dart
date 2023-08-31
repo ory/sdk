@@ -24,6 +24,8 @@ class _$RegistrationFlow extends RegistrationFlow {
   @override
   final String? returnTo;
   @override
+  final String? sessionTokenExchangeCode;
+  @override
   final JsonObject? transientPayload;
   @override
   final String type;
@@ -43,6 +45,7 @@ class _$RegistrationFlow extends RegistrationFlow {
       this.oauth2LoginRequest,
       required this.requestUrl,
       this.returnTo,
+      this.sessionTokenExchangeCode,
       this.transientPayload,
       required this.type,
       required this.ui})
@@ -78,6 +81,7 @@ class _$RegistrationFlow extends RegistrationFlow {
         oauth2LoginRequest == other.oauth2LoginRequest &&
         requestUrl == other.requestUrl &&
         returnTo == other.returnTo &&
+        sessionTokenExchangeCode == other.sessionTokenExchangeCode &&
         transientPayload == other.transientPayload &&
         type == other.type &&
         ui == other.ui;
@@ -94,6 +98,7 @@ class _$RegistrationFlow extends RegistrationFlow {
     _$hash = $jc(_$hash, oauth2LoginRequest.hashCode);
     _$hash = $jc(_$hash, requestUrl.hashCode);
     _$hash = $jc(_$hash, returnTo.hashCode);
+    _$hash = $jc(_$hash, sessionTokenExchangeCode.hashCode);
     _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, ui.hashCode);
@@ -112,6 +117,7 @@ class _$RegistrationFlow extends RegistrationFlow {
           ..add('oauth2LoginRequest', oauth2LoginRequest)
           ..add('requestUrl', requestUrl)
           ..add('returnTo', returnTo)
+          ..add('sessionTokenExchangeCode', sessionTokenExchangeCode)
           ..add('transientPayload', transientPayload)
           ..add('type', type)
           ..add('ui', ui))
@@ -158,6 +164,11 @@ class RegistrationFlowBuilder
   String? get returnTo => _$this._returnTo;
   set returnTo(String? returnTo) => _$this._returnTo = returnTo;
 
+  String? _sessionTokenExchangeCode;
+  String? get sessionTokenExchangeCode => _$this._sessionTokenExchangeCode;
+  set sessionTokenExchangeCode(String? sessionTokenExchangeCode) =>
+      _$this._sessionTokenExchangeCode = sessionTokenExchangeCode;
+
   JsonObject? _transientPayload;
   JsonObject? get transientPayload => _$this._transientPayload;
   set transientPayload(JsonObject? transientPayload) =>
@@ -186,6 +197,7 @@ class RegistrationFlowBuilder
       _oauth2LoginRequest = $v.oauth2LoginRequest?.toBuilder();
       _requestUrl = $v.requestUrl;
       _returnTo = $v.returnTo;
+      _sessionTokenExchangeCode = $v.sessionTokenExchangeCode;
       _transientPayload = $v.transientPayload;
       _type = $v.type;
       _ui = $v.ui.toBuilder();
@@ -225,6 +237,7 @@ class RegistrationFlowBuilder
               requestUrl: BuiltValueNullFieldError.checkNotNull(
                   requestUrl, r'RegistrationFlow', 'requestUrl'),
               returnTo: returnTo,
+              sessionTokenExchangeCode: sessionTokenExchangeCode,
               transientPayload: transientPayload,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'RegistrationFlow', 'type'),

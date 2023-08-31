@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -21,7 +21,10 @@ type Pagination struct {
 	Page *int64 `json:"page,omitempty"`
 	// Items per Page  This is the number of items per page.
 	PerPage *int64 `json:"per_page,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Pagination Pagination
 
 // NewPagination instantiates a new Pagination object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,30 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 	if o.PerPage != nil {
 		toSerialize["per_page"] = o.PerPage
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
+	varPagination := _Pagination{}
+
+	if err = json.Unmarshal(bytes, &varPagination); err == nil {
+		*o = Pagination(varPagination)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "page")
+		delete(additionalProperties, "per_page")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePagination struct {

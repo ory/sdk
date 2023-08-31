@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -23,7 +23,10 @@ type IdentityPatchResponse struct {
 	Identity *string `json:"identity,omitempty"`
 	// The ID of this patch response, if an ID was specified in the patch.
 	PatchId *string `json:"patch_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityPatchResponse IdentityPatchResponse
 
 // NewIdentityPatchResponse instantiates a new IdentityPatchResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -149,7 +152,31 @@ func (o IdentityPatchResponse) MarshalJSON() ([]byte, error) {
 	if o.PatchId != nil {
 		toSerialize["patch_id"] = o.PatchId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *IdentityPatchResponse) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityPatchResponse := _IdentityPatchResponse{}
+
+	if err = json.Unmarshal(bytes, &varIdentityPatchResponse); err == nil {
+		*o = IdentityPatchResponse(varIdentityPatchResponse)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "identity")
+		delete(additionalProperties, "patch_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityPatchResponse struct {

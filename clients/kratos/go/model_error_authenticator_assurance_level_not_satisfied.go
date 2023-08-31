@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.0.0
 Contact: office@ory.sh
 */
 
@@ -20,7 +20,10 @@ type ErrorAuthenticatorAssuranceLevelNotSatisfied struct {
 	Error *GenericError `json:"error,omitempty"`
 	// Points to where to redirect the user to next.
 	RedirectBrowserTo *string `json:"redirect_browser_to,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ErrorAuthenticatorAssuranceLevelNotSatisfied ErrorAuthenticatorAssuranceLevelNotSatisfied
 
 // NewErrorAuthenticatorAssuranceLevelNotSatisfied instantiates a new ErrorAuthenticatorAssuranceLevelNotSatisfied object
 // This constructor will assign default values to properties that have it defined,
@@ -111,7 +114,30 @@ func (o ErrorAuthenticatorAssuranceLevelNotSatisfied) MarshalJSON() ([]byte, err
 	if o.RedirectBrowserTo != nil {
 		toSerialize["redirect_browser_to"] = o.RedirectBrowserTo
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) UnmarshalJSON(bytes []byte) (err error) {
+	varErrorAuthenticatorAssuranceLevelNotSatisfied := _ErrorAuthenticatorAssuranceLevelNotSatisfied{}
+
+	if err = json.Unmarshal(bytes, &varErrorAuthenticatorAssuranceLevelNotSatisfied); err == nil {
+		*o = ErrorAuthenticatorAssuranceLevelNotSatisfied(varErrorAuthenticatorAssuranceLevelNotSatisfied)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "redirect_browser_to")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableErrorAuthenticatorAssuranceLevelNotSatisfied struct {
