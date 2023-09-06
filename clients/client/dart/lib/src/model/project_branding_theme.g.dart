@@ -36,6 +36,10 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
   @override
   final String? errorSubtleColor;
   @override
+  final String? faviconType;
+  @override
+  final String? faviconUrl;
+  @override
   final String? foregroundDefaultColor;
   @override
   final String? foregroundDisabledColor;
@@ -99,6 +103,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
       this.errorEmphasisColor,
       this.errorMutedColor,
       this.errorSubtleColor,
+      this.faviconType,
+      this.faviconUrl,
       this.foregroundDefaultColor,
       this.foregroundDisabledColor,
       this.foregroundMutedColor,
@@ -160,6 +166,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
         errorEmphasisColor == other.errorEmphasisColor &&
         errorMutedColor == other.errorMutedColor &&
         errorSubtleColor == other.errorSubtleColor &&
+        faviconType == other.faviconType &&
+        faviconUrl == other.faviconUrl &&
         foregroundDefaultColor == other.foregroundDefaultColor &&
         foregroundDisabledColor == other.foregroundDisabledColor &&
         foregroundMutedColor == other.foregroundMutedColor &&
@@ -201,6 +209,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
     _$hash = $jc(_$hash, errorEmphasisColor.hashCode);
     _$hash = $jc(_$hash, errorMutedColor.hashCode);
     _$hash = $jc(_$hash, errorSubtleColor.hashCode);
+    _$hash = $jc(_$hash, faviconType.hashCode);
+    _$hash = $jc(_$hash, faviconUrl.hashCode);
     _$hash = $jc(_$hash, foregroundDefaultColor.hashCode);
     _$hash = $jc(_$hash, foregroundDisabledColor.hashCode);
     _$hash = $jc(_$hash, foregroundMutedColor.hashCode);
@@ -244,6 +254,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
           ..add('errorEmphasisColor', errorEmphasisColor)
           ..add('errorMutedColor', errorMutedColor)
           ..add('errorSubtleColor', errorSubtleColor)
+          ..add('faviconType', faviconType)
+          ..add('faviconUrl', faviconUrl)
           ..add('foregroundDefaultColor', foregroundDefaultColor)
           ..add('foregroundDisabledColor', foregroundDisabledColor)
           ..add('foregroundMutedColor', foregroundMutedColor)
@@ -342,6 +354,14 @@ class ProjectBrandingThemeBuilder
   String? get errorSubtleColor => _$this._errorSubtleColor;
   set errorSubtleColor(String? errorSubtleColor) =>
       _$this._errorSubtleColor = errorSubtleColor;
+
+  String? _faviconType;
+  String? get faviconType => _$this._faviconType;
+  set faviconType(String? faviconType) => _$this._faviconType = faviconType;
+
+  String? _faviconUrl;
+  String? get faviconUrl => _$this._faviconUrl;
+  set faviconUrl(String? faviconUrl) => _$this._faviconUrl = faviconUrl;
 
   String? _foregroundDefaultColor;
   String? get foregroundDefaultColor => _$this._foregroundDefaultColor;
@@ -468,6 +488,8 @@ class ProjectBrandingThemeBuilder
       _errorEmphasisColor = $v.errorEmphasisColor;
       _errorMutedColor = $v.errorMutedColor;
       _errorSubtleColor = $v.errorSubtleColor;
+      _faviconType = $v.faviconType;
+      _faviconUrl = $v.faviconUrl;
       _foregroundDefaultColor = $v.foregroundDefaultColor;
       _foregroundDisabledColor = $v.foregroundDisabledColor;
       _foregroundMutedColor = $v.foregroundMutedColor;
@@ -527,6 +549,8 @@ class ProjectBrandingThemeBuilder
             errorEmphasisColor: errorEmphasisColor,
             errorMutedColor: errorMutedColor,
             errorSubtleColor: errorSubtleColor,
+            faviconType: faviconType,
+            faviconUrl: faviconUrl,
             foregroundDefaultColor: foregroundDefaultColor,
             foregroundDisabledColor: foregroundDisabledColor,
             foregroundMutedColor: foregroundMutedColor,

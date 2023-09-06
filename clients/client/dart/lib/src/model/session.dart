@@ -56,7 +56,7 @@ abstract class Session implements Built<Session, SessionBuilder> {
   String get id;
 
   @BuiltValueField(wireName: r'identity')
-  Identity get identity;
+  Identity? get identity;
 
   /// The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`.
   @BuiltValueField(wireName: r'issued_at')
@@ -132,11 +132,13 @@ class _$SessionSerializer implements PrimitiveSerializer<Session> {
       object.id,
       specifiedType: const FullType(String),
     );
-    yield r'identity';
-    yield serializers.serialize(
-      object.identity,
-      specifiedType: const FullType(Identity),
-    );
+    if (object.identity != null) {
+      yield r'identity';
+      yield serializers.serialize(
+        object.identity,
+        specifiedType: const FullType(Identity),
+      );
+    }
     if (object.issuedAt != null) {
       yield r'issued_at';
       yield serializers.serialize(

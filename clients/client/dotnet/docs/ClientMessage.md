@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **SendCount** | **long** |  | 
 **Status** | [**ClientCourierMessageStatus**](ClientCourierMessageStatus.md) |  | 
 **Subject** | **string** |  | 
-**TemplateType** | **string** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub | 
+**TemplateType** | **string** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid | 
 **Type** | [**ClientCourierMessageType**](ClientCourierMessageType.md) |  | 
 **UpdatedAt** | **DateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. | 
 

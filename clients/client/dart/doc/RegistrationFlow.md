@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **requestUrl** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example. | 
 **returnTo** | **String** | ReturnTo contains the requested return_to URL. | [optional] 
 **sessionTokenExchangeCode** | **String** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the flow. | [optional] 
+**state** | [**JsonObject**](.md) | State represents the state of this request:  choose_method: ask the user to choose a method (e.g. registration with email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the registration challenge was passed. | 
 **transientPayload** | [**JsonObject**](.md) | TransientPayload is used to pass data from the registration to a webhook | [optional] 
 **type** | **String** | The flow type can either be `api` or `browser`. | 
 **ui** | [**UiContainer**](UiContainer.md) |  | 

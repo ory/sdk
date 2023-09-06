@@ -27,6 +27,10 @@ const MessageTemplateTypeEnum _$messageTemplateTypeEnum_otp =
     const MessageTemplateTypeEnum._('otp');
 const MessageTemplateTypeEnum _$messageTemplateTypeEnum_stub =
     const MessageTemplateTypeEnum._('stub');
+const MessageTemplateTypeEnum _$messageTemplateTypeEnum_loginCodeValid =
+    const MessageTemplateTypeEnum._('loginCodeValid');
+const MessageTemplateTypeEnum _$messageTemplateTypeEnum_registrationCodeValid =
+    const MessageTemplateTypeEnum._('registrationCodeValid');
 
 MessageTemplateTypeEnum _$messageTemplateTypeEnumValueOf(String name) {
   switch (name) {
@@ -50,6 +54,10 @@ MessageTemplateTypeEnum _$messageTemplateTypeEnumValueOf(String name) {
       return _$messageTemplateTypeEnum_otp;
     case 'stub':
       return _$messageTemplateTypeEnum_stub;
+    case 'loginCodeValid':
+      return _$messageTemplateTypeEnum_loginCodeValid;
+    case 'registrationCodeValid':
+      return _$messageTemplateTypeEnum_registrationCodeValid;
     default:
       throw new ArgumentError(name);
   }
@@ -67,6 +75,8 @@ final BuiltSet<MessageTemplateTypeEnum> _$messageTemplateTypeEnumValues =
   _$messageTemplateTypeEnum_verificationCodeValid,
   _$messageTemplateTypeEnum_otp,
   _$messageTemplateTypeEnum_stub,
+  _$messageTemplateTypeEnum_loginCodeValid,
+  _$messageTemplateTypeEnum_registrationCodeValid,
 ]);
 
 Serializer<MessageTemplateTypeEnum> _$messageTemplateTypeEnumSerializer =
@@ -85,6 +95,8 @@ class _$MessageTemplateTypeEnumSerializer
     'verificationCodeValid': 'verification_code_valid',
     'otp': 'otp',
     'stub': 'stub',
+    'loginCodeValid': 'login_code_valid',
+    'registrationCodeValid': 'registration_code_valid',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'recovery_invalid': 'recoveryInvalid',
@@ -97,6 +109,8 @@ class _$MessageTemplateTypeEnumSerializer
     'verification_code_valid': 'verificationCodeValid',
     'otp': 'otp',
     'stub': 'stub',
+    'login_code_valid': 'loginCodeValid',
+    'registration_code_valid': 'registrationCodeValid',
   };
 
   @override

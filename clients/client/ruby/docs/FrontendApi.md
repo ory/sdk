@@ -1665,7 +1665,7 @@ require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
 flow = 'flow_example' # String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-update_login_flow_body = OryClient::UpdateLoginFlowWithLookupSecretMethod.new({lookup_secret: 'lookup_secret_example', method: 'method_example'}) # UpdateLoginFlowBody | 
+update_login_flow_body = OryClient::UpdateLoginFlowWithCodeMethod.new({csrf_token: 'csrf_token_example', method: 'method_example'}) # UpdateLoginFlowBody | 
 opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
@@ -1878,7 +1878,7 @@ require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
 flow = 'flow_example' # String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-update_registration_flow_body = OryClient::UpdateRegistrationFlowWithOidcMethod.new({method: 'method_example', provider: 'provider_example'}) # UpdateRegistrationFlowBody | 
+update_registration_flow_body = OryClient::UpdateRegistrationFlowWithCodeMethod.new({method: 'method_example', traits: 3.56}) # UpdateRegistrationFlowBody | 
 opts = {
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 }

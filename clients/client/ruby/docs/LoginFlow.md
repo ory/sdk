@@ -16,6 +16,7 @@
 | **requested_aal** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] |
 | **return_to** | **String** | ReturnTo contains the requested return_to URL. | [optional] |
 | **session_token_exchange_code** | **String** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the login flow. | [optional] |
+| **state** | **Object** | State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed. |  |
 | **type** | **String** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. |  |
 | **ui** | [**UiContainer**](UiContainer.md) |  |  |
 | **updated_at** | **Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] |
@@ -38,6 +39,7 @@ instance = OryClient::LoginFlow.new(
   requested_aal: null,
   return_to: null,
   session_token_exchange_code: null,
+  state: null,
   type: null,
   ui: null,
   updated_at: null

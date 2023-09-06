@@ -27,7 +27,7 @@ defmodule Ory.Model.Session do
     :devices => [Ory.Model.SessionDevice.t] | nil,
     :expires_at => DateTime.t | nil,
     :id => String.t,
-    :identity => Ory.Model.Identity.t,
+    :identity => Ory.Model.Identity.t | nil,
     :issued_at => DateTime.t | nil
   }
 end

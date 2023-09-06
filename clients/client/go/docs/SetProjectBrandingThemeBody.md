@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**FaviconType** | Pointer to **string** | Favicon Type | [optional] 
+**FaviconUrl** | Pointer to **string** | Favicon URL | [optional] 
 **LogoType** | Pointer to **string** | Logo type | [optional] 
 **LogoUrl** | Pointer to **string** | Logo URL | [optional] 
 **Name** | Pointer to **string** | Branding name | [optional] 
@@ -27,6 +29,56 @@ will change when the set of required properties is changed
 NewSetProjectBrandingThemeBodyWithDefaults instantiates a new SetProjectBrandingThemeBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetFaviconType
+
+`func (o *SetProjectBrandingThemeBody) GetFaviconType() string`
+
+GetFaviconType returns the FaviconType field if non-nil, zero value otherwise.
+
+### GetFaviconTypeOk
+
+`func (o *SetProjectBrandingThemeBody) GetFaviconTypeOk() (*string, bool)`
+
+GetFaviconTypeOk returns a tuple with the FaviconType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFaviconType
+
+`func (o *SetProjectBrandingThemeBody) SetFaviconType(v string)`
+
+SetFaviconType sets FaviconType field to given value.
+
+### HasFaviconType
+
+`func (o *SetProjectBrandingThemeBody) HasFaviconType() bool`
+
+HasFaviconType returns a boolean if a field has been set.
+
+### GetFaviconUrl
+
+`func (o *SetProjectBrandingThemeBody) GetFaviconUrl() string`
+
+GetFaviconUrl returns the FaviconUrl field if non-nil, zero value otherwise.
+
+### GetFaviconUrlOk
+
+`func (o *SetProjectBrandingThemeBody) GetFaviconUrlOk() (*string, bool)`
+
+GetFaviconUrlOk returns a tuple with the FaviconUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFaviconUrl
+
+`func (o *SetProjectBrandingThemeBody) SetFaviconUrl(v string)`
+
+SetFaviconUrl sets FaviconUrl field to given value.
+
+### HasFaviconUrl
+
+`func (o *SetProjectBrandingThemeBody) HasFaviconUrl() bool`
+
+HasFaviconUrl returns a boolean if a field has been set.
 
 ### GetLogoType
 

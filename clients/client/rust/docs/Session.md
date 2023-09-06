@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **devices** | Option<[**Vec<crate::models::SessionDevice>**](sessionDevice.md)> | Devices has history of all endpoints where the session was used | [optional]
 **expires_at** | Option<**String**> | The Session Expiry  When this session expires at. | [optional]
 **id** | **String** | Session ID | 
-**identity** | [**crate::models::Identity**](identity.md) |  | 
+**identity** | Option<[**crate::models::Identity**](identity.md)> |  | [optional]
 **issued_at** | Option<**String**> | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

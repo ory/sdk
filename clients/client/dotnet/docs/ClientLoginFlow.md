@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **RequestedAal** | [**ClientAuthenticatorAssuranceLevel**](ClientAuthenticatorAssuranceLevel.md) |  | [optional] 
 **ReturnTo** | **string** | ReturnTo contains the requested return_to URL. | [optional] 
 **SessionTokenExchangeCode** | **string** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the login flow. | [optional] 
+**State** | **Object** | State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed. | 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**ClientUiContainer**](ClientUiContainer.md) |  | 
 **UpdatedAt** | **DateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 

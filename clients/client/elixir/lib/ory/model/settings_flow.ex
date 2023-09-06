@@ -30,7 +30,7 @@ defmodule Ory.Model.SettingsFlow do
     :issued_at => DateTime.t,
     :request_url => String.t,
     :return_to => String.t | nil,
-    :state => Ory.Model.SettingsFlowState.t,
+    :state => any() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t
   }
@@ -42,7 +42,6 @@ defimpl Poison.Decoder, for: Ory.Model.SettingsFlow do
     value
     |> deserialize(:continue_with, :list, Ory.Model.ContinueWith, options)
     |> deserialize(:identity, :struct, Ory.Model.Identity, options)
-    |> deserialize(:state, :struct, Ory.Model.SettingsFlowState, options)
     |> deserialize(:ui, :struct, Ory.Model.UiContainer, options)
   end
 end

@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**FaviconType** | Pointer to **string** |  | [optional] 
+**FaviconUrl** | Pointer to **string** |  | [optional] 
 **LogoType** | Pointer to **string** |  | [optional] 
 **LogoUrl** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -27,6 +29,56 @@ will change when the set of required properties is changed
 NewCreateProjectBrandingWithDefaults instantiates a new CreateProjectBranding object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetFaviconType
+
+`func (o *CreateProjectBranding) GetFaviconType() string`
+
+GetFaviconType returns the FaviconType field if non-nil, zero value otherwise.
+
+### GetFaviconTypeOk
+
+`func (o *CreateProjectBranding) GetFaviconTypeOk() (*string, bool)`
+
+GetFaviconTypeOk returns a tuple with the FaviconType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFaviconType
+
+`func (o *CreateProjectBranding) SetFaviconType(v string)`
+
+SetFaviconType sets FaviconType field to given value.
+
+### HasFaviconType
+
+`func (o *CreateProjectBranding) HasFaviconType() bool`
+
+HasFaviconType returns a boolean if a field has been set.
+
+### GetFaviconUrl
+
+`func (o *CreateProjectBranding) GetFaviconUrl() string`
+
+GetFaviconUrl returns the FaviconUrl field if non-nil, zero value otherwise.
+
+### GetFaviconUrlOk
+
+`func (o *CreateProjectBranding) GetFaviconUrlOk() (*string, bool)`
+
+GetFaviconUrlOk returns a tuple with the FaviconUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFaviconUrl
+
+`func (o *CreateProjectBranding) SetFaviconUrl(v string)`
+
+SetFaviconUrl sets FaviconUrl field to given value.
+
+### HasFaviconUrl
+
+`func (o *CreateProjectBranding) HasFaviconUrl() bool`
+
+HasFaviconUrl returns a boolean if a field has been set.
 
 ### GetLogoType
 

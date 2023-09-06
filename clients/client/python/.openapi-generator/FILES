@@ -58,6 +58,7 @@ docs/HealthStatus.md
 docs/Identity.md
 docs/IdentityApi.md
 docs/IdentityCredentials.md
+docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
@@ -93,6 +94,7 @@ docs/KetoNamespace.md
 docs/KetoNamespaces.md
 docs/ListCustomDomains.md
 docs/LoginFlow.md
+docs/LoginFlowState.md
 docs/LogoutFlow.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
@@ -171,6 +173,7 @@ docs/RecoveryFlowState.md
 docs/RecoveryIdentityAddress.md
 docs/RecoveryLinkForIdentity.md
 docs/RegistrationFlow.md
+docs/RegistrationFlowState.md
 docs/RejectOAuth2Request.md
 docs/RelationQuery.md
 docs/Relationship.md
@@ -221,6 +224,7 @@ docs/UiText.md
 docs/UiTexts.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
+docs/UpdateLoginFlowWithCodeMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasswordMethod.md
@@ -230,6 +234,7 @@ docs/UpdateRecoveryFlowBody.md
 docs/UpdateRecoveryFlowWithCodeMethod.md
 docs/UpdateRecoveryFlowWithLinkMethod.md
 docs/UpdateRegistrationFlowBody.md
+docs/UpdateRegistrationFlowWithCodeMethod.md
 docs/UpdateRegistrationFlowWithOidcMethod.md
 docs/UpdateRegistrationFlowWithPasswordMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
@@ -325,6 +330,7 @@ ory_client/model/health_not_ready_status.py
 ory_client/model/health_status.py
 ory_client/model/identity.py
 ory_client/model/identity_credentials.py
+ory_client/model/identity_credentials_code.py
 ory_client/model/identity_credentials_oidc.py
 ory_client/model/identity_credentials_oidc_provider.py
 ory_client/model/identity_credentials_password.py
@@ -359,6 +365,7 @@ ory_client/model/keto_namespace.py
 ory_client/model/keto_namespaces.py
 ory_client/model/list_custom_domains.py
 ory_client/model/login_flow.py
+ory_client/model/login_flow_state.py
 ory_client/model/logout_flow.py
 ory_client/model/managed_identity_schema.py
 ory_client/model/managed_identity_schema_validation_result.py
@@ -431,6 +438,7 @@ ory_client/model/recovery_flow_state.py
 ory_client/model/recovery_identity_address.py
 ory_client/model/recovery_link_for_identity.py
 ory_client/model/registration_flow.py
+ory_client/model/registration_flow_state.py
 ory_client/model/reject_o_auth2_request.py
 ory_client/model/relation_query.py
 ory_client/model/relationship.py
@@ -481,6 +489,7 @@ ory_client/model/ui_text.py
 ory_client/model/ui_texts.py
 ory_client/model/update_identity_body.py
 ory_client/model/update_login_flow_body.py
+ory_client/model/update_login_flow_with_code_method.py
 ory_client/model/update_login_flow_with_lookup_secret_method.py
 ory_client/model/update_login_flow_with_oidc_method.py
 ory_client/model/update_login_flow_with_password_method.py
@@ -490,6 +499,7 @@ ory_client/model/update_recovery_flow_body.py
 ory_client/model/update_recovery_flow_with_code_method.py
 ory_client/model/update_recovery_flow_with_link_method.py
 ory_client/model/update_registration_flow_body.py
+ory_client/model/update_registration_flow_with_code_method.py
 ory_client/model/update_registration_flow_with_oidc_method.py
 ory_client/model/update_registration_flow_with_password_method.py
 ory_client/model/update_registration_flow_with_web_authn_method.py
@@ -576,6 +586,7 @@ test/test_health_status.py
 test/test_identity.py
 test/test_identity_api.py
 test/test_identity_credentials.py
+test/test_identity_credentials_code.py
 test/test_identity_credentials_oidc.py
 test/test_identity_credentials_oidc_provider.py
 test/test_identity_credentials_password.py
@@ -611,6 +622,7 @@ test/test_keto_namespace.py
 test/test_keto_namespaces.py
 test/test_list_custom_domains.py
 test/test_login_flow.py
+test/test_login_flow_state.py
 test/test_logout_flow.py
 test/test_managed_identity_schema.py
 test/test_managed_identity_schema_validation_result.py
@@ -688,6 +700,7 @@ test/test_recovery_flow_state.py
 test/test_recovery_identity_address.py
 test/test_recovery_link_for_identity.py
 test/test_registration_flow.py
+test/test_registration_flow_state.py
 test/test_reject_o_auth2_request.py
 test/test_relation_query.py
 test/test_relationship.py
@@ -739,6 +752,7 @@ test/test_ui_text.py
 test/test_ui_texts.py
 test/test_update_identity_body.py
 test/test_update_login_flow_body.py
+test/test_update_login_flow_with_code_method.py
 test/test_update_login_flow_with_lookup_secret_method.py
 test/test_update_login_flow_with_oidc_method.py
 test/test_update_login_flow_with_password_method.py
@@ -748,6 +762,7 @@ test/test_update_recovery_flow_body.py
 test/test_update_recovery_flow_with_code_method.py
 test/test_update_recovery_flow_with_link_method.py
 test/test_update_registration_flow_body.py
+test/test_update_registration_flow_with_code_method.py
 test/test_update_registration_flow_with_oidc_method.py
 test/test_update_registration_flow_with_password_method.py
 test/test_update_registration_flow_with_web_authn_method.py

@@ -7,6 +7,7 @@ import 'package:ory_client/src/model/identity_credentials_type.dart';
 import 'package:ory_client/src/model/o_auth2_login_request.dart';
 import 'package:ory_client/src/model/authenticator_assurance_level.dart';
 import 'package:ory_client/src/model/ui_container.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -27,6 +28,7 @@ part 'login_flow.g.dart';
 /// * [requestedAal] 
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
 /// * [sessionTokenExchangeCode] - SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the login flow.
+/// * [state] - State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
 /// * [type] - The flow type can either be `api` or `browser`.
 /// * [ui] 
 /// * [updatedAt] - UpdatedAt is a helper struct field for gobuffalo.pop.
@@ -34,7 +36,7 @@ part 'login_flow.g.dart';
 abstract class LoginFlow implements Built<LoginFlow, LoginFlowBuilder> {
   @BuiltValueField(wireName: r'active')
   IdentityCredentialsType? get active;
-  // enum activeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  };
+  // enum activeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  code,  };
 
   /// CreatedAt is a helper struct field for gobuffalo.pop.
   @BuiltValueField(wireName: r'created_at')
@@ -78,6 +80,10 @@ abstract class LoginFlow implements Built<LoginFlow, LoginFlowBuilder> {
   /// SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the login flow.
   @BuiltValueField(wireName: r'session_token_exchange_code')
   String? get sessionTokenExchangeCode;
+
+  /// State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
+  @BuiltValueField(wireName: r'state')
+  JsonObject? get state;
 
   /// The flow type can either be `api` or `browser`.
   @BuiltValueField(wireName: r'type')
@@ -189,6 +195,11 @@ class _$LoginFlowSerializer implements PrimitiveSerializer<LoginFlow> {
         specifiedType: const FullType(String),
       );
     }
+    yield r'state';
+    yield object.state == null ? null : serializers.serialize(
+      object.state,
+      specifiedType: const FullType.nullable(JsonObject),
+    );
     yield r'type';
     yield serializers.serialize(
       object.type,
@@ -312,6 +323,14 @@ class _$LoginFlowSerializer implements PrimitiveSerializer<LoginFlow> {
             specifiedType: const FullType(String),
           ) as String;
           result.sessionTokenExchangeCode = valueDes;
+          break;
+        case r'state':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
+          result.state = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(

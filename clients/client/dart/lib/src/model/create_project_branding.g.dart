@@ -8,6 +8,10 @@ part of 'create_project_branding.dart';
 
 class _$CreateProjectBranding extends CreateProjectBranding {
   @override
+  final String? faviconType;
+  @override
+  final String? faviconUrl;
+  @override
   final String? logoType;
   @override
   final String? logoUrl;
@@ -21,7 +25,12 @@ class _$CreateProjectBranding extends CreateProjectBranding {
       (new CreateProjectBrandingBuilder()..update(updates))._build();
 
   _$CreateProjectBranding._(
-      {this.logoType, this.logoUrl, this.name, this.theme})
+      {this.faviconType,
+      this.faviconUrl,
+      this.logoType,
+      this.logoUrl,
+      this.name,
+      this.theme})
       : super._();
 
   @override
@@ -37,6 +46,8 @@ class _$CreateProjectBranding extends CreateProjectBranding {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is CreateProjectBranding &&
+        faviconType == other.faviconType &&
+        faviconUrl == other.faviconUrl &&
         logoType == other.logoType &&
         logoUrl == other.logoUrl &&
         name == other.name &&
@@ -46,6 +57,8 @@ class _$CreateProjectBranding extends CreateProjectBranding {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, faviconType.hashCode);
+    _$hash = $jc(_$hash, faviconUrl.hashCode);
     _$hash = $jc(_$hash, logoType.hashCode);
     _$hash = $jc(_$hash, logoUrl.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
@@ -57,6 +70,8 @@ class _$CreateProjectBranding extends CreateProjectBranding {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateProjectBranding')
+          ..add('faviconType', faviconType)
+          ..add('faviconUrl', faviconUrl)
           ..add('logoType', logoType)
           ..add('logoUrl', logoUrl)
           ..add('name', name)
@@ -68,6 +83,14 @@ class _$CreateProjectBranding extends CreateProjectBranding {
 class CreateProjectBrandingBuilder
     implements Builder<CreateProjectBranding, CreateProjectBrandingBuilder> {
   _$CreateProjectBranding? _$v;
+
+  String? _faviconType;
+  String? get faviconType => _$this._faviconType;
+  set faviconType(String? faviconType) => _$this._faviconType = faviconType;
+
+  String? _faviconUrl;
+  String? get faviconUrl => _$this._faviconUrl;
+  set faviconUrl(String? faviconUrl) => _$this._faviconUrl = faviconUrl;
 
   String? _logoType;
   String? get logoType => _$this._logoType;
@@ -93,6 +116,8 @@ class CreateProjectBrandingBuilder
   CreateProjectBrandingBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _faviconType = $v.faviconType;
+      _faviconUrl = $v.faviconUrl;
       _logoType = $v.logoType;
       _logoUrl = $v.logoUrl;
       _name = $v.name;
@@ -121,6 +146,8 @@ class CreateProjectBrandingBuilder
     try {
       _$result = _$v ??
           new _$CreateProjectBranding._(
+              faviconType: faviconType,
+              faviconUrl: faviconUrl,
               logoType: logoType,
               logoUrl: logoUrl,
               name: name,

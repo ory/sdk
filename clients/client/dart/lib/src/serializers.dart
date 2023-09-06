@@ -65,6 +65,7 @@ import 'package:ory_client/src/model/health_not_ready_status.dart';
 import 'package:ory_client/src/model/health_status.dart';
 import 'package:ory_client/src/model/identity.dart';
 import 'package:ory_client/src/model/identity_credentials.dart';
+import 'package:ory_client/src/model/identity_credentials_code.dart';
 import 'package:ory_client/src/model/identity_credentials_oidc.dart';
 import 'package:ory_client/src/model/identity_credentials_oidc_provider.dart';
 import 'package:ory_client/src/model/identity_credentials_password.dart';
@@ -94,6 +95,7 @@ import 'package:ory_client/src/model/json_web_key.dart';
 import 'package:ory_client/src/model/json_web_key_set.dart';
 import 'package:ory_client/src/model/keto_namespace.dart';
 import 'package:ory_client/src/model/login_flow.dart';
+import 'package:ory_client/src/model/login_flow_state.dart';
 import 'package:ory_client/src/model/logout_flow.dart';
 import 'package:ory_client/src/model/managed_identity_schema.dart';
 import 'package:ory_client/src/model/managed_identity_schema_validation_result.dart';
@@ -148,6 +150,7 @@ import 'package:ory_client/src/model/recovery_flow_state.dart';
 import 'package:ory_client/src/model/recovery_identity_address.dart';
 import 'package:ory_client/src/model/recovery_link_for_identity.dart';
 import 'package:ory_client/src/model/registration_flow.dart';
+import 'package:ory_client/src/model/registration_flow_state.dart';
 import 'package:ory_client/src/model/reject_o_auth2_request.dart';
 import 'package:ory_client/src/model/relation_query.dart';
 import 'package:ory_client/src/model/relationship.dart';
@@ -192,6 +195,7 @@ import 'package:ory_client/src/model/ui_node_text_attributes.dart';
 import 'package:ory_client/src/model/ui_text.dart';
 import 'package:ory_client/src/model/update_identity_body.dart';
 import 'package:ory_client/src/model/update_login_flow_body.dart';
+import 'package:ory_client/src/model/update_login_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_lookup_secret_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_oidc_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_password_method.dart';
@@ -201,6 +205,7 @@ import 'package:ory_client/src/model/update_recovery_flow_body.dart';
 import 'package:ory_client/src/model/update_recovery_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_recovery_flow_with_link_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_body.dart';
+import 'package:ory_client/src/model/update_registration_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_oidc_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_password_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_web_authn_method.dart';
@@ -279,6 +284,7 @@ part 'serializers.g.dart';
   HealthStatus,
   Identity,
   IdentityCredentials,
+  IdentityCredentialsCode,
   IdentityCredentialsOidc,
   IdentityCredentialsOidcProvider,
   IdentityCredentialsPassword,
@@ -308,6 +314,7 @@ part 'serializers.g.dart';
   JsonWebKeySet,
   KetoNamespace,
   LoginFlow,
+  LoginFlowState,
   LogoutFlow,
   ManagedIdentitySchema,
   ManagedIdentitySchemaValidationResult,
@@ -362,6 +369,7 @@ part 'serializers.g.dart';
   RecoveryIdentityAddress,
   RecoveryLinkForIdentity,
   RegistrationFlow,
+  RegistrationFlowState,
   RejectOAuth2Request,
   RelationQuery,
   Relationship,
@@ -406,6 +414,7 @@ part 'serializers.g.dart';
   UiText,
   UpdateIdentityBody,
   UpdateLoginFlowBody,
+  UpdateLoginFlowWithCodeMethod,
   UpdateLoginFlowWithLookupSecretMethod,
   UpdateLoginFlowWithOidcMethod,
   UpdateLoginFlowWithPasswordMethod,
@@ -415,6 +424,7 @@ part 'serializers.g.dart';
   UpdateRecoveryFlowWithCodeMethod,
   UpdateRecoveryFlowWithLinkMethod,
   UpdateRegistrationFlowBody,
+  UpdateRegistrationFlowWithCodeMethod,
   UpdateRegistrationFlowWithOidcMethod,
   UpdateRegistrationFlowWithPasswordMethod,
   UpdateRegistrationFlowWithWebAuthnMethod,

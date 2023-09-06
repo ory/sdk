@@ -8,6 +8,8 @@ defmodule Ory.Model.SetProjectBrandingThemeBody do
 
   @derive [Poison.Encoder]
   defstruct [
+    :favicon_type,
+    :favicon_url,
     :logo_type,
     :logo_url,
     :name,
@@ -15,6 +17,8 @@ defmodule Ory.Model.SetProjectBrandingThemeBody do
   ]
 
   @type t :: %__MODULE__{
+    :favicon_type => String.t | nil,
+    :favicon_url => String.t | nil,
     :logo_type => String.t | nil,
     :logo_url => String.t | nil,
     :name => String.t | nil,

@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **ErrorEmphasisColor** | **string** | ErrorEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **ErrorMutedColor** | **string** | ErrorMutedColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **ErrorSubtleColor** | **string** | ErrorSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional] 
+**FaviconType** | **string** | Favicon Type The Favicon mime type. | [optional] 
+**FaviconUrl** | **string** | Favicon URL Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket. | [optional] 
 **ForegroundDefaultColor** | **string** | ForegroundDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **ForegroundDisabledColor** | **string** | ForegroundDisabledColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **ForegroundMutedColor** | **string** | ForegroundMutedColor is a hex color code used by the Ory Account Experience theme. | [optional] 

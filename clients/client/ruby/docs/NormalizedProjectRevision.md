@@ -66,6 +66,9 @@
 | **kratos_courier_smtp_from_name** | **String** | Configures the Ory Kratos SMTP From Name  This governs the \&quot;courier.smtp.from_name\&quot; setting. | [optional] |
 | **kratos_courier_smtp_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
 | **kratos_courier_smtp_local_name** | **String** | Configures the local_name to use in SMTP connections  This governs the \&quot;courier.smtp.local_name\&quot; setting. | [optional] |
+| **kratos_courier_templates_login_code_valid_email_body_html** | **String** | Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.body.html\&quot; setting. | [optional] |
+| **kratos_courier_templates_login_code_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_login_code_valid_email_subject** | **String** | Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.subject\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_code_invalid_email_body_html** | **String** | Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_code_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_code_invalid_email_subject** | **String** | Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] |
@@ -78,6 +81,9 @@
 | **kratos_courier_templates_recovery_valid_email_body_html** | **String** | Configures the Ory Kratos Valid Recovery Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Recovery Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_recovery_valid_email_subject** | **String** | Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.subject\&quot; setting. | [optional] |
+| **kratos_courier_templates_registration_code_valid_email_body_html** | **String** | Configures the Ory Kratos Valid Registration via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.body.html\&quot; setting. | [optional] |
+| **kratos_courier_templates_registration_code_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_registration_code_valid_email_subject** | **String** | Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.subject\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_invalid_email_body_html** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_invalid_email_subject** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.subject\&quot; setting. | [optional] |
@@ -138,6 +144,7 @@
 | **kratos_selfservice_flows_verification_use** | **String** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] |
 | **kratos_selfservice_methods_code_config_lifespan** | **String** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_enabled** | **Boolean** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_code_passwordless_enabled** | **Boolean** | Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_config_base_url** | **String** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_config_lifespan** | **String** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_enabled** | **Boolean** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.enabled\&quot; setting. | [optional] |
@@ -241,6 +248,9 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_courier_smtp_from_name: null,
   kratos_courier_smtp_headers: null,
   kratos_courier_smtp_local_name: null,
+  kratos_courier_templates_login_code_valid_email_body_html: null,
+  kratos_courier_templates_login_code_valid_email_body_plaintext: null,
+  kratos_courier_templates_login_code_valid_email_subject: null,
   kratos_courier_templates_recovery_code_invalid_email_body_html: null,
   kratos_courier_templates_recovery_code_invalid_email_body_plaintext: null,
   kratos_courier_templates_recovery_code_invalid_email_subject: null,
@@ -253,6 +263,9 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_courier_templates_recovery_valid_email_body_html: null,
   kratos_courier_templates_recovery_valid_email_body_plaintext: null,
   kratos_courier_templates_recovery_valid_email_subject: null,
+  kratos_courier_templates_registration_code_valid_email_body_html: null,
+  kratos_courier_templates_registration_code_valid_email_body_plaintext: null,
+  kratos_courier_templates_registration_code_valid_email_subject: null,
   kratos_courier_templates_verification_code_invalid_email_body_html: null,
   kratos_courier_templates_verification_code_invalid_email_body_plaintext: null,
   kratos_courier_templates_verification_code_invalid_email_subject: null,
@@ -313,6 +326,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_flows_verification_use: null,
   kratos_selfservice_methods_code_config_lifespan: null,
   kratos_selfservice_methods_code_enabled: null,
+  kratos_selfservice_methods_code_passwordless_enabled: null,
   kratos_selfservice_methods_link_config_base_url: null,
   kratos_selfservice_methods_link_config_lifespan: null,
   kratos_selfservice_methods_link_enabled: null,

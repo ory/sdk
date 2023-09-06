@@ -56,6 +56,7 @@ doc/HealthStatus.md
 doc/Identity.md
 doc/IdentityApi.md
 doc/IdentityCredentials.md
+doc/IdentityCredentialsCode.md
 doc/IdentityCredentialsOidc.md
 doc/IdentityCredentialsOidcProvider.md
 doc/IdentityCredentialsPassword.md
@@ -86,6 +87,7 @@ doc/JsonWebKeySet.md
 doc/JwkApi.md
 doc/KetoNamespace.md
 doc/LoginFlow.md
+doc/LoginFlowState.md
 doc/LogoutFlow.md
 doc/ManagedIdentitySchema.md
 doc/ManagedIdentitySchemaValidationResult.md
@@ -145,6 +147,7 @@ doc/RecoveryFlowState.md
 doc/RecoveryIdentityAddress.md
 doc/RecoveryLinkForIdentity.md
 doc/RegistrationFlow.md
+doc/RegistrationFlowState.md
 doc/RejectOAuth2Request.md
 doc/RelationQuery.md
 doc/Relationship.md
@@ -190,6 +193,7 @@ doc/UiNodeTextAttributes.md
 doc/UiText.md
 doc/UpdateIdentityBody.md
 doc/UpdateLoginFlowBody.md
+doc/UpdateLoginFlowWithCodeMethod.md
 doc/UpdateLoginFlowWithLookupSecretMethod.md
 doc/UpdateLoginFlowWithOidcMethod.md
 doc/UpdateLoginFlowWithPasswordMethod.md
@@ -199,6 +203,7 @@ doc/UpdateRecoveryFlowBody.md
 doc/UpdateRecoveryFlowWithCodeMethod.md
 doc/UpdateRecoveryFlowWithLinkMethod.md
 doc/UpdateRegistrationFlowBody.md
+doc/UpdateRegistrationFlowWithCodeMethod.md
 doc/UpdateRegistrationFlowWithOidcMethod.md
 doc/UpdateRegistrationFlowWithPasswordMethod.md
 doc/UpdateRegistrationFlowWithWebAuthnMethod.md
@@ -295,6 +300,7 @@ lib/src/model/health_not_ready_status.dart
 lib/src/model/health_status.dart
 lib/src/model/identity.dart
 lib/src/model/identity_credentials.dart
+lib/src/model/identity_credentials_code.dart
 lib/src/model/identity_credentials_oidc.dart
 lib/src/model/identity_credentials_oidc_provider.dart
 lib/src/model/identity_credentials_password.dart
@@ -324,6 +330,7 @@ lib/src/model/json_web_key.dart
 lib/src/model/json_web_key_set.dart
 lib/src/model/keto_namespace.dart
 lib/src/model/login_flow.dart
+lib/src/model/login_flow_state.dart
 lib/src/model/logout_flow.dart
 lib/src/model/managed_identity_schema.dart
 lib/src/model/managed_identity_schema_validation_result.dart
@@ -377,6 +384,7 @@ lib/src/model/recovery_flow_state.dart
 lib/src/model/recovery_identity_address.dart
 lib/src/model/recovery_link_for_identity.dart
 lib/src/model/registration_flow.dart
+lib/src/model/registration_flow_state.dart
 lib/src/model/reject_o_auth2_request.dart
 lib/src/model/relation_query.dart
 lib/src/model/relationship.dart
@@ -422,6 +430,7 @@ lib/src/model/ui_node_text_attributes.dart
 lib/src/model/ui_text.dart
 lib/src/model/update_identity_body.dart
 lib/src/model/update_login_flow_body.dart
+lib/src/model/update_login_flow_with_code_method.dart
 lib/src/model/update_login_flow_with_lookup_secret_method.dart
 lib/src/model/update_login_flow_with_oidc_method.dart
 lib/src/model/update_login_flow_with_password_method.dart
@@ -431,6 +440,7 @@ lib/src/model/update_recovery_flow_body.dart
 lib/src/model/update_recovery_flow_with_code_method.dart
 lib/src/model/update_recovery_flow_with_link_method.dart
 lib/src/model/update_registration_flow_body.dart
+lib/src/model/update_registration_flow_with_code_method.dart
 lib/src/model/update_registration_flow_with_oidc_method.dart
 lib/src/model/update_registration_flow_with_password_method.dart
 lib/src/model/update_registration_flow_with_web_authn_method.dart
@@ -508,6 +518,7 @@ test/get_version200_response_test.dart
 test/health_not_ready_status_test.dart
 test/health_status_test.dart
 test/identity_api_test.dart
+test/identity_credentials_code_test.dart
 test/identity_credentials_oidc_provider_test.dart
 test/identity_credentials_oidc_test.dart
 test/identity_credentials_password_test.dart
@@ -539,6 +550,7 @@ test/json_web_key_set_test.dart
 test/json_web_key_test.dart
 test/jwk_api_test.dart
 test/keto_namespace_test.dart
+test/login_flow_state_test.dart
 test/login_flow_test.dart
 test/logout_flow_test.dart
 test/managed_identity_schema_test.dart
@@ -597,6 +609,7 @@ test/recovery_flow_state_test.dart
 test/recovery_flow_test.dart
 test/recovery_identity_address_test.dart
 test/recovery_link_for_identity_test.dart
+test/registration_flow_state_test.dart
 test/registration_flow_test.dart
 test/reject_o_auth2_request_test.dart
 test/relation_query_test.dart
@@ -644,6 +657,7 @@ test/ui_node_text_attributes_test.dart
 test/ui_text_test.dart
 test/update_identity_body_test.dart
 test/update_login_flow_body_test.dart
+test/update_login_flow_with_code_method_test.dart
 test/update_login_flow_with_lookup_secret_method_test.dart
 test/update_login_flow_with_oidc_method_test.dart
 test/update_login_flow_with_password_method_test.dart
@@ -653,6 +667,7 @@ test/update_recovery_flow_body_test.dart
 test/update_recovery_flow_with_code_method_test.dart
 test/update_recovery_flow_with_link_method_test.dart
 test/update_registration_flow_body_test.dart
+test/update_registration_flow_with_code_method_test.dart
 test/update_registration_flow_with_oidc_method_test.dart
 test/update_registration_flow_with_password_method_test.dart
 test/update_registration_flow_with_web_authn_method_test.dart

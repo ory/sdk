@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.51
+API version: v1.2.0
 Contact: support@ory.sh
 */
 
@@ -30,7 +30,8 @@ type RecoveryFlow struct {
 	RequestUrl string `json:"request_url"`
 	// ReturnTo contains the requested return_to URL.
 	ReturnTo *string `json:"return_to,omitempty"`
-	State RecoveryFlowState `json:"state"`
+	// State represents the state of this request:  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+	State interface{} `json:"state"`
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
@@ -43,7 +44,7 @@ type _RecoveryFlow RecoveryFlow
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecoveryFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, state RecoveryFlowState, type_ string, ui UiContainer) *RecoveryFlow {
+func NewRecoveryFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, state interface{}, type_ string, ui UiContainer) *RecoveryFlow {
 	this := RecoveryFlow{}
 	this.ExpiresAt = expiresAt
 	this.Id = id
@@ -224,9 +225,10 @@ func (o *RecoveryFlow) SetReturnTo(v string) {
 }
 
 // GetState returns the State field value
-func (o *RecoveryFlow) GetState() RecoveryFlowState {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RecoveryFlow) GetState() interface{} {
 	if o == nil {
-		var ret RecoveryFlowState
+		var ret interface{}
 		return ret
 	}
 
@@ -235,15 +237,16 @@ func (o *RecoveryFlow) GetState() RecoveryFlowState {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *RecoveryFlow) GetStateOk() (*RecoveryFlowState, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RecoveryFlow) GetStateOk() (*interface{}, bool) {
+	if o == nil || o.State == nil {
 		return nil, false
 	}
 	return &o.State, true
 }
 
 // SetState sets field value
-func (o *RecoveryFlow) SetState(v RecoveryFlowState) {
+func (o *RecoveryFlow) SetState(v interface{}) {
 	o.State = v
 }
 
@@ -315,7 +318,7 @@ func (o RecoveryFlow) MarshalJSON() ([]byte, error) {
 	if o.ReturnTo != nil {
 		toSerialize["return_to"] = o.ReturnTo
 	}
-	if true {
+	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
 	if true {

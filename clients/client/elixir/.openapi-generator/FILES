@@ -68,6 +68,7 @@ lib/ory/model/health_not_ready_status.ex
 lib/ory/model/health_status.ex
 lib/ory/model/identity.ex
 lib/ory/model/identity_credentials.ex
+lib/ory/model/identity_credentials_code.ex
 lib/ory/model/identity_credentials_oidc.ex
 lib/ory/model/identity_credentials_oidc_provider.ex
 lib/ory/model/identity_credentials_password.ex
@@ -97,6 +98,7 @@ lib/ory/model/json_web_key.ex
 lib/ory/model/json_web_key_set.ex
 lib/ory/model/keto_namespace.ex
 lib/ory/model/login_flow.ex
+lib/ory/model/login_flow_state.ex
 lib/ory/model/logout_flow.ex
 lib/ory/model/managed_identity_schema.ex
 lib/ory/model/managed_identity_schema_validation_result.ex
@@ -150,6 +152,7 @@ lib/ory/model/recovery_flow_state.ex
 lib/ory/model/recovery_identity_address.ex
 lib/ory/model/recovery_link_for_identity.ex
 lib/ory/model/registration_flow.ex
+lib/ory/model/registration_flow_state.ex
 lib/ory/model/reject_o_auth2_request.ex
 lib/ory/model/relation_query.ex
 lib/ory/model/relationship.ex
@@ -195,6 +198,7 @@ lib/ory/model/ui_node_text_attributes.ex
 lib/ory/model/ui_text.ex
 lib/ory/model/update_identity_body.ex
 lib/ory/model/update_login_flow_body.ex
+lib/ory/model/update_login_flow_with_code_method.ex
 lib/ory/model/update_login_flow_with_lookup_secret_method.ex
 lib/ory/model/update_login_flow_with_oidc_method.ex
 lib/ory/model/update_login_flow_with_password_method.ex
@@ -204,6 +208,7 @@ lib/ory/model/update_recovery_flow_body.ex
 lib/ory/model/update_recovery_flow_with_code_method.ex
 lib/ory/model/update_recovery_flow_with_link_method.ex
 lib/ory/model/update_registration_flow_body.ex
+lib/ory/model/update_registration_flow_with_code_method.ex
 lib/ory/model/update_registration_flow_with_oidc_method.ex
 lib/ory/model/update_registration_flow_with_password_method.ex
 lib/ory/model/update_registration_flow_with_web_authn_method.ex

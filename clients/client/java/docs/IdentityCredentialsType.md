@@ -15,5 +15,7 @@
 
 * `LOOKUP_SECRET` (value: `"lookup_secret"`)
 
+* `CODE` (value: `"code"`)
+
 
 

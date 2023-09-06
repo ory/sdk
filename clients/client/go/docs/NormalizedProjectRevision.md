@@ -66,6 +66,9 @@ Name | Type | Description | Notes
 **KratosCourierSmtpFromName** | Pointer to **string** | Configures the Ory Kratos SMTP From Name  This governs the \&quot;courier.smtp.from_name\&quot; setting. | [optional] 
 **KratosCourierSmtpHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **KratosCourierSmtpLocalName** | Pointer to **string** | Configures the local_name to use in SMTP connections  This governs the \&quot;courier.smtp.local_name\&quot; setting. | [optional] 
+**KratosCourierTemplatesLoginCodeValidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.body.html\&quot; setting. | [optional] 
+**KratosCourierTemplatesLoginCodeValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.body.plaintext\&quot; setting. | [optional] 
+**KratosCourierTemplatesLoginCodeValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.subject\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryCodeInvalidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] 
@@ -78,6 +81,9 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesRecoveryValidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Valid Recovery Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Recovery Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.subject\&quot; setting. | [optional] 
+**KratosCourierTemplatesRegistrationCodeValidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.body.html\&quot; setting. | [optional] 
+**KratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.body.plaintext\&quot; setting. | [optional] 
+**KratosCourierTemplatesRegistrationCodeValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.subject\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeInvalidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.subject\&quot; setting. | [optional] 
@@ -138,6 +144,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
 **KratosSelfserviceMethodsCodeConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeEnabled** | Pointer to **bool** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsCodePasswordlessEnabled** | Pointer to **bool** | Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigBaseUrl** | Pointer to **string** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkEnabled** | Pointer to **bool** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.enabled\&quot; setting. | [optional] 
@@ -1772,6 +1779,81 @@ SetKratosCourierSmtpLocalName sets KratosCourierSmtpLocalName field to given val
 
 HasKratosCourierSmtpLocalName returns a boolean if a field has been set.
 
+### GetKratosCourierTemplatesLoginCodeValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesLoginCodeValidEmailBodyHtml() string`
+
+GetKratosCourierTemplatesLoginCodeValidEmailBodyHtml returns the KratosCourierTemplatesLoginCodeValidEmailBodyHtml field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesLoginCodeValidEmailBodyHtmlOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesLoginCodeValidEmailBodyHtmlOk() (*string, bool)`
+
+GetKratosCourierTemplatesLoginCodeValidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesLoginCodeValidEmailBodyHtml field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesLoginCodeValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesLoginCodeValidEmailBodyHtml(v string)`
+
+SetKratosCourierTemplatesLoginCodeValidEmailBodyHtml sets KratosCourierTemplatesLoginCodeValidEmailBodyHtml field to given value.
+
+### HasKratosCourierTemplatesLoginCodeValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesLoginCodeValidEmailBodyHtml() bool`
+
+HasKratosCourierTemplatesLoginCodeValidEmailBodyHtml returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesLoginCodeValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesLoginCodeValidEmailBodyPlaintext() string`
+
+GetKratosCourierTemplatesLoginCodeValidEmailBodyPlaintext returns the KratosCourierTemplatesLoginCodeValidEmailBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesLoginCodeValidEmailBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesLoginCodeValidEmailBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesLoginCodeValidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesLoginCodeValidEmailBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesLoginCodeValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesLoginCodeValidEmailBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesLoginCodeValidEmailBodyPlaintext sets KratosCourierTemplatesLoginCodeValidEmailBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesLoginCodeValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesLoginCodeValidEmailBodyPlaintext() bool`
+
+HasKratosCourierTemplatesLoginCodeValidEmailBodyPlaintext returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesLoginCodeValidEmailSubject
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesLoginCodeValidEmailSubject() string`
+
+GetKratosCourierTemplatesLoginCodeValidEmailSubject returns the KratosCourierTemplatesLoginCodeValidEmailSubject field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesLoginCodeValidEmailSubjectOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesLoginCodeValidEmailSubjectOk() (*string, bool)`
+
+GetKratosCourierTemplatesLoginCodeValidEmailSubjectOk returns a tuple with the KratosCourierTemplatesLoginCodeValidEmailSubject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesLoginCodeValidEmailSubject
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesLoginCodeValidEmailSubject(v string)`
+
+SetKratosCourierTemplatesLoginCodeValidEmailSubject sets KratosCourierTemplatesLoginCodeValidEmailSubject field to given value.
+
+### HasKratosCourierTemplatesLoginCodeValidEmailSubject
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesLoginCodeValidEmailSubject() bool`
+
+HasKratosCourierTemplatesLoginCodeValidEmailSubject returns a boolean if a field has been set.
+
 ### GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
 
 `func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml() string`
@@ -2071,6 +2153,81 @@ SetKratosCourierTemplatesRecoveryValidEmailSubject sets KratosCourierTemplatesRe
 `func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailSubject() bool`
 
 HasKratosCourierTemplatesRecoveryValidEmailSubject returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesRegistrationCodeValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidEmailBodyHtml() string`
+
+GetKratosCourierTemplatesRegistrationCodeValidEmailBodyHtml returns the KratosCourierTemplatesRegistrationCodeValidEmailBodyHtml field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRegistrationCodeValidEmailBodyHtmlOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidEmailBodyHtmlOk() (*string, bool)`
+
+GetKratosCourierTemplatesRegistrationCodeValidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesRegistrationCodeValidEmailBodyHtml field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRegistrationCodeValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRegistrationCodeValidEmailBodyHtml(v string)`
+
+SetKratosCourierTemplatesRegistrationCodeValidEmailBodyHtml sets KratosCourierTemplatesRegistrationCodeValidEmailBodyHtml field to given value.
+
+### HasKratosCourierTemplatesRegistrationCodeValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRegistrationCodeValidEmailBodyHtml() bool`
+
+HasKratosCourierTemplatesRegistrationCodeValidEmailBodyHtml returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext() string`
+
+GetKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext returns the KratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext sets KratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext() bool`
+
+HasKratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesRegistrationCodeValidEmailSubject
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidEmailSubject() string`
+
+GetKratosCourierTemplatesRegistrationCodeValidEmailSubject returns the KratosCourierTemplatesRegistrationCodeValidEmailSubject field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRegistrationCodeValidEmailSubjectOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidEmailSubjectOk() (*string, bool)`
+
+GetKratosCourierTemplatesRegistrationCodeValidEmailSubjectOk returns a tuple with the KratosCourierTemplatesRegistrationCodeValidEmailSubject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRegistrationCodeValidEmailSubject
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRegistrationCodeValidEmailSubject(v string)`
+
+SetKratosCourierTemplatesRegistrationCodeValidEmailSubject sets KratosCourierTemplatesRegistrationCodeValidEmailSubject field to given value.
+
+### HasKratosCourierTemplatesRegistrationCodeValidEmailSubject
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRegistrationCodeValidEmailSubject() bool`
+
+HasKratosCourierTemplatesRegistrationCodeValidEmailSubject returns a boolean if a field has been set.
 
 ### GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
 
@@ -3581,6 +3738,31 @@ SetKratosSelfserviceMethodsCodeEnabled sets KratosSelfserviceMethodsCodeEnabled 
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeEnabled() bool`
 
 HasKratosSelfserviceMethodsCodeEnabled returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCodePasswordlessEnabled
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodePasswordlessEnabled() bool`
+
+GetKratosSelfserviceMethodsCodePasswordlessEnabled returns the KratosSelfserviceMethodsCodePasswordlessEnabled field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCodePasswordlessEnabledOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodePasswordlessEnabledOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsCodePasswordlessEnabledOk returns a tuple with the KratosSelfserviceMethodsCodePasswordlessEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCodePasswordlessEnabled
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodePasswordlessEnabled(v bool)`
+
+SetKratosSelfserviceMethodsCodePasswordlessEnabled sets KratosSelfserviceMethodsCodePasswordlessEnabled field to given value.
+
+### HasKratosSelfserviceMethodsCodePasswordlessEnabled
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodePasswordlessEnabled() bool`
+
+HasKratosSelfserviceMethodsCodePasswordlessEnabled returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsLinkConfigBaseUrl
 

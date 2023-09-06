@@ -8,9 +8,9 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**csrfToken** | **String** | Sending the anti-csrf token is only required for browser login flows. | [optional] 
-**identifier** | **String** | Identifier is the email or username of the user trying to log in. | 
-**method** | **String** | Method should be set to \"lookup_secret\" when logging in using the lookup_secret strategy. | 
+**csrfToken** | **String** | CSRFToken is the anti-CSRF token | 
+**identifier** | **String** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | 
+**method** | **String** | Method should be set to \"code\" when logging in using the code strategy. | 
 **password** | **String** | The user's password. | 
 **passwordIdentifier** | **String** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **provider** | **String** | The provider to register with | 
@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **totpCode** | **String** | The TOTP code. | 
 **webauthnLogin** | **String** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **lookupSecret** | **String** | The lookup secret. | 
+**code** | **String** | Code is the 6 digits code sent to the user | [optional] 
+**resend** | **String** | Resend is set when the user wants to resend the code | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

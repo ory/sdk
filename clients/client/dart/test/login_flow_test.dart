@@ -76,6 +76,12 @@ void main() {
       // TODO
     });
 
+    // State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
+    // JsonObject state
+    test('to test the property `state`', () async {
+      // TODO
+    });
+
     // The flow type can either be `api` or `browser`.
     // String type
     test('to test the property `type`', () async {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.51
+API version: v1.2.0
 Contact: support@ory.sh
 */
 
@@ -26,6 +26,7 @@ const (
 	IDENTITYCREDENTIALSTYPE_OIDC IdentityCredentialsType = "oidc"
 	IDENTITYCREDENTIALSTYPE_WEBAUTHN IdentityCredentialsType = "webauthn"
 	IDENTITYCREDENTIALSTYPE_LOOKUP_SECRET IdentityCredentialsType = "lookup_secret"
+	IDENTITYCREDENTIALSTYPE_CODE IdentityCredentialsType = "code"
 )
 
 // All allowed values of IdentityCredentialsType enum
@@ -35,6 +36,7 @@ var AllowedIdentityCredentialsTypeEnumValues = []IdentityCredentialsType{
 	"oidc",
 	"webauthn",
 	"lookup_secret",
+	"code",
 }
 
 func (v *IdentityCredentialsType) UnmarshalJSON(src []byte) error {

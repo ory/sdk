@@ -14,6 +14,7 @@ require 'ory-client'
 OryClient::UpdateLoginFlowBody.openapi_one_of
 # =>
 # [
+#   :'UpdateLoginFlowWithCodeMethod',
 #   :'UpdateLoginFlowWithLookupSecretMethod',
 #   :'UpdateLoginFlowWithOidcMethod',
 #   :'UpdateLoginFlowWithPasswordMethod',
@@ -47,6 +48,7 @@ require 'ory-client'
 OryClient::UpdateLoginFlowBody.openapi_discriminator_mapping
 # =>
 # {
+#   :'code' => :'UpdateLoginFlowWithCodeMethod',
 #   :'lookup_secret' => :'UpdateLoginFlowWithLookupSecretMethod',
 #   :'oidc' => :'UpdateLoginFlowWithOidcMethod',
 #   :'password' => :'UpdateLoginFlowWithPasswordMethod',
@@ -64,7 +66,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-client'
 
 OryClient::UpdateLoginFlowBody.build(data)
-# => #<UpdateLoginFlowWithLookupSecretMethod:0x00007fdd4aab02a0>
+# => #<UpdateLoginFlowWithCodeMethod:0x00007fdd4aab02a0>
 
 OryClient::UpdateLoginFlowBody.build(data_that_doesnt_match)
 # => nil
@@ -78,6 +80,7 @@ OryClient::UpdateLoginFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `UpdateLoginFlowWithCodeMethod`
 - `UpdateLoginFlowWithLookupSecretMethod`
 - `UpdateLoginFlowWithOidcMethod`
 - `UpdateLoginFlowWithPasswordMethod`

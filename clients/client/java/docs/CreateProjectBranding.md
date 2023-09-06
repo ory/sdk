@@ -8,6 +8,8 @@ Create a Project Branding
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**faviconType** | **String** |  |  [optional] |
+|**faviconUrl** | **String** |  |  [optional] |
 |**logoType** | **String** |  |  [optional] |
 |**logoUrl** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |

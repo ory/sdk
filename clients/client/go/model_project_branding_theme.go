@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.51
+API version: v1.2.0
 Contact: support@ory.sh
 */
 
@@ -46,6 +46,10 @@ type ProjectBrandingTheme struct {
 	ErrorMutedColor *string `json:"error_muted_color,omitempty"`
 	// ErrorSubtleColor is a hex color code used by the Ory Account Experience theme.
 	ErrorSubtleColor *string `json:"error_subtle_color,omitempty"`
+	// Favicon Type The Favicon mime type.
+	FaviconType *string `json:"favicon_type,omitempty"`
+	// Favicon URL Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket.
+	FaviconUrl *string `json:"favicon_url,omitempty"`
 	// ForegroundDefaultColor is a hex color code used by the Ory Account Experience theme.
 	ForegroundDefaultColor *string `json:"foreground_default_color,omitempty"`
 	// ForegroundDisabledColor is a hex color code used by the Ory Account Experience theme.
@@ -555,6 +559,70 @@ func (o *ProjectBrandingTheme) HasErrorSubtleColor() bool {
 // SetErrorSubtleColor gets a reference to the given string and assigns it to the ErrorSubtleColor field.
 func (o *ProjectBrandingTheme) SetErrorSubtleColor(v string) {
 	o.ErrorSubtleColor = &v
+}
+
+// GetFaviconType returns the FaviconType field value if set, zero value otherwise.
+func (o *ProjectBrandingTheme) GetFaviconType() string {
+	if o == nil || o.FaviconType == nil {
+		var ret string
+		return ret
+	}
+	return *o.FaviconType
+}
+
+// GetFaviconTypeOk returns a tuple with the FaviconType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectBrandingTheme) GetFaviconTypeOk() (*string, bool) {
+	if o == nil || o.FaviconType == nil {
+		return nil, false
+	}
+	return o.FaviconType, true
+}
+
+// HasFaviconType returns a boolean if a field has been set.
+func (o *ProjectBrandingTheme) HasFaviconType() bool {
+	if o != nil && o.FaviconType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFaviconType gets a reference to the given string and assigns it to the FaviconType field.
+func (o *ProjectBrandingTheme) SetFaviconType(v string) {
+	o.FaviconType = &v
+}
+
+// GetFaviconUrl returns the FaviconUrl field value if set, zero value otherwise.
+func (o *ProjectBrandingTheme) GetFaviconUrl() string {
+	if o == nil || o.FaviconUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.FaviconUrl
+}
+
+// GetFaviconUrlOk returns a tuple with the FaviconUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectBrandingTheme) GetFaviconUrlOk() (*string, bool) {
+	if o == nil || o.FaviconUrl == nil {
+		return nil, false
+	}
+	return o.FaviconUrl, true
+}
+
+// HasFaviconUrl returns a boolean if a field has been set.
+func (o *ProjectBrandingTheme) HasFaviconUrl() bool {
+	if o != nil && o.FaviconUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFaviconUrl gets a reference to the given string and assigns it to the FaviconUrl field.
+func (o *ProjectBrandingTheme) SetFaviconUrl(v string) {
+	o.FaviconUrl = &v
 }
 
 // GetForegroundDefaultColor returns the ForegroundDefaultColor field value if set, zero value otherwise.
@@ -1273,6 +1341,12 @@ func (o ProjectBrandingTheme) MarshalJSON() ([]byte, error) {
 	if o.ErrorSubtleColor != nil {
 		toSerialize["error_subtle_color"] = o.ErrorSubtleColor
 	}
+	if o.FaviconType != nil {
+		toSerialize["favicon_type"] = o.FaviconType
+	}
+	if o.FaviconUrl != nil {
+		toSerialize["favicon_url"] = o.FaviconUrl
+	}
 	if o.ForegroundDefaultColor != nil {
 		toSerialize["foreground_default_color"] = o.ForegroundDefaultColor
 	}
@@ -1371,6 +1445,8 @@ func (o *ProjectBrandingTheme) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "error_emphasis_color")
 		delete(additionalProperties, "error_muted_color")
 		delete(additionalProperties, "error_subtle_color")
+		delete(additionalProperties, "favicon_type")
+		delete(additionalProperties, "favicon_url")
 		delete(additionalProperties, "foreground_default_color")
 		delete(additionalProperties, "foreground_disabled_color")
 		delete(additionalProperties, "foreground_muted_color")

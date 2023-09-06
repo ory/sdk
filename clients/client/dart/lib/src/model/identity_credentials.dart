@@ -35,7 +35,7 @@ abstract class IdentityCredentials implements Built<IdentityCredentials, Identit
 
   @BuiltValueField(wireName: r'type')
   IdentityCredentialsType? get type;
-  // enum typeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  };
+  // enum typeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  code,  };
 
   /// UpdatedAt is a helper struct field for gobuffalo.pop.
   @BuiltValueField(wireName: r'updated_at')

@@ -11,7 +11,7 @@
 | **devices** | [**Array&lt;SessionDevice&gt;**](SessionDevice.md) | Devices has history of all endpoints where the session was used | [optional] |
 | **expires_at** | **Time** | The Session Expiry  When this session expires at. | [optional] |
 | **id** | **String** | Session ID |  |
-| **identity** | [**Identity**](Identity.md) |  |  |
+| **identity** | [**Identity**](Identity.md) |  | [optional] |
 | **issued_at** | **Time** | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to &#x60;authenticated_at&#x60;. | [optional] |
 
 ## Example

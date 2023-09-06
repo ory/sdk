@@ -91,6 +91,18 @@ void main() {
       // TODO
     });
 
+    // Favicon Type The Favicon mime type.
+    // String faviconType
+    test('to test the property `faviconType`', () async {
+      // TODO
+    });
+
+    // Favicon URL Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket.
+    // String faviconUrl
+    test('to test the property `faviconUrl`', () async {
+      // TODO
+    });
+
     // ForegroundDefaultColor is a hex color code used by the Ory Account Experience theme.
     // String foregroundDefaultColor
     test('to test the property `foregroundDefaultColor`', () async {

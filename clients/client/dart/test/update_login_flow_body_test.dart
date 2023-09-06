@@ -7,19 +7,19 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UpdateLoginFlowBody, () {
-    // Sending the anti-csrf token is only required for browser login flows.
+    // CSRFToken is the anti-CSRF token
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
     });
 
-    // Identifier is the email or username of the user trying to log in.
+    // Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow.
     // String identifier
     test('to test the property `identifier`', () async {
       // TODO
     });
 
-    // Method should be set to \"lookup_secret\" when logging in using the lookup_secret strategy.
+    // Method should be set to \"code\" when logging in using the code strategy.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -70,6 +70,18 @@ void main() {
     // The lookup secret.
     // String lookupSecret
     test('to test the property `lookupSecret`', () async {
+      // TODO
+    });
+
+    // Code is the 6 digits code sent to the user
+    // String code
+    test('to test the property `code`', () async {
+      // TODO
+    });
+
+    // Resend is set when the user wants to resend the code
+    // String resend
+    test('to test the property `resend`', () async {
       // TODO
     });
 

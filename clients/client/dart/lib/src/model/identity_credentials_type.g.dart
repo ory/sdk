@@ -14,6 +14,7 @@ const IdentityCredentialsType _$webauthn =
     const IdentityCredentialsType._('webauthn');
 const IdentityCredentialsType _$lookupSecret =
     const IdentityCredentialsType._('lookupSecret');
+const IdentityCredentialsType _$code = const IdentityCredentialsType._('code');
 
 IdentityCredentialsType _$valueOf(String name) {
   switch (name) {
@@ -27,6 +28,8 @@ IdentityCredentialsType _$valueOf(String name) {
       return _$webauthn;
     case 'lookupSecret':
       return _$lookupSecret;
+    case 'code':
+      return _$code;
     default:
       throw new ArgumentError(name);
   }
@@ -39,6 +42,7 @@ final BuiltSet<IdentityCredentialsType> _$values =
   _$oidc,
   _$webauthn,
   _$lookupSecret,
+  _$code,
 ]);
 
 class _$IdentityCredentialsTypeMeta {
@@ -48,6 +52,7 @@ class _$IdentityCredentialsTypeMeta {
   IdentityCredentialsType get oidc => _$oidc;
   IdentityCredentialsType get webauthn => _$webauthn;
   IdentityCredentialsType get lookupSecret => _$lookupSecret;
+  IdentityCredentialsType get code => _$code;
   IdentityCredentialsType valueOf(String name) => _$valueOf(name);
   BuiltSet<IdentityCredentialsType> get values => _$values;
 }
@@ -69,6 +74,7 @@ class _$IdentityCredentialsTypeSerializer
     'oidc': 'oidc',
     'webauthn': 'webauthn',
     'lookupSecret': 'lookup_secret',
+    'code': 'code',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'password': 'password',
@@ -76,6 +82,7 @@ class _$IdentityCredentialsTypeSerializer
     'oidc': 'oidc',
     'webauthn': 'webauthn',
     'lookup_secret': 'lookupSecret',
+    'code': 'code',
   };
 
   @override

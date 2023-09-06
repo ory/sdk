@@ -60,6 +60,7 @@ docs/HealthStatus.md
 docs/Identity.md
 docs/IdentityApi.md
 docs/IdentityCredentials.md
+docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
@@ -90,6 +91,7 @@ docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
 docs/LoginFlow.md
+docs/LoginFlowState.md
 docs/LogoutFlow.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
@@ -149,6 +151,7 @@ docs/RecoveryFlowState.md
 docs/RecoveryIdentityAddress.md
 docs/RecoveryLinkForIdentity.md
 docs/RegistrationFlow.md
+docs/RegistrationFlowState.md
 docs/RejectOAuth2Request.md
 docs/RelationQuery.md
 docs/Relationship.md
@@ -194,6 +197,7 @@ docs/UiNodeTextAttributes.md
 docs/UiText.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
+docs/UpdateLoginFlowWithCodeMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasswordMethod.md
@@ -203,6 +207,7 @@ docs/UpdateRecoveryFlowBody.md
 docs/UpdateRecoveryFlowWithCodeMethod.md
 docs/UpdateRecoveryFlowWithLinkMethod.md
 docs/UpdateRegistrationFlowBody.md
+docs/UpdateRegistrationFlowWithCodeMethod.md
 docs/UpdateRegistrationFlowWithOidcMethod.md
 docs/UpdateRegistrationFlowWithPasswordMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
@@ -320,6 +325,7 @@ src/main/java/sh/ory/model/HealthNotReadyStatus.java
 src/main/java/sh/ory/model/HealthStatus.java
 src/main/java/sh/ory/model/Identity.java
 src/main/java/sh/ory/model/IdentityCredentials.java
+src/main/java/sh/ory/model/IdentityCredentialsCode.java
 src/main/java/sh/ory/model/IdentityCredentialsOidc.java
 src/main/java/sh/ory/model/IdentityCredentialsOidcProvider.java
 src/main/java/sh/ory/model/IdentityCredentialsPassword.java
@@ -349,6 +355,7 @@ src/main/java/sh/ory/model/JsonWebKey.java
 src/main/java/sh/ory/model/JsonWebKeySet.java
 src/main/java/sh/ory/model/KetoNamespace.java
 src/main/java/sh/ory/model/LoginFlow.java
+src/main/java/sh/ory/model/LoginFlowState.java
 src/main/java/sh/ory/model/LogoutFlow.java
 src/main/java/sh/ory/model/ManagedIdentitySchema.java
 src/main/java/sh/ory/model/ManagedIdentitySchemaValidationResult.java
@@ -403,6 +410,7 @@ src/main/java/sh/ory/model/RecoveryFlowState.java
 src/main/java/sh/ory/model/RecoveryIdentityAddress.java
 src/main/java/sh/ory/model/RecoveryLinkForIdentity.java
 src/main/java/sh/ory/model/RegistrationFlow.java
+src/main/java/sh/ory/model/RegistrationFlowState.java
 src/main/java/sh/ory/model/RejectOAuth2Request.java
 src/main/java/sh/ory/model/RelationQuery.java
 src/main/java/sh/ory/model/Relationship.java
@@ -447,6 +455,7 @@ src/main/java/sh/ory/model/UiNodeTextAttributes.java
 src/main/java/sh/ory/model/UiText.java
 src/main/java/sh/ory/model/UpdateIdentityBody.java
 src/main/java/sh/ory/model/UpdateLoginFlowBody.java
+src/main/java/sh/ory/model/UpdateLoginFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithLookupSecretMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithOidcMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithPasswordMethod.java
@@ -456,6 +465,7 @@ src/main/java/sh/ory/model/UpdateRecoveryFlowBody.java
 src/main/java/sh/ory/model/UpdateRecoveryFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateRecoveryFlowWithLinkMethod.java
 src/main/java/sh/ory/model/UpdateRegistrationFlowBody.java
+src/main/java/sh/ory/model/UpdateRegistrationFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateRegistrationFlowWithOidcMethod.java
 src/main/java/sh/ory/model/UpdateRegistrationFlowWithPasswordMethod.java
 src/main/java/sh/ory/model/UpdateRegistrationFlowWithWebAuthnMethod.java
@@ -539,6 +549,7 @@ src/test/java/sh/ory/model/GetProjectMetricsResponseTest.java
 src/test/java/sh/ory/model/GetVersion200ResponseTest.java
 src/test/java/sh/ory/model/HealthNotReadyStatusTest.java
 src/test/java/sh/ory/model/HealthStatusTest.java
+src/test/java/sh/ory/model/IdentityCredentialsCodeTest.java
 src/test/java/sh/ory/model/IdentityCredentialsOidcProviderTest.java
 src/test/java/sh/ory/model/IdentityCredentialsOidcTest.java
 src/test/java/sh/ory/model/IdentityCredentialsPasswordTest.java
@@ -569,6 +580,7 @@ src/test/java/sh/ory/model/JsonPatchTest.java
 src/test/java/sh/ory/model/JsonWebKeySetTest.java
 src/test/java/sh/ory/model/JsonWebKeyTest.java
 src/test/java/sh/ory/model/KetoNamespaceTest.java
+src/test/java/sh/ory/model/LoginFlowStateTest.java
 src/test/java/sh/ory/model/LoginFlowTest.java
 src/test/java/sh/ory/model/LogoutFlowTest.java
 src/test/java/sh/ory/model/ManagedIdentitySchemaTest.java
@@ -623,6 +635,7 @@ src/test/java/sh/ory/model/RecoveryFlowStateTest.java
 src/test/java/sh/ory/model/RecoveryFlowTest.java
 src/test/java/sh/ory/model/RecoveryIdentityAddressTest.java
 src/test/java/sh/ory/model/RecoveryLinkForIdentityTest.java
+src/test/java/sh/ory/model/RegistrationFlowStateTest.java
 src/test/java/sh/ory/model/RegistrationFlowTest.java
 src/test/java/sh/ory/model/RejectOAuth2RequestTest.java
 src/test/java/sh/ory/model/RelationQueryTest.java
@@ -668,6 +681,7 @@ src/test/java/sh/ory/model/UiNodeTextAttributesTest.java
 src/test/java/sh/ory/model/UiTextTest.java
 src/test/java/sh/ory/model/UpdateIdentityBodyTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowBodyTest.java
+src/test/java/sh/ory/model/UpdateLoginFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithLookupSecretMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithOidcMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithPasswordMethodTest.java
@@ -677,6 +691,7 @@ src/test/java/sh/ory/model/UpdateRecoveryFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateRecoveryFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateRecoveryFlowWithLinkMethodTest.java
 src/test/java/sh/ory/model/UpdateRegistrationFlowBodyTest.java
+src/test/java/sh/ory/model/UpdateRegistrationFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateRegistrationFlowWithOidcMethodTest.java
 src/test/java/sh/ory/model/UpdateRegistrationFlowWithPasswordMethodTest.java
 src/test/java/sh/ory/model/UpdateRegistrationFlowWithWebAuthnMethodTest.java

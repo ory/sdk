@@ -12,7 +12,7 @@
 | **send_count** | **Integer** |  |  |
 | **status** | [**CourierMessageStatus**](CourierMessageStatus.md) |  |  |
 | **subject** | **String** |  |  |
-| **template_type** | **String** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub |  |
+| **template_type** | **String** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid |  |
 | **type** | [**CourierMessageType**](CourierMessageType.md) |  |  |
 | **updated_at** | **Time** | UpdatedAt is a helper struct field for gobuffalo.pop. |  |
 

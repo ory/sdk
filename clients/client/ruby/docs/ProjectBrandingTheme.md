@@ -18,6 +18,8 @@
 | **error_emphasis_color** | **String** | ErrorEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional] |
 | **error_muted_color** | **String** | ErrorMutedColor is a hex color code used by the Ory Account Experience theme. | [optional] |
 | **error_subtle_color** | **String** | ErrorSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional] |
+| **favicon_type** | **String** | Favicon Type The Favicon mime type. | [optional] |
+| **favicon_url** | **String** | Favicon URL Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket. | [optional] |
 | **foreground_default_color** | **String** | ForegroundDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional] |
 | **foreground_disabled_color** | **String** | ForegroundDisabledColor is a hex color code used by the Ory Account Experience theme. | [optional] |
 | **foreground_muted_color** | **String** | ForegroundMutedColor is a hex color code used by the Ory Account Experience theme. | [optional] |
@@ -61,6 +63,8 @@ instance = OryClient::ProjectBrandingTheme.new(
   error_emphasis_color: null,
   error_muted_color: null,
   error_subtle_color: null,
+  favicon_type: null,
+  favicon_url: null,
   foreground_default_color: null,
   foreground_disabled_color: null,
   foreground_muted_color: null,

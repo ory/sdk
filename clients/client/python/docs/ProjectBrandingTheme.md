@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **error_emphasis_color** | **str** | ErrorEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **error_muted_color** | **str** | ErrorMutedColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **error_subtle_color** | **str** | ErrorSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional] 
+**favicon_type** | **str** | Favicon Type The Favicon mime type. | [optional] 
+**favicon_url** | **str** | Favicon URL Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket. | [optional] 
 **foreground_default_color** | **str** | ForegroundDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **foreground_disabled_color** | **str** | ForegroundDisabledColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **foreground_muted_color** | **str** | ForegroundMutedColor is a hex color code used by the Ory Account Experience theme. | [optional] 

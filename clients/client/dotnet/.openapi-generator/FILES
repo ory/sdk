@@ -52,6 +52,7 @@ docs/ClientHealthNotReadyStatus.md
 docs/ClientHealthStatus.md
 docs/ClientIdentity.md
 docs/ClientIdentityCredentials.md
+docs/ClientIdentityCredentialsCode.md
 docs/ClientIdentityCredentialsOidc.md
 docs/ClientIdentityCredentialsOidcProvider.md
 docs/ClientIdentityCredentialsPassword.md
@@ -83,6 +84,7 @@ docs/ClientJsonWebKey.md
 docs/ClientJsonWebKeySet.md
 docs/ClientKetoNamespace.md
 docs/ClientLoginFlow.md
+docs/ClientLoginFlowState.md
 docs/ClientLogoutFlow.md
 docs/ClientManagedIdentitySchema.md
 docs/ClientManagedIdentitySchemaValidationResult.md
@@ -137,6 +139,7 @@ docs/ClientRecoveryFlowState.md
 docs/ClientRecoveryIdentityAddress.md
 docs/ClientRecoveryLinkForIdentity.md
 docs/ClientRegistrationFlow.md
+docs/ClientRegistrationFlowState.md
 docs/ClientRejectOAuth2Request.md
 docs/ClientRelationQuery.md
 docs/ClientRelationship.md
@@ -181,6 +184,7 @@ docs/ClientUiNodeTextAttributes.md
 docs/ClientUiText.md
 docs/ClientUpdateIdentityBody.md
 docs/ClientUpdateLoginFlowBody.md
+docs/ClientUpdateLoginFlowWithCodeMethod.md
 docs/ClientUpdateLoginFlowWithLookupSecretMethod.md
 docs/ClientUpdateLoginFlowWithOidcMethod.md
 docs/ClientUpdateLoginFlowWithPasswordMethod.md
@@ -190,6 +194,7 @@ docs/ClientUpdateRecoveryFlowBody.md
 docs/ClientUpdateRecoveryFlowWithCodeMethod.md
 docs/ClientUpdateRecoveryFlowWithLinkMethod.md
 docs/ClientUpdateRegistrationFlowBody.md
+docs/ClientUpdateRegistrationFlowWithCodeMethod.md
 docs/ClientUpdateRegistrationFlowWithOidcMethod.md
 docs/ClientUpdateRegistrationFlowWithPasswordMethod.md
 docs/ClientUpdateRegistrationFlowWithWebAuthnMethod.md
@@ -283,6 +288,7 @@ src/Ory.Client.Test/Model/ClientGetManagedIdentitySchemaLocationTests.cs
 src/Ory.Client.Test/Model/ClientGetProjectMetricsResponseTests.cs
 src/Ory.Client.Test/Model/ClientHealthNotReadyStatusTests.cs
 src/Ory.Client.Test/Model/ClientHealthStatusTests.cs
+src/Ory.Client.Test/Model/ClientIdentityCredentialsCodeTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsOidcProviderTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsOidcTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsPasswordTests.cs
@@ -315,6 +321,7 @@ src/Ory.Client.Test/Model/ClientJsonPatchTests.cs
 src/Ory.Client.Test/Model/ClientJsonWebKeySetTests.cs
 src/Ory.Client.Test/Model/ClientJsonWebKeyTests.cs
 src/Ory.Client.Test/Model/ClientKetoNamespaceTests.cs
+src/Ory.Client.Test/Model/ClientLoginFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientLoginFlowTests.cs
 src/Ory.Client.Test/Model/ClientLogoutFlowTests.cs
 src/Ory.Client.Test/Model/ClientManagedIdentitySchemaTests.cs
@@ -369,6 +376,7 @@ src/Ory.Client.Test/Model/ClientRecoveryFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryFlowTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryIdentityAddressTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryLinkForIdentityTests.cs
+src/Ory.Client.Test/Model/ClientRegistrationFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientRegistrationFlowTests.cs
 src/Ory.Client.Test/Model/ClientRejectOAuth2RequestTests.cs
 src/Ory.Client.Test/Model/ClientRelationQueryTests.cs
@@ -414,6 +422,7 @@ src/Ory.Client.Test/Model/ClientUiNodeTextAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiTextTests.cs
 src/Ory.Client.Test/Model/ClientUpdateIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowBodyTests.cs
+src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithCodeMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithLookupSecretMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithOidcMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithPasswordMethodTests.cs
@@ -423,6 +432,7 @@ src/Ory.Client.Test/Model/ClientUpdateRecoveryFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRecoveryFlowWithCodeMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRecoveryFlowWithLinkMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowBodyTests.cs
+src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithCodeMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithOidcMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithPasswordMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithWebAuthnMethodTests.cs
@@ -524,6 +534,7 @@ src/Ory.Client/Model/ClientHealthNotReadyStatus.cs
 src/Ory.Client/Model/ClientHealthStatus.cs
 src/Ory.Client/Model/ClientIdentity.cs
 src/Ory.Client/Model/ClientIdentityCredentials.cs
+src/Ory.Client/Model/ClientIdentityCredentialsCode.cs
 src/Ory.Client/Model/ClientIdentityCredentialsOidc.cs
 src/Ory.Client/Model/ClientIdentityCredentialsOidcProvider.cs
 src/Ory.Client/Model/ClientIdentityCredentialsPassword.cs
@@ -555,6 +566,7 @@ src/Ory.Client/Model/ClientJsonWebKey.cs
 src/Ory.Client/Model/ClientJsonWebKeySet.cs
 src/Ory.Client/Model/ClientKetoNamespace.cs
 src/Ory.Client/Model/ClientLoginFlow.cs
+src/Ory.Client/Model/ClientLoginFlowState.cs
 src/Ory.Client/Model/ClientLogoutFlow.cs
 src/Ory.Client/Model/ClientManagedIdentitySchema.cs
 src/Ory.Client/Model/ClientManagedIdentitySchemaValidationResult.cs
@@ -609,6 +621,7 @@ src/Ory.Client/Model/ClientRecoveryFlowState.cs
 src/Ory.Client/Model/ClientRecoveryIdentityAddress.cs
 src/Ory.Client/Model/ClientRecoveryLinkForIdentity.cs
 src/Ory.Client/Model/ClientRegistrationFlow.cs
+src/Ory.Client/Model/ClientRegistrationFlowState.cs
 src/Ory.Client/Model/ClientRejectOAuth2Request.cs
 src/Ory.Client/Model/ClientRelationQuery.cs
 src/Ory.Client/Model/ClientRelationship.cs
@@ -653,6 +666,7 @@ src/Ory.Client/Model/ClientUiNodeTextAttributes.cs
 src/Ory.Client/Model/ClientUiText.cs
 src/Ory.Client/Model/ClientUpdateIdentityBody.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowBody.cs
+src/Ory.Client/Model/ClientUpdateLoginFlowWithCodeMethod.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithLookupSecretMethod.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithOidcMethod.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithPasswordMethod.cs
@@ -662,6 +676,7 @@ src/Ory.Client/Model/ClientUpdateRecoveryFlowBody.cs
 src/Ory.Client/Model/ClientUpdateRecoveryFlowWithCodeMethod.cs
 src/Ory.Client/Model/ClientUpdateRecoveryFlowWithLinkMethod.cs
 src/Ory.Client/Model/ClientUpdateRegistrationFlowBody.cs
+src/Ory.Client/Model/ClientUpdateRegistrationFlowWithCodeMethod.cs
 src/Ory.Client/Model/ClientUpdateRegistrationFlowWithOidcMethod.cs
 src/Ory.Client/Model/ClientUpdateRegistrationFlowWithPasswordMethod.cs
 src/Ory.Client/Model/ClientUpdateRegistrationFlowWithWebAuthnMethod.cs

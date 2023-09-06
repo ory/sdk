@@ -61,6 +61,7 @@ from ory_client.model.health_not_ready_status import HealthNotReadyStatus
 from ory_client.model.health_status import HealthStatus
 from ory_client.model.identity import Identity
 from ory_client.model.identity_credentials import IdentityCredentials
+from ory_client.model.identity_credentials_code import IdentityCredentialsCode
 from ory_client.model.identity_credentials_oidc import IdentityCredentialsOidc
 from ory_client.model.identity_credentials_oidc_provider import IdentityCredentialsOidcProvider
 from ory_client.model.identity_credentials_password import IdentityCredentialsPassword
@@ -95,6 +96,7 @@ from ory_client.model.keto_namespace import KetoNamespace
 from ory_client.model.keto_namespaces import KetoNamespaces
 from ory_client.model.list_custom_domains import ListCustomDomains
 from ory_client.model.login_flow import LoginFlow
+from ory_client.model.login_flow_state import LoginFlowState
 from ory_client.model.logout_flow import LogoutFlow
 from ory_client.model.managed_identity_schema import ManagedIdentitySchema
 from ory_client.model.managed_identity_schema_validation_result import ManagedIdentitySchemaValidationResult
@@ -168,6 +170,7 @@ from ory_client.model.recovery_flow_state import RecoveryFlowState
 from ory_client.model.recovery_identity_address import RecoveryIdentityAddress
 from ory_client.model.recovery_link_for_identity import RecoveryLinkForIdentity
 from ory_client.model.registration_flow import RegistrationFlow
+from ory_client.model.registration_flow_state import RegistrationFlowState
 from ory_client.model.reject_o_auth2_request import RejectOAuth2Request
 from ory_client.model.relation_query import RelationQuery
 from ory_client.model.relationship import Relationship
@@ -217,6 +220,7 @@ from ory_client.model.ui_text import UiText
 from ory_client.model.ui_texts import UiTexts
 from ory_client.model.update_identity_body import UpdateIdentityBody
 from ory_client.model.update_login_flow_body import UpdateLoginFlowBody
+from ory_client.model.update_login_flow_with_code_method import UpdateLoginFlowWithCodeMethod
 from ory_client.model.update_login_flow_with_lookup_secret_method import UpdateLoginFlowWithLookupSecretMethod
 from ory_client.model.update_login_flow_with_oidc_method import UpdateLoginFlowWithOidcMethod
 from ory_client.model.update_login_flow_with_password_method import UpdateLoginFlowWithPasswordMethod
@@ -226,6 +230,7 @@ from ory_client.model.update_recovery_flow_body import UpdateRecoveryFlowBody
 from ory_client.model.update_recovery_flow_with_code_method import UpdateRecoveryFlowWithCodeMethod
 from ory_client.model.update_recovery_flow_with_link_method import UpdateRecoveryFlowWithLinkMethod
 from ory_client.model.update_registration_flow_body import UpdateRegistrationFlowBody
+from ory_client.model.update_registration_flow_with_code_method import UpdateRegistrationFlowWithCodeMethod
 from ory_client.model.update_registration_flow_with_oidc_method import UpdateRegistrationFlowWithOidcMethod
 from ory_client.model.update_registration_flow_with_password_method import UpdateRegistrationFlowWithPasswordMethod
 from ory_client.model.update_registration_flow_with_web_authn_method import UpdateRegistrationFlowWithWebAuthnMethod

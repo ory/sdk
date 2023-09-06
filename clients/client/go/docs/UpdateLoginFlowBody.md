@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CsrfToken** | Pointer to **string** | Sending the anti-csrf token is only required for browser login flows. | [optional] 
-**Identifier** | **string** | Identifier is the email or username of the user trying to log in. | 
-**Method** | **string** | Method should be set to \&quot;lookup_secret\&quot; when logging in using the lookup_secret strategy. | 
+**CsrfToken** | **string** | CSRFToken is the anti-CSRF token | 
+**Identifier** | **string** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | 
+**Method** | **string** | Method should be set to \&quot;code\&quot; when logging in using the code strategy. | 
 **Password** | **string** | The user&#39;s password. | 
 **PasswordIdentifier** | Pointer to **string** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **Provider** | **string** | The provider to register with | 
@@ -15,12 +15,14 @@ Name | Type | Description | Notes
 **TotpCode** | **string** | The TOTP code. | 
 **WebauthnLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **LookupSecret** | **string** | The lookup secret. | 
+**Code** | Pointer to **string** | Code is the 6 digits code sent to the user | [optional] 
+**Resend** | Pointer to **string** | Resend is set when the user wants to resend the code | [optional] 
 
 ## Methods
 
 ### NewUpdateLoginFlowBody
 
-`func NewUpdateLoginFlowBody(identifier string, method string, password string, provider string, totpCode string, lookupSecret string, ) *UpdateLoginFlowBody`
+`func NewUpdateLoginFlowBody(csrfToken string, identifier string, method string, password string, provider string, totpCode string, lookupSecret string, ) *UpdateLoginFlowBody`
 
 NewUpdateLoginFlowBody instantiates a new UpdateLoginFlowBody object
 This constructor will assign default values to properties that have it defined,
@@ -54,11 +56,6 @@ and a boolean to check if the value has been set.
 
 SetCsrfToken sets CsrfToken field to given value.
 
-### HasCsrfToken
-
-`func (o *UpdateLoginFlowBody) HasCsrfToken() bool`
-
-HasCsrfToken returns a boolean if a field has been set.
 
 ### GetIdentifier
 
@@ -279,6 +276,56 @@ and a boolean to check if the value has been set.
 
 SetLookupSecret sets LookupSecret field to given value.
 
+
+### GetCode
+
+`func (o *UpdateLoginFlowBody) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *UpdateLoginFlowBody) GetCodeOk() (*string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *UpdateLoginFlowBody) SetCode(v string)`
+
+SetCode sets Code field to given value.
+
+### HasCode
+
+`func (o *UpdateLoginFlowBody) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### GetResend
+
+`func (o *UpdateLoginFlowBody) GetResend() string`
+
+GetResend returns the Resend field if non-nil, zero value otherwise.
+
+### GetResendOk
+
+`func (o *UpdateLoginFlowBody) GetResendOk() (*string, bool)`
+
+GetResendOk returns a tuple with the Resend field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResend
+
+`func (o *UpdateLoginFlowBody) SetResend(v string)`
+
+SetResend sets Resend field to given value.
+
+### HasResend
+
+`func (o *UpdateLoginFlowBody) HasResend() bool`
+
+HasResend returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

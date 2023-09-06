@@ -5,6 +5,8 @@ Create a Project Branding
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**favicon_type** | **str** |  | [optional] 
+**favicon_url** | **str** |  | [optional] 
 **logo_type** | **str** |  | [optional] 
 **logo_url** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 

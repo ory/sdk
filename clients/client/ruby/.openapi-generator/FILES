@@ -61,6 +61,7 @@ docs/HealthStatus.md
 docs/Identity.md
 docs/IdentityApi.md
 docs/IdentityCredentials.md
+docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
@@ -91,6 +92,7 @@ docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
 docs/LoginFlow.md
+docs/LoginFlowState.md
 docs/LogoutFlow.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
@@ -150,6 +152,7 @@ docs/RecoveryFlowState.md
 docs/RecoveryIdentityAddress.md
 docs/RecoveryLinkForIdentity.md
 docs/RegistrationFlow.md
+docs/RegistrationFlowState.md
 docs/RejectOAuth2Request.md
 docs/RelationQuery.md
 docs/Relationship.md
@@ -195,6 +198,7 @@ docs/UiNodeTextAttributes.md
 docs/UiText.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
+docs/UpdateLoginFlowWithCodeMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasswordMethod.md
@@ -204,6 +208,7 @@ docs/UpdateRecoveryFlowBody.md
 docs/UpdateRecoveryFlowWithCodeMethod.md
 docs/UpdateRecoveryFlowWithLinkMethod.md
 docs/UpdateRegistrationFlowBody.md
+docs/UpdateRegistrationFlowWithCodeMethod.md
 docs/UpdateRegistrationFlowWithOidcMethod.md
 docs/UpdateRegistrationFlowWithPasswordMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
@@ -295,6 +300,7 @@ lib/ory-client/models/health_not_ready_status.rb
 lib/ory-client/models/health_status.rb
 lib/ory-client/models/identity.rb
 lib/ory-client/models/identity_credentials.rb
+lib/ory-client/models/identity_credentials_code.rb
 lib/ory-client/models/identity_credentials_oidc.rb
 lib/ory-client/models/identity_credentials_oidc_provider.rb
 lib/ory-client/models/identity_credentials_password.rb
@@ -324,6 +330,7 @@ lib/ory-client/models/json_web_key.rb
 lib/ory-client/models/json_web_key_set.rb
 lib/ory-client/models/keto_namespace.rb
 lib/ory-client/models/login_flow.rb
+lib/ory-client/models/login_flow_state.rb
 lib/ory-client/models/logout_flow.rb
 lib/ory-client/models/managed_identity_schema.rb
 lib/ory-client/models/managed_identity_schema_validation_result.rb
@@ -377,6 +384,7 @@ lib/ory-client/models/recovery_flow_state.rb
 lib/ory-client/models/recovery_identity_address.rb
 lib/ory-client/models/recovery_link_for_identity.rb
 lib/ory-client/models/registration_flow.rb
+lib/ory-client/models/registration_flow_state.rb
 lib/ory-client/models/reject_o_auth2_request.rb
 lib/ory-client/models/relation_query.rb
 lib/ory-client/models/relationship.rb
@@ -422,6 +430,7 @@ lib/ory-client/models/ui_node_text_attributes.rb
 lib/ory-client/models/ui_text.rb
 lib/ory-client/models/update_identity_body.rb
 lib/ory-client/models/update_login_flow_body.rb
+lib/ory-client/models/update_login_flow_with_code_method.rb
 lib/ory-client/models/update_login_flow_with_lookup_secret_method.rb
 lib/ory-client/models/update_login_flow_with_oidc_method.rb
 lib/ory-client/models/update_login_flow_with_password_method.rb
@@ -431,6 +440,7 @@ lib/ory-client/models/update_recovery_flow_body.rb
 lib/ory-client/models/update_recovery_flow_with_code_method.rb
 lib/ory-client/models/update_recovery_flow_with_link_method.rb
 lib/ory-client/models/update_registration_flow_body.rb
+lib/ory-client/models/update_registration_flow_with_code_method.rb
 lib/ory-client/models/update_registration_flow_with_oidc_method.rb
 lib/ory-client/models/update_registration_flow_with_password_method.rb
 lib/ory-client/models/update_registration_flow_with_web_authn_method.rb
@@ -518,6 +528,7 @@ spec/models/get_project_metrics_response_spec.rb
 spec/models/get_version200_response_spec.rb
 spec/models/health_not_ready_status_spec.rb
 spec/models/health_status_spec.rb
+spec/models/identity_credentials_code_spec.rb
 spec/models/identity_credentials_oidc_provider_spec.rb
 spec/models/identity_credentials_oidc_spec.rb
 spec/models/identity_credentials_password_spec.rb
@@ -549,6 +560,7 @@ spec/models/json_web_key_set_spec.rb
 spec/models/json_web_key_spec.rb
 spec/models/keto_namespace_spec.rb
 spec/models/login_flow_spec.rb
+spec/models/login_flow_state_spec.rb
 spec/models/logout_flow_spec.rb
 spec/models/managed_identity_schema_spec.rb
 spec/models/managed_identity_schema_validation_result_spec.rb
@@ -602,6 +614,7 @@ spec/models/recovery_flow_state_spec.rb
 spec/models/recovery_identity_address_spec.rb
 spec/models/recovery_link_for_identity_spec.rb
 spec/models/registration_flow_spec.rb
+spec/models/registration_flow_state_spec.rb
 spec/models/reject_o_auth2_request_spec.rb
 spec/models/relation_query_spec.rb
 spec/models/relationship_namespaces_spec.rb
@@ -647,6 +660,7 @@ spec/models/ui_node_text_attributes_spec.rb
 spec/models/ui_text_spec.rb
 spec/models/update_identity_body_spec.rb
 spec/models/update_login_flow_body_spec.rb
+spec/models/update_login_flow_with_code_method_spec.rb
 spec/models/update_login_flow_with_lookup_secret_method_spec.rb
 spec/models/update_login_flow_with_oidc_method_spec.rb
 spec/models/update_login_flow_with_password_method_spec.rb
@@ -656,6 +670,7 @@ spec/models/update_recovery_flow_body_spec.rb
 spec/models/update_recovery_flow_with_code_method_spec.rb
 spec/models/update_recovery_flow_with_link_method_spec.rb
 spec/models/update_registration_flow_body_spec.rb
+spec/models/update_registration_flow_with_code_method_spec.rb
 spec/models/update_registration_flow_with_oidc_method_spec.rb
 spec/models/update_registration_flow_with_password_method_spec.rb
 spec/models/update_registration_flow_with_web_authn_method_spec.rb

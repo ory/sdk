@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.51
+API version: v1.2.0
 Contact: support@ory.sh
 */
 
@@ -34,6 +34,8 @@ type RegistrationFlow struct {
 	ReturnTo *string `json:"return_to,omitempty"`
 	// SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the flow.
 	SessionTokenExchangeCode *string `json:"session_token_exchange_code,omitempty"`
+	// State represents the state of this request:  choose_method: ask the user to choose a method (e.g. registration with email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the registration challenge was passed.
+	State interface{} `json:"state"`
 	// TransientPayload is used to pass data from the registration to a webhook
 	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// The flow type can either be `api` or `browser`.
@@ -48,12 +50,13 @@ type _RegistrationFlow RegistrationFlow
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegistrationFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, type_ string, ui UiContainer) *RegistrationFlow {
+func NewRegistrationFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, state interface{}, type_ string, ui UiContainer) *RegistrationFlow {
 	this := RegistrationFlow{}
 	this.ExpiresAt = expiresAt
 	this.Id = id
 	this.IssuedAt = issuedAt
 	this.RequestUrl = requestUrl
+	this.State = state
 	this.Type = type_
 	this.Ui = ui
 	return &this
@@ -323,6 +326,32 @@ func (o *RegistrationFlow) SetSessionTokenExchangeCode(v string) {
 	o.SessionTokenExchangeCode = &v
 }
 
+// GetState returns the State field value
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RegistrationFlow) GetState() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RegistrationFlow) GetStateOk() (*interface{}, bool) {
+	if o == nil || o.State == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
+// SetState sets field value
+func (o *RegistrationFlow) SetState(v interface{}) {
+	o.State = v
+}
+
 // GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
 func (o *RegistrationFlow) GetTransientPayload() map[string]interface{} {
 	if o == nil || o.TransientPayload == nil {
@@ -432,6 +461,9 @@ func (o RegistrationFlow) MarshalJSON() ([]byte, error) {
 	if o.SessionTokenExchangeCode != nil {
 		toSerialize["session_token_exchange_code"] = o.SessionTokenExchangeCode
 	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
 	if o.TransientPayload != nil {
 		toSerialize["transient_payload"] = o.TransientPayload
 	}
@@ -468,6 +500,7 @@ func (o *RegistrationFlow) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "request_url")
 		delete(additionalProperties, "return_to")
 		delete(additionalProperties, "session_token_exchange_code")
+		delete(additionalProperties, "state")
 		delete(additionalProperties, "transient_payload")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "ui")

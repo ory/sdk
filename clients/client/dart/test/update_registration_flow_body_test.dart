@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UpdateRegistrationFlowBody, () {
-    // CSRFToken is the anti-CSRF token
+    // The CSRF Token
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
     });
 
-    // Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
+    // Method to use  This field must be set to `code` when using the code method.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -58,6 +58,18 @@ void main() {
     // Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
     // String webauthnRegisterDisplayname
     test('to test the property `webauthnRegisterDisplayname`', () async {
+      // TODO
+    });
+
+    // The OTP Code sent to the user
+    // String code
+    test('to test the property `code`', () async {
+      // TODO
+    });
+
+    // Resend restarts the flow with a new code
+    // String resend
+    test('to test the property `resend`', () async {
       // TODO
     });
 

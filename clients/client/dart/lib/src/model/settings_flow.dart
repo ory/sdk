@@ -3,11 +3,11 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:ory_client/src/model/settings_flow_state.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/continue_with.dart';
 import 'package:ory_client/src/model/ui_container.dart';
 import 'package:ory_client/src/model/identity.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -24,7 +24,7 @@ part 'settings_flow.g.dart';
 /// * [issuedAt] - IssuedAt is the time (UTC) when the flow occurred.
 /// * [requestUrl] - RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
-/// * [state] 
+/// * [state] - State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent.
 /// * [type] - The flow type can either be `api` or `browser`.
 /// * [ui] 
 @BuiltValue()
@@ -60,9 +60,9 @@ abstract class SettingsFlow implements Built<SettingsFlow, SettingsFlowBuilder> 
   @BuiltValueField(wireName: r'return_to')
   String? get returnTo;
 
+  /// State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent.
   @BuiltValueField(wireName: r'state')
-  SettingsFlowState get state;
-  // enum stateEnum {  show_form,  success,  };
+  JsonObject? get state;
 
   /// The flow type can either be `api` or `browser`.
   @BuiltValueField(wireName: r'type')
@@ -141,9 +141,9 @@ class _$SettingsFlowSerializer implements PrimitiveSerializer<SettingsFlow> {
       );
     }
     yield r'state';
-    yield serializers.serialize(
+    yield object.state == null ? null : serializers.serialize(
       object.state,
-      specifiedType: const FullType(SettingsFlowState),
+      specifiedType: const FullType.nullable(JsonObject),
     );
     yield r'type';
     yield serializers.serialize(
@@ -237,8 +237,9 @@ class _$SettingsFlowSerializer implements PrimitiveSerializer<SettingsFlow> {
         case r'state':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SettingsFlowState),
-          ) as SettingsFlowState;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.state = valueDes;
           break;
         case r'type':

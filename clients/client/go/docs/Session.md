@@ -11,14 +11,14 @@ Name | Type | Description | Notes
 **Devices** | Pointer to [**[]SessionDevice**](SessionDevice.md) | Devices has history of all endpoints where the session was used | [optional] 
 **ExpiresAt** | Pointer to **time.Time** | The Session Expiry  When this session expires at. | [optional] 
 **Id** | **string** | Session ID | 
-**Identity** | [**Identity**](Identity.md) |  | 
+**Identity** | Pointer to [**Identity**](Identity.md) |  | [optional] 
 **IssuedAt** | Pointer to **time.Time** | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to &#x60;authenticated_at&#x60;. | [optional] 
 
 ## Methods
 
 ### NewSession
 
-`func NewSession(id string, identity Identity, ) *Session`
+`func NewSession(id string, ) *Session`
 
 NewSession instantiates a new Session object
 This constructor will assign default values to properties that have it defined,
@@ -222,6 +222,11 @@ and a boolean to check if the value has been set.
 
 SetIdentity sets Identity field to given value.
 
+### HasIdentity
+
+`func (o *Session) HasIdentity() bool`
+
+HasIdentity returns a boolean if a field has been set.
 
 ### GetIssuedAt
 

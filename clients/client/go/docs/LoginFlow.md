@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **RequestedAal** | Pointer to [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
 **SessionTokenExchangeCode** | Pointer to **string** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the login flow. | [optional] 
+**State** | **interface{}** | State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed. | 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
 **UpdatedAt** | Pointer to **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
@@ -24,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewLoginFlow
 
-`func NewLoginFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, type_ string, ui UiContainer, ) *LoginFlow`
+`func NewLoginFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, state interface{}, type_ string, ui UiContainer, ) *LoginFlow`
 
 NewLoginFlow instantiates a new LoginFlow object
 This constructor will assign default values to properties that have it defined,
@@ -319,6 +320,36 @@ SetSessionTokenExchangeCode sets SessionTokenExchangeCode field to given value.
 
 HasSessionTokenExchangeCode returns a boolean if a field has been set.
 
+### GetState
+
+`func (o *LoginFlow) GetState() interface{}`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *LoginFlow) GetStateOk() (*interface{}, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *LoginFlow) SetState(v interface{})`
+
+SetState sets State field to given value.
+
+
+### SetStateNil
+
+`func (o *LoginFlow) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *LoginFlow) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 ### GetType
 
 `func (o *LoginFlow) GetType() string`

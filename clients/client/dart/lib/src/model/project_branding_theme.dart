@@ -25,6 +25,8 @@ part 'project_branding_theme.g.dart';
 /// * [errorEmphasisColor] - ErrorEmphasisColor is a hex color code used by the Ory Account Experience theme.
 /// * [errorMutedColor] - ErrorMutedColor is a hex color code used by the Ory Account Experience theme.
 /// * [errorSubtleColor] - ErrorSubtleColor is a hex color code used by the Ory Account Experience theme.
+/// * [faviconType] - Favicon Type The Favicon mime type.
+/// * [faviconUrl] - Favicon URL Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket.
 /// * [foregroundDefaultColor] - ForegroundDefaultColor is a hex color code used by the Ory Account Experience theme.
 /// * [foregroundDisabledColor] - ForegroundDisabledColor is a hex color code used by the Ory Account Experience theme.
 /// * [foregroundMutedColor] - ForegroundMutedColor is a hex color code used by the Ory Account Experience theme.
@@ -104,6 +106,14 @@ abstract class ProjectBrandingTheme implements Built<ProjectBrandingTheme, Proje
   /// ErrorSubtleColor is a hex color code used by the Ory Account Experience theme.
   @BuiltValueField(wireName: r'error_subtle_color')
   String? get errorSubtleColor;
+
+  /// Favicon Type The Favicon mime type.
+  @BuiltValueField(wireName: r'favicon_type')
+  String? get faviconType;
+
+  /// Favicon URL Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket.
+  @BuiltValueField(wireName: r'favicon_url')
+  String? get faviconUrl;
 
   /// ForegroundDefaultColor is a hex color code used by the Ory Account Experience theme.
   @BuiltValueField(wireName: r'foreground_default_color')
@@ -309,6 +319,20 @@ class _$ProjectBrandingThemeSerializer implements PrimitiveSerializer<ProjectBra
       yield r'error_subtle_color';
       yield serializers.serialize(
         object.errorSubtleColor,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.faviconType != null) {
+      yield r'favicon_type';
+      yield serializers.serialize(
+        object.faviconType,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.faviconUrl != null) {
+      yield r'favicon_url';
+      yield serializers.serialize(
+        object.faviconUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -578,6 +602,20 @@ class _$ProjectBrandingThemeSerializer implements PrimitiveSerializer<ProjectBra
             specifiedType: const FullType(String),
           ) as String;
           result.errorSubtleColor = valueDes;
+          break;
+        case r'favicon_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.faviconType = valueDes;
+          break;
+        case r'favicon_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.faviconUrl = valueDes;
           break;
         case r'foreground_default_color':
           final valueDes = serializers.deserialize(

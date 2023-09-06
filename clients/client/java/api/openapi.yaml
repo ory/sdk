@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.1.51
+  version: v1.2.0
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -784,6 +784,7 @@ paths:
             - oidc
             - webauthn
             - lookup_secret
+            - code
             type: string
           type: array
         style: form
@@ -6858,6 +6859,8 @@ components:
       - enabled
       - origins
       type: object
+    CodeAddressType:
+      type: string
     CreateInviteResponse:
       properties:
         all_invites:
@@ -7539,6 +7542,10 @@ components:
     createProjectBranding:
       description: Create a Project Branding
       properties:
+        favicon_type:
+          type: string
+        favicon_url:
+          type: string
         logo_type:
           type: string
         logo_url:
@@ -8253,6 +8260,16 @@ components:
           format: int64
           type: integer
       type: object
+    identityCredentialsCode:
+      description: CredentialsCode represents a one time login/registration code
+      properties:
+        address_type:
+          type: string
+        used_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
     identityCredentialsOidc:
       properties:
         providers:
@@ -8293,6 +8310,7 @@ components:
       - oidc
       - webauthn
       - lookup_secret
+      - code
       title: "CredentialsType  represents several different credential types, like\
         \ password credentials, passwordless credentials,"
       type: string
@@ -9034,6 +9052,7 @@ components:
         updated_at: 2000-01-23T04:56:07.000+00:00
         oauth2_login_challenge: oauth2_login_challenge
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: ""
       properties:
         active:
           $ref: '#/components/schemas/identityCredentialsType'
@@ -9085,6 +9104,13 @@ components:
             This is only set if the client has requested a session token exchange code, and if the flow is of type "api",
             and only on creating the login flow.
           type: string
+        state:
+          description: |-
+            State represents the state of this request:
+
+            choose_method: ask the user to choose a method to sign in with
+            sent_email: the email has been sent to the user
+            passed_challenge: the request was successful and the login challenge was passed.
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -9100,10 +9126,24 @@ components:
       - id
       - issued_at
       - request_url
+      - state
       - type
       - ui
       title: Login Flow
       type: object
+    loginFlowState:
+      description: |-
+        The state represents the state of the login flow.
+
+        choose_method: ask the user to choose a method (e.g. login account via email)
+        sent_email: the email has been sent to the user
+        passed_challenge: the request was successful and the login challenge was passed.
+      enum:
+      - choose_method
+      - sent_email
+      - passed_challenge
+      title: Login Flow State
+      type: string
     logoutFlow:
       description: Logout Flow
       example:
@@ -9329,6 +9369,8 @@ components:
             verification_code_valid TypeVerificationCodeValid
             otp TypeOTP
             stub TypeTestStub
+            login_code_valid TypeLoginCodeValid
+            registration_code_valid TypeRegistrationCodeValid
           enum:
           - recovery_invalid
           - recovery_valid
@@ -9340,6 +9382,8 @@ components:
           - verification_code_valid
           - otp
           - stub
+          - login_code_valid
+          - registration_code_valid
           type: string
           x-go-enum-desc: |-
             recovery_invalid TypeRecoveryInvalid
@@ -9352,6 +9396,8 @@ components:
             verification_code_valid TypeVerificationCodeValid
             otp TypeOTP
             stub TypeTestStub
+            login_code_valid TypeLoginCodeValid
+            registration_code_valid TypeRegistrationCodeValid
         type:
           $ref: '#/components/schemas/courierMessageType'
         updated_at:
@@ -9952,6 +9998,24 @@ components:
 
             This governs the "courier.smtp.local_name" setting.
           type: string
+        kratos_courier_templates_login_code_valid_email_body_html:
+          description: |-
+            Configures the Ory Kratos Valid Login via Code Email Body HTML Template
+
+            This governs the "courier.smtp.templates.login_code.valid.email.body.html" setting.
+          type: string
+        kratos_courier_templates_login_code_valid_email_body_plaintext:
+          description: |-
+            Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template
+
+            This governs the "courier.smtp.templates.login_code.valid.email.body.plaintext" setting.
+          type: string
+        kratos_courier_templates_login_code_valid_email_subject:
+          description: |-
+            Configures the Ory Kratos Valid Login via Code Email Subject Template
+
+            This governs the "courier.smtp.templates.login_code.valid.email.subject" setting.
+          type: string
         kratos_courier_templates_recovery_code_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template
@@ -10023,6 +10087,24 @@ components:
             Configures the Ory Kratos Valid Recovery Email Subject Template
 
             This governs the "courier.smtp.templates.recovery.valid.email.subject" setting.
+          type: string
+        kratos_courier_templates_registration_code_valid_email_body_html:
+          description: |-
+            Configures the Ory Kratos Valid Registration via Code Email Body HTML Template
+
+            This governs the "courier.smtp.templates.registration_code.valid.email.body.html" setting.
+          type: string
+        kratos_courier_templates_registration_code_valid_email_body_plaintext:
+          description: |-
+            Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template
+
+            This governs the "courier.smtp.templates.registration_code.valid.email.body.plaintext" setting.
+          type: string
+        kratos_courier_templates_registration_code_valid_email_subject:
+          description: |-
+            Configures the Ory Kratos Valid Registration via Code Email Subject Template
+
+            This governs the "courier.smtp.templates.registration_code.valid.email.subject" setting.
           type: string
         kratos_courier_templates_verification_code_invalid_email_body_html:
           description: |-
@@ -10396,6 +10478,12 @@ components:
             Configures whether Ory Kratos Code Method is enabled
 
             This governs the "selfservice.methods.code.enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_code_passwordless_enabled:
+          description: |-
+            Configues whether Ory Kratos Passwordless should use the Code Method
+
+            This governs the "selfservice.methods.code.passwordless_enabled" setting.
           type: boolean
         kratos_selfservice_methods_link_config_base_url:
           description: |-
@@ -12934,6 +13022,16 @@ components:
           description: ErrorSubtleColor is a hex color code used by the Ory Account
             Experience theme.
           type: string
+        favicon_type:
+          description: |-
+            Favicon Type
+            The Favicon mime type.
+          type: string
+        favicon_url:
+          description: |-
+            Favicon URL
+            Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket.
+          type: string
         foreground_default_color:
           description: ForegroundDefaultColor is a hex color code used by the Ory
             Account Experience theme.
@@ -13364,7 +13462,7 @@ components:
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        state: null
+        state: ""
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
         request_url: request_url
@@ -13399,7 +13497,12 @@ components:
           description: ReturnTo contains the requested return_to URL.
           type: string
         state:
-          $ref: '#/components/schemas/recoveryFlowState'
+          description: |-
+            State represents the state of this request:
+
+            choose_method: ask the user to choose a method (e.g. recover account via email)
+            sent_email: the email has been sent to the user
+            passed_challenge: the request was successful and the recovery challenge was passed.
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -13484,6 +13587,12 @@ components:
       type: object
     registrationFlow:
       example:
+        active: null
+        return_to: return_to
+        session_token_exchange_code: session_token_exchange_code
+        type: type
+        issued_at: 2000-01-23T04:56:07.000+00:00
+        request_url: request_url
         expires_at: 2000-01-23T04:56:07.000+00:00
         oauth2_login_request:
           requested_access_token_audience:
@@ -13623,13 +13732,8 @@ components:
             text: text
             type: info
         oauth2_login_challenge: oauth2_login_challenge
-        active: null
-        return_to: return_to
-        session_token_exchange_code: session_token_exchange_code
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        type: type
-        issued_at: 2000-01-23T04:56:07.000+00:00
-        request_url: request_url
+        state: ""
       properties:
         active:
           $ref: '#/components/schemas/identityCredentialsType'
@@ -13672,6 +13776,13 @@ components:
             This is only set if the client has requested a session token exchange code, and if the flow is of type "api",
             and only on creating the flow.
           type: string
+        state:
+          description: |-
+            State represents the state of this request:
+
+            choose_method: ask the user to choose a method (e.g. registration with email)
+            sent_email: the email has been sent to the user
+            passed_challenge: the request was successful and the registration challenge was passed.
         transient_payload:
           description: TransientPayload is used to pass data from the registration
             to a webhook
@@ -13687,9 +13798,21 @@ components:
       - id
       - issued_at
       - request_url
+      - state
       - type
       - ui
       type: object
+    registrationFlowState:
+      description: |-
+        choose_method: ask the user to choose a method (e.g. registration with email)
+        sent_email: the email has been sent to the user
+        passed_challenge: the request was successful and the registration challenge was passed.
+      enum:
+      - choose_method
+      - sent_email
+      - passed_challenge
+      title: 'State represents the state of this request:'
+      type: string
     rejectOAuth2Request:
       properties:
         error:
@@ -13995,7 +14118,6 @@ components:
           type: string
       required:
       - id
-      - identity
       type: object
     sessionAuthenticationMethod:
       description: A singular authenticator used during authentication / login.
@@ -14113,6 +14235,12 @@ components:
       type: object
     setProjectBrandingThemeBody:
       properties:
+        favicon_type:
+          description: Favicon Type
+          type: string
+        favicon_url:
+          description: Favicon URL
+          type: string
         logo_type:
           description: Logo type
           type: string
@@ -14239,7 +14367,7 @@ components:
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        state: null
+        state: ""
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
         request_url: request_url
@@ -14285,7 +14413,13 @@ components:
           description: ReturnTo contains the requested return_to URL.
           type: string
         state:
-          $ref: '#/components/schemas/settingsFlowState'
+          description: |-
+            State represents the state of this flow. It knows two states:
+
+            show_form: No user data has been collected, or it is invalid, and thus the form should be shown.
+            success: Indicates that the settings flow has been updated successfully with the provided data.
+            Done will stay true when repeatedly checking. If set to true, done will revert back to false only
+            when a flow with invalid (e.g. "please use a valid phone number") data was sent.
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -15472,6 +15606,7 @@ components:
     updateLoginFlowBody:
       discriminator:
         mapping:
+          code: '#/components/schemas/updateLoginFlowWithCodeMethod'
           lookup_secret: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
           oidc: '#/components/schemas/updateLoginFlowWithOidcMethod'
           password: '#/components/schemas/updateLoginFlowWithPasswordMethod'
@@ -15484,6 +15619,32 @@ components:
       - $ref: '#/components/schemas/updateLoginFlowWithTotpMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
+      - $ref: '#/components/schemas/updateLoginFlowWithCodeMethod'
+    updateLoginFlowWithCodeMethod:
+      description: Update Login flow using the code method
+      properties:
+        code:
+          description: Code is the 6 digits code sent to the user
+          type: string
+        csrf_token:
+          description: CSRFToken is the anti-CSRF token
+          type: string
+        identifier:
+          description: |-
+            Identifier is the code identifier
+            The identifier requires that the user has already completed the registration or settings with code flow.
+          type: string
+        method:
+          description: Method should be set to "code" when logging in using the code
+            strategy.
+          type: string
+        resend:
+          description: Resend is set when the user wants to resend the code
+          type: string
+      required:
+      - csrf_token
+      - method
+      type: object
     updateLoginFlowWithLookupSecretMethod:
       description: Update Login Flow with Lookup Secret Method
       properties:
@@ -15698,6 +15859,7 @@ components:
       description: Update Registration Request Body
       discriminator:
         mapping:
+          code: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
           oidc: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
           password: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
           webauthn: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
@@ -15706,6 +15868,35 @@ components:
       - $ref: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
+      - $ref: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
+    updateRegistrationFlowWithCodeMethod:
+      description: Update Registration Flow with Code Method
+      properties:
+        code:
+          description: The OTP Code sent to the user
+          type: string
+        csrf_token:
+          description: The CSRF Token
+          type: string
+        method:
+          description: |-
+            Method to use
+
+            This field must be set to `code` when using the code method.
+          type: string
+        resend:
+          description: Resend restarts the flow with a new code
+          type: string
+        traits:
+          description: The identity's traits
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
+      - traits
+      type: object
     updateRegistrationFlowWithOidcMethod:
       description: Update Registration Flow with OpenID Connect Method
       properties:
@@ -16260,7 +16451,7 @@ components:
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        state: null
+        state: ""
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
         request_url: request_url
@@ -16298,7 +16489,12 @@ components:
           description: ReturnTo contains the requested return_to URL.
           type: string
         state:
-          $ref: '#/components/schemas/verificationFlowState'
+          description: |-
+            State represents the state of this request:
+
+            choose_method: ask the user to choose a method (e.g. verify your email)
+            sent_email: the email has been sent to the user
+            passed_challenge: the request was successful and the verification challenge was passed.
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.

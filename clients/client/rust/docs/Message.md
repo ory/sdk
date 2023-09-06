@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **send_count** | **i64** |  | 
 **status** | [**crate::models::CourierMessageStatus**](courierMessageStatus.md) |  | 
 **subject** | **String** |  | 
-**template_type** | **String** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub | 
+**template_type** | **String** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid | 
 **_type** | [**crate::models::CourierMessageType**](courierMessageType.md) |  | 
 **updated_at** | **String** | UpdatedAt is a helper struct field for gobuffalo.pop. | 
 

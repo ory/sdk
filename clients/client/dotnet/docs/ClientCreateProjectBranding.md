@@ -5,6 +5,8 @@ Create a Project Branding
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**FaviconType** | **string** |  | [optional] 
+**FaviconUrl** | **string** |  | [optional] 
 **LogoType** | **string** |  | [optional] 
 **LogoUrl** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 

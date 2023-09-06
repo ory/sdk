@@ -16,7 +16,9 @@ defmodule Ory.Model.UpdateRegistrationFlowBody do
     :provider,
     :upstream_parameters,
     :webauthn_register,
-    :webauthn_register_displayname
+    :webauthn_register_displayname,
+    :code,
+    :resend
   ]
 
   @type t :: %__MODULE__{
@@ -28,7 +30,9 @@ defmodule Ory.Model.UpdateRegistrationFlowBody do
     :provider => String.t,
     :upstream_parameters => map() | nil,
     :webauthn_register => String.t | nil,
-    :webauthn_register_displayname => String.t | nil
+    :webauthn_register_displayname => String.t | nil,
+    :code => String.t | nil,
+    :resend => String.t | nil
   }
 end
 

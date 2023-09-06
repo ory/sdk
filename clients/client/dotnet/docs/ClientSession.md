@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Devices** | [**List&lt;ClientSessionDevice&gt;**](ClientSessionDevice.md) | Devices has history of all endpoints where the session was used | [optional] 
 **ExpiresAt** | **DateTime** | The Session Expiry  When this session expires at. | [optional] 
 **Id** | **string** | Session ID | 
-**Identity** | [**ClientIdentity**](ClientIdentity.md) |  | 
+**Identity** | [**ClientIdentity**](ClientIdentity.md) |  | [optional] 
 **IssuedAt** | **DateTime** | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to &#x60;authenticated_at&#x60;. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

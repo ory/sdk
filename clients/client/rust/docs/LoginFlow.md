@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **requested_aal** | Option<[**crate::models::AuthenticatorAssuranceLevel**](authenticatorAssuranceLevel.md)> |  | [optional]
 **return_to** | Option<**String**> | ReturnTo contains the requested return_to URL. | [optional]
 **session_token_exchange_code** | Option<**String**> | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the login flow. | [optional]
+**state** | Option<[**serde_json::Value**](.md)> | State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed. | 
 **_type** | **String** | The flow type can either be `api` or `browser`. | 
 **ui** | [**crate::models::UiContainer**](uiContainer.md) |  | 
 **updated_at** | Option<**String**> | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional]

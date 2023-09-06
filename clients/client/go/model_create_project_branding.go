@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.51
+API version: v1.2.0
 Contact: support@ory.sh
 */
 
@@ -17,6 +17,8 @@ import (
 
 // CreateProjectBranding Create a Project Branding
 type CreateProjectBranding struct {
+	FaviconType *string `json:"favicon_type,omitempty"`
+	FaviconUrl *string `json:"favicon_url,omitempty"`
 	LogoType *string `json:"logo_type,omitempty"`
 	LogoUrl *string `json:"logo_url,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -41,6 +43,70 @@ func NewCreateProjectBranding() *CreateProjectBranding {
 func NewCreateProjectBrandingWithDefaults() *CreateProjectBranding {
 	this := CreateProjectBranding{}
 	return &this
+}
+
+// GetFaviconType returns the FaviconType field value if set, zero value otherwise.
+func (o *CreateProjectBranding) GetFaviconType() string {
+	if o == nil || o.FaviconType == nil {
+		var ret string
+		return ret
+	}
+	return *o.FaviconType
+}
+
+// GetFaviconTypeOk returns a tuple with the FaviconType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectBranding) GetFaviconTypeOk() (*string, bool) {
+	if o == nil || o.FaviconType == nil {
+		return nil, false
+	}
+	return o.FaviconType, true
+}
+
+// HasFaviconType returns a boolean if a field has been set.
+func (o *CreateProjectBranding) HasFaviconType() bool {
+	if o != nil && o.FaviconType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFaviconType gets a reference to the given string and assigns it to the FaviconType field.
+func (o *CreateProjectBranding) SetFaviconType(v string) {
+	o.FaviconType = &v
+}
+
+// GetFaviconUrl returns the FaviconUrl field value if set, zero value otherwise.
+func (o *CreateProjectBranding) GetFaviconUrl() string {
+	if o == nil || o.FaviconUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.FaviconUrl
+}
+
+// GetFaviconUrlOk returns a tuple with the FaviconUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectBranding) GetFaviconUrlOk() (*string, bool) {
+	if o == nil || o.FaviconUrl == nil {
+		return nil, false
+	}
+	return o.FaviconUrl, true
+}
+
+// HasFaviconUrl returns a boolean if a field has been set.
+func (o *CreateProjectBranding) HasFaviconUrl() bool {
+	if o != nil && o.FaviconUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFaviconUrl gets a reference to the given string and assigns it to the FaviconUrl field.
+func (o *CreateProjectBranding) SetFaviconUrl(v string) {
+	o.FaviconUrl = &v
 }
 
 // GetLogoType returns the LogoType field value if set, zero value otherwise.
@@ -173,6 +239,12 @@ func (o *CreateProjectBranding) SetTheme(v ProjectBrandingColors) {
 
 func (o CreateProjectBranding) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.FaviconType != nil {
+		toSerialize["favicon_type"] = o.FaviconType
+	}
+	if o.FaviconUrl != nil {
+		toSerialize["favicon_url"] = o.FaviconUrl
+	}
 	if o.LogoType != nil {
 		toSerialize["logo_type"] = o.LogoType
 	}
@@ -203,6 +275,8 @@ func (o *CreateProjectBranding) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "favicon_type")
+		delete(additionalProperties, "favicon_url")
 		delete(additionalProperties, "logo_type")
 		delete(additionalProperties, "logo_url")
 		delete(additionalProperties, "name")

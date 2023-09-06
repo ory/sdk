@@ -64,6 +64,7 @@ docs/Model/HealthNotReadyStatus.md
 docs/Model/HealthStatus.md
 docs/Model/Identity.md
 docs/Model/IdentityCredentials.md
+docs/Model/IdentityCredentialsCode.md
 docs/Model/IdentityCredentialsOidc.md
 docs/Model/IdentityCredentialsOidcProvider.md
 docs/Model/IdentityCredentialsPassword.md
@@ -95,6 +96,7 @@ docs/Model/JsonWebKey.md
 docs/Model/JsonWebKeySet.md
 docs/Model/KetoNamespace.md
 docs/Model/LoginFlow.md
+docs/Model/LoginFlowState.md
 docs/Model/LogoutFlow.md
 docs/Model/ManagedIdentitySchema.md
 docs/Model/ManagedIdentitySchemaValidationResult.md
@@ -149,6 +151,7 @@ docs/Model/RecoveryFlowState.md
 docs/Model/RecoveryIdentityAddress.md
 docs/Model/RecoveryLinkForIdentity.md
 docs/Model/RegistrationFlow.md
+docs/Model/RegistrationFlowState.md
 docs/Model/RejectOAuth2Request.md
 docs/Model/RelationQuery.md
 docs/Model/Relationship.md
@@ -193,6 +196,7 @@ docs/Model/UiNodeTextAttributes.md
 docs/Model/UiText.md
 docs/Model/UpdateIdentityBody.md
 docs/Model/UpdateLoginFlowBody.md
+docs/Model/UpdateLoginFlowWithCodeMethod.md
 docs/Model/UpdateLoginFlowWithLookupSecretMethod.md
 docs/Model/UpdateLoginFlowWithOidcMethod.md
 docs/Model/UpdateLoginFlowWithPasswordMethod.md
@@ -202,6 +206,7 @@ docs/Model/UpdateRecoveryFlowBody.md
 docs/Model/UpdateRecoveryFlowWithCodeMethod.md
 docs/Model/UpdateRecoveryFlowWithLinkMethod.md
 docs/Model/UpdateRegistrationFlowBody.md
+docs/Model/UpdateRegistrationFlowWithCodeMethod.md
 docs/Model/UpdateRegistrationFlowWithOidcMethod.md
 docs/Model/UpdateRegistrationFlowWithPasswordMethod.md
 docs/Model/UpdateRegistrationFlowWithWebAuthnMethod.md
@@ -289,6 +294,7 @@ lib/Model/HealthNotReadyStatus.php
 lib/Model/HealthStatus.php
 lib/Model/Identity.php
 lib/Model/IdentityCredentials.php
+lib/Model/IdentityCredentialsCode.php
 lib/Model/IdentityCredentialsOidc.php
 lib/Model/IdentityCredentialsOidcProvider.php
 lib/Model/IdentityCredentialsPassword.php
@@ -320,6 +326,7 @@ lib/Model/JsonWebKey.php
 lib/Model/JsonWebKeySet.php
 lib/Model/KetoNamespace.php
 lib/Model/LoginFlow.php
+lib/Model/LoginFlowState.php
 lib/Model/LogoutFlow.php
 lib/Model/ManagedIdentitySchema.php
 lib/Model/ManagedIdentitySchemaValidationResult.php
@@ -375,6 +382,7 @@ lib/Model/RecoveryFlowState.php
 lib/Model/RecoveryIdentityAddress.php
 lib/Model/RecoveryLinkForIdentity.php
 lib/Model/RegistrationFlow.php
+lib/Model/RegistrationFlowState.php
 lib/Model/RejectOAuth2Request.php
 lib/Model/RelationQuery.php
 lib/Model/Relationship.php
@@ -419,6 +427,7 @@ lib/Model/UiNodeTextAttributes.php
 lib/Model/UiText.php
 lib/Model/UpdateIdentityBody.php
 lib/Model/UpdateLoginFlowBody.php
+lib/Model/UpdateLoginFlowWithCodeMethod.php
 lib/Model/UpdateLoginFlowWithLookupSecretMethod.php
 lib/Model/UpdateLoginFlowWithOidcMethod.php
 lib/Model/UpdateLoginFlowWithPasswordMethod.php
@@ -428,6 +437,7 @@ lib/Model/UpdateRecoveryFlowBody.php
 lib/Model/UpdateRecoveryFlowWithCodeMethod.php
 lib/Model/UpdateRecoveryFlowWithLinkMethod.php
 lib/Model/UpdateRegistrationFlowBody.php
+lib/Model/UpdateRegistrationFlowWithCodeMethod.php
 lib/Model/UpdateRegistrationFlowWithOidcMethod.php
 lib/Model/UpdateRegistrationFlowWithPasswordMethod.php
 lib/Model/UpdateRegistrationFlowWithWebAuthnMethod.php
@@ -511,6 +521,7 @@ test/Model/GetManagedIdentitySchemaLocationTest.php
 test/Model/GetProjectMetricsResponseTest.php
 test/Model/HealthNotReadyStatusTest.php
 test/Model/HealthStatusTest.php
+test/Model/IdentityCredentialsCodeTest.php
 test/Model/IdentityCredentialsOidcProviderTest.php
 test/Model/IdentityCredentialsOidcTest.php
 test/Model/IdentityCredentialsPasswordTest.php
@@ -543,6 +554,7 @@ test/Model/JsonPatchTest.php
 test/Model/JsonWebKeySetTest.php
 test/Model/JsonWebKeyTest.php
 test/Model/KetoNamespaceTest.php
+test/Model/LoginFlowStateTest.php
 test/Model/LoginFlowTest.php
 test/Model/LogoutFlowTest.php
 test/Model/ManagedIdentitySchemaTest.php
@@ -597,6 +609,7 @@ test/Model/RecoveryFlowStateTest.php
 test/Model/RecoveryFlowTest.php
 test/Model/RecoveryIdentityAddressTest.php
 test/Model/RecoveryLinkForIdentityTest.php
+test/Model/RegistrationFlowStateTest.php
 test/Model/RegistrationFlowTest.php
 test/Model/RejectOAuth2RequestTest.php
 test/Model/RelationQueryTest.php
@@ -642,6 +655,7 @@ test/Model/UiNodeTextAttributesTest.php
 test/Model/UiTextTest.php
 test/Model/UpdateIdentityBodyTest.php
 test/Model/UpdateLoginFlowBodyTest.php
+test/Model/UpdateLoginFlowWithCodeMethodTest.php
 test/Model/UpdateLoginFlowWithLookupSecretMethodTest.php
 test/Model/UpdateLoginFlowWithOidcMethodTest.php
 test/Model/UpdateLoginFlowWithPasswordMethodTest.php
@@ -651,6 +665,7 @@ test/Model/UpdateRecoveryFlowBodyTest.php
 test/Model/UpdateRecoveryFlowWithCodeMethodTest.php
 test/Model/UpdateRecoveryFlowWithLinkMethodTest.php
 test/Model/UpdateRegistrationFlowBodyTest.php
+test/Model/UpdateRegistrationFlowWithCodeMethodTest.php
 test/Model/UpdateRegistrationFlowWithOidcMethodTest.php
 test/Model/UpdateRegistrationFlowWithPasswordMethodTest.php
 test/Model/UpdateRegistrationFlowWithWebAuthnMethodTest.php

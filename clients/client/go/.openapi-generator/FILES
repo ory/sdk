@@ -70,6 +70,7 @@ docs/HealthStatus.md
 docs/Identity.md
 docs/IdentityApi.md
 docs/IdentityCredentials.md
+docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
@@ -100,6 +101,7 @@ docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
 docs/LoginFlow.md
+docs/LoginFlowState.md
 docs/LogoutFlow.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
@@ -159,6 +161,7 @@ docs/RecoveryFlowState.md
 docs/RecoveryIdentityAddress.md
 docs/RecoveryLinkForIdentity.md
 docs/RegistrationFlow.md
+docs/RegistrationFlowState.md
 docs/RejectOAuth2Request.md
 docs/RelationQuery.md
 docs/Relationship.md
@@ -204,6 +207,7 @@ docs/UiNodeTextAttributes.md
 docs/UiText.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
+docs/UpdateLoginFlowWithCodeMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasswordMethod.md
@@ -213,6 +217,7 @@ docs/UpdateRecoveryFlowBody.md
 docs/UpdateRecoveryFlowWithCodeMethod.md
 docs/UpdateRecoveryFlowWithLinkMethod.md
 docs/UpdateRegistrationFlowBody.md
+docs/UpdateRegistrationFlowWithCodeMethod.md
 docs/UpdateRegistrationFlowWithOidcMethod.md
 docs/UpdateRegistrationFlowWithPasswordMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
@@ -291,6 +296,7 @@ model_health_not_ready_status.go
 model_health_status.go
 model_identity.go
 model_identity_credentials.go
+model_identity_credentials_code.go
 model_identity_credentials_oidc.go
 model_identity_credentials_oidc_provider.go
 model_identity_credentials_password.go
@@ -320,6 +326,7 @@ model_json_web_key.go
 model_json_web_key_set.go
 model_keto_namespace.go
 model_login_flow.go
+model_login_flow_state.go
 model_logout_flow.go
 model_managed_identity_schema.go
 model_managed_identity_schema_validation_result.go
@@ -373,6 +380,7 @@ model_recovery_flow_state.go
 model_recovery_identity_address.go
 model_recovery_link_for_identity.go
 model_registration_flow.go
+model_registration_flow_state.go
 model_reject_o_auth2_request.go
 model_relation_query.go
 model_relationship.go
@@ -418,6 +426,7 @@ model_ui_node_text_attributes.go
 model_ui_text.go
 model_update_identity_body.go
 model_update_login_flow_body.go
+model_update_login_flow_with_code_method.go
 model_update_login_flow_with_lookup_secret_method.go
 model_update_login_flow_with_oidc_method.go
 model_update_login_flow_with_password_method.go
@@ -427,6 +436,7 @@ model_update_recovery_flow_body.go
 model_update_recovery_flow_with_code_method.go
 model_update_recovery_flow_with_link_method.go
 model_update_registration_flow_body.go
+model_update_registration_flow_with_code_method.go
 model_update_registration_flow_with_oidc_method.go
 model_update_registration_flow_with_password_method.go
 model_update_registration_flow_with_web_authn_method.go

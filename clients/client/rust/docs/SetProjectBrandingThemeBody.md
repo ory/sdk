@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**favicon_type** | Option<**String**> | Favicon Type | [optional]
+**favicon_url** | Option<**String**> | Favicon URL | [optional]
 **logo_type** | Option<**String**> | Logo type | [optional]
 **logo_url** | Option<**String**> | Logo URL | [optional]
 **name** | Option<**String**> | Branding name | [optional]

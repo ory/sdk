@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.1.51
-  - Build date: 2023-08-25T12:22:17.091526858Z[Etc/UTC]
+- API version: v1.2.0
+  - Build date: 2023-09-06T08:16:50.566710614Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.1.51</version>
+  <version>v1.2.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.1.51"
+     implementation "sh.ory:client:v1.2.0"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.1.51.jar`
+* `target/client-v1.2.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -298,6 +298,7 @@ Class | Method | HTTP request | Description
  - [HealthStatus](docs/HealthStatus.md)
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
+ - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
@@ -327,6 +328,7 @@ Class | Method | HTTP request | Description
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
  - [LoginFlow](docs/LoginFlow.md)
+ - [LoginFlowState](docs/LoginFlowState.md)
  - [LogoutFlow](docs/LogoutFlow.md)
  - [ManagedIdentitySchema](docs/ManagedIdentitySchema.md)
  - [ManagedIdentitySchemaValidationResult](docs/ManagedIdentitySchemaValidationResult.md)
@@ -381,6 +383,7 @@ Class | Method | HTTP request | Description
  - [RecoveryIdentityAddress](docs/RecoveryIdentityAddress.md)
  - [RecoveryLinkForIdentity](docs/RecoveryLinkForIdentity.md)
  - [RegistrationFlow](docs/RegistrationFlow.md)
+ - [RegistrationFlowState](docs/RegistrationFlowState.md)
  - [RejectOAuth2Request](docs/RejectOAuth2Request.md)
  - [RelationQuery](docs/RelationQuery.md)
  - [Relationship](docs/Relationship.md)
@@ -425,6 +428,7 @@ Class | Method | HTTP request | Description
  - [UiText](docs/UiText.md)
  - [UpdateIdentityBody](docs/UpdateIdentityBody.md)
  - [UpdateLoginFlowBody](docs/UpdateLoginFlowBody.md)
+ - [UpdateLoginFlowWithCodeMethod](docs/UpdateLoginFlowWithCodeMethod.md)
  - [UpdateLoginFlowWithLookupSecretMethod](docs/UpdateLoginFlowWithLookupSecretMethod.md)
  - [UpdateLoginFlowWithOidcMethod](docs/UpdateLoginFlowWithOidcMethod.md)
  - [UpdateLoginFlowWithPasswordMethod](docs/UpdateLoginFlowWithPasswordMethod.md)
@@ -434,6 +438,7 @@ Class | Method | HTTP request | Description
  - [UpdateRecoveryFlowWithCodeMethod](docs/UpdateRecoveryFlowWithCodeMethod.md)
  - [UpdateRecoveryFlowWithLinkMethod](docs/UpdateRecoveryFlowWithLinkMethod.md)
  - [UpdateRegistrationFlowBody](docs/UpdateRegistrationFlowBody.md)
+ - [UpdateRegistrationFlowWithCodeMethod](docs/UpdateRegistrationFlowWithCodeMethod.md)
  - [UpdateRegistrationFlowWithOidcMethod](docs/UpdateRegistrationFlowWithOidcMethod.md)
  - [UpdateRegistrationFlowWithPasswordMethod](docs/UpdateRegistrationFlowWithPasswordMethod.md)
  - [UpdateRegistrationFlowWithWebAuthnMethod](docs/UpdateRegistrationFlowWithWebAuthnMethod.md)

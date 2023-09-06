@@ -32,6 +32,8 @@ class _$LoginFlow extends LoginFlow {
   @override
   final String? sessionTokenExchangeCode;
   @override
+  final JsonObject? state;
+  @override
   final String type;
   @override
   final UiContainer ui;
@@ -54,6 +56,7 @@ class _$LoginFlow extends LoginFlow {
       this.requestedAal,
       this.returnTo,
       this.sessionTokenExchangeCode,
+      this.state,
       required this.type,
       required this.ui,
       this.updatedAt})
@@ -90,6 +93,7 @@ class _$LoginFlow extends LoginFlow {
         requestedAal == other.requestedAal &&
         returnTo == other.returnTo &&
         sessionTokenExchangeCode == other.sessionTokenExchangeCode &&
+        state == other.state &&
         type == other.type &&
         ui == other.ui &&
         updatedAt == other.updatedAt;
@@ -110,6 +114,7 @@ class _$LoginFlow extends LoginFlow {
     _$hash = $jc(_$hash, requestedAal.hashCode);
     _$hash = $jc(_$hash, returnTo.hashCode);
     _$hash = $jc(_$hash, sessionTokenExchangeCode.hashCode);
+    _$hash = $jc(_$hash, state.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, ui.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
@@ -132,6 +137,7 @@ class _$LoginFlow extends LoginFlow {
           ..add('requestedAal', requestedAal)
           ..add('returnTo', returnTo)
           ..add('sessionTokenExchangeCode', sessionTokenExchangeCode)
+          ..add('state', state)
           ..add('type', type)
           ..add('ui', ui)
           ..add('updatedAt', updatedAt))
@@ -195,6 +201,10 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
   set sessionTokenExchangeCode(String? sessionTokenExchangeCode) =>
       _$this._sessionTokenExchangeCode = sessionTokenExchangeCode;
 
+  JsonObject? _state;
+  JsonObject? get state => _$this._state;
+  set state(JsonObject? state) => _$this._state = state;
+
   String? _type;
   String? get type => _$this._type;
   set type(String? type) => _$this._type = type;
@@ -226,6 +236,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
       _requestedAal = $v.requestedAal;
       _returnTo = $v.returnTo;
       _sessionTokenExchangeCode = $v.sessionTokenExchangeCode;
+      _state = $v.state;
       _type = $v.type;
       _ui = $v.ui.toBuilder();
       _updatedAt = $v.updatedAt;
@@ -268,6 +279,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
               requestedAal: requestedAal,
               returnTo: returnTo,
               sessionTokenExchangeCode: sessionTokenExchangeCode,
+              state: state,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'LoginFlow', 'type'),
               ui: ui.build(),

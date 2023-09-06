@@ -1680,7 +1680,7 @@ import (
 
 func main() {
     flow := "flow_example" // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-    updateLoginFlowBody := openapiclient.updateLoginFlowBody{UpdateLoginFlowWithLookupSecretMethod: openapiclient.NewUpdateLoginFlowWithLookupSecretMethod("LookupSecret_example", "Method_example")} // UpdateLoginFlowBody | 
+    updateLoginFlowBody := openapiclient.updateLoginFlowBody{UpdateLoginFlowWithCodeMethod: openapiclient.NewUpdateLoginFlowWithCodeMethod("CsrfToken_example", "Method_example")} // UpdateLoginFlowBody | 
     xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
@@ -1892,7 +1892,7 @@ import (
 
 func main() {
     flow := "flow_example" // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-    updateRegistrationFlowBody := openapiclient.updateRegistrationFlowBody{UpdateRegistrationFlowWithOidcMethod: openapiclient.NewUpdateRegistrationFlowWithOidcMethod("Method_example", "Provider_example")} // UpdateRegistrationFlowBody | 
+    updateRegistrationFlowBody := openapiclient.updateRegistrationFlowBody{UpdateRegistrationFlowWithCodeMethod: openapiclient.NewUpdateRegistrationFlowWithCodeMethod("Method_example", map[string]interface{}(123))} // UpdateRegistrationFlowBody | 
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
     configuration := openapiclient.NewConfiguration()

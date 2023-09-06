@@ -369,6 +369,24 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.html\" setting.
+    // String kratosCourierTemplatesLoginCodeValidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesLoginCodeValidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \"courier.smtp.templates.login_code.valid.email.subject\" setting.
+    // String kratosCourierTemplatesLoginCodeValidEmailSubject
+    test('to test the property `kratosCourierTemplatesLoginCodeValidEmailSubject`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
     // String kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
     test('to test the property `kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml`', () async {
@@ -438,6 +456,24 @@ void main() {
     // Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \"courier.smtp.templates.recovery.valid.email.subject\" setting.
     // String kratosCourierTemplatesRecoveryValidEmailSubject
     test('to test the property `kratosCourierTemplatesRecoveryValidEmailSubject`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Registration via Code Email Body HTML Template  This governs the \"courier.smtp.templates.registration_code.valid.email.body.html\" setting.
+    // String kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.registration_code.valid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.email.subject\" setting.
+    // String kratosCourierTemplatesRegistrationCodeValidEmailSubject
+    test('to test the property `kratosCourierTemplatesRegistrationCodeValidEmailSubject`', () async {
       // TODO
     });
 
@@ -792,6 +828,12 @@ void main() {
     // Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
     // bool kratosSelfserviceMethodsCodeEnabled
     test('to test the property `kratosSelfserviceMethodsCodeEnabled`', () async {
+      // TODO
+    });
+
+    // Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
+    // bool kratosSelfserviceMethodsCodePasswordlessEnabled
+    test('to test the property `kratosSelfserviceMethodsCodePasswordlessEnabled`', () async {
       // TODO
     });
 

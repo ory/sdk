@@ -18,11 +18,13 @@ defmodule Ory.Model.UpdateLoginFlowBody do
     :upstream_parameters,
     :totp_code,
     :webauthn_login,
-    :lookup_secret
+    :lookup_secret,
+    :code,
+    :resend
   ]
 
   @type t :: %__MODULE__{
-    :csrf_token => String.t | nil,
+    :csrf_token => String.t,
     :identifier => String.t,
     :method => String.t,
     :password => String.t,
@@ -32,7 +34,9 @@ defmodule Ory.Model.UpdateLoginFlowBody do
     :upstream_parameters => map() | nil,
     :totp_code => String.t,
     :webauthn_login => String.t | nil,
-    :lookup_secret => String.t
+    :lookup_secret => String.t,
+    :code => String.t | nil,
+    :resend => String.t | nil
   }
 end
 

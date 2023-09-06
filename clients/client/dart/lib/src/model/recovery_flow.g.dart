@@ -20,7 +20,7 @@ class _$RecoveryFlow extends RecoveryFlow {
   @override
   final String? returnTo;
   @override
-  final RecoveryFlowState state;
+  final JsonObject? state;
   @override
   final String type;
   @override
@@ -36,7 +36,7 @@ class _$RecoveryFlow extends RecoveryFlow {
       required this.issuedAt,
       required this.requestUrl,
       this.returnTo,
-      required this.state,
+      this.state,
       required this.type,
       required this.ui})
       : super._() {
@@ -47,7 +47,6 @@ class _$RecoveryFlow extends RecoveryFlow {
         issuedAt, r'RecoveryFlow', 'issuedAt');
     BuiltValueNullFieldError.checkNotNull(
         requestUrl, r'RecoveryFlow', 'requestUrl');
-    BuiltValueNullFieldError.checkNotNull(state, r'RecoveryFlow', 'state');
     BuiltValueNullFieldError.checkNotNull(type, r'RecoveryFlow', 'type');
     BuiltValueNullFieldError.checkNotNull(ui, r'RecoveryFlow', 'ui');
   }
@@ -134,9 +133,9 @@ class RecoveryFlowBuilder
   String? get returnTo => _$this._returnTo;
   set returnTo(String? returnTo) => _$this._returnTo = returnTo;
 
-  RecoveryFlowState? _state;
-  RecoveryFlowState? get state => _$this._state;
-  set state(RecoveryFlowState? state) => _$this._state = state;
+  JsonObject? _state;
+  JsonObject? get state => _$this._state;
+  set state(JsonObject? state) => _$this._state = state;
 
   String? _type;
   String? get type => _$this._type;
@@ -196,8 +195,7 @@ class RecoveryFlowBuilder
               requestUrl: BuiltValueNullFieldError.checkNotNull(
                   requestUrl, r'RecoveryFlow', 'requestUrl'),
               returnTo: returnTo,
-              state: BuiltValueNullFieldError.checkNotNull(
-                  state, r'RecoveryFlow', 'state'),
+              state: state,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'RecoveryFlow', 'type'),
               ui: ui.build());

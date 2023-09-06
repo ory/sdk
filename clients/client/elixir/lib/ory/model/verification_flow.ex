@@ -26,7 +26,7 @@ defmodule Ory.Model.VerificationFlow do
     :issued_at => DateTime.t | nil,
     :request_url => String.t | nil,
     :return_to => String.t | nil,
-    :state => Ory.Model.VerificationFlowState.t,
+    :state => any() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t
   }
@@ -36,7 +36,6 @@ defimpl Poison.Decoder, for: Ory.Model.VerificationFlow do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:state, :struct, Ory.Model.VerificationFlowState, options)
     |> deserialize(:ui, :struct, Ory.Model.UiContainer, options)
   end
 end

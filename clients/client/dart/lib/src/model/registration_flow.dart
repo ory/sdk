@@ -24,6 +24,7 @@ part 'registration_flow.g.dart';
 /// * [requestUrl] - RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
 /// * [sessionTokenExchangeCode] - SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the flow.
+/// * [state] - State represents the state of this request:  choose_method: ask the user to choose a method (e.g. registration with email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the registration challenge was passed.
 /// * [transientPayload] - TransientPayload is used to pass data from the registration to a webhook
 /// * [type] - The flow type can either be `api` or `browser`.
 /// * [ui] 
@@ -31,7 +32,7 @@ part 'registration_flow.g.dart';
 abstract class RegistrationFlow implements Built<RegistrationFlow, RegistrationFlowBuilder> {
   @BuiltValueField(wireName: r'active')
   IdentityCredentialsType? get active;
-  // enum activeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  };
+  // enum activeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  code,  };
 
   /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
   @BuiltValueField(wireName: r'expires_at')
@@ -63,6 +64,10 @@ abstract class RegistrationFlow implements Built<RegistrationFlow, RegistrationF
   /// SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the flow.
   @BuiltValueField(wireName: r'session_token_exchange_code')
   String? get sessionTokenExchangeCode;
+
+  /// State represents the state of this request:  choose_method: ask the user to choose a method (e.g. registration with email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the registration challenge was passed.
+  @BuiltValueField(wireName: r'state')
+  JsonObject? get state;
 
   /// TransientPayload is used to pass data from the registration to a webhook
   @BuiltValueField(wireName: r'transient_payload')
@@ -153,6 +158,11 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
         specifiedType: const FullType(String),
       );
     }
+    yield r'state';
+    yield object.state == null ? null : serializers.serialize(
+      object.state,
+      specifiedType: const FullType.nullable(JsonObject),
+    );
     if (object.transientPayload != null) {
       yield r'transient_payload';
       yield serializers.serialize(
@@ -255,6 +265,14 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
             specifiedType: const FullType(String),
           ) as String;
           result.sessionTokenExchangeCode = valueDes;
+          break;
+        case r'state':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
+          result.state = valueDes;
           break;
         case r'transient_payload':
           final valueDes = serializers.deserialize(

@@ -22,7 +22,7 @@ class _$Session extends Session {
   @override
   final String id;
   @override
-  final Identity identity;
+  final Identity? identity;
   @override
   final DateTime? issuedAt;
 
@@ -37,11 +37,10 @@ class _$Session extends Session {
       this.devices,
       this.expiresAt,
       required this.id,
-      required this.identity,
+      this.identity,
       this.issuedAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'Session', 'id');
-    BuiltValueNullFieldError.checkNotNull(identity, r'Session', 'identity');
   }
 
   @override
@@ -160,7 +159,7 @@ class SessionBuilder implements Builder<Session, SessionBuilder> {
       _devices = $v.devices?.toBuilder();
       _expiresAt = $v.expiresAt;
       _id = $v.id;
-      _identity = $v.identity.toBuilder();
+      _identity = $v.identity?.toBuilder();
       _issuedAt = $v.issuedAt;
       _$v = null;
     }
@@ -193,7 +192,7 @@ class SessionBuilder implements Builder<Session, SessionBuilder> {
               devices: _devices?.build(),
               expiresAt: expiresAt,
               id: BuiltValueNullFieldError.checkNotNull(id, r'Session', 'id'),
-              identity: identity.build(),
+              identity: _identity?.build(),
               issuedAt: issuedAt);
     } catch (_) {
       late String _$failedField;
@@ -205,7 +204,7 @@ class SessionBuilder implements Builder<Session, SessionBuilder> {
         _devices?.build();
 
         _$failedField = 'identity';
-        identity.build();
+        _identity?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Session', _$failedField, e.toString());
