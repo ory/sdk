@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.1
+API version: v1.2.2
 Contact: support@ory.sh
 */
 
@@ -17,7 +17,7 @@ import (
 
 // IdentityWithCredentialsPasswordConfig Create Identity and Import Password Credentials Configuration
 type IdentityWithCredentialsPasswordConfig struct {
-	// The hashed password in [PHC format]( https://www.ory.sh/docs/kratos/concepts/credentials/username-email-password#hashed-password-format)
+	// The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)
 	HashedPassword *string `json:"hashed_password,omitempty"`
 	// The password in plain text if no hash is available.
 	Password *string `json:"password,omitempty"`

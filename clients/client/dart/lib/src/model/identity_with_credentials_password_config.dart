@@ -11,11 +11,11 @@ part 'identity_with_credentials_password_config.g.dart';
 /// Create Identity and Import Password Credentials Configuration
 ///
 /// Properties:
-/// * [hashedPassword] - The hashed password in [PHC format]( https://www.ory.sh/docs/kratos/concepts/credentials/username-email-password#hashed-password-format)
+/// * [hashedPassword] - The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)
 /// * [password] - The password in plain text if no hash is available.
 @BuiltValue()
 abstract class IdentityWithCredentialsPasswordConfig implements Built<IdentityWithCredentialsPasswordConfig, IdentityWithCredentialsPasswordConfigBuilder> {
-  /// The hashed password in [PHC format]( https://www.ory.sh/docs/kratos/concepts/credentials/username-email-password#hashed-password-format)
+  /// The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)
   @BuiltValueField(wireName: r'hashed_password')
   String? get hashedPassword;
 
