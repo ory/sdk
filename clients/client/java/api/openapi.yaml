@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.2.5
+  version: v1.2.6
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -563,7 +563,9 @@ paths:
       operationId: listIdentities
       parameters:
       - description: |-
-          Items per Page
+          Deprecated Items per Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This is the number of items per page.
         explode: true
@@ -578,7 +580,9 @@ paths:
           type: integer
         style: form
       - description: |-
-          Pagination Page
+          Deprecated Pagination Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This value is currently an integer, but it is not sequential. The value is not the page number, but a
           reference. The next page can be any number and some numbers might return an empty list.
@@ -593,6 +597,36 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - description: |-
+          Page Size
+
+          This is the number of items per page to return. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          default: "1"
+          minimum: 1
+          type: string
         style: form
       - description: "CredentialsIdentifier is the identifier (username, email) of\
           \ the credentials to look up."
@@ -1035,7 +1069,9 @@ paths:
       operationId: listIdentitySessions
       parameters:
       - description: |-
-          Items per Page
+          Deprecated Items per Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This is the number of items per page.
         explode: true
@@ -1050,7 +1086,9 @@ paths:
           type: integer
         style: form
       - description: |-
-          Pagination Page
+          Deprecated Pagination Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This value is currently an integer, but it is not sequential. The value is not the page number, but a
           reference. The next page can be any number and some numbers might return an empty list.
@@ -1065,6 +1103,36 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - description: |-
+          Page Size
+
+          This is the number of items per page to return. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          default: "1"
+          minimum: 1
+          type: string
         style: form
       - description: ID is the identity's ID.
         explode: false
@@ -4332,7 +4400,9 @@ paths:
       operationId: listIdentitySchemas
       parameters:
       - description: |-
-          Items per Page
+          Deprecated Items per Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This is the number of items per page.
         explode: true
@@ -4347,7 +4417,9 @@ paths:
           type: integer
         style: form
       - description: |-
-          Pagination Page
+          Deprecated Pagination Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This value is currently an integer, but it is not sequential. The value is not the page number, but a
           reference. The next page can be any number and some numbers might return an empty list.
@@ -4362,6 +4434,36 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - description: |-
+          Page Size
+
+          This is the number of items per page to return. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          default: "1"
+          minimum: 1
+          type: string
         style: form
       responses:
         "200":
@@ -6393,7 +6495,9 @@ paths:
       operationId: listMySessions
       parameters:
       - description: |-
-          Items per Page
+          Deprecated Items per Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This is the number of items per page.
         explode: true
@@ -6408,21 +6512,53 @@ paths:
           type: integer
         style: form
       - description: |-
-          Pagination Page
+          Deprecated Pagination Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This value is currently an integer, but it is not sequential. The value is not the page number, but a
           reference. The next page can be any number and some numbers might return an empty list.
 
           For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+          The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the
+          `Link` header.
         explode: true
         in: query
         name: page
         required: false
         schema:
-          default: 1
           format: int64
+          type: integer
+        style: form
+      - description: |-
+          Page Size
+
+          This is the number of items per page to return. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 500
           minimum: 1
           type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          default: "1"
+          minimum: 1
+          type: string
         style: form
       - description: Set the Session Token when calling from non-browser clients.
           A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
@@ -12544,18 +12680,6 @@ components:
       type: object
     pagination:
       properties:
-        page:
-          default: 1
-          description: |-
-            Pagination Page
-
-            This value is currently an integer, but it is not sequential. The value is not the page number, but a
-            reference. The next page can be any number and some numbers might return an empty list.
-
-            For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-          format: int64
-          minimum: 1
-          type: integer
         page_size:
           default: 250
           description: |-
@@ -12576,16 +12700,6 @@ components:
             For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
           minimum: 1
           type: string
-        per_page:
-          default: 250
-          description: |-
-            Items per Page
-
-            This is the number of items per page.
-          format: int64
-          maximum: 1000
-          minimum: 1
-          type: integer
       type: object
     paginationHeaders:
       properties:
@@ -15669,6 +15783,23 @@ components:
         csrf_token:
           description: The CSRF Token
           type: string
+        id_token:
+          description: |-
+            IDToken is an optional id token provided by an OIDC provider
+
+            If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate
+            the OIDC credentials of the identity.
+            If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use
+            the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.
+
+            Supported providers are
+            Apple
+          type: string
+        id_token_nonce:
+          description: |-
+            IDTokenNonce is the nonce, used when generating the IDToken.
+            If the provider supports nonce validation, the nonce will be validated against this value and required.
+          type: string
         method:
           description: |-
             Method to use
@@ -15902,6 +16033,23 @@ components:
       properties:
         csrf_token:
           description: The CSRF Token
+          type: string
+        id_token:
+          description: |-
+            IDToken is an optional id token provided by an OIDC provider
+
+            If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate
+            the OIDC credentials of the identity.
+            If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use
+            the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.
+
+            Supported providers are
+            Apple
+          type: string
+        id_token_nonce:
+          description: |-
+            IDTokenNonce is the nonce, used when generating the IDToken.
+            If the provider supports nonce validation, the nonce will be validated against this value and is required.
           type: string
         method:
           description: |-

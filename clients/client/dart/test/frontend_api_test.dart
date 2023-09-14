@@ -198,7 +198,7 @@ void main() {
     //
     // This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
     //
-    //Future<BuiltList<Session>> listMySessions({ int perPage, int page, String xSessionToken, String cookie }) async
+    //Future<BuiltList<Session>> listMySessions({ int perPage, int page, int pageSize, String pageToken, String xSessionToken, String cookie }) async
     test('test listMySessions', () async {
       // TODO
     });

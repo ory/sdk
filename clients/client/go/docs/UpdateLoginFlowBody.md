@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **Method** | **string** | Method should be set to \&quot;code\&quot; when logging in using the code strategy. | 
 **Password** | **string** | The user&#39;s password. | 
 **PasswordIdentifier** | Pointer to **string** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
+**IdToken** | Pointer to **string** | IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider&#39;s public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the &#x60;traits&#x60; field to populate the identity&#39;s traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple | [optional] 
+**IdTokenNonce** | Pointer to **string** | IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and required. | [optional] 
 **Provider** | **string** | The provider to register with | 
 **Traits** | Pointer to **map[string]interface{}** | The identity traits. This is a placeholder for the registration flow. | [optional] 
 **UpstreamParameters** | Pointer to **map[string]interface{}** | UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: &#x60;login_hint&#x60; (string): The &#x60;login_hint&#x60; parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. &#x60;hd&#x60; (string): The &#x60;hd&#x60; parameter limits the login/registration process to a Google Organization, e.g. &#x60;mycollege.edu&#x60;. &#x60;prompt&#x60; (string): The &#x60;prompt&#x60; specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. &#x60;select_account&#x60;. | [optional] 
@@ -141,6 +143,56 @@ SetPasswordIdentifier sets PasswordIdentifier field to given value.
 `func (o *UpdateLoginFlowBody) HasPasswordIdentifier() bool`
 
 HasPasswordIdentifier returns a boolean if a field has been set.
+
+### GetIdToken
+
+`func (o *UpdateLoginFlowBody) GetIdToken() string`
+
+GetIdToken returns the IdToken field if non-nil, zero value otherwise.
+
+### GetIdTokenOk
+
+`func (o *UpdateLoginFlowBody) GetIdTokenOk() (*string, bool)`
+
+GetIdTokenOk returns a tuple with the IdToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdToken
+
+`func (o *UpdateLoginFlowBody) SetIdToken(v string)`
+
+SetIdToken sets IdToken field to given value.
+
+### HasIdToken
+
+`func (o *UpdateLoginFlowBody) HasIdToken() bool`
+
+HasIdToken returns a boolean if a field has been set.
+
+### GetIdTokenNonce
+
+`func (o *UpdateLoginFlowBody) GetIdTokenNonce() string`
+
+GetIdTokenNonce returns the IdTokenNonce field if non-nil, zero value otherwise.
+
+### GetIdTokenNonceOk
+
+`func (o *UpdateLoginFlowBody) GetIdTokenNonceOk() (*string, bool)`
+
+GetIdTokenNonceOk returns a tuple with the IdTokenNonce field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdTokenNonce
+
+`func (o *UpdateLoginFlowBody) SetIdTokenNonce(v string)`
+
+SetIdTokenNonce sets IdTokenNonce field to given value.
+
+### HasIdTokenNonce
+
+`func (o *UpdateLoginFlowBody) HasIdTokenNonce() bool`
+
+HasIdTokenNonce returns a boolean if a field has been set.
 
 ### GetProvider
 

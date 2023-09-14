@@ -859,7 +859,7 @@ public class Example {
 
 <a name="listIdentities"></a>
 # **listIdentities**
-> List&lt;Identity&gt; listIdentities(perPage, page, credentialsIdentifier)
+> List&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, credentialsIdentifier)
 
 List Identities
 
@@ -885,11 +885,13 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
-    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
-    Long page = 56L; // Long | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    Long perPage = 250L; // Long | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+    Long page = 56L; // Long | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    Long pageSize = 250L; // Long | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String pageToken = "1"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     String credentialsIdentifier = "credentialsIdentifier_example"; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
     try {
-      List<Identity> result = apiInstance.listIdentities(perPage, page, credentialsIdentifier);
+      List<Identity> result = apiInstance.listIdentities(perPage, page, pageSize, pageToken, credentialsIdentifier);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentities");
@@ -906,8 +908,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
-| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
+| **perPage** | **Long**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
+| **pageSize** | **Long**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 1] |
 | **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] |
 
 ### Return type
@@ -931,7 +935,7 @@ public class Example {
 
 <a name="listIdentitySchemas"></a>
 # **listIdentitySchemas**
-> List&lt;IdentitySchemaContainer&gt; listIdentitySchemas(perPage, page)
+> List&lt;IdentitySchemaContainer&gt; listIdentitySchemas(perPage, page, pageSize, pageToken)
 
 Get all Identity Schemas
 
@@ -952,10 +956,12 @@ public class Example {
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
-    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
-    Long page = 56L; // Long | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    Long perPage = 250L; // Long | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+    Long page = 56L; // Long | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    Long pageSize = 250L; // Long | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String pageToken = "1"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     try {
-      List<IdentitySchemaContainer> result = apiInstance.listIdentitySchemas(perPage, page);
+      List<IdentitySchemaContainer> result = apiInstance.listIdentitySchemas(perPage, page, pageSize, pageToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentitySchemas");
@@ -972,8 +978,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
-| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
+| **perPage** | **Long**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
+| **pageSize** | **Long**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 1] |
 
 ### Return type
 
@@ -996,7 +1004,7 @@ No authorization required
 
 <a name="listIdentitySessions"></a>
 # **listIdentitySessions**
-> List&lt;Session&gt; listIdentitySessions(id, perPage, page, active)
+> List&lt;Session&gt; listIdentitySessions(id, perPage, page, pageSize, pageToken, active)
 
 List an Identity&#39;s Sessions
 
@@ -1023,11 +1031,13 @@ public class Example {
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID is the identity's ID.
-    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
-    Long page = 56L; // Long | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    Long perPage = 250L; // Long | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+    Long page = 56L; // Long | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    Long pageSize = 250L; // Long | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String pageToken = "1"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     Boolean active = true; // Boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
     try {
-      List<Session> result = apiInstance.listIdentitySessions(id, perPage, page, active);
+      List<Session> result = apiInstance.listIdentitySessions(id, perPage, page, pageSize, pageToken, active);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentitySessions");
@@ -1045,8 +1055,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID is the identity&#39;s ID. | |
-| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
-| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
+| **perPage** | **Long**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
+| **pageSize** | **Long**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 1] |
 | **active** | **Boolean**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] |
 
 ### Return type

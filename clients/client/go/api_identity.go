@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.5
+API version: v1.2.6
 Contact: support@ory.sh
 */
 
@@ -1861,18 +1861,32 @@ type IdentityApiListIdentitiesRequest struct {
 	ApiService IdentityApi
 	perPage *int64
 	page *int64
+	pageSize *int64
+	pageToken *string
 	credentialsIdentifier *string
 }
 
-// Items per Page  This is the number of items per page.
+// Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page.
 func (r IdentityApiListIdentitiesRequest) PerPage(perPage int64) IdentityApiListIdentitiesRequest {
 	r.perPage = &perPage
 	return r
 }
 
-// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
+// Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
 func (r IdentityApiListIdentitiesRequest) Page(page int64) IdentityApiListIdentitiesRequest {
 	r.page = &page
+	return r
+}
+
+// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r IdentityApiListIdentitiesRequest) PageSize(pageSize int64) IdentityApiListIdentitiesRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r IdentityApiListIdentitiesRequest) PageToken(pageToken string) IdentityApiListIdentitiesRequest {
+	r.pageToken = &pageToken
 	return r
 }
 
@@ -1927,6 +1941,12 @@ func (a *IdentityApiService) ListIdentitiesExecute(r IdentityApiListIdentitiesRe
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.pageToken != nil {
+		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
 	}
 	if r.credentialsIdentifier != nil {
 		localVarQueryParams.Add("credentials_identifier", parameterToString(*r.credentialsIdentifier, ""))
@@ -1997,17 +2017,31 @@ type IdentityApiListIdentitySchemasRequest struct {
 	ApiService IdentityApi
 	perPage *int64
 	page *int64
+	pageSize *int64
+	pageToken *string
 }
 
-// Items per Page  This is the number of items per page.
+// Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page.
 func (r IdentityApiListIdentitySchemasRequest) PerPage(perPage int64) IdentityApiListIdentitySchemasRequest {
 	r.perPage = &perPage
 	return r
 }
 
-// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
+// Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
 func (r IdentityApiListIdentitySchemasRequest) Page(page int64) IdentityApiListIdentitySchemasRequest {
 	r.page = &page
+	return r
+}
+
+// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r IdentityApiListIdentitySchemasRequest) PageSize(pageSize int64) IdentityApiListIdentitySchemasRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r IdentityApiListIdentitySchemasRequest) PageToken(pageToken string) IdentityApiListIdentitySchemasRequest {
+	r.pageToken = &pageToken
 	return r
 }
 
@@ -2056,6 +2090,12 @@ func (a *IdentityApiService) ListIdentitySchemasExecute(r IdentityApiListIdentit
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.pageToken != nil {
+		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2124,18 +2164,32 @@ type IdentityApiListIdentitySessionsRequest struct {
 	id string
 	perPage *int64
 	page *int64
+	pageSize *int64
+	pageToken *string
 	active *bool
 }
 
-// Items per Page  This is the number of items per page.
+// Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page.
 func (r IdentityApiListIdentitySessionsRequest) PerPage(perPage int64) IdentityApiListIdentitySessionsRequest {
 	r.perPage = &perPage
 	return r
 }
 
-// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
+// Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
 func (r IdentityApiListIdentitySessionsRequest) Page(page int64) IdentityApiListIdentitySessionsRequest {
 	r.page = &page
+	return r
+}
+
+// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r IdentityApiListIdentitySessionsRequest) PageSize(pageSize int64) IdentityApiListIdentitySessionsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r IdentityApiListIdentitySessionsRequest) PageToken(pageToken string) IdentityApiListIdentitySessionsRequest {
+	r.pageToken = &pageToken
 	return r
 }
 
@@ -2193,6 +2247,12 @@ func (a *IdentityApiService) ListIdentitySessionsExecute(r IdentityApiListIdenti
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.pageToken != nil {
+		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
 	}
 	if r.active != nil {
 		localVarQueryParams.Add("active", parameterToString(*r.active, ""))

@@ -9,6 +9,8 @@ defmodule Ory.Model.UpdateLoginFlowWithOidcMethod do
   @derive [Poison.Encoder]
   defstruct [
     :csrf_token,
+    :id_token,
+    :id_token_nonce,
     :method,
     :provider,
     :traits,
@@ -17,6 +19,8 @@ defmodule Ory.Model.UpdateLoginFlowWithOidcMethod do
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
+    :id_token => String.t | nil,
+    :id_token_nonce => String.t | nil,
     :method => String.t,
     :provider => String.t,
     :traits => map() | nil,

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.5
+API version: v1.2.6
 Contact: support@ory.sh
 */
 
@@ -4177,19 +4177,33 @@ type FrontendApiListMySessionsRequest struct {
 	ApiService FrontendApi
 	perPage *int64
 	page *int64
+	pageSize *int64
+	pageToken *string
 	xSessionToken *string
 	cookie *string
 }
 
-// Items per Page  This is the number of items per page.
+// Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page.
 func (r FrontendApiListMySessionsRequest) PerPage(perPage int64) FrontendApiListMySessionsRequest {
 	r.perPage = &perPage
 	return r
 }
 
-// Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+// Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header.
 func (r FrontendApiListMySessionsRequest) Page(page int64) FrontendApiListMySessionsRequest {
 	r.page = &page
+	return r
+}
+
+// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r FrontendApiListMySessionsRequest) PageSize(pageSize int64) FrontendApiListMySessionsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r FrontendApiListMySessionsRequest) PageToken(pageToken string) FrontendApiListMySessionsRequest {
+	r.pageToken = &pageToken
 	return r
 }
 
@@ -4251,6 +4265,12 @@ func (a *FrontendApiService) ListMySessionsExecute(r FrontendApiListMySessionsRe
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.pageToken != nil {
+		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

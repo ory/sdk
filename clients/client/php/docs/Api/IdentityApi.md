@@ -745,7 +745,7 @@ Name | Type | Description  | Notes
 ## `listIdentities()`
 
 ```php
-listIdentities($perPage, $page, $credentialsIdentifier): \Ory\Client\Model\Identity[]
+listIdentities($perPage, $page, $pageSize, $pageToken, $credentialsIdentifier): \Ory\Client\Model\Identity[]
 ```
 
 List Identities
@@ -769,12 +769,14 @@ $apiInstance = new Ory\Client\Api\IdentityApi(
     new GuzzleHttp\Client(),
     $config
 );
-$perPage = 250; // int | Items per Page  This is the number of items per page.
-$page = 56; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+$perPage = 250; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+$page = 56; // int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+$pageSize = 250; // int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$pageToken = '1'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $credentialsIdentifier = 'credentialsIdentifier_example'; // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
 
 try {
-    $result = $apiInstance->listIdentities($perPage, $page, $credentialsIdentifier);
+    $result = $apiInstance->listIdentities($perPage, $page, $pageSize, $pageToken, $credentialsIdentifier);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling IdentityApi->listIdentities: ', $e->getMessage(), PHP_EOL;
@@ -785,8 +787,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional]
+ **perPage** | **int**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional]
+ **pageSize** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
  **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional]
 
 ### Return type
@@ -809,7 +813,7 @@ Name | Type | Description  | Notes
 ## `listIdentitySchemas()`
 
 ```php
-listIdentitySchemas($perPage, $page): \Ory\Client\Model\IdentitySchemaContainer[]
+listIdentitySchemas($perPage, $page, $pageSize, $pageToken): \Ory\Client\Model\IdentitySchemaContainer[]
 ```
 
 Get all Identity Schemas
@@ -829,11 +833,13 @@ $apiInstance = new Ory\Client\Api\IdentityApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$perPage = 250; // int | Items per Page  This is the number of items per page.
-$page = 56; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+$perPage = 250; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+$page = 56; // int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+$pageSize = 250; // int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$pageToken = '1'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 
 try {
-    $result = $apiInstance->listIdentitySchemas($perPage, $page);
+    $result = $apiInstance->listIdentitySchemas($perPage, $page, $pageSize, $pageToken);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling IdentityApi->listIdentitySchemas: ', $e->getMessage(), PHP_EOL;
@@ -844,8 +850,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional]
+ **perPage** | **int**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional]
+ **pageSize** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
 
 ### Return type
 
@@ -867,7 +875,7 @@ No authorization required
 ## `listIdentitySessions()`
 
 ```php
-listIdentitySessions($id, $perPage, $page, $active): \Ory\Client\Model\Session[]
+listIdentitySessions($id, $perPage, $page, $pageSize, $pageToken, $active): \Ory\Client\Model\Session[]
 ```
 
 List an Identity's Sessions
@@ -892,12 +900,14 @@ $apiInstance = new Ory\Client\Api\IdentityApi(
     $config
 );
 $id = 'id_example'; // string | ID is the identity's ID.
-$perPage = 250; // int | Items per Page  This is the number of items per page.
-$page = 56; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+$perPage = 250; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+$page = 56; // int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+$pageSize = 250; // int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$pageToken = '1'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $active = True; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
 
 try {
-    $result = $apiInstance->listIdentitySessions($id, $perPage, $page, $active);
+    $result = $apiInstance->listIdentitySessions($id, $perPage, $page, $pageSize, $pageToken, $active);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling IdentityApi->listIdentitySessions: ', $e->getMessage(), PHP_EOL;
@@ -909,8 +919,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the identity&#39;s ID. |
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional]
+ **perPage** | **int**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional]
+ **pageSize** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
  **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional]
 
 ### Return type

@@ -390,7 +390,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_identities
 
-> Vec<crate::models::Identity> list_identities(per_page, page, credentials_identifier)
+> Vec<crate::models::Identity> list_identities(per_page, page, page_size, page_token, credentials_identifier)
 List Identities
 
 Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
@@ -400,8 +400,10 @@ Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-mod
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**per_page** | Option<**i64**> | Items per Page  This is the number of items per page. |  |[default to 250]
-**page** | Option<**i64**> | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
+**per_page** | Option<**i64**> | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. |  |[default to 250]
+**page** | Option<**i64**> | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
+**page_size** | Option<**i64**> | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
 **credentials_identifier** | Option<**String**> | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. |  |
 
 ### Return type
@@ -422,7 +424,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_identity_schemas
 
-> Vec<crate::models::IdentitySchemaContainer> list_identity_schemas(per_page, page)
+> Vec<crate::models::IdentitySchemaContainer> list_identity_schemas(per_page, page, page_size, page_token)
 Get all Identity Schemas
 
 Returns a list of all identity schemas currently in use.
@@ -432,8 +434,10 @@ Returns a list of all identity schemas currently in use.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**per_page** | Option<**i64**> | Items per Page  This is the number of items per page. |  |[default to 250]
-**page** | Option<**i64**> | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
+**per_page** | Option<**i64**> | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. |  |[default to 250]
+**page** | Option<**i64**> | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
+**page_size** | Option<**i64**> | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
 
 ### Return type
 
@@ -453,7 +457,7 @@ No authorization required
 
 ## list_identity_sessions
 
-> Vec<crate::models::Session> list_identity_sessions(id, per_page, page, active)
+> Vec<crate::models::Session> list_identity_sessions(id, per_page, page, page_size, page_token, active)
 List an Identity's Sessions
 
 This endpoint returns all sessions that belong to the given Identity.
@@ -464,8 +468,10 @@ This endpoint returns all sessions that belong to the given Identity.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID is the identity's ID. | [required] |
-**per_page** | Option<**i64**> | Items per Page  This is the number of items per page. |  |[default to 250]
-**page** | Option<**i64**> | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
+**per_page** | Option<**i64**> | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. |  |[default to 250]
+**page** | Option<**i64**> | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
+**page_size** | Option<**i64**> | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
 **active** | Option<**bool**> | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. |  |
 
 ### Return type

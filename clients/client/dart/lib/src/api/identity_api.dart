@@ -986,8 +986,10 @@ class IdentityApi {
   /// Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
   ///
   /// Parameters:
-  /// * [perPage] - Items per Page  This is the number of items per page.
-  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+  /// * [perPage] - Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+  /// * [page] - Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+  /// * [pageSize] - Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [credentialsIdentifier] - CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1001,6 +1003,8 @@ class IdentityApi {
   Future<Response<BuiltList<Identity>>> listIdentities({ 
     int? perPage = 250,
     int? page,
+    int? pageSize = 250,
+    String? pageToken = '1',
     String? credentialsIdentifier,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1031,6 +1035,8 @@ class IdentityApi {
     final _queryParameters = <String, dynamic>{
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       if (credentialsIdentifier != null) r'credentials_identifier': encodeQueryParameter(_serializers, credentialsIdentifier, const FullType(String)),
     };
 
@@ -1078,8 +1084,10 @@ class IdentityApi {
   /// Returns a list of all identity schemas currently in use.
   ///
   /// Parameters:
-  /// * [perPage] - Items per Page  This is the number of items per page.
-  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+  /// * [perPage] - Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+  /// * [page] - Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+  /// * [pageSize] - Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1092,6 +1100,8 @@ class IdentityApi {
   Future<Response<BuiltList<IdentitySchemaContainer>>> listIdentitySchemas({ 
     int? perPage = 250,
     int? page,
+    int? pageSize = 250,
+    String? pageToken = '1',
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1115,6 +1125,8 @@ class IdentityApi {
     final _queryParameters = <String, dynamic>{
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1162,8 +1174,10 @@ class IdentityApi {
   ///
   /// Parameters:
   /// * [id] - ID is the identity's ID.
-  /// * [perPage] - Items per Page  This is the number of items per page.
-  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+  /// * [perPage] - Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+  /// * [page] - Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+  /// * [pageSize] - Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [active] - Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1178,6 +1192,8 @@ class IdentityApi {
     required String id,
     int? perPage = 250,
     int? page,
+    int? pageSize = 250,
+    String? pageToken = '1',
     bool? active,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1208,6 +1224,8 @@ class IdentityApi {
     final _queryParameters = <String, dynamic>{
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       if (active != null) r'active': encodeQueryParameter(_serializers, active, const FullType(bool)),
     };
 

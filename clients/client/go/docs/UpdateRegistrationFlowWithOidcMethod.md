@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CsrfToken** | Pointer to **string** | The CSRF Token | [optional] 
+**IdToken** | Pointer to **string** | IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider&#39;s public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the &#x60;traits&#x60; field to populate the identity&#39;s traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple | [optional] 
+**IdTokenNonce** | Pointer to **string** | IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and is required. | [optional] 
 **Method** | **string** | Method to use  This field must be set to &#x60;oidc&#x60; when using the oidc method. | 
 **Provider** | **string** | The provider to register with | 
 **Traits** | Pointer to **map[string]interface{}** | The identity traits | [optional] 
@@ -54,6 +56,56 @@ SetCsrfToken sets CsrfToken field to given value.
 `func (o *UpdateRegistrationFlowWithOidcMethod) HasCsrfToken() bool`
 
 HasCsrfToken returns a boolean if a field has been set.
+
+### GetIdToken
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) GetIdToken() string`
+
+GetIdToken returns the IdToken field if non-nil, zero value otherwise.
+
+### GetIdTokenOk
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) GetIdTokenOk() (*string, bool)`
+
+GetIdTokenOk returns a tuple with the IdToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdToken
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) SetIdToken(v string)`
+
+SetIdToken sets IdToken field to given value.
+
+### HasIdToken
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) HasIdToken() bool`
+
+HasIdToken returns a boolean if a field has been set.
+
+### GetIdTokenNonce
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) GetIdTokenNonce() string`
+
+GetIdTokenNonce returns the IdTokenNonce field if non-nil, zero value otherwise.
+
+### GetIdTokenNonceOk
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) GetIdTokenNonceOk() (*string, bool)`
+
+GetIdTokenNonceOk returns a tuple with the IdTokenNonce field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdTokenNonce
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) SetIdTokenNonce(v string)`
+
+SetIdTokenNonce sets IdTokenNonce field to given value.
+
+### HasIdTokenNonce
+
+`func (o *UpdateRegistrationFlowWithOidcMethod) HasIdTokenNonce() bool`
+
+HasIdTokenNonce returns a boolean if a field has been set.
 
 ### GetMethod
 

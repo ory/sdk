@@ -13,6 +13,18 @@ void main() {
       // TODO
     });
 
+    // IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple
+    // String idToken
+    test('to test the property `idToken`', () async {
+      // TODO
+    });
+
+    // IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and required.
+    // String idTokenNonce
+    test('to test the property `idTokenNonce`', () async {
+      // TODO
+    });
+
     // Method to use  This field must be set to `oidc` when using the oidc method.
     // String method
     test('to test the property `method`', () async {

@@ -10,6 +10,10 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
   @override
   final String? csrfToken;
   @override
+  final String? idToken;
+  @override
+  final String? idTokenNonce;
+  @override
   final String method;
   @override
   final String provider;
@@ -24,6 +28,8 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
 
   _$UpdateLoginFlowWithOidcMethod._(
       {this.csrfToken,
+      this.idToken,
+      this.idTokenNonce,
       required this.method,
       required this.provider,
       this.traits,
@@ -49,6 +55,8 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
     if (identical(other, this)) return true;
     return other is UpdateLoginFlowWithOidcMethod &&
         csrfToken == other.csrfToken &&
+        idToken == other.idToken &&
+        idTokenNonce == other.idTokenNonce &&
         method == other.method &&
         provider == other.provider &&
         traits == other.traits &&
@@ -59,6 +67,8 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, csrfToken.hashCode);
+    _$hash = $jc(_$hash, idToken.hashCode);
+    _$hash = $jc(_$hash, idTokenNonce.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, traits.hashCode);
@@ -71,6 +81,8 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
   String toString() {
     return (newBuiltValueToStringHelper(r'UpdateLoginFlowWithOidcMethod')
           ..add('csrfToken', csrfToken)
+          ..add('idToken', idToken)
+          ..add('idTokenNonce', idTokenNonce)
           ..add('method', method)
           ..add('provider', provider)
           ..add('traits', traits)
@@ -88,6 +100,14 @@ class UpdateLoginFlowWithOidcMethodBuilder
   String? _csrfToken;
   String? get csrfToken => _$this._csrfToken;
   set csrfToken(String? csrfToken) => _$this._csrfToken = csrfToken;
+
+  String? _idToken;
+  String? get idToken => _$this._idToken;
+  set idToken(String? idToken) => _$this._idToken = idToken;
+
+  String? _idTokenNonce;
+  String? get idTokenNonce => _$this._idTokenNonce;
+  set idTokenNonce(String? idTokenNonce) => _$this._idTokenNonce = idTokenNonce;
 
   String? _method;
   String? get method => _$this._method;
@@ -114,6 +134,8 @@ class UpdateLoginFlowWithOidcMethodBuilder
     final $v = _$v;
     if ($v != null) {
       _csrfToken = $v.csrfToken;
+      _idToken = $v.idToken;
+      _idTokenNonce = $v.idTokenNonce;
       _method = $v.method;
       _provider = $v.provider;
       _traits = $v.traits;
@@ -141,6 +163,8 @@ class UpdateLoginFlowWithOidcMethodBuilder
     final _$result = _$v ??
         new _$UpdateLoginFlowWithOidcMethod._(
             csrfToken: csrfToken,
+            idToken: idToken,
+            idTokenNonce: idTokenNonce,
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateLoginFlowWithOidcMethod', 'method'),
             provider: BuiltValueNullFieldError.checkNotNull(

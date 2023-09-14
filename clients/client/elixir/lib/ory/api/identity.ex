@@ -447,8 +447,10 @@ defmodule Ory.Api.Identity do
 
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:per_page` (integer()): Items per Page  This is the number of items per page.
-    - `:page` (integer()): Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    - `:per_page` (integer()): Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+    - `:page` (integer()): Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    - `:page_size` (integer()): Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    - `:page_token` (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - `:credentials_identifier` (String.t): CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
 
   ### Returns
@@ -461,6 +463,8 @@ defmodule Ory.Api.Identity do
     optional_params = %{
       :per_page => :query,
       :page => :query,
+      :page_size => :query,
+      :page_token => :query,
       :credentials_identifier => :query
     }
 
@@ -487,8 +491,10 @@ defmodule Ory.Api.Identity do
 
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:per_page` (integer()): Items per Page  This is the number of items per page.
-    - `:page` (integer()): Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    - `:per_page` (integer()): Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+    - `:page` (integer()): Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    - `:page_size` (integer()): Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    - `:page_token` (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 
   ### Returns
 
@@ -499,7 +505,9 @@ defmodule Ory.Api.Identity do
   def list_identity_schemas(connection, opts \\ []) do
     optional_params = %{
       :per_page => :query,
-      :page => :query
+      :page => :query,
+      :page_size => :query,
+      :page_token => :query
     }
 
     request =
@@ -526,8 +534,10 @@ defmodule Ory.Api.Identity do
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): ID is the identity's ID.
   - `opts` (keyword): Optional parameters
-    - `:per_page` (integer()): Items per Page  This is the number of items per page.
-    - `:page` (integer()): Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    - `:per_page` (integer()): Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+    - `:page` (integer()): Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    - `:page_size` (integer()): Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    - `:page_token` (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - `:active` (boolean()): Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
 
   ### Returns
@@ -540,6 +550,8 @@ defmodule Ory.Api.Identity do
     optional_params = %{
       :per_page => :query,
       :page => :query,
+      :page_size => :query,
+      :page_token => :query,
       :active => :query
     }
 

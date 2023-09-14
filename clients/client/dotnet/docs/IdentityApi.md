@@ -945,7 +945,7 @@ Name | Type | Description  | Notes
 
 <a name="listidentities"></a>
 # **ListIdentities**
-> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, string credentialsIdentifier = null)
+> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null, string credentialsIdentifier = null)
 
 List Identities
 
@@ -971,14 +971,16 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new IdentityApi(config);
-            var perPage = 250L;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 250)
-            var page = 789L;  // long? | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
+            var perPage = 250L;  // long? | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)  (default to 250)
+            var page = 789L;  // long? | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
+            var pageSize = 250L;  // long? | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
+            var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
             var credentialsIdentifier = "credentialsIdentifier_example";  // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. (optional) 
 
             try
             {
                 // List Identities
-                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, credentialsIdentifier);
+                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, pageSize, pageToken, credentialsIdentifier);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -996,8 +998,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **long?**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **long?**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **perPage** | **long?**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **long?**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **pageSize** | **long?**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
  **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] 
 
 ### Return type
@@ -1024,7 +1028,7 @@ Name | Type | Description  | Notes
 
 <a name="listidentityschemas"></a>
 # **ListIdentitySchemas**
-> List&lt;ClientIdentitySchemaContainer&gt; ListIdentitySchemas (long? perPage = null, long? page = null)
+> List&lt;ClientIdentitySchemaContainer&gt; ListIdentitySchemas (long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null)
 
 Get all Identity Schemas
 
@@ -1047,13 +1051,15 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new IdentityApi(config);
-            var perPage = 250L;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 250)
-            var page = 789L;  // long? | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
+            var perPage = 250L;  // long? | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)  (default to 250)
+            var page = 789L;  // long? | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
+            var pageSize = 250L;  // long? | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
+            var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
 
             try
             {
                 // Get all Identity Schemas
-                List<ClientIdentitySchemaContainer> result = apiInstance.ListIdentitySchemas(perPage, page);
+                List<ClientIdentitySchemaContainer> result = apiInstance.ListIdentitySchemas(perPage, page, pageSize, pageToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1071,8 +1077,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **long?**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **long?**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **perPage** | **long?**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **long?**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **pageSize** | **long?**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
 
 ### Return type
 
@@ -1098,7 +1106,7 @@ No authorization required
 
 <a name="listidentitysessions"></a>
 # **ListIdentitySessions**
-> List&lt;ClientSession&gt; ListIdentitySessions (string id, long? perPage = null, long? page = null, bool? active = null)
+> List&lt;ClientSession&gt; ListIdentitySessions (string id, long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null, bool? active = null)
 
 List an Identity's Sessions
 
@@ -1125,14 +1133,16 @@ namespace Example
 
             var apiInstance = new IdentityApi(config);
             var id = "id_example";  // string | ID is the identity's ID.
-            var perPage = 250L;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 250)
-            var page = 789L;  // long? | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
+            var perPage = 250L;  // long? | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)  (default to 250)
+            var page = 789L;  // long? | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
+            var pageSize = 250L;  // long? | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
+            var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
             var active = true;  // bool? | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional) 
 
             try
             {
                 // List an Identity's Sessions
-                List<ClientSession> result = apiInstance.ListIdentitySessions(id, perPage, page, active);
+                List<ClientSession> result = apiInstance.ListIdentitySessions(id, perPage, page, pageSize, pageToken, active);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1151,8 +1161,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the identity&#39;s ID. | 
- **perPage** | **long?**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **long?**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **perPage** | **long?**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **long?**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **pageSize** | **long?**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
  **active** | **bool?**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] 
 
 ### Return type
