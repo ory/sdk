@@ -107,6 +107,7 @@ docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
+docs/NormalizedProjectRevisionTokenizerTemplate.md
 docs/OAuth2Api.md
 docs/OAuth2Client.md
 docs/OAuth2ClientTokenLifespans.md
@@ -370,6 +371,7 @@ src/main/java/sh/ory/model/NormalizedProjectRevision.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionHook.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionIdentitySchema.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionThirdPartyProvider.java
+src/main/java/sh/ory/model/NormalizedProjectRevisionTokenizerTemplate.java
 src/main/java/sh/ory/model/OAuth2Client.java
 src/main/java/sh/ory/model/OAuth2ClientTokenLifespans.java
 src/main/java/sh/ory/model/OAuth2ConsentRequest.java
@@ -595,6 +597,7 @@ src/test/java/sh/ory/model/NormalizedProjectRevisionHookTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionIdentitySchemaTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionThirdPartyProviderTest.java
+src/test/java/sh/ory/model/NormalizedProjectRevisionTokenizerTemplateTest.java
 src/test/java/sh/ory/model/NormalizedProjectTest.java
 src/test/java/sh/ory/model/OAuth2ClientTest.java
 src/test/java/sh/ory/model/OAuth2ClientTokenLifespansTest.java

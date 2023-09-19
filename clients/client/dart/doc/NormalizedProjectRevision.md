@@ -175,6 +175,7 @@ Name | Type | Description | Notes
 **kratosSessionCookieSameSite** | **String** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \"session.cookie.same_site\" setting. | [optional] 
 **kratosSessionLifespan** | **String** | Configures the Ory Kratos Session Lifespan  This governs the \"session.lifespan\" setting. | [optional] 
 **kratosSessionWhoamiRequiredAal** | **String** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting. | [optional] 
+**kratosSessionWhoamiTokenizerTemplates** | [**BuiltList&lt;NormalizedProjectRevisionTokenizerTemplate&gt;**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] 
 **name** | **String** | The project's name. | 
 **production** | **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] 
 **projectId** | **String** | The Revision's Project ID | [optional] 

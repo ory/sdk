@@ -117,6 +117,7 @@ export 'package:ory_client/src/model/normalized_project_revision.dart';
 export 'package:ory_client/src/model/normalized_project_revision_hook.dart';
 export 'package:ory_client/src/model/normalized_project_revision_identity_schema.dart';
 export 'package:ory_client/src/model/normalized_project_revision_third_party_provider.dart';
+export 'package:ory_client/src/model/normalized_project_revision_tokenizer_template.dart';
 export 'package:ory_client/src/model/o_auth2_client.dart';
 export 'package:ory_client/src/model/o_auth2_client_token_lifespans.dart';
 export 'package:ory_client/src/model/o_auth2_consent_request.dart';

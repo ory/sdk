@@ -25,6 +25,8 @@ class _$Session extends Session {
   final Identity? identity;
   @override
   final DateTime? issuedAt;
+  @override
+  final String? tokenized;
 
   factory _$Session([void Function(SessionBuilder)? updates]) =>
       (new SessionBuilder()..update(updates))._build();
@@ -38,7 +40,8 @@ class _$Session extends Session {
       this.expiresAt,
       required this.id,
       this.identity,
-      this.issuedAt})
+      this.issuedAt,
+      this.tokenized})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'Session', 'id');
   }
@@ -62,7 +65,8 @@ class _$Session extends Session {
         expiresAt == other.expiresAt &&
         id == other.id &&
         identity == other.identity &&
-        issuedAt == other.issuedAt;
+        issuedAt == other.issuedAt &&
+        tokenized == other.tokenized;
   }
 
   @override
@@ -77,6 +81,7 @@ class _$Session extends Session {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, identity.hashCode);
     _$hash = $jc(_$hash, issuedAt.hashCode);
+    _$hash = $jc(_$hash, tokenized.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -92,7 +97,8 @@ class _$Session extends Session {
           ..add('expiresAt', expiresAt)
           ..add('id', id)
           ..add('identity', identity)
-          ..add('issuedAt', issuedAt))
+          ..add('issuedAt', issuedAt)
+          ..add('tokenized', tokenized))
         .toString();
   }
 }
@@ -145,6 +151,10 @@ class SessionBuilder implements Builder<Session, SessionBuilder> {
   DateTime? get issuedAt => _$this._issuedAt;
   set issuedAt(DateTime? issuedAt) => _$this._issuedAt = issuedAt;
 
+  String? _tokenized;
+  String? get tokenized => _$this._tokenized;
+  set tokenized(String? tokenized) => _$this._tokenized = tokenized;
+
   SessionBuilder() {
     Session._defaults(this);
   }
@@ -161,6 +171,7 @@ class SessionBuilder implements Builder<Session, SessionBuilder> {
       _id = $v.id;
       _identity = $v.identity?.toBuilder();
       _issuedAt = $v.issuedAt;
+      _tokenized = $v.tokenized;
       _$v = null;
     }
     return this;
@@ -193,7 +204,8 @@ class SessionBuilder implements Builder<Session, SessionBuilder> {
               expiresAt: expiresAt,
               id: BuiltValueNullFieldError.checkNotNull(id, r'Session', 'id'),
               identity: _identity?.build(),
-              issuedAt: issuedAt);
+              issuedAt: issuedAt,
+              tokenized: tokenized);
     } catch (_) {
       late String _$failedField;
       try {

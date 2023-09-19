@@ -104,6 +104,7 @@ docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
+docs/NormalizedProjectRevisionTokenizerTemplate.md
 docs/OAuth2Api.md
 docs/OAuth2Client.md
 docs/OAuth2ClientTokenLifespans.md
@@ -341,6 +342,7 @@ src/models/normalized_project_revision.rs
 src/models/normalized_project_revision_hook.rs
 src/models/normalized_project_revision_identity_schema.rs
 src/models/normalized_project_revision_third_party_provider.rs
+src/models/normalized_project_revision_tokenizer_template.rs
 src/models/o_auth2_client.rs
 src/models/o_auth2_client_token_lifespans.rs
 src/models/o_auth2_consent_request.rs

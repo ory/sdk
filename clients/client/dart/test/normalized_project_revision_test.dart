@@ -991,6 +991,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<NormalizedProjectRevisionTokenizerTemplate> kratosSessionWhoamiTokenizerTemplates
+    test('to test the property `kratosSessionWhoamiTokenizerTemplates`', () async {
+      // TODO
+    });
+
     // The project's name.
     // String name
     test('to test the property `name`', () async {

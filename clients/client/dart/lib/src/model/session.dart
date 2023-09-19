@@ -25,6 +25,7 @@ part 'session.g.dart';
 /// * [id] - Session ID
 /// * [identity] 
 /// * [issuedAt] - The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`.
+/// * [tokenized] - Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the `tokenize` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
 @BuiltValue()
 abstract class Session implements Built<Session, SessionBuilder> {
   /// Active state. If false the session is no longer active.
@@ -61,6 +62,10 @@ abstract class Session implements Built<Session, SessionBuilder> {
   /// The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`.
   @BuiltValueField(wireName: r'issued_at')
   DateTime? get issuedAt;
+
+  /// Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the `tokenize` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
+  @BuiltValueField(wireName: r'tokenized')
+  String? get tokenized;
 
   Session._();
 
@@ -144,6 +149,13 @@ class _$SessionSerializer implements PrimitiveSerializer<Session> {
       yield serializers.serialize(
         object.issuedAt,
         specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.tokenized != null) {
+      yield r'tokenized';
+      yield serializers.serialize(
+        object.tokenized,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -231,6 +243,13 @@ class _$SessionSerializer implements PrimitiveSerializer<Session> {
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.issuedAt = valueDes;
+          break;
+        case r'tokenized':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.tokenized = valueDes;
           break;
         default:
           unhandled.add(key);

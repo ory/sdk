@@ -13,6 +13,7 @@
 | **id** | **String** | Session ID |  |
 | **identity** | [**Identity**](Identity.md) |  | [optional] |
 | **issued_at** | **Time** | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to &#x60;authenticated_at&#x60;. | [optional] |
+| **tokenized** | **String** | Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the &#x60;tokenize&#x60; query parameter was set to a valid tokenize template during calls to &#x60;/session/whoami&#x60;. | [optional] |
 
 ## Example
 
@@ -28,7 +29,8 @@ instance = OryClient::Session.new(
   expires_at: null,
   id: null,
   identity: null,
-  issued_at: null
+  issued_at: null,
+  tokenized: null
 )
 ```
 

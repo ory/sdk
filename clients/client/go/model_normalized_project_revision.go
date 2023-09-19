@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.6
+API version: v1.2.7
 Contact: support@ory.sh
 */
 
@@ -334,6 +334,7 @@ type NormalizedProjectRevision struct {
 	KratosSessionLifespan *string `json:"kratos_session_lifespan,omitempty"`
 	// Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting.
 	KratosSessionWhoamiRequiredAal *string `json:"kratos_session_whoami_required_aal,omitempty"`
+	KratosSessionWhoamiTokenizerTemplates []NormalizedProjectRevisionTokenizerTemplate `json:"kratos_session_whoami_tokenizer_templates,omitempty"`
 	// The project's name.
 	Name string `json:"name"`
 	// Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
@@ -5772,6 +5773,38 @@ func (o *NormalizedProjectRevision) SetKratosSessionWhoamiRequiredAal(v string) 
 	o.KratosSessionWhoamiRequiredAal = &v
 }
 
+// GetKratosSessionWhoamiTokenizerTemplates returns the KratosSessionWhoamiTokenizerTemplates field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSessionWhoamiTokenizerTemplates() []NormalizedProjectRevisionTokenizerTemplate {
+	if o == nil || o.KratosSessionWhoamiTokenizerTemplates == nil {
+		var ret []NormalizedProjectRevisionTokenizerTemplate
+		return ret
+	}
+	return o.KratosSessionWhoamiTokenizerTemplates
+}
+
+// GetKratosSessionWhoamiTokenizerTemplatesOk returns a tuple with the KratosSessionWhoamiTokenizerTemplates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSessionWhoamiTokenizerTemplatesOk() ([]NormalizedProjectRevisionTokenizerTemplate, bool) {
+	if o == nil || o.KratosSessionWhoamiTokenizerTemplates == nil {
+		return nil, false
+	}
+	return o.KratosSessionWhoamiTokenizerTemplates, true
+}
+
+// HasKratosSessionWhoamiTokenizerTemplates returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSessionWhoamiTokenizerTemplates() bool {
+	if o != nil && o.KratosSessionWhoamiTokenizerTemplates != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSessionWhoamiTokenizerTemplates gets a reference to the given []NormalizedProjectRevisionTokenizerTemplate and assigns it to the KratosSessionWhoamiTokenizerTemplates field.
+func (o *NormalizedProjectRevision) SetKratosSessionWhoamiTokenizerTemplates(v []NormalizedProjectRevisionTokenizerTemplate) {
+	o.KratosSessionWhoamiTokenizerTemplates = v
+}
+
 // GetName returns the Name field value
 func (o *NormalizedProjectRevision) GetName() string {
 	if o == nil {
@@ -6523,6 +6556,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSessionWhoamiRequiredAal != nil {
 		toSerialize["kratos_session_whoami_required_aal"] = o.KratosSessionWhoamiRequiredAal
 	}
+	if o.KratosSessionWhoamiTokenizerTemplates != nil {
+		toSerialize["kratos_session_whoami_tokenizer_templates"] = o.KratosSessionWhoamiTokenizerTemplates
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
@@ -6732,6 +6768,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_session_cookie_same_site")
 		delete(additionalProperties, "kratos_session_lifespan")
 		delete(additionalProperties, "kratos_session_whoami_required_aal")
+		delete(additionalProperties, "kratos_session_whoami_tokenizer_templates")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "production")
 		delete(additionalProperties, "project_id")

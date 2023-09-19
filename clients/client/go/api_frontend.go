@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.6
+API version: v1.2.7
 Contact: support@ory.sh
 */
 
@@ -659,6 +659,16 @@ pseudo-code example
 const session = await client.toSession("the-session-token")
 
 console.log(session)
+```
+
+When using a token template, the token is included in the `tokenized` field of the session.
+
+```js
+pseudo-code example
+...
+const session = await client.toSession("the-session-token", { tokenize_as: "example-jwt-template" })
+
+console.log(session.tokenized) // The JWT
 ```
 
 Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator
@@ -4487,6 +4497,7 @@ type FrontendApiToSessionRequest struct {
 	ApiService FrontendApi
 	xSessionToken *string
 	cookie *string
+	tokenizeAs *string
 }
 
 // Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;.
@@ -4498,6 +4509,12 @@ func (r FrontendApiToSessionRequest) XSessionToken(xSessionToken string) Fronten
 // Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored.
 func (r FrontendApiToSessionRequest) Cookie(cookie string) FrontendApiToSessionRequest {
 	r.cookie = &cookie
+	return r
+}
+
+// Returns the session additionally as a token (such as a JWT)  The value of this parameter has to be a valid, configured Ory Session token template. For more information head over to [the documentation](http://ory.sh/docs/identities/session-to-jwt-cors).
+func (r FrontendApiToSessionRequest) TokenizeAs(tokenizeAs string) FrontendApiToSessionRequest {
+	r.tokenizeAs = &tokenizeAs
 	return r
 }
 
@@ -4532,6 +4549,16 @@ pseudo-code example
 const session = await client.toSession("the-session-token")
 
 console.log(session)
+```
+
+When using a token template, the token is included in the `tokenized` field of the session.
+
+```js
+pseudo-code example
+...
+const session = await client.toSession("the-session-token", { tokenize_as: "example-jwt-template" })
+
+console.log(session.tokenized) // The JWT
 ```
 
 Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator
@@ -4589,6 +4616,9 @@ func (a *FrontendApiService) ToSessionExecute(r FrontendApiToSessionRequest) (*S
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.tokenizeAs != nil {
+		localVarQueryParams.Add("tokenize_as", parameterToString(*r.tokenizeAs, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.6
+API version: v1.2.7
 Contact: support@ory.sh
 */
 
@@ -37,7 +37,7 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	IssuerUrl *string `json:"issuer_url,omitempty"`
 	// Label represents an optional label which can be used in the UI generation.
 	Label *string `json:"label,omitempty"`
-	// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
+	// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
 	MapperUrl *string `json:"mapper_url,omitempty"`
 	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`

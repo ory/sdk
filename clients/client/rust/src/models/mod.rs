@@ -190,6 +190,8 @@ pub mod normalized_project_revision_identity_schema;
 pub use self::normalized_project_revision_identity_schema::NormalizedProjectRevisionIdentitySchema;
 pub mod normalized_project_revision_third_party_provider;
 pub use self::normalized_project_revision_third_party_provider::NormalizedProjectRevisionThirdPartyProvider;
+pub mod normalized_project_revision_tokenizer_template;
+pub use self::normalized_project_revision_tokenizer_template::NormalizedProjectRevisionTokenizerTemplate;
 pub mod o_auth2_client;
 pub use self::o_auth2_client::OAuth2Client;
 pub mod o_auth2_client_token_lifespans;

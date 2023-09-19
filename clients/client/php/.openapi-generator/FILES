@@ -111,6 +111,7 @@ docs/Model/NormalizedProjectRevision.md
 docs/Model/NormalizedProjectRevisionHook.md
 docs/Model/NormalizedProjectRevisionIdentitySchema.md
 docs/Model/NormalizedProjectRevisionThirdPartyProvider.md
+docs/Model/NormalizedProjectRevisionTokenizerTemplate.md
 docs/Model/OAuth2Client.md
 docs/Model/OAuth2ClientTokenLifespans.md
 docs/Model/OAuth2ConsentRequest.md
@@ -342,6 +343,7 @@ lib/Model/NormalizedProjectRevision.php
 lib/Model/NormalizedProjectRevisionHook.php
 lib/Model/NormalizedProjectRevisionIdentitySchema.php
 lib/Model/NormalizedProjectRevisionThirdPartyProvider.php
+lib/Model/NormalizedProjectRevisionTokenizerTemplate.php
 lib/Model/OAuth2Client.php
 lib/Model/OAuth2ClientTokenLifespans.php
 lib/Model/OAuth2ConsentRequest.php
@@ -569,6 +571,7 @@ test/Model/NormalizedProjectRevisionHookTest.php
 test/Model/NormalizedProjectRevisionIdentitySchemaTest.php
 test/Model/NormalizedProjectRevisionTest.php
 test/Model/NormalizedProjectRevisionThirdPartyProviderTest.php
+test/Model/NormalizedProjectRevisionTokenizerTemplateTest.php
 test/Model/NormalizedProjectTest.php
 test/Model/OAuth2ClientTest.php
 test/Model/OAuth2ClientTokenLifespansTest.php

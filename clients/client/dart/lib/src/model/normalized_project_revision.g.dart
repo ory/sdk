@@ -622,6 +622,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosSessionWhoamiRequiredAal;
   @override
+  final BuiltList<NormalizedProjectRevisionTokenizerTemplate>?
+      kratosSessionWhoamiTokenizerTemplates;
+  @override
   final String name;
   @override
   final bool? production;
@@ -810,6 +813,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSessionCookieSameSite,
       this.kratosSessionLifespan,
       this.kratosSessionWhoamiRequiredAal,
+      this.kratosSessionWhoamiTokenizerTemplates,
       required this.name,
       this.production,
       this.projectId,
@@ -1142,6 +1146,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosSessionLifespan == other.kratosSessionLifespan &&
         kratosSessionWhoamiRequiredAal ==
             other.kratosSessionWhoamiRequiredAal &&
+        kratosSessionWhoamiTokenizerTemplates ==
+            other.kratosSessionWhoamiTokenizerTemplates &&
         name == other.name &&
         production == other.production &&
         projectId == other.projectId &&
@@ -1407,6 +1413,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSessionCookieSameSite.hashCode);
     _$hash = $jc(_$hash, kratosSessionLifespan.hashCode);
     _$hash = $jc(_$hash, kratosSessionWhoamiRequiredAal.hashCode);
+    _$hash = $jc(_$hash, kratosSessionWhoamiTokenizerTemplates.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, production.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
@@ -1726,6 +1733,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('kratosSessionLifespan', kratosSessionLifespan)
           ..add(
               'kratosSessionWhoamiRequiredAal', kratosSessionWhoamiRequiredAal)
+          ..add('kratosSessionWhoamiTokenizerTemplates',
+              kratosSessionWhoamiTokenizerTemplates)
           ..add('name', name)
           ..add('production', production)
           ..add('projectId', projectId)
@@ -3015,6 +3024,18 @@ class NormalizedProjectRevisionBuilder
   set kratosSessionWhoamiRequiredAal(String? kratosSessionWhoamiRequiredAal) =>
       _$this._kratosSessionWhoamiRequiredAal = kratosSessionWhoamiRequiredAal;
 
+  ListBuilder<NormalizedProjectRevisionTokenizerTemplate>?
+      _kratosSessionWhoamiTokenizerTemplates;
+  ListBuilder<NormalizedProjectRevisionTokenizerTemplate>
+      get kratosSessionWhoamiTokenizerTemplates =>
+          _$this._kratosSessionWhoamiTokenizerTemplates ??=
+              new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>();
+  set kratosSessionWhoamiTokenizerTemplates(
+          ListBuilder<NormalizedProjectRevisionTokenizerTemplate>?
+              kratosSessionWhoamiTokenizerTemplates) =>
+      _$this._kratosSessionWhoamiTokenizerTemplates =
+          kratosSessionWhoamiTokenizerTemplates;
+
   String? _name;
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
@@ -3347,6 +3368,8 @@ class NormalizedProjectRevisionBuilder
       _kratosSessionCookieSameSite = $v.kratosSessionCookieSameSite;
       _kratosSessionLifespan = $v.kratosSessionLifespan;
       _kratosSessionWhoamiRequiredAal = $v.kratosSessionWhoamiRequiredAal;
+      _kratosSessionWhoamiTokenizerTemplates =
+          $v.kratosSessionWhoamiTokenizerTemplates?.toBuilder();
       _name = $v.name;
       _production = $v.production;
       _projectId = $v.projectId;
@@ -3607,6 +3630,7 @@ class NormalizedProjectRevisionBuilder
               kratosSessionCookieSameSite: kratosSessionCookieSameSite,
               kratosSessionLifespan: kratosSessionLifespan,
               kratosSessionWhoamiRequiredAal: kratosSessionWhoamiRequiredAal,
+              kratosSessionWhoamiTokenizerTemplates: _kratosSessionWhoamiTokenizerTemplates?.build(),
               name: BuiltValueNullFieldError.checkNotNull(name, r'NormalizedProjectRevision', 'name'),
               production: production,
               projectId: projectId,
@@ -3662,6 +3686,9 @@ class NormalizedProjectRevisionBuilder
 
         _$failedField = 'kratosSelfserviceMethodsWebauthnConfigRpOrigins';
         _kratosSelfserviceMethodsWebauthnConfigRpOrigins?.build();
+
+        _$failedField = 'kratosSessionWhoamiTokenizerTemplates';
+        _kratosSessionWhoamiTokenizerTemplates?.build();
 
         _$failedField = 'serveAdminCorsAllowedOrigins';
         _serveAdminCorsAllowedOrigins?.build();

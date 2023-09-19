@@ -99,6 +99,7 @@ docs/ClientNormalizedProjectRevision.md
 docs/ClientNormalizedProjectRevisionHook.md
 docs/ClientNormalizedProjectRevisionIdentitySchema.md
 docs/ClientNormalizedProjectRevisionThirdPartyProvider.md
+docs/ClientNormalizedProjectRevisionTokenizerTemplate.md
 docs/ClientOAuth2Client.md
 docs/ClientOAuth2ClientTokenLifespans.md
 docs/ClientOAuth2ConsentRequest.md
@@ -336,6 +337,7 @@ src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionHookTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionIdentitySchemaTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionThirdPartyProviderTests.cs
+src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionTokenizerTemplateTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectTests.cs
 src/Ory.Client.Test/Model/ClientOAuth2ClientTests.cs
 src/Ory.Client.Test/Model/ClientOAuth2ClientTokenLifespansTests.cs
@@ -581,6 +583,7 @@ src/Ory.Client/Model/ClientNormalizedProjectRevision.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionHook.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionIdentitySchema.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionThirdPartyProvider.cs
+src/Ory.Client/Model/ClientNormalizedProjectRevisionTokenizerTemplate.cs
 src/Ory.Client/Model/ClientOAuth2Client.cs
 src/Ory.Client/Model/ClientOAuth2ClientTokenLifespans.cs
 src/Ory.Client/Model/ClientOAuth2ConsentRequest.cs

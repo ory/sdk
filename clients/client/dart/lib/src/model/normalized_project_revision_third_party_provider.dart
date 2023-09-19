@@ -24,7 +24,7 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// * [id] 
 /// * [issuerUrl] - IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required.
 /// * [label] - Label represents an optional label which can be used in the UI generation.
-/// * [mapperUrl] - Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
+/// * [mapperUrl] - Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
 /// * [projectRevisionId] - The Revision's ID this schema belongs to
 /// * [provider] - Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple
 /// * [providerId] - ID is the provider's ID
@@ -77,7 +77,7 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
   @BuiltValueField(wireName: r'label')
   String? get label;
 
-  /// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
+  /// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
   @BuiltValueField(wireName: r'mapper_url')
   String? get mapperUrl;
 

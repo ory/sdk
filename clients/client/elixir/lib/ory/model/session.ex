@@ -16,7 +16,8 @@ defmodule Ory.Model.Session do
     :expires_at,
     :id,
     :identity,
-    :issued_at
+    :issued_at,
+    :tokenized
   ]
 
   @type t :: %__MODULE__{
@@ -28,7 +29,8 @@ defmodule Ory.Model.Session do
     :expires_at => DateTime.t | nil,
     :id => String.t,
     :identity => Ory.Model.Identity.t | nil,
-    :issued_at => DateTime.t | nil
+    :issued_at => DateTime.t | nil,
+    :tokenized => String.t | nil
   }
 end
 

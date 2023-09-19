@@ -113,6 +113,8 @@ docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionIdentitySchemas.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
+docs/NormalizedProjectRevisionTokenizerTemplate.md
+docs/NormalizedProjectRevisionTokenizerTemplates.md
 docs/NormalizedProjects.md
 docs/NullDuration.md
 docs/OAuth2Api.md
@@ -383,6 +385,8 @@ ory_client/model/normalized_project_revision_hook.py
 ory_client/model/normalized_project_revision_identity_schema.py
 ory_client/model/normalized_project_revision_identity_schemas.py
 ory_client/model/normalized_project_revision_third_party_provider.py
+ory_client/model/normalized_project_revision_tokenizer_template.py
+ory_client/model/normalized_project_revision_tokenizer_templates.py
 ory_client/model/normalized_projects.py
 ory_client/model/null_duration.py
 ory_client/model/o_auth2_client.py
@@ -641,6 +645,8 @@ test/test_normalized_project_revision_hook.py
 test/test_normalized_project_revision_identity_schema.py
 test/test_normalized_project_revision_identity_schemas.py
 test/test_normalized_project_revision_third_party_provider.py
+test/test_normalized_project_revision_tokenizer_template.py
+test/test_normalized_project_revision_tokenizer_templates.py
 test/test_normalized_projects.py
 test/test_null_duration.py
 test/test_o_auth2_api.py

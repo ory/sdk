@@ -6,6 +6,7 @@
 import 'package:ory_client/src/model/keto_namespace.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/normalized_project_revision_identity_schema.dart';
+import 'package:ory_client/src/model/normalized_project_revision_tokenizer_template.dart';
 import 'package:ory_client/src/model/normalized_project_revision_hook.dart';
 import 'package:built_value/json_object.dart';
 import 'package:ory_client/src/model/normalized_project_revision_third_party_provider.dart';
@@ -184,6 +185,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSessionCookieSameSite] - Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \"session.cookie.same_site\" setting.
 /// * [kratosSessionLifespan] - Configures the Ory Kratos Session Lifespan  This governs the \"session.lifespan\" setting.
 /// * [kratosSessionWhoamiRequiredAal] - Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting.
+/// * [kratosSessionWhoamiTokenizerTemplates] 
 /// * [name] - The project's name.
 /// * [production] - Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
 /// * [projectId] - The Revision's Project ID
@@ -847,6 +849,9 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting.
   @BuiltValueField(wireName: r'kratos_session_whoami_required_aal')
   String? get kratosSessionWhoamiRequiredAal;
+
+  @BuiltValueField(wireName: r'kratos_session_whoami_tokenizer_templates')
+  BuiltList<NormalizedProjectRevisionTokenizerTemplate>? get kratosSessionWhoamiTokenizerTemplates;
 
   /// The project's name.
   @BuiltValueField(wireName: r'name')
@@ -2079,6 +2084,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosSessionWhoamiRequiredAal,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSessionWhoamiTokenizerTemplates != null) {
+      yield r'kratos_session_whoami_tokenizer_templates';
+      yield serializers.serialize(
+        object.kratosSessionWhoamiTokenizerTemplates,
+        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionTokenizerTemplate)]),
       );
     }
     yield r'name';
@@ -3330,6 +3342,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSessionWhoamiRequiredAal = valueDes;
+          break;
+        case r'kratos_session_whoami_tokenizer_templates':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionTokenizerTemplate)]),
+          ) as BuiltList<NormalizedProjectRevisionTokenizerTemplate>;
+          result.kratosSessionWhoamiTokenizerTemplates.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(

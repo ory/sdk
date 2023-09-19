@@ -175,6 +175,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_session_cookie_same_site,
     :kratos_session_lifespan,
     :kratos_session_whoami_required_aal,
+    :kratos_session_whoami_tokenizer_templates,
     :name,
     :production,
     :project_id,
@@ -353,6 +354,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_session_cookie_same_site => String.t | nil,
     :kratos_session_lifespan => String.t | nil,
     :kratos_session_whoami_required_aal => String.t | nil,
+    :kratos_session_whoami_tokenizer_templates => [Ory.Model.NormalizedProjectRevisionTokenizerTemplate.t] | nil,
     :name => String.t,
     :production => boolean() | nil,
     :project_id => String.t | nil,
@@ -372,6 +374,7 @@ defimpl Poison.Decoder, for: Ory.Model.NormalizedProjectRevision do
     |> deserialize(:kratos_identity_schemas, :list, Ory.Model.NormalizedProjectRevisionIdentitySchema, options)
     |> deserialize(:kratos_selfservice_flows_hooks, :list, Ory.Model.NormalizedProjectRevisionHook, options)
     |> deserialize(:kratos_selfservice_methods_oidc_config_providers, :list, Ory.Model.NormalizedProjectRevisionThirdPartyProvider, options)
+    |> deserialize(:kratos_session_whoami_tokenizer_templates, :list, Ory.Model.NormalizedProjectRevisionTokenizerTemplate, options)
   end
 end
 

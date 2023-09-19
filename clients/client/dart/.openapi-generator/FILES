@@ -103,6 +103,7 @@ doc/NormalizedProjectRevision.md
 doc/NormalizedProjectRevisionHook.md
 doc/NormalizedProjectRevisionIdentitySchema.md
 doc/NormalizedProjectRevisionThirdPartyProvider.md
+doc/NormalizedProjectRevisionTokenizerTemplate.md
 doc/OAuth2Api.md
 doc/OAuth2Client.md
 doc/OAuth2ClientTokenLifespans.md
@@ -345,6 +346,7 @@ lib/src/model/normalized_project_revision.dart
 lib/src/model/normalized_project_revision_hook.dart
 lib/src/model/normalized_project_revision_identity_schema.dart
 lib/src/model/normalized_project_revision_third_party_provider.dart
+lib/src/model/normalized_project_revision_tokenizer_template.dart
 lib/src/model/o_auth2_client.dart
 lib/src/model/o_auth2_client_token_lifespans.dart
 lib/src/model/o_auth2_consent_request.dart
@@ -566,6 +568,7 @@ test/normalized_project_revision_hook_test.dart
 test/normalized_project_revision_identity_schema_test.dart
 test/normalized_project_revision_test.dart
 test/normalized_project_revision_third_party_provider_test.dart
+test/normalized_project_revision_tokenizer_template_test.dart
 test/normalized_project_test.dart
 test/o_auth2_api_test.dart
 test/o_auth2_client_test.dart

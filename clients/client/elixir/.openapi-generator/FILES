@@ -113,6 +113,7 @@ lib/ory/model/normalized_project_revision.ex
 lib/ory/model/normalized_project_revision_hook.ex
 lib/ory/model/normalized_project_revision_identity_schema.ex
 lib/ory/model/normalized_project_revision_third_party_provider.ex
+lib/ory/model/normalized_project_revision_tokenizer_template.ex
 lib/ory/model/o_auth2_client.ex
 lib/ory/model/o_auth2_client_token_lifespans.ex
 lib/ory/model/o_auth2_consent_request.ex

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.2.6
+  version: v1.2.7
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -6697,6 +6697,16 @@ paths:
         console.log(session)
         ```
 
+        When using a token template, the token is included in the `tokenized` field of the session.
+
+        ```js
+        pseudo-code example
+        ...
+        const session = await client.toSession("the-session-token", { tokenize_as: "example-jwt-template" })
+
+        console.log(session.tokenized) // The JWT
+        ```
+
         Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator
         Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
         credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
@@ -6746,6 +6756,17 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          Returns the session additionally as a token (such as a JWT)
+
+          The value of this parameter has to be a valid, configured Ory Session token template. For more information head over to [the documentation](http://ory.sh/docs/identities/session-to-jwt-cors).
+        explode: true
+        in: query
+        name: tokenize_as
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -10781,6 +10802,10 @@ components:
 
             This governs the "session.whoami.required_aal" setting.
           type: string
+        kratos_session_whoami_tokenizer_templates:
+          items:
+            $ref: '#/components/schemas/normalizedProjectRevisionTokenizerTemplate'
+          type: array
         name:
           description: The project's name.
           type: string
@@ -11021,8 +11046,6 @@ components:
           description: |-
             Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google
             profile information) to hydrate the identity's data.
-
-            It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
           type: string
         project_revision_id:
           description: The Revision's ID this schema belongs to
@@ -11088,6 +11111,47 @@ components:
           readOnly: true
           type: string
       type: object
+    normalizedProjectRevisionTokenizerTemplate:
+      properties:
+        claims_mapper_url:
+          description: Claims mapper URL
+          type: string
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: The revision ID.
+          format: uuid
+          readOnly: true
+          type: string
+        jwks_url:
+          description: JSON Web Key URL
+          type: string
+        key:
+          description: The unique key of the template
+          type: string
+        project_revision_id:
+          description: The Revision's ID this schema belongs to
+          format: uuid
+          type: string
+        ttl:
+          default: 1m
+          description: Token time to live
+          example: 1h
+          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          type: string
+        updated_at:
+          description: Last Time Project's Revision was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
+    normalizedProjectRevisionTokenizerTemplates:
+      items:
+        $ref: '#/components/schemas/normalizedProjectRevisionTokenizerTemplate'
+      type: array
     normalizedProjects:
       items:
         $ref: '#/components/schemas/normalizedProject'
@@ -14110,6 +14174,7 @@ components:
     session:
       description: A Session
       example:
+        tokenized: tokenized
         expires_at: 2000-01-23T04:56:07.000+00:00
         devices:
         - location: location
@@ -14229,6 +14294,12 @@ components:
 
             When this session was issued at. Usually equal or close to `authenticated_at`.
           format: date-time
+          type: string
+        tokenized:
+          description: |-
+            Tokenized is the tokenized (e.g. JWT) version of the session.
+
+            It is only set when the `tokenize` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
           type: string
       required:
       - id
@@ -14702,6 +14773,7 @@ components:
       example:
         session_token: session_token
         session:
+          tokenized: tokenized
           expires_at: 2000-01-23T04:56:07.000+00:00
           devices:
           - location: location
@@ -14846,6 +14918,7 @@ components:
           state: null
           metadata_public: "{}"
         session:
+          tokenized: tokenized
           expires_at: 2000-01-23T04:56:07.000+00:00
           devices:
           - location: location

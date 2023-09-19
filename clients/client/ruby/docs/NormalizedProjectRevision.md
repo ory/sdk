@@ -171,6 +171,7 @@
 | **kratos_session_cookie_same_site** | **String** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] |
 | **kratos_session_lifespan** | **String** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional] |
 | **kratos_session_whoami_required_aal** | **String** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] |
+| **kratos_session_whoami_tokenizer_templates** | [**Array&lt;NormalizedProjectRevisionTokenizerTemplate&gt;**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] |
 | **name** | **String** | The project&#39;s name. |  |
 | **production** | **Boolean** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] |
 | **project_id** | **String** | The Revision&#39;s Project ID | [optional] |
@@ -353,6 +354,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_session_cookie_same_site: null,
   kratos_session_lifespan: null,
   kratos_session_whoami_required_aal: null,
+  kratos_session_whoami_tokenizer_templates: null,
   name: null,
   production: null,
   project_id: null,

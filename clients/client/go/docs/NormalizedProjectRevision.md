@@ -171,6 +171,7 @@ Name | Type | Description | Notes
 **KratosSessionCookieSameSite** | Pointer to **string** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] 
 **KratosSessionLifespan** | Pointer to **string** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional] 
 **KratosSessionWhoamiRequiredAal** | Pointer to **string** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] 
+**KratosSessionWhoamiTokenizerTemplates** | Pointer to [**[]NormalizedProjectRevisionTokenizerTemplate**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] 
 **Name** | **string** | The project&#39;s name. | 
 **Production** | Pointer to **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] 
 **ProjectId** | Pointer to **string** | The Revision&#39;s Project ID | [optional] 
@@ -4413,6 +4414,31 @@ SetKratosSessionWhoamiRequiredAal sets KratosSessionWhoamiRequiredAal field to g
 `func (o *NormalizedProjectRevision) HasKratosSessionWhoamiRequiredAal() bool`
 
 HasKratosSessionWhoamiRequiredAal returns a boolean if a field has been set.
+
+### GetKratosSessionWhoamiTokenizerTemplates
+
+`func (o *NormalizedProjectRevision) GetKratosSessionWhoamiTokenizerTemplates() []NormalizedProjectRevisionTokenizerTemplate`
+
+GetKratosSessionWhoamiTokenizerTemplates returns the KratosSessionWhoamiTokenizerTemplates field if non-nil, zero value otherwise.
+
+### GetKratosSessionWhoamiTokenizerTemplatesOk
+
+`func (o *NormalizedProjectRevision) GetKratosSessionWhoamiTokenizerTemplatesOk() (*[]NormalizedProjectRevisionTokenizerTemplate, bool)`
+
+GetKratosSessionWhoamiTokenizerTemplatesOk returns a tuple with the KratosSessionWhoamiTokenizerTemplates field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSessionWhoamiTokenizerTemplates
+
+`func (o *NormalizedProjectRevision) SetKratosSessionWhoamiTokenizerTemplates(v []NormalizedProjectRevisionTokenizerTemplate)`
+
+SetKratosSessionWhoamiTokenizerTemplates sets KratosSessionWhoamiTokenizerTemplates field to given value.
+
+### HasKratosSessionWhoamiTokenizerTemplates
+
+`func (o *NormalizedProjectRevision) HasKratosSessionWhoamiTokenizerTemplates() bool`
+
+HasKratosSessionWhoamiTokenizerTemplates returns a boolean if a field has been set.
 
 ### GetName
 
