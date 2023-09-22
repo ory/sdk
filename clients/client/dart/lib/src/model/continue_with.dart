@@ -16,7 +16,7 @@ part 'continue_with.g.dart';
 /// ContinueWith
 ///
 /// Properties:
-/// * [action] - Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+/// * [action] - Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString
 /// * [flow] 
 /// * [orySessionToken] - Token is the token of the session
 @BuiltValue()
@@ -129,12 +129,9 @@ class _$ContinueWithSerializer implements PrimitiveSerializer<ContinueWith> {
 
 class ContinueWithActionEnum extends EnumClass {
 
-  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString
   @BuiltValueEnumConst(wireName: r'set_ory_session_token')
   static const ContinueWithActionEnum setOrySessionToken = _$continueWithActionEnum_setOrySessionToken;
-  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
-  @BuiltValueEnumConst(wireName: r'show_verification_ui')
-  static const ContinueWithActionEnum showVerificationUi = _$continueWithActionEnum_showVerificationUi;
 
   static Serializer<ContinueWithActionEnum> get serializer => _$continueWithActionEnumSerializer;
 

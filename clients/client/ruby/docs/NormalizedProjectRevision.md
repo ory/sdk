@@ -108,9 +108,12 @@
 | **kratos_selfservice_default_browser_return_url** | **String** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_error_ui_url** | **String** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_hooks** | [**Array&lt;NormalizedProjectRevisionHook&gt;**](NormalizedProjectRevisionHook.md) |  | [optional] |
+| **kratos_selfservice_flows_login_after_code_default_browser_return_url** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.code.after.password.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_login_after_default_browser_return_url** | **String** | Configures the Ory Kratos Login Default Return URL  This governs the \&quot;selfservice.flows.login.after.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.lookup_secret.after.password.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_login_after_oidc_default_browser_return_url** | **String** | Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \&quot;selfservice.flows.login.after.oidc.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_login_after_password_default_browser_return_url** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.login.after.password.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_login_after_totp_default_browser_return_url** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.totp.after.password.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_login_after_webauthn_default_browser_return_url** | **String** | Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \&quot;selfservice.flows.login.after.webauthn.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_login_lifespan** | **String** | Configures the Ory Kratos Login Lifespan  This governs the \&quot;selfservice.flows.login.lifespan\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_login_ui_url** | **String** | Configures the Ory Kratos Login UI URL  This governs the \&quot;selfservice.flows.login.ui_url\&quot; setting. | [optional] |
@@ -121,6 +124,7 @@
 | **kratos_selfservice_flows_recovery_notify_unknown_recipients** | **Boolean** | Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \&quot;selfservice.flows.recovery.notify_unknown_recipients\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_recovery_ui_url** | **String** | Configures the Ory Kratos Recovery UI URL  This governs the \&quot;selfservice.flows.recovery.ui_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_recovery_use** | **String** | Configures the Ory Kratos Recovery strategy to use (\&quot;link\&quot; or \&quot;code\&quot;)  This governs the \&quot;selfservice.flows.recovery.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] |
+| **kratos_selfservice_flows_registration_after_code_default_browser_return_url** | **String** | Configures the Ory Kratos Registration After Code Default Return URL  This governs the \&quot;selfservice.flows.registration.after.code.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_registration_after_default_browser_return_url** | **String** | Configures the Ory Kratos Registration Default Return URL  This governs the \&quot;selfservice.flows.registration.after.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_registration_after_oidc_default_browser_return_url** | **String** | Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \&quot;selfservice.flows.registration.after.oidc.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_registration_after_password_default_browser_return_url** | **String** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] |
@@ -130,8 +134,12 @@
 | **kratos_selfservice_flows_registration_login_hints** | **Boolean** | Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \&quot;selfservice.flows.registration.login_hints\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_registration_ui_url** | **String** | Configures the Ory Kratos Registration UI URL  This governs the \&quot;selfservice.flows.registration.ui_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_settings_after_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL  This governs the \&quot;selfservice.flows.settings.after.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets  This governs the \&quot;selfservice.flows.settings.after.lookup_secret.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_after_oidc_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \&quot;selfservice.flows.settings.after.oidc.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_settings_after_password_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \&quot;selfservice.flows.settings.after.password.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_settings_after_profile_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \&quot;selfservice.flows.settings.after.profile.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_after_totp_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \&quot;selfservice.flows.settings.after.totp.default_browser_return_url\&quot; setting. | [optional] |
+| **kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \&quot;selfservice.flows.settings.webauthn.profile.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_settings_lifespan** | **String** | Configures the Ory Kratos Settings Lifespan  This governs the \&quot;selfservice.flows.settings.lifespan\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_settings_privileged_session_max_age** | **String** | Configures the Ory Kratos Settings Privileged Session Max Age  This governs the \&quot;selfservice.flows.settings.privileged_session_max_age\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_settings_required_aal** | **String** | Configures the Ory Kratos Settings Required AAL  This governs the \&quot;selfservice.flows.settings.required_aal\&quot; setting. | [optional] |
@@ -291,9 +299,12 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_default_browser_return_url: null,
   kratos_selfservice_flows_error_ui_url: null,
   kratos_selfservice_flows_hooks: null,
+  kratos_selfservice_flows_login_after_code_default_browser_return_url: null,
   kratos_selfservice_flows_login_after_default_browser_return_url: null,
+  kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url: null,
   kratos_selfservice_flows_login_after_oidc_default_browser_return_url: null,
   kratos_selfservice_flows_login_after_password_default_browser_return_url: null,
+  kratos_selfservice_flows_login_after_totp_default_browser_return_url: null,
   kratos_selfservice_flows_login_after_webauthn_default_browser_return_url: null,
   kratos_selfservice_flows_login_lifespan: null,
   kratos_selfservice_flows_login_ui_url: null,
@@ -304,6 +315,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_flows_recovery_notify_unknown_recipients: null,
   kratos_selfservice_flows_recovery_ui_url: null,
   kratos_selfservice_flows_recovery_use: null,
+  kratos_selfservice_flows_registration_after_code_default_browser_return_url: null,
   kratos_selfservice_flows_registration_after_default_browser_return_url: null,
   kratos_selfservice_flows_registration_after_oidc_default_browser_return_url: null,
   kratos_selfservice_flows_registration_after_password_default_browser_return_url: null,
@@ -313,8 +325,12 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_flows_registration_login_hints: null,
   kratos_selfservice_flows_registration_ui_url: null,
   kratos_selfservice_flows_settings_after_default_browser_return_url: null,
+  kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url: null,
+  kratos_selfservice_flows_settings_after_oidc_default_browser_return_url: null,
   kratos_selfservice_flows_settings_after_password_default_browser_return_url: null,
   kratos_selfservice_flows_settings_after_profile_default_browser_return_url: null,
+  kratos_selfservice_flows_settings_after_totp_default_browser_return_url: null,
+  kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url: null,
   kratos_selfservice_flows_settings_lifespan: null,
   kratos_selfservice_flows_settings_privileged_session_max_age: null,
   kratos_selfservice_flows_settings_required_aal: null,

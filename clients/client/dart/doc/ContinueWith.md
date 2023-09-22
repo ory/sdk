@@ -8,7 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** | Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI | 
+**action** | **String** | Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString | 
 **flow** | [**ContinueWithVerificationUiFlow**](ContinueWithVerificationUiFlow.md) |  | 
 **orySessionToken** | **String** | Token is the token of the session | 
 

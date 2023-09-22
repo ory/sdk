@@ -615,9 +615,21 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.code.after.password.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.lookup_secret.after.password.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl`', () async {
       // TODO
     });
 
@@ -630,6 +642,12 @@ void main() {
     // Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.totp.after.password.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl`', () async {
       // TODO
     });
 
@@ -693,6 +711,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Registration After Code Default Return URL  This governs the \"selfservice.flows.registration.after.code.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl`', () async {
@@ -747,6 +771,18 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets  This governs the \"selfservice.flows.settings.after.lookup_secret.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \"selfservice.flows.settings.after.oidc.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl`', () async {
@@ -756,6 +792,18 @@ void main() {
     // Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \"selfservice.flows.settings.after.profile.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \"selfservice.flows.settings.after.totp.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.webauthn.profile.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl`', () async {
       // TODO
     });
 

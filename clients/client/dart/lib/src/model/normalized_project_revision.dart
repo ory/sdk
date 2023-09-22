@@ -122,9 +122,12 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceDefaultBrowserReturnUrl] - Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting.
 /// * [kratosSelfserviceFlowsErrorUiUrl] - Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
 /// * [kratosSelfserviceFlowsHooks] 
+/// * [kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.code.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.lookup_secret.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.totp.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \"selfservice.flows.login.after.webauthn.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginLifespan] - Configures the Ory Kratos Login Lifespan  This governs the \"selfservice.flows.login.lifespan\" setting.
 /// * [kratosSelfserviceFlowsLoginUiUrl] - Configures the Ory Kratos Login UI URL  This governs the \"selfservice.flows.login.ui_url\" setting.
@@ -135,6 +138,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients] - Configures whether to notify unknown recipients of a Ory Kratos recovery flow  This governs the \"selfservice.flows.recovery.notify_unknown_recipients\" setting.
 /// * [kratosSelfserviceFlowsRecoveryUiUrl] - Configures the Ory Kratos Recovery UI URL  This governs the \"selfservice.flows.recovery.ui_url\" setting.
 /// * [kratosSelfserviceFlowsRecoveryUse] - Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
+/// * [kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Code Default Return URL  This governs the \"selfservice.flows.registration.after.code.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
@@ -144,8 +148,12 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsRegistrationLoginHints] - Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \"selfservice.flows.registration.login_hints\" setting.
 /// * [kratosSelfserviceFlowsRegistrationUiUrl] - Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets  This governs the \"selfservice.flows.settings.after.lookup_secret.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \"selfservice.flows.settings.after.oidc.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \"selfservice.flows.settings.after.profile.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \"selfservice.flows.settings.after.totp.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.webauthn.profile.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsLifespan] - Configures the Ory Kratos Settings Lifespan  This governs the \"selfservice.flows.settings.lifespan\" setting.
 /// * [kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge] - Configures the Ory Kratos Settings Privileged Session Max Age  This governs the \"selfservice.flows.settings.privileged_session_max_age\" setting.
 /// * [kratosSelfserviceFlowsSettingsRequiredAal] - Configures the Ory Kratos Settings Required AAL  This governs the \"selfservice.flows.settings.required_aal\" setting.
@@ -598,9 +606,17 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_hooks')
   BuiltList<NormalizedProjectRevisionHook>? get kratosSelfserviceFlowsHooks;
 
+  /// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.code.after.password.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_code_default_browser_return_url')
+  String? get kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
+
   /// Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_default_browser_return_url')
   String? get kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
+
+  /// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.lookup_secret.after.password.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url')
+  String? get kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
 
   /// Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_oidc_default_browser_return_url')
@@ -609,6 +625,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_password_default_browser_return_url')
   String? get kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
+
+  /// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.totp.after.password.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_totp_default_browser_return_url')
+  String? get kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
 
   /// Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \"selfservice.flows.login.after.webauthn.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_webauthn_default_browser_return_url')
@@ -651,6 +671,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum? get kratosSelfserviceFlowsRecoveryUse;
   // enum kratosSelfserviceFlowsRecoveryUseEnum {  link,  code,  };
 
+  /// Configures the Ory Kratos Registration After Code Default Return URL  This governs the \"selfservice.flows.registration.after.code.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_code_default_browser_return_url')
+  String? get kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
+
   /// Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_default_browser_return_url')
   String? get kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
@@ -687,6 +711,14 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_default_browser_return_url')
   String? get kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl;
 
+  /// Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets  This governs the \"selfservice.flows.settings.after.lookup_secret.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url')
+  String? get kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+
+  /// Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \"selfservice.flows.settings.after.oidc.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_oidc_default_browser_return_url')
+  String? get kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+
   /// Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_password_default_browser_return_url')
   String? get kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
@@ -694,6 +726,14 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \"selfservice.flows.settings.after.profile.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_profile_default_browser_return_url')
   String? get kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl;
+
+  /// Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \"selfservice.flows.settings.after.totp.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_totp_default_browser_return_url')
+  String? get kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+
+  /// Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.webauthn.profile.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url')
+  String? get kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
 
   /// Configures the Ory Kratos Settings Lifespan  This governs the \"selfservice.flows.settings.lifespan\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_lifespan')
@@ -1645,10 +1685,24 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionHook)]),
       );
     }
+    if (object.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_login_after_code_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl != null) {
       yield r'kratos_selfservice_flows_login_after_default_browser_return_url';
       yield serializers.serialize(
         object.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -1663,6 +1717,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_flows_login_after_password_default_browser_return_url';
       yield serializers.serialize(
         object.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_login_after_totp_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -1736,6 +1797,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum),
       );
     }
+    if (object.kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_registration_after_code_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl != null) {
       yield r'kratos_selfservice_flows_registration_after_default_browser_return_url';
       yield serializers.serialize(
@@ -1799,6 +1867,20 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_settings_after_oidc_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl != null) {
       yield r'kratos_selfservice_flows_settings_after_password_default_browser_return_url';
       yield serializers.serialize(
@@ -1810,6 +1892,20 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_flows_settings_after_profile_default_browser_return_url';
       yield serializers.serialize(
         object.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_settings_after_totp_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -2902,12 +2998,26 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as BuiltList<NormalizedProjectRevisionHook>;
           result.kratosSelfserviceFlowsHooks.replace(valueDes);
           break;
+        case r'kratos_selfservice_flows_login_after_code_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl = valueDes;
+          break;
         case r'kratos_selfservice_flows_login_after_default_browser_return_url':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl = valueDes;
+          break;
+        case r'kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl = valueDes;
           break;
         case r'kratos_selfservice_flows_login_after_oidc_default_browser_return_url':
           final valueDes = serializers.deserialize(
@@ -2922,6 +3032,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl = valueDes;
+          break;
+        case r'kratos_selfservice_flows_login_after_totp_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl = valueDes;
           break;
         case r'kratos_selfservice_flows_login_after_webauthn_default_browser_return_url':
           final valueDes = serializers.deserialize(
@@ -2993,6 +3110,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum;
           result.kratosSelfserviceFlowsRecoveryUse = valueDes;
           break;
+        case r'kratos_selfservice_flows_registration_after_code_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl = valueDes;
+          break;
         case r'kratos_selfservice_flows_registration_after_default_browser_return_url':
           final valueDes = serializers.deserialize(
             value,
@@ -3056,6 +3180,20 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl = valueDes;
           break;
+        case r'kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl = valueDes;
+          break;
+        case r'kratos_selfservice_flows_settings_after_oidc_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl = valueDes;
+          break;
         case r'kratos_selfservice_flows_settings_after_password_default_browser_return_url':
           final valueDes = serializers.deserialize(
             value,
@@ -3069,6 +3207,20 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl = valueDes;
+          break;
+        case r'kratos_selfservice_flows_settings_after_totp_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl = valueDes;
+          break;
+        case r'kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl = valueDes;
           break;
         case r'kratos_selfservice_flows_settings_lifespan':
           final valueDes = serializers.deserialize(

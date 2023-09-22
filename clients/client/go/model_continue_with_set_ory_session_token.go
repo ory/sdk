@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.8
+API version: v1.2.9
 Contact: support@ory.sh
 */
 
@@ -17,7 +17,7 @@ import (
 
 // ContinueWithSetOrySessionToken Indicates that a session was issued, and the application should use this token for authenticated requests
 type ContinueWithSetOrySessionToken struct {
-	// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+	// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString
 	Action string `json:"action"`
 	// Token is the token of the session
 	OrySessionToken string `json:"ory_session_token"`

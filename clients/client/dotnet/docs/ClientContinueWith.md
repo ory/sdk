@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **string** | Action will always be &#x60;set_ory_session_token&#x60; set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI | 
+**Action** | **string** | Action will always be &#x60;set_ory_session_token&#x60; set_ory_session_token ContinueWithActionSetOrySessionTokenString | 
 **Flow** | [**ClientContinueWithVerificationUiFlow**](ClientContinueWithVerificationUiFlow.md) |  | 
 **OrySessionToken** | **string** | Token is the token of the session | 
 

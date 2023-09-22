@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.8
+API version: v1.2.9
 Contact: support@ory.sh
 */
 
@@ -210,12 +210,18 @@ type NormalizedProjectRevision struct {
 	// Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
 	KratosSelfserviceFlowsErrorUiUrl *string `json:"kratos_selfservice_flows_error_ui_url,omitempty"`
 	KratosSelfserviceFlowsHooks []NormalizedProjectRevisionHook `json:"kratos_selfservice_flows_hooks,omitempty"`
+	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.code.after.password.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_code_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.lookup_secret.after.password.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_oidc_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_password_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.totp.after.password.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_totp_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \"selfservice.flows.login.after.webauthn.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_webauthn_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login Lifespan  This governs the \"selfservice.flows.login.lifespan\" setting.
@@ -236,6 +242,8 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsRecoveryUiUrl *string `json:"kratos_selfservice_flows_recovery_ui_url,omitempty"`
 	// Configures the Ory Kratos Recovery strategy to use (\"link\" or \"code\")  This governs the \"selfservice.flows.recovery.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 	KratosSelfserviceFlowsRecoveryUse *string `json:"kratos_selfservice_flows_recovery_use,omitempty"`
+	// Configures the Ory Kratos Registration After Code Default Return URL  This governs the \"selfservice.flows.registration.after.code.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_code_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
@@ -254,10 +262,18 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsRegistrationUiUrl *string `json:"kratos_selfservice_flows_registration_ui_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets  This governs the \"selfservice.flows.settings.after.lookup_secret.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \"selfservice.flows.settings.after.oidc.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_oidc_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_password_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \"selfservice.flows.settings.after.profile.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_profile_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \"selfservice.flows.settings.after.totp.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_totp_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.webauthn.profile.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Settings Lifespan  This governs the \"selfservice.flows.settings.lifespan\" setting.
 	KratosSelfserviceFlowsSettingsLifespan *string `json:"kratos_selfservice_flows_settings_lifespan,omitempty"`
 	// Configures the Ory Kratos Settings Privileged Session Max Age  This governs the \"selfservice.flows.settings.privileged_session_max_age\" setting.
@@ -3757,6 +3773,38 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsHooks(v []Normalize
 	o.KratosSelfserviceFlowsHooks = v
 }
 
+// GetKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl = &v
+}
+
 // GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl == nil {
@@ -3787,6 +3835,38 @@ func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterDefaultBr
 // SetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl field value if set, zero value otherwise.
@@ -3851,6 +3931,38 @@ func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterPasswordD
 // SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field value if set, zero value otherwise.
@@ -4173,6 +4285,38 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryUse(v strin
 	o.KratosSelfserviceFlowsRecoveryUse = &v
 }
 
+// GetKratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl = &v
+}
+
 // GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl == nil {
@@ -4461,6 +4605,70 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterDefaul
 	o.KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl = &v
 }
 
+// GetKratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl = &v
+}
+
 // GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl == nil {
@@ -4523,6 +4731,70 @@ func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterProfil
 // SetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsSettingsLifespan returns the KratosSelfserviceFlowsSettingsLifespan field value if set, zero value otherwise.
@@ -6367,14 +6639,23 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceFlowsHooks != nil {
 		toSerialize["kratos_selfservice_flows_hooks"] = o.KratosSelfserviceFlowsHooks
 	}
+	if o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_login_after_code_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl
+	}
 	if o.KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_login_after_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl
+	}
+	if o.KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl
 	}
 	if o.KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_login_after_oidc_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl
 	}
 	if o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_login_after_password_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
+	}
+	if o.KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_login_after_totp_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl
 	}
 	if o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_login_after_webauthn_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
@@ -6406,6 +6687,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceFlowsRecoveryUse != nil {
 		toSerialize["kratos_selfservice_flows_recovery_use"] = o.KratosSelfserviceFlowsRecoveryUse
 	}
+	if o.KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_registration_after_code_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl
+	}
 	if o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_registration_after_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl
 	}
@@ -6433,11 +6717,23 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_settings_after_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl
 	}
+	if o.KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl
+	}
+	if o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_settings_after_oidc_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl
+	}
 	if o.KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_settings_after_password_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
 	}
 	if o.KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_settings_after_profile_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl
+	}
+	if o.KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_settings_after_totp_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl
+	}
+	if o.KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl
 	}
 	if o.KratosSelfserviceFlowsSettingsLifespan != nil {
 		toSerialize["kratos_selfservice_flows_settings_lifespan"] = o.KratosSelfserviceFlowsSettingsLifespan
@@ -6705,9 +7001,12 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_error_ui_url")
 		delete(additionalProperties, "kratos_selfservice_flows_hooks")
+		delete(additionalProperties, "kratos_selfservice_flows_login_after_code_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_oidc_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_password_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_login_after_totp_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_webauthn_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_lifespan")
 		delete(additionalProperties, "kratos_selfservice_flows_login_ui_url")
@@ -6718,6 +7017,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_flows_recovery_notify_unknown_recipients")
 		delete(additionalProperties, "kratos_selfservice_flows_recovery_ui_url")
 		delete(additionalProperties, "kratos_selfservice_flows_recovery_use")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_after_code_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_after_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_after_oidc_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_after_password_default_browser_return_url")
@@ -6727,8 +7027,12 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_flows_registration_login_hints")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_ui_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_after_oidc_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_password_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_profile_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_after_totp_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_lifespan")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_privileged_session_max_age")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_required_aal")

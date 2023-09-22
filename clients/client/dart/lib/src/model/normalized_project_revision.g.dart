@@ -487,11 +487,18 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final BuiltList<NormalizedProjectRevisionHook>? kratosSelfserviceFlowsHooks;
   @override
+  final String? kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
+  @override
   final String? kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
+  @override
+  final String?
+      kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
+  @override
+  final String? kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl;
   @override
@@ -513,6 +520,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum?
       kratosSelfserviceFlowsRecoveryUse;
+  @override
+  final String?
+      kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
   @override
@@ -536,10 +546,20 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final String? kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl;
   @override
   final String?
+      kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+  @override
+  final String? kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+  @override
+  final String?
       kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
   @override
   final String?
       kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl;
+  @override
+  final String? kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+  @override
+  final String?
+      kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsSettingsLifespan;
   @override
@@ -750,9 +770,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsErrorUiUrl,
       this.kratosSelfserviceFlowsHooks,
+      this.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginLifespan,
       this.kratosSelfserviceFlowsLoginUiUrl,
@@ -763,6 +786,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients,
       this.kratosSelfserviceFlowsRecoveryUiUrl,
       this.kratosSelfserviceFlowsRecoveryUse,
+      this.kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl,
@@ -772,8 +796,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceFlowsRegistrationLoginHints,
       this.kratosSelfserviceFlowsRegistrationUiUrl,
       this.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsLifespan,
       this.kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge,
       this.kratosSelfserviceFlowsSettingsRequiredAal,
@@ -1013,13 +1041,20 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosSelfserviceFlowsErrorUiUrl ==
             other.kratosSelfserviceFlowsErrorUiUrl &&
         kratosSelfserviceFlowsHooks == other.kratosSelfserviceFlowsHooks &&
+        kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl ==
+            other.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl ==
             other.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl ==
             other.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl ==
+            other.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl &&
@@ -1041,6 +1076,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceFlowsRecoveryUiUrl &&
         kratosSelfserviceFlowsRecoveryUse ==
             other.kratosSelfserviceFlowsRecoveryUse &&
+        kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl &&
@@ -1063,12 +1101,24 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceFlowsRegistrationUiUrl &&
         kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl ==
             other.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsSettingsLifespan ==
             other.kratosSelfserviceFlowsSettingsLifespan &&
         kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge ==
@@ -1304,13 +1354,21 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSelfserviceFlowsErrorUiUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsHooks.hashCode);
     _$hash = $jc(_$hash,
+        kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl.hashCode);
+    _$hash = $jc(_$hash,
         kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl.hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl
+            .hashCode);
     _$hash = $jc(_$hash,
         kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
             .hashCode);
+    _$hash = $jc(_$hash,
+        kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
@@ -1327,6 +1385,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         _$hash, kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRecoveryUiUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRecoveryUse.hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl
+            .hashCode);
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl
@@ -1351,11 +1413,27 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(
         _$hash,
+        kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
         kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
             .hashCode);
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl
             .hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsSettingsLifespan.hashCode);
     _$hash = $jc(
@@ -1600,13 +1678,20 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('kratosSelfserviceFlowsErrorUiUrl',
               kratosSelfserviceFlowsErrorUiUrl)
           ..add('kratosSelfserviceFlowsHooks', kratosSelfserviceFlowsHooks)
+          ..add('kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl)
+          ..add('kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl)
@@ -1628,6 +1713,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceFlowsRecoveryUiUrl)
           ..add('kratosSelfserviceFlowsRecoveryUse',
               kratosSelfserviceFlowsRecoveryUse)
+          ..add(
+              'kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl)
@@ -1651,11 +1739,23 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl)
           ..add(
+              'kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl)
+          ..add(
               'kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsSettingsLifespan',
               kratosSelfserviceFlowsSettingsLifespan)
           ..add('kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge',
@@ -2499,6 +2599,15 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsHooks) =>
       _$this._kratosSelfserviceFlowsHooks = kratosSelfserviceFlowsHooks;
 
+  String? _kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
+
   String? _kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl =>
       _$this._kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
@@ -2506,6 +2615,16 @@ class NormalizedProjectRevisionBuilder
           String? kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
 
   String? _kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl =>
@@ -2524,6 +2643,15 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
 
   String? _kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl =>
@@ -2609,6 +2737,16 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceFlowsRecoveryUse =
           kratosSelfserviceFlowsRecoveryUse;
 
+  String? _kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
+
   String? _kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl =>
       _$this._kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
@@ -2690,6 +2828,26 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl;
 
+  String?
+      _kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+
   String? _kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl =>
       _$this
@@ -2708,6 +2866,25 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
 
   String? _kratosSelfserviceFlowsSettingsLifespan;
   String? get kratosSelfserviceFlowsSettingsLifespan =>
@@ -3248,12 +3425,18 @@ class NormalizedProjectRevisionBuilder
       _kratosSelfserviceFlowsErrorUiUrl = $v.kratosSelfserviceFlowsErrorUiUrl;
       _kratosSelfserviceFlowsHooks =
           $v.kratosSelfserviceFlowsHooks?.toBuilder();
+      _kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl = $v
+          .kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginLifespan =
@@ -3272,6 +3455,8 @@ class NormalizedProjectRevisionBuilder
       _kratosSelfserviceFlowsRecoveryUiUrl =
           $v.kratosSelfserviceFlowsRecoveryUiUrl;
       _kratosSelfserviceFlowsRecoveryUse = $v.kratosSelfserviceFlowsRecoveryUse;
+      _kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl =
@@ -3290,10 +3475,18 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceFlowsRegistrationUiUrl;
       _kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsSettingsLifespan =
           $v.kratosSelfserviceFlowsSettingsLifespan;
       _kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge =
@@ -3567,9 +3760,12 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceDefaultBrowserReturnUrl: kratosSelfserviceDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsErrorUiUrl: kratosSelfserviceFlowsErrorUiUrl,
               kratosSelfserviceFlowsHooks: _kratosSelfserviceFlowsHooks?.build(),
+              kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginLifespan: kratosSelfserviceFlowsLoginLifespan,
               kratosSelfserviceFlowsLoginUiUrl: kratosSelfserviceFlowsLoginUiUrl,
@@ -3580,6 +3776,7 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients: kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients,
               kratosSelfserviceFlowsRecoveryUiUrl: kratosSelfserviceFlowsRecoveryUiUrl,
               kratosSelfserviceFlowsRecoveryUse: kratosSelfserviceFlowsRecoveryUse,
+              kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl,
@@ -3589,8 +3786,12 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsRegistrationLoginHints: kratosSelfserviceFlowsRegistrationLoginHints,
               kratosSelfserviceFlowsRegistrationUiUrl: kratosSelfserviceFlowsRegistrationUiUrl,
               kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsLifespan: kratosSelfserviceFlowsSettingsLifespan,
               kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge: kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge,
               kratosSelfserviceFlowsSettingsRequiredAal: kratosSelfserviceFlowsSettingsRequiredAal,

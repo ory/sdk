@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.8
+API version: v1.2.9
 Contact: support@ory.sh
 */
 
@@ -17,7 +17,7 @@ import (
 
 // ContinueWithVerificationUi Indicates, that the UI flow could be continued by showing a verification ui
 type ContinueWithVerificationUi struct {
-	// Action will always be `show_verification_ui` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+	// Action will always be `show_verification_ui` show_verification_ui ContinueWithActionShowVerificationUIString
 	Action string `json:"action"`
 	Flow ContinueWithVerificationUiFlow `json:"flow"`
 	AdditionalProperties map[string]interface{}

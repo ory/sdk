@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.2.8
+  version: v1.2.9
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -7085,15 +7085,11 @@ components:
         action:
           description: |-
             Action will always be `set_ory_session_token`
-            set_ory_session_token ContinueWithActionSetOrySessionToken
-            show_verification_ui ContinueWithActionShowVerificationUI
+            set_ory_session_token ContinueWithActionSetOrySessionTokenString
           enum:
           - set_ory_session_token
-          - show_verification_ui
           type: string
-          x-go-enum-desc: |-
-            set_ory_session_token ContinueWithActionSetOrySessionToken
-            show_verification_ui ContinueWithActionShowVerificationUI
+          x-go-enum-desc: set_ory_session_token ContinueWithActionSetOrySessionTokenString
         ory_session_token:
           description: Token is the token of the session
           type: string
@@ -7108,15 +7104,11 @@ components:
         action:
           description: |-
             Action will always be `show_verification_ui`
-            set_ory_session_token ContinueWithActionSetOrySessionToken
-            show_verification_ui ContinueWithActionShowVerificationUI
+            show_verification_ui ContinueWithActionShowVerificationUIString
           enum:
-          - set_ory_session_token
           - show_verification_ui
           type: string
-          x-go-enum-desc: |-
-            set_ory_session_token ContinueWithActionSetOrySessionToken
-            show_verification_ui ContinueWithActionShowVerificationUI
+          x-go-enum-desc: show_verification_ui ContinueWithActionShowVerificationUIString
         flow:
           $ref: '#/components/schemas/continueWithVerificationUiFlow'
       required:
@@ -9910,11 +9902,23 @@ components:
           items:
             $ref: '#/components/schemas/normalizedProjectRevisionHook'
           type: array
+        kratos_selfservice_flows_login_after_code_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login After Password Default Return URL
+
+            This governs the "selfservice.flows.code.after.password.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_login_after_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Login Default Return URL
 
             This governs the "selfservice.flows.login.after.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login After Password Default Return URL
+
+            This governs the "selfservice.flows.lookup_secret.after.password.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_login_after_oidc_default_browser_return_url:
           description: |-
@@ -9927,6 +9931,12 @@ components:
             Configures the Ory Kratos Login After Password Default Return URL
 
             This governs the "selfservice.flows.login.after.password.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_login_after_totp_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login After Password Default Return URL
+
+            This governs the "selfservice.flows.totp.after.password.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_login_after_webauthn_default_browser_return_url:
           description: |-
@@ -9996,6 +10006,12 @@ components:
           x-go-enum-desc: |-
             link SelfServiceMessageVerificationStrategyLink
             code SelfServiceMessageVerificationStrategyCode
+        kratos_selfservice_flows_registration_after_code_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Registration After Code Default Return URL
+
+            This governs the "selfservice.flows.registration.after.code.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_registration_after_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Registration Default Return URL
@@ -10052,6 +10068,18 @@ components:
 
             This governs the "selfservice.flows.settings.after.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets
+
+            This governs the "selfservice.flows.settings.after.lookup_secret.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_settings_after_oidc_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In
+
+            This governs the "selfservice.flows.settings.after.oidc.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_settings_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Settings Default Return URL After Updating Passwords
@@ -10063,6 +10091,18 @@ components:
             Configures the Ory Kratos Settings Default Return URL After Updating Profiles
 
             This governs the "selfservice.flows.settings.after.profile.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_settings_after_totp_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating TOTP
+
+            This governs the "selfservice.flows.settings.after.totp.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn
+
+            This governs the "selfservice.flows.settings.webauthn.profile.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_settings_lifespan:
           description: |-
