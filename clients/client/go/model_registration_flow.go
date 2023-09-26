@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.9
+API version: v1.2.10
 Contact: support@ory.sh
 */
 
@@ -28,6 +28,7 @@ type RegistrationFlow struct {
 	// Ory OAuth 2.0 Login Challenge.  This value is set using the `login_challenge` query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
 	Oauth2LoginChallenge *string `json:"oauth2_login_challenge,omitempty"`
 	Oauth2LoginRequest *OAuth2LoginRequest `json:"oauth2_login_request,omitempty"`
+	OrganizationId NullableString `json:"organization_id,omitempty"`
 	// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 	RequestUrl string `json:"request_url"`
 	// ReturnTo contains the requested return_to URL.
@@ -236,6 +237,48 @@ func (o *RegistrationFlow) HasOauth2LoginRequest() bool {
 // SetOauth2LoginRequest gets a reference to the given OAuth2LoginRequest and assigns it to the Oauth2LoginRequest field.
 func (o *RegistrationFlow) SetOauth2LoginRequest(v OAuth2LoginRequest) {
 	o.Oauth2LoginRequest = &v
+}
+
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RegistrationFlow) GetOrganizationId() string {
+	if o == nil || o.OrganizationId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrganizationId.Get()
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RegistrationFlow) GetOrganizationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *RegistrationFlow) HasOrganizationId() bool {
+	if o != nil && o.OrganizationId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given NullableString and assigns it to the OrganizationId field.
+func (o *RegistrationFlow) SetOrganizationId(v string) {
+	o.OrganizationId.Set(&v)
+}
+// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+func (o *RegistrationFlow) SetOrganizationIdNil() {
+	o.OrganizationId.Set(nil)
+}
+
+// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
+func (o *RegistrationFlow) UnsetOrganizationId() {
+	o.OrganizationId.Unset()
 }
 
 // GetRequestUrl returns the RequestUrl field value
@@ -452,6 +495,9 @@ func (o RegistrationFlow) MarshalJSON() ([]byte, error) {
 	if o.Oauth2LoginRequest != nil {
 		toSerialize["oauth2_login_request"] = o.Oauth2LoginRequest
 	}
+	if o.OrganizationId.IsSet() {
+		toSerialize["organization_id"] = o.OrganizationId.Get()
+	}
 	if true {
 		toSerialize["request_url"] = o.RequestUrl
 	}
@@ -497,6 +543,7 @@ func (o *RegistrationFlow) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "issued_at")
 		delete(additionalProperties, "oauth2_login_challenge")
 		delete(additionalProperties, "oauth2_login_request")
+		delete(additionalProperties, "organization_id")
 		delete(additionalProperties, "request_url")
 		delete(additionalProperties, "return_to")
 		delete(additionalProperties, "session_token_exchange_code")

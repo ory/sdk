@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.9
+API version: v1.2.10
 Contact: support@ory.sh
 */
 
@@ -39,6 +39,7 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	Label *string `json:"label,omitempty"`
 	// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
 	MapperUrl *string `json:"mapper_url,omitempty"`
+	OrganizationId NullableString `json:"organization_id,omitempty"`
 	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
 	// Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple
@@ -480,6 +481,48 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) SetMapperUrl(v string) {
 	o.MapperUrl = &v
 }
 
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetOrganizationId() string {
+	if o == nil || o.OrganizationId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrganizationId.Get()
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetOrganizationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasOrganizationId() bool {
+	if o != nil && o.OrganizationId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given NullableString and assigns it to the OrganizationId field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetOrganizationId(v string) {
+	o.OrganizationId.Set(&v)
+}
+// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetOrganizationIdNil() {
+	o.OrganizationId.Set(nil)
+}
+
+// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetOrganizationId() {
+	o.OrganizationId.Unset()
+}
+
 // GetProjectRevisionId returns the ProjectRevisionId field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionThirdPartyProvider) GetProjectRevisionId() string {
 	if o == nil || o.ProjectRevisionId == nil {
@@ -816,6 +859,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) MarshalJSON() ([]byte, erro
 	if o.MapperUrl != nil {
 		toSerialize["mapper_url"] = o.MapperUrl
 	}
+	if o.OrganizationId.IsSet() {
+		toSerialize["organization_id"] = o.OrganizationId.Get()
+	}
 	if o.ProjectRevisionId != nil {
 		toSerialize["project_revision_id"] = o.ProjectRevisionId
 	}
@@ -873,6 +919,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(bytes []byte
 		delete(additionalProperties, "issuer_url")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "mapper_url")
+		delete(additionalProperties, "organization_id")
 		delete(additionalProperties, "project_revision_id")
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "provider_id")

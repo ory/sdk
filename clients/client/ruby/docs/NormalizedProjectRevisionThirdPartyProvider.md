@@ -16,6 +16,7 @@
 | **issuer_url** | **String** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if &#x60;provider&#x60; is not set to &#x60;generic&#x60;. If set, neither &#x60;auth_url&#x60; nor &#x60;token_url&#x60; are required. | [optional] |
 | **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] |
 | **mapper_url** | **String** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data. | [optional] |
+| **organization_id** | **String** |  | [optional] |
 | **project_revision_id** | **String** | The Revision&#39;s ID this schema belongs to | [optional] |
 | **provider** | **String** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] |
 | **provider_id** | **String** | ID is the provider&#39;s ID | [optional] |
@@ -44,6 +45,7 @@ instance = OryClient::NormalizedProjectRevisionThirdPartyProvider.new(
   issuer_url: https://accounts.google.com,
   label: null,
   mapper_url: null,
+  organization_id: null,
   project_revision_id: null,
   provider: google,
   provider_id: null,

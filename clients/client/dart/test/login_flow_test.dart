@@ -47,6 +47,11 @@ void main() {
       // TODO
     });
 
+    // String organizationId
+    test('to test the property `organizationId`', () async {
+      // TODO
+    });
+
     // Refresh stores whether this login flow should enforce re-authentication.
     // bool refresh
     test('to test the property `refresh`', () async {

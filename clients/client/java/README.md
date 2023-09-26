@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.2.9
-  - Build date: 2023-09-22T10:41:25.890682106Z[Etc/UTC]
+- API version: v1.2.10
+  - Build date: 2023-09-26T07:22:38.275636327Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.2.9</version>
+  <version>v1.2.10</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.2.9"
+     implementation "sh.ory:client:v1.2.10"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.2.9.jar`
+* `target/client-v1.2.10.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -222,13 +222,16 @@ Class | Method | HTTP request | Description
 *PermissionApi* | [**expandPermissions**](docs/PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
 *PermissionApi* | [**postCheckPermission**](docs/PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission
 *PermissionApi* | [**postCheckPermissionOrError**](docs/PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission
+*ProjectApi* | [**createOrganization**](docs/ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | 
 *ProjectApi* | [**createProject**](docs/ProjectApi.md#createProject) | **POST** /projects | Create a Project
 *ProjectApi* | [**createProjectApiKey**](docs/ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token
+*ProjectApi* | [**deleteOrganization**](docs/ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
 *ProjectApi* | [**deleteProjectApiKey**](docs/ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 *ProjectApi* | [**getActiveProjectInConsole**](docs/ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 *ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
 *ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project
 *ProjectApi* | [**getProjectMetrics**](docs/ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics | 
+*ProjectApi* | [**listOrganizations**](docs/ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | 
 *ProjectApi* | [**listProjectApiKeys**](docs/ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 *ProjectApi* | [**listProjects**](docs/ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
@@ -236,6 +239,7 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**removeProjectMember**](docs/ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 *ProjectApi* | [**setActiveProjectInConsole**](docs/ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 *ProjectApi* | [**setProject**](docs/ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
+*ProjectApi* | [**updateOrganization**](docs/ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project.
 *RelationshipApi* | [**checkOplSyntax**](docs/RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
 *RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship
 *RelationshipApi* | [**deleteRelationships**](docs/RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
@@ -327,6 +331,7 @@ Class | Method | HTTP request | Description
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
+ - [ListOrganizationsResponse](docs/ListOrganizationsResponse.md)
  - [LoginFlow](docs/LoginFlow.md)
  - [LoginFlowState](docs/LoginFlowState.md)
  - [LogoutFlow](docs/LogoutFlow.md)
@@ -356,6 +361,8 @@ Class | Method | HTTP request | Description
  - [OAuth2TokenExchange](docs/OAuth2TokenExchange.md)
  - [OidcConfiguration](docs/OidcConfiguration.md)
  - [OidcUserInfo](docs/OidcUserInfo.md)
+ - [Organization](docs/Organization.md)
+ - [OrganizationBody](docs/OrganizationBody.md)
  - [Pagination](docs/Pagination.md)
  - [PaginationHeaders](docs/PaginationHeaders.md)
  - [ParseError](docs/ParseError.md)

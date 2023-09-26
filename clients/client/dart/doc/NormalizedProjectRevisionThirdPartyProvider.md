@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **issuerUrl** | **String** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required. | [optional] 
 **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] 
 **mapperUrl** | **String** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data. | [optional] 
+**organizationId** | **String** |  | [optional] 
 **projectRevisionId** | **String** | The Revision's ID this schema belongs to | [optional] 
 **provider** | **String** | Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] 
 **providerId** | **String** | ID is the provider's ID | [optional] 

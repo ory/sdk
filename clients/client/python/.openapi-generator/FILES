@@ -93,6 +93,7 @@ docs/JwkApi.md
 docs/KetoNamespace.md
 docs/KetoNamespaces.md
 docs/ListCustomDomains.md
+docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -132,6 +133,8 @@ docs/OAuth2TokenExchange.md
 docs/OidcApi.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
+docs/Organization.md
+docs/OrganizationBody.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/ParseError.md
@@ -366,6 +369,7 @@ ory_client/model/json_web_key_set.py
 ory_client/model/keto_namespace.py
 ory_client/model/keto_namespaces.py
 ory_client/model/list_custom_domains.py
+ory_client/model/list_organizations_response.py
 ory_client/model/login_flow.py
 ory_client/model/login_flow_state.py
 ory_client/model/logout_flow.py
@@ -402,6 +406,8 @@ ory_client/model/o_auth2_redirect_to.py
 ory_client/model/o_auth2_token_exchange.py
 ory_client/model/oidc_configuration.py
 ory_client/model/oidc_user_info.py
+ory_client/model/organization.py
+ory_client/model/organization_body.py
 ory_client/model/pagination.py
 ory_client/model/pagination_headers.py
 ory_client/model/parse_error.py
@@ -625,6 +631,7 @@ test/test_jwk_api.py
 test/test_keto_namespace.py
 test/test_keto_namespaces.py
 test/test_list_custom_domains.py
+test/test_list_organizations_response.py
 test/test_login_flow.py
 test/test_login_flow_state.py
 test/test_logout_flow.py
@@ -664,6 +671,8 @@ test/test_o_auth2_token_exchange.py
 test/test_oidc_api.py
 test/test_oidc_configuration.py
 test/test_oidc_user_info.py
+test/test_organization.py
+test/test_organization_body.py
 test/test_pagination.py
 test/test_pagination_headers.py
 test/test_parse_error.py

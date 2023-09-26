@@ -97,6 +97,7 @@ lib/ory/model/json_patch.ex
 lib/ory/model/json_web_key.ex
 lib/ory/model/json_web_key_set.ex
 lib/ory/model/keto_namespace.ex
+lib/ory/model/list_organizations_response.ex
 lib/ory/model/login_flow.ex
 lib/ory/model/login_flow_state.ex
 lib/ory/model/logout_flow.ex
@@ -126,6 +127,8 @@ lib/ory/model/o_auth2_redirect_to.ex
 lib/ory/model/o_auth2_token_exchange.ex
 lib/ory/model/oidc_configuration.ex
 lib/ory/model/oidc_user_info.ex
+lib/ory/model/organization.ex
+lib/ory/model/organization_body.ex
 lib/ory/model/pagination.ex
 lib/ory/model/pagination_headers.ex
 lib/ory/model/parse_error.ex

@@ -95,6 +95,7 @@ docs/Model/JsonPatch.md
 docs/Model/JsonWebKey.md
 docs/Model/JsonWebKeySet.md
 docs/Model/KetoNamespace.md
+docs/Model/ListOrganizationsResponse.md
 docs/Model/LoginFlow.md
 docs/Model/LoginFlowState.md
 docs/Model/LogoutFlow.md
@@ -124,6 +125,8 @@ docs/Model/OAuth2RedirectTo.md
 docs/Model/OAuth2TokenExchange.md
 docs/Model/OidcConfiguration.md
 docs/Model/OidcUserInfo.md
+docs/Model/Organization.md
+docs/Model/OrganizationBody.md
 docs/Model/Pagination.md
 docs/Model/PaginationHeaders.md
 docs/Model/ParseError.md
@@ -326,6 +329,7 @@ lib/Model/JsonPatch.php
 lib/Model/JsonWebKey.php
 lib/Model/JsonWebKeySet.php
 lib/Model/KetoNamespace.php
+lib/Model/ListOrganizationsResponse.php
 lib/Model/LoginFlow.php
 lib/Model/LoginFlowState.php
 lib/Model/LogoutFlow.php
@@ -356,6 +360,8 @@ lib/Model/OAuth2RedirectTo.php
 lib/Model/OAuth2TokenExchange.php
 lib/Model/OidcConfiguration.php
 lib/Model/OidcUserInfo.php
+lib/Model/Organization.php
+lib/Model/OrganizationBody.php
 lib/Model/Pagination.php
 lib/Model/PaginationHeaders.php
 lib/Model/ParseError.php
@@ -556,6 +562,7 @@ test/Model/JsonPatchTest.php
 test/Model/JsonWebKeySetTest.php
 test/Model/JsonWebKeyTest.php
 test/Model/KetoNamespaceTest.php
+test/Model/ListOrganizationsResponseTest.php
 test/Model/LoginFlowStateTest.php
 test/Model/LoginFlowTest.php
 test/Model/LogoutFlowTest.php
@@ -585,6 +592,8 @@ test/Model/OAuth2RedirectToTest.php
 test/Model/OAuth2TokenExchangeTest.php
 test/Model/OidcConfigurationTest.php
 test/Model/OidcUserInfoTest.php
+test/Model/OrganizationBodyTest.php
+test/Model/OrganizationTest.php
 test/Model/PaginationHeadersTest.php
 test/Model/PaginationTest.php
 test/Model/ParseErrorTest.php

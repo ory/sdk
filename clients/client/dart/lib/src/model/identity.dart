@@ -22,6 +22,7 @@ part 'identity.g.dart';
 /// * [id] - ID is the identity's unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB.
 /// * [metadataAdmin] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 /// * [metadataPublic] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+/// * [organizationId] 
 /// * [recoveryAddresses] - RecoveryAddresses contains all the addresses that can be used to recover an identity.
 /// * [schemaId] - SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
 /// * [schemaUrl] - SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
@@ -51,6 +52,9 @@ abstract class Identity implements Built<Identity, IdentityBuilder> {
   /// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
   @BuiltValueField(wireName: r'metadata_public')
   JsonObject? get metadataPublic;
+
+  @BuiltValueField(wireName: r'organization_id')
+  String? get organizationId;
 
   /// RecoveryAddresses contains all the addresses that can be used to recover an identity.
   @BuiltValueField(wireName: r'recovery_addresses')
@@ -137,6 +141,13 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
       yield serializers.serialize(
         object.metadataPublic,
         specifiedType: const FullType.nullable(JsonObject),
+      );
+    }
+    if (object.organizationId != null) {
+      yield r'organization_id';
+      yield serializers.serialize(
+        object.organizationId,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.recoveryAddresses != null) {
@@ -248,6 +259,14 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.metadataPublic = valueDes;
+          break;
+        case r'organization_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.organizationId = valueDes;
           break;
         case r'recovery_addresses':
           final valueDes = serializers.deserialize(

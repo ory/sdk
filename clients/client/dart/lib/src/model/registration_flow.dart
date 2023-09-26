@@ -21,6 +21,7 @@ part 'registration_flow.g.dart';
 /// * [issuedAt] - IssuedAt is the time (UTC) when the flow occurred.
 /// * [oauth2LoginChallenge] - Ory OAuth 2.0 Login Challenge.  This value is set using the `login_challenge` query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
 /// * [oauth2LoginRequest] 
+/// * [organizationId] 
 /// * [requestUrl] - RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
 /// * [sessionTokenExchangeCode] - SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the flow.
@@ -52,6 +53,9 @@ abstract class RegistrationFlow implements Built<RegistrationFlow, RegistrationF
 
   @BuiltValueField(wireName: r'oauth2_login_request')
   OAuth2LoginRequest? get oauth2LoginRequest;
+
+  @BuiltValueField(wireName: r'organization_id')
+  String? get organizationId;
 
   /// RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
   @BuiltValueField(wireName: r'request_url')
@@ -137,6 +141,13 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
       yield serializers.serialize(
         object.oauth2LoginRequest,
         specifiedType: const FullType(OAuth2LoginRequest),
+      );
+    }
+    if (object.organizationId != null) {
+      yield r'organization_id';
+      yield serializers.serialize(
+        object.organizationId,
+        specifiedType: const FullType.nullable(String),
       );
     }
     yield r'request_url';
@@ -244,6 +255,14 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
             specifiedType: const FullType(OAuth2LoginRequest),
           ) as OAuth2LoginRequest;
           result.oauth2LoginRequest.replace(valueDes);
+          break;
+        case r'organization_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.organizationId = valueDes;
           break;
         case r'request_url':
           final valueDes = serializers.deserialize(

@@ -83,6 +83,7 @@ docs/ClientJsonPatch.md
 docs/ClientJsonWebKey.md
 docs/ClientJsonWebKeySet.md
 docs/ClientKetoNamespace.md
+docs/ClientListOrganizationsResponse.md
 docs/ClientLoginFlow.md
 docs/ClientLoginFlowState.md
 docs/ClientLogoutFlow.md
@@ -112,6 +113,8 @@ docs/ClientOAuth2RedirectTo.md
 docs/ClientOAuth2TokenExchange.md
 docs/ClientOidcConfiguration.md
 docs/ClientOidcUserInfo.md
+docs/ClientOrganization.md
+docs/ClientOrganizationBody.md
 docs/ClientPagination.md
 docs/ClientPaginationHeaders.md
 docs/ClientParseError.md
@@ -322,6 +325,7 @@ src/Ory.Client.Test/Model/ClientJsonPatchTests.cs
 src/Ory.Client.Test/Model/ClientJsonWebKeySetTests.cs
 src/Ory.Client.Test/Model/ClientJsonWebKeyTests.cs
 src/Ory.Client.Test/Model/ClientKetoNamespaceTests.cs
+src/Ory.Client.Test/Model/ClientListOrganizationsResponseTests.cs
 src/Ory.Client.Test/Model/ClientLoginFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientLoginFlowTests.cs
 src/Ory.Client.Test/Model/ClientLogoutFlowTests.cs
@@ -351,6 +355,8 @@ src/Ory.Client.Test/Model/ClientOAuth2RedirectToTests.cs
 src/Ory.Client.Test/Model/ClientOAuth2TokenExchangeTests.cs
 src/Ory.Client.Test/Model/ClientOidcConfigurationTests.cs
 src/Ory.Client.Test/Model/ClientOidcUserInfoTests.cs
+src/Ory.Client.Test/Model/ClientOrganizationBodyTests.cs
+src/Ory.Client.Test/Model/ClientOrganizationTests.cs
 src/Ory.Client.Test/Model/ClientPaginationHeadersTests.cs
 src/Ory.Client.Test/Model/ClientPaginationTests.cs
 src/Ory.Client.Test/Model/ClientParseErrorTests.cs
@@ -567,6 +573,7 @@ src/Ory.Client/Model/ClientJsonPatch.cs
 src/Ory.Client/Model/ClientJsonWebKey.cs
 src/Ory.Client/Model/ClientJsonWebKeySet.cs
 src/Ory.Client/Model/ClientKetoNamespace.cs
+src/Ory.Client/Model/ClientListOrganizationsResponse.cs
 src/Ory.Client/Model/ClientLoginFlow.cs
 src/Ory.Client/Model/ClientLoginFlowState.cs
 src/Ory.Client/Model/ClientLogoutFlow.cs
@@ -596,6 +603,8 @@ src/Ory.Client/Model/ClientOAuth2RedirectTo.cs
 src/Ory.Client/Model/ClientOAuth2TokenExchange.cs
 src/Ory.Client/Model/ClientOidcConfiguration.cs
 src/Ory.Client/Model/ClientOidcUserInfo.cs
+src/Ory.Client/Model/ClientOrganization.cs
+src/Ory.Client/Model/ClientOrganizationBody.cs
 src/Ory.Client/Model/ClientPagination.cs
 src/Ory.Client/Model/ClientPaginationHeaders.cs
 src/Ory.Client/Model/ClientParseError.cs

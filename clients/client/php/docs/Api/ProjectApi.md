@@ -4,13 +4,16 @@ All URIs are relative to https://playground.projects.oryapis.com.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**createOrganization()**](ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | 
 [**createProject()**](ProjectApi.md#createProject) | **POST** /projects | Create a Project
 [**createProjectApiKey()**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token
+[**deleteOrganization()**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
 [**deleteProjectApiKey()**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 [**getActiveProjectInConsole()**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
 [**getProject()**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
 [**getProjectMembers()**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project
 [**getProjectMetrics()**](ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics | 
+[**listOrganizations()**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | 
 [**listProjectApiKeys()**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**listProjects()**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 [**patchProject()**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
@@ -18,7 +21,70 @@ Method | HTTP request | Description
 [**removeProjectMember()**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**setActiveProjectInConsole()**](ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 [**setProject()**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
+[**updateOrganization()**](ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project.
 
+
+## `createOrganization()`
+
+```php
+createOrganization($projectId, $organizationBody): \Ory\Client\Model\Organization
+```
+
+
+
+Create a B2B SSO Organization
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string | Project ID  The project's ID.
+$organizationBody = new \Ory\Client\Model\OrganizationBody(); // \Ory\Client\Model\OrganizationBody
+
+try {
+    $result = $apiInstance->createOrganization($projectId, $organizationBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->createOrganization: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **string**| Project ID  The project&#39;s ID. |
+ **organizationBody** | [**\Ory\Client\Model\OrganizationBody**](../Model/OrganizationBody.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\Organization**](../Model/Organization.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createProject()`
 
@@ -136,6 +202,65 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteOrganization()`
+
+```php
+deleteOrganization($projectId, $organizationId)
+```
+
+Delete a B2B SSO Organization for a project.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string | Project ID  The project's ID.
+$organizationId = 'organizationId_example'; // string | Organization ID  The Organization's ID.
+
+try {
+    $apiInstance->deleteOrganization($projectId, $organizationId);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->deleteOrganization: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **string**| Project ID  The project&#39;s ID. |
+ **organizationId** | **string**| Organization ID  The Organization&#39;s ID. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -434,6 +559,64 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Ory\Client\Model\GetProjectMetricsResponse**](../Model/GetProjectMetricsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listOrganizations()`
+
+```php
+listOrganizations($projectId): \Ory\Client\Model\ListOrganizationsResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string | Project ID  The project's ID.
+
+try {
+    $result = $apiInstance->listOrganizations($projectId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->listOrganizations: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **string**| Project ID  The project&#39;s ID. |
+
+### Return type
+
+[**\Ory\Client\Model\ListOrganizationsResponse**](../Model/ListOrganizationsResponse.md)
 
 ### Authorization
 
@@ -854,6 +1037,68 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Ory\Client\Model\SuccessfulProjectUpdate**](../Model/SuccessfulProjectUpdate.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateOrganization()`
+
+```php
+updateOrganization($projectId, $organizationId, $organizationBody): \Ory\Client\Model\Organization
+```
+
+Update a B2B SSO Organization for a project.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string | Project ID  The project's ID.
+$organizationId = 'organizationId_example'; // string | Organization ID  The Organization's ID.
+$organizationBody = new \Ory\Client\Model\OrganizationBody(); // \Ory\Client\Model\OrganizationBody
+
+try {
+    $result = $apiInstance->updateOrganization($projectId, $organizationId, $organizationBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->updateOrganization: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **string**| Project ID  The project&#39;s ID. |
+ **organizationId** | **string**| Organization ID  The Organization&#39;s ID. |
+ **organizationBody** | [**\Ory\Client\Model\OrganizationBody**](../Model/OrganizationBody.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Client\Model\Organization**](../Model/Organization.md)
 
 ### Authorization
 

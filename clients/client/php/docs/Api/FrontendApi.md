@@ -39,7 +39,7 @@ Method | HTTP request | Description
 ## `createBrowserLoginFlow()`
 
 ```php
-createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge): \Ory\Client\Model\LoginFlow
+createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization): \Ory\Client\Model\LoginFlow
 ```
 
 Create Login Flow for Browsers
@@ -64,9 +64,10 @@ $aal = 'aal_example'; // string | Request a Specific AuthenticationMethod Assura
 $returnTo = 'returnTo_example'; // string | The URL to return the browser to after the flow was completed.
 $cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 $loginChallenge = 'loginChallenge_example'; // string | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
+$organization = 'organization_example'; // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
 
 try {
-    $result = $apiInstance->createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge);
+    $result = $apiInstance->createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createBrowserLoginFlow: ', $e->getMessage(), PHP_EOL;
@@ -82,6 +83,7 @@ Name | Type | Description  | Notes
  **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional]
  **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
  **loginChallenge** | **string**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional]
+ **organization** | **string**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional]
 
 ### Return type
 
@@ -217,7 +219,7 @@ No authorization required
 ## `createBrowserRegistrationFlow()`
 
 ```php
-createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo): \Ory\Client\Model\RegistrationFlow
+createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo, $organization): \Ory\Client\Model\RegistrationFlow
 ```
 
 Create Registration Flow for Browsers
@@ -240,9 +242,10 @@ $apiInstance = new Ory\Client\Api\FrontendApi(
 $returnTo = 'returnTo_example'; // string | The URL to return the browser to after the flow was completed.
 $loginChallenge = 'loginChallenge_example'; // string | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
 $afterVerificationReturnTo = 'afterVerificationReturnTo_example'; // string | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
+$organization = 'organization_example'; // string
 
 try {
-    $result = $apiInstance->createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo);
+    $result = $apiInstance->createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo, $organization);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createBrowserRegistrationFlow: ', $e->getMessage(), PHP_EOL;
@@ -256,6 +259,7 @@ Name | Type | Description  | Notes
  **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional]
  **loginChallenge** | **string**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional]
  **afterVerificationReturnTo** | **string**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional]
+ **organization** | **string**|  | [optional]
 
 ### Return type
 

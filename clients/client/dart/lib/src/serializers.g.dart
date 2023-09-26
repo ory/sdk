@@ -98,6 +98,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(JsonWebKey.serializer)
       ..add(JsonWebKeySet.serializer)
       ..add(KetoNamespace.serializer)
+      ..add(ListOrganizationsResponse.serializer)
       ..add(LoginFlow.serializer)
       ..add(LoginFlowState.serializer)
       ..add(LogoutFlow.serializer)
@@ -138,6 +139,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(OAuth2TokenExchange.serializer)
       ..add(OidcConfiguration.serializer)
       ..add(OidcUserInfo.serializer)
+      ..add(Organization.serializer)
+      ..add(OrganizationBody.serializer)
       ..add(Pagination.serializer)
       ..add(PaginationHeaders.serializer)
       ..add(ParseError.serializer)
@@ -304,6 +307,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(Namespace)]),
           () => new ListBuilder<Namespace>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Organization)]),
+          () => new ListBuilder<Organization>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ParseError)]),
           () => new ListBuilder<ParseError>())
       ..addBuilderFactory(
@@ -328,6 +334,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SessionDevice)]),
           () => new ListBuilder<SessionDevice>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

@@ -91,6 +91,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -123,6 +124,8 @@ docs/OAuth2TokenExchange.md
 docs/OidcApi.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
+docs/Organization.md
+docs/OrganizationBody.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/ParseError.md
@@ -330,6 +333,7 @@ lib/ory-client/models/json_patch.rb
 lib/ory-client/models/json_web_key.rb
 lib/ory-client/models/json_web_key_set.rb
 lib/ory-client/models/keto_namespace.rb
+lib/ory-client/models/list_organizations_response.rb
 lib/ory-client/models/login_flow.rb
 lib/ory-client/models/login_flow_state.rb
 lib/ory-client/models/logout_flow.rb
@@ -359,6 +363,8 @@ lib/ory-client/models/o_auth2_redirect_to.rb
 lib/ory-client/models/o_auth2_token_exchange.rb
 lib/ory-client/models/oidc_configuration.rb
 lib/ory-client/models/oidc_user_info.rb
+lib/ory-client/models/organization.rb
+lib/ory-client/models/organization_body.rb
 lib/ory-client/models/pagination.rb
 lib/ory-client/models/pagination_headers.rb
 lib/ory-client/models/parse_error.rb
@@ -561,6 +567,7 @@ spec/models/json_patch_spec.rb
 spec/models/json_web_key_set_spec.rb
 spec/models/json_web_key_spec.rb
 spec/models/keto_namespace_spec.rb
+spec/models/list_organizations_response_spec.rb
 spec/models/login_flow_spec.rb
 spec/models/login_flow_state_spec.rb
 spec/models/logout_flow_spec.rb
@@ -590,6 +597,8 @@ spec/models/o_auth2_redirect_to_spec.rb
 spec/models/o_auth2_token_exchange_spec.rb
 spec/models/oidc_configuration_spec.rb
 spec/models/oidc_user_info_spec.rb
+spec/models/organization_body_spec.rb
+spec/models/organization_spec.rb
 spec/models/pagination_headers_spec.rb
 spec/models/pagination_spec.rb
 spec/models/parse_error_spec.rb

@@ -22,6 +22,8 @@ class _$LoginFlow extends LoginFlow {
   @override
   final OAuth2LoginRequest? oauth2LoginRequest;
   @override
+  final String? organizationId;
+  @override
   final bool? refresh;
   @override
   final String requestUrl;
@@ -51,6 +53,7 @@ class _$LoginFlow extends LoginFlow {
       required this.issuedAt,
       this.oauth2LoginChallenge,
       this.oauth2LoginRequest,
+      this.organizationId,
       this.refresh,
       required this.requestUrl,
       this.requestedAal,
@@ -88,6 +91,7 @@ class _$LoginFlow extends LoginFlow {
         issuedAt == other.issuedAt &&
         oauth2LoginChallenge == other.oauth2LoginChallenge &&
         oauth2LoginRequest == other.oauth2LoginRequest &&
+        organizationId == other.organizationId &&
         refresh == other.refresh &&
         requestUrl == other.requestUrl &&
         requestedAal == other.requestedAal &&
@@ -109,6 +113,7 @@ class _$LoginFlow extends LoginFlow {
     _$hash = $jc(_$hash, issuedAt.hashCode);
     _$hash = $jc(_$hash, oauth2LoginChallenge.hashCode);
     _$hash = $jc(_$hash, oauth2LoginRequest.hashCode);
+    _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, refresh.hashCode);
     _$hash = $jc(_$hash, requestUrl.hashCode);
     _$hash = $jc(_$hash, requestedAal.hashCode);
@@ -132,6 +137,7 @@ class _$LoginFlow extends LoginFlow {
           ..add('issuedAt', issuedAt)
           ..add('oauth2LoginChallenge', oauth2LoginChallenge)
           ..add('oauth2LoginRequest', oauth2LoginRequest)
+          ..add('organizationId', organizationId)
           ..add('refresh', refresh)
           ..add('requestUrl', requestUrl)
           ..add('requestedAal', requestedAal)
@@ -178,6 +184,11 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
       _$this._oauth2LoginRequest ??= new OAuth2LoginRequestBuilder();
   set oauth2LoginRequest(OAuth2LoginRequestBuilder? oauth2LoginRequest) =>
       _$this._oauth2LoginRequest = oauth2LoginRequest;
+
+  String? _organizationId;
+  String? get organizationId => _$this._organizationId;
+  set organizationId(String? organizationId) =>
+      _$this._organizationId = organizationId;
 
   bool? _refresh;
   bool? get refresh => _$this._refresh;
@@ -231,6 +242,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
       _issuedAt = $v.issuedAt;
       _oauth2LoginChallenge = $v.oauth2LoginChallenge;
       _oauth2LoginRequest = $v.oauth2LoginRequest?.toBuilder();
+      _organizationId = $v.organizationId;
       _refresh = $v.refresh;
       _requestUrl = $v.requestUrl;
       _requestedAal = $v.requestedAal;
@@ -273,6 +285,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
                   issuedAt, r'LoginFlow', 'issuedAt'),
               oauth2LoginChallenge: oauth2LoginChallenge,
               oauth2LoginRequest: _oauth2LoginRequest?.build(),
+              organizationId: organizationId,
               refresh: refresh,
               requestUrl: BuiltValueNullFieldError.checkNotNull(
                   requestUrl, r'LoginFlow', 'requestUrl'),

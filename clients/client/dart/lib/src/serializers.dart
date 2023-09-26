@@ -94,6 +94,7 @@ import 'package:ory_client/src/model/json_patch.dart';
 import 'package:ory_client/src/model/json_web_key.dart';
 import 'package:ory_client/src/model/json_web_key_set.dart';
 import 'package:ory_client/src/model/keto_namespace.dart';
+import 'package:ory_client/src/model/list_organizations_response.dart';
 import 'package:ory_client/src/model/login_flow.dart';
 import 'package:ory_client/src/model/login_flow_state.dart';
 import 'package:ory_client/src/model/logout_flow.dart';
@@ -123,6 +124,8 @@ import 'package:ory_client/src/model/o_auth2_redirect_to.dart';
 import 'package:ory_client/src/model/o_auth2_token_exchange.dart';
 import 'package:ory_client/src/model/oidc_configuration.dart';
 import 'package:ory_client/src/model/oidc_user_info.dart';
+import 'package:ory_client/src/model/organization.dart';
+import 'package:ory_client/src/model/organization_body.dart';
 import 'package:ory_client/src/model/pagination.dart';
 import 'package:ory_client/src/model/pagination_headers.dart';
 import 'package:ory_client/src/model/parse_error.dart';
@@ -314,6 +317,7 @@ part 'serializers.g.dart';
   JsonWebKey,
   JsonWebKeySet,
   KetoNamespace,
+  ListOrganizationsResponse,
   LoginFlow,
   LoginFlowState,
   LogoutFlow,
@@ -343,6 +347,8 @@ part 'serializers.g.dart';
   OAuth2TokenExchange,
   OidcConfiguration,
   OidcUserInfo,
+  Organization,
+  OrganizationBody,
   Pagination,
   PaginationHeaders,
   ParseError,

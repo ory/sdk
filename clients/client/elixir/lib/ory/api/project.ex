@@ -10,6 +10,46 @@ defmodule Ory.Api.Project do
   import Ory.RequestBuilder
 
   @doc """
+  Create a B2B SSO Organization
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): Project ID  The project's ID.
+  - `opts` (keyword): Optional parameters
+    - `:body` (OrganizationBody): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.Organization.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec create_organization(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.Organization.t} | {:error, Tesla.Env.t}
+  def create_organization(connection, project_id, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:post)
+      |> url("/projects/#{project_id}/organizations")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, %Ory.Model.Organization{}},
+      {400, %Ory.Model.ErrorGeneric{}},
+      {403, %Ory.Model.ErrorGeneric{}},
+      {409, %Ory.Model.ErrorGeneric{}},
+      {:default, %Ory.Model.ErrorGeneric{}}
+    ])
+  end
+
+  @doc """
   Create a Project
   Creates a new project.
 
@@ -83,6 +123,41 @@ defmodule Ory.Api.Project do
     |> Connection.request(request)
     |> evaluate_response([
       {201, %Ory.Model.ProjectApiKey{}},
+      {:default, %Ory.Model.ErrorGeneric{}}
+    ])
+  end
+
+  @doc """
+  Delete a B2B SSO Organization for a project.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): Project ID  The project's ID.
+  - `organization_id` (String.t): Organization ID  The Organization's ID.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, nil}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec delete_organization(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
+  def delete_organization(connection, project_id, organization_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:delete)
+      |> url("/projects/#{project_id}/organizations/#{organization_id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {204, false},
+      {400, %Ory.Model.ErrorGeneric{}},
+      {403, %Ory.Model.ErrorGeneric{}},
+      {404, %Ory.Model.ErrorGeneric{}},
+      {409, %Ory.Model.ErrorGeneric{}},
       {:default, %Ory.Model.ErrorGeneric{}}
     ])
   end
@@ -254,6 +329,37 @@ defmodule Ory.Api.Project do
       {400, %Ory.Model.GenericError{}},
       {403, %Ory.Model.GenericError{}},
       {:default, %Ory.Model.GenericError{}}
+    ])
+  end
+
+  @doc """
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): Project ID  The project's ID.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.ListOrganizationsResponse.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec list_organizations(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ListOrganizationsResponse.t} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
+  def list_organizations(connection, project_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/projects/#{project_id}/organizations")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, %Ory.Model.ListOrganizationsResponse{}},
+      {400, %Ory.Model.ErrorGeneric{}},
+      {403, %Ory.Model.ErrorGeneric{}},
+      {:default, %Ory.Model.ErrorGeneric{}}
     ])
   end
 
@@ -507,6 +613,48 @@ defmodule Ory.Api.Project do
       {401, %Ory.Model.ErrorGeneric{}},
       {403, %Ory.Model.ErrorGeneric{}},
       {404, %Ory.Model.ErrorGeneric{}},
+      {:default, %Ory.Model.ErrorGeneric{}}
+    ])
+  end
+
+  @doc """
+  Update a B2B SSO Organization for a project.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): Project ID  The project's ID.
+  - `organization_id` (String.t): Organization ID  The Organization's ID.
+  - `opts` (keyword): Optional parameters
+    - `:body` (OrganizationBody): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.Organization.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec update_organization(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.Organization.t} | {:error, Tesla.Env.t}
+  def update_organization(connection, project_id, organization_id, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:put)
+      |> url("/projects/#{project_id}/organizations/#{organization_id}")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, %Ory.Model.Organization{}},
+      {400, %Ory.Model.ErrorGeneric{}},
+      {403, %Ory.Model.ErrorGeneric{}},
+      {404, %Ory.Model.ErrorGeneric{}},
+      {409, %Ory.Model.ErrorGeneric{}},
       {:default, %Ory.Model.ErrorGeneric{}}
     ])
   end

@@ -20,6 +20,8 @@ class _$RegistrationFlow extends RegistrationFlow {
   @override
   final OAuth2LoginRequest? oauth2LoginRequest;
   @override
+  final String? organizationId;
+  @override
   final String requestUrl;
   @override
   final String? returnTo;
@@ -45,6 +47,7 @@ class _$RegistrationFlow extends RegistrationFlow {
       required this.issuedAt,
       this.oauth2LoginChallenge,
       this.oauth2LoginRequest,
+      this.organizationId,
       required this.requestUrl,
       this.returnTo,
       this.sessionTokenExchangeCode,
@@ -82,6 +85,7 @@ class _$RegistrationFlow extends RegistrationFlow {
         issuedAt == other.issuedAt &&
         oauth2LoginChallenge == other.oauth2LoginChallenge &&
         oauth2LoginRequest == other.oauth2LoginRequest &&
+        organizationId == other.organizationId &&
         requestUrl == other.requestUrl &&
         returnTo == other.returnTo &&
         sessionTokenExchangeCode == other.sessionTokenExchangeCode &&
@@ -100,6 +104,7 @@ class _$RegistrationFlow extends RegistrationFlow {
     _$hash = $jc(_$hash, issuedAt.hashCode);
     _$hash = $jc(_$hash, oauth2LoginChallenge.hashCode);
     _$hash = $jc(_$hash, oauth2LoginRequest.hashCode);
+    _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, requestUrl.hashCode);
     _$hash = $jc(_$hash, returnTo.hashCode);
     _$hash = $jc(_$hash, sessionTokenExchangeCode.hashCode);
@@ -120,6 +125,7 @@ class _$RegistrationFlow extends RegistrationFlow {
           ..add('issuedAt', issuedAt)
           ..add('oauth2LoginChallenge', oauth2LoginChallenge)
           ..add('oauth2LoginRequest', oauth2LoginRequest)
+          ..add('organizationId', organizationId)
           ..add('requestUrl', requestUrl)
           ..add('returnTo', returnTo)
           ..add('sessionTokenExchangeCode', sessionTokenExchangeCode)
@@ -161,6 +167,11 @@ class RegistrationFlowBuilder
       _$this._oauth2LoginRequest ??= new OAuth2LoginRequestBuilder();
   set oauth2LoginRequest(OAuth2LoginRequestBuilder? oauth2LoginRequest) =>
       _$this._oauth2LoginRequest = oauth2LoginRequest;
+
+  String? _organizationId;
+  String? get organizationId => _$this._organizationId;
+  set organizationId(String? organizationId) =>
+      _$this._organizationId = organizationId;
 
   String? _requestUrl;
   String? get requestUrl => _$this._requestUrl;
@@ -205,6 +216,7 @@ class RegistrationFlowBuilder
       _issuedAt = $v.issuedAt;
       _oauth2LoginChallenge = $v.oauth2LoginChallenge;
       _oauth2LoginRequest = $v.oauth2LoginRequest?.toBuilder();
+      _organizationId = $v.organizationId;
       _requestUrl = $v.requestUrl;
       _returnTo = $v.returnTo;
       _sessionTokenExchangeCode = $v.sessionTokenExchangeCode;
@@ -245,6 +257,7 @@ class RegistrationFlowBuilder
                   issuedAt, r'RegistrationFlow', 'issuedAt'),
               oauth2LoginChallenge: oauth2LoginChallenge,
               oauth2LoginRequest: _oauth2LoginRequest?.build(),
+              organizationId: organizationId,
               requestUrl: BuiltValueNullFieldError.checkNotNull(
                   requestUrl, r'RegistrationFlow', 'requestUrl'),
               returnTo: returnTo,

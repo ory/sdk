@@ -18,6 +18,8 @@ class _$Identity extends Identity {
   @override
   final JsonObject? metadataPublic;
   @override
+  final String? organizationId;
+  @override
   final BuiltList<RecoveryIdentityAddress>? recoveryAddresses;
   @override
   final String schemaId;
@@ -43,6 +45,7 @@ class _$Identity extends Identity {
       required this.id,
       this.metadataAdmin,
       this.metadataPublic,
+      this.organizationId,
       this.recoveryAddresses,
       required this.schemaId,
       required this.schemaUrl,
@@ -73,6 +76,7 @@ class _$Identity extends Identity {
         id == other.id &&
         metadataAdmin == other.metadataAdmin &&
         metadataPublic == other.metadataPublic &&
+        organizationId == other.organizationId &&
         recoveryAddresses == other.recoveryAddresses &&
         schemaId == other.schemaId &&
         schemaUrl == other.schemaUrl &&
@@ -91,6 +95,7 @@ class _$Identity extends Identity {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, metadataAdmin.hashCode);
     _$hash = $jc(_$hash, metadataPublic.hashCode);
+    _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, recoveryAddresses.hashCode);
     _$hash = $jc(_$hash, schemaId.hashCode);
     _$hash = $jc(_$hash, schemaUrl.hashCode);
@@ -111,6 +116,7 @@ class _$Identity extends Identity {
           ..add('id', id)
           ..add('metadataAdmin', metadataAdmin)
           ..add('metadataPublic', metadataPublic)
+          ..add('organizationId', organizationId)
           ..add('recoveryAddresses', recoveryAddresses)
           ..add('schemaId', schemaId)
           ..add('schemaUrl', schemaUrl)
@@ -149,6 +155,11 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
   JsonObject? get metadataPublic => _$this._metadataPublic;
   set metadataPublic(JsonObject? metadataPublic) =>
       _$this._metadataPublic = metadataPublic;
+
+  String? _organizationId;
+  String? get organizationId => _$this._organizationId;
+  set organizationId(String? organizationId) =>
+      _$this._organizationId = organizationId;
 
   ListBuilder<RecoveryIdentityAddress>? _recoveryAddresses;
   ListBuilder<RecoveryIdentityAddress> get recoveryAddresses =>
@@ -202,6 +213,7 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
       _id = $v.id;
       _metadataAdmin = $v.metadataAdmin;
       _metadataPublic = $v.metadataPublic;
+      _organizationId = $v.organizationId;
       _recoveryAddresses = $v.recoveryAddresses?.toBuilder();
       _schemaId = $v.schemaId;
       _schemaUrl = $v.schemaUrl;
@@ -239,6 +251,7 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
               id: BuiltValueNullFieldError.checkNotNull(id, r'Identity', 'id'),
               metadataAdmin: metadataAdmin,
               metadataPublic: metadataPublic,
+              organizationId: organizationId,
               recoveryAddresses: _recoveryAddresses?.build(),
               schemaId: BuiltValueNullFieldError.checkNotNull(
                   schemaId, r'Identity', 'schemaId'),

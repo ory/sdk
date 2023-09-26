@@ -90,6 +90,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -122,6 +123,8 @@ docs/OAuth2TokenExchange.md
 docs/OidcApi.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
+docs/Organization.md
+docs/OrganizationBody.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/ParseError.md
@@ -355,6 +358,7 @@ src/main/java/sh/ory/model/JsonPatch.java
 src/main/java/sh/ory/model/JsonWebKey.java
 src/main/java/sh/ory/model/JsonWebKeySet.java
 src/main/java/sh/ory/model/KetoNamespace.java
+src/main/java/sh/ory/model/ListOrganizationsResponse.java
 src/main/java/sh/ory/model/LoginFlow.java
 src/main/java/sh/ory/model/LoginFlowState.java
 src/main/java/sh/ory/model/LogoutFlow.java
@@ -384,6 +388,8 @@ src/main/java/sh/ory/model/OAuth2RedirectTo.java
 src/main/java/sh/ory/model/OAuth2TokenExchange.java
 src/main/java/sh/ory/model/OidcConfiguration.java
 src/main/java/sh/ory/model/OidcUserInfo.java
+src/main/java/sh/ory/model/Organization.java
+src/main/java/sh/ory/model/OrganizationBody.java
 src/main/java/sh/ory/model/Pagination.java
 src/main/java/sh/ory/model/PaginationHeaders.java
 src/main/java/sh/ory/model/ParseError.java
@@ -582,6 +588,7 @@ src/test/java/sh/ory/model/JsonPatchTest.java
 src/test/java/sh/ory/model/JsonWebKeySetTest.java
 src/test/java/sh/ory/model/JsonWebKeyTest.java
 src/test/java/sh/ory/model/KetoNamespaceTest.java
+src/test/java/sh/ory/model/ListOrganizationsResponseTest.java
 src/test/java/sh/ory/model/LoginFlowStateTest.java
 src/test/java/sh/ory/model/LoginFlowTest.java
 src/test/java/sh/ory/model/LogoutFlowTest.java
@@ -611,6 +618,8 @@ src/test/java/sh/ory/model/OAuth2RedirectToTest.java
 src/test/java/sh/ory/model/OAuth2TokenExchangeTest.java
 src/test/java/sh/ory/model/OidcConfigurationTest.java
 src/test/java/sh/ory/model/OidcUserInfoTest.java
+src/test/java/sh/ory/model/OrganizationBodyTest.java
+src/test/java/sh/ory/model/OrganizationTest.java
 src/test/java/sh/ory/model/PaginationHeadersTest.java
 src/test/java/sh/ory/model/PaginationTest.java
 src/test/java/sh/ory/model/ParseErrorTest.java

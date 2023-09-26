@@ -39,7 +39,7 @@ Method | HTTP request | Description
 
 ## CreateBrowserLoginFlow
 
-> LoginFlow CreateBrowserLoginFlow(ctx).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Execute()
+> LoginFlow CreateBrowserLoginFlow(ctx).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Organization(organization).Execute()
 
 Create Login Flow for Browsers
 
@@ -63,10 +63,11 @@ func main() {
     returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
     loginChallenge := "loginChallenge_example" // string | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
+    organization := "organization_example" // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserLoginFlow(context.Background()).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Execute()
+    resp, r, err := apiClient.FrontendApi.CreateBrowserLoginFlow(context.Background()).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Organization(organization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -92,6 +93,7 @@ Name | Type | Description  | Notes
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
  **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | 
  **loginChallenge** | **string** | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | 
+ **organization** | **string** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | 
 
 ### Return type
 
@@ -247,7 +249,7 @@ No authorization required
 
 ## CreateBrowserRegistrationFlow
 
-> RegistrationFlow CreateBrowserRegistrationFlow(ctx).ReturnTo(returnTo).LoginChallenge(loginChallenge).AfterVerificationReturnTo(afterVerificationReturnTo).Execute()
+> RegistrationFlow CreateBrowserRegistrationFlow(ctx).ReturnTo(returnTo).LoginChallenge(loginChallenge).AfterVerificationReturnTo(afterVerificationReturnTo).Organization(organization).Execute()
 
 Create Registration Flow for Browsers
 
@@ -269,10 +271,11 @@ func main() {
     returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
     loginChallenge := "loginChallenge_example" // string | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
     afterVerificationReturnTo := "afterVerificationReturnTo_example" // string | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
+    organization := "organization_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserRegistrationFlow(context.Background()).ReturnTo(returnTo).LoginChallenge(loginChallenge).AfterVerificationReturnTo(afterVerificationReturnTo).Execute()
+    resp, r, err := apiClient.FrontendApi.CreateBrowserRegistrationFlow(context.Background()).ReturnTo(returnTo).LoginChallenge(loginChallenge).AfterVerificationReturnTo(afterVerificationReturnTo).Organization(organization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserRegistrationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -296,6 +299,7 @@ Name | Type | Description  | Notes
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
  **loginChallenge** | **string** | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | 
  **afterVerificationReturnTo** | **string** | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | 
+ **organization** | **string** |  | 
 
 ### Return type
 

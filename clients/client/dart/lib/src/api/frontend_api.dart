@@ -46,6 +46,7 @@ class FrontendApi {
   /// * [returnTo] - The URL to return the browser to after the flow was completed.
   /// * [cookie] - HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
   /// * [loginChallenge] - An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
+  /// * [organization] - An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -61,6 +62,7 @@ class FrontendApi {
     String? returnTo,
     String? cookie,
     String? loginChallenge,
+    String? organization,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -87,6 +89,7 @@ class FrontendApi {
       if (aal != null) r'aal': encodeQueryParameter(_serializers, aal, const FullType(String)),
       if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
       if (loginChallenge != null) r'login_challenge': encodeQueryParameter(_serializers, loginChallenge, const FullType(String)),
+      if (organization != null) r'organization': encodeQueryParameter(_serializers, organization, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -299,6 +302,7 @@ class FrontendApi {
   /// * [returnTo] - The URL to return the browser to after the flow was completed.
   /// * [loginChallenge] - Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
   /// * [afterVerificationReturnTo] - The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
+  /// * [organization] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -312,6 +316,7 @@ class FrontendApi {
     String? returnTo,
     String? loginChallenge,
     String? afterVerificationReturnTo,
+    String? organization,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -336,6 +341,7 @@ class FrontendApi {
       if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
       if (loginChallenge != null) r'login_challenge': encodeQueryParameter(_serializers, loginChallenge, const FullType(String)),
       if (afterVerificationReturnTo != null) r'after_verification_return_to': encodeQueryParameter(_serializers, afterVerificationReturnTo, const FullType(String)),
+      if (organization != null) r'organization': encodeQueryParameter(_serializers, organization, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

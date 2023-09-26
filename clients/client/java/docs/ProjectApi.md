@@ -4,13 +4,16 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**createOrganization**](ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations |  |
 | [**createProject**](ProjectApi.md#createProject) | **POST** /projects | Create a Project |
 | [**createProjectApiKey**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token |
+| [**deleteOrganization**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project. |
 | [**deleteProjectApiKey**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
 | [**getActiveProjectInConsole**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
 | [**getProject**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
 | [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**getProjectMetrics**](ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics |  |
+| [**listOrganizations**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations |  |
 | [**listProjectApiKeys**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**listProjects**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects |
 | [**patchProject**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
@@ -18,7 +21,81 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**removeProjectMember**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**setActiveProjectInConsole**](ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console |
 | [**setProject**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
+| [**updateOrganization**](ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project. |
 
+
+<a name="createOrganization"></a>
+# **createOrganization**
+> Organization createOrganization(projectId, organizationBody)
+
+
+
+Create a B2B SSO Organization
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    OrganizationBody organizationBody = new OrganizationBody(); // OrganizationBody | 
+    try {
+      Organization result = apiInstance.createOrganization(projectId, organizationBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#createOrganization");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **organizationBody** | [**OrganizationBody**](OrganizationBody.md)|  | [optional] |
+
+### Return type
+
+[**Organization**](Organization.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | organization |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **409** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
 
 <a name="createProject"></a>
 # **createProject**
@@ -159,6 +236,77 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | projectApiKey |  -  |
+| **0** | errorGeneric |  -  |
+
+<a name="deleteOrganization"></a>
+# **deleteOrganization**
+> deleteOrganization(projectId, organizationId)
+
+Delete a B2B SSO Organization for a project.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    String organizationId = "organizationId_example"; // String | Organization ID  The Organization's ID.
+    try {
+      apiInstance.deleteOrganization(projectId, organizationId);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#deleteOrganization");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **organizationId** | **String**| Organization ID  The Organization&#39;s ID. | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
+| **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 <a name="deleteProjectApiKey"></a>
@@ -513,6 +661,74 @@ public class Example {
 | **400** | genericError |  -  |
 | **403** | genericError |  -  |
 | **0** | genericError |  -  |
+
+<a name="listOrganizations"></a>
+# **listOrganizations**
+> ListOrganizationsResponse listOrganizations(projectId)
+
+
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    try {
+      ListOrganizationsResponse result = apiInstance.listOrganizations(projectId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#listOrganizations");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+
+### Return type
+
+[**ListOrganizationsResponse**](ListOrganizationsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | listOrganizationsResponse |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
 
 <a name="listProjectApiKeys"></a>
 # **listProjectApiKeys**
@@ -1004,5 +1220,79 @@ public class Example {
 | **401** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
 | **404** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a name="updateOrganization"></a>
+# **updateOrganization**
+> Organization updateOrganization(projectId, organizationId, organizationBody)
+
+Update a B2B SSO Organization for a project.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    String organizationId = "organizationId_example"; // String | Organization ID  The Organization's ID.
+    OrganizationBody organizationBody = new OrganizationBody(); // OrganizationBody | 
+    try {
+      Organization result = apiInstance.updateOrganization(projectId, organizationId, organizationBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#updateOrganization");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **organizationId** | **String**| Organization ID  The Organization&#39;s ID. | |
+| **organizationBody** | [**OrganizationBody**](OrganizationBody.md)|  | [optional] |
+
+### Return type
+
+[**Organization**](Organization.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | organization |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
+| **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 

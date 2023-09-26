@@ -9,6 +9,7 @@
 | **id** | **String** | ID is the identity&#39;s unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB. |  |
 | **metadata_admin** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
 | **metadata_public** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
+| **organization_id** | **String** |  | [optional] |
 | **recovery_addresses** | [**Array&lt;RecoveryIdentityAddress&gt;**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional] |
 | **schema_id** | **String** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. |  |
 | **schema_url** | **String** | SchemaURL is the URL of the endpoint where the identity&#39;s traits schema can be fetched from.  format: url |  |
@@ -29,6 +30,7 @@ instance = OryClient::Identity.new(
   id: null,
   metadata_admin: null,
   metadata_public: null,
+  organization_id: null,
   recovery_addresses: null,
   schema_id: null,
   schema_url: null,

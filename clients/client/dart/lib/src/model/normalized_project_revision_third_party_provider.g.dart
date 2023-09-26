@@ -98,6 +98,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   @override
   final String? mapperUrl;
   @override
+  final String? organizationId;
+  @override
   final String? projectRevisionId;
   @override
   final String? provider;
@@ -136,6 +138,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
       this.issuerUrl,
       this.label,
       this.mapperUrl,
+      this.organizationId,
       this.projectRevisionId,
       this.provider,
       this.providerId,
@@ -173,6 +176,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
         issuerUrl == other.issuerUrl &&
         label == other.label &&
         mapperUrl == other.mapperUrl &&
+        organizationId == other.organizationId &&
         projectRevisionId == other.projectRevisionId &&
         provider == other.provider &&
         providerId == other.providerId &&
@@ -199,6 +203,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
     _$hash = $jc(_$hash, issuerUrl.hashCode);
     _$hash = $jc(_$hash, label.hashCode);
     _$hash = $jc(_$hash, mapperUrl.hashCode);
+    _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, projectRevisionId.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, providerId.hashCode);
@@ -228,6 +233,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
           ..add('issuerUrl', issuerUrl)
           ..add('label', label)
           ..add('mapperUrl', mapperUrl)
+          ..add('organizationId', organizationId)
           ..add('projectRevisionId', projectRevisionId)
           ..add('provider', provider)
           ..add('providerId', providerId)
@@ -297,6 +303,11 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   String? get mapperUrl => _$this._mapperUrl;
   set mapperUrl(String? mapperUrl) => _$this._mapperUrl = mapperUrl;
 
+  String? _organizationId;
+  String? get organizationId => _$this._organizationId;
+  set organizationId(String? organizationId) =>
+      _$this._organizationId = organizationId;
+
   String? _projectRevisionId;
   String? get projectRevisionId => _$this._projectRevisionId;
   set projectRevisionId(String? projectRevisionId) =>
@@ -357,6 +368,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
       _issuerUrl = $v.issuerUrl;
       _label = $v.label;
       _mapperUrl = $v.mapperUrl;
+      _organizationId = $v.organizationId;
       _projectRevisionId = $v.projectRevisionId;
       _provider = $v.provider;
       _providerId = $v.providerId;
@@ -404,6 +416,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
               issuerUrl: issuerUrl,
               label: label,
               mapperUrl: mapperUrl,
+              organizationId: organizationId,
               projectRevisionId: projectRevisionId,
               provider: provider,
               providerId: providerId,

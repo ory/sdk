@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.2.9
+  version: v1.2.10
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -3729,6 +3729,251 @@ paths:
       tags:
       - project
       x-accepts: application/json
+  /projects/{project_id}/organizations:
+    get:
+      operationId: listOrganizations
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listOrganizationsResponse'
+          description: listOrganizationsResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      tags:
+      - project
+      x-accepts: application/json
+    post:
+      description: Create a B2B SSO Organization
+      operationId: createOrganization
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationBody'
+        x-originalParamName: Body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organization'
+          description: organization
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      tags:
+      - project
+      x-content-type: application/json
+      x-accepts: application/json
+  /projects/{project_id}/organizations/{organization_id}:
+    delete:
+      operationId: deleteOrganization
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Organization ID
+
+          The Organization's ID.
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Delete a B2B SSO Organization for a project.
+      tags:
+      - project
+      x-accepts: application/json
+    put:
+      operationId: updateOrganization
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Organization ID
+
+          The Organization's ID.
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organization'
+          description: organization
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Update a B2B SSO Organization for a project.
+      tags:
+      - project
+      x-content-type: application/json
+      x-accepts: application/json
   /projects/{project}/members:
     get:
       description: This endpoint requires the user to be a member of the project with
@@ -4870,6 +5115,16 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          An optional organization ID that should be used for logging this user in.
+          This parameter is only effective in the Ory Network.
+        explode: true
+        in: query
+        name: organization
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -5666,6 +5921,13 @@ paths:
         explode: true
         in: query
         name: after_verification_return_to
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: organization
         required: false
         schema:
           type: string
@@ -7129,6 +7391,23 @@ components:
       type: string
     OAuth2LoginChallengeParams:
       type: object
+    OrganizationBody:
+      description: Create B2B SSO Organization Request Body
+      example:
+        domains:
+        - domains
+        - domains
+        label: label
+      properties:
+        domains:
+          description: Domains contains the list of organization's domains.
+          items:
+            type: string
+          type: array
+        label:
+          description: Label contains the organization's label.
+          type: string
+      type: object
     ParseError:
       example:
         start:
@@ -8291,6 +8570,7 @@ components:
           value: value
           status: status
           via: via
+        organization_id: organization_id
         schema_id: schema_id
         schema_url: schema_url
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -8325,6 +8605,10 @@ components:
             \ well with JSON, SQL, and Swagger and is NULLable-"
           nullable: true
           type: object
+        organization_id:
+          format: uuid4
+          nullable: true
+          type: string
         recovery_addresses:
           description: RecoveryAddresses contains all the addresses that can be used
             to recover an identity.
@@ -8435,6 +8719,8 @@ components:
         initial_id_token:
           type: string
         initial_refresh_token:
+          type: string
+        organization:
           type: string
         provider:
           type: string
@@ -9045,6 +9331,30 @@ components:
       items:
         $ref: '#/components/schemas/customDomain'
       type: array
+    listOrganizationsResponse:
+      description: B2B SSO Organization List
+      example:
+        organizations:
+        - project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          domains:
+          - domains
+          - domains
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          label: label
+        - project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          domains:
+          - domains
+          - domains
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          label: label
+      properties:
+        organizations:
+          items:
+            $ref: '#/components/schemas/organization'
+          type: array
+      required:
+      - organizations
+      type: object
     loginFlow:
       description: |-
         This object represents a login flow. A login flow is initiated at the "Initiate Login API / Browser Flow"
@@ -9200,6 +9510,7 @@ components:
             type: info
         updated_at: 2000-01-23T04:56:07.000+00:00
         oauth2_login_challenge: oauth2_login_challenge
+        organization_id: organization_id
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: ""
       properties:
@@ -9234,6 +9545,10 @@ components:
           type: string
         oauth2_login_request:
           $ref: '#/components/schemas/oAuth2LoginRequest'
+        organization_id:
+          format: uuid4
+          nullable: true
+          type: string
         refresh:
           description: Refresh stores whether this login flow should enforce re-authentication.
           type: boolean
@@ -11087,6 +11402,10 @@ components:
             Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google
             profile information) to hydrate the identity's data.
           type: string
+        organization_id:
+          format: uuid4
+          nullable: true
+          type: string
         project_revision_id:
           description: The Revision's ID this schema belongs to
           format: uuid
@@ -12782,6 +13101,39 @@ components:
             \ the End-User's time zone. For example, Europe/Paris or America/Los_Angeles."
           type: string
       type: object
+    organization:
+      description: B2B SSO Organization
+      example:
+        project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        domains:
+        - domains
+        - domains
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        label: label
+      properties:
+        domains:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        id:
+          description: The organization's ID.
+          format: uuid
+          type: string
+        label:
+          description: The organization's human-readable label.
+          type: string
+        project_id:
+          description: The project's ID.
+          format: uuid
+          type: string
+      required:
+      - domains
+      - id
+      - label
+      - project_id
+      type: object
     pagination:
       properties:
         page_size:
@@ -13950,6 +14302,7 @@ components:
             text: text
             type: info
         oauth2_login_challenge: oauth2_login_challenge
+        organization_id: organization_id
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: ""
       properties:
@@ -13980,6 +14333,10 @@ components:
           type: string
         oauth2_login_request:
           $ref: '#/components/schemas/oAuth2LoginRequest'
+        organization_id:
+          format: uuid4
+          nullable: true
+          type: string
         request_url:
           description: |-
             RequestURL is the initial URL that was requested from Ory Kratos. It can be used
@@ -14229,10 +14586,12 @@ components:
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
           provider: provider
+          organization: organization
           aal: null
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
           provider: provider
+          organization: organization
           aal: null
         authenticator_assurance_level: null
         identity:
@@ -14279,6 +14638,7 @@ components:
             value: value
             status: status
             via: via
+          organization_id: organization_id
           schema_id: schema_id
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14350,6 +14710,7 @@ components:
         completed_at: 2000-01-23T04:56:07.000+00:00
         method: link_recovery
         provider: provider
+        organization: organization
         aal: null
       properties:
         aal:
@@ -14369,6 +14730,9 @@ components:
           - lookup_secret
           - v0.6_legacy_session
           title: The method used
+          type: string
+        organization:
+          description: The Organization id used for authentication
           type: string
         provider:
           description: OIDC or SAML provider id used for authentication
@@ -14581,6 +14945,7 @@ components:
             value: value
             status: status
             via: via
+          organization_id: organization_id
           schema_id: schema_id
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14828,10 +15193,12 @@ components:
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
+            organization: organization
             aal: null
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
+            organization: organization
             aal: null
           authenticator_assurance_level: null
           identity:
@@ -14878,6 +15245,7 @@ components:
               value: value
               status: status
               via: via
+            organization_id: organization_id
             schema_id: schema_id
             schema_url: schema_url
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14952,6 +15320,7 @@ components:
             value: value
             status: status
             via: via
+          organization_id: organization_id
           schema_id: schema_id
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14973,10 +15342,12 @@ components:
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
+            organization: organization
             aal: null
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
+            organization: organization
             aal: null
           authenticator_assurance_level: null
           identity:
@@ -15023,6 +15394,7 @@ components:
               value: value
               status: status
               via: via
+            organization_id: organization_id
             schema_id: schema_id
             schema_url: schema_url
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91

@@ -100,6 +100,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -132,6 +133,8 @@ docs/OAuth2TokenExchange.md
 docs/OidcApi.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
+docs/Organization.md
+docs/OrganizationBody.md
 docs/Pagination.md
 docs/PaginationHeaders.md
 docs/ParseError.md
@@ -326,6 +329,7 @@ model_json_patch.go
 model_json_web_key.go
 model_json_web_key_set.go
 model_keto_namespace.go
+model_list_organizations_response.go
 model_login_flow.go
 model_login_flow_state.go
 model_logout_flow.go
@@ -355,6 +359,8 @@ model_o_auth2_redirect_to.go
 model_o_auth2_token_exchange.go
 model_oidc_configuration.go
 model_oidc_user_info.go
+model_organization.go
+model_organization_body.go
 model_pagination.go
 model_pagination_headers.go
 model_parse_error.go

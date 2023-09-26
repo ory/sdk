@@ -95,6 +95,7 @@ from ory_client.model.json_web_key_set import JsonWebKeySet
 from ory_client.model.keto_namespace import KetoNamespace
 from ory_client.model.keto_namespaces import KetoNamespaces
 from ory_client.model.list_custom_domains import ListCustomDomains
+from ory_client.model.list_organizations_response import ListOrganizationsResponse
 from ory_client.model.login_flow import LoginFlow
 from ory_client.model.login_flow_state import LoginFlowState
 from ory_client.model.logout_flow import LogoutFlow
@@ -131,6 +132,8 @@ from ory_client.model.o_auth2_redirect_to import OAuth2RedirectTo
 from ory_client.model.o_auth2_token_exchange import OAuth2TokenExchange
 from ory_client.model.oidc_configuration import OidcConfiguration
 from ory_client.model.oidc_user_info import OidcUserInfo
+from ory_client.model.organization import Organization
+from ory_client.model.organization_body import OrganizationBody
 from ory_client.model.pagination import Pagination
 from ory_client.model.pagination_headers import PaginationHeaders
 from ory_client.model.parse_error import ParseError

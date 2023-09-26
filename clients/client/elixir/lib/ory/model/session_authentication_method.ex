@@ -11,6 +11,7 @@ defmodule Ory.Model.SessionAuthenticationMethod do
     :aal,
     :completed_at,
     :method,
+    :organization,
     :provider
   ]
 
@@ -18,6 +19,7 @@ defmodule Ory.Model.SessionAuthenticationMethod do
     :aal => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
     :completed_at => DateTime.t | nil,
     :method => String.t | nil,
+    :organization => String.t | nil,
     :provider => String.t | nil
   }
 end

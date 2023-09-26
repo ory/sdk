@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **aal** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
 **completed_at** | **datetime** | When the authentication challenge was completed. | [optional] 
 **method** | **str** |  | [optional] 
+**organization** | **str** | The Organization id used for authentication | [optional] 
 **provider** | **str** | OIDC or SAML provider id used for authentication | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

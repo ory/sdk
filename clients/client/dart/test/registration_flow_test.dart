@@ -41,6 +41,11 @@ void main() {
       // TODO
     });
 
+    // String organizationId
+    test('to test the property `organizationId`', () async {
+      // TODO
+    });
+
     // RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
     // String requestUrl
     test('to test the property `requestUrl`', () async {

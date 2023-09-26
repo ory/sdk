@@ -11,6 +11,7 @@ defmodule Ory.Model.IdentityCredentialsOidcProvider do
     :initial_access_token,
     :initial_id_token,
     :initial_refresh_token,
+    :organization,
     :provider,
     :subject
   ]
@@ -19,6 +20,7 @@ defmodule Ory.Model.IdentityCredentialsOidcProvider do
     :initial_access_token => String.t | nil,
     :initial_id_token => String.t | nil,
     :initial_refresh_token => String.t | nil,
+    :organization => String.t | nil,
     :provider => String.t | nil,
     :subject => String.t | nil
   }

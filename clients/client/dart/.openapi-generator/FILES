@@ -86,6 +86,7 @@ doc/JsonWebKey.md
 doc/JsonWebKeySet.md
 doc/JwkApi.md
 doc/KetoNamespace.md
+doc/ListOrganizationsResponse.md
 doc/LoginFlow.md
 doc/LoginFlowState.md
 doc/LogoutFlow.md
@@ -118,6 +119,8 @@ doc/OAuth2TokenExchange.md
 doc/OidcApi.md
 doc/OidcConfiguration.md
 doc/OidcUserInfo.md
+doc/Organization.md
+doc/OrganizationBody.md
 doc/Pagination.md
 doc/PaginationHeaders.md
 doc/ParseError.md
@@ -330,6 +333,7 @@ lib/src/model/json_patch.dart
 lib/src/model/json_web_key.dart
 lib/src/model/json_web_key_set.dart
 lib/src/model/keto_namespace.dart
+lib/src/model/list_organizations_response.dart
 lib/src/model/login_flow.dart
 lib/src/model/login_flow_state.dart
 lib/src/model/logout_flow.dart
@@ -359,6 +363,8 @@ lib/src/model/o_auth2_redirect_to.dart
 lib/src/model/o_auth2_token_exchange.dart
 lib/src/model/oidc_configuration.dart
 lib/src/model/oidc_user_info.dart
+lib/src/model/organization.dart
+lib/src/model/organization_body.dart
 lib/src/model/pagination.dart
 lib/src/model/pagination_headers.dart
 lib/src/model/parse_error.dart
@@ -552,6 +558,7 @@ test/json_web_key_set_test.dart
 test/json_web_key_test.dart
 test/jwk_api_test.dart
 test/keto_namespace_test.dart
+test/list_organizations_response_test.dart
 test/login_flow_state_test.dart
 test/login_flow_test.dart
 test/logout_flow_test.dart
@@ -584,6 +591,8 @@ test/o_auth2_token_exchange_test.dart
 test/oidc_api_test.dart
 test/oidc_configuration_test.dart
 test/oidc_user_info_test.dart
+test/organization_body_test.dart
+test/organization_test.dart
 test/pagination_headers_test.dart
 test/pagination_test.dart
 test/parse_error_test.dart

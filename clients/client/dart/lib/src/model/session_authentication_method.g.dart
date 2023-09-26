@@ -124,6 +124,8 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
   @override
   final SessionAuthenticationMethodMethodEnum? method;
   @override
+  final String? organization;
+  @override
   final String? provider;
 
   factory _$SessionAuthenticationMethod(
@@ -131,7 +133,11 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
       (new SessionAuthenticationMethodBuilder()..update(updates))._build();
 
   _$SessionAuthenticationMethod._(
-      {this.aal, this.completedAt, this.method, this.provider})
+      {this.aal,
+      this.completedAt,
+      this.method,
+      this.organization,
+      this.provider})
       : super._();
 
   @override
@@ -150,6 +156,7 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
         aal == other.aal &&
         completedAt == other.completedAt &&
         method == other.method &&
+        organization == other.organization &&
         provider == other.provider;
   }
 
@@ -159,6 +166,7 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
     _$hash = $jc(_$hash, aal.hashCode);
     _$hash = $jc(_$hash, completedAt.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, organization.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -170,6 +178,7 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
           ..add('aal', aal)
           ..add('completedAt', completedAt)
           ..add('method', method)
+          ..add('organization', organization)
           ..add('provider', provider))
         .toString();
   }
@@ -194,6 +203,10 @@ class SessionAuthenticationMethodBuilder
   set method(SessionAuthenticationMethodMethodEnum? method) =>
       _$this._method = method;
 
+  String? _organization;
+  String? get organization => _$this._organization;
+  set organization(String? organization) => _$this._organization = organization;
+
   String? _provider;
   String? get provider => _$this._provider;
   set provider(String? provider) => _$this._provider = provider;
@@ -208,6 +221,7 @@ class SessionAuthenticationMethodBuilder
       _aal = $v.aal;
       _completedAt = $v.completedAt;
       _method = $v.method;
+      _organization = $v.organization;
       _provider = $v.provider;
       _$v = null;
     }
@@ -234,6 +248,7 @@ class SessionAuthenticationMethodBuilder
             aal: aal,
             completedAt: completedAt,
             method: method,
+            organization: organization,
             provider: provider);
     replace(_$result);
     return _$result;

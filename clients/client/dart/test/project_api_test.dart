@@ -7,6 +7,13 @@ void main() {
   final instance = OryClient().getProjectApi();
 
   group(ProjectApi, () {
+    // Create a B2B SSO Organization
+    //
+    //Future<Organization> createOrganization(String projectId, { OrganizationBody organizationBody }) async
+    test('test createOrganization', () async {
+      // TODO
+    });
+
     // Create a Project
     //
     // Creates a new project.
@@ -22,6 +29,13 @@ void main() {
     //
     //Future<ProjectApiKey> createProjectApiKey(String project, { CreateProjectApiKeyRequest createProjectApiKeyRequest }) async
     test('test createProjectApiKey', () async {
+      // TODO
+    });
+
+    // Delete a B2B SSO Organization for a project.
+    //
+    //Future deleteOrganization(String projectId, String organizationId) async
+    test('test deleteOrganization', () async {
       // TODO
     });
 
@@ -65,6 +79,11 @@ void main() {
     //
     //Future<GetProjectMetricsResponse> getProjectMetrics(String projectId, String eventType, String resolution, DateTime from, DateTime to) async
     test('test getProjectMetrics', () async {
+      // TODO
+    });
+
+    //Future<ListOrganizationsResponse> listOrganizations(String projectId) async
+    test('test listOrganizations', () async {
       // TODO
     });
 
@@ -128,6 +147,13 @@ void main() {
     //
     //Future<SuccessfulProjectUpdate> setProject(String projectId, { SetProject setProject }) async
     test('test setProject', () async {
+      // TODO
+    });
+
+    // Update a B2B SSO Organization for a project.
+    //
+    //Future<Organization> updateOrganization(String projectId, String organizationId, { OrganizationBody organizationBody }) async
+    test('test updateOrganization', () async {
       // TODO
     });
 

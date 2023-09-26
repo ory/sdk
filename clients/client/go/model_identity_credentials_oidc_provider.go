@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.9
+API version: v1.2.10
 Contact: support@ory.sh
 */
 
@@ -20,6 +20,7 @@ type IdentityCredentialsOidcProvider struct {
 	InitialAccessToken *string `json:"initial_access_token,omitempty"`
 	InitialIdToken *string `json:"initial_id_token,omitempty"`
 	InitialRefreshToken *string `json:"initial_refresh_token,omitempty"`
+	Organization *string `json:"organization,omitempty"`
 	Provider *string `json:"provider,omitempty"`
 	Subject *string `json:"subject,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -140,6 +141,38 @@ func (o *IdentityCredentialsOidcProvider) SetInitialRefreshToken(v string) {
 	o.InitialRefreshToken = &v
 }
 
+// GetOrganization returns the Organization field value if set, zero value otherwise.
+func (o *IdentityCredentialsOidcProvider) GetOrganization() string {
+	if o == nil || o.Organization == nil {
+		var ret string
+		return ret
+	}
+	return *o.Organization
+}
+
+// GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdentityCredentialsOidcProvider) GetOrganizationOk() (*string, bool) {
+	if o == nil || o.Organization == nil {
+		return nil, false
+	}
+	return o.Organization, true
+}
+
+// HasOrganization returns a boolean if a field has been set.
+func (o *IdentityCredentialsOidcProvider) HasOrganization() bool {
+	if o != nil && o.Organization != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganization gets a reference to the given string and assigns it to the Organization field.
+func (o *IdentityCredentialsOidcProvider) SetOrganization(v string) {
+	o.Organization = &v
+}
+
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *IdentityCredentialsOidcProvider) GetProvider() string {
 	if o == nil || o.Provider == nil {
@@ -215,6 +248,9 @@ func (o IdentityCredentialsOidcProvider) MarshalJSON() ([]byte, error) {
 	if o.InitialRefreshToken != nil {
 		toSerialize["initial_refresh_token"] = o.InitialRefreshToken
 	}
+	if o.Organization != nil {
+		toSerialize["organization"] = o.Organization
+	}
 	if o.Provider != nil {
 		toSerialize["provider"] = o.Provider
 	}
@@ -242,6 +278,7 @@ func (o *IdentityCredentialsOidcProvider) UnmarshalJSON(bytes []byte) (err error
 		delete(additionalProperties, "initial_access_token")
 		delete(additionalProperties, "initial_id_token")
 		delete(additionalProperties, "initial_refresh_token")
+		delete(additionalProperties, "organization")
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "subject")
 		o.AdditionalProperties = additionalProperties

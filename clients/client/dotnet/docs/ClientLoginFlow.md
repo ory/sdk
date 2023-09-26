@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **IssuedAt** | **DateTime** | IssuedAt is the time (UTC) when the flow started. | 
 **Oauth2LoginChallenge** | **string** | Ory OAuth 2.0 Login Challenge.  This value is set using the &#x60;login_challenge&#x60; query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider. | [optional] 
 **Oauth2LoginRequest** | [**ClientOAuth2LoginRequest**](ClientOAuth2LoginRequest.md) |  | [optional] 
+**OrganizationId** | **string** |  | [optional] 
 **Refresh** | **bool** | Refresh stores whether this login flow should enforce re-authentication. | [optional] 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **RequestedAal** | [**ClientAuthenticatorAssuranceLevel**](ClientAuthenticatorAssuranceLevel.md) |  | [optional] 

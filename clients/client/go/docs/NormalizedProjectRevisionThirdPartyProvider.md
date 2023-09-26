@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **IssuerUrl** | Pointer to **string** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if &#x60;provider&#x60; is not set to &#x60;generic&#x60;. If set, neither &#x60;auth_url&#x60; nor &#x60;token_url&#x60; are required. | [optional] 
 **Label** | Pointer to **string** | Label represents an optional label which can be used in the UI generation. | [optional] 
 **MapperUrl** | Pointer to **string** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data. | [optional] 
+**OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
 **Provider** | Pointer to **string** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] 
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
@@ -365,6 +366,41 @@ SetMapperUrl sets MapperUrl field to given value.
 
 HasMapperUrl returns a boolean if a field has been set.
 
+### GetOrganizationId
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
+
+### SetOrganizationIdNil
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetOrganizationIdNil(b bool)`
+
+ SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+
+### UnsetOrganizationId
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetOrganizationId()`
+
+UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetProjectRevisionId
 
 `func (o *NormalizedProjectRevisionThirdPartyProvider) GetProjectRevisionId() string`
