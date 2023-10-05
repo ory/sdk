@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ContinueWithVerificationUi type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContinueWithVerificationUi{}
+
 // ContinueWithVerificationUi Indicates, that the UI flow could be continued by showing a verification ui
 type ContinueWithVerificationUi struct {
 	// Action will always be `show_verification_ui` show_verification_ui ContinueWithActionShowVerificationUIString
@@ -93,27 +96,35 @@ func (o *ContinueWithVerificationUi) SetFlow(v ContinueWithVerificationUiFlow) {
 }
 
 func (o ContinueWithVerificationUi) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ContinueWithVerificationUi) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["action"] = o.Action
-	}
-	if true {
-		toSerialize["flow"] = o.Flow
-	}
+	toSerialize["action"] = o.Action
+	toSerialize["flow"] = o.Flow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ContinueWithVerificationUi) UnmarshalJSON(bytes []byte) (err error) {
 	varContinueWithVerificationUi := _ContinueWithVerificationUi{}
 
-	if err = json.Unmarshal(bytes, &varContinueWithVerificationUi); err == nil {
-		*o = ContinueWithVerificationUi(varContinueWithVerificationUi)
+	err = json.Unmarshal(bytes, &varContinueWithVerificationUi)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ContinueWithVerificationUi(varContinueWithVerificationUi)
 
 	additionalProperties := make(map[string]interface{})
 

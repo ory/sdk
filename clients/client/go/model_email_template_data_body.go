@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailTemplateDataBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailTemplateDataBody{}
+
 // EmailTemplateDataBody struct for EmailTemplateDataBody
 type EmailTemplateDataBody struct {
 	Html string `json:"html"`
@@ -92,27 +95,35 @@ func (o *EmailTemplateDataBody) SetPlaintext(v string) {
 }
 
 func (o EmailTemplateDataBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailTemplateDataBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["html"] = o.Html
-	}
-	if true {
-		toSerialize["plaintext"] = o.Plaintext
-	}
+	toSerialize["html"] = o.Html
+	toSerialize["plaintext"] = o.Plaintext
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *EmailTemplateDataBody) UnmarshalJSON(bytes []byte) (err error) {
 	varEmailTemplateDataBody := _EmailTemplateDataBody{}
 
-	if err = json.Unmarshal(bytes, &varEmailTemplateDataBody); err == nil {
-		*o = EmailTemplateDataBody(varEmailTemplateDataBody)
+	err = json.Unmarshal(bytes, &varEmailTemplateDataBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = EmailTemplateDataBody(varEmailTemplateDataBody)
 
 	additionalProperties := make(map[string]interface{})
 

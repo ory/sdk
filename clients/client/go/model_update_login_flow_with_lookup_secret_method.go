@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateLoginFlowWithLookupSecretMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateLoginFlowWithLookupSecretMethod{}
+
 // UpdateLoginFlowWithLookupSecretMethod Update Login Flow with Lookup Secret Method
 type UpdateLoginFlowWithLookupSecretMethod struct {
 	// Sending the anti-csrf token is only required for browser login flows.
@@ -49,7 +52,7 @@ func NewUpdateLoginFlowWithLookupSecretMethodWithDefaults() *UpdateLoginFlowWith
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithLookupSecretMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *UpdateLoginFlowWithLookupSecretMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithLookupSecretMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -67,7 +70,7 @@ func (o *UpdateLoginFlowWithLookupSecretMethod) GetCsrfTokenOk() (*string, bool)
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithLookupSecretMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -128,30 +131,38 @@ func (o *UpdateLoginFlowWithLookupSecretMethod) SetMethod(v string) {
 }
 
 func (o UpdateLoginFlowWithLookupSecretMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateLoginFlowWithLookupSecretMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if true {
-		toSerialize["lookup_secret"] = o.LookupSecret
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
+	toSerialize["lookup_secret"] = o.LookupSecret
+	toSerialize["method"] = o.Method
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateLoginFlowWithLookupSecretMethod) UnmarshalJSON(bytes []byte) (err error) {
 	varUpdateLoginFlowWithLookupSecretMethod := _UpdateLoginFlowWithLookupSecretMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateLoginFlowWithLookupSecretMethod); err == nil {
-		*o = UpdateLoginFlowWithLookupSecretMethod(varUpdateLoginFlowWithLookupSecretMethod)
+	err = json.Unmarshal(bytes, &varUpdateLoginFlowWithLookupSecretMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateLoginFlowWithLookupSecretMethod(varUpdateLoginFlowWithLookupSecretMethod)
 
 	additionalProperties := make(map[string]interface{})
 

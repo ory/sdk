@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateRegistrationFlowWithPasswordMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateRegistrationFlowWithPasswordMethod{}
+
 // UpdateRegistrationFlowWithPasswordMethod Update Registration Flow with Password Method
 type UpdateRegistrationFlowWithPasswordMethod struct {
 	// The CSRF Token
@@ -54,7 +57,7 @@ func NewUpdateRegistrationFlowWithPasswordMethodWithDefaults() *UpdateRegistrati
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithPasswordMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *UpdateRegistrationFlowWithPasswordMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithPasswordMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -72,7 +75,7 @@ func (o *UpdateRegistrationFlowWithPasswordMethod) GetCsrfTokenOk() (*string, bo
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithPasswordMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *UpdateRegistrationFlowWithPasswordMethod) GetTraits() map[string]interf
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithPasswordMethod) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Traits, true
 }
@@ -158,7 +161,7 @@ func (o *UpdateRegistrationFlowWithPasswordMethod) SetTraits(v map[string]interf
 
 // GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithPasswordMethod) GetTransientPayload() map[string]interface{} {
-	if o == nil || o.TransientPayload == nil {
+	if o == nil || IsNil(o.TransientPayload) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -168,15 +171,15 @@ func (o *UpdateRegistrationFlowWithPasswordMethod) GetTransientPayload() map[str
 // GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithPasswordMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
-	if o == nil || o.TransientPayload == nil {
-		return nil, false
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
 	}
 	return o.TransientPayload, true
 }
 
 // HasTransientPayload returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithPasswordMethod) HasTransientPayload() bool {
-	if o != nil && o.TransientPayload != nil {
+	if o != nil && !IsNil(o.TransientPayload) {
 		return true
 	}
 
@@ -189,20 +192,22 @@ func (o *UpdateRegistrationFlowWithPasswordMethod) SetTransientPayload(v map[str
 }
 
 func (o UpdateRegistrationFlowWithPasswordMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateRegistrationFlowWithPasswordMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if true {
-		toSerialize["password"] = o.Password
-	}
-	if true {
-		toSerialize["traits"] = o.Traits
-	}
-	if o.TransientPayload != nil {
+	toSerialize["method"] = o.Method
+	toSerialize["password"] = o.Password
+	toSerialize["traits"] = o.Traits
+	if !IsNil(o.TransientPayload) {
 		toSerialize["transient_payload"] = o.TransientPayload
 	}
 
@@ -210,15 +215,19 @@ func (o UpdateRegistrationFlowWithPasswordMethod) MarshalJSON() ([]byte, error) 
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateRegistrationFlowWithPasswordMethod) UnmarshalJSON(bytes []byte) (err error) {
 	varUpdateRegistrationFlowWithPasswordMethod := _UpdateRegistrationFlowWithPasswordMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithPasswordMethod); err == nil {
-		*o = UpdateRegistrationFlowWithPasswordMethod(varUpdateRegistrationFlowWithPasswordMethod)
+	err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithPasswordMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateRegistrationFlowWithPasswordMethod(varUpdateRegistrationFlowWithPasswordMethod)
 
 	additionalProperties := make(map[string]interface{})
 

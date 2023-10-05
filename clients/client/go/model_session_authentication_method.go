@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SessionAuthenticationMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SessionAuthenticationMethod{}
+
 // SessionAuthenticationMethod A singular authenticator used during authentication / login.
 type SessionAuthenticationMethod struct {
 	Aal *AuthenticatorAssuranceLevel `json:"aal,omitempty"`
@@ -50,7 +53,7 @@ func NewSessionAuthenticationMethodWithDefaults() *SessionAuthenticationMethod {
 
 // GetAal returns the Aal field value if set, zero value otherwise.
 func (o *SessionAuthenticationMethod) GetAal() AuthenticatorAssuranceLevel {
-	if o == nil || o.Aal == nil {
+	if o == nil || IsNil(o.Aal) {
 		var ret AuthenticatorAssuranceLevel
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *SessionAuthenticationMethod) GetAal() AuthenticatorAssuranceLevel {
 // GetAalOk returns a tuple with the Aal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SessionAuthenticationMethod) GetAalOk() (*AuthenticatorAssuranceLevel, bool) {
-	if o == nil || o.Aal == nil {
+	if o == nil || IsNil(o.Aal) {
 		return nil, false
 	}
 	return o.Aal, true
@@ -68,7 +71,7 @@ func (o *SessionAuthenticationMethod) GetAalOk() (*AuthenticatorAssuranceLevel, 
 
 // HasAal returns a boolean if a field has been set.
 func (o *SessionAuthenticationMethod) HasAal() bool {
-	if o != nil && o.Aal != nil {
+	if o != nil && !IsNil(o.Aal) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *SessionAuthenticationMethod) SetAal(v AuthenticatorAssuranceLevel) {
 
 // GetCompletedAt returns the CompletedAt field value if set, zero value otherwise.
 func (o *SessionAuthenticationMethod) GetCompletedAt() time.Time {
-	if o == nil || o.CompletedAt == nil {
+	if o == nil || IsNil(o.CompletedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *SessionAuthenticationMethod) GetCompletedAt() time.Time {
 // GetCompletedAtOk returns a tuple with the CompletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SessionAuthenticationMethod) GetCompletedAtOk() (*time.Time, bool) {
-	if o == nil || o.CompletedAt == nil {
+	if o == nil || IsNil(o.CompletedAt) {
 		return nil, false
 	}
 	return o.CompletedAt, true
@@ -100,7 +103,7 @@ func (o *SessionAuthenticationMethod) GetCompletedAtOk() (*time.Time, bool) {
 
 // HasCompletedAt returns a boolean if a field has been set.
 func (o *SessionAuthenticationMethod) HasCompletedAt() bool {
-	if o != nil && o.CompletedAt != nil {
+	if o != nil && !IsNil(o.CompletedAt) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *SessionAuthenticationMethod) SetCompletedAt(v time.Time) {
 
 // GetMethod returns the Method field value if set, zero value otherwise.
 func (o *SessionAuthenticationMethod) GetMethod() string {
-	if o == nil || o.Method == nil {
+	if o == nil || IsNil(o.Method) {
 		var ret string
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *SessionAuthenticationMethod) GetMethod() string {
 // GetMethodOk returns a tuple with the Method field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SessionAuthenticationMethod) GetMethodOk() (*string, bool) {
-	if o == nil || o.Method == nil {
+	if o == nil || IsNil(o.Method) {
 		return nil, false
 	}
 	return o.Method, true
@@ -132,7 +135,7 @@ func (o *SessionAuthenticationMethod) GetMethodOk() (*string, bool) {
 
 // HasMethod returns a boolean if a field has been set.
 func (o *SessionAuthenticationMethod) HasMethod() bool {
-	if o != nil && o.Method != nil {
+	if o != nil && !IsNil(o.Method) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *SessionAuthenticationMethod) SetMethod(v string) {
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *SessionAuthenticationMethod) GetOrganization() string {
-	if o == nil || o.Organization == nil {
+	if o == nil || IsNil(o.Organization) {
 		var ret string
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *SessionAuthenticationMethod) GetOrganization() string {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SessionAuthenticationMethod) GetOrganizationOk() (*string, bool) {
-	if o == nil || o.Organization == nil {
+	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
 	return o.Organization, true
@@ -164,7 +167,7 @@ func (o *SessionAuthenticationMethod) GetOrganizationOk() (*string, bool) {
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *SessionAuthenticationMethod) HasOrganization() bool {
-	if o != nil && o.Organization != nil {
+	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *SessionAuthenticationMethod) SetOrganization(v string) {
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *SessionAuthenticationMethod) GetProvider() string {
-	if o == nil || o.Provider == nil {
+	if o == nil || IsNil(o.Provider) {
 		var ret string
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *SessionAuthenticationMethod) GetProvider() string {
 // GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SessionAuthenticationMethod) GetProviderOk() (*string, bool) {
-	if o == nil || o.Provider == nil {
+	if o == nil || IsNil(o.Provider) {
 		return nil, false
 	}
 	return o.Provider, true
@@ -196,7 +199,7 @@ func (o *SessionAuthenticationMethod) GetProviderOk() (*string, bool) {
 
 // HasProvider returns a boolean if a field has been set.
 func (o *SessionAuthenticationMethod) HasProvider() bool {
-	if o != nil && o.Provider != nil {
+	if o != nil && !IsNil(o.Provider) {
 		return true
 	}
 
@@ -209,20 +212,28 @@ func (o *SessionAuthenticationMethod) SetProvider(v string) {
 }
 
 func (o SessionAuthenticationMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SessionAuthenticationMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Aal != nil {
+	if !IsNil(o.Aal) {
 		toSerialize["aal"] = o.Aal
 	}
-	if o.CompletedAt != nil {
+	if !IsNil(o.CompletedAt) {
 		toSerialize["completed_at"] = o.CompletedAt
 	}
-	if o.Method != nil {
+	if !IsNil(o.Method) {
 		toSerialize["method"] = o.Method
 	}
-	if o.Organization != nil {
+	if !IsNil(o.Organization) {
 		toSerialize["organization"] = o.Organization
 	}
-	if o.Provider != nil {
+	if !IsNil(o.Provider) {
 		toSerialize["provider"] = o.Provider
 	}
 
@@ -230,15 +241,19 @@ func (o SessionAuthenticationMethod) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SessionAuthenticationMethod) UnmarshalJSON(bytes []byte) (err error) {
 	varSessionAuthenticationMethod := _SessionAuthenticationMethod{}
 
-	if err = json.Unmarshal(bytes, &varSessionAuthenticationMethod); err == nil {
-		*o = SessionAuthenticationMethod(varSessionAuthenticationMethod)
+	err = json.Unmarshal(bytes, &varSessionAuthenticationMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SessionAuthenticationMethod(varSessionAuthenticationMethod)
 
 	additionalProperties := make(map[string]interface{})
 

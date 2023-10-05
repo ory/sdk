@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateSubscriptionBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSubscriptionBody{}
+
 // UpdateSubscriptionBody Update Subscription Request Body
 type UpdateSubscriptionBody struct {
 	//  monthly Monthly yearly Yearly
@@ -95,7 +98,7 @@ func (o *UpdateSubscriptionBody) SetPlan(v string) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *UpdateSubscriptionBody) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -105,7 +108,7 @@ func (o *UpdateSubscriptionBody) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSubscriptionBody) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -113,7 +116,7 @@ func (o *UpdateSubscriptionBody) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *UpdateSubscriptionBody) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -126,14 +129,18 @@ func (o *UpdateSubscriptionBody) SetReturnTo(v string) {
 }
 
 func (o UpdateSubscriptionBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateSubscriptionBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["interval"] = o.Interval
-	}
-	if true {
-		toSerialize["plan"] = o.Plan
-	}
-	if o.ReturnTo != nil {
+	toSerialize["interval"] = o.Interval
+	toSerialize["plan"] = o.Plan
+	if !IsNil(o.ReturnTo) {
 		toSerialize["return_to"] = o.ReturnTo
 	}
 
@@ -141,15 +148,19 @@ func (o UpdateSubscriptionBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateSubscriptionBody) UnmarshalJSON(bytes []byte) (err error) {
 	varUpdateSubscriptionBody := _UpdateSubscriptionBody{}
 
-	if err = json.Unmarshal(bytes, &varUpdateSubscriptionBody); err == nil {
-		*o = UpdateSubscriptionBody(varUpdateSubscriptionBody)
+	err = json.Unmarshal(bytes, &varUpdateSubscriptionBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateSubscriptionBody(varUpdateSubscriptionBody)
 
 	additionalProperties := make(map[string]interface{})
 

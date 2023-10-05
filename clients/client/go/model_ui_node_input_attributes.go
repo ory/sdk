@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UiNodeInputAttributes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiNodeInputAttributes{}
+
 // UiNodeInputAttributes InputAttributes represents the attributes of an input node
 type UiNodeInputAttributes struct {
 	// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
@@ -64,7 +67,7 @@ func NewUiNodeInputAttributesWithDefaults() *UiNodeInputAttributes {
 
 // GetAutocomplete returns the Autocomplete field value if set, zero value otherwise.
 func (o *UiNodeInputAttributes) GetAutocomplete() string {
-	if o == nil || o.Autocomplete == nil {
+	if o == nil || IsNil(o.Autocomplete) {
 		var ret string
 		return ret
 	}
@@ -74,7 +77,7 @@ func (o *UiNodeInputAttributes) GetAutocomplete() string {
 // GetAutocompleteOk returns a tuple with the Autocomplete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiNodeInputAttributes) GetAutocompleteOk() (*string, bool) {
-	if o == nil || o.Autocomplete == nil {
+	if o == nil || IsNil(o.Autocomplete) {
 		return nil, false
 	}
 	return o.Autocomplete, true
@@ -82,7 +85,7 @@ func (o *UiNodeInputAttributes) GetAutocompleteOk() (*string, bool) {
 
 // HasAutocomplete returns a boolean if a field has been set.
 func (o *UiNodeInputAttributes) HasAutocomplete() bool {
-	if o != nil && o.Autocomplete != nil {
+	if o != nil && !IsNil(o.Autocomplete) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *UiNodeInputAttributes) SetDisabled(v bool) {
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *UiNodeInputAttributes) GetLabel() UiText {
-	if o == nil || o.Label == nil {
+	if o == nil || IsNil(o.Label) {
 		var ret UiText
 		return ret
 	}
@@ -130,7 +133,7 @@ func (o *UiNodeInputAttributes) GetLabel() UiText {
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiNodeInputAttributes) GetLabelOk() (*UiText, bool) {
-	if o == nil || o.Label == nil {
+	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
 	return o.Label, true
@@ -138,7 +141,7 @@ func (o *UiNodeInputAttributes) GetLabelOk() (*UiText, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *UiNodeInputAttributes) HasLabel() bool {
-	if o != nil && o.Label != nil {
+	if o != nil && !IsNil(o.Label) {
 		return true
 	}
 
@@ -200,7 +203,7 @@ func (o *UiNodeInputAttributes) SetNodeType(v string) {
 
 // GetOnclick returns the Onclick field value if set, zero value otherwise.
 func (o *UiNodeInputAttributes) GetOnclick() string {
-	if o == nil || o.Onclick == nil {
+	if o == nil || IsNil(o.Onclick) {
 		var ret string
 		return ret
 	}
@@ -210,7 +213,7 @@ func (o *UiNodeInputAttributes) GetOnclick() string {
 // GetOnclickOk returns a tuple with the Onclick field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiNodeInputAttributes) GetOnclickOk() (*string, bool) {
-	if o == nil || o.Onclick == nil {
+	if o == nil || IsNil(o.Onclick) {
 		return nil, false
 	}
 	return o.Onclick, true
@@ -218,7 +221,7 @@ func (o *UiNodeInputAttributes) GetOnclickOk() (*string, bool) {
 
 // HasOnclick returns a boolean if a field has been set.
 func (o *UiNodeInputAttributes) HasOnclick() bool {
-	if o != nil && o.Onclick != nil {
+	if o != nil && !IsNil(o.Onclick) {
 		return true
 	}
 
@@ -232,7 +235,7 @@ func (o *UiNodeInputAttributes) SetOnclick(v string) {
 
 // GetPattern returns the Pattern field value if set, zero value otherwise.
 func (o *UiNodeInputAttributes) GetPattern() string {
-	if o == nil || o.Pattern == nil {
+	if o == nil || IsNil(o.Pattern) {
 		var ret string
 		return ret
 	}
@@ -242,7 +245,7 @@ func (o *UiNodeInputAttributes) GetPattern() string {
 // GetPatternOk returns a tuple with the Pattern field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiNodeInputAttributes) GetPatternOk() (*string, bool) {
-	if o == nil || o.Pattern == nil {
+	if o == nil || IsNil(o.Pattern) {
 		return nil, false
 	}
 	return o.Pattern, true
@@ -250,7 +253,7 @@ func (o *UiNodeInputAttributes) GetPatternOk() (*string, bool) {
 
 // HasPattern returns a boolean if a field has been set.
 func (o *UiNodeInputAttributes) HasPattern() bool {
-	if o != nil && o.Pattern != nil {
+	if o != nil && !IsNil(o.Pattern) {
 		return true
 	}
 
@@ -264,7 +267,7 @@ func (o *UiNodeInputAttributes) SetPattern(v string) {
 
 // GetRequired returns the Required field value if set, zero value otherwise.
 func (o *UiNodeInputAttributes) GetRequired() bool {
-	if o == nil || o.Required == nil {
+	if o == nil || IsNil(o.Required) {
 		var ret bool
 		return ret
 	}
@@ -274,7 +277,7 @@ func (o *UiNodeInputAttributes) GetRequired() bool {
 // GetRequiredOk returns a tuple with the Required field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiNodeInputAttributes) GetRequiredOk() (*bool, bool) {
-	if o == nil || o.Required == nil {
+	if o == nil || IsNil(o.Required) {
 		return nil, false
 	}
 	return o.Required, true
@@ -282,7 +285,7 @@ func (o *UiNodeInputAttributes) GetRequiredOk() (*bool, bool) {
 
 // HasRequired returns a boolean if a field has been set.
 func (o *UiNodeInputAttributes) HasRequired() bool {
-	if o != nil && o.Required != nil {
+	if o != nil && !IsNil(o.Required) {
 		return true
 	}
 
@@ -331,7 +334,7 @@ func (o *UiNodeInputAttributes) GetValue() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UiNodeInputAttributes) GetValueOk() (*interface{}, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return &o.Value, true
@@ -339,7 +342,7 @@ func (o *UiNodeInputAttributes) GetValueOk() (*interface{}, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *UiNodeInputAttributes) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && IsNil(o.Value) {
 		return true
 	}
 
@@ -352,34 +355,34 @@ func (o *UiNodeInputAttributes) SetValue(v interface{}) {
 }
 
 func (o UiNodeInputAttributes) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UiNodeInputAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Autocomplete != nil {
+	if !IsNil(o.Autocomplete) {
 		toSerialize["autocomplete"] = o.Autocomplete
 	}
-	if true {
-		toSerialize["disabled"] = o.Disabled
-	}
-	if o.Label != nil {
+	toSerialize["disabled"] = o.Disabled
+	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["node_type"] = o.NodeType
-	}
-	if o.Onclick != nil {
+	toSerialize["name"] = o.Name
+	toSerialize["node_type"] = o.NodeType
+	if !IsNil(o.Onclick) {
 		toSerialize["onclick"] = o.Onclick
 	}
-	if o.Pattern != nil {
+	if !IsNil(o.Pattern) {
 		toSerialize["pattern"] = o.Pattern
 	}
-	if o.Required != nil {
+	if !IsNil(o.Required) {
 		toSerialize["required"] = o.Required
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
@@ -388,15 +391,19 @@ func (o UiNodeInputAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UiNodeInputAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	varUiNodeInputAttributes := _UiNodeInputAttributes{}
 
-	if err = json.Unmarshal(bytes, &varUiNodeInputAttributes); err == nil {
-		*o = UiNodeInputAttributes(varUiNodeInputAttributes)
+	err = json.Unmarshal(bytes, &varUiNodeInputAttributes)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UiNodeInputAttributes(varUiNodeInputAttributes)
 
 	additionalProperties := make(map[string]interface{})
 

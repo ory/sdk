@@ -1,27 +1,27 @@
-# \IdentityApi
+# \IdentityAPI
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BatchPatchIdentities**](IdentityApi.md#BatchPatchIdentities) | **Patch** /admin/identities | Create and deletes multiple identities
-[**CreateIdentity**](IdentityApi.md#CreateIdentity) | **Post** /admin/identities | Create an Identity
-[**CreateRecoveryCodeForIdentity**](IdentityApi.md#CreateRecoveryCodeForIdentity) | **Post** /admin/recovery/code | Create a Recovery Code
-[**CreateRecoveryLinkForIdentity**](IdentityApi.md#CreateRecoveryLinkForIdentity) | **Post** /admin/recovery/link | Create a Recovery Link
-[**DeleteIdentity**](IdentityApi.md#DeleteIdentity) | **Delete** /admin/identities/{id} | Delete an Identity
-[**DeleteIdentityCredentials**](IdentityApi.md#DeleteIdentityCredentials) | **Delete** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
-[**DeleteIdentitySessions**](IdentityApi.md#DeleteIdentitySessions) | **Delete** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
-[**DisableSession**](IdentityApi.md#DisableSession) | **Delete** /admin/sessions/{id} | Deactivate a Session
-[**ExtendSession**](IdentityApi.md#ExtendSession) | **Patch** /admin/sessions/{id}/extend | Extend a Session
-[**GetIdentity**](IdentityApi.md#GetIdentity) | **Get** /admin/identities/{id} | Get an Identity
-[**GetIdentitySchema**](IdentityApi.md#GetIdentitySchema) | **Get** /schemas/{id} | Get Identity JSON Schema
-[**GetSession**](IdentityApi.md#GetSession) | **Get** /admin/sessions/{id} | Get Session
-[**ListIdentities**](IdentityApi.md#ListIdentities) | **Get** /admin/identities | List Identities
-[**ListIdentitySchemas**](IdentityApi.md#ListIdentitySchemas) | **Get** /schemas | Get all Identity Schemas
-[**ListIdentitySessions**](IdentityApi.md#ListIdentitySessions) | **Get** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
-[**ListSessions**](IdentityApi.md#ListSessions) | **Get** /admin/sessions | List All Sessions
-[**PatchIdentity**](IdentityApi.md#PatchIdentity) | **Patch** /admin/identities/{id} | Patch an Identity
-[**UpdateIdentity**](IdentityApi.md#UpdateIdentity) | **Put** /admin/identities/{id} | Update an Identity
+[**BatchPatchIdentities**](IdentityAPI.md#BatchPatchIdentities) | **Patch** /admin/identities | Create and deletes multiple identities
+[**CreateIdentity**](IdentityAPI.md#CreateIdentity) | **Post** /admin/identities | Create an Identity
+[**CreateRecoveryCodeForIdentity**](IdentityAPI.md#CreateRecoveryCodeForIdentity) | **Post** /admin/recovery/code | Create a Recovery Code
+[**CreateRecoveryLinkForIdentity**](IdentityAPI.md#CreateRecoveryLinkForIdentity) | **Post** /admin/recovery/link | Create a Recovery Link
+[**DeleteIdentity**](IdentityAPI.md#DeleteIdentity) | **Delete** /admin/identities/{id} | Delete an Identity
+[**DeleteIdentityCredentials**](IdentityAPI.md#DeleteIdentityCredentials) | **Delete** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
+[**DeleteIdentitySessions**](IdentityAPI.md#DeleteIdentitySessions) | **Delete** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
+[**DisableSession**](IdentityAPI.md#DisableSession) | **Delete** /admin/sessions/{id} | Deactivate a Session
+[**ExtendSession**](IdentityAPI.md#ExtendSession) | **Patch** /admin/sessions/{id}/extend | Extend a Session
+[**GetIdentity**](IdentityAPI.md#GetIdentity) | **Get** /admin/identities/{id} | Get an Identity
+[**GetIdentitySchema**](IdentityAPI.md#GetIdentitySchema) | **Get** /schemas/{id} | Get Identity JSON Schema
+[**GetSession**](IdentityAPI.md#GetSession) | **Get** /admin/sessions/{id} | Get Session
+[**ListIdentities**](IdentityAPI.md#ListIdentities) | **Get** /admin/identities | List Identities
+[**ListIdentitySchemas**](IdentityAPI.md#ListIdentitySchemas) | **Get** /schemas | Get all Identity Schemas
+[**ListIdentitySessions**](IdentityAPI.md#ListIdentitySessions) | **Get** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
+[**ListSessions**](IdentityAPI.md#ListSessions) | **Get** /admin/sessions | List All Sessions
+[**PatchIdentity**](IdentityAPI.md#PatchIdentity) | **Patch** /admin/identities/{id} | Patch an Identity
+[**UpdateIdentity**](IdentityAPI.md#UpdateIdentity) | **Put** /admin/identities/{id} | Update an Identity
 
 
 
@@ -42,7 +42,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -50,13 +50,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.BatchPatchIdentities(context.Background()).PatchIdentitiesBody(patchIdentitiesBody).Execute()
+    resp, r, err := apiClient.IdentityAPI.BatchPatchIdentities(context.Background()).PatchIdentitiesBody(patchIdentitiesBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.BatchPatchIdentities``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.BatchPatchIdentities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `BatchPatchIdentities`: BatchPatchIdentitiesResponse
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.BatchPatchIdentities`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.BatchPatchIdentities`: %v\n", resp)
 }
 ```
 
@@ -108,7 +108,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -116,13 +116,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.CreateIdentity(context.Background()).CreateIdentityBody(createIdentityBody).Execute()
+    resp, r, err := apiClient.IdentityAPI.CreateIdentity(context.Background()).CreateIdentityBody(createIdentityBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.CreateIdentity``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.CreateIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateIdentity`: Identity
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.CreateIdentity`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.CreateIdentity`: %v\n", resp)
 }
 ```
 
@@ -174,7 +174,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -182,13 +182,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.CreateRecoveryCodeForIdentity(context.Background()).CreateRecoveryCodeForIdentityBody(createRecoveryCodeForIdentityBody).Execute()
+    resp, r, err := apiClient.IdentityAPI.CreateRecoveryCodeForIdentity(context.Background()).CreateRecoveryCodeForIdentityBody(createRecoveryCodeForIdentityBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.CreateRecoveryCodeForIdentity``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.CreateRecoveryCodeForIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateRecoveryCodeForIdentity`: RecoveryCodeForIdentity
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.CreateRecoveryCodeForIdentity`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.CreateRecoveryCodeForIdentity`: %v\n", resp)
 }
 ```
 
@@ -240,7 +240,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -248,13 +248,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.CreateRecoveryLinkForIdentity(context.Background()).CreateRecoveryLinkForIdentityBody(createRecoveryLinkForIdentityBody).Execute()
+    resp, r, err := apiClient.IdentityAPI.CreateRecoveryLinkForIdentity(context.Background()).CreateRecoveryLinkForIdentityBody(createRecoveryLinkForIdentityBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.CreateRecoveryLinkForIdentity``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.CreateRecoveryLinkForIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateRecoveryLinkForIdentity`: RecoveryLinkForIdentity
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.CreateRecoveryLinkForIdentity`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.CreateRecoveryLinkForIdentity`: %v\n", resp)
 }
 ```
 
@@ -306,7 +306,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -314,9 +314,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.DeleteIdentity(context.Background(), id).Execute()
+    r, err := apiClient.IdentityAPI.DeleteIdentity(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.DeleteIdentity``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.DeleteIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -374,7 +374,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -383,9 +383,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.DeleteIdentityCredentials(context.Background(), id, type_).Execute()
+    r, err := apiClient.IdentityAPI.DeleteIdentityCredentials(context.Background(), id, type_).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.DeleteIdentityCredentials``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.DeleteIdentityCredentials``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -445,7 +445,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -453,9 +453,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.DeleteIdentitySessions(context.Background(), id).Execute()
+    r, err := apiClient.IdentityAPI.DeleteIdentitySessions(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.DeleteIdentitySessions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.DeleteIdentitySessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -513,7 +513,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -521,9 +521,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.DisableSession(context.Background(), id).Execute()
+    r, err := apiClient.IdentityAPI.DisableSession(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.DisableSession``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.DisableSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -581,7 +581,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -589,13 +589,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.ExtendSession(context.Background(), id).Execute()
+    resp, r, err := apiClient.IdentityAPI.ExtendSession(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.ExtendSession``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.ExtendSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ExtendSession`: Session
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.ExtendSession`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.ExtendSession`: %v\n", resp)
 }
 ```
 
@@ -651,7 +651,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -660,13 +660,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.GetIdentity(context.Background(), id).IncludeCredential(includeCredential).Execute()
+    resp, r, err := apiClient.IdentityAPI.GetIdentity(context.Background(), id).IncludeCredential(includeCredential).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.GetIdentity``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.GetIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIdentity`: Identity
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.GetIdentity`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.GetIdentity`: %v\n", resp)
 }
 ```
 
@@ -723,7 +723,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -731,13 +731,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.GetIdentitySchema(context.Background(), id).Execute()
+    resp, r, err := apiClient.IdentityAPI.GetIdentitySchema(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.GetIdentitySchema``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.GetIdentitySchema``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetIdentitySchema`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.GetIdentitySchema`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.GetIdentitySchema`: %v\n", resp)
 }
 ```
 
@@ -793,7 +793,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -802,13 +802,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.GetSession(context.Background(), id).Expand(expand).Execute()
+    resp, r, err := apiClient.IdentityAPI.GetSession(context.Background(), id).Expand(expand).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.GetSession``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.GetSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSession`: Session
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.GetSession`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.GetSession`: %v\n", resp)
 }
 ```
 
@@ -865,7 +865,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -877,13 +877,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.ListIdentities(context.Background()).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).CredentialsIdentifier(credentialsIdentifier).Execute()
+    resp, r, err := apiClient.IdentityAPI.ListIdentities(context.Background()).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).CredentialsIdentifier(credentialsIdentifier).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.ListIdentities``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.ListIdentities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListIdentities`: []Identity
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.ListIdentities`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.ListIdentities`: %v\n", resp)
 }
 ```
 
@@ -939,7 +939,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -950,13 +950,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.ListIdentitySchemas(context.Background()).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).Execute()
+    resp, r, err := apiClient.IdentityAPI.ListIdentitySchemas(context.Background()).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.ListIdentitySchemas``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.ListIdentitySchemas``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListIdentitySchemas`: []IdentitySchemaContainer
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.ListIdentitySchemas`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.ListIdentitySchemas`: %v\n", resp)
 }
 ```
 
@@ -1011,7 +1011,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1024,13 +1024,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.ListIdentitySessions(context.Background(), id).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).Active(active).Execute()
+    resp, r, err := apiClient.IdentityAPI.ListIdentitySessions(context.Background(), id).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).Active(active).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.ListIdentitySessions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.ListIdentitySessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListIdentitySessions`: []Session
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.ListIdentitySessions`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.ListIdentitySessions`: %v\n", resp)
 }
 ```
 
@@ -1091,7 +1091,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1102,13 +1102,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.ListSessions(context.Background()).PageSize(pageSize).PageToken(pageToken).Active(active).Expand(expand).Execute()
+    resp, r, err := apiClient.IdentityAPI.ListSessions(context.Background()).PageSize(pageSize).PageToken(pageToken).Active(active).Expand(expand).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.ListSessions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.ListSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSessions`: []Session
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.ListSessions`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.ListSessions`: %v\n", resp)
 }
 ```
 
@@ -1163,7 +1163,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1172,13 +1172,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.PatchIdentity(context.Background(), id).JsonPatch(jsonPatch).Execute()
+    resp, r, err := apiClient.IdentityAPI.PatchIdentity(context.Background(), id).JsonPatch(jsonPatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.PatchIdentity``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.PatchIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PatchIdentity`: Identity
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.PatchIdentity`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.PatchIdentity`: %v\n", resp)
 }
 ```
 
@@ -1235,7 +1235,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1244,13 +1244,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityApi.UpdateIdentity(context.Background(), id).UpdateIdentityBody(updateIdentityBody).Execute()
+    resp, r, err := apiClient.IdentityAPI.UpdateIdentity(context.Background(), id).UpdateIdentityBody(updateIdentityBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityApi.UpdateIdentity``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.UpdateIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateIdentity`: Identity
-    fmt.Fprintf(os.Stdout, "Response from `IdentityApi.UpdateIdentity`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.UpdateIdentity`: %v\n", resp)
 }
 ```
 

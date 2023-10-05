@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IsOwnerForProjectBySlug type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IsOwnerForProjectBySlug{}
+
 // IsOwnerForProjectBySlug struct for IsOwnerForProjectBySlug
 type IsOwnerForProjectBySlug struct {
 	// ProjectSlug is the project's slug.
@@ -94,27 +97,35 @@ func (o *IsOwnerForProjectBySlug) SetSubject(v string) {
 }
 
 func (o IsOwnerForProjectBySlug) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IsOwnerForProjectBySlug) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ProjectSlug"] = o.ProjectSlug
-	}
-	if true {
-		toSerialize["Subject"] = o.Subject
-	}
+	toSerialize["ProjectSlug"] = o.ProjectSlug
+	toSerialize["Subject"] = o.Subject
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IsOwnerForProjectBySlug) UnmarshalJSON(bytes []byte) (err error) {
 	varIsOwnerForProjectBySlug := _IsOwnerForProjectBySlug{}
 
-	if err = json.Unmarshal(bytes, &varIsOwnerForProjectBySlug); err == nil {
-		*o = IsOwnerForProjectBySlug(varIsOwnerForProjectBySlug)
+	err = json.Unmarshal(bytes, &varIsOwnerForProjectBySlug)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IsOwnerForProjectBySlug(varIsOwnerForProjectBySlug)
 
 	additionalProperties := make(map[string]interface{})
 

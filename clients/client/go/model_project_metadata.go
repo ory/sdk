@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ProjectMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectMetadata{}
+
 // ProjectMetadata struct for ProjectMetadata
 type ProjectMetadata struct {
 	// The Project's Creation Date
@@ -159,7 +162,7 @@ func (o *ProjectMetadata) SetName(v string) {
 
 // GetSlug returns the Slug field value if set, zero value otherwise.
 func (o *ProjectMetadata) GetSlug() string {
-	if o == nil || o.Slug == nil {
+	if o == nil || IsNil(o.Slug) {
 		var ret string
 		return ret
 	}
@@ -169,7 +172,7 @@ func (o *ProjectMetadata) GetSlug() string {
 // GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectMetadata) GetSlugOk() (*string, bool) {
-	if o == nil || o.Slug == nil {
+	if o == nil || IsNil(o.Slug) {
 		return nil, false
 	}
 	return o.Slug, true
@@ -177,7 +180,7 @@ func (o *ProjectMetadata) GetSlugOk() (*string, bool) {
 
 // HasSlug returns a boolean if a field has been set.
 func (o *ProjectMetadata) HasSlug() bool {
-	if o != nil && o.Slug != nil {
+	if o != nil && !IsNil(o.Slug) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *ProjectMetadata) SetState(v string) {
 
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProjectMetadata) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId.Get() == nil {
+	if o == nil || IsNil(o.SubscriptionId.Get()) {
 		var ret string
 		return ret
 	}
@@ -257,7 +260,7 @@ func (o *ProjectMetadata) UnsetSubscriptionId() {
 
 // GetSubscriptionPlan returns the SubscriptionPlan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProjectMetadata) GetSubscriptionPlan() string {
-	if o == nil || o.SubscriptionPlan.Get() == nil {
+	if o == nil || IsNil(o.SubscriptionPlan.Get()) {
 		var ret string
 		return ret
 	}
@@ -322,48 +325,48 @@ func (o *ProjectMetadata) SetUpdatedAt(v time.Time) {
 }
 
 func (o ProjectMetadata) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["hosts"] = o.Hosts
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.Slug != nil {
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["hosts"] = o.Hosts
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Slug) {
 		toSerialize["slug"] = o.Slug
 	}
-	if true {
-		toSerialize["state"] = o.State
-	}
+	toSerialize["state"] = o.State
 	if o.SubscriptionId.IsSet() {
 		toSerialize["subscription_id"] = o.SubscriptionId.Get()
 	}
 	if o.SubscriptionPlan.IsSet() {
 		toSerialize["subscription_plan"] = o.SubscriptionPlan.Get()
 	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ProjectMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	varProjectMetadata := _ProjectMetadata{}
 
-	if err = json.Unmarshal(bytes, &varProjectMetadata); err == nil {
-		*o = ProjectMetadata(varProjectMetadata)
+	err = json.Unmarshal(bytes, &varProjectMetadata)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectMetadata(varProjectMetadata)
 
 	additionalProperties := make(map[string]interface{})
 

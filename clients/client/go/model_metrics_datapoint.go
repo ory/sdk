@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the MetricsDatapoint type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetricsDatapoint{}
+
 // MetricsDatapoint Represents a single datapoint/bucket of a time series
 type MetricsDatapoint struct {
 	// The count of events that occured in this time
@@ -95,27 +98,35 @@ func (o *MetricsDatapoint) SetTime(v time.Time) {
 }
 
 func (o MetricsDatapoint) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MetricsDatapoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["count"] = o.Count
-	}
-	if true {
-		toSerialize["time"] = o.Time
-	}
+	toSerialize["count"] = o.Count
+	toSerialize["time"] = o.Time
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *MetricsDatapoint) UnmarshalJSON(bytes []byte) (err error) {
 	varMetricsDatapoint := _MetricsDatapoint{}
 
-	if err = json.Unmarshal(bytes, &varMetricsDatapoint); err == nil {
-		*o = MetricsDatapoint(varMetricsDatapoint)
+	err = json.Unmarshal(bytes, &varMetricsDatapoint)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MetricsDatapoint(varMetricsDatapoint)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -51,7 +51,7 @@ import sh.ory.JSON;
  * Includes information about the supported verifiable credentials.
  */
 @ApiModel(description = "Includes information about the supported verifiable credentials.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-26T07:22:38.275636327Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-05T13:50:54.246292158Z[Etc/UTC]")
 public class CredentialSupportedDraft00 {
   public static final String SERIALIZED_NAME_CRYPTOGRAPHIC_BINDING_METHODS_SUPPORTED = "cryptographic_binding_methods_supported";
   @SerializedName(SERIALIZED_NAME_CRYPTOGRAPHIC_BINDING_METHODS_SUPPORTED)

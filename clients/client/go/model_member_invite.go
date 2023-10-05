@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the MemberInvite type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MemberInvite{}
+
 // MemberInvite struct for MemberInvite
 type MemberInvite struct {
 	// The Project's Revision Creation Date
@@ -139,7 +142,7 @@ func (o *MemberInvite) SetInviteeEmail(v string) {
 
 // GetInviteeId returns the InviteeId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MemberInvite) GetInviteeId() string {
-	if o == nil || o.InviteeId.Get() == nil {
+	if o == nil || IsNil(o.InviteeId.Get()) {
 		var ret string
 		return ret
 	}
@@ -300,48 +303,44 @@ func (o *MemberInvite) SetUpdatedAt(v time.Time) {
 }
 
 func (o MemberInvite) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MemberInvite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["invitee_email"] = o.InviteeEmail
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["id"] = o.Id
+	toSerialize["invitee_email"] = o.InviteeEmail
 	if o.InviteeId.IsSet() {
 		toSerialize["invitee_id"] = o.InviteeId.Get()
 	}
-	if true {
-		toSerialize["owner_email"] = o.OwnerEmail
-	}
-	if true {
-		toSerialize["owner_id"] = o.OwnerId
-	}
-	if true {
-		toSerialize["project_id"] = o.ProjectId
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["owner_email"] = o.OwnerEmail
+	toSerialize["owner_id"] = o.OwnerId
+	toSerialize["project_id"] = o.ProjectId
+	toSerialize["status"] = o.Status
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *MemberInvite) UnmarshalJSON(bytes []byte) (err error) {
 	varMemberInvite := _MemberInvite{}
 
-	if err = json.Unmarshal(bytes, &varMemberInvite); err == nil {
-		*o = MemberInvite(varMemberInvite)
+	err = json.Unmarshal(bytes, &varMemberInvite)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MemberInvite(varMemberInvite)
 
 	additionalProperties := make(map[string]interface{})
 

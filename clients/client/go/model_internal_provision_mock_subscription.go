@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InternalProvisionMockSubscription type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InternalProvisionMockSubscription{}
+
 // InternalProvisionMockSubscription Internal Provision Mock Subscription Request Body
 type InternalProvisionMockSubscription struct {
 	// Currency usd USD eur Euro
@@ -148,33 +151,37 @@ func (o *InternalProvisionMockSubscription) SetPlan(v string) {
 }
 
 func (o InternalProvisionMockSubscription) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InternalProvisionMockSubscription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["currency"] = o.Currency
-	}
-	if true {
-		toSerialize["identity_id"] = o.IdentityId
-	}
-	if true {
-		toSerialize["interval"] = o.Interval
-	}
-	if true {
-		toSerialize["plan"] = o.Plan
-	}
+	toSerialize["currency"] = o.Currency
+	toSerialize["identity_id"] = o.IdentityId
+	toSerialize["interval"] = o.Interval
+	toSerialize["plan"] = o.Plan
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *InternalProvisionMockSubscription) UnmarshalJSON(bytes []byte) (err error) {
 	varInternalProvisionMockSubscription := _InternalProvisionMockSubscription{}
 
-	if err = json.Unmarshal(bytes, &varInternalProvisionMockSubscription); err == nil {
-		*o = InternalProvisionMockSubscription(varInternalProvisionMockSubscription)
+	err = json.Unmarshal(bytes, &varInternalProvisionMockSubscription)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InternalProvisionMockSubscription(varInternalProvisionMockSubscription)
 
 	additionalProperties := make(map[string]interface{})
 

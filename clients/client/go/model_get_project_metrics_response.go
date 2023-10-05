@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetProjectMetricsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetProjectMetricsResponse{}
+
 // GetProjectMetricsResponse Response of the getMetrics endpoint
 type GetProjectMetricsResponse struct {
 	// The list of data points.
@@ -67,24 +70,34 @@ func (o *GetProjectMetricsResponse) SetData(v []MetricsDatapoint) {
 }
 
 func (o GetProjectMetricsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetProjectMetricsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *GetProjectMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	varGetProjectMetricsResponse := _GetProjectMetricsResponse{}
 
-	if err = json.Unmarshal(bytes, &varGetProjectMetricsResponse); err == nil {
-		*o = GetProjectMetricsResponse(varGetProjectMetricsResponse)
+	err = json.Unmarshal(bytes, &varGetProjectMetricsResponse)
+
+	if err != nil {
+		return err
 	}
+
+	*o = GetProjectMetricsResponse(varGetProjectMetricsResponse)
 
 	additionalProperties := make(map[string]interface{})
 

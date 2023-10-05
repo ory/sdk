@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the RecoveryFlow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecoveryFlow{}
+
 // RecoveryFlow This request is used when an identity wants to recover their account.  We recommend reading the [Account Recovery Documentation](../self-service/flows/password-reset-account-recovery)
 type RecoveryFlow struct {
 	// Active, if set, contains the recovery method that is being used. It is initially not set.
@@ -66,7 +69,7 @@ func NewRecoveryFlowWithDefaults() *RecoveryFlow {
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *RecoveryFlow) GetActive() string {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret string
 		return ret
 	}
@@ -76,7 +79,7 @@ func (o *RecoveryFlow) GetActive() string {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryFlow) GetActiveOk() (*string, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
 	return o.Active, true
@@ -84,7 +87,7 @@ func (o *RecoveryFlow) GetActiveOk() (*string, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *RecoveryFlow) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -194,7 +197,7 @@ func (o *RecoveryFlow) SetRequestUrl(v string) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *RecoveryFlow) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -204,7 +207,7 @@ func (o *RecoveryFlow) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryFlow) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -212,7 +215,7 @@ func (o *RecoveryFlow) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *RecoveryFlow) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *RecoveryFlow) GetState() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RecoveryFlow) GetStateOk() (*interface{}, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return &o.State, true
@@ -299,48 +302,48 @@ func (o *RecoveryFlow) SetUi(v UiContainer) {
 }
 
 func (o RecoveryFlow) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RecoveryFlow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Active != nil {
+	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if true {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["issued_at"] = o.IssuedAt
-	}
-	if true {
-		toSerialize["request_url"] = o.RequestUrl
-	}
-	if o.ReturnTo != nil {
+	toSerialize["expires_at"] = o.ExpiresAt
+	toSerialize["id"] = o.Id
+	toSerialize["issued_at"] = o.IssuedAt
+	toSerialize["request_url"] = o.RequestUrl
+	if !IsNil(o.ReturnTo) {
 		toSerialize["return_to"] = o.ReturnTo
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["ui"] = o.Ui
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["ui"] = o.Ui
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *RecoveryFlow) UnmarshalJSON(bytes []byte) (err error) {
 	varRecoveryFlow := _RecoveryFlow{}
 
-	if err = json.Unmarshal(bytes, &varRecoveryFlow); err == nil {
-		*o = RecoveryFlow(varRecoveryFlow)
+	err = json.Unmarshal(bytes, &varRecoveryFlow)
+
+	if err != nil {
+		return err
 	}
+
+	*o = RecoveryFlow(varRecoveryFlow)
 
 	additionalProperties := make(map[string]interface{})
 

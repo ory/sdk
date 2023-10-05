@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the VerifiableIdentityAddress type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VerifiableIdentityAddress{}
+
 // VerifiableIdentityAddress VerifiableAddress is an identity's verifiable address
 type VerifiableIdentityAddress struct {
 	// When this entry was created
@@ -61,7 +64,7 @@ func NewVerifiableIdentityAddressWithDefaults() *VerifiableIdentityAddress {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *VerifiableIdentityAddress) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -71,7 +74,7 @@ func (o *VerifiableIdentityAddress) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerifiableIdentityAddress) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -79,7 +82,7 @@ func (o *VerifiableIdentityAddress) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *VerifiableIdentityAddress) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -93,7 +96,7 @@ func (o *VerifiableIdentityAddress) SetCreatedAt(v time.Time) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *VerifiableIdentityAddress) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -103,7 +106,7 @@ func (o *VerifiableIdentityAddress) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerifiableIdentityAddress) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -111,7 +114,7 @@ func (o *VerifiableIdentityAddress) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *VerifiableIdentityAddress) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *VerifiableIdentityAddress) SetStatus(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *VerifiableIdentityAddress) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -159,7 +162,7 @@ func (o *VerifiableIdentityAddress) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerifiableIdentityAddress) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -167,7 +170,7 @@ func (o *VerifiableIdentityAddress) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *VerifiableIdentityAddress) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -229,7 +232,7 @@ func (o *VerifiableIdentityAddress) SetVerified(v bool) {
 
 // GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise.
 func (o *VerifiableIdentityAddress) GetVerifiedAt() time.Time {
-	if o == nil || o.VerifiedAt == nil {
+	if o == nil || IsNil(o.VerifiedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -239,7 +242,7 @@ func (o *VerifiableIdentityAddress) GetVerifiedAt() time.Time {
 // GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerifiableIdentityAddress) GetVerifiedAtOk() (*time.Time, bool) {
-	if o == nil || o.VerifiedAt == nil {
+	if o == nil || IsNil(o.VerifiedAt) {
 		return nil, false
 	}
 	return o.VerifiedAt, true
@@ -247,7 +250,7 @@ func (o *VerifiableIdentityAddress) GetVerifiedAtOk() (*time.Time, bool) {
 
 // HasVerifiedAt returns a boolean if a field has been set.
 func (o *VerifiableIdentityAddress) HasVerifiedAt() bool {
-	if o != nil && o.VerifiedAt != nil {
+	if o != nil && !IsNil(o.VerifiedAt) {
 		return true
 	}
 
@@ -284,45 +287,49 @@ func (o *VerifiableIdentityAddress) SetVia(v string) {
 }
 
 func (o VerifiableIdentityAddress) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VerifiableIdentityAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if o.UpdatedAt != nil {
+	toSerialize["status"] = o.Status
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if true {
-		toSerialize["value"] = o.Value
-	}
-	if true {
-		toSerialize["verified"] = o.Verified
-	}
-	if o.VerifiedAt != nil {
+	toSerialize["value"] = o.Value
+	toSerialize["verified"] = o.Verified
+	if !IsNil(o.VerifiedAt) {
 		toSerialize["verified_at"] = o.VerifiedAt
 	}
-	if true {
-		toSerialize["via"] = o.Via
-	}
+	toSerialize["via"] = o.Via
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *VerifiableIdentityAddress) UnmarshalJSON(bytes []byte) (err error) {
 	varVerifiableIdentityAddress := _VerifiableIdentityAddress{}
 
-	if err = json.Unmarshal(bytes, &varVerifiableIdentityAddress); err == nil {
-		*o = VerifiableIdentityAddress(varVerifiableIdentityAddress)
+	err = json.Unmarshal(bytes, &varVerifiableIdentityAddress)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VerifiableIdentityAddress(varVerifiableIdentityAddress)
 
 	additionalProperties := make(map[string]interface{})
 

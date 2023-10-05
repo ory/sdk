@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ExpandedPermissionTree type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExpandedPermissionTree{}
+
 // ExpandedPermissionTree struct for ExpandedPermissionTree
 type ExpandedPermissionTree struct {
 	// The children of the node, possibly none.
@@ -47,7 +50,7 @@ func NewExpandedPermissionTreeWithDefaults() *ExpandedPermissionTree {
 
 // GetChildren returns the Children field value if set, zero value otherwise.
 func (o *ExpandedPermissionTree) GetChildren() []ExpandedPermissionTree {
-	if o == nil || o.Children == nil {
+	if o == nil || IsNil(o.Children) {
 		var ret []ExpandedPermissionTree
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *ExpandedPermissionTree) GetChildren() []ExpandedPermissionTree {
 // GetChildrenOk returns a tuple with the Children field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedPermissionTree) GetChildrenOk() ([]ExpandedPermissionTree, bool) {
-	if o == nil || o.Children == nil {
+	if o == nil || IsNil(o.Children) {
 		return nil, false
 	}
 	return o.Children, true
@@ -65,7 +68,7 @@ func (o *ExpandedPermissionTree) GetChildrenOk() ([]ExpandedPermissionTree, bool
 
 // HasChildren returns a boolean if a field has been set.
 func (o *ExpandedPermissionTree) HasChildren() bool {
-	if o != nil && o.Children != nil {
+	if o != nil && !IsNil(o.Children) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *ExpandedPermissionTree) SetChildren(v []ExpandedPermissionTree) {
 
 // GetTuple returns the Tuple field value if set, zero value otherwise.
 func (o *ExpandedPermissionTree) GetTuple() Relationship {
-	if o == nil || o.Tuple == nil {
+	if o == nil || IsNil(o.Tuple) {
 		var ret Relationship
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *ExpandedPermissionTree) GetTuple() Relationship {
 // GetTupleOk returns a tuple with the Tuple field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedPermissionTree) GetTupleOk() (*Relationship, bool) {
-	if o == nil || o.Tuple == nil {
+	if o == nil || IsNil(o.Tuple) {
 		return nil, false
 	}
 	return o.Tuple, true
@@ -97,7 +100,7 @@ func (o *ExpandedPermissionTree) GetTupleOk() (*Relationship, bool) {
 
 // HasTuple returns a boolean if a field has been set.
 func (o *ExpandedPermissionTree) HasTuple() bool {
-	if o != nil && o.Tuple != nil {
+	if o != nil && !IsNil(o.Tuple) {
 		return true
 	}
 
@@ -134,30 +137,40 @@ func (o *ExpandedPermissionTree) SetType(v string) {
 }
 
 func (o ExpandedPermissionTree) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ExpandedPermissionTree) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Children != nil {
+	if !IsNil(o.Children) {
 		toSerialize["children"] = o.Children
 	}
-	if o.Tuple != nil {
+	if !IsNil(o.Tuple) {
 		toSerialize["tuple"] = o.Tuple
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ExpandedPermissionTree) UnmarshalJSON(bytes []byte) (err error) {
 	varExpandedPermissionTree := _ExpandedPermissionTree{}
 
-	if err = json.Unmarshal(bytes, &varExpandedPermissionTree); err == nil {
-		*o = ExpandedPermissionTree(varExpandedPermissionTree)
+	err = json.Unmarshal(bytes, &varExpandedPermissionTree)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ExpandedPermissionTree(varExpandedPermissionTree)
 
 	additionalProperties := make(map[string]interface{})
 

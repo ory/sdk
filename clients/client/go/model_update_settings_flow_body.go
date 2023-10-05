@@ -160,11 +160,11 @@ func (dst *UpdateSettingsFlowBody) UnmarshalJSON(data []byte) error {
 		dst.UpdateSettingsFlowWithTotpMethod = nil
 		dst.UpdateSettingsFlowWithWebAuthnMethod = nil
 
-		return fmt.Errorf("Data matches more than one schema in oneOf(UpdateSettingsFlowBody)")
+		return fmt.Errorf("data matches more than one schema in oneOf(UpdateSettingsFlowBody)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(UpdateSettingsFlowBody)")
+		return fmt.Errorf("data failed to match schemas in oneOf(UpdateSettingsFlowBody)")
 	}
 }
 

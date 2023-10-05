@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Project type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Project{}
+
 // Project struct for Project
 type Project struct {
 	CorsAdmin CORS `json:"cors_admin"`
@@ -253,45 +256,41 @@ func (o *Project) SetState(v string) {
 }
 
 func (o Project) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Project) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["cors_admin"] = o.CorsAdmin
-	}
-	if true {
-		toSerialize["cors_public"] = o.CorsPublic
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["revision_id"] = o.RevisionId
-	}
-	if true {
-		toSerialize["services"] = o.Services
-	}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["state"] = o.State
-	}
+	toSerialize["cors_admin"] = o.CorsAdmin
+	toSerialize["cors_public"] = o.CorsPublic
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["revision_id"] = o.RevisionId
+	toSerialize["services"] = o.Services
+	toSerialize["slug"] = o.Slug
+	toSerialize["state"] = o.State
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Project) UnmarshalJSON(bytes []byte) (err error) {
 	varProject := _Project{}
 
-	if err = json.Unmarshal(bytes, &varProject); err == nil {
-		*o = Project(varProject)
+	err = json.Unmarshal(bytes, &varProject)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Project(varProject)
 
 	additionalProperties := make(map[string]interface{})
 

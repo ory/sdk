@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SchemaPatch type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SchemaPatch{}
+
 // SchemaPatch struct for SchemaPatch
 type SchemaPatch struct {
 	// The json schema
@@ -59,7 +62,7 @@ func (o *SchemaPatch) GetData() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *SchemaPatch) GetDataOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Data, true
 }
@@ -94,27 +97,35 @@ func (o *SchemaPatch) SetName(v string) {
 }
 
 func (o SchemaPatch) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SchemaPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["data"] = o.Data
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SchemaPatch) UnmarshalJSON(bytes []byte) (err error) {
 	varSchemaPatch := _SchemaPatch{}
 
-	if err = json.Unmarshal(bytes, &varSchemaPatch); err == nil {
-		*o = SchemaPatch(varSchemaPatch)
+	err = json.Unmarshal(bytes, &varSchemaPatch)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SchemaPatch(varSchemaPatch)
 
 	additionalProperties := make(map[string]interface{})
 

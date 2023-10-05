@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentityPatch type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityPatch{}
+
 // IdentityPatch Payload for patching an identity
 type IdentityPatch struct {
 	Create *CreateIdentityBody `json:"create,omitempty"`
@@ -44,7 +47,7 @@ func NewIdentityPatchWithDefaults() *IdentityPatch {
 
 // GetCreate returns the Create field value if set, zero value otherwise.
 func (o *IdentityPatch) GetCreate() CreateIdentityBody {
-	if o == nil || o.Create == nil {
+	if o == nil || IsNil(o.Create) {
 		var ret CreateIdentityBody
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *IdentityPatch) GetCreate() CreateIdentityBody {
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityPatch) GetCreateOk() (*CreateIdentityBody, bool) {
-	if o == nil || o.Create == nil {
+	if o == nil || IsNil(o.Create) {
 		return nil, false
 	}
 	return o.Create, true
@@ -62,7 +65,7 @@ func (o *IdentityPatch) GetCreateOk() (*CreateIdentityBody, bool) {
 
 // HasCreate returns a boolean if a field has been set.
 func (o *IdentityPatch) HasCreate() bool {
-	if o != nil && o.Create != nil {
+	if o != nil && !IsNil(o.Create) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *IdentityPatch) SetCreate(v CreateIdentityBody) {
 
 // GetPatchId returns the PatchId field value if set, zero value otherwise.
 func (o *IdentityPatch) GetPatchId() string {
-	if o == nil || o.PatchId == nil {
+	if o == nil || IsNil(o.PatchId) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *IdentityPatch) GetPatchId() string {
 // GetPatchIdOk returns a tuple with the PatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityPatch) GetPatchIdOk() (*string, bool) {
-	if o == nil || o.PatchId == nil {
+	if o == nil || IsNil(o.PatchId) {
 		return nil, false
 	}
 	return o.PatchId, true
@@ -94,7 +97,7 @@ func (o *IdentityPatch) GetPatchIdOk() (*string, bool) {
 
 // HasPatchId returns a boolean if a field has been set.
 func (o *IdentityPatch) HasPatchId() bool {
-	if o != nil && o.PatchId != nil {
+	if o != nil && !IsNil(o.PatchId) {
 		return true
 	}
 
@@ -107,11 +110,19 @@ func (o *IdentityPatch) SetPatchId(v string) {
 }
 
 func (o IdentityPatch) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Create != nil {
+	if !IsNil(o.Create) {
 		toSerialize["create"] = o.Create
 	}
-	if o.PatchId != nil {
+	if !IsNil(o.PatchId) {
 		toSerialize["patch_id"] = o.PatchId
 	}
 
@@ -119,15 +130,19 @@ func (o IdentityPatch) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityPatch) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityPatch := _IdentityPatch{}
 
-	if err = json.Unmarshal(bytes, &varIdentityPatch); err == nil {
-		*o = IdentityPatch(varIdentityPatch)
+	err = json.Unmarshal(bytes, &varIdentityPatch)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityPatch(varIdentityPatch)
 
 	additionalProperties := make(map[string]interface{})
 

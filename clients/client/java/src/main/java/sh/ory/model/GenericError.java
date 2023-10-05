@@ -51,7 +51,7 @@ import sh.ory.JSON;
  * Error responses are sent when an error (e.g. unauthorized, bad request, ...) occurred.
  */
 @ApiModel(description = "Error responses are sent when an error (e.g. unauthorized, bad request, ...) occurred.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-26T07:22:38.275636327Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-05T13:50:54.246292158Z[Etc/UTC]")
 public class GenericError {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentityWithCredentialsOidcConfigProvider type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityWithCredentialsOidcConfigProvider{}
+
 // IdentityWithCredentialsOidcConfigProvider Create Identity and Import Social Sign In Credentials Configuration
 type IdentityWithCredentialsOidcConfigProvider struct {
 	// The OpenID Connect provider to link the subject to. Usually something like `google` or `github`.
@@ -94,27 +97,35 @@ func (o *IdentityWithCredentialsOidcConfigProvider) SetSubject(v string) {
 }
 
 func (o IdentityWithCredentialsOidcConfigProvider) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityWithCredentialsOidcConfigProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["provider"] = o.Provider
-	}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
+	toSerialize["provider"] = o.Provider
+	toSerialize["subject"] = o.Subject
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityWithCredentialsOidcConfigProvider) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityWithCredentialsOidcConfigProvider := _IdentityWithCredentialsOidcConfigProvider{}
 
-	if err = json.Unmarshal(bytes, &varIdentityWithCredentialsOidcConfigProvider); err == nil {
-		*o = IdentityWithCredentialsOidcConfigProvider(varIdentityWithCredentialsOidcConfigProvider)
+	err = json.Unmarshal(bytes, &varIdentityWithCredentialsOidcConfigProvider)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityWithCredentialsOidcConfigProvider(varIdentityWithCredentialsOidcConfigProvider)
 
 	additionalProperties := make(map[string]interface{})
 

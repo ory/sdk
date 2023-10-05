@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProjectServiceIdentity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectServiceIdentity{}
+
 // ProjectServiceIdentity struct for ProjectServiceIdentity
 type ProjectServiceIdentity struct {
 	Config map[string]interface{} `json:"config"`
@@ -55,7 +58,7 @@ func (o *ProjectServiceIdentity) GetConfig() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *ProjectServiceIdentity) GetConfigOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Config, true
 }
@@ -66,24 +69,34 @@ func (o *ProjectServiceIdentity) SetConfig(v map[string]interface{}) {
 }
 
 func (o ProjectServiceIdentity) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["config"] = o.Config
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectServiceIdentity) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["config"] = o.Config
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ProjectServiceIdentity) UnmarshalJSON(bytes []byte) (err error) {
 	varProjectServiceIdentity := _ProjectServiceIdentity{}
 
-	if err = json.Unmarshal(bytes, &varProjectServiceIdentity); err == nil {
-		*o = ProjectServiceIdentity(varProjectServiceIdentity)
+	err = json.Unmarshal(bytes, &varProjectServiceIdentity)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectServiceIdentity(varProjectServiceIdentity)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the VerificationFlow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VerificationFlow{}
+
 // VerificationFlow Used to verify an out-of-band communication channel such as an email address or a phone number.  For more information head over to: https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation
 type VerificationFlow struct {
 	// Active, if set, contains the registration method that is being used. It is initially not set.
@@ -63,7 +66,7 @@ func NewVerificationFlowWithDefaults() *VerificationFlow {
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *VerificationFlow) GetActive() string {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret string
 		return ret
 	}
@@ -73,7 +76,7 @@ func (o *VerificationFlow) GetActive() string {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFlow) GetActiveOk() (*string, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
 	return o.Active, true
@@ -81,7 +84,7 @@ func (o *VerificationFlow) GetActiveOk() (*string, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *VerificationFlow) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -95,7 +98,7 @@ func (o *VerificationFlow) SetActive(v string) {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *VerificationFlow) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -105,7 +108,7 @@ func (o *VerificationFlow) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFlow) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -113,7 +116,7 @@ func (o *VerificationFlow) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *VerificationFlow) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *VerificationFlow) SetId(v string) {
 
 // GetIssuedAt returns the IssuedAt field value if set, zero value otherwise.
 func (o *VerificationFlow) GetIssuedAt() time.Time {
-	if o == nil || o.IssuedAt == nil {
+	if o == nil || IsNil(o.IssuedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -161,7 +164,7 @@ func (o *VerificationFlow) GetIssuedAt() time.Time {
 // GetIssuedAtOk returns a tuple with the IssuedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFlow) GetIssuedAtOk() (*time.Time, bool) {
-	if o == nil || o.IssuedAt == nil {
+	if o == nil || IsNil(o.IssuedAt) {
 		return nil, false
 	}
 	return o.IssuedAt, true
@@ -169,7 +172,7 @@ func (o *VerificationFlow) GetIssuedAtOk() (*time.Time, bool) {
 
 // HasIssuedAt returns a boolean if a field has been set.
 func (o *VerificationFlow) HasIssuedAt() bool {
-	if o != nil && o.IssuedAt != nil {
+	if o != nil && !IsNil(o.IssuedAt) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *VerificationFlow) SetIssuedAt(v time.Time) {
 
 // GetRequestUrl returns the RequestUrl field value if set, zero value otherwise.
 func (o *VerificationFlow) GetRequestUrl() string {
-	if o == nil || o.RequestUrl == nil {
+	if o == nil || IsNil(o.RequestUrl) {
 		var ret string
 		return ret
 	}
@@ -193,7 +196,7 @@ func (o *VerificationFlow) GetRequestUrl() string {
 // GetRequestUrlOk returns a tuple with the RequestUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFlow) GetRequestUrlOk() (*string, bool) {
-	if o == nil || o.RequestUrl == nil {
+	if o == nil || IsNil(o.RequestUrl) {
 		return nil, false
 	}
 	return o.RequestUrl, true
@@ -201,7 +204,7 @@ func (o *VerificationFlow) GetRequestUrlOk() (*string, bool) {
 
 // HasRequestUrl returns a boolean if a field has been set.
 func (o *VerificationFlow) HasRequestUrl() bool {
-	if o != nil && o.RequestUrl != nil {
+	if o != nil && !IsNil(o.RequestUrl) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *VerificationFlow) SetRequestUrl(v string) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *VerificationFlow) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -225,7 +228,7 @@ func (o *VerificationFlow) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFlow) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -233,7 +236,7 @@ func (o *VerificationFlow) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *VerificationFlow) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -260,7 +263,7 @@ func (o *VerificationFlow) GetState() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VerificationFlow) GetStateOk() (*interface{}, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return &o.State, true
@@ -320,48 +323,54 @@ func (o *VerificationFlow) SetUi(v UiContainer) {
 }
 
 func (o VerificationFlow) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VerificationFlow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Active != nil {
+	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if o.ExpiresAt != nil {
+	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.IssuedAt != nil {
+	toSerialize["id"] = o.Id
+	if !IsNil(o.IssuedAt) {
 		toSerialize["issued_at"] = o.IssuedAt
 	}
-	if o.RequestUrl != nil {
+	if !IsNil(o.RequestUrl) {
 		toSerialize["request_url"] = o.RequestUrl
 	}
-	if o.ReturnTo != nil {
+	if !IsNil(o.ReturnTo) {
 		toSerialize["return_to"] = o.ReturnTo
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["ui"] = o.Ui
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["ui"] = o.Ui
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *VerificationFlow) UnmarshalJSON(bytes []byte) (err error) {
 	varVerificationFlow := _VerificationFlow{}
 
-	if err = json.Unmarshal(bytes, &varVerificationFlow); err == nil {
-		*o = VerificationFlow(varVerificationFlow)
+	err = json.Unmarshal(bytes, &varVerificationFlow)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VerificationFlow(varVerificationFlow)
 
 	additionalProperties := make(map[string]interface{})
 

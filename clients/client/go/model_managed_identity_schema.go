@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ManagedIdentitySchema type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ManagedIdentitySchema{}
+
 // ManagedIdentitySchema Together the name and identity uuid are a unique index constraint. This prevents a user from having schemas with the same name. This also allows schemas to have the same name across the system.
 type ManagedIdentitySchema struct {
 	// The gcs file name  This is a randomly generated name which is used to uniquely identify the file on the blob storage
@@ -110,7 +113,7 @@ func (o *ManagedIdentitySchema) SetBlobUrl(v string) {
 
 // GetContentHash returns the ContentHash field value if set, zero value otherwise.
 func (o *ManagedIdentitySchema) GetContentHash() string {
-	if o == nil || o.ContentHash == nil {
+	if o == nil || IsNil(o.ContentHash) {
 		var ret string
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *ManagedIdentitySchema) GetContentHash() string {
 // GetContentHashOk returns a tuple with the ContentHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedIdentitySchema) GetContentHashOk() (*string, bool) {
-	if o == nil || o.ContentHash == nil {
+	if o == nil || IsNil(o.ContentHash) {
 		return nil, false
 	}
 	return o.ContentHash, true
@@ -128,7 +131,7 @@ func (o *ManagedIdentitySchema) GetContentHashOk() (*string, bool) {
 
 // HasContentHash returns a boolean if a field has been set.
 func (o *ManagedIdentitySchema) HasContentHash() bool {
-	if o != nil && o.ContentHash != nil {
+	if o != nil && !IsNil(o.ContentHash) {
 		return true
 	}
 
@@ -237,42 +240,42 @@ func (o *ManagedIdentitySchema) SetUpdatedAt(v time.Time) {
 }
 
 func (o ManagedIdentitySchema) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ManagedIdentitySchema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["blob_name"] = o.BlobName
-	}
-	if true {
-		toSerialize["blob_url"] = o.BlobUrl
-	}
-	if o.ContentHash != nil {
+	toSerialize["blob_name"] = o.BlobName
+	toSerialize["blob_url"] = o.BlobUrl
+	if !IsNil(o.ContentHash) {
 		toSerialize["content_hash"] = o.ContentHash
 	}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ManagedIdentitySchema) UnmarshalJSON(bytes []byte) (err error) {
 	varManagedIdentitySchema := _ManagedIdentitySchema{}
 
-	if err = json.Unmarshal(bytes, &varManagedIdentitySchema); err == nil {
-		*o = ManagedIdentitySchema(varManagedIdentitySchema)
+	err = json.Unmarshal(bytes, &varManagedIdentitySchema)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ManagedIdentitySchema(varManagedIdentitySchema)
 
 	additionalProperties := make(map[string]interface{})
 

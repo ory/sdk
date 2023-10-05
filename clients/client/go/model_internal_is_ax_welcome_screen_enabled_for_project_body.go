@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InternalIsAXWelcomeScreenEnabledForProjectBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InternalIsAXWelcomeScreenEnabledForProjectBody{}
+
 // InternalIsAXWelcomeScreenEnabledForProjectBody Is Account Experience Enabled For Project Request Body
 type InternalIsAXWelcomeScreenEnabledForProjectBody struct {
 	// Path is the path of the request.
@@ -94,27 +97,35 @@ func (o *InternalIsAXWelcomeScreenEnabledForProjectBody) SetProjectSlug(v string
 }
 
 func (o InternalIsAXWelcomeScreenEnabledForProjectBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InternalIsAXWelcomeScreenEnabledForProjectBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["path"] = o.Path
-	}
-	if true {
-		toSerialize["project_slug"] = o.ProjectSlug
-	}
+	toSerialize["path"] = o.Path
+	toSerialize["project_slug"] = o.ProjectSlug
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *InternalIsAXWelcomeScreenEnabledForProjectBody) UnmarshalJSON(bytes []byte) (err error) {
 	varInternalIsAXWelcomeScreenEnabledForProjectBody := _InternalIsAXWelcomeScreenEnabledForProjectBody{}
 
-	if err = json.Unmarshal(bytes, &varInternalIsAXWelcomeScreenEnabledForProjectBody); err == nil {
-		*o = InternalIsAXWelcomeScreenEnabledForProjectBody(varInternalIsAXWelcomeScreenEnabledForProjectBody)
+	err = json.Unmarshal(bytes, &varInternalIsAXWelcomeScreenEnabledForProjectBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InternalIsAXWelcomeScreenEnabledForProjectBody(varInternalIsAXWelcomeScreenEnabledForProjectBody)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PerformNativeLogoutBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PerformNativeLogoutBody{}
+
 // PerformNativeLogoutBody Perform Native Logout Request Body
 type PerformNativeLogoutBody struct {
 	// The Session Token  Invalidate this session token.
@@ -67,24 +70,34 @@ func (o *PerformNativeLogoutBody) SetSessionToken(v string) {
 }
 
 func (o PerformNativeLogoutBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["session_token"] = o.SessionToken
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PerformNativeLogoutBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["session_token"] = o.SessionToken
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *PerformNativeLogoutBody) UnmarshalJSON(bytes []byte) (err error) {
 	varPerformNativeLogoutBody := _PerformNativeLogoutBody{}
 
-	if err = json.Unmarshal(bytes, &varPerformNativeLogoutBody); err == nil {
-		*o = PerformNativeLogoutBody(varPerformNativeLogoutBody)
+	err = json.Unmarshal(bytes, &varPerformNativeLogoutBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PerformNativeLogoutBody(varPerformNativeLogoutBody)
 
 	additionalProperties := make(map[string]interface{})
 

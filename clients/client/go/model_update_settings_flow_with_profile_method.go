@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateSettingsFlowWithProfileMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSettingsFlowWithProfileMethod{}
+
 // UpdateSettingsFlowWithProfileMethod Update Settings Flow with Profile Method
 type UpdateSettingsFlowWithProfileMethod struct {
 	// The Anti-CSRF Token  This token is only required when performing browser flows.
@@ -49,7 +52,7 @@ func NewUpdateSettingsFlowWithProfileMethodWithDefaults() *UpdateSettingsFlowWit
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithProfileMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *UpdateSettingsFlowWithProfileMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithProfileMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -67,7 +70,7 @@ func (o *UpdateSettingsFlowWithProfileMethod) GetCsrfTokenOk() (*string, bool) {
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithProfileMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *UpdateSettingsFlowWithProfileMethod) GetTraits() map[string]interface{}
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithProfileMethod) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Traits, true
 }
@@ -128,30 +131,38 @@ func (o *UpdateSettingsFlowWithProfileMethod) SetTraits(v map[string]interface{}
 }
 
 func (o UpdateSettingsFlowWithProfileMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateSettingsFlowWithProfileMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if true {
-		toSerialize["traits"] = o.Traits
-	}
+	toSerialize["method"] = o.Method
+	toSerialize["traits"] = o.Traits
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateSettingsFlowWithProfileMethod) UnmarshalJSON(bytes []byte) (err error) {
 	varUpdateSettingsFlowWithProfileMethod := _UpdateSettingsFlowWithProfileMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithProfileMethod); err == nil {
-		*o = UpdateSettingsFlowWithProfileMethod(varUpdateSettingsFlowWithProfileMethod)
+	err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithProfileMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateSettingsFlowWithProfileMethod(varUpdateSettingsFlowWithProfileMethod)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Organization type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Organization{}
+
 // Organization B2B SSO Organization
 type Organization struct {
 	Domains []string `json:"domains"`
@@ -147,33 +150,37 @@ func (o *Organization) SetProjectId(v string) {
 }
 
 func (o Organization) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Organization) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["domains"] = o.Domains
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["label"] = o.Label
-	}
-	if true {
-		toSerialize["project_id"] = o.ProjectId
-	}
+	toSerialize["domains"] = o.Domains
+	toSerialize["id"] = o.Id
+	toSerialize["label"] = o.Label
+	toSerialize["project_id"] = o.ProjectId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	varOrganization := _Organization{}
 
-	if err = json.Unmarshal(bytes, &varOrganization); err == nil {
-		*o = Organization(varOrganization)
+	err = json.Unmarshal(bytes, &varOrganization)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Organization(varOrganization)
 
 	additionalProperties := make(map[string]interface{})
 

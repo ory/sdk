@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateInviteResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateInviteResponse{}
+
 // CreateInviteResponse struct for CreateInviteResponse
 type CreateInviteResponse struct {
 	// A list of all invites for this resource
@@ -93,27 +96,35 @@ func (o *CreateInviteResponse) SetCreatedInvite(v MemberInvite) {
 }
 
 func (o CreateInviteResponse) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateInviteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["all_invites"] = o.AllInvites
-	}
-	if true {
-		toSerialize["created_invite"] = o.CreatedInvite
-	}
+	toSerialize["all_invites"] = o.AllInvites
+	toSerialize["created_invite"] = o.CreatedInvite
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CreateInviteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateInviteResponse := _CreateInviteResponse{}
 
-	if err = json.Unmarshal(bytes, &varCreateInviteResponse); err == nil {
-		*o = CreateInviteResponse(varCreateInviteResponse)
+	err = json.Unmarshal(bytes, &varCreateInviteResponse)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateInviteResponse(varCreateInviteResponse)
 
 	additionalProperties := make(map[string]interface{})
 

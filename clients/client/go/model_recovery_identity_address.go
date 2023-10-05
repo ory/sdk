@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the RecoveryIdentityAddress type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecoveryIdentityAddress{}
+
 // RecoveryIdentityAddress struct for RecoveryIdentityAddress
 type RecoveryIdentityAddress struct {
 	// CreatedAt is a helper struct field for gobuffalo.pop.
@@ -52,7 +55,7 @@ func NewRecoveryIdentityAddressWithDefaults() *RecoveryIdentityAddress {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *RecoveryIdentityAddress) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -62,7 +65,7 @@ func (o *RecoveryIdentityAddress) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryIdentityAddress) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -70,7 +73,7 @@ func (o *RecoveryIdentityAddress) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *RecoveryIdentityAddress) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *RecoveryIdentityAddress) SetId(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *RecoveryIdentityAddress) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *RecoveryIdentityAddress) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryIdentityAddress) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -126,7 +129,7 @@ func (o *RecoveryIdentityAddress) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *RecoveryIdentityAddress) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -187,36 +190,42 @@ func (o *RecoveryIdentityAddress) SetVia(v string) {
 }
 
 func (o RecoveryIdentityAddress) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RecoveryIdentityAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.UpdatedAt != nil {
+	toSerialize["id"] = o.Id
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if true {
-		toSerialize["value"] = o.Value
-	}
-	if true {
-		toSerialize["via"] = o.Via
-	}
+	toSerialize["value"] = o.Value
+	toSerialize["via"] = o.Via
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *RecoveryIdentityAddress) UnmarshalJSON(bytes []byte) (err error) {
 	varRecoveryIdentityAddress := _RecoveryIdentityAddress{}
 
-	if err = json.Unmarshal(bytes, &varRecoveryIdentityAddress); err == nil {
-		*o = RecoveryIdentityAddress(varRecoveryIdentityAddress)
+	err = json.Unmarshal(bytes, &varRecoveryIdentityAddress)
+
+	if err != nil {
+		return err
 	}
+
+	*o = RecoveryIdentityAddress(varRecoveryIdentityAddress)
 
 	additionalProperties := make(map[string]interface{})
 

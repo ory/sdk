@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentityWithCredentialsPasswordConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityWithCredentialsPasswordConfig{}
+
 // IdentityWithCredentialsPasswordConfig Create Identity and Import Password Credentials Configuration
 type IdentityWithCredentialsPasswordConfig struct {
 	// The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)
@@ -45,7 +48,7 @@ func NewIdentityWithCredentialsPasswordConfigWithDefaults() *IdentityWithCredent
 
 // GetHashedPassword returns the HashedPassword field value if set, zero value otherwise.
 func (o *IdentityWithCredentialsPasswordConfig) GetHashedPassword() string {
-	if o == nil || o.HashedPassword == nil {
+	if o == nil || IsNil(o.HashedPassword) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *IdentityWithCredentialsPasswordConfig) GetHashedPassword() string {
 // GetHashedPasswordOk returns a tuple with the HashedPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentialsPasswordConfig) GetHashedPasswordOk() (*string, bool) {
-	if o == nil || o.HashedPassword == nil {
+	if o == nil || IsNil(o.HashedPassword) {
 		return nil, false
 	}
 	return o.HashedPassword, true
@@ -63,7 +66,7 @@ func (o *IdentityWithCredentialsPasswordConfig) GetHashedPasswordOk() (*string, 
 
 // HasHashedPassword returns a boolean if a field has been set.
 func (o *IdentityWithCredentialsPasswordConfig) HasHashedPassword() bool {
-	if o != nil && o.HashedPassword != nil {
+	if o != nil && !IsNil(o.HashedPassword) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *IdentityWithCredentialsPasswordConfig) SetHashedPassword(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *IdentityWithCredentialsPasswordConfig) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *IdentityWithCredentialsPasswordConfig) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentialsPasswordConfig) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -95,7 +98,7 @@ func (o *IdentityWithCredentialsPasswordConfig) GetPasswordOk() (*string, bool) 
 
 // HasPassword returns a boolean if a field has been set.
 func (o *IdentityWithCredentialsPasswordConfig) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -108,11 +111,19 @@ func (o *IdentityWithCredentialsPasswordConfig) SetPassword(v string) {
 }
 
 func (o IdentityWithCredentialsPasswordConfig) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityWithCredentialsPasswordConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.HashedPassword != nil {
+	if !IsNil(o.HashedPassword) {
 		toSerialize["hashed_password"] = o.HashedPassword
 	}
-	if o.Password != nil {
+	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
 
@@ -120,15 +131,19 @@ func (o IdentityWithCredentialsPasswordConfig) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityWithCredentialsPasswordConfig) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityWithCredentialsPasswordConfig := _IdentityWithCredentialsPasswordConfig{}
 
-	if err = json.Unmarshal(bytes, &varIdentityWithCredentialsPasswordConfig); err == nil {
-		*o = IdentityWithCredentialsPasswordConfig(varIdentityWithCredentialsPasswordConfig)
+	err = json.Unmarshal(bytes, &varIdentityWithCredentialsPasswordConfig)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityWithCredentialsPasswordConfig(varIdentityWithCredentialsPasswordConfig)
 
 	additionalProperties := make(map[string]interface{})
 

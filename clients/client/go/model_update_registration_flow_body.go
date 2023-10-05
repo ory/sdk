@@ -116,11 +116,11 @@ func (dst *UpdateRegistrationFlowBody) UnmarshalJSON(data []byte) error {
 		dst.UpdateRegistrationFlowWithPasswordMethod = nil
 		dst.UpdateRegistrationFlowWithWebAuthnMethod = nil
 
-		return fmt.Errorf("Data matches more than one schema in oneOf(UpdateRegistrationFlowBody)")
+		return fmt.Errorf("data matches more than one schema in oneOf(UpdateRegistrationFlowBody)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(UpdateRegistrationFlowBody)")
+		return fmt.Errorf("data failed to match schemas in oneOf(UpdateRegistrationFlowBody)")
 	}
 }
 

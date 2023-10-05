@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PlanDetails type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PlanDetails{}
+
 // PlanDetails struct for PlanDetails
 type PlanDetails struct {
 	// BaseFeeMonthly is the monthly base fee for the plan.
@@ -229,42 +232,40 @@ func (o *PlanDetails) SetVersion(v int64) {
 }
 
 func (o PlanDetails) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PlanDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["base_fee_monthly"] = o.BaseFeeMonthly
-	}
-	if true {
-		toSerialize["base_fee_yearly"] = o.BaseFeeYearly
-	}
-	if true {
-		toSerialize["custom"] = o.Custom
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["features"] = o.Features
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["version"] = o.Version
-	}
+	toSerialize["base_fee_monthly"] = o.BaseFeeMonthly
+	toSerialize["base_fee_yearly"] = o.BaseFeeYearly
+	toSerialize["custom"] = o.Custom
+	toSerialize["description"] = o.Description
+	toSerialize["features"] = o.Features
+	toSerialize["name"] = o.Name
+	toSerialize["version"] = o.Version
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *PlanDetails) UnmarshalJSON(bytes []byte) (err error) {
 	varPlanDetails := _PlanDetails{}
 
-	if err = json.Unmarshal(bytes, &varPlanDetails); err == nil {
-		*o = PlanDetails(varPlanDetails)
+	err = json.Unmarshal(bytes, &varPlanDetails)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PlanDetails(varPlanDetails)
 
 	additionalProperties := make(map[string]interface{})
 

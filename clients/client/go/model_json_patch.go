@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the JsonPatch type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &JsonPatch{}
+
 // JsonPatch A JSONPatch document as defined by RFC 6902
 type JsonPatch struct {
 	// This field is used together with operation \"move\" and uses JSON Pointer notation.  Learn more [about JSON Pointers](https://datatracker.ietf.org/doc/html/rfc6901#section-5).
@@ -51,7 +54,7 @@ func NewJsonPatchWithDefaults() *JsonPatch {
 
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *JsonPatch) GetFrom() string {
-	if o == nil || o.From == nil {
+	if o == nil || IsNil(o.From) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *JsonPatch) GetFrom() string {
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *JsonPatch) GetFromOk() (*string, bool) {
-	if o == nil || o.From == nil {
+	if o == nil || IsNil(o.From) {
 		return nil, false
 	}
 	return o.From, true
@@ -69,7 +72,7 @@ func (o *JsonPatch) GetFromOk() (*string, bool) {
 
 // HasFrom returns a boolean if a field has been set.
 func (o *JsonPatch) HasFrom() bool {
-	if o != nil && o.From != nil {
+	if o != nil && !IsNil(o.From) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *JsonPatch) GetValue() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *JsonPatch) GetValueOk() (*interface{}, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return &o.Value, true
@@ -150,7 +153,7 @@ func (o *JsonPatch) GetValueOk() (*interface{}, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *JsonPatch) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && IsNil(o.Value) {
 		return true
 	}
 
@@ -163,16 +166,20 @@ func (o *JsonPatch) SetValue(v interface{}) {
 }
 
 func (o JsonPatch) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o JsonPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.From != nil {
+	if !IsNil(o.From) {
 		toSerialize["from"] = o.From
 	}
-	if true {
-		toSerialize["op"] = o.Op
-	}
-	if true {
-		toSerialize["path"] = o.Path
-	}
+	toSerialize["op"] = o.Op
+	toSerialize["path"] = o.Path
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
@@ -181,15 +188,19 @@ func (o JsonPatch) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *JsonPatch) UnmarshalJSON(bytes []byte) (err error) {
 	varJsonPatch := _JsonPatch{}
 
-	if err = json.Unmarshal(bytes, &varJsonPatch); err == nil {
-		*o = JsonPatch(varJsonPatch)
+	err = json.Unmarshal(bytes, &varJsonPatch)
+
+	if err != nil {
+		return err
 	}
+
+	*o = JsonPatch(varJsonPatch)
 
 	additionalProperties := make(map[string]interface{})
 

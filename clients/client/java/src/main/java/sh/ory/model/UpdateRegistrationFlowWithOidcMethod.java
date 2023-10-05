@@ -49,7 +49,7 @@ import sh.ory.JSON;
  * Update Registration Flow with OpenID Connect Method
  */
 @ApiModel(description = "Update Registration Flow with OpenID Connect Method")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-26T07:22:38.275636327Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-05T13:50:54.246292158Z[Etc/UTC]")
 public class UpdateRegistrationFlowWithOidcMethod {
   public static final String SERIALIZED_NAME_CSRF_TOKEN = "csrf_token";
   @SerializedName(SERIALIZED_NAME_CSRF_TOKEN)

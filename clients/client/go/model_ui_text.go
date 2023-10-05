@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UiText type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiText{}
+
 // UiText struct for UiText
 type UiText struct {
 	// The message's context. Useful when customizing messages.
@@ -51,7 +54,7 @@ func NewUiTextWithDefaults() *UiText {
 
 // GetContext returns the Context field value if set, zero value otherwise.
 func (o *UiText) GetContext() map[string]interface{} {
-	if o == nil || o.Context == nil {
+	if o == nil || IsNil(o.Context) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *UiText) GetContext() map[string]interface{} {
 // GetContextOk returns a tuple with the Context field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiText) GetContextOk() (map[string]interface{}, bool) {
-	if o == nil || o.Context == nil {
-		return nil, false
+	if o == nil || IsNil(o.Context) {
+		return map[string]interface{}{}, false
 	}
 	return o.Context, true
 }
 
 // HasContext returns a boolean if a field has been set.
 func (o *UiText) HasContext() bool {
-	if o != nil && o.Context != nil {
+	if o != nil && !IsNil(o.Context) {
 		return true
 	}
 
@@ -154,33 +157,39 @@ func (o *UiText) SetType(v string) {
 }
 
 func (o UiText) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UiText) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Context != nil {
+	if !IsNil(o.Context) {
 		toSerialize["context"] = o.Context
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["text"] = o.Text
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["id"] = o.Id
+	toSerialize["text"] = o.Text
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UiText) UnmarshalJSON(bytes []byte) (err error) {
 	varUiText := _UiText{}
 
-	if err = json.Unmarshal(bytes, &varUiText); err == nil {
-		*o = UiText(varUiText)
+	err = json.Unmarshal(bytes, &varUiText)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UiText(varUiText)
 
 	additionalProperties := make(map[string]interface{})
 

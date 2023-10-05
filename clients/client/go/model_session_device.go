@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SessionDevice type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SessionDevice{}
+
 // SessionDevice Device corresponding to a Session
 type SessionDevice struct {
 	// Device record ID
@@ -74,7 +77,7 @@ func (o *SessionDevice) SetId(v string) {
 
 // GetIpAddress returns the IpAddress field value if set, zero value otherwise.
 func (o *SessionDevice) GetIpAddress() string {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		var ret string
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *SessionDevice) GetIpAddress() string {
 // GetIpAddressOk returns a tuple with the IpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SessionDevice) GetIpAddressOk() (*string, bool) {
-	if o == nil || o.IpAddress == nil {
+	if o == nil || IsNil(o.IpAddress) {
 		return nil, false
 	}
 	return o.IpAddress, true
@@ -92,7 +95,7 @@ func (o *SessionDevice) GetIpAddressOk() (*string, bool) {
 
 // HasIpAddress returns a boolean if a field has been set.
 func (o *SessionDevice) HasIpAddress() bool {
-	if o != nil && o.IpAddress != nil {
+	if o != nil && !IsNil(o.IpAddress) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *SessionDevice) SetIpAddress(v string) {
 
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *SessionDevice) GetLocation() string {
-	if o == nil || o.Location == nil {
+	if o == nil || IsNil(o.Location) {
 		var ret string
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *SessionDevice) GetLocation() string {
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SessionDevice) GetLocationOk() (*string, bool) {
-	if o == nil || o.Location == nil {
+	if o == nil || IsNil(o.Location) {
 		return nil, false
 	}
 	return o.Location, true
@@ -124,7 +127,7 @@ func (o *SessionDevice) GetLocationOk() (*string, bool) {
 
 // HasLocation returns a boolean if a field has been set.
 func (o *SessionDevice) HasLocation() bool {
-	if o != nil && o.Location != nil {
+	if o != nil && !IsNil(o.Location) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *SessionDevice) SetLocation(v string) {
 
 // GetUserAgent returns the UserAgent field value if set, zero value otherwise.
 func (o *SessionDevice) GetUserAgent() string {
-	if o == nil || o.UserAgent == nil {
+	if o == nil || IsNil(o.UserAgent) {
 		var ret string
 		return ret
 	}
@@ -148,7 +151,7 @@ func (o *SessionDevice) GetUserAgent() string {
 // GetUserAgentOk returns a tuple with the UserAgent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SessionDevice) GetUserAgentOk() (*string, bool) {
-	if o == nil || o.UserAgent == nil {
+	if o == nil || IsNil(o.UserAgent) {
 		return nil, false
 	}
 	return o.UserAgent, true
@@ -156,7 +159,7 @@ func (o *SessionDevice) GetUserAgentOk() (*string, bool) {
 
 // HasUserAgent returns a boolean if a field has been set.
 func (o *SessionDevice) HasUserAgent() bool {
-	if o != nil && o.UserAgent != nil {
+	if o != nil && !IsNil(o.UserAgent) {
 		return true
 	}
 
@@ -169,17 +172,23 @@ func (o *SessionDevice) SetUserAgent(v string) {
 }
 
 func (o SessionDevice) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-	if o.IpAddress != nil {
+	return json.Marshal(toSerialize)
+}
+
+func (o SessionDevice) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	if !IsNil(o.IpAddress) {
 		toSerialize["ip_address"] = o.IpAddress
 	}
-	if o.Location != nil {
+	if !IsNil(o.Location) {
 		toSerialize["location"] = o.Location
 	}
-	if o.UserAgent != nil {
+	if !IsNil(o.UserAgent) {
 		toSerialize["user_agent"] = o.UserAgent
 	}
 
@@ -187,15 +196,19 @@ func (o SessionDevice) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SessionDevice) UnmarshalJSON(bytes []byte) (err error) {
 	varSessionDevice := _SessionDevice{}
 
-	if err = json.Unmarshal(bytes, &varSessionDevice); err == nil {
-		*o = SessionDevice(varSessionDevice)
+	err = json.Unmarshal(bytes, &varSessionDevice)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SessionDevice(varSessionDevice)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateProjectBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateProjectBody{}
+
 // CreateProjectBody Create Project Request Body
 type CreateProjectBody struct {
 	// The name of the project to be created
@@ -67,24 +70,34 @@ func (o *CreateProjectBody) SetName(v string) {
 }
 
 func (o CreateProjectBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateProjectBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CreateProjectBody) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateProjectBody := _CreateProjectBody{}
 
-	if err = json.Unmarshal(bytes, &varCreateProjectBody); err == nil {
-		*o = CreateProjectBody(varCreateProjectBody)
+	err = json.Unmarshal(bytes, &varCreateProjectBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateProjectBody(varCreateProjectBody)
 
 	additionalProperties := make(map[string]interface{})
 

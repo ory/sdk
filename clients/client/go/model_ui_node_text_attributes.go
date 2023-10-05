@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UiNodeTextAttributes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiNodeTextAttributes{}
+
 // UiNodeTextAttributes struct for UiNodeTextAttributes
 type UiNodeTextAttributes struct {
 	// A unique identifier
@@ -120,30 +123,36 @@ func (o *UiNodeTextAttributes) SetText(v UiText) {
 }
 
 func (o UiNodeTextAttributes) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UiNodeTextAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["node_type"] = o.NodeType
-	}
-	if true {
-		toSerialize["text"] = o.Text
-	}
+	toSerialize["id"] = o.Id
+	toSerialize["node_type"] = o.NodeType
+	toSerialize["text"] = o.Text
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UiNodeTextAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	varUiNodeTextAttributes := _UiNodeTextAttributes{}
 
-	if err = json.Unmarshal(bytes, &varUiNodeTextAttributes); err == nil {
-		*o = UiNodeTextAttributes(varUiNodeTextAttributes)
+	err = json.Unmarshal(bytes, &varUiNodeTextAttributes)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UiNodeTextAttributes(varUiNodeTextAttributes)
 
 	additionalProperties := make(map[string]interface{})
 

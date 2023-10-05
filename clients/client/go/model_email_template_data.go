@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailTemplateData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailTemplateData{}
+
 // EmailTemplateData Contains the data of the email template, including the subject and body in HTML and plaintext variants
 type EmailTemplateData struct {
 	Body EmailTemplateDataBody `json:"body"`
@@ -92,27 +95,35 @@ func (o *EmailTemplateData) SetSubject(v string) {
 }
 
 func (o EmailTemplateData) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailTemplateData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["body"] = o.Body
-	}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
+	toSerialize["body"] = o.Body
+	toSerialize["subject"] = o.Subject
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *EmailTemplateData) UnmarshalJSON(bytes []byte) (err error) {
 	varEmailTemplateData := _EmailTemplateData{}
 
-	if err = json.Unmarshal(bytes, &varEmailTemplateData); err == nil {
-		*o = EmailTemplateData(varEmailTemplateData)
+	err = json.Unmarshal(bytes, &varEmailTemplateData)
+
+	if err != nil {
+		return err
 	}
+
+	*o = EmailTemplateData(varEmailTemplateData)
 
 	additionalProperties := make(map[string]interface{})
 

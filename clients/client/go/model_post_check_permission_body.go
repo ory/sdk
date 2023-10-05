@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostCheckPermissionBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostCheckPermissionBody{}
+
 // PostCheckPermissionBody Check Permission using Post Request Body
 type PostCheckPermissionBody struct {
 	// Namespace to query
@@ -50,7 +53,7 @@ func NewPostCheckPermissionBodyWithDefaults() *PostCheckPermissionBody {
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *PostCheckPermissionBody) GetNamespace() string {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		var ret string
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *PostCheckPermissionBody) GetNamespace() string {
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCheckPermissionBody) GetNamespaceOk() (*string, bool) {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		return nil, false
 	}
 	return o.Namespace, true
@@ -68,7 +71,7 @@ func (o *PostCheckPermissionBody) GetNamespaceOk() (*string, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *PostCheckPermissionBody) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
+	if o != nil && !IsNil(o.Namespace) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *PostCheckPermissionBody) SetNamespace(v string) {
 
 // GetObject returns the Object field value if set, zero value otherwise.
 func (o *PostCheckPermissionBody) GetObject() string {
-	if o == nil || o.Object == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *PostCheckPermissionBody) GetObject() string {
 // GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCheckPermissionBody) GetObjectOk() (*string, bool) {
-	if o == nil || o.Object == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
 	return o.Object, true
@@ -100,7 +103,7 @@ func (o *PostCheckPermissionBody) GetObjectOk() (*string, bool) {
 
 // HasObject returns a boolean if a field has been set.
 func (o *PostCheckPermissionBody) HasObject() bool {
-	if o != nil && o.Object != nil {
+	if o != nil && !IsNil(o.Object) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *PostCheckPermissionBody) SetObject(v string) {
 
 // GetRelation returns the Relation field value if set, zero value otherwise.
 func (o *PostCheckPermissionBody) GetRelation() string {
-	if o == nil || o.Relation == nil {
+	if o == nil || IsNil(o.Relation) {
 		var ret string
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *PostCheckPermissionBody) GetRelation() string {
 // GetRelationOk returns a tuple with the Relation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCheckPermissionBody) GetRelationOk() (*string, bool) {
-	if o == nil || o.Relation == nil {
+	if o == nil || IsNil(o.Relation) {
 		return nil, false
 	}
 	return o.Relation, true
@@ -132,7 +135,7 @@ func (o *PostCheckPermissionBody) GetRelationOk() (*string, bool) {
 
 // HasRelation returns a boolean if a field has been set.
 func (o *PostCheckPermissionBody) HasRelation() bool {
-	if o != nil && o.Relation != nil {
+	if o != nil && !IsNil(o.Relation) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *PostCheckPermissionBody) SetRelation(v string) {
 
 // GetSubjectId returns the SubjectId field value if set, zero value otherwise.
 func (o *PostCheckPermissionBody) GetSubjectId() string {
-	if o == nil || o.SubjectId == nil {
+	if o == nil || IsNil(o.SubjectId) {
 		var ret string
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *PostCheckPermissionBody) GetSubjectId() string {
 // GetSubjectIdOk returns a tuple with the SubjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCheckPermissionBody) GetSubjectIdOk() (*string, bool) {
-	if o == nil || o.SubjectId == nil {
+	if o == nil || IsNil(o.SubjectId) {
 		return nil, false
 	}
 	return o.SubjectId, true
@@ -164,7 +167,7 @@ func (o *PostCheckPermissionBody) GetSubjectIdOk() (*string, bool) {
 
 // HasSubjectId returns a boolean if a field has been set.
 func (o *PostCheckPermissionBody) HasSubjectId() bool {
-	if o != nil && o.SubjectId != nil {
+	if o != nil && !IsNil(o.SubjectId) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *PostCheckPermissionBody) SetSubjectId(v string) {
 
 // GetSubjectSet returns the SubjectSet field value if set, zero value otherwise.
 func (o *PostCheckPermissionBody) GetSubjectSet() SubjectSet {
-	if o == nil || o.SubjectSet == nil {
+	if o == nil || IsNil(o.SubjectSet) {
 		var ret SubjectSet
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *PostCheckPermissionBody) GetSubjectSet() SubjectSet {
 // GetSubjectSetOk returns a tuple with the SubjectSet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostCheckPermissionBody) GetSubjectSetOk() (*SubjectSet, bool) {
-	if o == nil || o.SubjectSet == nil {
+	if o == nil || IsNil(o.SubjectSet) {
 		return nil, false
 	}
 	return o.SubjectSet, true
@@ -196,7 +199,7 @@ func (o *PostCheckPermissionBody) GetSubjectSetOk() (*SubjectSet, bool) {
 
 // HasSubjectSet returns a boolean if a field has been set.
 func (o *PostCheckPermissionBody) HasSubjectSet() bool {
-	if o != nil && o.SubjectSet != nil {
+	if o != nil && !IsNil(o.SubjectSet) {
 		return true
 	}
 
@@ -209,20 +212,28 @@ func (o *PostCheckPermissionBody) SetSubjectSet(v SubjectSet) {
 }
 
 func (o PostCheckPermissionBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PostCheckPermissionBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Namespace != nil {
+	if !IsNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}
-	if o.Object != nil {
+	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
-	if o.Relation != nil {
+	if !IsNil(o.Relation) {
 		toSerialize["relation"] = o.Relation
 	}
-	if o.SubjectId != nil {
+	if !IsNil(o.SubjectId) {
 		toSerialize["subject_id"] = o.SubjectId
 	}
-	if o.SubjectSet != nil {
+	if !IsNil(o.SubjectSet) {
 		toSerialize["subject_set"] = o.SubjectSet
 	}
 
@@ -230,15 +241,19 @@ func (o PostCheckPermissionBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *PostCheckPermissionBody) UnmarshalJSON(bytes []byte) (err error) {
 	varPostCheckPermissionBody := _PostCheckPermissionBody{}
 
-	if err = json.Unmarshal(bytes, &varPostCheckPermissionBody); err == nil {
-		*o = PostCheckPermissionBody(varPostCheckPermissionBody)
+	err = json.Unmarshal(bytes, &varPostCheckPermissionBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PostCheckPermissionBody(varPostCheckPermissionBody)
 
 	additionalProperties := make(map[string]interface{})
 

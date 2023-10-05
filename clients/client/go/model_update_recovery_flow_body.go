@@ -72,11 +72,11 @@ func (dst *UpdateRecoveryFlowBody) UnmarshalJSON(data []byte) error {
 		dst.UpdateRecoveryFlowWithCodeMethod = nil
 		dst.UpdateRecoveryFlowWithLinkMethod = nil
 
-		return fmt.Errorf("Data matches more than one schema in oneOf(UpdateRecoveryFlowBody)")
+		return fmt.Errorf("data matches more than one schema in oneOf(UpdateRecoveryFlowBody)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(UpdateRecoveryFlowBody)")
+		return fmt.Errorf("data failed to match schemas in oneOf(UpdateRecoveryFlowBody)")
 	}
 }
 

@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the RecoveryLinkForIdentity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecoveryLinkForIdentity{}
+
 // RecoveryLinkForIdentity Used when an administrator creates a recovery link for an identity.
 type RecoveryLinkForIdentity struct {
 	// Recovery Link Expires At  The timestamp when the recovery link expires.
@@ -47,7 +50,7 @@ func NewRecoveryLinkForIdentityWithDefaults() *RecoveryLinkForIdentity {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *RecoveryLinkForIdentity) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *RecoveryLinkForIdentity) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryLinkForIdentity) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -65,7 +68,7 @@ func (o *RecoveryLinkForIdentity) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *RecoveryLinkForIdentity) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -102,27 +105,37 @@ func (o *RecoveryLinkForIdentity) SetRecoveryLink(v string) {
 }
 
 func (o RecoveryLinkForIdentity) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RecoveryLinkForIdentity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ExpiresAt != nil {
+	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
-	if true {
-		toSerialize["recovery_link"] = o.RecoveryLink
-	}
+	toSerialize["recovery_link"] = o.RecoveryLink
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *RecoveryLinkForIdentity) UnmarshalJSON(bytes []byte) (err error) {
 	varRecoveryLinkForIdentity := _RecoveryLinkForIdentity{}
 
-	if err = json.Unmarshal(bytes, &varRecoveryLinkForIdentity); err == nil {
-		*o = RecoveryLinkForIdentity(varRecoveryLinkForIdentity)
+	err = json.Unmarshal(bytes, &varRecoveryLinkForIdentity)
+
+	if err != nil {
+		return err
 	}
+
+	*o = RecoveryLinkForIdentity(varRecoveryLinkForIdentity)
 
 	additionalProperties := make(map[string]interface{})
 

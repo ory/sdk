@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IsReady200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IsReady200Response{}
+
 // IsReady200Response struct for IsReady200Response
 type IsReady200Response struct {
 	// Always \"ok\".
@@ -67,24 +70,34 @@ func (o *IsReady200Response) SetStatus(v string) {
 }
 
 func (o IsReady200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IsReady200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IsReady200Response) UnmarshalJSON(bytes []byte) (err error) {
 	varIsReady200Response := _IsReady200Response{}
 
-	if err = json.Unmarshal(bytes, &varIsReady200Response); err == nil {
-		*o = IsReady200Response(varIsReady200Response)
+	err = json.Unmarshal(bytes, &varIsReady200Response)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IsReady200Response(varIsReady200Response)
 
 	additionalProperties := make(map[string]interface{})
 

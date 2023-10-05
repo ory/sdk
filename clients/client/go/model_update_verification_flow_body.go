@@ -72,11 +72,11 @@ func (dst *UpdateVerificationFlowBody) UnmarshalJSON(data []byte) error {
 		dst.UpdateVerificationFlowWithCodeMethod = nil
 		dst.UpdateVerificationFlowWithLinkMethod = nil
 
-		return fmt.Errorf("Data matches more than one schema in oneOf(UpdateVerificationFlowBody)")
+		return fmt.Errorf("data matches more than one schema in oneOf(UpdateVerificationFlowBody)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(UpdateVerificationFlowBody)")
+		return fmt.Errorf("data failed to match schemas in oneOf(UpdateVerificationFlowBody)")
 	}
 }
 

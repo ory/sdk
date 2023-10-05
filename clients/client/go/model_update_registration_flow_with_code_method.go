@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateRegistrationFlowWithCodeMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateRegistrationFlowWithCodeMethod{}
+
 // UpdateRegistrationFlowWithCodeMethod Update Registration Flow with Code Method
 type UpdateRegistrationFlowWithCodeMethod struct {
 	// The OTP Code sent to the user
@@ -55,7 +58,7 @@ func NewUpdateRegistrationFlowWithCodeMethodWithDefaults() *UpdateRegistrationFl
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithCodeMethod) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -65,7 +68,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithCodeMethod) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -73,7 +76,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithCodeMethod) HasCode() bool {
-	if o != nil && o.Code != nil {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) SetCode(v string) {
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithCodeMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -97,7 +100,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithCodeMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -105,7 +108,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) GetCsrfTokenOk() (*string, bool) 
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithCodeMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) SetMethod(v string) {
 
 // GetResend returns the Resend field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithCodeMethod) GetResend() string {
-	if o == nil || o.Resend == nil {
+	if o == nil || IsNil(o.Resend) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) GetResend() string {
 // GetResendOk returns a tuple with the Resend field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithCodeMethod) GetResendOk() (*string, bool) {
-	if o == nil || o.Resend == nil {
+	if o == nil || IsNil(o.Resend) {
 		return nil, false
 	}
 	return o.Resend, true
@@ -161,7 +164,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) GetResendOk() (*string, bool) {
 
 // HasResend returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithCodeMethod) HasResend() bool {
-	if o != nil && o.Resend != nil {
+	if o != nil && !IsNil(o.Resend) {
 		return true
 	}
 
@@ -187,7 +190,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) GetTraits() map[string]interface{
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithCodeMethod) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Traits, true
 }
@@ -199,7 +202,7 @@ func (o *UpdateRegistrationFlowWithCodeMethod) SetTraits(v map[string]interface{
 
 // GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithCodeMethod) GetTransientPayload() map[string]interface{} {
-	if o == nil || o.TransientPayload == nil {
+	if o == nil || IsNil(o.TransientPayload) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -209,15 +212,15 @@ func (o *UpdateRegistrationFlowWithCodeMethod) GetTransientPayload() map[string]
 // GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithCodeMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
-	if o == nil || o.TransientPayload == nil {
-		return nil, false
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
 	}
 	return o.TransientPayload, true
 }
 
 // HasTransientPayload returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithCodeMethod) HasTransientPayload() bool {
-	if o != nil && o.TransientPayload != nil {
+	if o != nil && !IsNil(o.TransientPayload) {
 		return true
 	}
 
@@ -230,23 +233,27 @@ func (o *UpdateRegistrationFlowWithCodeMethod) SetTransientPayload(v map[string]
 }
 
 func (o UpdateRegistrationFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateRegistrationFlowWithCodeMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if o.Resend != nil {
+	toSerialize["method"] = o.Method
+	if !IsNil(o.Resend) {
 		toSerialize["resend"] = o.Resend
 	}
-	if true {
-		toSerialize["traits"] = o.Traits
-	}
-	if o.TransientPayload != nil {
+	toSerialize["traits"] = o.Traits
+	if !IsNil(o.TransientPayload) {
 		toSerialize["transient_payload"] = o.TransientPayload
 	}
 
@@ -254,15 +261,19 @@ func (o UpdateRegistrationFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateRegistrationFlowWithCodeMethod) UnmarshalJSON(bytes []byte) (err error) {
 	varUpdateRegistrationFlowWithCodeMethod := _UpdateRegistrationFlowWithCodeMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithCodeMethod); err == nil {
-		*o = UpdateRegistrationFlowWithCodeMethod(varUpdateRegistrationFlowWithCodeMethod)
+	err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithCodeMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateRegistrationFlowWithCodeMethod(varUpdateRegistrationFlowWithCodeMethod)
 
 	additionalProperties := make(map[string]interface{})
 

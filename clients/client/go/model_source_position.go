@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SourcePosition type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SourcePosition{}
+
 // SourcePosition struct for SourcePosition
 type SourcePosition struct {
 	Line *int64 `json:"Line,omitempty"`
@@ -43,7 +46,7 @@ func NewSourcePositionWithDefaults() *SourcePosition {
 
 // GetLine returns the Line field value if set, zero value otherwise.
 func (o *SourcePosition) GetLine() int64 {
-	if o == nil || o.Line == nil {
+	if o == nil || IsNil(o.Line) {
 		var ret int64
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *SourcePosition) GetLine() int64 {
 // GetLineOk returns a tuple with the Line field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SourcePosition) GetLineOk() (*int64, bool) {
-	if o == nil || o.Line == nil {
+	if o == nil || IsNil(o.Line) {
 		return nil, false
 	}
 	return o.Line, true
@@ -61,7 +64,7 @@ func (o *SourcePosition) GetLineOk() (*int64, bool) {
 
 // HasLine returns a boolean if a field has been set.
 func (o *SourcePosition) HasLine() bool {
-	if o != nil && o.Line != nil {
+	if o != nil && !IsNil(o.Line) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *SourcePosition) SetLine(v int64) {
 
 // GetColumn returns the Column field value if set, zero value otherwise.
 func (o *SourcePosition) GetColumn() int64 {
-	if o == nil || o.Column == nil {
+	if o == nil || IsNil(o.Column) {
 		var ret int64
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *SourcePosition) GetColumn() int64 {
 // GetColumnOk returns a tuple with the Column field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SourcePosition) GetColumnOk() (*int64, bool) {
-	if o == nil || o.Column == nil {
+	if o == nil || IsNil(o.Column) {
 		return nil, false
 	}
 	return o.Column, true
@@ -93,7 +96,7 @@ func (o *SourcePosition) GetColumnOk() (*int64, bool) {
 
 // HasColumn returns a boolean if a field has been set.
 func (o *SourcePosition) HasColumn() bool {
-	if o != nil && o.Column != nil {
+	if o != nil && !IsNil(o.Column) {
 		return true
 	}
 
@@ -106,11 +109,19 @@ func (o *SourcePosition) SetColumn(v int64) {
 }
 
 func (o SourcePosition) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SourcePosition) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Line != nil {
+	if !IsNil(o.Line) {
 		toSerialize["Line"] = o.Line
 	}
-	if o.Column != nil {
+	if !IsNil(o.Column) {
 		toSerialize["column"] = o.Column
 	}
 
@@ -118,15 +129,19 @@ func (o SourcePosition) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SourcePosition) UnmarshalJSON(bytes []byte) (err error) {
 	varSourcePosition := _SourcePosition{}
 
-	if err = json.Unmarshal(bytes, &varSourcePosition); err == nil {
-		*o = SourcePosition(varSourcePosition)
+	err = json.Unmarshal(bytes, &varSourcePosition)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SourcePosition(varSourcePosition)
 
 	additionalProperties := make(map[string]interface{})
 

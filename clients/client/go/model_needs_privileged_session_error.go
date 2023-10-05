@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the NeedsPrivilegedSessionError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NeedsPrivilegedSessionError{}
+
 // NeedsPrivilegedSessionError struct for NeedsPrivilegedSessionError
 type NeedsPrivilegedSessionError struct {
 	Error *GenericError `json:"error,omitempty"`
@@ -45,7 +48,7 @@ func NewNeedsPrivilegedSessionErrorWithDefaults() *NeedsPrivilegedSessionError {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *NeedsPrivilegedSessionError) GetError() GenericError {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret GenericError
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *NeedsPrivilegedSessionError) GetError() GenericError {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeedsPrivilegedSessionError) GetErrorOk() (*GenericError, bool) {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
 	return o.Error, true
@@ -63,7 +66,7 @@ func (o *NeedsPrivilegedSessionError) GetErrorOk() (*GenericError, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *NeedsPrivilegedSessionError) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -100,27 +103,37 @@ func (o *NeedsPrivilegedSessionError) SetRedirectBrowserTo(v string) {
 }
 
 func (o NeedsPrivilegedSessionError) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o NeedsPrivilegedSessionError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Error != nil {
+	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	if true {
-		toSerialize["redirect_browser_to"] = o.RedirectBrowserTo
-	}
+	toSerialize["redirect_browser_to"] = o.RedirectBrowserTo
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *NeedsPrivilegedSessionError) UnmarshalJSON(bytes []byte) (err error) {
 	varNeedsPrivilegedSessionError := _NeedsPrivilegedSessionError{}
 
-	if err = json.Unmarshal(bytes, &varNeedsPrivilegedSessionError); err == nil {
-		*o = NeedsPrivilegedSessionError(varNeedsPrivilegedSessionError)
+	err = json.Unmarshal(bytes, &varNeedsPrivilegedSessionError)
+
+	if err != nil {
+		return err
 	}
+
+	*o = NeedsPrivilegedSessionError(varNeedsPrivilegedSessionError)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CheckPermissionResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CheckPermissionResult{}
+
 // CheckPermissionResult The content of the allowed field is mirrored in the HTTP status code.
 type CheckPermissionResult struct {
 	// whether the relation tuple is allowed
@@ -67,24 +70,34 @@ func (o *CheckPermissionResult) SetAllowed(v bool) {
 }
 
 func (o CheckPermissionResult) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["allowed"] = o.Allowed
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CheckPermissionResult) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["allowed"] = o.Allowed
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CheckPermissionResult) UnmarshalJSON(bytes []byte) (err error) {
 	varCheckPermissionResult := _CheckPermissionResult{}
 
-	if err = json.Unmarshal(bytes, &varCheckPermissionResult); err == nil {
-		*o = CheckPermissionResult(varCheckPermissionResult)
+	err = json.Unmarshal(bytes, &varCheckPermissionResult)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CheckPermissionResult(varCheckPermissionResult)
 
 	additionalProperties := make(map[string]interface{})
 

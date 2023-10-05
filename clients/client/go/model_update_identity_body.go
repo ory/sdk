@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateIdentityBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateIdentityBody{}
+
 // UpdateIdentityBody Update Identity Body
 type UpdateIdentityBody struct {
 	Credentials *IdentityWithCredentials `json:"credentials,omitempty"`
@@ -54,7 +57,7 @@ func NewUpdateIdentityBodyWithDefaults() *UpdateIdentityBody {
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *UpdateIdentityBody) GetCredentials() IdentityWithCredentials {
-	if o == nil || o.Credentials == nil {
+	if o == nil || IsNil(o.Credentials) {
 		var ret IdentityWithCredentials
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *UpdateIdentityBody) GetCredentials() IdentityWithCredentials {
 // GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateIdentityBody) GetCredentialsOk() (*IdentityWithCredentials, bool) {
-	if o == nil || o.Credentials == nil {
+	if o == nil || IsNil(o.Credentials) {
 		return nil, false
 	}
 	return o.Credentials, true
@@ -72,7 +75,7 @@ func (o *UpdateIdentityBody) GetCredentialsOk() (*IdentityWithCredentials, bool)
 
 // HasCredentials returns a boolean if a field has been set.
 func (o *UpdateIdentityBody) HasCredentials() bool {
-	if o != nil && o.Credentials != nil {
+	if o != nil && !IsNil(o.Credentials) {
 		return true
 	}
 
@@ -97,7 +100,7 @@ func (o *UpdateIdentityBody) GetMetadataAdmin() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateIdentityBody) GetMetadataAdminOk() (*interface{}, bool) {
-	if o == nil || o.MetadataAdmin == nil {
+	if o == nil || IsNil(o.MetadataAdmin) {
 		return nil, false
 	}
 	return &o.MetadataAdmin, true
@@ -105,7 +108,7 @@ func (o *UpdateIdentityBody) GetMetadataAdminOk() (*interface{}, bool) {
 
 // HasMetadataAdmin returns a boolean if a field has been set.
 func (o *UpdateIdentityBody) HasMetadataAdmin() bool {
-	if o != nil && o.MetadataAdmin != nil {
+	if o != nil && IsNil(o.MetadataAdmin) {
 		return true
 	}
 
@@ -130,7 +133,7 @@ func (o *UpdateIdentityBody) GetMetadataPublic() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateIdentityBody) GetMetadataPublicOk() (*interface{}, bool) {
-	if o == nil || o.MetadataPublic == nil {
+	if o == nil || IsNil(o.MetadataPublic) {
 		return nil, false
 	}
 	return &o.MetadataPublic, true
@@ -138,7 +141,7 @@ func (o *UpdateIdentityBody) GetMetadataPublicOk() (*interface{}, bool) {
 
 // HasMetadataPublic returns a boolean if a field has been set.
 func (o *UpdateIdentityBody) HasMetadataPublic() bool {
-	if o != nil && o.MetadataPublic != nil {
+	if o != nil && IsNil(o.MetadataPublic) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *UpdateIdentityBody) GetTraits() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *UpdateIdentityBody) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Traits, true
 }
@@ -223,8 +226,16 @@ func (o *UpdateIdentityBody) SetTraits(v map[string]interface{}) {
 }
 
 func (o UpdateIdentityBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateIdentityBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Credentials != nil {
+	if !IsNil(o.Credentials) {
 		toSerialize["credentials"] = o.Credentials
 	}
 	if o.MetadataAdmin != nil {
@@ -233,29 +244,27 @@ func (o UpdateIdentityBody) MarshalJSON() ([]byte, error) {
 	if o.MetadataPublic != nil {
 		toSerialize["metadata_public"] = o.MetadataPublic
 	}
-	if true {
-		toSerialize["schema_id"] = o.SchemaId
-	}
-	if true {
-		toSerialize["state"] = o.State
-	}
-	if true {
-		toSerialize["traits"] = o.Traits
-	}
+	toSerialize["schema_id"] = o.SchemaId
+	toSerialize["state"] = o.State
+	toSerialize["traits"] = o.Traits
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateIdentityBody) UnmarshalJSON(bytes []byte) (err error) {
 	varUpdateIdentityBody := _UpdateIdentityBody{}
 
-	if err = json.Unmarshal(bytes, &varUpdateIdentityBody); err == nil {
-		*o = UpdateIdentityBody(varUpdateIdentityBody)
+	err = json.Unmarshal(bytes, &varUpdateIdentityBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateIdentityBody(varUpdateIdentityBody)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SuccessfulNativeRegistration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SuccessfulNativeRegistration{}
+
 // SuccessfulNativeRegistration The Response for Registration Flows via API
 type SuccessfulNativeRegistration struct {
 	// Contains a list of actions, that could follow this flow  It can, for example, this will contain a reference to the verification flow, created as part of the user's registration or the token of the session.
@@ -48,7 +51,7 @@ func NewSuccessfulNativeRegistrationWithDefaults() *SuccessfulNativeRegistration
 
 // GetContinueWith returns the ContinueWith field value if set, zero value otherwise.
 func (o *SuccessfulNativeRegistration) GetContinueWith() []ContinueWith {
-	if o == nil || o.ContinueWith == nil {
+	if o == nil || IsNil(o.ContinueWith) {
 		var ret []ContinueWith
 		return ret
 	}
@@ -58,7 +61,7 @@ func (o *SuccessfulNativeRegistration) GetContinueWith() []ContinueWith {
 // GetContinueWithOk returns a tuple with the ContinueWith field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SuccessfulNativeRegistration) GetContinueWithOk() ([]ContinueWith, bool) {
-	if o == nil || o.ContinueWith == nil {
+	if o == nil || IsNil(o.ContinueWith) {
 		return nil, false
 	}
 	return o.ContinueWith, true
@@ -66,7 +69,7 @@ func (o *SuccessfulNativeRegistration) GetContinueWithOk() ([]ContinueWith, bool
 
 // HasContinueWith returns a boolean if a field has been set.
 func (o *SuccessfulNativeRegistration) HasContinueWith() bool {
-	if o != nil && o.ContinueWith != nil {
+	if o != nil && !IsNil(o.ContinueWith) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *SuccessfulNativeRegistration) SetIdentity(v Identity) {
 
 // GetSession returns the Session field value if set, zero value otherwise.
 func (o *SuccessfulNativeRegistration) GetSession() Session {
-	if o == nil || o.Session == nil {
+	if o == nil || IsNil(o.Session) {
 		var ret Session
 		return ret
 	}
@@ -114,7 +117,7 @@ func (o *SuccessfulNativeRegistration) GetSession() Session {
 // GetSessionOk returns a tuple with the Session field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SuccessfulNativeRegistration) GetSessionOk() (*Session, bool) {
-	if o == nil || o.Session == nil {
+	if o == nil || IsNil(o.Session) {
 		return nil, false
 	}
 	return o.Session, true
@@ -122,7 +125,7 @@ func (o *SuccessfulNativeRegistration) GetSessionOk() (*Session, bool) {
 
 // HasSession returns a boolean if a field has been set.
 func (o *SuccessfulNativeRegistration) HasSession() bool {
-	if o != nil && o.Session != nil {
+	if o != nil && !IsNil(o.Session) {
 		return true
 	}
 
@@ -136,7 +139,7 @@ func (o *SuccessfulNativeRegistration) SetSession(v Session) {
 
 // GetSessionToken returns the SessionToken field value if set, zero value otherwise.
 func (o *SuccessfulNativeRegistration) GetSessionToken() string {
-	if o == nil || o.SessionToken == nil {
+	if o == nil || IsNil(o.SessionToken) {
 		var ret string
 		return ret
 	}
@@ -146,7 +149,7 @@ func (o *SuccessfulNativeRegistration) GetSessionToken() string {
 // GetSessionTokenOk returns a tuple with the SessionToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SuccessfulNativeRegistration) GetSessionTokenOk() (*string, bool) {
-	if o == nil || o.SessionToken == nil {
+	if o == nil || IsNil(o.SessionToken) {
 		return nil, false
 	}
 	return o.SessionToken, true
@@ -154,7 +157,7 @@ func (o *SuccessfulNativeRegistration) GetSessionTokenOk() (*string, bool) {
 
 // HasSessionToken returns a boolean if a field has been set.
 func (o *SuccessfulNativeRegistration) HasSessionToken() bool {
-	if o != nil && o.SessionToken != nil {
+	if o != nil && !IsNil(o.SessionToken) {
 		return true
 	}
 
@@ -167,17 +170,23 @@ func (o *SuccessfulNativeRegistration) SetSessionToken(v string) {
 }
 
 func (o SuccessfulNativeRegistration) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SuccessfulNativeRegistration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ContinueWith != nil {
+	if !IsNil(o.ContinueWith) {
 		toSerialize["continue_with"] = o.ContinueWith
 	}
-	if true {
-		toSerialize["identity"] = o.Identity
-	}
-	if o.Session != nil {
+	toSerialize["identity"] = o.Identity
+	if !IsNil(o.Session) {
 		toSerialize["session"] = o.Session
 	}
-	if o.SessionToken != nil {
+	if !IsNil(o.SessionToken) {
 		toSerialize["session_token"] = o.SessionToken
 	}
 
@@ -185,15 +194,19 @@ func (o SuccessfulNativeRegistration) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SuccessfulNativeRegistration) UnmarshalJSON(bytes []byte) (err error) {
 	varSuccessfulNativeRegistration := _SuccessfulNativeRegistration{}
 
-	if err = json.Unmarshal(bytes, &varSuccessfulNativeRegistration); err == nil {
-		*o = SuccessfulNativeRegistration(varSuccessfulNativeRegistration)
+	err = json.Unmarshal(bytes, &varSuccessfulNativeRegistration)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SuccessfulNativeRegistration(varSuccessfulNativeRegistration)
 
 	additionalProperties := make(map[string]interface{})
 

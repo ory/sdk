@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OAuth2ConsentRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OAuth2ConsentRequest{}
+
 // OAuth2ConsentRequest struct for OAuth2ConsentRequest
 type OAuth2ConsentRequest struct {
 	// ACR represents the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two factor authentication.
@@ -62,7 +65,7 @@ func NewOAuth2ConsentRequestWithDefaults() *OAuth2ConsentRequest {
 
 // GetAcr returns the Acr field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetAcr() string {
-	if o == nil || o.Acr == nil {
+	if o == nil || IsNil(o.Acr) {
 		var ret string
 		return ret
 	}
@@ -72,7 +75,7 @@ func (o *OAuth2ConsentRequest) GetAcr() string {
 // GetAcrOk returns a tuple with the Acr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetAcrOk() (*string, bool) {
-	if o == nil || o.Acr == nil {
+	if o == nil || IsNil(o.Acr) {
 		return nil, false
 	}
 	return o.Acr, true
@@ -80,7 +83,7 @@ func (o *OAuth2ConsentRequest) GetAcrOk() (*string, bool) {
 
 // HasAcr returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasAcr() bool {
-	if o != nil && o.Acr != nil {
+	if o != nil && !IsNil(o.Acr) {
 		return true
 	}
 
@@ -94,7 +97,7 @@ func (o *OAuth2ConsentRequest) SetAcr(v string) {
 
 // GetAmr returns the Amr field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetAmr() []string {
-	if o == nil || o.Amr == nil {
+	if o == nil || IsNil(o.Amr) {
 		var ret []string
 		return ret
 	}
@@ -104,7 +107,7 @@ func (o *OAuth2ConsentRequest) GetAmr() []string {
 // GetAmrOk returns a tuple with the Amr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetAmrOk() ([]string, bool) {
-	if o == nil || o.Amr == nil {
+	if o == nil || IsNil(o.Amr) {
 		return nil, false
 	}
 	return o.Amr, true
@@ -112,7 +115,7 @@ func (o *OAuth2ConsentRequest) GetAmrOk() ([]string, bool) {
 
 // HasAmr returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasAmr() bool {
-	if o != nil && o.Amr != nil {
+	if o != nil && !IsNil(o.Amr) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *OAuth2ConsentRequest) SetChallenge(v string) {
 
 // GetClient returns the Client field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetClient() OAuth2Client {
-	if o == nil || o.Client == nil {
+	if o == nil || IsNil(o.Client) {
 		var ret OAuth2Client
 		return ret
 	}
@@ -160,7 +163,7 @@ func (o *OAuth2ConsentRequest) GetClient() OAuth2Client {
 // GetClientOk returns a tuple with the Client field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetClientOk() (*OAuth2Client, bool) {
-	if o == nil || o.Client == nil {
+	if o == nil || IsNil(o.Client) {
 		return nil, false
 	}
 	return o.Client, true
@@ -168,7 +171,7 @@ func (o *OAuth2ConsentRequest) GetClientOk() (*OAuth2Client, bool) {
 
 // HasClient returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasClient() bool {
-	if o != nil && o.Client != nil {
+	if o != nil && !IsNil(o.Client) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *OAuth2ConsentRequest) SetClient(v OAuth2Client) {
 
 // GetContext returns the Context field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetContext() map[string]interface{} {
-	if o == nil || o.Context == nil {
+	if o == nil || IsNil(o.Context) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -192,15 +195,15 @@ func (o *OAuth2ConsentRequest) GetContext() map[string]interface{} {
 // GetContextOk returns a tuple with the Context field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetContextOk() (map[string]interface{}, bool) {
-	if o == nil || o.Context == nil {
-		return nil, false
+	if o == nil || IsNil(o.Context) {
+		return map[string]interface{}{}, false
 	}
 	return o.Context, true
 }
 
 // HasContext returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasContext() bool {
-	if o != nil && o.Context != nil {
+	if o != nil && !IsNil(o.Context) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *OAuth2ConsentRequest) SetContext(v map[string]interface{}) {
 
 // GetLoginChallenge returns the LoginChallenge field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetLoginChallenge() string {
-	if o == nil || o.LoginChallenge == nil {
+	if o == nil || IsNil(o.LoginChallenge) {
 		var ret string
 		return ret
 	}
@@ -224,7 +227,7 @@ func (o *OAuth2ConsentRequest) GetLoginChallenge() string {
 // GetLoginChallengeOk returns a tuple with the LoginChallenge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetLoginChallengeOk() (*string, bool) {
-	if o == nil || o.LoginChallenge == nil {
+	if o == nil || IsNil(o.LoginChallenge) {
 		return nil, false
 	}
 	return o.LoginChallenge, true
@@ -232,7 +235,7 @@ func (o *OAuth2ConsentRequest) GetLoginChallengeOk() (*string, bool) {
 
 // HasLoginChallenge returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasLoginChallenge() bool {
-	if o != nil && o.LoginChallenge != nil {
+	if o != nil && !IsNil(o.LoginChallenge) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *OAuth2ConsentRequest) SetLoginChallenge(v string) {
 
 // GetLoginSessionId returns the LoginSessionId field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetLoginSessionId() string {
-	if o == nil || o.LoginSessionId == nil {
+	if o == nil || IsNil(o.LoginSessionId) {
 		var ret string
 		return ret
 	}
@@ -256,7 +259,7 @@ func (o *OAuth2ConsentRequest) GetLoginSessionId() string {
 // GetLoginSessionIdOk returns a tuple with the LoginSessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetLoginSessionIdOk() (*string, bool) {
-	if o == nil || o.LoginSessionId == nil {
+	if o == nil || IsNil(o.LoginSessionId) {
 		return nil, false
 	}
 	return o.LoginSessionId, true
@@ -264,7 +267,7 @@ func (o *OAuth2ConsentRequest) GetLoginSessionIdOk() (*string, bool) {
 
 // HasLoginSessionId returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasLoginSessionId() bool {
-	if o != nil && o.LoginSessionId != nil {
+	if o != nil && !IsNil(o.LoginSessionId) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *OAuth2ConsentRequest) SetLoginSessionId(v string) {
 
 // GetOidcContext returns the OidcContext field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetOidcContext() OAuth2ConsentRequestOpenIDConnectContext {
-	if o == nil || o.OidcContext == nil {
+	if o == nil || IsNil(o.OidcContext) {
 		var ret OAuth2ConsentRequestOpenIDConnectContext
 		return ret
 	}
@@ -288,7 +291,7 @@ func (o *OAuth2ConsentRequest) GetOidcContext() OAuth2ConsentRequestOpenIDConnec
 // GetOidcContextOk returns a tuple with the OidcContext field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetOidcContextOk() (*OAuth2ConsentRequestOpenIDConnectContext, bool) {
-	if o == nil || o.OidcContext == nil {
+	if o == nil || IsNil(o.OidcContext) {
 		return nil, false
 	}
 	return o.OidcContext, true
@@ -296,7 +299,7 @@ func (o *OAuth2ConsentRequest) GetOidcContextOk() (*OAuth2ConsentRequestOpenIDCo
 
 // HasOidcContext returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasOidcContext() bool {
-	if o != nil && o.OidcContext != nil {
+	if o != nil && !IsNil(o.OidcContext) {
 		return true
 	}
 
@@ -310,7 +313,7 @@ func (o *OAuth2ConsentRequest) SetOidcContext(v OAuth2ConsentRequestOpenIDConnec
 
 // GetRequestUrl returns the RequestUrl field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetRequestUrl() string {
-	if o == nil || o.RequestUrl == nil {
+	if o == nil || IsNil(o.RequestUrl) {
 		var ret string
 		return ret
 	}
@@ -320,7 +323,7 @@ func (o *OAuth2ConsentRequest) GetRequestUrl() string {
 // GetRequestUrlOk returns a tuple with the RequestUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetRequestUrlOk() (*string, bool) {
-	if o == nil || o.RequestUrl == nil {
+	if o == nil || IsNil(o.RequestUrl) {
 		return nil, false
 	}
 	return o.RequestUrl, true
@@ -328,7 +331,7 @@ func (o *OAuth2ConsentRequest) GetRequestUrlOk() (*string, bool) {
 
 // HasRequestUrl returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasRequestUrl() bool {
-	if o != nil && o.RequestUrl != nil {
+	if o != nil && !IsNil(o.RequestUrl) {
 		return true
 	}
 
@@ -342,7 +345,7 @@ func (o *OAuth2ConsentRequest) SetRequestUrl(v string) {
 
 // GetRequestedAccessTokenAudience returns the RequestedAccessTokenAudience field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetRequestedAccessTokenAudience() []string {
-	if o == nil || o.RequestedAccessTokenAudience == nil {
+	if o == nil || IsNil(o.RequestedAccessTokenAudience) {
 		var ret []string
 		return ret
 	}
@@ -352,7 +355,7 @@ func (o *OAuth2ConsentRequest) GetRequestedAccessTokenAudience() []string {
 // GetRequestedAccessTokenAudienceOk returns a tuple with the RequestedAccessTokenAudience field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetRequestedAccessTokenAudienceOk() ([]string, bool) {
-	if o == nil || o.RequestedAccessTokenAudience == nil {
+	if o == nil || IsNil(o.RequestedAccessTokenAudience) {
 		return nil, false
 	}
 	return o.RequestedAccessTokenAudience, true
@@ -360,7 +363,7 @@ func (o *OAuth2ConsentRequest) GetRequestedAccessTokenAudienceOk() ([]string, bo
 
 // HasRequestedAccessTokenAudience returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasRequestedAccessTokenAudience() bool {
-	if o != nil && o.RequestedAccessTokenAudience != nil {
+	if o != nil && !IsNil(o.RequestedAccessTokenAudience) {
 		return true
 	}
 
@@ -374,7 +377,7 @@ func (o *OAuth2ConsentRequest) SetRequestedAccessTokenAudience(v []string) {
 
 // GetRequestedScope returns the RequestedScope field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetRequestedScope() []string {
-	if o == nil || o.RequestedScope == nil {
+	if o == nil || IsNil(o.RequestedScope) {
 		var ret []string
 		return ret
 	}
@@ -384,7 +387,7 @@ func (o *OAuth2ConsentRequest) GetRequestedScope() []string {
 // GetRequestedScopeOk returns a tuple with the RequestedScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetRequestedScopeOk() ([]string, bool) {
-	if o == nil || o.RequestedScope == nil {
+	if o == nil || IsNil(o.RequestedScope) {
 		return nil, false
 	}
 	return o.RequestedScope, true
@@ -392,7 +395,7 @@ func (o *OAuth2ConsentRequest) GetRequestedScopeOk() ([]string, bool) {
 
 // HasRequestedScope returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasRequestedScope() bool {
-	if o != nil && o.RequestedScope != nil {
+	if o != nil && !IsNil(o.RequestedScope) {
 		return true
 	}
 
@@ -406,7 +409,7 @@ func (o *OAuth2ConsentRequest) SetRequestedScope(v []string) {
 
 // GetSkip returns the Skip field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetSkip() bool {
-	if o == nil || o.Skip == nil {
+	if o == nil || IsNil(o.Skip) {
 		var ret bool
 		return ret
 	}
@@ -416,7 +419,7 @@ func (o *OAuth2ConsentRequest) GetSkip() bool {
 // GetSkipOk returns a tuple with the Skip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetSkipOk() (*bool, bool) {
-	if o == nil || o.Skip == nil {
+	if o == nil || IsNil(o.Skip) {
 		return nil, false
 	}
 	return o.Skip, true
@@ -424,7 +427,7 @@ func (o *OAuth2ConsentRequest) GetSkipOk() (*bool, bool) {
 
 // HasSkip returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasSkip() bool {
-	if o != nil && o.Skip != nil {
+	if o != nil && !IsNil(o.Skip) {
 		return true
 	}
 
@@ -438,7 +441,7 @@ func (o *OAuth2ConsentRequest) SetSkip(v bool) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *OAuth2ConsentRequest) GetSubject() string {
-	if o == nil || o.Subject == nil {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -448,7 +451,7 @@ func (o *OAuth2ConsentRequest) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentRequest) GetSubjectOk() (*string, bool) {
-	if o == nil || o.Subject == nil {
+	if o == nil || IsNil(o.Subject) {
 		return nil, false
 	}
 	return o.Subject, true
@@ -456,7 +459,7 @@ func (o *OAuth2ConsentRequest) GetSubjectOk() (*string, bool) {
 
 // HasSubject returns a boolean if a field has been set.
 func (o *OAuth2ConsentRequest) HasSubject() bool {
-	if o != nil && o.Subject != nil {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -469,44 +472,50 @@ func (o *OAuth2ConsentRequest) SetSubject(v string) {
 }
 
 func (o OAuth2ConsentRequest) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o OAuth2ConsentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Acr != nil {
+	if !IsNil(o.Acr) {
 		toSerialize["acr"] = o.Acr
 	}
-	if o.Amr != nil {
+	if !IsNil(o.Amr) {
 		toSerialize["amr"] = o.Amr
 	}
-	if true {
-		toSerialize["challenge"] = o.Challenge
-	}
-	if o.Client != nil {
+	toSerialize["challenge"] = o.Challenge
+	if !IsNil(o.Client) {
 		toSerialize["client"] = o.Client
 	}
-	if o.Context != nil {
+	if !IsNil(o.Context) {
 		toSerialize["context"] = o.Context
 	}
-	if o.LoginChallenge != nil {
+	if !IsNil(o.LoginChallenge) {
 		toSerialize["login_challenge"] = o.LoginChallenge
 	}
-	if o.LoginSessionId != nil {
+	if !IsNil(o.LoginSessionId) {
 		toSerialize["login_session_id"] = o.LoginSessionId
 	}
-	if o.OidcContext != nil {
+	if !IsNil(o.OidcContext) {
 		toSerialize["oidc_context"] = o.OidcContext
 	}
-	if o.RequestUrl != nil {
+	if !IsNil(o.RequestUrl) {
 		toSerialize["request_url"] = o.RequestUrl
 	}
-	if o.RequestedAccessTokenAudience != nil {
+	if !IsNil(o.RequestedAccessTokenAudience) {
 		toSerialize["requested_access_token_audience"] = o.RequestedAccessTokenAudience
 	}
-	if o.RequestedScope != nil {
+	if !IsNil(o.RequestedScope) {
 		toSerialize["requested_scope"] = o.RequestedScope
 	}
-	if o.Skip != nil {
+	if !IsNil(o.Skip) {
 		toSerialize["skip"] = o.Skip
 	}
-	if o.Subject != nil {
+	if !IsNil(o.Subject) {
 		toSerialize["subject"] = o.Subject
 	}
 
@@ -514,15 +523,19 @@ func (o OAuth2ConsentRequest) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *OAuth2ConsentRequest) UnmarshalJSON(bytes []byte) (err error) {
 	varOAuth2ConsentRequest := _OAuth2ConsentRequest{}
 
-	if err = json.Unmarshal(bytes, &varOAuth2ConsentRequest); err == nil {
-		*o = OAuth2ConsentRequest(varOAuth2ConsentRequest)
+	err = json.Unmarshal(bytes, &varOAuth2ConsentRequest)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OAuth2ConsentRequest(varOAuth2ConsentRequest)
 
 	additionalProperties := make(map[string]interface{})
 

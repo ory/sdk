@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetVersion200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetVersion200Response{}
+
 // GetVersion200Response struct for GetVersion200Response
 type GetVersion200Response struct {
 	// The version of Ory Kratos.
@@ -67,24 +70,34 @@ func (o *GetVersion200Response) SetVersion(v string) {
 }
 
 func (o GetVersion200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["version"] = o.Version
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetVersion200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["version"] = o.Version
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *GetVersion200Response) UnmarshalJSON(bytes []byte) (err error) {
 	varGetVersion200Response := _GetVersion200Response{}
 
-	if err = json.Unmarshal(bytes, &varGetVersion200Response); err == nil {
-		*o = GetVersion200Response(varGetVersion200Response)
+	err = json.Unmarshal(bytes, &varGetVersion200Response)
+
+	if err != nil {
+		return err
 	}
+
+	*o = GetVersion200Response(varGetVersion200Response)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -52,7 +52,7 @@ import sh.ory.JSON;
 /**
  * NormalizedProjectRevisionThirdPartyProvider
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-26T07:22:38.275636327Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-05T13:50:54.246292158Z[Etc/UTC]")
 public class NormalizedProjectRevisionThirdPartyProvider {
   public static final String SERIALIZED_NAME_APPLE_PRIVATE_KEY = "apple_private_key";
   @SerializedName(SERIALIZED_NAME_APPLE_PRIVATE_KEY)

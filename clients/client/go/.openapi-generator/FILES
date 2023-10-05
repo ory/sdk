@@ -30,7 +30,7 @@ docs/ContinueWith.md
 docs/ContinueWithSetOrySessionToken.md
 docs/ContinueWithVerificationUi.md
 docs/ContinueWithVerificationUiFlow.md
-docs/CourierApi.md
+docs/CourierAPI.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
@@ -58,7 +58,7 @@ docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
-docs/FrontendApi.md
+docs/FrontendAPI.md
 docs/GenericError.md
 docs/GenericErrorContent.md
 docs/GenericUsage.md
@@ -68,7 +68,7 @@ docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/Identity.md
-docs/IdentityApi.md
+docs/IdentityAPI.md
 docs/IdentityCredentials.md
 docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
@@ -98,7 +98,7 @@ docs/IsReady503Response.md
 docs/JsonPatch.md
 docs/JsonWebKey.md
 docs/JsonWebKeySet.md
-docs/JwkApi.md
+docs/JwkAPI.md
 docs/KetoNamespace.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
@@ -109,7 +109,7 @@ docs/ManagedIdentitySchemaValidationResult.md
 docs/MemberInvite.md
 docs/Message.md
 docs/MessageDispatch.md
-docs/MetadataApi.md
+docs/MetadataAPI.md
 docs/MetricsDatapoint.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
@@ -119,7 +119,7 @@ docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
 docs/NormalizedProjectRevisionTokenizerTemplate.md
-docs/OAuth2Api.md
+docs/OAuth2API.md
 docs/OAuth2Client.md
 docs/OAuth2ClientTokenLifespans.md
 docs/OAuth2ConsentRequest.md
@@ -130,7 +130,7 @@ docs/OAuth2LoginRequest.md
 docs/OAuth2LogoutRequest.md
 docs/OAuth2RedirectTo.md
 docs/OAuth2TokenExchange.md
-docs/OidcApi.md
+docs/OidcAPI.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
 docs/Organization.md
@@ -140,13 +140,13 @@ docs/PaginationHeaders.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
-docs/PermissionApi.md
+docs/PermissionAPI.md
 docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
 docs/Project.md
-docs/ProjectApi.md
+docs/ProjectAPI.md
 docs/ProjectApiKey.md
 docs/ProjectBranding.md
 docs/ProjectBrandingColors.md
@@ -169,7 +169,7 @@ docs/RegistrationFlowState.md
 docs/RejectOAuth2Request.md
 docs/RelationQuery.md
 docs/Relationship.md
-docs/RelationshipApi.md
+docs/RelationshipAPI.md
 docs/RelationshipNamespaces.md
 docs/RelationshipPatch.md
 docs/Relationships.md
@@ -245,7 +245,7 @@ docs/VerificationFlow.md
 docs/VerificationFlowState.md
 docs/Version.md
 docs/Warning.md
-docs/WellknownApi.md
+docs/WellknownAPI.md
 git_push.sh
 go.mod
 go.sum
@@ -469,4 +469,15 @@ model_verification_flow_state.go
 model_version.go
 model_warning.go
 response.go
+test/api_courier_test.go
+test/api_frontend_test.go
+test/api_identity_test.go
+test/api_jwk_test.go
+test/api_metadata_test.go
+test/api_o_auth2_test.go
+test/api_oidc_test.go
+test/api_permission_test.go
+test/api_project_test.go
+test/api_relationship_test.go
+test/api_wellknown_test.go
 utils.go

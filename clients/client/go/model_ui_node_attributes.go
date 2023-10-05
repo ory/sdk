@@ -138,11 +138,11 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 		dst.UiNodeScriptAttributes = nil
 		dst.UiNodeTextAttributes = nil
 
-		return fmt.Errorf("Data matches more than one schema in oneOf(UiNodeAttributes)")
+		return fmt.Errorf("data matches more than one schema in oneOf(UiNodeAttributes)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(UiNodeAttributes)")
+		return fmt.Errorf("data failed to match schemas in oneOf(UiNodeAttributes)")
 	}
 }
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateRelationshipBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateRelationshipBody{}
+
 // CreateRelationshipBody Create Relationship Request Body
 type CreateRelationshipBody struct {
 	// Namespace to query
@@ -50,7 +53,7 @@ func NewCreateRelationshipBodyWithDefaults() *CreateRelationshipBody {
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *CreateRelationshipBody) GetNamespace() string {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		var ret string
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *CreateRelationshipBody) GetNamespace() string {
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateRelationshipBody) GetNamespaceOk() (*string, bool) {
-	if o == nil || o.Namespace == nil {
+	if o == nil || IsNil(o.Namespace) {
 		return nil, false
 	}
 	return o.Namespace, true
@@ -68,7 +71,7 @@ func (o *CreateRelationshipBody) GetNamespaceOk() (*string, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *CreateRelationshipBody) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
+	if o != nil && !IsNil(o.Namespace) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *CreateRelationshipBody) SetNamespace(v string) {
 
 // GetObject returns the Object field value if set, zero value otherwise.
 func (o *CreateRelationshipBody) GetObject() string {
-	if o == nil || o.Object == nil {
+	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *CreateRelationshipBody) GetObject() string {
 // GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateRelationshipBody) GetObjectOk() (*string, bool) {
-	if o == nil || o.Object == nil {
+	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
 	return o.Object, true
@@ -100,7 +103,7 @@ func (o *CreateRelationshipBody) GetObjectOk() (*string, bool) {
 
 // HasObject returns a boolean if a field has been set.
 func (o *CreateRelationshipBody) HasObject() bool {
-	if o != nil && o.Object != nil {
+	if o != nil && !IsNil(o.Object) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *CreateRelationshipBody) SetObject(v string) {
 
 // GetRelation returns the Relation field value if set, zero value otherwise.
 func (o *CreateRelationshipBody) GetRelation() string {
-	if o == nil || o.Relation == nil {
+	if o == nil || IsNil(o.Relation) {
 		var ret string
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *CreateRelationshipBody) GetRelation() string {
 // GetRelationOk returns a tuple with the Relation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateRelationshipBody) GetRelationOk() (*string, bool) {
-	if o == nil || o.Relation == nil {
+	if o == nil || IsNil(o.Relation) {
 		return nil, false
 	}
 	return o.Relation, true
@@ -132,7 +135,7 @@ func (o *CreateRelationshipBody) GetRelationOk() (*string, bool) {
 
 // HasRelation returns a boolean if a field has been set.
 func (o *CreateRelationshipBody) HasRelation() bool {
-	if o != nil && o.Relation != nil {
+	if o != nil && !IsNil(o.Relation) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *CreateRelationshipBody) SetRelation(v string) {
 
 // GetSubjectId returns the SubjectId field value if set, zero value otherwise.
 func (o *CreateRelationshipBody) GetSubjectId() string {
-	if o == nil || o.SubjectId == nil {
+	if o == nil || IsNil(o.SubjectId) {
 		var ret string
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *CreateRelationshipBody) GetSubjectId() string {
 // GetSubjectIdOk returns a tuple with the SubjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateRelationshipBody) GetSubjectIdOk() (*string, bool) {
-	if o == nil || o.SubjectId == nil {
+	if o == nil || IsNil(o.SubjectId) {
 		return nil, false
 	}
 	return o.SubjectId, true
@@ -164,7 +167,7 @@ func (o *CreateRelationshipBody) GetSubjectIdOk() (*string, bool) {
 
 // HasSubjectId returns a boolean if a field has been set.
 func (o *CreateRelationshipBody) HasSubjectId() bool {
-	if o != nil && o.SubjectId != nil {
+	if o != nil && !IsNil(o.SubjectId) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *CreateRelationshipBody) SetSubjectId(v string) {
 
 // GetSubjectSet returns the SubjectSet field value if set, zero value otherwise.
 func (o *CreateRelationshipBody) GetSubjectSet() SubjectSet {
-	if o == nil || o.SubjectSet == nil {
+	if o == nil || IsNil(o.SubjectSet) {
 		var ret SubjectSet
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *CreateRelationshipBody) GetSubjectSet() SubjectSet {
 // GetSubjectSetOk returns a tuple with the SubjectSet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateRelationshipBody) GetSubjectSetOk() (*SubjectSet, bool) {
-	if o == nil || o.SubjectSet == nil {
+	if o == nil || IsNil(o.SubjectSet) {
 		return nil, false
 	}
 	return o.SubjectSet, true
@@ -196,7 +199,7 @@ func (o *CreateRelationshipBody) GetSubjectSetOk() (*SubjectSet, bool) {
 
 // HasSubjectSet returns a boolean if a field has been set.
 func (o *CreateRelationshipBody) HasSubjectSet() bool {
-	if o != nil && o.SubjectSet != nil {
+	if o != nil && !IsNil(o.SubjectSet) {
 		return true
 	}
 
@@ -209,20 +212,28 @@ func (o *CreateRelationshipBody) SetSubjectSet(v SubjectSet) {
 }
 
 func (o CreateRelationshipBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateRelationshipBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Namespace != nil {
+	if !IsNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}
-	if o.Object != nil {
+	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
-	if o.Relation != nil {
+	if !IsNil(o.Relation) {
 		toSerialize["relation"] = o.Relation
 	}
-	if o.SubjectId != nil {
+	if !IsNil(o.SubjectId) {
 		toSerialize["subject_id"] = o.SubjectId
 	}
-	if o.SubjectSet != nil {
+	if !IsNil(o.SubjectSet) {
 		toSerialize["subject_set"] = o.SubjectSet
 	}
 
@@ -230,15 +241,19 @@ func (o CreateRelationshipBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CreateRelationshipBody) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateRelationshipBody := _CreateRelationshipBody{}
 
-	if err = json.Unmarshal(bytes, &varCreateRelationshipBody); err == nil {
-		*o = CreateRelationshipBody(varCreateRelationshipBody)
+	err = json.Unmarshal(bytes, &varCreateRelationshipBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateRelationshipBody(varCreateRelationshipBody)
 
 	additionalProperties := make(map[string]interface{})
 

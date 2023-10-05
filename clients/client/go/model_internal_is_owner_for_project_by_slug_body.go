@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InternalIsOwnerForProjectBySlugBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InternalIsOwnerForProjectBySlugBody{}
+
 // InternalIsOwnerForProjectBySlugBody Is Owner For Project By Slug Request Body
 type InternalIsOwnerForProjectBySlugBody struct {
 	// Namespace is the namespace of the subject.
@@ -76,7 +79,7 @@ func (o *InternalIsOwnerForProjectBySlugBody) SetNamespace(v string) {
 
 // GetProjectScope returns the ProjectScope field value if set, zero value otherwise.
 func (o *InternalIsOwnerForProjectBySlugBody) GetProjectScope() string {
-	if o == nil || o.ProjectScope == nil {
+	if o == nil || IsNil(o.ProjectScope) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *InternalIsOwnerForProjectBySlugBody) GetProjectScope() string {
 // GetProjectScopeOk returns a tuple with the ProjectScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InternalIsOwnerForProjectBySlugBody) GetProjectScopeOk() (*string, bool) {
-	if o == nil || o.ProjectScope == nil {
+	if o == nil || IsNil(o.ProjectScope) {
 		return nil, false
 	}
 	return o.ProjectScope, true
@@ -94,7 +97,7 @@ func (o *InternalIsOwnerForProjectBySlugBody) GetProjectScopeOk() (*string, bool
 
 // HasProjectScope returns a boolean if a field has been set.
 func (o *InternalIsOwnerForProjectBySlugBody) HasProjectScope() bool {
-	if o != nil && o.ProjectScope != nil {
+	if o != nil && !IsNil(o.ProjectScope) {
 		return true
 	}
 
@@ -155,33 +158,39 @@ func (o *InternalIsOwnerForProjectBySlugBody) SetSubject(v string) {
 }
 
 func (o InternalIsOwnerForProjectBySlugBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["namespace"] = o.Namespace
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-	if o.ProjectScope != nil {
+	return json.Marshal(toSerialize)
+}
+
+func (o InternalIsOwnerForProjectBySlugBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["namespace"] = o.Namespace
+	if !IsNil(o.ProjectScope) {
 		toSerialize["project_scope"] = o.ProjectScope
 	}
-	if true {
-		toSerialize["project_slug"] = o.ProjectSlug
-	}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
+	toSerialize["project_slug"] = o.ProjectSlug
+	toSerialize["subject"] = o.Subject
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *InternalIsOwnerForProjectBySlugBody) UnmarshalJSON(bytes []byte) (err error) {
 	varInternalIsOwnerForProjectBySlugBody := _InternalIsOwnerForProjectBySlugBody{}
 
-	if err = json.Unmarshal(bytes, &varInternalIsOwnerForProjectBySlugBody); err == nil {
-		*o = InternalIsOwnerForProjectBySlugBody(varInternalIsOwnerForProjectBySlugBody)
+	err = json.Unmarshal(bytes, &varInternalIsOwnerForProjectBySlugBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InternalIsOwnerForProjectBySlugBody(varInternalIsOwnerForProjectBySlugBody)
 
 	additionalProperties := make(map[string]interface{})
 

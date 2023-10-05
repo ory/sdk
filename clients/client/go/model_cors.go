@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CORS type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CORS{}
+
 // CORS struct for CORS
 type CORS struct {
 	// Whether CORS is enabled for this endpoint.
@@ -94,27 +97,35 @@ func (o *CORS) SetOrigins(v []string) {
 }
 
 func (o CORS) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CORS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if true {
-		toSerialize["origins"] = o.Origins
-	}
+	toSerialize["enabled"] = o.Enabled
+	toSerialize["origins"] = o.Origins
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CORS) UnmarshalJSON(bytes []byte) (err error) {
 	varCORS := _CORS{}
 
-	if err = json.Unmarshal(bytes, &varCORS); err == nil {
-		*o = CORS(varCORS)
+	err = json.Unmarshal(bytes, &varCORS)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CORS(varCORS)
 
 	additionalProperties := make(map[string]interface{})
 

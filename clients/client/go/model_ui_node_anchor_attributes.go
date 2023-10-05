@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UiNodeAnchorAttributes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiNodeAnchorAttributes{}
+
 // UiNodeAnchorAttributes struct for UiNodeAnchorAttributes
 type UiNodeAnchorAttributes struct {
 	// The link's href (destination) URL.  format: uri
@@ -147,33 +150,37 @@ func (o *UiNodeAnchorAttributes) SetTitle(v UiText) {
 }
 
 func (o UiNodeAnchorAttributes) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UiNodeAnchorAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["href"] = o.Href
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["node_type"] = o.NodeType
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
+	toSerialize["href"] = o.Href
+	toSerialize["id"] = o.Id
+	toSerialize["node_type"] = o.NodeType
+	toSerialize["title"] = o.Title
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UiNodeAnchorAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	varUiNodeAnchorAttributes := _UiNodeAnchorAttributes{}
 
-	if err = json.Unmarshal(bytes, &varUiNodeAnchorAttributes); err == nil {
-		*o = UiNodeAnchorAttributes(varUiNodeAnchorAttributes)
+	err = json.Unmarshal(bytes, &varUiNodeAnchorAttributes)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UiNodeAnchorAttributes(varUiNodeAnchorAttributes)
 
 	additionalProperties := make(map[string]interface{})
 

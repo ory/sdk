@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProjectServicePermission type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectServicePermission{}
+
 // ProjectServicePermission struct for ProjectServicePermission
 type ProjectServicePermission struct {
 	Config map[string]interface{} `json:"config"`
@@ -55,7 +58,7 @@ func (o *ProjectServicePermission) GetConfig() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *ProjectServicePermission) GetConfigOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Config, true
 }
@@ -66,24 +69,34 @@ func (o *ProjectServicePermission) SetConfig(v map[string]interface{}) {
 }
 
 func (o ProjectServicePermission) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["config"] = o.Config
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectServicePermission) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["config"] = o.Config
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ProjectServicePermission) UnmarshalJSON(bytes []byte) (err error) {
 	varProjectServicePermission := _ProjectServicePermission{}
 
-	if err = json.Unmarshal(bytes, &varProjectServicePermission); err == nil {
-		*o = ProjectServicePermission(varProjectServicePermission)
+	err = json.Unmarshal(bytes, &varProjectServicePermission)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectServicePermission(varProjectServicePermission)
 
 	additionalProperties := make(map[string]interface{})
 

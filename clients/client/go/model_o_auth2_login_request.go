@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OAuth2LoginRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OAuth2LoginRequest{}
+
 // OAuth2LoginRequest struct for OAuth2LoginRequest
 type OAuth2LoginRequest struct {
 	// ID is the identifier (\"login challenge\") of the login request. It is used to identify the session.
@@ -110,7 +113,7 @@ func (o *OAuth2LoginRequest) SetClient(v OAuth2Client) {
 
 // GetOidcContext returns the OidcContext field value if set, zero value otherwise.
 func (o *OAuth2LoginRequest) GetOidcContext() OAuth2ConsentRequestOpenIDConnectContext {
-	if o == nil || o.OidcContext == nil {
+	if o == nil || IsNil(o.OidcContext) {
 		var ret OAuth2ConsentRequestOpenIDConnectContext
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *OAuth2LoginRequest) GetOidcContext() OAuth2ConsentRequestOpenIDConnectC
 // GetOidcContextOk returns a tuple with the OidcContext field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2LoginRequest) GetOidcContextOk() (*OAuth2ConsentRequestOpenIDConnectContext, bool) {
-	if o == nil || o.OidcContext == nil {
+	if o == nil || IsNil(o.OidcContext) {
 		return nil, false
 	}
 	return o.OidcContext, true
@@ -128,7 +131,7 @@ func (o *OAuth2LoginRequest) GetOidcContextOk() (*OAuth2ConsentRequestOpenIDConn
 
 // HasOidcContext returns a boolean if a field has been set.
 func (o *OAuth2LoginRequest) HasOidcContext() bool {
-	if o != nil && o.OidcContext != nil {
+	if o != nil && !IsNil(o.OidcContext) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *OAuth2LoginRequest) SetRequestedScope(v []string) {
 
 // GetSessionId returns the SessionId field value if set, zero value otherwise.
 func (o *OAuth2LoginRequest) GetSessionId() string {
-	if o == nil || o.SessionId == nil {
+	if o == nil || IsNil(o.SessionId) {
 		var ret string
 		return ret
 	}
@@ -224,7 +227,7 @@ func (o *OAuth2LoginRequest) GetSessionId() string {
 // GetSessionIdOk returns a tuple with the SessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2LoginRequest) GetSessionIdOk() (*string, bool) {
-	if o == nil || o.SessionId == nil {
+	if o == nil || IsNil(o.SessionId) {
 		return nil, false
 	}
 	return o.SessionId, true
@@ -232,7 +235,7 @@ func (o *OAuth2LoginRequest) GetSessionIdOk() (*string, bool) {
 
 // HasSessionId returns a boolean if a field has been set.
 func (o *OAuth2LoginRequest) HasSessionId() bool {
-	if o != nil && o.SessionId != nil {
+	if o != nil && !IsNil(o.SessionId) {
 		return true
 	}
 
@@ -293,48 +296,46 @@ func (o *OAuth2LoginRequest) SetSubject(v string) {
 }
 
 func (o OAuth2LoginRequest) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o OAuth2LoginRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["challenge"] = o.Challenge
-	}
-	if true {
-		toSerialize["client"] = o.Client
-	}
-	if o.OidcContext != nil {
+	toSerialize["challenge"] = o.Challenge
+	toSerialize["client"] = o.Client
+	if !IsNil(o.OidcContext) {
 		toSerialize["oidc_context"] = o.OidcContext
 	}
-	if true {
-		toSerialize["request_url"] = o.RequestUrl
-	}
-	if true {
-		toSerialize["requested_access_token_audience"] = o.RequestedAccessTokenAudience
-	}
-	if true {
-		toSerialize["requested_scope"] = o.RequestedScope
-	}
-	if o.SessionId != nil {
+	toSerialize["request_url"] = o.RequestUrl
+	toSerialize["requested_access_token_audience"] = o.RequestedAccessTokenAudience
+	toSerialize["requested_scope"] = o.RequestedScope
+	if !IsNil(o.SessionId) {
 		toSerialize["session_id"] = o.SessionId
 	}
-	if true {
-		toSerialize["skip"] = o.Skip
-	}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
+	toSerialize["skip"] = o.Skip
+	toSerialize["subject"] = o.Subject
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *OAuth2LoginRequest) UnmarshalJSON(bytes []byte) (err error) {
 	varOAuth2LoginRequest := _OAuth2LoginRequest{}
 
-	if err = json.Unmarshal(bytes, &varOAuth2LoginRequest); err == nil {
-		*o = OAuth2LoginRequest(varOAuth2LoginRequest)
+	err = json.Unmarshal(bytes, &varOAuth2LoginRequest)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OAuth2LoginRequest(varOAuth2LoginRequest)
 
 	additionalProperties := make(map[string]interface{})
 

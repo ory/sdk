@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Relationship type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Relationship{}
+
 // Relationship Relationship
 type Relationship struct {
 	// Namespace of the Relation Tuple
@@ -125,7 +128,7 @@ func (o *Relationship) SetRelation(v string) {
 
 // GetSubjectId returns the SubjectId field value if set, zero value otherwise.
 func (o *Relationship) GetSubjectId() string {
-	if o == nil || o.SubjectId == nil {
+	if o == nil || IsNil(o.SubjectId) {
 		var ret string
 		return ret
 	}
@@ -135,7 +138,7 @@ func (o *Relationship) GetSubjectId() string {
 // GetSubjectIdOk returns a tuple with the SubjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Relationship) GetSubjectIdOk() (*string, bool) {
-	if o == nil || o.SubjectId == nil {
+	if o == nil || IsNil(o.SubjectId) {
 		return nil, false
 	}
 	return o.SubjectId, true
@@ -143,7 +146,7 @@ func (o *Relationship) GetSubjectIdOk() (*string, bool) {
 
 // HasSubjectId returns a boolean if a field has been set.
 func (o *Relationship) HasSubjectId() bool {
-	if o != nil && o.SubjectId != nil {
+	if o != nil && !IsNil(o.SubjectId) {
 		return true
 	}
 
@@ -157,7 +160,7 @@ func (o *Relationship) SetSubjectId(v string) {
 
 // GetSubjectSet returns the SubjectSet field value if set, zero value otherwise.
 func (o *Relationship) GetSubjectSet() SubjectSet {
-	if o == nil || o.SubjectSet == nil {
+	if o == nil || IsNil(o.SubjectSet) {
 		var ret SubjectSet
 		return ret
 	}
@@ -167,7 +170,7 @@ func (o *Relationship) GetSubjectSet() SubjectSet {
 // GetSubjectSetOk returns a tuple with the SubjectSet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Relationship) GetSubjectSetOk() (*SubjectSet, bool) {
-	if o == nil || o.SubjectSet == nil {
+	if o == nil || IsNil(o.SubjectSet) {
 		return nil, false
 	}
 	return o.SubjectSet, true
@@ -175,7 +178,7 @@ func (o *Relationship) GetSubjectSetOk() (*SubjectSet, bool) {
 
 // HasSubjectSet returns a boolean if a field has been set.
 func (o *Relationship) HasSubjectSet() bool {
-	if o != nil && o.SubjectSet != nil {
+	if o != nil && !IsNil(o.SubjectSet) {
 		return true
 	}
 
@@ -188,20 +191,22 @@ func (o *Relationship) SetSubjectSet(v SubjectSet) {
 }
 
 func (o Relationship) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Relationship) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["namespace"] = o.Namespace
-	}
-	if true {
-		toSerialize["object"] = o.Object
-	}
-	if true {
-		toSerialize["relation"] = o.Relation
-	}
-	if o.SubjectId != nil {
+	toSerialize["namespace"] = o.Namespace
+	toSerialize["object"] = o.Object
+	toSerialize["relation"] = o.Relation
+	if !IsNil(o.SubjectId) {
 		toSerialize["subject_id"] = o.SubjectId
 	}
-	if o.SubjectSet != nil {
+	if !IsNil(o.SubjectSet) {
 		toSerialize["subject_set"] = o.SubjectSet
 	}
 
@@ -209,15 +214,19 @@ func (o Relationship) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Relationship) UnmarshalJSON(bytes []byte) (err error) {
 	varRelationship := _Relationship{}
 
-	if err = json.Unmarshal(bytes, &varRelationship); err == nil {
-		*o = Relationship(varRelationship)
+	err = json.Unmarshal(bytes, &varRelationship)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Relationship(varRelationship)
 
 	additionalProperties := make(map[string]interface{})
 

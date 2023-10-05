@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IsReady503Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IsReady503Response{}
+
 // IsReady503Response struct for IsReady503Response
 type IsReady503Response struct {
 	// Errors contains a list of errors that caused the not ready status.
@@ -67,24 +70,34 @@ func (o *IsReady503Response) SetErrors(v map[string]string) {
 }
 
 func (o IsReady503Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["errors"] = o.Errors
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IsReady503Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["errors"] = o.Errors
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IsReady503Response) UnmarshalJSON(bytes []byte) (err error) {
 	varIsReady503Response := _IsReady503Response{}
 
-	if err = json.Unmarshal(bytes, &varIsReady503Response); err == nil {
-		*o = IsReady503Response(varIsReady503Response)
+	err = json.Unmarshal(bytes, &varIsReady503Response)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IsReady503Response(varIsReady503Response)
 
 	additionalProperties := make(map[string]interface{})
 

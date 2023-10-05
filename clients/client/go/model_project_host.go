@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProjectHost type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectHost{}
+
 // ProjectHost struct for ProjectHost
 type ProjectHost struct {
 	// The project's host.
@@ -121,30 +124,36 @@ func (o *ProjectHost) SetProjectId(v string) {
 }
 
 func (o ProjectHost) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectHost) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["host"] = o.Host
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["project_id"] = o.ProjectId
-	}
+	toSerialize["host"] = o.Host
+	toSerialize["id"] = o.Id
+	toSerialize["project_id"] = o.ProjectId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ProjectHost) UnmarshalJSON(bytes []byte) (err error) {
 	varProjectHost := _ProjectHost{}
 
-	if err = json.Unmarshal(bytes, &varProjectHost); err == nil {
-		*o = ProjectHost(varProjectHost)
+	err = json.Unmarshal(bytes, &varProjectHost)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectHost(varProjectHost)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the QuotaUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &QuotaUsage{}
+
 // QuotaUsage struct for QuotaUsage
 type QuotaUsage struct {
 	AdditionalPrice int64 `json:"additional_price"`
@@ -197,39 +200,39 @@ func (o *QuotaUsage) SetUsed(v int64) {
 }
 
 func (o QuotaUsage) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o QuotaUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["additional_price"] = o.AdditionalPrice
-	}
-	if true {
-		toSerialize["can_use_more"] = o.CanUseMore
-	}
-	if true {
-		toSerialize["feature"] = o.Feature
-	}
-	if true {
-		toSerialize["feature_available"] = o.FeatureAvailable
-	}
-	if true {
-		toSerialize["included"] = o.Included
-	}
-	if true {
-		toSerialize["used"] = o.Used
-	}
+	toSerialize["additional_price"] = o.AdditionalPrice
+	toSerialize["can_use_more"] = o.CanUseMore
+	toSerialize["feature"] = o.Feature
+	toSerialize["feature_available"] = o.FeatureAvailable
+	toSerialize["included"] = o.Included
+	toSerialize["used"] = o.Used
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *QuotaUsage) UnmarshalJSON(bytes []byte) (err error) {
 	varQuotaUsage := _QuotaUsage{}
 
-	if err = json.Unmarshal(bytes, &varQuotaUsage); err == nil {
-		*o = QuotaUsage(varQuotaUsage)
+	err = json.Unmarshal(bytes, &varQuotaUsage)
+
+	if err != nil {
+		return err
 	}
+
+	*o = QuotaUsage(varQuotaUsage)
 
 	additionalProperties := make(map[string]interface{})
 

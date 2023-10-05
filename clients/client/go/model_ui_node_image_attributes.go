@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UiNodeImageAttributes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiNodeImageAttributes{}
+
 // UiNodeImageAttributes struct for UiNodeImageAttributes
 type UiNodeImageAttributes struct {
 	// Height of the image
@@ -175,36 +178,38 @@ func (o *UiNodeImageAttributes) SetWidth(v int64) {
 }
 
 func (o UiNodeImageAttributes) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UiNodeImageAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["height"] = o.Height
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["node_type"] = o.NodeType
-	}
-	if true {
-		toSerialize["src"] = o.Src
-	}
-	if true {
-		toSerialize["width"] = o.Width
-	}
+	toSerialize["height"] = o.Height
+	toSerialize["id"] = o.Id
+	toSerialize["node_type"] = o.NodeType
+	toSerialize["src"] = o.Src
+	toSerialize["width"] = o.Width
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UiNodeImageAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	varUiNodeImageAttributes := _UiNodeImageAttributes{}
 
-	if err = json.Unmarshal(bytes, &varUiNodeImageAttributes); err == nil {
-		*o = UiNodeImageAttributes(varUiNodeImageAttributes)
+	err = json.Unmarshal(bytes, &varUiNodeImageAttributes)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UiNodeImageAttributes(varUiNodeImageAttributes)
 
 	additionalProperties := make(map[string]interface{})
 

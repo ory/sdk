@@ -52,7 +52,7 @@ import sh.ory.JSON;
  * Patch identities response
  */
 @ApiModel(description = "Patch identities response")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-26T07:22:38.275636327Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-05T13:50:54.246292158Z[Etc/UTC]")
 public class BatchPatchIdentitiesResponse {
   public static final String SERIALIZED_NAME_IDENTITIES = "identities";
   @SerializedName(SERIALIZED_NAME_IDENTITIES)

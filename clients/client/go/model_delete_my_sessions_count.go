@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeleteMySessionsCount type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeleteMySessionsCount{}
+
 // DeleteMySessionsCount Deleted Session Count
 type DeleteMySessionsCount struct {
 	// The number of sessions that were revoked.
@@ -43,7 +46,7 @@ func NewDeleteMySessionsCountWithDefaults() *DeleteMySessionsCount {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *DeleteMySessionsCount) GetCount() int64 {
-	if o == nil || o.Count == nil {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *DeleteMySessionsCount) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeleteMySessionsCount) GetCountOk() (*int64, bool) {
-	if o == nil || o.Count == nil {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -61,7 +64,7 @@ func (o *DeleteMySessionsCount) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *DeleteMySessionsCount) HasCount() bool {
-	if o != nil && o.Count != nil {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *DeleteMySessionsCount) SetCount(v int64) {
 }
 
 func (o DeleteMySessionsCount) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DeleteMySessionsCount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Count != nil {
+	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
 
@@ -83,15 +94,19 @@ func (o DeleteMySessionsCount) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *DeleteMySessionsCount) UnmarshalJSON(bytes []byte) (err error) {
 	varDeleteMySessionsCount := _DeleteMySessionsCount{}
 
-	if err = json.Unmarshal(bytes, &varDeleteMySessionsCount); err == nil {
-		*o = DeleteMySessionsCount(varDeleteMySessionsCount)
+	err = json.Unmarshal(bytes, &varDeleteMySessionsCount)
+
+	if err != nil {
+		return err
 	}
+
+	*o = DeleteMySessionsCount(varDeleteMySessionsCount)
 
 	additionalProperties := make(map[string]interface{})
 

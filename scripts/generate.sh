@@ -206,7 +206,7 @@ golang () {
 
   mkdir -p "${dir}"
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 7.0.1
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
@@ -217,11 +217,11 @@ golang () {
   cp "LICENSE" "clients/${PROJECT}/go"
   
   if [ "${PROJECT}" == "hydra" ]; then
-    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v2"; go mod tidy)
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v2"; go mod tidy -go=1.16 && go mod tidy -go=1.17)
   elif [ "${PROJECT}" == "client" ]; then
-    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/client-go"; go mod tidy)
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/client-go"; go mod tidy -go=1.16 && go mod tidy -go=1.17)
   else
-    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go"; go mod tidy)
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go"; go mod tidy -go=1.16 && go mod tidy -go=1.17)
   fi
 }
 

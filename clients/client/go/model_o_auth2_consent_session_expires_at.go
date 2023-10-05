@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the OAuth2ConsentSessionExpiresAt type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OAuth2ConsentSessionExpiresAt{}
+
 // OAuth2ConsentSessionExpiresAt struct for OAuth2ConsentSessionExpiresAt
 type OAuth2ConsentSessionExpiresAt struct {
 	AccessToken *time.Time `json:"access_token,omitempty"`
@@ -47,7 +50,7 @@ func NewOAuth2ConsentSessionExpiresAtWithDefaults() *OAuth2ConsentSessionExpires
 
 // GetAccessToken returns the AccessToken field value if set, zero value otherwise.
 func (o *OAuth2ConsentSessionExpiresAt) GetAccessToken() time.Time {
-	if o == nil || o.AccessToken == nil {
+	if o == nil || IsNil(o.AccessToken) {
 		var ret time.Time
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetAccessToken() time.Time {
 // GetAccessTokenOk returns a tuple with the AccessToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentSessionExpiresAt) GetAccessTokenOk() (*time.Time, bool) {
-	if o == nil || o.AccessToken == nil {
+	if o == nil || IsNil(o.AccessToken) {
 		return nil, false
 	}
 	return o.AccessToken, true
@@ -65,7 +68,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetAccessTokenOk() (*time.Time, bool) {
 
 // HasAccessToken returns a boolean if a field has been set.
 func (o *OAuth2ConsentSessionExpiresAt) HasAccessToken() bool {
-	if o != nil && o.AccessToken != nil {
+	if o != nil && !IsNil(o.AccessToken) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *OAuth2ConsentSessionExpiresAt) SetAccessToken(v time.Time) {
 
 // GetAuthorizeCode returns the AuthorizeCode field value if set, zero value otherwise.
 func (o *OAuth2ConsentSessionExpiresAt) GetAuthorizeCode() time.Time {
-	if o == nil || o.AuthorizeCode == nil {
+	if o == nil || IsNil(o.AuthorizeCode) {
 		var ret time.Time
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetAuthorizeCode() time.Time {
 // GetAuthorizeCodeOk returns a tuple with the AuthorizeCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentSessionExpiresAt) GetAuthorizeCodeOk() (*time.Time, bool) {
-	if o == nil || o.AuthorizeCode == nil {
+	if o == nil || IsNil(o.AuthorizeCode) {
 		return nil, false
 	}
 	return o.AuthorizeCode, true
@@ -97,7 +100,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetAuthorizeCodeOk() (*time.Time, bool) 
 
 // HasAuthorizeCode returns a boolean if a field has been set.
 func (o *OAuth2ConsentSessionExpiresAt) HasAuthorizeCode() bool {
-	if o != nil && o.AuthorizeCode != nil {
+	if o != nil && !IsNil(o.AuthorizeCode) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *OAuth2ConsentSessionExpiresAt) SetAuthorizeCode(v time.Time) {
 
 // GetIdToken returns the IdToken field value if set, zero value otherwise.
 func (o *OAuth2ConsentSessionExpiresAt) GetIdToken() time.Time {
-	if o == nil || o.IdToken == nil {
+	if o == nil || IsNil(o.IdToken) {
 		var ret time.Time
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetIdToken() time.Time {
 // GetIdTokenOk returns a tuple with the IdToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentSessionExpiresAt) GetIdTokenOk() (*time.Time, bool) {
-	if o == nil || o.IdToken == nil {
+	if o == nil || IsNil(o.IdToken) {
 		return nil, false
 	}
 	return o.IdToken, true
@@ -129,7 +132,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetIdTokenOk() (*time.Time, bool) {
 
 // HasIdToken returns a boolean if a field has been set.
 func (o *OAuth2ConsentSessionExpiresAt) HasIdToken() bool {
-	if o != nil && o.IdToken != nil {
+	if o != nil && !IsNil(o.IdToken) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *OAuth2ConsentSessionExpiresAt) SetIdToken(v time.Time) {
 
 // GetParContext returns the ParContext field value if set, zero value otherwise.
 func (o *OAuth2ConsentSessionExpiresAt) GetParContext() time.Time {
-	if o == nil || o.ParContext == nil {
+	if o == nil || IsNil(o.ParContext) {
 		var ret time.Time
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetParContext() time.Time {
 // GetParContextOk returns a tuple with the ParContext field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentSessionExpiresAt) GetParContextOk() (*time.Time, bool) {
-	if o == nil || o.ParContext == nil {
+	if o == nil || IsNil(o.ParContext) {
 		return nil, false
 	}
 	return o.ParContext, true
@@ -161,7 +164,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetParContextOk() (*time.Time, bool) {
 
 // HasParContext returns a boolean if a field has been set.
 func (o *OAuth2ConsentSessionExpiresAt) HasParContext() bool {
-	if o != nil && o.ParContext != nil {
+	if o != nil && !IsNil(o.ParContext) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *OAuth2ConsentSessionExpiresAt) SetParContext(v time.Time) {
 
 // GetRefreshToken returns the RefreshToken field value if set, zero value otherwise.
 func (o *OAuth2ConsentSessionExpiresAt) GetRefreshToken() time.Time {
-	if o == nil || o.RefreshToken == nil {
+	if o == nil || IsNil(o.RefreshToken) {
 		var ret time.Time
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetRefreshToken() time.Time {
 // GetRefreshTokenOk returns a tuple with the RefreshToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2ConsentSessionExpiresAt) GetRefreshTokenOk() (*time.Time, bool) {
-	if o == nil || o.RefreshToken == nil {
+	if o == nil || IsNil(o.RefreshToken) {
 		return nil, false
 	}
 	return o.RefreshToken, true
@@ -193,7 +196,7 @@ func (o *OAuth2ConsentSessionExpiresAt) GetRefreshTokenOk() (*time.Time, bool) {
 
 // HasRefreshToken returns a boolean if a field has been set.
 func (o *OAuth2ConsentSessionExpiresAt) HasRefreshToken() bool {
-	if o != nil && o.RefreshToken != nil {
+	if o != nil && !IsNil(o.RefreshToken) {
 		return true
 	}
 
@@ -206,20 +209,28 @@ func (o *OAuth2ConsentSessionExpiresAt) SetRefreshToken(v time.Time) {
 }
 
 func (o OAuth2ConsentSessionExpiresAt) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o OAuth2ConsentSessionExpiresAt) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AccessToken != nil {
+	if !IsNil(o.AccessToken) {
 		toSerialize["access_token"] = o.AccessToken
 	}
-	if o.AuthorizeCode != nil {
+	if !IsNil(o.AuthorizeCode) {
 		toSerialize["authorize_code"] = o.AuthorizeCode
 	}
-	if o.IdToken != nil {
+	if !IsNil(o.IdToken) {
 		toSerialize["id_token"] = o.IdToken
 	}
-	if o.ParContext != nil {
+	if !IsNil(o.ParContext) {
 		toSerialize["par_context"] = o.ParContext
 	}
-	if o.RefreshToken != nil {
+	if !IsNil(o.RefreshToken) {
 		toSerialize["refresh_token"] = o.RefreshToken
 	}
 
@@ -227,15 +238,19 @@ func (o OAuth2ConsentSessionExpiresAt) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *OAuth2ConsentSessionExpiresAt) UnmarshalJSON(bytes []byte) (err error) {
 	varOAuth2ConsentSessionExpiresAt := _OAuth2ConsentSessionExpiresAt{}
 
-	if err = json.Unmarshal(bytes, &varOAuth2ConsentSessionExpiresAt); err == nil {
-		*o = OAuth2ConsentSessionExpiresAt(varOAuth2ConsentSessionExpiresAt)
+	err = json.Unmarshal(bytes, &varOAuth2ConsentSessionExpiresAt)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OAuth2ConsentSessionExpiresAt(varOAuth2ConsentSessionExpiresAt)
 
 	additionalProperties := make(map[string]interface{})
 

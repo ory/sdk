@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the MessageDispatch type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MessageDispatch{}
+
 // MessageDispatch MessageDispatch represents an attempt of sending a courier message It contains the status of the attempt (failed or successful) and the error if any occured
 type MessageDispatch struct {
 	// CreatedAt is a helper struct field for gobuffalo.pop.
@@ -82,7 +85,7 @@ func (o *MessageDispatch) SetCreatedAt(v time.Time) {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *MessageDispatch) GetError() map[string]interface{} {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -92,15 +95,15 @@ func (o *MessageDispatch) GetError() map[string]interface{} {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDispatch) GetErrorOk() (map[string]interface{}, bool) {
-	if o == nil || o.Error == nil {
-		return nil, false
+	if o == nil || IsNil(o.Error) {
+		return map[string]interface{}{}, false
 	}
 	return o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *MessageDispatch) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -209,39 +212,41 @@ func (o *MessageDispatch) SetUpdatedAt(v time.Time) {
 }
 
 func (o MessageDispatch) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-	if o.Error != nil {
+	return json.Marshal(toSerialize)
+}
+
+func (o MessageDispatch) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["message_id"] = o.MessageId
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["id"] = o.Id
+	toSerialize["message_id"] = o.MessageId
+	toSerialize["status"] = o.Status
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *MessageDispatch) UnmarshalJSON(bytes []byte) (err error) {
 	varMessageDispatch := _MessageDispatch{}
 
-	if err = json.Unmarshal(bytes, &varMessageDispatch); err == nil {
-		*o = MessageDispatch(varMessageDispatch)
+	err = json.Unmarshal(bytes, &varMessageDispatch)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MessageDispatch(varMessageDispatch)
 
 	additionalProperties := make(map[string]interface{})
 

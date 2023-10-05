@@ -28,7 +28,7 @@ docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/sdk 
 If a tests fails on CI, you may run the following code snippet to reproduce the failure locally:
 
 ```shell script
-docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project -it oryd/sdk:v0.0.50 /bin/sh
+docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project -it oryd/sdk:latest /bin/sh
 
 export FORCE_VERSION=v1.11.0
 export FORCE_PROJECT=hydra # or hydra or something else

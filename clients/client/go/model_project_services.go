@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProjectServices type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectServices{}
+
 // ProjectServices struct for ProjectServices
 type ProjectServices struct {
 	Identity *ProjectServiceIdentity `json:"identity,omitempty"`
@@ -44,7 +47,7 @@ func NewProjectServicesWithDefaults() *ProjectServices {
 
 // GetIdentity returns the Identity field value if set, zero value otherwise.
 func (o *ProjectServices) GetIdentity() ProjectServiceIdentity {
-	if o == nil || o.Identity == nil {
+	if o == nil || IsNil(o.Identity) {
 		var ret ProjectServiceIdentity
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ProjectServices) GetIdentity() ProjectServiceIdentity {
 // GetIdentityOk returns a tuple with the Identity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectServices) GetIdentityOk() (*ProjectServiceIdentity, bool) {
-	if o == nil || o.Identity == nil {
+	if o == nil || IsNil(o.Identity) {
 		return nil, false
 	}
 	return o.Identity, true
@@ -62,7 +65,7 @@ func (o *ProjectServices) GetIdentityOk() (*ProjectServiceIdentity, bool) {
 
 // HasIdentity returns a boolean if a field has been set.
 func (o *ProjectServices) HasIdentity() bool {
-	if o != nil && o.Identity != nil {
+	if o != nil && !IsNil(o.Identity) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ProjectServices) SetIdentity(v ProjectServiceIdentity) {
 
 // GetOauth2 returns the Oauth2 field value if set, zero value otherwise.
 func (o *ProjectServices) GetOauth2() ProjectServiceOAuth2 {
-	if o == nil || o.Oauth2 == nil {
+	if o == nil || IsNil(o.Oauth2) {
 		var ret ProjectServiceOAuth2
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ProjectServices) GetOauth2() ProjectServiceOAuth2 {
 // GetOauth2Ok returns a tuple with the Oauth2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectServices) GetOauth2Ok() (*ProjectServiceOAuth2, bool) {
-	if o == nil || o.Oauth2 == nil {
+	if o == nil || IsNil(o.Oauth2) {
 		return nil, false
 	}
 	return o.Oauth2, true
@@ -94,7 +97,7 @@ func (o *ProjectServices) GetOauth2Ok() (*ProjectServiceOAuth2, bool) {
 
 // HasOauth2 returns a boolean if a field has been set.
 func (o *ProjectServices) HasOauth2() bool {
-	if o != nil && o.Oauth2 != nil {
+	if o != nil && !IsNil(o.Oauth2) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *ProjectServices) SetOauth2(v ProjectServiceOAuth2) {
 
 // GetPermission returns the Permission field value if set, zero value otherwise.
 func (o *ProjectServices) GetPermission() ProjectServicePermission {
-	if o == nil || o.Permission == nil {
+	if o == nil || IsNil(o.Permission) {
 		var ret ProjectServicePermission
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *ProjectServices) GetPermission() ProjectServicePermission {
 // GetPermissionOk returns a tuple with the Permission field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectServices) GetPermissionOk() (*ProjectServicePermission, bool) {
-	if o == nil || o.Permission == nil {
+	if o == nil || IsNil(o.Permission) {
 		return nil, false
 	}
 	return o.Permission, true
@@ -126,7 +129,7 @@ func (o *ProjectServices) GetPermissionOk() (*ProjectServicePermission, bool) {
 
 // HasPermission returns a boolean if a field has been set.
 func (o *ProjectServices) HasPermission() bool {
-	if o != nil && o.Permission != nil {
+	if o != nil && !IsNil(o.Permission) {
 		return true
 	}
 
@@ -139,14 +142,22 @@ func (o *ProjectServices) SetPermission(v ProjectServicePermission) {
 }
 
 func (o ProjectServices) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectServices) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Identity != nil {
+	if !IsNil(o.Identity) {
 		toSerialize["identity"] = o.Identity
 	}
-	if o.Oauth2 != nil {
+	if !IsNil(o.Oauth2) {
 		toSerialize["oauth2"] = o.Oauth2
 	}
-	if o.Permission != nil {
+	if !IsNil(o.Permission) {
 		toSerialize["permission"] = o.Permission
 	}
 
@@ -154,15 +165,19 @@ func (o ProjectServices) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ProjectServices) UnmarshalJSON(bytes []byte) (err error) {
 	varProjectServices := _ProjectServices{}
 
-	if err = json.Unmarshal(bytes, &varProjectServices); err == nil {
-		*o = ProjectServices(varProjectServices)
+	err = json.Unmarshal(bytes, &varProjectServices)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectServices(varProjectServices)
 
 	additionalProperties := make(map[string]interface{})
 

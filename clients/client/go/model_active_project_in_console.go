@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ActiveProjectInConsole type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ActiveProjectInConsole{}
+
 // ActiveProjectInConsole The Active Project ID
 type ActiveProjectInConsole struct {
 	// The Active Project ID  format: uuid
@@ -43,7 +46,7 @@ func NewActiveProjectInConsoleWithDefaults() *ActiveProjectInConsole {
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *ActiveProjectInConsole) GetProjectId() string {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ActiveProjectInConsole) GetProjectId() string {
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ActiveProjectInConsole) GetProjectIdOk() (*string, bool) {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		return nil, false
 	}
 	return o.ProjectId, true
@@ -61,7 +64,7 @@ func (o *ActiveProjectInConsole) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *ActiveProjectInConsole) HasProjectId() bool {
-	if o != nil && o.ProjectId != nil {
+	if o != nil && !IsNil(o.ProjectId) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *ActiveProjectInConsole) SetProjectId(v string) {
 }
 
 func (o ActiveProjectInConsole) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ActiveProjectInConsole) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ProjectId != nil {
+	if !IsNil(o.ProjectId) {
 		toSerialize["project_id"] = o.ProjectId
 	}
 
@@ -83,15 +94,19 @@ func (o ActiveProjectInConsole) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ActiveProjectInConsole) UnmarshalJSON(bytes []byte) (err error) {
 	varActiveProjectInConsole := _ActiveProjectInConsole{}
 
-	if err = json.Unmarshal(bytes, &varActiveProjectInConsole); err == nil {
-		*o = ActiveProjectInConsole(varActiveProjectInConsole)
+	err = json.Unmarshal(bytes, &varActiveProjectInConsole)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ActiveProjectInConsole(varActiveProjectInConsole)
 
 	additionalProperties := make(map[string]interface{})
 

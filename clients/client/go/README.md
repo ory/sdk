@@ -63,7 +63,7 @@ Each operation can use different server URL defined using `OperationServers` map
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
-```
+```golang
 ctx := context.WithValue(context.Background(), client.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
@@ -80,132 +80,132 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CourierApi* | [**GetCourierMessage**](docs/CourierApi.md#getcouriermessage) | **Get** /admin/courier/messages/{id} | Get a Message
-*CourierApi* | [**ListCourierMessages**](docs/CourierApi.md#listcouriermessages) | **Get** /admin/courier/messages | List Messages
-*FrontendApi* | [**CreateBrowserLoginFlow**](docs/FrontendApi.md#createbrowserloginflow) | **Get** /self-service/login/browser | Create Login Flow for Browsers
-*FrontendApi* | [**CreateBrowserLogoutFlow**](docs/FrontendApi.md#createbrowserlogoutflow) | **Get** /self-service/logout/browser | Create a Logout URL for Browsers
-*FrontendApi* | [**CreateBrowserRecoveryFlow**](docs/FrontendApi.md#createbrowserrecoveryflow) | **Get** /self-service/recovery/browser | Create Recovery Flow for Browsers
-*FrontendApi* | [**CreateBrowserRegistrationFlow**](docs/FrontendApi.md#createbrowserregistrationflow) | **Get** /self-service/registration/browser | Create Registration Flow for Browsers
-*FrontendApi* | [**CreateBrowserSettingsFlow**](docs/FrontendApi.md#createbrowsersettingsflow) | **Get** /self-service/settings/browser | Create Settings Flow for Browsers
-*FrontendApi* | [**CreateBrowserVerificationFlow**](docs/FrontendApi.md#createbrowserverificationflow) | **Get** /self-service/verification/browser | Create Verification Flow for Browser Clients
-*FrontendApi* | [**CreateNativeLoginFlow**](docs/FrontendApi.md#createnativeloginflow) | **Get** /self-service/login/api | Create Login Flow for Native Apps
-*FrontendApi* | [**CreateNativeRecoveryFlow**](docs/FrontendApi.md#createnativerecoveryflow) | **Get** /self-service/recovery/api | Create Recovery Flow for Native Apps
-*FrontendApi* | [**CreateNativeRegistrationFlow**](docs/FrontendApi.md#createnativeregistrationflow) | **Get** /self-service/registration/api | Create Registration Flow for Native Apps
-*FrontendApi* | [**CreateNativeSettingsFlow**](docs/FrontendApi.md#createnativesettingsflow) | **Get** /self-service/settings/api | Create Settings Flow for Native Apps
-*FrontendApi* | [**CreateNativeVerificationFlow**](docs/FrontendApi.md#createnativeverificationflow) | **Get** /self-service/verification/api | Create Verification Flow for Native Apps
-*FrontendApi* | [**DisableMyOtherSessions**](docs/FrontendApi.md#disablemyothersessions) | **Delete** /sessions | Disable my other sessions
-*FrontendApi* | [**DisableMySession**](docs/FrontendApi.md#disablemysession) | **Delete** /sessions/{id} | Disable one of my sessions
-*FrontendApi* | [**ExchangeSessionToken**](docs/FrontendApi.md#exchangesessiontoken) | **Get** /sessions/token-exchange | Exchange Session Token
-*FrontendApi* | [**GetFlowError**](docs/FrontendApi.md#getflowerror) | **Get** /self-service/errors | Get User-Flow Errors
-*FrontendApi* | [**GetLoginFlow**](docs/FrontendApi.md#getloginflow) | **Get** /self-service/login/flows | Get Login Flow
-*FrontendApi* | [**GetRecoveryFlow**](docs/FrontendApi.md#getrecoveryflow) | **Get** /self-service/recovery/flows | Get Recovery Flow
-*FrontendApi* | [**GetRegistrationFlow**](docs/FrontendApi.md#getregistrationflow) | **Get** /self-service/registration/flows | Get Registration Flow
-*FrontendApi* | [**GetSettingsFlow**](docs/FrontendApi.md#getsettingsflow) | **Get** /self-service/settings/flows | Get Settings Flow
-*FrontendApi* | [**GetVerificationFlow**](docs/FrontendApi.md#getverificationflow) | **Get** /self-service/verification/flows | Get Verification Flow
-*FrontendApi* | [**GetWebAuthnJavaScript**](docs/FrontendApi.md#getwebauthnjavascript) | **Get** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
-*FrontendApi* | [**ListMySessions**](docs/FrontendApi.md#listmysessions) | **Get** /sessions | Get My Active Sessions
-*FrontendApi* | [**PerformNativeLogout**](docs/FrontendApi.md#performnativelogout) | **Delete** /self-service/logout/api | Perform Logout for Native Apps
-*FrontendApi* | [**ToSession**](docs/FrontendApi.md#tosession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
-*FrontendApi* | [**UpdateLoginFlow**](docs/FrontendApi.md#updateloginflow) | **Post** /self-service/login | Submit a Login Flow
-*FrontendApi* | [**UpdateLogoutFlow**](docs/FrontendApi.md#updatelogoutflow) | **Get** /self-service/logout | Update Logout Flow
-*FrontendApi* | [**UpdateRecoveryFlow**](docs/FrontendApi.md#updaterecoveryflow) | **Post** /self-service/recovery | Complete Recovery Flow
-*FrontendApi* | [**UpdateRegistrationFlow**](docs/FrontendApi.md#updateregistrationflow) | **Post** /self-service/registration | Update Registration Flow
-*FrontendApi* | [**UpdateSettingsFlow**](docs/FrontendApi.md#updatesettingsflow) | **Post** /self-service/settings | Complete Settings Flow
-*FrontendApi* | [**UpdateVerificationFlow**](docs/FrontendApi.md#updateverificationflow) | **Post** /self-service/verification | Complete Verification Flow
-*IdentityApi* | [**BatchPatchIdentities**](docs/IdentityApi.md#batchpatchidentities) | **Patch** /admin/identities | Create and deletes multiple identities
-*IdentityApi* | [**CreateIdentity**](docs/IdentityApi.md#createidentity) | **Post** /admin/identities | Create an Identity
-*IdentityApi* | [**CreateRecoveryCodeForIdentity**](docs/IdentityApi.md#createrecoverycodeforidentity) | **Post** /admin/recovery/code | Create a Recovery Code
-*IdentityApi* | [**CreateRecoveryLinkForIdentity**](docs/IdentityApi.md#createrecoverylinkforidentity) | **Post** /admin/recovery/link | Create a Recovery Link
-*IdentityApi* | [**DeleteIdentity**](docs/IdentityApi.md#deleteidentity) | **Delete** /admin/identities/{id} | Delete an Identity
-*IdentityApi* | [**DeleteIdentityCredentials**](docs/IdentityApi.md#deleteidentitycredentials) | **Delete** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
-*IdentityApi* | [**DeleteIdentitySessions**](docs/IdentityApi.md#deleteidentitysessions) | **Delete** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
-*IdentityApi* | [**DisableSession**](docs/IdentityApi.md#disablesession) | **Delete** /admin/sessions/{id} | Deactivate a Session
-*IdentityApi* | [**ExtendSession**](docs/IdentityApi.md#extendsession) | **Patch** /admin/sessions/{id}/extend | Extend a Session
-*IdentityApi* | [**GetIdentity**](docs/IdentityApi.md#getidentity) | **Get** /admin/identities/{id} | Get an Identity
-*IdentityApi* | [**GetIdentitySchema**](docs/IdentityApi.md#getidentityschema) | **Get** /schemas/{id} | Get Identity JSON Schema
-*IdentityApi* | [**GetSession**](docs/IdentityApi.md#getsession) | **Get** /admin/sessions/{id} | Get Session
-*IdentityApi* | [**ListIdentities**](docs/IdentityApi.md#listidentities) | **Get** /admin/identities | List Identities
-*IdentityApi* | [**ListIdentitySchemas**](docs/IdentityApi.md#listidentityschemas) | **Get** /schemas | Get all Identity Schemas
-*IdentityApi* | [**ListIdentitySessions**](docs/IdentityApi.md#listidentitysessions) | **Get** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
-*IdentityApi* | [**ListSessions**](docs/IdentityApi.md#listsessions) | **Get** /admin/sessions | List All Sessions
-*IdentityApi* | [**PatchIdentity**](docs/IdentityApi.md#patchidentity) | **Patch** /admin/identities/{id} | Patch an Identity
-*IdentityApi* | [**UpdateIdentity**](docs/IdentityApi.md#updateidentity) | **Put** /admin/identities/{id} | Update an Identity
-*JwkApi* | [**CreateJsonWebKeySet**](docs/JwkApi.md#createjsonwebkeyset) | **Post** /admin/keys/{set} | Create JSON Web Key
-*JwkApi* | [**DeleteJsonWebKey**](docs/JwkApi.md#deletejsonwebkey) | **Delete** /admin/keys/{set}/{kid} | Delete JSON Web Key
-*JwkApi* | [**DeleteJsonWebKeySet**](docs/JwkApi.md#deletejsonwebkeyset) | **Delete** /admin/keys/{set} | Delete JSON Web Key Set
-*JwkApi* | [**GetJsonWebKey**](docs/JwkApi.md#getjsonwebkey) | **Get** /admin/keys/{set}/{kid} | Get JSON Web Key
-*JwkApi* | [**GetJsonWebKeySet**](docs/JwkApi.md#getjsonwebkeyset) | **Get** /admin/keys/{set} | Retrieve a JSON Web Key Set
-*JwkApi* | [**SetJsonWebKey**](docs/JwkApi.md#setjsonwebkey) | **Put** /admin/keys/{set}/{kid} | Set JSON Web Key
-*JwkApi* | [**SetJsonWebKeySet**](docs/JwkApi.md#setjsonwebkeyset) | **Put** /admin/keys/{set} | Update a JSON Web Key Set
-*MetadataApi* | [**GetVersion**](docs/MetadataApi.md#getversion) | **Get** /version | Return Running Software Version.
-*MetadataApi* | [**IsAlive**](docs/MetadataApi.md#isalive) | **Get** /health/alive | Check HTTP Server Status
-*MetadataApi* | [**IsReady**](docs/MetadataApi.md#isready) | **Get** /health/ready | Check HTTP Server and Database Status
-*OAuth2Api* | [**AcceptOAuth2ConsentRequest**](docs/OAuth2Api.md#acceptoauth2consentrequest) | **Put** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
-*OAuth2Api* | [**AcceptOAuth2LoginRequest**](docs/OAuth2Api.md#acceptoauth2loginrequest) | **Put** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
-*OAuth2Api* | [**AcceptOAuth2LogoutRequest**](docs/OAuth2Api.md#acceptoauth2logoutrequest) | **Put** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
-*OAuth2Api* | [**CreateOAuth2Client**](docs/OAuth2Api.md#createoauth2client) | **Post** /admin/clients | Create OAuth 2.0 Client
-*OAuth2Api* | [**DeleteOAuth2Client**](docs/OAuth2Api.md#deleteoauth2client) | **Delete** /admin/clients/{id} | Delete OAuth 2.0 Client
-*OAuth2Api* | [**DeleteOAuth2Token**](docs/OAuth2Api.md#deleteoauth2token) | **Delete** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
-*OAuth2Api* | [**DeleteTrustedOAuth2JwtGrantIssuer**](docs/OAuth2Api.md#deletetrustedoauth2jwtgrantissuer) | **Delete** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
-*OAuth2Api* | [**GetOAuth2Client**](docs/OAuth2Api.md#getoauth2client) | **Get** /admin/clients/{id} | Get an OAuth 2.0 Client
-*OAuth2Api* | [**GetOAuth2ConsentRequest**](docs/OAuth2Api.md#getoauth2consentrequest) | **Get** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request
-*OAuth2Api* | [**GetOAuth2LoginRequest**](docs/OAuth2Api.md#getoauth2loginrequest) | **Get** /admin/oauth2/auth/requests/login | Get OAuth 2.0 Login Request
-*OAuth2Api* | [**GetOAuth2LogoutRequest**](docs/OAuth2Api.md#getoauth2logoutrequest) | **Get** /admin/oauth2/auth/requests/logout | Get OAuth 2.0 Session Logout Request
-*OAuth2Api* | [**GetTrustedOAuth2JwtGrantIssuer**](docs/OAuth2Api.md#gettrustedoauth2jwtgrantissuer) | **Get** /admin/trust/grants/jwt-bearer/issuers/{id} | Get Trusted OAuth2 JWT Bearer Grant Type Issuer
-*OAuth2Api* | [**IntrospectOAuth2Token**](docs/OAuth2Api.md#introspectoauth2token) | **Post** /admin/oauth2/introspect | Introspect OAuth2 Access and Refresh Tokens
-*OAuth2Api* | [**ListOAuth2Clients**](docs/OAuth2Api.md#listoauth2clients) | **Get** /admin/clients | List OAuth 2.0 Clients
-*OAuth2Api* | [**ListOAuth2ConsentSessions**](docs/OAuth2Api.md#listoauth2consentsessions) | **Get** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
-*OAuth2Api* | [**ListTrustedOAuth2JwtGrantIssuers**](docs/OAuth2Api.md#listtrustedoauth2jwtgrantissuers) | **Get** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
-*OAuth2Api* | [**OAuth2Authorize**](docs/OAuth2Api.md#oauth2authorize) | **Get** /oauth2/auth | OAuth 2.0 Authorize Endpoint
-*OAuth2Api* | [**Oauth2TokenExchange**](docs/OAuth2Api.md#oauth2tokenexchange) | **Post** /oauth2/token | The OAuth 2.0 Token Endpoint
-*OAuth2Api* | [**PatchOAuth2Client**](docs/OAuth2Api.md#patchoauth2client) | **Patch** /admin/clients/{id} | Patch OAuth 2.0 Client
-*OAuth2Api* | [**RejectOAuth2ConsentRequest**](docs/OAuth2Api.md#rejectoauth2consentrequest) | **Put** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
-*OAuth2Api* | [**RejectOAuth2LoginRequest**](docs/OAuth2Api.md#rejectoauth2loginrequest) | **Put** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
-*OAuth2Api* | [**RejectOAuth2LogoutRequest**](docs/OAuth2Api.md#rejectoauth2logoutrequest) | **Put** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
-*OAuth2Api* | [**RevokeOAuth2ConsentSessions**](docs/OAuth2Api.md#revokeoauth2consentsessions) | **Delete** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-*OAuth2Api* | [**RevokeOAuth2LoginSessions**](docs/OAuth2Api.md#revokeoauth2loginsessions) | **Delete** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
-*OAuth2Api* | [**RevokeOAuth2Token**](docs/OAuth2Api.md#revokeoauth2token) | **Post** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
-*OAuth2Api* | [**SetOAuth2Client**](docs/OAuth2Api.md#setoauth2client) | **Put** /admin/clients/{id} | Set OAuth 2.0 Client
-*OAuth2Api* | [**SetOAuth2ClientLifespans**](docs/OAuth2Api.md#setoauth2clientlifespans) | **Put** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
-*OAuth2Api* | [**TrustOAuth2JwtGrantIssuer**](docs/OAuth2Api.md#trustoauth2jwtgrantissuer) | **Post** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
-*OidcApi* | [**CreateOidcDynamicClient**](docs/OidcApi.md#createoidcdynamicclient) | **Post** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
-*OidcApi* | [**CreateVerifiableCredential**](docs/OidcApi.md#createverifiablecredential) | **Post** /credentials | Issues a Verifiable Credential
-*OidcApi* | [**DeleteOidcDynamicClient**](docs/OidcApi.md#deleteoidcdynamicclient) | **Delete** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
-*OidcApi* | [**DiscoverOidcConfiguration**](docs/OidcApi.md#discoveroidcconfiguration) | **Get** /.well-known/openid-configuration | OpenID Connect Discovery
-*OidcApi* | [**GetOidcDynamicClient**](docs/OidcApi.md#getoidcdynamicclient) | **Get** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
-*OidcApi* | [**GetOidcUserInfo**](docs/OidcApi.md#getoidcuserinfo) | **Get** /userinfo | OpenID Connect Userinfo
-*OidcApi* | [**RevokeOidcSession**](docs/OidcApi.md#revokeoidcsession) | **Get** /oauth2/sessions/logout | OpenID Connect Front- and Back-channel Enabled Logout
-*OidcApi* | [**SetOidcDynamicClient**](docs/OidcApi.md#setoidcdynamicclient) | **Put** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration
-*PermissionApi* | [**CheckPermission**](docs/PermissionApi.md#checkpermission) | **Get** /relation-tuples/check/openapi | Check a permission
-*PermissionApi* | [**CheckPermissionOrError**](docs/PermissionApi.md#checkpermissionorerror) | **Get** /relation-tuples/check | Check a permission
-*PermissionApi* | [**ExpandPermissions**](docs/PermissionApi.md#expandpermissions) | **Get** /relation-tuples/expand | Expand a Relationship into permissions.
-*PermissionApi* | [**PostCheckPermission**](docs/PermissionApi.md#postcheckpermission) | **Post** /relation-tuples/check/openapi | Check a permission
-*PermissionApi* | [**PostCheckPermissionOrError**](docs/PermissionApi.md#postcheckpermissionorerror) | **Post** /relation-tuples/check | Check a permission
-*ProjectApi* | [**CreateOrganization**](docs/ProjectApi.md#createorganization) | **Post** /projects/{project_id}/organizations | 
-*ProjectApi* | [**CreateProject**](docs/ProjectApi.md#createproject) | **Post** /projects | Create a Project
-*ProjectApi* | [**CreateProjectApiKey**](docs/ProjectApi.md#createprojectapikey) | **Post** /projects/{project}/tokens | Create project API token
-*ProjectApi* | [**DeleteOrganization**](docs/ProjectApi.md#deleteorganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
-*ProjectApi* | [**DeleteProjectApiKey**](docs/ProjectApi.md#deleteprojectapikey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
-*ProjectApi* | [**GetActiveProjectInConsole**](docs/ProjectApi.md#getactiveprojectinconsole) | **Get** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
-*ProjectApi* | [**GetProject**](docs/ProjectApi.md#getproject) | **Get** /projects/{project_id} | Get a Project
-*ProjectApi* | [**GetProjectMembers**](docs/ProjectApi.md#getprojectmembers) | **Get** /projects/{project}/members | Get all members associated with this project
-*ProjectApi* | [**GetProjectMetrics**](docs/ProjectApi.md#getprojectmetrics) | **Get** /projects/{project_id}/metrics | 
-*ProjectApi* | [**ListOrganizations**](docs/ProjectApi.md#listorganizations) | **Get** /projects/{project_id}/organizations | 
-*ProjectApi* | [**ListProjectApiKeys**](docs/ProjectApi.md#listprojectapikeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
-*ProjectApi* | [**ListProjects**](docs/ProjectApi.md#listprojects) | **Get** /projects | List All Projects
-*ProjectApi* | [**PatchProject**](docs/ProjectApi.md#patchproject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
-*ProjectApi* | [**PurgeProject**](docs/ProjectApi.md#purgeproject) | **Delete** /projects/{project_id} | Irrecoverably purge a project
-*ProjectApi* | [**RemoveProjectMember**](docs/ProjectApi.md#removeprojectmember) | **Delete** /projects/{project}/members/{member} | Remove a member associated with this project
-*ProjectApi* | [**SetActiveProjectInConsole**](docs/ProjectApi.md#setactiveprojectinconsole) | **Put** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
-*ProjectApi* | [**SetProject**](docs/ProjectApi.md#setproject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
-*ProjectApi* | [**UpdateOrganization**](docs/ProjectApi.md#updateorganization) | **Put** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project.
-*RelationshipApi* | [**CheckOplSyntax**](docs/RelationshipApi.md#checkoplsyntax) | **Post** /opl/syntax/check | Check the syntax of an OPL file
-*RelationshipApi* | [**CreateRelationship**](docs/RelationshipApi.md#createrelationship) | **Put** /admin/relation-tuples | Create a Relationship
-*RelationshipApi* | [**DeleteRelationships**](docs/RelationshipApi.md#deleterelationships) | **Delete** /admin/relation-tuples | Delete Relationships
-*RelationshipApi* | [**GetRelationships**](docs/RelationshipApi.md#getrelationships) | **Get** /relation-tuples | Query relationships
-*RelationshipApi* | [**ListRelationshipNamespaces**](docs/RelationshipApi.md#listrelationshipnamespaces) | **Get** /namespaces | Query namespaces
-*RelationshipApi* | [**PatchRelationships**](docs/RelationshipApi.md#patchrelationships) | **Patch** /admin/relation-tuples | Patch Multiple Relationships
-*WellknownApi* | [**DiscoverJsonWebKeys**](docs/WellknownApi.md#discoverjsonwebkeys) | **Get** /.well-known/jwks.json | Discover Well-Known JSON Web Keys
+*CourierAPI* | [**GetCourierMessage**](docs/CourierAPI.md#getcouriermessage) | **Get** /admin/courier/messages/{id} | Get a Message
+*CourierAPI* | [**ListCourierMessages**](docs/CourierAPI.md#listcouriermessages) | **Get** /admin/courier/messages | List Messages
+*FrontendAPI* | [**CreateBrowserLoginFlow**](docs/FrontendAPI.md#createbrowserloginflow) | **Get** /self-service/login/browser | Create Login Flow for Browsers
+*FrontendAPI* | [**CreateBrowserLogoutFlow**](docs/FrontendAPI.md#createbrowserlogoutflow) | **Get** /self-service/logout/browser | Create a Logout URL for Browsers
+*FrontendAPI* | [**CreateBrowserRecoveryFlow**](docs/FrontendAPI.md#createbrowserrecoveryflow) | **Get** /self-service/recovery/browser | Create Recovery Flow for Browsers
+*FrontendAPI* | [**CreateBrowserRegistrationFlow**](docs/FrontendAPI.md#createbrowserregistrationflow) | **Get** /self-service/registration/browser | Create Registration Flow for Browsers
+*FrontendAPI* | [**CreateBrowserSettingsFlow**](docs/FrontendAPI.md#createbrowsersettingsflow) | **Get** /self-service/settings/browser | Create Settings Flow for Browsers
+*FrontendAPI* | [**CreateBrowserVerificationFlow**](docs/FrontendAPI.md#createbrowserverificationflow) | **Get** /self-service/verification/browser | Create Verification Flow for Browser Clients
+*FrontendAPI* | [**CreateNativeLoginFlow**](docs/FrontendAPI.md#createnativeloginflow) | **Get** /self-service/login/api | Create Login Flow for Native Apps
+*FrontendAPI* | [**CreateNativeRecoveryFlow**](docs/FrontendAPI.md#createnativerecoveryflow) | **Get** /self-service/recovery/api | Create Recovery Flow for Native Apps
+*FrontendAPI* | [**CreateNativeRegistrationFlow**](docs/FrontendAPI.md#createnativeregistrationflow) | **Get** /self-service/registration/api | Create Registration Flow for Native Apps
+*FrontendAPI* | [**CreateNativeSettingsFlow**](docs/FrontendAPI.md#createnativesettingsflow) | **Get** /self-service/settings/api | Create Settings Flow for Native Apps
+*FrontendAPI* | [**CreateNativeVerificationFlow**](docs/FrontendAPI.md#createnativeverificationflow) | **Get** /self-service/verification/api | Create Verification Flow for Native Apps
+*FrontendAPI* | [**DisableMyOtherSessions**](docs/FrontendAPI.md#disablemyothersessions) | **Delete** /sessions | Disable my other sessions
+*FrontendAPI* | [**DisableMySession**](docs/FrontendAPI.md#disablemysession) | **Delete** /sessions/{id} | Disable one of my sessions
+*FrontendAPI* | [**ExchangeSessionToken**](docs/FrontendAPI.md#exchangesessiontoken) | **Get** /sessions/token-exchange | Exchange Session Token
+*FrontendAPI* | [**GetFlowError**](docs/FrontendAPI.md#getflowerror) | **Get** /self-service/errors | Get User-Flow Errors
+*FrontendAPI* | [**GetLoginFlow**](docs/FrontendAPI.md#getloginflow) | **Get** /self-service/login/flows | Get Login Flow
+*FrontendAPI* | [**GetRecoveryFlow**](docs/FrontendAPI.md#getrecoveryflow) | **Get** /self-service/recovery/flows | Get Recovery Flow
+*FrontendAPI* | [**GetRegistrationFlow**](docs/FrontendAPI.md#getregistrationflow) | **Get** /self-service/registration/flows | Get Registration Flow
+*FrontendAPI* | [**GetSettingsFlow**](docs/FrontendAPI.md#getsettingsflow) | **Get** /self-service/settings/flows | Get Settings Flow
+*FrontendAPI* | [**GetVerificationFlow**](docs/FrontendAPI.md#getverificationflow) | **Get** /self-service/verification/flows | Get Verification Flow
+*FrontendAPI* | [**GetWebAuthnJavaScript**](docs/FrontendAPI.md#getwebauthnjavascript) | **Get** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+*FrontendAPI* | [**ListMySessions**](docs/FrontendAPI.md#listmysessions) | **Get** /sessions | Get My Active Sessions
+*FrontendAPI* | [**PerformNativeLogout**](docs/FrontendAPI.md#performnativelogout) | **Delete** /self-service/logout/api | Perform Logout for Native Apps
+*FrontendAPI* | [**ToSession**](docs/FrontendAPI.md#tosession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+*FrontendAPI* | [**UpdateLoginFlow**](docs/FrontendAPI.md#updateloginflow) | **Post** /self-service/login | Submit a Login Flow
+*FrontendAPI* | [**UpdateLogoutFlow**](docs/FrontendAPI.md#updatelogoutflow) | **Get** /self-service/logout | Update Logout Flow
+*FrontendAPI* | [**UpdateRecoveryFlow**](docs/FrontendAPI.md#updaterecoveryflow) | **Post** /self-service/recovery | Complete Recovery Flow
+*FrontendAPI* | [**UpdateRegistrationFlow**](docs/FrontendAPI.md#updateregistrationflow) | **Post** /self-service/registration | Update Registration Flow
+*FrontendAPI* | [**UpdateSettingsFlow**](docs/FrontendAPI.md#updatesettingsflow) | **Post** /self-service/settings | Complete Settings Flow
+*FrontendAPI* | [**UpdateVerificationFlow**](docs/FrontendAPI.md#updateverificationflow) | **Post** /self-service/verification | Complete Verification Flow
+*IdentityAPI* | [**BatchPatchIdentities**](docs/IdentityAPI.md#batchpatchidentities) | **Patch** /admin/identities | Create and deletes multiple identities
+*IdentityAPI* | [**CreateIdentity**](docs/IdentityAPI.md#createidentity) | **Post** /admin/identities | Create an Identity
+*IdentityAPI* | [**CreateRecoveryCodeForIdentity**](docs/IdentityAPI.md#createrecoverycodeforidentity) | **Post** /admin/recovery/code | Create a Recovery Code
+*IdentityAPI* | [**CreateRecoveryLinkForIdentity**](docs/IdentityAPI.md#createrecoverylinkforidentity) | **Post** /admin/recovery/link | Create a Recovery Link
+*IdentityAPI* | [**DeleteIdentity**](docs/IdentityAPI.md#deleteidentity) | **Delete** /admin/identities/{id} | Delete an Identity
+*IdentityAPI* | [**DeleteIdentityCredentials**](docs/IdentityAPI.md#deleteidentitycredentials) | **Delete** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
+*IdentityAPI* | [**DeleteIdentitySessions**](docs/IdentityAPI.md#deleteidentitysessions) | **Delete** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
+*IdentityAPI* | [**DisableSession**](docs/IdentityAPI.md#disablesession) | **Delete** /admin/sessions/{id} | Deactivate a Session
+*IdentityAPI* | [**ExtendSession**](docs/IdentityAPI.md#extendsession) | **Patch** /admin/sessions/{id}/extend | Extend a Session
+*IdentityAPI* | [**GetIdentity**](docs/IdentityAPI.md#getidentity) | **Get** /admin/identities/{id} | Get an Identity
+*IdentityAPI* | [**GetIdentitySchema**](docs/IdentityAPI.md#getidentityschema) | **Get** /schemas/{id} | Get Identity JSON Schema
+*IdentityAPI* | [**GetSession**](docs/IdentityAPI.md#getsession) | **Get** /admin/sessions/{id} | Get Session
+*IdentityAPI* | [**ListIdentities**](docs/IdentityAPI.md#listidentities) | **Get** /admin/identities | List Identities
+*IdentityAPI* | [**ListIdentitySchemas**](docs/IdentityAPI.md#listidentityschemas) | **Get** /schemas | Get all Identity Schemas
+*IdentityAPI* | [**ListIdentitySessions**](docs/IdentityAPI.md#listidentitysessions) | **Get** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
+*IdentityAPI* | [**ListSessions**](docs/IdentityAPI.md#listsessions) | **Get** /admin/sessions | List All Sessions
+*IdentityAPI* | [**PatchIdentity**](docs/IdentityAPI.md#patchidentity) | **Patch** /admin/identities/{id} | Patch an Identity
+*IdentityAPI* | [**UpdateIdentity**](docs/IdentityAPI.md#updateidentity) | **Put** /admin/identities/{id} | Update an Identity
+*JwkAPI* | [**CreateJsonWebKeySet**](docs/JwkAPI.md#createjsonwebkeyset) | **Post** /admin/keys/{set} | Create JSON Web Key
+*JwkAPI* | [**DeleteJsonWebKey**](docs/JwkAPI.md#deletejsonwebkey) | **Delete** /admin/keys/{set}/{kid} | Delete JSON Web Key
+*JwkAPI* | [**DeleteJsonWebKeySet**](docs/JwkAPI.md#deletejsonwebkeyset) | **Delete** /admin/keys/{set} | Delete JSON Web Key Set
+*JwkAPI* | [**GetJsonWebKey**](docs/JwkAPI.md#getjsonwebkey) | **Get** /admin/keys/{set}/{kid} | Get JSON Web Key
+*JwkAPI* | [**GetJsonWebKeySet**](docs/JwkAPI.md#getjsonwebkeyset) | **Get** /admin/keys/{set} | Retrieve a JSON Web Key Set
+*JwkAPI* | [**SetJsonWebKey**](docs/JwkAPI.md#setjsonwebkey) | **Put** /admin/keys/{set}/{kid} | Set JSON Web Key
+*JwkAPI* | [**SetJsonWebKeySet**](docs/JwkAPI.md#setjsonwebkeyset) | **Put** /admin/keys/{set} | Update a JSON Web Key Set
+*MetadataAPI* | [**GetVersion**](docs/MetadataAPI.md#getversion) | **Get** /version | Return Running Software Version.
+*MetadataAPI* | [**IsAlive**](docs/MetadataAPI.md#isalive) | **Get** /health/alive | Check HTTP Server Status
+*MetadataAPI* | [**IsReady**](docs/MetadataAPI.md#isready) | **Get** /health/ready | Check HTTP Server and Database Status
+*OAuth2API* | [**AcceptOAuth2ConsentRequest**](docs/OAuth2API.md#acceptoauth2consentrequest) | **Put** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
+*OAuth2API* | [**AcceptOAuth2LoginRequest**](docs/OAuth2API.md#acceptoauth2loginrequest) | **Put** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
+*OAuth2API* | [**AcceptOAuth2LogoutRequest**](docs/OAuth2API.md#acceptoauth2logoutrequest) | **Put** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
+*OAuth2API* | [**CreateOAuth2Client**](docs/OAuth2API.md#createoauth2client) | **Post** /admin/clients | Create OAuth 2.0 Client
+*OAuth2API* | [**DeleteOAuth2Client**](docs/OAuth2API.md#deleteoauth2client) | **Delete** /admin/clients/{id} | Delete OAuth 2.0 Client
+*OAuth2API* | [**DeleteOAuth2Token**](docs/OAuth2API.md#deleteoauth2token) | **Delete** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
+*OAuth2API* | [**DeleteTrustedOAuth2JwtGrantIssuer**](docs/OAuth2API.md#deletetrustedoauth2jwtgrantissuer) | **Delete** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
+*OAuth2API* | [**GetOAuth2Client**](docs/OAuth2API.md#getoauth2client) | **Get** /admin/clients/{id} | Get an OAuth 2.0 Client
+*OAuth2API* | [**GetOAuth2ConsentRequest**](docs/OAuth2API.md#getoauth2consentrequest) | **Get** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request
+*OAuth2API* | [**GetOAuth2LoginRequest**](docs/OAuth2API.md#getoauth2loginrequest) | **Get** /admin/oauth2/auth/requests/login | Get OAuth 2.0 Login Request
+*OAuth2API* | [**GetOAuth2LogoutRequest**](docs/OAuth2API.md#getoauth2logoutrequest) | **Get** /admin/oauth2/auth/requests/logout | Get OAuth 2.0 Session Logout Request
+*OAuth2API* | [**GetTrustedOAuth2JwtGrantIssuer**](docs/OAuth2API.md#gettrustedoauth2jwtgrantissuer) | **Get** /admin/trust/grants/jwt-bearer/issuers/{id} | Get Trusted OAuth2 JWT Bearer Grant Type Issuer
+*OAuth2API* | [**IntrospectOAuth2Token**](docs/OAuth2API.md#introspectoauth2token) | **Post** /admin/oauth2/introspect | Introspect OAuth2 Access and Refresh Tokens
+*OAuth2API* | [**ListOAuth2Clients**](docs/OAuth2API.md#listoauth2clients) | **Get** /admin/clients | List OAuth 2.0 Clients
+*OAuth2API* | [**ListOAuth2ConsentSessions**](docs/OAuth2API.md#listoauth2consentsessions) | **Get** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
+*OAuth2API* | [**ListTrustedOAuth2JwtGrantIssuers**](docs/OAuth2API.md#listtrustedoauth2jwtgrantissuers) | **Get** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
+*OAuth2API* | [**OAuth2Authorize**](docs/OAuth2API.md#oauth2authorize) | **Get** /oauth2/auth | OAuth 2.0 Authorize Endpoint
+*OAuth2API* | [**Oauth2TokenExchange**](docs/OAuth2API.md#oauth2tokenexchange) | **Post** /oauth2/token | The OAuth 2.0 Token Endpoint
+*OAuth2API* | [**PatchOAuth2Client**](docs/OAuth2API.md#patchoauth2client) | **Patch** /admin/clients/{id} | Patch OAuth 2.0 Client
+*OAuth2API* | [**RejectOAuth2ConsentRequest**](docs/OAuth2API.md#rejectoauth2consentrequest) | **Put** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
+*OAuth2API* | [**RejectOAuth2LoginRequest**](docs/OAuth2API.md#rejectoauth2loginrequest) | **Put** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
+*OAuth2API* | [**RejectOAuth2LogoutRequest**](docs/OAuth2API.md#rejectoauth2logoutrequest) | **Put** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
+*OAuth2API* | [**RevokeOAuth2ConsentSessions**](docs/OAuth2API.md#revokeoauth2consentsessions) | **Delete** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
+*OAuth2API* | [**RevokeOAuth2LoginSessions**](docs/OAuth2API.md#revokeoauth2loginsessions) | **Delete** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+*OAuth2API* | [**RevokeOAuth2Token**](docs/OAuth2API.md#revokeoauth2token) | **Post** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
+*OAuth2API* | [**SetOAuth2Client**](docs/OAuth2API.md#setoauth2client) | **Put** /admin/clients/{id} | Set OAuth 2.0 Client
+*OAuth2API* | [**SetOAuth2ClientLifespans**](docs/OAuth2API.md#setoauth2clientlifespans) | **Put** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
+*OAuth2API* | [**TrustOAuth2JwtGrantIssuer**](docs/OAuth2API.md#trustoauth2jwtgrantissuer) | **Post** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
+*OidcAPI* | [**CreateOidcDynamicClient**](docs/OidcAPI.md#createoidcdynamicclient) | **Post** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+*OidcAPI* | [**CreateVerifiableCredential**](docs/OidcAPI.md#createverifiablecredential) | **Post** /credentials | Issues a Verifiable Credential
+*OidcAPI* | [**DeleteOidcDynamicClient**](docs/OidcAPI.md#deleteoidcdynamicclient) | **Delete** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
+*OidcAPI* | [**DiscoverOidcConfiguration**](docs/OidcAPI.md#discoveroidcconfiguration) | **Get** /.well-known/openid-configuration | OpenID Connect Discovery
+*OidcAPI* | [**GetOidcDynamicClient**](docs/OidcAPI.md#getoidcdynamicclient) | **Get** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
+*OidcAPI* | [**GetOidcUserInfo**](docs/OidcAPI.md#getoidcuserinfo) | **Get** /userinfo | OpenID Connect Userinfo
+*OidcAPI* | [**RevokeOidcSession**](docs/OidcAPI.md#revokeoidcsession) | **Get** /oauth2/sessions/logout | OpenID Connect Front- and Back-channel Enabled Logout
+*OidcAPI* | [**SetOidcDynamicClient**](docs/OidcAPI.md#setoidcdynamicclient) | **Put** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration
+*PermissionAPI* | [**CheckPermission**](docs/PermissionAPI.md#checkpermission) | **Get** /relation-tuples/check/openapi | Check a permission
+*PermissionAPI* | [**CheckPermissionOrError**](docs/PermissionAPI.md#checkpermissionorerror) | **Get** /relation-tuples/check | Check a permission
+*PermissionAPI* | [**ExpandPermissions**](docs/PermissionAPI.md#expandpermissions) | **Get** /relation-tuples/expand | Expand a Relationship into permissions.
+*PermissionAPI* | [**PostCheckPermission**](docs/PermissionAPI.md#postcheckpermission) | **Post** /relation-tuples/check/openapi | Check a permission
+*PermissionAPI* | [**PostCheckPermissionOrError**](docs/PermissionAPI.md#postcheckpermissionorerror) | **Post** /relation-tuples/check | Check a permission
+*ProjectAPI* | [**CreateOrganization**](docs/ProjectAPI.md#createorganization) | **Post** /projects/{project_id}/organizations | 
+*ProjectAPI* | [**CreateProject**](docs/ProjectAPI.md#createproject) | **Post** /projects | Create a Project
+*ProjectAPI* | [**CreateProjectApiKey**](docs/ProjectAPI.md#createprojectapikey) | **Post** /projects/{project}/tokens | Create project API token
+*ProjectAPI* | [**DeleteOrganization**](docs/ProjectAPI.md#deleteorganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
+*ProjectAPI* | [**DeleteProjectApiKey**](docs/ProjectAPI.md#deleteprojectapikey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
+*ProjectAPI* | [**GetActiveProjectInConsole**](docs/ProjectAPI.md#getactiveprojectinconsole) | **Get** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+*ProjectAPI* | [**GetProject**](docs/ProjectAPI.md#getproject) | **Get** /projects/{project_id} | Get a Project
+*ProjectAPI* | [**GetProjectMembers**](docs/ProjectAPI.md#getprojectmembers) | **Get** /projects/{project}/members | Get all members associated with this project
+*ProjectAPI* | [**GetProjectMetrics**](docs/ProjectAPI.md#getprojectmetrics) | **Get** /projects/{project_id}/metrics | 
+*ProjectAPI* | [**ListOrganizations**](docs/ProjectAPI.md#listorganizations) | **Get** /projects/{project_id}/organizations | 
+*ProjectAPI* | [**ListProjectApiKeys**](docs/ProjectAPI.md#listprojectapikeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
+*ProjectAPI* | [**ListProjects**](docs/ProjectAPI.md#listprojects) | **Get** /projects | List All Projects
+*ProjectAPI* | [**PatchProject**](docs/ProjectAPI.md#patchproject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
+*ProjectAPI* | [**PurgeProject**](docs/ProjectAPI.md#purgeproject) | **Delete** /projects/{project_id} | Irrecoverably purge a project
+*ProjectAPI* | [**RemoveProjectMember**](docs/ProjectAPI.md#removeprojectmember) | **Delete** /projects/{project}/members/{member} | Remove a member associated with this project
+*ProjectAPI* | [**SetActiveProjectInConsole**](docs/ProjectAPI.md#setactiveprojectinconsole) | **Put** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
+*ProjectAPI* | [**SetProject**](docs/ProjectAPI.md#setproject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
+*ProjectAPI* | [**UpdateOrganization**](docs/ProjectAPI.md#updateorganization) | **Put** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project.
+*RelationshipAPI* | [**CheckOplSyntax**](docs/RelationshipAPI.md#checkoplsyntax) | **Post** /opl/syntax/check | Check the syntax of an OPL file
+*RelationshipAPI* | [**CreateRelationship**](docs/RelationshipAPI.md#createrelationship) | **Put** /admin/relation-tuples | Create a Relationship
+*RelationshipAPI* | [**DeleteRelationships**](docs/RelationshipAPI.md#deleterelationships) | **Delete** /admin/relation-tuples | Delete Relationships
+*RelationshipAPI* | [**GetRelationships**](docs/RelationshipAPI.md#getrelationships) | **Get** /relation-tuples | Query relationships
+*RelationshipAPI* | [**ListRelationshipNamespaces**](docs/RelationshipAPI.md#listrelationshipnamespaces) | **Get** /namespaces | Query namespaces
+*RelationshipAPI* | [**PatchRelationships**](docs/RelationshipAPI.md#patchrelationships) | **Patch** /admin/relation-tuples | Patch Multiple Relationships
+*WellknownAPI* | [**DiscoverJsonWebKeys**](docs/WellknownAPI.md#discoverjsonwebkeys) | **Get** /.well-known/jwks.json | Discover Well-Known JSON Web Keys
 
 
 ## Documentation For Models
@@ -434,7 +434,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 
-
+Authentication schemes defined for the API:
 ### basic
 
 - **Type**: HTTP basic authentication
@@ -449,7 +449,6 @@ auth := context.WithValue(context.Background(), sw.ContextBasicAuth, sw.BasicAut
 r, err := client.Service.Operation(auth, args)
 ```
 
-
 ### bearer
 
 - **Type**: HTTP Bearer token authentication
@@ -460,7 +459,6 @@ Example
 auth := context.WithValue(context.Background(), sw.ContextAccessToken, "BEARER_TOKEN_STRING")
 r, err := client.Service.Operation(auth, args)
 ```
-
 
 ### oauth2
 
@@ -491,7 +489,6 @@ tokenSource := oauth2cfg.TokenSource(createContext(httpClient), &token)
 auth := context.WithValue(oauth2.NoContext, sw.ContextOAuth2, tokenSource)
 r, err := client.Service.Operation(auth, args)
 ```
-
 
 ### oryAccessToken
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SetActiveProjectInConsoleBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SetActiveProjectInConsoleBody{}
+
 // SetActiveProjectInConsoleBody Set active project in the Ory Network Console Request Body
 type SetActiveProjectInConsoleBody struct {
 	// Project ID  The Project ID you want to set active.  format: uuid
@@ -67,24 +70,34 @@ func (o *SetActiveProjectInConsoleBody) SetProjectId(v string) {
 }
 
 func (o SetActiveProjectInConsoleBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["project_id"] = o.ProjectId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SetActiveProjectInConsoleBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["project_id"] = o.ProjectId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SetActiveProjectInConsoleBody) UnmarshalJSON(bytes []byte) (err error) {
 	varSetActiveProjectInConsoleBody := _SetActiveProjectInConsoleBody{}
 
-	if err = json.Unmarshal(bytes, &varSetActiveProjectInConsoleBody); err == nil {
-		*o = SetActiveProjectInConsoleBody(varSetActiveProjectInConsoleBody)
+	err = json.Unmarshal(bytes, &varSetActiveProjectInConsoleBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SetActiveProjectInConsoleBody(varSetActiveProjectInConsoleBody)
 
 	additionalProperties := make(map[string]interface{})
 

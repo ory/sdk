@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ContinueWithVerificationUiFlow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContinueWithVerificationUiFlow{}
+
 // ContinueWithVerificationUiFlow struct for ContinueWithVerificationUiFlow
 type ContinueWithVerificationUiFlow struct {
 	// The ID of the verification flow
@@ -73,7 +76,7 @@ func (o *ContinueWithVerificationUiFlow) SetId(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *ContinueWithVerificationUiFlow) GetUrl() string {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ContinueWithVerificationUiFlow) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContinueWithVerificationUiFlow) GetUrlOk() (*string, bool) {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
 	return o.Url, true
@@ -91,7 +94,7 @@ func (o *ContinueWithVerificationUiFlow) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *ContinueWithVerificationUiFlow) HasUrl() bool {
-	if o != nil && o.Url != nil {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -128,30 +131,38 @@ func (o *ContinueWithVerificationUiFlow) SetVerifiableAddress(v string) {
 }
 
 func (o ContinueWithVerificationUiFlow) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-	if o.Url != nil {
+	return json.Marshal(toSerialize)
+}
+
+func (o ContinueWithVerificationUiFlow) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
 	}
-	if true {
-		toSerialize["verifiable_address"] = o.VerifiableAddress
-	}
+	toSerialize["verifiable_address"] = o.VerifiableAddress
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ContinueWithVerificationUiFlow) UnmarshalJSON(bytes []byte) (err error) {
 	varContinueWithVerificationUiFlow := _ContinueWithVerificationUiFlow{}
 
-	if err = json.Unmarshal(bytes, &varContinueWithVerificationUiFlow); err == nil {
-		*o = ContinueWithVerificationUiFlow(varContinueWithVerificationUiFlow)
+	err = json.Unmarshal(bytes, &varContinueWithVerificationUiFlow)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ContinueWithVerificationUiFlow(varContinueWithVerificationUiFlow)
 
 	additionalProperties := make(map[string]interface{})
 

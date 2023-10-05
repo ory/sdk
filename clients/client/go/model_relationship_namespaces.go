@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RelationshipNamespaces type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RelationshipNamespaces{}
+
 // RelationshipNamespaces Relationship Namespace List
 type RelationshipNamespaces struct {
 	Namespaces []Namespace `json:"namespaces,omitempty"`
@@ -42,7 +45,7 @@ func NewRelationshipNamespacesWithDefaults() *RelationshipNamespaces {
 
 // GetNamespaces returns the Namespaces field value if set, zero value otherwise.
 func (o *RelationshipNamespaces) GetNamespaces() []Namespace {
-	if o == nil || o.Namespaces == nil {
+	if o == nil || IsNil(o.Namespaces) {
 		var ret []Namespace
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *RelationshipNamespaces) GetNamespaces() []Namespace {
 // GetNamespacesOk returns a tuple with the Namespaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RelationshipNamespaces) GetNamespacesOk() ([]Namespace, bool) {
-	if o == nil || o.Namespaces == nil {
+	if o == nil || IsNil(o.Namespaces) {
 		return nil, false
 	}
 	return o.Namespaces, true
@@ -60,7 +63,7 @@ func (o *RelationshipNamespaces) GetNamespacesOk() ([]Namespace, bool) {
 
 // HasNamespaces returns a boolean if a field has been set.
 func (o *RelationshipNamespaces) HasNamespaces() bool {
-	if o != nil && o.Namespaces != nil {
+	if o != nil && !IsNil(o.Namespaces) {
 		return true
 	}
 
@@ -73,8 +76,16 @@ func (o *RelationshipNamespaces) SetNamespaces(v []Namespace) {
 }
 
 func (o RelationshipNamespaces) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RelationshipNamespaces) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Namespaces != nil {
+	if !IsNil(o.Namespaces) {
 		toSerialize["namespaces"] = o.Namespaces
 	}
 
@@ -82,15 +93,19 @@ func (o RelationshipNamespaces) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *RelationshipNamespaces) UnmarshalJSON(bytes []byte) (err error) {
 	varRelationshipNamespaces := _RelationshipNamespaces{}
 
-	if err = json.Unmarshal(bytes, &varRelationshipNamespaces); err == nil {
-		*o = RelationshipNamespaces(varRelationshipNamespaces)
+	err = json.Unmarshal(bytes, &varRelationshipNamespaces)
+
+	if err != nil {
+		return err
 	}
+
+	*o = RelationshipNamespaces(varRelationshipNamespaces)
 
 	additionalProperties := make(map[string]interface{})
 

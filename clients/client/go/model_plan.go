@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Plan type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Plan{}
+
 // Plan struct for Plan
 type Plan struct {
 	// Name is the name of the plan.
@@ -94,27 +97,35 @@ func (o *Plan) SetVersion(v int64) {
 }
 
 func (o Plan) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Plan) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["version"] = o.Version
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["version"] = o.Version
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Plan) UnmarshalJSON(bytes []byte) (err error) {
 	varPlan := _Plan{}
 
-	if err = json.Unmarshal(bytes, &varPlan); err == nil {
-		*o = Plan(varPlan)
+	err = json.Unmarshal(bytes, &varPlan)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Plan(varPlan)
 
 	additionalProperties := make(map[string]interface{})
 

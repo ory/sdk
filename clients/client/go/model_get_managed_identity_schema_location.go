@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetManagedIdentitySchemaLocation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetManagedIdentitySchemaLocation{}
+
 // GetManagedIdentitySchemaLocation Ory Identity Schema Location
 type GetManagedIdentitySchemaLocation struct {
 	Location *string `json:"location,omitempty"`
@@ -42,7 +45,7 @@ func NewGetManagedIdentitySchemaLocationWithDefaults() *GetManagedIdentitySchema
 
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *GetManagedIdentitySchemaLocation) GetLocation() string {
-	if o == nil || o.Location == nil {
+	if o == nil || IsNil(o.Location) {
 		var ret string
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *GetManagedIdentitySchemaLocation) GetLocation() string {
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetManagedIdentitySchemaLocation) GetLocationOk() (*string, bool) {
-	if o == nil || o.Location == nil {
+	if o == nil || IsNil(o.Location) {
 		return nil, false
 	}
 	return o.Location, true
@@ -60,7 +63,7 @@ func (o *GetManagedIdentitySchemaLocation) GetLocationOk() (*string, bool) {
 
 // HasLocation returns a boolean if a field has been set.
 func (o *GetManagedIdentitySchemaLocation) HasLocation() bool {
-	if o != nil && o.Location != nil {
+	if o != nil && !IsNil(o.Location) {
 		return true
 	}
 
@@ -73,8 +76,16 @@ func (o *GetManagedIdentitySchemaLocation) SetLocation(v string) {
 }
 
 func (o GetManagedIdentitySchemaLocation) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetManagedIdentitySchemaLocation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Location != nil {
+	if !IsNil(o.Location) {
 		toSerialize["location"] = o.Location
 	}
 
@@ -82,15 +93,19 @@ func (o GetManagedIdentitySchemaLocation) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *GetManagedIdentitySchemaLocation) UnmarshalJSON(bytes []byte) (err error) {
 	varGetManagedIdentitySchemaLocation := _GetManagedIdentitySchemaLocation{}
 
-	if err = json.Unmarshal(bytes, &varGetManagedIdentitySchemaLocation); err == nil {
-		*o = GetManagedIdentitySchemaLocation(varGetManagedIdentitySchemaLocation)
+	err = json.Unmarshal(bytes, &varGetManagedIdentitySchemaLocation)
+
+	if err != nil {
+		return err
 	}
+
+	*o = GetManagedIdentitySchemaLocation(varGetManagedIdentitySchemaLocation)
 
 	additionalProperties := make(map[string]interface{})
 

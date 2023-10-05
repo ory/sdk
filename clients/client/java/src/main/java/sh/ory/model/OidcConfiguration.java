@@ -52,7 +52,7 @@ import sh.ory.JSON;
  * Includes links to several endpoints (for example &#x60;/oauth2/token&#x60;) and exposes information on supported signature algorithms among others.
  */
 @ApiModel(description = "Includes links to several endpoints (for example `/oauth2/token`) and exposes information on supported signature algorithms among others.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-26T07:22:38.275636327Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-05T13:50:54.246292158Z[Etc/UTC]")
 public class OidcConfiguration {
   public static final String SERIALIZED_NAME_AUTHORIZATION_ENDPOINT = "authorization_endpoint";
   @SerializedName(SERIALIZED_NAME_AUTHORIZATION_ENDPOINT)

@@ -2,7 +2,7 @@
 
 Ory APIs
 - API version: v1.2.10
-  - Build date: 2023-09-26T07:22:38.275636327Z[Etc/UTC]
+  - Build date: 2023-10-05T13:50:54.246292158Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.

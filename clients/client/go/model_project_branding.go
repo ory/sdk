@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ProjectBranding type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectBranding{}
+
 // ProjectBranding struct for ProjectBranding
 type ProjectBranding struct {
 	// The Customization Creation Date
@@ -201,39 +204,39 @@ func (o *ProjectBranding) SetUpdatedAt(v time.Time) {
 }
 
 func (o ProjectBranding) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectBranding) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["default_theme"] = o.DefaultTheme
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["project_id"] = o.ProjectId
-	}
-	if true {
-		toSerialize["themes"] = o.Themes
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["default_theme"] = o.DefaultTheme
+	toSerialize["id"] = o.Id
+	toSerialize["project_id"] = o.ProjectId
+	toSerialize["themes"] = o.Themes
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ProjectBranding) UnmarshalJSON(bytes []byte) (err error) {
 	varProjectBranding := _ProjectBranding{}
 
-	if err = json.Unmarshal(bytes, &varProjectBranding); err == nil {
-		*o = ProjectBranding(varProjectBranding)
+	err = json.Unmarshal(bytes, &varProjectBranding)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectBranding(varProjectBranding)
 
 	additionalProperties := make(map[string]interface{})
 

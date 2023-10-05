@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AcceptOAuth2LoginRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AcceptOAuth2LoginRequest{}
+
 // AcceptOAuth2LoginRequest struct for AcceptOAuth2LoginRequest
 type AcceptOAuth2LoginRequest struct {
 	// ACR sets the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two factor authentication.
@@ -58,7 +61,7 @@ func NewAcceptOAuth2LoginRequestWithDefaults() *AcceptOAuth2LoginRequest {
 
 // GetAcr returns the Acr field value if set, zero value otherwise.
 func (o *AcceptOAuth2LoginRequest) GetAcr() string {
-	if o == nil || o.Acr == nil {
+	if o == nil || IsNil(o.Acr) {
 		var ret string
 		return ret
 	}
@@ -68,7 +71,7 @@ func (o *AcceptOAuth2LoginRequest) GetAcr() string {
 // GetAcrOk returns a tuple with the Acr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AcceptOAuth2LoginRequest) GetAcrOk() (*string, bool) {
-	if o == nil || o.Acr == nil {
+	if o == nil || IsNil(o.Acr) {
 		return nil, false
 	}
 	return o.Acr, true
@@ -76,7 +79,7 @@ func (o *AcceptOAuth2LoginRequest) GetAcrOk() (*string, bool) {
 
 // HasAcr returns a boolean if a field has been set.
 func (o *AcceptOAuth2LoginRequest) HasAcr() bool {
-	if o != nil && o.Acr != nil {
+	if o != nil && !IsNil(o.Acr) {
 		return true
 	}
 
@@ -90,7 +93,7 @@ func (o *AcceptOAuth2LoginRequest) SetAcr(v string) {
 
 // GetAmr returns the Amr field value if set, zero value otherwise.
 func (o *AcceptOAuth2LoginRequest) GetAmr() []string {
-	if o == nil || o.Amr == nil {
+	if o == nil || IsNil(o.Amr) {
 		var ret []string
 		return ret
 	}
@@ -100,7 +103,7 @@ func (o *AcceptOAuth2LoginRequest) GetAmr() []string {
 // GetAmrOk returns a tuple with the Amr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AcceptOAuth2LoginRequest) GetAmrOk() ([]string, bool) {
-	if o == nil || o.Amr == nil {
+	if o == nil || IsNil(o.Amr) {
 		return nil, false
 	}
 	return o.Amr, true
@@ -108,7 +111,7 @@ func (o *AcceptOAuth2LoginRequest) GetAmrOk() ([]string, bool) {
 
 // HasAmr returns a boolean if a field has been set.
 func (o *AcceptOAuth2LoginRequest) HasAmr() bool {
-	if o != nil && o.Amr != nil {
+	if o != nil && !IsNil(o.Amr) {
 		return true
 	}
 
@@ -122,7 +125,7 @@ func (o *AcceptOAuth2LoginRequest) SetAmr(v []string) {
 
 // GetContext returns the Context field value if set, zero value otherwise.
 func (o *AcceptOAuth2LoginRequest) GetContext() map[string]interface{} {
-	if o == nil || o.Context == nil {
+	if o == nil || IsNil(o.Context) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -132,15 +135,15 @@ func (o *AcceptOAuth2LoginRequest) GetContext() map[string]interface{} {
 // GetContextOk returns a tuple with the Context field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AcceptOAuth2LoginRequest) GetContextOk() (map[string]interface{}, bool) {
-	if o == nil || o.Context == nil {
-		return nil, false
+	if o == nil || IsNil(o.Context) {
+		return map[string]interface{}{}, false
 	}
 	return o.Context, true
 }
 
 // HasContext returns a boolean if a field has been set.
 func (o *AcceptOAuth2LoginRequest) HasContext() bool {
-	if o != nil && o.Context != nil {
+	if o != nil && !IsNil(o.Context) {
 		return true
 	}
 
@@ -154,7 +157,7 @@ func (o *AcceptOAuth2LoginRequest) SetContext(v map[string]interface{}) {
 
 // GetExtendSessionLifespan returns the ExtendSessionLifespan field value if set, zero value otherwise.
 func (o *AcceptOAuth2LoginRequest) GetExtendSessionLifespan() bool {
-	if o == nil || o.ExtendSessionLifespan == nil {
+	if o == nil || IsNil(o.ExtendSessionLifespan) {
 		var ret bool
 		return ret
 	}
@@ -164,7 +167,7 @@ func (o *AcceptOAuth2LoginRequest) GetExtendSessionLifespan() bool {
 // GetExtendSessionLifespanOk returns a tuple with the ExtendSessionLifespan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AcceptOAuth2LoginRequest) GetExtendSessionLifespanOk() (*bool, bool) {
-	if o == nil || o.ExtendSessionLifespan == nil {
+	if o == nil || IsNil(o.ExtendSessionLifespan) {
 		return nil, false
 	}
 	return o.ExtendSessionLifespan, true
@@ -172,7 +175,7 @@ func (o *AcceptOAuth2LoginRequest) GetExtendSessionLifespanOk() (*bool, bool) {
 
 // HasExtendSessionLifespan returns a boolean if a field has been set.
 func (o *AcceptOAuth2LoginRequest) HasExtendSessionLifespan() bool {
-	if o != nil && o.ExtendSessionLifespan != nil {
+	if o != nil && !IsNil(o.ExtendSessionLifespan) {
 		return true
 	}
 
@@ -186,7 +189,7 @@ func (o *AcceptOAuth2LoginRequest) SetExtendSessionLifespan(v bool) {
 
 // GetForceSubjectIdentifier returns the ForceSubjectIdentifier field value if set, zero value otherwise.
 func (o *AcceptOAuth2LoginRequest) GetForceSubjectIdentifier() string {
-	if o == nil || o.ForceSubjectIdentifier == nil {
+	if o == nil || IsNil(o.ForceSubjectIdentifier) {
 		var ret string
 		return ret
 	}
@@ -196,7 +199,7 @@ func (o *AcceptOAuth2LoginRequest) GetForceSubjectIdentifier() string {
 // GetForceSubjectIdentifierOk returns a tuple with the ForceSubjectIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AcceptOAuth2LoginRequest) GetForceSubjectIdentifierOk() (*string, bool) {
-	if o == nil || o.ForceSubjectIdentifier == nil {
+	if o == nil || IsNil(o.ForceSubjectIdentifier) {
 		return nil, false
 	}
 	return o.ForceSubjectIdentifier, true
@@ -204,7 +207,7 @@ func (o *AcceptOAuth2LoginRequest) GetForceSubjectIdentifierOk() (*string, bool)
 
 // HasForceSubjectIdentifier returns a boolean if a field has been set.
 func (o *AcceptOAuth2LoginRequest) HasForceSubjectIdentifier() bool {
-	if o != nil && o.ForceSubjectIdentifier != nil {
+	if o != nil && !IsNil(o.ForceSubjectIdentifier) {
 		return true
 	}
 
@@ -218,7 +221,7 @@ func (o *AcceptOAuth2LoginRequest) SetForceSubjectIdentifier(v string) {
 
 // GetIdentityProviderSessionId returns the IdentityProviderSessionId field value if set, zero value otherwise.
 func (o *AcceptOAuth2LoginRequest) GetIdentityProviderSessionId() string {
-	if o == nil || o.IdentityProviderSessionId == nil {
+	if o == nil || IsNil(o.IdentityProviderSessionId) {
 		var ret string
 		return ret
 	}
@@ -228,7 +231,7 @@ func (o *AcceptOAuth2LoginRequest) GetIdentityProviderSessionId() string {
 // GetIdentityProviderSessionIdOk returns a tuple with the IdentityProviderSessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AcceptOAuth2LoginRequest) GetIdentityProviderSessionIdOk() (*string, bool) {
-	if o == nil || o.IdentityProviderSessionId == nil {
+	if o == nil || IsNil(o.IdentityProviderSessionId) {
 		return nil, false
 	}
 	return o.IdentityProviderSessionId, true
@@ -236,7 +239,7 @@ func (o *AcceptOAuth2LoginRequest) GetIdentityProviderSessionIdOk() (*string, bo
 
 // HasIdentityProviderSessionId returns a boolean if a field has been set.
 func (o *AcceptOAuth2LoginRequest) HasIdentityProviderSessionId() bool {
-	if o != nil && o.IdentityProviderSessionId != nil {
+	if o != nil && !IsNil(o.IdentityProviderSessionId) {
 		return true
 	}
 
@@ -250,7 +253,7 @@ func (o *AcceptOAuth2LoginRequest) SetIdentityProviderSessionId(v string) {
 
 // GetRemember returns the Remember field value if set, zero value otherwise.
 func (o *AcceptOAuth2LoginRequest) GetRemember() bool {
-	if o == nil || o.Remember == nil {
+	if o == nil || IsNil(o.Remember) {
 		var ret bool
 		return ret
 	}
@@ -260,7 +263,7 @@ func (o *AcceptOAuth2LoginRequest) GetRemember() bool {
 // GetRememberOk returns a tuple with the Remember field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AcceptOAuth2LoginRequest) GetRememberOk() (*bool, bool) {
-	if o == nil || o.Remember == nil {
+	if o == nil || IsNil(o.Remember) {
 		return nil, false
 	}
 	return o.Remember, true
@@ -268,7 +271,7 @@ func (o *AcceptOAuth2LoginRequest) GetRememberOk() (*bool, bool) {
 
 // HasRemember returns a boolean if a field has been set.
 func (o *AcceptOAuth2LoginRequest) HasRemember() bool {
-	if o != nil && o.Remember != nil {
+	if o != nil && !IsNil(o.Remember) {
 		return true
 	}
 
@@ -282,7 +285,7 @@ func (o *AcceptOAuth2LoginRequest) SetRemember(v bool) {
 
 // GetRememberFor returns the RememberFor field value if set, zero value otherwise.
 func (o *AcceptOAuth2LoginRequest) GetRememberFor() int64 {
-	if o == nil || o.RememberFor == nil {
+	if o == nil || IsNil(o.RememberFor) {
 		var ret int64
 		return ret
 	}
@@ -292,7 +295,7 @@ func (o *AcceptOAuth2LoginRequest) GetRememberFor() int64 {
 // GetRememberForOk returns a tuple with the RememberFor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AcceptOAuth2LoginRequest) GetRememberForOk() (*int64, bool) {
-	if o == nil || o.RememberFor == nil {
+	if o == nil || IsNil(o.RememberFor) {
 		return nil, false
 	}
 	return o.RememberFor, true
@@ -300,7 +303,7 @@ func (o *AcceptOAuth2LoginRequest) GetRememberForOk() (*int64, bool) {
 
 // HasRememberFor returns a boolean if a field has been set.
 func (o *AcceptOAuth2LoginRequest) HasRememberFor() bool {
-	if o != nil && o.RememberFor != nil {
+	if o != nil && !IsNil(o.RememberFor) {
 		return true
 	}
 
@@ -337,48 +340,58 @@ func (o *AcceptOAuth2LoginRequest) SetSubject(v string) {
 }
 
 func (o AcceptOAuth2LoginRequest) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o AcceptOAuth2LoginRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Acr != nil {
+	if !IsNil(o.Acr) {
 		toSerialize["acr"] = o.Acr
 	}
-	if o.Amr != nil {
+	if !IsNil(o.Amr) {
 		toSerialize["amr"] = o.Amr
 	}
-	if o.Context != nil {
+	if !IsNil(o.Context) {
 		toSerialize["context"] = o.Context
 	}
-	if o.ExtendSessionLifespan != nil {
+	if !IsNil(o.ExtendSessionLifespan) {
 		toSerialize["extend_session_lifespan"] = o.ExtendSessionLifespan
 	}
-	if o.ForceSubjectIdentifier != nil {
+	if !IsNil(o.ForceSubjectIdentifier) {
 		toSerialize["force_subject_identifier"] = o.ForceSubjectIdentifier
 	}
-	if o.IdentityProviderSessionId != nil {
+	if !IsNil(o.IdentityProviderSessionId) {
 		toSerialize["identity_provider_session_id"] = o.IdentityProviderSessionId
 	}
-	if o.Remember != nil {
+	if !IsNil(o.Remember) {
 		toSerialize["remember"] = o.Remember
 	}
-	if o.RememberFor != nil {
+	if !IsNil(o.RememberFor) {
 		toSerialize["remember_for"] = o.RememberFor
 	}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
+	toSerialize["subject"] = o.Subject
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *AcceptOAuth2LoginRequest) UnmarshalJSON(bytes []byte) (err error) {
 	varAcceptOAuth2LoginRequest := _AcceptOAuth2LoginRequest{}
 
-	if err = json.Unmarshal(bytes, &varAcceptOAuth2LoginRequest); err == nil {
-		*o = AcceptOAuth2LoginRequest(varAcceptOAuth2LoginRequest)
+	err = json.Unmarshal(bytes, &varAcceptOAuth2LoginRequest)
+
+	if err != nil {
+		return err
 	}
+
+	*o = AcceptOAuth2LoginRequest(varAcceptOAuth2LoginRequest)
 
 	additionalProperties := make(map[string]interface{})
 

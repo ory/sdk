@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloudAccount type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudAccount{}
+
 // CloudAccount struct for CloudAccount
 type CloudAccount struct {
 	Email *string `json:"email,omitempty"`
@@ -44,7 +47,7 @@ func NewCloudAccountWithDefaults() *CloudAccount {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *CloudAccount) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *CloudAccount) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudAccount) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -62,7 +65,7 @@ func (o *CloudAccount) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *CloudAccount) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *CloudAccount) SetEmail(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CloudAccount) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *CloudAccount) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudAccount) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -94,7 +97,7 @@ func (o *CloudAccount) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *CloudAccount) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *CloudAccount) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CloudAccount) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *CloudAccount) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CloudAccount) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -126,7 +129,7 @@ func (o *CloudAccount) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *CloudAccount) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -139,14 +142,22 @@ func (o *CloudAccount) SetName(v string) {
 }
 
 func (o CloudAccount) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CloudAccount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Email != nil {
+	if !IsNil(o.Email) {
 		toSerialize["email"] = o.Email
 	}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name != nil {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 
@@ -154,15 +165,19 @@ func (o CloudAccount) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CloudAccount) UnmarshalJSON(bytes []byte) (err error) {
 	varCloudAccount := _CloudAccount{}
 
-	if err = json.Unmarshal(bytes, &varCloudAccount); err == nil {
-		*o = CloudAccount(varCloudAccount)
+	err = json.Unmarshal(bytes, &varCloudAccount)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CloudAccount(varCloudAccount)
 
 	additionalProperties := make(map[string]interface{})
 

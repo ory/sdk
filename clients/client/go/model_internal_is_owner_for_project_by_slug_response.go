@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InternalIsOwnerForProjectBySlugResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InternalIsOwnerForProjectBySlugResponse{}
+
 // InternalIsOwnerForProjectBySlugResponse struct for InternalIsOwnerForProjectBySlugResponse
 type InternalIsOwnerForProjectBySlugResponse struct {
 	// ProjectID is the project's ID.
@@ -67,24 +70,34 @@ func (o *InternalIsOwnerForProjectBySlugResponse) SetProjectId(v string) {
 }
 
 func (o InternalIsOwnerForProjectBySlugResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["project_id"] = o.ProjectId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InternalIsOwnerForProjectBySlugResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["project_id"] = o.ProjectId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *InternalIsOwnerForProjectBySlugResponse) UnmarshalJSON(bytes []byte) (err error) {
 	varInternalIsOwnerForProjectBySlugResponse := _InternalIsOwnerForProjectBySlugResponse{}
 
-	if err = json.Unmarshal(bytes, &varInternalIsOwnerForProjectBySlugResponse); err == nil {
-		*o = InternalIsOwnerForProjectBySlugResponse(varInternalIsOwnerForProjectBySlugResponse)
+	err = json.Unmarshal(bytes, &varInternalIsOwnerForProjectBySlugResponse)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InternalIsOwnerForProjectBySlugResponse(varInternalIsOwnerForProjectBySlugResponse)
 
 	additionalProperties := make(map[string]interface{})
 

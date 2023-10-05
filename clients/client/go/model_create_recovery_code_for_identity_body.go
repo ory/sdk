@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateRecoveryCodeForIdentityBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateRecoveryCodeForIdentityBody{}
+
 // CreateRecoveryCodeForIdentityBody Create Recovery Code for Identity Request Body
 type CreateRecoveryCodeForIdentityBody struct {
 	// Code Expires In  The recovery code will expire after that amount of time has passed. Defaults to the configuration value of `selfservice.methods.code.config.lifespan`.
@@ -46,7 +49,7 @@ func NewCreateRecoveryCodeForIdentityBodyWithDefaults() *CreateRecoveryCodeForId
 
 // GetExpiresIn returns the ExpiresIn field value if set, zero value otherwise.
 func (o *CreateRecoveryCodeForIdentityBody) GetExpiresIn() string {
-	if o == nil || o.ExpiresIn == nil {
+	if o == nil || IsNil(o.ExpiresIn) {
 		var ret string
 		return ret
 	}
@@ -56,7 +59,7 @@ func (o *CreateRecoveryCodeForIdentityBody) GetExpiresIn() string {
 // GetExpiresInOk returns a tuple with the ExpiresIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateRecoveryCodeForIdentityBody) GetExpiresInOk() (*string, bool) {
-	if o == nil || o.ExpiresIn == nil {
+	if o == nil || IsNil(o.ExpiresIn) {
 		return nil, false
 	}
 	return o.ExpiresIn, true
@@ -64,7 +67,7 @@ func (o *CreateRecoveryCodeForIdentityBody) GetExpiresInOk() (*string, bool) {
 
 // HasExpiresIn returns a boolean if a field has been set.
 func (o *CreateRecoveryCodeForIdentityBody) HasExpiresIn() bool {
-	if o != nil && o.ExpiresIn != nil {
+	if o != nil && !IsNil(o.ExpiresIn) {
 		return true
 	}
 
@@ -101,27 +104,37 @@ func (o *CreateRecoveryCodeForIdentityBody) SetIdentityId(v string) {
 }
 
 func (o CreateRecoveryCodeForIdentityBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateRecoveryCodeForIdentityBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ExpiresIn != nil {
+	if !IsNil(o.ExpiresIn) {
 		toSerialize["expires_in"] = o.ExpiresIn
 	}
-	if true {
-		toSerialize["identity_id"] = o.IdentityId
-	}
+	toSerialize["identity_id"] = o.IdentityId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CreateRecoveryCodeForIdentityBody) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateRecoveryCodeForIdentityBody := _CreateRecoveryCodeForIdentityBody{}
 
-	if err = json.Unmarshal(bytes, &varCreateRecoveryCodeForIdentityBody); err == nil {
-		*o = CreateRecoveryCodeForIdentityBody(varCreateRecoveryCodeForIdentityBody)
+	err = json.Unmarshal(bytes, &varCreateRecoveryCodeForIdentityBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateRecoveryCodeForIdentityBody(varCreateRecoveryCodeForIdentityBody)
 
 	additionalProperties := make(map[string]interface{})
 

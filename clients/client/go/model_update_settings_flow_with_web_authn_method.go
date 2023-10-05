@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateSettingsFlowWithWebAuthnMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSettingsFlowWithWebAuthnMethod{}
+
 // UpdateSettingsFlowWithWebAuthnMethod Update Settings Flow with WebAuthn Method
 type UpdateSettingsFlowWithWebAuthnMethod struct {
 	// CSRFToken is the anti-CSRF token
@@ -52,7 +55,7 @@ func NewUpdateSettingsFlowWithWebAuthnMethodWithDefaults() *UpdateSettingsFlowWi
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -62,7 +65,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -70,7 +73,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetCsrfTokenOk() (*string, bool) 
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) SetMethod(v string) {
 
 // GetWebauthnRegister returns the WebauthnRegister field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRegister() string {
-	if o == nil || o.WebauthnRegister == nil {
+	if o == nil || IsNil(o.WebauthnRegister) {
 		var ret string
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRegister() string {
 // GetWebauthnRegisterOk returns a tuple with the WebauthnRegister field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRegisterOk() (*string, bool) {
-	if o == nil || o.WebauthnRegister == nil {
+	if o == nil || IsNil(o.WebauthnRegister) {
 		return nil, false
 	}
 	return o.WebauthnRegister, true
@@ -126,7 +129,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRegisterOk() (*string,
 
 // HasWebauthnRegister returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) HasWebauthnRegister() bool {
-	if o != nil && o.WebauthnRegister != nil {
+	if o != nil && !IsNil(o.WebauthnRegister) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) SetWebauthnRegister(v string) {
 
 // GetWebauthnRegisterDisplayname returns the WebauthnRegisterDisplayname field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRegisterDisplayname() string {
-	if o == nil || o.WebauthnRegisterDisplayname == nil {
+	if o == nil || IsNil(o.WebauthnRegisterDisplayname) {
 		var ret string
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRegisterDisplayname() 
 // GetWebauthnRegisterDisplaynameOk returns a tuple with the WebauthnRegisterDisplayname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRegisterDisplaynameOk() (*string, bool) {
-	if o == nil || o.WebauthnRegisterDisplayname == nil {
+	if o == nil || IsNil(o.WebauthnRegisterDisplayname) {
 		return nil, false
 	}
 	return o.WebauthnRegisterDisplayname, true
@@ -158,7 +161,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRegisterDisplaynameOk(
 
 // HasWebauthnRegisterDisplayname returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) HasWebauthnRegisterDisplayname() bool {
-	if o != nil && o.WebauthnRegisterDisplayname != nil {
+	if o != nil && !IsNil(o.WebauthnRegisterDisplayname) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) SetWebauthnRegisterDisplayname(v 
 
 // GetWebauthnRemove returns the WebauthnRemove field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRemove() string {
-	if o == nil || o.WebauthnRemove == nil {
+	if o == nil || IsNil(o.WebauthnRemove) {
 		var ret string
 		return ret
 	}
@@ -182,7 +185,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRemove() string {
 // GetWebauthnRemoveOk returns a tuple with the WebauthnRemove field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRemoveOk() (*string, bool) {
-	if o == nil || o.WebauthnRemove == nil {
+	if o == nil || IsNil(o.WebauthnRemove) {
 		return nil, false
 	}
 	return o.WebauthnRemove, true
@@ -190,7 +193,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetWebauthnRemoveOk() (*string, b
 
 // HasWebauthnRemove returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithWebAuthnMethod) HasWebauthnRemove() bool {
-	if o != nil && o.WebauthnRemove != nil {
+	if o != nil && !IsNil(o.WebauthnRemove) {
 		return true
 	}
 
@@ -203,20 +206,26 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) SetWebauthnRemove(v string) {
 }
 
 func (o UpdateSettingsFlowWithWebAuthnMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateSettingsFlowWithWebAuthnMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if o.WebauthnRegister != nil {
+	toSerialize["method"] = o.Method
+	if !IsNil(o.WebauthnRegister) {
 		toSerialize["webauthn_register"] = o.WebauthnRegister
 	}
-	if o.WebauthnRegisterDisplayname != nil {
+	if !IsNil(o.WebauthnRegisterDisplayname) {
 		toSerialize["webauthn_register_displayname"] = o.WebauthnRegisterDisplayname
 	}
-	if o.WebauthnRemove != nil {
+	if !IsNil(o.WebauthnRemove) {
 		toSerialize["webauthn_remove"] = o.WebauthnRemove
 	}
 
@@ -224,15 +233,19 @@ func (o UpdateSettingsFlowWithWebAuthnMethod) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateSettingsFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err error) {
 	varUpdateSettingsFlowWithWebAuthnMethod := _UpdateSettingsFlowWithWebAuthnMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithWebAuthnMethod); err == nil {
-		*o = UpdateSettingsFlowWithWebAuthnMethod(varUpdateSettingsFlowWithWebAuthnMethod)
+	err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithWebAuthnMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateSettingsFlowWithWebAuthnMethod(varUpdateSettingsFlowWithWebAuthnMethod)
 
 	additionalProperties := make(map[string]interface{})
 

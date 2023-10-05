@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the IdentityCredentials type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityCredentials{}
+
 // IdentityCredentials Credentials represents a specific credential type
 type IdentityCredentials struct {
 	Config map[string]interface{} `json:"config,omitempty"`
@@ -52,7 +55,7 @@ func NewIdentityCredentialsWithDefaults() *IdentityCredentials {
 
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *IdentityCredentials) GetConfig() map[string]interface{} {
-	if o == nil || o.Config == nil {
+	if o == nil || IsNil(o.Config) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -62,15 +65,15 @@ func (o *IdentityCredentials) GetConfig() map[string]interface{} {
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentials) GetConfigOk() (map[string]interface{}, bool) {
-	if o == nil || o.Config == nil {
-		return nil, false
+	if o == nil || IsNil(o.Config) {
+		return map[string]interface{}{}, false
 	}
 	return o.Config, true
 }
 
 // HasConfig returns a boolean if a field has been set.
 func (o *IdentityCredentials) HasConfig() bool {
-	if o != nil && o.Config != nil {
+	if o != nil && !IsNil(o.Config) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *IdentityCredentials) SetConfig(v map[string]interface{}) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *IdentityCredentials) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -94,7 +97,7 @@ func (o *IdentityCredentials) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentials) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -102,7 +105,7 @@ func (o *IdentityCredentials) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *IdentityCredentials) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *IdentityCredentials) SetCreatedAt(v time.Time) {
 
 // GetIdentifiers returns the Identifiers field value if set, zero value otherwise.
 func (o *IdentityCredentials) GetIdentifiers() []string {
-	if o == nil || o.Identifiers == nil {
+	if o == nil || IsNil(o.Identifiers) {
 		var ret []string
 		return ret
 	}
@@ -126,7 +129,7 @@ func (o *IdentityCredentials) GetIdentifiers() []string {
 // GetIdentifiersOk returns a tuple with the Identifiers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentials) GetIdentifiersOk() ([]string, bool) {
-	if o == nil || o.Identifiers == nil {
+	if o == nil || IsNil(o.Identifiers) {
 		return nil, false
 	}
 	return o.Identifiers, true
@@ -134,7 +137,7 @@ func (o *IdentityCredentials) GetIdentifiersOk() ([]string, bool) {
 
 // HasIdentifiers returns a boolean if a field has been set.
 func (o *IdentityCredentials) HasIdentifiers() bool {
-	if o != nil && o.Identifiers != nil {
+	if o != nil && !IsNil(o.Identifiers) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *IdentityCredentials) SetIdentifiers(v []string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *IdentityCredentials) GetType() IdentityCredentialsType {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret IdentityCredentialsType
 		return ret
 	}
@@ -158,7 +161,7 @@ func (o *IdentityCredentials) GetType() IdentityCredentialsType {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentials) GetTypeOk() (*IdentityCredentialsType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -166,7 +169,7 @@ func (o *IdentityCredentials) GetTypeOk() (*IdentityCredentialsType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *IdentityCredentials) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *IdentityCredentials) SetType(v IdentityCredentialsType) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *IdentityCredentials) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -190,7 +193,7 @@ func (o *IdentityCredentials) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentials) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -198,7 +201,7 @@ func (o *IdentityCredentials) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *IdentityCredentials) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *IdentityCredentials) SetUpdatedAt(v time.Time) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *IdentityCredentials) GetVersion() int64 {
-	if o == nil || o.Version == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret int64
 		return ret
 	}
@@ -222,7 +225,7 @@ func (o *IdentityCredentials) GetVersion() int64 {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentials) GetVersionOk() (*int64, bool) {
-	if o == nil || o.Version == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
 	return o.Version, true
@@ -230,7 +233,7 @@ func (o *IdentityCredentials) GetVersionOk() (*int64, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *IdentityCredentials) HasVersion() bool {
-	if o != nil && o.Version != nil {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -243,23 +246,31 @@ func (o *IdentityCredentials) SetVersion(v int64) {
 }
 
 func (o IdentityCredentials) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Config != nil {
+	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
-	if o.CreatedAt != nil {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Identifiers != nil {
+	if !IsNil(o.Identifiers) {
 		toSerialize["identifiers"] = o.Identifiers
 	}
-	if o.Type != nil {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if o.UpdatedAt != nil {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.Version != nil {
+	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
 
@@ -267,15 +278,19 @@ func (o IdentityCredentials) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityCredentials) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityCredentials := _IdentityCredentials{}
 
-	if err = json.Unmarshal(bytes, &varIdentityCredentials); err == nil {
-		*o = IdentityCredentials(varIdentityCredentials)
+	err = json.Unmarshal(bytes, &varIdentityCredentials)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityCredentials(varIdentityCredentials)
 
 	additionalProperties := make(map[string]interface{})
 

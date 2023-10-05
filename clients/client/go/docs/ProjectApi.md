@@ -1,27 +1,27 @@
-# \ProjectApi
+# \ProjectAPI
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateOrganization**](ProjectApi.md#CreateOrganization) | **Post** /projects/{project_id}/organizations | 
-[**CreateProject**](ProjectApi.md#CreateProject) | **Post** /projects | Create a Project
-[**CreateProjectApiKey**](ProjectApi.md#CreateProjectApiKey) | **Post** /projects/{project}/tokens | Create project API token
-[**DeleteOrganization**](ProjectApi.md#DeleteOrganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
-[**DeleteProjectApiKey**](ProjectApi.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
-[**GetActiveProjectInConsole**](ProjectApi.md#GetActiveProjectInConsole) | **Get** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
-[**GetProject**](ProjectApi.md#GetProject) | **Get** /projects/{project_id} | Get a Project
-[**GetProjectMembers**](ProjectApi.md#GetProjectMembers) | **Get** /projects/{project}/members | Get all members associated with this project
-[**GetProjectMetrics**](ProjectApi.md#GetProjectMetrics) | **Get** /projects/{project_id}/metrics | 
-[**ListOrganizations**](ProjectApi.md#ListOrganizations) | **Get** /projects/{project_id}/organizations | 
-[**ListProjectApiKeys**](ProjectApi.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
-[**ListProjects**](ProjectApi.md#ListProjects) | **Get** /projects | List All Projects
-[**PatchProject**](ProjectApi.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
-[**PurgeProject**](ProjectApi.md#PurgeProject) | **Delete** /projects/{project_id} | Irrecoverably purge a project
-[**RemoveProjectMember**](ProjectApi.md#RemoveProjectMember) | **Delete** /projects/{project}/members/{member} | Remove a member associated with this project
-[**SetActiveProjectInConsole**](ProjectApi.md#SetActiveProjectInConsole) | **Put** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
-[**SetProject**](ProjectApi.md#SetProject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
-[**UpdateOrganization**](ProjectApi.md#UpdateOrganization) | **Put** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project.
+[**CreateOrganization**](ProjectAPI.md#CreateOrganization) | **Post** /projects/{project_id}/organizations | 
+[**CreateProject**](ProjectAPI.md#CreateProject) | **Post** /projects | Create a Project
+[**CreateProjectApiKey**](ProjectAPI.md#CreateProjectApiKey) | **Post** /projects/{project}/tokens | Create project API token
+[**DeleteOrganization**](ProjectAPI.md#DeleteOrganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
+[**DeleteProjectApiKey**](ProjectAPI.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
+[**GetActiveProjectInConsole**](ProjectAPI.md#GetActiveProjectInConsole) | **Get** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+[**GetProject**](ProjectAPI.md#GetProject) | **Get** /projects/{project_id} | Get a Project
+[**GetProjectMembers**](ProjectAPI.md#GetProjectMembers) | **Get** /projects/{project}/members | Get all members associated with this project
+[**GetProjectMetrics**](ProjectAPI.md#GetProjectMetrics) | **Get** /projects/{project_id}/metrics | 
+[**ListOrganizations**](ProjectAPI.md#ListOrganizations) | **Get** /projects/{project_id}/organizations | 
+[**ListProjectApiKeys**](ProjectAPI.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
+[**ListProjects**](ProjectAPI.md#ListProjects) | **Get** /projects | List All Projects
+[**PatchProject**](ProjectAPI.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
+[**PurgeProject**](ProjectAPI.md#PurgeProject) | **Delete** /projects/{project_id} | Irrecoverably purge a project
+[**RemoveProjectMember**](ProjectAPI.md#RemoveProjectMember) | **Delete** /projects/{project}/members/{member} | Remove a member associated with this project
+[**SetActiveProjectInConsole**](ProjectAPI.md#SetActiveProjectInConsole) | **Put** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
+[**SetProject**](ProjectAPI.md#SetProject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
+[**UpdateOrganization**](ProjectAPI.md#UpdateOrganization) | **Put** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project.
 
 
 
@@ -42,7 +42,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -51,13 +51,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.CreateOrganization(context.Background(), projectId).OrganizationBody(organizationBody).Execute()
+    resp, r, err := apiClient.ProjectAPI.CreateOrganization(context.Background(), projectId).OrganizationBody(organizationBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.CreateOrganization``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateOrganization`: Organization
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.CreateOrganization`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.CreateOrganization`: %v\n", resp)
 }
 ```
 
@@ -114,7 +114,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -122,13 +122,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.CreateProject(context.Background()).CreateProjectBody(createProjectBody).Execute()
+    resp, r, err := apiClient.ProjectAPI.CreateProject(context.Background()).CreateProjectBody(createProjectBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.CreateProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateProject`: Project
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.CreateProject`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.CreateProject`: %v\n", resp)
 }
 ```
 
@@ -180,7 +180,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -189,13 +189,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.CreateProjectApiKey(context.Background(), project).CreateProjectApiKeyRequest(createProjectApiKeyRequest).Execute()
+    resp, r, err := apiClient.ProjectAPI.CreateProjectApiKey(context.Background(), project).CreateProjectApiKeyRequest(createProjectApiKeyRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.CreateProjectApiKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectApiKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateProjectApiKey`: ProjectApiKey
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.CreateProjectApiKey`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.CreateProjectApiKey`: %v\n", resp)
 }
 ```
 
@@ -250,7 +250,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -259,9 +259,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.DeleteOrganization(context.Background(), projectId, organizationId).Execute()
+    r, err := apiClient.ProjectAPI.DeleteOrganization(context.Background(), projectId, organizationId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.DeleteOrganization``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.DeleteOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -321,7 +321,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -330,9 +330,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.DeleteProjectApiKey(context.Background(), project, tokenId).Execute()
+    r, err := apiClient.ProjectAPI.DeleteProjectApiKey(context.Background(), project, tokenId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.DeleteProjectApiKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.DeleteProjectApiKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -392,20 +392,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.GetActiveProjectInConsole(context.Background()).Execute()
+    resp, r, err := apiClient.ProjectAPI.GetActiveProjectInConsole(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.GetActiveProjectInConsole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.GetActiveProjectInConsole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetActiveProjectInConsole`: ActiveProjectInConsole
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.GetActiveProjectInConsole`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.GetActiveProjectInConsole`: %v\n", resp)
 }
 ```
 
@@ -453,7 +453,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -461,13 +461,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.GetProject(context.Background(), projectId).Execute()
+    resp, r, err := apiClient.ProjectAPI.GetProject(context.Background(), projectId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.GetProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.GetProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetProject`: Project
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.GetProject`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.GetProject`: %v\n", resp)
 }
 ```
 
@@ -523,7 +523,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -531,13 +531,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.GetProjectMembers(context.Background(), project).Execute()
+    resp, r, err := apiClient.ProjectAPI.GetProjectMembers(context.Background(), project).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.GetProjectMembers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.GetProjectMembers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetProjectMembers`: []CloudAccount
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.GetProjectMembers`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.GetProjectMembers`: %v\n", resp)
 }
 ```
 
@@ -594,7 +594,7 @@ import (
     "fmt"
     "os"
     "time"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -606,13 +606,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.GetProjectMetrics(context.Background(), projectId).EventType(eventType).Resolution(resolution).From(from).To(to).Execute()
+    resp, r, err := apiClient.ProjectAPI.GetProjectMetrics(context.Background(), projectId).EventType(eventType).Resolution(resolution).From(from).To(to).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.GetProjectMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.GetProjectMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetProjectMetrics`: GetProjectMetricsResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.GetProjectMetrics`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.GetProjectMetrics`: %v\n", resp)
 }
 ```
 
@@ -670,7 +670,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -678,13 +678,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.ListOrganizations(context.Background(), projectId).Execute()
+    resp, r, err := apiClient.ProjectAPI.ListOrganizations(context.Background(), projectId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.ListOrganizations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListOrganizations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListOrganizations`: ListOrganizationsResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.ListOrganizations`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.ListOrganizations`: %v\n", resp)
 }
 ```
 
@@ -740,7 +740,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -748,13 +748,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.ListProjectApiKeys(context.Background(), project).Execute()
+    resp, r, err := apiClient.ProjectAPI.ListProjectApiKeys(context.Background(), project).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.ListProjectApiKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectApiKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListProjectApiKeys`: []ProjectApiKey
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.ListProjectApiKeys`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.ListProjectApiKeys`: %v\n", resp)
 }
 ```
 
@@ -810,20 +810,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.ListProjects(context.Background()).Execute()
+    resp, r, err := apiClient.ProjectAPI.ListProjects(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.ListProjects``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListProjects`: []ProjectMetadata
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.ListProjects`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.ListProjects`: %v\n", resp)
 }
 ```
 
@@ -871,7 +871,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -880,13 +880,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.PatchProject(context.Background(), projectId).JsonPatch(jsonPatch).Execute()
+    resp, r, err := apiClient.ProjectAPI.PatchProject(context.Background(), projectId).JsonPatch(jsonPatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.PatchProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.PatchProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PatchProject`: SuccessfulProjectUpdate
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.PatchProject`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.PatchProject`: %v\n", resp)
 }
 ```
 
@@ -943,7 +943,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -951,9 +951,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.PurgeProject(context.Background(), projectId).Execute()
+    r, err := apiClient.ProjectAPI.PurgeProject(context.Background(), projectId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.PurgeProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.PurgeProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1011,7 +1011,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1020,9 +1020,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.RemoveProjectMember(context.Background(), project, member).Execute()
+    r, err := apiClient.ProjectAPI.RemoveProjectMember(context.Background(), project, member).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.RemoveProjectMember``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.RemoveProjectMember``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1082,7 +1082,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1090,9 +1090,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.SetActiveProjectInConsole(context.Background()).SetActiveProjectInConsoleBody(setActiveProjectInConsoleBody).Execute()
+    r, err := apiClient.ProjectAPI.SetActiveProjectInConsole(context.Background()).SetActiveProjectInConsoleBody(setActiveProjectInConsoleBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.SetActiveProjectInConsole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.SetActiveProjectInConsole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1146,7 +1146,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1155,13 +1155,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.SetProject(context.Background(), projectId).SetProject(setProject).Execute()
+    resp, r, err := apiClient.ProjectAPI.SetProject(context.Background(), projectId).SetProject(setProject).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.SetProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.SetProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SetProject`: SuccessfulProjectUpdate
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.SetProject`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.SetProject`: %v\n", resp)
 }
 ```
 
@@ -1216,7 +1216,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1226,13 +1226,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectApi.UpdateOrganization(context.Background(), projectId, organizationId).OrganizationBody(organizationBody).Execute()
+    resp, r, err := apiClient.ProjectAPI.UpdateOrganization(context.Background(), projectId, organizationId).OrganizationBody(organizationBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.UpdateOrganization``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.UpdateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateOrganization`: Organization
-    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.UpdateOrganization`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.UpdateOrganization`: %v\n", resp)
 }
 ```
 

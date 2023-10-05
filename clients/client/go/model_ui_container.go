@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UiContainer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiContainer{}
+
 // UiContainer Container represents a HTML Form. The container can work with both HTTP Form and JSON requests
 type UiContainer struct {
 	// Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
@@ -74,7 +77,7 @@ func (o *UiContainer) SetAction(v string) {
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *UiContainer) GetMessages() []UiText {
-	if o == nil || o.Messages == nil {
+	if o == nil || IsNil(o.Messages) {
 		var ret []UiText
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *UiContainer) GetMessages() []UiText {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiContainer) GetMessagesOk() ([]UiText, bool) {
-	if o == nil || o.Messages == nil {
+	if o == nil || IsNil(o.Messages) {
 		return nil, false
 	}
 	return o.Messages, true
@@ -92,7 +95,7 @@ func (o *UiContainer) GetMessagesOk() ([]UiText, bool) {
 
 // HasMessages returns a boolean if a field has been set.
 func (o *UiContainer) HasMessages() bool {
-	if o != nil && o.Messages != nil {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -153,33 +156,39 @@ func (o *UiContainer) SetNodes(v []UiNode) {
 }
 
 func (o UiContainer) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["action"] = o.Action
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-	if o.Messages != nil {
+	return json.Marshal(toSerialize)
+}
+
+func (o UiContainer) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["action"] = o.Action
+	if !IsNil(o.Messages) {
 		toSerialize["messages"] = o.Messages
 	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if true {
-		toSerialize["nodes"] = o.Nodes
-	}
+	toSerialize["method"] = o.Method
+	toSerialize["nodes"] = o.Nodes
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UiContainer) UnmarshalJSON(bytes []byte) (err error) {
 	varUiContainer := _UiContainer{}
 
-	if err = json.Unmarshal(bytes, &varUiContainer); err == nil {
-		*o = UiContainer(varUiContainer)
+	err = json.Unmarshal(bytes, &varUiContainer)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UiContainer(varUiContainer)
 
 	additionalProperties := make(map[string]interface{})
 

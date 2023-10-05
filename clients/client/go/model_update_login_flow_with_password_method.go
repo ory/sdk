@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateLoginFlowWithPasswordMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateLoginFlowWithPasswordMethod{}
+
 // UpdateLoginFlowWithPasswordMethod Update Login Flow with Password Method
 type UpdateLoginFlowWithPasswordMethod struct {
 	// Sending the anti-csrf token is only required for browser login flows.
@@ -54,7 +57,7 @@ func NewUpdateLoginFlowWithPasswordMethodWithDefaults() *UpdateLoginFlowWithPass
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithPasswordMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *UpdateLoginFlowWithPasswordMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithPasswordMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -72,7 +75,7 @@ func (o *UpdateLoginFlowWithPasswordMethod) GetCsrfTokenOk() (*string, bool) {
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithPasswordMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -158,7 +161,7 @@ func (o *UpdateLoginFlowWithPasswordMethod) SetPassword(v string) {
 
 // GetPasswordIdentifier returns the PasswordIdentifier field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithPasswordMethod) GetPasswordIdentifier() string {
-	if o == nil || o.PasswordIdentifier == nil {
+	if o == nil || IsNil(o.PasswordIdentifier) {
 		var ret string
 		return ret
 	}
@@ -168,7 +171,7 @@ func (o *UpdateLoginFlowWithPasswordMethod) GetPasswordIdentifier() string {
 // GetPasswordIdentifierOk returns a tuple with the PasswordIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithPasswordMethod) GetPasswordIdentifierOk() (*string, bool) {
-	if o == nil || o.PasswordIdentifier == nil {
+	if o == nil || IsNil(o.PasswordIdentifier) {
 		return nil, false
 	}
 	return o.PasswordIdentifier, true
@@ -176,7 +179,7 @@ func (o *UpdateLoginFlowWithPasswordMethod) GetPasswordIdentifierOk() (*string, 
 
 // HasPasswordIdentifier returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithPasswordMethod) HasPasswordIdentifier() bool {
-	if o != nil && o.PasswordIdentifier != nil {
+	if o != nil && !IsNil(o.PasswordIdentifier) {
 		return true
 	}
 
@@ -189,20 +192,22 @@ func (o *UpdateLoginFlowWithPasswordMethod) SetPasswordIdentifier(v string) {
 }
 
 func (o UpdateLoginFlowWithPasswordMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateLoginFlowWithPasswordMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if true {
-		toSerialize["identifier"] = o.Identifier
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if true {
-		toSerialize["password"] = o.Password
-	}
-	if o.PasswordIdentifier != nil {
+	toSerialize["identifier"] = o.Identifier
+	toSerialize["method"] = o.Method
+	toSerialize["password"] = o.Password
+	if !IsNil(o.PasswordIdentifier) {
 		toSerialize["password_identifier"] = o.PasswordIdentifier
 	}
 
@@ -210,15 +215,19 @@ func (o UpdateLoginFlowWithPasswordMethod) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateLoginFlowWithPasswordMethod) UnmarshalJSON(bytes []byte) (err error) {
 	varUpdateLoginFlowWithPasswordMethod := _UpdateLoginFlowWithPasswordMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateLoginFlowWithPasswordMethod); err == nil {
-		*o = UpdateLoginFlowWithPasswordMethod(varUpdateLoginFlowWithPasswordMethod)
+	err = json.Unmarshal(bytes, &varUpdateLoginFlowWithPasswordMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateLoginFlowWithPasswordMethod(varUpdateLoginFlowWithPasswordMethod)
 
 	additionalProperties := make(map[string]interface{})
 

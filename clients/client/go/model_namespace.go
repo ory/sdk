@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Namespace type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Namespace{}
+
 // Namespace struct for Namespace
 type Namespace struct {
 	// Name of the namespace.
@@ -43,7 +46,7 @@ func NewNamespaceWithDefaults() *Namespace {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Namespace) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *Namespace) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Namespace) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -61,7 +64,7 @@ func (o *Namespace) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Namespace) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *Namespace) SetName(v string) {
 }
 
 func (o Namespace) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Namespace) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 
@@ -83,15 +94,19 @@ func (o Namespace) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Namespace) UnmarshalJSON(bytes []byte) (err error) {
 	varNamespace := _Namespace{}
 
-	if err = json.Unmarshal(bytes, &varNamespace); err == nil {
-		*o = Namespace(varNamespace)
+	err = json.Unmarshal(bytes, &varNamespace)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Namespace(varNamespace)
 
 	additionalProperties := make(map[string]interface{})
 

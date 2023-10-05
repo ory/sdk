@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OAuth2RedirectTo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OAuth2RedirectTo{}
+
 // OAuth2RedirectTo Contains a redirect URL used to complete a login, consent, or logout request.
 type OAuth2RedirectTo struct {
 	// RedirectURL is the URL which you should redirect the user's browser to once the authentication process is completed.
@@ -67,24 +70,34 @@ func (o *OAuth2RedirectTo) SetRedirectTo(v string) {
 }
 
 func (o OAuth2RedirectTo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["redirect_to"] = o.RedirectTo
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o OAuth2RedirectTo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["redirect_to"] = o.RedirectTo
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *OAuth2RedirectTo) UnmarshalJSON(bytes []byte) (err error) {
 	varOAuth2RedirectTo := _OAuth2RedirectTo{}
 
-	if err = json.Unmarshal(bytes, &varOAuth2RedirectTo); err == nil {
-		*o = OAuth2RedirectTo(varOAuth2RedirectTo)
+	err = json.Unmarshal(bytes, &varOAuth2RedirectTo)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OAuth2RedirectTo(varOAuth2RedirectTo)
 
 	additionalProperties := make(map[string]interface{})
 

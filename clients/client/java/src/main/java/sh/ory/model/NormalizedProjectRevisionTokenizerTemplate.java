@@ -49,7 +49,7 @@ import sh.ory.JSON;
 /**
  * NormalizedProjectRevisionTokenizerTemplate
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-26T07:22:38.275636327Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-05T13:50:54.246292158Z[Etc/UTC]")
 public class NormalizedProjectRevisionTokenizerTemplate {
   public static final String SERIALIZED_NAME_CLAIMS_MAPPER_URL = "claims_mapper_url";
   @SerializedName(SERIALIZED_NAME_CLAIMS_MAPPER_URL)

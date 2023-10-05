@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentityWithCredentialsOidcConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityWithCredentialsOidcConfig{}
+
 // IdentityWithCredentialsOidcConfig struct for IdentityWithCredentialsOidcConfig
 type IdentityWithCredentialsOidcConfig struct {
 	Config *IdentityWithCredentialsPasswordConfig `json:"config,omitempty"`
@@ -44,7 +47,7 @@ func NewIdentityWithCredentialsOidcConfigWithDefaults() *IdentityWithCredentials
 
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *IdentityWithCredentialsOidcConfig) GetConfig() IdentityWithCredentialsPasswordConfig {
-	if o == nil || o.Config == nil {
+	if o == nil || IsNil(o.Config) {
 		var ret IdentityWithCredentialsPasswordConfig
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *IdentityWithCredentialsOidcConfig) GetConfig() IdentityWithCredentialsP
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentialsOidcConfig) GetConfigOk() (*IdentityWithCredentialsPasswordConfig, bool) {
-	if o == nil || o.Config == nil {
+	if o == nil || IsNil(o.Config) {
 		return nil, false
 	}
 	return o.Config, true
@@ -62,7 +65,7 @@ func (o *IdentityWithCredentialsOidcConfig) GetConfigOk() (*IdentityWithCredenti
 
 // HasConfig returns a boolean if a field has been set.
 func (o *IdentityWithCredentialsOidcConfig) HasConfig() bool {
-	if o != nil && o.Config != nil {
+	if o != nil && !IsNil(o.Config) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *IdentityWithCredentialsOidcConfig) SetConfig(v IdentityWithCredentialsP
 
 // GetProviders returns the Providers field value if set, zero value otherwise.
 func (o *IdentityWithCredentialsOidcConfig) GetProviders() []IdentityWithCredentialsOidcConfigProvider {
-	if o == nil || o.Providers == nil {
+	if o == nil || IsNil(o.Providers) {
 		var ret []IdentityWithCredentialsOidcConfigProvider
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *IdentityWithCredentialsOidcConfig) GetProviders() []IdentityWithCredent
 // GetProvidersOk returns a tuple with the Providers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentialsOidcConfig) GetProvidersOk() ([]IdentityWithCredentialsOidcConfigProvider, bool) {
-	if o == nil || o.Providers == nil {
+	if o == nil || IsNil(o.Providers) {
 		return nil, false
 	}
 	return o.Providers, true
@@ -94,7 +97,7 @@ func (o *IdentityWithCredentialsOidcConfig) GetProvidersOk() ([]IdentityWithCred
 
 // HasProviders returns a boolean if a field has been set.
 func (o *IdentityWithCredentialsOidcConfig) HasProviders() bool {
-	if o != nil && o.Providers != nil {
+	if o != nil && !IsNil(o.Providers) {
 		return true
 	}
 
@@ -107,11 +110,19 @@ func (o *IdentityWithCredentialsOidcConfig) SetProviders(v []IdentityWithCredent
 }
 
 func (o IdentityWithCredentialsOidcConfig) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityWithCredentialsOidcConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Config != nil {
+	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
-	if o.Providers != nil {
+	if !IsNil(o.Providers) {
 		toSerialize["providers"] = o.Providers
 	}
 
@@ -119,15 +130,19 @@ func (o IdentityWithCredentialsOidcConfig) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityWithCredentialsOidcConfig) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityWithCredentialsOidcConfig := _IdentityWithCredentialsOidcConfig{}
 
-	if err = json.Unmarshal(bytes, &varIdentityWithCredentialsOidcConfig); err == nil {
-		*o = IdentityWithCredentialsOidcConfig(varIdentityWithCredentialsOidcConfig)
+	err = json.Unmarshal(bytes, &varIdentityWithCredentialsOidcConfig)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityWithCredentialsOidcConfig(varIdentityWithCredentialsOidcConfig)
 
 	additionalProperties := make(map[string]interface{})
 

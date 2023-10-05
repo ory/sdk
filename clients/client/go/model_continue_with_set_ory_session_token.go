@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ContinueWithSetOrySessionToken type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContinueWithSetOrySessionToken{}
+
 // ContinueWithSetOrySessionToken Indicates that a session was issued, and the application should use this token for authenticated requests
 type ContinueWithSetOrySessionToken struct {
 	// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString
@@ -94,27 +97,35 @@ func (o *ContinueWithSetOrySessionToken) SetOrySessionToken(v string) {
 }
 
 func (o ContinueWithSetOrySessionToken) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ContinueWithSetOrySessionToken) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["action"] = o.Action
-	}
-	if true {
-		toSerialize["ory_session_token"] = o.OrySessionToken
-	}
+	toSerialize["action"] = o.Action
+	toSerialize["ory_session_token"] = o.OrySessionToken
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ContinueWithSetOrySessionToken) UnmarshalJSON(bytes []byte) (err error) {
 	varContinueWithSetOrySessionToken := _ContinueWithSetOrySessionToken{}
 
-	if err = json.Unmarshal(bytes, &varContinueWithSetOrySessionToken); err == nil {
-		*o = ContinueWithSetOrySessionToken(varContinueWithSetOrySessionToken)
+	err = json.Unmarshal(bytes, &varContinueWithSetOrySessionToken)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ContinueWithSetOrySessionToken(varContinueWithSetOrySessionToken)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubjectSet type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubjectSet{}
+
 // SubjectSet struct for SubjectSet
 type SubjectSet struct {
 	// Namespace of the Subject Set
@@ -121,30 +124,36 @@ func (o *SubjectSet) SetRelation(v string) {
 }
 
 func (o SubjectSet) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SubjectSet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["namespace"] = o.Namespace
-	}
-	if true {
-		toSerialize["object"] = o.Object
-	}
-	if true {
-		toSerialize["relation"] = o.Relation
-	}
+	toSerialize["namespace"] = o.Namespace
+	toSerialize["object"] = o.Object
+	toSerialize["relation"] = o.Relation
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SubjectSet) UnmarshalJSON(bytes []byte) (err error) {
 	varSubjectSet := _SubjectSet{}
 
-	if err = json.Unmarshal(bytes, &varSubjectSet); err == nil {
-		*o = SubjectSet(varSubjectSet)
+	err = json.Unmarshal(bytes, &varSubjectSet)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SubjectSet(varSubjectSet)
 
 	additionalProperties := make(map[string]interface{})
 

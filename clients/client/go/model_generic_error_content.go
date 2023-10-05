@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GenericErrorContent type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GenericErrorContent{}
+
 // GenericErrorContent Error response
 type GenericErrorContent struct {
 	// Debug contains debug information. This is usually not available and has to be enabled.
@@ -51,7 +54,7 @@ func NewGenericErrorContentWithDefaults() *GenericErrorContent {
 
 // GetDebug returns the Debug field value if set, zero value otherwise.
 func (o *GenericErrorContent) GetDebug() string {
-	if o == nil || o.Debug == nil {
+	if o == nil || IsNil(o.Debug) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *GenericErrorContent) GetDebug() string {
 // GetDebugOk returns a tuple with the Debug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericErrorContent) GetDebugOk() (*string, bool) {
-	if o == nil || o.Debug == nil {
+	if o == nil || IsNil(o.Debug) {
 		return nil, false
 	}
 	return o.Debug, true
@@ -69,7 +72,7 @@ func (o *GenericErrorContent) GetDebugOk() (*string, bool) {
 
 // HasDebug returns a boolean if a field has been set.
 func (o *GenericErrorContent) HasDebug() bool {
-	if o != nil && o.Debug != nil {
+	if o != nil && !IsNil(o.Debug) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *GenericErrorContent) SetDebug(v string) {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *GenericErrorContent) GetError() string {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *GenericErrorContent) GetError() string {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericErrorContent) GetErrorOk() (*string, bool) {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
 	return o.Error, true
@@ -101,7 +104,7 @@ func (o *GenericErrorContent) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *GenericErrorContent) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *GenericErrorContent) SetError(v string) {
 
 // GetErrorDescription returns the ErrorDescription field value if set, zero value otherwise.
 func (o *GenericErrorContent) GetErrorDescription() string {
-	if o == nil || o.ErrorDescription == nil {
+	if o == nil || IsNil(o.ErrorDescription) {
 		var ret string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *GenericErrorContent) GetErrorDescription() string {
 // GetErrorDescriptionOk returns a tuple with the ErrorDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericErrorContent) GetErrorDescriptionOk() (*string, bool) {
-	if o == nil || o.ErrorDescription == nil {
+	if o == nil || IsNil(o.ErrorDescription) {
 		return nil, false
 	}
 	return o.ErrorDescription, true
@@ -133,7 +136,7 @@ func (o *GenericErrorContent) GetErrorDescriptionOk() (*string, bool) {
 
 // HasErrorDescription returns a boolean if a field has been set.
 func (o *GenericErrorContent) HasErrorDescription() bool {
-	if o != nil && o.ErrorDescription != nil {
+	if o != nil && !IsNil(o.ErrorDescription) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *GenericErrorContent) SetErrorDescription(v string) {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *GenericErrorContent) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *GenericErrorContent) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericErrorContent) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
 	return o.Message, true
@@ -165,7 +168,7 @@ func (o *GenericErrorContent) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *GenericErrorContent) HasMessage() bool {
-	if o != nil && o.Message != nil {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *GenericErrorContent) SetMessage(v string) {
 
 // GetStatusCode returns the StatusCode field value if set, zero value otherwise.
 func (o *GenericErrorContent) GetStatusCode() int64 {
-	if o == nil || o.StatusCode == nil {
+	if o == nil || IsNil(o.StatusCode) {
 		var ret int64
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *GenericErrorContent) GetStatusCode() int64 {
 // GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericErrorContent) GetStatusCodeOk() (*int64, bool) {
-	if o == nil || o.StatusCode == nil {
+	if o == nil || IsNil(o.StatusCode) {
 		return nil, false
 	}
 	return o.StatusCode, true
@@ -197,7 +200,7 @@ func (o *GenericErrorContent) GetStatusCodeOk() (*int64, bool) {
 
 // HasStatusCode returns a boolean if a field has been set.
 func (o *GenericErrorContent) HasStatusCode() bool {
-	if o != nil && o.StatusCode != nil {
+	if o != nil && !IsNil(o.StatusCode) {
 		return true
 	}
 
@@ -210,20 +213,28 @@ func (o *GenericErrorContent) SetStatusCode(v int64) {
 }
 
 func (o GenericErrorContent) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GenericErrorContent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Debug != nil {
+	if !IsNil(o.Debug) {
 		toSerialize["debug"] = o.Debug
 	}
-	if o.Error != nil {
+	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	if o.ErrorDescription != nil {
+	if !IsNil(o.ErrorDescription) {
 		toSerialize["error_description"] = o.ErrorDescription
 	}
-	if o.Message != nil {
+	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
-	if o.StatusCode != nil {
+	if !IsNil(o.StatusCode) {
 		toSerialize["status_code"] = o.StatusCode
 	}
 
@@ -231,15 +242,19 @@ func (o GenericErrorContent) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *GenericErrorContent) UnmarshalJSON(bytes []byte) (err error) {
 	varGenericErrorContent := _GenericErrorContent{}
 
-	if err = json.Unmarshal(bytes, &varGenericErrorContent); err == nil {
-		*o = GenericErrorContent(varGenericErrorContent)
+	err = json.Unmarshal(bytes, &varGenericErrorContent)
+
+	if err != nil {
+		return err
 	}
+
+	*o = GenericErrorContent(varGenericErrorContent)
 
 	additionalProperties := make(map[string]interface{})
 

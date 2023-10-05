@@ -50,7 +50,7 @@ import sh.ory.JSON;
  * This might include a label and other information that can optionally be used to render UIs.
  */
 @ApiModel(description = "This might include a label and other information that can optionally be used to render UIs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-26T07:22:38.275636327Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-05T13:50:54.246292158Z[Etc/UTC]")
 public class UiNodeMeta {
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)

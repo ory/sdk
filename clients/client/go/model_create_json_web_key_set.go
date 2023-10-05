@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateJsonWebKeySet type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateJsonWebKeySet{}
+
 // CreateJsonWebKeySet Create JSON Web Key Set Request Body
 type CreateJsonWebKeySet struct {
 	// JSON Web Key Algorithm  The algorithm to be used for creating the key. Supports `RS256`, `ES256`, `ES512`, `HS512`, and `HS256`.
@@ -121,30 +124,36 @@ func (o *CreateJsonWebKeySet) SetUse(v string) {
 }
 
 func (o CreateJsonWebKeySet) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateJsonWebKeySet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["alg"] = o.Alg
-	}
-	if true {
-		toSerialize["kid"] = o.Kid
-	}
-	if true {
-		toSerialize["use"] = o.Use
-	}
+	toSerialize["alg"] = o.Alg
+	toSerialize["kid"] = o.Kid
+	toSerialize["use"] = o.Use
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CreateJsonWebKeySet) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateJsonWebKeySet := _CreateJsonWebKeySet{}
 
-	if err = json.Unmarshal(bytes, &varCreateJsonWebKeySet); err == nil {
-		*o = CreateJsonWebKeySet(varCreateJsonWebKeySet)
+	err = json.Unmarshal(bytes, &varCreateJsonWebKeySet)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateJsonWebKeySet(varCreateJsonWebKeySet)
 
 	additionalProperties := make(map[string]interface{})
 

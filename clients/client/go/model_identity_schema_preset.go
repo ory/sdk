@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentitySchemaPreset type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentitySchemaPreset{}
+
 // IdentitySchemaPreset struct for IdentitySchemaPreset
 type IdentitySchemaPreset struct {
 	// Schema is the Identity JSON Schema
@@ -59,7 +62,7 @@ func (o *IdentitySchemaPreset) GetSchema() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *IdentitySchemaPreset) GetSchemaOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Schema, true
 }
@@ -94,27 +97,35 @@ func (o *IdentitySchemaPreset) SetUrl(v string) {
 }
 
 func (o IdentitySchemaPreset) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentitySchemaPreset) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["schema"] = o.Schema
-	}
-	if true {
-		toSerialize["url"] = o.Url
-	}
+	toSerialize["schema"] = o.Schema
+	toSerialize["url"] = o.Url
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentitySchemaPreset) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentitySchemaPreset := _IdentitySchemaPreset{}
 
-	if err = json.Unmarshal(bytes, &varIdentitySchemaPreset); err == nil {
-		*o = IdentitySchemaPreset(varIdentitySchemaPreset)
+	err = json.Unmarshal(bytes, &varIdentitySchemaPreset)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentitySchemaPreset(varIdentitySchemaPreset)
 
 	additionalProperties := make(map[string]interface{})
 

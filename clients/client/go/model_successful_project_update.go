@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SuccessfulProjectUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SuccessfulProjectUpdate{}
+
 // SuccessfulProjectUpdate struct for SuccessfulProjectUpdate
 type SuccessfulProjectUpdate struct {
 	Project Project `json:"project"`
@@ -93,27 +96,35 @@ func (o *SuccessfulProjectUpdate) SetWarnings(v []Warning) {
 }
 
 func (o SuccessfulProjectUpdate) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SuccessfulProjectUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["project"] = o.Project
-	}
-	if true {
-		toSerialize["warnings"] = o.Warnings
-	}
+	toSerialize["project"] = o.Project
+	toSerialize["warnings"] = o.Warnings
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SuccessfulProjectUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	varSuccessfulProjectUpdate := _SuccessfulProjectUpdate{}
 
-	if err = json.Unmarshal(bytes, &varSuccessfulProjectUpdate); err == nil {
-		*o = SuccessfulProjectUpdate(varSuccessfulProjectUpdate)
+	err = json.Unmarshal(bytes, &varSuccessfulProjectUpdate)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SuccessfulProjectUpdate(varSuccessfulProjectUpdate)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListOrganizationsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListOrganizationsResponse{}
+
 // ListOrganizationsResponse B2B SSO Organization List
 type ListOrganizationsResponse struct {
 	Organizations []Organization `json:"organizations"`
@@ -66,24 +69,34 @@ func (o *ListOrganizationsResponse) SetOrganizations(v []Organization) {
 }
 
 func (o ListOrganizationsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["organizations"] = o.Organizations
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ListOrganizationsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["organizations"] = o.Organizations
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ListOrganizationsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	varListOrganizationsResponse := _ListOrganizationsResponse{}
 
-	if err = json.Unmarshal(bytes, &varListOrganizationsResponse); err == nil {
-		*o = ListOrganizationsResponse(varListOrganizationsResponse)
+	err = json.Unmarshal(bytes, &varListOrganizationsResponse)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ListOrganizationsResponse(varListOrganizationsResponse)
 
 	additionalProperties := make(map[string]interface{})
 

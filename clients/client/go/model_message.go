@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Message type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Message{}
+
 // Message struct for Message
 type Message struct {
 	Body string `json:"body"`
@@ -115,7 +118,7 @@ func (o *Message) SetCreatedAt(v time.Time) {
 
 // GetDispatches returns the Dispatches field value if set, zero value otherwise.
 func (o *Message) GetDispatches() []MessageDispatch {
-	if o == nil || o.Dispatches == nil {
+	if o == nil || IsNil(o.Dispatches) {
 		var ret []MessageDispatch
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *Message) GetDispatches() []MessageDispatch {
 // GetDispatchesOk returns a tuple with the Dispatches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message) GetDispatchesOk() ([]MessageDispatch, bool) {
-	if o == nil || o.Dispatches == nil {
+	if o == nil || IsNil(o.Dispatches) {
 		return nil, false
 	}
 	return o.Dispatches, true
@@ -133,7 +136,7 @@ func (o *Message) GetDispatchesOk() ([]MessageDispatch, bool) {
 
 // HasDispatches returns a boolean if a field has been set.
 func (o *Message) HasDispatches() bool {
-	if o != nil && o.Dispatches != nil {
+	if o != nil && !IsNil(o.Dispatches) {
 		return true
 	}
 
@@ -338,54 +341,46 @@ func (o *Message) SetUpdatedAt(v time.Time) {
 }
 
 func (o Message) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Message) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["body"] = o.Body
-	}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.Dispatches != nil {
+	toSerialize["body"] = o.Body
+	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.Dispatches) {
 		toSerialize["dispatches"] = o.Dispatches
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["recipient"] = o.Recipient
-	}
-	if true {
-		toSerialize["send_count"] = o.SendCount
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
-	if true {
-		toSerialize["template_type"] = o.TemplateType
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["id"] = o.Id
+	toSerialize["recipient"] = o.Recipient
+	toSerialize["send_count"] = o.SendCount
+	toSerialize["status"] = o.Status
+	toSerialize["subject"] = o.Subject
+	toSerialize["template_type"] = o.TemplateType
+	toSerialize["type"] = o.Type
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Message) UnmarshalJSON(bytes []byte) (err error) {
 	varMessage := _Message{}
 
-	if err = json.Unmarshal(bytes, &varMessage); err == nil {
-		*o = Message(varMessage)
+	err = json.Unmarshal(bytes, &varMessage)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Message(varMessage)
 
 	additionalProperties := make(map[string]interface{})
 

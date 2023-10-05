@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ErrorGeneric type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorGeneric{}
+
 // ErrorGeneric The standard Ory JSON API error format.
 type ErrorGeneric struct {
 	Error GenericErrorContent `json:"error"`
@@ -66,24 +69,34 @@ func (o *ErrorGeneric) SetError(v GenericErrorContent) {
 }
 
 func (o ErrorGeneric) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["error"] = o.Error
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ErrorGeneric) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["error"] = o.Error
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ErrorGeneric) UnmarshalJSON(bytes []byte) (err error) {
 	varErrorGeneric := _ErrorGeneric{}
 
-	if err = json.Unmarshal(bytes, &varErrorGeneric); err == nil {
-		*o = ErrorGeneric(varErrorGeneric)
+	err = json.Unmarshal(bytes, &varErrorGeneric)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ErrorGeneric(varErrorGeneric)
 
 	additionalProperties := make(map[string]interface{})
 

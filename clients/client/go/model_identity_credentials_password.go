@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentityCredentialsPassword type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityCredentialsPassword{}
+
 // IdentityCredentialsPassword struct for IdentityCredentialsPassword
 type IdentityCredentialsPassword struct {
 	// HashedPassword is a hash-representation of the password.
@@ -43,7 +46,7 @@ func NewIdentityCredentialsPasswordWithDefaults() *IdentityCredentialsPassword {
 
 // GetHashedPassword returns the HashedPassword field value if set, zero value otherwise.
 func (o *IdentityCredentialsPassword) GetHashedPassword() string {
-	if o == nil || o.HashedPassword == nil {
+	if o == nil || IsNil(o.HashedPassword) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *IdentityCredentialsPassword) GetHashedPassword() string {
 // GetHashedPasswordOk returns a tuple with the HashedPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentialsPassword) GetHashedPasswordOk() (*string, bool) {
-	if o == nil || o.HashedPassword == nil {
+	if o == nil || IsNil(o.HashedPassword) {
 		return nil, false
 	}
 	return o.HashedPassword, true
@@ -61,7 +64,7 @@ func (o *IdentityCredentialsPassword) GetHashedPasswordOk() (*string, bool) {
 
 // HasHashedPassword returns a boolean if a field has been set.
 func (o *IdentityCredentialsPassword) HasHashedPassword() bool {
-	if o != nil && o.HashedPassword != nil {
+	if o != nil && !IsNil(o.HashedPassword) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *IdentityCredentialsPassword) SetHashedPassword(v string) {
 }
 
 func (o IdentityCredentialsPassword) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityCredentialsPassword) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.HashedPassword != nil {
+	if !IsNil(o.HashedPassword) {
 		toSerialize["hashed_password"] = o.HashedPassword
 	}
 
@@ -83,15 +94,19 @@ func (o IdentityCredentialsPassword) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityCredentialsPassword) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityCredentialsPassword := _IdentityCredentialsPassword{}
 
-	if err = json.Unmarshal(bytes, &varIdentityCredentialsPassword); err == nil {
-		*o = IdentityCredentialsPassword(varIdentityCredentialsPassword)
+	err = json.Unmarshal(bytes, &varIdentityCredentialsPassword)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityCredentialsPassword(varIdentityCredentialsPassword)
 
 	additionalProperties := make(map[string]interface{})
 

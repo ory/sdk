@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Identity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Identity{}
+
 // Identity An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
 type Identity struct {
 	// CreatedAt is a helper struct field for gobuffalo.pop.
@@ -71,7 +74,7 @@ func NewIdentityWithDefaults() *Identity {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Identity) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *Identity) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Identity) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -89,7 +92,7 @@ func (o *Identity) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Identity) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -103,7 +106,7 @@ func (o *Identity) SetCreatedAt(v time.Time) {
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *Identity) GetCredentials() map[string]IdentityCredentials {
-	if o == nil || o.Credentials == nil {
+	if o == nil || IsNil(o.Credentials) {
 		var ret map[string]IdentityCredentials
 		return ret
 	}
@@ -113,7 +116,7 @@ func (o *Identity) GetCredentials() map[string]IdentityCredentials {
 // GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Identity) GetCredentialsOk() (*map[string]IdentityCredentials, bool) {
-	if o == nil || o.Credentials == nil {
+	if o == nil || IsNil(o.Credentials) {
 		return nil, false
 	}
 	return o.Credentials, true
@@ -121,7 +124,7 @@ func (o *Identity) GetCredentialsOk() (*map[string]IdentityCredentials, bool) {
 
 // HasCredentials returns a boolean if a field has been set.
 func (o *Identity) HasCredentials() bool {
-	if o != nil && o.Credentials != nil {
+	if o != nil && !IsNil(o.Credentials) {
 		return true
 	}
 
@@ -170,15 +173,15 @@ func (o *Identity) GetMetadataAdmin() map[string]interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Identity) GetMetadataAdminOk() (map[string]interface{}, bool) {
-	if o == nil || o.MetadataAdmin == nil {
-		return nil, false
+	if o == nil || IsNil(o.MetadataAdmin) {
+		return map[string]interface{}{}, false
 	}
 	return o.MetadataAdmin, true
 }
 
 // HasMetadataAdmin returns a boolean if a field has been set.
 func (o *Identity) HasMetadataAdmin() bool {
-	if o != nil && o.MetadataAdmin != nil {
+	if o != nil && IsNil(o.MetadataAdmin) {
 		return true
 	}
 
@@ -203,15 +206,15 @@ func (o *Identity) GetMetadataPublic() map[string]interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Identity) GetMetadataPublicOk() (map[string]interface{}, bool) {
-	if o == nil || o.MetadataPublic == nil {
-		return nil, false
+	if o == nil || IsNil(o.MetadataPublic) {
+		return map[string]interface{}{}, false
 	}
 	return o.MetadataPublic, true
 }
 
 // HasMetadataPublic returns a boolean if a field has been set.
 func (o *Identity) HasMetadataPublic() bool {
-	if o != nil && o.MetadataPublic != nil {
+	if o != nil && IsNil(o.MetadataPublic) {
 		return true
 	}
 
@@ -225,7 +228,7 @@ func (o *Identity) SetMetadataPublic(v map[string]interface{}) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Identity) GetOrganizationId() string {
-	if o == nil || o.OrganizationId.Get() == nil {
+	if o == nil || IsNil(o.OrganizationId.Get()) {
 		var ret string
 		return ret
 	}
@@ -267,7 +270,7 @@ func (o *Identity) UnsetOrganizationId() {
 
 // GetRecoveryAddresses returns the RecoveryAddresses field value if set, zero value otherwise.
 func (o *Identity) GetRecoveryAddresses() []RecoveryIdentityAddress {
-	if o == nil || o.RecoveryAddresses == nil {
+	if o == nil || IsNil(o.RecoveryAddresses) {
 		var ret []RecoveryIdentityAddress
 		return ret
 	}
@@ -277,7 +280,7 @@ func (o *Identity) GetRecoveryAddresses() []RecoveryIdentityAddress {
 // GetRecoveryAddressesOk returns a tuple with the RecoveryAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Identity) GetRecoveryAddressesOk() ([]RecoveryIdentityAddress, bool) {
-	if o == nil || o.RecoveryAddresses == nil {
+	if o == nil || IsNil(o.RecoveryAddresses) {
 		return nil, false
 	}
 	return o.RecoveryAddresses, true
@@ -285,7 +288,7 @@ func (o *Identity) GetRecoveryAddressesOk() ([]RecoveryIdentityAddress, bool) {
 
 // HasRecoveryAddresses returns a boolean if a field has been set.
 func (o *Identity) HasRecoveryAddresses() bool {
-	if o != nil && o.RecoveryAddresses != nil {
+	if o != nil && !IsNil(o.RecoveryAddresses) {
 		return true
 	}
 
@@ -347,7 +350,7 @@ func (o *Identity) SetSchemaUrl(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Identity) GetState() IdentityState {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret IdentityState
 		return ret
 	}
@@ -357,7 +360,7 @@ func (o *Identity) GetState() IdentityState {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Identity) GetStateOk() (*IdentityState, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -365,7 +368,7 @@ func (o *Identity) GetStateOk() (*IdentityState, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *Identity) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -379,7 +382,7 @@ func (o *Identity) SetState(v IdentityState) {
 
 // GetStateChangedAt returns the StateChangedAt field value if set, zero value otherwise.
 func (o *Identity) GetStateChangedAt() time.Time {
-	if o == nil || o.StateChangedAt == nil {
+	if o == nil || IsNil(o.StateChangedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -389,7 +392,7 @@ func (o *Identity) GetStateChangedAt() time.Time {
 // GetStateChangedAtOk returns a tuple with the StateChangedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Identity) GetStateChangedAtOk() (*time.Time, bool) {
-	if o == nil || o.StateChangedAt == nil {
+	if o == nil || IsNil(o.StateChangedAt) {
 		return nil, false
 	}
 	return o.StateChangedAt, true
@@ -397,7 +400,7 @@ func (o *Identity) GetStateChangedAtOk() (*time.Time, bool) {
 
 // HasStateChangedAt returns a boolean if a field has been set.
 func (o *Identity) HasStateChangedAt() bool {
-	if o != nil && o.StateChangedAt != nil {
+	if o != nil && !IsNil(o.StateChangedAt) {
 		return true
 	}
 
@@ -424,7 +427,7 @@ func (o *Identity) GetTraits() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Identity) GetTraitsOk() (*interface{}, bool) {
-	if o == nil || o.Traits == nil {
+	if o == nil || IsNil(o.Traits) {
 		return nil, false
 	}
 	return &o.Traits, true
@@ -437,7 +440,7 @@ func (o *Identity) SetTraits(v interface{}) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Identity) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -447,7 +450,7 @@ func (o *Identity) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Identity) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -455,7 +458,7 @@ func (o *Identity) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Identity) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -469,7 +472,7 @@ func (o *Identity) SetUpdatedAt(v time.Time) {
 
 // GetVerifiableAddresses returns the VerifiableAddresses field value if set, zero value otherwise.
 func (o *Identity) GetVerifiableAddresses() []VerifiableIdentityAddress {
-	if o == nil || o.VerifiableAddresses == nil {
+	if o == nil || IsNil(o.VerifiableAddresses) {
 		var ret []VerifiableIdentityAddress
 		return ret
 	}
@@ -479,7 +482,7 @@ func (o *Identity) GetVerifiableAddresses() []VerifiableIdentityAddress {
 // GetVerifiableAddressesOk returns a tuple with the VerifiableAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Identity) GetVerifiableAddressesOk() ([]VerifiableIdentityAddress, bool) {
-	if o == nil || o.VerifiableAddresses == nil {
+	if o == nil || IsNil(o.VerifiableAddresses) {
 		return nil, false
 	}
 	return o.VerifiableAddresses, true
@@ -487,7 +490,7 @@ func (o *Identity) GetVerifiableAddressesOk() ([]VerifiableIdentityAddress, bool
 
 // HasVerifiableAddresses returns a boolean if a field has been set.
 func (o *Identity) HasVerifiableAddresses() bool {
-	if o != nil && o.VerifiableAddresses != nil {
+	if o != nil && !IsNil(o.VerifiableAddresses) {
 		return true
 	}
 
@@ -500,16 +503,22 @@ func (o *Identity) SetVerifiableAddresses(v []VerifiableIdentityAddress) {
 }
 
 func (o Identity) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Identity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Credentials != nil {
+	if !IsNil(o.Credentials) {
 		toSerialize["credentials"] = o.Credentials
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if o.MetadataAdmin != nil {
 		toSerialize["metadata_admin"] = o.MetadataAdmin
 	}
@@ -519,28 +528,24 @@ func (o Identity) MarshalJSON() ([]byte, error) {
 	if o.OrganizationId.IsSet() {
 		toSerialize["organization_id"] = o.OrganizationId.Get()
 	}
-	if o.RecoveryAddresses != nil {
+	if !IsNil(o.RecoveryAddresses) {
 		toSerialize["recovery_addresses"] = o.RecoveryAddresses
 	}
-	if true {
-		toSerialize["schema_id"] = o.SchemaId
-	}
-	if true {
-		toSerialize["schema_url"] = o.SchemaUrl
-	}
-	if o.State != nil {
+	toSerialize["schema_id"] = o.SchemaId
+	toSerialize["schema_url"] = o.SchemaUrl
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if o.StateChangedAt != nil {
+	if !IsNil(o.StateChangedAt) {
 		toSerialize["state_changed_at"] = o.StateChangedAt
 	}
 	if o.Traits != nil {
 		toSerialize["traits"] = o.Traits
 	}
-	if o.UpdatedAt != nil {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.VerifiableAddresses != nil {
+	if !IsNil(o.VerifiableAddresses) {
 		toSerialize["verifiable_addresses"] = o.VerifiableAddresses
 	}
 
@@ -548,15 +553,19 @@ func (o Identity) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Identity) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentity := _Identity{}
 
-	if err = json.Unmarshal(bytes, &varIdentity); err == nil {
-		*o = Identity(varIdentity)
+	err = json.Unmarshal(bytes, &varIdentity)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Identity(varIdentity)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SetProject type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SetProject{}
+
 // SetProject struct for SetProject
 type SetProject struct {
 	CorsAdmin CORS `json:"cors_admin"`
@@ -145,33 +148,37 @@ func (o *SetProject) SetServices(v ProjectServices) {
 }
 
 func (o SetProject) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SetProject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["cors_admin"] = o.CorsAdmin
-	}
-	if true {
-		toSerialize["cors_public"] = o.CorsPublic
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["services"] = o.Services
-	}
+	toSerialize["cors_admin"] = o.CorsAdmin
+	toSerialize["cors_public"] = o.CorsPublic
+	toSerialize["name"] = o.Name
+	toSerialize["services"] = o.Services
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SetProject) UnmarshalJSON(bytes []byte) (err error) {
 	varSetProject := _SetProject{}
 
-	if err = json.Unmarshal(bytes, &varSetProject); err == nil {
-		*o = SetProject(varSetProject)
+	err = json.Unmarshal(bytes, &varSetProject)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SetProject(varSetProject)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LogoutFlow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LogoutFlow{}
+
 // LogoutFlow Logout Flow
 type LogoutFlow struct {
 	// LogoutToken can be used to perform logout using AJAX.
@@ -94,27 +97,35 @@ func (o *LogoutFlow) SetLogoutUrl(v string) {
 }
 
 func (o LogoutFlow) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o LogoutFlow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["logout_token"] = o.LogoutToken
-	}
-	if true {
-		toSerialize["logout_url"] = o.LogoutUrl
-	}
+	toSerialize["logout_token"] = o.LogoutToken
+	toSerialize["logout_url"] = o.LogoutUrl
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *LogoutFlow) UnmarshalJSON(bytes []byte) (err error) {
 	varLogoutFlow := _LogoutFlow{}
 
-	if err = json.Unmarshal(bytes, &varLogoutFlow); err == nil {
-		*o = LogoutFlow(varLogoutFlow)
+	err = json.Unmarshal(bytes, &varLogoutFlow)
+
+	if err != nil {
+		return err
 	}
+
+	*o = LogoutFlow(varLogoutFlow)
 
 	additionalProperties := make(map[string]interface{})
 

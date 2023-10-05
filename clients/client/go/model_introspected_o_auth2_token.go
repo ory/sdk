@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the IntrospectedOAuth2Token type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IntrospectedOAuth2Token{}
+
 // IntrospectedOAuth2Token Introspection contains an access token's session data as specified by [IETF RFC 7662](https://tools.ietf.org/html/rfc7662)
 type IntrospectedOAuth2Token struct {
 	// Active is a boolean indicator of whether or not the presented token is currently active.  The specifics of a token's \"active\" state will vary depending on the implementation of the authorization server and the information it keeps about its tokens, but a \"true\" value return for the \"active\" property will generally indicate that a given token has been issued by this authorization server, has not been revoked by the resource owner, and is within its given time window of validity (e.g., after its issuance time and before its expiration time).
@@ -94,7 +97,7 @@ func (o *IntrospectedOAuth2Token) SetActive(v bool) {
 
 // GetAud returns the Aud field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetAud() []string {
-	if o == nil || o.Aud == nil {
+	if o == nil || IsNil(o.Aud) {
 		var ret []string
 		return ret
 	}
@@ -104,7 +107,7 @@ func (o *IntrospectedOAuth2Token) GetAud() []string {
 // GetAudOk returns a tuple with the Aud field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetAudOk() ([]string, bool) {
-	if o == nil || o.Aud == nil {
+	if o == nil || IsNil(o.Aud) {
 		return nil, false
 	}
 	return o.Aud, true
@@ -112,7 +115,7 @@ func (o *IntrospectedOAuth2Token) GetAudOk() ([]string, bool) {
 
 // HasAud returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasAud() bool {
-	if o != nil && o.Aud != nil {
+	if o != nil && !IsNil(o.Aud) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *IntrospectedOAuth2Token) SetAud(v []string) {
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetClientId() string {
-	if o == nil || o.ClientId == nil {
+	if o == nil || IsNil(o.ClientId) {
 		var ret string
 		return ret
 	}
@@ -136,7 +139,7 @@ func (o *IntrospectedOAuth2Token) GetClientId() string {
 // GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetClientIdOk() (*string, bool) {
-	if o == nil || o.ClientId == nil {
+	if o == nil || IsNil(o.ClientId) {
 		return nil, false
 	}
 	return o.ClientId, true
@@ -144,7 +147,7 @@ func (o *IntrospectedOAuth2Token) GetClientIdOk() (*string, bool) {
 
 // HasClientId returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasClientId() bool {
-	if o != nil && o.ClientId != nil {
+	if o != nil && !IsNil(o.ClientId) {
 		return true
 	}
 
@@ -158,7 +161,7 @@ func (o *IntrospectedOAuth2Token) SetClientId(v string) {
 
 // GetExp returns the Exp field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetExp() int64 {
-	if o == nil || o.Exp == nil {
+	if o == nil || IsNil(o.Exp) {
 		var ret int64
 		return ret
 	}
@@ -168,7 +171,7 @@ func (o *IntrospectedOAuth2Token) GetExp() int64 {
 // GetExpOk returns a tuple with the Exp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetExpOk() (*int64, bool) {
-	if o == nil || o.Exp == nil {
+	if o == nil || IsNil(o.Exp) {
 		return nil, false
 	}
 	return o.Exp, true
@@ -176,7 +179,7 @@ func (o *IntrospectedOAuth2Token) GetExpOk() (*int64, bool) {
 
 // HasExp returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasExp() bool {
-	if o != nil && o.Exp != nil {
+	if o != nil && !IsNil(o.Exp) {
 		return true
 	}
 
@@ -190,7 +193,7 @@ func (o *IntrospectedOAuth2Token) SetExp(v int64) {
 
 // GetExt returns the Ext field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetExt() map[string]interface{} {
-	if o == nil || o.Ext == nil {
+	if o == nil || IsNil(o.Ext) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -200,15 +203,15 @@ func (o *IntrospectedOAuth2Token) GetExt() map[string]interface{} {
 // GetExtOk returns a tuple with the Ext field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetExtOk() (map[string]interface{}, bool) {
-	if o == nil || o.Ext == nil {
-		return nil, false
+	if o == nil || IsNil(o.Ext) {
+		return map[string]interface{}{}, false
 	}
 	return o.Ext, true
 }
 
 // HasExt returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasExt() bool {
-	if o != nil && o.Ext != nil {
+	if o != nil && !IsNil(o.Ext) {
 		return true
 	}
 
@@ -222,7 +225,7 @@ func (o *IntrospectedOAuth2Token) SetExt(v map[string]interface{}) {
 
 // GetIat returns the Iat field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetIat() int64 {
-	if o == nil || o.Iat == nil {
+	if o == nil || IsNil(o.Iat) {
 		var ret int64
 		return ret
 	}
@@ -232,7 +235,7 @@ func (o *IntrospectedOAuth2Token) GetIat() int64 {
 // GetIatOk returns a tuple with the Iat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetIatOk() (*int64, bool) {
-	if o == nil || o.Iat == nil {
+	if o == nil || IsNil(o.Iat) {
 		return nil, false
 	}
 	return o.Iat, true
@@ -240,7 +243,7 @@ func (o *IntrospectedOAuth2Token) GetIatOk() (*int64, bool) {
 
 // HasIat returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasIat() bool {
-	if o != nil && o.Iat != nil {
+	if o != nil && !IsNil(o.Iat) {
 		return true
 	}
 
@@ -254,7 +257,7 @@ func (o *IntrospectedOAuth2Token) SetIat(v int64) {
 
 // GetIss returns the Iss field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetIss() string {
-	if o == nil || o.Iss == nil {
+	if o == nil || IsNil(o.Iss) {
 		var ret string
 		return ret
 	}
@@ -264,7 +267,7 @@ func (o *IntrospectedOAuth2Token) GetIss() string {
 // GetIssOk returns a tuple with the Iss field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetIssOk() (*string, bool) {
-	if o == nil || o.Iss == nil {
+	if o == nil || IsNil(o.Iss) {
 		return nil, false
 	}
 	return o.Iss, true
@@ -272,7 +275,7 @@ func (o *IntrospectedOAuth2Token) GetIssOk() (*string, bool) {
 
 // HasIss returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasIss() bool {
-	if o != nil && o.Iss != nil {
+	if o != nil && !IsNil(o.Iss) {
 		return true
 	}
 
@@ -286,7 +289,7 @@ func (o *IntrospectedOAuth2Token) SetIss(v string) {
 
 // GetNbf returns the Nbf field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetNbf() int64 {
-	if o == nil || o.Nbf == nil {
+	if o == nil || IsNil(o.Nbf) {
 		var ret int64
 		return ret
 	}
@@ -296,7 +299,7 @@ func (o *IntrospectedOAuth2Token) GetNbf() int64 {
 // GetNbfOk returns a tuple with the Nbf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetNbfOk() (*int64, bool) {
-	if o == nil || o.Nbf == nil {
+	if o == nil || IsNil(o.Nbf) {
 		return nil, false
 	}
 	return o.Nbf, true
@@ -304,7 +307,7 @@ func (o *IntrospectedOAuth2Token) GetNbfOk() (*int64, bool) {
 
 // HasNbf returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasNbf() bool {
-	if o != nil && o.Nbf != nil {
+	if o != nil && !IsNil(o.Nbf) {
 		return true
 	}
 
@@ -318,7 +321,7 @@ func (o *IntrospectedOAuth2Token) SetNbf(v int64) {
 
 // GetObfuscatedSubject returns the ObfuscatedSubject field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetObfuscatedSubject() string {
-	if o == nil || o.ObfuscatedSubject == nil {
+	if o == nil || IsNil(o.ObfuscatedSubject) {
 		var ret string
 		return ret
 	}
@@ -328,7 +331,7 @@ func (o *IntrospectedOAuth2Token) GetObfuscatedSubject() string {
 // GetObfuscatedSubjectOk returns a tuple with the ObfuscatedSubject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetObfuscatedSubjectOk() (*string, bool) {
-	if o == nil || o.ObfuscatedSubject == nil {
+	if o == nil || IsNil(o.ObfuscatedSubject) {
 		return nil, false
 	}
 	return o.ObfuscatedSubject, true
@@ -336,7 +339,7 @@ func (o *IntrospectedOAuth2Token) GetObfuscatedSubjectOk() (*string, bool) {
 
 // HasObfuscatedSubject returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasObfuscatedSubject() bool {
-	if o != nil && o.ObfuscatedSubject != nil {
+	if o != nil && !IsNil(o.ObfuscatedSubject) {
 		return true
 	}
 
@@ -350,7 +353,7 @@ func (o *IntrospectedOAuth2Token) SetObfuscatedSubject(v string) {
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetScope() string {
-	if o == nil || o.Scope == nil {
+	if o == nil || IsNil(o.Scope) {
 		var ret string
 		return ret
 	}
@@ -360,7 +363,7 @@ func (o *IntrospectedOAuth2Token) GetScope() string {
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetScopeOk() (*string, bool) {
-	if o == nil || o.Scope == nil {
+	if o == nil || IsNil(o.Scope) {
 		return nil, false
 	}
 	return o.Scope, true
@@ -368,7 +371,7 @@ func (o *IntrospectedOAuth2Token) GetScopeOk() (*string, bool) {
 
 // HasScope returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasScope() bool {
-	if o != nil && o.Scope != nil {
+	if o != nil && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -382,7 +385,7 @@ func (o *IntrospectedOAuth2Token) SetScope(v string) {
 
 // GetSub returns the Sub field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetSub() string {
-	if o == nil || o.Sub == nil {
+	if o == nil || IsNil(o.Sub) {
 		var ret string
 		return ret
 	}
@@ -392,7 +395,7 @@ func (o *IntrospectedOAuth2Token) GetSub() string {
 // GetSubOk returns a tuple with the Sub field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetSubOk() (*string, bool) {
-	if o == nil || o.Sub == nil {
+	if o == nil || IsNil(o.Sub) {
 		return nil, false
 	}
 	return o.Sub, true
@@ -400,7 +403,7 @@ func (o *IntrospectedOAuth2Token) GetSubOk() (*string, bool) {
 
 // HasSub returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasSub() bool {
-	if o != nil && o.Sub != nil {
+	if o != nil && !IsNil(o.Sub) {
 		return true
 	}
 
@@ -414,7 +417,7 @@ func (o *IntrospectedOAuth2Token) SetSub(v string) {
 
 // GetTokenType returns the TokenType field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetTokenType() string {
-	if o == nil || o.TokenType == nil {
+	if o == nil || IsNil(o.TokenType) {
 		var ret string
 		return ret
 	}
@@ -424,7 +427,7 @@ func (o *IntrospectedOAuth2Token) GetTokenType() string {
 // GetTokenTypeOk returns a tuple with the TokenType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetTokenTypeOk() (*string, bool) {
-	if o == nil || o.TokenType == nil {
+	if o == nil || IsNil(o.TokenType) {
 		return nil, false
 	}
 	return o.TokenType, true
@@ -432,7 +435,7 @@ func (o *IntrospectedOAuth2Token) GetTokenTypeOk() (*string, bool) {
 
 // HasTokenType returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasTokenType() bool {
-	if o != nil && o.TokenType != nil {
+	if o != nil && !IsNil(o.TokenType) {
 		return true
 	}
 
@@ -446,7 +449,7 @@ func (o *IntrospectedOAuth2Token) SetTokenType(v string) {
 
 // GetTokenUse returns the TokenUse field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetTokenUse() string {
-	if o == nil || o.TokenUse == nil {
+	if o == nil || IsNil(o.TokenUse) {
 		var ret string
 		return ret
 	}
@@ -456,7 +459,7 @@ func (o *IntrospectedOAuth2Token) GetTokenUse() string {
 // GetTokenUseOk returns a tuple with the TokenUse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetTokenUseOk() (*string, bool) {
-	if o == nil || o.TokenUse == nil {
+	if o == nil || IsNil(o.TokenUse) {
 		return nil, false
 	}
 	return o.TokenUse, true
@@ -464,7 +467,7 @@ func (o *IntrospectedOAuth2Token) GetTokenUseOk() (*string, bool) {
 
 // HasTokenUse returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasTokenUse() bool {
-	if o != nil && o.TokenUse != nil {
+	if o != nil && !IsNil(o.TokenUse) {
 		return true
 	}
 
@@ -478,7 +481,7 @@ func (o *IntrospectedOAuth2Token) SetTokenUse(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *IntrospectedOAuth2Token) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -488,7 +491,7 @@ func (o *IntrospectedOAuth2Token) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IntrospectedOAuth2Token) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -496,7 +499,7 @@ func (o *IntrospectedOAuth2Token) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *IntrospectedOAuth2Token) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -509,47 +512,53 @@ func (o *IntrospectedOAuth2Token) SetUsername(v string) {
 }
 
 func (o IntrospectedOAuth2Token) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["active"] = o.Active
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-	if o.Aud != nil {
+	return json.Marshal(toSerialize)
+}
+
+func (o IntrospectedOAuth2Token) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["active"] = o.Active
+	if !IsNil(o.Aud) {
 		toSerialize["aud"] = o.Aud
 	}
-	if o.ClientId != nil {
+	if !IsNil(o.ClientId) {
 		toSerialize["client_id"] = o.ClientId
 	}
-	if o.Exp != nil {
+	if !IsNil(o.Exp) {
 		toSerialize["exp"] = o.Exp
 	}
-	if o.Ext != nil {
+	if !IsNil(o.Ext) {
 		toSerialize["ext"] = o.Ext
 	}
-	if o.Iat != nil {
+	if !IsNil(o.Iat) {
 		toSerialize["iat"] = o.Iat
 	}
-	if o.Iss != nil {
+	if !IsNil(o.Iss) {
 		toSerialize["iss"] = o.Iss
 	}
-	if o.Nbf != nil {
+	if !IsNil(o.Nbf) {
 		toSerialize["nbf"] = o.Nbf
 	}
-	if o.ObfuscatedSubject != nil {
+	if !IsNil(o.ObfuscatedSubject) {
 		toSerialize["obfuscated_subject"] = o.ObfuscatedSubject
 	}
-	if o.Scope != nil {
+	if !IsNil(o.Scope) {
 		toSerialize["scope"] = o.Scope
 	}
-	if o.Sub != nil {
+	if !IsNil(o.Sub) {
 		toSerialize["sub"] = o.Sub
 	}
-	if o.TokenType != nil {
+	if !IsNil(o.TokenType) {
 		toSerialize["token_type"] = o.TokenType
 	}
-	if o.TokenUse != nil {
+	if !IsNil(o.TokenUse) {
 		toSerialize["token_use"] = o.TokenUse
 	}
-	if o.Username != nil {
+	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
 
@@ -557,15 +566,19 @@ func (o IntrospectedOAuth2Token) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IntrospectedOAuth2Token) UnmarshalJSON(bytes []byte) (err error) {
 	varIntrospectedOAuth2Token := _IntrospectedOAuth2Token{}
 
-	if err = json.Unmarshal(bytes, &varIntrospectedOAuth2Token); err == nil {
-		*o = IntrospectedOAuth2Token(varIntrospectedOAuth2Token)
+	err = json.Unmarshal(bytes, &varIntrospectedOAuth2Token)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IntrospectedOAuth2Token(varIntrospectedOAuth2Token)
 
 	additionalProperties := make(map[string]interface{})
 

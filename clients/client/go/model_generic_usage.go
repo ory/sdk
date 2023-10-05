@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GenericUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GenericUsage{}
+
 // GenericUsage struct for GenericUsage
 type GenericUsage struct {
 	// AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
@@ -94,27 +97,35 @@ func (o *GenericUsage) SetIncludedUsage(v int64) {
 }
 
 func (o GenericUsage) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GenericUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["additional_price"] = o.AdditionalPrice
-	}
-	if true {
-		toSerialize["included_usage"] = o.IncludedUsage
-	}
+	toSerialize["additional_price"] = o.AdditionalPrice
+	toSerialize["included_usage"] = o.IncludedUsage
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *GenericUsage) UnmarshalJSON(bytes []byte) (err error) {
 	varGenericUsage := _GenericUsage{}
 
-	if err = json.Unmarshal(bytes, &varGenericUsage); err == nil {
-		*o = GenericUsage(varGenericUsage)
+	err = json.Unmarshal(bytes, &varGenericUsage)
+
+	if err != nil {
+		return err
 	}
+
+	*o = GenericUsage(varGenericUsage)
 
 	additionalProperties := make(map[string]interface{})
 

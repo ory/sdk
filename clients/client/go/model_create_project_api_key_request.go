@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateProjectApiKeyRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateProjectApiKeyRequest{}
+
 // CreateProjectApiKeyRequest struct for CreateProjectApiKeyRequest
 type CreateProjectApiKeyRequest struct {
 	// The Token Name  A descriptive name for the token.  in: body
@@ -67,24 +70,34 @@ func (o *CreateProjectApiKeyRequest) SetName(v string) {
 }
 
 func (o CreateProjectApiKeyRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateProjectApiKeyRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CreateProjectApiKeyRequest) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateProjectApiKeyRequest := _CreateProjectApiKeyRequest{}
 
-	if err = json.Unmarshal(bytes, &varCreateProjectApiKeyRequest); err == nil {
-		*o = CreateProjectApiKeyRequest(varCreateProjectApiKeyRequest)
+	err = json.Unmarshal(bytes, &varCreateProjectApiKeyRequest)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateProjectApiKeyRequest(varCreateProjectApiKeyRequest)
 
 	additionalProperties := make(map[string]interface{})
 

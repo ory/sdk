@@ -160,11 +160,11 @@ func (dst *UpdateLoginFlowBody) UnmarshalJSON(data []byte) error {
 		dst.UpdateLoginFlowWithTotpMethod = nil
 		dst.UpdateLoginFlowWithWebAuthnMethod = nil
 
-		return fmt.Errorf("Data matches more than one schema in oneOf(UpdateLoginFlowBody)")
+		return fmt.Errorf("data matches more than one schema in oneOf(UpdateLoginFlowBody)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(UpdateLoginFlowBody)")
+		return fmt.Errorf("data failed to match schemas in oneOf(UpdateLoginFlowBody)")
 	}
 }
 

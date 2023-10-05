@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Usage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Usage{}
+
 // Usage struct for Usage
 type Usage struct {
 	GenericUsage *GenericUsage `json:"GenericUsage,omitempty"`
@@ -42,7 +45,7 @@ func NewUsageWithDefaults() *Usage {
 
 // GetGenericUsage returns the GenericUsage field value if set, zero value otherwise.
 func (o *Usage) GetGenericUsage() GenericUsage {
-	if o == nil || o.GenericUsage == nil {
+	if o == nil || IsNil(o.GenericUsage) {
 		var ret GenericUsage
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *Usage) GetGenericUsage() GenericUsage {
 // GetGenericUsageOk returns a tuple with the GenericUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Usage) GetGenericUsageOk() (*GenericUsage, bool) {
-	if o == nil || o.GenericUsage == nil {
+	if o == nil || IsNil(o.GenericUsage) {
 		return nil, false
 	}
 	return o.GenericUsage, true
@@ -60,7 +63,7 @@ func (o *Usage) GetGenericUsageOk() (*GenericUsage, bool) {
 
 // HasGenericUsage returns a boolean if a field has been set.
 func (o *Usage) HasGenericUsage() bool {
-	if o != nil && o.GenericUsage != nil {
+	if o != nil && !IsNil(o.GenericUsage) {
 		return true
 	}
 
@@ -73,8 +76,16 @@ func (o *Usage) SetGenericUsage(v GenericUsage) {
 }
 
 func (o Usage) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Usage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.GenericUsage != nil {
+	if !IsNil(o.GenericUsage) {
 		toSerialize["GenericUsage"] = o.GenericUsage
 	}
 
@@ -82,15 +93,19 @@ func (o Usage) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Usage) UnmarshalJSON(bytes []byte) (err error) {
 	varUsage := _Usage{}
 
-	if err = json.Unmarshal(bytes, &varUsage); err == nil {
-		*o = Usage(varUsage)
+	err = json.Unmarshal(bytes, &varUsage)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Usage(varUsage)
 
 	additionalProperties := make(map[string]interface{})
 

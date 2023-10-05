@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateSubscriptionBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateSubscriptionBody{}
+
 // CreateSubscriptionBody Create Subscription Request Body
 type CreateSubscriptionBody struct {
 	//  usd USD eur Euro
@@ -51,7 +54,7 @@ func NewCreateSubscriptionBodyWithDefaults() *CreateSubscriptionBody {
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
 func (o *CreateSubscriptionBody) GetCurrency() string {
-	if o == nil || o.Currency == nil {
+	if o == nil || IsNil(o.Currency) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *CreateSubscriptionBody) GetCurrency() string {
 // GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSubscriptionBody) GetCurrencyOk() (*string, bool) {
-	if o == nil || o.Currency == nil {
+	if o == nil || IsNil(o.Currency) {
 		return nil, false
 	}
 	return o.Currency, true
@@ -69,7 +72,7 @@ func (o *CreateSubscriptionBody) GetCurrencyOk() (*string, bool) {
 
 // HasCurrency returns a boolean if a field has been set.
 func (o *CreateSubscriptionBody) HasCurrency() bool {
-	if o != nil && o.Currency != nil {
+	if o != nil && !IsNil(o.Currency) {
 		return true
 	}
 
@@ -155,7 +158,7 @@ func (o *CreateSubscriptionBody) SetProvisionFirstProject(v string) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *CreateSubscriptionBody) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -165,7 +168,7 @@ func (o *CreateSubscriptionBody) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSubscriptionBody) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -173,7 +176,7 @@ func (o *CreateSubscriptionBody) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *CreateSubscriptionBody) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -186,20 +189,22 @@ func (o *CreateSubscriptionBody) SetReturnTo(v string) {
 }
 
 func (o CreateSubscriptionBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateSubscriptionBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Currency != nil {
+	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
 	}
-	if true {
-		toSerialize["interval"] = o.Interval
-	}
-	if true {
-		toSerialize["plan"] = o.Plan
-	}
-	if true {
-		toSerialize["provision_first_project"] = o.ProvisionFirstProject
-	}
-	if o.ReturnTo != nil {
+	toSerialize["interval"] = o.Interval
+	toSerialize["plan"] = o.Plan
+	toSerialize["provision_first_project"] = o.ProvisionFirstProject
+	if !IsNil(o.ReturnTo) {
 		toSerialize["return_to"] = o.ReturnTo
 	}
 
@@ -207,15 +212,19 @@ func (o CreateSubscriptionBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CreateSubscriptionBody) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateSubscriptionBody := _CreateSubscriptionBody{}
 
-	if err = json.Unmarshal(bytes, &varCreateSubscriptionBody); err == nil {
-		*o = CreateSubscriptionBody(varCreateSubscriptionBody)
+	err = json.Unmarshal(bytes, &varCreateSubscriptionBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateSubscriptionBody(varCreateSubscriptionBody)
 
 	additionalProperties := make(map[string]interface{})
 
