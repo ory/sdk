@@ -59,6 +59,7 @@ docs/Model/GenericError.md
 docs/Model/GenericErrorContent.md
 docs/Model/GenericUsage.md
 docs/Model/GetManagedIdentitySchemaLocation.md
+docs/Model/GetOrganizationResponse.md
 docs/Model/GetProjectMetricsResponse.md
 docs/Model/HealthNotReadyStatus.md
 docs/Model/HealthStatus.md
@@ -293,6 +294,7 @@ lib/Model/GenericError.php
 lib/Model/GenericErrorContent.php
 lib/Model/GenericUsage.php
 lib/Model/GetManagedIdentitySchemaLocation.php
+lib/Model/GetOrganizationResponse.php
 lib/Model/GetProjectMetricsResponse.php
 lib/Model/HealthNotReadyStatus.php
 lib/Model/HealthStatus.php
@@ -526,6 +528,7 @@ test/Model/GenericErrorContentTest.php
 test/Model/GenericErrorTest.php
 test/Model/GenericUsageTest.php
 test/Model/GetManagedIdentitySchemaLocationTest.php
+test/Model/GetOrganizationResponseTest.php
 test/Model/GetProjectMetricsResponseTest.php
 test/Model/HealthNotReadyStatusTest.php
 test/Model/HealthStatusTest.php

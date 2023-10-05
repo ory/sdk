@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**DeleteOrganization**](ProjectApi.md#DeleteOrganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
 [**DeleteProjectApiKey**](ProjectApi.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
 [**GetActiveProjectInConsole**](ProjectApi.md#GetActiveProjectInConsole) | **Get** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+[**GetOrganization**](ProjectApi.md#GetOrganization) | **Get** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID.
 [**GetProject**](ProjectApi.md#GetProject) | **Get** /projects/{project_id} | Get a Project
 [**GetProjectMembers**](ProjectApi.md#GetProjectMembers) | **Get** /projects/{project}/members | Get all members associated with this project
 [**GetProjectMetrics**](ProjectApi.md#GetProjectMetrics) | **Get** /projects/{project_id}/metrics | 
@@ -421,6 +422,77 @@ Other parameters are passed through a pointer to a apiGetActiveProjectInConsoleR
 ### Return type
 
 [**ActiveProjectInConsole**](ActiveProjectInConsole.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganization
+
+> GetOrganizationResponse GetOrganization(ctx, projectId, organizationId).Execute()
+
+Returns a B2B SSO Organization for a project by it's ID.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectId := "projectId_example" // string | Project ID  The project's ID.
+    organizationId := "organizationId_example" // string | Organization ID  The Organization's ID.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectApi.GetOrganization(context.Background(), projectId, organizationId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectApi.GetOrganization``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganization`: GetOrganizationResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProjectApi.GetOrganization`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID  The project&#39;s ID. | 
+**organizationId** | **string** | Organization ID  The Organization&#39;s ID. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**GetOrganizationResponse**](GetOrganizationResponse.md)
 
 ### Authorization
 

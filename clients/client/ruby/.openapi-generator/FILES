@@ -54,6 +54,7 @@ docs/GenericError.md
 docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetOrganizationResponse.md
 docs/GetProjectMetricsResponse.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
@@ -298,6 +299,7 @@ lib/ory-client/models/generic_error.rb
 lib/ory-client/models/generic_error_content.rb
 lib/ory-client/models/generic_usage.rb
 lib/ory-client/models/get_managed_identity_schema_location.rb
+lib/ory-client/models/get_organization_response.rb
 lib/ory-client/models/get_project_metrics_response.rb
 lib/ory-client/models/get_version200_response.rb
 lib/ory-client/models/health_not_ready_status.rb
@@ -532,6 +534,7 @@ spec/models/generic_error_content_spec.rb
 spec/models/generic_error_spec.rb
 spec/models/generic_usage_spec.rb
 spec/models/get_managed_identity_schema_location_spec.rb
+spec/models/get_organization_response_spec.rb
 spec/models/get_project_metrics_response_spec.rb
 spec/models/get_version200_response_spec.rb
 spec/models/health_not_ready_status_spec.rb

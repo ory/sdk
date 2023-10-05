@@ -53,6 +53,7 @@ docs/GenericError.md
 docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetOrganizationResponse.md
 docs/GetProjectMetricsResponse.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
@@ -323,6 +324,7 @@ src/main/java/sh/ory/model/GenericError.java
 src/main/java/sh/ory/model/GenericErrorContent.java
 src/main/java/sh/ory/model/GenericUsage.java
 src/main/java/sh/ory/model/GetManagedIdentitySchemaLocation.java
+src/main/java/sh/ory/model/GetOrganizationResponse.java
 src/main/java/sh/ory/model/GetProjectMetricsResponse.java
 src/main/java/sh/ory/model/GetVersion200Response.java
 src/main/java/sh/ory/model/HealthNotReadyStatus.java
@@ -553,6 +555,7 @@ src/test/java/sh/ory/model/GenericErrorContentTest.java
 src/test/java/sh/ory/model/GenericErrorTest.java
 src/test/java/sh/ory/model/GenericUsageTest.java
 src/test/java/sh/ory/model/GetManagedIdentitySchemaLocationTest.java
+src/test/java/sh/ory/model/GetOrganizationResponseTest.java
 src/test/java/sh/ory/model/GetProjectMetricsResponseTest.java
 src/test/java/sh/ory/model/GetVersion200ResponseTest.java
 src/test/java/sh/ory/model/HealthNotReadyStatusTest.java

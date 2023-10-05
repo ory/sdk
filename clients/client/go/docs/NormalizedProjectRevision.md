@@ -36,6 +36,7 @@ Name | Type | Description | Notes
 **HydraUrlsLogin** | Pointer to **string** | Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.login\&quot; setting. | [optional] 
 **HydraUrlsLogout** | Pointer to **string** | Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.logout\&quot; setting. | [optional] 
 **HydraUrlsPostLogoutRedirect** | Pointer to **string** | When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \&quot;urls.post_logout_redirect\&quot; setting. | [optional] 
+**HydraUrlsRegistration** | Pointer to **string** | Sets the OAuth2 Registration Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.registration\&quot; setting. | [optional] 
 **HydraUrlsSelfIssuer** | Pointer to **string** | This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \&quot;urls.self.issuer\&quot; setting. | [optional] 
 **HydraWebfingerJwksBroadcastKeys** | Pointer to **[]string** |  | [optional] 
 **HydraWebfingerOidcDiscoveryAuthUrl** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \&quot;webfinger.oidc.discovery.auth_url\&quot; setting. | [optional] 
@@ -1007,6 +1008,31 @@ SetHydraUrlsPostLogoutRedirect sets HydraUrlsPostLogoutRedirect field to given v
 `func (o *NormalizedProjectRevision) HasHydraUrlsPostLogoutRedirect() bool`
 
 HasHydraUrlsPostLogoutRedirect returns a boolean if a field has been set.
+
+### GetHydraUrlsRegistration
+
+`func (o *NormalizedProjectRevision) GetHydraUrlsRegistration() string`
+
+GetHydraUrlsRegistration returns the HydraUrlsRegistration field if non-nil, zero value otherwise.
+
+### GetHydraUrlsRegistrationOk
+
+`func (o *NormalizedProjectRevision) GetHydraUrlsRegistrationOk() (*string, bool)`
+
+GetHydraUrlsRegistrationOk returns a tuple with the HydraUrlsRegistration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraUrlsRegistration
+
+`func (o *NormalizedProjectRevision) SetHydraUrlsRegistration(v string)`
+
+SetHydraUrlsRegistration sets HydraUrlsRegistration field to given value.
+
+### HasHydraUrlsRegistration
+
+`func (o *NormalizedProjectRevision) HasHydraUrlsRegistration() bool`
+
+HasHydraUrlsRegistration returns a boolean if a field has been set.
 
 ### GetHydraUrlsSelfIssuer
 

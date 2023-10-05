@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.10
+API version: v1.2.11
 Contact: support@ory.sh
 */
 
@@ -17,7 +17,7 @@ import (
 
 // GenericUsage struct for GenericUsage
 type GenericUsage struct {
-	// AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
+	// AdditionalPrice is the price per-unit in cent exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
 	AdditionalPrice int64 `json:"additional_price"`
 	// IncludedUsage is the number of included items.
 	IncludedUsage int64 `json:"included_usage"`

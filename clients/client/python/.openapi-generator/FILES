@@ -51,6 +51,7 @@ docs/GenericError.md
 docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetOrganizationResponse.md
 docs/GetProjectMetricsResponse.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
@@ -329,6 +330,7 @@ ory_client/model/generic_error.py
 ory_client/model/generic_error_content.py
 ory_client/model/generic_usage.py
 ory_client/model/get_managed_identity_schema_location.py
+ory_client/model/get_organization_response.py
 ory_client/model/get_project_metrics_response.py
 ory_client/model/get_version200_response.py
 ory_client/model/health_not_ready_status.py
@@ -589,6 +591,7 @@ test/test_generic_error.py
 test/test_generic_error_content.py
 test/test_generic_usage.py
 test/test_get_managed_identity_schema_location.py
+test/test_get_organization_response.py
 test/test_get_project_metrics_response.py
 test/test_get_version200_response.py
 test/test_health_not_ready_status.py

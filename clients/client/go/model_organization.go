@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.10
+API version: v1.2.11
 Contact: support@ory.sh
 */
 
@@ -13,10 +13,13 @@ package client
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // Organization B2B SSO Organization
 type Organization struct {
+	// The organization's creation date.
+	CreatedAt time.Time `json:"created_at"`
 	Domains []string `json:"domains"`
 	// The organization's ID.
 	Id string `json:"id"`
@@ -24,6 +27,8 @@ type Organization struct {
 	Label string `json:"label"`
 	// The project's ID.
 	ProjectId string `json:"project_id"`
+	// The last time the organization was updated.
+	UpdatedAt time.Time `json:"updated_at"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,12 +38,14 @@ type _Organization Organization
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrganization(domains []string, id string, label string, projectId string) *Organization {
+func NewOrganization(createdAt time.Time, domains []string, id string, label string, projectId string, updatedAt time.Time) *Organization {
 	this := Organization{}
+	this.CreatedAt = createdAt
 	this.Domains = domains
 	this.Id = id
 	this.Label = label
 	this.ProjectId = projectId
+	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -48,6 +55,30 @@ func NewOrganization(domains []string, id string, label string, projectId string
 func NewOrganizationWithDefaults() *Organization {
 	this := Organization{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *Organization) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Organization) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *Organization) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
 }
 
 // GetDomains returns the Domains field value
@@ -146,8 +177,35 @@ func (o *Organization) SetProjectId(v string) {
 	o.ProjectId = v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *Organization) GetUpdatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Organization) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedAt, true
+}
+
+// SetUpdatedAt sets field value
+func (o *Organization) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = v
+}
+
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	if true {
 		toSerialize["domains"] = o.Domains
 	}
@@ -159,6 +217,9 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["project_id"] = o.ProjectId
+	}
+	if true {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -178,10 +239,12 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "domains")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}
 

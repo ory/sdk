@@ -194,6 +194,12 @@ void main() {
       // TODO
     });
 
+    // Sets the OAuth2 Registration Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.registration\" setting.
+    // String hydraUrlsRegistration
+    test('to test the property `hydraUrlsRegistration`', () async {
+      // TODO
+    });
+
     // This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
     // String hydraUrlsSelfIssuer
     test('to test the property `hydraUrlsSelfIssuer`', () async {

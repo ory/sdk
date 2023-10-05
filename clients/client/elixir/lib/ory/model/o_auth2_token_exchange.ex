@@ -19,7 +19,7 @@ defmodule Ory.Model.OAuth2TokenExchange do
   @type t :: %__MODULE__{
     :access_token => String.t | nil,
     :expires_in => integer() | nil,
-    :id_token => integer() | nil,
+    :id_token => String.t | nil,
     :refresh_token => String.t | nil,
     :scope => String.t | nil,
     :token_type => String.t | nil

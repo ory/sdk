@@ -49,6 +49,7 @@ doc/GenericError.md
 doc/GenericErrorContent.md
 doc/GenericUsage.md
 doc/GetManagedIdentitySchemaLocation.md
+doc/GetOrganizationResponse.md
 doc/GetProjectMetricsResponse.md
 doc/GetVersion200Response.md
 doc/HealthNotReadyStatus.md
@@ -298,6 +299,7 @@ lib/src/model/generic_error.dart
 lib/src/model/generic_error_content.dart
 lib/src/model/generic_usage.dart
 lib/src/model/get_managed_identity_schema_location.dart
+lib/src/model/get_organization_response.dart
 lib/src/model/get_project_metrics_response.dart
 lib/src/model/get_version200_response.dart
 lib/src/model/health_not_ready_status.dart
@@ -521,6 +523,7 @@ test/generic_error_content_test.dart
 test/generic_error_test.dart
 test/generic_usage_test.dart
 test/get_managed_identity_schema_location_test.dart
+test/get_organization_response_test.dart
 test/get_project_metrics_response_test.dart
 test/get_version200_response_test.dart
 test/health_not_ready_status_test.dart

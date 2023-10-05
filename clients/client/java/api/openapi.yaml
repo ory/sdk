@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.2.10
+  version: v1.2.11
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -628,11 +628,25 @@ paths:
           minimum: 1
           type: string
         style: form
-      - description: "CredentialsIdentifier is the identifier (username, email) of\
-          \ the credentials to look up."
+      - description: |-
+          CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match.
+          Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
         explode: true
         in: query
         name: credentials_identifier
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior.
+          THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.
+
+          CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search.
+          Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+        explode: true
+        in: query
+        name: preview_credentials_identifier_similar
         required: false
         schema:
           type: string
@@ -3896,6 +3910,62 @@ paths:
       security:
       - oryAccessToken: []
       summary: Delete a B2B SSO Organization for a project.
+      tags:
+      - project
+      x-accepts: application/json
+    get:
+      operationId: getOrganization
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Organization ID
+
+          The Organization's ID.
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getOrganizationResponse'
+          description: getOrganizationResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Returns a B2B SSO Organization for a project by it's ID.
       tags:
       - project
       x-accepts: application/json
@@ -7336,7 +7406,7 @@ components:
     GenericUsage:
       properties:
         additional_price:
-          description: AdditionalPrice is the price per-unit exceeding IncludedUsage.
+          description: AdditionalPrice is the price per-unit in cent exceeding IncludedUsage.
             A price of 0 means that no other items can be consumed.
           format: int64
           type: integer
@@ -8488,6 +8558,24 @@ components:
         location:
           type: string
       type: object
+    getOrganizationResponse:
+      example:
+        organization:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - domains
+          - domains
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          label: label
+      properties:
+        organization:
+          $ref: '#/components/schemas/organization'
+      required:
+      - organization
+      title: getOrganizationResponse represents a B2B SSO Organization.
+      type: object
     getProjectMetricsResponse:
       description: Response of the getMetrics endpoint
       example:
@@ -9335,13 +9423,17 @@ components:
       description: B2B SSO Organization List
       example:
         organizations:
-        - project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
-        - project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
@@ -10280,6 +10372,14 @@ components:
             Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.
 
             This governs the "urls.post_logout_redirect" setting.
+          type: string
+        hydra_urls_registration:
+          description: |-
+            Sets the OAuth2 Registration Endpoint URL of the OAuth2 User Login & Consent flow.
+
+            Defaults to the Ory Account Experience if left empty.
+
+            This governs the "urls.registration" setting.
           type: string
         hydra_urls_self_issuer:
           description: |-
@@ -11659,7 +11759,7 @@ components:
           description: |-
             OAuth 2.0 Client ID
 
-            The ID is autogenerated and immutable.
+            The ID is immutable. If no ID is provided, a UUID4 will be generated.
           type: string
         client_name:
           description: |-
@@ -12606,7 +12706,7 @@ components:
         access_token: access_token
         refresh_token: refresh_token
         scope: scope
-        id_token: 6
+        id_token: id_token
         token_type: token_type
         expires_in: 0
       properties:
@@ -12622,8 +12722,7 @@ components:
           type: integer
         id_token:
           description: To retrieve a refresh token request the id_token scope.
-          format: int64
-          type: integer
+          type: string
         refresh_token:
           description: |-
             The refresh token, which can be used to obtain new
@@ -13104,13 +13203,20 @@ components:
     organization:
       description: B2B SSO Organization
       example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
         project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at: 2000-01-23T04:56:07.000+00:00
         domains:
         - domains
         - domains
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         label: label
       properties:
+        created_at:
+          description: The organization's creation date.
+          format: date-time
+          readOnly: true
+          type: string
         domains:
           items:
             type: string
@@ -13128,11 +13234,18 @@ components:
           description: The project's ID.
           format: uuid
           type: string
+        updated_at:
+          description: The last time the organization was updated.
+          format: date-time
+          readOnly: true
+          type: string
       required:
+      - created_at
       - domains
       - id
       - label
       - project_id
+      - updated_at
       type: object
     pagination:
       properties:
@@ -13871,6 +13984,7 @@ components:
     quotaUsage:
       properties:
         additional_price:
+          description: The additional price per unit in cents.
           format: int64
           type: integer
         can_use_more:
@@ -13891,6 +14005,7 @@ components:
             branding_themes BrandingThemes
             zendesk_support ZendeskSupport
             project_metrics ProjectMetrics
+            organizations Organizations
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
@@ -13908,6 +14023,7 @@ components:
           - branding_themes
           - zendesk_support
           - project_metrics
+          - organizations
           - rate_limit_tier
           - session_rate_limit_tier
           - identities_list_rate_limit_tier
@@ -13926,6 +14042,7 @@ components:
             branding_themes BrandingThemes
             zendesk_support ZendeskSupport
             project_metrics ProjectMetrics
+            organizations Organizations
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList

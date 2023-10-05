@@ -15,6 +15,7 @@ import 'package:ory_client/src/model/create_project_api_key_request.dart';
 import 'package:ory_client/src/model/create_project_body.dart';
 import 'package:ory_client/src/model/error_generic.dart';
 import 'package:ory_client/src/model/generic_error.dart';
+import 'package:ory_client/src/model/get_organization_response.dart';
 import 'package:ory_client/src/model/get_project_metrics_response.dart';
 import 'package:ory_client/src/model/json_patch.dart';
 import 'package:ory_client/src/model/list_organizations_response.dart';
@@ -520,6 +521,89 @@ class ProjectApi {
     }
 
     return Response<ActiveProjectInConsole>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Returns a B2B SSO Organization for a project by it&#39;s ID.
+  /// 
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID  The project's ID.
+  /// * [organizationId] - Organization ID  The Organization's ID.
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [GetOrganizationResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<GetOrganizationResponse>> getOrganization({ 
+    required String projectId,
+    required String organizationId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/organizations/{organization_id}'.replaceAll('{' r'project_id' '}', projectId.toString()).replaceAll('{' r'organization_id' '}', organizationId.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    GetOrganizationResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetOrganizationResponse),
+      ) as GetOrganizationResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<GetOrganizationResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

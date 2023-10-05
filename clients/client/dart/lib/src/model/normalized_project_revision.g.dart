@@ -342,6 +342,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? hydraUrlsPostLogoutRedirect;
   @override
+  final String? hydraUrlsRegistration;
+  @override
   final String? hydraUrlsSelfIssuer;
   @override
   final BuiltList<String>? hydraWebfingerJwksBroadcastKeys;
@@ -698,6 +700,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.hydraUrlsLogin,
       this.hydraUrlsLogout,
       this.hydraUrlsPostLogoutRedirect,
+      this.hydraUrlsRegistration,
       this.hydraUrlsSelfIssuer,
       this.hydraWebfingerJwksBroadcastKeys,
       this.hydraWebfingerOidcDiscoveryAuthUrl,
@@ -912,6 +915,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         hydraUrlsLogin == other.hydraUrlsLogin &&
         hydraUrlsLogout == other.hydraUrlsLogout &&
         hydraUrlsPostLogoutRedirect == other.hydraUrlsPostLogoutRedirect &&
+        hydraUrlsRegistration == other.hydraUrlsRegistration &&
         hydraUrlsSelfIssuer == other.hydraUrlsSelfIssuer &&
         hydraWebfingerJwksBroadcastKeys ==
             other.hydraWebfingerJwksBroadcastKeys &&
@@ -1245,6 +1249,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, hydraUrlsLogin.hashCode);
     _$hash = $jc(_$hash, hydraUrlsLogout.hashCode);
     _$hash = $jc(_$hash, hydraUrlsPostLogoutRedirect.hashCode);
+    _$hash = $jc(_$hash, hydraUrlsRegistration.hashCode);
     _$hash = $jc(_$hash, hydraUrlsSelfIssuer.hashCode);
     _$hash = $jc(_$hash, hydraWebfingerJwksBroadcastKeys.hashCode);
     _$hash = $jc(_$hash, hydraWebfingerOidcDiscoveryAuthUrl.hashCode);
@@ -1551,6 +1556,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('hydraUrlsLogin', hydraUrlsLogin)
           ..add('hydraUrlsLogout', hydraUrlsLogout)
           ..add('hydraUrlsPostLogoutRedirect', hydraUrlsPostLogoutRedirect)
+          ..add('hydraUrlsRegistration', hydraUrlsRegistration)
           ..add('hydraUrlsSelfIssuer', hydraUrlsSelfIssuer)
           ..add('hydraWebfingerJwksBroadcastKeys',
               hydraWebfingerJwksBroadcastKeys)
@@ -2058,6 +2064,11 @@ class NormalizedProjectRevisionBuilder
       _$this._hydraUrlsPostLogoutRedirect;
   set hydraUrlsPostLogoutRedirect(String? hydraUrlsPostLogoutRedirect) =>
       _$this._hydraUrlsPostLogoutRedirect = hydraUrlsPostLogoutRedirect;
+
+  String? _hydraUrlsRegistration;
+  String? get hydraUrlsRegistration => _$this._hydraUrlsRegistration;
+  set hydraUrlsRegistration(String? hydraUrlsRegistration) =>
+      _$this._hydraUrlsRegistration = hydraUrlsRegistration;
 
   String? _hydraUrlsSelfIssuer;
   String? get hydraUrlsSelfIssuer => _$this._hydraUrlsSelfIssuer;
@@ -3301,6 +3312,7 @@ class NormalizedProjectRevisionBuilder
       _hydraUrlsLogin = $v.hydraUrlsLogin;
       _hydraUrlsLogout = $v.hydraUrlsLogout;
       _hydraUrlsPostLogoutRedirect = $v.hydraUrlsPostLogoutRedirect;
+      _hydraUrlsRegistration = $v.hydraUrlsRegistration;
       _hydraUrlsSelfIssuer = $v.hydraUrlsSelfIssuer;
       _hydraWebfingerJwksBroadcastKeys =
           $v.hydraWebfingerJwksBroadcastKeys?.toBuilder();
@@ -3639,6 +3651,7 @@ class NormalizedProjectRevisionBuilder
               hydraUrlsLogin: hydraUrlsLogin,
               hydraUrlsLogout: hydraUrlsLogout,
               hydraUrlsPostLogoutRedirect: hydraUrlsPostLogoutRedirect,
+              hydraUrlsRegistration: hydraUrlsRegistration,
               hydraUrlsSelfIssuer: hydraUrlsSelfIssuer,
               hydraWebfingerJwksBroadcastKeys:
                   _hydraWebfingerJwksBroadcastKeys?.build(),

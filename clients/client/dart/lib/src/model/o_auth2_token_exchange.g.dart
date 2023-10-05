@@ -12,7 +12,7 @@ class _$OAuth2TokenExchange extends OAuth2TokenExchange {
   @override
   final int? expiresIn;
   @override
-  final int? idToken;
+  final String? idToken;
   @override
   final String? refreshToken;
   @override
@@ -92,9 +92,9 @@ class OAuth2TokenExchangeBuilder
   int? get expiresIn => _$this._expiresIn;
   set expiresIn(int? expiresIn) => _$this._expiresIn = expiresIn;
 
-  int? _idToken;
-  int? get idToken => _$this._idToken;
-  set idToken(int? idToken) => _$this._idToken = idToken;
+  String? _idToken;
+  String? get idToken => _$this._idToken;
+  set idToken(String? idToken) => _$this._idToken = idToken;
 
   String? _refreshToken;
   String? get refreshToken => _$this._refreshToken;

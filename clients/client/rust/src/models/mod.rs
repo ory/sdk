@@ -88,6 +88,8 @@ pub mod generic_usage;
 pub use self::generic_usage::GenericUsage;
 pub mod get_managed_identity_schema_location;
 pub use self::get_managed_identity_schema_location::GetManagedIdentitySchemaLocation;
+pub mod get_organization_response;
+pub use self::get_organization_response::GetOrganizationResponse;
 pub mod get_project_metrics_response;
 pub use self::get_project_metrics_response::GetProjectMetricsResponse;
 pub mod get_version_200_response;

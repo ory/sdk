@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdditionalPrice** | **int64** | AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed. | 
+**AdditionalPrice** | **int64** | AdditionalPrice is the price per-unit in cent exceeding IncludedUsage. A price of 0 means that no other items can be consumed. | 
 **IncludedUsage** | **int64** | IncludedUsage is the number of included items. | 
 
 ## Methods

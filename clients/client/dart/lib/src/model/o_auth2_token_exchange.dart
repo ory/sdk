@@ -29,7 +29,7 @@ abstract class OAuth2TokenExchange implements Built<OAuth2TokenExchange, OAuth2T
 
   /// To retrieve a refresh token request the id_token scope.
   @BuiltValueField(wireName: r'id_token')
-  int? get idToken;
+  String? get idToken;
 
   /// The refresh token, which can be used to obtain new access tokens. To retrieve it add the scope \"offline\" to your access token request.
   @BuiltValueField(wireName: r'refresh_token')
@@ -84,7 +84,7 @@ class _$OAuth2TokenExchangeSerializer implements PrimitiveSerializer<OAuth2Token
       yield r'id_token';
       yield serializers.serialize(
         object.idToken,
-        specifiedType: const FullType(int),
+        specifiedType: const FullType(String),
       );
     }
     if (object.refreshToken != null) {
@@ -148,8 +148,8 @@ class _$OAuth2TokenExchangeSerializer implements PrimitiveSerializer<OAuth2Token
         case r'id_token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType(String),
+          ) as String;
           result.idToken = valueDes;
           break;
         case r'refresh_token':

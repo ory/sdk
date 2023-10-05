@@ -12,12 +12,18 @@ part 'organization.g.dart';
 /// B2B SSO Organization
 ///
 /// Properties:
+/// * [createdAt] - The organization's creation date.
 /// * [domains] 
 /// * [id] - The organization's ID.
 /// * [label] - The organization's human-readable label.
 /// * [projectId] - The project's ID.
+/// * [updatedAt] - The last time the organization was updated.
 @BuiltValue()
 abstract class Organization implements Built<Organization, OrganizationBuilder> {
+  /// The organization's creation date.
+  @BuiltValueField(wireName: r'created_at')
+  DateTime get createdAt;
+
   @BuiltValueField(wireName: r'domains')
   BuiltList<String> get domains;
 
@@ -32,6 +38,10 @@ abstract class Organization implements Built<Organization, OrganizationBuilder> 
   /// The project's ID.
   @BuiltValueField(wireName: r'project_id')
   String get projectId;
+
+  /// The last time the organization was updated.
+  @BuiltValueField(wireName: r'updated_at')
+  DateTime get updatedAt;
 
   Organization._();
 
@@ -56,6 +66,11 @@ class _$OrganizationSerializer implements PrimitiveSerializer<Organization> {
     Organization object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    yield r'created_at';
+    yield serializers.serialize(
+      object.createdAt,
+      specifiedType: const FullType(DateTime),
+    );
     yield r'domains';
     yield serializers.serialize(
       object.domains,
@@ -75,6 +90,11 @@ class _$OrganizationSerializer implements PrimitiveSerializer<Organization> {
     yield serializers.serialize(
       object.projectId,
       specifiedType: const FullType(String),
+    );
+    yield r'updated_at';
+    yield serializers.serialize(
+      object.updatedAt,
+      specifiedType: const FullType(DateTime),
     );
   }
 
@@ -99,6 +119,13 @@ class _$OrganizationSerializer implements PrimitiveSerializer<Organization> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'created_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.createdAt = valueDes;
+          break;
         case r'domains':
           final valueDes = serializers.deserialize(
             value,
@@ -126,6 +153,13 @@ class _$OrganizationSerializer implements PrimitiveSerializer<Organization> {
             specifiedType: const FullType(String),
           ) as String;
           result.projectId = valueDes;
+          break;
+        case r'updated_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.updatedAt = valueDes;
           break;
         default:
           unhandled.add(key);

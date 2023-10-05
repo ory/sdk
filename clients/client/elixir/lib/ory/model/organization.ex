@@ -8,17 +8,21 @@ defmodule Ory.Model.Organization do
 
   @derive [Poison.Encoder]
   defstruct [
+    :created_at,
     :domains,
     :id,
     :label,
-    :project_id
+    :project_id,
+    :updated_at
   ]
 
   @type t :: %__MODULE__{
+    :created_at => DateTime.t,
     :domains => [String.t],
     :id => String.t,
     :label => String.t,
-    :project_id => String.t
+    :project_id => String.t,
+    :updated_at => DateTime.t
   }
 end
 

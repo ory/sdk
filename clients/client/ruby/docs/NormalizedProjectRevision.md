@@ -36,6 +36,7 @@
 | **hydra_urls_login** | **String** | Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.login\&quot; setting. | [optional] |
 | **hydra_urls_logout** | **String** | Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.logout\&quot; setting. | [optional] |
 | **hydra_urls_post_logout_redirect** | **String** | When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \&quot;urls.post_logout_redirect\&quot; setting. | [optional] |
+| **hydra_urls_registration** | **String** | Sets the OAuth2 Registration Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.registration\&quot; setting. | [optional] |
 | **hydra_urls_self_issuer** | **String** | This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \&quot;urls.self.issuer\&quot; setting. | [optional] |
 | **hydra_webfinger_jwks_broadcast_keys** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_webfinger_oidc_discovery_auth_url** | **String** | Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \&quot;webfinger.oidc.discovery.auth_url\&quot; setting. | [optional] |
@@ -227,6 +228,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   hydra_urls_login: null,
   hydra_urls_logout: null,
   hydra_urls_post_logout_redirect: null,
+  hydra_urls_registration: null,
   hydra_urls_self_issuer: null,
   hydra_webfinger_jwks_broadcast_keys: null,
   hydra_webfinger_oidc_discovery_auth_url: null,

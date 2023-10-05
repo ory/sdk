@@ -47,6 +47,7 @@ docs/ClientGenericError.md
 docs/ClientGenericErrorContent.md
 docs/ClientGenericUsage.md
 docs/ClientGetManagedIdentitySchemaLocation.md
+docs/ClientGetOrganizationResponse.md
 docs/ClientGetProjectMetricsResponse.md
 docs/ClientHealthNotReadyStatus.md
 docs/ClientHealthStatus.md
@@ -289,6 +290,7 @@ src/Ory.Client.Test/Model/ClientGenericErrorContentTests.cs
 src/Ory.Client.Test/Model/ClientGenericErrorTests.cs
 src/Ory.Client.Test/Model/ClientGenericUsageTests.cs
 src/Ory.Client.Test/Model/ClientGetManagedIdentitySchemaLocationTests.cs
+src/Ory.Client.Test/Model/ClientGetOrganizationResponseTests.cs
 src/Ory.Client.Test/Model/ClientGetProjectMetricsResponseTests.cs
 src/Ory.Client.Test/Model/ClientHealthNotReadyStatusTests.cs
 src/Ory.Client.Test/Model/ClientHealthStatusTests.cs
@@ -537,6 +539,7 @@ src/Ory.Client/Model/ClientGenericError.cs
 src/Ory.Client/Model/ClientGenericErrorContent.cs
 src/Ory.Client/Model/ClientGenericUsage.cs
 src/Ory.Client/Model/ClientGetManagedIdentitySchemaLocation.cs
+src/Ory.Client/Model/ClientGetOrganizationResponse.cs
 src/Ory.Client/Model/ClientGetProjectMetricsResponse.cs
 src/Ory.Client/Model/ClientHealthNotReadyStatus.cs
 src/Ory.Client/Model/ClientHealthStatus.cs

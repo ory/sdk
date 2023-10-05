@@ -50,6 +50,7 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraUrlsLogin] - Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.login\" setting.
 /// * [hydraUrlsLogout] - Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.logout\" setting.
 /// * [hydraUrlsPostLogoutRedirect] - When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
+/// * [hydraUrlsRegistration] - Sets the OAuth2 Registration Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.registration\" setting.
 /// * [hydraUrlsSelfIssuer] - This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
 /// * [hydraWebfingerJwksBroadcastKeys] 
 /// * [hydraWebfingerOidcDiscoveryAuthUrl] - Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \"webfinger.oidc.discovery.auth_url\" setting.
@@ -328,6 +329,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
   @BuiltValueField(wireName: r'hydra_urls_post_logout_redirect')
   String? get hydraUrlsPostLogoutRedirect;
+
+  /// Sets the OAuth2 Registration Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.registration\" setting.
+  @BuiltValueField(wireName: r'hydra_urls_registration')
+  String? get hydraUrlsRegistration;
 
   /// This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
   @BuiltValueField(wireName: r'hydra_urls_self_issuer')
@@ -1178,6 +1183,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'hydra_urls_post_logout_redirect';
       yield serializers.serialize(
         object.hydraUrlsPostLogoutRedirect,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.hydraUrlsRegistration != null) {
+      yield r'hydra_urls_registration';
+      yield serializers.serialize(
+        object.hydraUrlsRegistration,
         specifiedType: const FullType(String),
       );
     }
@@ -2489,6 +2501,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.hydraUrlsPostLogoutRedirect = valueDes;
+          break;
+        case r'hydra_urls_registration':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.hydraUrlsRegistration = valueDes;
           break;
         case r'hydra_urls_self_issuer':
           final valueDes = serializers.deserialize(

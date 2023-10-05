@@ -62,6 +62,7 @@ lib/ory/model/generic_error.ex
 lib/ory/model/generic_error_content.ex
 lib/ory/model/generic_usage.ex
 lib/ory/model/get_managed_identity_schema_location.ex
+lib/ory/model/get_organization_response.ex
 lib/ory/model/get_project_metrics_response.ex
 lib/ory/model/get_version_200_response.ex
 lib/ory/model/health_not_ready_status.ex

@@ -10,6 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**deleteOrganization**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project. |
 | [**deleteProjectApiKey**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
 | [**getActiveProjectInConsole**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
+| [**getOrganization**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID. |
 | [**getProject**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
 | [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**getProjectMetrics**](ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics |  |
@@ -442,6 +443,76 @@ This endpoint does not need any parameter.
 | **200** | activeProjectInConsole |  -  |
 | **401** | genericError |  -  |
 | **0** | genericError |  -  |
+
+<a name="getOrganization"></a>
+# **getOrganization**
+> GetOrganizationResponse getOrganization(projectId, organizationId)
+
+Returns a B2B SSO Organization for a project by it&#39;s ID.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    String organizationId = "organizationId_example"; // String | Organization ID  The Organization's ID.
+    try {
+      GetOrganizationResponse result = apiInstance.getOrganization(projectId, organizationId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#getOrganization");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **organizationId** | **String**| Organization ID  The Organization&#39;s ID. | |
+
+### Return type
+
+[**GetOrganizationResponse**](GetOrganizationResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | getOrganizationResponse |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
 
 <a name="getProject"></a>
 # **getProject**

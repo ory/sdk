@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.10
+API version: v1.2.11
 Contact: support@ory.sh
 */
 
@@ -77,6 +77,8 @@ type NormalizedProjectRevision struct {
 	HydraUrlsLogout *string `json:"hydra_urls_logout,omitempty"`
 	// When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
 	HydraUrlsPostLogoutRedirect *string `json:"hydra_urls_post_logout_redirect,omitempty"`
+	// Sets the OAuth2 Registration Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.registration\" setting.
+	HydraUrlsRegistration *string `json:"hydra_urls_registration,omitempty"`
 	// This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
 	HydraUrlsSelfIssuer *string `json:"hydra_urls_self_issuer,omitempty"`
 	HydraWebfingerJwksBroadcastKeys []string `json:"hydra_webfinger_jwks_broadcast_keys,omitempty"`
@@ -1454,6 +1456,38 @@ func (o *NormalizedProjectRevision) HasHydraUrlsPostLogoutRedirect() bool {
 // SetHydraUrlsPostLogoutRedirect gets a reference to the given string and assigns it to the HydraUrlsPostLogoutRedirect field.
 func (o *NormalizedProjectRevision) SetHydraUrlsPostLogoutRedirect(v string) {
 	o.HydraUrlsPostLogoutRedirect = &v
+}
+
+// GetHydraUrlsRegistration returns the HydraUrlsRegistration field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraUrlsRegistration() string {
+	if o == nil || o.HydraUrlsRegistration == nil {
+		var ret string
+		return ret
+	}
+	return *o.HydraUrlsRegistration
+}
+
+// GetHydraUrlsRegistrationOk returns a tuple with the HydraUrlsRegistration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraUrlsRegistrationOk() (*string, bool) {
+	if o == nil || o.HydraUrlsRegistration == nil {
+		return nil, false
+	}
+	return o.HydraUrlsRegistration, true
+}
+
+// HasHydraUrlsRegistration returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraUrlsRegistration() bool {
+	if o != nil && o.HydraUrlsRegistration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraUrlsRegistration gets a reference to the given string and assigns it to the HydraUrlsRegistration field.
+func (o *NormalizedProjectRevision) SetHydraUrlsRegistration(v string) {
+	o.HydraUrlsRegistration = &v
 }
 
 // GetHydraUrlsSelfIssuer returns the HydraUrlsSelfIssuer field value if set, zero value otherwise.
@@ -6423,6 +6457,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.HydraUrlsPostLogoutRedirect != nil {
 		toSerialize["hydra_urls_post_logout_redirect"] = o.HydraUrlsPostLogoutRedirect
 	}
+	if o.HydraUrlsRegistration != nil {
+		toSerialize["hydra_urls_registration"] = o.HydraUrlsRegistration
+	}
 	if o.HydraUrlsSelfIssuer != nil {
 		toSerialize["hydra_urls_self_issuer"] = o.HydraUrlsSelfIssuer
 	}
@@ -6929,6 +6966,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "hydra_urls_login")
 		delete(additionalProperties, "hydra_urls_logout")
 		delete(additionalProperties, "hydra_urls_post_logout_redirect")
+		delete(additionalProperties, "hydra_urls_registration")
 		delete(additionalProperties, "hydra_urls_self_issuer")
 		delete(additionalProperties, "hydra_webfinger_jwks_broadcast_keys")
 		delete(additionalProperties, "hydra_webfinger_oidc_discovery_auth_url")

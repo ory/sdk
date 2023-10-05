@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.10
+API version: v1.2.11
 Contact: support@ory.sh
 */
 
@@ -1864,6 +1864,7 @@ type IdentityApiListIdentitiesRequest struct {
 	pageSize *int64
 	pageToken *string
 	credentialsIdentifier *string
+	previewCredentialsIdentifierSimilar *string
 }
 
 // Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page.
@@ -1890,9 +1891,15 @@ func (r IdentityApiListIdentitiesRequest) PageToken(pageToken string) IdentityAp
 	return r
 }
 
-// CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
+// CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
 func (r IdentityApiListIdentitiesRequest) CredentialsIdentifier(credentialsIdentifier string) IdentityApiListIdentitiesRequest {
 	r.credentialsIdentifier = &credentialsIdentifier
+	return r
+}
+
+// This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+func (r IdentityApiListIdentitiesRequest) PreviewCredentialsIdentifierSimilar(previewCredentialsIdentifierSimilar string) IdentityApiListIdentitiesRequest {
+	r.previewCredentialsIdentifierSimilar = &previewCredentialsIdentifierSimilar
 	return r
 }
 
@@ -1950,6 +1957,9 @@ func (a *IdentityApiService) ListIdentitiesExecute(r IdentityApiListIdentitiesRe
 	}
 	if r.credentialsIdentifier != nil {
 		localVarQueryParams.Add("credentials_identifier", parameterToString(*r.credentialsIdentifier, ""))
+	}
+	if r.previewCredentialsIdentifierSimilar != nil {
+		localVarQueryParams.Add("preview_credentials_identifier_similar", parameterToString(*r.previewCredentialsIdentifierSimilar, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

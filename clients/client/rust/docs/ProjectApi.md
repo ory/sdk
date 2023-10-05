@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
 [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 [**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+[**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it's ID.
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
 [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project
 [**get_project_metrics**](ProjectApi.md#get_project_metrics) | **GET** /projects/{project_id}/metrics | 
@@ -191,6 +192,35 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**crate::models::ActiveProjectInConsole**](activeProjectInConsole.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_organization
+
+> crate::models::GetOrganizationResponse get_organization(project_id, organization_id)
+Returns a B2B SSO Organization for a project by it's ID.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**project_id** | **String** | Project ID  The project's ID. | [required] |
+**organization_id** | **String** | Organization ID  The Organization's ID. | [required] |
+
+### Return type
+
+[**crate::models::GetOrganizationResponse**](getOrganizationResponse.md)
 
 ### Authorization
 

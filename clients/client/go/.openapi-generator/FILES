@@ -63,6 +63,7 @@ docs/GenericError.md
 docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetOrganizationResponse.md
 docs/GetProjectMetricsResponse.md
 docs/GetVersion200Response.md
 docs/HealthNotReadyStatus.md
@@ -294,6 +295,7 @@ model_generic_error.go
 model_generic_error_content.go
 model_generic_usage.go
 model_get_managed_identity_schema_location.go
+model_get_organization_response.go
 model_get_project_metrics_response.go
 model_get_version_200_response.go
 model_health_not_ready_status.go

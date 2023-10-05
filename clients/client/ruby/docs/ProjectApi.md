@@ -10,6 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project. |
 | [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
 | [**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
+| [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID. |
 | [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project |
 | [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**get_project_metrics**](ProjectApi.md#get_project_metrics) | **GET** /projects/{project_id}/metrics |  |
@@ -434,6 +435,75 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ActiveProjectInConsole**](ActiveProjectInConsole.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_organization
+
+> <GetOrganizationResponse> get_organization(project_id, organization_id)
+
+Returns a B2B SSO Organization for a project by it's ID.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
+
+begin
+  # Returns a B2B SSO Organization for a project by it's ID.
+  result = api_instance.get_organization(project_id, organization_id)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_organization: #{e}"
+end
+```
+
+#### Using the get_organization_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<GetOrganizationResponse>, Integer, Hash)> get_organization_with_http_info(project_id, organization_id)
+
+```ruby
+begin
+  # Returns a B2B SSO Organization for a project by it's ID.
+  data, status_code, headers = api_instance.get_organization_with_http_info(project_id, organization_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <GetOrganizationResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_organization_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **organization_id** | **String** | Organization ID  The Organization&#39;s ID. |  |
+
+### Return type
+
+[**GetOrganizationResponse**](GetOrganizationResponse.md)
 
 ### Authorization
 

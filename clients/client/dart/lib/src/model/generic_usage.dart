@@ -11,11 +11,11 @@ part 'generic_usage.g.dart';
 /// GenericUsage
 ///
 /// Properties:
-/// * [additionalPrice] - AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
+/// * [additionalPrice] - AdditionalPrice is the price per-unit in cent exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
 /// * [includedUsage] - IncludedUsage is the number of included items.
 @BuiltValue()
 abstract class GenericUsage implements Built<GenericUsage, GenericUsageBuilder> {
-  /// AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
+  /// AdditionalPrice is the price per-unit in cent exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
   @BuiltValueField(wireName: r'additional_price')
   int get additionalPrice;
 

@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(Organization, () {
+    // The organization's creation date.
+    // DateTime createdAt
+    test('to test the property `createdAt`', () async {
+      // TODO
+    });
+
     // BuiltList<String> domains
     test('to test the property `domains`', () async {
       // TODO
@@ -27,6 +33,12 @@ void main() {
     // The project's ID.
     // String projectId
     test('to test the property `projectId`', () async {
+      // TODO
+    });
+
+    // The last time the organization was updated.
+    // DateTime updatedAt
+    test('to test the property `updatedAt`', () async {
       // TODO
     });
 

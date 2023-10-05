@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.2.10
-  - Build date: 2023-09-26T07:22:38.275636327Z[Etc/UTC]
+- API version: v1.2.11
+  - Build date: 2023-10-05T13:47:53.072423390Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.2.10</version>
+  <version>v1.2.11</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.2.10"
+     implementation "sh.ory:client:v1.2.11"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.2.10.jar`
+* `target/client-v1.2.11.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -228,6 +228,7 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**deleteOrganization**](docs/ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
 *ProjectApi* | [**deleteProjectApiKey**](docs/ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 *ProjectApi* | [**getActiveProjectInConsole**](docs/ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+*ProjectApi* | [**getOrganization**](docs/ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID.
 *ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
 *ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project
 *ProjectApi* | [**getProjectMetrics**](docs/ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics | 
@@ -296,6 +297,7 @@ Class | Method | HTTP request | Description
  - [GenericErrorContent](docs/GenericErrorContent.md)
  - [GenericUsage](docs/GenericUsage.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
+ - [GetOrganizationResponse](docs/GetOrganizationResponse.md)
  - [GetProjectMetricsResponse](docs/GetProjectMetricsResponse.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)

@@ -4,16 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CreatedAt** | **time.Time** | The organization&#39;s creation date. | [readonly] 
 **Domains** | **[]string** |  | 
 **Id** | **string** | The organization&#39;s ID. | 
 **Label** | **string** | The organization&#39;s human-readable label. | 
 **ProjectId** | **string** | The project&#39;s ID. | 
+**UpdatedAt** | **time.Time** | The last time the organization was updated. | [readonly] 
 
 ## Methods
 
 ### NewOrganization
 
-`func NewOrganization(domains []string, id string, label string, projectId string, ) *Organization`
+`func NewOrganization(createdAt time.Time, domains []string, id string, label string, projectId string, updatedAt time.Time, ) *Organization`
 
 NewOrganization instantiates a new Organization object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +29,26 @@ will change when the set of required properties is changed
 NewOrganizationWithDefaults instantiates a new Organization object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCreatedAt
+
+`func (o *Organization) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Organization) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Organization) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
 
 ### GetDomains
 
@@ -106,6 +128,26 @@ and a boolean to check if the value has been set.
 `func (o *Organization) SetProjectId(v string)`
 
 SetProjectId sets ProjectId field to given value.
+
+
+### GetUpdatedAt
+
+`func (o *Organization) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *Organization) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *Organization) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
 
 
 

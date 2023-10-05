@@ -57,6 +57,13 @@ void main() {
       // TODO
     });
 
+    // Returns a B2B SSO Organization for a project by it's ID.
+    //
+    //Future<GetOrganizationResponse> getOrganization(String projectId, String organizationId) async
+    test('test getOrganization', () async {
+      // TODO
+    });
+
     // Get a Project
     //
     // Get a projects you have access to by its ID.

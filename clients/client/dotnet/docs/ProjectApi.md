@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**DeleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
 [**DeleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
 [**GetActiveProjectInConsole**](ProjectApi.md#getactiveprojectinconsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+[**GetOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID.
 [**GetProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
 [**GetProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
 [**GetProjectMetrics**](ProjectApi.md#getprojectmetrics) | **GET** /projects/{project_id}/metrics | 
@@ -481,6 +482,83 @@ This endpoint does not need any parameter.
 | **200** | activeProjectInConsole |  -  |
 | **401** | genericError |  -  |
 | **0** | genericError |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getorganization"></a>
+# **GetOrganization**
+> ClientGetOrganizationResponse GetOrganization (string projectId, string organizationId)
+
+Returns a B2B SSO Organization for a project by it's ID.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetOrganizationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://playground.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryAccessToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new ProjectApi(config);
+            var projectId = "projectId_example";  // string | Project ID  The project's ID.
+            var organizationId = "organizationId_example";  // string | Organization ID  The Organization's ID.
+
+            try
+            {
+                // Returns a B2B SSO Organization for a project by it's ID.
+                ClientGetOrganizationResponse result = apiInstance.GetOrganization(projectId, organizationId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ProjectApi.GetOrganization: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **string**| Project ID  The project&#39;s ID. | 
+ **organizationId** | **string**| Organization ID  The Organization&#39;s ID. | 
+
+### Return type
+
+[**ClientGetOrganizationResponse**](ClientGetOrganizationResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | getOrganizationResponse |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -66,6 +66,7 @@ export 'package:ory_client/src/model/generic_error.dart';
 export 'package:ory_client/src/model/generic_error_content.dart';
 export 'package:ory_client/src/model/generic_usage.dart';
 export 'package:ory_client/src/model/get_managed_identity_schema_location.dart';
+export 'package:ory_client/src/model/get_organization_response.dart';
 export 'package:ory_client/src/model/get_project_metrics_response.dart';
 export 'package:ory_client/src/model/get_version200_response.dart';
 export 'package:ory_client/src/model/health_not_ready_status.dart';

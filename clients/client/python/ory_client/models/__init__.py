@@ -55,6 +55,7 @@ from ory_client.model.generic_error import GenericError
 from ory_client.model.generic_error_content import GenericErrorContent
 from ory_client.model.generic_usage import GenericUsage
 from ory_client.model.get_managed_identity_schema_location import GetManagedIdentitySchemaLocation
+from ory_client.model.get_organization_response import GetOrganizationResponse
 from ory_client.model.get_project_metrics_response import GetProjectMetricsResponse
 from ory_client.model.get_version200_response import GetVersion200Response
 from ory_client.model.health_not_ready_status import HealthNotReadyStatus

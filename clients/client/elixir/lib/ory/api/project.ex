@@ -226,6 +226,39 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
+  Returns a B2B SSO Organization for a project by it's ID.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): Project ID  The project's ID.
+  - `organization_id` (String.t): Organization ID  The Organization's ID.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.GetOrganizationResponse.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_organization(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.GetOrganizationResponse.t} | {:error, Tesla.Env.t}
+  def get_organization(connection, project_id, organization_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/projects/#{project_id}/organizations/#{organization_id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, %Ory.Model.GetOrganizationResponse{}},
+      {400, %Ory.Model.ErrorGeneric{}},
+      {403, %Ory.Model.ErrorGeneric{}},
+      {:default, %Ory.Model.ErrorGeneric{}}
+    ])
+  end
+
+  @doc """
   Get a Project
   Get a projects you have access to by its ID.
 

@@ -390,7 +390,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_identities
 
-> Vec<crate::models::Identity> list_identities(per_page, page, page_size, page_token, credentials_identifier)
+> Vec<crate::models::Identity> list_identities(per_page, page, page_size, page_token, credentials_identifier, preview_credentials_identifier_similar)
 List Identities
 
 Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
@@ -404,7 +404,8 @@ Name | Type | Description  | Required | Notes
 **page** | Option<**i64**> | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
 **page_size** | Option<**i64**> | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
 **page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
-**credentials_identifier** | Option<**String**> | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. |  |
+**credentials_identifier** | Option<**String**> | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. |  |
+**preview_credentials_identifier_similar** | Option<**String**> | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. |  |
 
 ### Return type
 
