@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cors_admin** | [**crate::models::Cors**](CORS.md) |  | 
-**cors_public** | [**crate::models::Cors**](CORS.md) |  | 
+**cors_admin** | [**crate::models::ProjectCors**](projectCors.md) |  | 
+**cors_public** | [**crate::models::ProjectCors**](projectCors.md) |  | 
 **name** | **String** | The name of the project. | 
 **services** | [**crate::models::ProjectServices**](projectServices.md) |  | 
 

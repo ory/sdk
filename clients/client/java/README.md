@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.2.11
-  - Build date: 2023-10-05T13:47:53.072423390Z[Etc/UTC]
+- API version: v1.2.14
+  - Build date: 2023-10-26T12:05:00.438115761Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.2.11</version>
+  <version>v1.2.14</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.2.11"
+     implementation "sh.ory:client:v1.2.14"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.2.11.jar`
+* `target/client-v1.2.14.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -256,12 +256,13 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2ConsentRequestSession](docs/AcceptOAuth2ConsentRequestSession.md)
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
  - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
+ - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
- - [CORS](docs/CORS.md)
  - [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
  - [CheckPermissionResult](docs/CheckPermissionResult.md)
  - [CloudAccount](docs/CloudAccount.md)
+ - [ConsistencyRequestParameters](docs/ConsistencyRequestParameters.md)
  - [ContinueWith](docs/ContinueWith.md)
  - [ContinueWithSetOrySessionToken](docs/ContinueWithSetOrySessionToken.md)
  - [ContinueWithVerificationUi](docs/ContinueWithVerificationUi.md)
@@ -296,9 +297,11 @@ Class | Method | HTTP request | Description
  - [GenericError](docs/GenericError.md)
  - [GenericErrorContent](docs/GenericErrorContent.md)
  - [GenericUsage](docs/GenericUsage.md)
+ - [GetAttributesCountResponse](docs/GetAttributesCountResponse.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
  - [GetOrganizationResponse](docs/GetOrganizationResponse.md)
  - [GetProjectMetricsResponse](docs/GetProjectMetricsResponse.md)
+ - [GetSessionActivityResponse](docs/GetSessionActivityResponse.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
@@ -379,6 +382,7 @@ Class | Method | HTTP request | Description
  - [ProjectBranding](docs/ProjectBranding.md)
  - [ProjectBrandingColors](docs/ProjectBrandingColors.md)
  - [ProjectBrandingTheme](docs/ProjectBrandingTheme.md)
+ - [ProjectCors](docs/ProjectCors.md)
  - [ProjectHost](docs/ProjectHost.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
@@ -403,6 +407,7 @@ Class | Method | HTTP request | Description
  - [SchemaPatch](docs/SchemaPatch.md)
  - [SelfServiceFlowExpiredError](docs/SelfServiceFlowExpiredError.md)
  - [Session](docs/Session.md)
+ - [SessionActivityDatapoint](docs/SessionActivityDatapoint.md)
  - [SessionAuthenticationMethod](docs/SessionAuthenticationMethod.md)
  - [SessionDevice](docs/SessionDevice.md)
  - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)

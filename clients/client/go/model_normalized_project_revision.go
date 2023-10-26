@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.11
+API version: v1.2.14
 Contact: support@ory.sh
 */
 
@@ -39,7 +39,7 @@ type NormalizedProjectRevision struct {
 	HydraOauth2PkceEnforcedForPublicClients *bool `json:"hydra_oauth2_pkce_enforced_for_public_clients,omitempty"`
 	// Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
 	HydraOauth2RefreshTokenHook *string `json:"hydra_oauth2_refresh_token_hook,omitempty"`
-	// Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook\" setting.
+	// Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook.url\" setting.
 	HydraOauth2TokenHook *string `json:"hydra_oauth2_token_hook,omitempty"`
 	HydraOidcDynamicClientRegistrationDefaultScope []string `json:"hydra_oidc_dynamic_client_registration_default_scope,omitempty"`
 	// Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
@@ -99,7 +99,6 @@ type NormalizedProjectRevision struct {
 	// The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
 	KetoNamespaceConfiguration *string `json:"keto_namespace_configuration,omitempty"`
 	KetoNamespaces []KetoNamespace `json:"keto_namespaces,omitempty"`
-	KetoReadMaxDepth NullableInt32 `json:"keto_read_max_depth,omitempty"`
 	// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
 	KratosCookiesSameSite *string `json:"kratos_cookies_same_site,omitempty"`
 	// The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
@@ -203,6 +202,8 @@ type NormalizedProjectRevision struct {
 	KratosOauth2ProviderOverrideReturnTo *bool `json:"kratos_oauth2_provider_override_return_to,omitempty"`
 	// The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
 	KratosOauth2ProviderUrl *string `json:"kratos_oauth2_provider_url,omitempty"`
+	// Configures the default read consistency level for identity APIs  This governs the `preview.default_read_consistency_level` setting.  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution.
+	KratosPreviewDefaultReadConsistencyLevel *string `json:"kratos_preview_default_read_consistency_level,omitempty"`
 	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
 	KratosSecretsCookie []string `json:"kratos_secrets_cookie,omitempty"`
 	KratosSecretsDefault []string `json:"kratos_secrets_default,omitempty"`
@@ -211,7 +212,6 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceDefaultBrowserReturnUrl *string `json:"kratos_selfservice_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
 	KratosSelfserviceFlowsErrorUiUrl *string `json:"kratos_selfservice_flows_error_ui_url,omitempty"`
-	KratosSelfserviceFlowsHooks []NormalizedProjectRevisionHook `json:"kratos_selfservice_flows_hooks,omitempty"`
 	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.code.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_code_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
@@ -359,6 +359,7 @@ type NormalizedProjectRevision struct {
 	Production *bool `json:"production,omitempty"`
 	// The Revision's Project ID
 	ProjectId *string `json:"project_id,omitempty"`
+	ProjectRevisionHooks []NormalizedProjectRevisionHook `json:"project_revision_hooks,omitempty"`
 	ServeAdminCorsAllowedOrigins []string `json:"serve_admin_cors_allowed_origins,omitempty"`
 	// Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting.
 	ServeAdminCorsEnabled *bool `json:"serve_admin_cors_enabled,omitempty"`
@@ -1872,48 +1873,6 @@ func (o *NormalizedProjectRevision) HasKetoNamespaces() bool {
 // SetKetoNamespaces gets a reference to the given []KetoNamespace and assigns it to the KetoNamespaces field.
 func (o *NormalizedProjectRevision) SetKetoNamespaces(v []KetoNamespace) {
 	o.KetoNamespaces = v
-}
-
-// GetKetoReadMaxDepth returns the KetoReadMaxDepth field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NormalizedProjectRevision) GetKetoReadMaxDepth() int32 {
-	if o == nil || o.KetoReadMaxDepth.Get() == nil {
-		var ret int32
-		return ret
-	}
-	return *o.KetoReadMaxDepth.Get()
-}
-
-// GetKetoReadMaxDepthOk returns a tuple with the KetoReadMaxDepth field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NormalizedProjectRevision) GetKetoReadMaxDepthOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KetoReadMaxDepth.Get(), o.KetoReadMaxDepth.IsSet()
-}
-
-// HasKetoReadMaxDepth returns a boolean if a field has been set.
-func (o *NormalizedProjectRevision) HasKetoReadMaxDepth() bool {
-	if o != nil && o.KetoReadMaxDepth.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetKetoReadMaxDepth gets a reference to the given NullableInt32 and assigns it to the KetoReadMaxDepth field.
-func (o *NormalizedProjectRevision) SetKetoReadMaxDepth(v int32) {
-	o.KetoReadMaxDepth.Set(&v)
-}
-// SetKetoReadMaxDepthNil sets the value for KetoReadMaxDepth to be an explicit nil
-func (o *NormalizedProjectRevision) SetKetoReadMaxDepthNil() {
-	o.KetoReadMaxDepth.Set(nil)
-}
-
-// UnsetKetoReadMaxDepth ensures that no value is present for KetoReadMaxDepth, not even an explicit nil
-func (o *NormalizedProjectRevision) UnsetKetoReadMaxDepth() {
-	o.KetoReadMaxDepth.Unset()
 }
 
 // GetKratosCookiesSameSite returns the KratosCookiesSameSite field value if set, zero value otherwise.
@@ -3583,6 +3542,38 @@ func (o *NormalizedProjectRevision) SetKratosOauth2ProviderUrl(v string) {
 	o.KratosOauth2ProviderUrl = &v
 }
 
+// GetKratosPreviewDefaultReadConsistencyLevel returns the KratosPreviewDefaultReadConsistencyLevel field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosPreviewDefaultReadConsistencyLevel() string {
+	if o == nil || o.KratosPreviewDefaultReadConsistencyLevel == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosPreviewDefaultReadConsistencyLevel
+}
+
+// GetKratosPreviewDefaultReadConsistencyLevelOk returns a tuple with the KratosPreviewDefaultReadConsistencyLevel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosPreviewDefaultReadConsistencyLevelOk() (*string, bool) {
+	if o == nil || o.KratosPreviewDefaultReadConsistencyLevel == nil {
+		return nil, false
+	}
+	return o.KratosPreviewDefaultReadConsistencyLevel, true
+}
+
+// HasKratosPreviewDefaultReadConsistencyLevel returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosPreviewDefaultReadConsistencyLevel() bool {
+	if o != nil && o.KratosPreviewDefaultReadConsistencyLevel != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosPreviewDefaultReadConsistencyLevel gets a reference to the given string and assigns it to the KratosPreviewDefaultReadConsistencyLevel field.
+func (o *NormalizedProjectRevision) SetKratosPreviewDefaultReadConsistencyLevel(v string) {
+	o.KratosPreviewDefaultReadConsistencyLevel = &v
+}
+
 // GetKratosSecretsCipher returns the KratosSecretsCipher field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSecretsCipher() []string {
 	if o == nil || o.KratosSecretsCipher == nil {
@@ -3773,38 +3764,6 @@ func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsErrorUiUrl() bool {
 // SetKratosSelfserviceFlowsErrorUiUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsErrorUiUrl field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsErrorUiUrl(v string) {
 	o.KratosSelfserviceFlowsErrorUiUrl = &v
-}
-
-// GetKratosSelfserviceFlowsHooks returns the KratosSelfserviceFlowsHooks field value if set, zero value otherwise.
-func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsHooks() []NormalizedProjectRevisionHook {
-	if o == nil || o.KratosSelfserviceFlowsHooks == nil {
-		var ret []NormalizedProjectRevisionHook
-		return ret
-	}
-	return o.KratosSelfserviceFlowsHooks
-}
-
-// GetKratosSelfserviceFlowsHooksOk returns a tuple with the KratosSelfserviceFlowsHooks field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsHooksOk() ([]NormalizedProjectRevisionHook, bool) {
-	if o == nil || o.KratosSelfserviceFlowsHooks == nil {
-		return nil, false
-	}
-	return o.KratosSelfserviceFlowsHooks, true
-}
-
-// HasKratosSelfserviceFlowsHooks returns a boolean if a field has been set.
-func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsHooks() bool {
-	if o != nil && o.KratosSelfserviceFlowsHooks != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetKratosSelfserviceFlowsHooks gets a reference to the given []NormalizedProjectRevisionHook and assigns it to the KratosSelfserviceFlowsHooks field.
-func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsHooks(v []NormalizedProjectRevisionHook) {
-	o.KratosSelfserviceFlowsHooks = v
 }
 
 // GetKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl field value if set, zero value otherwise.
@@ -6199,6 +6158,38 @@ func (o *NormalizedProjectRevision) SetProjectId(v string) {
 	o.ProjectId = &v
 }
 
+// GetProjectRevisionHooks returns the ProjectRevisionHooks field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetProjectRevisionHooks() []NormalizedProjectRevisionHook {
+	if o == nil || o.ProjectRevisionHooks == nil {
+		var ret []NormalizedProjectRevisionHook
+		return ret
+	}
+	return o.ProjectRevisionHooks
+}
+
+// GetProjectRevisionHooksOk returns a tuple with the ProjectRevisionHooks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetProjectRevisionHooksOk() ([]NormalizedProjectRevisionHook, bool) {
+	if o == nil || o.ProjectRevisionHooks == nil {
+		return nil, false
+	}
+	return o.ProjectRevisionHooks, true
+}
+
+// HasProjectRevisionHooks returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasProjectRevisionHooks() bool {
+	if o != nil && o.ProjectRevisionHooks != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectRevisionHooks gets a reference to the given []NormalizedProjectRevisionHook and assigns it to the ProjectRevisionHooks field.
+func (o *NormalizedProjectRevision) SetProjectRevisionHooks(v []NormalizedProjectRevisionHook) {
+	o.ProjectRevisionHooks = v
+}
+
 // GetServeAdminCorsAllowedOrigins returns the ServeAdminCorsAllowedOrigins field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetServeAdminCorsAllowedOrigins() []string {
 	if o == nil || o.ServeAdminCorsAllowedOrigins == nil {
@@ -6496,9 +6487,6 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KetoNamespaces != nil {
 		toSerialize["keto_namespaces"] = o.KetoNamespaces
 	}
-	if o.KetoReadMaxDepth.IsSet() {
-		toSerialize["keto_read_max_depth"] = o.KetoReadMaxDepth.Get()
-	}
 	if o.KratosCookiesSameSite != nil {
 		toSerialize["kratos_cookies_same_site"] = o.KratosCookiesSameSite
 	}
@@ -6655,6 +6643,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosOauth2ProviderUrl != nil {
 		toSerialize["kratos_oauth2_provider_url"] = o.KratosOauth2ProviderUrl
 	}
+	if o.KratosPreviewDefaultReadConsistencyLevel != nil {
+		toSerialize["kratos_preview_default_read_consistency_level"] = o.KratosPreviewDefaultReadConsistencyLevel
+	}
 	if o.KratosSecretsCipher != nil {
 		toSerialize["kratos_secrets_cipher"] = o.KratosSecretsCipher
 	}
@@ -6672,9 +6663,6 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosSelfserviceFlowsErrorUiUrl != nil {
 		toSerialize["kratos_selfservice_flows_error_ui_url"] = o.KratosSelfserviceFlowsErrorUiUrl
-	}
-	if o.KratosSelfserviceFlowsHooks != nil {
-		toSerialize["kratos_selfservice_flows_hooks"] = o.KratosSelfserviceFlowsHooks
 	}
 	if o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_login_after_code_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl
@@ -6901,6 +6889,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.ProjectId != nil {
 		toSerialize["project_id"] = o.ProjectId
 	}
+	if o.ProjectRevisionHooks != nil {
+		toSerialize["project_revision_hooks"] = o.ProjectRevisionHooks
+	}
 	if o.ServeAdminCorsAllowedOrigins != nil {
 		toSerialize["serve_admin_cors_allowed_origins"] = o.ServeAdminCorsAllowedOrigins
 	}
@@ -6979,7 +6970,6 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "keto_namespace_configuration")
 		delete(additionalProperties, "keto_namespaces")
-		delete(additionalProperties, "keto_read_max_depth")
 		delete(additionalProperties, "kratos_cookies_same_site")
 		delete(additionalProperties, "kratos_courier_delivery_strategy")
 		delete(additionalProperties, "kratos_courier_http_request_config_auth_api_key_in")
@@ -7032,13 +7022,13 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_oauth2_provider_headers")
 		delete(additionalProperties, "kratos_oauth2_provider_override_return_to")
 		delete(additionalProperties, "kratos_oauth2_provider_url")
+		delete(additionalProperties, "kratos_preview_default_read_consistency_level")
 		delete(additionalProperties, "kratos_secrets_cipher")
 		delete(additionalProperties, "kratos_secrets_cookie")
 		delete(additionalProperties, "kratos_secrets_default")
 		delete(additionalProperties, "kratos_selfservice_allowed_return_urls")
 		delete(additionalProperties, "kratos_selfservice_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_error_ui_url")
-		delete(additionalProperties, "kratos_selfservice_flows_hooks")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_code_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url")
@@ -7114,6 +7104,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "production")
 		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "project_revision_hooks")
 		delete(additionalProperties, "serve_admin_cors_allowed_origins")
 		delete(additionalProperties, "serve_admin_cors_enabled")
 		delete(additionalProperties, "serve_public_cors_allowed_origins")

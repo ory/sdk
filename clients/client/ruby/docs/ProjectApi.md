@@ -676,8 +676,8 @@ api_instance = OryClient::ProjectApi.new
 project_id = 'project_id_example' # String | Project ID
 event_type = 'event_type_example' # String | The event type to query for
 resolution = 'resolution_example' # String | The resolution of the buckets  The minimum resolution is 1 hour.
-from = Time.parse('2013-10-20T19:20:30+01:00') # Time | The start time of the time window
-to = Time.parse('2013-10-20T19:20:30+01:00') # Time | The end time of the time window
+from = Time.parse('2013-10-20T19:20:30+01:00') # Time | The start RFC3339 date of the time window
+to = Time.parse('2013-10-20T19:20:30+01:00') # Time | The end RFC3339 date of the time window
 
 begin
   
@@ -713,8 +713,8 @@ end
 | **project_id** | **String** | Project ID |  |
 | **event_type** | **String** | The event type to query for |  |
 | **resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 hour. |  |
-| **from** | **Time** | The start time of the time window |  |
-| **to** | **Time** | The end time of the time window |  |
+| **from** | **Time** | The start RFC3339 date of the time window |  |
+| **to** | **Time** | The end RFC3339 date of the time window |  |
 
 ### Return type
 
@@ -1235,7 +1235,7 @@ end
 api_instance = OryClient::ProjectApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 opts = {
-  set_project: OryClient::SetProject.new({cors_admin: OryClient::CORS.new({enabled: false, origins: ['origins_example']}), cors_public: OryClient::CORS.new({enabled: false, origins: ['origins_example']}), name: 'name_example', services: OryClient::ProjectServices.new}) # SetProject | 
+  set_project: OryClient::SetProject.new({cors_admin: OryClient::ProjectCors.new({enabled: false, origins: ['origins_example']}), cors_public: OryClient::ProjectCors.new({enabled: false, origins: ['origins_example']}), name: 'name_example', services: OryClient::ProjectServices.new}) # SetProject | 
 }
 
 begin

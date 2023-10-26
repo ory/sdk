@@ -53,7 +53,6 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :id,
     :keto_namespace_configuration,
     :keto_namespaces,
-    :keto_read_max_depth,
     :kratos_cookies_same_site,
     :kratos_courier_delivery_strategy,
     :kratos_courier_http_request_config_auth_api_key_in,
@@ -106,13 +105,13 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_oauth2_provider_headers,
     :kratos_oauth2_provider_override_return_to,
     :kratos_oauth2_provider_url,
+    :kratos_preview_default_read_consistency_level,
     :kratos_secrets_cipher,
     :kratos_secrets_cookie,
     :kratos_secrets_default,
     :kratos_selfservice_allowed_return_urls,
     :kratos_selfservice_default_browser_return_url,
     :kratos_selfservice_flows_error_ui_url,
-    :kratos_selfservice_flows_hooks,
     :kratos_selfservice_flows_login_after_code_default_browser_return_url,
     :kratos_selfservice_flows_login_after_default_browser_return_url,
     :kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url,
@@ -188,6 +187,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :name,
     :production,
     :project_id,
+    :project_revision_hooks,
     :serve_admin_cors_allowed_origins,
     :serve_admin_cors_enabled,
     :serve_public_cors_allowed_origins,
@@ -241,7 +241,6 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :id => String.t | nil,
     :keto_namespace_configuration => String.t | nil,
     :keto_namespaces => [Ory.Model.KetoNamespace.t] | nil,
-    :keto_read_max_depth => integer() | nil,
     :kratos_cookies_same_site => String.t | nil,
     :kratos_courier_delivery_strategy => String.t | nil,
     :kratos_courier_http_request_config_auth_api_key_in => String.t | nil,
@@ -294,13 +293,13 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_oauth2_provider_headers => map() | nil,
     :kratos_oauth2_provider_override_return_to => boolean() | nil,
     :kratos_oauth2_provider_url => String.t | nil,
+    :kratos_preview_default_read_consistency_level => String.t | nil,
     :kratos_secrets_cipher => [String.t] | nil,
     :kratos_secrets_cookie => [String.t] | nil,
     :kratos_secrets_default => [String.t] | nil,
     :kratos_selfservice_allowed_return_urls => [String.t] | nil,
     :kratos_selfservice_default_browser_return_url => String.t | nil,
     :kratos_selfservice_flows_error_ui_url => String.t | nil,
-    :kratos_selfservice_flows_hooks => [Ory.Model.NormalizedProjectRevisionHook.t] | nil,
     :kratos_selfservice_flows_login_after_code_default_browser_return_url => String.t | nil,
     :kratos_selfservice_flows_login_after_default_browser_return_url => String.t | nil,
     :kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url => String.t | nil,
@@ -376,6 +375,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :name => String.t,
     :production => boolean() | nil,
     :project_id => String.t | nil,
+    :project_revision_hooks => [Ory.Model.NormalizedProjectRevisionHook.t] | nil,
     :serve_admin_cors_allowed_origins => [String.t] | nil,
     :serve_admin_cors_enabled => boolean() | nil,
     :serve_public_cors_allowed_origins => [String.t] | nil,
@@ -390,9 +390,9 @@ defimpl Poison.Decoder, for: Ory.Model.NormalizedProjectRevision do
     value
     |> deserialize(:keto_namespaces, :list, Ory.Model.KetoNamespace, options)
     |> deserialize(:kratos_identity_schemas, :list, Ory.Model.NormalizedProjectRevisionIdentitySchema, options)
-    |> deserialize(:kratos_selfservice_flows_hooks, :list, Ory.Model.NormalizedProjectRevisionHook, options)
     |> deserialize(:kratos_selfservice_methods_oidc_config_providers, :list, Ory.Model.NormalizedProjectRevisionThirdPartyProvider, options)
     |> deserialize(:kratos_session_whoami_tokenizer_templates, :list, Ory.Model.NormalizedProjectRevisionTokenizerTemplate, options)
+    |> deserialize(:project_revision_hooks, :list, Ory.Model.NormalizedProjectRevisionHook, options)
   end
 end
 

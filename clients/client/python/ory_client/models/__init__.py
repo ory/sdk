@@ -13,12 +13,13 @@ from ory_client.model.accept_o_auth2_consent_request import AcceptOAuth2ConsentR
 from ory_client.model.accept_o_auth2_consent_request_session import AcceptOAuth2ConsentRequestSession
 from ory_client.model.accept_o_auth2_login_request import AcceptOAuth2LoginRequest
 from ory_client.model.active_project_in_console import ActiveProjectInConsole
+from ory_client.model.attributes_count_datapoint import AttributesCountDatapoint
 from ory_client.model.authenticator_assurance_level import AuthenticatorAssuranceLevel
 from ory_client.model.batch_patch_identities_response import BatchPatchIdentitiesResponse
-from ory_client.model.cors import CORS
 from ory_client.model.check_opl_syntax_result import CheckOplSyntaxResult
 from ory_client.model.check_permission_result import CheckPermissionResult
 from ory_client.model.cloud_account import CloudAccount
+from ory_client.model.consistency_request_parameters import ConsistencyRequestParameters
 from ory_client.model.continue_with import ContinueWith
 from ory_client.model.continue_with_set_ory_session_token import ContinueWithSetOrySessionToken
 from ory_client.model.continue_with_verification_ui import ContinueWithVerificationUi
@@ -54,9 +55,11 @@ from ory_client.model.flow_error import FlowError
 from ory_client.model.generic_error import GenericError
 from ory_client.model.generic_error_content import GenericErrorContent
 from ory_client.model.generic_usage import GenericUsage
+from ory_client.model.get_attributes_count_response import GetAttributesCountResponse
 from ory_client.model.get_managed_identity_schema_location import GetManagedIdentitySchemaLocation
 from ory_client.model.get_organization_response import GetOrganizationResponse
 from ory_client.model.get_project_metrics_response import GetProjectMetricsResponse
+from ory_client.model.get_session_activity_response import GetSessionActivityResponse
 from ory_client.model.get_version200_response import GetVersion200Response
 from ory_client.model.health_not_ready_status import HealthNotReadyStatus
 from ory_client.model.health_status import HealthStatus
@@ -154,6 +157,7 @@ from ory_client.model.project_branding import ProjectBranding
 from ory_client.model.project_branding_colors import ProjectBrandingColors
 from ory_client.model.project_branding_theme import ProjectBrandingTheme
 from ory_client.model.project_branding_themes import ProjectBrandingThemes
+from ory_client.model.project_cors import ProjectCors
 from ory_client.model.project_host import ProjectHost
 from ory_client.model.project_member import ProjectMember
 from ory_client.model.project_members import ProjectMembers
@@ -186,6 +190,7 @@ from ory_client.model.relationships import Relationships
 from ory_client.model.schema_patch import SchemaPatch
 from ory_client.model.self_service_flow_expired_error import SelfServiceFlowExpiredError
 from ory_client.model.session import Session
+from ory_client.model.session_activity_datapoint import SessionActivityDatapoint
 from ory_client.model.session_authentication_method import SessionAuthenticationMethod
 from ory_client.model.session_authentication_methods import SessionAuthenticationMethods
 from ory_client.model.session_device import SessionDevice

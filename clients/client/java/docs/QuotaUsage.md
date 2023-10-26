@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**additionalPrice** | **Long** | The additional price per unit in cents. |  |
 |**canUseMore** | **Boolean** |  |  |
-|**feature** | [**FeatureEnum**](#FeatureEnum) |  region_eu RegionEU region_us RegionUS region_apac RegionAPAC region_global RegionGlobal production_projects ProductionProjects daily_active_users DailyActiveUsers custom_domains CustomDomains sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport project_metrics ProjectMetrics organizations Organizations rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList |  |
+|**feature** | [**FeatureEnum**](#FeatureEnum) |  region_eu RegionEU region_us RegionUS region_apac RegionAPAC region_global RegionGlobal production_projects ProductionProjects daily_active_users DailyActiveUsers custom_domains CustomDomains sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport project_metrics ProjectMetrics project_metrics_time_window ProjectMetricsTimeWindow organizations Organizations rop_grant ResourceOwnerPasswordGrant rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList |  |
 |**featureAvailable** | **Boolean** |  |  |
 |**included** | **Long** |  |  |
 |**used** | **Long** |  |  |
@@ -33,7 +33,9 @@
 | BRANDING_THEMES | &quot;branding_themes&quot; |
 | ZENDESK_SUPPORT | &quot;zendesk_support&quot; |
 | PROJECT_METRICS | &quot;project_metrics&quot; |
+| PROJECT_METRICS_TIME_WINDOW | &quot;project_metrics_time_window&quot; |
 | ORGANIZATIONS | &quot;organizations&quot; |
+| ROP_GRANT | &quot;rop_grant&quot; |
 | RATE_LIMIT_TIER | &quot;rate_limit_tier&quot; |
 | SESSION_RATE_LIMIT_TIER | &quot;session_rate_limit_tier&quot; |
 | IDENTITIES_LIST_RATE_LIMIT_TIER | &quot;identities_list_rate_limit_tier&quot; |

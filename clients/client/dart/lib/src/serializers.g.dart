@@ -11,12 +11,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AcceptOAuth2ConsentRequestSession.serializer)
       ..add(AcceptOAuth2LoginRequest.serializer)
       ..add(ActiveProjectInConsole.serializer)
+      ..add(AttributesCountDatapoint.serializer)
       ..add(AuthenticatorAssuranceLevel.serializer)
       ..add(BatchPatchIdentitiesResponse.serializer)
-      ..add(CORS.serializer)
       ..add(CheckOplSyntaxResult.serializer)
       ..add(CheckPermissionResult.serializer)
       ..add(CloudAccount.serializer)
+      ..add(ConsistencyRequestParameters.serializer)
+      ..add(ConsistencyRequestParametersConsistencyEnum.serializer)
       ..add(ContinueWith.serializer)
       ..add(ContinueWithSetOrySessionToken.serializer)
       ..add(ContinueWithSetOrySessionTokenActionEnum.serializer)
@@ -57,9 +59,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GenericError.serializer)
       ..add(GenericErrorContent.serializer)
       ..add(GenericUsage.serializer)
+      ..add(GetAttributesCountResponse.serializer)
       ..add(GetManagedIdentitySchemaLocation.serializer)
       ..add(GetOrganizationResponse.serializer)
       ..add(GetProjectMetricsResponse.serializer)
+      ..add(GetSessionActivityResponse.serializer)
       ..add(GetVersion200Response.serializer)
       ..add(HealthNotReadyStatus.serializer)
       ..add(HealthStatus.serializer)
@@ -156,6 +160,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ProjectBranding.serializer)
       ..add(ProjectBrandingColors.serializer)
       ..add(ProjectBrandingTheme.serializer)
+      ..add(ProjectCors.serializer)
       ..add(ProjectHost.serializer)
       ..add(ProjectMetadata.serializer)
       ..add(ProjectMetadataStateEnum.serializer)
@@ -184,6 +189,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SchemaPatch.serializer)
       ..add(SelfServiceFlowExpiredError.serializer)
       ..add(Session.serializer)
+      ..add(SessionActivityDatapoint.serializer)
       ..add(SessionAuthenticationMethod.serializer)
       ..add(SessionAuthenticationMethodMethodEnum.serializer)
       ..add(SessionDevice.serializer)
@@ -267,6 +273,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Version.serializer)
       ..add(Warning.serializer)
       ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(AttributesCountDatapoint)]),
+          () => new ListBuilder<AttributesCountDatapoint>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ContinueWith)]),
           () => new ListBuilder<ContinueWith>())
       ..addBuilderFactory(
@@ -328,6 +338,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Relationship)]),
           () => new ListBuilder<Relationship>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SessionActivityDatapoint)]),
+          () => new ListBuilder<SessionActivityDatapoint>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(SessionAuthenticationMethod)]),
@@ -530,10 +544,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
-          () => new ListBuilder<NormalizedProjectRevisionHook>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(NormalizedProjectRevisionThirdPartyProvider)
           ]),
@@ -546,6 +556,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
             const FullType(NormalizedProjectRevisionTokenizerTemplate)
           ]),
           () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
+          () => new ListBuilder<NormalizedProjectRevisionHook>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

@@ -673,8 +673,8 @@ func main() {
     projectId := "projectId_example" // string | Project ID
     eventType := "eventType_example" // string | The event type to query for
     resolution := "resolution_example" // string | The resolution of the buckets  The minimum resolution is 1 hour.
-    from := time.Now() // time.Time | The start time of the time window
-    to := time.Now() // time.Time | The end time of the time window
+    from := time.Now() // time.Time | The start RFC3339 date of the time window
+    to := time.Now() // time.Time | The end RFC3339 date of the time window
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -706,8 +706,8 @@ Name | Type | Description  | Notes
 
  **eventType** | **string** | The event type to query for | 
  **resolution** | **string** | The resolution of the buckets  The minimum resolution is 1 hour. | 
- **from** | **time.Time** | The start time of the time window | 
- **to** | **time.Time** | The end time of the time window | 
+ **from** | **time.Time** | The start RFC3339 date of the time window | 
+ **to** | **time.Time** | The end RFC3339 date of the time window | 
 
 ### Return type
 
@@ -1223,7 +1223,7 @@ import (
 
 func main() {
     projectId := "projectId_example" // string | Project ID  The project's ID.
-    setProject := *openapiclient.NewSetProject(*openapiclient.NewCORS(false, []string{"Origins_example"}), *openapiclient.NewCORS(false, []string{"Origins_example"}), "Name_example", *openapiclient.NewProjectServices()) // SetProject |  (optional)
+    setProject := *openapiclient.NewSetProject(*openapiclient.NewProjectCors(false, []string{"Origins_example"}), *openapiclient.NewProjectCors(false, []string{"Origins_example"}), "Name_example", *openapiclient.NewProjectServices()) // SetProject |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

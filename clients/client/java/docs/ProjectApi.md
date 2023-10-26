@@ -686,8 +686,8 @@ public class Example {
     String projectId = "projectId_example"; // String | Project ID
     String eventType = "eventType_example"; // String | The event type to query for
     String resolution = "resolution_example"; // String | The resolution of the buckets  The minimum resolution is 1 hour.
-    OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | The start time of the time window
-    OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | The end time of the time window
+    OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | The start RFC3339 date of the time window
+    OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | The end RFC3339 date of the time window
     try {
       GetProjectMetricsResponse result = apiInstance.getProjectMetrics(projectId, eventType, resolution, from, to);
       System.out.println(result);
@@ -709,8 +709,8 @@ public class Example {
 | **projectId** | **String**| Project ID | |
 | **eventType** | **String**| The event type to query for | |
 | **resolution** | **String**| The resolution of the buckets  The minimum resolution is 1 hour. | |
-| **from** | **OffsetDateTime**| The start time of the time window | |
-| **to** | **OffsetDateTime**| The end time of the time window | |
+| **from** | **OffsetDateTime**| The start RFC3339 date of the time window | |
+| **to** | **OffsetDateTime**| The end RFC3339 date of the time window | |
 
 ### Return type
 

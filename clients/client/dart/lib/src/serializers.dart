@@ -18,12 +18,13 @@ import 'package:ory_client/src/model/accept_o_auth2_consent_request.dart';
 import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart';
 import 'package:ory_client/src/model/accept_o_auth2_login_request.dart';
 import 'package:ory_client/src/model/active_project_in_console.dart';
+import 'package:ory_client/src/model/attributes_count_datapoint.dart';
 import 'package:ory_client/src/model/authenticator_assurance_level.dart';
 import 'package:ory_client/src/model/batch_patch_identities_response.dart';
-import 'package:ory_client/src/model/cors.dart';
 import 'package:ory_client/src/model/check_opl_syntax_result.dart';
 import 'package:ory_client/src/model/check_permission_result.dart';
 import 'package:ory_client/src/model/cloud_account.dart';
+import 'package:ory_client/src/model/consistency_request_parameters.dart';
 import 'package:ory_client/src/model/continue_with.dart';
 import 'package:ory_client/src/model/continue_with_set_ory_session_token.dart';
 import 'package:ory_client/src/model/continue_with_verification_ui.dart';
@@ -58,9 +59,11 @@ import 'package:ory_client/src/model/flow_error.dart';
 import 'package:ory_client/src/model/generic_error.dart';
 import 'package:ory_client/src/model/generic_error_content.dart';
 import 'package:ory_client/src/model/generic_usage.dart';
+import 'package:ory_client/src/model/get_attributes_count_response.dart';
 import 'package:ory_client/src/model/get_managed_identity_schema_location.dart';
 import 'package:ory_client/src/model/get_organization_response.dart';
 import 'package:ory_client/src/model/get_project_metrics_response.dart';
+import 'package:ory_client/src/model/get_session_activity_response.dart';
 import 'package:ory_client/src/model/get_version200_response.dart';
 import 'package:ory_client/src/model/health_not_ready_status.dart';
 import 'package:ory_client/src/model/health_status.dart';
@@ -141,6 +144,7 @@ import 'package:ory_client/src/model/project_api_key.dart';
 import 'package:ory_client/src/model/project_branding.dart';
 import 'package:ory_client/src/model/project_branding_colors.dart';
 import 'package:ory_client/src/model/project_branding_theme.dart';
+import 'package:ory_client/src/model/project_cors.dart';
 import 'package:ory_client/src/model/project_host.dart';
 import 'package:ory_client/src/model/project_metadata.dart';
 import 'package:ory_client/src/model/project_service_identity.dart';
@@ -165,6 +169,7 @@ import 'package:ory_client/src/model/relationships.dart';
 import 'package:ory_client/src/model/schema_patch.dart';
 import 'package:ory_client/src/model/self_service_flow_expired_error.dart';
 import 'package:ory_client/src/model/session.dart';
+import 'package:ory_client/src/model/session_activity_datapoint.dart';
 import 'package:ory_client/src/model/session_authentication_method.dart';
 import 'package:ory_client/src/model/session_device.dart';
 import 'package:ory_client/src/model/set_active_project_in_console_body.dart';
@@ -242,12 +247,13 @@ part 'serializers.g.dart';
   AcceptOAuth2ConsentRequestSession,
   AcceptOAuth2LoginRequest,
   ActiveProjectInConsole,
+  AttributesCountDatapoint,
   AuthenticatorAssuranceLevel,
   BatchPatchIdentitiesResponse,
-  CORS,
   CheckOplSyntaxResult,
   CheckPermissionResult,
   CloudAccount,
+  ConsistencyRequestParameters,
   ContinueWith,
   ContinueWithSetOrySessionToken,
   ContinueWithVerificationUi,
@@ -282,9 +288,11 @@ part 'serializers.g.dart';
   GenericError,
   GenericErrorContent,
   GenericUsage,
+  GetAttributesCountResponse,
   GetManagedIdentitySchemaLocation,
   GetOrganizationResponse,
   GetProjectMetricsResponse,
+  GetSessionActivityResponse,
   GetVersion200Response,
   HealthNotReadyStatus,
   HealthStatus,
@@ -365,6 +373,7 @@ part 'serializers.g.dart';
   ProjectBranding,
   ProjectBrandingColors,
   ProjectBrandingTheme,
+  ProjectCors,
   ProjectHost,
   ProjectMetadata,
   ProjectServiceIdentity,
@@ -389,6 +398,7 @@ part 'serializers.g.dart';
   SchemaPatch,
   SelfServiceFlowExpiredError,
   Session,
+  SessionActivityDatapoint,
   SessionAuthenticationMethod,
   SessionDevice,
   SetActiveProjectInConsoleBody,

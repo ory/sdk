@@ -309,8 +309,8 @@ Name | Type | Description  | Required | Notes
 **project_id** | **String** | Project ID | [required] |
 **event_type** | **String** | The event type to query for | [required] |
 **resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 hour. | [required] |
-**from** | **String** | The start time of the time window | [required] |
-**to** | **String** | The end time of the time window | [required] |
+**from** | **String** | The start RFC3339 date of the time window | [required] |
+**to** | **String** | The end RFC3339 date of the time window | [required] |
 
 ### Return type
 

@@ -32,8 +32,12 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_zendeskSupport =
     const QuotaUsageFeatureEnum._('zendeskSupport');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetrics =
     const QuotaUsageFeatureEnum._('projectMetrics');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetricsTimeWindow =
+    const QuotaUsageFeatureEnum._('projectMetricsTimeWindow');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_organizations =
     const QuotaUsageFeatureEnum._('organizations');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_ropGrant =
+    const QuotaUsageFeatureEnum._('ropGrant');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
     const QuotaUsageFeatureEnum._('rateLimitTier');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_sessionRateLimitTier =
@@ -70,8 +74,12 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_zendeskSupport;
     case 'projectMetrics':
       return _$quotaUsageFeatureEnum_projectMetrics;
+    case 'projectMetricsTimeWindow':
+      return _$quotaUsageFeatureEnum_projectMetricsTimeWindow;
     case 'organizations':
       return _$quotaUsageFeatureEnum_organizations;
+    case 'ropGrant':
+      return _$quotaUsageFeatureEnum_ropGrant;
     case 'rateLimitTier':
       return _$quotaUsageFeatureEnum_rateLimitTier;
     case 'sessionRateLimitTier':
@@ -98,7 +106,9 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_brandingThemes,
   _$quotaUsageFeatureEnum_zendeskSupport,
   _$quotaUsageFeatureEnum_projectMetrics,
+  _$quotaUsageFeatureEnum_projectMetricsTimeWindow,
   _$quotaUsageFeatureEnum_organizations,
+  _$quotaUsageFeatureEnum_ropGrant,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
   _$quotaUsageFeatureEnum_identitiesListRateLimitTier,
@@ -123,7 +133,9 @@ class _$QuotaUsageFeatureEnumSerializer
     'brandingThemes': 'branding_themes',
     'zendeskSupport': 'zendesk_support',
     'projectMetrics': 'project_metrics',
+    'projectMetricsTimeWindow': 'project_metrics_time_window',
     'organizations': 'organizations',
+    'ropGrant': 'rop_grant',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
     'identitiesListRateLimitTier': 'identities_list_rate_limit_tier',
@@ -142,7 +154,9 @@ class _$QuotaUsageFeatureEnumSerializer
     'branding_themes': 'brandingThemes',
     'zendesk_support': 'zendeskSupport',
     'project_metrics': 'projectMetrics',
+    'project_metrics_time_window': 'projectMetricsTimeWindow',
     'organizations': 'organizations',
+    'rop_grant': 'ropGrant',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',
     'identities_list_rate_limit_tier': 'identitiesListRateLimitTier',

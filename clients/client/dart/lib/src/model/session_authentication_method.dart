@@ -30,7 +30,7 @@ abstract class SessionAuthenticationMethod implements Built<SessionAuthenticatio
 
   @BuiltValueField(wireName: r'method')
   SessionAuthenticationMethodMethodEnum? get method;
-  // enum methodEnum {  link_recovery,  code_recovery,  password,  totp,  oidc,  webauthn,  lookup_secret,  v0.6_legacy_session,  };
+  // enum methodEnum {  link_recovery,  code_recovery,  password,  code,  totp,  oidc,  webauthn,  lookup_secret,  v0.6_legacy_session,  };
 
   /// The Organization id used for authentication
   @BuiltValueField(wireName: r'organization')
@@ -193,6 +193,8 @@ class SessionAuthenticationMethodMethodEnum extends EnumClass {
   static const SessionAuthenticationMethodMethodEnum codeRecovery = _$sessionAuthenticationMethodMethodEnum_codeRecovery;
   @BuiltValueEnumConst(wireName: r'password')
   static const SessionAuthenticationMethodMethodEnum password = _$sessionAuthenticationMethodMethodEnum_password;
+  @BuiltValueEnumConst(wireName: r'code')
+  static const SessionAuthenticationMethodMethodEnum code = _$sessionAuthenticationMethodMethodEnum_code;
   @BuiltValueEnumConst(wireName: r'totp')
   static const SessionAuthenticationMethodMethodEnum totp = _$sessionAuthenticationMethodMethodEnum_totp;
   @BuiltValueEnumConst(wireName: r'oidc')

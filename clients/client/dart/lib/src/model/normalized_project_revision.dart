@@ -29,7 +29,7 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraOauth2PkceEnforced] - Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 /// * [hydraOauth2PkceEnforcedForPublicClients] - Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
 /// * [hydraOauth2RefreshTokenHook] - Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
-/// * [hydraOauth2TokenHook] - Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook\" setting.
+/// * [hydraOauth2TokenHook] - Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook.url\" setting.
 /// * [hydraOidcDynamicClientRegistrationDefaultScope] 
 /// * [hydraOidcDynamicClientRegistrationEnabled] - Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
 /// * [hydraOidcSubjectIdentifiersPairwiseSalt] - Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \"oidc.subject_identifiers.pairwise_salt\" setting.
@@ -63,7 +63,6 @@ part 'normalized_project_revision.g.dart';
 /// * [id] - The revision ID.
 /// * [ketoNamespaceConfiguration] - The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
 /// * [ketoNamespaces] 
-/// * [ketoReadMaxDepth] 
 /// * [kratosCookiesSameSite] - Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
 /// * [kratosCourierDeliveryStrategy] - The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
 /// * [kratosCourierHttpRequestConfigAuthApiKeyIn] - The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.auth.config.in\" setting
@@ -116,13 +115,13 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosOauth2ProviderHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 /// * [kratosOauth2ProviderOverrideReturnTo] - Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
 /// * [kratosOauth2ProviderUrl] - The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
+/// * [kratosPreviewDefaultReadConsistencyLevel] - Configures the default read consistency level for identity APIs  This governs the `preview.default_read_consistency_level` setting.  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution.
 /// * [kratosSecretsCipher] 
 /// * [kratosSecretsCookie] 
 /// * [kratosSecretsDefault] 
 /// * [kratosSelfserviceAllowedReturnUrls] 
 /// * [kratosSelfserviceDefaultBrowserReturnUrl] - Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting.
 /// * [kratosSelfserviceFlowsErrorUiUrl] - Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
-/// * [kratosSelfserviceFlowsHooks] 
 /// * [kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.code.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.lookup_secret.after.password.default_browser_return_url\" setting.
@@ -198,6 +197,7 @@ part 'normalized_project_revision.g.dart';
 /// * [name] - The project's name.
 /// * [production] - Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
 /// * [projectId] - The Revision's Project ID
+/// * [projectRevisionHooks] 
 /// * [serveAdminCorsAllowedOrigins] 
 /// * [serveAdminCorsEnabled] - Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting.
 /// * [servePublicCorsAllowedOrigins] 
@@ -248,7 +248,7 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'hydra_oauth2_refresh_token_hook')
   String? get hydraOauth2RefreshTokenHook;
 
-  /// Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook\" setting.
+  /// Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook.url\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_token_hook')
   String? get hydraOauth2TokenHook;
 
@@ -377,9 +377,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
 
   @BuiltValueField(wireName: r'keto_namespaces')
   BuiltList<KetoNamespace>? get ketoNamespaces;
-
-  @BuiltValueField(wireName: r'keto_read_max_depth')
-  int? get ketoReadMaxDepth;
 
   /// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
   @BuiltValueField(wireName: r'kratos_cookies_same_site')
@@ -588,6 +585,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_oauth2_provider_url')
   String? get kratosOauth2ProviderUrl;
 
+  /// Configures the default read consistency level for identity APIs  This governs the `preview.default_read_consistency_level` setting.  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution.
+  @BuiltValueField(wireName: r'kratos_preview_default_read_consistency_level')
+  String? get kratosPreviewDefaultReadConsistencyLevel;
+
   @BuiltValueField(wireName: r'kratos_secrets_cipher')
   BuiltList<String>? get kratosSecretsCipher;
 
@@ -607,9 +608,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_error_ui_url')
   String? get kratosSelfserviceFlowsErrorUiUrl;
-
-  @BuiltValueField(wireName: r'kratos_selfservice_flows_hooks')
-  BuiltList<NormalizedProjectRevisionHook>? get kratosSelfserviceFlowsHooks;
 
   /// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.code.after.password.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_code_default_browser_return_url')
@@ -909,6 +907,9 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// The Revision's Project ID
   @BuiltValueField(wireName: r'project_id')
   String? get projectId;
+
+  @BuiltValueField(wireName: r'project_revision_hooks')
+  BuiltList<NormalizedProjectRevisionHook>? get projectRevisionHooks;
 
   @BuiltValueField(wireName: r'serve_admin_cors_allowed_origins')
   BuiltList<String>? get serveAdminCorsAllowedOrigins;
@@ -1277,13 +1278,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(BuiltList, [FullType(KetoNamespace)]),
       );
     }
-    if (object.ketoReadMaxDepth != null) {
-      yield r'keto_read_max_depth';
-      yield serializers.serialize(
-        object.ketoReadMaxDepth,
-        specifiedType: const FullType.nullable(int),
-      );
-    }
     if (object.kratosCookiesSameSite != null) {
       yield r'kratos_cookies_same_site';
       yield serializers.serialize(
@@ -1648,6 +1642,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosPreviewDefaultReadConsistencyLevel != null) {
+      yield r'kratos_preview_default_read_consistency_level';
+      yield serializers.serialize(
+        object.kratosPreviewDefaultReadConsistencyLevel,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosSecretsCipher != null) {
       yield r'kratos_secrets_cipher';
       yield serializers.serialize(
@@ -1688,13 +1689,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosSelfserviceFlowsErrorUiUrl,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.kratosSelfserviceFlowsHooks != null) {
-      yield r'kratos_selfservice_flows_hooks';
-      yield serializers.serialize(
-        object.kratosSelfserviceFlowsHooks,
-        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionHook)]),
       );
     }
     if (object.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl != null) {
@@ -2220,6 +2214,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.projectRevisionHooks != null) {
+      yield r'project_revision_hooks';
+      yield serializers.serialize(
+        object.projectRevisionHooks,
+        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionHook)]),
+      );
+    }
     if (object.serveAdminCorsAllowedOrigins != null) {
       yield r'serve_admin_cors_allowed_origins';
       yield serializers.serialize(
@@ -2593,14 +2594,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as BuiltList<KetoNamespace>;
           result.ketoNamespaces.replace(valueDes);
           break;
-        case r'keto_read_max_depth':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.ketoReadMaxDepth = valueDes;
-          break;
         case r'kratos_cookies_same_site':
           final valueDes = serializers.deserialize(
             value,
@@ -2968,6 +2961,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.kratosOauth2ProviderUrl = valueDes;
           break;
+        case r'kratos_preview_default_read_consistency_level':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosPreviewDefaultReadConsistencyLevel = valueDes;
+          break;
         case r'kratos_secrets_cipher':
           final valueDes = serializers.deserialize(
             value,
@@ -3009,13 +3009,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceFlowsErrorUiUrl = valueDes;
-          break;
-        case r'kratos_selfservice_flows_hooks':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionHook)]),
-          ) as BuiltList<NormalizedProjectRevisionHook>;
-          result.kratosSelfserviceFlowsHooks.replace(valueDes);
           break;
         case r'kratos_selfservice_flows_login_after_code_default_browser_return_url':
           final valueDes = serializers.deserialize(
@@ -3541,6 +3534,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.projectId = valueDes;
+          break;
+        case r'project_revision_hooks':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionHook)]),
+          ) as BuiltList<NormalizedProjectRevisionHook>;
+          result.projectRevisionHooks.replace(valueDes);
           break;
         case r'serve_admin_cors_allowed_origins':
           final valueDes = serializers.deserialize(

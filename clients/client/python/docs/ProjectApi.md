@@ -822,8 +822,8 @@ with ory_client.ApiClient(configuration) as api_client:
     project_id = "project_id_example" # str | Project ID
     event_type = "event_type_example" # str | The event type to query for
     resolution = "4ms" # str | The resolution of the buckets  The minimum resolution is 1 hour.
-    _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The start time of the time window
-    to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The end time of the time window
+    _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The start RFC3339 date of the time window
+    to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The end RFC3339 date of the time window
 
     # example passing only required values which don't have defaults set
     try:
@@ -841,8 +841,8 @@ Name | Type | Description  | Notes
  **project_id** | **str**| Project ID |
  **event_type** | **str**| The event type to query for |
  **resolution** | **str**| The resolution of the buckets  The minimum resolution is 1 hour. |
- **_from** | **datetime**| The start time of the time window |
- **to** | **datetime**| The end time of the time window |
+ **_from** | **datetime**| The start RFC3339 date of the time window |
+ **to** | **datetime**| The end RFC3339 date of the time window |
 
 ### Return type
 
@@ -1490,13 +1490,13 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = project_api.ProjectApi(api_client)
     project_id = "project_id_example" # str | Project ID  The project's ID.
     set_project = SetProject(
-        cors_admin=CORS(
+        cors_admin=ProjectCors(
             enabled=True,
             origins=[
                 "origins_example",
             ],
         ),
-        cors_public=CORS(
+        cors_public=ProjectCors(
             enabled=True,
             origins=[
                 "origins_example",

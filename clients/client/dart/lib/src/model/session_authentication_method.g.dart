@@ -16,6 +16,9 @@ const SessionAuthenticationMethodMethodEnum
     _$sessionAuthenticationMethodMethodEnum_password =
     const SessionAuthenticationMethodMethodEnum._('password');
 const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_code =
+    const SessionAuthenticationMethodMethodEnum._('code');
+const SessionAuthenticationMethodMethodEnum
     _$sessionAuthenticationMethodMethodEnum_totp =
     const SessionAuthenticationMethodMethodEnum._('totp');
 const SessionAuthenticationMethodMethodEnum
@@ -40,6 +43,8 @@ SessionAuthenticationMethodMethodEnum
       return _$sessionAuthenticationMethodMethodEnum_codeRecovery;
     case 'password':
       return _$sessionAuthenticationMethodMethodEnum_password;
+    case 'code':
+      return _$sessionAuthenticationMethodMethodEnum_code;
     case 'totp':
       return _$sessionAuthenticationMethodMethodEnum_totp;
     case 'oidc':
@@ -61,6 +66,7 @@ final BuiltSet<SessionAuthenticationMethodMethodEnum>
   _$sessionAuthenticationMethodMethodEnum_linkRecovery,
   _$sessionAuthenticationMethodMethodEnum_codeRecovery,
   _$sessionAuthenticationMethodMethodEnum_password,
+  _$sessionAuthenticationMethodMethodEnum_code,
   _$sessionAuthenticationMethodMethodEnum_totp,
   _$sessionAuthenticationMethodMethodEnum_oidc,
   _$sessionAuthenticationMethodMethodEnum_webauthn,
@@ -78,6 +84,7 @@ class _$SessionAuthenticationMethodMethodEnumSerializer
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
     'password': 'password',
+    'code': 'code',
     'totp': 'totp',
     'oidc': 'oidc',
     'webauthn': 'webauthn',
@@ -88,6 +95,7 @@ class _$SessionAuthenticationMethodMethodEnumSerializer
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
     'password': 'password',
+    'code': 'code',
     'totp': 'totp',
     'oidc': 'oidc',
     'webauthn': 'webauthn',

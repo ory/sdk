@@ -3,9 +3,9 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/project_cors.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/project_services.dart';
-import 'package:ory_client/src/model/cors.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -25,10 +25,10 @@ part 'project.g.dart';
 @BuiltValue()
 abstract class Project implements Built<Project, ProjectBuilder> {
   @BuiltValueField(wireName: r'cors_admin')
-  CORS get corsAdmin;
+  ProjectCors get corsAdmin;
 
   @BuiltValueField(wireName: r'cors_public')
-  CORS get corsPublic;
+  ProjectCors get corsPublic;
 
   /// The project's ID.
   @BuiltValueField(wireName: r'id')
@@ -80,12 +80,12 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
     yield r'cors_admin';
     yield serializers.serialize(
       object.corsAdmin,
-      specifiedType: const FullType(CORS),
+      specifiedType: const FullType(ProjectCors),
     );
     yield r'cors_public';
     yield serializers.serialize(
       object.corsPublic,
-      specifiedType: const FullType(CORS),
+      specifiedType: const FullType(ProjectCors),
     );
     yield r'id';
     yield serializers.serialize(
@@ -143,15 +143,15 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
         case r'cors_admin':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CORS),
-          ) as CORS;
+            specifiedType: const FullType(ProjectCors),
+          ) as ProjectCors;
           result.corsAdmin.replace(valueDes);
           break;
         case r'cors_public':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CORS),
-          ) as CORS;
+            specifiedType: const FullType(ProjectCors),
+          ) as ProjectCors;
           result.corsPublic.replace(valueDes);
           break;
         case r'id':

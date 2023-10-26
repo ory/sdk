@@ -462,8 +462,8 @@ final api = OryClient().getProjectApi();
 final String projectId = projectId_example; // String | Project ID
 final String eventType = eventType_example; // String | The event type to query for
 final String resolution = resolution_example; // String | The resolution of the buckets  The minimum resolution is 1 hour.
-final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | The start time of the time window
-final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | The end time of the time window
+final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | The start RFC3339 date of the time window
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | The end RFC3339 date of the time window
 
 try {
     final response = api.getProjectMetrics(projectId, eventType, resolution, from, to);
@@ -480,8 +480,8 @@ Name | Type | Description  | Notes
  **projectId** | **String**| Project ID | 
  **eventType** | **String**| The event type to query for | 
  **resolution** | **String**| The resolution of the buckets  The minimum resolution is 1 hour. | 
- **from** | **DateTime**| The start time of the time window | 
- **to** | **DateTime**| The end time of the time window | 
+ **from** | **DateTime**| The start RFC3339 date of the time window | 
+ **to** | **DateTime**| The end RFC3339 date of the time window | 
 
 ### Return type
 

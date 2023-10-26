@@ -748,8 +748,8 @@ namespace Example
             var projectId = "projectId_example";  // string | Project ID
             var eventType = "eventType_example";  // string | The event type to query for
             var resolution = "resolution_example";  // string | The resolution of the buckets  The minimum resolution is 1 hour.
-            var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The start time of the time window
-            var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The end time of the time window
+            var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The start RFC3339 date of the time window
+            var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The end RFC3339 date of the time window
 
             try
             {
@@ -774,8 +774,8 @@ Name | Type | Description  | Notes
  **projectId** | **string**| Project ID | 
  **eventType** | **string**| The event type to query for | 
  **resolution** | **string**| The resolution of the buckets  The minimum resolution is 1 hour. | 
- **from** | **DateTime**| The start time of the time window | 
- **to** | **DateTime**| The end time of the time window | 
+ **from** | **DateTime**| The start RFC3339 date of the time window | 
+ **to** | **DateTime**| The end RFC3339 date of the time window | 
 
 ### Return type
 

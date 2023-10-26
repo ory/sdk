@@ -68,9 +68,9 @@ class _$ProjectStateEnumSerializer
 
 class _$Project extends Project {
   @override
-  final CORS corsAdmin;
+  final ProjectCors corsAdmin;
   @override
-  final CORS corsPublic;
+  final ProjectCors corsPublic;
   @override
   final String id;
   @override
@@ -161,13 +161,16 @@ class _$Project extends Project {
 class ProjectBuilder implements Builder<Project, ProjectBuilder> {
   _$Project? _$v;
 
-  CORSBuilder? _corsAdmin;
-  CORSBuilder get corsAdmin => _$this._corsAdmin ??= new CORSBuilder();
-  set corsAdmin(CORSBuilder? corsAdmin) => _$this._corsAdmin = corsAdmin;
+  ProjectCorsBuilder? _corsAdmin;
+  ProjectCorsBuilder get corsAdmin =>
+      _$this._corsAdmin ??= new ProjectCorsBuilder();
+  set corsAdmin(ProjectCorsBuilder? corsAdmin) => _$this._corsAdmin = corsAdmin;
 
-  CORSBuilder? _corsPublic;
-  CORSBuilder get corsPublic => _$this._corsPublic ??= new CORSBuilder();
-  set corsPublic(CORSBuilder? corsPublic) => _$this._corsPublic = corsPublic;
+  ProjectCorsBuilder? _corsPublic;
+  ProjectCorsBuilder get corsPublic =>
+      _$this._corsPublic ??= new ProjectCorsBuilder();
+  set corsPublic(ProjectCorsBuilder? corsPublic) =>
+      _$this._corsPublic = corsPublic;
 
   String? _id;
   String? get id => _$this._id;

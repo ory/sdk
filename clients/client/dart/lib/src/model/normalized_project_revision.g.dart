@@ -368,8 +368,6 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final BuiltList<KetoNamespace>? ketoNamespaces;
   @override
-  final int? ketoReadMaxDepth;
-  @override
   final String? kratosCookiesSameSite;
   @override
   final String? kratosCourierDeliveryStrategy;
@@ -475,6 +473,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosOauth2ProviderUrl;
   @override
+  final String? kratosPreviewDefaultReadConsistencyLevel;
+  @override
   final BuiltList<String>? kratosSecretsCipher;
   @override
   final BuiltList<String>? kratosSecretsCookie;
@@ -486,8 +486,6 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final String? kratosSelfserviceDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsErrorUiUrl;
-  @override
-  final BuiltList<NormalizedProjectRevisionHook>? kratosSelfserviceFlowsHooks;
   @override
   final String? kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
   @override
@@ -653,6 +651,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? projectId;
   @override
+  final BuiltList<NormalizedProjectRevisionHook>? projectRevisionHooks;
+  @override
   final BuiltList<String>? serveAdminCorsAllowedOrigins;
   @override
   final bool? serveAdminCorsEnabled;
@@ -713,7 +713,6 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.id,
       this.ketoNamespaceConfiguration,
       this.ketoNamespaces,
-      this.ketoReadMaxDepth,
       this.kratosCookiesSameSite,
       this.kratosCourierDeliveryStrategy,
       this.kratosCourierHttpRequestConfigAuthApiKeyIn,
@@ -766,13 +765,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosOauth2ProviderHeaders,
       this.kratosOauth2ProviderOverrideReturnTo,
       this.kratosOauth2ProviderUrl,
+      this.kratosPreviewDefaultReadConsistencyLevel,
       this.kratosSecretsCipher,
       this.kratosSecretsCookie,
       this.kratosSecretsDefault,
       this.kratosSelfserviceAllowedReturnUrls,
       this.kratosSelfserviceDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsErrorUiUrl,
-      this.kratosSelfserviceFlowsHooks,
       this.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl,
@@ -848,6 +847,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       required this.name,
       this.production,
       this.projectId,
+      this.projectRevisionHooks,
       this.serveAdminCorsAllowedOrigins,
       this.serveAdminCorsEnabled,
       this.servePublicCorsAllowedOrigins,
@@ -936,7 +936,6 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         id == other.id &&
         ketoNamespaceConfiguration == other.ketoNamespaceConfiguration &&
         ketoNamespaces == other.ketoNamespaces &&
-        ketoReadMaxDepth == other.ketoReadMaxDepth &&
         kratosCookiesSameSite == other.kratosCookiesSameSite &&
         kratosCourierDeliveryStrategy == other.kratosCourierDeliveryStrategy &&
         kratosCourierHttpRequestConfigAuthApiKeyIn ==
@@ -1035,6 +1034,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosOauth2ProviderOverrideReturnTo ==
             other.kratosOauth2ProviderOverrideReturnTo &&
         kratosOauth2ProviderUrl == other.kratosOauth2ProviderUrl &&
+        kratosPreviewDefaultReadConsistencyLevel ==
+            other.kratosPreviewDefaultReadConsistencyLevel &&
         kratosSecretsCipher == other.kratosSecretsCipher &&
         kratosSecretsCookie == other.kratosSecretsCookie &&
         kratosSecretsDefault == other.kratosSecretsDefault &&
@@ -1044,7 +1045,6 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsErrorUiUrl ==
             other.kratosSelfserviceFlowsErrorUiUrl &&
-        kratosSelfserviceFlowsHooks == other.kratosSelfserviceFlowsHooks &&
         kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl ==
             other.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl ==
@@ -1205,6 +1205,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         name == other.name &&
         production == other.production &&
         projectId == other.projectId &&
+        projectRevisionHooks == other.projectRevisionHooks &&
         serveAdminCorsAllowedOrigins == other.serveAdminCorsAllowedOrigins &&
         serveAdminCorsEnabled == other.serveAdminCorsEnabled &&
         servePublicCorsAllowedOrigins == other.servePublicCorsAllowedOrigins &&
@@ -1263,7 +1264,6 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, ketoNamespaceConfiguration.hashCode);
     _$hash = $jc(_$hash, ketoNamespaces.hashCode);
-    _$hash = $jc(_$hash, ketoReadMaxDepth.hashCode);
     _$hash = $jc(_$hash, kratosCookiesSameSite.hashCode);
     _$hash = $jc(_$hash, kratosCourierDeliveryStrategy.hashCode);
     _$hash = $jc(_$hash, kratosCourierHttpRequestConfigAuthApiKeyIn.hashCode);
@@ -1351,13 +1351,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosOauth2ProviderHeaders.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderOverrideReturnTo.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderUrl.hashCode);
+    _$hash = $jc(_$hash, kratosPreviewDefaultReadConsistencyLevel.hashCode);
     _$hash = $jc(_$hash, kratosSecretsCipher.hashCode);
     _$hash = $jc(_$hash, kratosSecretsCookie.hashCode);
     _$hash = $jc(_$hash, kratosSecretsDefault.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceAllowedReturnUrls.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsErrorUiUrl.hashCode);
-    _$hash = $jc(_$hash, kratosSelfserviceFlowsHooks.hashCode);
     _$hash = $jc(_$hash,
         kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(_$hash,
@@ -1500,6 +1500,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, production.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
+    _$hash = $jc(_$hash, projectRevisionHooks.hashCode);
     _$hash = $jc(_$hash, serveAdminCorsAllowedOrigins.hashCode);
     _$hash = $jc(_$hash, serveAdminCorsEnabled.hashCode);
     _$hash = $jc(_$hash, servePublicCorsAllowedOrigins.hashCode);
@@ -1577,7 +1578,6 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('id', id)
           ..add('ketoNamespaceConfiguration', ketoNamespaceConfiguration)
           ..add('ketoNamespaces', ketoNamespaces)
-          ..add('ketoReadMaxDepth', ketoReadMaxDepth)
           ..add('kratosCookiesSameSite', kratosCookiesSameSite)
           ..add('kratosCourierDeliveryStrategy', kratosCourierDeliveryStrategy)
           ..add('kratosCourierHttpRequestConfigAuthApiKeyIn',
@@ -1674,6 +1674,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('kratosOauth2ProviderOverrideReturnTo',
               kratosOauth2ProviderOverrideReturnTo)
           ..add('kratosOauth2ProviderUrl', kratosOauth2ProviderUrl)
+          ..add('kratosPreviewDefaultReadConsistencyLevel',
+              kratosPreviewDefaultReadConsistencyLevel)
           ..add('kratosSecretsCipher', kratosSecretsCipher)
           ..add('kratosSecretsCookie', kratosSecretsCookie)
           ..add('kratosSecretsDefault', kratosSecretsDefault)
@@ -1683,7 +1685,6 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsErrorUiUrl',
               kratosSelfserviceFlowsErrorUiUrl)
-          ..add('kratosSelfserviceFlowsHooks', kratosSelfserviceFlowsHooks)
           ..add('kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl',
@@ -1844,6 +1845,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('name', name)
           ..add('production', production)
           ..add('projectId', projectId)
+          ..add('projectRevisionHooks', projectRevisionHooks)
           ..add('serveAdminCorsAllowedOrigins', serveAdminCorsAllowedOrigins)
           ..add('serveAdminCorsEnabled', serveAdminCorsEnabled)
           ..add('servePublicCorsAllowedOrigins', servePublicCorsAllowedOrigins)
@@ -2154,11 +2156,6 @@ class NormalizedProjectRevisionBuilder
       _$this._ketoNamespaces ??= new ListBuilder<KetoNamespace>();
   set ketoNamespaces(ListBuilder<KetoNamespace>? ketoNamespaces) =>
       _$this._ketoNamespaces = ketoNamespaces;
-
-  int? _ketoReadMaxDepth;
-  int? get ketoReadMaxDepth => _$this._ketoReadMaxDepth;
-  set ketoReadMaxDepth(int? ketoReadMaxDepth) =>
-      _$this._ketoReadMaxDepth = ketoReadMaxDepth;
 
   String? _kratosCookiesSameSite;
   String? get kratosCookiesSameSite => _$this._kratosCookiesSameSite;
@@ -2559,6 +2556,14 @@ class NormalizedProjectRevisionBuilder
   set kratosOauth2ProviderUrl(String? kratosOauth2ProviderUrl) =>
       _$this._kratosOauth2ProviderUrl = kratosOauth2ProviderUrl;
 
+  String? _kratosPreviewDefaultReadConsistencyLevel;
+  String? get kratosPreviewDefaultReadConsistencyLevel =>
+      _$this._kratosPreviewDefaultReadConsistencyLevel;
+  set kratosPreviewDefaultReadConsistencyLevel(
+          String? kratosPreviewDefaultReadConsistencyLevel) =>
+      _$this._kratosPreviewDefaultReadConsistencyLevel =
+          kratosPreviewDefaultReadConsistencyLevel;
+
   ListBuilder<String>? _kratosSecretsCipher;
   ListBuilder<String> get kratosSecretsCipher =>
       _$this._kratosSecretsCipher ??= new ListBuilder<String>();
@@ -2600,15 +2605,6 @@ class NormalizedProjectRevisionBuilder
           String? kratosSelfserviceFlowsErrorUiUrl) =>
       _$this._kratosSelfserviceFlowsErrorUiUrl =
           kratosSelfserviceFlowsErrorUiUrl;
-
-  ListBuilder<NormalizedProjectRevisionHook>? _kratosSelfserviceFlowsHooks;
-  ListBuilder<NormalizedProjectRevisionHook> get kratosSelfserviceFlowsHooks =>
-      _$this._kratosSelfserviceFlowsHooks ??=
-          new ListBuilder<NormalizedProjectRevisionHook>();
-  set kratosSelfserviceFlowsHooks(
-          ListBuilder<NormalizedProjectRevisionHook>?
-              kratosSelfserviceFlowsHooks) =>
-      _$this._kratosSelfserviceFlowsHooks = kratosSelfserviceFlowsHooks;
 
   String? _kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl =>
@@ -3236,6 +3232,14 @@ class NormalizedProjectRevisionBuilder
   String? get projectId => _$this._projectId;
   set projectId(String? projectId) => _$this._projectId = projectId;
 
+  ListBuilder<NormalizedProjectRevisionHook>? _projectRevisionHooks;
+  ListBuilder<NormalizedProjectRevisionHook> get projectRevisionHooks =>
+      _$this._projectRevisionHooks ??=
+          new ListBuilder<NormalizedProjectRevisionHook>();
+  set projectRevisionHooks(
+          ListBuilder<NormalizedProjectRevisionHook>? projectRevisionHooks) =>
+      _$this._projectRevisionHooks = projectRevisionHooks;
+
   ListBuilder<String>? _serveAdminCorsAllowedOrigins;
   ListBuilder<String> get serveAdminCorsAllowedOrigins =>
       _$this._serveAdminCorsAllowedOrigins ??= new ListBuilder<String>();
@@ -3333,7 +3337,6 @@ class NormalizedProjectRevisionBuilder
       _id = $v.id;
       _ketoNamespaceConfiguration = $v.ketoNamespaceConfiguration;
       _ketoNamespaces = $v.ketoNamespaces?.toBuilder();
-      _ketoReadMaxDepth = $v.ketoReadMaxDepth;
       _kratosCookiesSameSite = $v.kratosCookiesSameSite;
       _kratosCourierDeliveryStrategy = $v.kratosCourierDeliveryStrategy;
       _kratosCourierHttpRequestConfigAuthApiKeyIn =
@@ -3427,6 +3430,8 @@ class NormalizedProjectRevisionBuilder
       _kratosOauth2ProviderOverrideReturnTo =
           $v.kratosOauth2ProviderOverrideReturnTo;
       _kratosOauth2ProviderUrl = $v.kratosOauth2ProviderUrl;
+      _kratosPreviewDefaultReadConsistencyLevel =
+          $v.kratosPreviewDefaultReadConsistencyLevel;
       _kratosSecretsCipher = $v.kratosSecretsCipher?.toBuilder();
       _kratosSecretsCookie = $v.kratosSecretsCookie?.toBuilder();
       _kratosSecretsDefault = $v.kratosSecretsDefault?.toBuilder();
@@ -3435,8 +3440,6 @@ class NormalizedProjectRevisionBuilder
       _kratosSelfserviceDefaultBrowserReturnUrl =
           $v.kratosSelfserviceDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsErrorUiUrl = $v.kratosSelfserviceFlowsErrorUiUrl;
-      _kratosSelfserviceFlowsHooks =
-          $v.kratosSelfserviceFlowsHooks?.toBuilder();
       _kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl =
@@ -3578,6 +3581,7 @@ class NormalizedProjectRevisionBuilder
       _name = $v.name;
       _production = $v.production;
       _projectId = $v.projectId;
+      _projectRevisionHooks = $v.projectRevisionHooks?.toBuilder();
       _serveAdminCorsAllowedOrigins =
           $v.serveAdminCorsAllowedOrigins?.toBuilder();
       _serveAdminCorsEnabled = $v.serveAdminCorsEnabled;
@@ -3672,7 +3676,6 @@ class NormalizedProjectRevisionBuilder
               id: id,
               ketoNamespaceConfiguration: ketoNamespaceConfiguration,
               ketoNamespaces: _ketoNamespaces?.build(),
-              ketoReadMaxDepth: ketoReadMaxDepth,
               kratosCookiesSameSite: kratosCookiesSameSite,
               kratosCourierDeliveryStrategy: kratosCourierDeliveryStrategy,
               kratosCourierHttpRequestConfigAuthApiKeyIn:
@@ -3766,13 +3769,13 @@ class NormalizedProjectRevisionBuilder
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,
               kratosOauth2ProviderOverrideReturnTo: kratosOauth2ProviderOverrideReturnTo,
               kratosOauth2ProviderUrl: kratosOauth2ProviderUrl,
+              kratosPreviewDefaultReadConsistencyLevel: kratosPreviewDefaultReadConsistencyLevel,
               kratosSecretsCipher: _kratosSecretsCipher?.build(),
               kratosSecretsCookie: _kratosSecretsCookie?.build(),
               kratosSecretsDefault: _kratosSecretsDefault?.build(),
               kratosSelfserviceAllowedReturnUrls: _kratosSelfserviceAllowedReturnUrls?.build(),
               kratosSelfserviceDefaultBrowserReturnUrl: kratosSelfserviceDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsErrorUiUrl: kratosSelfserviceFlowsErrorUiUrl,
-              kratosSelfserviceFlowsHooks: _kratosSelfserviceFlowsHooks?.build(),
               kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl,
@@ -3848,6 +3851,7 @@ class NormalizedProjectRevisionBuilder
               name: BuiltValueNullFieldError.checkNotNull(name, r'NormalizedProjectRevision', 'name'),
               production: production,
               projectId: projectId,
+              projectRevisionHooks: _projectRevisionHooks?.build(),
               serveAdminCorsAllowedOrigins: _serveAdminCorsAllowedOrigins?.build(),
               serveAdminCorsEnabled: serveAdminCorsEnabled,
               servePublicCorsAllowedOrigins: _servePublicCorsAllowedOrigins?.build(),
@@ -3892,9 +3896,6 @@ class NormalizedProjectRevisionBuilder
         _$failedField = 'kratosSelfserviceAllowedReturnUrls';
         _kratosSelfserviceAllowedReturnUrls?.build();
 
-        _$failedField = 'kratosSelfserviceFlowsHooks';
-        _kratosSelfserviceFlowsHooks?.build();
-
         _$failedField = 'kratosSelfserviceMethodsOidcConfigProviders';
         _kratosSelfserviceMethodsOidcConfigProviders?.build();
 
@@ -3904,6 +3905,8 @@ class NormalizedProjectRevisionBuilder
         _$failedField = 'kratosSessionWhoamiTokenizerTemplates';
         _kratosSessionWhoamiTokenizerTemplates?.build();
 
+        _$failedField = 'projectRevisionHooks';
+        _projectRevisionHooks?.build();
         _$failedField = 'serveAdminCorsAllowedOrigins';
         _serveAdminCorsAllowedOrigins?.build();
 

@@ -15,7 +15,7 @@
 | **hydra_oauth2_pkce_enforced** | **Boolean** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] |
 | **hydra_oauth2_pkce_enforced_for_public_clients** | **Boolean** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] |
 | **hydra_oauth2_refresh_token_hook** | **String** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] |
-| **hydra_oauth2_token_hook** | **String** | Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \&quot;oauth2.token_hook\&quot; setting. | [optional] |
+| **hydra_oauth2_token_hook** | **String** | Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \&quot;oauth2.token_hook.url\&quot; setting. | [optional] |
 | **hydra_oidc_dynamic_client_registration_default_scope** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_oidc_dynamic_client_registration_enabled** | **Boolean** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] |
 | **hydra_oidc_subject_identifiers_pairwise_salt** | **String** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] |
@@ -49,7 +49,6 @@
 | **id** | **String** | The revision ID. | [optional][readonly] |
 | **keto_namespace_configuration** | **String** | The Revisions&#39; Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration. | [optional] |
 | **keto_namespaces** | [**Array&lt;KetoNamespace&gt;**](KetoNamespace.md) |  | [optional] |
-| **keto_read_max_depth** | **Integer** |  | [optional] |
 | **kratos_cookies_same_site** | **String** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] |
 | **kratos_courier_delivery_strategy** | **String** | The delivery strategy to use when sending emails  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional][default to &#39;smtp&#39;] |
 | **kratos_courier_http_request_config_auth_api_key_in** | **String** | The location of the API key to use in the HTTP email sending service&#39;s authentication  &#x60;header&#x60;: Send the key value pair as a header &#x60;cookie&#x60;: Send the key value pair as a cookie This governs the \&quot;courier.http.auth.config.in\&quot; setting | [optional] |
@@ -102,13 +101,13 @@
 | **kratos_oauth2_provider_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
 | **kratos_oauth2_provider_override_return_to** | **Boolean** | Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow. | [optional] |
 | **kratos_oauth2_provider_url** | **String** | The Revisions&#39; OAuth2 Provider Integration URL  This governs the \&quot;oauth2_provider.url\&quot; setting. | [optional] |
+| **kratos_preview_default_read_consistency_level** | **String** | Configures the default read consistency level for identity APIs  This governs the &#x60;preview.default_read_consistency_level&#x60; setting.  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  Defaults to \&quot;strong\&quot; for new and existing projects. This feature is in preview. Use with caution. | [optional] |
 | **kratos_secrets_cipher** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_secrets_cookie** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_secrets_default** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_selfservice_allowed_return_urls** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_selfservice_default_browser_return_url** | **String** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_error_ui_url** | **String** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] |
-| **kratos_selfservice_flows_hooks** | [**Array&lt;NormalizedProjectRevisionHook&gt;**](NormalizedProjectRevisionHook.md) |  | [optional] |
 | **kratos_selfservice_flows_login_after_code_default_browser_return_url** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.code.after.password.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_login_after_default_browser_return_url** | **String** | Configures the Ory Kratos Login Default Return URL  This governs the \&quot;selfservice.flows.login.after.default_browser_return_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.lookup_secret.after.password.default_browser_return_url\&quot; setting. | [optional] |
@@ -184,6 +183,7 @@
 | **name** | **String** | The project&#39;s name. |  |
 | **production** | **Boolean** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] |
 | **project_id** | **String** | The Revision&#39;s Project ID | [optional] |
+| **project_revision_hooks** | [**Array&lt;NormalizedProjectRevisionHook&gt;**](NormalizedProjectRevisionHook.md) |  | [optional] |
 | **serve_admin_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
 | **serve_admin_cors_enabled** | **Boolean** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] |
 | **serve_public_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
@@ -241,7 +241,6 @@ instance = OryClient::NormalizedProjectRevision.new(
   id: null,
   keto_namespace_configuration: null,
   keto_namespaces: null,
-  keto_read_max_depth: null,
   kratos_cookies_same_site: null,
   kratos_courier_delivery_strategy: null,
   kratos_courier_http_request_config_auth_api_key_in: null,
@@ -294,13 +293,13 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_oauth2_provider_headers: null,
   kratos_oauth2_provider_override_return_to: null,
   kratos_oauth2_provider_url: null,
+  kratos_preview_default_read_consistency_level: null,
   kratos_secrets_cipher: null,
   kratos_secrets_cookie: null,
   kratos_secrets_default: null,
   kratos_selfservice_allowed_return_urls: null,
   kratos_selfservice_default_browser_return_url: null,
   kratos_selfservice_flows_error_ui_url: null,
-  kratos_selfservice_flows_hooks: null,
   kratos_selfservice_flows_login_after_code_default_browser_return_url: null,
   kratos_selfservice_flows_login_after_default_browser_return_url: null,
   kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url: null,
@@ -376,6 +375,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   name: null,
   production: null,
   project_id: null,
+  project_revision_hooks: null,
   serve_admin_cors_allowed_origins: null,
   serve_admin_cors_enabled: null,
   serve_public_cors_allowed_origins: null,

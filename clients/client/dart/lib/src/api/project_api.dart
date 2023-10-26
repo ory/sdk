@@ -784,8 +784,8 @@ class ProjectApi {
   /// * [projectId] - Project ID
   /// * [eventType] - The event type to query for
   /// * [resolution] - The resolution of the buckets  The minimum resolution is 1 hour.
-  /// * [from] - The start time of the time window
-  /// * [to] - The end time of the time window
+  /// * [from] - The start RFC3339 date of the time window
+  /// * [to] - The end RFC3339 date of the time window
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request

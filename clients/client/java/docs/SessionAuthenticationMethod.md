@@ -23,6 +23,7 @@ A singular authenticator used during authentication / login.
 | LINK_RECOVERY | &quot;link_recovery&quot; |
 | CODE_RECOVERY | &quot;code_recovery&quot; |
 | PASSWORD | &quot;password&quot; |
+| CODE | &quot;code&quot; |
 | TOTP | &quot;totp&quot; |
 | OIDC | &quot;oidc&quot; |
 | WEBAUTHN | &quot;webauthn&quot; |

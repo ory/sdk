@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.11
+API version: v1.2.14
 Contact: support@ory.sh
 */
 
@@ -1534,13 +1534,13 @@ func (r ProjectApiGetProjectMetricsRequest) Resolution(resolution string) Projec
 	return r
 }
 
-// The start time of the time window
+// The start RFC3339 date of the time window
 func (r ProjectApiGetProjectMetricsRequest) From(from time.Time) ProjectApiGetProjectMetricsRequest {
 	r.from = &from
 	return r
 }
 
-// The end time of the time window
+// The end RFC3339 date of the time window
 func (r ProjectApiGetProjectMetricsRequest) To(to time.Time) ProjectApiGetProjectMetricsRequest {
 	r.to = &to
 	return r

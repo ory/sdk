@@ -72,7 +72,7 @@ void main() {
       // TODO
     });
 
-    // Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook\" setting.
+    // Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook.url\" setting.
     // String hydraOauth2TokenHook
     test('to test the property `hydraOauth2TokenHook`', () async {
       // TODO
@@ -265,11 +265,6 @@ void main() {
 
     // BuiltList<KetoNamespace> ketoNamespaces
     test('to test the property `ketoNamespaces`', () async {
-      // TODO
-    });
-
-    // int ketoReadMaxDepth
-    test('to test the property `ketoReadMaxDepth`', () async {
       // TODO
     });
 
@@ -584,6 +579,12 @@ void main() {
       // TODO
     });
 
+    // Configures the default read consistency level for identity APIs  This governs the `preview.default_read_consistency_level` setting.  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution.
+    // String kratosPreviewDefaultReadConsistencyLevel
+    test('to test the property `kratosPreviewDefaultReadConsistencyLevel`', () async {
+      // TODO
+    });
+
     // BuiltList<String> kratosSecretsCipher
     test('to test the property `kratosSecretsCipher`', () async {
       // TODO
@@ -613,11 +614,6 @@ void main() {
     // Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
     // String kratosSelfserviceFlowsErrorUiUrl
     test('to test the property `kratosSelfserviceFlowsErrorUiUrl`', () async {
-      // TODO
-    });
-
-    // BuiltList<NormalizedProjectRevisionHook> kratosSelfserviceFlowsHooks
-    test('to test the property `kratosSelfserviceFlowsHooks`', () async {
       // TODO
     });
 
@@ -1065,6 +1061,11 @@ void main() {
     // The Revision's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
+      // TODO
+    });
+
+    // BuiltList<NormalizedProjectRevisionHook> projectRevisionHooks
+    test('to test the property `projectRevisionHooks`', () async {
       // TODO
     });
 

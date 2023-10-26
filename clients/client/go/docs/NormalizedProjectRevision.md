@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
-**HydraOauth2TokenHook** | Pointer to **string** | Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \&quot;oauth2.token_hook\&quot; setting. | [optional] 
+**HydraOauth2TokenHook** | Pointer to **string** | Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \&quot;oauth2.token_hook.url\&quot; setting. | [optional] 
 **HydraOidcDynamicClientRegistrationDefaultScope** | Pointer to **[]string** |  | [optional] 
 **HydraOidcDynamicClientRegistrationEnabled** | Pointer to **bool** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] 
 **HydraOidcSubjectIdentifiersPairwiseSalt** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] 
@@ -49,7 +49,6 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | The revision ID. | [optional] [readonly] 
 **KetoNamespaceConfiguration** | Pointer to **string** | The Revisions&#39; Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration. | [optional] 
 **KetoNamespaces** | Pointer to [**[]KetoNamespace**](KetoNamespace.md) |  | [optional] 
-**KetoReadMaxDepth** | Pointer to **NullableInt32** |  | [optional] 
 **KratosCookiesSameSite** | Pointer to **string** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] 
 **KratosCourierDeliveryStrategy** | Pointer to **string** | The delivery strategy to use when sending emails  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional] [default to "smtp"]
 **KratosCourierHttpRequestConfigAuthApiKeyIn** | Pointer to **string** | The location of the API key to use in the HTTP email sending service&#39;s authentication  &#x60;header&#x60;: Send the key value pair as a header &#x60;cookie&#x60;: Send the key value pair as a cookie This governs the \&quot;courier.http.auth.config.in\&quot; setting | [optional] 
@@ -102,13 +101,13 @@ Name | Type | Description | Notes
 **KratosOauth2ProviderHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **KratosOauth2ProviderOverrideReturnTo** | Pointer to **bool** | Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow. | [optional] 
 **KratosOauth2ProviderUrl** | Pointer to **string** | The Revisions&#39; OAuth2 Provider Integration URL  This governs the \&quot;oauth2_provider.url\&quot; setting. | [optional] 
+**KratosPreviewDefaultReadConsistencyLevel** | Pointer to **string** | Configures the default read consistency level for identity APIs  This governs the &#x60;preview.default_read_consistency_level&#x60; setting.  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  Defaults to \&quot;strong\&quot; for new and existing projects. This feature is in preview. Use with caution. | [optional] 
 **KratosSecretsCipher** | Pointer to **[]string** |  | [optional] 
 **KratosSecretsCookie** | Pointer to **[]string** |  | [optional] 
 **KratosSecretsDefault** | Pointer to **[]string** |  | [optional] 
 **KratosSelfserviceAllowedReturnUrls** | Pointer to **[]string** |  | [optional] 
 **KratosSelfserviceDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsErrorUiUrl** | Pointer to **string** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] 
-**KratosSelfserviceFlowsHooks** | Pointer to [**[]NormalizedProjectRevisionHook**](NormalizedProjectRevisionHook.md) |  | [optional] 
 **KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.code.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Login Default Return URL  This governs the \&quot;selfservice.flows.login.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.lookup_secret.after.password.default_browser_return_url\&quot; setting. | [optional] 
@@ -184,6 +183,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The project&#39;s name. | 
 **Production** | Pointer to **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] 
 **ProjectId** | Pointer to **string** | The Revision&#39;s Project ID | [optional] 
+**ProjectRevisionHooks** | Pointer to [**[]NormalizedProjectRevisionHook**](NormalizedProjectRevisionHook.md) |  | [optional] 
 **ServeAdminCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
 **ServeAdminCorsEnabled** | Pointer to **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
 **ServePublicCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
@@ -1334,41 +1334,6 @@ SetKetoNamespaces sets KetoNamespaces field to given value.
 
 HasKetoNamespaces returns a boolean if a field has been set.
 
-### GetKetoReadMaxDepth
-
-`func (o *NormalizedProjectRevision) GetKetoReadMaxDepth() int32`
-
-GetKetoReadMaxDepth returns the KetoReadMaxDepth field if non-nil, zero value otherwise.
-
-### GetKetoReadMaxDepthOk
-
-`func (o *NormalizedProjectRevision) GetKetoReadMaxDepthOk() (*int32, bool)`
-
-GetKetoReadMaxDepthOk returns a tuple with the KetoReadMaxDepth field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKetoReadMaxDepth
-
-`func (o *NormalizedProjectRevision) SetKetoReadMaxDepth(v int32)`
-
-SetKetoReadMaxDepth sets KetoReadMaxDepth field to given value.
-
-### HasKetoReadMaxDepth
-
-`func (o *NormalizedProjectRevision) HasKetoReadMaxDepth() bool`
-
-HasKetoReadMaxDepth returns a boolean if a field has been set.
-
-### SetKetoReadMaxDepthNil
-
-`func (o *NormalizedProjectRevision) SetKetoReadMaxDepthNil(b bool)`
-
- SetKetoReadMaxDepthNil sets the value for KetoReadMaxDepth to be an explicit nil
-
-### UnsetKetoReadMaxDepth
-`func (o *NormalizedProjectRevision) UnsetKetoReadMaxDepth()`
-
-UnsetKetoReadMaxDepth ensures that no value is present for KetoReadMaxDepth, not even an explicit nil
 ### GetKratosCookiesSameSite
 
 `func (o *NormalizedProjectRevision) GetKratosCookiesSameSite() string`
@@ -2699,6 +2664,31 @@ SetKratosOauth2ProviderUrl sets KratosOauth2ProviderUrl field to given value.
 
 HasKratosOauth2ProviderUrl returns a boolean if a field has been set.
 
+### GetKratosPreviewDefaultReadConsistencyLevel
+
+`func (o *NormalizedProjectRevision) GetKratosPreviewDefaultReadConsistencyLevel() string`
+
+GetKratosPreviewDefaultReadConsistencyLevel returns the KratosPreviewDefaultReadConsistencyLevel field if non-nil, zero value otherwise.
+
+### GetKratosPreviewDefaultReadConsistencyLevelOk
+
+`func (o *NormalizedProjectRevision) GetKratosPreviewDefaultReadConsistencyLevelOk() (*string, bool)`
+
+GetKratosPreviewDefaultReadConsistencyLevelOk returns a tuple with the KratosPreviewDefaultReadConsistencyLevel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosPreviewDefaultReadConsistencyLevel
+
+`func (o *NormalizedProjectRevision) SetKratosPreviewDefaultReadConsistencyLevel(v string)`
+
+SetKratosPreviewDefaultReadConsistencyLevel sets KratosPreviewDefaultReadConsistencyLevel field to given value.
+
+### HasKratosPreviewDefaultReadConsistencyLevel
+
+`func (o *NormalizedProjectRevision) HasKratosPreviewDefaultReadConsistencyLevel() bool`
+
+HasKratosPreviewDefaultReadConsistencyLevel returns a boolean if a field has been set.
+
 ### GetKratosSecretsCipher
 
 `func (o *NormalizedProjectRevision) GetKratosSecretsCipher() []string`
@@ -2848,31 +2838,6 @@ SetKratosSelfserviceFlowsErrorUiUrl sets KratosSelfserviceFlowsErrorUiUrl field 
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsErrorUiUrl() bool`
 
 HasKratosSelfserviceFlowsErrorUiUrl returns a boolean if a field has been set.
-
-### GetKratosSelfserviceFlowsHooks
-
-`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsHooks() []NormalizedProjectRevisionHook`
-
-GetKratosSelfserviceFlowsHooks returns the KratosSelfserviceFlowsHooks field if non-nil, zero value otherwise.
-
-### GetKratosSelfserviceFlowsHooksOk
-
-`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsHooksOk() (*[]NormalizedProjectRevisionHook, bool)`
-
-GetKratosSelfserviceFlowsHooksOk returns a tuple with the KratosSelfserviceFlowsHooks field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKratosSelfserviceFlowsHooks
-
-`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsHooks(v []NormalizedProjectRevisionHook)`
-
-SetKratosSelfserviceFlowsHooks sets KratosSelfserviceFlowsHooks field to given value.
-
-### HasKratosSelfserviceFlowsHooks
-
-`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsHooks() bool`
-
-HasKratosSelfserviceFlowsHooks returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl
 
@@ -4743,6 +4708,31 @@ SetProjectId sets ProjectId field to given value.
 `func (o *NormalizedProjectRevision) HasProjectId() bool`
 
 HasProjectId returns a boolean if a field has been set.
+
+### GetProjectRevisionHooks
+
+`func (o *NormalizedProjectRevision) GetProjectRevisionHooks() []NormalizedProjectRevisionHook`
+
+GetProjectRevisionHooks returns the ProjectRevisionHooks field if non-nil, zero value otherwise.
+
+### GetProjectRevisionHooksOk
+
+`func (o *NormalizedProjectRevision) GetProjectRevisionHooksOk() (*[]NormalizedProjectRevisionHook, bool)`
+
+GetProjectRevisionHooksOk returns a tuple with the ProjectRevisionHooks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectRevisionHooks
+
+`func (o *NormalizedProjectRevision) SetProjectRevisionHooks(v []NormalizedProjectRevisionHook)`
+
+SetProjectRevisionHooks sets ProjectRevisionHooks field to given value.
+
+### HasProjectRevisionHooks
+
+`func (o *NormalizedProjectRevision) HasProjectRevisionHooks() bool`
+
+HasProjectRevisionHooks returns a boolean if a field has been set.
 
 ### GetServeAdminCorsAllowedOrigins
 

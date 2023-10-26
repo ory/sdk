@@ -7,12 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(Project, () {
-    // CORS corsAdmin
+    // ProjectCors corsAdmin
     test('to test the property `corsAdmin`', () async {
       // TODO
     });
 
-    // CORS corsPublic
+    // ProjectCors corsPublic
     test('to test the property `corsPublic`', () async {
       // TODO
     });

@@ -334,8 +334,8 @@ defmodule Ory.Api.Project do
   - `project_id` (String.t): Project ID
   - `event_type` (String.t): The event type to query for
   - `resolution` (String.t): The resolution of the buckets  The minimum resolution is 1 hour.
-  - `from` (DateTime.t): The start time of the time window
-  - `to` (DateTime.t): The end time of the time window
+  - `from` (DateTime.t): The start RFC3339 date of the time window
+  - `to` (DateTime.t): The end RFC3339 date of the time window
   - `opts` (keyword): Optional parameters
 
   ### Returns
