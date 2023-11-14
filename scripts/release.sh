@@ -157,7 +157,7 @@ ruby() {
 golang() {
   dir="clients/${PROJECT}/go"
 
-  (cd "${dir}"; go mod tidy)
+  (cd "${dir}"; go mod tidy -compat=1.17)
   to_git "go" "yes"
 }
 
