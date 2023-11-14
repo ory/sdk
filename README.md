@@ -11,8 +11,8 @@ You may also manually build and publish this image using:
 
 ```shell script
 docker build --platform linux/amd64 -t oryd/sdk:latest .
-docker tag oryd/sdk:latest oryd/sdk:v0.0.34
-docker push oryd/sdk:v0.0.34
+docker tag oryd/sdk:latest oryd/sdk:v0.0.51
+docker push oryd/sdk:v0.0.51
 ```
 
 ## Running the Image Locally
@@ -20,7 +20,7 @@ docker push oryd/sdk:v0.0.34
 If you wish to debug some generators or build steps, you can run the image locally:
 
 ```shell script
-docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:latest /bin/sh
+docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.51 /bin/sh
 ```
 
 ### Debugging Failing Tests on CI
@@ -28,10 +28,10 @@ docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/sdk 
 If a tests fails on CI, you may run the following code snippet to reproduce the failure locally:
 
 ```shell script
-docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project -it oryd/sdk:v0.0.50 /bin/sh
+docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd/sdk:v0.0.51 /bin/sh
 
-export FORCE_VERSION=v1.11.0
-export FORCE_PROJECT=hydra # or hydra or something else
+export FORCE_VERSION=v1.2.17
+export FORCE_PROJECT=client # or hydra or something else
 cd /project
 
 ./scripts/generate.sh
