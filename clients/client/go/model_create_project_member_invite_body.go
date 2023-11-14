@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the CreateProjectMemberInviteBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateProjectMemberInviteBody{}
 
 // CreateProjectMemberInviteBody Create Project MemberInvite Request Body
 type CreateProjectMemberInviteBody struct {
@@ -43,7 +46,7 @@ func NewCreateProjectMemberInviteBodyWithDefaults() *CreateProjectMemberInviteBo
 
 // GetInviteeEmail returns the InviteeEmail field value if set, zero value otherwise.
 func (o *CreateProjectMemberInviteBody) GetInviteeEmail() string {
-	if o == nil || o.InviteeEmail == nil {
+	if o == nil || IsNil(o.InviteeEmail) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *CreateProjectMemberInviteBody) GetInviteeEmail() string {
 // GetInviteeEmailOk returns a tuple with the InviteeEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateProjectMemberInviteBody) GetInviteeEmailOk() (*string, bool) {
-	if o == nil || o.InviteeEmail == nil {
+	if o == nil || IsNil(o.InviteeEmail) {
 		return nil, false
 	}
 	return o.InviteeEmail, true
@@ -61,7 +64,7 @@ func (o *CreateProjectMemberInviteBody) GetInviteeEmailOk() (*string, bool) {
 
 // HasInviteeEmail returns a boolean if a field has been set.
 func (o *CreateProjectMemberInviteBody) HasInviteeEmail() bool {
-	if o != nil && o.InviteeEmail != nil {
+	if o != nil && !IsNil(o.InviteeEmail) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *CreateProjectMemberInviteBody) SetInviteeEmail(v string) {
 }
 
 func (o CreateProjectMemberInviteBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateProjectMemberInviteBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.InviteeEmail != nil {
+	if !IsNil(o.InviteeEmail) {
 		toSerialize["invitee_email"] = o.InviteeEmail
 	}
 
@@ -83,15 +94,19 @@ func (o CreateProjectMemberInviteBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CreateProjectMemberInviteBody) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateProjectMemberInviteBody := _CreateProjectMemberInviteBody{}
 
-	if err = json.Unmarshal(bytes, &varCreateProjectMemberInviteBody); err == nil {
-		*o = CreateProjectMemberInviteBody(varCreateProjectMemberInviteBody)
+	err = json.Unmarshal(bytes, &varCreateProjectMemberInviteBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateProjectMemberInviteBody(varCreateProjectMemberInviteBody)
 
 	additionalProperties := make(map[string]interface{})
 

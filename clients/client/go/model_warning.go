@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the Warning type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Warning{}
 
 // Warning struct for Warning
 type Warning struct {
@@ -43,7 +46,7 @@ func NewWarningWithDefaults() *Warning {
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *Warning) GetCode() int64 {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret int64
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *Warning) GetCode() int64 {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Warning) GetCodeOk() (*int64, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -61,7 +64,7 @@ func (o *Warning) GetCodeOk() (*int64, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *Warning) HasCode() bool {
-	if o != nil && o.Code != nil {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *Warning) SetCode(v int64) {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *Warning) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *Warning) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Warning) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
 	return o.Message, true
@@ -93,7 +96,7 @@ func (o *Warning) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *Warning) HasMessage() bool {
-	if o != nil && o.Message != nil {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -106,11 +109,19 @@ func (o *Warning) SetMessage(v string) {
 }
 
 func (o Warning) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Warning) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if o.Message != nil {
+	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
 
@@ -118,15 +129,19 @@ func (o Warning) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Warning) UnmarshalJSON(bytes []byte) (err error) {
 	varWarning := _Warning{}
 
-	if err = json.Unmarshal(bytes, &varWarning); err == nil {
-		*o = Warning(varWarning)
+	err = json.Unmarshal(bytes, &varWarning)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Warning(varWarning)
 
 	additionalProperties := make(map[string]interface{})
 

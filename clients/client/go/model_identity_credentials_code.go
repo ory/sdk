@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 	"time"
 )
+
+// checks if the IdentityCredentialsCode type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityCredentialsCode{}
 
 // IdentityCredentialsCode CredentialsCode represents a one time login/registration code
 type IdentityCredentialsCode struct {
@@ -44,7 +47,7 @@ func NewIdentityCredentialsCodeWithDefaults() *IdentityCredentialsCode {
 
 // GetAddressType returns the AddressType field value if set, zero value otherwise.
 func (o *IdentityCredentialsCode) GetAddressType() string {
-	if o == nil || o.AddressType == nil {
+	if o == nil || IsNil(o.AddressType) {
 		var ret string
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *IdentityCredentialsCode) GetAddressType() string {
 // GetAddressTypeOk returns a tuple with the AddressType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentialsCode) GetAddressTypeOk() (*string, bool) {
-	if o == nil || o.AddressType == nil {
+	if o == nil || IsNil(o.AddressType) {
 		return nil, false
 	}
 	return o.AddressType, true
@@ -62,7 +65,7 @@ func (o *IdentityCredentialsCode) GetAddressTypeOk() (*string, bool) {
 
 // HasAddressType returns a boolean if a field has been set.
 func (o *IdentityCredentialsCode) HasAddressType() bool {
-	if o != nil && o.AddressType != nil {
+	if o != nil && !IsNil(o.AddressType) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *IdentityCredentialsCode) SetAddressType(v string) {
 
 // GetUsedAt returns the UsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IdentityCredentialsCode) GetUsedAt() time.Time {
-	if o == nil || o.UsedAt.Get() == nil {
+	if o == nil || IsNil(o.UsedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -117,8 +120,16 @@ func (o *IdentityCredentialsCode) UnsetUsedAt() {
 }
 
 func (o IdentityCredentialsCode) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityCredentialsCode) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AddressType != nil {
+	if !IsNil(o.AddressType) {
 		toSerialize["address_type"] = o.AddressType
 	}
 	if o.UsedAt.IsSet() {
@@ -129,15 +140,19 @@ func (o IdentityCredentialsCode) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityCredentialsCode) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityCredentialsCode := _IdentityCredentialsCode{}
 
-	if err = json.Unmarshal(bytes, &varIdentityCredentialsCode); err == nil {
-		*o = IdentityCredentialsCode(varIdentityCredentialsCode)
+	err = json.Unmarshal(bytes, &varIdentityCredentialsCode)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityCredentialsCode(varIdentityCredentialsCode)
 
 	additionalProperties := make(map[string]interface{})
 

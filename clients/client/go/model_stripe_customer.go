@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the StripeCustomer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StripeCustomer{}
 
 // StripeCustomer struct for StripeCustomer
 type StripeCustomer struct {
@@ -42,7 +45,7 @@ func NewStripeCustomerWithDefaults() *StripeCustomer {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *StripeCustomer) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *StripeCustomer) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StripeCustomer) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -60,7 +63,7 @@ func (o *StripeCustomer) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *StripeCustomer) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -73,8 +76,16 @@ func (o *StripeCustomer) SetId(v string) {
 }
 
 func (o StripeCustomer) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o StripeCustomer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
 
@@ -82,15 +93,19 @@ func (o StripeCustomer) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *StripeCustomer) UnmarshalJSON(bytes []byte) (err error) {
 	varStripeCustomer := _StripeCustomer{}
 
-	if err = json.Unmarshal(bytes, &varStripeCustomer); err == nil {
-		*o = StripeCustomer(varStripeCustomer)
+	err = json.Unmarshal(bytes, &varStripeCustomer)
+
+	if err != nil {
+		return err
 	}
+
+	*o = StripeCustomer(varStripeCustomer)
 
 	additionalProperties := make(map[string]interface{})
 

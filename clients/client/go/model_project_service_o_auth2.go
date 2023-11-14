@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the ProjectServiceOAuth2 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectServiceOAuth2{}
 
 // ProjectServiceOAuth2 struct for ProjectServiceOAuth2
 type ProjectServiceOAuth2 struct {
@@ -55,7 +59,7 @@ func (o *ProjectServiceOAuth2) GetConfig() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *ProjectServiceOAuth2) GetConfigOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Config, true
 }
@@ -66,24 +70,55 @@ func (o *ProjectServiceOAuth2) SetConfig(v map[string]interface{}) {
 }
 
 func (o ProjectServiceOAuth2) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["config"] = o.Config
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectServiceOAuth2) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["config"] = o.Config
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ProjectServiceOAuth2) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"config",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varProjectServiceOAuth2 := _ProjectServiceOAuth2{}
 
-	if err = json.Unmarshal(bytes, &varProjectServiceOAuth2); err == nil {
-		*o = ProjectServiceOAuth2(varProjectServiceOAuth2)
+	err = json.Unmarshal(bytes, &varProjectServiceOAuth2)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectServiceOAuth2(varProjectServiceOAuth2)
 
 	additionalProperties := make(map[string]interface{})
 

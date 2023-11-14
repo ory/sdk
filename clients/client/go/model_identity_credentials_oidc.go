@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the IdentityCredentialsOidc type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityCredentialsOidc{}
 
 // IdentityCredentialsOidc struct for IdentityCredentialsOidc
 type IdentityCredentialsOidc struct {
@@ -42,7 +45,7 @@ func NewIdentityCredentialsOidcWithDefaults() *IdentityCredentialsOidc {
 
 // GetProviders returns the Providers field value if set, zero value otherwise.
 func (o *IdentityCredentialsOidc) GetProviders() []IdentityCredentialsOidcProvider {
-	if o == nil || o.Providers == nil {
+	if o == nil || IsNil(o.Providers) {
 		var ret []IdentityCredentialsOidcProvider
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *IdentityCredentialsOidc) GetProviders() []IdentityCredentialsOidcProvid
 // GetProvidersOk returns a tuple with the Providers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentialsOidc) GetProvidersOk() ([]IdentityCredentialsOidcProvider, bool) {
-	if o == nil || o.Providers == nil {
+	if o == nil || IsNil(o.Providers) {
 		return nil, false
 	}
 	return o.Providers, true
@@ -60,7 +63,7 @@ func (o *IdentityCredentialsOidc) GetProvidersOk() ([]IdentityCredentialsOidcPro
 
 // HasProviders returns a boolean if a field has been set.
 func (o *IdentityCredentialsOidc) HasProviders() bool {
-	if o != nil && o.Providers != nil {
+	if o != nil && !IsNil(o.Providers) {
 		return true
 	}
 
@@ -73,8 +76,16 @@ func (o *IdentityCredentialsOidc) SetProviders(v []IdentityCredentialsOidcProvid
 }
 
 func (o IdentityCredentialsOidc) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityCredentialsOidc) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Providers != nil {
+	if !IsNil(o.Providers) {
 		toSerialize["providers"] = o.Providers
 	}
 
@@ -82,15 +93,19 @@ func (o IdentityCredentialsOidc) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityCredentialsOidc) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityCredentialsOidc := _IdentityCredentialsOidc{}
 
-	if err = json.Unmarshal(bytes, &varIdentityCredentialsOidc); err == nil {
-		*o = IdentityCredentialsOidc(varIdentityCredentialsOidc)
+	err = json.Unmarshal(bytes, &varIdentityCredentialsOidc)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityCredentialsOidc(varIdentityCredentialsOidc)
 
 	additionalProperties := make(map[string]interface{})
 

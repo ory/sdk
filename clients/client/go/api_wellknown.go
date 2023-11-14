@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,13 +14,13 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
 
 
-type WellknownApi interface {
+type WellknownAPI interface {
 
 	/*
 	DiscoverJsonWebKeys Discover Well-Known JSON Web Keys
@@ -30,24 +30,24 @@ if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client l
 [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return WellknownApiDiscoverJsonWebKeysRequest
+	@return WellknownAPIDiscoverJsonWebKeysRequest
 	*/
-	DiscoverJsonWebKeys(ctx context.Context) WellknownApiDiscoverJsonWebKeysRequest
+	DiscoverJsonWebKeys(ctx context.Context) WellknownAPIDiscoverJsonWebKeysRequest
 
 	// DiscoverJsonWebKeysExecute executes the request
 	//  @return JsonWebKeySet
-	DiscoverJsonWebKeysExecute(r WellknownApiDiscoverJsonWebKeysRequest) (*JsonWebKeySet, *http.Response, error)
+	DiscoverJsonWebKeysExecute(r WellknownAPIDiscoverJsonWebKeysRequest) (*JsonWebKeySet, *http.Response, error)
 }
 
-// WellknownApiService WellknownApi service
-type WellknownApiService service
+// WellknownAPIService WellknownAPI service
+type WellknownAPIService service
 
-type WellknownApiDiscoverJsonWebKeysRequest struct {
+type WellknownAPIDiscoverJsonWebKeysRequest struct {
 	ctx context.Context
-	ApiService WellknownApi
+	ApiService WellknownAPI
 }
 
-func (r WellknownApiDiscoverJsonWebKeysRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+func (r WellknownAPIDiscoverJsonWebKeysRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
 	return r.ApiService.DiscoverJsonWebKeysExecute(r)
 }
 
@@ -59,10 +59,10 @@ if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client l
 [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return WellknownApiDiscoverJsonWebKeysRequest
+ @return WellknownAPIDiscoverJsonWebKeysRequest
 */
-func (a *WellknownApiService) DiscoverJsonWebKeys(ctx context.Context) WellknownApiDiscoverJsonWebKeysRequest {
-	return WellknownApiDiscoverJsonWebKeysRequest{
+func (a *WellknownAPIService) DiscoverJsonWebKeys(ctx context.Context) WellknownAPIDiscoverJsonWebKeysRequest {
+	return WellknownAPIDiscoverJsonWebKeysRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -70,7 +70,7 @@ func (a *WellknownApiService) DiscoverJsonWebKeys(ctx context.Context) Wellknown
 
 // Execute executes the request
 //  @return JsonWebKeySet
-func (a *WellknownApiService) DiscoverJsonWebKeysExecute(r WellknownApiDiscoverJsonWebKeysRequest) (*JsonWebKeySet, *http.Response, error) {
+func (a *WellknownAPIService) DiscoverJsonWebKeysExecute(r WellknownAPIDiscoverJsonWebKeysRequest) (*JsonWebKeySet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -78,7 +78,7 @@ func (a *WellknownApiService) DiscoverJsonWebKeysExecute(r WellknownApiDiscoverJ
 		localVarReturnValue  *JsonWebKeySet
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WellknownApiService.DiscoverJsonWebKeys")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WellknownAPIService.DiscoverJsonWebKeys")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -116,9 +116,9 @@ func (a *WellknownApiService) DiscoverJsonWebKeysExecute(r WellknownApiDiscoverJ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -134,7 +134,8 @@ func (a *WellknownApiService) DiscoverJsonWebKeysExecute(r WellknownApiDiscoverJ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the ProjectBranding type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectBranding{}
 
 // ProjectBranding struct for ProjectBranding
 type ProjectBranding struct {
@@ -201,39 +205,65 @@ func (o *ProjectBranding) SetUpdatedAt(v time.Time) {
 }
 
 func (o ProjectBranding) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectBranding) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["default_theme"] = o.DefaultTheme
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["project_id"] = o.ProjectId
-	}
-	if true {
-		toSerialize["themes"] = o.Themes
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["default_theme"] = o.DefaultTheme
+	toSerialize["id"] = o.Id
+	toSerialize["project_id"] = o.ProjectId
+	toSerialize["themes"] = o.Themes
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ProjectBranding) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"created_at",
+		"default_theme",
+		"id",
+		"project_id",
+		"themes",
+		"updated_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varProjectBranding := _ProjectBranding{}
 
-	if err = json.Unmarshal(bytes, &varProjectBranding); err == nil {
-		*o = ProjectBranding(varProjectBranding)
+	err = json.Unmarshal(bytes, &varProjectBranding)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectBranding(varProjectBranding)
 
 	additionalProperties := make(map[string]interface{})
 

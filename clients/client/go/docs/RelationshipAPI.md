@@ -1,15 +1,15 @@
-# \RelationshipApi
+# \RelationshipAPI
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CheckOplSyntax**](RelationshipApi.md#CheckOplSyntax) | **Post** /opl/syntax/check | Check the syntax of an OPL file
-[**CreateRelationship**](RelationshipApi.md#CreateRelationship) | **Put** /admin/relation-tuples | Create a Relationship
-[**DeleteRelationships**](RelationshipApi.md#DeleteRelationships) | **Delete** /admin/relation-tuples | Delete Relationships
-[**GetRelationships**](RelationshipApi.md#GetRelationships) | **Get** /relation-tuples | Query relationships
-[**ListRelationshipNamespaces**](RelationshipApi.md#ListRelationshipNamespaces) | **Get** /namespaces | Query namespaces
-[**PatchRelationships**](RelationshipApi.md#PatchRelationships) | **Patch** /admin/relation-tuples | Patch Multiple Relationships
+[**CheckOplSyntax**](RelationshipAPI.md#CheckOplSyntax) | **Post** /opl/syntax/check | Check the syntax of an OPL file
+[**CreateRelationship**](RelationshipAPI.md#CreateRelationship) | **Put** /admin/relation-tuples | Create a Relationship
+[**DeleteRelationships**](RelationshipAPI.md#DeleteRelationships) | **Delete** /admin/relation-tuples | Delete Relationships
+[**GetRelationships**](RelationshipAPI.md#GetRelationships) | **Get** /relation-tuples | Query relationships
+[**ListRelationshipNamespaces**](RelationshipAPI.md#ListRelationshipNamespaces) | **Get** /namespaces | Query namespaces
+[**PatchRelationships**](RelationshipAPI.md#PatchRelationships) | **Patch** /admin/relation-tuples | Patch Multiple Relationships
 
 
 
@@ -30,7 +30,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RelationshipApi.CheckOplSyntax(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.RelationshipAPI.CheckOplSyntax(context.Background()).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipApi.CheckOplSyntax``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipAPI.CheckOplSyntax``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CheckOplSyntax`: CheckOplSyntaxResult
-    fmt.Fprintf(os.Stdout, "Response from `RelationshipApi.CheckOplSyntax`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RelationshipAPI.CheckOplSyntax`: %v\n", resp)
 }
 ```
 
@@ -96,7 +96,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -104,13 +104,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RelationshipApi.CreateRelationship(context.Background()).CreateRelationshipBody(createRelationshipBody).Execute()
+    resp, r, err := apiClient.RelationshipAPI.CreateRelationship(context.Background()).CreateRelationshipBody(createRelationshipBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipApi.CreateRelationship``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipAPI.CreateRelationship``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateRelationship`: Relationship
-    fmt.Fprintf(os.Stdout, "Response from `RelationshipApi.CreateRelationship`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RelationshipAPI.CreateRelationship`: %v\n", resp)
 }
 ```
 
@@ -162,7 +162,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -176,9 +176,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RelationshipApi.DeleteRelationships(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).Execute()
+    r, err := apiClient.RelationshipAPI.DeleteRelationships(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipApi.DeleteRelationships``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipAPI.DeleteRelationships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -238,7 +238,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -254,13 +254,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RelationshipApi.GetRelationships(context.Background()).PageToken(pageToken).PageSize(pageSize).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).Execute()
+    resp, r, err := apiClient.RelationshipAPI.GetRelationships(context.Background()).PageToken(pageToken).PageSize(pageSize).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipApi.GetRelationships``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipAPI.GetRelationships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetRelationships`: Relationships
-    fmt.Fprintf(os.Stdout, "Response from `RelationshipApi.GetRelationships`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RelationshipAPI.GetRelationships`: %v\n", resp)
 }
 ```
 
@@ -320,20 +320,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RelationshipApi.ListRelationshipNamespaces(context.Background()).Execute()
+    resp, r, err := apiClient.RelationshipAPI.ListRelationshipNamespaces(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipApi.ListRelationshipNamespaces``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipAPI.ListRelationshipNamespaces``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListRelationshipNamespaces`: RelationshipNamespaces
-    fmt.Fprintf(os.Stdout, "Response from `RelationshipApi.ListRelationshipNamespaces`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RelationshipAPI.ListRelationshipNamespaces`: %v\n", resp)
 }
 ```
 
@@ -381,7 +381,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -389,9 +389,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RelationshipApi.PatchRelationships(context.Background()).RelationshipPatch(relationshipPatch).Execute()
+    r, err := apiClient.RelationshipAPI.PatchRelationships(context.Background()).RelationshipPatch(relationshipPatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipApi.PatchRelationships``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RelationshipAPI.PatchRelationships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }

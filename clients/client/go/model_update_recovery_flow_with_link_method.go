@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateRecoveryFlowWithLinkMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateRecoveryFlowWithLinkMethod{}
 
 // UpdateRecoveryFlowWithLinkMethod Update Recovery Flow with Link Method
 type UpdateRecoveryFlowWithLinkMethod struct {
@@ -49,7 +53,7 @@ func NewUpdateRecoveryFlowWithLinkMethodWithDefaults() *UpdateRecoveryFlowWithLi
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateRecoveryFlowWithLinkMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -59,7 +63,7 @@ func (o *UpdateRecoveryFlowWithLinkMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRecoveryFlowWithLinkMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -67,7 +71,7 @@ func (o *UpdateRecoveryFlowWithLinkMethod) GetCsrfTokenOk() (*string, bool) {
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateRecoveryFlowWithLinkMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -128,30 +132,60 @@ func (o *UpdateRecoveryFlowWithLinkMethod) SetMethod(v string) {
 }
 
 func (o UpdateRecoveryFlowWithLinkMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateRecoveryFlowWithLinkMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if true {
-		toSerialize["email"] = o.Email
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
+	toSerialize["email"] = o.Email
+	toSerialize["method"] = o.Method
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateRecoveryFlowWithLinkMethod) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"email",
+		"method",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateRecoveryFlowWithLinkMethod := _UpdateRecoveryFlowWithLinkMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateRecoveryFlowWithLinkMethod); err == nil {
-		*o = UpdateRecoveryFlowWithLinkMethod(varUpdateRecoveryFlowWithLinkMethod)
+	err = json.Unmarshal(bytes, &varUpdateRecoveryFlowWithLinkMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateRecoveryFlowWithLinkMethod(varUpdateRecoveryFlowWithLinkMethod)
 
 	additionalProperties := make(map[string]interface{})
 

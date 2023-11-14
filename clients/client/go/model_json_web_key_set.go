@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the JsonWebKeySet type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &JsonWebKeySet{}
 
 // JsonWebKeySet JSON Web Key Set
 type JsonWebKeySet struct {
@@ -43,7 +46,7 @@ func NewJsonWebKeySetWithDefaults() *JsonWebKeySet {
 
 // GetKeys returns the Keys field value if set, zero value otherwise.
 func (o *JsonWebKeySet) GetKeys() []JsonWebKey {
-	if o == nil || o.Keys == nil {
+	if o == nil || IsNil(o.Keys) {
 		var ret []JsonWebKey
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *JsonWebKeySet) GetKeys() []JsonWebKey {
 // GetKeysOk returns a tuple with the Keys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *JsonWebKeySet) GetKeysOk() ([]JsonWebKey, bool) {
-	if o == nil || o.Keys == nil {
+	if o == nil || IsNil(o.Keys) {
 		return nil, false
 	}
 	return o.Keys, true
@@ -61,7 +64,7 @@ func (o *JsonWebKeySet) GetKeysOk() ([]JsonWebKey, bool) {
 
 // HasKeys returns a boolean if a field has been set.
 func (o *JsonWebKeySet) HasKeys() bool {
-	if o != nil && o.Keys != nil {
+	if o != nil && !IsNil(o.Keys) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *JsonWebKeySet) SetKeys(v []JsonWebKey) {
 }
 
 func (o JsonWebKeySet) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o JsonWebKeySet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Keys != nil {
+	if !IsNil(o.Keys) {
 		toSerialize["keys"] = o.Keys
 	}
 
@@ -83,15 +94,19 @@ func (o JsonWebKeySet) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *JsonWebKeySet) UnmarshalJSON(bytes []byte) (err error) {
 	varJsonWebKeySet := _JsonWebKeySet{}
 
-	if err = json.Unmarshal(bytes, &varJsonWebKeySet); err == nil {
-		*o = JsonWebKeySet(varJsonWebKeySet)
+	err = json.Unmarshal(bytes, &varJsonWebKeySet)
+
+	if err != nil {
+		return err
 	}
+
+	*o = JsonWebKeySet(varJsonWebKeySet)
 
 	additionalProperties := make(map[string]interface{})
 

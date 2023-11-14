@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the ManagedIdentitySchema type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ManagedIdentitySchema{}
 
 // ManagedIdentitySchema Together the name and identity uuid are a unique index constraint. This prevents a user from having schemas with the same name. This also allows schemas to have the same name across the system.
 type ManagedIdentitySchema struct {
@@ -110,7 +114,7 @@ func (o *ManagedIdentitySchema) SetBlobUrl(v string) {
 
 // GetContentHash returns the ContentHash field value if set, zero value otherwise.
 func (o *ManagedIdentitySchema) GetContentHash() string {
-	if o == nil || o.ContentHash == nil {
+	if o == nil || IsNil(o.ContentHash) {
 		var ret string
 		return ret
 	}
@@ -120,7 +124,7 @@ func (o *ManagedIdentitySchema) GetContentHash() string {
 // GetContentHashOk returns a tuple with the ContentHash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedIdentitySchema) GetContentHashOk() (*string, bool) {
-	if o == nil || o.ContentHash == nil {
+	if o == nil || IsNil(o.ContentHash) {
 		return nil, false
 	}
 	return o.ContentHash, true
@@ -128,7 +132,7 @@ func (o *ManagedIdentitySchema) GetContentHashOk() (*string, bool) {
 
 // HasContentHash returns a boolean if a field has been set.
 func (o *ManagedIdentitySchema) HasContentHash() bool {
-	if o != nil && o.ContentHash != nil {
+	if o != nil && !IsNil(o.ContentHash) {
 		return true
 	}
 
@@ -237,42 +241,68 @@ func (o *ManagedIdentitySchema) SetUpdatedAt(v time.Time) {
 }
 
 func (o ManagedIdentitySchema) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ManagedIdentitySchema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["blob_name"] = o.BlobName
-	}
-	if true {
-		toSerialize["blob_url"] = o.BlobUrl
-	}
-	if o.ContentHash != nil {
+	toSerialize["blob_name"] = o.BlobName
+	toSerialize["blob_url"] = o.BlobUrl
+	if !IsNil(o.ContentHash) {
 		toSerialize["content_hash"] = o.ContentHash
 	}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ManagedIdentitySchema) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"blob_name",
+		"blob_url",
+		"created_at",
+		"id",
+		"name",
+		"updated_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varManagedIdentitySchema := _ManagedIdentitySchema{}
 
-	if err = json.Unmarshal(bytes, &varManagedIdentitySchema); err == nil {
-		*o = ManagedIdentitySchema(varManagedIdentitySchema)
+	err = json.Unmarshal(bytes, &varManagedIdentitySchema)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ManagedIdentitySchema(varManagedIdentitySchema)
 
 	additionalProperties := make(map[string]interface{})
 

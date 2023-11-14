@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the LogoutFlow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LogoutFlow{}
 
 // LogoutFlow Logout Flow
 type LogoutFlow struct {
@@ -94,27 +98,57 @@ func (o *LogoutFlow) SetLogoutUrl(v string) {
 }
 
 func (o LogoutFlow) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o LogoutFlow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["logout_token"] = o.LogoutToken
-	}
-	if true {
-		toSerialize["logout_url"] = o.LogoutUrl
-	}
+	toSerialize["logout_token"] = o.LogoutToken
+	toSerialize["logout_url"] = o.LogoutUrl
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *LogoutFlow) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"logout_token",
+		"logout_url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varLogoutFlow := _LogoutFlow{}
 
-	if err = json.Unmarshal(bytes, &varLogoutFlow); err == nil {
-		*o = LogoutFlow(varLogoutFlow)
+	err = json.Unmarshal(bytes, &varLogoutFlow)
+
+	if err != nil {
+		return err
 	}
+
+	*o = LogoutFlow(varLogoutFlow)
 
 	additionalProperties := make(map[string]interface{})
 

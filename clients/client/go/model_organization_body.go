@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the OrganizationBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OrganizationBody{}
 
 // OrganizationBody Create B2B SSO Organization Request Body
 type OrganizationBody struct {
@@ -45,7 +48,7 @@ func NewOrganizationBodyWithDefaults() *OrganizationBody {
 
 // GetDomains returns the Domains field value if set, zero value otherwise.
 func (o *OrganizationBody) GetDomains() []string {
-	if o == nil || o.Domains == nil {
+	if o == nil || IsNil(o.Domains) {
 		var ret []string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *OrganizationBody) GetDomains() []string {
 // GetDomainsOk returns a tuple with the Domains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationBody) GetDomainsOk() ([]string, bool) {
-	if o == nil || o.Domains == nil {
+	if o == nil || IsNil(o.Domains) {
 		return nil, false
 	}
 	return o.Domains, true
@@ -63,7 +66,7 @@ func (o *OrganizationBody) GetDomainsOk() ([]string, bool) {
 
 // HasDomains returns a boolean if a field has been set.
 func (o *OrganizationBody) HasDomains() bool {
-	if o != nil && o.Domains != nil {
+	if o != nil && !IsNil(o.Domains) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *OrganizationBody) SetDomains(v []string) {
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *OrganizationBody) GetLabel() string {
-	if o == nil || o.Label == nil {
+	if o == nil || IsNil(o.Label) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *OrganizationBody) GetLabel() string {
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationBody) GetLabelOk() (*string, bool) {
-	if o == nil || o.Label == nil {
+	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
 	return o.Label, true
@@ -95,7 +98,7 @@ func (o *OrganizationBody) GetLabelOk() (*string, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *OrganizationBody) HasLabel() bool {
-	if o != nil && o.Label != nil {
+	if o != nil && !IsNil(o.Label) {
 		return true
 	}
 
@@ -108,11 +111,19 @@ func (o *OrganizationBody) SetLabel(v string) {
 }
 
 func (o OrganizationBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o OrganizationBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Domains != nil {
+	if !IsNil(o.Domains) {
 		toSerialize["domains"] = o.Domains
 	}
-	if o.Label != nil {
+	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
 
@@ -120,15 +131,19 @@ func (o OrganizationBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *OrganizationBody) UnmarshalJSON(bytes []byte) (err error) {
 	varOrganizationBody := _OrganizationBody{}
 
-	if err = json.Unmarshal(bytes, &varOrganizationBody); err == nil {
-		*o = OrganizationBody(varOrganizationBody)
+	err = json.Unmarshal(bytes, &varOrganizationBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OrganizationBody(varOrganizationBody)
 
 	additionalProperties := make(map[string]interface{})
 

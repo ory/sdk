@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the LoginFlow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LoginFlow{}
 
 // LoginFlow This object represents a login flow. A login flow is initiated at the \"Initiate Login API / Browser Flow\" endpoint by a client.  Once a login flow is completed successfully, a session cookie or session token will be issued.
 type LoginFlow struct {
@@ -78,7 +82,7 @@ func NewLoginFlowWithDefaults() *LoginFlow {
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *LoginFlow) GetActive() IdentityCredentialsType {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret IdentityCredentialsType
 		return ret
 	}
@@ -88,7 +92,7 @@ func (o *LoginFlow) GetActive() IdentityCredentialsType {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginFlow) GetActiveOk() (*IdentityCredentialsType, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
 	return o.Active, true
@@ -96,7 +100,7 @@ func (o *LoginFlow) GetActiveOk() (*IdentityCredentialsType, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *LoginFlow) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -110,7 +114,7 @@ func (o *LoginFlow) SetActive(v IdentityCredentialsType) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *LoginFlow) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -120,7 +124,7 @@ func (o *LoginFlow) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginFlow) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -128,7 +132,7 @@ func (o *LoginFlow) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *LoginFlow) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -214,7 +218,7 @@ func (o *LoginFlow) SetIssuedAt(v time.Time) {
 
 // GetOauth2LoginChallenge returns the Oauth2LoginChallenge field value if set, zero value otherwise.
 func (o *LoginFlow) GetOauth2LoginChallenge() string {
-	if o == nil || o.Oauth2LoginChallenge == nil {
+	if o == nil || IsNil(o.Oauth2LoginChallenge) {
 		var ret string
 		return ret
 	}
@@ -224,7 +228,7 @@ func (o *LoginFlow) GetOauth2LoginChallenge() string {
 // GetOauth2LoginChallengeOk returns a tuple with the Oauth2LoginChallenge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginFlow) GetOauth2LoginChallengeOk() (*string, bool) {
-	if o == nil || o.Oauth2LoginChallenge == nil {
+	if o == nil || IsNil(o.Oauth2LoginChallenge) {
 		return nil, false
 	}
 	return o.Oauth2LoginChallenge, true
@@ -232,7 +236,7 @@ func (o *LoginFlow) GetOauth2LoginChallengeOk() (*string, bool) {
 
 // HasOauth2LoginChallenge returns a boolean if a field has been set.
 func (o *LoginFlow) HasOauth2LoginChallenge() bool {
-	if o != nil && o.Oauth2LoginChallenge != nil {
+	if o != nil && !IsNil(o.Oauth2LoginChallenge) {
 		return true
 	}
 
@@ -246,7 +250,7 @@ func (o *LoginFlow) SetOauth2LoginChallenge(v string) {
 
 // GetOauth2LoginRequest returns the Oauth2LoginRequest field value if set, zero value otherwise.
 func (o *LoginFlow) GetOauth2LoginRequest() OAuth2LoginRequest {
-	if o == nil || o.Oauth2LoginRequest == nil {
+	if o == nil || IsNil(o.Oauth2LoginRequest) {
 		var ret OAuth2LoginRequest
 		return ret
 	}
@@ -256,7 +260,7 @@ func (o *LoginFlow) GetOauth2LoginRequest() OAuth2LoginRequest {
 // GetOauth2LoginRequestOk returns a tuple with the Oauth2LoginRequest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginFlow) GetOauth2LoginRequestOk() (*OAuth2LoginRequest, bool) {
-	if o == nil || o.Oauth2LoginRequest == nil {
+	if o == nil || IsNil(o.Oauth2LoginRequest) {
 		return nil, false
 	}
 	return o.Oauth2LoginRequest, true
@@ -264,7 +268,7 @@ func (o *LoginFlow) GetOauth2LoginRequestOk() (*OAuth2LoginRequest, bool) {
 
 // HasOauth2LoginRequest returns a boolean if a field has been set.
 func (o *LoginFlow) HasOauth2LoginRequest() bool {
-	if o != nil && o.Oauth2LoginRequest != nil {
+	if o != nil && !IsNil(o.Oauth2LoginRequest) {
 		return true
 	}
 
@@ -278,7 +282,7 @@ func (o *LoginFlow) SetOauth2LoginRequest(v OAuth2LoginRequest) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LoginFlow) GetOrganizationId() string {
-	if o == nil || o.OrganizationId.Get() == nil {
+	if o == nil || IsNil(o.OrganizationId.Get()) {
 		var ret string
 		return ret
 	}
@@ -320,7 +324,7 @@ func (o *LoginFlow) UnsetOrganizationId() {
 
 // GetRefresh returns the Refresh field value if set, zero value otherwise.
 func (o *LoginFlow) GetRefresh() bool {
-	if o == nil || o.Refresh == nil {
+	if o == nil || IsNil(o.Refresh) {
 		var ret bool
 		return ret
 	}
@@ -330,7 +334,7 @@ func (o *LoginFlow) GetRefresh() bool {
 // GetRefreshOk returns a tuple with the Refresh field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginFlow) GetRefreshOk() (*bool, bool) {
-	if o == nil || o.Refresh == nil {
+	if o == nil || IsNil(o.Refresh) {
 		return nil, false
 	}
 	return o.Refresh, true
@@ -338,7 +342,7 @@ func (o *LoginFlow) GetRefreshOk() (*bool, bool) {
 
 // HasRefresh returns a boolean if a field has been set.
 func (o *LoginFlow) HasRefresh() bool {
-	if o != nil && o.Refresh != nil {
+	if o != nil && !IsNil(o.Refresh) {
 		return true
 	}
 
@@ -376,7 +380,7 @@ func (o *LoginFlow) SetRequestUrl(v string) {
 
 // GetRequestedAal returns the RequestedAal field value if set, zero value otherwise.
 func (o *LoginFlow) GetRequestedAal() AuthenticatorAssuranceLevel {
-	if o == nil || o.RequestedAal == nil {
+	if o == nil || IsNil(o.RequestedAal) {
 		var ret AuthenticatorAssuranceLevel
 		return ret
 	}
@@ -386,7 +390,7 @@ func (o *LoginFlow) GetRequestedAal() AuthenticatorAssuranceLevel {
 // GetRequestedAalOk returns a tuple with the RequestedAal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginFlow) GetRequestedAalOk() (*AuthenticatorAssuranceLevel, bool) {
-	if o == nil || o.RequestedAal == nil {
+	if o == nil || IsNil(o.RequestedAal) {
 		return nil, false
 	}
 	return o.RequestedAal, true
@@ -394,7 +398,7 @@ func (o *LoginFlow) GetRequestedAalOk() (*AuthenticatorAssuranceLevel, bool) {
 
 // HasRequestedAal returns a boolean if a field has been set.
 func (o *LoginFlow) HasRequestedAal() bool {
-	if o != nil && o.RequestedAal != nil {
+	if o != nil && !IsNil(o.RequestedAal) {
 		return true
 	}
 
@@ -408,7 +412,7 @@ func (o *LoginFlow) SetRequestedAal(v AuthenticatorAssuranceLevel) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *LoginFlow) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -418,7 +422,7 @@ func (o *LoginFlow) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginFlow) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -426,7 +430,7 @@ func (o *LoginFlow) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *LoginFlow) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -440,7 +444,7 @@ func (o *LoginFlow) SetReturnTo(v string) {
 
 // GetSessionTokenExchangeCode returns the SessionTokenExchangeCode field value if set, zero value otherwise.
 func (o *LoginFlow) GetSessionTokenExchangeCode() string {
-	if o == nil || o.SessionTokenExchangeCode == nil {
+	if o == nil || IsNil(o.SessionTokenExchangeCode) {
 		var ret string
 		return ret
 	}
@@ -450,7 +454,7 @@ func (o *LoginFlow) GetSessionTokenExchangeCode() string {
 // GetSessionTokenExchangeCodeOk returns a tuple with the SessionTokenExchangeCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginFlow) GetSessionTokenExchangeCodeOk() (*string, bool) {
-	if o == nil || o.SessionTokenExchangeCode == nil {
+	if o == nil || IsNil(o.SessionTokenExchangeCode) {
 		return nil, false
 	}
 	return o.SessionTokenExchangeCode, true
@@ -458,7 +462,7 @@ func (o *LoginFlow) GetSessionTokenExchangeCodeOk() (*string, bool) {
 
 // HasSessionTokenExchangeCode returns a boolean if a field has been set.
 func (o *LoginFlow) HasSessionTokenExchangeCode() bool {
-	if o != nil && o.SessionTokenExchangeCode != nil {
+	if o != nil && !IsNil(o.SessionTokenExchangeCode) {
 		return true
 	}
 
@@ -485,7 +489,7 @@ func (o *LoginFlow) GetState() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LoginFlow) GetStateOk() (*interface{}, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return &o.State, true
@@ -546,7 +550,7 @@ func (o *LoginFlow) SetUi(v UiContainer) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *LoginFlow) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -556,7 +560,7 @@ func (o *LoginFlow) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginFlow) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -564,7 +568,7 @@ func (o *LoginFlow) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *LoginFlow) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -577,56 +581,52 @@ func (o *LoginFlow) SetUpdatedAt(v time.Time) {
 }
 
 func (o LoginFlow) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o LoginFlow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Active != nil {
+	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if o.CreatedAt != nil {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if true {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["issued_at"] = o.IssuedAt
-	}
-	if o.Oauth2LoginChallenge != nil {
+	toSerialize["expires_at"] = o.ExpiresAt
+	toSerialize["id"] = o.Id
+	toSerialize["issued_at"] = o.IssuedAt
+	if !IsNil(o.Oauth2LoginChallenge) {
 		toSerialize["oauth2_login_challenge"] = o.Oauth2LoginChallenge
 	}
-	if o.Oauth2LoginRequest != nil {
+	if !IsNil(o.Oauth2LoginRequest) {
 		toSerialize["oauth2_login_request"] = o.Oauth2LoginRequest
 	}
 	if o.OrganizationId.IsSet() {
 		toSerialize["organization_id"] = o.OrganizationId.Get()
 	}
-	if o.Refresh != nil {
+	if !IsNil(o.Refresh) {
 		toSerialize["refresh"] = o.Refresh
 	}
-	if true {
-		toSerialize["request_url"] = o.RequestUrl
-	}
-	if o.RequestedAal != nil {
+	toSerialize["request_url"] = o.RequestUrl
+	if !IsNil(o.RequestedAal) {
 		toSerialize["requested_aal"] = o.RequestedAal
 	}
-	if o.ReturnTo != nil {
+	if !IsNil(o.ReturnTo) {
 		toSerialize["return_to"] = o.ReturnTo
 	}
-	if o.SessionTokenExchangeCode != nil {
+	if !IsNil(o.SessionTokenExchangeCode) {
 		toSerialize["session_token_exchange_code"] = o.SessionTokenExchangeCode
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["ui"] = o.Ui
-	}
-	if o.UpdatedAt != nil {
+	toSerialize["type"] = o.Type
+	toSerialize["ui"] = o.Ui
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 
@@ -634,15 +634,46 @@ func (o LoginFlow) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *LoginFlow) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"expires_at",
+		"id",
+		"issued_at",
+		"request_url",
+		"state",
+		"type",
+		"ui",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varLoginFlow := _LoginFlow{}
 
-	if err = json.Unmarshal(bytes, &varLoginFlow); err == nil {
-		*o = LoginFlow(varLoginFlow)
+	err = json.Unmarshal(bytes, &varLoginFlow)
+
+	if err != nil {
+		return err
 	}
+
+	*o = LoginFlow(varLoginFlow)
 
 	additionalProperties := make(map[string]interface{})
 

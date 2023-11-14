@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the IdentitySchemaPreset type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentitySchemaPreset{}
 
 // IdentitySchemaPreset struct for IdentitySchemaPreset
 type IdentitySchemaPreset struct {
@@ -59,7 +63,7 @@ func (o *IdentitySchemaPreset) GetSchema() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *IdentitySchemaPreset) GetSchemaOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Schema, true
 }
@@ -94,27 +98,57 @@ func (o *IdentitySchemaPreset) SetUrl(v string) {
 }
 
 func (o IdentitySchemaPreset) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentitySchemaPreset) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["schema"] = o.Schema
-	}
-	if true {
-		toSerialize["url"] = o.Url
-	}
+	toSerialize["schema"] = o.Schema
+	toSerialize["url"] = o.Url
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentitySchemaPreset) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"schema",
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varIdentitySchemaPreset := _IdentitySchemaPreset{}
 
-	if err = json.Unmarshal(bytes, &varIdentitySchemaPreset); err == nil {
-		*o = IdentitySchemaPreset(varIdentitySchemaPreset)
+	err = json.Unmarshal(bytes, &varIdentitySchemaPreset)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentitySchemaPreset(varIdentitySchemaPreset)
 
 	additionalProperties := make(map[string]interface{})
 

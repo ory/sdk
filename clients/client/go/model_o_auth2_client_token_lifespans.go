@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the OAuth2ClientTokenLifespans type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OAuth2ClientTokenLifespans{}
 
 // OAuth2ClientTokenLifespans Lifespans of different token types issued for this OAuth 2.0 Client.
 type OAuth2ClientTokenLifespans struct {
@@ -51,7 +54,7 @@ func NewOAuth2ClientTokenLifespansWithDefaults() *OAuth2ClientTokenLifespans {
 
 // GetAuthorizationCodeGrantAccessTokenLifespan returns the AuthorizationCodeGrantAccessTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetAuthorizationCodeGrantAccessTokenLifespan() string {
-	if o == nil || o.AuthorizationCodeGrantAccessTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.AuthorizationCodeGrantAccessTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *OAuth2ClientTokenLifespans) UnsetAuthorizationCodeGrantAccessTokenLifes
 
 // GetAuthorizationCodeGrantIdTokenLifespan returns the AuthorizationCodeGrantIdTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetAuthorizationCodeGrantIdTokenLifespan() string {
-	if o == nil || o.AuthorizationCodeGrantIdTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.AuthorizationCodeGrantIdTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -135,7 +138,7 @@ func (o *OAuth2ClientTokenLifespans) UnsetAuthorizationCodeGrantIdTokenLifespan(
 
 // GetAuthorizationCodeGrantRefreshTokenLifespan returns the AuthorizationCodeGrantRefreshTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetAuthorizationCodeGrantRefreshTokenLifespan() string {
-	if o == nil || o.AuthorizationCodeGrantRefreshTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.AuthorizationCodeGrantRefreshTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -177,7 +180,7 @@ func (o *OAuth2ClientTokenLifespans) UnsetAuthorizationCodeGrantRefreshTokenLife
 
 // GetClientCredentialsGrantAccessTokenLifespan returns the ClientCredentialsGrantAccessTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetClientCredentialsGrantAccessTokenLifespan() string {
-	if o == nil || o.ClientCredentialsGrantAccessTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.ClientCredentialsGrantAccessTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *OAuth2ClientTokenLifespans) UnsetClientCredentialsGrantAccessTokenLifes
 
 // GetImplicitGrantAccessTokenLifespan returns the ImplicitGrantAccessTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetImplicitGrantAccessTokenLifespan() string {
-	if o == nil || o.ImplicitGrantAccessTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.ImplicitGrantAccessTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -261,7 +264,7 @@ func (o *OAuth2ClientTokenLifespans) UnsetImplicitGrantAccessTokenLifespan() {
 
 // GetImplicitGrantIdTokenLifespan returns the ImplicitGrantIdTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetImplicitGrantIdTokenLifespan() string {
-	if o == nil || o.ImplicitGrantIdTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.ImplicitGrantIdTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -303,7 +306,7 @@ func (o *OAuth2ClientTokenLifespans) UnsetImplicitGrantIdTokenLifespan() {
 
 // GetJwtBearerGrantAccessTokenLifespan returns the JwtBearerGrantAccessTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetJwtBearerGrantAccessTokenLifespan() string {
-	if o == nil || o.JwtBearerGrantAccessTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.JwtBearerGrantAccessTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -345,7 +348,7 @@ func (o *OAuth2ClientTokenLifespans) UnsetJwtBearerGrantAccessTokenLifespan() {
 
 // GetRefreshTokenGrantAccessTokenLifespan returns the RefreshTokenGrantAccessTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetRefreshTokenGrantAccessTokenLifespan() string {
-	if o == nil || o.RefreshTokenGrantAccessTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.RefreshTokenGrantAccessTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -387,7 +390,7 @@ func (o *OAuth2ClientTokenLifespans) UnsetRefreshTokenGrantAccessTokenLifespan()
 
 // GetRefreshTokenGrantIdTokenLifespan returns the RefreshTokenGrantIdTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetRefreshTokenGrantIdTokenLifespan() string {
-	if o == nil || o.RefreshTokenGrantIdTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.RefreshTokenGrantIdTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -429,7 +432,7 @@ func (o *OAuth2ClientTokenLifespans) UnsetRefreshTokenGrantIdTokenLifespan() {
 
 // GetRefreshTokenGrantRefreshTokenLifespan returns the RefreshTokenGrantRefreshTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OAuth2ClientTokenLifespans) GetRefreshTokenGrantRefreshTokenLifespan() string {
-	if o == nil || o.RefreshTokenGrantRefreshTokenLifespan.Get() == nil {
+	if o == nil || IsNil(o.RefreshTokenGrantRefreshTokenLifespan.Get()) {
 		var ret string
 		return ret
 	}
@@ -470,6 +473,14 @@ func (o *OAuth2ClientTokenLifespans) UnsetRefreshTokenGrantRefreshTokenLifespan(
 }
 
 func (o OAuth2ClientTokenLifespans) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o OAuth2ClientTokenLifespans) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AuthorizationCodeGrantAccessTokenLifespan.IsSet() {
 		toSerialize["authorization_code_grant_access_token_lifespan"] = o.AuthorizationCodeGrantAccessTokenLifespan.Get()
@@ -506,15 +517,19 @@ func (o OAuth2ClientTokenLifespans) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *OAuth2ClientTokenLifespans) UnmarshalJSON(bytes []byte) (err error) {
 	varOAuth2ClientTokenLifespans := _OAuth2ClientTokenLifespans{}
 
-	if err = json.Unmarshal(bytes, &varOAuth2ClientTokenLifespans); err == nil {
-		*o = OAuth2ClientTokenLifespans(varOAuth2ClientTokenLifespans)
+	err = json.Unmarshal(bytes, &varOAuth2ClientTokenLifespans)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OAuth2ClientTokenLifespans(varOAuth2ClientTokenLifespans)
 
 	additionalProperties := make(map[string]interface{})
 

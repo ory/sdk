@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the IdentityCredentialsOidcProvider type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityCredentialsOidcProvider{}
 
 // IdentityCredentialsOidcProvider struct for IdentityCredentialsOidcProvider
 type IdentityCredentialsOidcProvider struct {
@@ -47,7 +50,7 @@ func NewIdentityCredentialsOidcProviderWithDefaults() *IdentityCredentialsOidcPr
 
 // GetInitialAccessToken returns the InitialAccessToken field value if set, zero value otherwise.
 func (o *IdentityCredentialsOidcProvider) GetInitialAccessToken() string {
-	if o == nil || o.InitialAccessToken == nil {
+	if o == nil || IsNil(o.InitialAccessToken) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *IdentityCredentialsOidcProvider) GetInitialAccessToken() string {
 // GetInitialAccessTokenOk returns a tuple with the InitialAccessToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentialsOidcProvider) GetInitialAccessTokenOk() (*string, bool) {
-	if o == nil || o.InitialAccessToken == nil {
+	if o == nil || IsNil(o.InitialAccessToken) {
 		return nil, false
 	}
 	return o.InitialAccessToken, true
@@ -65,7 +68,7 @@ func (o *IdentityCredentialsOidcProvider) GetInitialAccessTokenOk() (*string, bo
 
 // HasInitialAccessToken returns a boolean if a field has been set.
 func (o *IdentityCredentialsOidcProvider) HasInitialAccessToken() bool {
-	if o != nil && o.InitialAccessToken != nil {
+	if o != nil && !IsNil(o.InitialAccessToken) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *IdentityCredentialsOidcProvider) SetInitialAccessToken(v string) {
 
 // GetInitialIdToken returns the InitialIdToken field value if set, zero value otherwise.
 func (o *IdentityCredentialsOidcProvider) GetInitialIdToken() string {
-	if o == nil || o.InitialIdToken == nil {
+	if o == nil || IsNil(o.InitialIdToken) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *IdentityCredentialsOidcProvider) GetInitialIdToken() string {
 // GetInitialIdTokenOk returns a tuple with the InitialIdToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentialsOidcProvider) GetInitialIdTokenOk() (*string, bool) {
-	if o == nil || o.InitialIdToken == nil {
+	if o == nil || IsNil(o.InitialIdToken) {
 		return nil, false
 	}
 	return o.InitialIdToken, true
@@ -97,7 +100,7 @@ func (o *IdentityCredentialsOidcProvider) GetInitialIdTokenOk() (*string, bool) 
 
 // HasInitialIdToken returns a boolean if a field has been set.
 func (o *IdentityCredentialsOidcProvider) HasInitialIdToken() bool {
-	if o != nil && o.InitialIdToken != nil {
+	if o != nil && !IsNil(o.InitialIdToken) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *IdentityCredentialsOidcProvider) SetInitialIdToken(v string) {
 
 // GetInitialRefreshToken returns the InitialRefreshToken field value if set, zero value otherwise.
 func (o *IdentityCredentialsOidcProvider) GetInitialRefreshToken() string {
-	if o == nil || o.InitialRefreshToken == nil {
+	if o == nil || IsNil(o.InitialRefreshToken) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *IdentityCredentialsOidcProvider) GetInitialRefreshToken() string {
 // GetInitialRefreshTokenOk returns a tuple with the InitialRefreshToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentialsOidcProvider) GetInitialRefreshTokenOk() (*string, bool) {
-	if o == nil || o.InitialRefreshToken == nil {
+	if o == nil || IsNil(o.InitialRefreshToken) {
 		return nil, false
 	}
 	return o.InitialRefreshToken, true
@@ -129,7 +132,7 @@ func (o *IdentityCredentialsOidcProvider) GetInitialRefreshTokenOk() (*string, b
 
 // HasInitialRefreshToken returns a boolean if a field has been set.
 func (o *IdentityCredentialsOidcProvider) HasInitialRefreshToken() bool {
-	if o != nil && o.InitialRefreshToken != nil {
+	if o != nil && !IsNil(o.InitialRefreshToken) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *IdentityCredentialsOidcProvider) SetInitialRefreshToken(v string) {
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *IdentityCredentialsOidcProvider) GetOrganization() string {
-	if o == nil || o.Organization == nil {
+	if o == nil || IsNil(o.Organization) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *IdentityCredentialsOidcProvider) GetOrganization() string {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentialsOidcProvider) GetOrganizationOk() (*string, bool) {
-	if o == nil || o.Organization == nil {
+	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
 	return o.Organization, true
@@ -161,7 +164,7 @@ func (o *IdentityCredentialsOidcProvider) GetOrganizationOk() (*string, bool) {
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *IdentityCredentialsOidcProvider) HasOrganization() bool {
-	if o != nil && o.Organization != nil {
+	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *IdentityCredentialsOidcProvider) SetOrganization(v string) {
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *IdentityCredentialsOidcProvider) GetProvider() string {
-	if o == nil || o.Provider == nil {
+	if o == nil || IsNil(o.Provider) {
 		var ret string
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *IdentityCredentialsOidcProvider) GetProvider() string {
 // GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentialsOidcProvider) GetProviderOk() (*string, bool) {
-	if o == nil || o.Provider == nil {
+	if o == nil || IsNil(o.Provider) {
 		return nil, false
 	}
 	return o.Provider, true
@@ -193,7 +196,7 @@ func (o *IdentityCredentialsOidcProvider) GetProviderOk() (*string, bool) {
 
 // HasProvider returns a boolean if a field has been set.
 func (o *IdentityCredentialsOidcProvider) HasProvider() bool {
-	if o != nil && o.Provider != nil {
+	if o != nil && !IsNil(o.Provider) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *IdentityCredentialsOidcProvider) SetProvider(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *IdentityCredentialsOidcProvider) GetSubject() string {
-	if o == nil || o.Subject == nil {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -217,7 +220,7 @@ func (o *IdentityCredentialsOidcProvider) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityCredentialsOidcProvider) GetSubjectOk() (*string, bool) {
-	if o == nil || o.Subject == nil {
+	if o == nil || IsNil(o.Subject) {
 		return nil, false
 	}
 	return o.Subject, true
@@ -225,7 +228,7 @@ func (o *IdentityCredentialsOidcProvider) GetSubjectOk() (*string, bool) {
 
 // HasSubject returns a boolean if a field has been set.
 func (o *IdentityCredentialsOidcProvider) HasSubject() bool {
-	if o != nil && o.Subject != nil {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -238,23 +241,31 @@ func (o *IdentityCredentialsOidcProvider) SetSubject(v string) {
 }
 
 func (o IdentityCredentialsOidcProvider) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityCredentialsOidcProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.InitialAccessToken != nil {
+	if !IsNil(o.InitialAccessToken) {
 		toSerialize["initial_access_token"] = o.InitialAccessToken
 	}
-	if o.InitialIdToken != nil {
+	if !IsNil(o.InitialIdToken) {
 		toSerialize["initial_id_token"] = o.InitialIdToken
 	}
-	if o.InitialRefreshToken != nil {
+	if !IsNil(o.InitialRefreshToken) {
 		toSerialize["initial_refresh_token"] = o.InitialRefreshToken
 	}
-	if o.Organization != nil {
+	if !IsNil(o.Organization) {
 		toSerialize["organization"] = o.Organization
 	}
-	if o.Provider != nil {
+	if !IsNil(o.Provider) {
 		toSerialize["provider"] = o.Provider
 	}
-	if o.Subject != nil {
+	if !IsNil(o.Subject) {
 		toSerialize["subject"] = o.Subject
 	}
 
@@ -262,15 +273,19 @@ func (o IdentityCredentialsOidcProvider) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityCredentialsOidcProvider) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityCredentialsOidcProvider := _IdentityCredentialsOidcProvider{}
 
-	if err = json.Unmarshal(bytes, &varIdentityCredentialsOidcProvider); err == nil {
-		*o = IdentityCredentialsOidcProvider(varIdentityCredentialsOidcProvider)
+	err = json.Unmarshal(bytes, &varIdentityCredentialsOidcProvider)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityCredentialsOidcProvider(varIdentityCredentialsOidcProvider)
 
 	additionalProperties := make(map[string]interface{})
 

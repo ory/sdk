@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the KetoNamespace type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &KetoNamespace{}
 
 // KetoNamespace struct for KetoNamespace
 type KetoNamespace struct {
@@ -43,7 +46,7 @@ func NewKetoNamespaceWithDefaults() *KetoNamespace {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *KetoNamespace) GetId() int64 {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *KetoNamespace) GetId() int64 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KetoNamespace) GetIdOk() (*int64, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -61,7 +64,7 @@ func (o *KetoNamespace) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *KetoNamespace) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *KetoNamespace) SetId(v int64) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *KetoNamespace) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *KetoNamespace) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KetoNamespace) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -93,7 +96,7 @@ func (o *KetoNamespace) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *KetoNamespace) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -106,11 +109,19 @@ func (o *KetoNamespace) SetName(v string) {
 }
 
 func (o KetoNamespace) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o KetoNamespace) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name != nil {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 
@@ -118,15 +129,19 @@ func (o KetoNamespace) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *KetoNamespace) UnmarshalJSON(bytes []byte) (err error) {
 	varKetoNamespace := _KetoNamespace{}
 
-	if err = json.Unmarshal(bytes, &varKetoNamespace); err == nil {
-		*o = KetoNamespace(varKetoNamespace)
+	err = json.Unmarshal(bytes, &varKetoNamespace)
+
+	if err != nil {
+		return err
 	}
+
+	*o = KetoNamespace(varKetoNamespace)
 
 	additionalProperties := make(map[string]interface{})
 

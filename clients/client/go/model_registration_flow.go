@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the RegistrationFlow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RegistrationFlow{}
 
 // RegistrationFlow struct for RegistrationFlow
 type RegistrationFlow struct {
@@ -73,7 +77,7 @@ func NewRegistrationFlowWithDefaults() *RegistrationFlow {
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *RegistrationFlow) GetActive() IdentityCredentialsType {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret IdentityCredentialsType
 		return ret
 	}
@@ -83,7 +87,7 @@ func (o *RegistrationFlow) GetActive() IdentityCredentialsType {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegistrationFlow) GetActiveOk() (*IdentityCredentialsType, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
 	return o.Active, true
@@ -91,7 +95,7 @@ func (o *RegistrationFlow) GetActiveOk() (*IdentityCredentialsType, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *RegistrationFlow) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -177,7 +181,7 @@ func (o *RegistrationFlow) SetIssuedAt(v time.Time) {
 
 // GetOauth2LoginChallenge returns the Oauth2LoginChallenge field value if set, zero value otherwise.
 func (o *RegistrationFlow) GetOauth2LoginChallenge() string {
-	if o == nil || o.Oauth2LoginChallenge == nil {
+	if o == nil || IsNil(o.Oauth2LoginChallenge) {
 		var ret string
 		return ret
 	}
@@ -187,7 +191,7 @@ func (o *RegistrationFlow) GetOauth2LoginChallenge() string {
 // GetOauth2LoginChallengeOk returns a tuple with the Oauth2LoginChallenge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegistrationFlow) GetOauth2LoginChallengeOk() (*string, bool) {
-	if o == nil || o.Oauth2LoginChallenge == nil {
+	if o == nil || IsNil(o.Oauth2LoginChallenge) {
 		return nil, false
 	}
 	return o.Oauth2LoginChallenge, true
@@ -195,7 +199,7 @@ func (o *RegistrationFlow) GetOauth2LoginChallengeOk() (*string, bool) {
 
 // HasOauth2LoginChallenge returns a boolean if a field has been set.
 func (o *RegistrationFlow) HasOauth2LoginChallenge() bool {
-	if o != nil && o.Oauth2LoginChallenge != nil {
+	if o != nil && !IsNil(o.Oauth2LoginChallenge) {
 		return true
 	}
 
@@ -209,7 +213,7 @@ func (o *RegistrationFlow) SetOauth2LoginChallenge(v string) {
 
 // GetOauth2LoginRequest returns the Oauth2LoginRequest field value if set, zero value otherwise.
 func (o *RegistrationFlow) GetOauth2LoginRequest() OAuth2LoginRequest {
-	if o == nil || o.Oauth2LoginRequest == nil {
+	if o == nil || IsNil(o.Oauth2LoginRequest) {
 		var ret OAuth2LoginRequest
 		return ret
 	}
@@ -219,7 +223,7 @@ func (o *RegistrationFlow) GetOauth2LoginRequest() OAuth2LoginRequest {
 // GetOauth2LoginRequestOk returns a tuple with the Oauth2LoginRequest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegistrationFlow) GetOauth2LoginRequestOk() (*OAuth2LoginRequest, bool) {
-	if o == nil || o.Oauth2LoginRequest == nil {
+	if o == nil || IsNil(o.Oauth2LoginRequest) {
 		return nil, false
 	}
 	return o.Oauth2LoginRequest, true
@@ -227,7 +231,7 @@ func (o *RegistrationFlow) GetOauth2LoginRequestOk() (*OAuth2LoginRequest, bool)
 
 // HasOauth2LoginRequest returns a boolean if a field has been set.
 func (o *RegistrationFlow) HasOauth2LoginRequest() bool {
-	if o != nil && o.Oauth2LoginRequest != nil {
+	if o != nil && !IsNil(o.Oauth2LoginRequest) {
 		return true
 	}
 
@@ -241,7 +245,7 @@ func (o *RegistrationFlow) SetOauth2LoginRequest(v OAuth2LoginRequest) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RegistrationFlow) GetOrganizationId() string {
-	if o == nil || o.OrganizationId.Get() == nil {
+	if o == nil || IsNil(o.OrganizationId.Get()) {
 		var ret string
 		return ret
 	}
@@ -307,7 +311,7 @@ func (o *RegistrationFlow) SetRequestUrl(v string) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *RegistrationFlow) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -317,7 +321,7 @@ func (o *RegistrationFlow) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegistrationFlow) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -325,7 +329,7 @@ func (o *RegistrationFlow) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *RegistrationFlow) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -339,7 +343,7 @@ func (o *RegistrationFlow) SetReturnTo(v string) {
 
 // GetSessionTokenExchangeCode returns the SessionTokenExchangeCode field value if set, zero value otherwise.
 func (o *RegistrationFlow) GetSessionTokenExchangeCode() string {
-	if o == nil || o.SessionTokenExchangeCode == nil {
+	if o == nil || IsNil(o.SessionTokenExchangeCode) {
 		var ret string
 		return ret
 	}
@@ -349,7 +353,7 @@ func (o *RegistrationFlow) GetSessionTokenExchangeCode() string {
 // GetSessionTokenExchangeCodeOk returns a tuple with the SessionTokenExchangeCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegistrationFlow) GetSessionTokenExchangeCodeOk() (*string, bool) {
-	if o == nil || o.SessionTokenExchangeCode == nil {
+	if o == nil || IsNil(o.SessionTokenExchangeCode) {
 		return nil, false
 	}
 	return o.SessionTokenExchangeCode, true
@@ -357,7 +361,7 @@ func (o *RegistrationFlow) GetSessionTokenExchangeCodeOk() (*string, bool) {
 
 // HasSessionTokenExchangeCode returns a boolean if a field has been set.
 func (o *RegistrationFlow) HasSessionTokenExchangeCode() bool {
-	if o != nil && o.SessionTokenExchangeCode != nil {
+	if o != nil && !IsNil(o.SessionTokenExchangeCode) {
 		return true
 	}
 
@@ -384,7 +388,7 @@ func (o *RegistrationFlow) GetState() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RegistrationFlow) GetStateOk() (*interface{}, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return &o.State, true
@@ -397,7 +401,7 @@ func (o *RegistrationFlow) SetState(v interface{}) {
 
 // GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
 func (o *RegistrationFlow) GetTransientPayload() map[string]interface{} {
-	if o == nil || o.TransientPayload == nil {
+	if o == nil || IsNil(o.TransientPayload) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -407,15 +411,15 @@ func (o *RegistrationFlow) GetTransientPayload() map[string]interface{} {
 // GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegistrationFlow) GetTransientPayloadOk() (map[string]interface{}, bool) {
-	if o == nil || o.TransientPayload == nil {
-		return nil, false
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
 	}
 	return o.TransientPayload, true
 }
 
 // HasTransientPayload returns a boolean if a field has been set.
 func (o *RegistrationFlow) HasTransientPayload() bool {
-	if o != nil && o.TransientPayload != nil {
+	if o != nil && !IsNil(o.TransientPayload) {
 		return true
 	}
 
@@ -476,63 +480,90 @@ func (o *RegistrationFlow) SetUi(v UiContainer) {
 }
 
 func (o RegistrationFlow) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RegistrationFlow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Active != nil {
+	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if true {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["issued_at"] = o.IssuedAt
-	}
-	if o.Oauth2LoginChallenge != nil {
+	toSerialize["expires_at"] = o.ExpiresAt
+	toSerialize["id"] = o.Id
+	toSerialize["issued_at"] = o.IssuedAt
+	if !IsNil(o.Oauth2LoginChallenge) {
 		toSerialize["oauth2_login_challenge"] = o.Oauth2LoginChallenge
 	}
-	if o.Oauth2LoginRequest != nil {
+	if !IsNil(o.Oauth2LoginRequest) {
 		toSerialize["oauth2_login_request"] = o.Oauth2LoginRequest
 	}
 	if o.OrganizationId.IsSet() {
 		toSerialize["organization_id"] = o.OrganizationId.Get()
 	}
-	if true {
-		toSerialize["request_url"] = o.RequestUrl
-	}
-	if o.ReturnTo != nil {
+	toSerialize["request_url"] = o.RequestUrl
+	if !IsNil(o.ReturnTo) {
 		toSerialize["return_to"] = o.ReturnTo
 	}
-	if o.SessionTokenExchangeCode != nil {
+	if !IsNil(o.SessionTokenExchangeCode) {
 		toSerialize["session_token_exchange_code"] = o.SessionTokenExchangeCode
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
-	if o.TransientPayload != nil {
+	if !IsNil(o.TransientPayload) {
 		toSerialize["transient_payload"] = o.TransientPayload
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["ui"] = o.Ui
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["ui"] = o.Ui
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *RegistrationFlow) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"expires_at",
+		"id",
+		"issued_at",
+		"request_url",
+		"state",
+		"type",
+		"ui",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varRegistrationFlow := _RegistrationFlow{}
 
-	if err = json.Unmarshal(bytes, &varRegistrationFlow); err == nil {
-		*o = RegistrationFlow(varRegistrationFlow)
+	err = json.Unmarshal(bytes, &varRegistrationFlow)
+
+	if err != nil {
+		return err
 	}
+
+	*o = RegistrationFlow(varRegistrationFlow)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 	"time"
 )
+
+// checks if the NormalizedProjectRevisionTokenizerTemplate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NormalizedProjectRevisionTokenizerTemplate{}
 
 // NormalizedProjectRevisionTokenizerTemplate struct for NormalizedProjectRevisionTokenizerTemplate
 type NormalizedProjectRevisionTokenizerTemplate struct {
@@ -62,7 +65,7 @@ func NewNormalizedProjectRevisionTokenizerTemplateWithDefaults() *NormalizedProj
 
 // GetClaimsMapperUrl returns the ClaimsMapperUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetClaimsMapperUrl() string {
-	if o == nil || o.ClaimsMapperUrl == nil {
+	if o == nil || IsNil(o.ClaimsMapperUrl) {
 		var ret string
 		return ret
 	}
@@ -72,7 +75,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetClaimsMapperUrl() string
 // GetClaimsMapperUrlOk returns a tuple with the ClaimsMapperUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetClaimsMapperUrlOk() (*string, bool) {
-	if o == nil || o.ClaimsMapperUrl == nil {
+	if o == nil || IsNil(o.ClaimsMapperUrl) {
 		return nil, false
 	}
 	return o.ClaimsMapperUrl, true
@@ -80,7 +83,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetClaimsMapperUrlOk() (*st
 
 // HasClaimsMapperUrl returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) HasClaimsMapperUrl() bool {
-	if o != nil && o.ClaimsMapperUrl != nil {
+	if o != nil && !IsNil(o.ClaimsMapperUrl) {
 		return true
 	}
 
@@ -94,7 +97,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) SetClaimsMapperUrl(v string
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -104,7 +107,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -112,7 +115,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetCreatedAtOk() (*time.Tim
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) SetCreatedAt(v time.Time) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -136,7 +139,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -144,7 +147,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -158,7 +161,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) SetId(v string) {
 
 // GetJwksUrl returns the JwksUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetJwksUrl() string {
-	if o == nil || o.JwksUrl == nil {
+	if o == nil || IsNil(o.JwksUrl) {
 		var ret string
 		return ret
 	}
@@ -168,7 +171,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetJwksUrl() string {
 // GetJwksUrlOk returns a tuple with the JwksUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetJwksUrlOk() (*string, bool) {
-	if o == nil || o.JwksUrl == nil {
+	if o == nil || IsNil(o.JwksUrl) {
 		return nil, false
 	}
 	return o.JwksUrl, true
@@ -176,7 +179,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetJwksUrlOk() (*string, bo
 
 // HasJwksUrl returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) HasJwksUrl() bool {
-	if o != nil && o.JwksUrl != nil {
+	if o != nil && !IsNil(o.JwksUrl) {
 		return true
 	}
 
@@ -190,7 +193,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) SetJwksUrl(v string) {
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetKey() string {
-	if o == nil || o.Key == nil {
+	if o == nil || IsNil(o.Key) {
 		var ret string
 		return ret
 	}
@@ -200,7 +203,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetKey() string {
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetKeyOk() (*string, bool) {
-	if o == nil || o.Key == nil {
+	if o == nil || IsNil(o.Key) {
 		return nil, false
 	}
 	return o.Key, true
@@ -208,7 +211,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetKeyOk() (*string, bool) 
 
 // HasKey returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) HasKey() bool {
-	if o != nil && o.Key != nil {
+	if o != nil && !IsNil(o.Key) {
 		return true
 	}
 
@@ -222,7 +225,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) SetKey(v string) {
 
 // GetProjectRevisionId returns the ProjectRevisionId field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetProjectRevisionId() string {
-	if o == nil || o.ProjectRevisionId == nil {
+	if o == nil || IsNil(o.ProjectRevisionId) {
 		var ret string
 		return ret
 	}
@@ -232,7 +235,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetProjectRevisionId() stri
 // GetProjectRevisionIdOk returns a tuple with the ProjectRevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetProjectRevisionIdOk() (*string, bool) {
-	if o == nil || o.ProjectRevisionId == nil {
+	if o == nil || IsNil(o.ProjectRevisionId) {
 		return nil, false
 	}
 	return o.ProjectRevisionId, true
@@ -240,7 +243,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetProjectRevisionIdOk() (*
 
 // HasProjectRevisionId returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) HasProjectRevisionId() bool {
-	if o != nil && o.ProjectRevisionId != nil {
+	if o != nil && !IsNil(o.ProjectRevisionId) {
 		return true
 	}
 
@@ -254,7 +257,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) SetProjectRevisionId(v stri
 
 // GetTtl returns the Ttl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetTtl() string {
-	if o == nil || o.Ttl == nil {
+	if o == nil || IsNil(o.Ttl) {
 		var ret string
 		return ret
 	}
@@ -264,7 +267,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetTtl() string {
 // GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetTtlOk() (*string, bool) {
-	if o == nil || o.Ttl == nil {
+	if o == nil || IsNil(o.Ttl) {
 		return nil, false
 	}
 	return o.Ttl, true
@@ -272,7 +275,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetTtlOk() (*string, bool) 
 
 // HasTtl returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) HasTtl() bool {
-	if o != nil && o.Ttl != nil {
+	if o != nil && !IsNil(o.Ttl) {
 		return true
 	}
 
@@ -286,7 +289,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) SetTtl(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -296,7 +299,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -304,7 +307,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) GetUpdatedAtOk() (*time.Tim
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionTokenizerTemplate) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -317,29 +320,37 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) SetUpdatedAt(v time.Time) {
 }
 
 func (o NormalizedProjectRevisionTokenizerTemplate) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o NormalizedProjectRevisionTokenizerTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ClaimsMapperUrl != nil {
+	if !IsNil(o.ClaimsMapperUrl) {
 		toSerialize["claims_mapper_url"] = o.ClaimsMapperUrl
 	}
-	if o.CreatedAt != nil {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.JwksUrl != nil {
+	if !IsNil(o.JwksUrl) {
 		toSerialize["jwks_url"] = o.JwksUrl
 	}
-	if o.Key != nil {
+	if !IsNil(o.Key) {
 		toSerialize["key"] = o.Key
 	}
-	if o.ProjectRevisionId != nil {
+	if !IsNil(o.ProjectRevisionId) {
 		toSerialize["project_revision_id"] = o.ProjectRevisionId
 	}
-	if o.Ttl != nil {
+	if !IsNil(o.Ttl) {
 		toSerialize["ttl"] = o.Ttl
 	}
-	if o.UpdatedAt != nil {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 
@@ -347,15 +358,19 @@ func (o NormalizedProjectRevisionTokenizerTemplate) MarshalJSON() ([]byte, error
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *NormalizedProjectRevisionTokenizerTemplate) UnmarshalJSON(bytes []byte) (err error) {
 	varNormalizedProjectRevisionTokenizerTemplate := _NormalizedProjectRevisionTokenizerTemplate{}
 
-	if err = json.Unmarshal(bytes, &varNormalizedProjectRevisionTokenizerTemplate); err == nil {
-		*o = NormalizedProjectRevisionTokenizerTemplate(varNormalizedProjectRevisionTokenizerTemplate)
+	err = json.Unmarshal(bytes, &varNormalizedProjectRevisionTokenizerTemplate)
+
+	if err != nil {
+		return err
 	}
+
+	*o = NormalizedProjectRevisionTokenizerTemplate(varNormalizedProjectRevisionTokenizerTemplate)
 
 	additionalProperties := make(map[string]interface{})
 

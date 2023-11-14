@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,13 +14,13 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
 
 
-type RelationshipApi interface {
+type RelationshipAPI interface {
 
 	/*
 	CheckOplSyntax Check the syntax of an OPL file
@@ -28,13 +28,13 @@ type RelationshipApi interface {
 	The OPL file is expected in the body of the request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return RelationshipApiCheckOplSyntaxRequest
+	@return RelationshipAPICheckOplSyntaxRequest
 	*/
-	CheckOplSyntax(ctx context.Context) RelationshipApiCheckOplSyntaxRequest
+	CheckOplSyntax(ctx context.Context) RelationshipAPICheckOplSyntaxRequest
 
 	// CheckOplSyntaxExecute executes the request
 	//  @return CheckOplSyntaxResult
-	CheckOplSyntaxExecute(r RelationshipApiCheckOplSyntaxRequest) (*CheckOplSyntaxResult, *http.Response, error)
+	CheckOplSyntaxExecute(r RelationshipAPICheckOplSyntaxRequest) (*CheckOplSyntaxResult, *http.Response, error)
 
 	/*
 	CreateRelationship Create a Relationship
@@ -42,13 +42,13 @@ type RelationshipApi interface {
 	Use this endpoint to create a relationship.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return RelationshipApiCreateRelationshipRequest
+	@return RelationshipAPICreateRelationshipRequest
 	*/
-	CreateRelationship(ctx context.Context) RelationshipApiCreateRelationshipRequest
+	CreateRelationship(ctx context.Context) RelationshipAPICreateRelationshipRequest
 
 	// CreateRelationshipExecute executes the request
 	//  @return Relationship
-	CreateRelationshipExecute(r RelationshipApiCreateRelationshipRequest) (*Relationship, *http.Response, error)
+	CreateRelationshipExecute(r RelationshipAPICreateRelationshipRequest) (*Relationship, *http.Response, error)
 
 	/*
 	DeleteRelationships Delete Relationships
@@ -56,12 +56,12 @@ type RelationshipApi interface {
 	Use this endpoint to delete relationships
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return RelationshipApiDeleteRelationshipsRequest
+	@return RelationshipAPIDeleteRelationshipsRequest
 	*/
-	DeleteRelationships(ctx context.Context) RelationshipApiDeleteRelationshipsRequest
+	DeleteRelationships(ctx context.Context) RelationshipAPIDeleteRelationshipsRequest
 
 	// DeleteRelationshipsExecute executes the request
-	DeleteRelationshipsExecute(r RelationshipApiDeleteRelationshipsRequest) (*http.Response, error)
+	DeleteRelationshipsExecute(r RelationshipAPIDeleteRelationshipsRequest) (*http.Response, error)
 
 	/*
 	GetRelationships Query relationships
@@ -69,13 +69,13 @@ type RelationshipApi interface {
 	Get all relationships that match the query. Only the namespace field is required.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return RelationshipApiGetRelationshipsRequest
+	@return RelationshipAPIGetRelationshipsRequest
 	*/
-	GetRelationships(ctx context.Context) RelationshipApiGetRelationshipsRequest
+	GetRelationships(ctx context.Context) RelationshipAPIGetRelationshipsRequest
 
 	// GetRelationshipsExecute executes the request
 	//  @return Relationships
-	GetRelationshipsExecute(r RelationshipApiGetRelationshipsRequest) (*Relationships, *http.Response, error)
+	GetRelationshipsExecute(r RelationshipAPIGetRelationshipsRequest) (*Relationships, *http.Response, error)
 
 	/*
 	ListRelationshipNamespaces Query namespaces
@@ -83,13 +83,13 @@ type RelationshipApi interface {
 	Get all namespaces
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return RelationshipApiListRelationshipNamespacesRequest
+	@return RelationshipAPIListRelationshipNamespacesRequest
 	*/
-	ListRelationshipNamespaces(ctx context.Context) RelationshipApiListRelationshipNamespacesRequest
+	ListRelationshipNamespaces(ctx context.Context) RelationshipAPIListRelationshipNamespacesRequest
 
 	// ListRelationshipNamespacesExecute executes the request
 	//  @return RelationshipNamespaces
-	ListRelationshipNamespacesExecute(r RelationshipApiListRelationshipNamespacesRequest) (*RelationshipNamespaces, *http.Response, error)
+	ListRelationshipNamespacesExecute(r RelationshipAPIListRelationshipNamespacesRequest) (*RelationshipNamespaces, *http.Response, error)
 
 	/*
 	PatchRelationships Patch Multiple Relationships
@@ -97,29 +97,29 @@ type RelationshipApi interface {
 	Use this endpoint to patch one or more relationships.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return RelationshipApiPatchRelationshipsRequest
+	@return RelationshipAPIPatchRelationshipsRequest
 	*/
-	PatchRelationships(ctx context.Context) RelationshipApiPatchRelationshipsRequest
+	PatchRelationships(ctx context.Context) RelationshipAPIPatchRelationshipsRequest
 
 	// PatchRelationshipsExecute executes the request
-	PatchRelationshipsExecute(r RelationshipApiPatchRelationshipsRequest) (*http.Response, error)
+	PatchRelationshipsExecute(r RelationshipAPIPatchRelationshipsRequest) (*http.Response, error)
 }
 
-// RelationshipApiService RelationshipApi service
-type RelationshipApiService service
+// RelationshipAPIService RelationshipAPI service
+type RelationshipAPIService service
 
-type RelationshipApiCheckOplSyntaxRequest struct {
+type RelationshipAPICheckOplSyntaxRequest struct {
 	ctx context.Context
-	ApiService RelationshipApi
+	ApiService RelationshipAPI
 	body *string
 }
 
-func (r RelationshipApiCheckOplSyntaxRequest) Body(body string) RelationshipApiCheckOplSyntaxRequest {
+func (r RelationshipAPICheckOplSyntaxRequest) Body(body string) RelationshipAPICheckOplSyntaxRequest {
 	r.body = &body
 	return r
 }
 
-func (r RelationshipApiCheckOplSyntaxRequest) Execute() (*CheckOplSyntaxResult, *http.Response, error) {
+func (r RelationshipAPICheckOplSyntaxRequest) Execute() (*CheckOplSyntaxResult, *http.Response, error) {
 	return r.ApiService.CheckOplSyntaxExecute(r)
 }
 
@@ -129,10 +129,10 @@ CheckOplSyntax Check the syntax of an OPL file
 The OPL file is expected in the body of the request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return RelationshipApiCheckOplSyntaxRequest
+ @return RelationshipAPICheckOplSyntaxRequest
 */
-func (a *RelationshipApiService) CheckOplSyntax(ctx context.Context) RelationshipApiCheckOplSyntaxRequest {
-	return RelationshipApiCheckOplSyntaxRequest{
+func (a *RelationshipAPIService) CheckOplSyntax(ctx context.Context) RelationshipAPICheckOplSyntaxRequest {
+	return RelationshipAPICheckOplSyntaxRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -140,7 +140,7 @@ func (a *RelationshipApiService) CheckOplSyntax(ctx context.Context) Relationshi
 
 // Execute executes the request
 //  @return CheckOplSyntaxResult
-func (a *RelationshipApiService) CheckOplSyntaxExecute(r RelationshipApiCheckOplSyntaxRequest) (*CheckOplSyntaxResult, *http.Response, error) {
+func (a *RelationshipAPIService) CheckOplSyntaxExecute(r RelationshipAPICheckOplSyntaxRequest) (*CheckOplSyntaxResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -148,7 +148,7 @@ func (a *RelationshipApiService) CheckOplSyntaxExecute(r RelationshipApiCheckOpl
 		localVarReturnValue  *CheckOplSyntaxResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipApiService.CheckOplSyntax")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipAPIService.CheckOplSyntax")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -188,9 +188,9 @@ func (a *RelationshipApiService) CheckOplSyntaxExecute(r RelationshipApiCheckOpl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -207,7 +207,8 @@ func (a *RelationshipApiService) CheckOplSyntaxExecute(r RelationshipApiCheckOpl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorGeneric
@@ -216,7 +217,8 @@ func (a *RelationshipApiService) CheckOplSyntaxExecute(r RelationshipApiCheckOpl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -232,18 +234,18 @@ func (a *RelationshipApiService) CheckOplSyntaxExecute(r RelationshipApiCheckOpl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type RelationshipApiCreateRelationshipRequest struct {
+type RelationshipAPICreateRelationshipRequest struct {
 	ctx context.Context
-	ApiService RelationshipApi
+	ApiService RelationshipAPI
 	createRelationshipBody *CreateRelationshipBody
 }
 
-func (r RelationshipApiCreateRelationshipRequest) CreateRelationshipBody(createRelationshipBody CreateRelationshipBody) RelationshipApiCreateRelationshipRequest {
+func (r RelationshipAPICreateRelationshipRequest) CreateRelationshipBody(createRelationshipBody CreateRelationshipBody) RelationshipAPICreateRelationshipRequest {
 	r.createRelationshipBody = &createRelationshipBody
 	return r
 }
 
-func (r RelationshipApiCreateRelationshipRequest) Execute() (*Relationship, *http.Response, error) {
+func (r RelationshipAPICreateRelationshipRequest) Execute() (*Relationship, *http.Response, error) {
 	return r.ApiService.CreateRelationshipExecute(r)
 }
 
@@ -253,10 +255,10 @@ CreateRelationship Create a Relationship
 Use this endpoint to create a relationship.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return RelationshipApiCreateRelationshipRequest
+ @return RelationshipAPICreateRelationshipRequest
 */
-func (a *RelationshipApiService) CreateRelationship(ctx context.Context) RelationshipApiCreateRelationshipRequest {
-	return RelationshipApiCreateRelationshipRequest{
+func (a *RelationshipAPIService) CreateRelationship(ctx context.Context) RelationshipAPICreateRelationshipRequest {
+	return RelationshipAPICreateRelationshipRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -264,7 +266,7 @@ func (a *RelationshipApiService) CreateRelationship(ctx context.Context) Relatio
 
 // Execute executes the request
 //  @return Relationship
-func (a *RelationshipApiService) CreateRelationshipExecute(r RelationshipApiCreateRelationshipRequest) (*Relationship, *http.Response, error) {
+func (a *RelationshipAPIService) CreateRelationshipExecute(r RelationshipAPICreateRelationshipRequest) (*Relationship, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -272,7 +274,7 @@ func (a *RelationshipApiService) CreateRelationshipExecute(r RelationshipApiCrea
 		localVarReturnValue  *Relationship
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipApiService.CreateRelationship")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipAPIService.CreateRelationship")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -312,9 +314,9 @@ func (a *RelationshipApiService) CreateRelationshipExecute(r RelationshipApiCrea
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -331,7 +333,8 @@ func (a *RelationshipApiService) CreateRelationshipExecute(r RelationshipApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorGeneric
@@ -340,7 +343,8 @@ func (a *RelationshipApiService) CreateRelationshipExecute(r RelationshipApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -356,9 +360,9 @@ func (a *RelationshipApiService) CreateRelationshipExecute(r RelationshipApiCrea
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type RelationshipApiDeleteRelationshipsRequest struct {
+type RelationshipAPIDeleteRelationshipsRequest struct {
 	ctx context.Context
-	ApiService RelationshipApi
+	ApiService RelationshipAPI
 	namespace *string
 	object *string
 	relation *string
@@ -369,48 +373,48 @@ type RelationshipApiDeleteRelationshipsRequest struct {
 }
 
 // Namespace of the Relationship
-func (r RelationshipApiDeleteRelationshipsRequest) Namespace(namespace string) RelationshipApiDeleteRelationshipsRequest {
+func (r RelationshipAPIDeleteRelationshipsRequest) Namespace(namespace string) RelationshipAPIDeleteRelationshipsRequest {
 	r.namespace = &namespace
 	return r
 }
 
 // Object of the Relationship
-func (r RelationshipApiDeleteRelationshipsRequest) Object(object string) RelationshipApiDeleteRelationshipsRequest {
+func (r RelationshipAPIDeleteRelationshipsRequest) Object(object string) RelationshipAPIDeleteRelationshipsRequest {
 	r.object = &object
 	return r
 }
 
 // Relation of the Relationship
-func (r RelationshipApiDeleteRelationshipsRequest) Relation(relation string) RelationshipApiDeleteRelationshipsRequest {
+func (r RelationshipAPIDeleteRelationshipsRequest) Relation(relation string) RelationshipAPIDeleteRelationshipsRequest {
 	r.relation = &relation
 	return r
 }
 
 // SubjectID of the Relationship
-func (r RelationshipApiDeleteRelationshipsRequest) SubjectId(subjectId string) RelationshipApiDeleteRelationshipsRequest {
+func (r RelationshipAPIDeleteRelationshipsRequest) SubjectId(subjectId string) RelationshipAPIDeleteRelationshipsRequest {
 	r.subjectId = &subjectId
 	return r
 }
 
 // Namespace of the Subject Set
-func (r RelationshipApiDeleteRelationshipsRequest) SubjectSetNamespace(subjectSetNamespace string) RelationshipApiDeleteRelationshipsRequest {
+func (r RelationshipAPIDeleteRelationshipsRequest) SubjectSetNamespace(subjectSetNamespace string) RelationshipAPIDeleteRelationshipsRequest {
 	r.subjectSetNamespace = &subjectSetNamespace
 	return r
 }
 
 // Object of the Subject Set
-func (r RelationshipApiDeleteRelationshipsRequest) SubjectSetObject(subjectSetObject string) RelationshipApiDeleteRelationshipsRequest {
+func (r RelationshipAPIDeleteRelationshipsRequest) SubjectSetObject(subjectSetObject string) RelationshipAPIDeleteRelationshipsRequest {
 	r.subjectSetObject = &subjectSetObject
 	return r
 }
 
 // Relation of the Subject Set
-func (r RelationshipApiDeleteRelationshipsRequest) SubjectSetRelation(subjectSetRelation string) RelationshipApiDeleteRelationshipsRequest {
+func (r RelationshipAPIDeleteRelationshipsRequest) SubjectSetRelation(subjectSetRelation string) RelationshipAPIDeleteRelationshipsRequest {
 	r.subjectSetRelation = &subjectSetRelation
 	return r
 }
 
-func (r RelationshipApiDeleteRelationshipsRequest) Execute() (*http.Response, error) {
+func (r RelationshipAPIDeleteRelationshipsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteRelationshipsExecute(r)
 }
 
@@ -420,24 +424,24 @@ DeleteRelationships Delete Relationships
 Use this endpoint to delete relationships
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return RelationshipApiDeleteRelationshipsRequest
+ @return RelationshipAPIDeleteRelationshipsRequest
 */
-func (a *RelationshipApiService) DeleteRelationships(ctx context.Context) RelationshipApiDeleteRelationshipsRequest {
-	return RelationshipApiDeleteRelationshipsRequest{
+func (a *RelationshipAPIService) DeleteRelationships(ctx context.Context) RelationshipAPIDeleteRelationshipsRequest {
+	return RelationshipAPIDeleteRelationshipsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *RelationshipApiService) DeleteRelationshipsExecute(r RelationshipApiDeleteRelationshipsRequest) (*http.Response, error) {
+func (a *RelationshipAPIService) DeleteRelationshipsExecute(r RelationshipAPIDeleteRelationshipsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipApiService.DeleteRelationships")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipAPIService.DeleteRelationships")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -449,25 +453,25 @@ func (a *RelationshipApiService) DeleteRelationshipsExecute(r RelationshipApiDel
 	localVarFormParams := url.Values{}
 
 	if r.namespace != nil {
-		localVarQueryParams.Add("namespace", parameterToString(*r.namespace, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "namespace", r.namespace, "")
 	}
 	if r.object != nil {
-		localVarQueryParams.Add("object", parameterToString(*r.object, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "object", r.object, "")
 	}
 	if r.relation != nil {
-		localVarQueryParams.Add("relation", parameterToString(*r.relation, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relation", r.relation, "")
 	}
 	if r.subjectId != nil {
-		localVarQueryParams.Add("subject_id", parameterToString(*r.subjectId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_id", r.subjectId, "")
 	}
 	if r.subjectSetNamespace != nil {
-		localVarQueryParams.Add("subject_set.namespace", parameterToString(*r.subjectSetNamespace, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.namespace", r.subjectSetNamespace, "")
 	}
 	if r.subjectSetObject != nil {
-		localVarQueryParams.Add("subject_set.object", parameterToString(*r.subjectSetObject, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.object", r.subjectSetObject, "")
 	}
 	if r.subjectSetRelation != nil {
-		localVarQueryParams.Add("subject_set.relation", parameterToString(*r.subjectSetRelation, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.relation", r.subjectSetRelation, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -496,9 +500,9 @@ func (a *RelationshipApiService) DeleteRelationshipsExecute(r RelationshipApiDel
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -515,7 +519,8 @@ func (a *RelationshipApiService) DeleteRelationshipsExecute(r RelationshipApiDel
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 			var v ErrorGeneric
@@ -524,16 +529,17 @@ func (a *RelationshipApiService) DeleteRelationshipsExecute(r RelationshipApiDel
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type RelationshipApiGetRelationshipsRequest struct {
+type RelationshipAPIGetRelationshipsRequest struct {
 	ctx context.Context
-	ApiService RelationshipApi
+	ApiService RelationshipAPI
 	pageToken *string
 	pageSize *int64
 	namespace *string
@@ -545,59 +551,59 @@ type RelationshipApiGetRelationshipsRequest struct {
 	subjectSetRelation *string
 }
 
-func (r RelationshipApiGetRelationshipsRequest) PageToken(pageToken string) RelationshipApiGetRelationshipsRequest {
+func (r RelationshipAPIGetRelationshipsRequest) PageToken(pageToken string) RelationshipAPIGetRelationshipsRequest {
 	r.pageToken = &pageToken
 	return r
 }
 
-func (r RelationshipApiGetRelationshipsRequest) PageSize(pageSize int64) RelationshipApiGetRelationshipsRequest {
+func (r RelationshipAPIGetRelationshipsRequest) PageSize(pageSize int64) RelationshipAPIGetRelationshipsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // Namespace of the Relationship
-func (r RelationshipApiGetRelationshipsRequest) Namespace(namespace string) RelationshipApiGetRelationshipsRequest {
+func (r RelationshipAPIGetRelationshipsRequest) Namespace(namespace string) RelationshipAPIGetRelationshipsRequest {
 	r.namespace = &namespace
 	return r
 }
 
 // Object of the Relationship
-func (r RelationshipApiGetRelationshipsRequest) Object(object string) RelationshipApiGetRelationshipsRequest {
+func (r RelationshipAPIGetRelationshipsRequest) Object(object string) RelationshipAPIGetRelationshipsRequest {
 	r.object = &object
 	return r
 }
 
 // Relation of the Relationship
-func (r RelationshipApiGetRelationshipsRequest) Relation(relation string) RelationshipApiGetRelationshipsRequest {
+func (r RelationshipAPIGetRelationshipsRequest) Relation(relation string) RelationshipAPIGetRelationshipsRequest {
 	r.relation = &relation
 	return r
 }
 
 // SubjectID of the Relationship
-func (r RelationshipApiGetRelationshipsRequest) SubjectId(subjectId string) RelationshipApiGetRelationshipsRequest {
+func (r RelationshipAPIGetRelationshipsRequest) SubjectId(subjectId string) RelationshipAPIGetRelationshipsRequest {
 	r.subjectId = &subjectId
 	return r
 }
 
 // Namespace of the Subject Set
-func (r RelationshipApiGetRelationshipsRequest) SubjectSetNamespace(subjectSetNamespace string) RelationshipApiGetRelationshipsRequest {
+func (r RelationshipAPIGetRelationshipsRequest) SubjectSetNamespace(subjectSetNamespace string) RelationshipAPIGetRelationshipsRequest {
 	r.subjectSetNamespace = &subjectSetNamespace
 	return r
 }
 
 // Object of the Subject Set
-func (r RelationshipApiGetRelationshipsRequest) SubjectSetObject(subjectSetObject string) RelationshipApiGetRelationshipsRequest {
+func (r RelationshipAPIGetRelationshipsRequest) SubjectSetObject(subjectSetObject string) RelationshipAPIGetRelationshipsRequest {
 	r.subjectSetObject = &subjectSetObject
 	return r
 }
 
 // Relation of the Subject Set
-func (r RelationshipApiGetRelationshipsRequest) SubjectSetRelation(subjectSetRelation string) RelationshipApiGetRelationshipsRequest {
+func (r RelationshipAPIGetRelationshipsRequest) SubjectSetRelation(subjectSetRelation string) RelationshipAPIGetRelationshipsRequest {
 	r.subjectSetRelation = &subjectSetRelation
 	return r
 }
 
-func (r RelationshipApiGetRelationshipsRequest) Execute() (*Relationships, *http.Response, error) {
+func (r RelationshipAPIGetRelationshipsRequest) Execute() (*Relationships, *http.Response, error) {
 	return r.ApiService.GetRelationshipsExecute(r)
 }
 
@@ -607,10 +613,10 @@ GetRelationships Query relationships
 Get all relationships that match the query. Only the namespace field is required.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return RelationshipApiGetRelationshipsRequest
+ @return RelationshipAPIGetRelationshipsRequest
 */
-func (a *RelationshipApiService) GetRelationships(ctx context.Context) RelationshipApiGetRelationshipsRequest {
-	return RelationshipApiGetRelationshipsRequest{
+func (a *RelationshipAPIService) GetRelationships(ctx context.Context) RelationshipAPIGetRelationshipsRequest {
+	return RelationshipAPIGetRelationshipsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -618,7 +624,7 @@ func (a *RelationshipApiService) GetRelationships(ctx context.Context) Relations
 
 // Execute executes the request
 //  @return Relationships
-func (a *RelationshipApiService) GetRelationshipsExecute(r RelationshipApiGetRelationshipsRequest) (*Relationships, *http.Response, error) {
+func (a *RelationshipAPIService) GetRelationshipsExecute(r RelationshipAPIGetRelationshipsRequest) (*Relationships, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -626,7 +632,7 @@ func (a *RelationshipApiService) GetRelationshipsExecute(r RelationshipApiGetRel
 		localVarReturnValue  *Relationships
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipApiService.GetRelationships")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipAPIService.GetRelationships")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -638,31 +644,31 @@ func (a *RelationshipApiService) GetRelationshipsExecute(r RelationshipApiGetRel
 	localVarFormParams := url.Values{}
 
 	if r.pageToken != nil {
-		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
 	}
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
 	}
 	if r.namespace != nil {
-		localVarQueryParams.Add("namespace", parameterToString(*r.namespace, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "namespace", r.namespace, "")
 	}
 	if r.object != nil {
-		localVarQueryParams.Add("object", parameterToString(*r.object, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "object", r.object, "")
 	}
 	if r.relation != nil {
-		localVarQueryParams.Add("relation", parameterToString(*r.relation, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relation", r.relation, "")
 	}
 	if r.subjectId != nil {
-		localVarQueryParams.Add("subject_id", parameterToString(*r.subjectId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_id", r.subjectId, "")
 	}
 	if r.subjectSetNamespace != nil {
-		localVarQueryParams.Add("subject_set.namespace", parameterToString(*r.subjectSetNamespace, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.namespace", r.subjectSetNamespace, "")
 	}
 	if r.subjectSetObject != nil {
-		localVarQueryParams.Add("subject_set.object", parameterToString(*r.subjectSetObject, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.object", r.subjectSetObject, "")
 	}
 	if r.subjectSetRelation != nil {
-		localVarQueryParams.Add("subject_set.relation", parameterToString(*r.subjectSetRelation, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.relation", r.subjectSetRelation, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -691,9 +697,9 @@ func (a *RelationshipApiService) GetRelationshipsExecute(r RelationshipApiGetRel
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -710,7 +716,8 @@ func (a *RelationshipApiService) GetRelationshipsExecute(r RelationshipApiGetRel
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorGeneric
@@ -719,7 +726,8 @@ func (a *RelationshipApiService) GetRelationshipsExecute(r RelationshipApiGetRel
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -735,12 +743,12 @@ func (a *RelationshipApiService) GetRelationshipsExecute(r RelationshipApiGetRel
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type RelationshipApiListRelationshipNamespacesRequest struct {
+type RelationshipAPIListRelationshipNamespacesRequest struct {
 	ctx context.Context
-	ApiService RelationshipApi
+	ApiService RelationshipAPI
 }
 
-func (r RelationshipApiListRelationshipNamespacesRequest) Execute() (*RelationshipNamespaces, *http.Response, error) {
+func (r RelationshipAPIListRelationshipNamespacesRequest) Execute() (*RelationshipNamespaces, *http.Response, error) {
 	return r.ApiService.ListRelationshipNamespacesExecute(r)
 }
 
@@ -750,10 +758,10 @@ ListRelationshipNamespaces Query namespaces
 Get all namespaces
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return RelationshipApiListRelationshipNamespacesRequest
+ @return RelationshipAPIListRelationshipNamespacesRequest
 */
-func (a *RelationshipApiService) ListRelationshipNamespaces(ctx context.Context) RelationshipApiListRelationshipNamespacesRequest {
-	return RelationshipApiListRelationshipNamespacesRequest{
+func (a *RelationshipAPIService) ListRelationshipNamespaces(ctx context.Context) RelationshipAPIListRelationshipNamespacesRequest {
+	return RelationshipAPIListRelationshipNamespacesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -761,7 +769,7 @@ func (a *RelationshipApiService) ListRelationshipNamespaces(ctx context.Context)
 
 // Execute executes the request
 //  @return RelationshipNamespaces
-func (a *RelationshipApiService) ListRelationshipNamespacesExecute(r RelationshipApiListRelationshipNamespacesRequest) (*RelationshipNamespaces, *http.Response, error) {
+func (a *RelationshipAPIService) ListRelationshipNamespacesExecute(r RelationshipAPIListRelationshipNamespacesRequest) (*RelationshipNamespaces, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -769,7 +777,7 @@ func (a *RelationshipApiService) ListRelationshipNamespacesExecute(r Relationshi
 		localVarReturnValue  *RelationshipNamespaces
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipApiService.ListRelationshipNamespaces")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipAPIService.ListRelationshipNamespaces")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -807,9 +815,9 @@ func (a *RelationshipApiService) ListRelationshipNamespacesExecute(r Relationshi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -825,7 +833,8 @@ func (a *RelationshipApiService) ListRelationshipNamespacesExecute(r Relationshi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -841,18 +850,18 @@ func (a *RelationshipApiService) ListRelationshipNamespacesExecute(r Relationshi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type RelationshipApiPatchRelationshipsRequest struct {
+type RelationshipAPIPatchRelationshipsRequest struct {
 	ctx context.Context
-	ApiService RelationshipApi
+	ApiService RelationshipAPI
 	relationshipPatch *[]RelationshipPatch
 }
 
-func (r RelationshipApiPatchRelationshipsRequest) RelationshipPatch(relationshipPatch []RelationshipPatch) RelationshipApiPatchRelationshipsRequest {
+func (r RelationshipAPIPatchRelationshipsRequest) RelationshipPatch(relationshipPatch []RelationshipPatch) RelationshipAPIPatchRelationshipsRequest {
 	r.relationshipPatch = &relationshipPatch
 	return r
 }
 
-func (r RelationshipApiPatchRelationshipsRequest) Execute() (*http.Response, error) {
+func (r RelationshipAPIPatchRelationshipsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PatchRelationshipsExecute(r)
 }
 
@@ -862,24 +871,24 @@ PatchRelationships Patch Multiple Relationships
 Use this endpoint to patch one or more relationships.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return RelationshipApiPatchRelationshipsRequest
+ @return RelationshipAPIPatchRelationshipsRequest
 */
-func (a *RelationshipApiService) PatchRelationships(ctx context.Context) RelationshipApiPatchRelationshipsRequest {
-	return RelationshipApiPatchRelationshipsRequest{
+func (a *RelationshipAPIService) PatchRelationships(ctx context.Context) RelationshipAPIPatchRelationshipsRequest {
+	return RelationshipAPIPatchRelationshipsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *RelationshipApiService) PatchRelationshipsExecute(r RelationshipApiPatchRelationshipsRequest) (*http.Response, error) {
+func (a *RelationshipAPIService) PatchRelationshipsExecute(r RelationshipAPIPatchRelationshipsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipApiService.PatchRelationships")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipAPIService.PatchRelationships")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -919,9 +928,9 @@ func (a *RelationshipApiService) PatchRelationshipsExecute(r RelationshipApiPatc
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -938,7 +947,8 @@ func (a *RelationshipApiService) PatchRelationshipsExecute(r RelationshipApiPatc
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -948,7 +958,8 @@ func (a *RelationshipApiService) PatchRelationshipsExecute(r RelationshipApiPatc
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 			var v ErrorGeneric
@@ -957,7 +968,8 @@ func (a *RelationshipApiService) PatchRelationshipsExecute(r RelationshipApiPatc
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 

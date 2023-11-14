@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the MemberInvite type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MemberInvite{}
 
 // MemberInvite struct for MemberInvite
 type MemberInvite struct {
@@ -139,7 +143,7 @@ func (o *MemberInvite) SetInviteeEmail(v string) {
 
 // GetInviteeId returns the InviteeId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MemberInvite) GetInviteeId() string {
-	if o == nil || o.InviteeId.Get() == nil {
+	if o == nil || IsNil(o.InviteeId.Get()) {
 		var ret string
 		return ret
 	}
@@ -300,48 +304,72 @@ func (o *MemberInvite) SetUpdatedAt(v time.Time) {
 }
 
 func (o MemberInvite) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MemberInvite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["invitee_email"] = o.InviteeEmail
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["id"] = o.Id
+	toSerialize["invitee_email"] = o.InviteeEmail
 	if o.InviteeId.IsSet() {
 		toSerialize["invitee_id"] = o.InviteeId.Get()
 	}
-	if true {
-		toSerialize["owner_email"] = o.OwnerEmail
-	}
-	if true {
-		toSerialize["owner_id"] = o.OwnerId
-	}
-	if true {
-		toSerialize["project_id"] = o.ProjectId
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["owner_email"] = o.OwnerEmail
+	toSerialize["owner_id"] = o.OwnerId
+	toSerialize["project_id"] = o.ProjectId
+	toSerialize["status"] = o.Status
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *MemberInvite) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"created_at",
+		"id",
+		"invitee_email",
+		"owner_email",
+		"owner_id",
+		"project_id",
+		"status",
+		"updated_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varMemberInvite := _MemberInvite{}
 
-	if err = json.Unmarshal(bytes, &varMemberInvite); err == nil {
-		*o = MemberInvite(varMemberInvite)
+	err = json.Unmarshal(bytes, &varMemberInvite)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MemberInvite(varMemberInvite)
 
 	additionalProperties := make(map[string]interface{})
 

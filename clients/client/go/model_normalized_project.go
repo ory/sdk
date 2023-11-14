@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the NormalizedProject type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NormalizedProject{}
 
 // NormalizedProject struct for NormalizedProject
 type NormalizedProject struct {
@@ -207,7 +211,7 @@ func (o *NormalizedProject) SetState(v string) {
 
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NormalizedProject) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId.Get() == nil {
+	if o == nil || IsNil(o.SubscriptionId.Get()) {
 		var ret string
 		return ret
 	}
@@ -249,7 +253,7 @@ func (o *NormalizedProject) UnsetSubscriptionId() {
 
 // GetSubscriptionPlan returns the SubscriptionPlan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NormalizedProject) GetSubscriptionPlan() string {
-	if o == nil || o.SubscriptionPlan.Get() == nil {
+	if o == nil || IsNil(o.SubscriptionPlan.Get()) {
 		var ret string
 		return ret
 	}
@@ -314,48 +318,73 @@ func (o *NormalizedProject) SetUpdatedAt(v time.Time) {
 }
 
 func (o NormalizedProject) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o NormalizedProject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["current_revision"] = o.CurrentRevision
-	}
-	if true {
-		toSerialize["hosts"] = o.Hosts
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["state"] = o.State
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["current_revision"] = o.CurrentRevision
+	toSerialize["hosts"] = o.Hosts
+	toSerialize["id"] = o.Id
+	toSerialize["slug"] = o.Slug
+	toSerialize["state"] = o.State
 	if o.SubscriptionId.IsSet() {
 		toSerialize["subscription_id"] = o.SubscriptionId.Get()
 	}
 	if o.SubscriptionPlan.IsSet() {
 		toSerialize["subscription_plan"] = o.SubscriptionPlan.Get()
 	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"created_at",
+		"current_revision",
+		"hosts",
+		"id",
+		"slug",
+		"state",
+		"updated_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varNormalizedProject := _NormalizedProject{}
 
-	if err = json.Unmarshal(bytes, &varNormalizedProject); err == nil {
-		*o = NormalizedProject(varNormalizedProject)
+	err = json.Unmarshal(bytes, &varNormalizedProject)
+
+	if err != nil {
+		return err
 	}
+
+	*o = NormalizedProject(varNormalizedProject)
 
 	additionalProperties := make(map[string]interface{})
 

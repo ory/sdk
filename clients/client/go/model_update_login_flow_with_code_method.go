@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateLoginFlowWithCodeMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateLoginFlowWithCodeMethod{}
 
 // UpdateLoginFlowWithCodeMethod Update Login flow using the code method
 type UpdateLoginFlowWithCodeMethod struct {
@@ -53,7 +57,7 @@ func NewUpdateLoginFlowWithCodeMethodWithDefaults() *UpdateLoginFlowWithCodeMeth
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithCodeMethod) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -63,7 +67,7 @@ func (o *UpdateLoginFlowWithCodeMethod) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithCodeMethod) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -71,7 +75,7 @@ func (o *UpdateLoginFlowWithCodeMethod) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithCodeMethod) HasCode() bool {
-	if o != nil && o.Code != nil {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -109,7 +113,7 @@ func (o *UpdateLoginFlowWithCodeMethod) SetCsrfToken(v string) {
 
 // GetIdentifier returns the Identifier field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithCodeMethod) GetIdentifier() string {
-	if o == nil || o.Identifier == nil {
+	if o == nil || IsNil(o.Identifier) {
 		var ret string
 		return ret
 	}
@@ -119,7 +123,7 @@ func (o *UpdateLoginFlowWithCodeMethod) GetIdentifier() string {
 // GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithCodeMethod) GetIdentifierOk() (*string, bool) {
-	if o == nil || o.Identifier == nil {
+	if o == nil || IsNil(o.Identifier) {
 		return nil, false
 	}
 	return o.Identifier, true
@@ -127,7 +131,7 @@ func (o *UpdateLoginFlowWithCodeMethod) GetIdentifierOk() (*string, bool) {
 
 // HasIdentifier returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithCodeMethod) HasIdentifier() bool {
-	if o != nil && o.Identifier != nil {
+	if o != nil && !IsNil(o.Identifier) {
 		return true
 	}
 
@@ -165,7 +169,7 @@ func (o *UpdateLoginFlowWithCodeMethod) SetMethod(v string) {
 
 // GetResend returns the Resend field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithCodeMethod) GetResend() string {
-	if o == nil || o.Resend == nil {
+	if o == nil || IsNil(o.Resend) {
 		var ret string
 		return ret
 	}
@@ -175,7 +179,7 @@ func (o *UpdateLoginFlowWithCodeMethod) GetResend() string {
 // GetResendOk returns a tuple with the Resend field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithCodeMethod) GetResendOk() (*string, bool) {
-	if o == nil || o.Resend == nil {
+	if o == nil || IsNil(o.Resend) {
 		return nil, false
 	}
 	return o.Resend, true
@@ -183,7 +187,7 @@ func (o *UpdateLoginFlowWithCodeMethod) GetResendOk() (*string, bool) {
 
 // HasResend returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithCodeMethod) HasResend() bool {
-	if o != nil && o.Resend != nil {
+	if o != nil && !IsNil(o.Resend) {
 		return true
 	}
 
@@ -196,20 +200,24 @@ func (o *UpdateLoginFlowWithCodeMethod) SetResend(v string) {
 }
 
 func (o UpdateLoginFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateLoginFlowWithCodeMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if true {
-		toSerialize["csrf_token"] = o.CsrfToken
-	}
-	if o.Identifier != nil {
+	toSerialize["csrf_token"] = o.CsrfToken
+	if !IsNil(o.Identifier) {
 		toSerialize["identifier"] = o.Identifier
 	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if o.Resend != nil {
+	toSerialize["method"] = o.Method
+	if !IsNil(o.Resend) {
 		toSerialize["resend"] = o.Resend
 	}
 
@@ -217,15 +225,41 @@ func (o UpdateLoginFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateLoginFlowWithCodeMethod) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"csrf_token",
+		"method",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateLoginFlowWithCodeMethod := _UpdateLoginFlowWithCodeMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateLoginFlowWithCodeMethod); err == nil {
-		*o = UpdateLoginFlowWithCodeMethod(varUpdateLoginFlowWithCodeMethod)
+	err = json.Unmarshal(bytes, &varUpdateLoginFlowWithCodeMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateLoginFlowWithCodeMethod(varUpdateLoginFlowWithCodeMethod)
 
 	additionalProperties := make(map[string]interface{})
 

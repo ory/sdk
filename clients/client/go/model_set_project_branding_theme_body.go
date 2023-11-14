@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the SetProjectBrandingThemeBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SetProjectBrandingThemeBody{}
 
 // SetProjectBrandingThemeBody struct for SetProjectBrandingThemeBody
 type SetProjectBrandingThemeBody struct {
@@ -52,7 +55,7 @@ func NewSetProjectBrandingThemeBodyWithDefaults() *SetProjectBrandingThemeBody {
 
 // GetFaviconType returns the FaviconType field value if set, zero value otherwise.
 func (o *SetProjectBrandingThemeBody) GetFaviconType() string {
-	if o == nil || o.FaviconType == nil {
+	if o == nil || IsNil(o.FaviconType) {
 		var ret string
 		return ret
 	}
@@ -62,7 +65,7 @@ func (o *SetProjectBrandingThemeBody) GetFaviconType() string {
 // GetFaviconTypeOk returns a tuple with the FaviconType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SetProjectBrandingThemeBody) GetFaviconTypeOk() (*string, bool) {
-	if o == nil || o.FaviconType == nil {
+	if o == nil || IsNil(o.FaviconType) {
 		return nil, false
 	}
 	return o.FaviconType, true
@@ -70,7 +73,7 @@ func (o *SetProjectBrandingThemeBody) GetFaviconTypeOk() (*string, bool) {
 
 // HasFaviconType returns a boolean if a field has been set.
 func (o *SetProjectBrandingThemeBody) HasFaviconType() bool {
-	if o != nil && o.FaviconType != nil {
+	if o != nil && !IsNil(o.FaviconType) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *SetProjectBrandingThemeBody) SetFaviconType(v string) {
 
 // GetFaviconUrl returns the FaviconUrl field value if set, zero value otherwise.
 func (o *SetProjectBrandingThemeBody) GetFaviconUrl() string {
-	if o == nil || o.FaviconUrl == nil {
+	if o == nil || IsNil(o.FaviconUrl) {
 		var ret string
 		return ret
 	}
@@ -94,7 +97,7 @@ func (o *SetProjectBrandingThemeBody) GetFaviconUrl() string {
 // GetFaviconUrlOk returns a tuple with the FaviconUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SetProjectBrandingThemeBody) GetFaviconUrlOk() (*string, bool) {
-	if o == nil || o.FaviconUrl == nil {
+	if o == nil || IsNil(o.FaviconUrl) {
 		return nil, false
 	}
 	return o.FaviconUrl, true
@@ -102,7 +105,7 @@ func (o *SetProjectBrandingThemeBody) GetFaviconUrlOk() (*string, bool) {
 
 // HasFaviconUrl returns a boolean if a field has been set.
 func (o *SetProjectBrandingThemeBody) HasFaviconUrl() bool {
-	if o != nil && o.FaviconUrl != nil {
+	if o != nil && !IsNil(o.FaviconUrl) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *SetProjectBrandingThemeBody) SetFaviconUrl(v string) {
 
 // GetLogoType returns the LogoType field value if set, zero value otherwise.
 func (o *SetProjectBrandingThemeBody) GetLogoType() string {
-	if o == nil || o.LogoType == nil {
+	if o == nil || IsNil(o.LogoType) {
 		var ret string
 		return ret
 	}
@@ -126,7 +129,7 @@ func (o *SetProjectBrandingThemeBody) GetLogoType() string {
 // GetLogoTypeOk returns a tuple with the LogoType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SetProjectBrandingThemeBody) GetLogoTypeOk() (*string, bool) {
-	if o == nil || o.LogoType == nil {
+	if o == nil || IsNil(o.LogoType) {
 		return nil, false
 	}
 	return o.LogoType, true
@@ -134,7 +137,7 @@ func (o *SetProjectBrandingThemeBody) GetLogoTypeOk() (*string, bool) {
 
 // HasLogoType returns a boolean if a field has been set.
 func (o *SetProjectBrandingThemeBody) HasLogoType() bool {
-	if o != nil && o.LogoType != nil {
+	if o != nil && !IsNil(o.LogoType) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *SetProjectBrandingThemeBody) SetLogoType(v string) {
 
 // GetLogoUrl returns the LogoUrl field value if set, zero value otherwise.
 func (o *SetProjectBrandingThemeBody) GetLogoUrl() string {
-	if o == nil || o.LogoUrl == nil {
+	if o == nil || IsNil(o.LogoUrl) {
 		var ret string
 		return ret
 	}
@@ -158,7 +161,7 @@ func (o *SetProjectBrandingThemeBody) GetLogoUrl() string {
 // GetLogoUrlOk returns a tuple with the LogoUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SetProjectBrandingThemeBody) GetLogoUrlOk() (*string, bool) {
-	if o == nil || o.LogoUrl == nil {
+	if o == nil || IsNil(o.LogoUrl) {
 		return nil, false
 	}
 	return o.LogoUrl, true
@@ -166,7 +169,7 @@ func (o *SetProjectBrandingThemeBody) GetLogoUrlOk() (*string, bool) {
 
 // HasLogoUrl returns a boolean if a field has been set.
 func (o *SetProjectBrandingThemeBody) HasLogoUrl() bool {
-	if o != nil && o.LogoUrl != nil {
+	if o != nil && !IsNil(o.LogoUrl) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *SetProjectBrandingThemeBody) SetLogoUrl(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SetProjectBrandingThemeBody) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -190,7 +193,7 @@ func (o *SetProjectBrandingThemeBody) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SetProjectBrandingThemeBody) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -198,7 +201,7 @@ func (o *SetProjectBrandingThemeBody) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SetProjectBrandingThemeBody) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *SetProjectBrandingThemeBody) SetName(v string) {
 
 // GetTheme returns the Theme field value if set, zero value otherwise.
 func (o *SetProjectBrandingThemeBody) GetTheme() ProjectBrandingColors {
-	if o == nil || o.Theme == nil {
+	if o == nil || IsNil(o.Theme) {
 		var ret ProjectBrandingColors
 		return ret
 	}
@@ -222,7 +225,7 @@ func (o *SetProjectBrandingThemeBody) GetTheme() ProjectBrandingColors {
 // GetThemeOk returns a tuple with the Theme field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SetProjectBrandingThemeBody) GetThemeOk() (*ProjectBrandingColors, bool) {
-	if o == nil || o.Theme == nil {
+	if o == nil || IsNil(o.Theme) {
 		return nil, false
 	}
 	return o.Theme, true
@@ -230,7 +233,7 @@ func (o *SetProjectBrandingThemeBody) GetThemeOk() (*ProjectBrandingColors, bool
 
 // HasTheme returns a boolean if a field has been set.
 func (o *SetProjectBrandingThemeBody) HasTheme() bool {
-	if o != nil && o.Theme != nil {
+	if o != nil && !IsNil(o.Theme) {
 		return true
 	}
 
@@ -243,23 +246,31 @@ func (o *SetProjectBrandingThemeBody) SetTheme(v ProjectBrandingColors) {
 }
 
 func (o SetProjectBrandingThemeBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SetProjectBrandingThemeBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.FaviconType != nil {
+	if !IsNil(o.FaviconType) {
 		toSerialize["favicon_type"] = o.FaviconType
 	}
-	if o.FaviconUrl != nil {
+	if !IsNil(o.FaviconUrl) {
 		toSerialize["favicon_url"] = o.FaviconUrl
 	}
-	if o.LogoType != nil {
+	if !IsNil(o.LogoType) {
 		toSerialize["logo_type"] = o.LogoType
 	}
-	if o.LogoUrl != nil {
+	if !IsNil(o.LogoUrl) {
 		toSerialize["logo_url"] = o.LogoUrl
 	}
-	if o.Name != nil {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Theme != nil {
+	if !IsNil(o.Theme) {
 		toSerialize["theme"] = o.Theme
 	}
 
@@ -267,15 +278,19 @@ func (o SetProjectBrandingThemeBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SetProjectBrandingThemeBody) UnmarshalJSON(bytes []byte) (err error) {
 	varSetProjectBrandingThemeBody := _SetProjectBrandingThemeBody{}
 
-	if err = json.Unmarshal(bytes, &varSetProjectBrandingThemeBody); err == nil {
-		*o = SetProjectBrandingThemeBody(varSetProjectBrandingThemeBody)
+	err = json.Unmarshal(bytes, &varSetProjectBrandingThemeBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SetProjectBrandingThemeBody(varSetProjectBrandingThemeBody)
 
 	additionalProperties := make(map[string]interface{})
 

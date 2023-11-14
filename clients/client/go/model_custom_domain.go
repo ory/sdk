@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 	"time"
 )
+
+// checks if the CustomDomain type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CustomDomain{}
 
 // CustomDomain Custom Hostname
 type CustomDomain struct {
@@ -53,7 +56,7 @@ func NewCustomDomainWithDefaults() *CustomDomain {
 
 // GetCookieDomain returns the CookieDomain field value if set, zero value otherwise.
 func (o *CustomDomain) GetCookieDomain() string {
-	if o == nil || o.CookieDomain == nil {
+	if o == nil || IsNil(o.CookieDomain) {
 		var ret string
 		return ret
 	}
@@ -63,7 +66,7 @@ func (o *CustomDomain) GetCookieDomain() string {
 // GetCookieDomainOk returns a tuple with the CookieDomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetCookieDomainOk() (*string, bool) {
-	if o == nil || o.CookieDomain == nil {
+	if o == nil || IsNil(o.CookieDomain) {
 		return nil, false
 	}
 	return o.CookieDomain, true
@@ -71,7 +74,7 @@ func (o *CustomDomain) GetCookieDomainOk() (*string, bool) {
 
 // HasCookieDomain returns a boolean if a field has been set.
 func (o *CustomDomain) HasCookieDomain() bool {
-	if o != nil && o.CookieDomain != nil {
+	if o != nil && !IsNil(o.CookieDomain) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *CustomDomain) SetCookieDomain(v string) {
 
 // GetCorsAllowedOrigins returns the CorsAllowedOrigins field value if set, zero value otherwise.
 func (o *CustomDomain) GetCorsAllowedOrigins() []string {
-	if o == nil || o.CorsAllowedOrigins == nil {
+	if o == nil || IsNil(o.CorsAllowedOrigins) {
 		var ret []string
 		return ret
 	}
@@ -95,7 +98,7 @@ func (o *CustomDomain) GetCorsAllowedOrigins() []string {
 // GetCorsAllowedOriginsOk returns a tuple with the CorsAllowedOrigins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetCorsAllowedOriginsOk() ([]string, bool) {
-	if o == nil || o.CorsAllowedOrigins == nil {
+	if o == nil || IsNil(o.CorsAllowedOrigins) {
 		return nil, false
 	}
 	return o.CorsAllowedOrigins, true
@@ -103,7 +106,7 @@ func (o *CustomDomain) GetCorsAllowedOriginsOk() ([]string, bool) {
 
 // HasCorsAllowedOrigins returns a boolean if a field has been set.
 func (o *CustomDomain) HasCorsAllowedOrigins() bool {
-	if o != nil && o.CorsAllowedOrigins != nil {
+	if o != nil && !IsNil(o.CorsAllowedOrigins) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *CustomDomain) SetCorsAllowedOrigins(v []string) {
 
 // GetCorsEnabled returns the CorsEnabled field value if set, zero value otherwise.
 func (o *CustomDomain) GetCorsEnabled() bool {
-	if o == nil || o.CorsEnabled == nil {
+	if o == nil || IsNil(o.CorsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -127,7 +130,7 @@ func (o *CustomDomain) GetCorsEnabled() bool {
 // GetCorsEnabledOk returns a tuple with the CorsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetCorsEnabledOk() (*bool, bool) {
-	if o == nil || o.CorsEnabled == nil {
+	if o == nil || IsNil(o.CorsEnabled) {
 		return nil, false
 	}
 	return o.CorsEnabled, true
@@ -135,7 +138,7 @@ func (o *CustomDomain) GetCorsEnabledOk() (*bool, bool) {
 
 // HasCorsEnabled returns a boolean if a field has been set.
 func (o *CustomDomain) HasCorsEnabled() bool {
-	if o != nil && o.CorsEnabled != nil {
+	if o != nil && !IsNil(o.CorsEnabled) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *CustomDomain) SetCorsEnabled(v bool) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *CustomDomain) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -159,7 +162,7 @@ func (o *CustomDomain) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -167,7 +170,7 @@ func (o *CustomDomain) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *CustomDomain) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *CustomDomain) SetCreatedAt(v time.Time) {
 
 // GetCustomUiBaseUrl returns the CustomUiBaseUrl field value if set, zero value otherwise.
 func (o *CustomDomain) GetCustomUiBaseUrl() string {
-	if o == nil || o.CustomUiBaseUrl == nil {
+	if o == nil || IsNil(o.CustomUiBaseUrl) {
 		var ret string
 		return ret
 	}
@@ -191,7 +194,7 @@ func (o *CustomDomain) GetCustomUiBaseUrl() string {
 // GetCustomUiBaseUrlOk returns a tuple with the CustomUiBaseUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetCustomUiBaseUrlOk() (*string, bool) {
-	if o == nil || o.CustomUiBaseUrl == nil {
+	if o == nil || IsNil(o.CustomUiBaseUrl) {
 		return nil, false
 	}
 	return o.CustomUiBaseUrl, true
@@ -199,7 +202,7 @@ func (o *CustomDomain) GetCustomUiBaseUrlOk() (*string, bool) {
 
 // HasCustomUiBaseUrl returns a boolean if a field has been set.
 func (o *CustomDomain) HasCustomUiBaseUrl() bool {
-	if o != nil && o.CustomUiBaseUrl != nil {
+	if o != nil && !IsNil(o.CustomUiBaseUrl) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *CustomDomain) SetCustomUiBaseUrl(v string) {
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *CustomDomain) GetHostname() string {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -223,7 +226,7 @@ func (o *CustomDomain) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetHostnameOk() (*string, bool) {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -231,7 +234,7 @@ func (o *CustomDomain) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *CustomDomain) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
+	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *CustomDomain) SetHostname(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CustomDomain) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -255,7 +258,7 @@ func (o *CustomDomain) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -263,7 +266,7 @@ func (o *CustomDomain) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *CustomDomain) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *CustomDomain) SetId(v string) {
 
 // GetSslStatus returns the SslStatus field value if set, zero value otherwise.
 func (o *CustomDomain) GetSslStatus() string {
-	if o == nil || o.SslStatus == nil {
+	if o == nil || IsNil(o.SslStatus) {
 		var ret string
 		return ret
 	}
@@ -287,7 +290,7 @@ func (o *CustomDomain) GetSslStatus() string {
 // GetSslStatusOk returns a tuple with the SslStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetSslStatusOk() (*string, bool) {
-	if o == nil || o.SslStatus == nil {
+	if o == nil || IsNil(o.SslStatus) {
 		return nil, false
 	}
 	return o.SslStatus, true
@@ -295,7 +298,7 @@ func (o *CustomDomain) GetSslStatusOk() (*string, bool) {
 
 // HasSslStatus returns a boolean if a field has been set.
 func (o *CustomDomain) HasSslStatus() bool {
-	if o != nil && o.SslStatus != nil {
+	if o != nil && !IsNil(o.SslStatus) {
 		return true
 	}
 
@@ -309,7 +312,7 @@ func (o *CustomDomain) SetSslStatus(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *CustomDomain) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -319,7 +322,7 @@ func (o *CustomDomain) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -327,7 +330,7 @@ func (o *CustomDomain) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *CustomDomain) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -341,7 +344,7 @@ func (o *CustomDomain) SetUpdatedAt(v time.Time) {
 
 // GetVerificationErrors returns the VerificationErrors field value if set, zero value otherwise.
 func (o *CustomDomain) GetVerificationErrors() []string {
-	if o == nil || o.VerificationErrors == nil {
+	if o == nil || IsNil(o.VerificationErrors) {
 		var ret []string
 		return ret
 	}
@@ -351,7 +354,7 @@ func (o *CustomDomain) GetVerificationErrors() []string {
 // GetVerificationErrorsOk returns a tuple with the VerificationErrors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetVerificationErrorsOk() ([]string, bool) {
-	if o == nil || o.VerificationErrors == nil {
+	if o == nil || IsNil(o.VerificationErrors) {
 		return nil, false
 	}
 	return o.VerificationErrors, true
@@ -359,7 +362,7 @@ func (o *CustomDomain) GetVerificationErrorsOk() ([]string, bool) {
 
 // HasVerificationErrors returns a boolean if a field has been set.
 func (o *CustomDomain) HasVerificationErrors() bool {
-	if o != nil && o.VerificationErrors != nil {
+	if o != nil && !IsNil(o.VerificationErrors) {
 		return true
 	}
 
@@ -373,7 +376,7 @@ func (o *CustomDomain) SetVerificationErrors(v []string) {
 
 // GetVerificationStatus returns the VerificationStatus field value if set, zero value otherwise.
 func (o *CustomDomain) GetVerificationStatus() string {
-	if o == nil || o.VerificationStatus == nil {
+	if o == nil || IsNil(o.VerificationStatus) {
 		var ret string
 		return ret
 	}
@@ -383,7 +386,7 @@ func (o *CustomDomain) GetVerificationStatus() string {
 // GetVerificationStatusOk returns a tuple with the VerificationStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomDomain) GetVerificationStatusOk() (*string, bool) {
-	if o == nil || o.VerificationStatus == nil {
+	if o == nil || IsNil(o.VerificationStatus) {
 		return nil, false
 	}
 	return o.VerificationStatus, true
@@ -391,7 +394,7 @@ func (o *CustomDomain) GetVerificationStatusOk() (*string, bool) {
 
 // HasVerificationStatus returns a boolean if a field has been set.
 func (o *CustomDomain) HasVerificationStatus() bool {
-	if o != nil && o.VerificationStatus != nil {
+	if o != nil && !IsNil(o.VerificationStatus) {
 		return true
 	}
 
@@ -404,38 +407,46 @@ func (o *CustomDomain) SetVerificationStatus(v string) {
 }
 
 func (o CustomDomain) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CustomDomain) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CookieDomain != nil {
+	if !IsNil(o.CookieDomain) {
 		toSerialize["cookie_domain"] = o.CookieDomain
 	}
-	if o.CorsAllowedOrigins != nil {
+	if !IsNil(o.CorsAllowedOrigins) {
 		toSerialize["cors_allowed_origins"] = o.CorsAllowedOrigins
 	}
-	if o.CorsEnabled != nil {
+	if !IsNil(o.CorsEnabled) {
 		toSerialize["cors_enabled"] = o.CorsEnabled
 	}
-	if o.CreatedAt != nil {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.CustomUiBaseUrl != nil {
+	if !IsNil(o.CustomUiBaseUrl) {
 		toSerialize["custom_ui_base_url"] = o.CustomUiBaseUrl
 	}
-	if o.Hostname != nil {
+	if !IsNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.SslStatus != nil {
+	if !IsNil(o.SslStatus) {
 		toSerialize["ssl_status"] = o.SslStatus
 	}
-	if o.UpdatedAt != nil {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.VerificationErrors != nil {
+	if !IsNil(o.VerificationErrors) {
 		toSerialize["verification_errors"] = o.VerificationErrors
 	}
-	if o.VerificationStatus != nil {
+	if !IsNil(o.VerificationStatus) {
 		toSerialize["verification_status"] = o.VerificationStatus
 	}
 
@@ -443,15 +454,19 @@ func (o CustomDomain) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CustomDomain) UnmarshalJSON(bytes []byte) (err error) {
 	varCustomDomain := _CustomDomain{}
 
-	if err = json.Unmarshal(bytes, &varCustomDomain); err == nil {
-		*o = CustomDomain(varCustomDomain)
+	err = json.Unmarshal(bytes, &varCustomDomain)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CustomDomain(varCustomDomain)
 
 	additionalProperties := make(map[string]interface{})
 

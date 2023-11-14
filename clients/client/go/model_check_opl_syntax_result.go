@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the CheckOplSyntaxResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CheckOplSyntaxResult{}
 
 // CheckOplSyntaxResult struct for CheckOplSyntaxResult
 type CheckOplSyntaxResult struct {
@@ -43,7 +46,7 @@ func NewCheckOplSyntaxResultWithDefaults() *CheckOplSyntaxResult {
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *CheckOplSyntaxResult) GetErrors() []ParseError {
-	if o == nil || o.Errors == nil {
+	if o == nil || IsNil(o.Errors) {
 		var ret []ParseError
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *CheckOplSyntaxResult) GetErrors() []ParseError {
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckOplSyntaxResult) GetErrorsOk() ([]ParseError, bool) {
-	if o == nil || o.Errors == nil {
+	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
 	return o.Errors, true
@@ -61,7 +64,7 @@ func (o *CheckOplSyntaxResult) GetErrorsOk() ([]ParseError, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *CheckOplSyntaxResult) HasErrors() bool {
-	if o != nil && o.Errors != nil {
+	if o != nil && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *CheckOplSyntaxResult) SetErrors(v []ParseError) {
 }
 
 func (o CheckOplSyntaxResult) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CheckOplSyntaxResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Errors != nil {
+	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
 	}
 
@@ -83,15 +94,19 @@ func (o CheckOplSyntaxResult) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CheckOplSyntaxResult) UnmarshalJSON(bytes []byte) (err error) {
 	varCheckOplSyntaxResult := _CheckOplSyntaxResult{}
 
-	if err = json.Unmarshal(bytes, &varCheckOplSyntaxResult); err == nil {
-		*o = CheckOplSyntaxResult(varCheckOplSyntaxResult)
+	err = json.Unmarshal(bytes, &varCheckOplSyntaxResult)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CheckOplSyntaxResult(varCheckOplSyntaxResult)
 
 	additionalProperties := make(map[string]interface{})
 

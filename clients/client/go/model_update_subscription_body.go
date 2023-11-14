@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateSubscriptionBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSubscriptionBody{}
 
 // UpdateSubscriptionBody Update Subscription Request Body
 type UpdateSubscriptionBody struct {
@@ -95,7 +99,7 @@ func (o *UpdateSubscriptionBody) SetPlan(v string) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *UpdateSubscriptionBody) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -105,7 +109,7 @@ func (o *UpdateSubscriptionBody) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSubscriptionBody) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -113,7 +117,7 @@ func (o *UpdateSubscriptionBody) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *UpdateSubscriptionBody) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -126,14 +130,18 @@ func (o *UpdateSubscriptionBody) SetReturnTo(v string) {
 }
 
 func (o UpdateSubscriptionBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateSubscriptionBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["interval"] = o.Interval
-	}
-	if true {
-		toSerialize["plan"] = o.Plan
-	}
-	if o.ReturnTo != nil {
+	toSerialize["interval"] = o.Interval
+	toSerialize["plan"] = o.Plan
+	if !IsNil(o.ReturnTo) {
 		toSerialize["return_to"] = o.ReturnTo
 	}
 
@@ -141,15 +149,41 @@ func (o UpdateSubscriptionBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateSubscriptionBody) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"interval",
+		"plan",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateSubscriptionBody := _UpdateSubscriptionBody{}
 
-	if err = json.Unmarshal(bytes, &varUpdateSubscriptionBody); err == nil {
-		*o = UpdateSubscriptionBody(varUpdateSubscriptionBody)
+	err = json.Unmarshal(bytes, &varUpdateSubscriptionBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateSubscriptionBody(varUpdateSubscriptionBody)
 
 	additionalProperties := make(map[string]interface{})
 

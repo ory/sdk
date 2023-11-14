@@ -1,39 +1,39 @@
-# \FrontendApi
+# \FrontendAPI
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateBrowserLoginFlow**](FrontendApi.md#CreateBrowserLoginFlow) | **Get** /self-service/login/browser | Create Login Flow for Browsers
-[**CreateBrowserLogoutFlow**](FrontendApi.md#CreateBrowserLogoutFlow) | **Get** /self-service/logout/browser | Create a Logout URL for Browsers
-[**CreateBrowserRecoveryFlow**](FrontendApi.md#CreateBrowserRecoveryFlow) | **Get** /self-service/recovery/browser | Create Recovery Flow for Browsers
-[**CreateBrowserRegistrationFlow**](FrontendApi.md#CreateBrowserRegistrationFlow) | **Get** /self-service/registration/browser | Create Registration Flow for Browsers
-[**CreateBrowserSettingsFlow**](FrontendApi.md#CreateBrowserSettingsFlow) | **Get** /self-service/settings/browser | Create Settings Flow for Browsers
-[**CreateBrowserVerificationFlow**](FrontendApi.md#CreateBrowserVerificationFlow) | **Get** /self-service/verification/browser | Create Verification Flow for Browser Clients
-[**CreateNativeLoginFlow**](FrontendApi.md#CreateNativeLoginFlow) | **Get** /self-service/login/api | Create Login Flow for Native Apps
-[**CreateNativeRecoveryFlow**](FrontendApi.md#CreateNativeRecoveryFlow) | **Get** /self-service/recovery/api | Create Recovery Flow for Native Apps
-[**CreateNativeRegistrationFlow**](FrontendApi.md#CreateNativeRegistrationFlow) | **Get** /self-service/registration/api | Create Registration Flow for Native Apps
-[**CreateNativeSettingsFlow**](FrontendApi.md#CreateNativeSettingsFlow) | **Get** /self-service/settings/api | Create Settings Flow for Native Apps
-[**CreateNativeVerificationFlow**](FrontendApi.md#CreateNativeVerificationFlow) | **Get** /self-service/verification/api | Create Verification Flow for Native Apps
-[**DisableMyOtherSessions**](FrontendApi.md#DisableMyOtherSessions) | **Delete** /sessions | Disable my other sessions
-[**DisableMySession**](FrontendApi.md#DisableMySession) | **Delete** /sessions/{id} | Disable one of my sessions
-[**ExchangeSessionToken**](FrontendApi.md#ExchangeSessionToken) | **Get** /sessions/token-exchange | Exchange Session Token
-[**GetFlowError**](FrontendApi.md#GetFlowError) | **Get** /self-service/errors | Get User-Flow Errors
-[**GetLoginFlow**](FrontendApi.md#GetLoginFlow) | **Get** /self-service/login/flows | Get Login Flow
-[**GetRecoveryFlow**](FrontendApi.md#GetRecoveryFlow) | **Get** /self-service/recovery/flows | Get Recovery Flow
-[**GetRegistrationFlow**](FrontendApi.md#GetRegistrationFlow) | **Get** /self-service/registration/flows | Get Registration Flow
-[**GetSettingsFlow**](FrontendApi.md#GetSettingsFlow) | **Get** /self-service/settings/flows | Get Settings Flow
-[**GetVerificationFlow**](FrontendApi.md#GetVerificationFlow) | **Get** /self-service/verification/flows | Get Verification Flow
-[**GetWebAuthnJavaScript**](FrontendApi.md#GetWebAuthnJavaScript) | **Get** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
-[**ListMySessions**](FrontendApi.md#ListMySessions) | **Get** /sessions | Get My Active Sessions
-[**PerformNativeLogout**](FrontendApi.md#PerformNativeLogout) | **Delete** /self-service/logout/api | Perform Logout for Native Apps
-[**ToSession**](FrontendApi.md#ToSession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
-[**UpdateLoginFlow**](FrontendApi.md#UpdateLoginFlow) | **Post** /self-service/login | Submit a Login Flow
-[**UpdateLogoutFlow**](FrontendApi.md#UpdateLogoutFlow) | **Get** /self-service/logout | Update Logout Flow
-[**UpdateRecoveryFlow**](FrontendApi.md#UpdateRecoveryFlow) | **Post** /self-service/recovery | Complete Recovery Flow
-[**UpdateRegistrationFlow**](FrontendApi.md#UpdateRegistrationFlow) | **Post** /self-service/registration | Update Registration Flow
-[**UpdateSettingsFlow**](FrontendApi.md#UpdateSettingsFlow) | **Post** /self-service/settings | Complete Settings Flow
-[**UpdateVerificationFlow**](FrontendApi.md#UpdateVerificationFlow) | **Post** /self-service/verification | Complete Verification Flow
+[**CreateBrowserLoginFlow**](FrontendAPI.md#CreateBrowserLoginFlow) | **Get** /self-service/login/browser | Create Login Flow for Browsers
+[**CreateBrowserLogoutFlow**](FrontendAPI.md#CreateBrowserLogoutFlow) | **Get** /self-service/logout/browser | Create a Logout URL for Browsers
+[**CreateBrowserRecoveryFlow**](FrontendAPI.md#CreateBrowserRecoveryFlow) | **Get** /self-service/recovery/browser | Create Recovery Flow for Browsers
+[**CreateBrowserRegistrationFlow**](FrontendAPI.md#CreateBrowserRegistrationFlow) | **Get** /self-service/registration/browser | Create Registration Flow for Browsers
+[**CreateBrowserSettingsFlow**](FrontendAPI.md#CreateBrowserSettingsFlow) | **Get** /self-service/settings/browser | Create Settings Flow for Browsers
+[**CreateBrowserVerificationFlow**](FrontendAPI.md#CreateBrowserVerificationFlow) | **Get** /self-service/verification/browser | Create Verification Flow for Browser Clients
+[**CreateNativeLoginFlow**](FrontendAPI.md#CreateNativeLoginFlow) | **Get** /self-service/login/api | Create Login Flow for Native Apps
+[**CreateNativeRecoveryFlow**](FrontendAPI.md#CreateNativeRecoveryFlow) | **Get** /self-service/recovery/api | Create Recovery Flow for Native Apps
+[**CreateNativeRegistrationFlow**](FrontendAPI.md#CreateNativeRegistrationFlow) | **Get** /self-service/registration/api | Create Registration Flow for Native Apps
+[**CreateNativeSettingsFlow**](FrontendAPI.md#CreateNativeSettingsFlow) | **Get** /self-service/settings/api | Create Settings Flow for Native Apps
+[**CreateNativeVerificationFlow**](FrontendAPI.md#CreateNativeVerificationFlow) | **Get** /self-service/verification/api | Create Verification Flow for Native Apps
+[**DisableMyOtherSessions**](FrontendAPI.md#DisableMyOtherSessions) | **Delete** /sessions | Disable my other sessions
+[**DisableMySession**](FrontendAPI.md#DisableMySession) | **Delete** /sessions/{id} | Disable one of my sessions
+[**ExchangeSessionToken**](FrontendAPI.md#ExchangeSessionToken) | **Get** /sessions/token-exchange | Exchange Session Token
+[**GetFlowError**](FrontendAPI.md#GetFlowError) | **Get** /self-service/errors | Get User-Flow Errors
+[**GetLoginFlow**](FrontendAPI.md#GetLoginFlow) | **Get** /self-service/login/flows | Get Login Flow
+[**GetRecoveryFlow**](FrontendAPI.md#GetRecoveryFlow) | **Get** /self-service/recovery/flows | Get Recovery Flow
+[**GetRegistrationFlow**](FrontendAPI.md#GetRegistrationFlow) | **Get** /self-service/registration/flows | Get Registration Flow
+[**GetSettingsFlow**](FrontendAPI.md#GetSettingsFlow) | **Get** /self-service/settings/flows | Get Settings Flow
+[**GetVerificationFlow**](FrontendAPI.md#GetVerificationFlow) | **Get** /self-service/verification/flows | Get Verification Flow
+[**GetWebAuthnJavaScript**](FrontendAPI.md#GetWebAuthnJavaScript) | **Get** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+[**ListMySessions**](FrontendAPI.md#ListMySessions) | **Get** /sessions | Get My Active Sessions
+[**PerformNativeLogout**](FrontendAPI.md#PerformNativeLogout) | **Delete** /self-service/logout/api | Perform Logout for Native Apps
+[**ToSession**](FrontendAPI.md#ToSession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**UpdateLoginFlow**](FrontendAPI.md#UpdateLoginFlow) | **Post** /self-service/login | Submit a Login Flow
+[**UpdateLogoutFlow**](FrontendAPI.md#UpdateLogoutFlow) | **Get** /self-service/logout | Update Logout Flow
+[**UpdateRecoveryFlow**](FrontendAPI.md#UpdateRecoveryFlow) | **Post** /self-service/recovery | Complete Recovery Flow
+[**UpdateRegistrationFlow**](FrontendAPI.md#UpdateRegistrationFlow) | **Post** /self-service/registration | Update Registration Flow
+[**UpdateSettingsFlow**](FrontendAPI.md#UpdateSettingsFlow) | **Post** /self-service/settings | Complete Settings Flow
+[**UpdateVerificationFlow**](FrontendAPI.md#UpdateVerificationFlow) | **Post** /self-service/verification | Complete Verification Flow
 
 
 
@@ -54,7 +54,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -67,13 +67,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserLoginFlow(context.Background()).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Organization(organization).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateBrowserLoginFlow(context.Background()).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Organization(organization).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserLoginFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateBrowserLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateBrowserLoginFlow`: LoginFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateBrowserLoginFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateBrowserLoginFlow`: %v\n", resp)
 }
 ```
 
@@ -130,7 +130,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -139,13 +139,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserLogoutFlow(context.Background()).Cookie(cookie).ReturnTo(returnTo).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateBrowserLogoutFlow(context.Background()).Cookie(cookie).ReturnTo(returnTo).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserLogoutFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateBrowserLogoutFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateBrowserLogoutFlow`: LogoutFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateBrowserLogoutFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateBrowserLogoutFlow`: %v\n", resp)
 }
 ```
 
@@ -198,7 +198,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -206,13 +206,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserRecoveryFlow(context.Background()).ReturnTo(returnTo).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateBrowserRecoveryFlow(context.Background()).ReturnTo(returnTo).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserRecoveryFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateBrowserRecoveryFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateBrowserRecoveryFlow`: RecoveryFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateBrowserRecoveryFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateBrowserRecoveryFlow`: %v\n", resp)
 }
 ```
 
@@ -264,7 +264,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -275,13 +275,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserRegistrationFlow(context.Background()).ReturnTo(returnTo).LoginChallenge(loginChallenge).AfterVerificationReturnTo(afterVerificationReturnTo).Organization(organization).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateBrowserRegistrationFlow(context.Background()).ReturnTo(returnTo).LoginChallenge(loginChallenge).AfterVerificationReturnTo(afterVerificationReturnTo).Organization(organization).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserRegistrationFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateBrowserRegistrationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateBrowserRegistrationFlow`: RegistrationFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateBrowserRegistrationFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateBrowserRegistrationFlow`: %v\n", resp)
 }
 ```
 
@@ -336,7 +336,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -345,13 +345,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserSettingsFlow(context.Background()).ReturnTo(returnTo).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateBrowserSettingsFlow(context.Background()).ReturnTo(returnTo).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserSettingsFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateBrowserSettingsFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateBrowserSettingsFlow`: SettingsFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateBrowserSettingsFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateBrowserSettingsFlow`: %v\n", resp)
 }
 ```
 
@@ -404,7 +404,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -412,13 +412,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateBrowserVerificationFlow(context.Background()).ReturnTo(returnTo).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateBrowserVerificationFlow(context.Background()).ReturnTo(returnTo).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateBrowserVerificationFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateBrowserVerificationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateBrowserVerificationFlow`: VerificationFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateBrowserVerificationFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateBrowserVerificationFlow`: %v\n", resp)
 }
 ```
 
@@ -470,7 +470,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -482,13 +482,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateNativeLoginFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateNativeLoginFlow`: LoginFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateNativeLoginFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateNativeLoginFlow`: %v\n", resp)
 }
 ```
 
@@ -544,20 +544,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateNativeRecoveryFlow(context.Background()).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateNativeRecoveryFlow(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateNativeRecoveryFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeRecoveryFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateNativeRecoveryFlow`: RecoveryFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateNativeRecoveryFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateNativeRecoveryFlow`: %v\n", resp)
 }
 ```
 
@@ -605,7 +605,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -614,13 +614,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateNativeRegistrationFlow(context.Background()).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateNativeRegistrationFlow(context.Background()).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateNativeRegistrationFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeRegistrationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateNativeRegistrationFlow`: RegistrationFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateNativeRegistrationFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateNativeRegistrationFlow`: %v\n", resp)
 }
 ```
 
@@ -673,7 +673,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -681,13 +681,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateNativeSettingsFlow(context.Background()).XSessionToken(xSessionToken).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateNativeSettingsFlow(context.Background()).XSessionToken(xSessionToken).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateNativeSettingsFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeSettingsFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateNativeSettingsFlow`: SettingsFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateNativeSettingsFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateNativeSettingsFlow`: %v\n", resp)
 }
 ```
 
@@ -739,20 +739,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.CreateNativeVerificationFlow(context.Background()).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateNativeVerificationFlow(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.CreateNativeVerificationFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeVerificationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateNativeVerificationFlow`: VerificationFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.CreateNativeVerificationFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateNativeVerificationFlow`: %v\n", resp)
 }
 ```
 
@@ -800,7 +800,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -809,13 +809,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.DisableMyOtherSessions(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.DisableMyOtherSessions(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.DisableMyOtherSessions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.DisableMyOtherSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DisableMyOtherSessions`: DeleteMySessionsCount
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.DisableMyOtherSessions`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.DisableMyOtherSessions`: %v\n", resp)
 }
 ```
 
@@ -868,7 +868,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -878,9 +878,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.DisableMySession(context.Background(), id).XSessionToken(xSessionToken).Cookie(cookie).Execute()
+    r, err := apiClient.FrontendAPI.DisableMySession(context.Background(), id).XSessionToken(xSessionToken).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.DisableMySession``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.DisableMySession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -938,7 +938,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -947,13 +947,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.ExchangeSessionToken(context.Background()).InitCode(initCode).ReturnToCode(returnToCode).Execute()
+    resp, r, err := apiClient.FrontendAPI.ExchangeSessionToken(context.Background()).InitCode(initCode).ReturnToCode(returnToCode).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.ExchangeSessionToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.ExchangeSessionToken``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ExchangeSessionToken`: SuccessfulNativeLogin
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.ExchangeSessionToken`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.ExchangeSessionToken`: %v\n", resp)
 }
 ```
 
@@ -1006,7 +1006,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1014,13 +1014,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.GetFlowError(context.Background()).Id(id).Execute()
+    resp, r, err := apiClient.FrontendAPI.GetFlowError(context.Background()).Id(id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.GetFlowError``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetFlowError``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetFlowError`: FlowError
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.GetFlowError`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetFlowError`: %v\n", resp)
 }
 ```
 
@@ -1072,7 +1072,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1081,13 +1081,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.GetLoginFlow(context.Background()).Id(id).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.GetLoginFlow(context.Background()).Id(id).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.GetLoginFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLoginFlow`: LoginFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.GetLoginFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetLoginFlow`: %v\n", resp)
 }
 ```
 
@@ -1140,7 +1140,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1149,13 +1149,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.GetRecoveryFlow(context.Background()).Id(id).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.GetRecoveryFlow(context.Background()).Id(id).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.GetRecoveryFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetRecoveryFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetRecoveryFlow`: RecoveryFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.GetRecoveryFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetRecoveryFlow`: %v\n", resp)
 }
 ```
 
@@ -1208,7 +1208,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1217,13 +1217,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.GetRegistrationFlow(context.Background()).Id(id).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.GetRegistrationFlow(context.Background()).Id(id).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.GetRegistrationFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetRegistrationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetRegistrationFlow`: RegistrationFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.GetRegistrationFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetRegistrationFlow`: %v\n", resp)
 }
 ```
 
@@ -1276,7 +1276,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1286,13 +1286,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.GetSettingsFlow(context.Background()).Id(id).XSessionToken(xSessionToken).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.GetSettingsFlow(context.Background()).Id(id).XSessionToken(xSessionToken).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.GetSettingsFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetSettingsFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSettingsFlow`: SettingsFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.GetSettingsFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetSettingsFlow`: %v\n", resp)
 }
 ```
 
@@ -1346,7 +1346,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1355,13 +1355,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.GetVerificationFlow(context.Background()).Id(id).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.GetVerificationFlow(context.Background()).Id(id).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.GetVerificationFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetVerificationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVerificationFlow`: VerificationFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.GetVerificationFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetVerificationFlow`: %v\n", resp)
 }
 ```
 
@@ -1414,20 +1414,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.GetWebAuthnJavaScript(context.Background()).Execute()
+    resp, r, err := apiClient.FrontendAPI.GetWebAuthnJavaScript(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.GetWebAuthnJavaScript``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetWebAuthnJavaScript``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetWebAuthnJavaScript`: string
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.GetWebAuthnJavaScript`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetWebAuthnJavaScript`: %v\n", resp)
 }
 ```
 
@@ -1475,7 +1475,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1488,13 +1488,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.ListMySessions(context.Background()).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).XSessionToken(xSessionToken).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.ListMySessions(context.Background()).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).XSessionToken(xSessionToken).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.ListMySessions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.ListMySessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListMySessions`: []Session
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.ListMySessions`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.ListMySessions`: %v\n", resp)
 }
 ```
 
@@ -1551,7 +1551,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1559,9 +1559,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.PerformNativeLogout(context.Background()).PerformNativeLogoutBody(performNativeLogoutBody).Execute()
+    r, err := apiClient.FrontendAPI.PerformNativeLogout(context.Background()).PerformNativeLogoutBody(performNativeLogoutBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.PerformNativeLogout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.PerformNativeLogout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1615,7 +1615,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1625,13 +1625,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.ToSession(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).TokenizeAs(tokenizeAs).Execute()
+    resp, r, err := apiClient.FrontendAPI.ToSession(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).TokenizeAs(tokenizeAs).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.ToSession``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.ToSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ToSession`: Session
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.ToSession`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.ToSession`: %v\n", resp)
 }
 ```
 
@@ -1685,7 +1685,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1696,13 +1696,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.UpdateLoginFlow(context.Background()).Flow(flow).UpdateLoginFlowBody(updateLoginFlowBody).XSessionToken(xSessionToken).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.UpdateLoginFlow(context.Background()).Flow(flow).UpdateLoginFlowBody(updateLoginFlowBody).XSessionToken(xSessionToken).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.UpdateLoginFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.UpdateLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateLoginFlow`: SuccessfulNativeLogin
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.UpdateLoginFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.UpdateLoginFlow`: %v\n", resp)
 }
 ```
 
@@ -1757,7 +1757,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1767,9 +1767,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.UpdateLogoutFlow(context.Background()).Token(token).ReturnTo(returnTo).Cookie(cookie).Execute()
+    r, err := apiClient.FrontendAPI.UpdateLogoutFlow(context.Background()).Token(token).ReturnTo(returnTo).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.UpdateLogoutFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.UpdateLogoutFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1825,7 +1825,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1836,13 +1836,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.UpdateRecoveryFlow(context.Background()).Flow(flow).UpdateRecoveryFlowBody(updateRecoveryFlowBody).Token(token).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.UpdateRecoveryFlow(context.Background()).Flow(flow).UpdateRecoveryFlowBody(updateRecoveryFlowBody).Token(token).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.UpdateRecoveryFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.UpdateRecoveryFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateRecoveryFlow`: RecoveryFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.UpdateRecoveryFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.UpdateRecoveryFlow`: %v\n", resp)
 }
 ```
 
@@ -1897,7 +1897,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1907,13 +1907,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.UpdateRegistrationFlow(context.Background()).Flow(flow).UpdateRegistrationFlowBody(updateRegistrationFlowBody).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.UpdateRegistrationFlow(context.Background()).Flow(flow).UpdateRegistrationFlowBody(updateRegistrationFlowBody).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.UpdateRegistrationFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.UpdateRegistrationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateRegistrationFlow`: SuccessfulNativeRegistration
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.UpdateRegistrationFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.UpdateRegistrationFlow`: %v\n", resp)
 }
 ```
 
@@ -1967,7 +1967,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -1978,13 +1978,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.UpdateSettingsFlow(context.Background()).Flow(flow).UpdateSettingsFlowBody(updateSettingsFlowBody).XSessionToken(xSessionToken).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.UpdateSettingsFlow(context.Background()).Flow(flow).UpdateSettingsFlowBody(updateSettingsFlowBody).XSessionToken(xSessionToken).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.UpdateSettingsFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.UpdateSettingsFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateSettingsFlow`: SettingsFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.UpdateSettingsFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.UpdateSettingsFlow`: %v\n", resp)
 }
 ```
 
@@ -2039,7 +2039,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -2050,13 +2050,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendApi.UpdateVerificationFlow(context.Background()).Flow(flow).UpdateVerificationFlowBody(updateVerificationFlowBody).Token(token).Cookie(cookie).Execute()
+    resp, r, err := apiClient.FrontendAPI.UpdateVerificationFlow(context.Background()).Flow(flow).UpdateVerificationFlowBody(updateVerificationFlowBody).Token(token).Cookie(cookie).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FrontendApi.UpdateVerificationFlow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.UpdateVerificationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateVerificationFlow`: VerificationFlow
-    fmt.Fprintf(os.Stdout, "Response from `FrontendApi.UpdateVerificationFlow`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.UpdateVerificationFlow`: %v\n", resp)
 }
 ```
 

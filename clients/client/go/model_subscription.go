@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the Subscription type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Subscription{}
 
 // Subscription struct for Subscription
 type Subscription struct {
@@ -243,7 +247,7 @@ func (o *Subscription) SetIntervalChangesTo(v string) {
 
 // GetOngoingStripeCheckoutId returns the OngoingStripeCheckoutId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Subscription) GetOngoingStripeCheckoutId() string {
-	if o == nil || o.OngoingStripeCheckoutId.Get() == nil {
+	if o == nil || IsNil(o.OngoingStripeCheckoutId.Get()) {
 		var ret string
 		return ret
 	}
@@ -309,7 +313,7 @@ func (o *Subscription) SetPayedUntil(v time.Time) {
 
 // GetPlanChangesAt returns the PlanChangesAt field value if set, zero value otherwise.
 func (o *Subscription) GetPlanChangesAt() time.Time {
-	if o == nil || o.PlanChangesAt == nil {
+	if o == nil || IsNil(o.PlanChangesAt) {
 		var ret time.Time
 		return ret
 	}
@@ -319,7 +323,7 @@ func (o *Subscription) GetPlanChangesAt() time.Time {
 // GetPlanChangesAtOk returns a tuple with the PlanChangesAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetPlanChangesAtOk() (*time.Time, bool) {
-	if o == nil || o.PlanChangesAt == nil {
+	if o == nil || IsNil(o.PlanChangesAt) {
 		return nil, false
 	}
 	return o.PlanChangesAt, true
@@ -327,7 +331,7 @@ func (o *Subscription) GetPlanChangesAtOk() (*time.Time, bool) {
 
 // HasPlanChangesAt returns a boolean if a field has been set.
 func (o *Subscription) HasPlanChangesAt() bool {
-	if o != nil && o.PlanChangesAt != nil {
+	if o != nil && !IsNil(o.PlanChangesAt) {
 		return true
 	}
 
@@ -414,60 +418,81 @@ func (o *Subscription) SetUpdatedAt(v time.Time) {
 }
 
 func (o Subscription) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Subscription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["currency"] = o.Currency
-	}
-	if true {
-		toSerialize["current_interval"] = o.CurrentInterval
-	}
-	if true {
-		toSerialize["current_plan"] = o.CurrentPlan
-	}
-	if true {
-		toSerialize["customer_id"] = o.CustomerId
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["interval_changes_to"] = o.IntervalChangesTo.Get()
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["currency"] = o.Currency
+	toSerialize["current_interval"] = o.CurrentInterval
+	toSerialize["current_plan"] = o.CurrentPlan
+	toSerialize["customer_id"] = o.CustomerId
+	toSerialize["id"] = o.Id
+	toSerialize["interval_changes_to"] = o.IntervalChangesTo.Get()
 	if o.OngoingStripeCheckoutId.IsSet() {
 		toSerialize["ongoing_stripe_checkout_id"] = o.OngoingStripeCheckoutId.Get()
 	}
-	if true {
-		toSerialize["payed_until"] = o.PayedUntil
-	}
-	if o.PlanChangesAt != nil {
+	toSerialize["payed_until"] = o.PayedUntil
+	if !IsNil(o.PlanChangesAt) {
 		toSerialize["plan_changes_at"] = o.PlanChangesAt
 	}
-	if true {
-		toSerialize["plan_changes_to"] = o.PlanChangesTo.Get()
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["plan_changes_to"] = o.PlanChangesTo.Get()
+	toSerialize["status"] = o.Status
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Subscription) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"created_at",
+		"currency",
+		"current_interval",
+		"current_plan",
+		"customer_id",
+		"id",
+		"interval_changes_to",
+		"payed_until",
+		"plan_changes_to",
+		"status",
+		"updated_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varSubscription := _Subscription{}
 
-	if err = json.Unmarshal(bytes, &varSubscription); err == nil {
-		*o = Subscription(varSubscription)
+	err = json.Unmarshal(bytes, &varSubscription)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Subscription(varSubscription)
 
 	additionalProperties := make(map[string]interface{})
 

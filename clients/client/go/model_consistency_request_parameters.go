@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the ConsistencyRequestParameters type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ConsistencyRequestParameters{}
 
 // ConsistencyRequestParameters Control API consistency guarantees
 type ConsistencyRequestParameters struct {
@@ -43,7 +46,7 @@ func NewConsistencyRequestParametersWithDefaults() *ConsistencyRequestParameters
 
 // GetConsistency returns the Consistency field value if set, zero value otherwise.
 func (o *ConsistencyRequestParameters) GetConsistency() string {
-	if o == nil || o.Consistency == nil {
+	if o == nil || IsNil(o.Consistency) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ConsistencyRequestParameters) GetConsistency() string {
 // GetConsistencyOk returns a tuple with the Consistency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConsistencyRequestParameters) GetConsistencyOk() (*string, bool) {
-	if o == nil || o.Consistency == nil {
+	if o == nil || IsNil(o.Consistency) {
 		return nil, false
 	}
 	return o.Consistency, true
@@ -61,7 +64,7 @@ func (o *ConsistencyRequestParameters) GetConsistencyOk() (*string, bool) {
 
 // HasConsistency returns a boolean if a field has been set.
 func (o *ConsistencyRequestParameters) HasConsistency() bool {
-	if o != nil && o.Consistency != nil {
+	if o != nil && !IsNil(o.Consistency) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *ConsistencyRequestParameters) SetConsistency(v string) {
 }
 
 func (o ConsistencyRequestParameters) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ConsistencyRequestParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Consistency != nil {
+	if !IsNil(o.Consistency) {
 		toSerialize["consistency"] = o.Consistency
 	}
 
@@ -83,15 +94,19 @@ func (o ConsistencyRequestParameters) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ConsistencyRequestParameters) UnmarshalJSON(bytes []byte) (err error) {
 	varConsistencyRequestParameters := _ConsistencyRequestParameters{}
 
-	if err = json.Unmarshal(bytes, &varConsistencyRequestParameters); err == nil {
-		*o = ConsistencyRequestParameters(varConsistencyRequestParameters)
+	err = json.Unmarshal(bytes, &varConsistencyRequestParameters)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ConsistencyRequestParameters(varConsistencyRequestParameters)
 
 	additionalProperties := make(map[string]interface{})
 

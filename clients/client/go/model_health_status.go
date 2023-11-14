@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the HealthStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HealthStatus{}
 
 // HealthStatus struct for HealthStatus
 type HealthStatus struct {
@@ -43,7 +46,7 @@ func NewHealthStatusWithDefaults() *HealthStatus {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *HealthStatus) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *HealthStatus) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HealthStatus) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -61,7 +64,7 @@ func (o *HealthStatus) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *HealthStatus) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *HealthStatus) SetStatus(v string) {
 }
 
 func (o HealthStatus) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o HealthStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 
@@ -83,15 +94,19 @@ func (o HealthStatus) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *HealthStatus) UnmarshalJSON(bytes []byte) (err error) {
 	varHealthStatus := _HealthStatus{}
 
-	if err = json.Unmarshal(bytes, &varHealthStatus); err == nil {
-		*o = HealthStatus(varHealthStatus)
+	err = json.Unmarshal(bytes, &varHealthStatus)
+
+	if err != nil {
+		return err
 	}
+
+	*o = HealthStatus(varHealthStatus)
 
 	additionalProperties := make(map[string]interface{})
 

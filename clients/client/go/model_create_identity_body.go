@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the CreateIdentityBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateIdentityBody{}
 
 // CreateIdentityBody Create Identity Body
 type CreateIdentityBody struct {
@@ -57,7 +61,7 @@ func NewCreateIdentityBodyWithDefaults() *CreateIdentityBody {
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *CreateIdentityBody) GetCredentials() IdentityWithCredentials {
-	if o == nil || o.Credentials == nil {
+	if o == nil || IsNil(o.Credentials) {
 		var ret IdentityWithCredentials
 		return ret
 	}
@@ -67,7 +71,7 @@ func (o *CreateIdentityBody) GetCredentials() IdentityWithCredentials {
 // GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateIdentityBody) GetCredentialsOk() (*IdentityWithCredentials, bool) {
-	if o == nil || o.Credentials == nil {
+	if o == nil || IsNil(o.Credentials) {
 		return nil, false
 	}
 	return o.Credentials, true
@@ -75,7 +79,7 @@ func (o *CreateIdentityBody) GetCredentialsOk() (*IdentityWithCredentials, bool)
 
 // HasCredentials returns a boolean if a field has been set.
 func (o *CreateIdentityBody) HasCredentials() bool {
-	if o != nil && o.Credentials != nil {
+	if o != nil && !IsNil(o.Credentials) {
 		return true
 	}
 
@@ -100,7 +104,7 @@ func (o *CreateIdentityBody) GetMetadataAdmin() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateIdentityBody) GetMetadataAdminOk() (*interface{}, bool) {
-	if o == nil || o.MetadataAdmin == nil {
+	if o == nil || IsNil(o.MetadataAdmin) {
 		return nil, false
 	}
 	return &o.MetadataAdmin, true
@@ -108,7 +112,7 @@ func (o *CreateIdentityBody) GetMetadataAdminOk() (*interface{}, bool) {
 
 // HasMetadataAdmin returns a boolean if a field has been set.
 func (o *CreateIdentityBody) HasMetadataAdmin() bool {
-	if o != nil && o.MetadataAdmin != nil {
+	if o != nil && IsNil(o.MetadataAdmin) {
 		return true
 	}
 
@@ -133,7 +137,7 @@ func (o *CreateIdentityBody) GetMetadataPublic() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateIdentityBody) GetMetadataPublicOk() (*interface{}, bool) {
-	if o == nil || o.MetadataPublic == nil {
+	if o == nil || IsNil(o.MetadataPublic) {
 		return nil, false
 	}
 	return &o.MetadataPublic, true
@@ -141,7 +145,7 @@ func (o *CreateIdentityBody) GetMetadataPublicOk() (*interface{}, bool) {
 
 // HasMetadataPublic returns a boolean if a field has been set.
 func (o *CreateIdentityBody) HasMetadataPublic() bool {
-	if o != nil && o.MetadataPublic != nil {
+	if o != nil && IsNil(o.MetadataPublic) {
 		return true
 	}
 
@@ -155,7 +159,7 @@ func (o *CreateIdentityBody) SetMetadataPublic(v interface{}) {
 
 // GetRecoveryAddresses returns the RecoveryAddresses field value if set, zero value otherwise.
 func (o *CreateIdentityBody) GetRecoveryAddresses() []RecoveryIdentityAddress {
-	if o == nil || o.RecoveryAddresses == nil {
+	if o == nil || IsNil(o.RecoveryAddresses) {
 		var ret []RecoveryIdentityAddress
 		return ret
 	}
@@ -165,7 +169,7 @@ func (o *CreateIdentityBody) GetRecoveryAddresses() []RecoveryIdentityAddress {
 // GetRecoveryAddressesOk returns a tuple with the RecoveryAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateIdentityBody) GetRecoveryAddressesOk() ([]RecoveryIdentityAddress, bool) {
-	if o == nil || o.RecoveryAddresses == nil {
+	if o == nil || IsNil(o.RecoveryAddresses) {
 		return nil, false
 	}
 	return o.RecoveryAddresses, true
@@ -173,7 +177,7 @@ func (o *CreateIdentityBody) GetRecoveryAddressesOk() ([]RecoveryIdentityAddress
 
 // HasRecoveryAddresses returns a boolean if a field has been set.
 func (o *CreateIdentityBody) HasRecoveryAddresses() bool {
-	if o != nil && o.RecoveryAddresses != nil {
+	if o != nil && !IsNil(o.RecoveryAddresses) {
 		return true
 	}
 
@@ -211,7 +215,7 @@ func (o *CreateIdentityBody) SetSchemaId(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *CreateIdentityBody) GetState() IdentityState {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret IdentityState
 		return ret
 	}
@@ -221,7 +225,7 @@ func (o *CreateIdentityBody) GetState() IdentityState {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateIdentityBody) GetStateOk() (*IdentityState, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -229,7 +233,7 @@ func (o *CreateIdentityBody) GetStateOk() (*IdentityState, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *CreateIdentityBody) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -255,7 +259,7 @@ func (o *CreateIdentityBody) GetTraits() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *CreateIdentityBody) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Traits, true
 }
@@ -267,7 +271,7 @@ func (o *CreateIdentityBody) SetTraits(v map[string]interface{}) {
 
 // GetVerifiableAddresses returns the VerifiableAddresses field value if set, zero value otherwise.
 func (o *CreateIdentityBody) GetVerifiableAddresses() []VerifiableIdentityAddress {
-	if o == nil || o.VerifiableAddresses == nil {
+	if o == nil || IsNil(o.VerifiableAddresses) {
 		var ret []VerifiableIdentityAddress
 		return ret
 	}
@@ -277,7 +281,7 @@ func (o *CreateIdentityBody) GetVerifiableAddresses() []VerifiableIdentityAddres
 // GetVerifiableAddressesOk returns a tuple with the VerifiableAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateIdentityBody) GetVerifiableAddressesOk() ([]VerifiableIdentityAddress, bool) {
-	if o == nil || o.VerifiableAddresses == nil {
+	if o == nil || IsNil(o.VerifiableAddresses) {
 		return nil, false
 	}
 	return o.VerifiableAddresses, true
@@ -285,7 +289,7 @@ func (o *CreateIdentityBody) GetVerifiableAddressesOk() ([]VerifiableIdentityAdd
 
 // HasVerifiableAddresses returns a boolean if a field has been set.
 func (o *CreateIdentityBody) HasVerifiableAddresses() bool {
-	if o != nil && o.VerifiableAddresses != nil {
+	if o != nil && !IsNil(o.VerifiableAddresses) {
 		return true
 	}
 
@@ -298,8 +302,16 @@ func (o *CreateIdentityBody) SetVerifiableAddresses(v []VerifiableIdentityAddres
 }
 
 func (o CreateIdentityBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateIdentityBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Credentials != nil {
+	if !IsNil(o.Credentials) {
 		toSerialize["credentials"] = o.Credentials
 	}
 	if o.MetadataAdmin != nil {
@@ -308,19 +320,15 @@ func (o CreateIdentityBody) MarshalJSON() ([]byte, error) {
 	if o.MetadataPublic != nil {
 		toSerialize["metadata_public"] = o.MetadataPublic
 	}
-	if o.RecoveryAddresses != nil {
+	if !IsNil(o.RecoveryAddresses) {
 		toSerialize["recovery_addresses"] = o.RecoveryAddresses
 	}
-	if true {
-		toSerialize["schema_id"] = o.SchemaId
-	}
-	if o.State != nil {
+	toSerialize["schema_id"] = o.SchemaId
+	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
-	if true {
-		toSerialize["traits"] = o.Traits
-	}
-	if o.VerifiableAddresses != nil {
+	toSerialize["traits"] = o.Traits
+	if !IsNil(o.VerifiableAddresses) {
 		toSerialize["verifiable_addresses"] = o.VerifiableAddresses
 	}
 
@@ -328,15 +336,41 @@ func (o CreateIdentityBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CreateIdentityBody) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"schema_id",
+		"traits",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varCreateIdentityBody := _CreateIdentityBody{}
 
-	if err = json.Unmarshal(bytes, &varCreateIdentityBody); err == nil {
-		*o = CreateIdentityBody(varCreateIdentityBody)
+	err = json.Unmarshal(bytes, &varCreateIdentityBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateIdentityBody(varCreateIdentityBody)
 
 	additionalProperties := make(map[string]interface{})
 

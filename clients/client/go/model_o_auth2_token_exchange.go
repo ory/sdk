@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the OAuth2TokenExchange type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OAuth2TokenExchange{}
 
 // OAuth2TokenExchange OAuth2 Token Exchange Result
 type OAuth2TokenExchange struct {
@@ -53,7 +56,7 @@ func NewOAuth2TokenExchangeWithDefaults() *OAuth2TokenExchange {
 
 // GetAccessToken returns the AccessToken field value if set, zero value otherwise.
 func (o *OAuth2TokenExchange) GetAccessToken() string {
-	if o == nil || o.AccessToken == nil {
+	if o == nil || IsNil(o.AccessToken) {
 		var ret string
 		return ret
 	}
@@ -63,7 +66,7 @@ func (o *OAuth2TokenExchange) GetAccessToken() string {
 // GetAccessTokenOk returns a tuple with the AccessToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2TokenExchange) GetAccessTokenOk() (*string, bool) {
-	if o == nil || o.AccessToken == nil {
+	if o == nil || IsNil(o.AccessToken) {
 		return nil, false
 	}
 	return o.AccessToken, true
@@ -71,7 +74,7 @@ func (o *OAuth2TokenExchange) GetAccessTokenOk() (*string, bool) {
 
 // HasAccessToken returns a boolean if a field has been set.
 func (o *OAuth2TokenExchange) HasAccessToken() bool {
-	if o != nil && o.AccessToken != nil {
+	if o != nil && !IsNil(o.AccessToken) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *OAuth2TokenExchange) SetAccessToken(v string) {
 
 // GetExpiresIn returns the ExpiresIn field value if set, zero value otherwise.
 func (o *OAuth2TokenExchange) GetExpiresIn() int64 {
-	if o == nil || o.ExpiresIn == nil {
+	if o == nil || IsNil(o.ExpiresIn) {
 		var ret int64
 		return ret
 	}
@@ -95,7 +98,7 @@ func (o *OAuth2TokenExchange) GetExpiresIn() int64 {
 // GetExpiresInOk returns a tuple with the ExpiresIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2TokenExchange) GetExpiresInOk() (*int64, bool) {
-	if o == nil || o.ExpiresIn == nil {
+	if o == nil || IsNil(o.ExpiresIn) {
 		return nil, false
 	}
 	return o.ExpiresIn, true
@@ -103,7 +106,7 @@ func (o *OAuth2TokenExchange) GetExpiresInOk() (*int64, bool) {
 
 // HasExpiresIn returns a boolean if a field has been set.
 func (o *OAuth2TokenExchange) HasExpiresIn() bool {
-	if o != nil && o.ExpiresIn != nil {
+	if o != nil && !IsNil(o.ExpiresIn) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *OAuth2TokenExchange) SetExpiresIn(v int64) {
 
 // GetIdToken returns the IdToken field value if set, zero value otherwise.
 func (o *OAuth2TokenExchange) GetIdToken() string {
-	if o == nil || o.IdToken == nil {
+	if o == nil || IsNil(o.IdToken) {
 		var ret string
 		return ret
 	}
@@ -127,7 +130,7 @@ func (o *OAuth2TokenExchange) GetIdToken() string {
 // GetIdTokenOk returns a tuple with the IdToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2TokenExchange) GetIdTokenOk() (*string, bool) {
-	if o == nil || o.IdToken == nil {
+	if o == nil || IsNil(o.IdToken) {
 		return nil, false
 	}
 	return o.IdToken, true
@@ -135,7 +138,7 @@ func (o *OAuth2TokenExchange) GetIdTokenOk() (*string, bool) {
 
 // HasIdToken returns a boolean if a field has been set.
 func (o *OAuth2TokenExchange) HasIdToken() bool {
-	if o != nil && o.IdToken != nil {
+	if o != nil && !IsNil(o.IdToken) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *OAuth2TokenExchange) SetIdToken(v string) {
 
 // GetRefreshToken returns the RefreshToken field value if set, zero value otherwise.
 func (o *OAuth2TokenExchange) GetRefreshToken() string {
-	if o == nil || o.RefreshToken == nil {
+	if o == nil || IsNil(o.RefreshToken) {
 		var ret string
 		return ret
 	}
@@ -159,7 +162,7 @@ func (o *OAuth2TokenExchange) GetRefreshToken() string {
 // GetRefreshTokenOk returns a tuple with the RefreshToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2TokenExchange) GetRefreshTokenOk() (*string, bool) {
-	if o == nil || o.RefreshToken == nil {
+	if o == nil || IsNil(o.RefreshToken) {
 		return nil, false
 	}
 	return o.RefreshToken, true
@@ -167,7 +170,7 @@ func (o *OAuth2TokenExchange) GetRefreshTokenOk() (*string, bool) {
 
 // HasRefreshToken returns a boolean if a field has been set.
 func (o *OAuth2TokenExchange) HasRefreshToken() bool {
-	if o != nil && o.RefreshToken != nil {
+	if o != nil && !IsNil(o.RefreshToken) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *OAuth2TokenExchange) SetRefreshToken(v string) {
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *OAuth2TokenExchange) GetScope() string {
-	if o == nil || o.Scope == nil {
+	if o == nil || IsNil(o.Scope) {
 		var ret string
 		return ret
 	}
@@ -191,7 +194,7 @@ func (o *OAuth2TokenExchange) GetScope() string {
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2TokenExchange) GetScopeOk() (*string, bool) {
-	if o == nil || o.Scope == nil {
+	if o == nil || IsNil(o.Scope) {
 		return nil, false
 	}
 	return o.Scope, true
@@ -199,7 +202,7 @@ func (o *OAuth2TokenExchange) GetScopeOk() (*string, bool) {
 
 // HasScope returns a boolean if a field has been set.
 func (o *OAuth2TokenExchange) HasScope() bool {
-	if o != nil && o.Scope != nil {
+	if o != nil && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *OAuth2TokenExchange) SetScope(v string) {
 
 // GetTokenType returns the TokenType field value if set, zero value otherwise.
 func (o *OAuth2TokenExchange) GetTokenType() string {
-	if o == nil || o.TokenType == nil {
+	if o == nil || IsNil(o.TokenType) {
 		var ret string
 		return ret
 	}
@@ -223,7 +226,7 @@ func (o *OAuth2TokenExchange) GetTokenType() string {
 // GetTokenTypeOk returns a tuple with the TokenType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OAuth2TokenExchange) GetTokenTypeOk() (*string, bool) {
-	if o == nil || o.TokenType == nil {
+	if o == nil || IsNil(o.TokenType) {
 		return nil, false
 	}
 	return o.TokenType, true
@@ -231,7 +234,7 @@ func (o *OAuth2TokenExchange) GetTokenTypeOk() (*string, bool) {
 
 // HasTokenType returns a boolean if a field has been set.
 func (o *OAuth2TokenExchange) HasTokenType() bool {
-	if o != nil && o.TokenType != nil {
+	if o != nil && !IsNil(o.TokenType) {
 		return true
 	}
 
@@ -244,23 +247,31 @@ func (o *OAuth2TokenExchange) SetTokenType(v string) {
 }
 
 func (o OAuth2TokenExchange) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o OAuth2TokenExchange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AccessToken != nil {
+	if !IsNil(o.AccessToken) {
 		toSerialize["access_token"] = o.AccessToken
 	}
-	if o.ExpiresIn != nil {
+	if !IsNil(o.ExpiresIn) {
 		toSerialize["expires_in"] = o.ExpiresIn
 	}
-	if o.IdToken != nil {
+	if !IsNil(o.IdToken) {
 		toSerialize["id_token"] = o.IdToken
 	}
-	if o.RefreshToken != nil {
+	if !IsNil(o.RefreshToken) {
 		toSerialize["refresh_token"] = o.RefreshToken
 	}
-	if o.Scope != nil {
+	if !IsNil(o.Scope) {
 		toSerialize["scope"] = o.Scope
 	}
-	if o.TokenType != nil {
+	if !IsNil(o.TokenType) {
 		toSerialize["token_type"] = o.TokenType
 	}
 
@@ -268,15 +279,19 @@ func (o OAuth2TokenExchange) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *OAuth2TokenExchange) UnmarshalJSON(bytes []byte) (err error) {
 	varOAuth2TokenExchange := _OAuth2TokenExchange{}
 
-	if err = json.Unmarshal(bytes, &varOAuth2TokenExchange); err == nil {
-		*o = OAuth2TokenExchange(varOAuth2TokenExchange)
+	err = json.Unmarshal(bytes, &varOAuth2TokenExchange)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OAuth2TokenExchange(varOAuth2TokenExchange)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -1,14 +1,14 @@
-# \PermissionApi
+# \PermissionAPI
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CheckPermission**](PermissionApi.md#CheckPermission) | **Get** /relation-tuples/check/openapi | Check a permission
-[**CheckPermissionOrError**](PermissionApi.md#CheckPermissionOrError) | **Get** /relation-tuples/check | Check a permission
-[**ExpandPermissions**](PermissionApi.md#ExpandPermissions) | **Get** /relation-tuples/expand | Expand a Relationship into permissions.
-[**PostCheckPermission**](PermissionApi.md#PostCheckPermission) | **Post** /relation-tuples/check/openapi | Check a permission
-[**PostCheckPermissionOrError**](PermissionApi.md#PostCheckPermissionOrError) | **Post** /relation-tuples/check | Check a permission
+[**CheckPermission**](PermissionAPI.md#CheckPermission) | **Get** /relation-tuples/check/openapi | Check a permission
+[**CheckPermissionOrError**](PermissionAPI.md#CheckPermissionOrError) | **Get** /relation-tuples/check | Check a permission
+[**ExpandPermissions**](PermissionAPI.md#ExpandPermissions) | **Get** /relation-tuples/expand | Expand a Relationship into permissions.
+[**PostCheckPermission**](PermissionAPI.md#PostCheckPermission) | **Post** /relation-tuples/check/openapi | Check a permission
+[**PostCheckPermissionOrError**](PermissionAPI.md#PostCheckPermissionOrError) | **Post** /relation-tuples/check | Check a permission
 
 
 
@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -44,13 +44,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionApi.CheckPermission(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).MaxDepth(maxDepth).Execute()
+    resp, r, err := apiClient.PermissionAPI.CheckPermission(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).MaxDepth(maxDepth).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionApi.CheckPermission``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.CheckPermission``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CheckPermission`: CheckPermissionResult
-    fmt.Fprintf(os.Stdout, "Response from `PermissionApi.CheckPermission`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.CheckPermission`: %v\n", resp)
 }
 ```
 
@@ -109,7 +109,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -124,13 +124,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionApi.CheckPermissionOrError(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).MaxDepth(maxDepth).Execute()
+    resp, r, err := apiClient.PermissionAPI.CheckPermissionOrError(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).MaxDepth(maxDepth).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionApi.CheckPermissionOrError``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.CheckPermissionOrError``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CheckPermissionOrError`: CheckPermissionResult
-    fmt.Fprintf(os.Stdout, "Response from `PermissionApi.CheckPermissionOrError`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.CheckPermissionOrError`: %v\n", resp)
 }
 ```
 
@@ -189,7 +189,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -200,13 +200,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionApi.ExpandPermissions(context.Background()).Namespace(namespace).Object(object).Relation(relation).MaxDepth(maxDepth).Execute()
+    resp, r, err := apiClient.PermissionAPI.ExpandPermissions(context.Background()).Namespace(namespace).Object(object).Relation(relation).MaxDepth(maxDepth).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionApi.ExpandPermissions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.ExpandPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ExpandPermissions`: ExpandedPermissionTree
-    fmt.Fprintf(os.Stdout, "Response from `PermissionApi.ExpandPermissions`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.ExpandPermissions`: %v\n", resp)
 }
 ```
 
@@ -261,7 +261,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -270,13 +270,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionApi.PostCheckPermission(context.Background()).MaxDepth(maxDepth).PostCheckPermissionBody(postCheckPermissionBody).Execute()
+    resp, r, err := apiClient.PermissionAPI.PostCheckPermission(context.Background()).MaxDepth(maxDepth).PostCheckPermissionBody(postCheckPermissionBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionApi.PostCheckPermission``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.PostCheckPermission``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PostCheckPermission`: CheckPermissionResult
-    fmt.Fprintf(os.Stdout, "Response from `PermissionApi.PostCheckPermission`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.PostCheckPermission`: %v\n", resp)
 }
 ```
 
@@ -329,7 +329,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -338,13 +338,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionApi.PostCheckPermissionOrError(context.Background()).MaxDepth(maxDepth).PostCheckPermissionOrErrorBody(postCheckPermissionOrErrorBody).Execute()
+    resp, r, err := apiClient.PermissionAPI.PostCheckPermissionOrError(context.Background()).MaxDepth(maxDepth).PostCheckPermissionOrErrorBody(postCheckPermissionOrErrorBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionApi.PostCheckPermissionOrError``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.PostCheckPermissionOrError``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PostCheckPermissionOrError`: CheckPermissionResult
-    fmt.Fprintf(os.Stdout, "Response from `PermissionApi.PostCheckPermissionOrError`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.PostCheckPermissionOrError`: %v\n", resp)
 }
 ```
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateRegistrationFlowWithOidcMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateRegistrationFlowWithOidcMethod{}
 
 // UpdateRegistrationFlowWithOidcMethod Update Registration Flow with OpenID Connect Method
 type UpdateRegistrationFlowWithOidcMethod struct {
@@ -59,7 +63,7 @@ func NewUpdateRegistrationFlowWithOidcMethodWithDefaults() *UpdateRegistrationFl
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -69,7 +73,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -77,7 +81,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) GetCsrfTokenOk() (*string, bool) 
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -91,7 +95,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) SetCsrfToken(v string) {
 
 // GetIdToken returns the IdToken field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetIdToken() string {
-	if o == nil || o.IdToken == nil {
+	if o == nil || IsNil(o.IdToken) {
 		var ret string
 		return ret
 	}
@@ -101,7 +105,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) GetIdToken() string {
 // GetIdTokenOk returns a tuple with the IdToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetIdTokenOk() (*string, bool) {
-	if o == nil || o.IdToken == nil {
+	if o == nil || IsNil(o.IdToken) {
 		return nil, false
 	}
 	return o.IdToken, true
@@ -109,7 +113,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) GetIdTokenOk() (*string, bool) {
 
 // HasIdToken returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) HasIdToken() bool {
-	if o != nil && o.IdToken != nil {
+	if o != nil && !IsNil(o.IdToken) {
 		return true
 	}
 
@@ -123,7 +127,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) SetIdToken(v string) {
 
 // GetIdTokenNonce returns the IdTokenNonce field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetIdTokenNonce() string {
-	if o == nil || o.IdTokenNonce == nil {
+	if o == nil || IsNil(o.IdTokenNonce) {
 		var ret string
 		return ret
 	}
@@ -133,7 +137,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) GetIdTokenNonce() string {
 // GetIdTokenNonceOk returns a tuple with the IdTokenNonce field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetIdTokenNonceOk() (*string, bool) {
-	if o == nil || o.IdTokenNonce == nil {
+	if o == nil || IsNil(o.IdTokenNonce) {
 		return nil, false
 	}
 	return o.IdTokenNonce, true
@@ -141,7 +145,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) GetIdTokenNonceOk() (*string, boo
 
 // HasIdTokenNonce returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) HasIdTokenNonce() bool {
-	if o != nil && o.IdTokenNonce != nil {
+	if o != nil && !IsNil(o.IdTokenNonce) {
 		return true
 	}
 
@@ -203,7 +207,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) SetProvider(v string) {
 
 // GetTraits returns the Traits field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetTraits() map[string]interface{} {
-	if o == nil || o.Traits == nil {
+	if o == nil || IsNil(o.Traits) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -213,15 +217,15 @@ func (o *UpdateRegistrationFlowWithOidcMethod) GetTraits() map[string]interface{
 // GetTraitsOk returns a tuple with the Traits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetTraitsOk() (map[string]interface{}, bool) {
-	if o == nil || o.Traits == nil {
-		return nil, false
+	if o == nil || IsNil(o.Traits) {
+		return map[string]interface{}{}, false
 	}
 	return o.Traits, true
 }
 
 // HasTraits returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) HasTraits() bool {
-	if o != nil && o.Traits != nil {
+	if o != nil && !IsNil(o.Traits) {
 		return true
 	}
 
@@ -235,7 +239,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) SetTraits(v map[string]interface{
 
 // GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetTransientPayload() map[string]interface{} {
-	if o == nil || o.TransientPayload == nil {
+	if o == nil || IsNil(o.TransientPayload) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -245,15 +249,15 @@ func (o *UpdateRegistrationFlowWithOidcMethod) GetTransientPayload() map[string]
 // GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
-	if o == nil || o.TransientPayload == nil {
-		return nil, false
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
 	}
 	return o.TransientPayload, true
 }
 
 // HasTransientPayload returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) HasTransientPayload() bool {
-	if o != nil && o.TransientPayload != nil {
+	if o != nil && !IsNil(o.TransientPayload) {
 		return true
 	}
 
@@ -267,7 +271,7 @@ func (o *UpdateRegistrationFlowWithOidcMethod) SetTransientPayload(v map[string]
 
 // GetUpstreamParameters returns the UpstreamParameters field value if set, zero value otherwise.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetUpstreamParameters() map[string]interface{} {
-	if o == nil || o.UpstreamParameters == nil {
+	if o == nil || IsNil(o.UpstreamParameters) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -277,15 +281,15 @@ func (o *UpdateRegistrationFlowWithOidcMethod) GetUpstreamParameters() map[strin
 // GetUpstreamParametersOk returns a tuple with the UpstreamParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) GetUpstreamParametersOk() (map[string]interface{}, bool) {
-	if o == nil || o.UpstreamParameters == nil {
-		return nil, false
+	if o == nil || IsNil(o.UpstreamParameters) {
+		return map[string]interface{}{}, false
 	}
 	return o.UpstreamParameters, true
 }
 
 // HasUpstreamParameters returns a boolean if a field has been set.
 func (o *UpdateRegistrationFlowWithOidcMethod) HasUpstreamParameters() bool {
-	if o != nil && o.UpstreamParameters != nil {
+	if o != nil && !IsNil(o.UpstreamParameters) {
 		return true
 	}
 
@@ -298,29 +302,33 @@ func (o *UpdateRegistrationFlowWithOidcMethod) SetUpstreamParameters(v map[strin
 }
 
 func (o UpdateRegistrationFlowWithOidcMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateRegistrationFlowWithOidcMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if o.IdToken != nil {
+	if !IsNil(o.IdToken) {
 		toSerialize["id_token"] = o.IdToken
 	}
-	if o.IdTokenNonce != nil {
+	if !IsNil(o.IdTokenNonce) {
 		toSerialize["id_token_nonce"] = o.IdTokenNonce
 	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if true {
-		toSerialize["provider"] = o.Provider
-	}
-	if o.Traits != nil {
+	toSerialize["method"] = o.Method
+	toSerialize["provider"] = o.Provider
+	if !IsNil(o.Traits) {
 		toSerialize["traits"] = o.Traits
 	}
-	if o.TransientPayload != nil {
+	if !IsNil(o.TransientPayload) {
 		toSerialize["transient_payload"] = o.TransientPayload
 	}
-	if o.UpstreamParameters != nil {
+	if !IsNil(o.UpstreamParameters) {
 		toSerialize["upstream_parameters"] = o.UpstreamParameters
 	}
 
@@ -328,15 +336,41 @@ func (o UpdateRegistrationFlowWithOidcMethod) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateRegistrationFlowWithOidcMethod) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"method",
+		"provider",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateRegistrationFlowWithOidcMethod := _UpdateRegistrationFlowWithOidcMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithOidcMethod); err == nil {
-		*o = UpdateRegistrationFlowWithOidcMethod(varUpdateRegistrationFlowWithOidcMethod)
+	err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithOidcMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateRegistrationFlowWithOidcMethod(varUpdateRegistrationFlowWithOidcMethod)
 
 	additionalProperties := make(map[string]interface{})
 

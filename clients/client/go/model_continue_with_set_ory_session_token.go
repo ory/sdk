@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the ContinueWithSetOrySessionToken type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContinueWithSetOrySessionToken{}
 
 // ContinueWithSetOrySessionToken Indicates that a session was issued, and the application should use this token for authenticated requests
 type ContinueWithSetOrySessionToken struct {
@@ -94,27 +98,57 @@ func (o *ContinueWithSetOrySessionToken) SetOrySessionToken(v string) {
 }
 
 func (o ContinueWithSetOrySessionToken) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ContinueWithSetOrySessionToken) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["action"] = o.Action
-	}
-	if true {
-		toSerialize["ory_session_token"] = o.OrySessionToken
-	}
+	toSerialize["action"] = o.Action
+	toSerialize["ory_session_token"] = o.OrySessionToken
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ContinueWithSetOrySessionToken) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"action",
+		"ory_session_token",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varContinueWithSetOrySessionToken := _ContinueWithSetOrySessionToken{}
 
-	if err = json.Unmarshal(bytes, &varContinueWithSetOrySessionToken); err == nil {
-		*o = ContinueWithSetOrySessionToken(varContinueWithSetOrySessionToken)
+	err = json.Unmarshal(bytes, &varContinueWithSetOrySessionToken)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ContinueWithSetOrySessionToken(varContinueWithSetOrySessionToken)
 
 	additionalProperties := make(map[string]interface{})
 

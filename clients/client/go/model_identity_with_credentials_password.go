@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the IdentityWithCredentialsPassword type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityWithCredentialsPassword{}
 
 // IdentityWithCredentialsPassword Create Identity and Import Password Credentials
 type IdentityWithCredentialsPassword struct {
@@ -42,7 +45,7 @@ func NewIdentityWithCredentialsPasswordWithDefaults() *IdentityWithCredentialsPa
 
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *IdentityWithCredentialsPassword) GetConfig() IdentityWithCredentialsPasswordConfig {
-	if o == nil || o.Config == nil {
+	if o == nil || IsNil(o.Config) {
 		var ret IdentityWithCredentialsPasswordConfig
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *IdentityWithCredentialsPassword) GetConfig() IdentityWithCredentialsPas
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentialsPassword) GetConfigOk() (*IdentityWithCredentialsPasswordConfig, bool) {
-	if o == nil || o.Config == nil {
+	if o == nil || IsNil(o.Config) {
 		return nil, false
 	}
 	return o.Config, true
@@ -60,7 +63,7 @@ func (o *IdentityWithCredentialsPassword) GetConfigOk() (*IdentityWithCredential
 
 // HasConfig returns a boolean if a field has been set.
 func (o *IdentityWithCredentialsPassword) HasConfig() bool {
-	if o != nil && o.Config != nil {
+	if o != nil && !IsNil(o.Config) {
 		return true
 	}
 
@@ -73,8 +76,16 @@ func (o *IdentityWithCredentialsPassword) SetConfig(v IdentityWithCredentialsPas
 }
 
 func (o IdentityWithCredentialsPassword) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityWithCredentialsPassword) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Config != nil {
+	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
 
@@ -82,15 +93,19 @@ func (o IdentityWithCredentialsPassword) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityWithCredentialsPassword) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityWithCredentialsPassword := _IdentityWithCredentialsPassword{}
 
-	if err = json.Unmarshal(bytes, &varIdentityWithCredentialsPassword); err == nil {
-		*o = IdentityWithCredentialsPassword(varIdentityWithCredentialsPassword)
+	err = json.Unmarshal(bytes, &varIdentityWithCredentialsPassword)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityWithCredentialsPassword(varIdentityWithCredentialsPassword)
 
 	additionalProperties := make(map[string]interface{})
 

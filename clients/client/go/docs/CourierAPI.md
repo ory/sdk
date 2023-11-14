@@ -1,11 +1,11 @@
-# \CourierApi
+# \CourierAPI
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetCourierMessage**](CourierApi.md#GetCourierMessage) | **Get** /admin/courier/messages/{id} | Get a Message
-[**ListCourierMessages**](CourierApi.md#ListCourierMessages) | **Get** /admin/courier/messages | List Messages
+[**GetCourierMessage**](CourierAPI.md#GetCourierMessage) | **Get** /admin/courier/messages/{id} | Get a Message
+[**ListCourierMessages**](CourierAPI.md#ListCourierMessages) | **Get** /admin/courier/messages | List Messages
 
 
 
@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CourierApi.GetCourierMessage(context.Background(), id).Execute()
+    resp, r, err := apiClient.CourierAPI.GetCourierMessage(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CourierApi.GetCourierMessage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CourierAPI.GetCourierMessage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCourierMessage`: Message
-    fmt.Fprintf(os.Stdout, "Response from `CourierApi.GetCourierMessage`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CourierAPI.GetCourierMessage`: %v\n", resp)
 }
 ```
 
@@ -96,7 +96,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/ory/client-go"
 )
 
 func main() {
@@ -107,13 +107,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CourierApi.ListCourierMessages(context.Background()).PageSize(pageSize).PageToken(pageToken).Status(status).Recipient(recipient).Execute()
+    resp, r, err := apiClient.CourierAPI.ListCourierMessages(context.Background()).PageSize(pageSize).PageToken(pageToken).Status(status).Recipient(recipient).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CourierApi.ListCourierMessages``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CourierAPI.ListCourierMessages``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListCourierMessages`: []Message
-    fmt.Fprintf(os.Stdout, "Response from `CourierApi.ListCourierMessages`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CourierAPI.ListCourierMessages`: %v\n", resp)
 }
 ```
 

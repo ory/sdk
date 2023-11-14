@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the Relationships type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Relationships{}
 
 // Relationships Paginated Relationship List
 type Relationships struct {
@@ -44,7 +47,7 @@ func NewRelationshipsWithDefaults() *Relationships {
 
 // GetNextPageToken returns the NextPageToken field value if set, zero value otherwise.
 func (o *Relationships) GetNextPageToken() string {
-	if o == nil || o.NextPageToken == nil {
+	if o == nil || IsNil(o.NextPageToken) {
 		var ret string
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *Relationships) GetNextPageToken() string {
 // GetNextPageTokenOk returns a tuple with the NextPageToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Relationships) GetNextPageTokenOk() (*string, bool) {
-	if o == nil || o.NextPageToken == nil {
+	if o == nil || IsNil(o.NextPageToken) {
 		return nil, false
 	}
 	return o.NextPageToken, true
@@ -62,7 +65,7 @@ func (o *Relationships) GetNextPageTokenOk() (*string, bool) {
 
 // HasNextPageToken returns a boolean if a field has been set.
 func (o *Relationships) HasNextPageToken() bool {
-	if o != nil && o.NextPageToken != nil {
+	if o != nil && !IsNil(o.NextPageToken) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *Relationships) SetNextPageToken(v string) {
 
 // GetRelationTuples returns the RelationTuples field value if set, zero value otherwise.
 func (o *Relationships) GetRelationTuples() []Relationship {
-	if o == nil || o.RelationTuples == nil {
+	if o == nil || IsNil(o.RelationTuples) {
 		var ret []Relationship
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *Relationships) GetRelationTuples() []Relationship {
 // GetRelationTuplesOk returns a tuple with the RelationTuples field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Relationships) GetRelationTuplesOk() ([]Relationship, bool) {
-	if o == nil || o.RelationTuples == nil {
+	if o == nil || IsNil(o.RelationTuples) {
 		return nil, false
 	}
 	return o.RelationTuples, true
@@ -94,7 +97,7 @@ func (o *Relationships) GetRelationTuplesOk() ([]Relationship, bool) {
 
 // HasRelationTuples returns a boolean if a field has been set.
 func (o *Relationships) HasRelationTuples() bool {
-	if o != nil && o.RelationTuples != nil {
+	if o != nil && !IsNil(o.RelationTuples) {
 		return true
 	}
 
@@ -107,11 +110,19 @@ func (o *Relationships) SetRelationTuples(v []Relationship) {
 }
 
 func (o Relationships) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Relationships) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.NextPageToken != nil {
+	if !IsNil(o.NextPageToken) {
 		toSerialize["next_page_token"] = o.NextPageToken
 	}
-	if o.RelationTuples != nil {
+	if !IsNil(o.RelationTuples) {
 		toSerialize["relation_tuples"] = o.RelationTuples
 	}
 
@@ -119,15 +130,19 @@ func (o Relationships) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Relationships) UnmarshalJSON(bytes []byte) (err error) {
 	varRelationships := _Relationships{}
 
-	if err = json.Unmarshal(bytes, &varRelationships); err == nil {
-		*o = Relationships(varRelationships)
+	err = json.Unmarshal(bytes, &varRelationships)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Relationships(varRelationships)
 
 	additionalProperties := make(map[string]interface{})
 

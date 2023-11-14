@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateLoginFlowWithWebAuthnMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateLoginFlowWithWebAuthnMethod{}
 
 // UpdateLoginFlowWithWebAuthnMethod Update Login Flow with WebAuthn Method
 type UpdateLoginFlowWithWebAuthnMethod struct {
@@ -51,7 +55,7 @@ func NewUpdateLoginFlowWithWebAuthnMethodWithDefaults() *UpdateLoginFlowWithWebA
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithWebAuthnMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -61,7 +65,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithWebAuthnMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -69,7 +73,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) GetCsrfTokenOk() (*string, bool) {
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithWebAuthnMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -131,7 +135,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) SetMethod(v string) {
 
 // GetWebauthnLogin returns the WebauthnLogin field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithWebAuthnMethod) GetWebauthnLogin() string {
-	if o == nil || o.WebauthnLogin == nil {
+	if o == nil || IsNil(o.WebauthnLogin) {
 		var ret string
 		return ret
 	}
@@ -141,7 +145,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) GetWebauthnLogin() string {
 // GetWebauthnLoginOk returns a tuple with the WebauthnLogin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithWebAuthnMethod) GetWebauthnLoginOk() (*string, bool) {
-	if o == nil || o.WebauthnLogin == nil {
+	if o == nil || IsNil(o.WebauthnLogin) {
 		return nil, false
 	}
 	return o.WebauthnLogin, true
@@ -149,7 +153,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) GetWebauthnLoginOk() (*string, bool)
 
 // HasWebauthnLogin returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithWebAuthnMethod) HasWebauthnLogin() bool {
-	if o != nil && o.WebauthnLogin != nil {
+	if o != nil && !IsNil(o.WebauthnLogin) {
 		return true
 	}
 
@@ -162,17 +166,21 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) SetWebauthnLogin(v string) {
 }
 
 func (o UpdateLoginFlowWithWebAuthnMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateLoginFlowWithWebAuthnMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if true {
-		toSerialize["identifier"] = o.Identifier
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if o.WebauthnLogin != nil {
+	toSerialize["identifier"] = o.Identifier
+	toSerialize["method"] = o.Method
+	if !IsNil(o.WebauthnLogin) {
 		toSerialize["webauthn_login"] = o.WebauthnLogin
 	}
 
@@ -180,15 +188,41 @@ func (o UpdateLoginFlowWithWebAuthnMethod) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateLoginFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"identifier",
+		"method",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateLoginFlowWithWebAuthnMethod := _UpdateLoginFlowWithWebAuthnMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateLoginFlowWithWebAuthnMethod); err == nil {
-		*o = UpdateLoginFlowWithWebAuthnMethod(varUpdateLoginFlowWithWebAuthnMethod)
+	err = json.Unmarshal(bytes, &varUpdateLoginFlowWithWebAuthnMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateLoginFlowWithWebAuthnMethod(varUpdateLoginFlowWithWebAuthnMethod)
 
 	additionalProperties := make(map[string]interface{})
 

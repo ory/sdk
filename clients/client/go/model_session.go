@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.2.17
+API version: v1.3.0
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the Session type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Session{}
 
 // Session A Session
 type Session struct {
@@ -61,7 +65,7 @@ func NewSessionWithDefaults() *Session {
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *Session) GetActive() bool {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
 	}
@@ -71,7 +75,7 @@ func (o *Session) GetActive() bool {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Session) GetActiveOk() (*bool, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
 	return o.Active, true
@@ -79,7 +83,7 @@ func (o *Session) GetActiveOk() (*bool, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *Session) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -93,7 +97,7 @@ func (o *Session) SetActive(v bool) {
 
 // GetAuthenticatedAt returns the AuthenticatedAt field value if set, zero value otherwise.
 func (o *Session) GetAuthenticatedAt() time.Time {
-	if o == nil || o.AuthenticatedAt == nil {
+	if o == nil || IsNil(o.AuthenticatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -103,7 +107,7 @@ func (o *Session) GetAuthenticatedAt() time.Time {
 // GetAuthenticatedAtOk returns a tuple with the AuthenticatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Session) GetAuthenticatedAtOk() (*time.Time, bool) {
-	if o == nil || o.AuthenticatedAt == nil {
+	if o == nil || IsNil(o.AuthenticatedAt) {
 		return nil, false
 	}
 	return o.AuthenticatedAt, true
@@ -111,7 +115,7 @@ func (o *Session) GetAuthenticatedAtOk() (*time.Time, bool) {
 
 // HasAuthenticatedAt returns a boolean if a field has been set.
 func (o *Session) HasAuthenticatedAt() bool {
-	if o != nil && o.AuthenticatedAt != nil {
+	if o != nil && !IsNil(o.AuthenticatedAt) {
 		return true
 	}
 
@@ -125,7 +129,7 @@ func (o *Session) SetAuthenticatedAt(v time.Time) {
 
 // GetAuthenticationMethods returns the AuthenticationMethods field value if set, zero value otherwise.
 func (o *Session) GetAuthenticationMethods() []SessionAuthenticationMethod {
-	if o == nil || o.AuthenticationMethods == nil {
+	if o == nil || IsNil(o.AuthenticationMethods) {
 		var ret []SessionAuthenticationMethod
 		return ret
 	}
@@ -135,7 +139,7 @@ func (o *Session) GetAuthenticationMethods() []SessionAuthenticationMethod {
 // GetAuthenticationMethodsOk returns a tuple with the AuthenticationMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Session) GetAuthenticationMethodsOk() ([]SessionAuthenticationMethod, bool) {
-	if o == nil || o.AuthenticationMethods == nil {
+	if o == nil || IsNil(o.AuthenticationMethods) {
 		return nil, false
 	}
 	return o.AuthenticationMethods, true
@@ -143,7 +147,7 @@ func (o *Session) GetAuthenticationMethodsOk() ([]SessionAuthenticationMethod, b
 
 // HasAuthenticationMethods returns a boolean if a field has been set.
 func (o *Session) HasAuthenticationMethods() bool {
-	if o != nil && o.AuthenticationMethods != nil {
+	if o != nil && !IsNil(o.AuthenticationMethods) {
 		return true
 	}
 
@@ -157,7 +161,7 @@ func (o *Session) SetAuthenticationMethods(v []SessionAuthenticationMethod) {
 
 // GetAuthenticatorAssuranceLevel returns the AuthenticatorAssuranceLevel field value if set, zero value otherwise.
 func (o *Session) GetAuthenticatorAssuranceLevel() AuthenticatorAssuranceLevel {
-	if o == nil || o.AuthenticatorAssuranceLevel == nil {
+	if o == nil || IsNil(o.AuthenticatorAssuranceLevel) {
 		var ret AuthenticatorAssuranceLevel
 		return ret
 	}
@@ -167,7 +171,7 @@ func (o *Session) GetAuthenticatorAssuranceLevel() AuthenticatorAssuranceLevel {
 // GetAuthenticatorAssuranceLevelOk returns a tuple with the AuthenticatorAssuranceLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Session) GetAuthenticatorAssuranceLevelOk() (*AuthenticatorAssuranceLevel, bool) {
-	if o == nil || o.AuthenticatorAssuranceLevel == nil {
+	if o == nil || IsNil(o.AuthenticatorAssuranceLevel) {
 		return nil, false
 	}
 	return o.AuthenticatorAssuranceLevel, true
@@ -175,7 +179,7 @@ func (o *Session) GetAuthenticatorAssuranceLevelOk() (*AuthenticatorAssuranceLev
 
 // HasAuthenticatorAssuranceLevel returns a boolean if a field has been set.
 func (o *Session) HasAuthenticatorAssuranceLevel() bool {
-	if o != nil && o.AuthenticatorAssuranceLevel != nil {
+	if o != nil && !IsNil(o.AuthenticatorAssuranceLevel) {
 		return true
 	}
 
@@ -189,7 +193,7 @@ func (o *Session) SetAuthenticatorAssuranceLevel(v AuthenticatorAssuranceLevel) 
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
 func (o *Session) GetDevices() []SessionDevice {
-	if o == nil || o.Devices == nil {
+	if o == nil || IsNil(o.Devices) {
 		var ret []SessionDevice
 		return ret
 	}
@@ -199,7 +203,7 @@ func (o *Session) GetDevices() []SessionDevice {
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Session) GetDevicesOk() ([]SessionDevice, bool) {
-	if o == nil || o.Devices == nil {
+	if o == nil || IsNil(o.Devices) {
 		return nil, false
 	}
 	return o.Devices, true
@@ -207,7 +211,7 @@ func (o *Session) GetDevicesOk() ([]SessionDevice, bool) {
 
 // HasDevices returns a boolean if a field has been set.
 func (o *Session) HasDevices() bool {
-	if o != nil && o.Devices != nil {
+	if o != nil && !IsNil(o.Devices) {
 		return true
 	}
 
@@ -221,7 +225,7 @@ func (o *Session) SetDevices(v []SessionDevice) {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *Session) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -231,7 +235,7 @@ func (o *Session) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Session) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -239,7 +243,7 @@ func (o *Session) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *Session) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -277,7 +281,7 @@ func (o *Session) SetId(v string) {
 
 // GetIdentity returns the Identity field value if set, zero value otherwise.
 func (o *Session) GetIdentity() Identity {
-	if o == nil || o.Identity == nil {
+	if o == nil || IsNil(o.Identity) {
 		var ret Identity
 		return ret
 	}
@@ -287,7 +291,7 @@ func (o *Session) GetIdentity() Identity {
 // GetIdentityOk returns a tuple with the Identity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Session) GetIdentityOk() (*Identity, bool) {
-	if o == nil || o.Identity == nil {
+	if o == nil || IsNil(o.Identity) {
 		return nil, false
 	}
 	return o.Identity, true
@@ -295,7 +299,7 @@ func (o *Session) GetIdentityOk() (*Identity, bool) {
 
 // HasIdentity returns a boolean if a field has been set.
 func (o *Session) HasIdentity() bool {
-	if o != nil && o.Identity != nil {
+	if o != nil && !IsNil(o.Identity) {
 		return true
 	}
 
@@ -309,7 +313,7 @@ func (o *Session) SetIdentity(v Identity) {
 
 // GetIssuedAt returns the IssuedAt field value if set, zero value otherwise.
 func (o *Session) GetIssuedAt() time.Time {
-	if o == nil || o.IssuedAt == nil {
+	if o == nil || IsNil(o.IssuedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -319,7 +323,7 @@ func (o *Session) GetIssuedAt() time.Time {
 // GetIssuedAtOk returns a tuple with the IssuedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Session) GetIssuedAtOk() (*time.Time, bool) {
-	if o == nil || o.IssuedAt == nil {
+	if o == nil || IsNil(o.IssuedAt) {
 		return nil, false
 	}
 	return o.IssuedAt, true
@@ -327,7 +331,7 @@ func (o *Session) GetIssuedAtOk() (*time.Time, bool) {
 
 // HasIssuedAt returns a boolean if a field has been set.
 func (o *Session) HasIssuedAt() bool {
-	if o != nil && o.IssuedAt != nil {
+	if o != nil && !IsNil(o.IssuedAt) {
 		return true
 	}
 
@@ -341,7 +345,7 @@ func (o *Session) SetIssuedAt(v time.Time) {
 
 // GetTokenized returns the Tokenized field value if set, zero value otherwise.
 func (o *Session) GetTokenized() string {
-	if o == nil || o.Tokenized == nil {
+	if o == nil || IsNil(o.Tokenized) {
 		var ret string
 		return ret
 	}
@@ -351,7 +355,7 @@ func (o *Session) GetTokenized() string {
 // GetTokenizedOk returns a tuple with the Tokenized field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Session) GetTokenizedOk() (*string, bool) {
-	if o == nil || o.Tokenized == nil {
+	if o == nil || IsNil(o.Tokenized) {
 		return nil, false
 	}
 	return o.Tokenized, true
@@ -359,7 +363,7 @@ func (o *Session) GetTokenizedOk() (*string, bool) {
 
 // HasTokenized returns a boolean if a field has been set.
 func (o *Session) HasTokenized() bool {
-	if o != nil && o.Tokenized != nil {
+	if o != nil && !IsNil(o.Tokenized) {
 		return true
 	}
 
@@ -372,35 +376,41 @@ func (o *Session) SetTokenized(v string) {
 }
 
 func (o Session) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Session) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Active != nil {
+	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if o.AuthenticatedAt != nil {
+	if !IsNil(o.AuthenticatedAt) {
 		toSerialize["authenticated_at"] = o.AuthenticatedAt
 	}
-	if o.AuthenticationMethods != nil {
+	if !IsNil(o.AuthenticationMethods) {
 		toSerialize["authentication_methods"] = o.AuthenticationMethods
 	}
-	if o.AuthenticatorAssuranceLevel != nil {
+	if !IsNil(o.AuthenticatorAssuranceLevel) {
 		toSerialize["authenticator_assurance_level"] = o.AuthenticatorAssuranceLevel
 	}
-	if o.Devices != nil {
+	if !IsNil(o.Devices) {
 		toSerialize["devices"] = o.Devices
 	}
-	if o.ExpiresAt != nil {
+	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.Identity != nil {
+	toSerialize["id"] = o.Id
+	if !IsNil(o.Identity) {
 		toSerialize["identity"] = o.Identity
 	}
-	if o.IssuedAt != nil {
+	if !IsNil(o.IssuedAt) {
 		toSerialize["issued_at"] = o.IssuedAt
 	}
-	if o.Tokenized != nil {
+	if !IsNil(o.Tokenized) {
 		toSerialize["tokenized"] = o.Tokenized
 	}
 
@@ -408,15 +418,40 @@ func (o Session) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Session) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varSession := _Session{}
 
-	if err = json.Unmarshal(bytes, &varSession); err == nil {
-		*o = Session(varSession)
+	err = json.Unmarshal(bytes, &varSession)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Session(varSession)
 
 	additionalProperties := make(map[string]interface{})
 
