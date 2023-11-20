@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AdditionalIdTokenAudiences** | **List&lt;string&gt;** |  | [optional] 
 **ApplePrivateKey** | **string** |  | [optional] 
 **ApplePrivateKeyId** | **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **AppleTeamId** | **string** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 

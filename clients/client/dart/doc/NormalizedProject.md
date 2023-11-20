@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Creation Date | 
 **currentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
+**environment** | **String** | The environment of the project. prod Production dev Development | 
 **hosts** | **BuiltList&lt;String&gt;** |  | 
 **id** | **String** | The project's ID. | 
 **slug** | **String** | The project's slug | 

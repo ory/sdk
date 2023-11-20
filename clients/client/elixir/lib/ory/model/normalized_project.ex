@@ -10,6 +10,7 @@ defmodule Ory.Model.NormalizedProject do
   defstruct [
     :created_at,
     :current_revision,
+    :environment,
     :hosts,
     :id,
     :slug,
@@ -22,6 +23,7 @@ defmodule Ory.Model.NormalizedProject do
   @type t :: %__MODULE__{
     :created_at => DateTime.t,
     :current_revision => Ory.Model.NormalizedProjectRevision.t,
+    :environment => String.t,
     :hosts => [String.t],
     :id => String.t,
     :slug => String.t,

@@ -8,6 +8,7 @@ defmodule Ory.Model.NormalizedProjectRevisionThirdPartyProvider do
 
   @derive [Poison.Encoder]
   defstruct [
+    :additional_id_token_audiences,
     :apple_private_key,
     :apple_private_key_id,
     :apple_team_id,
@@ -33,6 +34,7 @@ defmodule Ory.Model.NormalizedProjectRevisionThirdPartyProvider do
   ]
 
   @type t :: %__MODULE__{
+    :additional_id_token_audiences => [String.t] | nil,
     :apple_private_key => String.t | nil,
     :apple_private_key_id => String.t | nil,
     :apple_team_id => String.t | nil,

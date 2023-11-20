@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.0
+API version: v1.4.1
 Contact: support@ory.sh
 */
 
@@ -359,8 +359,6 @@ type NormalizedProjectRevision struct {
 	KratosSessionWhoamiTokenizerTemplates []NormalizedProjectRevisionTokenizerTemplate `json:"kratos_session_whoami_tokenizer_templates,omitempty"`
 	// The project's name.
 	Name string `json:"name"`
-	// Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
-	Production *bool `json:"production,omitempty"`
 	// The Revision's Project ID
 	ProjectId *string `json:"project_id,omitempty"`
 	ProjectRevisionHooks []NormalizedProjectRevisionHook `json:"project_revision_hooks,omitempty"`
@@ -370,6 +368,8 @@ type NormalizedProjectRevision struct {
 	ServePublicCorsAllowedOrigins []string `json:"serve_public_cors_allowed_origins,omitempty"`
 	// Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting.
 	ServePublicCorsEnabled *bool `json:"serve_public_cors_enabled,omitempty"`
+	// Whether the project should employ strict security measures. Setting this to true is recommended for going into production.
+	StrictSecurity *bool `json:"strict_security,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -6098,38 +6098,6 @@ func (o *NormalizedProjectRevision) SetName(v string) {
 	o.Name = v
 }
 
-// GetProduction returns the Production field value if set, zero value otherwise.
-func (o *NormalizedProjectRevision) GetProduction() bool {
-	if o == nil || IsNil(o.Production) {
-		var ret bool
-		return ret
-	}
-	return *o.Production
-}
-
-// GetProductionOk returns a tuple with the Production field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevision) GetProductionOk() (*bool, bool) {
-	if o == nil || IsNil(o.Production) {
-		return nil, false
-	}
-	return o.Production, true
-}
-
-// HasProduction returns a boolean if a field has been set.
-func (o *NormalizedProjectRevision) HasProduction() bool {
-	if o != nil && !IsNil(o.Production) {
-		return true
-	}
-
-	return false
-}
-
-// SetProduction gets a reference to the given bool and assigns it to the Production field.
-func (o *NormalizedProjectRevision) SetProduction(v bool) {
-	o.Production = &v
-}
-
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetProjectId() string {
 	if o == nil || IsNil(o.ProjectId) {
@@ -6320,6 +6288,38 @@ func (o *NormalizedProjectRevision) HasServePublicCorsEnabled() bool {
 // SetServePublicCorsEnabled gets a reference to the given bool and assigns it to the ServePublicCorsEnabled field.
 func (o *NormalizedProjectRevision) SetServePublicCorsEnabled(v bool) {
 	o.ServePublicCorsEnabled = &v
+}
+
+// GetStrictSecurity returns the StrictSecurity field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetStrictSecurity() bool {
+	if o == nil || IsNil(o.StrictSecurity) {
+		var ret bool
+		return ret
+	}
+	return *o.StrictSecurity
+}
+
+// GetStrictSecurityOk returns a tuple with the StrictSecurity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetStrictSecurityOk() (*bool, bool) {
+	if o == nil || IsNil(o.StrictSecurity) {
+		return nil, false
+	}
+	return o.StrictSecurity, true
+}
+
+// HasStrictSecurity returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasStrictSecurity() bool {
+	if o != nil && !IsNil(o.StrictSecurity) {
+		return true
+	}
+
+	return false
+}
+
+// SetStrictSecurity gets a reference to the given bool and assigns it to the StrictSecurity field.
+func (o *NormalizedProjectRevision) SetStrictSecurity(v bool) {
+	o.StrictSecurity = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -6893,9 +6893,6 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 		toSerialize["kratos_session_whoami_tokenizer_templates"] = o.KratosSessionWhoamiTokenizerTemplates
 	}
 	toSerialize["name"] = o.Name
-	if !IsNil(o.Production) {
-		toSerialize["production"] = o.Production
-	}
 	if !IsNil(o.ProjectId) {
 		toSerialize["project_id"] = o.ProjectId
 	}
@@ -6913,6 +6910,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ServePublicCorsEnabled) {
 		toSerialize["serve_public_cors_enabled"] = o.ServePublicCorsEnabled
+	}
+	if !IsNil(o.StrictSecurity) {
+		toSerialize["strict_security"] = o.StrictSecurity
 	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
@@ -7137,13 +7137,13 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "kratos_session_whoami_required_aal")
 		delete(additionalProperties, "kratos_session_whoami_tokenizer_templates")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "production")
 		delete(additionalProperties, "project_id")
 		delete(additionalProperties, "project_revision_hooks")
 		delete(additionalProperties, "serve_admin_cors_allowed_origins")
 		delete(additionalProperties, "serve_admin_cors_enabled")
 		delete(additionalProperties, "serve_public_cors_allowed_origins")
 		delete(additionalProperties, "serve_public_cors_enabled")
+		delete(additionalProperties, "strict_security")
 		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -119,6 +119,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Namespace.serializer)
       ..add(NeedsPrivilegedSessionError.serializer)
       ..add(NormalizedProject.serializer)
+      ..add(NormalizedProjectEnvironmentEnum.serializer)
       ..add(NormalizedProjectRevision.serializer)
       ..add(NormalizedProjectRevisionHook.serializer)
       ..add(NormalizedProjectRevisionHydraStrategiesAccessTokenEnum.serializer)
@@ -349,6 +350,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SessionDevice)]),
           () => new ListBuilder<SessionDevice>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

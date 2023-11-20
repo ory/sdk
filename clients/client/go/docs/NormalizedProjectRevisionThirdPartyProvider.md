@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AdditionalIdTokenAudiences** | Pointer to **[]string** |  | [optional] 
 **ApplePrivateKey** | Pointer to **NullableString** |  | [optional] 
 **ApplePrivateKeyId** | Pointer to **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **AppleTeamId** | Pointer to **string** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 
@@ -45,6 +46,31 @@ will change when the set of required properties is changed
 NewNormalizedProjectRevisionThirdPartyProviderWithDefaults instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAdditionalIdTokenAudiences
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAdditionalIdTokenAudiences() []string`
+
+GetAdditionalIdTokenAudiences returns the AdditionalIdTokenAudiences field if non-nil, zero value otherwise.
+
+### GetAdditionalIdTokenAudiencesOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAdditionalIdTokenAudiencesOk() (*[]string, bool)`
+
+GetAdditionalIdTokenAudiencesOk returns a tuple with the AdditionalIdTokenAudiences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditionalIdTokenAudiences
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAdditionalIdTokenAudiences(v []string)`
+
+SetAdditionalIdTokenAudiences sets AdditionalIdTokenAudiences field to given value.
+
+### HasAdditionalIdTokenAudiences
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAdditionalIdTokenAudiences() bool`
+
+HasAdditionalIdTokenAudiences returns a boolean if a field has been set.
 
 ### GetApplePrivateKey
 

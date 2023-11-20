@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.0
+API version: v1.4.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,6 @@ package client
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ProjectCors type satisfies the MappedNullable interface at compile time
@@ -22,9 +21,9 @@ var _ MappedNullable = &ProjectCors{}
 // ProjectCors struct for ProjectCors
 type ProjectCors struct {
 	// Whether CORS is enabled for this endpoint.
-	Enabled bool `json:"enabled"`
+	Enabled *bool `json:"enabled,omitempty"`
 	// The allowed origins. Use `*` to allow all origins. A wildcard can also be used in the subdomain, i.e. `https://_*.example.com` will allow all origins on all subdomains of `example.com`.
-	Origins []string `json:"origins"`
+	Origins []string `json:"origins,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +33,8 @@ type _ProjectCors ProjectCors
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectCors(enabled bool, origins []string) *ProjectCors {
+func NewProjectCors() *ProjectCors {
 	this := ProjectCors{}
-	this.Enabled = enabled
-	this.Origins = origins
 	return &this
 }
 
@@ -49,50 +46,66 @@ func NewProjectCorsWithDefaults() *ProjectCors {
 	return &this
 }
 
-// GetEnabled returns the Enabled field value
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *ProjectCors) GetEnabled() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
-
-	return o.Enabled
+	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectCors) GetEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled, true
 }
 
-// SetEnabled sets field value
+// HasEnabled returns a boolean if a field has been set.
+func (o *ProjectCors) HasEnabled() bool {
+	if o != nil && !IsNil(o.Enabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
 func (o *ProjectCors) SetEnabled(v bool) {
-	o.Enabled = v
+	o.Enabled = &v
 }
 
-// GetOrigins returns the Origins field value
+// GetOrigins returns the Origins field value if set, zero value otherwise.
 func (o *ProjectCors) GetOrigins() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Origins) {
 		var ret []string
 		return ret
 	}
-
 	return o.Origins
 }
 
-// GetOriginsOk returns a tuple with the Origins field value
+// GetOriginsOk returns a tuple with the Origins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProjectCors) GetOriginsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Origins) {
 		return nil, false
 	}
 	return o.Origins, true
 }
 
-// SetOrigins sets field value
+// HasOrigins returns a boolean if a field has been set.
+func (o *ProjectCors) HasOrigins() bool {
+	if o != nil && !IsNil(o.Origins) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrigins gets a reference to the given []string and assigns it to the Origins field.
 func (o *ProjectCors) SetOrigins(v []string) {
 	o.Origins = v
 }
@@ -107,8 +120,12 @@ func (o ProjectCors) MarshalJSON() ([]byte, error) {
 
 func (o ProjectCors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["origins"] = o.Origins
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Origins) {
+		toSerialize["origins"] = o.Origins
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -118,28 +135,6 @@ func (o ProjectCors) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ProjectCors) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"enabled",
-		"origins",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varProjectCors := _ProjectCors{}
 
 	err = json.Unmarshal(bytes, &varProjectCors)

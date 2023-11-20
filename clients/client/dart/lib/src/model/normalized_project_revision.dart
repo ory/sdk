@@ -195,13 +195,13 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSessionWhoamiRequiredAal] - Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting.
 /// * [kratosSessionWhoamiTokenizerTemplates] 
 /// * [name] - The project's name.
-/// * [production] - Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
 /// * [projectId] - The Revision's Project ID
 /// * [projectRevisionHooks] 
 /// * [serveAdminCorsAllowedOrigins] 
 /// * [serveAdminCorsEnabled] - Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting.
 /// * [servePublicCorsAllowedOrigins] 
 /// * [servePublicCorsEnabled] - Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting.
+/// * [strictSecurity] - Whether the project should employ strict security measures. Setting this to true is recommended for going into production.
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevision, NormalizedProjectRevisionBuilder> {
@@ -900,10 +900,6 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'name')
   String get name;
 
-  /// Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
-  @BuiltValueField(wireName: r'production')
-  bool? get production;
-
   /// The Revision's Project ID
   @BuiltValueField(wireName: r'project_id')
   String? get projectId;
@@ -924,6 +920,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting.
   @BuiltValueField(wireName: r'serve_public_cors_enabled')
   bool? get servePublicCorsEnabled;
+
+  /// Whether the project should employ strict security measures. Setting this to true is recommended for going into production.
+  @BuiltValueField(wireName: r'strict_security')
+  bool? get strictSecurity;
 
   /// Last Time Project's Revision was Updated
   @BuiltValueField(wireName: r'updated_at')
@@ -2200,13 +2200,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       object.name,
       specifiedType: const FullType(String),
     );
-    if (object.production != null) {
-      yield r'production';
-      yield serializers.serialize(
-        object.production,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.projectId != null) {
       yield r'project_id';
       yield serializers.serialize(
@@ -2246,6 +2239,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'serve_public_cors_enabled';
       yield serializers.serialize(
         object.servePublicCorsEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.strictSecurity != null) {
+      yield r'strict_security';
+      yield serializers.serialize(
+        object.strictSecurity,
         specifiedType: const FullType(bool),
       );
     }
@@ -3521,13 +3521,6 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.name = valueDes;
           break;
-        case r'production':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.production = valueDes;
-          break;
         case r'project_id':
           final valueDes = serializers.deserialize(
             value,
@@ -3569,6 +3562,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(bool),
           ) as bool;
           result.servePublicCorsEnabled = valueDes;
+          break;
+        case r'strict_security':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.strictSecurity = valueDes;
           break;
         case r'updated_at':
           final valueDes = serializers.deserialize(

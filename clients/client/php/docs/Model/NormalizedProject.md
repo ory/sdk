@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | **\DateTime** | The Project&#39;s Creation Date | [readonly]
 **currentRevision** | [**\Ory\Client\Model\NormalizedProjectRevision**](NormalizedProjectRevision.md) |  |
+**environment** | **string** | The environment of the project. prod Production dev Development |
 **hosts** | **string[]** |  |
 **id** | **string** | The project&#39;s ID. | [readonly]
 **slug** | **string** | The project&#39;s slug | [readonly]

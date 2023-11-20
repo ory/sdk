@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.0
+API version: v1.4.1
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,7 @@ var _ MappedNullable = &NormalizedProjectRevisionThirdPartyProvider{}
 
 // NormalizedProjectRevisionThirdPartyProvider struct for NormalizedProjectRevisionThirdPartyProvider
 type NormalizedProjectRevisionThirdPartyProvider struct {
+	AdditionalIdTokenAudiences []string `json:"additional_id_token_audiences,omitempty"`
 	ApplePrivateKey NullableString `json:"apple_private_key,omitempty"`
 	// Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret
 	ApplePrivateKeyId *string `json:"apple_private_key_id,omitempty"`
@@ -78,6 +79,38 @@ func NewNormalizedProjectRevisionThirdPartyProvider() *NormalizedProjectRevision
 func NewNormalizedProjectRevisionThirdPartyProviderWithDefaults() *NormalizedProjectRevisionThirdPartyProvider {
 	this := NormalizedProjectRevisionThirdPartyProvider{}
 	return &this
+}
+
+// GetAdditionalIdTokenAudiences returns the AdditionalIdTokenAudiences field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetAdditionalIdTokenAudiences() []string {
+	if o == nil || IsNil(o.AdditionalIdTokenAudiences) {
+		var ret []string
+		return ret
+	}
+	return o.AdditionalIdTokenAudiences
+}
+
+// GetAdditionalIdTokenAudiencesOk returns a tuple with the AdditionalIdTokenAudiences field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetAdditionalIdTokenAudiencesOk() ([]string, bool) {
+	if o == nil || IsNil(o.AdditionalIdTokenAudiences) {
+		return nil, false
+	}
+	return o.AdditionalIdTokenAudiences, true
+}
+
+// HasAdditionalIdTokenAudiences returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasAdditionalIdTokenAudiences() bool {
+	if o != nil && !IsNil(o.AdditionalIdTokenAudiences) {
+		return true
+	}
+
+	return false
+}
+
+// SetAdditionalIdTokenAudiences gets a reference to the given []string and assigns it to the AdditionalIdTokenAudiences field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetAdditionalIdTokenAudiences(v []string) {
+	o.AdditionalIdTokenAudiences = v
 }
 
 // GetApplePrivateKey returns the ApplePrivateKey field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -834,6 +867,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) MarshalJSON() ([]byte, erro
 
 func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AdditionalIdTokenAudiences) {
+		toSerialize["additional_id_token_audiences"] = o.AdditionalIdTokenAudiences
+	}
 	if o.ApplePrivateKey.IsSet() {
 		toSerialize["apple_private_key"] = o.ApplePrivateKey.Get()
 	}
@@ -922,6 +958,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(bytes []byte
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "additional_id_token_audiences")
 		delete(additionalProperties, "apple_private_key")
 		delete(additionalProperties, "apple_private_key_id")
 		delete(additionalProperties, "apple_team_id")

@@ -991,6 +991,7 @@ class IdentityApi {
   /// * [pageSize] - Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [consistency] - Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+  /// * [idsFilter] - IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied.
   /// * [credentialsIdentifier] - CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
   /// * [previewCredentialsIdentifierSimilar] - This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -1008,6 +1009,7 @@ class IdentityApi {
     int? pageSize = 250,
     String? pageToken = '1',
     String? consistency,
+    BuiltList<String>? idsFilter,
     String? credentialsIdentifier,
     String? previewCredentialsIdentifierSimilar,
     CancelToken? cancelToken,
@@ -1042,6 +1044,7 @@ class IdentityApi {
       if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
       if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       if (consistency != null) r'consistency': encodeQueryParameter(_serializers, consistency, const FullType(String)),
+      if (idsFilter != null) r'ids_filter': encodeCollectionQueryParameter<String>(_serializers, idsFilter, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
       if (credentialsIdentifier != null) r'credentials_identifier': encodeQueryParameter(_serializers, credentialsIdentifier, const FullType(String)),
       if (previewCredentialsIdentifierSimilar != null) r'preview_credentials_identifier_similar': encodeQueryParameter(_serializers, previewCredentialsIdentifierSimilar, const FullType(String)),
     };

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **String** | The Project's Creation Date | [readonly]
 **current_revision** | [**crate::models::NormalizedProjectRevision**](normalizedProjectRevision.md) |  | 
+**environment** | **String** | The environment of the project. prod Production dev Development | 
 **hosts** | **Vec<String>** |  | 
 **id** | **String** | The project's ID. | [readonly]
 **slug** | **String** | The project's slug | [readonly]

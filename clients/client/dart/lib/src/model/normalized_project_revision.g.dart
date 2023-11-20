@@ -647,8 +647,6 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String name;
   @override
-  final bool? production;
-  @override
   final String? projectId;
   @override
   final BuiltList<NormalizedProjectRevisionHook>? projectRevisionHooks;
@@ -660,6 +658,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final BuiltList<String>? servePublicCorsAllowedOrigins;
   @override
   final bool? servePublicCorsEnabled;
+  @override
+  final bool? strictSecurity;
   @override
   final DateTime? updatedAt;
 
@@ -845,13 +845,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSessionWhoamiRequiredAal,
       this.kratosSessionWhoamiTokenizerTemplates,
       required this.name,
-      this.production,
       this.projectId,
       this.projectRevisionHooks,
       this.serveAdminCorsAllowedOrigins,
       this.serveAdminCorsEnabled,
       this.servePublicCorsAllowedOrigins,
       this.servePublicCorsEnabled,
+      this.strictSecurity,
       this.updatedAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -1203,13 +1203,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosSessionWhoamiTokenizerTemplates ==
             other.kratosSessionWhoamiTokenizerTemplates &&
         name == other.name &&
-        production == other.production &&
         projectId == other.projectId &&
         projectRevisionHooks == other.projectRevisionHooks &&
         serveAdminCorsAllowedOrigins == other.serveAdminCorsAllowedOrigins &&
         serveAdminCorsEnabled == other.serveAdminCorsEnabled &&
         servePublicCorsAllowedOrigins == other.servePublicCorsAllowedOrigins &&
         servePublicCorsEnabled == other.servePublicCorsEnabled &&
+        strictSecurity == other.strictSecurity &&
         updatedAt == other.updatedAt;
   }
 
@@ -1498,13 +1498,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSessionWhoamiRequiredAal.hashCode);
     _$hash = $jc(_$hash, kratosSessionWhoamiTokenizerTemplates.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, production.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, projectRevisionHooks.hashCode);
     _$hash = $jc(_$hash, serveAdminCorsAllowedOrigins.hashCode);
     _$hash = $jc(_$hash, serveAdminCorsEnabled.hashCode);
     _$hash = $jc(_$hash, servePublicCorsAllowedOrigins.hashCode);
     _$hash = $jc(_$hash, servePublicCorsEnabled.hashCode);
+    _$hash = $jc(_$hash, strictSecurity.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -1843,13 +1843,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('kratosSessionWhoamiTokenizerTemplates',
               kratosSessionWhoamiTokenizerTemplates)
           ..add('name', name)
-          ..add('production', production)
           ..add('projectId', projectId)
           ..add('projectRevisionHooks', projectRevisionHooks)
           ..add('serveAdminCorsAllowedOrigins', serveAdminCorsAllowedOrigins)
           ..add('serveAdminCorsEnabled', serveAdminCorsEnabled)
           ..add('servePublicCorsAllowedOrigins', servePublicCorsAllowedOrigins)
           ..add('servePublicCorsEnabled', servePublicCorsEnabled)
+          ..add('strictSecurity', strictSecurity)
           ..add('updatedAt', updatedAt))
         .toString();
   }
@@ -3224,10 +3224,6 @@ class NormalizedProjectRevisionBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  bool? _production;
-  bool? get production => _$this._production;
-  set production(bool? production) => _$this._production = production;
-
   String? _projectId;
   String? get projectId => _$this._projectId;
   set projectId(String? projectId) => _$this._projectId = projectId;
@@ -3263,6 +3259,11 @@ class NormalizedProjectRevisionBuilder
   bool? get servePublicCorsEnabled => _$this._servePublicCorsEnabled;
   set servePublicCorsEnabled(bool? servePublicCorsEnabled) =>
       _$this._servePublicCorsEnabled = servePublicCorsEnabled;
+
+  bool? _strictSecurity;
+  bool? get strictSecurity => _$this._strictSecurity;
+  set strictSecurity(bool? strictSecurity) =>
+      _$this._strictSecurity = strictSecurity;
 
   DateTime? _updatedAt;
   DateTime? get updatedAt => _$this._updatedAt;
@@ -3579,7 +3580,6 @@ class NormalizedProjectRevisionBuilder
       _kratosSessionWhoamiTokenizerTemplates =
           $v.kratosSessionWhoamiTokenizerTemplates?.toBuilder();
       _name = $v.name;
-      _production = $v.production;
       _projectId = $v.projectId;
       _projectRevisionHooks = $v.projectRevisionHooks?.toBuilder();
       _serveAdminCorsAllowedOrigins =
@@ -3588,6 +3588,7 @@ class NormalizedProjectRevisionBuilder
       _servePublicCorsAllowedOrigins =
           $v.servePublicCorsAllowedOrigins?.toBuilder();
       _servePublicCorsEnabled = $v.servePublicCorsEnabled;
+      _strictSecurity = $v.strictSecurity;
       _updatedAt = $v.updatedAt;
       _$v = null;
     }
@@ -3849,13 +3850,13 @@ class NormalizedProjectRevisionBuilder
               kratosSessionWhoamiRequiredAal: kratosSessionWhoamiRequiredAal,
               kratosSessionWhoamiTokenizerTemplates: _kratosSessionWhoamiTokenizerTemplates?.build(),
               name: BuiltValueNullFieldError.checkNotNull(name, r'NormalizedProjectRevision', 'name'),
-              production: production,
               projectId: projectId,
               projectRevisionHooks: _projectRevisionHooks?.build(),
               serveAdminCorsAllowedOrigins: _serveAdminCorsAllowedOrigins?.build(),
               serveAdminCorsEnabled: serveAdminCorsEnabled,
               servePublicCorsAllowedOrigins: _servePublicCorsAllowedOrigins?.build(),
               servePublicCorsEnabled: servePublicCorsEnabled,
+              strictSecurity: strictSecurity,
               updatedAt: updatedAt);
     } catch (_) {
       late String _$failedField;

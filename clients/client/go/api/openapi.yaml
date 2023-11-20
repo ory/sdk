@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.4.0
+  version: v1.4.1
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -647,6 +647,18 @@ paths:
            ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level.
           strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
           eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+      - description: |-
+          IdsFilter is list of ids used to filter identities.
+          If this list is empty, then no filter will be applied.
+        explode: true
+        in: query
+        name: ids_filter
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: |-
           CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match.
           Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
@@ -10005,6 +10017,18 @@ components:
           type: string
         current_revision:
           $ref: '#/components/schemas/normalizedProjectRevision'
+        environment:
+          description: |-
+            The environment of the project.
+            prod Production
+            dev Development
+          enum:
+          - prod
+          - dev
+          type: string
+          x-go-enum-desc: |-
+            prod Production
+            dev Development
         hosts:
           items:
             type: string
@@ -10051,6 +10075,7 @@ components:
       required:
       - created_at
       - current_revision
+      - environment
       - hosts
       - id
       - slug
@@ -11209,12 +11234,6 @@ components:
         name:
           description: The project's name.
           type: string
-        production:
-          description: |-
-            Whether this project is in production mode or not.
-
-            In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
-          type: boolean
         project_id:
           description: The Revision's Project ID
           format: uuid
@@ -11246,6 +11265,10 @@ components:
             Enable CORS headers on all public APIs
 
             This governs the "serve.public.cors.enabled" setting.
+          type: boolean
+        strict_security:
+          description: Whether the project should employ strict security measures.
+            Setting this to true is recommended for going into production.
           type: boolean
         updated_at:
           description: Last Time Project's Revision was Updated
@@ -11390,6 +11413,12 @@ components:
       type: array
     normalizedProjectRevisionThirdPartyProvider:
       properties:
+        additional_id_token_audiences:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         apple_private_key:
           nullable: true
           type: string
@@ -13374,8 +13403,6 @@ components:
             halted Halted
             deleted Deleted
       required:
-      - cors_admin
-      - cors_public
       - id
       - name
       - revision_id
@@ -13785,9 +13812,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - enabled
-      - origins
       type: object
     projectHost:
       properties:

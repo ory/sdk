@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**additional_id_token_audiences** | Option<**Vec<String>**> |  | [optional]
 **apple_private_key** | Option<**String**> |  | [optional]
 **apple_private_key_id** | Option<**String**> | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional]
 **apple_team_id** | Option<**String**> | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional]

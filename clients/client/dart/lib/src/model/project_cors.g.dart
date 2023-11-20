@@ -8,17 +8,14 @@ part of 'project_cors.dart';
 
 class _$ProjectCors extends ProjectCors {
   @override
-  final bool enabled;
+  final bool? enabled;
   @override
-  final BuiltList<String> origins;
+  final BuiltList<String>? origins;
 
   factory _$ProjectCors([void Function(ProjectCorsBuilder)? updates]) =>
       (new ProjectCorsBuilder()..update(updates))._build();
 
-  _$ProjectCors._({required this.enabled, required this.origins}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(enabled, r'ProjectCors', 'enabled');
-    BuiltValueNullFieldError.checkNotNull(origins, r'ProjectCors', 'origins');
-  }
+  _$ProjectCors._({this.enabled, this.origins}) : super._();
 
   @override
   ProjectCors rebuild(void Function(ProjectCorsBuilder) updates) =>
@@ -73,7 +70,7 @@ class ProjectCorsBuilder implements Builder<ProjectCors, ProjectCorsBuilder> {
     final $v = _$v;
     if ($v != null) {
       _enabled = $v.enabled;
-      _origins = $v.origins.toBuilder();
+      _origins = $v.origins?.toBuilder();
       _$v = null;
     }
     return this;
@@ -97,15 +94,12 @@ class ProjectCorsBuilder implements Builder<ProjectCors, ProjectCorsBuilder> {
     _$ProjectCors _$result;
     try {
       _$result = _$v ??
-          new _$ProjectCors._(
-              enabled: BuiltValueNullFieldError.checkNotNull(
-                  enabled, r'ProjectCors', 'enabled'),
-              origins: origins.build());
+          new _$ProjectCors._(enabled: enabled, origins: _origins?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'origins';
-        origins.build();
+        _origins?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'ProjectCors', _$failedField, e.toString());

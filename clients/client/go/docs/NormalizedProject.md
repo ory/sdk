@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
+**Environment** | **string** | The environment of the project. prod Production dev Development | 
 **Hosts** | **[]string** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewNormalizedProject
 
-`func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, hosts []string, id string, slug string, state string, updatedAt time.Time, ) *NormalizedProject`
+`func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, hosts []string, id string, slug string, state string, updatedAt time.Time, ) *NormalizedProject`
 
 NewNormalizedProject instantiates a new NormalizedProject object
 This constructor will assign default values to properties that have it defined,
@@ -71,6 +72,26 @@ and a boolean to check if the value has been set.
 `func (o *NormalizedProject) SetCurrentRevision(v NormalizedProjectRevision)`
 
 SetCurrentRevision sets CurrentRevision field to given value.
+
+
+### GetEnvironment
+
+`func (o *NormalizedProject) GetEnvironment() string`
+
+GetEnvironment returns the Environment field if non-nil, zero value otherwise.
+
+### GetEnvironmentOk
+
+`func (o *NormalizedProject) GetEnvironmentOk() (*string, bool)`
+
+GetEnvironmentOk returns a tuple with the Environment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironment
+
+`func (o *NormalizedProject) SetEnvironment(v string)`
+
+SetEnvironment sets Environment field to given value.
 
 
 ### GetHosts

@@ -185,13 +185,13 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_session_whoami_required_aal,
     :kratos_session_whoami_tokenizer_templates,
     :name,
-    :production,
     :project_id,
     :project_revision_hooks,
     :serve_admin_cors_allowed_origins,
     :serve_admin_cors_enabled,
     :serve_public_cors_allowed_origins,
     :serve_public_cors_enabled,
+    :strict_security,
     :updated_at
   ]
 
@@ -373,13 +373,13 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_session_whoami_required_aal => String.t | nil,
     :kratos_session_whoami_tokenizer_templates => [Ory.Model.NormalizedProjectRevisionTokenizerTemplate.t] | nil,
     :name => String.t,
-    :production => boolean() | nil,
     :project_id => String.t | nil,
     :project_revision_hooks => [Ory.Model.NormalizedProjectRevisionHook.t] | nil,
     :serve_admin_cors_allowed_origins => [String.t] | nil,
     :serve_admin_cors_enabled => boolean() | nil,
     :serve_public_cors_allowed_origins => [String.t] | nil,
     :serve_public_cors_enabled => boolean() | nil,
+    :strict_security => boolean() | nil,
     :updated_at => DateTime.t | nil
   }
 end

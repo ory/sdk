@@ -68,9 +68,9 @@ class _$ProjectStateEnumSerializer
 
 class _$Project extends Project {
   @override
-  final ProjectCors corsAdmin;
+  final ProjectCors? corsAdmin;
   @override
-  final ProjectCors corsPublic;
+  final ProjectCors? corsPublic;
   @override
   final String id;
   @override
@@ -88,8 +88,8 @@ class _$Project extends Project {
       (new ProjectBuilder()..update(updates))._build();
 
   _$Project._(
-      {required this.corsAdmin,
-      required this.corsPublic,
+      {this.corsAdmin,
+      this.corsPublic,
       required this.id,
       required this.name,
       required this.revisionId,
@@ -97,8 +97,6 @@ class _$Project extends Project {
       required this.slug,
       required this.state})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(corsAdmin, r'Project', 'corsAdmin');
-    BuiltValueNullFieldError.checkNotNull(corsPublic, r'Project', 'corsPublic');
     BuiltValueNullFieldError.checkNotNull(id, r'Project', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'Project', 'name');
     BuiltValueNullFieldError.checkNotNull(revisionId, r'Project', 'revisionId');
@@ -204,8 +202,8 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
   ProjectBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _corsAdmin = $v.corsAdmin.toBuilder();
-      _corsPublic = $v.corsPublic.toBuilder();
+      _corsAdmin = $v.corsAdmin?.toBuilder();
+      _corsPublic = $v.corsPublic?.toBuilder();
       _id = $v.id;
       _name = $v.name;
       _revisionId = $v.revisionId;
@@ -236,8 +234,8 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
     try {
       _$result = _$v ??
           new _$Project._(
-              corsAdmin: corsAdmin.build(),
-              corsPublic: corsPublic.build(),
+              corsAdmin: _corsAdmin?.build(),
+              corsPublic: _corsPublic?.build(),
               id: BuiltValueNullFieldError.checkNotNull(id, r'Project', 'id'),
               name: BuiltValueNullFieldError.checkNotNull(
                   name, r'Project', 'name'),
@@ -252,9 +250,9 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
       late String _$failedField;
       try {
         _$failedField = 'corsAdmin';
-        corsAdmin.build();
+        _corsAdmin?.build();
         _$failedField = 'corsPublic';
-        corsPublic.build();
+        _corsPublic?.build();
 
         _$failedField = 'services';
         services.build();

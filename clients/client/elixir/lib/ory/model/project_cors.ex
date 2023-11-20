@@ -13,8 +13,8 @@ defmodule Ory.Model.ProjectCors do
   ]
 
   @type t :: %__MODULE__{
-    :enabled => boolean(),
-    :origins => [String.t]
+    :enabled => boolean() | nil,
+    :origins => [String.t] | nil
   }
 end
 

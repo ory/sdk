@@ -8,6 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**additionalIdTokenAudiences** | **BuiltList&lt;String&gt;** |  | [optional] 
 **applePrivateKey** | **String** |  | [optional] 
 **applePrivateKeyId** | **String** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **appleTeamId** | **String** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 

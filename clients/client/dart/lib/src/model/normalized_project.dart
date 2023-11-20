@@ -15,6 +15,7 @@ part 'normalized_project.g.dart';
 /// Properties:
 /// * [createdAt] - The Project's Creation Date
 /// * [currentRevision] 
+/// * [environment] - The environment of the project. prod Production dev Development
 /// * [hosts] 
 /// * [id] - The project's ID.
 /// * [slug] - The project's slug
@@ -30,6 +31,11 @@ abstract class NormalizedProject implements Built<NormalizedProject, NormalizedP
 
   @BuiltValueField(wireName: r'current_revision')
   NormalizedProjectRevision get currentRevision;
+
+  /// The environment of the project. prod Production dev Development
+  @BuiltValueField(wireName: r'environment')
+  NormalizedProjectEnvironmentEnum get environment;
+  // enum environmentEnum {  prod,  dev,  };
 
   @BuiltValueField(wireName: r'hosts')
   BuiltList<String> get hosts;
@@ -89,6 +95,11 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
     yield serializers.serialize(
       object.currentRevision,
       specifiedType: const FullType(NormalizedProjectRevision),
+    );
+    yield r'environment';
+    yield serializers.serialize(
+      object.environment,
+      specifiedType: const FullType(NormalizedProjectEnvironmentEnum),
     );
     yield r'hosts';
     yield serializers.serialize(
@@ -165,6 +176,13 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
             specifiedType: const FullType(NormalizedProjectRevision),
           ) as NormalizedProjectRevision;
           result.currentRevision.replace(valueDes);
+          break;
+        case r'environment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(NormalizedProjectEnvironmentEnum),
+          ) as NormalizedProjectEnvironmentEnum;
+          result.environment = valueDes;
           break;
         case r'hosts':
           final valueDes = serializers.deserialize(
@@ -244,6 +262,23 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
     );
     return result.build();
   }
+}
+
+class NormalizedProjectEnvironmentEnum extends EnumClass {
+
+  /// The environment of the project. prod Production dev Development
+  @BuiltValueEnumConst(wireName: r'prod')
+  static const NormalizedProjectEnvironmentEnum prod = _$normalizedProjectEnvironmentEnum_prod;
+  /// The environment of the project. prod Production dev Development
+  @BuiltValueEnumConst(wireName: r'dev')
+  static const NormalizedProjectEnvironmentEnum dev = _$normalizedProjectEnvironmentEnum_dev;
+
+  static Serializer<NormalizedProjectEnvironmentEnum> get serializer => _$normalizedProjectEnvironmentEnumSerializer;
+
+  const NormalizedProjectEnvironmentEnum._(String name): super(name);
+
+  static BuiltSet<NormalizedProjectEnvironmentEnum> get values => _$normalizedProjectEnvironmentEnumValues;
+  static NormalizedProjectEnvironmentEnum valueOf(String name) => _$normalizedProjectEnvironmentEnumValueOf(name);
 }
 
 class NormalizedProjectStateEnum extends EnumClass {

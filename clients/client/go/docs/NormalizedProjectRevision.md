@@ -181,13 +181,13 @@ Name | Type | Description | Notes
 **KratosSessionWhoamiRequiredAal** | Pointer to **string** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] 
 **KratosSessionWhoamiTokenizerTemplates** | Pointer to [**[]NormalizedProjectRevisionTokenizerTemplate**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] 
 **Name** | **string** | The project&#39;s name. | 
-**Production** | Pointer to **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] 
 **ProjectId** | Pointer to **string** | The Revision&#39;s Project ID | [optional] 
 **ProjectRevisionHooks** | Pointer to [**[]NormalizedProjectRevisionHook**](NormalizedProjectRevisionHook.md) |  | [optional] 
 **ServeAdminCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
 **ServeAdminCorsEnabled** | Pointer to **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
 **ServePublicCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
 **ServePublicCorsEnabled** | Pointer to **bool** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
+**StrictSecurity** | Pointer to **bool** | Whether the project should employ strict security measures. Setting this to true is recommended for going into production. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
 ## Methods
@@ -4659,31 +4659,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetProduction
-
-`func (o *NormalizedProjectRevision) GetProduction() bool`
-
-GetProduction returns the Production field if non-nil, zero value otherwise.
-
-### GetProductionOk
-
-`func (o *NormalizedProjectRevision) GetProductionOk() (*bool, bool)`
-
-GetProductionOk returns a tuple with the Production field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProduction
-
-`func (o *NormalizedProjectRevision) SetProduction(v bool)`
-
-SetProduction sets Production field to given value.
-
-### HasProduction
-
-`func (o *NormalizedProjectRevision) HasProduction() bool`
-
-HasProduction returns a boolean if a field has been set.
-
 ### GetProjectId
 
 `func (o *NormalizedProjectRevision) GetProjectId() string`
@@ -4833,6 +4808,31 @@ SetServePublicCorsEnabled sets ServePublicCorsEnabled field to given value.
 `func (o *NormalizedProjectRevision) HasServePublicCorsEnabled() bool`
 
 HasServePublicCorsEnabled returns a boolean if a field has been set.
+
+### GetStrictSecurity
+
+`func (o *NormalizedProjectRevision) GetStrictSecurity() bool`
+
+GetStrictSecurity returns the StrictSecurity field if non-nil, zero value otherwise.
+
+### GetStrictSecurityOk
+
+`func (o *NormalizedProjectRevision) GetStrictSecurityOk() (*bool, bool)`
+
+GetStrictSecurityOk returns a tuple with the StrictSecurity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrictSecurity
+
+`func (o *NormalizedProjectRevision) SetStrictSecurity(v bool)`
+
+SetStrictSecurity sets StrictSecurity field to given value.
+
+### HasStrictSecurity
+
+`func (o *NormalizedProjectRevision) HasStrictSecurity() bool`
+
+HasStrictSecurity returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

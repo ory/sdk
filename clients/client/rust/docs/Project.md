@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cors_admin** | [**crate::models::ProjectCors**](projectCors.md) |  | 
-**cors_public** | [**crate::models::ProjectCors**](projectCors.md) |  | 
+**cors_admin** | Option<[**crate::models::ProjectCors**](projectCors.md)> |  | [optional]
+**cors_public** | Option<[**crate::models::ProjectCors**](projectCors.md)> |  | [optional]
 **id** | **String** | The project's ID. | [readonly]
 **name** | **String** | The name of the project. | 
 **revision_id** | **String** | The configuration revision ID. | [readonly]

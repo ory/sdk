@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **cors_admin** | [**ProjectCors**](ProjectCors.md) |  |  |
-| **cors_public** | [**ProjectCors**](ProjectCors.md) |  |  |
+| **cors_admin** | [**ProjectCors**](ProjectCors.md) |  | [optional] |
+| **cors_public** | [**ProjectCors**](ProjectCors.md) |  | [optional] |
 | **id** | **String** | The project&#39;s ID. | [readonly] |
 | **name** | **String** | The name of the project. |  |
 | **revision_id** | **String** | The configuration revision ID. | [readonly] |

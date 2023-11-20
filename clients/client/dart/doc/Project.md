@@ -8,8 +8,8 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**corsAdmin** | [**ProjectCors**](ProjectCors.md) |  | 
-**corsPublic** | [**ProjectCors**](ProjectCors.md) |  | 
+**corsAdmin** | [**ProjectCors**](ProjectCors.md) |  | [optional] 
+**corsPublic** | [**ProjectCors**](ProjectCors.md) |  | [optional] 
 **id** | **String** | The project's ID. | 
 **name** | **String** | The name of the project. | 
 **revisionId** | **String** | The configuration revision ID. | 

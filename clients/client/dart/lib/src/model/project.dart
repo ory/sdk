@@ -25,10 +25,10 @@ part 'project.g.dart';
 @BuiltValue()
 abstract class Project implements Built<Project, ProjectBuilder> {
   @BuiltValueField(wireName: r'cors_admin')
-  ProjectCors get corsAdmin;
+  ProjectCors? get corsAdmin;
 
   @BuiltValueField(wireName: r'cors_public')
-  ProjectCors get corsPublic;
+  ProjectCors? get corsPublic;
 
   /// The project's ID.
   @BuiltValueField(wireName: r'id')
@@ -77,16 +77,20 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
     Project object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'cors_admin';
-    yield serializers.serialize(
-      object.corsAdmin,
-      specifiedType: const FullType(ProjectCors),
-    );
-    yield r'cors_public';
-    yield serializers.serialize(
-      object.corsPublic,
-      specifiedType: const FullType(ProjectCors),
-    );
+    if (object.corsAdmin != null) {
+      yield r'cors_admin';
+      yield serializers.serialize(
+        object.corsAdmin,
+        specifiedType: const FullType(ProjectCors),
+      );
+    }
+    if (object.corsPublic != null) {
+      yield r'cors_public';
+      yield serializers.serialize(
+        object.corsPublic,
+        specifiedType: const FullType(ProjectCors),
+      );
+    }
     yield r'id';
     yield serializers.serialize(
       object.id,

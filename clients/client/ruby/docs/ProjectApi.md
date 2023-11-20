@@ -1235,7 +1235,7 @@ end
 api_instance = OryClient::ProjectApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 opts = {
-  set_project: OryClient::SetProject.new({cors_admin: OryClient::ProjectCors.new({enabled: false, origins: ['origins_example']}), cors_public: OryClient::ProjectCors.new({enabled: false, origins: ['origins_example']}), name: 'name_example', services: OryClient::ProjectServices.new}) # SetProject | 
+  set_project: OryClient::SetProject.new({cors_admin: OryClient::ProjectCors.new, cors_public: OryClient::ProjectCors.new, name: 'name_example', services: OryClient::ProjectServices.new}) # SetProject | 
 }
 
 begin

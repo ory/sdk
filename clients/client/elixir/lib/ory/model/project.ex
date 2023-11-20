@@ -19,8 +19,8 @@ defmodule Ory.Model.Project do
   ]
 
   @type t :: %__MODULE__{
-    :cors_admin => Ory.Model.ProjectCors.t,
-    :cors_public => Ory.Model.ProjectCors.t,
+    :cors_admin => Ory.Model.ProjectCors.t | nil,
+    :cors_public => Ory.Model.ProjectCors.t | nil,
     :id => String.t,
     :name => String.t,
     :revision_id => String.t,

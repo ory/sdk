@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CorsAdmin** | [**ProjectCors**](ProjectCors.md) |  | 
-**CorsPublic** | [**ProjectCors**](ProjectCors.md) |  | 
+**CorsAdmin** | Pointer to [**ProjectCors**](ProjectCors.md) |  | [optional] 
+**CorsPublic** | Pointer to [**ProjectCors**](ProjectCors.md) |  | [optional] 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The name of the project. | 
 **RevisionId** | **string** | The configuration revision ID. | [readonly] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewProject
 
-`func NewProject(corsAdmin ProjectCors, corsPublic ProjectCors, id string, name string, revisionId string, services ProjectServices, slug string, state string, ) *Project`
+`func NewProject(id string, name string, revisionId string, services ProjectServices, slug string, state string, ) *Project`
 
 NewProject instantiates a new Project object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +51,11 @@ and a boolean to check if the value has been set.
 
 SetCorsAdmin sets CorsAdmin field to given value.
 
+### HasCorsAdmin
+
+`func (o *Project) HasCorsAdmin() bool`
+
+HasCorsAdmin returns a boolean if a field has been set.
 
 ### GetCorsPublic
 
@@ -71,6 +76,11 @@ and a boolean to check if the value has been set.
 
 SetCorsPublic sets CorsPublic field to given value.
 
+### HasCorsPublic
+
+`func (o *Project) HasCorsPublic() bool`
+
+HasCorsPublic returns a boolean if a field has been set.
 
 ### GetId
 

@@ -13,6 +13,7 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// NormalizedProjectRevisionThirdPartyProvider
 ///
 /// Properties:
+/// * [additionalIdTokenAudiences] 
 /// * [applePrivateKey] 
 /// * [applePrivateKeyId] - Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret
 /// * [appleTeamId] - Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret
@@ -37,6 +38,9 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<NormalizedProjectRevisionThirdPartyProvider, NormalizedProjectRevisionThirdPartyProviderBuilder> {
+  @BuiltValueField(wireName: r'additional_id_token_audiences')
+  BuiltList<String>? get additionalIdTokenAudiences;
+
   @BuiltValueField(wireName: r'apple_private_key')
   String? get applePrivateKey;
 
@@ -142,6 +146,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
     NormalizedProjectRevisionThirdPartyProvider object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.additionalIdTokenAudiences != null) {
+      yield r'additional_id_token_audiences';
+      yield serializers.serialize(
+        object.additionalIdTokenAudiences,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
     if (object.applePrivateKey != null) {
       yield r'apple_private_key';
       yield serializers.serialize(
@@ -319,6 +330,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'additional_id_token_audiences':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.additionalIdTokenAudiences.replace(valueDes);
+          break;
         case r'apple_private_key':
           final valueDes = serializers.deserialize(
             value,

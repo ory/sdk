@@ -1223,7 +1223,7 @@ import (
 
 func main() {
     projectId := "projectId_example" // string | Project ID  The project's ID.
-    setProject := *openapiclient.NewSetProject(*openapiclient.NewProjectCors(false, []string{"Origins_example"}), *openapiclient.NewProjectCors(false, []string{"Origins_example"}), "Name_example", *openapiclient.NewProjectServices()) // SetProject |  (optional)
+    setProject := *openapiclient.NewSetProject(*openapiclient.NewProjectCors(), *openapiclient.NewProjectCors(), "Name_example", *openapiclient.NewProjectServices()) // SetProject |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

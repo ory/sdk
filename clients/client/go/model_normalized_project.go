@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.0
+API version: v1.4.1
 Contact: support@ory.sh
 */
 
@@ -25,6 +25,8 @@ type NormalizedProject struct {
 	// The Project's Creation Date
 	CreatedAt time.Time `json:"created_at"`
 	CurrentRevision NormalizedProjectRevision `json:"current_revision"`
+	// The environment of the project. prod Production dev Development
+	Environment string `json:"environment"`
 	Hosts []string `json:"hosts"`
 	// The project's ID.
 	Id string `json:"id"`
@@ -45,10 +47,11 @@ type _NormalizedProject NormalizedProject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, hosts []string, id string, slug string, state string, updatedAt time.Time) *NormalizedProject {
+func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, hosts []string, id string, slug string, state string, updatedAt time.Time) *NormalizedProject {
 	this := NormalizedProject{}
 	this.CreatedAt = createdAt
 	this.CurrentRevision = currentRevision
+	this.Environment = environment
 	this.Hosts = hosts
 	this.Id = id
 	this.Slug = slug
@@ -111,6 +114,30 @@ func (o *NormalizedProject) GetCurrentRevisionOk() (*NormalizedProjectRevision, 
 // SetCurrentRevision sets field value
 func (o *NormalizedProject) SetCurrentRevision(v NormalizedProjectRevision) {
 	o.CurrentRevision = v
+}
+
+// GetEnvironment returns the Environment field value
+func (o *NormalizedProject) GetEnvironment() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Environment
+}
+
+// GetEnvironmentOk returns a tuple with the Environment field value
+// and a boolean to check if the value has been set.
+func (o *NormalizedProject) GetEnvironmentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Environment, true
+}
+
+// SetEnvironment sets field value
+func (o *NormalizedProject) SetEnvironment(v string) {
+	o.Environment = v
 }
 
 // GetHosts returns the Hosts field value
@@ -329,6 +356,7 @@ func (o NormalizedProject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["current_revision"] = o.CurrentRevision
+	toSerialize["environment"] = o.Environment
 	toSerialize["hosts"] = o.Hosts
 	toSerialize["id"] = o.Id
 	toSerialize["slug"] = o.Slug
@@ -355,6 +383,7 @@ func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
 	requiredProperties := []string{
 		"created_at",
 		"current_revision",
+		"environment",
 		"hosts",
 		"id",
 		"slug",
@@ -391,6 +420,7 @@ func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "current_revision")
+		delete(additionalProperties, "environment")
 		delete(additionalProperties, "hosts")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "slug")

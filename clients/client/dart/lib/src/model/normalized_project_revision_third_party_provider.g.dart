@@ -74,6 +74,8 @@ class _$NormalizedProjectRevisionThirdPartyProviderStateEnumSerializer
 class _$NormalizedProjectRevisionThirdPartyProvider
     extends NormalizedProjectRevisionThirdPartyProvider {
   @override
+  final BuiltList<String>? additionalIdTokenAudiences;
+  @override
   final String? applePrivateKey;
   @override
   final String? applePrivateKeyId;
@@ -126,7 +128,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
           ._build();
 
   _$NormalizedProjectRevisionThirdPartyProvider._(
-      {this.applePrivateKey,
+      {this.additionalIdTokenAudiences,
+      this.applePrivateKey,
       this.applePrivateKeyId,
       this.appleTeamId,
       this.authUrl,
@@ -164,6 +167,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is NormalizedProjectRevisionThirdPartyProvider &&
+        additionalIdTokenAudiences == other.additionalIdTokenAudiences &&
         applePrivateKey == other.applePrivateKey &&
         applePrivateKeyId == other.applePrivateKeyId &&
         appleTeamId == other.appleTeamId &&
@@ -191,6 +195,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, additionalIdTokenAudiences.hashCode);
     _$hash = $jc(_$hash, applePrivateKey.hashCode);
     _$hash = $jc(_$hash, applePrivateKeyId.hashCode);
     _$hash = $jc(_$hash, appleTeamId.hashCode);
@@ -221,6 +226,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   String toString() {
     return (newBuiltValueToStringHelper(
             r'NormalizedProjectRevisionThirdPartyProvider')
+          ..add('additionalIdTokenAudiences', additionalIdTokenAudiences)
           ..add('applePrivateKey', applePrivateKey)
           ..add('applePrivateKeyId', applePrivateKeyId)
           ..add('appleTeamId', appleTeamId)
@@ -252,6 +258,13 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
         Builder<NormalizedProjectRevisionThirdPartyProvider,
             NormalizedProjectRevisionThirdPartyProviderBuilder> {
   _$NormalizedProjectRevisionThirdPartyProvider? _$v;
+
+  ListBuilder<String>? _additionalIdTokenAudiences;
+  ListBuilder<String> get additionalIdTokenAudiences =>
+      _$this._additionalIdTokenAudiences ??= new ListBuilder<String>();
+  set additionalIdTokenAudiences(
+          ListBuilder<String>? additionalIdTokenAudiences) =>
+      _$this._additionalIdTokenAudiences = additionalIdTokenAudiences;
 
   String? _applePrivateKey;
   String? get applePrivateKey => _$this._applePrivateKey;
@@ -356,6 +369,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   NormalizedProjectRevisionThirdPartyProviderBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _additionalIdTokenAudiences = $v.additionalIdTokenAudiences?.toBuilder();
       _applePrivateKey = $v.applePrivateKey;
       _applePrivateKeyId = $v.applePrivateKeyId;
       _appleTeamId = $v.appleTeamId;
@@ -404,6 +418,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
     try {
       _$result = _$v ??
           new _$NormalizedProjectRevisionThirdPartyProvider._(
+              additionalIdTokenAudiences: _additionalIdTokenAudiences?.build(),
               applePrivateKey: applePrivateKey,
               applePrivateKeyId: applePrivateKeyId,
               appleTeamId: appleTeamId,
@@ -429,6 +444,9 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'additionalIdTokenAudiences';
+        _additionalIdTokenAudiences?.build();
+
         _$failedField = 'scope';
         _scope?.build();
       } catch (e) {

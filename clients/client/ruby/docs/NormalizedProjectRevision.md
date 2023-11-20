@@ -181,13 +181,13 @@
 | **kratos_session_whoami_required_aal** | **String** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] |
 | **kratos_session_whoami_tokenizer_templates** | [**Array&lt;NormalizedProjectRevisionTokenizerTemplate&gt;**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] |
 | **name** | **String** | The project&#39;s name. |  |
-| **production** | **Boolean** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional] |
 | **project_id** | **String** | The Revision&#39;s Project ID | [optional] |
 | **project_revision_hooks** | [**Array&lt;NormalizedProjectRevisionHook&gt;**](NormalizedProjectRevisionHook.md) |  | [optional] |
 | **serve_admin_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
 | **serve_admin_cors_enabled** | **Boolean** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] |
 | **serve_public_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
 | **serve_public_cors_enabled** | **Boolean** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] |
+| **strict_security** | **Boolean** | Whether the project should employ strict security measures. Setting this to true is recommended for going into production. | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 
 ## Example
@@ -373,13 +373,13 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_session_whoami_required_aal: null,
   kratos_session_whoami_tokenizer_templates: null,
   name: null,
-  production: null,
   project_id: null,
   project_revision_hooks: null,
   serve_admin_cors_allowed_origins: null,
   serve_admin_cors_enabled: null,
   serve_public_cors_allowed_origins: null,
   serve_public_cors_enabled: null,
+  strict_security: null,
   updated_at: null
 )
 ```

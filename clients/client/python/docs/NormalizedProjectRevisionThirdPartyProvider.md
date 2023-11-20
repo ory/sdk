@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**additional_id_token_audiences** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **apple_private_key** | **str, none_type** |  | [optional] 
 **apple_private_key_id** | **str** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **apple_team_id** | **str** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 

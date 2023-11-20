@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**corsAdmin** | [**ProjectCors**](ProjectCors.md) |  |  |
-|**corsPublic** | [**ProjectCors**](ProjectCors.md) |  |  |
+|**corsAdmin** | [**ProjectCors**](ProjectCors.md) |  |  [optional] |
+|**corsPublic** | [**ProjectCors**](ProjectCors.md) |  |  [optional] |
 |**id** | **String** | The project&#39;s ID. |  [readonly] |
 |**name** | **String** | The name of the project. |  |
 |**revisionId** | **String** | The configuration revision ID. |  [readonly] |

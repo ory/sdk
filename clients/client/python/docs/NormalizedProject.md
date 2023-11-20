@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** | The Project&#39;s Creation Date | [readonly] 
 **current_revision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
+**environment** | **str** | The environment of the project. prod Production dev Development | 
 **hosts** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | 
 **id** | **str** | The project&#39;s ID. | [readonly] 
 **slug** | **str** | The project&#39;s slug | [readonly] 

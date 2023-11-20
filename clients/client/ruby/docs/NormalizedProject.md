@@ -6,6 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** | The Project&#39;s Creation Date | [readonly] |
 | **current_revision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  |  |
+| **environment** | **String** | The environment of the project. prod Production dev Development |  |
 | **hosts** | **Array&lt;String&gt;** |  |  |
 | **id** | **String** | The project&#39;s ID. | [readonly] |
 | **slug** | **String** | The project&#39;s slug | [readonly] |
@@ -22,6 +23,7 @@ require 'ory-client'
 instance = OryClient::NormalizedProject.new(
   created_at: null,
   current_revision: null,
+  environment: null,
   hosts: null,
   id: null,
   slug: null,

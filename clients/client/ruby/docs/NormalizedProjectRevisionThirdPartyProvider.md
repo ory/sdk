@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **additional_id_token_audiences** | **Array&lt;String&gt;** |  | [optional] |
 | **apple_private_key** | **String** |  | [optional] |
 | **apple_private_key_id** | **String** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] |
 | **apple_team_id** | **String** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] |
@@ -33,6 +34,7 @@
 require 'ory-client'
 
 instance = OryClient::NormalizedProjectRevisionThirdPartyProvider.new(
+  additional_id_token_audiences: null,
   apple_private_key: null,
   apple_private_key_id: UX56C66723,
   apple_team_id: KP76DQS54M,

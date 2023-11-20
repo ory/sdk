@@ -1052,12 +1052,6 @@ void main() {
       // TODO
     });
 
-    // Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
-    // bool production
-    test('to test the property `production`', () async {
-      // TODO
-    });
-
     // The Revision's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
@@ -1088,6 +1082,12 @@ void main() {
     // Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting.
     // bool servePublicCorsEnabled
     test('to test the property `servePublicCorsEnabled`', () async {
+      // TODO
+    });
+
+    // Whether the project should employ strict security measures. Setting this to true is recommended for going into production.
+    // bool strictSecurity
+    test('to test the property `strictSecurity`', () async {
       // TODO
     });
 

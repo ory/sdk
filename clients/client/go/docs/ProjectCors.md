@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **bool** | Whether CORS is enabled for this endpoint. | 
-**Origins** | **[]string** | The allowed origins. Use &#x60;*&#x60; to allow all origins. A wildcard can also be used in the subdomain, i.e. &#x60;https://_*.example.com&#x60; will allow all origins on all subdomains of &#x60;example.com&#x60;. | 
+**Enabled** | Pointer to **bool** | Whether CORS is enabled for this endpoint. | [optional] 
+**Origins** | Pointer to **[]string** | The allowed origins. Use &#x60;*&#x60; to allow all origins. A wildcard can also be used in the subdomain, i.e. &#x60;https://_*.example.com&#x60; will allow all origins on all subdomains of &#x60;example.com&#x60;. | [optional] 
 
 ## Methods
 
 ### NewProjectCors
 
-`func NewProjectCors(enabled bool, origins []string, ) *ProjectCors`
+`func NewProjectCors() *ProjectCors`
 
 NewProjectCors instantiates a new ProjectCors object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetEnabled sets Enabled field to given value.
 
+### HasEnabled
+
+`func (o *ProjectCors) HasEnabled() bool`
+
+HasEnabled returns a boolean if a field has been set.
 
 ### GetOrigins
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetOrigins sets Origins field to given value.
 
+### HasOrigins
+
+`func (o *ProjectCors) HasOrigins() bool`
+
+HasOrigins returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

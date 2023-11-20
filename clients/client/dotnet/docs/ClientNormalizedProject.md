@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**ClientNormalizedProjectRevision**](ClientNormalizedProjectRevision.md) |  | 
+**Environment** | **string** | The environment of the project. prod Production dev Development | 
 **Hosts** | **List&lt;string&gt;** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Slug** | **string** | The project&#39;s slug | [readonly] 

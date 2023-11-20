@@ -7,6 +7,11 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(NormalizedProjectRevisionThirdPartyProvider, () {
+    // BuiltList<String> additionalIdTokenAudiences
+    test('to test the property `additionalIdTokenAudiences`', () async {
+      // TODO
+    });
+
     // String applePrivateKey
     test('to test the property `applePrivateKey`', () async {
       // TODO

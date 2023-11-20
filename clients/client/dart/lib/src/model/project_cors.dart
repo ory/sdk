@@ -18,11 +18,11 @@ part 'project_cors.g.dart';
 abstract class ProjectCors implements Built<ProjectCors, ProjectCorsBuilder> {
   /// Whether CORS is enabled for this endpoint.
   @BuiltValueField(wireName: r'enabled')
-  bool get enabled;
+  bool? get enabled;
 
   /// The allowed origins. Use `*` to allow all origins. A wildcard can also be used in the subdomain, i.e. `https://_*.example.com` will allow all origins on all subdomains of `example.com`.
   @BuiltValueField(wireName: r'origins')
-  BuiltList<String> get origins;
+  BuiltList<String>? get origins;
 
   ProjectCors._();
 
@@ -47,16 +47,20 @@ class _$ProjectCorsSerializer implements PrimitiveSerializer<ProjectCors> {
     ProjectCors object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'enabled';
-    yield serializers.serialize(
-      object.enabled,
-      specifiedType: const FullType(bool),
-    );
-    yield r'origins';
-    yield serializers.serialize(
-      object.origins,
-      specifiedType: const FullType(BuiltList, [FullType(String)]),
-    );
+    if (object.enabled != null) {
+      yield r'enabled';
+      yield serializers.serialize(
+        object.enabled,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.origins != null) {
+      yield r'origins';
+      yield serializers.serialize(
+        object.origins,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
   }
 
   @override

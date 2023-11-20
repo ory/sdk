@@ -181,13 +181,13 @@ Name | Type | Description | Notes
 **kratosSessionWhoamiRequiredAal** | **string** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional]
 **kratosSessionWhoamiTokenizerTemplates** | [**\Ory\Client\Model\NormalizedProjectRevisionTokenizerTemplate[]**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional]
 **name** | **string** | The project&#39;s name. |
-**production** | **bool** | Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment. | [optional]
 **projectId** | **string** | The Revision&#39;s Project ID | [optional]
 **projectRevisionHooks** | [**\Ory\Client\Model\NormalizedProjectRevisionHook[]**](NormalizedProjectRevisionHook.md) |  | [optional]
 **serveAdminCorsAllowedOrigins** | **string[]** |  | [optional]
 **serveAdminCorsEnabled** | **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional]
 **servePublicCorsAllowedOrigins** | **string[]** |  | [optional]
 **servePublicCorsEnabled** | **bool** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional]
+**strictSecurity** | **bool** | Whether the project should employ strict security measures. Setting this to true is recommended for going into production. | [optional]
 **updatedAt** | **\DateTime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
