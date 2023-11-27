@@ -11,12 +11,12 @@ part 'recovery_code_for_identity.g.dart';
 /// Used when an administrator creates a recovery code for an identity.
 ///
 /// Properties:
-/// * [expiresAt] - Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery link expires.
+/// * [expiresAt] - Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery code expires.
 /// * [recoveryCode] - RecoveryCode is the code that can be used to recover the account
 /// * [recoveryLink] - RecoveryLink with flow  This link opens the recovery UI with an empty `code` field.
 @BuiltValue()
 abstract class RecoveryCodeForIdentity implements Built<RecoveryCodeForIdentity, RecoveryCodeForIdentityBuilder> {
-  /// Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery link expires.
+  /// Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery code expires.
   @BuiltValueField(wireName: r'expires_at')
   DateTime? get expiresAt;
 

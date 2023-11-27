@@ -15,7 +15,11 @@ docs/ClientCheckPermissionResult.md
 docs/ClientCloudAccount.md
 docs/ClientConsistencyRequestParameters.md
 docs/ClientContinueWith.md
+docs/ClientContinueWithRecoveryUi.md
+docs/ClientContinueWithRecoveryUiFlow.md
 docs/ClientContinueWithSetOrySessionToken.md
+docs/ClientContinueWithSettingsUi.md
+docs/ClientContinueWithSettingsUiFlow.md
 docs/ClientContinueWithVerificationUi.md
 docs/ClientContinueWithVerificationUiFlow.md
 docs/ClientCourierMessageStatus.md
@@ -262,7 +266,11 @@ src/Ory.Client.Test/Model/ClientCheckOplSyntaxResultTests.cs
 src/Ory.Client.Test/Model/ClientCheckPermissionResultTests.cs
 src/Ory.Client.Test/Model/ClientCloudAccountTests.cs
 src/Ory.Client.Test/Model/ClientConsistencyRequestParametersTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithRecoveryUiFlowTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithRecoveryUiTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithSetOrySessionTokenTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithSettingsUiFlowTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithSettingsUiTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithVerificationUiFlowTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithVerificationUiTests.cs
@@ -517,7 +525,11 @@ src/Ory.Client/Model/ClientCheckPermissionResult.cs
 src/Ory.Client/Model/ClientCloudAccount.cs
 src/Ory.Client/Model/ClientConsistencyRequestParameters.cs
 src/Ory.Client/Model/ClientContinueWith.cs
+src/Ory.Client/Model/ClientContinueWithRecoveryUi.cs
+src/Ory.Client/Model/ClientContinueWithRecoveryUiFlow.cs
 src/Ory.Client/Model/ClientContinueWithSetOrySessionToken.cs
+src/Ory.Client/Model/ClientContinueWithSettingsUi.cs
+src/Ory.Client/Model/ClientContinueWithSettingsUiFlow.cs
 src/Ory.Client/Model/ClientContinueWithVerificationUi.cs
 src/Ory.Client/Model/ClientContinueWithVerificationUiFlow.cs
 src/Ory.Client/Model/ClientCourierMessageStatus.cs

@@ -30,7 +30,7 @@ Method | HTTP request | Description
 [**ToSession**](FrontendAPI.md#ToSession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 [**UpdateLoginFlow**](FrontendAPI.md#UpdateLoginFlow) | **Post** /self-service/login | Submit a Login Flow
 [**UpdateLogoutFlow**](FrontendAPI.md#UpdateLogoutFlow) | **Get** /self-service/logout | Update Logout Flow
-[**UpdateRecoveryFlow**](FrontendAPI.md#UpdateRecoveryFlow) | **Post** /self-service/recovery | Complete Recovery Flow
+[**UpdateRecoveryFlow**](FrontendAPI.md#UpdateRecoveryFlow) | **Post** /self-service/recovery | Update Recovery Flow
 [**UpdateRegistrationFlow**](FrontendAPI.md#UpdateRegistrationFlow) | **Post** /self-service/registration | Update Registration Flow
 [**UpdateSettingsFlow**](FrontendAPI.md#UpdateSettingsFlow) | **Post** /self-service/settings | Complete Settings Flow
 [**UpdateVerificationFlow**](FrontendAPI.md#UpdateVerificationFlow) | **Post** /self-service/verification | Complete Verification Flow
@@ -1812,7 +1812,7 @@ No authorization required
 
 > RecoveryFlow UpdateRecoveryFlow(ctx).Flow(flow).UpdateRecoveryFlowBody(updateRecoveryFlowBody).Token(token).Cookie(cookie).Execute()
 
-Complete Recovery Flow
+Update Recovery Flow
 
 
 

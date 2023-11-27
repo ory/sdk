@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/model/continue_with.dart';
 import 'package:ory_client/src/model/ui_container.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -14,6 +16,7 @@ part 'recovery_flow.g.dart';
 ///
 /// Properties:
 /// * [active] - Active, if set, contains the recovery method that is being used. It is initially not set.
+/// * [continueWith] - Contains possible actions that could follow this flow
 /// * [expiresAt] - ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated.
 /// * [id] - ID represents the request's unique ID. When performing the recovery flow, this represents the id in the recovery ui's query parameter: http://<selfservice.flows.recovery.ui_url>?request=<id>
 /// * [issuedAt] - IssuedAt is the time (UTC) when the request occurred.
@@ -27,6 +30,10 @@ abstract class RecoveryFlow implements Built<RecoveryFlow, RecoveryFlowBuilder> 
   /// Active, if set, contains the recovery method that is being used. It is initially not set.
   @BuiltValueField(wireName: r'active')
   String? get active;
+
+  /// Contains possible actions that could follow this flow
+  @BuiltValueField(wireName: r'continue_with')
+  BuiltList<ContinueWith>? get continueWith;
 
   /// ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated.
   @BuiltValueField(wireName: r'expires_at')
@@ -87,6 +94,13 @@ class _$RecoveryFlowSerializer implements PrimitiveSerializer<RecoveryFlow> {
       yield serializers.serialize(
         object.active,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.continueWith != null) {
+      yield r'continue_with';
+      yield serializers.serialize(
+        object.continueWith,
+        specifiedType: const FullType(BuiltList, [FullType(ContinueWith)]),
       );
     }
     yield r'expires_at';
@@ -160,6 +174,13 @@ class _$RecoveryFlowSerializer implements PrimitiveSerializer<RecoveryFlow> {
             specifiedType: const FullType(String),
           ) as String;
           result.active = valueDes;
+          break;
+        case r'continue_with':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ContinueWith)]),
+          ) as BuiltList<ContinueWith>;
+          result.continueWith.replace(valueDes);
           break;
         case r'expires_at':
           final valueDes = serializers.deserialize(

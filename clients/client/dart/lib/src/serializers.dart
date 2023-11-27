@@ -26,7 +26,11 @@ import 'package:ory_client/src/model/check_permission_result.dart';
 import 'package:ory_client/src/model/cloud_account.dart';
 import 'package:ory_client/src/model/consistency_request_parameters.dart';
 import 'package:ory_client/src/model/continue_with.dart';
+import 'package:ory_client/src/model/continue_with_recovery_ui.dart';
+import 'package:ory_client/src/model/continue_with_recovery_ui_flow.dart';
 import 'package:ory_client/src/model/continue_with_set_ory_session_token.dart';
+import 'package:ory_client/src/model/continue_with_settings_ui.dart';
+import 'package:ory_client/src/model/continue_with_settings_ui_flow.dart';
 import 'package:ory_client/src/model/continue_with_verification_ui.dart';
 import 'package:ory_client/src/model/continue_with_verification_ui_flow.dart';
 import 'package:ory_client/src/model/courier_message_status.dart';
@@ -255,7 +259,11 @@ part 'serializers.g.dart';
   CloudAccount,
   ConsistencyRequestParameters,
   ContinueWith,
+  ContinueWithRecoveryUi,
+  ContinueWithRecoveryUiFlow,
   ContinueWithSetOrySessionToken,
+  ContinueWithSettingsUi,
+  ContinueWithSettingsUiFlow,
   ContinueWithVerificationUi,
   ContinueWithVerificationUiFlow,
   CourierMessageStatus,

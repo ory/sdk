@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **active** | **String** | Active, if set, contains the recovery method that is being used. It is initially not set. | [optional] |
+| **continue_with** | [**Array&lt;ContinueWith&gt;**](ContinueWith.md) | Contains possible actions that could follow this flow | [optional] |
 | **expires_at** | **Time** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated. |  |
 | **id** | **String** | ID represents the request&#39;s unique ID. When performing the recovery flow, this represents the id in the recovery ui&#39;s query parameter: http://&lt;selfservice.flows.recovery.ui_url&gt;?request&#x3D;&lt;id&gt; |  |
 | **issued_at** | **Time** | IssuedAt is the time (UTC) when the request occurred. |  |
@@ -21,6 +22,7 @@ require 'ory-client'
 
 instance = OryClient::RecoveryFlow.new(
   active: null,
+  continue_with: null,
   expires_at: null,
   id: null,
   issued_at: null,

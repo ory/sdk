@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.2
+API version: v1.4.3
 Contact: support@ory.sh
 */
 
@@ -24,6 +24,8 @@ var _ MappedNullable = &RecoveryFlow{}
 type RecoveryFlow struct {
 	// Active, if set, contains the recovery method that is being used. It is initially not set.
 	Active *string `json:"active,omitempty"`
+	// Contains possible actions that could follow this flow
+	ContinueWith []ContinueWith `json:"continue_with,omitempty"`
 	// ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated.
 	ExpiresAt time.Time `json:"expires_at"`
 	// ID represents the request's unique ID. When performing the recovery flow, this represents the id in the recovery ui's query parameter: http://<selfservice.flows.recovery.ui_url>?request=<id>
@@ -98,6 +100,38 @@ func (o *RecoveryFlow) HasActive() bool {
 // SetActive gets a reference to the given string and assigns it to the Active field.
 func (o *RecoveryFlow) SetActive(v string) {
 	o.Active = &v
+}
+
+// GetContinueWith returns the ContinueWith field value if set, zero value otherwise.
+func (o *RecoveryFlow) GetContinueWith() []ContinueWith {
+	if o == nil || IsNil(o.ContinueWith) {
+		var ret []ContinueWith
+		return ret
+	}
+	return o.ContinueWith
+}
+
+// GetContinueWithOk returns a tuple with the ContinueWith field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecoveryFlow) GetContinueWithOk() ([]ContinueWith, bool) {
+	if o == nil || IsNil(o.ContinueWith) {
+		return nil, false
+	}
+	return o.ContinueWith, true
+}
+
+// HasContinueWith returns a boolean if a field has been set.
+func (o *RecoveryFlow) HasContinueWith() bool {
+	if o != nil && !IsNil(o.ContinueWith) {
+		return true
+	}
+
+	return false
+}
+
+// SetContinueWith gets a reference to the given []ContinueWith and assigns it to the ContinueWith field.
+func (o *RecoveryFlow) SetContinueWith(v []ContinueWith) {
+	o.ContinueWith = v
 }
 
 // GetExpiresAt returns the ExpiresAt field value
@@ -315,6 +349,9 @@ func (o RecoveryFlow) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
+	if !IsNil(o.ContinueWith) {
+		toSerialize["continue_with"] = o.ContinueWith
+	}
 	toSerialize["expires_at"] = o.ExpiresAt
 	toSerialize["id"] = o.Id
 	toSerialize["issued_at"] = o.IssuedAt
@@ -377,6 +414,7 @@ func (o *RecoveryFlow) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "active")
+		delete(additionalProperties, "continue_with")
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "issued_at")

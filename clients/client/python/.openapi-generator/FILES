@@ -15,7 +15,11 @@ docs/CheckPermissionResult.md
 docs/CloudAccount.md
 docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
+docs/ContinueWithRecoveryUi.md
+docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithSettingsUi.md
+docs/ContinueWithSettingsUiFlow.md
 docs/ContinueWithVerificationUi.md
 docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
@@ -301,7 +305,11 @@ ory_client/model/check_permission_result.py
 ory_client/model/cloud_account.py
 ory_client/model/consistency_request_parameters.py
 ory_client/model/continue_with.py
+ory_client/model/continue_with_recovery_ui.py
+ory_client/model/continue_with_recovery_ui_flow.py
 ory_client/model/continue_with_set_ory_session_token.py
+ory_client/model/continue_with_settings_ui.py
+ory_client/model/continue_with_settings_ui_flow.py
 ory_client/model/continue_with_verification_ui.py
 ory_client/model/continue_with_verification_ui_flow.py
 ory_client/model/courier_message_status.py
@@ -565,7 +573,11 @@ test/test_check_permission_result.py
 test/test_cloud_account.py
 test/test_consistency_request_parameters.py
 test/test_continue_with.py
+test/test_continue_with_recovery_ui.py
+test/test_continue_with_recovery_ui_flow.py
 test/test_continue_with_set_ory_session_token.py
+test/test_continue_with_settings_ui.py
+test/test_continue_with_settings_ui_flow.py
 test/test_continue_with_verification_ui.py
 test/test_continue_with_verification_ui_flow.py
 test/test_courier_api.py

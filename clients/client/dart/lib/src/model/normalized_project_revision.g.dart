@@ -464,6 +464,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final bool? kratosFeatureFlagsCacheableSessions;
   @override
+  final bool? kratosFeatureFlagsUseContinueWithTransitions;
+  @override
   final BuiltList<NormalizedProjectRevisionIdentitySchema>?
       kratosIdentitySchemas;
   @override
@@ -761,6 +763,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
       this.kratosCourierTemplatesVerificationValidEmailSubject,
       this.kratosFeatureFlagsCacheableSessions,
+      this.kratosFeatureFlagsUseContinueWithTransitions,
       this.kratosIdentitySchemas,
       this.kratosOauth2ProviderHeaders,
       this.kratosOauth2ProviderOverrideReturnTo,
@@ -1029,6 +1032,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosCourierTemplatesVerificationValidEmailSubject &&
         kratosFeatureFlagsCacheableSessions ==
             other.kratosFeatureFlagsCacheableSessions &&
+        kratosFeatureFlagsUseContinueWithTransitions ==
+            other.kratosFeatureFlagsUseContinueWithTransitions &&
         kratosIdentitySchemas == other.kratosIdentitySchemas &&
         kratosOauth2ProviderHeaders == other.kratosOauth2ProviderHeaders &&
         kratosOauth2ProviderOverrideReturnTo ==
@@ -1347,6 +1352,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(
         _$hash, kratosCourierTemplatesVerificationValidEmailSubject.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessions.hashCode);
+    _$hash = $jc(_$hash, kratosFeatureFlagsUseContinueWithTransitions.hashCode);
     _$hash = $jc(_$hash, kratosIdentitySchemas.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderHeaders.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderOverrideReturnTo.hashCode);
@@ -1669,6 +1675,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosCourierTemplatesVerificationValidEmailSubject)
           ..add('kratosFeatureFlagsCacheableSessions',
               kratosFeatureFlagsCacheableSessions)
+          ..add('kratosFeatureFlagsUseContinueWithTransitions',
+              kratosFeatureFlagsUseContinueWithTransitions)
           ..add('kratosIdentitySchemas', kratosIdentitySchemas)
           ..add('kratosOauth2ProviderHeaders', kratosOauth2ProviderHeaders)
           ..add('kratosOauth2ProviderOverrideReturnTo',
@@ -2527,6 +2535,14 @@ class NormalizedProjectRevisionBuilder
           bool? kratosFeatureFlagsCacheableSessions) =>
       _$this._kratosFeatureFlagsCacheableSessions =
           kratosFeatureFlagsCacheableSessions;
+
+  bool? _kratosFeatureFlagsUseContinueWithTransitions;
+  bool? get kratosFeatureFlagsUseContinueWithTransitions =>
+      _$this._kratosFeatureFlagsUseContinueWithTransitions;
+  set kratosFeatureFlagsUseContinueWithTransitions(
+          bool? kratosFeatureFlagsUseContinueWithTransitions) =>
+      _$this._kratosFeatureFlagsUseContinueWithTransitions =
+          kratosFeatureFlagsUseContinueWithTransitions;
 
   ListBuilder<NormalizedProjectRevisionIdentitySchema>? _kratosIdentitySchemas;
   ListBuilder<NormalizedProjectRevisionIdentitySchema>
@@ -3426,6 +3442,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosCourierTemplatesVerificationValidEmailSubject;
       _kratosFeatureFlagsCacheableSessions =
           $v.kratosFeatureFlagsCacheableSessions;
+      _kratosFeatureFlagsUseContinueWithTransitions =
+          $v.kratosFeatureFlagsUseContinueWithTransitions;
       _kratosIdentitySchemas = $v.kratosIdentitySchemas?.toBuilder();
       _kratosOauth2ProviderHeaders = $v.kratosOauth2ProviderHeaders;
       _kratosOauth2ProviderOverrideReturnTo =
@@ -3766,6 +3784,7 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions:
                   kratosFeatureFlagsCacheableSessions,
+              kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,
               kratosOauth2ProviderOverrideReturnTo: kratosOauth2ProviderOverrideReturnTo,

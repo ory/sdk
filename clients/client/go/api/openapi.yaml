@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.4.2
+  version: v1.4.3
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -2017,7 +2017,7 @@ paths:
         has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.
 
         If you send the subject in a query param, all authentication sessions that belong to that subject are revoked.
-        No OpennID Connect Front- or Back-channel logout is performed in this case.
+        No OpenID Connect Front- or Back-channel logout is performed in this case.
 
         Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
         to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
@@ -5395,7 +5395,7 @@ paths:
   /self-service/recovery:
     post:
       description: |-
-        Use this endpoint to complete a recovery flow. This endpoint
+        Use this endpoint to update a recovery flow. This endpoint
         behaves differently for API and browser flows and has several states:
 
         `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
@@ -5496,7 +5496,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
-      summary: Complete Recovery Flow
+      summary: Update Recovery Flow
       tags:
       - frontend
   /self-service/recovery/api:
@@ -5506,7 +5506,7 @@ paths:
 
         If a valid provided session cookie or session token is provided, a 400 Bad Request error.
 
-        To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.
+        On an existing recovery flow, use the `getRecoveryFlow` API endpoint.
 
         You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server
         Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make
@@ -7778,11 +7778,45 @@ components:
       discriminator:
         mapping:
           set_ory_session_token: '#/components/schemas/continueWithSetOrySessionToken'
+          show_recovery_ui: '#/components/schemas/continueWithRecoveryUi'
+          show_settings_ui: '#/components/schemas/continueWithSettingsUi'
           show_verification_ui: '#/components/schemas/continueWithVerificationUi'
         propertyName: action
       oneOf:
       - $ref: '#/components/schemas/continueWithVerificationUi'
       - $ref: '#/components/schemas/continueWithSetOrySessionToken'
+      - $ref: '#/components/schemas/continueWithSettingsUi'
+      - $ref: '#/components/schemas/continueWithRecoveryUi'
+    continueWithRecoveryUi:
+      description: "Indicates, that the UI flow could be continued by showing a recovery\
+        \ ui"
+      properties:
+        action:
+          description: |-
+            Action will always be `show_recovery_ui`
+            show_recovery_ui ContinueWithActionShowRecoveryUIString
+          enum:
+          - show_recovery_ui
+          type: string
+          x-go-enum-desc: show_recovery_ui ContinueWithActionShowRecoveryUIString
+        flow:
+          $ref: '#/components/schemas/continueWithRecoveryUiFlow'
+      required:
+      - action
+      - flow
+      type: object
+    continueWithRecoveryUiFlow:
+      properties:
+        id:
+          description: The ID of the recovery flow
+          format: uuid
+          type: string
+        url:
+          description: The URL of the recovery flow
+          type: string
+      required:
+      - id
+      type: object
     continueWithSetOrySessionToken:
       description: "Indicates that a session was issued, and the application should\
         \ use this token for authenticated requests"
@@ -7801,6 +7835,33 @@ components:
       required:
       - action
       - ory_session_token
+      type: object
+    continueWithSettingsUi:
+      description: "Indicates, that the UI flow could be continued by showing a settings\
+        \ ui"
+      properties:
+        action:
+          description: |-
+            Action will always be `show_settings_ui`
+            show_settings_ui ContinueWithActionShowSettingsUIString
+          enum:
+          - show_settings_ui
+          type: string
+          x-go-enum-desc: show_settings_ui ContinueWithActionShowSettingsUIString
+        flow:
+          $ref: '#/components/schemas/continueWithSettingsUiFlow'
+      required:
+      - action
+      - flow
+      type: object
+    continueWithSettingsUiFlow:
+      properties:
+        id:
+          description: The ID of the settings flow
+          format: uuid
+          type: string
+      required:
+      - id
       type: object
     continueWithVerificationUi:
       description: "Indicates, that the UI flow could be continued by showing a verification\
@@ -10703,6 +10764,12 @@ components:
             Configures the Ory Kratos Session caching feature flag
 
             This governs the "feature_flags.cacheable_sessions" setting.
+          type: boolean
+        kratos_feature_flags_use_continue_with_transitions:
+          description: |-
+            Configures the Ory Kratos Session use_continue_with_transitions flag
+
+            This governs the "feature_flags.use_continue_with_transitions" setting.
           type: boolean
         kratos_identity_schemas:
           items:
@@ -14073,7 +14140,7 @@ components:
           description: |-
             Expires At is the timestamp of when the recovery flow expires
 
-            The timestamp when the recovery link expires.
+            The timestamp when the recovery code expires.
           format: date-time
           type: string
         recovery_code:
@@ -14146,6 +14213,9 @@ components:
             id: 0
             text: text
             type: info
+        continue_with:
+        - null
+        - null
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14159,6 +14229,11 @@ components:
             Active, if set, contains the recovery method that is being used. It is initially
             not set.
           type: string
+        continue_with:
+          description: Contains possible actions that could follow this flow
+          items:
+            $ref: '#/components/schemas/continueWith'
+          type: array
         expires_at:
           description: |-
             ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting,

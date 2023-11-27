@@ -19,7 +19,11 @@ docs/CheckPermissionResult.md
 docs/CloudAccount.md
 docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
+docs/ContinueWithRecoveryUi.md
+docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithSettingsUi.md
+docs/ContinueWithSettingsUiFlow.md
 docs/ContinueWithVerificationUi.md
 docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
@@ -271,7 +275,11 @@ lib/ory-client/models/check_permission_result.rb
 lib/ory-client/models/cloud_account.rb
 lib/ory-client/models/consistency_request_parameters.rb
 lib/ory-client/models/continue_with.rb
+lib/ory-client/models/continue_with_recovery_ui.rb
+lib/ory-client/models/continue_with_recovery_ui_flow.rb
 lib/ory-client/models/continue_with_set_ory_session_token.rb
+lib/ory-client/models/continue_with_settings_ui.rb
+lib/ory-client/models/continue_with_settings_ui_flow.rb
 lib/ory-client/models/continue_with_verification_ui.rb
 lib/ory-client/models/continue_with_verification_ui_flow.rb
 lib/ory-client/models/courier_message_status.rb
@@ -510,7 +518,11 @@ spec/models/check_opl_syntax_result_spec.rb
 spec/models/check_permission_result_spec.rb
 spec/models/cloud_account_spec.rb
 spec/models/consistency_request_parameters_spec.rb
+spec/models/continue_with_recovery_ui_flow_spec.rb
+spec/models/continue_with_recovery_ui_spec.rb
 spec/models/continue_with_set_ory_session_token_spec.rb
+spec/models/continue_with_settings_ui_flow_spec.rb
+spec/models/continue_with_settings_ui_spec.rb
 spec/models/continue_with_spec.rb
 spec/models/continue_with_verification_ui_flow_spec.rb
 spec/models/continue_with_verification_ui_spec.rb

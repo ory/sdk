@@ -20,8 +20,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ConsistencyRequestParameters.serializer)
       ..add(ConsistencyRequestParametersConsistencyEnum.serializer)
       ..add(ContinueWith.serializer)
+      ..add(ContinueWithRecoveryUi.serializer)
+      ..add(ContinueWithRecoveryUiActionEnum.serializer)
+      ..add(ContinueWithRecoveryUiFlow.serializer)
       ..add(ContinueWithSetOrySessionToken.serializer)
       ..add(ContinueWithSetOrySessionTokenActionEnum.serializer)
+      ..add(ContinueWithSettingsUi.serializer)
+      ..add(ContinueWithSettingsUiActionEnum.serializer)
+      ..add(ContinueWithSettingsUiFlow.serializer)
       ..add(ContinueWithVerificationUi.serializer)
       ..add(ContinueWithVerificationUiActionEnum.serializer)
       ..add(ContinueWithVerificationUiFlow.serializer)
@@ -277,6 +283,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(AttributesCountDatapoint)]),
           () => new ListBuilder<AttributesCountDatapoint>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ContinueWith)]),
+          () => new ListBuilder<ContinueWith>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ContinueWith)]),
           () => new ListBuilder<ContinueWith>())

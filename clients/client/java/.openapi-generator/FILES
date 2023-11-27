@@ -18,7 +18,11 @@ docs/CheckPermissionResult.md
 docs/CloudAccount.md
 docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
+docs/ContinueWithRecoveryUi.md
+docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithSettingsUi.md
+docs/ContinueWithSettingsUiFlow.md
 docs/ContinueWithVerificationUi.md
 docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
@@ -296,7 +300,11 @@ src/main/java/sh/ory/model/CheckPermissionResult.java
 src/main/java/sh/ory/model/CloudAccount.java
 src/main/java/sh/ory/model/ConsistencyRequestParameters.java
 src/main/java/sh/ory/model/ContinueWith.java
+src/main/java/sh/ory/model/ContinueWithRecoveryUi.java
+src/main/java/sh/ory/model/ContinueWithRecoveryUiFlow.java
 src/main/java/sh/ory/model/ContinueWithSetOrySessionToken.java
+src/main/java/sh/ory/model/ContinueWithSettingsUi.java
+src/main/java/sh/ory/model/ContinueWithSettingsUiFlow.java
 src/main/java/sh/ory/model/ContinueWithVerificationUi.java
 src/main/java/sh/ory/model/ContinueWithVerificationUiFlow.java
 src/main/java/sh/ory/model/CourierMessageStatus.java
@@ -531,7 +539,11 @@ src/test/java/sh/ory/model/CheckOplSyntaxResultTest.java
 src/test/java/sh/ory/model/CheckPermissionResultTest.java
 src/test/java/sh/ory/model/CloudAccountTest.java
 src/test/java/sh/ory/model/ConsistencyRequestParametersTest.java
+src/test/java/sh/ory/model/ContinueWithRecoveryUiFlowTest.java
+src/test/java/sh/ory/model/ContinueWithRecoveryUiTest.java
 src/test/java/sh/ory/model/ContinueWithSetOrySessionTokenTest.java
+src/test/java/sh/ory/model/ContinueWithSettingsUiFlowTest.java
+src/test/java/sh/ory/model/ContinueWithSettingsUiTest.java
 src/test/java/sh/ory/model/ContinueWithTest.java
 src/test/java/sh/ory/model/ContinueWithVerificationUiFlowTest.java
 src/test/java/sh/ory/model/ContinueWithVerificationUiTest.java

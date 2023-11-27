@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | Option<**String**> | Active, if set, contains the recovery method that is being used. It is initially not set. | [optional]
+**continue_with** | Option<[**Vec<crate::models::ContinueWith>**](continueWith.md)> | Contains possible actions that could follow this flow | [optional]
 **expires_at** | **String** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated. | 
 **id** | **String** | ID represents the request's unique ID. When performing the recovery flow, this represents the id in the recovery ui's query parameter: http://<selfservice.flows.recovery.ui_url>?request=<id> | 
 **issued_at** | **String** | IssuedAt is the time (UTC) when the request occurred. | 

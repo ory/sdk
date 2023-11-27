@@ -8,7 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expiresAt** | [**DateTime**](DateTime.md) | Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery link expires. | [optional] 
+**expiresAt** | [**DateTime**](DateTime.md) | Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery code expires. | [optional] 
 **recoveryCode** | **String** | RecoveryCode is the code that can be used to recover the account | 
 **recoveryLink** | **String** | RecoveryLink with flow  This link opens the recovery UI with an empty `code` field. | 
 

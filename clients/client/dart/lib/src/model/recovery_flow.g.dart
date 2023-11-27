@@ -10,6 +10,8 @@ class _$RecoveryFlow extends RecoveryFlow {
   @override
   final String? active;
   @override
+  final BuiltList<ContinueWith>? continueWith;
+  @override
   final DateTime expiresAt;
   @override
   final String id;
@@ -31,6 +33,7 @@ class _$RecoveryFlow extends RecoveryFlow {
 
   _$RecoveryFlow._(
       {this.active,
+      this.continueWith,
       required this.expiresAt,
       required this.id,
       required this.issuedAt,
@@ -63,6 +66,7 @@ class _$RecoveryFlow extends RecoveryFlow {
     if (identical(other, this)) return true;
     return other is RecoveryFlow &&
         active == other.active &&
+        continueWith == other.continueWith &&
         expiresAt == other.expiresAt &&
         id == other.id &&
         issuedAt == other.issuedAt &&
@@ -77,6 +81,7 @@ class _$RecoveryFlow extends RecoveryFlow {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, active.hashCode);
+    _$hash = $jc(_$hash, continueWith.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, issuedAt.hashCode);
@@ -93,6 +98,7 @@ class _$RecoveryFlow extends RecoveryFlow {
   String toString() {
     return (newBuiltValueToStringHelper(r'RecoveryFlow')
           ..add('active', active)
+          ..add('continueWith', continueWith)
           ..add('expiresAt', expiresAt)
           ..add('id', id)
           ..add('issuedAt', issuedAt)
@@ -112,6 +118,12 @@ class RecoveryFlowBuilder
   String? _active;
   String? get active => _$this._active;
   set active(String? active) => _$this._active = active;
+
+  ListBuilder<ContinueWith>? _continueWith;
+  ListBuilder<ContinueWith> get continueWith =>
+      _$this._continueWith ??= new ListBuilder<ContinueWith>();
+  set continueWith(ListBuilder<ContinueWith>? continueWith) =>
+      _$this._continueWith = continueWith;
 
   DateTime? _expiresAt;
   DateTime? get expiresAt => _$this._expiresAt;
@@ -153,6 +165,7 @@ class RecoveryFlowBuilder
     final $v = _$v;
     if ($v != null) {
       _active = $v.active;
+      _continueWith = $v.continueWith?.toBuilder();
       _expiresAt = $v.expiresAt;
       _id = $v.id;
       _issuedAt = $v.issuedAt;
@@ -186,6 +199,7 @@ class RecoveryFlowBuilder
       _$result = _$v ??
           new _$RecoveryFlow._(
               active: active,
+              continueWith: _continueWith?.build(),
               expiresAt: BuiltValueNullFieldError.checkNotNull(
                   expiresAt, r'RecoveryFlow', 'expiresAt'),
               id: BuiltValueNullFieldError.checkNotNull(
@@ -202,6 +216,9 @@ class RecoveryFlowBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'continueWith';
+        _continueWith?.build();
+
         _$failedField = 'ui';
         ui.build();
       } catch (e) {

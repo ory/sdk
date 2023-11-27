@@ -27,7 +27,11 @@ docs/Model/CheckPermissionResult.md
 docs/Model/CloudAccount.md
 docs/Model/ConsistencyRequestParameters.md
 docs/Model/ContinueWith.md
+docs/Model/ContinueWithRecoveryUi.md
+docs/Model/ContinueWithRecoveryUiFlow.md
 docs/Model/ContinueWithSetOrySessionToken.md
+docs/Model/ContinueWithSettingsUi.md
+docs/Model/ContinueWithSettingsUiFlow.md
 docs/Model/ContinueWithVerificationUi.md
 docs/Model/ContinueWithVerificationUiFlow.md
 docs/Model/CourierMessageStatus.md
@@ -267,7 +271,11 @@ lib/Model/CheckPermissionResult.php
 lib/Model/CloudAccount.php
 lib/Model/ConsistencyRequestParameters.php
 lib/Model/ContinueWith.php
+lib/Model/ContinueWithRecoveryUi.php
+lib/Model/ContinueWithRecoveryUiFlow.php
 lib/Model/ContinueWithSetOrySessionToken.php
+lib/Model/ContinueWithSettingsUi.php
+lib/Model/ContinueWithSettingsUiFlow.php
 lib/Model/ContinueWithVerificationUi.php
 lib/Model/ContinueWithVerificationUiFlow.php
 lib/Model/CourierMessageStatus.php
@@ -505,7 +513,11 @@ test/Model/CheckOplSyntaxResultTest.php
 test/Model/CheckPermissionResultTest.php
 test/Model/CloudAccountTest.php
 test/Model/ConsistencyRequestParametersTest.php
+test/Model/ContinueWithRecoveryUiFlowTest.php
+test/Model/ContinueWithRecoveryUiTest.php
 test/Model/ContinueWithSetOrySessionTokenTest.php
+test/Model/ContinueWithSettingsUiFlowTest.php
+test/Model/ContinueWithSettingsUiTest.php
 test/Model/ContinueWithTest.php
 test/Model/ContinueWithVerificationUiFlowTest.php
 test/Model/ContinueWithVerificationUiTest.php

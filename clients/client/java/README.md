@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.4.2
-  - Build date: 2023-11-20T14:49:18.367639389Z[Etc/UTC]
+- API version: v1.4.3
+  - Build date: 2023-11-27T15:12:51.940972469Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.4.2</version>
+  <version>v1.4.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.4.2"
+     implementation "sh.ory:client:v1.4.3"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.4.2.jar`
+* `target/client-v1.4.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -149,7 +149,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**toSession**](docs/FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *FrontendApi* | [**updateLoginFlow**](docs/FrontendApi.md#updateLoginFlow) | **POST** /self-service/login | Submit a Login Flow
 *FrontendApi* | [**updateLogoutFlow**](docs/FrontendApi.md#updateLogoutFlow) | **GET** /self-service/logout | Update Logout Flow
-*FrontendApi* | [**updateRecoveryFlow**](docs/FrontendApi.md#updateRecoveryFlow) | **POST** /self-service/recovery | Complete Recovery Flow
+*FrontendApi* | [**updateRecoveryFlow**](docs/FrontendApi.md#updateRecoveryFlow) | **POST** /self-service/recovery | Update Recovery Flow
 *FrontendApi* | [**updateRegistrationFlow**](docs/FrontendApi.md#updateRegistrationFlow) | **POST** /self-service/registration | Update Registration Flow
 *FrontendApi* | [**updateSettingsFlow**](docs/FrontendApi.md#updateSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow
 *FrontendApi* | [**updateVerificationFlow**](docs/FrontendApi.md#updateVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow
@@ -264,7 +264,11 @@ Class | Method | HTTP request | Description
  - [CloudAccount](docs/CloudAccount.md)
  - [ConsistencyRequestParameters](docs/ConsistencyRequestParameters.md)
  - [ContinueWith](docs/ContinueWith.md)
+ - [ContinueWithRecoveryUi](docs/ContinueWithRecoveryUi.md)
+ - [ContinueWithRecoveryUiFlow](docs/ContinueWithRecoveryUiFlow.md)
  - [ContinueWithSetOrySessionToken](docs/ContinueWithSetOrySessionToken.md)
+ - [ContinueWithSettingsUi](docs/ContinueWithSettingsUi.md)
+ - [ContinueWithSettingsUiFlow](docs/ContinueWithSettingsUiFlow.md)
  - [ContinueWithVerificationUi](docs/ContinueWithVerificationUi.md)
  - [ContinueWithVerificationUiFlow](docs/ContinueWithVerificationUiFlow.md)
  - [CourierMessageStatus](docs/CourierMessageStatus.md)

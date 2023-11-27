@@ -556,6 +556,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
+    // bool kratosFeatureFlagsUseContinueWithTransitions
+    test('to test the property `kratosFeatureFlagsUseContinueWithTransitions`', () async {
+      // TODO
+    });
+
     // BuiltList<NormalizedProjectRevisionIdentitySchema> kratosIdentitySchemas
     test('to test the property `kratosIdentitySchemas`', () async {
       // TODO

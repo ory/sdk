@@ -15,7 +15,7 @@ defmodule Ory.Model.ContinueWith do
 
   @type t :: %__MODULE__{
     :action => String.t,
-    :flow => Ory.Model.ContinueWithVerificationUiFlow.t,
+    :flow => Ory.Model.ContinueWithRecoveryUiFlow.t,
     :ory_session_token => String.t
   }
 end
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: Ory.Model.ContinueWith do
   import Ory.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:flow, :struct, Ory.Model.ContinueWithVerificationUiFlow, options)
+    |> deserialize(:flow, :struct, Ory.Model.ContinueWithRecoveryUiFlow, options)
   end
 end
 

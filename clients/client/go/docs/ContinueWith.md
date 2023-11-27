@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **string** | Action will always be &#x60;set_ory_session_token&#x60; set_ory_session_token ContinueWithActionSetOrySessionTokenString | 
-**Flow** | [**ContinueWithVerificationUiFlow**](ContinueWithVerificationUiFlow.md) |  | 
+**Action** | **string** | Action will always be &#x60;show_recovery_ui&#x60; show_recovery_ui ContinueWithActionShowRecoveryUIString | 
+**Flow** | [**ContinueWithRecoveryUiFlow**](ContinueWithRecoveryUiFlow.md) |  | 
 **OrySessionToken** | **string** | Token is the token of the session | 
 
 ## Methods
 
 ### NewContinueWith
 
-`func NewContinueWith(action string, flow ContinueWithVerificationUiFlow, orySessionToken string, ) *ContinueWith`
+`func NewContinueWith(action string, flow ContinueWithRecoveryUiFlow, orySessionToken string, ) *ContinueWith`
 
 NewContinueWith instantiates a new ContinueWith object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetAction sets Action field to given value.
 
 ### GetFlow
 
-`func (o *ContinueWith) GetFlow() ContinueWithVerificationUiFlow`
+`func (o *ContinueWith) GetFlow() ContinueWithRecoveryUiFlow`
 
 GetFlow returns the Flow field if non-nil, zero value otherwise.
 
 ### GetFlowOk
 
-`func (o *ContinueWith) GetFlowOk() (*ContinueWithVerificationUiFlow, bool)`
+`func (o *ContinueWith) GetFlowOk() (*ContinueWithRecoveryUiFlow, bool)`
 
 GetFlowOk returns a tuple with the Flow field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFlow
 
-`func (o *ContinueWith) SetFlow(v ContinueWithVerificationUiFlow)`
+`func (o *ContinueWith) SetFlow(v ContinueWithRecoveryUiFlow)`
 
 SetFlow sets Flow field to given value.
 

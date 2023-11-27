@@ -15,7 +15,11 @@ docs/CheckPermissionResult.md
 docs/CloudAccount.md
 docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
+docs/ContinueWithRecoveryUi.md
+docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithSetOrySessionToken.md
+docs/ContinueWithSettingsUi.md
+docs/ContinueWithSettingsUiFlow.md
 docs/ContinueWithVerificationUi.md
 docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
@@ -266,7 +270,11 @@ src/models/check_permission_result.rs
 src/models/cloud_account.rs
 src/models/consistency_request_parameters.rs
 src/models/continue_with.rs
+src/models/continue_with_recovery_ui.rs
+src/models/continue_with_recovery_ui_flow.rs
 src/models/continue_with_set_ory_session_token.rs
+src/models/continue_with_settings_ui.rs
+src/models/continue_with_settings_ui_flow.rs
 src/models/continue_with_verification_ui.rs
 src/models/continue_with_verification_ui_flow.rs
 src/models/courier_message_status.rs

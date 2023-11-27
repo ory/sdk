@@ -6,13 +6,13 @@ part of 'continue_with.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-const ContinueWithActionEnum _$continueWithActionEnum_setOrySessionToken =
-    const ContinueWithActionEnum._('setOrySessionToken');
+const ContinueWithActionEnum _$continueWithActionEnum_showRecoveryUi =
+    const ContinueWithActionEnum._('showRecoveryUi');
 
 ContinueWithActionEnum _$continueWithActionEnumValueOf(String name) {
   switch (name) {
-    case 'setOrySessionToken':
-      return _$continueWithActionEnum_setOrySessionToken;
+    case 'showRecoveryUi':
+      return _$continueWithActionEnum_showRecoveryUi;
     default:
       throw new ArgumentError(name);
   }
@@ -20,7 +20,7 @@ ContinueWithActionEnum _$continueWithActionEnumValueOf(String name) {
 
 final BuiltSet<ContinueWithActionEnum> _$continueWithActionEnumValues =
     new BuiltSet<ContinueWithActionEnum>(const <ContinueWithActionEnum>[
-  _$continueWithActionEnum_setOrySessionToken,
+  _$continueWithActionEnum_showRecoveryUi,
 ]);
 
 Serializer<ContinueWithActionEnum> _$continueWithActionEnumSerializer =
@@ -29,10 +29,10 @@ Serializer<ContinueWithActionEnum> _$continueWithActionEnumSerializer =
 class _$ContinueWithActionEnumSerializer
     implements PrimitiveSerializer<ContinueWithActionEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'setOrySessionToken': 'set_ory_session_token',
+    'showRecoveryUi': 'show_recovery_ui',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'set_ory_session_token': 'setOrySessionToken',
+    'show_recovery_ui': 'showRecoveryUi',
   };
 
   @override

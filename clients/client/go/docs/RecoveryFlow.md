@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **string** | Active, if set, contains the recovery method that is being used. It is initially not set. | [optional] 
+**ContinueWith** | Pointer to [**[]ContinueWith**](ContinueWith.md) | Contains possible actions that could follow this flow | [optional] 
 **ExpiresAt** | **time.Time** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated. | 
 **Id** | **string** | ID represents the request&#39;s unique ID. When performing the recovery flow, this represents the id in the recovery ui&#39;s query parameter: http://&lt;selfservice.flows.recovery.ui_url&gt;?request&#x3D;&lt;id&gt; | 
 **IssuedAt** | **time.Time** | IssuedAt is the time (UTC) when the request occurred. | 
@@ -57,6 +58,31 @@ SetActive sets Active field to given value.
 `func (o *RecoveryFlow) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
+
+### GetContinueWith
+
+`func (o *RecoveryFlow) GetContinueWith() []ContinueWith`
+
+GetContinueWith returns the ContinueWith field if non-nil, zero value otherwise.
+
+### GetContinueWithOk
+
+`func (o *RecoveryFlow) GetContinueWithOk() (*[]ContinueWith, bool)`
+
+GetContinueWithOk returns a tuple with the ContinueWith field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContinueWith
+
+`func (o *RecoveryFlow) SetContinueWith(v []ContinueWith)`
+
+SetContinueWith sets ContinueWith field to given value.
+
+### HasContinueWith
+
+`func (o *RecoveryFlow) HasContinueWith() bool`
+
+HasContinueWith returns a boolean if a field has been set.
 
 ### GetExpiresAt
 

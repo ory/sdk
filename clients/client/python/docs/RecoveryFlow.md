@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **type** | **str** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **ui** | [**UiContainer**](UiContainer.md) |  | 
 **active** | **str** | Active, if set, contains the recovery method that is being used. It is initially not set. | [optional] 
+**continue_with** | [**[ContinueWith]**](ContinueWith.md) | Contains possible actions that could follow this flow | [optional] 
 **return_to** | **str** | ReturnTo contains the requested return_to URL. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

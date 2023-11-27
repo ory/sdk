@@ -111,6 +111,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosCourierTemplatesVerificationValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.valid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesVerificationValidEmailSubject] - Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
 /// * [kratosFeatureFlagsCacheableSessions] - Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
+/// * [kratosFeatureFlagsUseContinueWithTransitions] - Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 /// * [kratosIdentitySchemas] 
 /// * [kratosOauth2ProviderHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 /// * [kratosOauth2ProviderOverrideReturnTo] - Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
@@ -569,6 +570,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_cacheable_sessions')
   bool? get kratosFeatureFlagsCacheableSessions;
+
+  /// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
+  @BuiltValueField(wireName: r'kratos_feature_flags_use_continue_with_transitions')
+  bool? get kratosFeatureFlagsUseContinueWithTransitions;
 
   @BuiltValueField(wireName: r'kratos_identity_schemas')
   BuiltList<NormalizedProjectRevisionIdentitySchema>? get kratosIdentitySchemas;
@@ -1611,6 +1616,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_feature_flags_cacheable_sessions';
       yield serializers.serialize(
         object.kratosFeatureFlagsCacheableSessions,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.kratosFeatureFlagsUseContinueWithTransitions != null) {
+      yield r'kratos_feature_flags_use_continue_with_transitions';
+      yield serializers.serialize(
+        object.kratosFeatureFlagsUseContinueWithTransitions,
         specifiedType: const FullType(bool),
       );
     }
@@ -2931,6 +2943,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(bool),
           ) as bool;
           result.kratosFeatureFlagsCacheableSessions = valueDes;
+          break;
+        case r'kratos_feature_flags_use_continue_with_transitions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosFeatureFlagsUseContinueWithTransitions = valueDes;
           break;
         case r'kratos_identity_schemas':
           final valueDes = serializers.deserialize(

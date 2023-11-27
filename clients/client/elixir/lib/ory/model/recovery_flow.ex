@@ -9,6 +9,7 @@ defmodule Ory.Model.RecoveryFlow do
   @derive [Poison.Encoder]
   defstruct [
     :active,
+    :continue_with,
     :expires_at,
     :id,
     :issued_at,
@@ -21,6 +22,7 @@ defmodule Ory.Model.RecoveryFlow do
 
   @type t :: %__MODULE__{
     :active => String.t | nil,
+    :continue_with => [Ory.Model.ContinueWith.t] | nil,
     :expires_at => DateTime.t,
     :id => String.t,
     :issued_at => DateTime.t,
@@ -36,6 +38,7 @@ defimpl Poison.Decoder, for: Ory.Model.RecoveryFlow do
   import Ory.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:continue_with, :list, Ory.Model.ContinueWith, options)
     |> deserialize(:ui, :struct, Ory.Model.UiContainer, options)
   end
 end

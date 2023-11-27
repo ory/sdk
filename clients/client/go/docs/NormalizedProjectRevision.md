@@ -97,6 +97,7 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesVerificationValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] 
 **KratosFeatureFlagsCacheableSessions** | Pointer to **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
+**KratosFeatureFlagsUseContinueWithTransitions** | Pointer to **bool** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] 
 **KratosIdentitySchemas** | Pointer to [**[]NormalizedProjectRevisionIdentitySchema**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **KratosOauth2ProviderHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **KratosOauth2ProviderOverrideReturnTo** | Pointer to **bool** | Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow. | [optional] 
@@ -2553,6 +2554,31 @@ SetKratosFeatureFlagsCacheableSessions sets KratosFeatureFlagsCacheableSessions 
 `func (o *NormalizedProjectRevision) HasKratosFeatureFlagsCacheableSessions() bool`
 
 HasKratosFeatureFlagsCacheableSessions returns a boolean if a field has been set.
+
+### GetKratosFeatureFlagsUseContinueWithTransitions
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsUseContinueWithTransitions() bool`
+
+GetKratosFeatureFlagsUseContinueWithTransitions returns the KratosFeatureFlagsUseContinueWithTransitions field if non-nil, zero value otherwise.
+
+### GetKratosFeatureFlagsUseContinueWithTransitionsOk
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsUseContinueWithTransitionsOk() (*bool, bool)`
+
+GetKratosFeatureFlagsUseContinueWithTransitionsOk returns a tuple with the KratosFeatureFlagsUseContinueWithTransitions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosFeatureFlagsUseContinueWithTransitions
+
+`func (o *NormalizedProjectRevision) SetKratosFeatureFlagsUseContinueWithTransitions(v bool)`
+
+SetKratosFeatureFlagsUseContinueWithTransitions sets KratosFeatureFlagsUseContinueWithTransitions field to given value.
+
+### HasKratosFeatureFlagsUseContinueWithTransitions
+
+`func (o *NormalizedProjectRevision) HasKratosFeatureFlagsUseContinueWithTransitions() bool`
+
+HasKratosFeatureFlagsUseContinueWithTransitions returns a boolean if a field has been set.
 
 ### GetKratosIdentitySchemas
 

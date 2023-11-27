@@ -14,7 +14,11 @@ doc/CheckPermissionResult.md
 doc/CloudAccount.md
 doc/ConsistencyRequestParameters.md
 doc/ContinueWith.md
+doc/ContinueWithRecoveryUi.md
+doc/ContinueWithRecoveryUiFlow.md
 doc/ContinueWithSetOrySessionToken.md
+doc/ContinueWithSettingsUi.md
+doc/ContinueWithSettingsUiFlow.md
 doc/ContinueWithVerificationUi.md
 doc/ContinueWithVerificationUiFlow.md
 doc/CourierApi.md
@@ -270,7 +274,11 @@ lib/src/model/check_permission_result.dart
 lib/src/model/cloud_account.dart
 lib/src/model/consistency_request_parameters.dart
 lib/src/model/continue_with.dart
+lib/src/model/continue_with_recovery_ui.dart
+lib/src/model/continue_with_recovery_ui_flow.dart
 lib/src/model/continue_with_set_ory_session_token.dart
+lib/src/model/continue_with_settings_ui.dart
+lib/src/model/continue_with_settings_ui_flow.dart
 lib/src/model/continue_with_verification_ui.dart
 lib/src/model/continue_with_verification_ui_flow.dart
 lib/src/model/courier_message_status.dart
@@ -497,7 +505,11 @@ test/check_opl_syntax_result_test.dart
 test/check_permission_result_test.dart
 test/cloud_account_test.dart
 test/consistency_request_parameters_test.dart
+test/continue_with_recovery_ui_flow_test.dart
+test/continue_with_recovery_ui_test.dart
 test/continue_with_set_ory_session_token_test.dart
+test/continue_with_settings_ui_flow_test.dart
+test/continue_with_settings_ui_test.dart
 test/continue_with_test.dart
 test/continue_with_verification_ui_flow_test.dart
 test/continue_with_verification_ui_test.dart

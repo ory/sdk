@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.2
+API version: v1.4.3
 Contact: support@ory.sh
 */
 
@@ -453,7 +453,7 @@ associated OAuth 2.0 Access Tokens. You may also only revoke sessions for a spec
 has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.
 
 If you send the subject in a query param, all authentication sessions that belong to that subject are revoked.
-No OpennID Connect Front- or Back-channel logout is performed in this case.
+No OpenID Connect Front- or Back-channel logout is performed in this case.
 
 Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
 to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
@@ -3533,7 +3533,7 @@ This endpoint invalidates authentication sessions. After revoking the authentica
 has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.
 
 If you send the subject in a query param, all authentication sessions that belong to that subject are revoked.
-No OpennID Connect Front- or Back-channel logout is performed in this case.
+No OpenID Connect Front- or Back-channel logout is performed in this case.
 
 Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
 to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.

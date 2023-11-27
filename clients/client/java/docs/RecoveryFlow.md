@@ -9,6 +9,7 @@ This request is used when an identity wants to recover their account.  We recomm
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**active** | **String** | Active, if set, contains the recovery method that is being used. It is initially not set. |  [optional] |
+|**continueWith** | [**List&lt;ContinueWith&gt;**](ContinueWith.md) | Contains possible actions that could follow this flow |  [optional] |
 |**expiresAt** | **OffsetDateTime** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated. |  |
 |**id** | **String** | ID represents the request&#39;s unique ID. When performing the recovery flow, this represents the id in the recovery ui&#39;s query parameter: http://&lt;selfservice.flows.recovery.ui_url&gt;?request&#x3D;&lt;id&gt; |  |
 |**issuedAt** | **OffsetDateTime** | IssuedAt is the time (UTC) when the request occurred. |  |

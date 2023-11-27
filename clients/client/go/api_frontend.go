@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.2
+API version: v1.4.3
 Contact: support@ory.sh
 */
 
@@ -237,7 +237,7 @@ More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs
 
 If a valid provided session cookie or session token is provided, a 400 Bad Request error.
 
-To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.
+On an existing recovery flow, use the `getRecoveryFlow` API endpoint.
 
 You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server
 Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make
@@ -770,9 +770,9 @@ More information can be found at [Ory Kratos User Logout Documentation](https://
 	UpdateLogoutFlowExecute(r FrontendAPIUpdateLogoutFlowRequest) (*http.Response, error)
 
 	/*
-	UpdateRecoveryFlow Complete Recovery Flow
+	UpdateRecoveryFlow Update Recovery Flow
 
-	Use this endpoint to complete a recovery flow. This endpoint
+	Use this endpoint to update a recovery flow. This endpoint
 behaves differently for API and browser flows and has several states:
 
 `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
@@ -2101,7 +2101,7 @@ This endpoint initiates a recovery flow for API clients such as mobile devices, 
 
 If a valid provided session cookie or session token is provided, a 400 Bad Request error.
 
-To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.
+On an existing recovery flow, use the `getRecoveryFlow` API endpoint.
 
 You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server
 Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make
@@ -5180,9 +5180,9 @@ func (r FrontendAPIUpdateRecoveryFlowRequest) Execute() (*RecoveryFlow, *http.Re
 }
 
 /*
-UpdateRecoveryFlow Complete Recovery Flow
+UpdateRecoveryFlow Update Recovery Flow
 
-Use this endpoint to complete a recovery flow. This endpoint
+Use this endpoint to update a recovery flow. This endpoint
 behaves differently for API and browser flows and has several states:
 
 `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent

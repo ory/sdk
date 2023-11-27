@@ -29,7 +29,11 @@ lib/ory/model/check_permission_result.ex
 lib/ory/model/cloud_account.ex
 lib/ory/model/consistency_request_parameters.ex
 lib/ory/model/continue_with.ex
+lib/ory/model/continue_with_recovery_ui.ex
+lib/ory/model/continue_with_recovery_ui_flow.ex
 lib/ory/model/continue_with_set_ory_session_token.ex
+lib/ory/model/continue_with_settings_ui.ex
+lib/ory/model/continue_with_settings_ui_flow.ex
 lib/ory/model/continue_with_verification_ui.ex
 lib/ory/model/continue_with_verification_ui_flow.ex
 lib/ory/model/courier_message_status.ex
