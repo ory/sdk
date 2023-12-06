@@ -17,6 +17,7 @@ part 'create_subscription_body.g.dart';
 /// * [plan] 
 /// * [provisionFirstProject] 
 /// * [returnTo] 
+/// * [workspace] 
 @BuiltValue()
 abstract class CreateSubscriptionBody implements Built<CreateSubscriptionBody, CreateSubscriptionBodyBuilder> {
   ///  usd USD eur Euro
@@ -33,10 +34,13 @@ abstract class CreateSubscriptionBody implements Built<CreateSubscriptionBody, C
   String get plan;
 
   @BuiltValueField(wireName: r'provision_first_project')
-  String get provisionFirstProject;
+  String? get provisionFirstProject;
 
   @BuiltValueField(wireName: r'return_to')
   String? get returnTo;
+
+  @BuiltValueField(wireName: r'workspace')
+  String? get workspace;
 
   CreateSubscriptionBody._();
 
@@ -78,16 +82,25 @@ class _$CreateSubscriptionBodySerializer implements PrimitiveSerializer<CreateSu
       object.plan,
       specifiedType: const FullType(String),
     );
-    yield r'provision_first_project';
-    yield serializers.serialize(
-      object.provisionFirstProject,
-      specifiedType: const FullType(String),
-    );
+    if (object.provisionFirstProject != null) {
+      yield r'provision_first_project';
+      yield serializers.serialize(
+        object.provisionFirstProject,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.returnTo != null) {
       yield r'return_to';
       yield serializers.serialize(
         object.returnTo,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.workspace != null) {
+      yield r'workspace';
+      yield serializers.serialize(
+        object.workspace,
+        specifiedType: const FullType.nullable(String),
       );
     }
   }
@@ -137,8 +150,9 @@ class _$CreateSubscriptionBodySerializer implements PrimitiveSerializer<CreateSu
         case r'provision_first_project':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.provisionFirstProject = valueDes;
           break;
         case r'return_to':
@@ -147,6 +161,14 @@ class _$CreateSubscriptionBodySerializer implements PrimitiveSerializer<CreateSu
             specifiedType: const FullType(String),
           ) as String;
           result.returnTo = valueDes;
+          break;
+        case r'workspace':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.workspace = valueDes;
           break;
         default:
           unhandled.add(key);

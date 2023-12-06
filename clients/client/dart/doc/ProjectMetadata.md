@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **subscriptionId** | **String** |  | [optional] 
 **subscriptionPlan** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project was Updated | 
+**workspaceId** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

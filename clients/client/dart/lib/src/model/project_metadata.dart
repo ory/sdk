@@ -21,6 +21,7 @@ part 'project_metadata.g.dart';
 /// * [subscriptionId] 
 /// * [subscriptionPlan] 
 /// * [updatedAt] - Last Time Project was Updated
+/// * [workspaceId] 
 @BuiltValue()
 abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadataBuilder> {
   /// The Project's Creation Date
@@ -56,6 +57,9 @@ abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadata
   /// Last Time Project was Updated
   @BuiltValueField(wireName: r'updated_at')
   DateTime get updatedAt;
+
+  @BuiltValueField(wireName: r'workspace_id')
+  String? get workspaceId;
 
   ProjectMetadata._();
 
@@ -131,6 +135,13 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
       object.updatedAt,
       specifiedType: const FullType(DateTime),
     );
+    if (object.workspaceId != null) {
+      yield r'workspace_id';
+      yield serializers.serialize(
+        object.workspaceId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -218,6 +229,14 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.updatedAt = valueDes;
+          break;
+        case r'workspace_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.workspaceId = valueDes;
           break;
         default:
           unhandled.add(key);

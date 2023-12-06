@@ -37,6 +37,7 @@ docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
+docs/CreateProjectNormalizedPayload.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
@@ -99,6 +100,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
@@ -247,6 +249,7 @@ docs/VerificationFlowState.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
+docs/Workspace.md
 git_push.sh
 lib/ory-client.rb
 lib/ory-client/api/courier_api.rb
@@ -292,6 +295,7 @@ lib/ory-client/models/create_project_api_key_request.rb
 lib/ory-client/models/create_project_body.rb
 lib/ory-client/models/create_project_branding.rb
 lib/ory-client/models/create_project_member_invite_body.rb
+lib/ory-client/models/create_project_normalized_payload.rb
 lib/ory-client/models/create_recovery_code_for_identity_body.rb
 lib/ory-client/models/create_recovery_link_for_identity_body.rb
 lib/ory-client/models/create_relationship_body.rb
@@ -351,6 +355,7 @@ lib/ory-client/models/json_patch.rb
 lib/ory-client/models/json_web_key.rb
 lib/ory-client/models/json_web_key_set.rb
 lib/ory-client/models/keto_namespace.rb
+lib/ory-client/models/list_my_workspaces_response.rb
 lib/ory-client/models/list_organizations_response.rb
 lib/ory-client/models/login_flow.rb
 lib/ory-client/models/login_flow_state.rb
@@ -492,6 +497,7 @@ lib/ory-client/models/verification_flow.rb
 lib/ory-client/models/verification_flow_state.rb
 lib/ory-client/models/version.rb
 lib/ory-client/models/warning.rb
+lib/ory-client/models/workspace.rb
 lib/ory-client/version.rb
 ory-client.gemspec
 spec/api/courier_api_spec.rb
@@ -536,6 +542,7 @@ spec/models/create_project_api_key_request_spec.rb
 spec/models/create_project_body_spec.rb
 spec/models/create_project_branding_spec.rb
 spec/models/create_project_member_invite_body_spec.rb
+spec/models/create_project_normalized_payload_spec.rb
 spec/models/create_recovery_code_for_identity_body_spec.rb
 spec/models/create_recovery_link_for_identity_body_spec.rb
 spec/models/create_relationship_body_spec.rb
@@ -595,6 +602,7 @@ spec/models/json_patch_spec.rb
 spec/models/json_web_key_set_spec.rb
 spec/models/json_web_key_spec.rb
 spec/models/keto_namespace_spec.rb
+spec/models/list_my_workspaces_response_spec.rb
 spec/models/list_organizations_response_spec.rb
 spec/models/login_flow_spec.rb
 spec/models/login_flow_state_spec.rb
@@ -736,4 +744,5 @@ spec/models/verification_flow_spec.rb
 spec/models/verification_flow_state_spec.rb
 spec/models/version_spec.rb
 spec/models/warning_spec.rb
+spec/models/workspace_spec.rb
 spec/spec_helper.rb

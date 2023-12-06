@@ -46,6 +46,7 @@ lib/ory/model/create_project_api_key_request.ex
 lib/ory/model/create_project_body.ex
 lib/ory/model/create_project_branding.ex
 lib/ory/model/create_project_member_invite_body.ex
+lib/ory/model/create_project_normalized_payload.ex
 lib/ory/model/create_recovery_code_for_identity_body.ex
 lib/ory/model/create_recovery_link_for_identity_body.ex
 lib/ory/model/create_relationship_body.ex
@@ -105,6 +106,7 @@ lib/ory/model/json_patch.ex
 lib/ory/model/json_web_key.ex
 lib/ory/model/json_web_key_set.ex
 lib/ory/model/keto_namespace.ex
+lib/ory/model/list_my_workspaces_response.ex
 lib/ory/model/list_organizations_response.ex
 lib/ory/model/login_flow.ex
 lib/ory/model/login_flow_state.ex
@@ -246,6 +248,7 @@ lib/ory/model/verification_flow.ex
 lib/ory/model/verification_flow_state.ex
 lib/ory/model/version.ex
 lib/ory/model/warning.ex
+lib/ory/model/workspace.ex
 lib/ory/request_builder.ex
 mix.exs
 test/test_helper.exs

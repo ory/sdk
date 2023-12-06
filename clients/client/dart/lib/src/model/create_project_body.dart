@@ -12,11 +12,15 @@ part 'create_project_body.g.dart';
 ///
 /// Properties:
 /// * [name] - The name of the project to be created
+/// * [workspaceId] 
 @BuiltValue()
 abstract class CreateProjectBody implements Built<CreateProjectBody, CreateProjectBodyBuilder> {
   /// The name of the project to be created
   @BuiltValueField(wireName: r'name')
   String get name;
+
+  @BuiltValueField(wireName: r'workspace_id')
+  String? get workspaceId;
 
   CreateProjectBody._();
 
@@ -46,6 +50,13 @@ class _$CreateProjectBodySerializer implements PrimitiveSerializer<CreateProject
       object.name,
       specifiedType: const FullType(String),
     );
+    if (object.workspaceId != null) {
+      yield r'workspace_id';
+      yield serializers.serialize(
+        object.workspaceId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -75,6 +86,14 @@ class _$CreateProjectBodySerializer implements PrimitiveSerializer<CreateProject
             specifiedType: const FullType(String),
           ) as String;
           result.name = valueDes;
+          break;
+        case r'workspace_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.workspaceId = valueDes;
           break;
         default:
           unhandled.add(key);

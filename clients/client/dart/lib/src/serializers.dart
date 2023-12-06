@@ -43,6 +43,7 @@ import 'package:ory_client/src/model/create_project_api_key_request.dart';
 import 'package:ory_client/src/model/create_project_body.dart';
 import 'package:ory_client/src/model/create_project_branding.dart';
 import 'package:ory_client/src/model/create_project_member_invite_body.dart';
+import 'package:ory_client/src/model/create_project_normalized_payload.dart';
 import 'package:ory_client/src/model/create_recovery_code_for_identity_body.dart';
 import 'package:ory_client/src/model/create_recovery_link_for_identity_body.dart';
 import 'package:ory_client/src/model/create_relationship_body.dart';
@@ -102,6 +103,7 @@ import 'package:ory_client/src/model/json_patch.dart';
 import 'package:ory_client/src/model/json_web_key.dart';
 import 'package:ory_client/src/model/json_web_key_set.dart';
 import 'package:ory_client/src/model/keto_namespace.dart';
+import 'package:ory_client/src/model/list_my_workspaces_response.dart';
 import 'package:ory_client/src/model/list_organizations_response.dart';
 import 'package:ory_client/src/model/login_flow.dart';
 import 'package:ory_client/src/model/login_flow_state.dart';
@@ -243,6 +245,7 @@ import 'package:ory_client/src/model/verification_flow.dart';
 import 'package:ory_client/src/model/verification_flow_state.dart';
 import 'package:ory_client/src/model/version.dart';
 import 'package:ory_client/src/model/warning.dart';
+import 'package:ory_client/src/model/workspace.dart';
 
 part 'serializers.g.dart';
 
@@ -276,6 +279,7 @@ part 'serializers.g.dart';
   CreateProjectBody,
   CreateProjectBranding,
   CreateProjectMemberInviteBody,
+  CreateProjectNormalizedPayload,
   CreateRecoveryCodeForIdentityBody,
   CreateRecoveryLinkForIdentityBody,
   CreateRelationshipBody,
@@ -335,6 +339,7 @@ part 'serializers.g.dart';
   JsonWebKey,
   JsonWebKeySet,
   KetoNamespace,
+  ListMyWorkspacesResponse,
   ListOrganizationsResponse,
   LoginFlow,
   LoginFlowState,
@@ -476,6 +481,7 @@ part 'serializers.g.dart';
   VerificationFlowState,
   Version,
   Warning,
+  Workspace,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(

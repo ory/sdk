@@ -14,6 +14,7 @@
 | **subscription_id** | **String** |  | [optional] |
 | **subscription_plan** | **String** |  | [optional] |
 | **updated_at** | **Time** | Last Time Project was Updated | [readonly] |
+| **workspace_id** | **String** |  |  |
 
 ## Example
 
@@ -30,7 +31,8 @@ instance = OryClient::NormalizedProject.new(
   state: null,
   subscription_id: null,
   subscription_plan: null,
-  updated_at: null
+  updated_at: null,
+  workspace_id: null
 )
 ```
 

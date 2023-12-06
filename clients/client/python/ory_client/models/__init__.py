@@ -39,6 +39,7 @@ from ory_client.model.create_project_body import CreateProjectBody
 from ory_client.model.create_project_branding import CreateProjectBranding
 from ory_client.model.create_project_member_invite_body import CreateProjectMemberInviteBody
 from ory_client.model.create_project_member_invite_response import CreateProjectMemberInviteResponse
+from ory_client.model.create_project_normalized_payload import CreateProjectNormalizedPayload
 from ory_client.model.create_recovery_code_for_identity_body import CreateRecoveryCodeForIdentityBody
 from ory_client.model.create_recovery_link_for_identity_body import CreateRecoveryLinkForIdentityBody
 from ory_client.model.create_relationship_body import CreateRelationshipBody
@@ -103,6 +104,7 @@ from ory_client.model.json_web_key_set import JsonWebKeySet
 from ory_client.model.keto_namespace import KetoNamespace
 from ory_client.model.keto_namespaces import KetoNamespaces
 from ory_client.model.list_custom_domains import ListCustomDomains
+from ory_client.model.list_my_workspaces_response import ListMyWorkspacesResponse
 from ory_client.model.list_organizations_response import ListOrganizationsResponse
 from ory_client.model.login_flow import LoginFlow
 from ory_client.model.login_flow_state import LoginFlowState
@@ -269,3 +271,5 @@ from ory_client.model.verification_flow import VerificationFlow
 from ory_client.model.verification_flow_state import VerificationFlowState
 from ory_client.model.version import Version
 from ory_client.model.warning import Warning
+from ory_client.model.workspace import Workspace
+from ory_client.model.workspaces import Workspaces

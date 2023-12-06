@@ -23,6 +23,7 @@ part 'normalized_project.g.dart';
 /// * [subscriptionId] 
 /// * [subscriptionPlan] 
 /// * [updatedAt] - Last Time Project was Updated
+/// * [workspaceId] 
 @BuiltValue()
 abstract class NormalizedProject implements Built<NormalizedProject, NormalizedProjectBuilder> {
   /// The Project's Creation Date
@@ -62,6 +63,9 @@ abstract class NormalizedProject implements Built<NormalizedProject, NormalizedP
   /// Last Time Project was Updated
   @BuiltValueField(wireName: r'updated_at')
   DateTime get updatedAt;
+
+  @BuiltValueField(wireName: r'workspace_id')
+  String? get workspaceId;
 
   NormalizedProject._();
 
@@ -139,6 +143,11 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
     yield serializers.serialize(
       object.updatedAt,
       specifiedType: const FullType(DateTime),
+    );
+    yield r'workspace_id';
+    yield object.workspaceId == null ? null : serializers.serialize(
+      object.workspaceId,
+      specifiedType: const FullType.nullable(String),
     );
   }
 
@@ -234,6 +243,14 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.updatedAt = valueDes;
+          break;
+        case r'workspace_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.workspaceId = valueDes;
           break;
         default:
           unhandled.add(key);

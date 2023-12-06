@@ -83,6 +83,8 @@ class _$Project extends Project {
   final String slug;
   @override
   final ProjectStateEnum state;
+  @override
+  final String? workspaceId;
 
   factory _$Project([void Function(ProjectBuilder)? updates]) =>
       (new ProjectBuilder()..update(updates))._build();
@@ -95,7 +97,8 @@ class _$Project extends Project {
       required this.revisionId,
       required this.services,
       required this.slug,
-      required this.state})
+      required this.state,
+      this.workspaceId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'Project', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'Project', 'name');
@@ -123,7 +126,8 @@ class _$Project extends Project {
         revisionId == other.revisionId &&
         services == other.services &&
         slug == other.slug &&
-        state == other.state;
+        state == other.state &&
+        workspaceId == other.workspaceId;
   }
 
   @override
@@ -137,6 +141,7 @@ class _$Project extends Project {
     _$hash = $jc(_$hash, services.hashCode);
     _$hash = $jc(_$hash, slug.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
+    _$hash = $jc(_$hash, workspaceId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -151,7 +156,8 @@ class _$Project extends Project {
           ..add('revisionId', revisionId)
           ..add('services', services)
           ..add('slug', slug)
-          ..add('state', state))
+          ..add('state', state)
+          ..add('workspaceId', workspaceId))
         .toString();
   }
 }
@@ -195,6 +201,10 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
   ProjectStateEnum? get state => _$this._state;
   set state(ProjectStateEnum? state) => _$this._state = state;
 
+  String? _workspaceId;
+  String? get workspaceId => _$this._workspaceId;
+  set workspaceId(String? workspaceId) => _$this._workspaceId = workspaceId;
+
   ProjectBuilder() {
     Project._defaults(this);
   }
@@ -210,6 +220,7 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
       _services = $v.services.toBuilder();
       _slug = $v.slug;
       _state = $v.state;
+      _workspaceId = $v.workspaceId;
       _$v = null;
     }
     return this;
@@ -245,7 +256,8 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
               slug: BuiltValueNullFieldError.checkNotNull(
                   slug, r'Project', 'slug'),
               state: BuiltValueNullFieldError.checkNotNull(
-                  state, r'Project', 'state'));
+                  state, r'Project', 'state'),
+              workspaceId: workspaceId);
     } catch (_) {
       late String _$failedField;
       try {

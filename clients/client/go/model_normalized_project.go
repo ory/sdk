@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.3
+API version: v1.4.4
 Contact: support@ory.sh
 */
 
@@ -38,6 +38,7 @@ type NormalizedProject struct {
 	SubscriptionPlan NullableString `json:"subscription_plan,omitempty"`
 	// Last Time Project was Updated
 	UpdatedAt time.Time `json:"updated_at"`
+	WorkspaceId NullableString `json:"workspace_id"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,7 +48,7 @@ type _NormalizedProject NormalizedProject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, hosts []string, id string, slug string, state string, updatedAt time.Time) *NormalizedProject {
+func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, hosts []string, id string, slug string, state string, updatedAt time.Time, workspaceId NullableString) *NormalizedProject {
 	this := NormalizedProject{}
 	this.CreatedAt = createdAt
 	this.CurrentRevision = currentRevision
@@ -57,6 +58,7 @@ func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProject
 	this.Slug = slug
 	this.State = state
 	this.UpdatedAt = updatedAt
+	this.WorkspaceId = workspaceId
 	return &this
 }
 
@@ -344,6 +346,32 @@ func (o *NormalizedProject) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
+// GetWorkspaceId returns the WorkspaceId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *NormalizedProject) GetWorkspaceId() string {
+	if o == nil || o.WorkspaceId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.WorkspaceId.Get()
+}
+
+// GetWorkspaceIdOk returns a tuple with the WorkspaceId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProject) GetWorkspaceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.WorkspaceId.Get(), o.WorkspaceId.IsSet()
+}
+
+// SetWorkspaceId sets field value
+func (o *NormalizedProject) SetWorkspaceId(v string) {
+	o.WorkspaceId.Set(&v)
+}
+
 func (o NormalizedProject) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -368,6 +396,7 @@ func (o NormalizedProject) ToMap() (map[string]interface{}, error) {
 		toSerialize["subscription_plan"] = o.SubscriptionPlan.Get()
 	}
 	toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize["workspace_id"] = o.WorkspaceId.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -389,6 +418,7 @@ func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
 		"slug",
 		"state",
 		"updated_at",
+		"workspace_id",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -428,6 +458,7 @@ func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "subscription_id")
 		delete(additionalProperties, "subscription_plan")
 		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "workspace_id")
 		o.AdditionalProperties = additionalProperties
 	}
 

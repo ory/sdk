@@ -11,8 +11,9 @@ Create Subscription Request Body
 |**currency** | [**CurrencyEnum**](#CurrencyEnum) |  usd USD eur Euro |  [optional] |
 |**interval** | [**IntervalEnum**](#IntervalEnum) |  monthly Monthly yearly Yearly |  |
 |**plan** | **String** |  |  |
-|**provisionFirstProject** | **String** |  |  |
+|**provisionFirstProject** | **String** |  |  [optional] |
 |**returnTo** | **String** |  |  [optional] |
+|**workspace** | **String** |  |  [optional] |
 
 
 

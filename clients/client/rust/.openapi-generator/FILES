@@ -33,6 +33,7 @@ docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
+docs/CreateProjectNormalizedPayload.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
@@ -95,6 +96,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
@@ -243,6 +245,7 @@ docs/VerificationFlowState.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
+docs/Workspace.md
 git_push.sh
 src/apis/configuration.rs
 src/apis/courier_api.rs
@@ -287,6 +290,7 @@ src/models/create_project_api_key_request.rs
 src/models/create_project_body.rs
 src/models/create_project_branding.rs
 src/models/create_project_member_invite_body.rs
+src/models/create_project_normalized_payload.rs
 src/models/create_recovery_code_for_identity_body.rs
 src/models/create_recovery_link_for_identity_body.rs
 src/models/create_relationship_body.rs
@@ -346,6 +350,7 @@ src/models/json_patch.rs
 src/models/json_web_key.rs
 src/models/json_web_key_set.rs
 src/models/keto_namespace.rs
+src/models/list_my_workspaces_response.rs
 src/models/list_organizations_response.rs
 src/models/login_flow.rs
 src/models/login_flow_state.rs
@@ -488,3 +493,4 @@ src/models/verification_flow.rs
 src/models/verification_flow_state.rs
 src/models/version.rs
 src/models/warning.rs
+src/models/workspace.rs

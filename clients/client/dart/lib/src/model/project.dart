@@ -22,6 +22,7 @@ part 'project.g.dart';
 /// * [services] 
 /// * [slug] - The project's slug
 /// * [state] - The state of the project. running Running halted Halted deleted Deleted
+/// * [workspaceId] 
 @BuiltValue()
 abstract class Project implements Built<Project, ProjectBuilder> {
   @BuiltValueField(wireName: r'cors_admin')
@@ -53,6 +54,9 @@ abstract class Project implements Built<Project, ProjectBuilder> {
   @BuiltValueField(wireName: r'state')
   ProjectStateEnum get state;
   // enum stateEnum {  running,  halted,  deleted,  };
+
+  @BuiltValueField(wireName: r'workspace_id')
+  String? get workspaceId;
 
   Project._();
 
@@ -121,6 +125,13 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
       object.state,
       specifiedType: const FullType(ProjectStateEnum),
     );
+    if (object.workspaceId != null) {
+      yield r'workspace_id';
+      yield serializers.serialize(
+        object.workspaceId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -199,6 +210,14 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
             specifiedType: const FullType(ProjectStateEnum),
           ) as ProjectStateEnum;
           result.state = valueDes;
+          break;
+        case r'workspace_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.workspaceId = valueDes;
           break;
         default:
           unhandled.add(key);

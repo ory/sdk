@@ -86,6 +86,8 @@ class _$ProjectMetadata extends ProjectMetadata {
   final String? subscriptionPlan;
   @override
   final DateTime updatedAt;
+  @override
+  final String? workspaceId;
 
   factory _$ProjectMetadata([void Function(ProjectMetadataBuilder)? updates]) =>
       (new ProjectMetadataBuilder()..update(updates))._build();
@@ -99,7 +101,8 @@ class _$ProjectMetadata extends ProjectMetadata {
       required this.state,
       this.subscriptionId,
       this.subscriptionPlan,
-      required this.updatedAt})
+      required this.updatedAt,
+      this.workspaceId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'ProjectMetadata', 'createdAt');
@@ -131,7 +134,8 @@ class _$ProjectMetadata extends ProjectMetadata {
         state == other.state &&
         subscriptionId == other.subscriptionId &&
         subscriptionPlan == other.subscriptionPlan &&
-        updatedAt == other.updatedAt;
+        updatedAt == other.updatedAt &&
+        workspaceId == other.workspaceId;
   }
 
   @override
@@ -146,6 +150,7 @@ class _$ProjectMetadata extends ProjectMetadata {
     _$hash = $jc(_$hash, subscriptionId.hashCode);
     _$hash = $jc(_$hash, subscriptionPlan.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, workspaceId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -161,7 +166,8 @@ class _$ProjectMetadata extends ProjectMetadata {
           ..add('state', state)
           ..add('subscriptionId', subscriptionId)
           ..add('subscriptionPlan', subscriptionPlan)
-          ..add('updatedAt', updatedAt))
+          ..add('updatedAt', updatedAt)
+          ..add('workspaceId', workspaceId))
         .toString();
   }
 }
@@ -208,6 +214,10 @@ class ProjectMetadataBuilder
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
 
+  String? _workspaceId;
+  String? get workspaceId => _$this._workspaceId;
+  set workspaceId(String? workspaceId) => _$this._workspaceId = workspaceId;
+
   ProjectMetadataBuilder() {
     ProjectMetadata._defaults(this);
   }
@@ -224,6 +234,7 @@ class ProjectMetadataBuilder
       _subscriptionId = $v.subscriptionId;
       _subscriptionPlan = $v.subscriptionPlan;
       _updatedAt = $v.updatedAt;
+      _workspaceId = $v.workspaceId;
       _$v = null;
     }
     return this;
@@ -261,7 +272,8 @@ class ProjectMetadataBuilder
               subscriptionId: subscriptionId,
               subscriptionPlan: subscriptionPlan,
               updatedAt: BuiltValueNullFieldError.checkNotNull(
-                  updatedAt, r'ProjectMetadata', 'updatedAt'));
+                  updatedAt, r'ProjectMetadata', 'updatedAt'),
+              workspaceId: workspaceId);
     } catch (_) {
       late String _$failedField;
       try {

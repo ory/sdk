@@ -31,6 +31,7 @@ docs/ClientCreateJsonWebKeySet.md
 docs/ClientCreateProjectBody.md
 docs/ClientCreateProjectBranding.md
 docs/ClientCreateProjectMemberInviteBody.md
+docs/ClientCreateProjectNormalizedPayload.md
 docs/ClientCreateRecoveryCodeForIdentityBody.md
 docs/ClientCreateRecoveryLinkForIdentityBody.md
 docs/ClientCreateRelationshipBody.md
@@ -91,6 +92,7 @@ docs/ClientJsonPatch.md
 docs/ClientJsonWebKey.md
 docs/ClientJsonWebKeySet.md
 docs/ClientKetoNamespace.md
+docs/ClientListMyWorkspacesResponse.md
 docs/ClientListOrganizationsResponse.md
 docs/ClientLoginFlow.md
 docs/ClientLoginFlowState.md
@@ -232,6 +234,7 @@ docs/ClientVerificationFlow.md
 docs/ClientVerificationFlowState.md
 docs/ClientVersion.md
 docs/ClientWarning.md
+docs/ClientWorkspace.md
 docs/CourierApi.md
 docs/FrontendApi.md
 docs/IdentityApi.md
@@ -283,6 +286,7 @@ src/Ory.Client.Test/Model/ClientCreateJsonWebKeySetTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectBrandingTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectMemberInviteBodyTests.cs
+src/Ory.Client.Test/Model/ClientCreateProjectNormalizedPayloadTests.cs
 src/Ory.Client.Test/Model/ClientCreateRecoveryCodeForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRecoveryLinkForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRelationshipBodyTests.cs
@@ -343,6 +347,7 @@ src/Ory.Client.Test/Model/ClientJsonPatchTests.cs
 src/Ory.Client.Test/Model/ClientJsonWebKeySetTests.cs
 src/Ory.Client.Test/Model/ClientJsonWebKeyTests.cs
 src/Ory.Client.Test/Model/ClientKetoNamespaceTests.cs
+src/Ory.Client.Test/Model/ClientListMyWorkspacesResponseTests.cs
 src/Ory.Client.Test/Model/ClientListOrganizationsResponseTests.cs
 src/Ory.Client.Test/Model/ClientLoginFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientLoginFlowTests.cs
@@ -484,6 +489,7 @@ src/Ory.Client.Test/Model/ClientVerificationFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientVerificationFlowTests.cs
 src/Ory.Client.Test/Model/ClientVersionTests.cs
 src/Ory.Client.Test/Model/ClientWarningTests.cs
+src/Ory.Client.Test/Model/ClientWorkspaceTests.cs
 src/Ory.Client.Test/Ory.Client.Test.csproj
 src/Ory.Client/Api/CourierApi.cs
 src/Ory.Client/Api/FrontendApi.cs
@@ -541,6 +547,7 @@ src/Ory.Client/Model/ClientCreateJsonWebKeySet.cs
 src/Ory.Client/Model/ClientCreateProjectBody.cs
 src/Ory.Client/Model/ClientCreateProjectBranding.cs
 src/Ory.Client/Model/ClientCreateProjectMemberInviteBody.cs
+src/Ory.Client/Model/ClientCreateProjectNormalizedPayload.cs
 src/Ory.Client/Model/ClientCreateRecoveryCodeForIdentityBody.cs
 src/Ory.Client/Model/ClientCreateRecoveryLinkForIdentityBody.cs
 src/Ory.Client/Model/ClientCreateRelationshipBody.cs
@@ -601,6 +608,7 @@ src/Ory.Client/Model/ClientJsonPatch.cs
 src/Ory.Client/Model/ClientJsonWebKey.cs
 src/Ory.Client/Model/ClientJsonWebKeySet.cs
 src/Ory.Client/Model/ClientKetoNamespace.cs
+src/Ory.Client/Model/ClientListMyWorkspacesResponse.cs
 src/Ory.Client/Model/ClientListOrganizationsResponse.cs
 src/Ory.Client/Model/ClientLoginFlow.cs
 src/Ory.Client/Model/ClientLoginFlowState.cs
@@ -742,4 +750,5 @@ src/Ory.Client/Model/ClientVerificationFlow.cs
 src/Ory.Client/Model/ClientVerificationFlowState.cs
 src/Ory.Client/Model/ClientVersion.cs
 src/Ory.Client/Model/ClientWarning.cs
+src/Ory.Client/Model/ClientWorkspace.cs
 src/Ory.Client/Ory.Client.csproj

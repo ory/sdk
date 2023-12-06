@@ -13,6 +13,7 @@
 | **subscription_id** | **String** |  | [optional] |
 | **subscription_plan** | **String** |  | [optional] |
 | **updated_at** | **Time** | Last Time Project was Updated |  |
+| **workspace_id** | **String** |  | [optional] |
 
 ## Example
 
@@ -28,7 +29,8 @@ instance = OryClient::ProjectMetadata.new(
   state: null,
   subscription_id: null,
   subscription_plan: null,
-  updated_at: null
+  updated_at: null,
+  workspace_id: null
 )
 ```
 

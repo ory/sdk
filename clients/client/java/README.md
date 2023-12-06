@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.4.3
-  - Build date: 2023-11-27T15:12:51.940972469Z[Etc/UTC]
+- API version: v1.4.4
+  - Build date: 2023-12-06T09:14:11.980655335Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.4.3</version>
+  <version>v1.4.4</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.4.3"
+     implementation "sh.ory:client:v1.4.4"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.4.3.jar`
+* `target/client-v1.4.4.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -281,6 +281,7 @@ Class | Method | HTTP request | Description
  - [CreateProjectBody](docs/CreateProjectBody.md)
  - [CreateProjectBranding](docs/CreateProjectBranding.md)
  - [CreateProjectMemberInviteBody](docs/CreateProjectMemberInviteBody.md)
+ - [CreateProjectNormalizedPayload](docs/CreateProjectNormalizedPayload.md)
  - [CreateRecoveryCodeForIdentityBody](docs/CreateRecoveryCodeForIdentityBody.md)
  - [CreateRecoveryLinkForIdentityBody](docs/CreateRecoveryLinkForIdentityBody.md)
  - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
@@ -340,6 +341,7 @@ Class | Method | HTTP request | Description
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
+ - [ListMyWorkspacesResponse](docs/ListMyWorkspacesResponse.md)
  - [ListOrganizationsResponse](docs/ListOrganizationsResponse.md)
  - [LoginFlow](docs/LoginFlow.md)
  - [LoginFlowState](docs/LoginFlowState.md)
@@ -481,6 +483,7 @@ Class | Method | HTTP request | Description
  - [VerificationFlowState](docs/VerificationFlowState.md)
  - [Version](docs/Version.md)
  - [Warning](docs/Warning.md)
+ - [Workspace](docs/Workspace.md)
 
 
 ## Documentation for Authorization

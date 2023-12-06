@@ -133,9 +133,11 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
   @override
   final String plan;
   @override
-  final String provisionFirstProject;
+  final String? provisionFirstProject;
   @override
   final String? returnTo;
+  @override
+  final String? workspace;
 
   factory _$CreateSubscriptionBody(
           [void Function(CreateSubscriptionBodyBuilder)? updates]) =>
@@ -145,15 +147,14 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
       {this.currency,
       required this.interval,
       required this.plan,
-      required this.provisionFirstProject,
-      this.returnTo})
+      this.provisionFirstProject,
+      this.returnTo,
+      this.workspace})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         interval, r'CreateSubscriptionBody', 'interval');
     BuiltValueNullFieldError.checkNotNull(
         plan, r'CreateSubscriptionBody', 'plan');
-    BuiltValueNullFieldError.checkNotNull(provisionFirstProject,
-        r'CreateSubscriptionBody', 'provisionFirstProject');
   }
 
   @override
@@ -173,7 +174,8 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
         interval == other.interval &&
         plan == other.plan &&
         provisionFirstProject == other.provisionFirstProject &&
-        returnTo == other.returnTo;
+        returnTo == other.returnTo &&
+        workspace == other.workspace;
   }
 
   @override
@@ -184,6 +186,7 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
     _$hash = $jc(_$hash, plan.hashCode);
     _$hash = $jc(_$hash, provisionFirstProject.hashCode);
     _$hash = $jc(_$hash, returnTo.hashCode);
+    _$hash = $jc(_$hash, workspace.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -195,7 +198,8 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
           ..add('interval', interval)
           ..add('plan', plan)
           ..add('provisionFirstProject', provisionFirstProject)
-          ..add('returnTo', returnTo))
+          ..add('returnTo', returnTo)
+          ..add('workspace', workspace))
         .toString();
   }
 }
@@ -227,6 +231,10 @@ class CreateSubscriptionBodyBuilder
   String? get returnTo => _$this._returnTo;
   set returnTo(String? returnTo) => _$this._returnTo = returnTo;
 
+  String? _workspace;
+  String? get workspace => _$this._workspace;
+  set workspace(String? workspace) => _$this._workspace = workspace;
+
   CreateSubscriptionBodyBuilder() {
     CreateSubscriptionBody._defaults(this);
   }
@@ -239,6 +247,7 @@ class CreateSubscriptionBodyBuilder
       _plan = $v.plan;
       _provisionFirstProject = $v.provisionFirstProject;
       _returnTo = $v.returnTo;
+      _workspace = $v.workspace;
       _$v = null;
     }
     return this;
@@ -266,11 +275,9 @@ class CreateSubscriptionBodyBuilder
                 interval, r'CreateSubscriptionBody', 'interval'),
             plan: BuiltValueNullFieldError.checkNotNull(
                 plan, r'CreateSubscriptionBody', 'plan'),
-            provisionFirstProject: BuiltValueNullFieldError.checkNotNull(
-                provisionFirstProject,
-                r'CreateSubscriptionBody',
-                'provisionFirstProject'),
-            returnTo: returnTo);
+            provisionFirstProject: provisionFirstProject,
+            returnTo: returnTo,
+            workspace: workspace);
     replace(_$result);
     return _$result;
   }

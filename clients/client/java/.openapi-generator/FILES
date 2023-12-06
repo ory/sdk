@@ -36,6 +36,7 @@ docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
+docs/CreateProjectNormalizedPayload.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
@@ -98,6 +99,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
@@ -246,6 +248,7 @@ docs/VerificationFlowState.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
+docs/Workspace.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -317,6 +320,7 @@ src/main/java/sh/ory/model/CreateProjectApiKeyRequest.java
 src/main/java/sh/ory/model/CreateProjectBody.java
 src/main/java/sh/ory/model/CreateProjectBranding.java
 src/main/java/sh/ory/model/CreateProjectMemberInviteBody.java
+src/main/java/sh/ory/model/CreateProjectNormalizedPayload.java
 src/main/java/sh/ory/model/CreateRecoveryCodeForIdentityBody.java
 src/main/java/sh/ory/model/CreateRecoveryLinkForIdentityBody.java
 src/main/java/sh/ory/model/CreateRelationshipBody.java
@@ -376,6 +380,7 @@ src/main/java/sh/ory/model/JsonPatch.java
 src/main/java/sh/ory/model/JsonWebKey.java
 src/main/java/sh/ory/model/JsonWebKeySet.java
 src/main/java/sh/ory/model/KetoNamespace.java
+src/main/java/sh/ory/model/ListMyWorkspacesResponse.java
 src/main/java/sh/ory/model/ListOrganizationsResponse.java
 src/main/java/sh/ory/model/LoginFlow.java
 src/main/java/sh/ory/model/LoginFlowState.java
@@ -517,6 +522,7 @@ src/main/java/sh/ory/model/VerificationFlow.java
 src/main/java/sh/ory/model/VerificationFlowState.java
 src/main/java/sh/ory/model/Version.java
 src/main/java/sh/ory/model/Warning.java
+src/main/java/sh/ory/model/Workspace.java
 src/test/java/sh/ory/api/CourierApiTest.java
 src/test/java/sh/ory/api/FrontendApiTest.java
 src/test/java/sh/ory/api/IdentityApiTest.java
@@ -557,6 +563,7 @@ src/test/java/sh/ory/model/CreateProjectApiKeyRequestTest.java
 src/test/java/sh/ory/model/CreateProjectBodyTest.java
 src/test/java/sh/ory/model/CreateProjectBrandingTest.java
 src/test/java/sh/ory/model/CreateProjectMemberInviteBodyTest.java
+src/test/java/sh/ory/model/CreateProjectNormalizedPayloadTest.java
 src/test/java/sh/ory/model/CreateRecoveryCodeForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRecoveryLinkForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRelationshipBodyTest.java
@@ -616,6 +623,7 @@ src/test/java/sh/ory/model/JsonPatchTest.java
 src/test/java/sh/ory/model/JsonWebKeySetTest.java
 src/test/java/sh/ory/model/JsonWebKeyTest.java
 src/test/java/sh/ory/model/KetoNamespaceTest.java
+src/test/java/sh/ory/model/ListMyWorkspacesResponseTest.java
 src/test/java/sh/ory/model/ListOrganizationsResponseTest.java
 src/test/java/sh/ory/model/LoginFlowStateTest.java
 src/test/java/sh/ory/model/LoginFlowTest.java
@@ -757,3 +765,4 @@ src/test/java/sh/ory/model/VerificationFlowStateTest.java
 src/test/java/sh/ory/model/VerificationFlowTest.java
 src/test/java/sh/ory/model/VersionTest.java
 src/test/java/sh/ory/model/WarningTest.java
+src/test/java/sh/ory/model/WorkspaceTest.java

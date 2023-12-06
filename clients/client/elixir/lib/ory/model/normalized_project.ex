@@ -17,7 +17,8 @@ defmodule Ory.Model.NormalizedProject do
     :state,
     :subscription_id,
     :subscription_plan,
-    :updated_at
+    :updated_at,
+    :workspace_id
   ]
 
   @type t :: %__MODULE__{
@@ -30,7 +31,8 @@ defmodule Ory.Model.NormalizedProject do
     :state => String.t,
     :subscription_id => String.t | nil,
     :subscription_plan => String.t | nil,
-    :updated_at => DateTime.t
+    :updated_at => DateTime.t,
+    :workspace_id => String.t | nil
   }
 end
 

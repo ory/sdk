@@ -9,12 +9,14 @@ part of 'create_project_body.dart';
 class _$CreateProjectBody extends CreateProjectBody {
   @override
   final String name;
+  @override
+  final String? workspaceId;
 
   factory _$CreateProjectBody(
           [void Function(CreateProjectBodyBuilder)? updates]) =>
       (new CreateProjectBodyBuilder()..update(updates))._build();
 
-  _$CreateProjectBody._({required this.name}) : super._() {
+  _$CreateProjectBody._({required this.name, this.workspaceId}) : super._() {
     BuiltValueNullFieldError.checkNotNull(name, r'CreateProjectBody', 'name');
   }
 
@@ -29,13 +31,16 @@ class _$CreateProjectBody extends CreateProjectBody {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is CreateProjectBody && name == other.name;
+    return other is CreateProjectBody &&
+        name == other.name &&
+        workspaceId == other.workspaceId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, workspaceId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -43,7 +48,8 @@ class _$CreateProjectBody extends CreateProjectBody {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateProjectBody')
-          ..add('name', name))
+          ..add('name', name)
+          ..add('workspaceId', workspaceId))
         .toString();
   }
 }
@@ -56,6 +62,10 @@ class CreateProjectBodyBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _workspaceId;
+  String? get workspaceId => _$this._workspaceId;
+  set workspaceId(String? workspaceId) => _$this._workspaceId = workspaceId;
+
   CreateProjectBodyBuilder() {
     CreateProjectBody._defaults(this);
   }
@@ -64,6 +74,7 @@ class CreateProjectBodyBuilder
     final $v = _$v;
     if ($v != null) {
       _name = $v.name;
+      _workspaceId = $v.workspaceId;
       _$v = null;
     }
     return this;
@@ -87,7 +98,8 @@ class CreateProjectBodyBuilder
     final _$result = _$v ??
         new _$CreateProjectBody._(
             name: BuiltValueNullFieldError.checkNotNull(
-                name, r'CreateProjectBody', 'name'));
+                name, r'CreateProjectBody', 'name'),
+            workspaceId: workspaceId);
     replace(_$result);
     return _$result;
   }

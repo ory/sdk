@@ -32,6 +32,7 @@ doc/CreateProjectApiKeyRequest.md
 doc/CreateProjectBody.md
 doc/CreateProjectBranding.md
 doc/CreateProjectMemberInviteBody.md
+doc/CreateProjectNormalizedPayload.md
 doc/CreateRecoveryCodeForIdentityBody.md
 doc/CreateRecoveryLinkForIdentityBody.md
 doc/CreateRelationshipBody.md
@@ -94,6 +95,7 @@ doc/JsonWebKey.md
 doc/JsonWebKeySet.md
 doc/JwkApi.md
 doc/KetoNamespace.md
+doc/ListMyWorkspacesResponse.md
 doc/ListOrganizationsResponse.md
 doc/LoginFlow.md
 doc/LoginFlowState.md
@@ -242,6 +244,7 @@ doc/VerificationFlowState.md
 doc/Version.md
 doc/Warning.md
 doc/WellknownApi.md
+doc/Workspace.md
 lib/ory_client.dart
 lib/src/api.dart
 lib/src/api/courier_api.dart
@@ -291,6 +294,7 @@ lib/src/model/create_project_api_key_request.dart
 lib/src/model/create_project_body.dart
 lib/src/model/create_project_branding.dart
 lib/src/model/create_project_member_invite_body.dart
+lib/src/model/create_project_normalized_payload.dart
 lib/src/model/create_recovery_code_for_identity_body.dart
 lib/src/model/create_recovery_link_for_identity_body.dart
 lib/src/model/create_relationship_body.dart
@@ -351,6 +355,7 @@ lib/src/model/json_patch.dart
 lib/src/model/json_web_key.dart
 lib/src/model/json_web_key_set.dart
 lib/src/model/keto_namespace.dart
+lib/src/model/list_my_workspaces_response.dart
 lib/src/model/list_organizations_response.dart
 lib/src/model/login_flow.dart
 lib/src/model/login_flow_state.dart
@@ -492,6 +497,7 @@ lib/src/model/verification_flow.dart
 lib/src/model/verification_flow_state.dart
 lib/src/model/version.dart
 lib/src/model/warning.dart
+lib/src/model/workspace.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/accept_o_auth2_consent_request_session_test.dart
@@ -524,6 +530,7 @@ test/create_project_api_key_request_test.dart
 test/create_project_body_test.dart
 test/create_project_branding_test.dart
 test/create_project_member_invite_body_test.dart
+test/create_project_normalized_payload_test.dart
 test/create_recovery_code_for_identity_body_test.dart
 test/create_recovery_link_for_identity_body_test.dart
 test/create_relationship_body_test.dart
@@ -586,6 +593,7 @@ test/json_web_key_set_test.dart
 test/json_web_key_test.dart
 test/jwk_api_test.dart
 test/keto_namespace_test.dart
+test/list_my_workspaces_response_test.dart
 test/list_organizations_response_test.dart
 test/login_flow_state_test.dart
 test/login_flow_test.dart
@@ -734,3 +742,4 @@ test/verification_flow_test.dart
 test/version_test.dart
 test/warning_test.dart
 test/wellknown_api_test.dart
+test/workspace_test.dart

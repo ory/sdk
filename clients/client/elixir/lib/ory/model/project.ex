@@ -15,7 +15,8 @@ defmodule Ory.Model.Project do
     :revision_id,
     :services,
     :slug,
-    :state
+    :state,
+    :workspace_id
   ]
 
   @type t :: %__MODULE__{
@@ -26,7 +27,8 @@ defmodule Ory.Model.Project do
     :revision_id => String.t,
     :services => Ory.Model.ProjectServices.t,
     :slug => String.t,
-    :state => String.t
+    :state => String.t,
+    :workspace_id => String.t | nil
   }
 end
 

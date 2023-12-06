@@ -14,12 +14,13 @@ Name | Type | Description | Notes
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionPlan** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | [readonly] 
+**WorkspaceId** | **NullableString** |  | 
 
 ## Methods
 
 ### NewNormalizedProject
 
-`func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, hosts []string, id string, slug string, state string, updatedAt time.Time, ) *NormalizedProject`
+`func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, hosts []string, id string, slug string, state string, updatedAt time.Time, workspaceId NullableString, ) *NormalizedProject`
 
 NewNormalizedProject instantiates a new NormalizedProject object
 This constructor will assign default values to properties that have it defined,
@@ -264,6 +265,36 @@ and a boolean to check if the value has been set.
 SetUpdatedAt sets UpdatedAt field to given value.
 
 
+### GetWorkspaceId
+
+`func (o *NormalizedProject) GetWorkspaceId() string`
+
+GetWorkspaceId returns the WorkspaceId field if non-nil, zero value otherwise.
+
+### GetWorkspaceIdOk
+
+`func (o *NormalizedProject) GetWorkspaceIdOk() (*string, bool)`
+
+GetWorkspaceIdOk returns a tuple with the WorkspaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspaceId
+
+`func (o *NormalizedProject) SetWorkspaceId(v string)`
+
+SetWorkspaceId sets WorkspaceId field to given value.
+
+
+### SetWorkspaceIdNil
+
+`func (o *NormalizedProject) SetWorkspaceIdNil(b bool)`
+
+ SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
+
+### UnsetWorkspaceId
+`func (o *NormalizedProject) UnsetWorkspaceId()`
+
+UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

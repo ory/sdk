@@ -17,6 +17,7 @@
 |**subscriptionId** | **String** |  |  [optional] |
 |**subscriptionPlan** | **String** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project was Updated |  [readonly] |
+|**workspaceId** | **String** |  |  |
 
 
 

@@ -145,6 +145,8 @@ class _$NormalizedProject extends NormalizedProject {
   final String? subscriptionPlan;
   @override
   final DateTime updatedAt;
+  @override
+  final String? workspaceId;
 
   factory _$NormalizedProject(
           [void Function(NormalizedProjectBuilder)? updates]) =>
@@ -160,7 +162,8 @@ class _$NormalizedProject extends NormalizedProject {
       required this.state,
       this.subscriptionId,
       this.subscriptionPlan,
-      required this.updatedAt})
+      required this.updatedAt,
+      this.workspaceId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'NormalizedProject', 'createdAt');
@@ -197,7 +200,8 @@ class _$NormalizedProject extends NormalizedProject {
         state == other.state &&
         subscriptionId == other.subscriptionId &&
         subscriptionPlan == other.subscriptionPlan &&
-        updatedAt == other.updatedAt;
+        updatedAt == other.updatedAt &&
+        workspaceId == other.workspaceId;
   }
 
   @override
@@ -213,6 +217,7 @@ class _$NormalizedProject extends NormalizedProject {
     _$hash = $jc(_$hash, subscriptionId.hashCode);
     _$hash = $jc(_$hash, subscriptionPlan.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, workspaceId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -229,7 +234,8 @@ class _$NormalizedProject extends NormalizedProject {
           ..add('state', state)
           ..add('subscriptionId', subscriptionId)
           ..add('subscriptionPlan', subscriptionPlan)
-          ..add('updatedAt', updatedAt))
+          ..add('updatedAt', updatedAt)
+          ..add('workspaceId', workspaceId))
         .toString();
   }
 }
@@ -283,6 +289,10 @@ class NormalizedProjectBuilder
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
 
+  String? _workspaceId;
+  String? get workspaceId => _$this._workspaceId;
+  set workspaceId(String? workspaceId) => _$this._workspaceId = workspaceId;
+
   NormalizedProjectBuilder() {
     NormalizedProject._defaults(this);
   }
@@ -300,6 +310,7 @@ class NormalizedProjectBuilder
       _subscriptionId = $v.subscriptionId;
       _subscriptionPlan = $v.subscriptionPlan;
       _updatedAt = $v.updatedAt;
+      _workspaceId = $v.workspaceId;
       _$v = null;
     }
     return this;
@@ -339,7 +350,8 @@ class NormalizedProjectBuilder
               subscriptionId: subscriptionId,
               subscriptionPlan: subscriptionPlan,
               updatedAt: BuiltValueNullFieldError.checkNotNull(
-                  updatedAt, r'NormalizedProject', 'updatedAt'));
+                  updatedAt, r'NormalizedProject', 'updatedAt'),
+              workspaceId: workspaceId);
     } catch (_) {
       late String _$failedField;
       try {

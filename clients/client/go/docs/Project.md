@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Services** | [**ProjectServices**](ProjectServices.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
 **State** | **string** | The state of the project. running Running halted Halted deleted Deleted | [readonly] 
+**WorkspaceId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -202,6 +203,41 @@ and a boolean to check if the value has been set.
 SetState sets State field to given value.
 
 
+### GetWorkspaceId
+
+`func (o *Project) GetWorkspaceId() string`
+
+GetWorkspaceId returns the WorkspaceId field if non-nil, zero value otherwise.
+
+### GetWorkspaceIdOk
+
+`func (o *Project) GetWorkspaceIdOk() (*string, bool)`
+
+GetWorkspaceIdOk returns a tuple with the WorkspaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspaceId
+
+`func (o *Project) SetWorkspaceId(v string)`
+
+SetWorkspaceId sets WorkspaceId field to given value.
+
+### HasWorkspaceId
+
+`func (o *Project) HasWorkspaceId() bool`
+
+HasWorkspaceId returns a boolean if a field has been set.
+
+### SetWorkspaceIdNil
+
+`func (o *Project) SetWorkspaceIdNil(b bool)`
+
+ SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
+
+### UnsetWorkspaceId
+`func (o *Project) UnsetWorkspaceId()`
+
+UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

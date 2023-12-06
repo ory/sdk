@@ -46,6 +46,7 @@ docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
+docs/CreateProjectNormalizedPayload.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
@@ -108,6 +109,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkAPI.md
 docs/KetoNamespace.md
+docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
@@ -256,6 +258,7 @@ docs/VerificationFlowState.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownAPI.md
+docs/Workspace.md
 git_push.sh
 go.mod
 go.sum
@@ -288,6 +291,7 @@ model_create_project_api_key_request.go
 model_create_project_body.go
 model_create_project_branding.go
 model_create_project_member_invite_body.go
+model_create_project_normalized_payload.go
 model_create_recovery_code_for_identity_body.go
 model_create_recovery_link_for_identity_body.go
 model_create_relationship_body.go
@@ -347,6 +351,7 @@ model_json_patch.go
 model_json_web_key.go
 model_json_web_key_set.go
 model_keto_namespace.go
+model_list_my_workspaces_response.go
 model_list_organizations_response.go
 model_login_flow.go
 model_login_flow_state.go
@@ -488,6 +493,7 @@ model_verification_flow.go
 model_verification_flow_state.go
 model_version.go
 model_warning.go
+model_workspace.go
 response.go
 test/api_courier_test.go
 test/api_frontend_test.go

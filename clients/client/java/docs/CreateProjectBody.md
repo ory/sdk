@@ -9,6 +9,7 @@ Create Project Request Body
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** | The name of the project to be created |  |
+|**workspaceId** | **String** |  |  [optional] |
 
 
 

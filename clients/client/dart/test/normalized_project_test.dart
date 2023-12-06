@@ -63,5 +63,10 @@ void main() {
       // TODO
     });
 
+    // String workspaceId
+    test('to test the property `workspaceId`', () async {
+      // TODO
+    });
+
   });
 }

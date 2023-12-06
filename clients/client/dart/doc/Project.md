@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **services** | [**ProjectServices**](ProjectServices.md) |  | 
 **slug** | **String** | The project's slug | 
 **state** | **String** | The state of the project. running Running halted Halted deleted Deleted | 
+**workspaceId** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

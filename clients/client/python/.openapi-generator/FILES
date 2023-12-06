@@ -34,6 +34,7 @@ docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
 docs/CreateProjectMemberInviteResponse.md
+docs/CreateProjectNormalizedPayload.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
@@ -101,6 +102,7 @@ docs/JwkApi.md
 docs/KetoNamespace.md
 docs/KetoNamespaces.md
 docs/ListCustomDomains.md
+docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
@@ -274,6 +276,8 @@ docs/VerificationFlowState.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
+docs/Workspace.md
+docs/Workspaces.md
 git_push.sh
 ory_client/__init__.py
 ory_client/api/__init__.py
@@ -323,6 +327,7 @@ ory_client/model/create_project_body.py
 ory_client/model/create_project_branding.py
 ory_client/model/create_project_member_invite_body.py
 ory_client/model/create_project_member_invite_response.py
+ory_client/model/create_project_normalized_payload.py
 ory_client/model/create_recovery_code_for_identity_body.py
 ory_client/model/create_recovery_link_for_identity_body.py
 ory_client/model/create_relationship_body.py
@@ -387,6 +392,7 @@ ory_client/model/json_web_key_set.py
 ory_client/model/keto_namespace.py
 ory_client/model/keto_namespaces.py
 ory_client/model/list_custom_domains.py
+ory_client/model/list_my_workspaces_response.py
 ory_client/model/list_organizations_response.py
 ory_client/model/login_flow.py
 ory_client/model/login_flow_state.py
@@ -553,6 +559,8 @@ ory_client/model/verification_flow.py
 ory_client/model/verification_flow_state.py
 ory_client/model/version.py
 ory_client/model/warning.py
+ory_client/model/workspace.py
+ory_client/model/workspaces.py
 ory_client/model_utils.py
 ory_client/models/__init__.py
 ory_client/rest.py
@@ -592,6 +600,7 @@ test/test_create_project_body.py
 test/test_create_project_branding.py
 test/test_create_project_member_invite_body.py
 test/test_create_project_member_invite_response.py
+test/test_create_project_normalized_payload.py
 test/test_create_recovery_code_for_identity_body.py
 test/test_create_recovery_link_for_identity_body.py
 test/test_create_relationship_body.py
@@ -659,6 +668,7 @@ test/test_jwk_api.py
 test/test_keto_namespace.py
 test/test_keto_namespaces.py
 test/test_list_custom_domains.py
+test/test_list_my_workspaces_response.py
 test/test_list_organizations_response.py
 test/test_login_flow.py
 test/test_login_flow_state.py
@@ -832,4 +842,6 @@ test/test_verification_flow_state.py
 test/test_version.py
 test/test_warning.py
 test/test_wellknown_api.py
+test/test_workspace.py
+test/test_workspaces.py
 tox.ini

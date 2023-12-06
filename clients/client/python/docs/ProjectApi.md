@@ -163,6 +163,7 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = project_api.ProjectApi(api_client)
     create_project_body = CreateProjectBody(
         name="name_example",
+        workspace_id="workspace_id_example",
     ) # CreateProjectBody |  (optional)
 
     # example passing only required values which don't have defaults set

@@ -7,14 +7,15 @@ Name | Type | Description | Notes
 **Currency** | Pointer to **string** |  usd USD eur Euro | [optional] 
 **Interval** | **string** |  monthly Monthly yearly Yearly | 
 **Plan** | **string** |  | 
-**ProvisionFirstProject** | **string** |  | 
+**ProvisionFirstProject** | Pointer to **NullableString** |  | [optional] 
 **ReturnTo** | Pointer to **string** |  | [optional] 
+**Workspace** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewCreateSubscriptionBody
 
-`func NewCreateSubscriptionBody(interval string, plan string, provisionFirstProject string, ) *CreateSubscriptionBody`
+`func NewCreateSubscriptionBody(interval string, plan string, ) *CreateSubscriptionBody`
 
 NewCreateSubscriptionBody instantiates a new CreateSubscriptionBody object
 This constructor will assign default values to properties that have it defined,
@@ -113,7 +114,22 @@ and a boolean to check if the value has been set.
 
 SetProvisionFirstProject sets ProvisionFirstProject field to given value.
 
+### HasProvisionFirstProject
 
+`func (o *CreateSubscriptionBody) HasProvisionFirstProject() bool`
+
+HasProvisionFirstProject returns a boolean if a field has been set.
+
+### SetProvisionFirstProjectNil
+
+`func (o *CreateSubscriptionBody) SetProvisionFirstProjectNil(b bool)`
+
+ SetProvisionFirstProjectNil sets the value for ProvisionFirstProject to be an explicit nil
+
+### UnsetProvisionFirstProject
+`func (o *CreateSubscriptionBody) UnsetProvisionFirstProject()`
+
+UnsetProvisionFirstProject ensures that no value is present for ProvisionFirstProject, not even an explicit nil
 ### GetReturnTo
 
 `func (o *CreateSubscriptionBody) GetReturnTo() string`
@@ -139,6 +155,41 @@ SetReturnTo sets ReturnTo field to given value.
 
 HasReturnTo returns a boolean if a field has been set.
 
+### GetWorkspace
+
+`func (o *CreateSubscriptionBody) GetWorkspace() string`
+
+GetWorkspace returns the Workspace field if non-nil, zero value otherwise.
+
+### GetWorkspaceOk
+
+`func (o *CreateSubscriptionBody) GetWorkspaceOk() (*string, bool)`
+
+GetWorkspaceOk returns a tuple with the Workspace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspace
+
+`func (o *CreateSubscriptionBody) SetWorkspace(v string)`
+
+SetWorkspace sets Workspace field to given value.
+
+### HasWorkspace
+
+`func (o *CreateSubscriptionBody) HasWorkspace() bool`
+
+HasWorkspace returns a boolean if a field has been set.
+
+### SetWorkspaceNil
+
+`func (o *CreateSubscriptionBody) SetWorkspaceNil(b bool)`
+
+ SetWorkspaceNil sets the value for Workspace to be an explicit nil
+
+### UnsetWorkspace
+`func (o *CreateSubscriptionBody) UnsetWorkspace()`
+
+UnsetWorkspace ensures that no value is present for Workspace, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

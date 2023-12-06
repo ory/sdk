@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.3
+API version: v1.4.4
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,7 @@ var _ MappedNullable = &CreateProjectBody{}
 type CreateProjectBody struct {
 	// The name of the project to be created
 	Name string `json:"name"`
+	WorkspaceId NullableString `json:"workspace_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -70,6 +71,48 @@ func (o *CreateProjectBody) SetName(v string) {
 	o.Name = v
 }
 
+// GetWorkspaceId returns the WorkspaceId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateProjectBody) GetWorkspaceId() string {
+	if o == nil || IsNil(o.WorkspaceId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.WorkspaceId.Get()
+}
+
+// GetWorkspaceIdOk returns a tuple with the WorkspaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateProjectBody) GetWorkspaceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.WorkspaceId.Get(), o.WorkspaceId.IsSet()
+}
+
+// HasWorkspaceId returns a boolean if a field has been set.
+func (o *CreateProjectBody) HasWorkspaceId() bool {
+	if o != nil && o.WorkspaceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkspaceId gets a reference to the given NullableString and assigns it to the WorkspaceId field.
+func (o *CreateProjectBody) SetWorkspaceId(v string) {
+	o.WorkspaceId.Set(&v)
+}
+// SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
+func (o *CreateProjectBody) SetWorkspaceIdNil() {
+	o.WorkspaceId.Set(nil)
+}
+
+// UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
+func (o *CreateProjectBody) UnsetWorkspaceId() {
+	o.WorkspaceId.Unset()
+}
+
 func (o CreateProjectBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -81,6 +124,9 @@ func (o CreateProjectBody) MarshalJSON() ([]byte, error) {
 func (o CreateProjectBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
+	if o.WorkspaceId.IsSet() {
+		toSerialize["workspace_id"] = o.WorkspaceId.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -125,6 +171,7 @@ func (o *CreateProjectBody) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "workspace_id")
 		o.AdditionalProperties = additionalProperties
 	}
 

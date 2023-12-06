@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **services** | [**crate::models::ProjectServices**](projectServices.md) |  | 
 **slug** | **String** | The project's slug | [readonly]
 **state** | **String** | The state of the project. running Running halted Halted deleted Deleted | [readonly]
+**workspace_id** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

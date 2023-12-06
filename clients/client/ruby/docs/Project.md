@@ -12,6 +12,7 @@
 | **services** | [**ProjectServices**](ProjectServices.md) |  |  |
 | **slug** | **String** | The project&#39;s slug | [readonly] |
 | **state** | **String** | The state of the project. running Running halted Halted deleted Deleted | [readonly] |
+| **workspace_id** | **String** |  | [optional] |
 
 ## Example
 
@@ -26,7 +27,8 @@ instance = OryClient::Project.new(
   revision_id: null,
   services: null,
   slug: null,
-  state: null
+  state: null,
+  workspace_id: null
 )
 ```
 
