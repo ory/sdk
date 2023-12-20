@@ -321,15 +321,41 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-elixir
-typescript
-rust
-golang
-java
-php
-python
-ruby
-dotnet
-dart
+
+swift () {
+  echo "Generating Swift..."
+
+  dir="clients/${PROJECT}/swift"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
+
+  # file="${dir}/mix.exs"
+
+  openapi-generator-cli version-manager set 7.1.0
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
+    	-g swift5 \
+	    -o "$dir" \
+	    --git-user-id ory \
+	    --git-repo-id sdk \
+	    --git-host github.com \
+	    -c ./config/client/swift.yml.proc.yml
+
+  # (sed "s/licenses:.*$/licenses: [\"Apache-2.0\"],\n      links: %{\n        \"GitHub\" => \"https:\/\/github.com\/ory\/sdk\",\n        \"Website\" => \"https:\/\/www.ory.sh\",\n        \"Documentation\" => \"https:\/\/www.ory.sh\/docs\",\n        \"Product\" => \"https:\/\/console.ory.sh\"\n      }/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+  # (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+
+  cp "LICENSE" "clients/${PROJECT}/swift"
+}
+
+# elixir
+# typescript
+# rust
+# golang
+# java
+# php
+# python
+# ruby
+# dotnet
+# dart
+swift
 
 cleanup

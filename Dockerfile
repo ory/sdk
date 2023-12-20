@@ -2,8 +2,18 @@ FROM openjdk:15-buster
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates ssh bash
 
-ENV GOLANG_VERSION 1.17
+RUN apt-get -y install libncurses5 clang libcurl4 libpython2.7 libpython2.7-dev
 
+RUN \
+	curl https://download.swift.org/swift-5.8.1-release/ubuntu1804/swift-5.8.1-RELEASE/swift-5.8.1-RELEASE-ubuntu18.04.tar.gz -o swift.tar.gz &&\
+	tar xzf swift.tar.gz && \
+	mv swift-5.8.1-RELEASE-ubuntu18.04 /usr/share/swift && \
+	export PATH=/usr/share/swift/usr/bin:$PATH && \
+	swift -v
+
+ENV PATH /usr/share/swift/usr/bin:$PATH
+
+ENV GOLANG_VERSION 1.17
 RUN set -eux; \
 	apt-get install -y --no-install-recommends bash build-essential openssl golang-go curl wget; \
 	rm -rf /var/lib/apt/lists/*; \
@@ -125,6 +135,8 @@ RUN td=$(mktemp) \
 RUN gem install bundler -v 2.3.26 && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends ruby-dev
+
+
 
 ADD go.mod go.mod
 ADD go.sum go.sum

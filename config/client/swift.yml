@@ -1,0 +1,8 @@
+podAuthors: ORY GmbH
+podHomepage: https://www.ory.sh
+podDescription: Ory Swift Client (TODO)
+podSource: "${SWIFT_POD_SOURCE}"
+podVersion: $RAW_VERSION
+projectName: ${SWIFT_PROJECT_NAME}
+
+disallowAdditionalPropertiesIfNotPresent: false
