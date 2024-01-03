@@ -11,6 +11,8 @@ docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/ActiveProjectInConsole.md
+docs/Attribute.md
+docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
 docs/BatchPatchIdentitiesResponse.md
@@ -43,6 +45,7 @@ docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateVerifiableCredentialRequestBody.md
+docs/CreateWorkspaceMemberInviteBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -61,7 +64,11 @@ docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetAttributesCountResponse.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetMetricsEventAttributesResponse.md
+docs/GetMetricsEventTypesResponse.md
 docs/GetOrganizationResponse.md
+docs/GetProjectEventsBody.md
+docs/GetProjectEventsResponse.md
 docs/GetProjectMetricsResponse.md
 docs/GetSessionActivityResponse.md
 docs/GetVersion200Response.md
@@ -153,6 +160,7 @@ docs/ProjectBranding.md
 docs/ProjectBrandingColors.md
 docs/ProjectBrandingTheme.md
 docs/ProjectCors.md
+docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
 docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
@@ -270,6 +278,8 @@ lib/ory-client/models/accept_o_auth2_consent_request.rb
 lib/ory-client/models/accept_o_auth2_consent_request_session.rb
 lib/ory-client/models/accept_o_auth2_login_request.rb
 lib/ory-client/models/active_project_in_console.rb
+lib/ory-client/models/attribute.rb
+lib/ory-client/models/attribute_filter.rb
 lib/ory-client/models/attributes_count_datapoint.rb
 lib/ory-client/models/authenticator_assurance_level.rb
 lib/ory-client/models/batch_patch_identities_response.rb
@@ -301,6 +311,7 @@ lib/ory-client/models/create_recovery_link_for_identity_body.rb
 lib/ory-client/models/create_relationship_body.rb
 lib/ory-client/models/create_subscription_body.rb
 lib/ory-client/models/create_verifiable_credential_request_body.rb
+lib/ory-client/models/create_workspace_member_invite_body.rb
 lib/ory-client/models/credential_supported_draft00.rb
 lib/ory-client/models/custom_domain.rb
 lib/ory-client/models/delete_my_sessions_count.rb
@@ -318,7 +329,11 @@ lib/ory-client/models/generic_error_content.rb
 lib/ory-client/models/generic_usage.rb
 lib/ory-client/models/get_attributes_count_response.rb
 lib/ory-client/models/get_managed_identity_schema_location.rb
+lib/ory-client/models/get_metrics_event_attributes_response.rb
+lib/ory-client/models/get_metrics_event_types_response.rb
 lib/ory-client/models/get_organization_response.rb
+lib/ory-client/models/get_project_events_body.rb
+lib/ory-client/models/get_project_events_response.rb
 lib/ory-client/models/get_project_metrics_response.rb
 lib/ory-client/models/get_session_activity_response.rb
 lib/ory-client/models/get_version200_response.rb
@@ -403,6 +418,7 @@ lib/ory-client/models/project_branding.rb
 lib/ory-client/models/project_branding_colors.rb
 lib/ory-client/models/project_branding_theme.rb
 lib/ory-client/models/project_cors.rb
+lib/ory-client/models/project_events_datapoint.rb
 lib/ory-client/models/project_host.rb
 lib/ory-client/models/project_metadata.rb
 lib/ory-client/models/project_service_identity.rb
@@ -517,6 +533,8 @@ spec/models/accept_o_auth2_consent_request_session_spec.rb
 spec/models/accept_o_auth2_consent_request_spec.rb
 spec/models/accept_o_auth2_login_request_spec.rb
 spec/models/active_project_in_console_spec.rb
+spec/models/attribute_filter_spec.rb
+spec/models/attribute_spec.rb
 spec/models/attributes_count_datapoint_spec.rb
 spec/models/authenticator_assurance_level_spec.rb
 spec/models/batch_patch_identities_response_spec.rb
@@ -548,6 +566,7 @@ spec/models/create_recovery_link_for_identity_body_spec.rb
 spec/models/create_relationship_body_spec.rb
 spec/models/create_subscription_body_spec.rb
 spec/models/create_verifiable_credential_request_body_spec.rb
+spec/models/create_workspace_member_invite_body_spec.rb
 spec/models/credential_supported_draft00_spec.rb
 spec/models/custom_domain_spec.rb
 spec/models/delete_my_sessions_count_spec.rb
@@ -565,7 +584,11 @@ spec/models/generic_error_spec.rb
 spec/models/generic_usage_spec.rb
 spec/models/get_attributes_count_response_spec.rb
 spec/models/get_managed_identity_schema_location_spec.rb
+spec/models/get_metrics_event_attributes_response_spec.rb
+spec/models/get_metrics_event_types_response_spec.rb
 spec/models/get_organization_response_spec.rb
+spec/models/get_project_events_body_spec.rb
+spec/models/get_project_events_response_spec.rb
 spec/models/get_project_metrics_response_spec.rb
 spec/models/get_session_activity_response_spec.rb
 spec/models/get_version200_response_spec.rb
@@ -649,6 +672,7 @@ spec/models/project_branding_colors_spec.rb
 spec/models/project_branding_spec.rb
 spec/models/project_branding_theme_spec.rb
 spec/models/project_cors_spec.rb
+spec/models/project_events_datapoint_spec.rb
 spec/models/project_host_spec.rb
 spec/models/project_metadata_spec.rb
 spec/models/project_service_identity_spec.rb

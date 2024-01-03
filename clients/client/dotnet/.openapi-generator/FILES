@@ -7,6 +7,8 @@ docs/ClientAcceptOAuth2ConsentRequest.md
 docs/ClientAcceptOAuth2ConsentRequestSession.md
 docs/ClientAcceptOAuth2LoginRequest.md
 docs/ClientActiveProjectInConsole.md
+docs/ClientAttribute.md
+docs/ClientAttributeFilter.md
 docs/ClientAttributesCountDatapoint.md
 docs/ClientAuthenticatorAssuranceLevel.md
 docs/ClientBatchPatchIdentitiesResponse.md
@@ -37,6 +39,7 @@ docs/ClientCreateRecoveryLinkForIdentityBody.md
 docs/ClientCreateRelationshipBody.md
 docs/ClientCreateSubscriptionBody.md
 docs/ClientCreateVerifiableCredentialRequestBody.md
+docs/ClientCreateWorkspaceMemberInviteBody.md
 docs/ClientCredentialSupportedDraft00.md
 docs/ClientCustomDomain.md
 docs/ClientDeleteMySessionsCount.md
@@ -54,7 +57,11 @@ docs/ClientGenericErrorContent.md
 docs/ClientGenericUsage.md
 docs/ClientGetAttributesCountResponse.md
 docs/ClientGetManagedIdentitySchemaLocation.md
+docs/ClientGetMetricsEventAttributesResponse.md
+docs/ClientGetMetricsEventTypesResponse.md
 docs/ClientGetOrganizationResponse.md
+docs/ClientGetProjectEventsBody.md
+docs/ClientGetProjectEventsResponse.md
 docs/ClientGetProjectMetricsResponse.md
 docs/ClientGetSessionActivityResponse.md
 docs/ClientHealthNotReadyStatus.md
@@ -140,6 +147,7 @@ docs/ClientProjectBranding.md
 docs/ClientProjectBrandingColors.md
 docs/ClientProjectBrandingTheme.md
 docs/ClientProjectCors.md
+docs/ClientProjectEventsDatapoint.md
 docs/ClientProjectHost.md
 docs/ClientProjectMetadata.md
 docs/ClientProjectServiceIdentity.md
@@ -262,6 +270,8 @@ src/Ory.Client.Test/Model/ClientAcceptOAuth2ConsentRequestSessionTests.cs
 src/Ory.Client.Test/Model/ClientAcceptOAuth2ConsentRequestTests.cs
 src/Ory.Client.Test/Model/ClientAcceptOAuth2LoginRequestTests.cs
 src/Ory.Client.Test/Model/ClientActiveProjectInConsoleTests.cs
+src/Ory.Client.Test/Model/ClientAttributeFilterTests.cs
+src/Ory.Client.Test/Model/ClientAttributeTests.cs
 src/Ory.Client.Test/Model/ClientAttributesCountDatapointTests.cs
 src/Ory.Client.Test/Model/ClientAuthenticatorAssuranceLevelTests.cs
 src/Ory.Client.Test/Model/ClientBatchPatchIdentitiesResponseTests.cs
@@ -292,6 +302,7 @@ src/Ory.Client.Test/Model/ClientCreateRecoveryLinkForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRelationshipBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateSubscriptionBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateVerifiableCredentialRequestBodyTests.cs
+src/Ory.Client.Test/Model/ClientCreateWorkspaceMemberInviteBodyTests.cs
 src/Ory.Client.Test/Model/ClientCredentialSupportedDraft00Tests.cs
 src/Ory.Client.Test/Model/ClientCustomDomainTests.cs
 src/Ory.Client.Test/Model/ClientDeleteMySessionsCountTests.cs
@@ -309,7 +320,11 @@ src/Ory.Client.Test/Model/ClientGenericErrorTests.cs
 src/Ory.Client.Test/Model/ClientGenericUsageTests.cs
 src/Ory.Client.Test/Model/ClientGetAttributesCountResponseTests.cs
 src/Ory.Client.Test/Model/ClientGetManagedIdentitySchemaLocationTests.cs
+src/Ory.Client.Test/Model/ClientGetMetricsEventAttributesResponseTests.cs
+src/Ory.Client.Test/Model/ClientGetMetricsEventTypesResponseTests.cs
 src/Ory.Client.Test/Model/ClientGetOrganizationResponseTests.cs
+src/Ory.Client.Test/Model/ClientGetProjectEventsBodyTests.cs
+src/Ory.Client.Test/Model/ClientGetProjectEventsResponseTests.cs
 src/Ory.Client.Test/Model/ClientGetProjectMetricsResponseTests.cs
 src/Ory.Client.Test/Model/ClientGetSessionActivityResponseTests.cs
 src/Ory.Client.Test/Model/ClientHealthNotReadyStatusTests.cs
@@ -394,6 +409,7 @@ src/Ory.Client.Test/Model/ClientProjectBrandingColorsTests.cs
 src/Ory.Client.Test/Model/ClientProjectBrandingTests.cs
 src/Ory.Client.Test/Model/ClientProjectBrandingThemeTests.cs
 src/Ory.Client.Test/Model/ClientProjectCorsTests.cs
+src/Ory.Client.Test/Model/ClientProjectEventsDatapointTests.cs
 src/Ory.Client.Test/Model/ClientProjectHostTests.cs
 src/Ory.Client.Test/Model/ClientProjectMetadataTests.cs
 src/Ory.Client.Test/Model/ClientProjectServiceIdentityTests.cs
@@ -523,6 +539,8 @@ src/Ory.Client/Model/ClientAcceptOAuth2ConsentRequest.cs
 src/Ory.Client/Model/ClientAcceptOAuth2ConsentRequestSession.cs
 src/Ory.Client/Model/ClientAcceptOAuth2LoginRequest.cs
 src/Ory.Client/Model/ClientActiveProjectInConsole.cs
+src/Ory.Client/Model/ClientAttribute.cs
+src/Ory.Client/Model/ClientAttributeFilter.cs
 src/Ory.Client/Model/ClientAttributesCountDatapoint.cs
 src/Ory.Client/Model/ClientAuthenticatorAssuranceLevel.cs
 src/Ory.Client/Model/ClientBatchPatchIdentitiesResponse.cs
@@ -553,6 +571,7 @@ src/Ory.Client/Model/ClientCreateRecoveryLinkForIdentityBody.cs
 src/Ory.Client/Model/ClientCreateRelationshipBody.cs
 src/Ory.Client/Model/ClientCreateSubscriptionBody.cs
 src/Ory.Client/Model/ClientCreateVerifiableCredentialRequestBody.cs
+src/Ory.Client/Model/ClientCreateWorkspaceMemberInviteBody.cs
 src/Ory.Client/Model/ClientCredentialSupportedDraft00.cs
 src/Ory.Client/Model/ClientCustomDomain.cs
 src/Ory.Client/Model/ClientDeleteMySessionsCount.cs
@@ -570,7 +589,11 @@ src/Ory.Client/Model/ClientGenericErrorContent.cs
 src/Ory.Client/Model/ClientGenericUsage.cs
 src/Ory.Client/Model/ClientGetAttributesCountResponse.cs
 src/Ory.Client/Model/ClientGetManagedIdentitySchemaLocation.cs
+src/Ory.Client/Model/ClientGetMetricsEventAttributesResponse.cs
+src/Ory.Client/Model/ClientGetMetricsEventTypesResponse.cs
 src/Ory.Client/Model/ClientGetOrganizationResponse.cs
+src/Ory.Client/Model/ClientGetProjectEventsBody.cs
+src/Ory.Client/Model/ClientGetProjectEventsResponse.cs
 src/Ory.Client/Model/ClientGetProjectMetricsResponse.cs
 src/Ory.Client/Model/ClientGetSessionActivityResponse.cs
 src/Ory.Client/Model/ClientHealthNotReadyStatus.cs
@@ -656,6 +679,7 @@ src/Ory.Client/Model/ClientProjectBranding.cs
 src/Ory.Client/Model/ClientProjectBrandingColors.cs
 src/Ory.Client/Model/ClientProjectBrandingTheme.cs
 src/Ory.Client/Model/ClientProjectCors.cs
+src/Ory.Client/Model/ClientProjectEventsDatapoint.cs
 src/Ory.Client/Model/ClientProjectHost.cs
 src/Ory.Client/Model/ClientProjectMetadata.cs
 src/Ory.Client/Model/ClientProjectServiceIdentity.cs

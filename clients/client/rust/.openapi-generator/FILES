@@ -7,6 +7,8 @@ docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/ActiveProjectInConsole.md
+docs/Attribute.md
+docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
 docs/BatchPatchIdentitiesResponse.md
@@ -39,6 +41,7 @@ docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateVerifiableCredentialRequestBody.md
+docs/CreateWorkspaceMemberInviteBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -57,7 +60,11 @@ docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetAttributesCountResponse.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetMetricsEventAttributesResponse.md
+docs/GetMetricsEventTypesResponse.md
 docs/GetOrganizationResponse.md
+docs/GetProjectEventsBody.md
+docs/GetProjectEventsResponse.md
 docs/GetProjectMetricsResponse.md
 docs/GetSessionActivityResponse.md
 docs/GetVersion200Response.md
@@ -149,6 +156,7 @@ docs/ProjectBranding.md
 docs/ProjectBrandingColors.md
 docs/ProjectBrandingTheme.md
 docs/ProjectCors.md
+docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
 docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
@@ -265,6 +273,8 @@ src/models/accept_o_auth2_consent_request.rs
 src/models/accept_o_auth2_consent_request_session.rs
 src/models/accept_o_auth2_login_request.rs
 src/models/active_project_in_console.rs
+src/models/attribute.rs
+src/models/attribute_filter.rs
 src/models/attributes_count_datapoint.rs
 src/models/authenticator_assurance_level.rs
 src/models/batch_patch_identities_response.rs
@@ -296,6 +306,7 @@ src/models/create_recovery_link_for_identity_body.rs
 src/models/create_relationship_body.rs
 src/models/create_subscription_body.rs
 src/models/create_verifiable_credential_request_body.rs
+src/models/create_workspace_member_invite_body.rs
 src/models/credential_supported_draft00.rs
 src/models/custom_domain.rs
 src/models/delete_my_sessions_count.rs
@@ -313,7 +324,11 @@ src/models/generic_error_content.rs
 src/models/generic_usage.rs
 src/models/get_attributes_count_response.rs
 src/models/get_managed_identity_schema_location.rs
+src/models/get_metrics_event_attributes_response.rs
+src/models/get_metrics_event_types_response.rs
 src/models/get_organization_response.rs
+src/models/get_project_events_body.rs
+src/models/get_project_events_response.rs
 src/models/get_project_metrics_response.rs
 src/models/get_session_activity_response.rs
 src/models/get_version_200_response.rs
@@ -399,6 +414,7 @@ src/models/project_branding.rs
 src/models/project_branding_colors.rs
 src/models/project_branding_theme.rs
 src/models/project_cors.rs
+src/models/project_events_datapoint.rs
 src/models/project_host.rs
 src/models/project_metadata.rs
 src/models/project_service_identity.rs

@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.4.7
-  - Build date: 2023-12-20T14:06:49.774697391Z[Etc/UTC]
+- API version: v1.4.8
+  - Build date: 2024-01-03T09:08:24.281218486Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.4.7</version>
+  <version>v1.4.8</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.4.7"
+     implementation "sh.ory:client:v1.4.8"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.4.7.jar`
+* `target/client-v1.4.8.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -256,6 +256,8 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2ConsentRequestSession](docs/AcceptOAuth2ConsentRequestSession.md)
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
  - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
+ - [Attribute](docs/Attribute.md)
+ - [AttributeFilter](docs/AttributeFilter.md)
  - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
@@ -287,6 +289,7 @@ Class | Method | HTTP request | Description
  - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
  - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
+ - [CreateWorkspaceMemberInviteBody](docs/CreateWorkspaceMemberInviteBody.md)
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
@@ -304,7 +307,11 @@ Class | Method | HTTP request | Description
  - [GenericUsage](docs/GenericUsage.md)
  - [GetAttributesCountResponse](docs/GetAttributesCountResponse.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
+ - [GetMetricsEventAttributesResponse](docs/GetMetricsEventAttributesResponse.md)
+ - [GetMetricsEventTypesResponse](docs/GetMetricsEventTypesResponse.md)
  - [GetOrganizationResponse](docs/GetOrganizationResponse.md)
+ - [GetProjectEventsBody](docs/GetProjectEventsBody.md)
+ - [GetProjectEventsResponse](docs/GetProjectEventsResponse.md)
  - [GetProjectMetricsResponse](docs/GetProjectMetricsResponse.md)
  - [GetSessionActivityResponse](docs/GetSessionActivityResponse.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
@@ -389,6 +396,7 @@ Class | Method | HTTP request | Description
  - [ProjectBrandingColors](docs/ProjectBrandingColors.md)
  - [ProjectBrandingTheme](docs/ProjectBrandingTheme.md)
  - [ProjectCors](docs/ProjectCors.md)
+ - [ProjectEventsDatapoint](docs/ProjectEventsDatapoint.md)
  - [ProjectHost](docs/ProjectHost.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)

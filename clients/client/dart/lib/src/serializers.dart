@@ -18,6 +18,8 @@ import 'package:ory_client/src/model/accept_o_auth2_consent_request.dart';
 import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart';
 import 'package:ory_client/src/model/accept_o_auth2_login_request.dart';
 import 'package:ory_client/src/model/active_project_in_console.dart';
+import 'package:ory_client/src/model/attribute.dart';
+import 'package:ory_client/src/model/attribute_filter.dart';
 import 'package:ory_client/src/model/attributes_count_datapoint.dart';
 import 'package:ory_client/src/model/authenticator_assurance_level.dart';
 import 'package:ory_client/src/model/batch_patch_identities_response.dart';
@@ -49,6 +51,7 @@ import 'package:ory_client/src/model/create_recovery_link_for_identity_body.dart
 import 'package:ory_client/src/model/create_relationship_body.dart';
 import 'package:ory_client/src/model/create_subscription_body.dart';
 import 'package:ory_client/src/model/create_verifiable_credential_request_body.dart';
+import 'package:ory_client/src/model/create_workspace_member_invite_body.dart';
 import 'package:ory_client/src/model/credential_supported_draft00.dart';
 import 'package:ory_client/src/model/custom_domain.dart';
 import 'package:ory_client/src/model/delete_my_sessions_count.dart';
@@ -66,7 +69,11 @@ import 'package:ory_client/src/model/generic_error_content.dart';
 import 'package:ory_client/src/model/generic_usage.dart';
 import 'package:ory_client/src/model/get_attributes_count_response.dart';
 import 'package:ory_client/src/model/get_managed_identity_schema_location.dart';
+import 'package:ory_client/src/model/get_metrics_event_attributes_response.dart';
+import 'package:ory_client/src/model/get_metrics_event_types_response.dart';
 import 'package:ory_client/src/model/get_organization_response.dart';
+import 'package:ory_client/src/model/get_project_events_body.dart';
+import 'package:ory_client/src/model/get_project_events_response.dart';
 import 'package:ory_client/src/model/get_project_metrics_response.dart';
 import 'package:ory_client/src/model/get_session_activity_response.dart';
 import 'package:ory_client/src/model/get_version200_response.dart';
@@ -151,6 +158,7 @@ import 'package:ory_client/src/model/project_branding.dart';
 import 'package:ory_client/src/model/project_branding_colors.dart';
 import 'package:ory_client/src/model/project_branding_theme.dart';
 import 'package:ory_client/src/model/project_cors.dart';
+import 'package:ory_client/src/model/project_events_datapoint.dart';
 import 'package:ory_client/src/model/project_host.dart';
 import 'package:ory_client/src/model/project_metadata.dart';
 import 'package:ory_client/src/model/project_service_identity.dart';
@@ -254,6 +262,8 @@ part 'serializers.g.dart';
   AcceptOAuth2ConsentRequestSession,
   AcceptOAuth2LoginRequest,
   ActiveProjectInConsole,
+  Attribute,
+  AttributeFilter,
   AttributesCountDatapoint,
   AuthenticatorAssuranceLevel,
   BatchPatchIdentitiesResponse,
@@ -285,6 +295,7 @@ part 'serializers.g.dart';
   CreateRelationshipBody,
   CreateSubscriptionBody,
   CreateVerifiableCredentialRequestBody,
+  CreateWorkspaceMemberInviteBody,
   CredentialSupportedDraft00,
   CustomDomain,
   DeleteMySessionsCount,
@@ -302,7 +313,11 @@ part 'serializers.g.dart';
   GenericUsage,
   GetAttributesCountResponse,
   GetManagedIdentitySchemaLocation,
+  GetMetricsEventAttributesResponse,
+  GetMetricsEventTypesResponse,
   GetOrganizationResponse,
+  GetProjectEventsBody,
+  GetProjectEventsResponse,
   GetProjectMetricsResponse,
   GetSessionActivityResponse,
   GetVersion200Response,
@@ -387,6 +402,7 @@ part 'serializers.g.dart';
   ProjectBrandingColors,
   ProjectBrandingTheme,
   ProjectCors,
+  ProjectEventsDatapoint,
   ProjectHost,
   ProjectMetadata,
   ProjectServiceIdentity,

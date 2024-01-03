@@ -21,6 +21,8 @@ lib/ory/model/accept_o_auth2_consent_request.ex
 lib/ory/model/accept_o_auth2_consent_request_session.ex
 lib/ory/model/accept_o_auth2_login_request.ex
 lib/ory/model/active_project_in_console.ex
+lib/ory/model/attribute.ex
+lib/ory/model/attribute_filter.ex
 lib/ory/model/attributes_count_datapoint.ex
 lib/ory/model/authenticator_assurance_level.ex
 lib/ory/model/batch_patch_identities_response.ex
@@ -52,6 +54,7 @@ lib/ory/model/create_recovery_link_for_identity_body.ex
 lib/ory/model/create_relationship_body.ex
 lib/ory/model/create_subscription_body.ex
 lib/ory/model/create_verifiable_credential_request_body.ex
+lib/ory/model/create_workspace_member_invite_body.ex
 lib/ory/model/credential_supported_draft00.ex
 lib/ory/model/custom_domain.ex
 lib/ory/model/delete_my_sessions_count.ex
@@ -69,7 +72,11 @@ lib/ory/model/generic_error_content.ex
 lib/ory/model/generic_usage.ex
 lib/ory/model/get_attributes_count_response.ex
 lib/ory/model/get_managed_identity_schema_location.ex
+lib/ory/model/get_metrics_event_attributes_response.ex
+lib/ory/model/get_metrics_event_types_response.ex
 lib/ory/model/get_organization_response.ex
+lib/ory/model/get_project_events_body.ex
+lib/ory/model/get_project_events_response.ex
 lib/ory/model/get_project_metrics_response.ex
 lib/ory/model/get_session_activity_response.ex
 lib/ory/model/get_version_200_response.ex
@@ -154,6 +161,7 @@ lib/ory/model/project_branding.ex
 lib/ory/model/project_branding_colors.ex
 lib/ory/model/project_branding_theme.ex
 lib/ory/model/project_cors.ex
+lib/ory/model/project_events_datapoint.ex
 lib/ory/model/project_host.ex
 lib/ory/model/project_metadata.ex
 lib/ory/model/project_service_identity.ex

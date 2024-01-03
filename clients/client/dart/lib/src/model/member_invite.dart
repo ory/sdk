@@ -18,9 +18,10 @@ part 'member_invite.g.dart';
 /// * [inviteeId] 
 /// * [ownerEmail] - The invite owner's email Usually the project's owner email
 /// * [ownerId] - The invite owner's ID Usually the project's owner
-/// * [projectId] - The Project's ID this invite is associated with
+/// * [projectId] 
 /// * [status] - The invite's status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED
 /// * [updatedAt] - Last Time Project's Revision was Updated
+/// * [workspaceId] 
 @BuiltValue()
 abstract class MemberInvite implements Built<MemberInvite, MemberInviteBuilder> {
   /// The Project's Revision Creation Date
@@ -46,9 +47,8 @@ abstract class MemberInvite implements Built<MemberInvite, MemberInviteBuilder> 
   @BuiltValueField(wireName: r'owner_id')
   String get ownerId;
 
-  /// The Project's ID this invite is associated with
   @BuiltValueField(wireName: r'project_id')
-  String get projectId;
+  String? get projectId;
 
   /// The invite's status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED
   @BuiltValueField(wireName: r'status')
@@ -58,6 +58,9 @@ abstract class MemberInvite implements Built<MemberInvite, MemberInviteBuilder> 
   /// Last Time Project's Revision was Updated
   @BuiltValueField(wireName: r'updated_at')
   DateTime get updatedAt;
+
+  @BuiltValueField(wireName: r'workspace_id')
+  String? get workspaceId;
 
   MemberInvite._();
 
@@ -114,11 +117,13 @@ class _$MemberInviteSerializer implements PrimitiveSerializer<MemberInvite> {
       object.ownerId,
       specifiedType: const FullType(String),
     );
-    yield r'project_id';
-    yield serializers.serialize(
-      object.projectId,
-      specifiedType: const FullType(String),
-    );
+    if (object.projectId != null) {
+      yield r'project_id';
+      yield serializers.serialize(
+        object.projectId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     yield r'status';
     yield serializers.serialize(
       object.status,
@@ -129,6 +134,13 @@ class _$MemberInviteSerializer implements PrimitiveSerializer<MemberInvite> {
       object.updatedAt,
       specifiedType: const FullType(DateTime),
     );
+    if (object.workspaceId != null) {
+      yield r'workspace_id';
+      yield serializers.serialize(
+        object.workspaceId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -198,8 +210,9 @@ class _$MemberInviteSerializer implements PrimitiveSerializer<MemberInvite> {
         case r'project_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.projectId = valueDes;
           break;
         case r'status':
@@ -215,6 +228,14 @@ class _$MemberInviteSerializer implements PrimitiveSerializer<MemberInvite> {
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.updatedAt = valueDes;
+          break;
+        case r'workspace_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.workspaceId = valueDes;
           break;
         default:
           unhandled.add(key);

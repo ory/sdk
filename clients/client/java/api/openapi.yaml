@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.4.7
+  version: v1.4.8
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -7374,6 +7374,40 @@ components:
 
         The response given when listing sessions in an administrative context.
   schemas:
+    Attribute:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      type: object
+    AttributeFilter:
+      properties:
+        attribute:
+          type: string
+        condition:
+          enum:
+          - equals
+          - not_equals
+          - contains
+          - not_contains
+          - regex
+          - not_regex
+          - set
+          - not_set
+          type: string
+          x-go-enum-desc: |-
+            equals ConditionEquals
+            not_equals ConditionNotEquals
+            contains ConditionContains
+            not_contains ConditionNotContains
+            regex ConditionRegex
+            not_regex ConditionNotRegex
+            set ConditionSet
+            not_set ConditionNotSet
+        value:
+          type: string
+      type: object
     AttributesCountDatapoint:
       properties:
         count:
@@ -7429,6 +7463,13 @@ components:
           type: array
       title: CreateVerifiableCredentialRequestBody contains the request body to request
         a verifiable credential.
+      type: object
+    CreateWorkspaceMemberInviteBody:
+      description: Create Workspace Invite Request Body
+      properties:
+        invitee_email:
+          description: A email to invite
+          type: string
       type: object
     CustomHostnameStatus:
       title: CustomHostnameStatus is the enumeration of valid state values in the
@@ -7606,6 +7647,25 @@ components:
       items:
         $ref: '#/components/schemas/PlanDetails'
       type: array
+    ProjectEventsDatapoint:
+      properties:
+        attributes:
+          description: Event attributes with details
+          items:
+            $ref: '#/components/schemas/Attribute'
+          type: array
+        name:
+          description: Name of the event
+          type: string
+        timestamp:
+          description: Time of occurence
+          format: date-time
+          type: string
+      required:
+      - attributes
+      - name
+      - timestamp
+      type: object
     RFC6749ErrorJson:
       properties:
         error:
@@ -8195,6 +8255,8 @@ components:
       - kid
       - use
       type: object
+    createMemberInviteResponse:
+      $ref: '#/components/schemas/CreateInviteResponse'
     createProjectBody:
       description: Create Project Request Body
       properties:
@@ -8224,8 +8286,6 @@ components:
         theme:
           $ref: '#/components/schemas/projectBrandingColors'
       type: object
-    createProjectMemberInviteResponse:
-      $ref: '#/components/schemas/CreateInviteResponse'
     createProjectNormalizedPayload:
       description: Create project (normalized) request payload
       properties:
@@ -9952,6 +10012,30 @@ components:
         location:
           type: string
       type: object
+    getMetricsEventAttributesResponse:
+      description: Response of the getMetricsEventAttributes endpoint
+      properties:
+        events:
+          description: The list of data points.
+          items:
+            type: string
+          readOnly: true
+          type: array
+      required:
+      - events
+      type: object
+    getMetricsEventTypesResponse:
+      description: Response of the getMetricsEventTypes endpoint
+      properties:
+        events:
+          description: The list of data points.
+          items:
+            type: string
+          readOnly: true
+          type: array
+      required:
+      - events
+      type: object
     getOrganizationResponse:
       example:
         organization:
@@ -9969,6 +10053,54 @@ components:
       required:
       - organization
       title: getOrganizationResponse represents a B2B SSO Organization.
+      type: object
+    getProjectEventsBody:
+      description: Body of the getProjectEvents endpoint
+      properties:
+        event_name:
+          description: The event name to query for
+          type: string
+        filters:
+          default: []
+          description: Event attribute filters
+          items:
+            $ref: '#/components/schemas/AttributeFilter'
+          type: array
+        from:
+          description: The start RFC3339 date of the time window
+          format: date-time
+          type: string
+        page_size:
+          default: 25
+          description: Maximum number of events to return
+          format: int64
+          type: integer
+        page_token:
+          description: "Pagination token to fetch next page, empty if first page"
+          type: string
+        to:
+          description: The end RFC3339 date of the time window
+          format: date-time
+          type: string
+      required:
+      - from
+      - to
+      type: object
+    getProjectEventsResponse:
+      description: Response of the getProjectEvents endpoint
+      properties:
+        events:
+          description: The list of data points.
+          items:
+            $ref: '#/components/schemas/ProjectEventsDatapoint'
+          readOnly: true
+          type: array
+        page_token:
+          description: Pagination token to be included in next page request
+          readOnly: true
+          type: string
+      required:
+      - events
       type: object
     getProjectMetricsResponse:
       description: Response of the getMetrics endpoint
@@ -11220,8 +11352,8 @@ components:
           format: uuid
           type: string
         project_id:
-          description: The Project's ID this invite is associated with
-          format: uuid
+          format: uuid4
+          nullable: true
           type: string
         status:
           description: |-
@@ -11253,13 +11385,16 @@ components:
           format: date-time
           readOnly: true
           type: string
+        workspace_id:
+          format: uuid4
+          nullable: true
+          type: string
       required:
       - created_at
       - id
       - invitee_email
       - owner_email
       - owner_id
-      - project_id
       - status
       - updated_at
       type: object
@@ -15481,6 +15616,7 @@ components:
             zendesk_support ZendeskSupport
             project_metrics ProjectMetrics
             project_metrics_time_window ProjectMetricsTimeWindow
+            project_metrics_events_history ProjectMetricsEventsHistory
             organizations Organizations
             rop_grant ResourceOwnerPasswordGrant
             rate_limit_tier RateLimitTier
@@ -15501,6 +15637,7 @@ components:
           - zendesk_support
           - project_metrics
           - project_metrics_time_window
+          - project_metrics_events_history
           - organizations
           - rop_grant
           - rate_limit_tier
@@ -15522,6 +15659,7 @@ components:
             zendesk_support ZendeskSupport
             project_metrics ProjectMetrics
             project_metrics_time_window ProjectMetricsTimeWindow
+            project_metrics_events_history ProjectMetricsEventsHistory
             organizations Organizations
             rop_grant ResourceOwnerPasswordGrant
             rate_limit_tier RateLimitTier

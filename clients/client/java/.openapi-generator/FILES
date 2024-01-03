@@ -10,6 +10,8 @@ docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/ActiveProjectInConsole.md
+docs/Attribute.md
+docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
 docs/BatchPatchIdentitiesResponse.md
@@ -42,6 +44,7 @@ docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateVerifiableCredentialRequestBody.md
+docs/CreateWorkspaceMemberInviteBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -60,7 +63,11 @@ docs/GenericErrorContent.md
 docs/GenericUsage.md
 docs/GetAttributesCountResponse.md
 docs/GetManagedIdentitySchemaLocation.md
+docs/GetMetricsEventAttributesResponse.md
+docs/GetMetricsEventTypesResponse.md
 docs/GetOrganizationResponse.md
+docs/GetProjectEventsBody.md
+docs/GetProjectEventsResponse.md
 docs/GetProjectMetricsResponse.md
 docs/GetSessionActivityResponse.md
 docs/GetVersion200Response.md
@@ -152,6 +159,7 @@ docs/ProjectBranding.md
 docs/ProjectBrandingColors.md
 docs/ProjectBrandingTheme.md
 docs/ProjectCors.md
+docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
 docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
@@ -295,6 +303,8 @@ src/main/java/sh/ory/model/AcceptOAuth2ConsentRequest.java
 src/main/java/sh/ory/model/AcceptOAuth2ConsentRequestSession.java
 src/main/java/sh/ory/model/AcceptOAuth2LoginRequest.java
 src/main/java/sh/ory/model/ActiveProjectInConsole.java
+src/main/java/sh/ory/model/Attribute.java
+src/main/java/sh/ory/model/AttributeFilter.java
 src/main/java/sh/ory/model/AttributesCountDatapoint.java
 src/main/java/sh/ory/model/AuthenticatorAssuranceLevel.java
 src/main/java/sh/ory/model/BatchPatchIdentitiesResponse.java
@@ -326,6 +336,7 @@ src/main/java/sh/ory/model/CreateRecoveryLinkForIdentityBody.java
 src/main/java/sh/ory/model/CreateRelationshipBody.java
 src/main/java/sh/ory/model/CreateSubscriptionBody.java
 src/main/java/sh/ory/model/CreateVerifiableCredentialRequestBody.java
+src/main/java/sh/ory/model/CreateWorkspaceMemberInviteBody.java
 src/main/java/sh/ory/model/CredentialSupportedDraft00.java
 src/main/java/sh/ory/model/CustomDomain.java
 src/main/java/sh/ory/model/DeleteMySessionsCount.java
@@ -343,7 +354,11 @@ src/main/java/sh/ory/model/GenericErrorContent.java
 src/main/java/sh/ory/model/GenericUsage.java
 src/main/java/sh/ory/model/GetAttributesCountResponse.java
 src/main/java/sh/ory/model/GetManagedIdentitySchemaLocation.java
+src/main/java/sh/ory/model/GetMetricsEventAttributesResponse.java
+src/main/java/sh/ory/model/GetMetricsEventTypesResponse.java
 src/main/java/sh/ory/model/GetOrganizationResponse.java
+src/main/java/sh/ory/model/GetProjectEventsBody.java
+src/main/java/sh/ory/model/GetProjectEventsResponse.java
 src/main/java/sh/ory/model/GetProjectMetricsResponse.java
 src/main/java/sh/ory/model/GetSessionActivityResponse.java
 src/main/java/sh/ory/model/GetVersion200Response.java
@@ -428,6 +443,7 @@ src/main/java/sh/ory/model/ProjectBranding.java
 src/main/java/sh/ory/model/ProjectBrandingColors.java
 src/main/java/sh/ory/model/ProjectBrandingTheme.java
 src/main/java/sh/ory/model/ProjectCors.java
+src/main/java/sh/ory/model/ProjectEventsDatapoint.java
 src/main/java/sh/ory/model/ProjectHost.java
 src/main/java/sh/ory/model/ProjectMetadata.java
 src/main/java/sh/ory/model/ProjectServiceIdentity.java
@@ -538,6 +554,8 @@ src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestSessionTest.java
 src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestTest.java
 src/test/java/sh/ory/model/AcceptOAuth2LoginRequestTest.java
 src/test/java/sh/ory/model/ActiveProjectInConsoleTest.java
+src/test/java/sh/ory/model/AttributeFilterTest.java
+src/test/java/sh/ory/model/AttributeTest.java
 src/test/java/sh/ory/model/AttributesCountDatapointTest.java
 src/test/java/sh/ory/model/AuthenticatorAssuranceLevelTest.java
 src/test/java/sh/ory/model/BatchPatchIdentitiesResponseTest.java
@@ -569,6 +587,7 @@ src/test/java/sh/ory/model/CreateRecoveryLinkForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRelationshipBodyTest.java
 src/test/java/sh/ory/model/CreateSubscriptionBodyTest.java
 src/test/java/sh/ory/model/CreateVerifiableCredentialRequestBodyTest.java
+src/test/java/sh/ory/model/CreateWorkspaceMemberInviteBodyTest.java
 src/test/java/sh/ory/model/CredentialSupportedDraft00Test.java
 src/test/java/sh/ory/model/CustomDomainTest.java
 src/test/java/sh/ory/model/DeleteMySessionsCountTest.java
@@ -586,7 +605,11 @@ src/test/java/sh/ory/model/GenericErrorTest.java
 src/test/java/sh/ory/model/GenericUsageTest.java
 src/test/java/sh/ory/model/GetAttributesCountResponseTest.java
 src/test/java/sh/ory/model/GetManagedIdentitySchemaLocationTest.java
+src/test/java/sh/ory/model/GetMetricsEventAttributesResponseTest.java
+src/test/java/sh/ory/model/GetMetricsEventTypesResponseTest.java
 src/test/java/sh/ory/model/GetOrganizationResponseTest.java
+src/test/java/sh/ory/model/GetProjectEventsBodyTest.java
+src/test/java/sh/ory/model/GetProjectEventsResponseTest.java
 src/test/java/sh/ory/model/GetProjectMetricsResponseTest.java
 src/test/java/sh/ory/model/GetSessionActivityResponseTest.java
 src/test/java/sh/ory/model/GetVersion200ResponseTest.java
@@ -670,6 +693,7 @@ src/test/java/sh/ory/model/ProjectBrandingColorsTest.java
 src/test/java/sh/ory/model/ProjectBrandingTest.java
 src/test/java/sh/ory/model/ProjectBrandingThemeTest.java
 src/test/java/sh/ory/model/ProjectCorsTest.java
+src/test/java/sh/ory/model/ProjectEventsDatapointTest.java
 src/test/java/sh/ory/model/ProjectHostTest.java
 src/test/java/sh/ory/model/ProjectMetadataTest.java
 src/test/java/sh/ory/model/ProjectServiceIdentityTest.java

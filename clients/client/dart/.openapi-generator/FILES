@@ -6,6 +6,8 @@ doc/AcceptOAuth2ConsentRequest.md
 doc/AcceptOAuth2ConsentRequestSession.md
 doc/AcceptOAuth2LoginRequest.md
 doc/ActiveProjectInConsole.md
+doc/Attribute.md
+doc/AttributeFilter.md
 doc/AttributesCountDatapoint.md
 doc/AuthenticatorAssuranceLevel.md
 doc/BatchPatchIdentitiesResponse.md
@@ -38,6 +40,7 @@ doc/CreateRecoveryLinkForIdentityBody.md
 doc/CreateRelationshipBody.md
 doc/CreateSubscriptionBody.md
 doc/CreateVerifiableCredentialRequestBody.md
+doc/CreateWorkspaceMemberInviteBody.md
 doc/CredentialSupportedDraft00.md
 doc/CustomDomain.md
 doc/DeleteMySessionsCount.md
@@ -56,7 +59,11 @@ doc/GenericErrorContent.md
 doc/GenericUsage.md
 doc/GetAttributesCountResponse.md
 doc/GetManagedIdentitySchemaLocation.md
+doc/GetMetricsEventAttributesResponse.md
+doc/GetMetricsEventTypesResponse.md
 doc/GetOrganizationResponse.md
+doc/GetProjectEventsBody.md
+doc/GetProjectEventsResponse.md
 doc/GetProjectMetricsResponse.md
 doc/GetSessionActivityResponse.md
 doc/GetVersion200Response.md
@@ -148,6 +155,7 @@ doc/ProjectBranding.md
 doc/ProjectBrandingColors.md
 doc/ProjectBrandingTheme.md
 doc/ProjectCors.md
+doc/ProjectEventsDatapoint.md
 doc/ProjectHost.md
 doc/ProjectMetadata.md
 doc/ProjectServiceIdentity.md
@@ -269,6 +277,8 @@ lib/src/model/accept_o_auth2_consent_request.dart
 lib/src/model/accept_o_auth2_consent_request_session.dart
 lib/src/model/accept_o_auth2_login_request.dart
 lib/src/model/active_project_in_console.dart
+lib/src/model/attribute.dart
+lib/src/model/attribute_filter.dart
 lib/src/model/attributes_count_datapoint.dart
 lib/src/model/authenticator_assurance_level.dart
 lib/src/model/batch_patch_identities_response.dart
@@ -300,6 +310,7 @@ lib/src/model/create_recovery_link_for_identity_body.dart
 lib/src/model/create_relationship_body.dart
 lib/src/model/create_subscription_body.dart
 lib/src/model/create_verifiable_credential_request_body.dart
+lib/src/model/create_workspace_member_invite_body.dart
 lib/src/model/credential_supported_draft00.dart
 lib/src/model/custom_domain.dart
 lib/src/model/date.dart
@@ -318,7 +329,11 @@ lib/src/model/generic_error_content.dart
 lib/src/model/generic_usage.dart
 lib/src/model/get_attributes_count_response.dart
 lib/src/model/get_managed_identity_schema_location.dart
+lib/src/model/get_metrics_event_attributes_response.dart
+lib/src/model/get_metrics_event_types_response.dart
 lib/src/model/get_organization_response.dart
+lib/src/model/get_project_events_body.dart
+lib/src/model/get_project_events_response.dart
 lib/src/model/get_project_metrics_response.dart
 lib/src/model/get_session_activity_response.dart
 lib/src/model/get_version200_response.dart
@@ -403,6 +418,7 @@ lib/src/model/project_branding.dart
 lib/src/model/project_branding_colors.dart
 lib/src/model/project_branding_theme.dart
 lib/src/model/project_cors.dart
+lib/src/model/project_events_datapoint.dart
 lib/src/model/project_host.dart
 lib/src/model/project_metadata.dart
 lib/src/model/project_service_identity.dart
@@ -504,6 +520,8 @@ test/accept_o_auth2_consent_request_session_test.dart
 test/accept_o_auth2_consent_request_test.dart
 test/accept_o_auth2_login_request_test.dart
 test/active_project_in_console_test.dart
+test/attribute_filter_test.dart
+test/attribute_test.dart
 test/attributes_count_datapoint_test.dart
 test/authenticator_assurance_level_test.dart
 test/batch_patch_identities_response_test.dart
@@ -536,6 +554,7 @@ test/create_recovery_link_for_identity_body_test.dart
 test/create_relationship_body_test.dart
 test/create_subscription_body_test.dart
 test/create_verifiable_credential_request_body_test.dart
+test/create_workspace_member_invite_body_test.dart
 test/credential_supported_draft00_test.dart
 test/custom_domain_test.dart
 test/delete_my_sessions_count_test.dart
@@ -554,7 +573,11 @@ test/generic_error_test.dart
 test/generic_usage_test.dart
 test/get_attributes_count_response_test.dart
 test/get_managed_identity_schema_location_test.dart
+test/get_metrics_event_attributes_response_test.dart
+test/get_metrics_event_types_response_test.dart
 test/get_organization_response_test.dart
+test/get_project_events_body_test.dart
+test/get_project_events_response_test.dart
 test/get_project_metrics_response_test.dart
 test/get_session_activity_response_test.dart
 test/get_version200_response_test.dart
@@ -645,6 +668,7 @@ test/project_branding_colors_test.dart
 test/project_branding_test.dart
 test/project_branding_theme_test.dart
 test/project_cors_test.dart
+test/project_events_datapoint_test.dart
 test/project_host_test.dart
 test/project_metadata_test.dart
 test/project_service_identity_test.dart

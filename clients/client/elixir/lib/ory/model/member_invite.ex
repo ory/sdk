@@ -16,7 +16,8 @@ defmodule Ory.Model.MemberInvite do
     :owner_id,
     :project_id,
     :status,
-    :updated_at
+    :updated_at,
+    :workspace_id
   ]
 
   @type t :: %__MODULE__{
@@ -26,9 +27,10 @@ defmodule Ory.Model.MemberInvite do
     :invitee_id => String.t | nil,
     :owner_email => String.t,
     :owner_id => String.t,
-    :project_id => String.t,
+    :project_id => String.t | nil,
     :status => String.t,
-    :updated_at => DateTime.t
+    :updated_at => DateTime.t,
+    :workspace_id => String.t | nil
   }
 end
 

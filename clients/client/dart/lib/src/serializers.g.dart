@@ -11,6 +11,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AcceptOAuth2ConsentRequestSession.serializer)
       ..add(AcceptOAuth2LoginRequest.serializer)
       ..add(ActiveProjectInConsole.serializer)
+      ..add(Attribute.serializer)
+      ..add(AttributeFilter.serializer)
+      ..add(AttributeFilterConditionEnum.serializer)
       ..add(AttributesCountDatapoint.serializer)
       ..add(AuthenticatorAssuranceLevel.serializer)
       ..add(BatchPatchIdentitiesResponse.serializer)
@@ -57,6 +60,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CreateSubscriptionBodyCurrencyEnum.serializer)
       ..add(CreateSubscriptionBodyIntervalEnum.serializer)
       ..add(CreateVerifiableCredentialRequestBody.serializer)
+      ..add(CreateWorkspaceMemberInviteBody.serializer)
       ..add(CredentialSupportedDraft00.serializer)
       ..add(CustomDomain.serializer)
       ..add(CustomDomainSslStatusEnum.serializer)
@@ -76,7 +80,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GenericUsage.serializer)
       ..add(GetAttributesCountResponse.serializer)
       ..add(GetManagedIdentitySchemaLocation.serializer)
+      ..add(GetMetricsEventAttributesResponse.serializer)
+      ..add(GetMetricsEventTypesResponse.serializer)
       ..add(GetOrganizationResponse.serializer)
+      ..add(GetProjectEventsBody.serializer)
+      ..add(GetProjectEventsResponse.serializer)
       ..add(GetProjectMetricsResponse.serializer)
       ..add(GetSessionActivityResponse.serializer)
       ..add(GetVersion200Response.serializer)
@@ -178,6 +186,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ProjectBrandingColors.serializer)
       ..add(ProjectBrandingTheme.serializer)
       ..add(ProjectCors.serializer)
+      ..add(ProjectEventsDatapoint.serializer)
       ..add(ProjectHost.serializer)
       ..add(ProjectMetadata.serializer)
       ..add(ProjectMetadataStateEnum.serializer)
@@ -291,6 +300,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Warning.serializer)
       ..add(Workspace.serializer)
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Attribute)]),
+          () => new ListBuilder<Attribute>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(AttributeFilter)]),
+          () => new ListBuilder<AttributeFilter>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(AttributesCountDatapoint)]),
           () => new ListBuilder<AttributesCountDatapoint>())
@@ -350,6 +365,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<ProjectBrandingTheme>())
       ..addBuilderFactory(
           const FullType(
+              BuiltList, const [const FullType(ProjectEventsDatapoint)]),
+          () => new ListBuilder<ProjectEventsDatapoint>())
+      ..addBuilderFactory(
+          const FullType(
               BuiltList, const [const FullType(RecoveryIdentityAddress)]),
           () => new ListBuilder<RecoveryIdentityAddress>())
       ..addBuilderFactory(
@@ -370,6 +389,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SessionDevice)]),
           () => new ListBuilder<SessionDevice>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

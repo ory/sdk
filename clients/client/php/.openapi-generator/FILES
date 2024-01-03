@@ -19,6 +19,8 @@ docs/Model/AcceptOAuth2ConsentRequest.md
 docs/Model/AcceptOAuth2ConsentRequestSession.md
 docs/Model/AcceptOAuth2LoginRequest.md
 docs/Model/ActiveProjectInConsole.md
+docs/Model/Attribute.md
+docs/Model/AttributeFilter.md
 docs/Model/AttributesCountDatapoint.md
 docs/Model/AuthenticatorAssuranceLevel.md
 docs/Model/BatchPatchIdentitiesResponse.md
@@ -49,6 +51,7 @@ docs/Model/CreateRecoveryLinkForIdentityBody.md
 docs/Model/CreateRelationshipBody.md
 docs/Model/CreateSubscriptionBody.md
 docs/Model/CreateVerifiableCredentialRequestBody.md
+docs/Model/CreateWorkspaceMemberInviteBody.md
 docs/Model/CredentialSupportedDraft00.md
 docs/Model/CustomDomain.md
 docs/Model/DeleteMySessionsCount.md
@@ -66,7 +69,11 @@ docs/Model/GenericErrorContent.md
 docs/Model/GenericUsage.md
 docs/Model/GetAttributesCountResponse.md
 docs/Model/GetManagedIdentitySchemaLocation.md
+docs/Model/GetMetricsEventAttributesResponse.md
+docs/Model/GetMetricsEventTypesResponse.md
 docs/Model/GetOrganizationResponse.md
+docs/Model/GetProjectEventsBody.md
+docs/Model/GetProjectEventsResponse.md
 docs/Model/GetProjectMetricsResponse.md
 docs/Model/GetSessionActivityResponse.md
 docs/Model/HealthNotReadyStatus.md
@@ -152,6 +159,7 @@ docs/Model/ProjectBranding.md
 docs/Model/ProjectBrandingColors.md
 docs/Model/ProjectBrandingTheme.md
 docs/Model/ProjectCors.md
+docs/Model/ProjectEventsDatapoint.md
 docs/Model/ProjectHost.md
 docs/Model/ProjectMetadata.md
 docs/Model/ProjectServiceIdentity.md
@@ -266,6 +274,8 @@ lib/Model/AcceptOAuth2ConsentRequest.php
 lib/Model/AcceptOAuth2ConsentRequestSession.php
 lib/Model/AcceptOAuth2LoginRequest.php
 lib/Model/ActiveProjectInConsole.php
+lib/Model/Attribute.php
+lib/Model/AttributeFilter.php
 lib/Model/AttributesCountDatapoint.php
 lib/Model/AuthenticatorAssuranceLevel.php
 lib/Model/BatchPatchIdentitiesResponse.php
@@ -296,6 +306,7 @@ lib/Model/CreateRecoveryLinkForIdentityBody.php
 lib/Model/CreateRelationshipBody.php
 lib/Model/CreateSubscriptionBody.php
 lib/Model/CreateVerifiableCredentialRequestBody.php
+lib/Model/CreateWorkspaceMemberInviteBody.php
 lib/Model/CredentialSupportedDraft00.php
 lib/Model/CustomDomain.php
 lib/Model/DeleteMySessionsCount.php
@@ -313,7 +324,11 @@ lib/Model/GenericErrorContent.php
 lib/Model/GenericUsage.php
 lib/Model/GetAttributesCountResponse.php
 lib/Model/GetManagedIdentitySchemaLocation.php
+lib/Model/GetMetricsEventAttributesResponse.php
+lib/Model/GetMetricsEventTypesResponse.php
 lib/Model/GetOrganizationResponse.php
+lib/Model/GetProjectEventsBody.php
+lib/Model/GetProjectEventsResponse.php
 lib/Model/GetProjectMetricsResponse.php
 lib/Model/GetSessionActivityResponse.php
 lib/Model/HealthNotReadyStatus.php
@@ -400,6 +415,7 @@ lib/Model/ProjectBranding.php
 lib/Model/ProjectBrandingColors.php
 lib/Model/ProjectBrandingTheme.php
 lib/Model/ProjectCors.php
+lib/Model/ProjectEventsDatapoint.php
 lib/Model/ProjectHost.php
 lib/Model/ProjectMetadata.php
 lib/Model/ProjectServiceIdentity.php
@@ -512,6 +528,8 @@ test/Model/AcceptOAuth2ConsentRequestSessionTest.php
 test/Model/AcceptOAuth2ConsentRequestTest.php
 test/Model/AcceptOAuth2LoginRequestTest.php
 test/Model/ActiveProjectInConsoleTest.php
+test/Model/AttributeFilterTest.php
+test/Model/AttributeTest.php
 test/Model/AttributesCountDatapointTest.php
 test/Model/AuthenticatorAssuranceLevelTest.php
 test/Model/BatchPatchIdentitiesResponseTest.php
@@ -542,6 +560,7 @@ test/Model/CreateRecoveryLinkForIdentityBodyTest.php
 test/Model/CreateRelationshipBodyTest.php
 test/Model/CreateSubscriptionBodyTest.php
 test/Model/CreateVerifiableCredentialRequestBodyTest.php
+test/Model/CreateWorkspaceMemberInviteBodyTest.php
 test/Model/CredentialSupportedDraft00Test.php
 test/Model/CustomDomainTest.php
 test/Model/DeleteMySessionsCountTest.php
@@ -559,7 +578,11 @@ test/Model/GenericErrorTest.php
 test/Model/GenericUsageTest.php
 test/Model/GetAttributesCountResponseTest.php
 test/Model/GetManagedIdentitySchemaLocationTest.php
+test/Model/GetMetricsEventAttributesResponseTest.php
+test/Model/GetMetricsEventTypesResponseTest.php
 test/Model/GetOrganizationResponseTest.php
+test/Model/GetProjectEventsBodyTest.php
+test/Model/GetProjectEventsResponseTest.php
 test/Model/GetProjectMetricsResponseTest.php
 test/Model/GetSessionActivityResponseTest.php
 test/Model/HealthNotReadyStatusTest.php
@@ -644,6 +667,7 @@ test/Model/ProjectBrandingColorsTest.php
 test/Model/ProjectBrandingTest.php
 test/Model/ProjectBrandingThemeTest.php
 test/Model/ProjectCorsTest.php
+test/Model/ProjectEventsDatapointTest.php
 test/Model/ProjectHostTest.php
 test/Model/ProjectMetadataTest.php
 test/Model/ProjectServiceIdentityTest.php

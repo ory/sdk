@@ -42,7 +42,6 @@ void main() {
       // TODO
     });
 
-    // The Project's ID this invite is associated with
     // String projectId
     test('to test the property `projectId`', () async {
       // TODO
@@ -57,6 +56,11 @@ void main() {
     // Last Time Project's Revision was Updated
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
+      // TODO
+    });
+
+    // String workspaceId
+    test('to test the property `workspaceId`', () async {
       // TODO
     });
 

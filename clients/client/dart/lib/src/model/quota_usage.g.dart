@@ -34,6 +34,9 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetrics =
     const QuotaUsageFeatureEnum._('projectMetrics');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetricsTimeWindow =
     const QuotaUsageFeatureEnum._('projectMetricsTimeWindow');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_projectMetricsEventsHistory =
+    const QuotaUsageFeatureEnum._('projectMetricsEventsHistory');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_organizations =
     const QuotaUsageFeatureEnum._('organizations');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_ropGrant =
@@ -76,6 +79,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_projectMetrics;
     case 'projectMetricsTimeWindow':
       return _$quotaUsageFeatureEnum_projectMetricsTimeWindow;
+    case 'projectMetricsEventsHistory':
+      return _$quotaUsageFeatureEnum_projectMetricsEventsHistory;
     case 'organizations':
       return _$quotaUsageFeatureEnum_organizations;
     case 'ropGrant':
@@ -107,6 +112,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_zendeskSupport,
   _$quotaUsageFeatureEnum_projectMetrics,
   _$quotaUsageFeatureEnum_projectMetricsTimeWindow,
+  _$quotaUsageFeatureEnum_projectMetricsEventsHistory,
   _$quotaUsageFeatureEnum_organizations,
   _$quotaUsageFeatureEnum_ropGrant,
   _$quotaUsageFeatureEnum_rateLimitTier,
@@ -134,6 +140,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'zendeskSupport': 'zendesk_support',
     'projectMetrics': 'project_metrics',
     'projectMetricsTimeWindow': 'project_metrics_time_window',
+    'projectMetricsEventsHistory': 'project_metrics_events_history',
     'organizations': 'organizations',
     'ropGrant': 'rop_grant',
     'rateLimitTier': 'rate_limit_tier',
@@ -155,6 +162,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'zendesk_support': 'zendeskSupport',
     'project_metrics': 'projectMetrics',
     'project_metrics_time_window': 'projectMetricsTimeWindow',
+    'project_metrics_events_history': 'projectMetricsEventsHistory',
     'organizations': 'organizations',
     'rop_grant': 'ropGrant',
     'rate_limit_tier': 'rateLimitTier',

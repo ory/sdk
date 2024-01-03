@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.7
+API version: v1.4.8
 Contact: support@ory.sh
 */
 
@@ -33,12 +33,12 @@ type MemberInvite struct {
 	OwnerEmail string `json:"owner_email"`
 	// The invite owner's ID Usually the project's owner
 	OwnerId string `json:"owner_id"`
-	// The Project's ID this invite is associated with
-	ProjectId string `json:"project_id"`
+	ProjectId NullableString `json:"project_id,omitempty"`
 	// The invite's status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED
 	Status string `json:"status"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt time.Time `json:"updated_at"`
+	WorkspaceId NullableString `json:"workspace_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,14 +48,13 @@ type _MemberInvite MemberInvite
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMemberInvite(createdAt time.Time, id string, inviteeEmail string, ownerEmail string, ownerId string, projectId string, status string, updatedAt time.Time) *MemberInvite {
+func NewMemberInvite(createdAt time.Time, id string, inviteeEmail string, ownerEmail string, ownerId string, status string, updatedAt time.Time) *MemberInvite {
 	this := MemberInvite{}
 	this.CreatedAt = createdAt
 	this.Id = id
 	this.InviteeEmail = inviteeEmail
 	this.OwnerEmail = ownerEmail
 	this.OwnerId = ownerId
-	this.ProjectId = projectId
 	this.Status = status
 	this.UpdatedAt = updatedAt
 	return &this
@@ -231,28 +230,46 @@ func (o *MemberInvite) SetOwnerId(v string) {
 	o.OwnerId = v
 }
 
-// GetProjectId returns the ProjectId field value
+// GetProjectId returns the ProjectId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MemberInvite) GetProjectId() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectId.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.ProjectId
+	return *o.ProjectId.Get()
 }
 
-// GetProjectIdOk returns a tuple with the ProjectId field value
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MemberInvite) GetProjectIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ProjectId, true
+	return o.ProjectId.Get(), o.ProjectId.IsSet()
 }
 
-// SetProjectId sets field value
+// HasProjectId returns a boolean if a field has been set.
+func (o *MemberInvite) HasProjectId() bool {
+	if o != nil && o.ProjectId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectId gets a reference to the given NullableString and assigns it to the ProjectId field.
 func (o *MemberInvite) SetProjectId(v string) {
-	o.ProjectId = v
+	o.ProjectId.Set(&v)
+}
+// SetProjectIdNil sets the value for ProjectId to be an explicit nil
+func (o *MemberInvite) SetProjectIdNil() {
+	o.ProjectId.Set(nil)
+}
+
+// UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
+func (o *MemberInvite) UnsetProjectId() {
+	o.ProjectId.Unset()
 }
 
 // GetStatus returns the Status field value
@@ -303,6 +320,48 @@ func (o *MemberInvite) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
+// GetWorkspaceId returns the WorkspaceId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MemberInvite) GetWorkspaceId() string {
+	if o == nil || IsNil(o.WorkspaceId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.WorkspaceId.Get()
+}
+
+// GetWorkspaceIdOk returns a tuple with the WorkspaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MemberInvite) GetWorkspaceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.WorkspaceId.Get(), o.WorkspaceId.IsSet()
+}
+
+// HasWorkspaceId returns a boolean if a field has been set.
+func (o *MemberInvite) HasWorkspaceId() bool {
+	if o != nil && o.WorkspaceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkspaceId gets a reference to the given NullableString and assigns it to the WorkspaceId field.
+func (o *MemberInvite) SetWorkspaceId(v string) {
+	o.WorkspaceId.Set(&v)
+}
+// SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
+func (o *MemberInvite) SetWorkspaceIdNil() {
+	o.WorkspaceId.Set(nil)
+}
+
+// UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
+func (o *MemberInvite) UnsetWorkspaceId() {
+	o.WorkspaceId.Unset()
+}
+
 func (o MemberInvite) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -321,9 +380,14 @@ func (o MemberInvite) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["owner_email"] = o.OwnerEmail
 	toSerialize["owner_id"] = o.OwnerId
-	toSerialize["project_id"] = o.ProjectId
+	if o.ProjectId.IsSet() {
+		toSerialize["project_id"] = o.ProjectId.Get()
+	}
 	toSerialize["status"] = o.Status
 	toSerialize["updated_at"] = o.UpdatedAt
+	if o.WorkspaceId.IsSet() {
+		toSerialize["workspace_id"] = o.WorkspaceId.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -342,7 +406,6 @@ func (o *MemberInvite) UnmarshalJSON(bytes []byte) (err error) {
 		"invitee_email",
 		"owner_email",
 		"owner_id",
-		"project_id",
 		"status",
 		"updated_at",
 	}
@@ -383,6 +446,7 @@ func (o *MemberInvite) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "project_id")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "workspace_id")
 		o.AdditionalProperties = additionalProperties
 	}
 

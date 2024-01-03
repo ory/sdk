@@ -101,11 +101,13 @@ class _$MemberInvite extends MemberInvite {
   @override
   final String ownerId;
   @override
-  final String projectId;
+  final String? projectId;
   @override
   final MemberInviteStatusEnum status;
   @override
   final DateTime updatedAt;
+  @override
+  final String? workspaceId;
 
   factory _$MemberInvite([void Function(MemberInviteBuilder)? updates]) =>
       (new MemberInviteBuilder()..update(updates))._build();
@@ -117,9 +119,10 @@ class _$MemberInvite extends MemberInvite {
       this.inviteeId,
       required this.ownerEmail,
       required this.ownerId,
-      required this.projectId,
+      this.projectId,
       required this.status,
-      required this.updatedAt})
+      required this.updatedAt,
+      this.workspaceId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'MemberInvite', 'createdAt');
@@ -129,8 +132,6 @@ class _$MemberInvite extends MemberInvite {
     BuiltValueNullFieldError.checkNotNull(
         ownerEmail, r'MemberInvite', 'ownerEmail');
     BuiltValueNullFieldError.checkNotNull(ownerId, r'MemberInvite', 'ownerId');
-    BuiltValueNullFieldError.checkNotNull(
-        projectId, r'MemberInvite', 'projectId');
     BuiltValueNullFieldError.checkNotNull(status, r'MemberInvite', 'status');
     BuiltValueNullFieldError.checkNotNull(
         updatedAt, r'MemberInvite', 'updatedAt');
@@ -155,7 +156,8 @@ class _$MemberInvite extends MemberInvite {
         ownerId == other.ownerId &&
         projectId == other.projectId &&
         status == other.status &&
-        updatedAt == other.updatedAt;
+        updatedAt == other.updatedAt &&
+        workspaceId == other.workspaceId;
   }
 
   @override
@@ -170,6 +172,7 @@ class _$MemberInvite extends MemberInvite {
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, workspaceId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -185,7 +188,8 @@ class _$MemberInvite extends MemberInvite {
           ..add('ownerId', ownerId)
           ..add('projectId', projectId)
           ..add('status', status)
-          ..add('updatedAt', updatedAt))
+          ..add('updatedAt', updatedAt)
+          ..add('workspaceId', workspaceId))
         .toString();
   }
 }
@@ -230,6 +234,10 @@ class MemberInviteBuilder
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
 
+  String? _workspaceId;
+  String? get workspaceId => _$this._workspaceId;
+  set workspaceId(String? workspaceId) => _$this._workspaceId = workspaceId;
+
   MemberInviteBuilder() {
     MemberInvite._defaults(this);
   }
@@ -246,6 +254,7 @@ class MemberInviteBuilder
       _projectId = $v.projectId;
       _status = $v.status;
       _updatedAt = $v.updatedAt;
+      _workspaceId = $v.workspaceId;
       _$v = null;
     }
     return this;
@@ -279,12 +288,12 @@ class MemberInviteBuilder
                 ownerEmail, r'MemberInvite', 'ownerEmail'),
             ownerId: BuiltValueNullFieldError.checkNotNull(
                 ownerId, r'MemberInvite', 'ownerId'),
-            projectId: BuiltValueNullFieldError.checkNotNull(
-                projectId, r'MemberInvite', 'projectId'),
+            projectId: projectId,
             status: BuiltValueNullFieldError.checkNotNull(
                 status, r'MemberInvite', 'status'),
             updatedAt: BuiltValueNullFieldError.checkNotNull(
-                updatedAt, r'MemberInvite', 'updatedAt'));
+                updatedAt, r'MemberInvite', 'updatedAt'),
+            workspaceId: workspaceId);
     replace(_$result);
     return _$result;
   }

@@ -10,15 +10,16 @@ Name | Type | Description | Notes
 **InviteeId** | Pointer to **NullableString** |  | [optional] 
 **OwnerEmail** | **string** | The invite owner&#39;s email Usually the project&#39;s owner email | 
 **OwnerId** | **string** | The invite owner&#39;s ID Usually the project&#39;s owner | 
-**ProjectId** | **string** | The Project&#39;s ID this invite is associated with | 
+**ProjectId** | Pointer to **NullableString** |  | [optional] 
 **Status** | **string** | The invite&#39;s status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED | 
 **UpdatedAt** | **time.Time** | Last Time Project&#39;s Revision was Updated | [readonly] 
+**WorkspaceId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewMemberInvite
 
-`func NewMemberInvite(createdAt time.Time, id string, inviteeEmail string, ownerEmail string, ownerId string, projectId string, status string, updatedAt time.Time, ) *MemberInvite`
+`func NewMemberInvite(createdAt time.Time, id string, inviteeEmail string, ownerEmail string, ownerId string, status string, updatedAt time.Time, ) *MemberInvite`
 
 NewMemberInvite instantiates a new MemberInvite object
 This constructor will assign default values to properties that have it defined,
@@ -187,7 +188,22 @@ and a boolean to check if the value has been set.
 
 SetProjectId sets ProjectId field to given value.
 
+### HasProjectId
 
+`func (o *MemberInvite) HasProjectId() bool`
+
+HasProjectId returns a boolean if a field has been set.
+
+### SetProjectIdNil
+
+`func (o *MemberInvite) SetProjectIdNil(b bool)`
+
+ SetProjectIdNil sets the value for ProjectId to be an explicit nil
+
+### UnsetProjectId
+`func (o *MemberInvite) UnsetProjectId()`
+
+UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
 ### GetStatus
 
 `func (o *MemberInvite) GetStatus() string`
@@ -228,6 +244,41 @@ and a boolean to check if the value has been set.
 SetUpdatedAt sets UpdatedAt field to given value.
 
 
+### GetWorkspaceId
+
+`func (o *MemberInvite) GetWorkspaceId() string`
+
+GetWorkspaceId returns the WorkspaceId field if non-nil, zero value otherwise.
+
+### GetWorkspaceIdOk
+
+`func (o *MemberInvite) GetWorkspaceIdOk() (*string, bool)`
+
+GetWorkspaceIdOk returns a tuple with the WorkspaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspaceId
+
+`func (o *MemberInvite) SetWorkspaceId(v string)`
+
+SetWorkspaceId sets WorkspaceId field to given value.
+
+### HasWorkspaceId
+
+`func (o *MemberInvite) HasWorkspaceId() bool`
+
+HasWorkspaceId returns a boolean if a field has been set.
+
+### SetWorkspaceIdNil
+
+`func (o *MemberInvite) SetWorkspaceIdNil(b bool)`
+
+ SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
+
+### UnsetWorkspaceId
+`func (o *MemberInvite) UnsetWorkspaceId()`
+
+UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
