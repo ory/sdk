@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.9
+API version: v1.5.0
 Contact: support@ory.sh
 */
 
@@ -105,6 +105,7 @@ type CreateProjectNormalizedPayload struct {
 	KetoNamespaces []KetoNamespace `json:"keto_namespaces,omitempty"`
 	// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
 	KratosCookiesSameSite *string `json:"kratos_cookies_same_site,omitempty"`
+	KratosCourierChannels []NormalizedProjectRevisionCourierChannel `json:"kratos_courier_channels,omitempty"`
 	// The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
 	KratosCourierDeliveryStrategy *string `json:"kratos_courier_delivery_strategy,omitempty"`
 	// The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.auth.config.in\" setting
@@ -185,6 +186,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_code_valid_email_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
 	KratosCourierTemplatesVerificationCodeValidEmailSubject *string `json:"kratos_courier_templates_verification_code_valid_email_subject,omitempty"`
+	// Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext  This governs the \"courier.smtp.templates.verification_code.valid.sms.body.plaintext\" setting.
+	KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext *string `json:"kratos_courier_templates_verification_code_valid_sms_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
 	KratosCourierTemplatesVerificationInvalidEmailBodyHtml *string `json:"kratos_courier_templates_verification_invalid_email_body_html,omitempty"`
 	// Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.plaintext\" setting.
@@ -1914,6 +1917,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosCookiesSameSite(v string) {
 	o.KratosCookiesSameSite = &v
 }
 
+// GetKratosCourierChannels returns the KratosCourierChannels field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierChannels() []NormalizedProjectRevisionCourierChannel {
+	if o == nil || IsNil(o.KratosCourierChannels) {
+		var ret []NormalizedProjectRevisionCourierChannel
+		return ret
+	}
+	return o.KratosCourierChannels
+}
+
+// GetKratosCourierChannelsOk returns a tuple with the KratosCourierChannels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierChannelsOk() ([]NormalizedProjectRevisionCourierChannel, bool) {
+	if o == nil || IsNil(o.KratosCourierChannels) {
+		return nil, false
+	}
+	return o.KratosCourierChannels, true
+}
+
+// HasKratosCourierChannels returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosCourierChannels() bool {
+	if o != nil && !IsNil(o.KratosCourierChannels) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierChannels gets a reference to the given []NormalizedProjectRevisionCourierChannel and assigns it to the KratosCourierChannels field.
+func (o *CreateProjectNormalizedPayload) SetKratosCourierChannels(v []NormalizedProjectRevisionCourierChannel) {
+	o.KratosCourierChannels = v
+}
+
 // GetKratosCourierDeliveryStrategy returns the KratosCourierDeliveryStrategy field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosCourierDeliveryStrategy() string {
 	if o == nil || IsNil(o.KratosCourierDeliveryStrategy) {
@@ -3194,6 +3229,38 @@ func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesVerificationCo
 // SetKratosCourierTemplatesVerificationCodeValidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationCodeValidEmailSubject field.
 func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesVerificationCodeValidEmailSubject(v string) {
 	o.KratosCourierTemplatesVerificationCodeValidEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext returns the KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext() string {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext) {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext
+}
+
+// GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintextOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext) {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext() bool {
+	if o != nil && !IsNil(o.KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext field.
+func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext(v string) {
+	o.KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext = &v
 }
 
 // GetKratosCourierTemplatesVerificationInvalidEmailBodyHtml returns the KratosCourierTemplatesVerificationInvalidEmailBodyHtml field value if set, zero value otherwise.
@@ -6579,6 +6646,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosCookiesSameSite) {
 		toSerialize["kratos_cookies_same_site"] = o.KratosCookiesSameSite
 	}
+	if !IsNil(o.KratosCourierChannels) {
+		toSerialize["kratos_courier_channels"] = o.KratosCourierChannels
+	}
 	if !IsNil(o.KratosCourierDeliveryStrategy) {
 		toSerialize["kratos_courier_delivery_strategy"] = o.KratosCourierDeliveryStrategy
 	}
@@ -6698,6 +6768,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosCourierTemplatesVerificationCodeValidEmailSubject) {
 		toSerialize["kratos_courier_templates_verification_code_valid_email_subject"] = o.KratosCourierTemplatesVerificationCodeValidEmailSubject
+	}
+	if !IsNil(o.KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext) {
+		toSerialize["kratos_courier_templates_verification_code_valid_sms_body_plaintext"] = o.KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext
 	}
 	if !IsNil(o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml) {
 		toSerialize["kratos_courier_templates_verification_invalid_email_body_html"] = o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml
@@ -7089,6 +7162,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "keto_namespace_configuration")
 		delete(additionalProperties, "keto_namespaces")
 		delete(additionalProperties, "kratos_cookies_same_site")
+		delete(additionalProperties, "kratos_courier_channels")
 		delete(additionalProperties, "kratos_courier_delivery_strategy")
 		delete(additionalProperties, "kratos_courier_http_request_config_auth_api_key_in")
 		delete(additionalProperties, "kratos_courier_http_request_config_auth_api_key_name")
@@ -7129,6 +7203,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "kratos_courier_templates_verification_code_valid_email_body_html")
 		delete(additionalProperties, "kratos_courier_templates_verification_code_valid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_verification_code_valid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_verification_code_valid_sms_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_verification_invalid_email_body_html")
 		delete(additionalProperties, "kratos_courier_templates_verification_invalid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_verification_invalid_email_subject")

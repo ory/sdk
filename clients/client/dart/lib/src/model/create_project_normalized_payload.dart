@@ -7,6 +7,7 @@ import 'package:ory_client/src/model/keto_namespace.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/normalized_project_revision_identity_schema.dart';
 import 'package:ory_client/src/model/normalized_project_revision_tokenizer_template.dart';
+import 'package:ory_client/src/model/normalized_project_revision_courier_channel.dart';
 import 'package:ory_client/src/model/normalized_project_revision_hook.dart';
 import 'package:built_value/json_object.dart';
 import 'package:ory_client/src/model/normalized_project_revision_third_party_provider.dart';
@@ -64,6 +65,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [ketoNamespaceConfiguration] - The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
 /// * [ketoNamespaces] 
 /// * [kratosCookiesSameSite] - Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
+/// * [kratosCourierChannels] 
 /// * [kratosCourierDeliveryStrategy] - The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
 /// * [kratosCourierHttpRequestConfigAuthApiKeyIn] - The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.auth.config.in\" setting
 /// * [kratosCourierHttpRequestConfigAuthApiKeyName] - The name of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.name\" setting
@@ -104,6 +106,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosCourierTemplatesVerificationCodeValidEmailBodyHtml] - Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.html\" setting.
 /// * [kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesVerificationCodeValidEmailSubject] - Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
+/// * [kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext] - Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext  This governs the \"courier.smtp.templates.verification_code.valid.sms.body.plaintext\" setting.
 /// * [kratosCourierTemplatesVerificationInvalidEmailBodyHtml] - Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
 /// * [kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext] - Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesVerificationInvalidEmailSubject] - Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.invalid.email.subject\" setting.
@@ -384,6 +387,9 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   @BuiltValueField(wireName: r'kratos_cookies_same_site')
   String? get kratosCookiesSameSite;
 
+  @BuiltValueField(wireName: r'kratos_courier_channels')
+  BuiltList<NormalizedProjectRevisionCourierChannel>? get kratosCourierChannels;
+
   /// The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
   @BuiltValueField(wireName: r'kratos_courier_delivery_strategy')
   String? get kratosCourierDeliveryStrategy;
@@ -543,6 +549,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   /// Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_verification_code_valid_email_subject')
   String? get kratosCourierTemplatesVerificationCodeValidEmailSubject;
+
+  /// Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext  This governs the \"courier.smtp.templates.verification_code.valid.sms.body.plaintext\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_verification_code_valid_sms_body_plaintext')
+  String? get kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
 
   /// Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_verification_invalid_email_body_html')
@@ -1294,6 +1304,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosCourierChannels != null) {
+      yield r'kratos_courier_channels';
+      yield serializers.serialize(
+        object.kratosCourierChannels,
+        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionCourierChannel)]),
+      );
+    }
     if (object.kratosCourierDeliveryStrategy != null) {
       yield r'kratos_courier_delivery_strategy';
       yield serializers.serialize(
@@ -1571,6 +1588,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield r'kratos_courier_templates_verification_code_valid_email_subject';
       yield serializers.serialize(
         object.kratosCourierTemplatesVerificationCodeValidEmailSubject,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext != null) {
+      yield r'kratos_courier_templates_verification_code_valid_sms_body_plaintext';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext,
         specifiedType: const FullType(String),
       );
     }
@@ -2624,6 +2648,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
           ) as String;
           result.kratosCookiesSameSite = valueDes;
           break;
+        case r'kratos_courier_channels':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionCourierChannel)]),
+          ) as BuiltList<NormalizedProjectRevisionCourierChannel>;
+          result.kratosCourierChannels.replace(valueDes);
+          break;
         case r'kratos_courier_delivery_strategy':
           final valueDes = serializers.deserialize(
             value,
@@ -2905,6 +2936,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.kratosCourierTemplatesVerificationCodeValidEmailSubject = valueDes;
+          break;
+        case r'kratos_courier_templates_verification_code_valid_sms_body_plaintext':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext = valueDes;
           break;
         case r'kratos_courier_templates_verification_invalid_email_body_html':
           final valueDes = serializers.deserialize(

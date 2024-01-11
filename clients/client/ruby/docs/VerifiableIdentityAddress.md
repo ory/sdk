@@ -11,7 +11,7 @@
 | **value** | **String** | The address value  example foo@user.com |  |
 | **verified** | **Boolean** | Indicates if the address has already been verified |  |
 | **verified_at** | **Time** |  | [optional] |
-| **via** | **String** | VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema |  |
+| **via** | **String** | The delivery method |  |
 
 ## Example
 
@@ -26,7 +26,7 @@ instance = OryClient::VerifiableIdentityAddress.new(
   value: null,
   verified: true,
   verified_at: null,
-  via: null
+  via: email
 )
 ```
 

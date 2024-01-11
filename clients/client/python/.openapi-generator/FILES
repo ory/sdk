@@ -28,6 +28,7 @@ docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
+docs/CreateEventStreamBody.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
@@ -53,6 +54,7 @@ docs/ErrorBrowserLocationChangeRequired.md
 docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
+docs/EventStream.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendApi.md
@@ -109,6 +111,7 @@ docs/JwkApi.md
 docs/KetoNamespace.md
 docs/KetoNamespaces.md
 docs/ListCustomDomains.md
+docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
@@ -127,6 +130,7 @@ docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
 docs/NormalizedProjectRevision.md
+docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionIdentitySchemas.md
@@ -205,6 +209,7 @@ docs/RelationshipApi.md
 docs/RelationshipNamespaces.md
 docs/RelationshipPatch.md
 docs/Relationships.md
+docs/RevisionCourierChannels.md
 docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
@@ -214,6 +219,7 @@ docs/SessionAuthenticationMethods.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
+docs/SetEventStreamBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -329,6 +335,7 @@ ory_client/model/continue_with_verification_ui_flow.py
 ory_client/model/courier_message_status.py
 ory_client/model/courier_message_type.py
 ory_client/model/create_custom_domain_body.py
+ory_client/model/create_event_stream_body.py
 ory_client/model/create_identity_body.py
 ory_client/model/create_invite_response.py
 ory_client/model/create_json_web_key_set.py
@@ -354,6 +361,7 @@ ory_client/model/error_browser_location_change_required.py
 ory_client/model/error_flow_replaced.py
 ory_client/model/error_generic.py
 ory_client/model/error_o_auth2.py
+ory_client/model/event_stream.py
 ory_client/model/expanded_permission_tree.py
 ory_client/model/flow_error.py
 ory_client/model/generic_error.py
@@ -407,6 +415,7 @@ ory_client/model/json_web_key_set.py
 ory_client/model/keto_namespace.py
 ory_client/model/keto_namespaces.py
 ory_client/model/list_custom_domains.py
+ory_client/model/list_event_streams.py
 ory_client/model/list_my_workspaces_response.py
 ory_client/model/list_organizations_response.py
 ory_client/model/login_flow.py
@@ -424,6 +433,7 @@ ory_client/model/namespace.py
 ory_client/model/needs_privileged_session_error.py
 ory_client/model/normalized_project.py
 ory_client/model/normalized_project_revision.py
+ory_client/model/normalized_project_revision_courier_channel.py
 ory_client/model/normalized_project_revision_hook.py
 ory_client/model/normalized_project_revision_identity_schema.py
 ory_client/model/normalized_project_revision_identity_schemas.py
@@ -496,6 +506,7 @@ ory_client/model/relationship.py
 ory_client/model/relationship_namespaces.py
 ory_client/model/relationship_patch.py
 ory_client/model/relationships.py
+ory_client/model/revision_courier_channels.py
 ory_client/model/rfc6749_error_json.py
 ory_client/model/schema_patch.py
 ory_client/model/self_service_flow_expired_error.py
@@ -506,6 +517,7 @@ ory_client/model/session_authentication_methods.py
 ory_client/model/session_device.py
 ory_client/model/set_active_project_in_console_body.py
 ory_client/model/set_custom_domain_body.py
+ory_client/model/set_event_stream_body.py
 ory_client/model/set_project.py
 ory_client/model/set_project_branding_theme_body.py
 ory_client/model/settings_flow.py
@@ -610,6 +622,7 @@ test/test_courier_api.py
 test/test_courier_message_status.py
 test/test_courier_message_type.py
 test/test_create_custom_domain_body.py
+test/test_create_event_stream_body.py
 test/test_create_identity_body.py
 test/test_create_invite_response.py
 test/test_create_json_web_key_set.py
@@ -635,6 +648,7 @@ test/test_error_browser_location_change_required.py
 test/test_error_flow_replaced.py
 test/test_error_generic.py
 test/test_error_o_auth2.py
+test/test_event_stream.py
 test/test_expanded_permission_tree.py
 test/test_flow_error.py
 test/test_frontend_api.py
@@ -691,6 +705,7 @@ test/test_jwk_api.py
 test/test_keto_namespace.py
 test/test_keto_namespaces.py
 test/test_list_custom_domains.py
+test/test_list_event_streams.py
 test/test_list_my_workspaces_response.py
 test/test_list_organizations_response.py
 test/test_login_flow.py
@@ -709,6 +724,7 @@ test/test_namespace.py
 test/test_needs_privileged_session_error.py
 test/test_normalized_project.py
 test/test_normalized_project_revision.py
+test/test_normalized_project_revision_courier_channel.py
 test/test_normalized_project_revision_hook.py
 test/test_normalized_project_revision_identity_schema.py
 test/test_normalized_project_revision_identity_schemas.py
@@ -786,6 +802,7 @@ test/test_relationship_api.py
 test/test_relationship_namespaces.py
 test/test_relationship_patch.py
 test/test_relationships.py
+test/test_revision_courier_channels.py
 test/test_rfc6749_error_json.py
 test/test_schema_patch.py
 test/test_self_service_flow_expired_error.py
@@ -796,6 +813,7 @@ test/test_session_authentication_methods.py
 test/test_session_device.py
 test/test_set_active_project_in_console_body.py
 test/test_set_custom_domain_body.py
+test/test_set_event_stream_body.py
 test/test_set_project.py
 test/test_set_project_branding_theme_body.py
 test/test_settings_flow.py

@@ -9,6 +9,7 @@ defmodule Ory.Model.Message do
   @derive Jason.Encoder
   defstruct [
     :body,
+    :channel,
     :created_at,
     :dispatches,
     :id,
@@ -23,6 +24,7 @@ defmodule Ory.Model.Message do
 
   @type t :: %__MODULE__{
     :body => String.t,
+    :channel => String.t | nil,
     :created_at => DateTime.t,
     :dispatches => [Ory.Model.MessageDispatch.t] | nil,
     :id => String.t,

@@ -33,6 +33,7 @@ from ory_client.model.continue_with_verification_ui_flow import ContinueWithVeri
 from ory_client.model.courier_message_status import CourierMessageStatus
 from ory_client.model.courier_message_type import CourierMessageType
 from ory_client.model.create_custom_domain_body import CreateCustomDomainBody
+from ory_client.model.create_event_stream_body import CreateEventStreamBody
 from ory_client.model.create_identity_body import CreateIdentityBody
 from ory_client.model.create_invite_response import CreateInviteResponse
 from ory_client.model.create_json_web_key_set import CreateJsonWebKeySet
@@ -58,6 +59,7 @@ from ory_client.model.error_browser_location_change_required import ErrorBrowser
 from ory_client.model.error_flow_replaced import ErrorFlowReplaced
 from ory_client.model.error_generic import ErrorGeneric
 from ory_client.model.error_o_auth2 import ErrorOAuth2
+from ory_client.model.event_stream import EventStream
 from ory_client.model.expanded_permission_tree import ExpandedPermissionTree
 from ory_client.model.flow_error import FlowError
 from ory_client.model.generic_error import GenericError
@@ -111,6 +113,7 @@ from ory_client.model.json_web_key_set import JsonWebKeySet
 from ory_client.model.keto_namespace import KetoNamespace
 from ory_client.model.keto_namespaces import KetoNamespaces
 from ory_client.model.list_custom_domains import ListCustomDomains
+from ory_client.model.list_event_streams import ListEventStreams
 from ory_client.model.list_my_workspaces_response import ListMyWorkspacesResponse
 from ory_client.model.list_organizations_response import ListOrganizationsResponse
 from ory_client.model.login_flow import LoginFlow
@@ -128,6 +131,7 @@ from ory_client.model.namespace import Namespace
 from ory_client.model.needs_privileged_session_error import NeedsPrivilegedSessionError
 from ory_client.model.normalized_project import NormalizedProject
 from ory_client.model.normalized_project_revision import NormalizedProjectRevision
+from ory_client.model.normalized_project_revision_courier_channel import NormalizedProjectRevisionCourierChannel
 from ory_client.model.normalized_project_revision_hook import NormalizedProjectRevisionHook
 from ory_client.model.normalized_project_revision_identity_schema import NormalizedProjectRevisionIdentitySchema
 from ory_client.model.normalized_project_revision_identity_schemas import NormalizedProjectRevisionIdentitySchemas
@@ -201,6 +205,7 @@ from ory_client.model.relationship import Relationship
 from ory_client.model.relationship_namespaces import RelationshipNamespaces
 from ory_client.model.relationship_patch import RelationshipPatch
 from ory_client.model.relationships import Relationships
+from ory_client.model.revision_courier_channels import RevisionCourierChannels
 from ory_client.model.schema_patch import SchemaPatch
 from ory_client.model.self_service_flow_expired_error import SelfServiceFlowExpiredError
 from ory_client.model.session import Session
@@ -210,6 +215,7 @@ from ory_client.model.session_authentication_methods import SessionAuthenticatio
 from ory_client.model.session_device import SessionDevice
 from ory_client.model.set_active_project_in_console_body import SetActiveProjectInConsoleBody
 from ory_client.model.set_custom_domain_body import SetCustomDomainBody
+from ory_client.model.set_event_stream_body import SetEventStreamBody
 from ory_client.model.set_project import SetProject
 from ory_client.model.set_project_branding_theme_body import SetProjectBrandingThemeBody
 from ory_client.model.settings_flow import SettingsFlow

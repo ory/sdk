@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.4.9
-  - Build date: 2024-01-05T11:29:05.592825961Z[Etc/UTC]
+- API version: v1.5.0
+  - Build date: 2024-01-11T09:01:54.811187495Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.4.9</version>
+  <version>v1.5.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.4.9"
+     implementation "sh.ory:client:v1.5.0"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.4.9.jar`
+* `target/client-v1.5.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -276,6 +276,7 @@ Class | Method | HTTP request | Description
  - [CourierMessageStatus](docs/CourierMessageStatus.md)
  - [CourierMessageType](docs/CourierMessageType.md)
  - [CreateCustomDomainBody](docs/CreateCustomDomainBody.md)
+ - [CreateEventStreamBody](docs/CreateEventStreamBody.md)
  - [CreateIdentityBody](docs/CreateIdentityBody.md)
  - [CreateInviteResponse](docs/CreateInviteResponse.md)
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
@@ -300,6 +301,7 @@ Class | Method | HTTP request | Description
  - [ErrorFlowReplaced](docs/ErrorFlowReplaced.md)
  - [ErrorGeneric](docs/ErrorGeneric.md)
  - [ErrorOAuth2](docs/ErrorOAuth2.md)
+ - [EventStream](docs/EventStream.md)
  - [ExpandedPermissionTree](docs/ExpandedPermissionTree.md)
  - [FlowError](docs/FlowError.md)
  - [GenericError](docs/GenericError.md)
@@ -348,6 +350,7 @@ Class | Method | HTTP request | Description
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
+ - [ListEventStreams](docs/ListEventStreams.md)
  - [ListMyWorkspacesResponse](docs/ListMyWorkspacesResponse.md)
  - [ListOrganizationsResponse](docs/ListOrganizationsResponse.md)
  - [LoginFlow](docs/LoginFlow.md)
@@ -363,6 +366,7 @@ Class | Method | HTTP request | Description
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)
  - [NormalizedProjectRevision](docs/NormalizedProjectRevision.md)
+ - [NormalizedProjectRevisionCourierChannel](docs/NormalizedProjectRevisionCourierChannel.md)
  - [NormalizedProjectRevisionHook](docs/NormalizedProjectRevisionHook.md)
  - [NormalizedProjectRevisionIdentitySchema](docs/NormalizedProjectRevisionIdentitySchema.md)
  - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
@@ -426,6 +430,7 @@ Class | Method | HTTP request | Description
  - [SessionDevice](docs/SessionDevice.md)
  - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)
  - [SetCustomDomainBody](docs/SetCustomDomainBody.md)
+ - [SetEventStreamBody](docs/SetEventStreamBody.md)
  - [SetProject](docs/SetProject.md)
  - [SetProjectBrandingThemeBody](docs/SetProjectBrandingThemeBody.md)
  - [SettingsFlow](docs/SettingsFlow.md)

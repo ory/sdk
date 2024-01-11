@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.4.9
+  version: v1.5.0
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -7364,6 +7364,86 @@ components:
       - next_page_token
       - workspaces
       type: object
+    NormalizedProjectRevisionCourierChannel:
+      properties:
+        channel_id:
+          description: The Channel's public ID
+          type: string
+        created_at:
+          description: The creation date
+          format: date-time
+          readOnly: true
+          type: string
+        request_config_auth_config_api_key_in:
+          description: |-
+            API key location
+
+            Can either be "header" or "query"
+          example: header
+          type: string
+        request_config_auth_config_api_key_name:
+          description: |-
+            API key name
+
+            Only used if the auth type is api_key
+          type: string
+        request_config_auth_config_api_key_value:
+          description: |-
+            API key value
+
+            Only used if the auth type is api_key
+          type: string
+        request_config_auth_config_basic_auth_password:
+          description: |-
+            Basic Auth Password
+
+            Only used if the auth type is basic_auth
+          type: string
+        request_config_auth_config_basic_auth_user:
+          description: |-
+            Basic Auth Username
+
+            Only used if the auth type is basic_auth
+          type: string
+        request_config_auth_type:
+          description: |-
+            HTTP Auth Method to use for the HTTP call
+
+            Can either be basic_auth or api_key
+            basic_auth CourierChannelAuthTypeBasicAuth
+            api_key CourierChannelAuthTypeApiKey
+          enum:
+          - basic_auth
+          - api_key
+          type: string
+          x-go-enum-desc: |-
+            basic_auth CourierChannelAuthTypeBasicAuth
+            api_key CourierChannelAuthTypeApiKey
+        request_config_body:
+          description: URI pointing to the JsonNet template used for HTTP body payload
+            generation.
+          type: string
+        request_config_headers:
+          description: "NullJSONRawMessage represents a json.RawMessage that works\
+            \ well with JSON, SQL, and Swagger and is NULLable-"
+          nullable: true
+          type: object
+        request_config_method:
+          description: "The HTTP method to use (GET, POST, etc) for the HTTP call"
+          example: POST
+          type: string
+        request_config_url:
+          type: string
+        updated_at:
+          description: Last upate time
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - channel_id
+      - request_config_body
+      - request_config_method
+      type: object
     NullBool:
       nullable: true
       type: boolean
@@ -8009,6 +8089,25 @@ components:
           description: The custom hostname where the API will be exposed.
           type: string
       type: object
+    createEventStreamBody:
+      description: Create Event Stream Request Body
+      properties:
+        role_arn:
+          description: The AWS IAM role ARN to assume when publishing to the SNS topic.
+          type: string
+        topic_arn:
+          description: The AWS SNS topic ARN.
+          type: string
+        type:
+          description: "The type of the event stream (AWS SNS, GCP Pub/Sub, etc)."
+          enum:
+          - sns
+          type: string
+      required:
+      - role_arn
+      - topic_arn
+      - type
+      type: object
     createIdentityBody:
       description: Create Identity Body
       properties:
@@ -8453,6 +8552,10 @@ components:
 
             This governs the "cookies.same_site" setting.
           type: string
+        kratos_courier_channels:
+          items:
+            $ref: '#/components/schemas/NormalizedProjectRevisionCourierChannel'
+          type: array
         kratos_courier_delivery_strategy:
           default: smtp
           description: |-
@@ -8697,6 +8800,12 @@ components:
             Configures the Ory Kratos Valid Verification via Code Email Subject Template
 
             This governs the "courier.smtp.templates.verification_code.valid.email.subject" setting.
+          type: string
+        kratos_courier_templates_verification_code_valid_sms_body_plaintext:
+          description: |-
+            Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext
+
+            This governs the "courier.smtp.templates.verification_code.valid.sms.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_invalid_email_body_html:
           description: |-
@@ -9665,6 +9774,25 @@ components:
           format: int64
           type: integer
       type: object
+    eventStream:
+      description: Event Stream
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        id:
+          format: uuid
+          type: string
+        role_arn:
+          type: string
+        topic_arn:
+          type: string
+        type:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
     expandedPermissionTree:
       example:
         tuple:
@@ -10018,7 +10146,7 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
           status: status
-          via: via
+          via: email
         - updated_at: 2014-01-01T23:28:56.782Z
           verified_at: 2000-01-23T04:56:07.000+00:00
           verified: true
@@ -10026,7 +10154,7 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
           status: status
-          via: via
+          via: email
         organization_id: organization_id
         schema_id: schema_id
         schema_url: schema_url
@@ -10300,10 +10428,6 @@ components:
         in `schema_url`.
     identityVerifiableAddressStatus:
       description: VerifiableAddressStatus must not exceed 16 characters as that is
-        the limitation in the SQL Schema
-      type: string
-    identityVerifiableAddressType:
-      description: VerifiableAddressType must not exceed 16 characters as that is
         the limitation in the SQL Schema
       type: string
     identityWithCredentials:
@@ -10788,6 +10912,14 @@ components:
       items:
         $ref: '#/components/schemas/customDomain'
       type: array
+    listEventStreams:
+      description: Event Stream List
+      properties:
+        event_streams:
+          items:
+            $ref: '#/components/schemas/eventStream'
+          type: array
+      type: object
     listOrganizationsResponse:
       description: B2B SSO Organization List
       example:
@@ -11250,6 +11382,7 @@ components:
           status: failed
         updated_at: 2000-01-23T04:56:07.000+00:00
         subject: subject
+        channel: channel
         recipient: recipient
         created_at: 2000-01-23T04:56:07.000+00:00
         send_count: 0
@@ -11260,6 +11393,8 @@ components:
         status: null
       properties:
         body:
+          type: string
+        channel:
           type: string
         created_at:
           description: CreatedAt is a helper struct field for gobuffalo.pop.
@@ -11295,7 +11430,6 @@ components:
             verification_valid TypeVerificationValid
             verification_code_invalid TypeVerificationCodeInvalid
             verification_code_valid TypeVerificationCodeValid
-            otp TypeOTP
             stub TypeTestStub
             login_code_valid TypeLoginCodeValid
             registration_code_valid TypeRegistrationCodeValid
@@ -11308,7 +11442,6 @@ components:
           - verification_valid
           - verification_code_invalid
           - verification_code_valid
-          - otp
           - stub
           - login_code_valid
           - registration_code_valid
@@ -11322,7 +11455,6 @@ components:
             verification_valid TypeVerificationValid
             verification_code_invalid TypeVerificationCodeInvalid
             verification_code_valid TypeVerificationCodeValid
-            otp TypeOTP
             stub TypeTestStub
             login_code_valid TypeLoginCodeValid
             registration_code_valid TypeRegistrationCodeValid
@@ -11848,6 +11980,10 @@ components:
 
             This governs the "cookies.same_site" setting.
           type: string
+        kratos_courier_channels:
+          items:
+            $ref: '#/components/schemas/NormalizedProjectRevisionCourierChannel'
+          type: array
         kratos_courier_delivery_strategy:
           default: smtp
           description: |-
@@ -12092,6 +12228,12 @@ components:
             Configures the Ory Kratos Valid Verification via Code Email Subject Template
 
             This governs the "courier.smtp.templates.verification_code.valid.email.subject" setting.
+          type: string
+        kratos_courier_templates_verification_code_valid_sms_body_plaintext:
+          description: |-
+            Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext
+
+            This governs the "courier.smtp.templates.verification_code.valid.sms.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_invalid_email_body_html:
           description: |-
@@ -14000,8 +14142,6 @@ components:
       - challenge
       - client
       - request_url
-      - requested_access_token_audience
-      - requested_scope
       - skip
       - subject
       title: Contains information on an ongoing login request.
@@ -15440,6 +15580,7 @@ components:
             production_projects ProductionProjects
             daily_active_users DailyActiveUsers
             custom_domains CustomDomains
+            event_streams EventStreams
             sla SLA
             collaborator_seats CollaboratorSeats
             edge_cache EdgeCache
@@ -15461,6 +15602,7 @@ components:
           - production_projects
           - daily_active_users
           - custom_domains
+          - event_streams
           - sla
           - collaborator_seats
           - edge_cache
@@ -15483,6 +15625,7 @@ components:
             production_projects ProductionProjects
             daily_active_users DailyActiveUsers
             custom_domains CustomDomains
+            event_streams EventStreams
             sla SLA
             collaborator_seats CollaboratorSeats
             edge_cache EdgeCache
@@ -16105,6 +16248,10 @@ components:
             $ref: '#/components/schemas/relationship'
           type: array
       type: object
+    revisionCourierChannels:
+      items:
+        $ref: '#/components/schemas/NormalizedProjectRevisionCourierChannel'
+      type: array
     schemaPatch:
       properties:
         data:
@@ -16204,7 +16351,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
           - updated_at: 2014-01-01T23:28:56.782Z
             verified_at: 2000-01-23T04:56:07.000+00:00
             verified: true
@@ -16212,7 +16359,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
           organization_id: organization_id
           schema_id: schema_id
           schema_url: schema_url
@@ -16381,6 +16528,25 @@ components:
           description: The custom hostname where the API will be exposed.
           type: string
       type: object
+    setEventStreamBody:
+      description: Update Event Stream Body
+      properties:
+        role_arn:
+          description: The AWS IAM role ARN to assume when publishing to the SNS topic.
+          type: string
+        topic_arn:
+          description: The AWS SNS topic ARN.
+          type: string
+        type:
+          description: "The type of the event stream (AWS SNS, GCP Pub/Sub, etc)."
+          enum:
+          - sns
+          type: string
+      required:
+      - role_arn
+      - topic_arn
+      - type
+      type: object
     setProject:
       properties:
         cors_admin:
@@ -16512,7 +16678,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
           - updated_at: 2014-01-01T23:28:56.782Z
             verified_at: 2000-01-23T04:56:07.000+00:00
             verified: true
@@ -16520,7 +16686,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
           organization_id: organization_id
           schema_id: schema_id
           schema_url: schema_url
@@ -16812,7 +16978,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               status: status
-              via: via
+              via: email
             - updated_at: 2014-01-01T23:28:56.782Z
               verified_at: 2000-01-23T04:56:07.000+00:00
               verified: true
@@ -16820,7 +16986,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               status: status
-              via: via
+              via: email
             organization_id: organization_id
             schema_id: schema_id
             schema_url: schema_url
@@ -16887,7 +17053,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
           - updated_at: 2014-01-01T23:28:56.782Z
             verified_at: 2000-01-23T04:56:07.000+00:00
             verified: true
@@ -16895,7 +17061,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
           organization_id: organization_id
           schema_id: schema_id
           schema_url: schema_url
@@ -16961,7 +17127,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               status: status
-              via: via
+              via: email
             - updated_at: 2014-01-01T23:28:56.782Z
               verified_at: 2000-01-23T04:56:07.000+00:00
               verified: true
@@ -16969,7 +17135,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               status: status
-              via: via
+              via: email
             organization_id: organization_id
             schema_id: schema_id
             schema_url: schema_url
@@ -18557,7 +18723,7 @@ components:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         value: value
         status: status
-        via: via
+        via: email
       properties:
         created_at:
           description: When this entry was created
@@ -18592,8 +18758,11 @@ components:
           title: NullTime implements sql.NullTime functionality.
           type: string
         via:
-          description: VerifiableAddressType must not exceed 16 characters as that
-            is the limitation in the SQL Schema
+          description: The delivery method
+          enum:
+          - email
+          - sms
+          example: email
           type: string
       required:
       - status

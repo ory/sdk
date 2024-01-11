@@ -50,6 +50,7 @@ Name | Type | Description | Notes
 **KetoNamespaceConfiguration** | Pointer to **string** | The Revisions&#39; Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration. | [optional] 
 **KetoNamespaces** | Pointer to [**[]KetoNamespace**](KetoNamespace.md) |  | [optional] 
 **KratosCookiesSameSite** | Pointer to **string** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] 
+**KratosCourierChannels** | Pointer to [**[]NormalizedProjectRevisionCourierChannel**](NormalizedProjectRevisionCourierChannel.md) |  | [optional] 
 **KratosCourierDeliveryStrategy** | Pointer to **string** | The delivery strategy to use when sending emails  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional] [default to "smtp"]
 **KratosCourierHttpRequestConfigAuthApiKeyIn** | Pointer to **string** | The location of the API key to use in the HTTP email sending service&#39;s authentication  &#x60;header&#x60;: Send the key value pair as a header &#x60;cookie&#x60;: Send the key value pair as a cookie This governs the \&quot;courier.http.auth.config.in\&quot; setting | [optional] 
 **KratosCourierHttpRequestConfigAuthApiKeyName** | Pointer to **string** | The name of the API key to use in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.name\&quot; setting | [optional] 
@@ -90,6 +91,7 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesVerificationCodeValidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification_code.valid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification_code.valid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.verification_code.valid.email.subject\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext  This governs the \&quot;courier.smtp.templates.verification_code.valid.sms.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationInvalidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationInvalidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.subject\&quot; setting. | [optional] 
@@ -1361,6 +1363,31 @@ SetKratosCookiesSameSite sets KratosCookiesSameSite field to given value.
 
 HasKratosCookiesSameSite returns a boolean if a field has been set.
 
+### GetKratosCourierChannels
+
+`func (o *CreateProjectNormalizedPayload) GetKratosCourierChannels() []NormalizedProjectRevisionCourierChannel`
+
+GetKratosCourierChannels returns the KratosCourierChannels field if non-nil, zero value otherwise.
+
+### GetKratosCourierChannelsOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosCourierChannelsOk() (*[]NormalizedProjectRevisionCourierChannel, bool)`
+
+GetKratosCourierChannelsOk returns a tuple with the KratosCourierChannels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierChannels
+
+`func (o *CreateProjectNormalizedPayload) SetKratosCourierChannels(v []NormalizedProjectRevisionCourierChannel)`
+
+SetKratosCourierChannels sets KratosCourierChannels field to given value.
+
+### HasKratosCourierChannels
+
+`func (o *CreateProjectNormalizedPayload) HasKratosCourierChannels() bool`
+
+HasKratosCourierChannels returns a boolean if a field has been set.
+
 ### GetKratosCourierDeliveryStrategy
 
 `func (o *CreateProjectNormalizedPayload) GetKratosCourierDeliveryStrategy() string`
@@ -2380,6 +2407,31 @@ SetKratosCourierTemplatesVerificationCodeValidEmailSubject sets KratosCourierTem
 `func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesVerificationCodeValidEmailSubject() bool`
 
 HasKratosCourierTemplatesVerificationCodeValidEmailSubject returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext
+
+`func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext() string`
+
+GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext returns the KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintextOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext
+
+`func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext sets KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext
+
+`func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext() bool`
+
+HasKratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext returns a boolean if a field has been set.
 
 ### GetKratosCourierTemplatesVerificationInvalidEmailBodyHtml
 

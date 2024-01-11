@@ -27,6 +27,7 @@ doc/CourierApi.md
 doc/CourierMessageStatus.md
 doc/CourierMessageType.md
 doc/CreateCustomDomainBody.md
+doc/CreateEventStreamBody.md
 doc/CreateIdentityBody.md
 doc/CreateInviteResponse.md
 doc/CreateJsonWebKeySet.md
@@ -51,6 +52,7 @@ doc/ErrorBrowserLocationChangeRequired.md
 doc/ErrorFlowReplaced.md
 doc/ErrorGeneric.md
 doc/ErrorOAuth2.md
+doc/EventStream.md
 doc/ExpandedPermissionTree.md
 doc/FlowError.md
 doc/FrontendApi.md
@@ -102,6 +104,7 @@ doc/JsonWebKey.md
 doc/JsonWebKeySet.md
 doc/JwkApi.md
 doc/KetoNamespace.md
+doc/ListEventStreams.md
 doc/ListMyWorkspacesResponse.md
 doc/ListOrganizationsResponse.md
 doc/LoginFlow.md
@@ -118,6 +121,7 @@ doc/Namespace.md
 doc/NeedsPrivilegedSessionError.md
 doc/NormalizedProject.md
 doc/NormalizedProjectRevision.md
+doc/NormalizedProjectRevisionCourierChannel.md
 doc/NormalizedProjectRevisionHook.md
 doc/NormalizedProjectRevisionIdentitySchema.md
 doc/NormalizedProjectRevisionThirdPartyProvider.md
@@ -186,6 +190,7 @@ doc/SessionAuthenticationMethod.md
 doc/SessionDevice.md
 doc/SetActiveProjectInConsoleBody.md
 doc/SetCustomDomainBody.md
+doc/SetEventStreamBody.md
 doc/SetProject.md
 doc/SetProjectBrandingThemeBody.md
 doc/SettingsFlow.md
@@ -297,6 +302,7 @@ lib/src/model/continue_with_verification_ui_flow.dart
 lib/src/model/courier_message_status.dart
 lib/src/model/courier_message_type.dart
 lib/src/model/create_custom_domain_body.dart
+lib/src/model/create_event_stream_body.dart
 lib/src/model/create_identity_body.dart
 lib/src/model/create_invite_response.dart
 lib/src/model/create_json_web_key_set.dart
@@ -322,6 +328,7 @@ lib/src/model/error_browser_location_change_required.dart
 lib/src/model/error_flow_replaced.dart
 lib/src/model/error_generic.dart
 lib/src/model/error_o_auth2.dart
+lib/src/model/event_stream.dart
 lib/src/model/expanded_permission_tree.dart
 lib/src/model/flow_error.dart
 lib/src/model/generic_error.dart
@@ -370,6 +377,7 @@ lib/src/model/json_patch.dart
 lib/src/model/json_web_key.dart
 lib/src/model/json_web_key_set.dart
 lib/src/model/keto_namespace.dart
+lib/src/model/list_event_streams.dart
 lib/src/model/list_my_workspaces_response.dart
 lib/src/model/list_organizations_response.dart
 lib/src/model/login_flow.dart
@@ -385,6 +393,7 @@ lib/src/model/namespace.dart
 lib/src/model/needs_privileged_session_error.dart
 lib/src/model/normalized_project.dart
 lib/src/model/normalized_project_revision.dart
+lib/src/model/normalized_project_revision_courier_channel.dart
 lib/src/model/normalized_project_revision_hook.dart
 lib/src/model/normalized_project_revision_identity_schema.dart
 lib/src/model/normalized_project_revision_third_party_provider.dart
@@ -448,6 +457,7 @@ lib/src/model/session_authentication_method.dart
 lib/src/model/session_device.dart
 lib/src/model/set_active_project_in_console_body.dart
 lib/src/model/set_custom_domain_body.dart
+lib/src/model/set_event_stream_body.dart
 lib/src/model/set_project.dart
 lib/src/model/set_project_branding_theme_body.dart
 lib/src/model/settings_flow.dart
@@ -541,6 +551,7 @@ test/courier_api_test.dart
 test/courier_message_status_test.dart
 test/courier_message_type_test.dart
 test/create_custom_domain_body_test.dart
+test/create_event_stream_body_test.dart
 test/create_identity_body_test.dart
 test/create_invite_response_test.dart
 test/create_json_web_key_set_test.dart
@@ -565,6 +576,7 @@ test/error_browser_location_change_required_test.dart
 test/error_flow_replaced_test.dart
 test/error_generic_test.dart
 test/error_o_auth2_test.dart
+test/event_stream_test.dart
 test/expanded_permission_tree_test.dart
 test/flow_error_test.dart
 test/frontend_api_test.dart
@@ -616,6 +628,7 @@ test/json_web_key_set_test.dart
 test/json_web_key_test.dart
 test/jwk_api_test.dart
 test/keto_namespace_test.dart
+test/list_event_streams_test.dart
 test/list_my_workspaces_response_test.dart
 test/list_organizations_response_test.dart
 test/login_flow_state_test.dart
@@ -630,6 +643,7 @@ test/metadata_api_test.dart
 test/metrics_datapoint_test.dart
 test/namespace_test.dart
 test/needs_privileged_session_error_test.dart
+test/normalized_project_revision_courier_channel_test.dart
 test/normalized_project_revision_hook_test.dart
 test/normalized_project_revision_identity_schema_test.dart
 test/normalized_project_revision_test.dart
@@ -700,6 +714,7 @@ test/session_device_test.dart
 test/session_test.dart
 test/set_active_project_in_console_body_test.dart
 test/set_custom_domain_body_test.dart
+test/set_event_stream_body_test.dart
 test/set_project_branding_theme_body_test.dart
 test/set_project_test.dart
 test/settings_flow_state_test.dart

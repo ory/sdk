@@ -40,10 +40,10 @@ abstract class OAuth2LoginRequest implements Built<OAuth2LoginRequest, OAuth2Log
   String get requestUrl;
 
   @BuiltValueField(wireName: r'requested_access_token_audience')
-  BuiltList<String> get requestedAccessTokenAudience;
+  BuiltList<String>? get requestedAccessTokenAudience;
 
   @BuiltValueField(wireName: r'requested_scope')
-  BuiltList<String> get requestedScope;
+  BuiltList<String>? get requestedScope;
 
   /// SessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \"sid\" parameter in the ID Token and in OIDC Front-/Back- channel logout. It's value can generally be used to associate consecutive login requests by a certain user.
   @BuiltValueField(wireName: r'session_id')
@@ -102,16 +102,20 @@ class _$OAuth2LoginRequestSerializer implements PrimitiveSerializer<OAuth2LoginR
       object.requestUrl,
       specifiedType: const FullType(String),
     );
-    yield r'requested_access_token_audience';
-    yield serializers.serialize(
-      object.requestedAccessTokenAudience,
-      specifiedType: const FullType(BuiltList, [FullType(String)]),
-    );
-    yield r'requested_scope';
-    yield serializers.serialize(
-      object.requestedScope,
-      specifiedType: const FullType(BuiltList, [FullType(String)]),
-    );
+    if (object.requestedAccessTokenAudience != null) {
+      yield r'requested_access_token_audience';
+      yield serializers.serialize(
+        object.requestedAccessTokenAudience,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.requestedScope != null) {
+      yield r'requested_scope';
+      yield serializers.serialize(
+        object.requestedScope,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
     if (object.sessionId != null) {
       yield r'session_id';
       yield serializers.serialize(

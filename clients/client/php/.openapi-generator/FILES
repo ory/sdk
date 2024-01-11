@@ -39,6 +39,7 @@ docs/Model/ContinueWithVerificationUiFlow.md
 docs/Model/CourierMessageStatus.md
 docs/Model/CourierMessageType.md
 docs/Model/CreateCustomDomainBody.md
+docs/Model/CreateEventStreamBody.md
 docs/Model/CreateIdentityBody.md
 docs/Model/CreateInviteResponse.md
 docs/Model/CreateJsonWebKeySet.md
@@ -62,6 +63,7 @@ docs/Model/ErrorBrowserLocationChangeRequired.md
 docs/Model/ErrorFlowReplaced.md
 docs/Model/ErrorGeneric.md
 docs/Model/ErrorOAuth2.md
+docs/Model/EventStream.md
 docs/Model/ExpandedPermissionTree.md
 docs/Model/FlowError.md
 docs/Model/GenericError.md
@@ -111,6 +113,7 @@ docs/Model/JsonPatch.md
 docs/Model/JsonWebKey.md
 docs/Model/JsonWebKeySet.md
 docs/Model/KetoNamespace.md
+docs/Model/ListEventStreams.md
 docs/Model/ListMyWorkspacesResponse.md
 docs/Model/ListOrganizationsResponse.md
 docs/Model/LoginFlow.md
@@ -126,6 +129,7 @@ docs/Model/ModelNamespace.md
 docs/Model/NeedsPrivilegedSessionError.md
 docs/Model/NormalizedProject.md
 docs/Model/NormalizedProjectRevision.md
+docs/Model/NormalizedProjectRevisionCourierChannel.md
 docs/Model/NormalizedProjectRevisionHook.md
 docs/Model/NormalizedProjectRevisionIdentitySchema.md
 docs/Model/NormalizedProjectRevisionThirdPartyProvider.md
@@ -189,6 +193,7 @@ docs/Model/SessionAuthenticationMethod.md
 docs/Model/SessionDevice.md
 docs/Model/SetActiveProjectInConsoleBody.md
 docs/Model/SetCustomDomainBody.md
+docs/Model/SetEventStreamBody.md
 docs/Model/SetProject.md
 docs/Model/SetProjectBrandingThemeBody.md
 docs/Model/SettingsFlow.md
@@ -294,6 +299,7 @@ lib/Model/ContinueWithVerificationUiFlow.php
 lib/Model/CourierMessageStatus.php
 lib/Model/CourierMessageType.php
 lib/Model/CreateCustomDomainBody.php
+lib/Model/CreateEventStreamBody.php
 lib/Model/CreateIdentityBody.php
 lib/Model/CreateInviteResponse.php
 lib/Model/CreateJsonWebKeySet.php
@@ -317,6 +323,7 @@ lib/Model/ErrorBrowserLocationChangeRequired.php
 lib/Model/ErrorFlowReplaced.php
 lib/Model/ErrorGeneric.php
 lib/Model/ErrorOAuth2.php
+lib/Model/EventStream.php
 lib/Model/ExpandedPermissionTree.php
 lib/Model/FlowError.php
 lib/Model/GenericError.php
@@ -366,6 +373,7 @@ lib/Model/JsonPatch.php
 lib/Model/JsonWebKey.php
 lib/Model/JsonWebKeySet.php
 lib/Model/KetoNamespace.php
+lib/Model/ListEventStreams.php
 lib/Model/ListMyWorkspacesResponse.php
 lib/Model/ListOrganizationsResponse.php
 lib/Model/LoginFlow.php
@@ -382,6 +390,7 @@ lib/Model/ModelNamespace.php
 lib/Model/NeedsPrivilegedSessionError.php
 lib/Model/NormalizedProject.php
 lib/Model/NormalizedProjectRevision.php
+lib/Model/NormalizedProjectRevisionCourierChannel.php
 lib/Model/NormalizedProjectRevisionHook.php
 lib/Model/NormalizedProjectRevisionIdentitySchema.php
 lib/Model/NormalizedProjectRevisionThirdPartyProvider.php
@@ -445,6 +454,7 @@ lib/Model/SessionAuthenticationMethod.php
 lib/Model/SessionDevice.php
 lib/Model/SetActiveProjectInConsoleBody.php
 lib/Model/SetCustomDomainBody.php
+lib/Model/SetEventStreamBody.php
 lib/Model/SetProject.php
 lib/Model/SetProjectBrandingThemeBody.php
 lib/Model/SettingsFlow.php
@@ -548,6 +558,7 @@ test/Model/ContinueWithVerificationUiTest.php
 test/Model/CourierMessageStatusTest.php
 test/Model/CourierMessageTypeTest.php
 test/Model/CreateCustomDomainBodyTest.php
+test/Model/CreateEventStreamBodyTest.php
 test/Model/CreateIdentityBodyTest.php
 test/Model/CreateInviteResponseTest.php
 test/Model/CreateJsonWebKeySetTest.php
@@ -571,6 +582,7 @@ test/Model/ErrorBrowserLocationChangeRequiredTest.php
 test/Model/ErrorFlowReplacedTest.php
 test/Model/ErrorGenericTest.php
 test/Model/ErrorOAuth2Test.php
+test/Model/EventStreamTest.php
 test/Model/ExpandedPermissionTreeTest.php
 test/Model/FlowErrorTest.php
 test/Model/GenericErrorContentTest.php
@@ -620,6 +632,7 @@ test/Model/JsonPatchTest.php
 test/Model/JsonWebKeySetTest.php
 test/Model/JsonWebKeyTest.php
 test/Model/KetoNamespaceTest.php
+test/Model/ListEventStreamsTest.php
 test/Model/ListMyWorkspacesResponseTest.php
 test/Model/ListOrganizationsResponseTest.php
 test/Model/LoginFlowStateTest.php
@@ -633,6 +646,7 @@ test/Model/MessageTest.php
 test/Model/MetricsDatapointTest.php
 test/Model/ModelNamespaceTest.php
 test/Model/NeedsPrivilegedSessionErrorTest.php
+test/Model/NormalizedProjectRevisionCourierChannelTest.php
 test/Model/NormalizedProjectRevisionHookTest.php
 test/Model/NormalizedProjectRevisionIdentitySchemaTest.php
 test/Model/NormalizedProjectRevisionTest.php
@@ -698,6 +712,7 @@ test/Model/SessionDeviceTest.php
 test/Model/SessionTest.php
 test/Model/SetActiveProjectInConsoleBodyTest.php
 test/Model/SetCustomDomainBodyTest.php
+test/Model/SetEventStreamBodyTest.php
 test/Model/SetProjectBrandingThemeBodyTest.php
 test/Model/SetProjectTest.php
 test/Model/SettingsFlowStateTest.php

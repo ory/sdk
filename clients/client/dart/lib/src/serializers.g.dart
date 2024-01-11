@@ -37,6 +37,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CourierMessageStatus.serializer)
       ..add(CourierMessageType.serializer)
       ..add(CreateCustomDomainBody.serializer)
+      ..add(CreateEventStreamBody.serializer)
+      ..add(CreateEventStreamBodyTypeEnum.serializer)
       ..add(CreateIdentityBody.serializer)
       ..add(CreateInviteResponse.serializer)
       ..add(CreateJsonWebKeySet.serializer)
@@ -72,6 +74,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ErrorFlowReplaced.serializer)
       ..add(ErrorGeneric.serializer)
       ..add(ErrorOAuth2.serializer)
+      ..add(EventStream.serializer)
       ..add(ExpandedPermissionTree.serializer)
       ..add(ExpandedPermissionTreeTypeEnum.serializer)
       ..add(FlowError.serializer)
@@ -126,6 +129,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(JsonWebKey.serializer)
       ..add(JsonWebKeySet.serializer)
       ..add(KetoNamespace.serializer)
+      ..add(ListEventStreams.serializer)
       ..add(ListMyWorkspacesResponse.serializer)
       ..add(ListOrganizationsResponse.serializer)
       ..add(LoginFlow.serializer)
@@ -145,6 +149,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(NormalizedProject.serializer)
       ..add(NormalizedProjectEnvironmentEnum.serializer)
       ..add(NormalizedProjectRevision.serializer)
+      ..add(NormalizedProjectRevisionCourierChannel.serializer)
+      ..add(NormalizedProjectRevisionCourierChannelRequestConfigAuthTypeEnum
+          .serializer)
       ..add(NormalizedProjectRevisionHook.serializer)
       ..add(NormalizedProjectRevisionHydraStrategiesAccessTokenEnum.serializer)
       ..add(NormalizedProjectRevisionHydraStrategiesScopeEnum.serializer)
@@ -221,6 +228,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SessionDevice.serializer)
       ..add(SetActiveProjectInConsoleBody.serializer)
       ..add(SetCustomDomainBody.serializer)
+      ..add(SetEventStreamBody.serializer)
+      ..add(SetEventStreamBodyTypeEnum.serializer)
       ..add(SetProject.serializer)
       ..add(SetProjectBrandingThemeBody.serializer)
       ..add(SettingsFlow.serializer)
@@ -294,6 +303,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(VerifiableCredentialProof.serializer)
       ..add(VerifiableCredentialResponse.serializer)
       ..add(VerifiableIdentityAddress.serializer)
+      ..add(VerifiableIdentityAddressViaEnum.serializer)
       ..add(VerificationFlow.serializer)
       ..add(VerificationFlowState.serializer)
       ..add(Version.serializer)
@@ -318,6 +328,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ContinueWith)]),
           () => new ListBuilder<ContinueWith>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(EventStream)]),
+          () => new ListBuilder<EventStream>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(ExpandedPermissionTree)]),
@@ -578,6 +591,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<KetoNamespace>())
       ..addBuilderFactory(
           const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
+          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
               const [const FullType(NormalizedProjectRevisionIdentitySchema)]),
           () => new ListBuilder<NormalizedProjectRevisionIdentitySchema>())
       ..addBuilderFactory(
@@ -642,6 +659,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(KetoNamespace)]),
           () => new ListBuilder<KetoNamespace>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
+          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(NormalizedProjectRevisionIdentitySchema)]),

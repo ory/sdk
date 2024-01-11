@@ -16,9 +16,9 @@ class _$OAuth2LoginRequest extends OAuth2LoginRequest {
   @override
   final String requestUrl;
   @override
-  final BuiltList<String> requestedAccessTokenAudience;
+  final BuiltList<String>? requestedAccessTokenAudience;
   @override
-  final BuiltList<String> requestedScope;
+  final BuiltList<String>? requestedScope;
   @override
   final String? sessionId;
   @override
@@ -35,8 +35,8 @@ class _$OAuth2LoginRequest extends OAuth2LoginRequest {
       required this.client,
       this.oidcContext,
       required this.requestUrl,
-      required this.requestedAccessTokenAudience,
-      required this.requestedScope,
+      this.requestedAccessTokenAudience,
+      this.requestedScope,
       this.sessionId,
       required this.skip,
       required this.subject})
@@ -47,10 +47,6 @@ class _$OAuth2LoginRequest extends OAuth2LoginRequest {
         client, r'OAuth2LoginRequest', 'client');
     BuiltValueNullFieldError.checkNotNull(
         requestUrl, r'OAuth2LoginRequest', 'requestUrl');
-    BuiltValueNullFieldError.checkNotNull(requestedAccessTokenAudience,
-        r'OAuth2LoginRequest', 'requestedAccessTokenAudience');
-    BuiltValueNullFieldError.checkNotNull(
-        requestedScope, r'OAuth2LoginRequest', 'requestedScope');
     BuiltValueNullFieldError.checkNotNull(skip, r'OAuth2LoginRequest', 'skip');
     BuiltValueNullFieldError.checkNotNull(
         subject, r'OAuth2LoginRequest', 'subject');
@@ -174,8 +170,8 @@ class OAuth2LoginRequestBuilder
       _oidcContext = $v.oidcContext?.toBuilder();
       _requestUrl = $v.requestUrl;
       _requestedAccessTokenAudience =
-          $v.requestedAccessTokenAudience.toBuilder();
-      _requestedScope = $v.requestedScope.toBuilder();
+          $v.requestedAccessTokenAudience?.toBuilder();
+      _requestedScope = $v.requestedScope?.toBuilder();
       _sessionId = $v.sessionId;
       _skip = $v.skip;
       _subject = $v.subject;
@@ -210,8 +206,8 @@ class OAuth2LoginRequestBuilder
               requestUrl: BuiltValueNullFieldError.checkNotNull(
                   requestUrl, r'OAuth2LoginRequest', 'requestUrl'),
               requestedAccessTokenAudience:
-                  requestedAccessTokenAudience.build(),
-              requestedScope: requestedScope.build(),
+                  _requestedAccessTokenAudience?.build(),
+              requestedScope: _requestedScope?.build(),
               sessionId: sessionId,
               skip: BuiltValueNullFieldError.checkNotNull(
                   skip, r'OAuth2LoginRequest', 'skip'),
@@ -226,9 +222,9 @@ class OAuth2LoginRequestBuilder
         _oidcContext?.build();
 
         _$failedField = 'requestedAccessTokenAudience';
-        requestedAccessTokenAudience.build();
+        _requestedAccessTokenAudience?.build();
         _$failedField = 'requestedScope';
-        requestedScope.build();
+        _requestedScope?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'OAuth2LoginRequest', _$failedField, e.toString());

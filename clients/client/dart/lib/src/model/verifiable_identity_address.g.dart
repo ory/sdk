@@ -6,6 +6,65 @@ part of 'verifiable_identity_address.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const VerifiableIdentityAddressViaEnum
+    _$verifiableIdentityAddressViaEnum_email =
+    const VerifiableIdentityAddressViaEnum._('email');
+const VerifiableIdentityAddressViaEnum _$verifiableIdentityAddressViaEnum_sms =
+    const VerifiableIdentityAddressViaEnum._('sms');
+
+VerifiableIdentityAddressViaEnum _$verifiableIdentityAddressViaEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'email':
+      return _$verifiableIdentityAddressViaEnum_email;
+    case 'sms':
+      return _$verifiableIdentityAddressViaEnum_sms;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<VerifiableIdentityAddressViaEnum>
+    _$verifiableIdentityAddressViaEnumValues = new BuiltSet<
+        VerifiableIdentityAddressViaEnum>(const <VerifiableIdentityAddressViaEnum>[
+  _$verifiableIdentityAddressViaEnum_email,
+  _$verifiableIdentityAddressViaEnum_sms,
+]);
+
+Serializer<VerifiableIdentityAddressViaEnum>
+    _$verifiableIdentityAddressViaEnumSerializer =
+    new _$VerifiableIdentityAddressViaEnumSerializer();
+
+class _$VerifiableIdentityAddressViaEnumSerializer
+    implements PrimitiveSerializer<VerifiableIdentityAddressViaEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'email': 'email',
+    'sms': 'sms',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'email': 'email',
+    'sms': 'sms',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[VerifiableIdentityAddressViaEnum];
+  @override
+  final String wireName = 'VerifiableIdentityAddressViaEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, VerifiableIdentityAddressViaEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  VerifiableIdentityAddressViaEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      VerifiableIdentityAddressViaEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$VerifiableIdentityAddress extends VerifiableIdentityAddress {
   @override
   final DateTime? createdAt;
@@ -22,7 +81,7 @@ class _$VerifiableIdentityAddress extends VerifiableIdentityAddress {
   @override
   final DateTime? verifiedAt;
   @override
-  final String via;
+  final VerifiableIdentityAddressViaEnum via;
 
   factory _$VerifiableIdentityAddress(
           [void Function(VerifiableIdentityAddressBuilder)? updates]) =>
@@ -134,9 +193,9 @@ class VerifiableIdentityAddressBuilder
   DateTime? get verifiedAt => _$this._verifiedAt;
   set verifiedAt(DateTime? verifiedAt) => _$this._verifiedAt = verifiedAt;
 
-  String? _via;
-  String? get via => _$this._via;
-  set via(String? via) => _$this._via = via;
+  VerifiableIdentityAddressViaEnum? _via;
+  VerifiableIdentityAddressViaEnum? get via => _$this._via;
+  set via(VerifiableIdentityAddressViaEnum? via) => _$this._via = via;
 
   VerifiableIdentityAddressBuilder() {
     VerifiableIdentityAddress._defaults(this);

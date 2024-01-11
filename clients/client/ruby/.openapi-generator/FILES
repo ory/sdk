@@ -32,6 +32,7 @@ docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
+docs/CreateEventStreamBody.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
@@ -56,6 +57,7 @@ docs/ErrorBrowserLocationChangeRequired.md
 docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
+docs/EventStream.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendApi.md
@@ -107,6 +109,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
@@ -123,6 +126,7 @@ docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
 docs/NormalizedProjectRevision.md
+docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
@@ -191,6 +195,7 @@ docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
+docs/SetEventStreamBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -298,6 +303,7 @@ lib/ory-client/models/continue_with_verification_ui_flow.rb
 lib/ory-client/models/courier_message_status.rb
 lib/ory-client/models/courier_message_type.rb
 lib/ory-client/models/create_custom_domain_body.rb
+lib/ory-client/models/create_event_stream_body.rb
 lib/ory-client/models/create_identity_body.rb
 lib/ory-client/models/create_invite_response.rb
 lib/ory-client/models/create_json_web_key_set.rb
@@ -322,6 +328,7 @@ lib/ory-client/models/error_browser_location_change_required.rb
 lib/ory-client/models/error_flow_replaced.rb
 lib/ory-client/models/error_generic.rb
 lib/ory-client/models/error_o_auth2.rb
+lib/ory-client/models/event_stream.rb
 lib/ory-client/models/expanded_permission_tree.rb
 lib/ory-client/models/flow_error.rb
 lib/ory-client/models/generic_error.rb
@@ -370,6 +377,7 @@ lib/ory-client/models/json_patch.rb
 lib/ory-client/models/json_web_key.rb
 lib/ory-client/models/json_web_key_set.rb
 lib/ory-client/models/keto_namespace.rb
+lib/ory-client/models/list_event_streams.rb
 lib/ory-client/models/list_my_workspaces_response.rb
 lib/ory-client/models/list_organizations_response.rb
 lib/ory-client/models/login_flow.rb
@@ -385,6 +393,7 @@ lib/ory-client/models/namespace.rb
 lib/ory-client/models/needs_privileged_session_error.rb
 lib/ory-client/models/normalized_project.rb
 lib/ory-client/models/normalized_project_revision.rb
+lib/ory-client/models/normalized_project_revision_courier_channel.rb
 lib/ory-client/models/normalized_project_revision_hook.rb
 lib/ory-client/models/normalized_project_revision_identity_schema.rb
 lib/ory-client/models/normalized_project_revision_third_party_provider.rb
@@ -448,6 +457,7 @@ lib/ory-client/models/session_authentication_method.rb
 lib/ory-client/models/session_device.rb
 lib/ory-client/models/set_active_project_in_console_body.rb
 lib/ory-client/models/set_custom_domain_body.rb
+lib/ory-client/models/set_event_stream_body.rb
 lib/ory-client/models/set_project.rb
 lib/ory-client/models/set_project_branding_theme_body.rb
 lib/ory-client/models/settings_flow.rb
@@ -553,6 +563,7 @@ spec/models/continue_with_verification_ui_spec.rb
 spec/models/courier_message_status_spec.rb
 spec/models/courier_message_type_spec.rb
 spec/models/create_custom_domain_body_spec.rb
+spec/models/create_event_stream_body_spec.rb
 spec/models/create_identity_body_spec.rb
 spec/models/create_invite_response_spec.rb
 spec/models/create_json_web_key_set_spec.rb
@@ -577,6 +588,7 @@ spec/models/error_browser_location_change_required_spec.rb
 spec/models/error_flow_replaced_spec.rb
 spec/models/error_generic_spec.rb
 spec/models/error_o_auth2_spec.rb
+spec/models/event_stream_spec.rb
 spec/models/expanded_permission_tree_spec.rb
 spec/models/flow_error_spec.rb
 spec/models/generic_error_content_spec.rb
@@ -625,6 +637,7 @@ spec/models/json_patch_spec.rb
 spec/models/json_web_key_set_spec.rb
 spec/models/json_web_key_spec.rb
 spec/models/keto_namespace_spec.rb
+spec/models/list_event_streams_spec.rb
 spec/models/list_my_workspaces_response_spec.rb
 spec/models/list_organizations_response_spec.rb
 spec/models/login_flow_spec.rb
@@ -638,6 +651,7 @@ spec/models/message_spec.rb
 spec/models/metrics_datapoint_spec.rb
 spec/models/namespace_spec.rb
 spec/models/needs_privileged_session_error_spec.rb
+spec/models/normalized_project_revision_courier_channel_spec.rb
 spec/models/normalized_project_revision_hook_spec.rb
 spec/models/normalized_project_revision_identity_schema_spec.rb
 spec/models/normalized_project_revision_spec.rb
@@ -703,6 +717,7 @@ spec/models/session_device_spec.rb
 spec/models/session_spec.rb
 spec/models/set_active_project_in_console_body_spec.rb
 spec/models/set_custom_domain_body_spec.rb
+spec/models/set_event_stream_body_spec.rb
 spec/models/set_project_branding_theme_body_spec.rb
 spec/models/set_project_spec.rb
 spec/models/settings_flow_spec.rb

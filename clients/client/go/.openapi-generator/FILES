@@ -41,6 +41,7 @@ docs/CourierAPI.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
+docs/CreateEventStreamBody.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
@@ -65,6 +66,7 @@ docs/ErrorBrowserLocationChangeRequired.md
 docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
+docs/EventStream.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendAPI.md
@@ -116,6 +118,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkAPI.md
 docs/KetoNamespace.md
+docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
@@ -132,6 +135,7 @@ docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
 docs/NormalizedProjectRevision.md
+docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
@@ -200,6 +204,7 @@ docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
+docs/SetEventStreamBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -294,6 +299,7 @@ model_continue_with_verification_ui_flow.go
 model_courier_message_status.go
 model_courier_message_type.go
 model_create_custom_domain_body.go
+model_create_event_stream_body.go
 model_create_identity_body.go
 model_create_invite_response.go
 model_create_json_web_key_set.go
@@ -318,6 +324,7 @@ model_error_browser_location_change_required.go
 model_error_flow_replaced.go
 model_error_generic.go
 model_error_o_auth2.go
+model_event_stream.go
 model_expanded_permission_tree.go
 model_flow_error.go
 model_generic_error.go
@@ -366,6 +373,7 @@ model_json_patch.go
 model_json_web_key.go
 model_json_web_key_set.go
 model_keto_namespace.go
+model_list_event_streams.go
 model_list_my_workspaces_response.go
 model_list_organizations_response.go
 model_login_flow.go
@@ -381,6 +389,7 @@ model_namespace.go
 model_needs_privileged_session_error.go
 model_normalized_project.go
 model_normalized_project_revision.go
+model_normalized_project_revision_courier_channel.go
 model_normalized_project_revision_hook.go
 model_normalized_project_revision_identity_schema.go
 model_normalized_project_revision_third_party_provider.go
@@ -444,6 +453,7 @@ model_session_authentication_method.go
 model_session_device.go
 model_set_active_project_in_console_body.go
 model_set_custom_domain_body.go
+model_set_event_stream_body.go
 model_set_project.go
 model_set_project_branding_theme_body.go
 model_settings_flow.go

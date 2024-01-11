@@ -54,6 +54,7 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
     :keto_namespace_configuration,
     :keto_namespaces,
     :kratos_cookies_same_site,
+    :kratos_courier_channels,
     :kratos_courier_delivery_strategy,
     :kratos_courier_http_request_config_auth_api_key_in,
     :kratos_courier_http_request_config_auth_api_key_name,
@@ -94,6 +95,7 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
     :kratos_courier_templates_verification_code_valid_email_body_html,
     :kratos_courier_templates_verification_code_valid_email_body_plaintext,
     :kratos_courier_templates_verification_code_valid_email_subject,
+    :kratos_courier_templates_verification_code_valid_sms_body_plaintext,
     :kratos_courier_templates_verification_invalid_email_body_html,
     :kratos_courier_templates_verification_invalid_email_body_plaintext,
     :kratos_courier_templates_verification_invalid_email_subject,
@@ -244,6 +246,7 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
     :keto_namespace_configuration => String.t | nil,
     :keto_namespaces => [Ory.Model.KetoNamespace.t] | nil,
     :kratos_cookies_same_site => String.t | nil,
+    :kratos_courier_channels => [Ory.Model.NormalizedProjectRevisionCourierChannel.t] | nil,
     :kratos_courier_delivery_strategy => String.t | nil,
     :kratos_courier_http_request_config_auth_api_key_in => String.t | nil,
     :kratos_courier_http_request_config_auth_api_key_name => String.t | nil,
@@ -284,6 +287,7 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
     :kratos_courier_templates_verification_code_valid_email_body_html => String.t | nil,
     :kratos_courier_templates_verification_code_valid_email_body_plaintext => String.t | nil,
     :kratos_courier_templates_verification_code_valid_email_subject => String.t | nil,
+    :kratos_courier_templates_verification_code_valid_sms_body_plaintext => String.t | nil,
     :kratos_courier_templates_verification_invalid_email_body_html => String.t | nil,
     :kratos_courier_templates_verification_invalid_email_body_plaintext => String.t | nil,
     :kratos_courier_templates_verification_invalid_email_subject => String.t | nil,
@@ -393,6 +397,7 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
     value
      |> Deserializer.deserialize(:created_at, :datetime, nil)
      |> Deserializer.deserialize(:keto_namespaces, :list, Ory.Model.KetoNamespace)
+     |> Deserializer.deserialize(:kratos_courier_channels, :list, Ory.Model.NormalizedProjectRevisionCourierChannel)
      |> Deserializer.deserialize(:kratos_identity_schemas, :list, Ory.Model.NormalizedProjectRevisionIdentitySchema)
      |> Deserializer.deserialize(:kratos_selfservice_methods_oidc_config_providers, :list, Ory.Model.NormalizedProjectRevisionThirdPartyProvider)
      |> Deserializer.deserialize(:kratos_session_whoami_tokenizer_templates, :list, Ory.Model.NormalizedProjectRevisionTokenizerTemplate)

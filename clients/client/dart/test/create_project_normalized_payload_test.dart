@@ -274,6 +274,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<NormalizedProjectRevisionCourierChannel> kratosCourierChannels
+    test('to test the property `kratosCourierChannels`', () async {
+      // TODO
+    });
+
     // The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
     // String kratosCourierDeliveryStrategy (default value: 'smtp')
     test('to test the property `kratosCourierDeliveryStrategy`', () async {
@@ -511,6 +516,12 @@ void main() {
     // Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
     // String kratosCourierTemplatesVerificationCodeValidEmailSubject
     test('to test the property `kratosCourierTemplatesVerificationCodeValidEmailSubject`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext  This governs the \"courier.smtp.templates.verification_code.valid.sms.body.plaintext\" setting.
+    // String kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext
+    test('to test the property `kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext`', () async {
       // TODO
     });
 

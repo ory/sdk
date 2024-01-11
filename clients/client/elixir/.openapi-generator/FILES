@@ -41,6 +41,7 @@ lib/ory/model/continue_with_verification_ui_flow.ex
 lib/ory/model/courier_message_status.ex
 lib/ory/model/courier_message_type.ex
 lib/ory/model/create_custom_domain_body.ex
+lib/ory/model/create_event_stream_body.ex
 lib/ory/model/create_identity_body.ex
 lib/ory/model/create_invite_response.ex
 lib/ory/model/create_json_web_key_set.ex
@@ -65,6 +66,7 @@ lib/ory/model/error_browser_location_change_required.ex
 lib/ory/model/error_flow_replaced.ex
 lib/ory/model/error_generic.ex
 lib/ory/model/error_o_auth2.ex
+lib/ory/model/event_stream.ex
 lib/ory/model/expanded_permission_tree.ex
 lib/ory/model/flow_error.ex
 lib/ory/model/generic_error.ex
@@ -113,6 +115,7 @@ lib/ory/model/json_patch.ex
 lib/ory/model/json_web_key.ex
 lib/ory/model/json_web_key_set.ex
 lib/ory/model/keto_namespace.ex
+lib/ory/model/list_event_streams.ex
 lib/ory/model/list_my_workspaces_response.ex
 lib/ory/model/list_organizations_response.ex
 lib/ory/model/login_flow.ex
@@ -128,6 +131,7 @@ lib/ory/model/namespace.ex
 lib/ory/model/needs_privileged_session_error.ex
 lib/ory/model/normalized_project.ex
 lib/ory/model/normalized_project_revision.ex
+lib/ory/model/normalized_project_revision_courier_channel.ex
 lib/ory/model/normalized_project_revision_hook.ex
 lib/ory/model/normalized_project_revision_identity_schema.ex
 lib/ory/model/normalized_project_revision_third_party_provider.ex
@@ -191,6 +195,7 @@ lib/ory/model/session_authentication_method.ex
 lib/ory/model/session_device.ex
 lib/ory/model/set_active_project_in_console_body.ex
 lib/ory/model/set_custom_domain_body.ex
+lib/ory/model/set_event_stream_body.ex
 lib/ory/model/set_project.ex
 lib/ory/model/set_project_branding_theme_body.ex
 lib/ory/model/settings_flow.ex

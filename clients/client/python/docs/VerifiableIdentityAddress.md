@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **status** | **str** | VerifiableAddressStatus must not exceed 16 characters as that is the limitation in the SQL Schema | 
 **value** | **str** | The address value  example foo@user.com | 
 **verified** | **bool** | Indicates if the address has already been verified | 
-**via** | **str** | VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema | 
+**via** | **str** | The delivery method | 
 **created_at** | **datetime** | When this entry was created | [optional] 
 **id** | **str** | The ID | [optional] 
 **updated_at** | **datetime** | When this entry was last updated | [optional] 

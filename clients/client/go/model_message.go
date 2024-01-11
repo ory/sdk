@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.9
+API version: v1.5.0
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,7 @@ var _ MappedNullable = &Message{}
 // Message struct for Message
 type Message struct {
 	Body string `json:"body"`
+	Channel *string `json:"channel,omitempty"`
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt time.Time `json:"created_at"`
 	// Dispatches store information about the attempts of delivering a message May contain an error if any happened, or just the `success` state.
@@ -32,7 +33,7 @@ type Message struct {
 	SendCount int64 `json:"send_count"`
 	Status CourierMessageStatus `json:"status"`
 	Subject string `json:"subject"`
-	//  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid
+	//  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid
 	TemplateType string `json:"template_type"`
 	Type CourierMessageType `json:"type"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
@@ -91,6 +92,38 @@ func (o *Message) GetBodyOk() (*string, bool) {
 // SetBody sets field value
 func (o *Message) SetBody(v string) {
 	o.Body = v
+}
+
+// GetChannel returns the Channel field value if set, zero value otherwise.
+func (o *Message) GetChannel() string {
+	if o == nil || IsNil(o.Channel) {
+		var ret string
+		return ret
+	}
+	return *o.Channel
+}
+
+// GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Message) GetChannelOk() (*string, bool) {
+	if o == nil || IsNil(o.Channel) {
+		return nil, false
+	}
+	return o.Channel, true
+}
+
+// HasChannel returns a boolean if a field has been set.
+func (o *Message) HasChannel() bool {
+	if o != nil && !IsNil(o.Channel) {
+		return true
+	}
+
+	return false
+}
+
+// SetChannel gets a reference to the given string and assigns it to the Channel field.
+func (o *Message) SetChannel(v string) {
+	o.Channel = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -352,6 +385,9 @@ func (o Message) MarshalJSON() ([]byte, error) {
 func (o Message) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["body"] = o.Body
+	if !IsNil(o.Channel) {
+		toSerialize["channel"] = o.Channel
+	}
 	toSerialize["created_at"] = o.CreatedAt
 	if !IsNil(o.Dispatches) {
 		toSerialize["dispatches"] = o.Dispatches
@@ -417,6 +453,7 @@ func (o *Message) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "body")
+		delete(additionalProperties, "channel")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "dispatches")
 		delete(additionalProperties, "id")

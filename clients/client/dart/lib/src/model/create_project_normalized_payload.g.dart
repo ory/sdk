@@ -381,6 +381,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final String? kratosCookiesSameSite;
   @override
+  final BuiltList<NormalizedProjectRevisionCourierChannel>?
+      kratosCourierChannels;
+  @override
   final String? kratosCourierDeliveryStrategy;
   @override
   final String? kratosCourierHttpRequestConfigAuthApiKeyIn;
@@ -460,6 +463,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   final String? kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext;
   @override
   final String? kratosCourierTemplatesVerificationCodeValidEmailSubject;
+  @override
+  final String? kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
   @override
   final String? kratosCourierTemplatesVerificationInvalidEmailBodyHtml;
   @override
@@ -729,6 +734,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.ketoNamespaceConfiguration,
       this.ketoNamespaces,
       this.kratosCookiesSameSite,
+      this.kratosCourierChannels,
       this.kratosCourierDeliveryStrategy,
       this.kratosCourierHttpRequestConfigAuthApiKeyIn,
       this.kratosCourierHttpRequestConfigAuthApiKeyName,
@@ -769,6 +775,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
       this.kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
       this.kratosCourierTemplatesVerificationCodeValidEmailSubject,
+      this.kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext,
       this.kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
       this.kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
       this.kratosCourierTemplatesVerificationInvalidEmailSubject,
@@ -954,6 +961,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         ketoNamespaceConfiguration == other.ketoNamespaceConfiguration &&
         ketoNamespaces == other.ketoNamespaces &&
         kratosCookiesSameSite == other.kratosCookiesSameSite &&
+        kratosCourierChannels == other.kratosCourierChannels &&
         kratosCourierDeliveryStrategy == other.kratosCourierDeliveryStrategy &&
         kratosCourierHttpRequestConfigAuthApiKeyIn ==
             other.kratosCourierHttpRequestConfigAuthApiKeyIn &&
@@ -1032,6 +1040,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
                 .kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext &&
         kratosCourierTemplatesVerificationCodeValidEmailSubject ==
             other.kratosCourierTemplatesVerificationCodeValidEmailSubject &&
+        kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext ==
+            other.kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext &&
         kratosCourierTemplatesVerificationInvalidEmailBodyHtml ==
             other.kratosCourierTemplatesVerificationInvalidEmailBodyHtml &&
         kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext ==
@@ -1285,6 +1295,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash, ketoNamespaceConfiguration.hashCode);
     _$hash = $jc(_$hash, ketoNamespaces.hashCode);
     _$hash = $jc(_$hash, kratosCookiesSameSite.hashCode);
+    _$hash = $jc(_$hash, kratosCourierChannels.hashCode);
     _$hash = $jc(_$hash, kratosCourierDeliveryStrategy.hashCode);
     _$hash = $jc(_$hash, kratosCourierHttpRequestConfigAuthApiKeyIn.hashCode);
     _$hash = $jc(_$hash, kratosCourierHttpRequestConfigAuthApiKeyName.hashCode);
@@ -1354,6 +1365,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext.hashCode);
     _$hash = $jc(_$hash,
         kratosCourierTemplatesVerificationCodeValidEmailSubject.hashCode);
+    _$hash = $jc(_$hash,
+        kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext.hashCode);
     _$hash = $jc(_$hash,
         kratosCourierTemplatesVerificationInvalidEmailBodyHtml.hashCode);
     _$hash = $jc(_$hash,
@@ -1601,6 +1614,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
           ..add('ketoNamespaceConfiguration', ketoNamespaceConfiguration)
           ..add('ketoNamespaces', ketoNamespaces)
           ..add('kratosCookiesSameSite', kratosCookiesSameSite)
+          ..add('kratosCourierChannels', kratosCourierChannels)
           ..add('kratosCourierDeliveryStrategy', kratosCourierDeliveryStrategy)
           ..add('kratosCourierHttpRequestConfigAuthApiKeyIn',
               kratosCourierHttpRequestConfigAuthApiKeyIn)
@@ -1677,6 +1691,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext)
           ..add('kratosCourierTemplatesVerificationCodeValidEmailSubject',
               kratosCourierTemplatesVerificationCodeValidEmailSubject)
+          ..add('kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext',
+              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext)
           ..add('kratosCourierTemplatesVerificationInvalidEmailBodyHtml',
               kratosCourierTemplatesVerificationInvalidEmailBodyHtml)
           ..add('kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext',
@@ -2188,6 +2204,15 @@ class CreateProjectNormalizedPayloadBuilder
   set kratosCookiesSameSite(String? kratosCookiesSameSite) =>
       _$this._kratosCookiesSameSite = kratosCookiesSameSite;
 
+  ListBuilder<NormalizedProjectRevisionCourierChannel>? _kratosCourierChannels;
+  ListBuilder<NormalizedProjectRevisionCourierChannel>
+      get kratosCourierChannels => _$this._kratosCourierChannels ??=
+          new ListBuilder<NormalizedProjectRevisionCourierChannel>();
+  set kratosCourierChannels(
+          ListBuilder<NormalizedProjectRevisionCourierChannel>?
+              kratosCourierChannels) =>
+      _$this._kratosCourierChannels = kratosCourierChannels;
+
   String? _kratosCourierDeliveryStrategy;
   String? get kratosCourierDeliveryStrategy =>
       _$this._kratosCourierDeliveryStrategy;
@@ -2496,6 +2521,15 @@ class CreateProjectNormalizedPayloadBuilder
           String? kratosCourierTemplatesVerificationCodeValidEmailSubject) =>
       _$this._kratosCourierTemplatesVerificationCodeValidEmailSubject =
           kratosCourierTemplatesVerificationCodeValidEmailSubject;
+
+  String? _kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
+  String? get kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext =>
+      _$this._kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
+  set kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext(
+          String?
+              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext) =>
+      _$this._kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext =
+          kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
 
   String? _kratosCourierTemplatesVerificationInvalidEmailBodyHtml;
   String? get kratosCourierTemplatesVerificationInvalidEmailBodyHtml =>
@@ -3377,6 +3411,7 @@ class CreateProjectNormalizedPayloadBuilder
       _ketoNamespaceConfiguration = $v.ketoNamespaceConfiguration;
       _ketoNamespaces = $v.ketoNamespaces?.toBuilder();
       _kratosCookiesSameSite = $v.kratosCookiesSameSite;
+      _kratosCourierChannels = $v.kratosCourierChannels?.toBuilder();
       _kratosCourierDeliveryStrategy = $v.kratosCourierDeliveryStrategy;
       _kratosCourierHttpRequestConfigAuthApiKeyIn =
           $v.kratosCourierHttpRequestConfigAuthApiKeyIn;
@@ -3450,6 +3485,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext;
       _kratosCourierTemplatesVerificationCodeValidEmailSubject =
           $v.kratosCourierTemplatesVerificationCodeValidEmailSubject;
+      _kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext =
+          $v.kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
       _kratosCourierTemplatesVerificationInvalidEmailBodyHtml =
           $v.kratosCourierTemplatesVerificationInvalidEmailBodyHtml;
       _kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext =
@@ -3719,6 +3756,7 @@ class CreateProjectNormalizedPayloadBuilder
               ketoNamespaceConfiguration: ketoNamespaceConfiguration,
               ketoNamespaces: _ketoNamespaces?.build(),
               kratosCookiesSameSite: kratosCookiesSameSite,
+              kratosCourierChannels: _kratosCourierChannels?.build(),
               kratosCourierDeliveryStrategy: kratosCourierDeliveryStrategy,
               kratosCourierHttpRequestConfigAuthApiKeyIn:
                   kratosCourierHttpRequestConfigAuthApiKeyIn,
@@ -3793,6 +3831,8 @@ class CreateProjectNormalizedPayloadBuilder
                   kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
               kratosCourierTemplatesVerificationCodeValidEmailSubject:
                   kratosCourierTemplatesVerificationCodeValidEmailSubject,
+              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext:
+                  kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext,
               kratosCourierTemplatesVerificationInvalidEmailBodyHtml:
                   kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
               kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext:
@@ -3805,8 +3845,7 @@ class CreateProjectNormalizedPayloadBuilder
                   kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
               kratosCourierTemplatesVerificationValidEmailSubject:
                   kratosCourierTemplatesVerificationValidEmailSubject,
-              kratosFeatureFlagsCacheableSessions:
-                  kratosFeatureFlagsCacheableSessions,
+              kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,
@@ -3927,6 +3966,9 @@ class CreateProjectNormalizedPayloadBuilder
 
         _$failedField = 'ketoNamespaces';
         _ketoNamespaces?.build();
+
+        _$failedField = 'kratosCourierChannels';
+        _kratosCourierChannels?.build();
 
         _$failedField = 'kratosIdentitySchemas';
         _kratosIdentitySchemas?.build();

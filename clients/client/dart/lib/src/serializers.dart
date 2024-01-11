@@ -38,6 +38,7 @@ import 'package:ory_client/src/model/continue_with_verification_ui_flow.dart';
 import 'package:ory_client/src/model/courier_message_status.dart';
 import 'package:ory_client/src/model/courier_message_type.dart';
 import 'package:ory_client/src/model/create_custom_domain_body.dart';
+import 'package:ory_client/src/model/create_event_stream_body.dart';
 import 'package:ory_client/src/model/create_identity_body.dart';
 import 'package:ory_client/src/model/create_invite_response.dart';
 import 'package:ory_client/src/model/create_json_web_key_set.dart';
@@ -62,6 +63,7 @@ import 'package:ory_client/src/model/error_browser_location_change_required.dart
 import 'package:ory_client/src/model/error_flow_replaced.dart';
 import 'package:ory_client/src/model/error_generic.dart';
 import 'package:ory_client/src/model/error_o_auth2.dart';
+import 'package:ory_client/src/model/event_stream.dart';
 import 'package:ory_client/src/model/expanded_permission_tree.dart';
 import 'package:ory_client/src/model/flow_error.dart';
 import 'package:ory_client/src/model/generic_error.dart';
@@ -110,6 +112,7 @@ import 'package:ory_client/src/model/json_patch.dart';
 import 'package:ory_client/src/model/json_web_key.dart';
 import 'package:ory_client/src/model/json_web_key_set.dart';
 import 'package:ory_client/src/model/keto_namespace.dart';
+import 'package:ory_client/src/model/list_event_streams.dart';
 import 'package:ory_client/src/model/list_my_workspaces_response.dart';
 import 'package:ory_client/src/model/list_organizations_response.dart';
 import 'package:ory_client/src/model/login_flow.dart';
@@ -125,6 +128,7 @@ import 'package:ory_client/src/model/namespace.dart';
 import 'package:ory_client/src/model/needs_privileged_session_error.dart';
 import 'package:ory_client/src/model/normalized_project.dart';
 import 'package:ory_client/src/model/normalized_project_revision.dart';
+import 'package:ory_client/src/model/normalized_project_revision_courier_channel.dart';
 import 'package:ory_client/src/model/normalized_project_revision_hook.dart';
 import 'package:ory_client/src/model/normalized_project_revision_identity_schema.dart';
 import 'package:ory_client/src/model/normalized_project_revision_third_party_provider.dart';
@@ -188,6 +192,7 @@ import 'package:ory_client/src/model/session_authentication_method.dart';
 import 'package:ory_client/src/model/session_device.dart';
 import 'package:ory_client/src/model/set_active_project_in_console_body.dart';
 import 'package:ory_client/src/model/set_custom_domain_body.dart';
+import 'package:ory_client/src/model/set_event_stream_body.dart';
 import 'package:ory_client/src/model/set_project.dart';
 import 'package:ory_client/src/model/set_project_branding_theme_body.dart';
 import 'package:ory_client/src/model/settings_flow.dart';
@@ -282,6 +287,7 @@ part 'serializers.g.dart';
   CourierMessageStatus,
   CourierMessageType,
   CreateCustomDomainBody,
+  CreateEventStreamBody,
   CreateIdentityBody,
   CreateInviteResponse,
   CreateJsonWebKeySet,
@@ -306,6 +312,7 @@ part 'serializers.g.dart';
   ErrorFlowReplaced,
   ErrorGeneric,
   ErrorOAuth2,
+  EventStream,
   ExpandedPermissionTree,
   FlowError,
   GenericError,
@@ -354,6 +361,7 @@ part 'serializers.g.dart';
   JsonWebKey,
   JsonWebKeySet,
   KetoNamespace,
+  ListEventStreams,
   ListMyWorkspacesResponse,
   ListOrganizationsResponse,
   LoginFlow,
@@ -369,6 +377,7 @@ part 'serializers.g.dart';
   NeedsPrivilegedSessionError,
   NormalizedProject,
   NormalizedProjectRevision,
+  NormalizedProjectRevisionCourierChannel,
   NormalizedProjectRevisionHook,
   NormalizedProjectRevisionIdentitySchema,
   NormalizedProjectRevisionThirdPartyProvider,
@@ -432,6 +441,7 @@ part 'serializers.g.dart';
   SessionDevice,
   SetActiveProjectInConsoleBody,
   SetCustomDomainBody,
+  SetEventStreamBody,
   SetProject,
   SetProjectBrandingThemeBody,
   SettingsFlow,

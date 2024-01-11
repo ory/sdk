@@ -24,8 +24,8 @@ defmodule Ory.Model.OAuth2LoginRequest do
     :client => Ory.Model.OAuth2Client.t,
     :oidc_context => Ory.Model.OAuth2ConsentRequestOpenIdConnectContext.t | nil,
     :request_url => String.t,
-    :requested_access_token_audience => [String.t],
-    :requested_scope => [String.t],
+    :requested_access_token_audience => [String.t] | nil,
+    :requested_scope => [String.t] | nil,
     :session_id => String.t | nil,
     :skip => boolean(),
     :subject => String.t

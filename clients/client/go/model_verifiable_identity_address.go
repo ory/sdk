@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.4.9
+API version: v1.5.0
 Contact: support@ory.sh
 */
 
@@ -35,7 +35,7 @@ type VerifiableIdentityAddress struct {
 	// Indicates if the address has already been verified
 	Verified bool `json:"verified"`
 	VerifiedAt *time.Time `json:"verified_at,omitempty"`
-	// VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema
+	// The delivery method
 	Via string `json:"via"`
 	AdditionalProperties map[string]interface{}
 }

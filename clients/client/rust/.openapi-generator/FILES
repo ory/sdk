@@ -28,6 +28,7 @@ docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
+docs/CreateEventStreamBody.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
@@ -52,6 +53,7 @@ docs/ErrorBrowserLocationChangeRequired.md
 docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
+docs/EventStream.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendApi.md
@@ -103,6 +105,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
@@ -119,6 +122,7 @@ docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
 docs/NormalizedProjectRevision.md
+docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
@@ -187,6 +191,7 @@ docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
+docs/SetEventStreamBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -293,6 +298,7 @@ src/models/continue_with_verification_ui_flow.rs
 src/models/courier_message_status.rs
 src/models/courier_message_type.rs
 src/models/create_custom_domain_body.rs
+src/models/create_event_stream_body.rs
 src/models/create_identity_body.rs
 src/models/create_invite_response.rs
 src/models/create_json_web_key_set.rs
@@ -317,6 +323,7 @@ src/models/error_browser_location_change_required.rs
 src/models/error_flow_replaced.rs
 src/models/error_generic.rs
 src/models/error_o_auth2.rs
+src/models/event_stream.rs
 src/models/expanded_permission_tree.rs
 src/models/flow_error.rs
 src/models/generic_error.rs
@@ -365,6 +372,7 @@ src/models/json_patch.rs
 src/models/json_web_key.rs
 src/models/json_web_key_set.rs
 src/models/keto_namespace.rs
+src/models/list_event_streams.rs
 src/models/list_my_workspaces_response.rs
 src/models/list_organizations_response.rs
 src/models/login_flow.rs
@@ -381,6 +389,7 @@ src/models/namespace.rs
 src/models/needs_privileged_session_error.rs
 src/models/normalized_project.rs
 src/models/normalized_project_revision.rs
+src/models/normalized_project_revision_courier_channel.rs
 src/models/normalized_project_revision_hook.rs
 src/models/normalized_project_revision_identity_schema.rs
 src/models/normalized_project_revision_third_party_provider.rs
@@ -444,6 +453,7 @@ src/models/session_authentication_method.rs
 src/models/session_device.rs
 src/models/set_active_project_in_console_body.rs
 src/models/set_custom_domain_body.rs
+src/models/set_event_stream_body.rs
 src/models/set_project.rs
 src/models/set_project_branding_theme_body.rs
 src/models/settings_flow.rs

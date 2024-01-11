@@ -31,6 +31,7 @@ docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
+docs/CreateEventStreamBody.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
@@ -55,6 +56,7 @@ docs/ErrorBrowserLocationChangeRequired.md
 docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
+docs/EventStream.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendApi.md
@@ -106,6 +108,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
 docs/LoginFlow.md
@@ -122,6 +125,7 @@ docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
 docs/NormalizedProjectRevision.md
+docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
@@ -190,6 +194,7 @@ docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
+docs/SetEventStreamBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -323,6 +328,7 @@ src/main/java/sh/ory/model/ContinueWithVerificationUiFlow.java
 src/main/java/sh/ory/model/CourierMessageStatus.java
 src/main/java/sh/ory/model/CourierMessageType.java
 src/main/java/sh/ory/model/CreateCustomDomainBody.java
+src/main/java/sh/ory/model/CreateEventStreamBody.java
 src/main/java/sh/ory/model/CreateIdentityBody.java
 src/main/java/sh/ory/model/CreateInviteResponse.java
 src/main/java/sh/ory/model/CreateJsonWebKeySet.java
@@ -347,6 +353,7 @@ src/main/java/sh/ory/model/ErrorBrowserLocationChangeRequired.java
 src/main/java/sh/ory/model/ErrorFlowReplaced.java
 src/main/java/sh/ory/model/ErrorGeneric.java
 src/main/java/sh/ory/model/ErrorOAuth2.java
+src/main/java/sh/ory/model/EventStream.java
 src/main/java/sh/ory/model/ExpandedPermissionTree.java
 src/main/java/sh/ory/model/FlowError.java
 src/main/java/sh/ory/model/GenericError.java
@@ -395,6 +402,7 @@ src/main/java/sh/ory/model/JsonPatch.java
 src/main/java/sh/ory/model/JsonWebKey.java
 src/main/java/sh/ory/model/JsonWebKeySet.java
 src/main/java/sh/ory/model/KetoNamespace.java
+src/main/java/sh/ory/model/ListEventStreams.java
 src/main/java/sh/ory/model/ListMyWorkspacesResponse.java
 src/main/java/sh/ory/model/ListOrganizationsResponse.java
 src/main/java/sh/ory/model/LoginFlow.java
@@ -410,6 +418,7 @@ src/main/java/sh/ory/model/Namespace.java
 src/main/java/sh/ory/model/NeedsPrivilegedSessionError.java
 src/main/java/sh/ory/model/NormalizedProject.java
 src/main/java/sh/ory/model/NormalizedProjectRevision.java
+src/main/java/sh/ory/model/NormalizedProjectRevisionCourierChannel.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionHook.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionIdentitySchema.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionThirdPartyProvider.java
@@ -473,6 +482,7 @@ src/main/java/sh/ory/model/SessionAuthenticationMethod.java
 src/main/java/sh/ory/model/SessionDevice.java
 src/main/java/sh/ory/model/SetActiveProjectInConsoleBody.java
 src/main/java/sh/ory/model/SetCustomDomainBody.java
+src/main/java/sh/ory/model/SetEventStreamBody.java
 src/main/java/sh/ory/model/SetProject.java
 src/main/java/sh/ory/model/SetProjectBrandingThemeBody.java
 src/main/java/sh/ory/model/SettingsFlow.java
@@ -574,6 +584,7 @@ src/test/java/sh/ory/model/ContinueWithVerificationUiTest.java
 src/test/java/sh/ory/model/CourierMessageStatusTest.java
 src/test/java/sh/ory/model/CourierMessageTypeTest.java
 src/test/java/sh/ory/model/CreateCustomDomainBodyTest.java
+src/test/java/sh/ory/model/CreateEventStreamBodyTest.java
 src/test/java/sh/ory/model/CreateIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateInviteResponseTest.java
 src/test/java/sh/ory/model/CreateJsonWebKeySetTest.java
@@ -598,6 +609,7 @@ src/test/java/sh/ory/model/ErrorBrowserLocationChangeRequiredTest.java
 src/test/java/sh/ory/model/ErrorFlowReplacedTest.java
 src/test/java/sh/ory/model/ErrorGenericTest.java
 src/test/java/sh/ory/model/ErrorOAuth2Test.java
+src/test/java/sh/ory/model/EventStreamTest.java
 src/test/java/sh/ory/model/ExpandedPermissionTreeTest.java
 src/test/java/sh/ory/model/FlowErrorTest.java
 src/test/java/sh/ory/model/GenericErrorContentTest.java
@@ -646,6 +658,7 @@ src/test/java/sh/ory/model/JsonPatchTest.java
 src/test/java/sh/ory/model/JsonWebKeySetTest.java
 src/test/java/sh/ory/model/JsonWebKeyTest.java
 src/test/java/sh/ory/model/KetoNamespaceTest.java
+src/test/java/sh/ory/model/ListEventStreamsTest.java
 src/test/java/sh/ory/model/ListMyWorkspacesResponseTest.java
 src/test/java/sh/ory/model/ListOrganizationsResponseTest.java
 src/test/java/sh/ory/model/LoginFlowStateTest.java
@@ -659,6 +672,7 @@ src/test/java/sh/ory/model/MessageTest.java
 src/test/java/sh/ory/model/MetricsDatapointTest.java
 src/test/java/sh/ory/model/NamespaceTest.java
 src/test/java/sh/ory/model/NeedsPrivilegedSessionErrorTest.java
+src/test/java/sh/ory/model/NormalizedProjectRevisionCourierChannelTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionHookTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionIdentitySchemaTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionTest.java
@@ -724,6 +738,7 @@ src/test/java/sh/ory/model/SessionDeviceTest.java
 src/test/java/sh/ory/model/SessionTest.java
 src/test/java/sh/ory/model/SetActiveProjectInConsoleBodyTest.java
 src/test/java/sh/ory/model/SetCustomDomainBodyTest.java
+src/test/java/sh/ory/model/SetEventStreamBodyTest.java
 src/test/java/sh/ory/model/SetProjectBrandingThemeBodyTest.java
 src/test/java/sh/ory/model/SetProjectTest.java
 src/test/java/sh/ory/model/SettingsFlowStateTest.java

@@ -50,6 +50,7 @@
 | **keto_namespace_configuration** | **String** | The Revisions&#39; Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration. | [optional] |
 | **keto_namespaces** | [**Array&lt;KetoNamespace&gt;**](KetoNamespace.md) |  | [optional] |
 | **kratos_cookies_same_site** | **String** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] |
+| **kratos_courier_channels** | [**Array&lt;NormalizedProjectRevisionCourierChannel&gt;**](NormalizedProjectRevisionCourierChannel.md) |  | [optional] |
 | **kratos_courier_delivery_strategy** | **String** | The delivery strategy to use when sending emails  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional][default to &#39;smtp&#39;] |
 | **kratos_courier_http_request_config_auth_api_key_in** | **String** | The location of the API key to use in the HTTP email sending service&#39;s authentication  &#x60;header&#x60;: Send the key value pair as a header &#x60;cookie&#x60;: Send the key value pair as a cookie This governs the \&quot;courier.http.auth.config.in\&quot; setting | [optional] |
 | **kratos_courier_http_request_config_auth_api_key_name** | **String** | The name of the API key to use in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.name\&quot; setting | [optional] |
@@ -90,6 +91,7 @@
 | **kratos_courier_templates_verification_code_valid_email_body_html** | **String** | Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification_code.valid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification_code.valid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_valid_email_subject** | **String** | Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.verification_code.valid.email.subject\&quot; setting. | [optional] |
+| **kratos_courier_templates_verification_code_valid_sms_body_plaintext** | **String** | Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext  This governs the \&quot;courier.smtp.templates.verification_code.valid.sms.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_invalid_email_body_html** | **String** | Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_invalid_email_subject** | **String** | Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.subject\&quot; setting. | [optional] |
@@ -243,6 +245,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   keto_namespace_configuration: null,
   keto_namespaces: null,
   kratos_cookies_same_site: null,
+  kratos_courier_channels: null,
   kratos_courier_delivery_strategy: null,
   kratos_courier_http_request_config_auth_api_key_in: null,
   kratos_courier_http_request_config_auth_api_key_name: null,
@@ -283,6 +286,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_courier_templates_verification_code_valid_email_body_html: null,
   kratos_courier_templates_verification_code_valid_email_body_plaintext: null,
   kratos_courier_templates_verification_code_valid_email_subject: null,
+  kratos_courier_templates_verification_code_valid_sms_body_plaintext: null,
   kratos_courier_templates_verification_invalid_email_body_html: null,
   kratos_courier_templates_verification_invalid_email_body_plaintext: null,
   kratos_courier_templates_verification_invalid_email_subject: null,

@@ -20,6 +20,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dailyActiveUsers =
     const QuotaUsageFeatureEnum._('dailyActiveUsers');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_customDomains =
     const QuotaUsageFeatureEnum._('customDomains');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_eventStreams =
+    const QuotaUsageFeatureEnum._('eventStreams');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_sla =
     const QuotaUsageFeatureEnum._('sla');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_collaboratorSeats =
@@ -65,6 +67,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_dailyActiveUsers;
     case 'customDomains':
       return _$quotaUsageFeatureEnum_customDomains;
+    case 'eventStreams':
+      return _$quotaUsageFeatureEnum_eventStreams;
     case 'sla':
       return _$quotaUsageFeatureEnum_sla;
     case 'collaboratorSeats':
@@ -105,6 +109,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_productionProjects,
   _$quotaUsageFeatureEnum_dailyActiveUsers,
   _$quotaUsageFeatureEnum_customDomains,
+  _$quotaUsageFeatureEnum_eventStreams,
   _$quotaUsageFeatureEnum_sla,
   _$quotaUsageFeatureEnum_collaboratorSeats,
   _$quotaUsageFeatureEnum_edgeCache,
@@ -133,6 +138,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'productionProjects': 'production_projects',
     'dailyActiveUsers': 'daily_active_users',
     'customDomains': 'custom_domains',
+    'eventStreams': 'event_streams',
     'sla': 'sla',
     'collaboratorSeats': 'collaborator_seats',
     'edgeCache': 'edge_cache',
@@ -155,6 +161,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'production_projects': 'productionProjects',
     'daily_active_users': 'dailyActiveUsers',
     'custom_domains': 'customDomains',
+    'event_streams': 'eventStreams',
     'sla': 'sla',
     'collaborator_seats': 'collaboratorSeats',
     'edge_cache': 'edgeCache',

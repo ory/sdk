@@ -112,7 +112,7 @@ with ory_client.ApiClient(configuration) as api_client:
                             value="value_example",
                             verified=True,
                             verified_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                            via="via_example",
+                            via="email",
                         ),
                     ],
                 ),
@@ -248,7 +248,7 @@ with ory_client.ApiClient(configuration) as api_client:
                 value="value_example",
                 verified=True,
                 verified_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                via="via_example",
+                via="email",
             ),
         ],
     ) # CreateIdentityBody |  (optional)

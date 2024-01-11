@@ -23,8 +23,6 @@ const MessageTemplateTypeEnum
     const MessageTemplateTypeEnum._('verificationCodeInvalid');
 const MessageTemplateTypeEnum _$messageTemplateTypeEnum_verificationCodeValid =
     const MessageTemplateTypeEnum._('verificationCodeValid');
-const MessageTemplateTypeEnum _$messageTemplateTypeEnum_otp =
-    const MessageTemplateTypeEnum._('otp');
 const MessageTemplateTypeEnum _$messageTemplateTypeEnum_stub =
     const MessageTemplateTypeEnum._('stub');
 const MessageTemplateTypeEnum _$messageTemplateTypeEnum_loginCodeValid =
@@ -50,8 +48,6 @@ MessageTemplateTypeEnum _$messageTemplateTypeEnumValueOf(String name) {
       return _$messageTemplateTypeEnum_verificationCodeInvalid;
     case 'verificationCodeValid':
       return _$messageTemplateTypeEnum_verificationCodeValid;
-    case 'otp':
-      return _$messageTemplateTypeEnum_otp;
     case 'stub':
       return _$messageTemplateTypeEnum_stub;
     case 'loginCodeValid':
@@ -73,7 +69,6 @@ final BuiltSet<MessageTemplateTypeEnum> _$messageTemplateTypeEnumValues =
   _$messageTemplateTypeEnum_verificationValid,
   _$messageTemplateTypeEnum_verificationCodeInvalid,
   _$messageTemplateTypeEnum_verificationCodeValid,
-  _$messageTemplateTypeEnum_otp,
   _$messageTemplateTypeEnum_stub,
   _$messageTemplateTypeEnum_loginCodeValid,
   _$messageTemplateTypeEnum_registrationCodeValid,
@@ -93,7 +88,6 @@ class _$MessageTemplateTypeEnumSerializer
     'verificationValid': 'verification_valid',
     'verificationCodeInvalid': 'verification_code_invalid',
     'verificationCodeValid': 'verification_code_valid',
-    'otp': 'otp',
     'stub': 'stub',
     'loginCodeValid': 'login_code_valid',
     'registrationCodeValid': 'registration_code_valid',
@@ -107,7 +101,6 @@ class _$MessageTemplateTypeEnumSerializer
     'verification_valid': 'verificationValid',
     'verification_code_invalid': 'verificationCodeInvalid',
     'verification_code_valid': 'verificationCodeValid',
-    'otp': 'otp',
     'stub': 'stub',
     'login_code_valid': 'loginCodeValid',
     'registration_code_valid': 'registrationCodeValid',
@@ -135,6 +128,8 @@ class _$Message extends Message {
   @override
   final String body;
   @override
+  final String? channel;
+  @override
   final DateTime createdAt;
   @override
   final BuiltList<MessageDispatch>? dispatches;
@@ -160,6 +155,7 @@ class _$Message extends Message {
 
   _$Message._(
       {required this.body,
+      this.channel,
       required this.createdAt,
       this.dispatches,
       required this.id,
@@ -196,6 +192,7 @@ class _$Message extends Message {
     if (identical(other, this)) return true;
     return other is Message &&
         body == other.body &&
+        channel == other.channel &&
         createdAt == other.createdAt &&
         dispatches == other.dispatches &&
         id == other.id &&
@@ -212,6 +209,7 @@ class _$Message extends Message {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, body.hashCode);
+    _$hash = $jc(_$hash, channel.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, dispatches.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
@@ -230,6 +228,7 @@ class _$Message extends Message {
   String toString() {
     return (newBuiltValueToStringHelper(r'Message')
           ..add('body', body)
+          ..add('channel', channel)
           ..add('createdAt', createdAt)
           ..add('dispatches', dispatches)
           ..add('id', id)
@@ -250,6 +249,10 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
   String? _body;
   String? get body => _$this._body;
   set body(String? body) => _$this._body = body;
+
+  String? _channel;
+  String? get channel => _$this._channel;
+  set channel(String? channel) => _$this._channel = channel;
 
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
@@ -302,6 +305,7 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
     final $v = _$v;
     if ($v != null) {
       _body = $v.body;
+      _channel = $v.channel;
       _createdAt = $v.createdAt;
       _dispatches = $v.dispatches?.toBuilder();
       _id = $v.id;
@@ -338,6 +342,7 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
           new _$Message._(
               body: BuiltValueNullFieldError.checkNotNull(
                   body, r'Message', 'body'),
+              channel: channel,
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'Message', 'createdAt'),
               dispatches: _dispatches?.build(),
