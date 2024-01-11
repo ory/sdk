@@ -249,6 +249,7 @@ docs/ClientVersion.md
 docs/ClientWarning.md
 docs/ClientWorkspace.md
 docs/CourierApi.md
+docs/EventsApi.md
 docs/FrontendApi.md
 docs/IdentityApi.md
 docs/JwkApi.md
@@ -261,6 +262,7 @@ docs/RelationshipApi.md
 docs/WellknownApi.md
 git_push.sh
 src/Ory.Client.Test/Api/CourierApiTests.cs
+src/Ory.Client.Test/Api/EventsApiTests.cs
 src/Ory.Client.Test/Api/FrontendApiTests.cs
 src/Ory.Client.Test/Api/IdentityApiTests.cs
 src/Ory.Client.Test/Api/JwkApiTests.cs
@@ -518,6 +520,7 @@ src/Ory.Client.Test/Model/ClientWarningTests.cs
 src/Ory.Client.Test/Model/ClientWorkspaceTests.cs
 src/Ory.Client.Test/Ory.Client.Test.csproj
 src/Ory.Client/Api/CourierApi.cs
+src/Ory.Client/Api/EventsApi.cs
 src/Ory.Client/Api/FrontendApi.cs
 src/Ory.Client/Api/IdentityApi.cs
 src/Ory.Client/Api/JwkApi.cs

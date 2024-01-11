@@ -5,6 +5,7 @@
 README.md
 composer.json
 docs/Api/CourierApi.md
+docs/Api/EventsApi.md
 docs/Api/FrontendApi.md
 docs/Api/IdentityApi.md
 docs/Api/JwkApi.md
@@ -262,6 +263,7 @@ docs/Model/Warning.md
 docs/Model/Workspace.md
 git_push.sh
 lib/Api/CourierApi.php
+lib/Api/EventsApi.php
 lib/Api/FrontendApi.php
 lib/Api/IdentityApi.php
 lib/Api/JwkApi.php
@@ -524,6 +526,7 @@ lib/Model/Workspace.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/CourierApiTest.php
+test/Api/EventsApiTest.php
 test/Api/FrontendApiTest.php
 test/Api/IdentityApiTest.php
 test/Api/JwkApiTest.php

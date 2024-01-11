@@ -55,6 +55,7 @@ docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
 docs/EventStream.md
+docs/EventsApi.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendApi.md
@@ -296,6 +297,7 @@ git_push.sh
 ory_client/__init__.py
 ory_client/api/__init__.py
 ory_client/api/courier_api.py
+ory_client/api/events_api.py
 ory_client/api/frontend_api.py
 ory_client/api/identity_api.py
 ory_client/api/jwk_api.py
@@ -649,6 +651,7 @@ test/test_error_flow_replaced.py
 test/test_error_generic.py
 test/test_error_o_auth2.py
 test/test_event_stream.py
+test/test_events_api.py
 test/test_expanded_permission_tree.py
 test/test_flow_error.py
 test/test_frontend_api.py

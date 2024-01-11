@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.5.0
+  version: v1.5.1
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -3706,6 +3706,242 @@ paths:
       summary: Update an Ory Network Project Configuration
       tags:
       - project
+      x-content-type: application/json
+      x-accepts: application/json
+  /projects/{project_id}/eventstreams:
+    get:
+      operationId: listEventStreams
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listEventStreams'
+          description: listEventStreams
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: List all event streams for the project. This endpoint is not paginated.
+      tags:
+      - events
+      x-accepts: application/json
+    post:
+      operationId: createEventStream
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createEventStreamBody'
+        required: true
+        x-originalParamName: Body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventStream'
+          description: eventStream
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Create an event stream for your project.
+      tags:
+      - events
+      x-content-type: application/json
+      x-accepts: application/json
+  /projects/{project_id}/eventstreams/{event_stream_id}:
+    delete:
+      description: Remove an event stream from a project.
+      operationId: deleteEventStream
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Event Stream ID
+
+          The ID of the event stream to be deleted, as returned when created.
+        explode: false
+        in: path
+        name: event_stream_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Remove an event stream from a project
+      tags:
+      - events
+      x-accepts: application/json
+    put:
+      operationId: setEventStream
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Event Stream ID
+
+          The event stream's ID.
+        explode: false
+        in: path
+        name: event_stream_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/setEventStreamBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventStream'
+          description: eventStream
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Update an event stream for a project.
+      tags:
+      - events
       x-content-type: application/json
       x-accepts: application/json
   /projects/{project_id}/metrics:
@@ -9945,6 +10181,13 @@ components:
       type: object
     eventStream:
       description: Event Stream
+      example:
+        role_arn: role_arn
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        topic_arn: topic_arn
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: type
       properties:
         created_at:
           format: date-time
@@ -11083,6 +11326,20 @@ components:
       type: array
     listEventStreams:
       description: Event Stream List
+      example:
+        event_streams:
+        - role_arn: role_arn
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          topic_arn: topic_arn
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+        - role_arn: role_arn
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          topic_arn: topic_arn
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
       properties:
         event_streams:
           items:

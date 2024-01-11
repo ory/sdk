@@ -4,6 +4,7 @@
 README.md
 api/openapi.yaml
 api_courier.go
+api_events.go
 api_frontend.go
 api_identity.go
 api_jwk.go
@@ -67,6 +68,7 @@ docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
 docs/EventStream.md
+docs/EventsAPI.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendAPI.md
@@ -522,6 +524,7 @@ model_warning.go
 model_workspace.go
 response.go
 test/api_courier_test.go
+test/api_events_test.go
 test/api_frontend_test.go
 test/api_identity_test.go
 test/api_jwk_test.go

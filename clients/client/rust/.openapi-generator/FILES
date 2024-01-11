@@ -54,6 +54,7 @@ docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
 docs/EventStream.md
+docs/EventsApi.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendApi.md
@@ -262,6 +263,7 @@ docs/Workspace.md
 git_push.sh
 src/apis/configuration.rs
 src/apis/courier_api.rs
+src/apis/events_api.rs
 src/apis/frontend_api.rs
 src/apis/identity_api.rs
 src/apis/jwk_api.rs

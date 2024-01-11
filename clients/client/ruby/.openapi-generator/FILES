@@ -58,6 +58,7 @@ docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
 docs/EventStream.md
+docs/EventsApi.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendApi.md
@@ -266,6 +267,7 @@ docs/Workspace.md
 git_push.sh
 lib/ory-client.rb
 lib/ory-client/api/courier_api.rb
+lib/ory-client/api/events_api.rb
 lib/ory-client/api/frontend_api.rb
 lib/ory-client/api/identity_api.rb
 lib/ory-client/api/jwk_api.rb
@@ -527,6 +529,7 @@ lib/ory-client/models/workspace.rb
 lib/ory-client/version.rb
 ory-client.gemspec
 spec/api/courier_api_spec.rb
+spec/api/events_api_spec.rb
 spec/api/frontend_api_spec.rb
 spec/api/identity_api_spec.rb
 spec/api/jwk_api_spec.rb

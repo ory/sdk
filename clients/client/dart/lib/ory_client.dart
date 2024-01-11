@@ -10,6 +10,7 @@ export 'package:ory_client/src/serializers.dart';
 export 'package:ory_client/src/model/date.dart';
 
 export 'package:ory_client/src/api/courier_api.dart';
+export 'package:ory_client/src/api/events_api.dart';
 export 'package:ory_client/src/api/frontend_api.dart';
 export 'package:ory_client/src/api/identity_api.dart';
 export 'package:ory_client/src/api/jwk_api.dart';

@@ -10,6 +10,7 @@ import 'package:ory_client/src/auth/basic_auth.dart';
 import 'package:ory_client/src/auth/bearer_auth.dart';
 import 'package:ory_client/src/auth/oauth.dart';
 import 'package:ory_client/src/api/courier_api.dart';
+import 'package:ory_client/src/api/events_api.dart';
 import 'package:ory_client/src/api/frontend_api.dart';
 import 'package:ory_client/src/api/identity_api.dart';
 import 'package:ory_client/src/api/jwk_api.dart';
@@ -79,6 +80,12 @@ class OryClient {
   /// by doing that all interceptors will not be executed
   CourierApi getCourierApi() {
     return CourierApi(dio, serializers);
+  }
+
+  /// Get EventsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  EventsApi getEventsApi() {
+    return EventsApi(dio, serializers);
   }
 
   /// Get FrontendApi instance, base route and serializer can be overridden by a given but be careful,

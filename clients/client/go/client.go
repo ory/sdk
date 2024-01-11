@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.0
+API version: v1.5.1
 Contact: support@ory.sh
 */
 
@@ -43,7 +43,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the Ory APIs API vv1.5.0
+// APIClient manages communication with the Ory APIs API vv1.5.1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -52,6 +52,8 @@ type APIClient struct {
 	// API Services
 
 	CourierAPI CourierAPI
+
+	EventsAPI EventsAPI
 
 	FrontendAPI FrontendAPI
 
@@ -91,6 +93,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.CourierAPI = (*CourierAPIService)(&c.common)
+	c.EventsAPI = (*EventsAPIService)(&c.common)
 	c.FrontendAPI = (*FrontendAPIService)(&c.common)
 	c.IdentityAPI = (*IdentityAPIService)(&c.common)
 	c.JwkAPI = (*JwkAPIService)(&c.common)

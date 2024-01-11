@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.5.0
-  - Build date: 2024-01-11T09:01:54.811187495Z[Etc/UTC]
+- API version: v1.5.1
+  - Build date: 2024-01-11T16:56:26.893672652Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.5.0</version>
+  <version>v1.5.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.5.0"
+     implementation "sh.ory:client:v1.5.1"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.5.0.jar`
+* `target/client-v1.5.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -123,6 +123,10 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getCourierMessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages
+*EventsApi* | [**createEventStream**](docs/EventsApi.md#createEventStream) | **POST** /projects/{project_id}/eventstreams | Create an event stream for your project.
+*EventsApi* | [**deleteEventStream**](docs/EventsApi.md#deleteEventStream) | **DELETE** /projects/{project_id}/eventstreams/{event_stream_id} | Remove an event stream from a project
+*EventsApi* | [**listEventStreams**](docs/EventsApi.md#listEventStreams) | **GET** /projects/{project_id}/eventstreams | List all event streams for the project. This endpoint is not paginated.
+*EventsApi* | [**setEventStream**](docs/EventsApi.md#setEventStream) | **PUT** /projects/{project_id}/eventstreams/{event_stream_id} | Update an event stream for a project.
 *FrontendApi* | [**createBrowserLoginFlow**](docs/FrontendApi.md#createBrowserLoginFlow) | **GET** /self-service/login/browser | Create Login Flow for Browsers
 *FrontendApi* | [**createBrowserLogoutFlow**](docs/FrontendApi.md#createBrowserLogoutFlow) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
 *FrontendApi* | [**createBrowserRecoveryFlow**](docs/FrontendApi.md#createBrowserRecoveryFlow) | **GET** /self-service/recovery/browser | Create Recovery Flow for Browsers

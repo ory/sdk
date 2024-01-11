@@ -15,6 +15,7 @@
 
 # Import APIs into API package:
 from ory_client.api.courier_api import CourierApi
+from ory_client.api.events_api import EventsApi
 from ory_client.api.frontend_api import FrontendApi
 from ory_client.api.identity_api import IdentityApi
 from ory_client.api.jwk_api import JwkApi

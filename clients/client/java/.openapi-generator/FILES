@@ -57,6 +57,7 @@ docs/ErrorFlowReplaced.md
 docs/ErrorGeneric.md
 docs/ErrorOAuth2.md
 docs/EventStream.md
+docs/EventsApi.md
 docs/ExpandedPermissionTree.md
 docs/FlowError.md
 docs/FrontendApi.md
@@ -285,6 +286,7 @@ src/main/java/sh/ory/ServerConfiguration.java
 src/main/java/sh/ory/ServerVariable.java
 src/main/java/sh/ory/StringUtil.java
 src/main/java/sh/ory/api/CourierApi.java
+src/main/java/sh/ory/api/EventsApi.java
 src/main/java/sh/ory/api/FrontendApi.java
 src/main/java/sh/ory/api/IdentityApi.java
 src/main/java/sh/ory/api/JwkApi.java
@@ -550,6 +552,7 @@ src/main/java/sh/ory/model/Version.java
 src/main/java/sh/ory/model/Warning.java
 src/main/java/sh/ory/model/Workspace.java
 src/test/java/sh/ory/api/CourierApiTest.java
+src/test/java/sh/ory/api/EventsApiTest.java
 src/test/java/sh/ory/api/FrontendApiTest.java
 src/test/java/sh/ory/api/IdentityApiTest.java
 src/test/java/sh/ory/api/JwkApiTest.java

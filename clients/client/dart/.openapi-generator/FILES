@@ -53,6 +53,7 @@ doc/ErrorFlowReplaced.md
 doc/ErrorGeneric.md
 doc/ErrorOAuth2.md
 doc/EventStream.md
+doc/EventsApi.md
 doc/ExpandedPermissionTree.md
 doc/FlowError.md
 doc/FrontendApi.md
@@ -261,6 +262,7 @@ doc/Workspace.md
 lib/ory_client.dart
 lib/src/api.dart
 lib/src/api/courier_api.dart
+lib/src/api/events_api.dart
 lib/src/api/frontend_api.dart
 lib/src/api/identity_api.dart
 lib/src/api/jwk_api.dart
@@ -577,6 +579,7 @@ test/error_flow_replaced_test.dart
 test/error_generic_test.dart
 test/error_o_auth2_test.dart
 test/event_stream_test.dart
+test/events_api_test.dart
 test/expanded_permission_tree_test.dart
 test/flow_error_test.dart
 test/frontend_api_test.dart

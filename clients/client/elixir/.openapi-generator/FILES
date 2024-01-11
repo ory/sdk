@@ -5,6 +5,7 @@ README.md
 config/config.exs
 config/runtime.exs
 lib/ory/api/courier.ex
+lib/ory/api/events.ex
 lib/ory/api/frontend.ex
 lib/ory/api/identity.ex
 lib/ory/api/jwk.ex
