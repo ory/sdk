@@ -321,6 +321,59 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
+swift () {
+  echo "Generating Swift..."
+
+  dir="clients/${PROJECT}/swift"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
+
+  # file="${dir}/mix.exs"
+  
+  cd $dir
+  mkdir OryClient
+
+  # create swift package 
+  command swift package --package-path OryClient init --type executable
+
+  # copy transcoder to package sources
+  cp /sdk/contrib/clients/swift/CustomDateTranscoder.swift /sdk/clients/${PROJECT}/swift/OryClient/Sources
+
+  # copy openapi specification
+  cp /sdk/contrib/clients/swift/openapi.yaml /sdk/clients/${PROJECT}/swift/OryClient/Sources
+   
+  cd OryClient
+
+  # create podspec
+  pod spec create OryClient  
+
+  # change pod properties
+
+  sed -i '' -e "s/^ *spec\.version *=.*/spec.version = "$RAW_VERSION"/" \
+    -e "s/^ *spec\.name *=.*/spec.name = ${SWIFT_PROJECT_NAME}/" \
+    -e "s/^ *spec\.summary *=.*/spec.summary = ${SWIFT_PROJECT_SUMMARY}/" \
+    -e "s/^ *spec\.homepage *=.*/spec.homepage = ${SWIFT_PROJECT_NAME}/" \
+    -e "s/^ *spec\.author *=.*/spec.author = "ORY GmbH"/" \
+    -e "s/^ *spec\.homepage *=.*/spec.homepage = "https:\/\/www.ory.sh\/docs\/sdk"\nhomepage/" \
+    -e "s/^ *spec\.license *=.*/spec.license = "Apache-2.0"/" \
+    -e "s/^ *spec\.source_files *=.*/spec.source_files = "Sources\/OryClient\/\*\*\/\*"/" \
+    -e "s/^ *spec\.source *=.*/spec.source = "{ :git => "${SWIFT_POD_SOURCE}", :tag => "#{spec.version}" }"/" OryClient
+  # # (sed "s/licenses:.*$/licenses: [\"Apache-2.0\"],\n      links: %{\n        \"GitHub\" => \"https:\/\/github.com\/ory\/sdk\",\n        \"Website\" => \"https:\/\/www.ory.sh\",\n        \"Documentation\" => \"https:\/\/www.ory.sh\/docs\",\n        \"Product\" => \"https:\/\/console.ory.sh\"\n      }/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+  # # (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+  
+  # generate client
+  swift-openapi-generator generate --mode types --mode client --output-directory Classes Sources/openapi.yaml  
+  # install sourcedocs
+
+  brew install sourcedocs
+
+  # generate docs
+  sourcedocs generate --spm-module OryClient --min-acl internal --table-of-contents
+
+  # copy license
+  cp "LICENSE" "clients/${PROJECT}/swift"
+}
+
 elixir
 typescript
 rust
@@ -331,5 +384,6 @@ python
 ruby
 dotnet
 dart
+swift 
 
 cleanup

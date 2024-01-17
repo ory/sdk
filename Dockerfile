@@ -2,6 +2,31 @@ FROM openjdk:15-buster
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates ssh bash
 
+RUN apt-get -y install libncurses5 clang libcurl4 libpython2.7 libpython2.7-dev
+
+RUN apt-get -y install libxml2
+
+RUN \
+	curl https://download.swift.org/swift-5.9.2-release/ubuntu1804/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu18.04.tar.gz -o swift.tar.gz &&\
+	tar xzf swift.tar.gz && \
+	mv swift-5.9.2-RELEASE-ubuntu18.04 /usr/share/swift && \
+	export PATH=/usr/share/swift/usr/bin:$PATH && \
+	swift -v 
+
+ENV PATH /usr/share/swift/usr/bin:$PATH
+
+RUN git clone https://github.com/apple/swift-openapi-generator.git \
+&& cd swift-openapi-generator \
+&& swift build \
+&& ln -s .build/debug/swift-openapi-generator /usr/local/bin/swift-openapi-generator \
+&& swift-openapi-generator --help
+
+RUN git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew \
+&& mkdir ~/.linuxbrew/bin \
+&& ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin \
+&& eval $(~/.linuxbrew/bin/brew shellenv) \
+&& brew --version
+
 ENV GOLANG_VERSION 1.17
 
 RUN set -eux; \
