@@ -18,7 +18,7 @@ ENV PATH /usr/share/swift/usr/bin:$PATH
 RUN git clone https://github.com/apple/swift-openapi-generator.git \
 && cd swift-openapi-generator \
 && swift build \
-&& ln -s .build/debug/swift-openapi-generator /usr/local/bin/swift-openapi-generator \
+&& ln -s $(pwd)/.build/debug/swift-openapi-generator /usr/local/bin/swift-openapi-generator \
 && swift-openapi-generator --help
 
 RUN git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew \
