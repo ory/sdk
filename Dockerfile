@@ -2,10 +2,11 @@ FROM openjdk:15-buster
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates ssh bash
 
-RUN apt-get -y install libncurses5 clang libcurl4 libpython2.7 libpython2.7-dev
+RUN apt-get -y install libncurses5 clang libcurl4 libpython2.7 libpython2.7-dev 
 
 RUN apt-get -y install libxml2
 
+# Install swift
 RUN \
 	curl https://download.swift.org/swift-5.9.2-release/ubuntu1804/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu18.04.tar.gz -o swift.tar.gz &&\
 	tar xzf swift.tar.gz && \
@@ -15,17 +16,31 @@ RUN \
 
 ENV PATH /usr/share/swift/usr/bin:$PATH
 
+# Install swift-openapi-generator
 RUN git clone https://github.com/apple/swift-openapi-generator.git \
 && cd swift-openapi-generator \
 && swift build \
 && ln -s $(pwd)/.build/debug/swift-openapi-generator /usr/local/bin/swift-openapi-generator \
 && swift-openapi-generator --help
 
-RUN git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew \
-&& mkdir ~/.linuxbrew/bin \
-&& ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin \
-&& eval $(~/.linuxbrew/bin/brew shellenv) \
-&& brew --version
+# Install Homebrew
+RUN git clone https://github.com/Homebrew/brew /home/linuxbrew/Homebrew \
+    && mkdir -p /home/linuxbrew/bin \
+    && ln -s /home/linuxbrew/Homebrew/bin/brew /home/linuxbrew/bin/ \
+    && export PATH="/home/linuxbrew/bin:$PATH"
+
+# Export Homebrew binary directory to PATH
+ENV PATH /home/linuxbrew/bin:$PATH
+
+# Disable automatic updates
+ENV HOMEBREW_NO_AUTO_UPDATE=1
+
+# Install Cocoapods
+RUN brew install cocoapods
+
+# Install SourceDocs to generate swift client documentation
+RUN brew install sourcedocs
+
 
 ENV GOLANG_VERSION 1.17
 
