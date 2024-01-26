@@ -35,9 +35,6 @@ ENV PATH /home/linuxbrew/bin:$PATH
 # Disable automatic updates
 ENV HOMEBREW_NO_AUTO_UPDATE=1
 
-# Install Cocoapods
-RUN brew install cocoapods
-
 # Install SourceDocs to generate swift client documentation
 RUN brew install sourcedocs
 
