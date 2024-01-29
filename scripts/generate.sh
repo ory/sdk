@@ -337,41 +337,27 @@ swift () {
   command swift package --package-path OryClient init --type executable
 
   # copy transcoder to package sources
-  cp /sdk/contrib/clients/swift/CustomDateTranscoder.swift /sdk/clients/${PROJECT}/swift/OryClient/Sources
+  cp ../../../contrib/clients/swift/CustomDateTranscoder.swift ../../../clients/${PROJECT}/swift/OryClient/Sources
 
   # copy openapi specification
-  cp /sdk/contrib/clients/swift/openapi.yaml /sdk/clients/${PROJECT}/swift/OryClient/Sources
-   
+  cp ../../../contrib/clients/swift/openapi.yaml ../../../clients/${PROJECT}/swift/OryClient/Sources
+
   cd OryClient
 
-  # create podspec
-  pod spec create OryClient  
+  # delete unused file
+  rm Sources/main.swift
 
-  # change pod properties
+  # replace package description
+  cp ../../../../contrib/clients/swift/Package.swift Package.swift
 
-  sed -i '' -e "s/^ *spec\.version *=.*/spec.version = "$RAW_VERSION"/" \
-    -e "s/^ *spec\.name *=.*/spec.name = ${SWIFT_PROJECT_NAME}/" \
-    -e "s/^ *spec\.summary *=.*/spec.summary = ${SWIFT_PROJECT_SUMMARY}/" \
-    -e "s/^ *spec\.homepage *=.*/spec.homepage = ${SWIFT_PROJECT_NAME}/" \
-    -e "s/^ *spec\.author *=.*/spec.author = "ORY GmbH"/" \
-    -e "s/^ *spec\.homepage *=.*/spec.homepage = "https:\/\/www.ory.sh\/docs\/sdk"\nhomepage/" \
-    -e "s/^ *spec\.license *=.*/spec.license = "Apache-2.0"/" \
-    -e "s/^ *spec\.source_files *=.*/spec.source_files = "Sources\/OryClient\/\*\*\/\*"/" \
-    -e "s/^ *spec\.source *=.*/spec.source = "{ :git => "${SWIFT_POD_SOURCE}", :tag => "#{spec.version}" }"/" OryClient
-  # # (sed "s/licenses:.*$/licenses: [\"Apache-2.0\"],\n      links: %{\n        \"GitHub\" => \"https:\/\/github.com\/ory\/sdk\",\n        \"Website\" => \"https:\/\/www.ory.sh\",\n        \"Documentation\" => \"https:\/\/www.ory.sh\/docs\",\n        \"Product\" => \"https:\/\/console.ory.sh\"\n      }/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
-  # # (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
-  
   # generate client
-  swift-openapi-generator generate --mode types --mode client --output-directory Classes Sources/openapi.yaml  
-  # install sourcedocs
-
-  brew install sourcedocs
+  swift-openapi-generator generate --mode types --mode client --output-directory Sources/Classes Sources/openapi.yaml  
 
   # generate docs
   sourcedocs generate --spm-module OryClient --min-acl internal --table-of-contents
 
-  # copy license
-  cp "LICENSE" "clients/${PROJECT}/swift"
+   # copy license
+  cp ../../../../LICENSE ".."
 }
 
 elixir
