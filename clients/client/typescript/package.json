@@ -1,6 +1,6 @@
 {
   "name": "@ory/client",
-  "version": "v1.5.1",
+  "version": "v1.5.2",
   "description": "OpenAPI client for @ory/client",
   "author": "ORY GmbH",
   "repository": {
@@ -24,7 +24,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^1.6.1"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",
