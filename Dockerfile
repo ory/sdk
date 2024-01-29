@@ -6,39 +6,6 @@ RUN apt-get -y install libncurses5 clang libcurl4 libpython2.7 libpython2.7-dev
 
 RUN apt-get -y install libxml2
 
-# Install swift
-RUN \
-	curl https://download.swift.org/swift-5.9.2-release/ubuntu1804/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu18.04.tar.gz -o swift.tar.gz &&\
-	tar xzf swift.tar.gz && \
-	mv swift-5.9.2-RELEASE-ubuntu18.04 /usr/share/swift && \
-	export PATH=/usr/share/swift/usr/bin:$PATH && \
-	swift -v 
-
-ENV PATH /usr/share/swift/usr/bin:$PATH
-
-# Install swift-openapi-generator
-RUN git clone https://github.com/apple/swift-openapi-generator.git \
-&& cd swift-openapi-generator \
-&& swift build \
-&& ln -s $(pwd)/.build/debug/swift-openapi-generator /usr/local/bin/swift-openapi-generator \
-&& swift-openapi-generator --help
-
-# Install Homebrew
-RUN git clone https://github.com/Homebrew/brew /home/linuxbrew/Homebrew \
-    && mkdir -p /home/linuxbrew/bin \
-    && ln -s /home/linuxbrew/Homebrew/bin/brew /home/linuxbrew/bin/ \
-    && export PATH="/home/linuxbrew/bin:$PATH"
-
-# Export Homebrew binary directory to PATH
-ENV PATH /home/linuxbrew/bin:$PATH
-
-# Disable automatic updates
-ENV HOMEBREW_NO_AUTO_UPDATE=1
-
-# Install SourceDocs to generate swift client documentation
-RUN brew install sourcedocs
-
-
 ENV GOLANG_VERSION 1.17
 
 RUN set -eux; \
@@ -162,6 +129,38 @@ RUN td=$(mktemp) \
 RUN gem install bundler -v 2.3.26 && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends ruby-dev
+
+# swift
+RUN \
+	curl https://download.swift.org/swift-5.9.2-release/ubuntu1804/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu18.04.tar.gz -o swift.tar.gz &&\
+	tar xzf swift.tar.gz && \
+	mv swift-5.9.2-RELEASE-ubuntu18.04 /usr/share/swift && \
+	export PATH=/usr/share/swift/usr/bin:$PATH && \
+	swift -v 
+
+ENV PATH /usr/share/swift/usr/bin:$PATH
+
+# Install swift-openapi-generator
+RUN git clone https://github.com/apple/swift-openapi-generator.git \
+&& cd swift-openapi-generator \
+&& swift build \
+&& ln -s $(pwd)/.build/debug/swift-openapi-generator /usr/local/bin/swift-openapi-generator \
+&& swift-openapi-generator --help
+
+# Install Homebrew
+RUN git clone https://github.com/Homebrew/brew /home/linuxbrew/Homebrew \
+    && mkdir -p /home/linuxbrew/bin \
+    && ln -s /home/linuxbrew/Homebrew/bin/brew /home/linuxbrew/bin/ \
+    && export PATH="/home/linuxbrew/bin:$PATH"
+
+# Export Homebrew binary directory to PATH
+ENV PATH /home/linuxbrew/bin:$PATH
+
+# Disable automatic updates
+ENV HOMEBREW_NO_AUTO_UPDATE=1
+
+# Install SourceDocs to generate swift client documentation
+RUN brew install sourcedocs
 
 ADD go.mod go.mod
 ADD go.sum go.sum
