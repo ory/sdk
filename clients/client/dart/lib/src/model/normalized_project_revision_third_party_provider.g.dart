@@ -86,6 +86,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   @override
   final String? azureTenant;
   @override
+  final String? claimsSource;
+  @override
   final String? clientId;
   @override
   final String? clientSecret;
@@ -134,6 +136,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
       this.appleTeamId,
       this.authUrl,
       this.azureTenant,
+      this.claimsSource,
       this.clientId,
       this.clientSecret,
       this.createdAt,
@@ -173,6 +176,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
         appleTeamId == other.appleTeamId &&
         authUrl == other.authUrl &&
         azureTenant == other.azureTenant &&
+        claimsSource == other.claimsSource &&
         clientId == other.clientId &&
         clientSecret == other.clientSecret &&
         createdAt == other.createdAt &&
@@ -201,6 +205,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
     _$hash = $jc(_$hash, appleTeamId.hashCode);
     _$hash = $jc(_$hash, authUrl.hashCode);
     _$hash = $jc(_$hash, azureTenant.hashCode);
+    _$hash = $jc(_$hash, claimsSource.hashCode);
     _$hash = $jc(_$hash, clientId.hashCode);
     _$hash = $jc(_$hash, clientSecret.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
@@ -232,6 +237,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
           ..add('appleTeamId', appleTeamId)
           ..add('authUrl', authUrl)
           ..add('azureTenant', azureTenant)
+          ..add('claimsSource', claimsSource)
           ..add('clientId', clientId)
           ..add('clientSecret', clientSecret)
           ..add('createdAt', createdAt)
@@ -287,6 +293,10 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   String? _azureTenant;
   String? get azureTenant => _$this._azureTenant;
   set azureTenant(String? azureTenant) => _$this._azureTenant = azureTenant;
+
+  String? _claimsSource;
+  String? get claimsSource => _$this._claimsSource;
+  set claimsSource(String? claimsSource) => _$this._claimsSource = claimsSource;
 
   String? _clientId;
   String? get clientId => _$this._clientId;
@@ -375,6 +385,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
       _appleTeamId = $v.appleTeamId;
       _authUrl = $v.authUrl;
       _azureTenant = $v.azureTenant;
+      _claimsSource = $v.claimsSource;
       _clientId = $v.clientId;
       _clientSecret = $v.clientSecret;
       _createdAt = $v.createdAt;
@@ -424,6 +435,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
               appleTeamId: appleTeamId,
               authUrl: authUrl,
               azureTenant: azureTenant,
+              claimsSource: claimsSource,
               clientId: clientId,
               clientSecret: clientSecret,
               createdAt: createdAt,

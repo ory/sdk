@@ -431,7 +431,7 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = permission_api.PermissionApi(api_client)
-    max_depth = 1 # int | nolint:deadcode,unused (optional)
+    max_depth = 1 # int |  (optional)
     post_check_permission_or_error_body = PostCheckPermissionOrErrorBody(
         namespace="namespace_example",
         object="object_example",
@@ -459,7 +459,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_depth** | **int**| nolint:deadcode,unused | [optional]
+ **max_depth** | **int**|  | [optional]
  **post_check_permission_or_error_body** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)|  | [optional]
 
 ### Return type

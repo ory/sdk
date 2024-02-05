@@ -393,6 +393,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \"courier.smtp.templates.login_code.valid.sms.plaintext\" setting.
+    // String kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext
+    test('to test the property `kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
     // String kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
     test('to test the property `kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml`', () async {
@@ -895,6 +901,12 @@ void main() {
     // Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
     // bool kratosSelfserviceMethodsCodeEnabled
     test('to test the property `kratosSelfserviceMethodsCodeEnabled`', () async {
+      // TODO
+    });
+
+    // Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
+    // bool kratosSelfserviceMethodsCodeMfaEnabled
+    test('to test the property `kratosSelfserviceMethodsCodeMfaEnabled`', () async {
       // TODO
     });
 

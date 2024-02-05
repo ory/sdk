@@ -11,10 +11,11 @@ part 'identity_credentials_code.g.dart';
 /// CredentialsCode represents a one time login/registration code
 ///
 /// Properties:
-/// * [addressType] 
+/// * [addressType] - The type of the address for this code
 /// * [usedAt] 
 @BuiltValue()
 abstract class IdentityCredentialsCode implements Built<IdentityCredentialsCode, IdentityCredentialsCodeBuilder> {
+  /// The type of the address for this code
   @BuiltValueField(wireName: r'address_type')
   String? get addressType;
 

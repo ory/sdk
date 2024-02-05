@@ -6,6 +6,30 @@ part of 'project_metadata.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const ProjectMetadataEnvironmentEnum _$projectMetadataEnvironmentEnum_prod =
+    const ProjectMetadataEnvironmentEnum._('prod');
+const ProjectMetadataEnvironmentEnum _$projectMetadataEnvironmentEnum_dev =
+    const ProjectMetadataEnvironmentEnum._('dev');
+
+ProjectMetadataEnvironmentEnum _$projectMetadataEnvironmentEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'prod':
+      return _$projectMetadataEnvironmentEnum_prod;
+    case 'dev':
+      return _$projectMetadataEnvironmentEnum_dev;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<ProjectMetadataEnvironmentEnum>
+    _$projectMetadataEnvironmentEnumValues = new BuiltSet<
+        ProjectMetadataEnvironmentEnum>(const <ProjectMetadataEnvironmentEnum>[
+  _$projectMetadataEnvironmentEnum_prod,
+  _$projectMetadataEnvironmentEnum_dev,
+]);
+
 const ProjectMetadataStateEnum _$projectMetadataStateEnum_running =
     const ProjectMetadataStateEnum._('running');
 const ProjectMetadataStateEnum _$projectMetadataStateEnum_halted =
@@ -33,8 +57,41 @@ final BuiltSet<ProjectMetadataStateEnum> _$projectMetadataStateEnumValues =
   _$projectMetadataStateEnum_deleted,
 ]);
 
+Serializer<ProjectMetadataEnvironmentEnum>
+    _$projectMetadataEnvironmentEnumSerializer =
+    new _$ProjectMetadataEnvironmentEnumSerializer();
 Serializer<ProjectMetadataStateEnum> _$projectMetadataStateEnumSerializer =
     new _$ProjectMetadataStateEnumSerializer();
+
+class _$ProjectMetadataEnvironmentEnumSerializer
+    implements PrimitiveSerializer<ProjectMetadataEnvironmentEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'prod': 'prod',
+    'dev': 'dev',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'prod': 'prod',
+    'dev': 'dev',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[ProjectMetadataEnvironmentEnum];
+  @override
+  final String wireName = 'ProjectMetadataEnvironmentEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, ProjectMetadataEnvironmentEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  ProjectMetadataEnvironmentEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      ProjectMetadataEnvironmentEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
 
 class _$ProjectMetadataStateEnumSerializer
     implements PrimitiveSerializer<ProjectMetadataStateEnum> {
@@ -71,6 +128,8 @@ class _$ProjectMetadata extends ProjectMetadata {
   @override
   final DateTime createdAt;
   @override
+  final ProjectMetadataEnvironmentEnum environment;
+  @override
   final BuiltList<String> hosts;
   @override
   final String id;
@@ -94,6 +153,7 @@ class _$ProjectMetadata extends ProjectMetadata {
 
   _$ProjectMetadata._(
       {required this.createdAt,
+      required this.environment,
       required this.hosts,
       required this.id,
       required this.name,
@@ -106,6 +166,8 @@ class _$ProjectMetadata extends ProjectMetadata {
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'ProjectMetadata', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        environment, r'ProjectMetadata', 'environment');
     BuiltValueNullFieldError.checkNotNull(hosts, r'ProjectMetadata', 'hosts');
     BuiltValueNullFieldError.checkNotNull(id, r'ProjectMetadata', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'ProjectMetadata', 'name');
@@ -127,6 +189,7 @@ class _$ProjectMetadata extends ProjectMetadata {
     if (identical(other, this)) return true;
     return other is ProjectMetadata &&
         createdAt == other.createdAt &&
+        environment == other.environment &&
         hosts == other.hosts &&
         id == other.id &&
         name == other.name &&
@@ -142,6 +205,7 @@ class _$ProjectMetadata extends ProjectMetadata {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, environment.hashCode);
     _$hash = $jc(_$hash, hosts.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
@@ -159,6 +223,7 @@ class _$ProjectMetadata extends ProjectMetadata {
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectMetadata')
           ..add('createdAt', createdAt)
+          ..add('environment', environment)
           ..add('hosts', hosts)
           ..add('id', id)
           ..add('name', name)
@@ -179,6 +244,11 @@ class ProjectMetadataBuilder
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  ProjectMetadataEnvironmentEnum? _environment;
+  ProjectMetadataEnvironmentEnum? get environment => _$this._environment;
+  set environment(ProjectMetadataEnvironmentEnum? environment) =>
+      _$this._environment = environment;
 
   ListBuilder<String>? _hosts;
   ListBuilder<String> get hosts => _$this._hosts ??= new ListBuilder<String>();
@@ -226,6 +296,7 @@ class ProjectMetadataBuilder
     final $v = _$v;
     if ($v != null) {
       _createdAt = $v.createdAt;
+      _environment = $v.environment;
       _hosts = $v.hosts.toBuilder();
       _id = $v.id;
       _name = $v.name;
@@ -261,6 +332,8 @@ class ProjectMetadataBuilder
           new _$ProjectMetadata._(
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'ProjectMetadata', 'createdAt'),
+              environment: BuiltValueNullFieldError.checkNotNull(
+                  environment, r'ProjectMetadata', 'environment'),
               hosts: hosts.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'ProjectMetadata', 'id'),

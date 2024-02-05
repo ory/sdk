@@ -502,7 +502,7 @@ No authorization required
 
 <a name="createnativeloginflow"></a>
 # **CreateNativeLoginFlow**
-> ClientLoginFlow CreateNativeLoginFlow (bool? refresh = null, string aal = null, string xSessionToken = null, bool? returnSessionTokenExchangeCode = null, string returnTo = null)
+> ClientLoginFlow CreateNativeLoginFlow (bool? refresh = null, string aal = null, string xSessionToken = null, bool? returnSessionTokenExchangeCode = null, string returnTo = null, string via = null)
 
 Create Login Flow for Native Apps
 
@@ -530,11 +530,12 @@ namespace Example
             var xSessionToken = "xSessionToken_example";  // string | The Session Token of the Identity performing the settings flow. (optional) 
             var returnSessionTokenExchangeCode = true;  // bool? | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional) 
             var returnTo = "returnTo_example";  // string | The URL to return the browser to after the flow was completed. (optional) 
+            var via = "via_example";  // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional) 
 
             try
             {
                 // Create Login Flow for Native Apps
-                ClientLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo);
+                ClientLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -557,6 +558,7 @@ Name | Type | Description  | Notes
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
  **returnSessionTokenExchangeCode** | **bool?**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional] 
+ **via** | **string**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
 
 ### Return type
 

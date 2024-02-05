@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.2
+API version: v1.6.1
 Contact: support@ory.sh
 */
 
@@ -22,7 +22,8 @@ var _ MappedNullable = &RegistrationFlow{}
 
 // RegistrationFlow struct for RegistrationFlow
 type RegistrationFlow struct {
-	Active *IdentityCredentialsType `json:"active,omitempty"`
+	// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	Active *string `json:"active,omitempty"`
 	// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
 	ExpiresAt time.Time `json:"expires_at"`
 	// ID represents the flow's unique ID. When performing the registration flow, this represents the id in the registration ui's query parameter: http://<selfservice.flows.registration.ui_url>/?flow=<id>
@@ -76,9 +77,9 @@ func NewRegistrationFlowWithDefaults() *RegistrationFlow {
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *RegistrationFlow) GetActive() IdentityCredentialsType {
+func (o *RegistrationFlow) GetActive() string {
 	if o == nil || IsNil(o.Active) {
-		var ret IdentityCredentialsType
+		var ret string
 		return ret
 	}
 	return *o.Active
@@ -86,7 +87,7 @@ func (o *RegistrationFlow) GetActive() IdentityCredentialsType {
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegistrationFlow) GetActiveOk() (*IdentityCredentialsType, bool) {
+func (o *RegistrationFlow) GetActiveOk() (*string, bool) {
 	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
@@ -102,8 +103,8 @@ func (o *RegistrationFlow) HasActive() bool {
 	return false
 }
 
-// SetActive gets a reference to the given IdentityCredentialsType and assigns it to the Active field.
-func (o *RegistrationFlow) SetActive(v IdentityCredentialsType) {
+// SetActive gets a reference to the given string and assigns it to the Active field.
+func (o *RegistrationFlow) SetActive(v string) {
 	o.Active = &v
 }
 

@@ -320,7 +320,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createNativeLoginFlow**
-> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo)
+> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via)
 
 Create Login Flow for Native Apps
 
@@ -336,9 +336,10 @@ final String aal = aal_example; // String | Request a Specific AuthenticationMet
 final String xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 final bool returnSessionTokenExchangeCode = true; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
 final String returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
+final String via = via_example; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
 
 try {
-    final response = api.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo);
+    final response = api.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling FrontendApi->createNativeLoginFlow: $e\n');
@@ -354,6 +355,7 @@ Name | Type | Description  | Notes
  **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
  **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] 
+ **via** | **String**| Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
 
 ### Return type
 

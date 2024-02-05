@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 
 <a name="createrecoverylinkforidentity"></a>
 # **CreateRecoveryLinkForIdentity**
-> ClientRecoveryLinkForIdentity CreateRecoveryLinkForIdentity (ClientCreateRecoveryLinkForIdentityBody clientCreateRecoveryLinkForIdentityBody = null)
+> ClientRecoveryLinkForIdentity CreateRecoveryLinkForIdentity (string returnTo = null, ClientCreateRecoveryLinkForIdentityBody clientCreateRecoveryLinkForIdentityBody = null)
 
 Create a Recovery Link
 
@@ -283,12 +283,13 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new IdentityApi(config);
+            var returnTo = "returnTo_example";  // string |  (optional) 
             var clientCreateRecoveryLinkForIdentityBody = new ClientCreateRecoveryLinkForIdentityBody(); // ClientCreateRecoveryLinkForIdentityBody |  (optional) 
 
             try
             {
                 // Create a Recovery Link
-                ClientRecoveryLinkForIdentity result = apiInstance.CreateRecoveryLinkForIdentity(clientCreateRecoveryLinkForIdentityBody);
+                ClientRecoveryLinkForIdentity result = apiInstance.CreateRecoveryLinkForIdentity(returnTo, clientCreateRecoveryLinkForIdentityBody);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -306,6 +307,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **returnTo** | **string**|  | [optional] 
  **clientCreateRecoveryLinkForIdentityBody** | [**ClientCreateRecoveryLinkForIdentityBody**](ClientCreateRecoveryLinkForIdentityBody.md)|  | [optional] 
 
 ### Return type
@@ -436,7 +438,7 @@ namespace Example
 
             var apiInstance = new IdentityApi(config);
             var id = "id_example";  // string | ID is the identity's ID.
-            var type = "totp";  // string | Type is the credential's Type. One of totp, webauthn, lookup
+            var type = "password";  // string | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 
             try
             {
@@ -459,7 +461,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the identity&#39;s ID. | 
- **type** | **string**| Type is the credential&#39;s Type. One of totp, webauthn, lookup | 
+ **type** | **string**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
 
 ### Return type
 
@@ -945,7 +947,7 @@ Name | Type | Description  | Notes
 
 <a name="listidentities"></a>
 # **ListIdentities**
-> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null, string consistency = null, List<string> idsFilter = null, string credentialsIdentifier = null, string previewCredentialsIdentifierSimilar = null)
+> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null, string consistency = null, List<string> ids = null, string credentialsIdentifier = null, string previewCredentialsIdentifierSimilar = null)
 
 List Identities
 
@@ -976,14 +978,14 @@ namespace Example
             var pageSize = 250L;  // long? | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
             var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
             var consistency = "";  // string | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project - -replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. (optional) 
-            var idsFilter = new List<string>(); // List<string> | IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied. (optional) 
+            var ids = new List<string>(); // List<string> | List of ids used to filter identities. If this list is empty, then no filter will be applied. (optional) 
             var credentialsIdentifier = "credentialsIdentifier_example";  // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional) 
             var previewCredentialsIdentifierSimilar = "previewCredentialsIdentifierSimilar_example";  // string | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional) 
 
             try
             {
                 // List Identities
-                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, pageSize, pageToken, consistency, idsFilter, credentialsIdentifier, previewCredentialsIdentifierSimilar);
+                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1006,7 +1008,7 @@ Name | Type | Description  | Notes
  **pageSize** | **long?**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
  **consistency** | **string**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project - -replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] 
- **idsFilter** | [**List&lt;string&gt;**](string.md)| IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] 
+ **ids** | [**List&lt;string&gt;**](string.md)| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] 
  **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
  **previewCredentialsIdentifierSimilar** | **string**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
 

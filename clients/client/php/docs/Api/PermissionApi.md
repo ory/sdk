@@ -314,7 +314,7 @@ $apiInstance = new Ory\Client\Api\PermissionApi(
     new GuzzleHttp\Client(),
     $config
 );
-$maxDepth = 56; // int | nolint:deadcode,unused
+$maxDepth = 56; // int
 $postCheckPermissionOrErrorBody = new \Ory\Client\Model\PostCheckPermissionOrErrorBody(); // \Ory\Client\Model\PostCheckPermissionOrErrorBody
 
 try {
@@ -329,7 +329,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **maxDepth** | **int**| nolint:deadcode,unused | [optional]
+ **maxDepth** | **int**|  | [optional]
  **postCheckPermissionOrErrorBody** | [**\Ory\Client\Model\PostCheckPermissionOrErrorBody**](../Model/PostCheckPermissionOrErrorBody.md)|  | [optional]
 
 ### Return type

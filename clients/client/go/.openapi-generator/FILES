@@ -57,6 +57,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspacePayload.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -94,12 +95,10 @@ docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
-docs/IdentityCredentialsType.md
 docs/IdentityPatch.md
 docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
-docs/IdentityState.md
 docs/IdentityWithCredentials.md
 docs/IdentityWithCredentialsOidc.md
 docs/IdentityWithCredentialsOidcConfig.md
@@ -123,6 +122,7 @@ docs/KetoNamespace.md
 docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceProjectsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -133,6 +133,7 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataAPI.md
 docs/MetricsDatapoint.md
+docs/MigrationOptions.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -274,6 +275,7 @@ docs/Version.md
 docs/Warning.md
 docs/WellknownAPI.md
 docs/Workspace.md
+docs/WorkspaceMeta.md
 git_push.sh
 go.mod
 go.sum
@@ -316,6 +318,7 @@ model_create_relationship_body.go
 model_create_subscription_body.go
 model_create_verifiable_credential_request_body.go
 model_create_workspace_member_invite_body.go
+model_create_workspace_payload.go
 model_credential_supported_draft00.go
 model_custom_domain.go
 model_delete_my_sessions_count.go
@@ -350,12 +353,10 @@ model_identity_credentials_code.go
 model_identity_credentials_oidc.go
 model_identity_credentials_oidc_provider.go
 model_identity_credentials_password.go
-model_identity_credentials_type.go
 model_identity_patch.go
 model_identity_patch_response.go
 model_identity_schema_container.go
 model_identity_schema_preset.go
-model_identity_state.go
 model_identity_with_credentials.go
 model_identity_with_credentials_oidc.go
 model_identity_with_credentials_oidc_config.go
@@ -378,6 +379,7 @@ model_keto_namespace.go
 model_list_event_streams.go
 model_list_my_workspaces_response.go
 model_list_organizations_response.go
+model_list_workspace_projects_response.go
 model_login_flow.go
 model_login_flow_state.go
 model_logout_flow.go
@@ -387,6 +389,7 @@ model_member_invite.go
 model_message.go
 model_message_dispatch.go
 model_metrics_datapoint.go
+model_migration_options.go
 model_namespace.go
 model_needs_privileged_session_error.go
 model_normalized_project.go
@@ -522,6 +525,7 @@ model_verification_flow_state.go
 model_version.go
 model_warning.go
 model_workspace.go
+model_workspace_meta.go
 response.go
 test/api_courier_test.go
 test/api_events_test.go

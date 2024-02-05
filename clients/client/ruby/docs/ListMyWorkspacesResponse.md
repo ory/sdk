@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **has_next_page** | **Boolean** |  |  |
 | **next_page_token** | **String** |  |  |
-| **workspaces** | [**Array&lt;Workspace&gt;**](Workspace.md) |  |  |
+| **workspaces** | [**Array&lt;WorkspaceMeta&gt;**](WorkspaceMeta.md) |  |  |
 
 ## Example
 

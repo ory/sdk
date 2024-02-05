@@ -38,7 +38,7 @@ void main() {
     //
     // This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
     //
-    //Future<RecoveryLinkForIdentity> createRecoveryLinkForIdentity({ CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody }) async
+    //Future<RecoveryLinkForIdentity> createRecoveryLinkForIdentity({ String returnTo, CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody }) async
     test('test createRecoveryLinkForIdentity', () async {
       // TODO
     });
@@ -119,7 +119,7 @@ void main() {
     //
     // Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
     //
-    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, int pageSize, String pageToken, String consistency, BuiltList<String> idsFilter, String credentialsIdentifier, String previewCredentialsIdentifierSimilar }) async
+    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, int pageSize, String pageToken, String consistency, BuiltList<String> ids, String credentialsIdentifier, String previewCredentialsIdentifierSimilar }) async
     test('test listIdentities', () async {
       // TODO
     });

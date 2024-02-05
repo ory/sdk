@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **metadata_public** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **organization_id** | **str, none_type** |  | [optional] 
 **recovery_addresses** | [**[RecoveryIdentityAddress]**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional] 
-**state** | [**IdentityState**](IdentityState.md) |  | [optional] 
+**state** | **str** | State is the identity&#39;s state.  This value has currently no effect. active StateActive inactive StateInactive | [optional] 
 **state_changed_at** | **datetime** |  | [optional] 
 **updated_at** | **datetime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **verifiable_addresses** | [**[VerifiableIdentityAddress]**](VerifiableIdentityAddress.md) | VerifiableAddresses contains all the addresses that can be verified by the user. | [optional] 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | 
+**Environment** | **string** | The environment of the project. prod Production dev Development | 
 **Hosts** | **[]string** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The project&#39;s name if set | 
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewProjectMetadata
 
-`func NewProjectMetadata(createdAt time.Time, hosts []string, id string, name string, state string, updatedAt time.Time, ) *ProjectMetadata`
+`func NewProjectMetadata(createdAt time.Time, environment string, hosts []string, id string, name string, state string, updatedAt time.Time, ) *ProjectMetadata`
 
 NewProjectMetadata instantiates a new ProjectMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -52,6 +53,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectMetadata) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetEnvironment
+
+`func (o *ProjectMetadata) GetEnvironment() string`
+
+GetEnvironment returns the Environment field if non-nil, zero value otherwise.
+
+### GetEnvironmentOk
+
+`func (o *ProjectMetadata) GetEnvironmentOk() (*string, bool)`
+
+GetEnvironmentOk returns a tuple with the Environment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironment
+
+`func (o *ProjectMetadata) SetEnvironment(v string)`
+
+SetEnvironment sets Environment field to given value.
 
 
 ### GetHosts

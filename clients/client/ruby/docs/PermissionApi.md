@@ -352,7 +352,7 @@ end
 
 api_instance = OryClient::PermissionApi.new
 opts = {
-  max_depth: 789, # Integer | nolint:deadcode,unused
+  max_depth: 789, # Integer | 
   post_check_permission_or_error_body: OryClient::PostCheckPermissionOrErrorBody.new # PostCheckPermissionOrErrorBody | 
 }
 
@@ -387,7 +387,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **max_depth** | **Integer** | nolint:deadcode,unused | [optional] |
+| **max_depth** | **Integer** |  | [optional] |
 | **post_check_permission_or_error_body** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md) |  | [optional] |
 
 ### Return type

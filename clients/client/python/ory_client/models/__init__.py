@@ -49,6 +49,7 @@ from ory_client.model.create_relationship_body import CreateRelationshipBody
 from ory_client.model.create_subscription_body import CreateSubscriptionBody
 from ory_client.model.create_verifiable_credential_request_body import CreateVerifiableCredentialRequestBody
 from ory_client.model.create_workspace_member_invite_body import CreateWorkspaceMemberInviteBody
+from ory_client.model.create_workspace_payload import CreateWorkspacePayload
 from ory_client.model.credential_supported_draft00 import CredentialSupportedDraft00
 from ory_client.model.custom_domain import CustomDomain
 from ory_client.model.delete_my_sessions_count import DeleteMySessionsCount
@@ -83,14 +84,12 @@ from ory_client.model.identity_credentials_code import IdentityCredentialsCode
 from ory_client.model.identity_credentials_oidc import IdentityCredentialsOidc
 from ory_client.model.identity_credentials_oidc_provider import IdentityCredentialsOidcProvider
 from ory_client.model.identity_credentials_password import IdentityCredentialsPassword
-from ory_client.model.identity_credentials_type import IdentityCredentialsType
 from ory_client.model.identity_patch import IdentityPatch
 from ory_client.model.identity_patch_response import IdentityPatchResponse
 from ory_client.model.identity_schema_container import IdentitySchemaContainer
 from ory_client.model.identity_schema_preset import IdentitySchemaPreset
 from ory_client.model.identity_schema_presets import IdentitySchemaPresets
 from ory_client.model.identity_schemas import IdentitySchemas
-from ory_client.model.identity_state import IdentityState
 from ory_client.model.identity_with_credentials import IdentityWithCredentials
 from ory_client.model.identity_with_credentials_oidc import IdentityWithCredentialsOidc
 from ory_client.model.identity_with_credentials_oidc_config import IdentityWithCredentialsOidcConfig
@@ -116,6 +115,7 @@ from ory_client.model.list_custom_domains import ListCustomDomains
 from ory_client.model.list_event_streams import ListEventStreams
 from ory_client.model.list_my_workspaces_response import ListMyWorkspacesResponse
 from ory_client.model.list_organizations_response import ListOrganizationsResponse
+from ory_client.model.list_workspace_projects_response import ListWorkspaceProjectsResponse
 from ory_client.model.login_flow import LoginFlow
 from ory_client.model.login_flow_state import LoginFlowState
 from ory_client.model.logout_flow import LogoutFlow
@@ -127,6 +127,7 @@ from ory_client.model.member_invites import MemberInvites
 from ory_client.model.message import Message
 from ory_client.model.message_dispatch import MessageDispatch
 from ory_client.model.metrics_datapoint import MetricsDatapoint
+from ory_client.model.migration_options import MigrationOptions
 from ory_client.model.namespace import Namespace
 from ory_client.model.needs_privileged_session_error import NeedsPrivilegedSessionError
 from ory_client.model.normalized_project import NormalizedProject
@@ -286,4 +287,5 @@ from ory_client.model.verification_flow_state import VerificationFlowState
 from ory_client.model.version import Version
 from ory_client.model.warning import Warning
 from ory_client.model.workspace import Workspace
+from ory_client.model.workspace_meta import WorkspaceMeta
 from ory_client.model.workspaces import Workspaces

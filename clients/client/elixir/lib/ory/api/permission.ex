@@ -204,7 +204,7 @@ defmodule Ory.Api.Permission do
 
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:"max-depth"` (integer()): nolint:deadcode,unused
+    - `:"max-depth"` (integer()): 
     - `:body` (PostCheckPermissionOrErrorBody): 
 
   ### Returns

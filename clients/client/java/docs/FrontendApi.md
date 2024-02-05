@@ -448,7 +448,7 @@ No authorization required
 
 <a name="createNativeLoginFlow"></a>
 # **createNativeLoginFlow**
-> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo)
+> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via)
 
 Create Login Flow for Native Apps
 
@@ -474,8 +474,9 @@ public class Example {
     String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
     Boolean returnSessionTokenExchangeCode = true; // Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
+    String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
     try {
-      LoginFlow result = apiInstance.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo);
+      LoginFlow result = apiInstance.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createNativeLoginFlow");
@@ -497,6 +498,7 @@ public class Example {
 | **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] |
 | **returnSessionTokenExchangeCode** | **Boolean**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
 | **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
+| **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] |
 
 ### Return type
 

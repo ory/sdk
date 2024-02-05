@@ -24,7 +24,7 @@ defmodule Ory.Model.CreateIdentityBody do
     :metadata_public => any() | nil,
     :recovery_addresses => [Ory.Model.RecoveryIdentityAddress.t] | nil,
     :schema_id => String.t,
-    :state => Ory.Model.IdentityState.t | nil,
+    :state => String.t | nil,
     :traits => map(),
     :verifiable_addresses => [Ory.Model.VerifiableIdentityAddress.t] | nil
   }
@@ -35,7 +35,6 @@ defmodule Ory.Model.CreateIdentityBody do
     value
      |> Deserializer.deserialize(:credentials, :struct, Ory.Model.IdentityWithCredentials)
      |> Deserializer.deserialize(:recovery_addresses, :list, Ory.Model.RecoveryIdentityAddress)
-     |> Deserializer.deserialize(:state, :struct, Ory.Model.IdentityState)
      |> Deserializer.deserialize(:verifiable_addresses, :list, Ory.Model.VerifiableIdentityAddress)
   end
 end

@@ -455,7 +455,7 @@ No authorization required
 
 ## CreateNativeLoginFlow
 
-> LoginFlow CreateNativeLoginFlow(ctx).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
+> LoginFlow CreateNativeLoginFlow(ctx).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Via(via).Execute()
 
 Create Login Flow for Native Apps
 
@@ -479,10 +479,11 @@ func main() {
     xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
     returnSessionTokenExchangeCode := true // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
     returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
+    via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendAPI.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Via(via).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -508,6 +509,7 @@ Name | Type | Description  | Notes
  **xSessionToken** | **string** | The Session Token of the Identity performing the settings flow. | 
  **returnSessionTokenExchangeCode** | **bool** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | 
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
+ **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | 
 
 ### Return type
 

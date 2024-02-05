@@ -381,7 +381,7 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PermissionApi(config);
-            var maxDepth = 789L;  // long? | nolint:deadcode,unused (optional) 
+            var maxDepth = 789L;  // long? |  (optional) 
             var clientPostCheckPermissionOrErrorBody = new ClientPostCheckPermissionOrErrorBody(); // ClientPostCheckPermissionOrErrorBody |  (optional) 
 
             try
@@ -405,7 +405,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **maxDepth** | **long?**| nolint:deadcode,unused | [optional] 
+ **maxDepth** | **long?**|  | [optional] 
  **clientPostCheckPermissionOrErrorBody** | [**ClientPostCheckPermissionOrErrorBody**](ClientPostCheckPermissionOrErrorBody.md)|  | [optional] 
 
 ### Return type

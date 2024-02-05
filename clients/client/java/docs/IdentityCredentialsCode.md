@@ -8,7 +8,7 @@ CredentialsCode represents a one time login/registration code
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**addressType** | **String** |  |  [optional] |
+|**addressType** | **String** | The type of the address for this code |  [optional] |
 |**usedAt** | **OffsetDateTime** |  |  [optional] |
 
 

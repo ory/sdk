@@ -16,14 +16,14 @@ defmodule Ory.Model.ListMyWorkspacesResponse do
   @type t :: %__MODULE__{
     :has_next_page => boolean(),
     :next_page_token => String.t,
-    :workspaces => [Ory.Model.Workspace.t]
+    :workspaces => [Ory.Model.WorkspaceMeta.t]
   }
 
   alias Ory.Deserializer
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:workspaces, :list, Ory.Model.Workspace)
+     |> Deserializer.deserialize(:workspaces, :list, Ory.Model.WorkspaceMeta)
   end
 end
 

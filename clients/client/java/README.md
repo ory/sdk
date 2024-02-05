@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.5.2
-  - Build date: 2024-01-29T17:23:41.282566484Z[Etc/UTC]
+- API version: v1.6.1
+  - Build date: 2024-02-05T19:48:39.584840582Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.5.2</version>
+  <version>v1.6.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.5.2"
+     implementation "sh.ory:client:v1.6.1"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.5.2.jar`
+* `target/client-v1.6.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -295,6 +295,7 @@ Class | Method | HTTP request | Description
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
  - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
  - [CreateWorkspaceMemberInviteBody](docs/CreateWorkspaceMemberInviteBody.md)
+ - [CreateWorkspacePayload](docs/CreateWorkspacePayload.md)
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
@@ -329,12 +330,10 @@ Class | Method | HTTP request | Description
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
- - [IdentityCredentialsType](docs/IdentityCredentialsType.md)
  - [IdentityPatch](docs/IdentityPatch.md)
  - [IdentityPatchResponse](docs/IdentityPatchResponse.md)
  - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
  - [IdentitySchemaPreset](docs/IdentitySchemaPreset.md)
- - [IdentityState](docs/IdentityState.md)
  - [IdentityWithCredentials](docs/IdentityWithCredentials.md)
  - [IdentityWithCredentialsOidc](docs/IdentityWithCredentialsOidc.md)
  - [IdentityWithCredentialsOidcConfig](docs/IdentityWithCredentialsOidcConfig.md)
@@ -357,6 +356,7 @@ Class | Method | HTTP request | Description
  - [ListEventStreams](docs/ListEventStreams.md)
  - [ListMyWorkspacesResponse](docs/ListMyWorkspacesResponse.md)
  - [ListOrganizationsResponse](docs/ListOrganizationsResponse.md)
+ - [ListWorkspaceProjectsResponse](docs/ListWorkspaceProjectsResponse.md)
  - [LoginFlow](docs/LoginFlow.md)
  - [LoginFlowState](docs/LoginFlowState.md)
  - [LogoutFlow](docs/LogoutFlow.md)
@@ -366,6 +366,7 @@ Class | Method | HTTP request | Description
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
  - [MetricsDatapoint](docs/MetricsDatapoint.md)
+ - [MigrationOptions](docs/MigrationOptions.md)
  - [Namespace](docs/Namespace.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)
@@ -501,6 +502,7 @@ Class | Method | HTTP request | Description
  - [Version](docs/Version.md)
  - [Warning](docs/Warning.md)
  - [Workspace](docs/Workspace.md)
+ - [WorkspaceMeta](docs/WorkspaceMeta.md)
 
 
 ## Documentation for Authorization

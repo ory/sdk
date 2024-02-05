@@ -44,6 +44,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspacePayload.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -81,14 +82,12 @@ docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
-docs/IdentityCredentialsType.md
 docs/IdentityPatch.md
 docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
 docs/IdentitySchemaPresets.md
 docs/IdentitySchemas.md
-docs/IdentityState.md
 docs/IdentityWithCredentials.md
 docs/IdentityWithCredentialsOidc.md
 docs/IdentityWithCredentialsOidcConfig.md
@@ -115,6 +114,7 @@ docs/ListCustomDomains.md
 docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceProjectsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -127,6 +127,7 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/MetricsDatapoint.md
+docs/MigrationOptions.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -292,6 +293,7 @@ docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
 docs/Workspace.md
+docs/WorkspaceMeta.md
 docs/Workspaces.md
 git_push.sh
 ory_client/__init__.py
@@ -353,6 +355,7 @@ ory_client/model/create_relationship_body.py
 ory_client/model/create_subscription_body.py
 ory_client/model/create_verifiable_credential_request_body.py
 ory_client/model/create_workspace_member_invite_body.py
+ory_client/model/create_workspace_payload.py
 ory_client/model/credential_supported_draft00.py
 ory_client/model/custom_domain.py
 ory_client/model/delete_my_sessions_count.py
@@ -387,14 +390,12 @@ ory_client/model/identity_credentials_code.py
 ory_client/model/identity_credentials_oidc.py
 ory_client/model/identity_credentials_oidc_provider.py
 ory_client/model/identity_credentials_password.py
-ory_client/model/identity_credentials_type.py
 ory_client/model/identity_patch.py
 ory_client/model/identity_patch_response.py
 ory_client/model/identity_schema_container.py
 ory_client/model/identity_schema_preset.py
 ory_client/model/identity_schema_presets.py
 ory_client/model/identity_schemas.py
-ory_client/model/identity_state.py
 ory_client/model/identity_with_credentials.py
 ory_client/model/identity_with_credentials_oidc.py
 ory_client/model/identity_with_credentials_oidc_config.py
@@ -420,6 +421,7 @@ ory_client/model/list_custom_domains.py
 ory_client/model/list_event_streams.py
 ory_client/model/list_my_workspaces_response.py
 ory_client/model/list_organizations_response.py
+ory_client/model/list_workspace_projects_response.py
 ory_client/model/login_flow.py
 ory_client/model/login_flow_state.py
 ory_client/model/logout_flow.py
@@ -431,6 +433,7 @@ ory_client/model/member_invites.py
 ory_client/model/message.py
 ory_client/model/message_dispatch.py
 ory_client/model/metrics_datapoint.py
+ory_client/model/migration_options.py
 ory_client/model/namespace.py
 ory_client/model/needs_privileged_session_error.py
 ory_client/model/normalized_project.py
@@ -590,6 +593,7 @@ ory_client/model/verification_flow_state.py
 ory_client/model/version.py
 ory_client/model/warning.py
 ory_client/model/workspace.py
+ory_client/model/workspace_meta.py
 ory_client/model/workspaces.py
 ory_client/model_utils.py
 ory_client/models/__init__.py
@@ -640,6 +644,7 @@ test/test_create_relationship_body.py
 test/test_create_subscription_body.py
 test/test_create_verifiable_credential_request_body.py
 test/test_create_workspace_member_invite_body.py
+test/test_create_workspace_payload.py
 test/test_credential_supported_draft00.py
 test/test_custom_domain.py
 test/test_delete_my_sessions_count.py
@@ -677,14 +682,12 @@ test/test_identity_credentials_code.py
 test/test_identity_credentials_oidc.py
 test/test_identity_credentials_oidc_provider.py
 test/test_identity_credentials_password.py
-test/test_identity_credentials_type.py
 test/test_identity_patch.py
 test/test_identity_patch_response.py
 test/test_identity_schema_container.py
 test/test_identity_schema_preset.py
 test/test_identity_schema_presets.py
 test/test_identity_schemas.py
-test/test_identity_state.py
 test/test_identity_with_credentials.py
 test/test_identity_with_credentials_oidc.py
 test/test_identity_with_credentials_oidc_config.py
@@ -711,6 +714,7 @@ test/test_list_custom_domains.py
 test/test_list_event_streams.py
 test/test_list_my_workspaces_response.py
 test/test_list_organizations_response.py
+test/test_list_workspace_projects_response.py
 test/test_login_flow.py
 test/test_login_flow_state.py
 test/test_logout_flow.py
@@ -723,6 +727,7 @@ test/test_message.py
 test/test_message_dispatch.py
 test/test_metadata_api.py
 test/test_metrics_datapoint.py
+test/test_migration_options.py
 test/test_namespace.py
 test/test_needs_privileged_session_error.py
 test/test_normalized_project.py
@@ -888,5 +893,6 @@ test/test_version.py
 test/test_warning.py
 test/test_wellknown_api.py
 test/test_workspace.py
+test/test_workspace_meta.py
 test/test_workspaces.py
 tox.ini

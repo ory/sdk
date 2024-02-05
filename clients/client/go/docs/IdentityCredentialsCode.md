@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressType** | Pointer to **string** |  | [optional] 
+**AddressType** | Pointer to **string** | The type of the address for this code | [optional] 
 **UsedAt** | Pointer to **NullableTime** |  | [optional] 
 
 ## Methods

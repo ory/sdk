@@ -101,7 +101,7 @@ with ory_client.ApiClient(configuration) as api_client:
                         ),
                     ],
                     schema_id="schema_id_example",
-                    state=IdentityState("active"),
+                    state="active",
                     traits={},
                     verifiable_addresses=[
                         VerifiableIdentityAddress(
@@ -237,7 +237,7 @@ with ory_client.ApiClient(configuration) as api_client:
             ),
         ],
         schema_id="schema_id_example",
-        state=IdentityState("active"),
+        state="active",
         traits={},
         verifiable_addresses=[
             VerifiableIdentityAddress(
@@ -420,6 +420,7 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
+    return_to = "return_to_example" # str |  (optional)
     create_recovery_link_for_identity_body = CreateRecoveryLinkForIdentityBody(
         expires_in="4ms",
         identity_id="identity_id_example",
@@ -429,7 +430,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Create a Recovery Link
-        api_response = api_instance.create_recovery_link_for_identity(create_recovery_link_for_identity_body=create_recovery_link_for_identity_body)
+        api_response = api_instance.create_recovery_link_for_identity(return_to=return_to, create_recovery_link_for_identity_body=create_recovery_link_for_identity_body)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling IdentityApi->create_recovery_link_for_identity: %s\n" % e)
@@ -440,6 +441,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **return_to** | **str**|  | [optional]
  **create_recovery_link_for_identity_body** | [**CreateRecoveryLinkForIdentityBody**](CreateRecoveryLinkForIdentityBody.md)|  | [optional]
 
 ### Return type
@@ -583,7 +585,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
     id = "id_example" # str | ID is the identity's ID.
-    type = "totp" # str | Type is the credential's Type. One of totp, webauthn, lookup
+    type = "password" # str | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 
     # example passing only required values which don't have defaults set
     try:
@@ -599,7 +601,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID is the identity&#39;s ID. |
- **type** | **str**| Type is the credential&#39;s Type. One of totp, webauthn, lookup |
+ **type** | **str**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode |
 
 ### Return type
 
@@ -1163,9 +1165,9 @@ with ory_client.ApiClient(configuration) as api_client:
     page_size = 250 # int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of 250
     page_token = "1" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of "1"
     consistency = "" # str | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. (optional)
-    ids_filter = [
-        "ids_filter_example",
-    ] # [str] | IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied. (optional)
+    ids = [
+        "ids_example",
+    ] # [str] | List of ids used to filter identities. If this list is empty, then no filter will be applied. (optional)
     credentials_identifier = "credentials_identifier_example" # str | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
     preview_credentials_identifier_similar = "preview_credentials_identifier_similar_example" # str | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
 
@@ -1173,7 +1175,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # List Identities
-        api_response = api_instance.list_identities(per_page=per_page, page=page, page_size=page_size, page_token=page_token, consistency=consistency, ids_filter=ids_filter, credentials_identifier=credentials_identifier, preview_credentials_identifier_similar=preview_credentials_identifier_similar)
+        api_response = api_instance.list_identities(per_page=per_page, page=page, page_size=page_size, page_token=page_token, consistency=consistency, ids=ids, credentials_identifier=credentials_identifier, preview_credentials_identifier_similar=preview_credentials_identifier_similar)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling IdentityApi->list_identities: %s\n" % e)
@@ -1189,7 +1191,7 @@ Name | Type | Description  | Notes
  **page_size** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
  **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of "1"
  **consistency** | **str**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional]
- **ids_filter** | **[str]**| IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional]
+ **ids** | **[str]**| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional]
  **credentials_identifier** | **str**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional]
  **preview_credentials_identifier_similar** | **str**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional]
 
@@ -1648,7 +1650,7 @@ with ory_client.ApiClient(configuration) as api_client:
         metadata_admin=None,
         metadata_public=None,
         schema_id="schema_id_example",
-        state=IdentityState("active"),
+        state="active",
         traits={},
     ) # UpdateIdentityBody |  (optional)
 

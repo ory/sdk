@@ -251,7 +251,7 @@ import 'package:ory_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getPermissionApi();
-final int maxDepth = 789; // int | nolint:deadcode,unused
+final int maxDepth = 789; // int | 
 final PostCheckPermissionOrErrorBody postCheckPermissionOrErrorBody = ; // PostCheckPermissionOrErrorBody | 
 
 try {
@@ -266,7 +266,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **maxDepth** | **int**| nolint:deadcode,unused | [optional] 
+ **maxDepth** | **int**|  | [optional] 
  **postCheckPermissionOrErrorBody** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)|  | [optional] 
 
 ### Return type

@@ -411,6 +411,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosCourierTemplatesLoginCodeValidEmailSubject;
   @override
+  final String? kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
+  @override
   final String? kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
   @override
   final String? kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext;
@@ -593,6 +595,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final bool? kratosSelfserviceMethodsCodeEnabled;
   @override
+  final bool? kratosSelfserviceMethodsCodeMfaEnabled;
+  @override
   final bool? kratosSelfserviceMethodsCodePasswordlessEnabled;
   @override
   final String? kratosSelfserviceMethodsLinkConfigBaseUrl;
@@ -741,6 +745,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosCourierTemplatesLoginCodeValidEmailBodyHtml,
       this.kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext,
       this.kratosCourierTemplatesLoginCodeValidEmailSubject,
+      this.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailSubject,
@@ -826,6 +831,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceFlowsVerificationUse,
       this.kratosSelfserviceMethodsCodeConfigLifespan,
       this.kratosSelfserviceMethodsCodeEnabled,
+      this.kratosSelfserviceMethodsCodeMfaEnabled,
       this.kratosSelfserviceMethodsCodePasswordlessEnabled,
       this.kratosSelfserviceMethodsLinkConfigBaseUrl,
       this.kratosSelfserviceMethodsLinkConfigLifespan,
@@ -981,6 +987,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext &&
         kratosCourierTemplatesLoginCodeValidEmailSubject ==
             other.kratosCourierTemplatesLoginCodeValidEmailSubject &&
+        kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext ==
+            other.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext &&
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml ==
             other.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml &&
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext ==
@@ -1163,6 +1171,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceMethodsCodeConfigLifespan &&
         kratosSelfserviceMethodsCodeEnabled ==
             other.kratosSelfserviceMethodsCodeEnabled &&
+        kratosSelfserviceMethodsCodeMfaEnabled ==
+            other.kratosSelfserviceMethodsCodeMfaEnabled &&
         kratosSelfserviceMethodsCodePasswordlessEnabled ==
             other.kratosSelfserviceMethodsCodePasswordlessEnabled &&
         kratosSelfserviceMethodsLinkConfigBaseUrl ==
@@ -1306,6 +1316,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext.hashCode);
     _$hash =
         $jc(_$hash, kratosCourierTemplatesLoginCodeValidEmailSubject.hashCode);
+    _$hash = $jc(
+        _$hash, kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext.hashCode);
     _$hash = $jc(_$hash,
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml.hashCode);
     _$hash = $jc(_$hash,
@@ -1476,6 +1488,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationUse.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeConfigLifespan.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeEnabled.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeMfaEnabled.hashCode);
     _$hash =
         $jc(_$hash, kratosSelfserviceMethodsCodePasswordlessEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsLinkConfigBaseUrl.hashCode);
@@ -1632,6 +1645,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext)
           ..add('kratosCourierTemplatesLoginCodeValidEmailSubject',
               kratosCourierTemplatesLoginCodeValidEmailSubject)
+          ..add('kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext',
+              kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext)
           ..add('kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml',
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml)
           ..add('kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext',
@@ -1812,6 +1827,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceMethodsCodeConfigLifespan)
           ..add('kratosSelfserviceMethodsCodeEnabled',
               kratosSelfserviceMethodsCodeEnabled)
+          ..add('kratosSelfserviceMethodsCodeMfaEnabled',
+              kratosSelfserviceMethodsCodeMfaEnabled)
           ..add('kratosSelfserviceMethodsCodePasswordlessEnabled',
               kratosSelfserviceMethodsCodePasswordlessEnabled)
           ..add('kratosSelfserviceMethodsLinkConfigBaseUrl',
@@ -2331,6 +2348,14 @@ class NormalizedProjectRevisionBuilder
           String? kratosCourierTemplatesLoginCodeValidEmailSubject) =>
       _$this._kratosCourierTemplatesLoginCodeValidEmailSubject =
           kratosCourierTemplatesLoginCodeValidEmailSubject;
+
+  String? _kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
+  String? get kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext =>
+      _$this._kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
+  set kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext(
+          String? kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext) =>
+      _$this._kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext =
+          kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
 
   String? _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
   String? get kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml =>
@@ -3043,6 +3068,14 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceMethodsCodeEnabled =
           kratosSelfserviceMethodsCodeEnabled;
 
+  bool? _kratosSelfserviceMethodsCodeMfaEnabled;
+  bool? get kratosSelfserviceMethodsCodeMfaEnabled =>
+      _$this._kratosSelfserviceMethodsCodeMfaEnabled;
+  set kratosSelfserviceMethodsCodeMfaEnabled(
+          bool? kratosSelfserviceMethodsCodeMfaEnabled) =>
+      _$this._kratosSelfserviceMethodsCodeMfaEnabled =
+          kratosSelfserviceMethodsCodeMfaEnabled;
+
   bool? _kratosSelfserviceMethodsCodePasswordlessEnabled;
   bool? get kratosSelfserviceMethodsCodePasswordlessEnabled =>
       _$this._kratosSelfserviceMethodsCodePasswordlessEnabled;
@@ -3421,6 +3454,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext;
       _kratosCourierTemplatesLoginCodeValidEmailSubject =
           $v.kratosCourierTemplatesLoginCodeValidEmailSubject;
+      _kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext =
+          $v.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
       _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml =
           $v.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
       _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext =
@@ -3582,6 +3617,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceMethodsCodeConfigLifespan;
       _kratosSelfserviceMethodsCodeEnabled =
           $v.kratosSelfserviceMethodsCodeEnabled;
+      _kratosSelfserviceMethodsCodeMfaEnabled =
+          $v.kratosSelfserviceMethodsCodeMfaEnabled;
       _kratosSelfserviceMethodsCodePasswordlessEnabled =
           $v.kratosSelfserviceMethodsCodePasswordlessEnabled;
       _kratosSelfserviceMethodsLinkConfigBaseUrl =
@@ -3766,6 +3803,8 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext,
               kratosCourierTemplatesLoginCodeValidEmailSubject:
                   kratosCourierTemplatesLoginCodeValidEmailSubject,
+              kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext:
+                  kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml:
                   kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext:
@@ -3820,8 +3859,7 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesVerificationValidEmailBodyHtml,
               kratosCourierTemplatesVerificationValidEmailBodyPlaintext:
                   kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationValidEmailSubject:
-                  kratosCourierTemplatesVerificationValidEmailSubject,
+              kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
@@ -3879,6 +3917,7 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsVerificationUse: kratosSelfserviceFlowsVerificationUse,
               kratosSelfserviceMethodsCodeConfigLifespan: kratosSelfserviceMethodsCodeConfigLifespan,
               kratosSelfserviceMethodsCodeEnabled: kratosSelfserviceMethodsCodeEnabled,
+              kratosSelfserviceMethodsCodeMfaEnabled: kratosSelfserviceMethodsCodeMfaEnabled,
               kratosSelfserviceMethodsCodePasswordlessEnabled: kratosSelfserviceMethodsCodePasswordlessEnabled,
               kratosSelfserviceMethodsLinkConfigBaseUrl: kratosSelfserviceMethodsLinkConfigBaseUrl,
               kratosSelfserviceMethodsLinkConfigLifespan: kratosSelfserviceMethodsLinkConfigLifespan,

@@ -444,7 +444,7 @@ class PermissionApi {
   /// To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
   ///
   /// Parameters:
-  /// * [maxDepth] - nolint:deadcode,unused
+  /// * [maxDepth] 
   /// * [postCheckPermissionOrErrorBody] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request

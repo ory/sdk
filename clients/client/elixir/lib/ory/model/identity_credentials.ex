@@ -20,7 +20,7 @@ defmodule Ory.Model.IdentityCredentials do
     :config => map() | nil,
     :created_at => DateTime.t | nil,
     :identifiers => [String.t] | nil,
-    :type => Ory.Model.IdentityCredentialsType.t | nil,
+    :type => String.t | nil,
     :updated_at => DateTime.t | nil,
     :version => integer() | nil
   }
@@ -30,7 +30,6 @@ defmodule Ory.Model.IdentityCredentials do
   def decode(value) do
     value
      |> Deserializer.deserialize(:created_at, :datetime, nil)
-     |> Deserializer.deserialize(:type, :struct, Ory.Model.IdentityCredentialsType)
      |> Deserializer.deserialize(:updated_at, :datetime, nil)
   end
 end

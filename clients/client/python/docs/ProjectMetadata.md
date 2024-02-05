@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** | The Project&#39;s Creation Date | 
+**environment** | **str** | The environment of the project. prod Production dev Development | 
 **hosts** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | 
 **id** | **str** | The project&#39;s ID. | [readonly] 
 **name** | **str** | The project&#39;s name if set | 

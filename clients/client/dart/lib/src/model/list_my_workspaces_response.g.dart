@@ -12,7 +12,7 @@ class _$ListMyWorkspacesResponse extends ListMyWorkspacesResponse {
   @override
   final String nextPageToken;
   @override
-  final BuiltList<Workspace> workspaces;
+  final BuiltList<WorkspaceMeta> workspaces;
 
   factory _$ListMyWorkspacesResponse(
           [void Function(ListMyWorkspacesResponseBuilder)? updates]) =>
@@ -83,10 +83,10 @@ class ListMyWorkspacesResponseBuilder
   set nextPageToken(String? nextPageToken) =>
       _$this._nextPageToken = nextPageToken;
 
-  ListBuilder<Workspace>? _workspaces;
-  ListBuilder<Workspace> get workspaces =>
-      _$this._workspaces ??= new ListBuilder<Workspace>();
-  set workspaces(ListBuilder<Workspace>? workspaces) =>
+  ListBuilder<WorkspaceMeta>? _workspaces;
+  ListBuilder<WorkspaceMeta> get workspaces =>
+      _$this._workspaces ??= new ListBuilder<WorkspaceMeta>();
+  set workspaces(ListBuilder<WorkspaceMeta>? workspaces) =>
       _$this._workspaces = workspaces;
 
   ListMyWorkspacesResponseBuilder() {

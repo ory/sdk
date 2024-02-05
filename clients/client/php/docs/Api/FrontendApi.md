@@ -395,7 +395,7 @@ No authorization required
 ## `createNativeLoginFlow()`
 
 ```php
-createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo): \Ory\Client\Model\LoginFlow
+createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo, $via): \Ory\Client\Model\LoginFlow
 ```
 
 Create Login Flow for Native Apps
@@ -420,9 +420,10 @@ $aal = 'aal_example'; // string | Request a Specific AuthenticationMethod Assura
 $xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
 $returnSessionTokenExchangeCode = True; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
 $returnTo = 'returnTo_example'; // string | The URL to return the browser to after the flow was completed.
+$via = 'via_example'; // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
 
 try {
-    $result = $apiInstance->createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo);
+    $result = $apiInstance->createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo, $via);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createNativeLoginFlow: ', $e->getMessage(), PHP_EOL;
@@ -438,6 +439,7 @@ Name | Type | Description  | Notes
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional]
  **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]
  **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional]
+ **via** | **string**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional]
 
 ### Return type
 

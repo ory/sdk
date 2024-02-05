@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasNextPage** | **bool** |  | 
 **NextPageToken** | **string** |  | 
-**Workspaces** | [**[]Workspace**](Workspace.md) |  | 
+**Workspaces** | [**[]WorkspaceMeta**](WorkspaceMeta.md) |  | 
 
 ## Methods
 
 ### NewListMyWorkspacesResponse
 
-`func NewListMyWorkspacesResponse(hasNextPage bool, nextPageToken string, workspaces []Workspace, ) *ListMyWorkspacesResponse`
+`func NewListMyWorkspacesResponse(hasNextPage bool, nextPageToken string, workspaces []WorkspaceMeta, ) *ListMyWorkspacesResponse`
 
 NewListMyWorkspacesResponse instantiates a new ListMyWorkspacesResponse object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetNextPageToken sets NextPageToken field to given value.
 
 ### GetWorkspaces
 
-`func (o *ListMyWorkspacesResponse) GetWorkspaces() []Workspace`
+`func (o *ListMyWorkspacesResponse) GetWorkspaces() []WorkspaceMeta`
 
 GetWorkspaces returns the Workspaces field if non-nil, zero value otherwise.
 
 ### GetWorkspacesOk
 
-`func (o *ListMyWorkspacesResponse) GetWorkspacesOk() (*[]Workspace, bool)`
+`func (o *ListMyWorkspacesResponse) GetWorkspacesOk() (*[]WorkspaceMeta, bool)`
 
 GetWorkspacesOk returns a tuple with the Workspaces field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWorkspaces
 
-`func (o *ListMyWorkspacesResponse) SetWorkspaces(v []Workspace)`
+`func (o *ListMyWorkspacesResponse) SetWorkspaces(v []WorkspaceMeta)`
 
 SetWorkspaces sets Workspaces field to given value.
 

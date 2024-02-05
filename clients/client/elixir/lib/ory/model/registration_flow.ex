@@ -25,7 +25,7 @@ defmodule Ory.Model.RegistrationFlow do
   ]
 
   @type t :: %__MODULE__{
-    :active => Ory.Model.IdentityCredentialsType.t | nil,
+    :active => String.t | nil,
     :expires_at => DateTime.t,
     :id => String.t,
     :issued_at => DateTime.t,
@@ -45,7 +45,6 @@ defmodule Ory.Model.RegistrationFlow do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:active, :struct, Ory.Model.IdentityCredentialsType)
      |> Deserializer.deserialize(:expires_at, :datetime, nil)
      |> Deserializer.deserialize(:issued_at, :datetime, nil)
      |> Deserializer.deserialize(:oauth2_login_request, :struct, Ory.Model.OAuth2LoginRequest)

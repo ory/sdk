@@ -13,6 +13,7 @@ part 'project_metadata.g.dart';
 ///
 /// Properties:
 /// * [createdAt] - The Project's Creation Date
+/// * [environment] - The environment of the project. prod Production dev Development
 /// * [hosts] 
 /// * [id] - The project's ID.
 /// * [name] - The project's name if set
@@ -27,6 +28,11 @@ abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadata
   /// The Project's Creation Date
   @BuiltValueField(wireName: r'created_at')
   DateTime get createdAt;
+
+  /// The environment of the project. prod Production dev Development
+  @BuiltValueField(wireName: r'environment')
+  ProjectMetadataEnvironmentEnum get environment;
+  // enum environmentEnum {  prod,  dev,  };
 
   @BuiltValueField(wireName: r'hosts')
   BuiltList<String> get hosts;
@@ -88,6 +94,11 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
     yield serializers.serialize(
       object.createdAt,
       specifiedType: const FullType(DateTime),
+    );
+    yield r'environment';
+    yield serializers.serialize(
+      object.environment,
+      specifiedType: const FullType(ProjectMetadataEnvironmentEnum),
     );
     yield r'hosts';
     yield serializers.serialize(
@@ -171,6 +182,13 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'environment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ProjectMetadataEnvironmentEnum),
+          ) as ProjectMetadataEnvironmentEnum;
+          result.environment = valueDes;
           break;
         case r'hosts':
           final valueDes = serializers.deserialize(
@@ -265,6 +283,23 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
     );
     return result.build();
   }
+}
+
+class ProjectMetadataEnvironmentEnum extends EnumClass {
+
+  /// The environment of the project. prod Production dev Development
+  @BuiltValueEnumConst(wireName: r'prod')
+  static const ProjectMetadataEnvironmentEnum prod = _$projectMetadataEnvironmentEnum_prod;
+  /// The environment of the project. prod Production dev Development
+  @BuiltValueEnumConst(wireName: r'dev')
+  static const ProjectMetadataEnvironmentEnum dev = _$projectMetadataEnvironmentEnum_dev;
+
+  static Serializer<ProjectMetadataEnvironmentEnum> get serializer => _$projectMetadataEnvironmentEnumSerializer;
+
+  const ProjectMetadataEnvironmentEnum._(String name): super(name);
+
+  static BuiltSet<ProjectMetadataEnvironmentEnum> get values => _$projectMetadataEnvironmentEnumValues;
+  static ProjectMetadataEnvironmentEnum valueOf(String name) => _$projectMetadataEnvironmentEnumValueOf(name);
 }
 
 class ProjectMetadataStateEnum extends EnumClass {

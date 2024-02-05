@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:ory_client/src/model/identity_credentials_type.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/o_auth2_login_request.dart';
 import 'package:ory_client/src/model/ui_container.dart';
 import 'package:built_value/json_object.dart';
@@ -15,7 +15,7 @@ part 'registration_flow.g.dart';
 /// RegistrationFlow
 ///
 /// Properties:
-/// * [active] 
+/// * [active] - Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 /// * [expiresAt] - ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
 /// * [id] - ID represents the flow's unique ID. When performing the registration flow, this represents the id in the registration ui's query parameter: http://<selfservice.flows.registration.ui_url>/?flow=<id>
 /// * [issuedAt] - IssuedAt is the time (UTC) when the flow occurred.
@@ -31,9 +31,10 @@ part 'registration_flow.g.dart';
 /// * [ui] 
 @BuiltValue()
 abstract class RegistrationFlow implements Built<RegistrationFlow, RegistrationFlowBuilder> {
+  /// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   @BuiltValueField(wireName: r'active')
-  IdentityCredentialsType? get active;
-  // enum activeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  code,  };
+  RegistrationFlowActiveEnum? get active;
+  // enum activeEnum {  password,  oidc,  totp,  lookup_secret,  webauthn,  code,  link_recovery,  code_recovery,  };
 
   /// ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
   @BuiltValueField(wireName: r'expires_at')
@@ -111,7 +112,7 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
       yield r'active';
       yield serializers.serialize(
         object.active,
-        specifiedType: const FullType(IdentityCredentialsType),
+        specifiedType: const FullType(RegistrationFlowActiveEnum),
       );
     }
     yield r'expires_at';
@@ -217,8 +218,8 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
         case r'active':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(IdentityCredentialsType),
-          ) as IdentityCredentialsType;
+            specifiedType: const FullType(RegistrationFlowActiveEnum),
+          ) as RegistrationFlowActiveEnum;
           result.active = valueDes;
           break;
         case r'expires_at':
@@ -341,5 +342,40 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
     );
     return result.build();
   }
+}
+
+class RegistrationFlowActiveEnum extends EnumClass {
+
+  /// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'password')
+  static const RegistrationFlowActiveEnum password = _$registrationFlowActiveEnum_password;
+  /// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'oidc')
+  static const RegistrationFlowActiveEnum oidc = _$registrationFlowActiveEnum_oidc;
+  /// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'totp')
+  static const RegistrationFlowActiveEnum totp = _$registrationFlowActiveEnum_totp;
+  /// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'lookup_secret')
+  static const RegistrationFlowActiveEnum lookupSecret = _$registrationFlowActiveEnum_lookupSecret;
+  /// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'webauthn')
+  static const RegistrationFlowActiveEnum webauthn = _$registrationFlowActiveEnum_webauthn;
+  /// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'code')
+  static const RegistrationFlowActiveEnum code = _$registrationFlowActiveEnum_code;
+  /// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'link_recovery')
+  static const RegistrationFlowActiveEnum linkRecovery = _$registrationFlowActiveEnum_linkRecovery;
+  /// Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'code_recovery')
+  static const RegistrationFlowActiveEnum codeRecovery = _$registrationFlowActiveEnum_codeRecovery;
+
+  static Serializer<RegistrationFlowActiveEnum> get serializer => _$registrationFlowActiveEnumSerializer;
+
+  const RegistrationFlowActiveEnum._(String name): super(name);
+
+  static BuiltSet<RegistrationFlowActiveEnum> get values => _$registrationFlowActiveEnumValues;
+  static RegistrationFlowActiveEnum valueOf(String name) => _$registrationFlowActiveEnumValueOf(name);
 }
 

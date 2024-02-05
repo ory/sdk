@@ -57,6 +57,7 @@ lib/ory/model/create_relationship_body.ex
 lib/ory/model/create_subscription_body.ex
 lib/ory/model/create_verifiable_credential_request_body.ex
 lib/ory/model/create_workspace_member_invite_body.ex
+lib/ory/model/create_workspace_payload.ex
 lib/ory/model/credential_supported_draft00.ex
 lib/ory/model/custom_domain.ex
 lib/ory/model/delete_my_sessions_count.ex
@@ -91,12 +92,10 @@ lib/ory/model/identity_credentials_code.ex
 lib/ory/model/identity_credentials_oidc.ex
 lib/ory/model/identity_credentials_oidc_provider.ex
 lib/ory/model/identity_credentials_password.ex
-lib/ory/model/identity_credentials_type.ex
 lib/ory/model/identity_patch.ex
 lib/ory/model/identity_patch_response.ex
 lib/ory/model/identity_schema_container.ex
 lib/ory/model/identity_schema_preset.ex
-lib/ory/model/identity_state.ex
 lib/ory/model/identity_with_credentials.ex
 lib/ory/model/identity_with_credentials_oidc.ex
 lib/ory/model/identity_with_credentials_oidc_config.ex
@@ -119,6 +118,7 @@ lib/ory/model/keto_namespace.ex
 lib/ory/model/list_event_streams.ex
 lib/ory/model/list_my_workspaces_response.ex
 lib/ory/model/list_organizations_response.ex
+lib/ory/model/list_workspace_projects_response.ex
 lib/ory/model/login_flow.ex
 lib/ory/model/login_flow_state.ex
 lib/ory/model/logout_flow.ex
@@ -128,6 +128,7 @@ lib/ory/model/member_invite.ex
 lib/ory/model/message.ex
 lib/ory/model/message_dispatch.ex
 lib/ory/model/metrics_datapoint.ex
+lib/ory/model/migration_options.ex
 lib/ory/model/namespace.ex
 lib/ory/model/needs_privileged_session_error.ex
 lib/ory/model/normalized_project.ex
@@ -263,6 +264,7 @@ lib/ory/model/verification_flow_state.ex
 lib/ory/model/version.ex
 lib/ory/model/warning.ex
 lib/ory/model/workspace.ex
+lib/ory/model/workspace_meta.ex
 lib/ory/request_builder.ex
 mix.exs
 test/test_helper.exs

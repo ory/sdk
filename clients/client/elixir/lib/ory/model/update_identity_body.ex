@@ -21,7 +21,7 @@ defmodule Ory.Model.UpdateIdentityBody do
     :metadata_admin => any() | nil,
     :metadata_public => any() | nil,
     :schema_id => String.t,
-    :state => Ory.Model.IdentityState.t,
+    :state => String.t,
     :traits => map()
   }
 
@@ -30,7 +30,6 @@ defmodule Ory.Model.UpdateIdentityBody do
   def decode(value) do
     value
      |> Deserializer.deserialize(:credentials, :struct, Ory.Model.IdentityWithCredentials)
-     |> Deserializer.deserialize(:state, :struct, Ory.Model.IdentityState)
   end
 end
 

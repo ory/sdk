@@ -85,6 +85,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosCourierTemplatesLoginCodeValidEmailBodyHtml] - Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.html\" setting.
 /// * [kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesLoginCodeValidEmailSubject] - Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \"courier.smtp.templates.login_code.valid.email.subject\" setting.
+/// * [kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext] - Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \"courier.smtp.templates.login_code.valid.sms.plaintext\" setting.
 /// * [kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml] - Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
 /// * [kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext] - Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesRecoveryCodeInvalidEmailSubject] - Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
@@ -170,6 +171,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 /// * [kratosSelfserviceMethodsCodeEnabled] - Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
+/// * [kratosSelfserviceMethodsCodeMfaEnabled] - Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
 /// * [kratosSelfserviceMethodsCodePasswordlessEnabled] - Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigBaseUrl] - Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigLifespan] - Configures the Ory Kratos Link Method's lifespan  This governs the \"selfservice.methods.link.config.lifespan\" setting.
@@ -464,6 +466,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \"courier.smtp.templates.login_code.valid.email.subject\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_login_code_valid_email_subject')
   String? get kratosCourierTemplatesLoginCodeValidEmailSubject;
+
+  /// Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \"courier.smtp.templates.login_code.valid.sms.plaintext\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_login_code_valid_sms_body_plaintext')
+  String? get kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
 
   /// Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_recovery_code_invalid_email_body_html')
@@ -801,6 +807,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_enabled')
   bool? get kratosSelfserviceMethodsCodeEnabled;
+
+  /// Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_code_mfa_enabled')
+  bool? get kratosSelfserviceMethodsCodeMfaEnabled;
 
   /// Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_passwordless_enabled')
@@ -1440,6 +1450,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext != null) {
+      yield r'kratos_courier_templates_login_code_valid_sms_body_plaintext';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml != null) {
       yield r'kratos_courier_templates_recovery_code_invalid_email_body_html';
       yield serializers.serialize(
@@ -2032,6 +2049,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_selfservice_methods_code_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsCodeEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.kratosSelfserviceMethodsCodeMfaEnabled != null) {
+      yield r'kratos_selfservice_methods_code_mfa_enabled';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCodeMfaEnabled,
         specifiedType: const FullType(bool),
       );
     }
@@ -2779,6 +2803,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.kratosCourierTemplatesLoginCodeValidEmailSubject = valueDes;
           break;
+        case r'kratos_courier_templates_login_code_valid_sms_body_plaintext':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext = valueDes;
+          break;
         case r'kratos_courier_templates_recovery_code_invalid_email_body_html':
           final valueDes = serializers.deserialize(
             value,
@@ -3374,6 +3405,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(bool),
           ) as bool;
           result.kratosSelfserviceMethodsCodeEnabled = valueDes;
+          break;
+        case r'kratos_selfservice_methods_code_mfa_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceMethodsCodeMfaEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_code_passwordless_enabled':
           final valueDes = serializers.deserialize(

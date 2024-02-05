@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.2
+API version: v1.6.1
 Contact: support@ory.sh
 */
 
@@ -1906,6 +1906,7 @@ type FrontendAPICreateNativeLoginFlowRequest struct {
 	xSessionToken *string
 	returnSessionTokenExchangeCode *bool
 	returnTo *string
+	via *string
 }
 
 // Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
@@ -1935,6 +1936,12 @@ func (r FrontendAPICreateNativeLoginFlowRequest) ReturnSessionTokenExchangeCode(
 // The URL to return the browser to after the flow was completed.
 func (r FrontendAPICreateNativeLoginFlowRequest) ReturnTo(returnTo string) FrontendAPICreateNativeLoginFlowRequest {
 	r.returnTo = &returnTo
+	return r
+}
+
+// Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.
+func (r FrontendAPICreateNativeLoginFlowRequest) Via(via string) FrontendAPICreateNativeLoginFlowRequest {
+	r.via = &via
 	return r
 }
 
@@ -2008,6 +2015,9 @@ func (a *FrontendAPIService) CreateNativeLoginFlowExecute(r FrontendAPICreateNat
 	}
 	if r.returnTo != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "return_to", r.returnTo, "")
+	}
+	if r.via != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "via", r.via, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

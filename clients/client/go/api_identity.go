@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.2
+API version: v1.6.1
 Contact: support@ory.sh
 */
 
@@ -112,7 +112,7 @@ You can only delete second factor (aal2) credentials.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID is the identity's ID.
-	@param type_ Type is the credential's Type. One of totp, webauthn, lookup
+	@param type_ Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	@return IdentityAPIDeleteIdentityCredentialsRequest
 	*/
 	DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest
@@ -728,7 +728,13 @@ func (a *IdentityAPIService) CreateRecoveryCodeForIdentityExecute(r IdentityAPIC
 type IdentityAPICreateRecoveryLinkForIdentityRequest struct {
 	ctx context.Context
 	ApiService IdentityAPI
+	returnTo *string
 	createRecoveryLinkForIdentityBody *CreateRecoveryLinkForIdentityBody
+}
+
+func (r IdentityAPICreateRecoveryLinkForIdentityRequest) ReturnTo(returnTo string) IdentityAPICreateRecoveryLinkForIdentityRequest {
+	r.returnTo = &returnTo
+	return r
 }
 
 func (r IdentityAPICreateRecoveryLinkForIdentityRequest) CreateRecoveryLinkForIdentityBody(createRecoveryLinkForIdentityBody CreateRecoveryLinkForIdentityBody) IdentityAPICreateRecoveryLinkForIdentityRequest {
@@ -777,6 +783,9 @@ func (a *IdentityAPIService) CreateRecoveryLinkForIdentityExecute(r IdentityAPIC
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.returnTo != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "return_to", r.returnTo, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -995,7 +1004,7 @@ You can only delete second factor (aal2) credentials.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID is the identity's ID.
- @param type_ Type is the credential's Type. One of totp, webauthn, lookup
+ @param type_ Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
  @return IdentityAPIDeleteIdentityCredentialsRequest
 */
 func (a *IdentityAPIService) DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest {
@@ -1896,7 +1905,7 @@ type IdentityAPIListIdentitiesRequest struct {
 	pageSize *int64
 	pageToken *string
 	consistency *string
-	idsFilter *[]string
+	ids *[]string
 	credentialsIdentifier *string
 	previewCredentialsIdentifierSimilar *string
 }
@@ -1931,9 +1940,9 @@ func (r IdentityAPIListIdentitiesRequest) Consistency(consistency string) Identi
 	return r
 }
 
-// IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied.
-func (r IdentityAPIListIdentitiesRequest) IdsFilter(idsFilter []string) IdentityAPIListIdentitiesRequest {
-	r.idsFilter = &idsFilter
+// List of ids used to filter identities. If this list is empty, then no filter will be applied.
+func (r IdentityAPIListIdentitiesRequest) Ids(ids []string) IdentityAPIListIdentitiesRequest {
+	r.ids = &ids
 	return r
 }
 
@@ -2013,15 +2022,15 @@ func (a *IdentityAPIService) ListIdentitiesExecute(r IdentityAPIListIdentitiesRe
 	if r.consistency != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "consistency", r.consistency, "")
 	}
-	if r.idsFilter != nil {
-		t := *r.idsFilter
+	if r.ids != nil {
+		t := *r.ids
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "ids_filter", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "ids", s.Index(i).Interface(), "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "ids_filter", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "ids", t, "multi")
 		}
 	}
 	if r.credentialsIdentifier != nil {

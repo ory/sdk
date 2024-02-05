@@ -117,7 +117,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_recovery_link_for_identity
 
-> crate::models::RecoveryLinkForIdentity create_recovery_link_for_identity(create_recovery_link_for_identity_body)
+> crate::models::RecoveryLinkForIdentity create_recovery_link_for_identity(return_to, create_recovery_link_for_identity_body)
 Create a Recovery Link
 
 This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
@@ -127,6 +127,7 @@ This endpoint creates a recovery link which should be given to the user in order
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**return_to** | Option<**String**> |  |  |
 **create_recovery_link_for_identity_body** | Option<[**CreateRecoveryLinkForIdentityBody**](CreateRecoveryLinkForIdentityBody.md)> |  |  |
 
 ### Return type
@@ -188,7 +189,7 @@ Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID is the identity's ID. | [required] |
-**_type** | **String** | Type is the credential's Type. One of totp, webauthn, lookup | [required] |
+**_type** | **String** | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [required] |
 
 ### Return type
 
@@ -390,7 +391,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_identities
 
-> Vec<crate::models::Identity> list_identities(per_page, page, page_size, page_token, consistency, ids_filter, credentials_identifier, preview_credentials_identifier_similar)
+> Vec<crate::models::Identity> list_identities(per_page, page, page_size, page_token, consistency, ids, credentials_identifier, preview_credentials_identifier_similar)
 List Identities
 
 Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
@@ -405,7 +406,7 @@ Name | Type | Description  | Required | Notes
 **page_size** | Option<**i64**> | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
 **page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
 **consistency** | Option<**String**> | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. |  |
-**ids_filter** | Option<[**Vec<String>**](String.md)> | IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied. |  |
+**ids** | Option<[**Vec<String>**](String.md)> | List of ids used to filter identities. If this list is empty, then no filter will be applied. |  |
 **credentials_identifier** | Option<**String**> | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. |  |
 **preview_credentials_identifier_similar** | Option<**String**> | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. |  |
 

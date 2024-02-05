@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**createdAt** | **OffsetDateTime** | The Project&#39;s Creation Date |  |
+|**environment** | [**EnvironmentEnum**](#EnvironmentEnum) | The environment of the project. prod Production dev Development |  |
 |**hosts** | **List&lt;String&gt;** |  |  |
 |**id** | **String** | The project&#39;s ID. |  [readonly] |
 |**name** | **String** | The project&#39;s name if set |  |
@@ -17,6 +18,15 @@
 |**subscriptionPlan** | **String** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project was Updated |  |
 |**workspaceId** | **String** |  |  [optional] |
+
+
+
+## Enum: EnvironmentEnum
+
+| Name | Value |
+|---- | -----|
+| PROD | &quot;prod&quot; |
+| DEV | &quot;dev&quot; |
 
 
 

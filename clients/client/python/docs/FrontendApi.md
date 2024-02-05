@@ -521,12 +521,13 @@ with ory_client.ApiClient() as api_client:
     x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
     return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
     return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
+    via = "via_example" # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Create Login Flow for Native Apps
-        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
+        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, via=via)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling FrontendApi->create_native_login_flow: %s\n" % e)
@@ -542,6 +543,7 @@ Name | Type | Description  | Notes
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
  **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
+ **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional]
 
 ### Return type
 

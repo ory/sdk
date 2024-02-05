@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **recovery_addresses** | Option<[**Vec<crate::models::RecoveryIdentityAddress>**](recoveryIdentityAddress.md)> | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional]
 **schema_id** | **String** | SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. | 
 **schema_url** | **String** | SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url | 
-**state** | Option<[**crate::models::IdentityState**](identityState.md)> |  | [optional]
+**state** | Option<**String**> | State is the identity's state.  This value has currently no effect. active StateActive inactive StateInactive | [optional]
 **state_changed_at** | Option<**String**> |  | [optional]
 **traits** | Option<[**serde_json::Value**](.md)> | Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`. | 
 **updated_at** | Option<**String**> | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional]

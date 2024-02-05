@@ -43,6 +43,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspacePayload.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -80,12 +81,10 @@ docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
-docs/IdentityCredentialsType.md
 docs/IdentityPatch.md
 docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
-docs/IdentityState.md
 docs/IdentityWithCredentials.md
 docs/IdentityWithCredentialsOidc.md
 docs/IdentityWithCredentialsOidcConfig.md
@@ -109,6 +108,7 @@ docs/KetoNamespace.md
 docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceProjectsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -119,6 +119,7 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/MetricsDatapoint.md
+docs/MigrationOptions.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -260,6 +261,7 @@ docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
 docs/Workspace.md
+docs/WorkspaceMeta.md
 git_push.sh
 src/apis/configuration.rs
 src/apis/courier_api.rs
@@ -315,6 +317,7 @@ src/models/create_relationship_body.rs
 src/models/create_subscription_body.rs
 src/models/create_verifiable_credential_request_body.rs
 src/models/create_workspace_member_invite_body.rs
+src/models/create_workspace_payload.rs
 src/models/credential_supported_draft00.rs
 src/models/custom_domain.rs
 src/models/delete_my_sessions_count.rs
@@ -349,12 +352,10 @@ src/models/identity_credentials_code.rs
 src/models/identity_credentials_oidc.rs
 src/models/identity_credentials_oidc_provider.rs
 src/models/identity_credentials_password.rs
-src/models/identity_credentials_type.rs
 src/models/identity_patch.rs
 src/models/identity_patch_response.rs
 src/models/identity_schema_container.rs
 src/models/identity_schema_preset.rs
-src/models/identity_state.rs
 src/models/identity_with_credentials.rs
 src/models/identity_with_credentials_oidc.rs
 src/models/identity_with_credentials_oidc_config.rs
@@ -377,6 +378,7 @@ src/models/keto_namespace.rs
 src/models/list_event_streams.rs
 src/models/list_my_workspaces_response.rs
 src/models/list_organizations_response.rs
+src/models/list_workspace_projects_response.rs
 src/models/login_flow.rs
 src/models/login_flow_state.rs
 src/models/logout_flow.rs
@@ -386,6 +388,7 @@ src/models/member_invite.rs
 src/models/message.rs
 src/models/message_dispatch.rs
 src/models/metrics_datapoint.rs
+src/models/migration_options.rs
 src/models/mod.rs
 src/models/namespace.rs
 src/models/needs_privileged_session_error.rs
@@ -522,3 +525,4 @@ src/models/verification_flow_state.rs
 src/models/version.rs
 src/models/warning.rs
 src/models/workspace.rs
+src/models/workspace_meta.rs

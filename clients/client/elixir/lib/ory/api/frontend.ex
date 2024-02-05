@@ -270,6 +270,7 @@ defmodule Ory.Api.Frontend do
     - `:"X-Session-Token"` (String.t): The Session Token of the Identity performing the settings flow.
     - `:return_session_token_exchange_code` (boolean()): EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
     - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
+    - `:via` (String.t): Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
 
   ### Returns
 
@@ -283,7 +284,8 @@ defmodule Ory.Api.Frontend do
       :aal => :query,
       :"X-Session-Token" => :headers,
       :return_session_token_exchange_code => :query,
-      :return_to => :query
+      :return_to => :query,
+      :via => :query
     }
 
     request =

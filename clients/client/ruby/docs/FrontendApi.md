@@ -472,7 +472,8 @@ opts = {
   aal: 'aal_example', # String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
   return_session_token_exchange_code: true, # Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
-  return_to: 'return_to_example' # String | The URL to return the browser to after the flow was completed.
+  return_to: 'return_to_example', # String | The URL to return the browser to after the flow was completed.
+  via: 'via_example' # String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
 }
 
 begin
@@ -511,6 +512,7 @@ end
 | **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
 | **return_session_token_exchange_code** | **Boolean** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
 | **return_to** | **String** | The URL to return the browser to after the flow was completed. | [optional] |
+| **via** | **String** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] |
 
 ### Return type
 

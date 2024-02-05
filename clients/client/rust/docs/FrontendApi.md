@@ -229,7 +229,7 @@ No authorization required
 
 ## create_native_login_flow
 
-> crate::models::LoginFlow create_native_login_flow(refresh, aal, x_session_token, return_session_token_exchange_code, return_to)
+> crate::models::LoginFlow create_native_login_flow(refresh, aal, x_session_token, return_session_token_exchange_code, return_to, via)
 Create Login Flow for Native Apps
 
 This endpoint initiates a login flow for native apps that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
@@ -244,6 +244,7 @@ Name | Type | Description  | Required | Notes
 **x_session_token** | Option<**String**> | The Session Token of the Identity performing the settings flow. |  |
 **return_session_token_exchange_code** | Option<**bool**> | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. |  |
 **return_to** | Option<**String**> | The URL to return the browser to after the flow was completed. |  |
+**via** | Option<**String**> | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. |  |
 
 ### Return type
 

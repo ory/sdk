@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **address_type** | **String** |  | [optional] |
+| **address_type** | **String** | The type of the address for this code | [optional] |
 | **used_at** | **Time** |  | [optional] |
 
 ## Example

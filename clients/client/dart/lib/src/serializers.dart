@@ -53,6 +53,7 @@ import 'package:ory_client/src/model/create_relationship_body.dart';
 import 'package:ory_client/src/model/create_subscription_body.dart';
 import 'package:ory_client/src/model/create_verifiable_credential_request_body.dart';
 import 'package:ory_client/src/model/create_workspace_member_invite_body.dart';
+import 'package:ory_client/src/model/create_workspace_payload.dart';
 import 'package:ory_client/src/model/credential_supported_draft00.dart';
 import 'package:ory_client/src/model/custom_domain.dart';
 import 'package:ory_client/src/model/delete_my_sessions_count.dart';
@@ -87,12 +88,10 @@ import 'package:ory_client/src/model/identity_credentials_code.dart';
 import 'package:ory_client/src/model/identity_credentials_oidc.dart';
 import 'package:ory_client/src/model/identity_credentials_oidc_provider.dart';
 import 'package:ory_client/src/model/identity_credentials_password.dart';
-import 'package:ory_client/src/model/identity_credentials_type.dart';
 import 'package:ory_client/src/model/identity_patch.dart';
 import 'package:ory_client/src/model/identity_patch_response.dart';
 import 'package:ory_client/src/model/identity_schema_container.dart';
 import 'package:ory_client/src/model/identity_schema_preset.dart';
-import 'package:ory_client/src/model/identity_state.dart';
 import 'package:ory_client/src/model/identity_with_credentials.dart';
 import 'package:ory_client/src/model/identity_with_credentials_oidc.dart';
 import 'package:ory_client/src/model/identity_with_credentials_oidc_config.dart';
@@ -115,6 +114,7 @@ import 'package:ory_client/src/model/keto_namespace.dart';
 import 'package:ory_client/src/model/list_event_streams.dart';
 import 'package:ory_client/src/model/list_my_workspaces_response.dart';
 import 'package:ory_client/src/model/list_organizations_response.dart';
+import 'package:ory_client/src/model/list_workspace_projects_response.dart';
 import 'package:ory_client/src/model/login_flow.dart';
 import 'package:ory_client/src/model/login_flow_state.dart';
 import 'package:ory_client/src/model/logout_flow.dart';
@@ -124,6 +124,7 @@ import 'package:ory_client/src/model/member_invite.dart';
 import 'package:ory_client/src/model/message.dart';
 import 'package:ory_client/src/model/message_dispatch.dart';
 import 'package:ory_client/src/model/metrics_datapoint.dart';
+import 'package:ory_client/src/model/migration_options.dart';
 import 'package:ory_client/src/model/namespace.dart';
 import 'package:ory_client/src/model/needs_privileged_session_error.dart';
 import 'package:ory_client/src/model/normalized_project.dart';
@@ -259,6 +260,7 @@ import 'package:ory_client/src/model/verification_flow_state.dart';
 import 'package:ory_client/src/model/version.dart';
 import 'package:ory_client/src/model/warning.dart';
 import 'package:ory_client/src/model/workspace.dart';
+import 'package:ory_client/src/model/workspace_meta.dart';
 
 part 'serializers.g.dart';
 
@@ -302,6 +304,7 @@ part 'serializers.g.dart';
   CreateSubscriptionBody,
   CreateVerifiableCredentialRequestBody,
   CreateWorkspaceMemberInviteBody,
+  CreateWorkspacePayload,
   CredentialSupportedDraft00,
   CustomDomain,
   DeleteMySessionsCount,
@@ -336,12 +339,10 @@ part 'serializers.g.dart';
   IdentityCredentialsOidc,
   IdentityCredentialsOidcProvider,
   IdentityCredentialsPassword,
-  IdentityCredentialsType,
   IdentityPatch,
   IdentityPatchResponse,
   IdentitySchemaContainer,
   IdentitySchemaPreset,
-  IdentityState,
   IdentityWithCredentials,
   IdentityWithCredentialsOidc,
   IdentityWithCredentialsOidcConfig,
@@ -364,6 +365,7 @@ part 'serializers.g.dart';
   ListEventStreams,
   ListMyWorkspacesResponse,
   ListOrganizationsResponse,
+  ListWorkspaceProjectsResponse,
   LoginFlow,
   LoginFlowState,
   LogoutFlow,
@@ -373,6 +375,7 @@ part 'serializers.g.dart';
   Message,
   MessageDispatch,
   MetricsDatapoint,
+  MigrationOptions,
   Namespace,
   NeedsPrivilegedSessionError,
   NormalizedProject,
@@ -508,6 +511,7 @@ part 'serializers.g.dart';
   Version,
   Warning,
   Workspace,
+  WorkspaceMeta,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
