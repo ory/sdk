@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0-rc.3
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the GetVersion200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetVersion200Response{}
 
 // GetVersion200Response struct for GetVersion200Response
 type GetVersion200Response struct {
@@ -43,7 +46,7 @@ func NewGetVersion200ResponseWithDefaults() *GetVersion200Response {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *GetVersion200Response) GetVersion() string {
-	if o == nil || o.Version == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *GetVersion200Response) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetVersion200Response) GetVersionOk() (*string, bool) {
-	if o == nil || o.Version == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
 	return o.Version, true
@@ -61,7 +64,7 @@ func (o *GetVersion200Response) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *GetVersion200Response) HasVersion() bool {
-	if o != nil && o.Version != nil {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *GetVersion200Response) SetVersion(v string) {
 }
 
 func (o GetVersion200Response) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetVersion200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Version != nil {
+	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
 
@@ -83,15 +94,19 @@ func (o GetVersion200Response) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *GetVersion200Response) UnmarshalJSON(bytes []byte) (err error) {
 	varGetVersion200Response := _GetVersion200Response{}
 
-	if err = json.Unmarshal(bytes, &varGetVersion200Response); err == nil {
-		*o = GetVersion200Response(varGetVersion200Response)
+	err = json.Unmarshal(bytes, &varGetVersion200Response)
+
+	if err != nil {
+		return err
 	}
+
+	*o = GetVersion200Response(varGetVersion200Response)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0-rc.3
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the PaginationHeaders type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaginationHeaders{}
 
 // PaginationHeaders struct for PaginationHeaders
 type PaginationHeaders struct {
@@ -45,7 +48,7 @@ func NewPaginationHeadersWithDefaults() *PaginationHeaders {
 
 // GetLink returns the Link field value if set, zero value otherwise.
 func (o *PaginationHeaders) GetLink() string {
-	if o == nil || o.Link == nil {
+	if o == nil || IsNil(o.Link) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *PaginationHeaders) GetLink() string {
 // GetLinkOk returns a tuple with the Link field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginationHeaders) GetLinkOk() (*string, bool) {
-	if o == nil || o.Link == nil {
+	if o == nil || IsNil(o.Link) {
 		return nil, false
 	}
 	return o.Link, true
@@ -63,7 +66,7 @@ func (o *PaginationHeaders) GetLinkOk() (*string, bool) {
 
 // HasLink returns a boolean if a field has been set.
 func (o *PaginationHeaders) HasLink() bool {
-	if o != nil && o.Link != nil {
+	if o != nil && !IsNil(o.Link) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *PaginationHeaders) SetLink(v string) {
 
 // GetXTotalCount returns the XTotalCount field value if set, zero value otherwise.
 func (o *PaginationHeaders) GetXTotalCount() string {
-	if o == nil || o.XTotalCount == nil {
+	if o == nil || IsNil(o.XTotalCount) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *PaginationHeaders) GetXTotalCount() string {
 // GetXTotalCountOk returns a tuple with the XTotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginationHeaders) GetXTotalCountOk() (*string, bool) {
-	if o == nil || o.XTotalCount == nil {
+	if o == nil || IsNil(o.XTotalCount) {
 		return nil, false
 	}
 	return o.XTotalCount, true
@@ -95,7 +98,7 @@ func (o *PaginationHeaders) GetXTotalCountOk() (*string, bool) {
 
 // HasXTotalCount returns a boolean if a field has been set.
 func (o *PaginationHeaders) HasXTotalCount() bool {
-	if o != nil && o.XTotalCount != nil {
+	if o != nil && !IsNil(o.XTotalCount) {
 		return true
 	}
 
@@ -108,11 +111,19 @@ func (o *PaginationHeaders) SetXTotalCount(v string) {
 }
 
 func (o PaginationHeaders) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PaginationHeaders) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Link != nil {
+	if !IsNil(o.Link) {
 		toSerialize["link"] = o.Link
 	}
-	if o.XTotalCount != nil {
+	if !IsNil(o.XTotalCount) {
 		toSerialize["x-total-count"] = o.XTotalCount
 	}
 
@@ -120,15 +131,19 @@ func (o PaginationHeaders) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *PaginationHeaders) UnmarshalJSON(bytes []byte) (err error) {
 	varPaginationHeaders := _PaginationHeaders{}
 
-	if err = json.Unmarshal(bytes, &varPaginationHeaders); err == nil {
-		*o = PaginationHeaders(varPaginationHeaders)
+	err = json.Unmarshal(bytes, &varPaginationHeaders)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PaginationHeaders(varPaginationHeaders)
 
 	additionalProperties := make(map[string]interface{})
 

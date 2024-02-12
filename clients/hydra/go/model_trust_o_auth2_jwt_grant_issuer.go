@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0-rc.3
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the TrustOAuth2JwtGrantIssuer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TrustOAuth2JwtGrantIssuer{}
 
 // TrustOAuth2JwtGrantIssuer Trust OAuth2 JWT Bearer Grant Type Issuer Request Body
 type TrustOAuth2JwtGrantIssuer struct {
@@ -57,7 +61,7 @@ func NewTrustOAuth2JwtGrantIssuerWithDefaults() *TrustOAuth2JwtGrantIssuer {
 
 // GetAllowAnySubject returns the AllowAnySubject field value if set, zero value otherwise.
 func (o *TrustOAuth2JwtGrantIssuer) GetAllowAnySubject() bool {
-	if o == nil || o.AllowAnySubject == nil {
+	if o == nil || IsNil(o.AllowAnySubject) {
 		var ret bool
 		return ret
 	}
@@ -67,7 +71,7 @@ func (o *TrustOAuth2JwtGrantIssuer) GetAllowAnySubject() bool {
 // GetAllowAnySubjectOk returns a tuple with the AllowAnySubject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TrustOAuth2JwtGrantIssuer) GetAllowAnySubjectOk() (*bool, bool) {
-	if o == nil || o.AllowAnySubject == nil {
+	if o == nil || IsNil(o.AllowAnySubject) {
 		return nil, false
 	}
 	return o.AllowAnySubject, true
@@ -75,7 +79,7 @@ func (o *TrustOAuth2JwtGrantIssuer) GetAllowAnySubjectOk() (*bool, bool) {
 
 // HasAllowAnySubject returns a boolean if a field has been set.
 func (o *TrustOAuth2JwtGrantIssuer) HasAllowAnySubject() bool {
-	if o != nil && o.AllowAnySubject != nil {
+	if o != nil && !IsNil(o.AllowAnySubject) {
 		return true
 	}
 
@@ -185,7 +189,7 @@ func (o *TrustOAuth2JwtGrantIssuer) SetScope(v []string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *TrustOAuth2JwtGrantIssuer) GetSubject() string {
-	if o == nil || o.Subject == nil {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -195,7 +199,7 @@ func (o *TrustOAuth2JwtGrantIssuer) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TrustOAuth2JwtGrantIssuer) GetSubjectOk() (*string, bool) {
-	if o == nil || o.Subject == nil {
+	if o == nil || IsNil(o.Subject) {
 		return nil, false
 	}
 	return o.Subject, true
@@ -203,7 +207,7 @@ func (o *TrustOAuth2JwtGrantIssuer) GetSubjectOk() (*string, bool) {
 
 // HasSubject returns a boolean if a field has been set.
 func (o *TrustOAuth2JwtGrantIssuer) HasSubject() bool {
-	if o != nil && o.Subject != nil {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -216,23 +220,23 @@ func (o *TrustOAuth2JwtGrantIssuer) SetSubject(v string) {
 }
 
 func (o TrustOAuth2JwtGrantIssuer) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TrustOAuth2JwtGrantIssuer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AllowAnySubject != nil {
+	if !IsNil(o.AllowAnySubject) {
 		toSerialize["allow_any_subject"] = o.AllowAnySubject
 	}
-	if true {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
-	if true {
-		toSerialize["issuer"] = o.Issuer
-	}
-	if true {
-		toSerialize["jwk"] = o.Jwk
-	}
-	if true {
-		toSerialize["scope"] = o.Scope
-	}
-	if o.Subject != nil {
+	toSerialize["expires_at"] = o.ExpiresAt
+	toSerialize["issuer"] = o.Issuer
+	toSerialize["jwk"] = o.Jwk
+	toSerialize["scope"] = o.Scope
+	if !IsNil(o.Subject) {
 		toSerialize["subject"] = o.Subject
 	}
 
@@ -240,15 +244,43 @@ func (o TrustOAuth2JwtGrantIssuer) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *TrustOAuth2JwtGrantIssuer) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"expires_at",
+		"issuer",
+		"jwk",
+		"scope",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varTrustOAuth2JwtGrantIssuer := _TrustOAuth2JwtGrantIssuer{}
 
-	if err = json.Unmarshal(bytes, &varTrustOAuth2JwtGrantIssuer); err == nil {
-		*o = TrustOAuth2JwtGrantIssuer(varTrustOAuth2JwtGrantIssuer)
+	err = json.Unmarshal(bytes, &varTrustOAuth2JwtGrantIssuer)
+
+	if err != nil {
+		return err
 	}
+
+	*o = TrustOAuth2JwtGrantIssuer(varTrustOAuth2JwtGrantIssuer)
 
 	additionalProperties := make(map[string]interface{})
 

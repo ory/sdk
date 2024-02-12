@@ -6,6 +6,7 @@ A completed OAuth 2.0 Consent Session.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConsentRequest** | [**HydraOAuth2ConsentRequest**](HydraOAuth2ConsentRequest.md) |  | [optional] 
+**Context** | **Object** |  | [optional] 
 **ExpiresAt** | [**HydraOAuth2ConsentSessionExpiresAt**](HydraOAuth2ConsentSessionExpiresAt.md) |  | [optional] 
 **GrantAccessTokenAudience** | **List&lt;string&gt;** |  | [optional] 
 **GrantScope** | **List&lt;string&gt;** |  | [optional] 

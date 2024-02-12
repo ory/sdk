@@ -8,6 +8,8 @@ part of 'accept_o_auth2_consent_request.dart';
 
 class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
   @override
+  final JsonObject? context;
+  @override
   final BuiltList<String>? grantAccessTokenAudience;
   @override
   final BuiltList<String>? grantScope;
@@ -25,7 +27,8 @@ class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
       (new AcceptOAuth2ConsentRequestBuilder()..update(updates))._build();
 
   _$AcceptOAuth2ConsentRequest._(
-      {this.grantAccessTokenAudience,
+      {this.context,
+      this.grantAccessTokenAudience,
       this.grantScope,
       this.handledAt,
       this.remember,
@@ -46,6 +49,7 @@ class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is AcceptOAuth2ConsentRequest &&
+        context == other.context &&
         grantAccessTokenAudience == other.grantAccessTokenAudience &&
         grantScope == other.grantScope &&
         handledAt == other.handledAt &&
@@ -57,6 +61,7 @@ class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, context.hashCode);
     _$hash = $jc(_$hash, grantAccessTokenAudience.hashCode);
     _$hash = $jc(_$hash, grantScope.hashCode);
     _$hash = $jc(_$hash, handledAt.hashCode);
@@ -70,6 +75,7 @@ class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'AcceptOAuth2ConsentRequest')
+          ..add('context', context)
           ..add('grantAccessTokenAudience', grantAccessTokenAudience)
           ..add('grantScope', grantScope)
           ..add('handledAt', handledAt)
@@ -84,6 +90,10 @@ class AcceptOAuth2ConsentRequestBuilder
     implements
         Builder<AcceptOAuth2ConsentRequest, AcceptOAuth2ConsentRequestBuilder> {
   _$AcceptOAuth2ConsentRequest? _$v;
+
+  JsonObject? _context;
+  JsonObject? get context => _$this._context;
+  set context(JsonObject? context) => _$this._context = context;
 
   ListBuilder<String>? _grantAccessTokenAudience;
   ListBuilder<String> get grantAccessTokenAudience =>
@@ -122,6 +132,7 @@ class AcceptOAuth2ConsentRequestBuilder
   AcceptOAuth2ConsentRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _context = $v.context;
       _grantAccessTokenAudience = $v.grantAccessTokenAudience?.toBuilder();
       _grantScope = $v.grantScope?.toBuilder();
       _handledAt = $v.handledAt;
@@ -152,6 +163,7 @@ class AcceptOAuth2ConsentRequestBuilder
     try {
       _$result = _$v ??
           new _$AcceptOAuth2ConsentRequest._(
+              context: context,
               grantAccessTokenAudience: _grantAccessTokenAudience?.build(),
               grantScope: _grantScope?.build(),
               handledAt: handledAt,

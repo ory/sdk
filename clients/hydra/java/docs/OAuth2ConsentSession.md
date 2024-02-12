@@ -9,6 +9,7 @@ A completed OAuth 2.0 Consent Session.
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**consentRequest** | [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  |  [optional] |
+|**context** | **Object** |  |  [optional] |
 |**expiresAt** | [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  |  [optional] |
 |**grantAccessTokenAudience** | **List&lt;String&gt;** |  |  [optional] |
 |**grantScope** | **List&lt;String&gt;** |  |  [optional] |

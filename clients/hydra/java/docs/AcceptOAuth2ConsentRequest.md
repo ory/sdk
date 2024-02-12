@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**context** | **Object** |  |  [optional] |
 |**grantAccessTokenAudience** | **List&lt;String&gt;** |  |  [optional] |
 |**grantScope** | **List&lt;String&gt;** |  |  [optional] |
 |**handledAt** | **OffsetDateTime** |  |  [optional] |
