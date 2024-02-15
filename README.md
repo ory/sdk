@@ -1,6 +1,19 @@
-# Generated SDKs for the ORY Ecosystem
+# Generated SDKs for the Ory Ecosystem
 
 All SDKs provided in this repository are generated using openapi-generator.
+
+## Ory Network SDKs
+
+When developing against [Ory Network](https://www.ory.sh/docs/sdk), use the
+latest `client` or `ory-client` SDK for your preferred language. It bundles the
+individual SDKs (Identities, OAuth2, Permissions) and works with [Ory API
+keys](https://www.ory.sh/docs/concepts/personal-access-token).
+
+## Ory self-hosted SDKs
+
+When developing against self-hosted Ory components (Kratos, Hydra, Keto), use
+the corresponding individual SDKs for your language and match the SDK version to
+the version of Kratos/Hydra/Keto you have deployed.
 
 ## Publish the Docker Image
 

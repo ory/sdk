@@ -88,6 +88,13 @@ export ELIXIR_PACKAGE_NAME="ory_${PROJECT}"
 
 export GIT_REPO="${PROJECT}-client"
 
+export NETWORK_OR_SELFHOSTED="## Ory Self-Hosted
+
+This SDK is for use with self-hosted Ory ${PROJECT_UCF}.
+If you are developing against Ory Network, please use the [Ory Network SDK](https://www.ory.sh/docs/sdk).
+
+"
+
 if [ $project == "client" ]; then
   export DART_PUB_NAME=ory_client
   export DOTNET_PACKAGE_NAME="Ory.Client"
@@ -111,4 +118,11 @@ if [ $project == "client" ]; then
   export ELIXIR_PACKAGE_NAME="ory_client"
 
   export GIT_REPO="client"
+  export NETWORK_OR_SELFHOSTED="## Ory Network
+
+This SDK is for use with [Ory Network](https://www.ory.sh/docs/sdk).
+If you are developing aginst a self-hosted Ory instance, please use the individual ${PROJECT_UCF} SDK
+and refer to the [self-hosted documentation](https://www.ory.sh/docs/sdk/self-hosted).
+
+"
 fi
