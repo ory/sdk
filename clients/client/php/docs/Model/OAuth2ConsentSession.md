@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **consentRequest** | [**\Ory\Client\Model\OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional]
+**context** | **object** |  | [optional]
 **expiresAt** | [**\Ory\Client\Model\OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional]
 **grantAccessTokenAudience** | **string[]** |  | [optional]
 **grantScope** | **string[]** |  | [optional]

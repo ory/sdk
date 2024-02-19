@@ -51,9 +51,11 @@ import 'package:ory_client/src/model/create_recovery_code_for_identity_body.dart
 import 'package:ory_client/src/model/create_recovery_link_for_identity_body.dart';
 import 'package:ory_client/src/model/create_relationship_body.dart';
 import 'package:ory_client/src/model/create_subscription_body.dart';
+import 'package:ory_client/src/model/create_subscription_common.dart';
 import 'package:ory_client/src/model/create_verifiable_credential_request_body.dart';
 import 'package:ory_client/src/model/create_workspace_member_invite_body.dart';
 import 'package:ory_client/src/model/create_workspace_payload.dart';
+import 'package:ory_client/src/model/create_workspace_subscription_body.dart';
 import 'package:ory_client/src/model/credential_supported_draft00.dart';
 import 'package:ory_client/src/model/custom_domain.dart';
 import 'package:ory_client/src/model/delete_my_sessions_count.dart';
@@ -199,7 +201,6 @@ import 'package:ory_client/src/model/set_project_branding_theme_body.dart';
 import 'package:ory_client/src/model/settings_flow.dart';
 import 'package:ory_client/src/model/settings_flow_state.dart';
 import 'package:ory_client/src/model/source_position.dart';
-import 'package:ory_client/src/model/stripe_customer.dart';
 import 'package:ory_client/src/model/subject_set.dart';
 import 'package:ory_client/src/model/subscription.dart';
 import 'package:ory_client/src/model/successful_code_exchange_response.dart';
@@ -302,9 +303,11 @@ part 'serializers.g.dart';
   CreateRecoveryLinkForIdentityBody,
   CreateRelationshipBody,
   CreateSubscriptionBody,
+  CreateSubscriptionCommon,
   CreateVerifiableCredentialRequestBody,
   CreateWorkspaceMemberInviteBody,
   CreateWorkspacePayload,
+  CreateWorkspaceSubscriptionBody,
   CredentialSupportedDraft00,
   CustomDomain,
   DeleteMySessionsCount,
@@ -450,7 +453,6 @@ part 'serializers.g.dart';
   SettingsFlow,
   SettingsFlowState,
   SourcePosition,
-  StripeCustomer,
   SubjectSet,
   Subscription,
   SuccessfulCodeExchangeResponse,

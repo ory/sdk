@@ -8,11 +8,13 @@ defmodule Ory.Model.CreateProjectBody do
 
   @derive Jason.Encoder
   defstruct [
+    :environment,
     :name,
     :workspace_id
   ]
 
   @type t :: %__MODULE__{
+    :environment => String.t,
     :name => String.t,
     :workspace_id => String.t | nil
   }

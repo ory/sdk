@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **HydraOauth2GrantJwtIatOptional** | Pointer to **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtJtiOptional** | Pointer to **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtMaxTtl** | Pointer to **string** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional] [default to "720h"]
+**HydraOauth2MirrorTopLevelClaims** | Pointer to **bool** | Set to false if you don&#39;t want to mirror custom claims under &#39;ext&#39;.  This governs the \&quot;oauth2.mirror_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
@@ -413,6 +414,31 @@ SetHydraOauth2GrantJwtMaxTtl sets HydraOauth2GrantJwtMaxTtl field to given value
 `func (o *NormalizedProjectRevision) HasHydraOauth2GrantJwtMaxTtl() bool`
 
 HasHydraOauth2GrantJwtMaxTtl returns a boolean if a field has been set.
+
+### GetHydraOauth2MirrorTopLevelClaims
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2MirrorTopLevelClaims() bool`
+
+GetHydraOauth2MirrorTopLevelClaims returns the HydraOauth2MirrorTopLevelClaims field if non-nil, zero value otherwise.
+
+### GetHydraOauth2MirrorTopLevelClaimsOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2MirrorTopLevelClaimsOk() (*bool, bool)`
+
+GetHydraOauth2MirrorTopLevelClaimsOk returns a tuple with the HydraOauth2MirrorTopLevelClaims field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2MirrorTopLevelClaims
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2MirrorTopLevelClaims(v bool)`
+
+SetHydraOauth2MirrorTopLevelClaims sets HydraOauth2MirrorTopLevelClaims field to given value.
+
+### HasHydraOauth2MirrorTopLevelClaims
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2MirrorTopLevelClaims() bool`
+
+HasHydraOauth2MirrorTopLevelClaims returns a boolean if a field has been set.
 
 ### GetHydraOauth2PkceEnforced
 

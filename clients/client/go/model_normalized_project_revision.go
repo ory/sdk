@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.1
+API version: v1.6.2
 Contact: support@ory.sh
 */
 
@@ -37,6 +37,8 @@ type NormalizedProjectRevision struct {
 	HydraOauth2GrantJwtJtiOptional *bool `json:"hydra_oauth2_grant_jwt_jti_optional,omitempty"`
 	// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
 	HydraOauth2GrantJwtMaxTtl *string `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty"`
+	// Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
+	HydraOauth2MirrorTopLevelClaims *bool `json:"hydra_oauth2_mirror_top_level_claims,omitempty"`
 	// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 	HydraOauth2PkceEnforced *bool `json:"hydra_oauth2_pkce_enforced,omitempty"`
 	// Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
@@ -702,6 +704,38 @@ func (o *NormalizedProjectRevision) HasHydraOauth2GrantJwtMaxTtl() bool {
 // SetHydraOauth2GrantJwtMaxTtl gets a reference to the given string and assigns it to the HydraOauth2GrantJwtMaxTtl field.
 func (o *NormalizedProjectRevision) SetHydraOauth2GrantJwtMaxTtl(v string) {
 	o.HydraOauth2GrantJwtMaxTtl = &v
+}
+
+// GetHydraOauth2MirrorTopLevelClaims returns the HydraOauth2MirrorTopLevelClaims field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2MirrorTopLevelClaims() bool {
+	if o == nil || IsNil(o.HydraOauth2MirrorTopLevelClaims) {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2MirrorTopLevelClaims
+}
+
+// GetHydraOauth2MirrorTopLevelClaimsOk returns a tuple with the HydraOauth2MirrorTopLevelClaims field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2MirrorTopLevelClaimsOk() (*bool, bool) {
+	if o == nil || IsNil(o.HydraOauth2MirrorTopLevelClaims) {
+		return nil, false
+	}
+	return o.HydraOauth2MirrorTopLevelClaims, true
+}
+
+// HasHydraOauth2MirrorTopLevelClaims returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2MirrorTopLevelClaims() bool {
+	if o != nil && !IsNil(o.HydraOauth2MirrorTopLevelClaims) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2MirrorTopLevelClaims gets a reference to the given bool and assigns it to the HydraOauth2MirrorTopLevelClaims field.
+func (o *NormalizedProjectRevision) SetHydraOauth2MirrorTopLevelClaims(v bool) {
+	o.HydraOauth2MirrorTopLevelClaims = &v
 }
 
 // GetHydraOauth2PkceEnforced returns the HydraOauth2PkceEnforced field value if set, zero value otherwise.
@@ -6557,6 +6591,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HydraOauth2GrantJwtMaxTtl) {
 		toSerialize["hydra_oauth2_grant_jwt_max_ttl"] = o.HydraOauth2GrantJwtMaxTtl
 	}
+	if !IsNil(o.HydraOauth2MirrorTopLevelClaims) {
+		toSerialize["hydra_oauth2_mirror_top_level_claims"] = o.HydraOauth2MirrorTopLevelClaims
+	}
 	if !IsNil(o.HydraOauth2PkceEnforced) {
 		toSerialize["hydra_oauth2_pkce_enforced"] = o.HydraOauth2PkceEnforced
 	}
@@ -7152,6 +7189,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_iat_optional")
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_jti_optional")
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_max_ttl")
+		delete(additionalProperties, "hydra_oauth2_mirror_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced")
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced_for_public_clients")
 		delete(additionalProperties, "hydra_oauth2_refresh_token_hook")

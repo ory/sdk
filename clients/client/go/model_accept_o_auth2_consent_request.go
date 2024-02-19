@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.1
+API version: v1.6.2
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,7 @@ var _ MappedNullable = &AcceptOAuth2ConsentRequest{}
 
 // AcceptOAuth2ConsentRequest struct for AcceptOAuth2ConsentRequest
 type AcceptOAuth2ConsentRequest struct {
+	Context map[string]interface{} `json:"context,omitempty"`
 	GrantAccessTokenAudience []string `json:"grant_access_token_audience,omitempty"`
 	GrantScope []string `json:"grant_scope,omitempty"`
 	HandledAt *time.Time `json:"handled_at,omitempty"`
@@ -49,6 +50,38 @@ func NewAcceptOAuth2ConsentRequest() *AcceptOAuth2ConsentRequest {
 func NewAcceptOAuth2ConsentRequestWithDefaults() *AcceptOAuth2ConsentRequest {
 	this := AcceptOAuth2ConsentRequest{}
 	return &this
+}
+
+// GetContext returns the Context field value if set, zero value otherwise.
+func (o *AcceptOAuth2ConsentRequest) GetContext() map[string]interface{} {
+	if o == nil || IsNil(o.Context) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Context
+}
+
+// GetContextOk returns a tuple with the Context field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AcceptOAuth2ConsentRequest) GetContextOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Context) {
+		return map[string]interface{}{}, false
+	}
+	return o.Context, true
+}
+
+// HasContext returns a boolean if a field has been set.
+func (o *AcceptOAuth2ConsentRequest) HasContext() bool {
+	if o != nil && !IsNil(o.Context) {
+		return true
+	}
+
+	return false
+}
+
+// SetContext gets a reference to the given map[string]interface{} and assigns it to the Context field.
+func (o *AcceptOAuth2ConsentRequest) SetContext(v map[string]interface{}) {
+	o.Context = v
 }
 
 // GetGrantAccessTokenAudience returns the GrantAccessTokenAudience field value if set, zero value otherwise.
@@ -253,6 +286,9 @@ func (o AcceptOAuth2ConsentRequest) MarshalJSON() ([]byte, error) {
 
 func (o AcceptOAuth2ConsentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Context) {
+		toSerialize["context"] = o.Context
+	}
 	if !IsNil(o.GrantAccessTokenAudience) {
 		toSerialize["grant_access_token_audience"] = o.GrantAccessTokenAudience
 	}
@@ -293,6 +329,7 @@ func (o *AcceptOAuth2ConsentRequest) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "context")
 		delete(additionalProperties, "grant_access_token_audience")
 		delete(additionalProperties, "grant_scope")
 		delete(additionalProperties, "handled_at")

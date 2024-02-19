@@ -47,9 +47,11 @@ from ory_client.model.create_recovery_code_for_identity_body import CreateRecove
 from ory_client.model.create_recovery_link_for_identity_body import CreateRecoveryLinkForIdentityBody
 from ory_client.model.create_relationship_body import CreateRelationshipBody
 from ory_client.model.create_subscription_body import CreateSubscriptionBody
+from ory_client.model.create_subscription_common import CreateSubscriptionCommon
 from ory_client.model.create_verifiable_credential_request_body import CreateVerifiableCredentialRequestBody
 from ory_client.model.create_workspace_member_invite_body import CreateWorkspaceMemberInviteBody
 from ory_client.model.create_workspace_payload import CreateWorkspacePayload
+from ory_client.model.create_workspace_subscription_body import CreateWorkspaceSubscriptionBody
 from ory_client.model.credential_supported_draft00 import CredentialSupportedDraft00
 from ory_client.model.custom_domain import CustomDomain
 from ory_client.model.delete_my_sessions_count import DeleteMySessionsCount
@@ -223,7 +225,6 @@ from ory_client.model.settings_flow import SettingsFlow
 from ory_client.model.settings_flow_state import SettingsFlowState
 from ory_client.model.source_position import SourcePosition
 from ory_client.model.string_slice_json_format import StringSliceJSONFormat
-from ory_client.model.stripe_customer import StripeCustomer
 from ory_client.model.subject_set import SubjectSet
 from ory_client.model.subscription import Subscription
 from ory_client.model.successful_code_exchange_response import SuccessfulCodeExchangeResponse

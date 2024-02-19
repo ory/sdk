@@ -6,12 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **DisableAccountExperienceWelcomeScreen** | Pointer to **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] 
+**Environment** | **string** |  prod Production dev Development | 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** |  | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtIatOptional** | Pointer to **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtJtiOptional** | Pointer to **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtMaxTtl** | Pointer to **string** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional] [default to "720h"]
+**HydraOauth2MirrorTopLevelClaims** | Pointer to **bool** | Set to false if you don&#39;t want to mirror custom claims under &#39;ext&#39;.  This governs the \&quot;oauth2.mirror_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
@@ -200,7 +202,7 @@ Name | Type | Description | Notes
 
 ### NewCreateProjectNormalizedPayload
 
-`func NewCreateProjectNormalizedPayload(name string, ) *CreateProjectNormalizedPayload`
+`func NewCreateProjectNormalizedPayload(environment string, name string, ) *CreateProjectNormalizedPayload`
 
 NewCreateProjectNormalizedPayload instantiates a new CreateProjectNormalizedPayload object
 This constructor will assign default values to properties that have it defined,
@@ -264,6 +266,26 @@ SetDisableAccountExperienceWelcomeScreen sets DisableAccountExperienceWelcomeScr
 `func (o *CreateProjectNormalizedPayload) HasDisableAccountExperienceWelcomeScreen() bool`
 
 HasDisableAccountExperienceWelcomeScreen returns a boolean if a field has been set.
+
+### GetEnvironment
+
+`func (o *CreateProjectNormalizedPayload) GetEnvironment() string`
+
+GetEnvironment returns the Environment field if non-nil, zero value otherwise.
+
+### GetEnvironmentOk
+
+`func (o *CreateProjectNormalizedPayload) GetEnvironmentOk() (*string, bool)`
+
+GetEnvironmentOk returns a tuple with the Environment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironment
+
+`func (o *CreateProjectNormalizedPayload) SetEnvironment(v string)`
+
+SetEnvironment sets Environment field to given value.
+
 
 ### GetHydraOauth2AllowedTopLevelClaims
 
@@ -414,6 +436,31 @@ SetHydraOauth2GrantJwtMaxTtl sets HydraOauth2GrantJwtMaxTtl field to given value
 `func (o *CreateProjectNormalizedPayload) HasHydraOauth2GrantJwtMaxTtl() bool`
 
 HasHydraOauth2GrantJwtMaxTtl returns a boolean if a field has been set.
+
+### GetHydraOauth2MirrorTopLevelClaims
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2MirrorTopLevelClaims() bool`
+
+GetHydraOauth2MirrorTopLevelClaims returns the HydraOauth2MirrorTopLevelClaims field if non-nil, zero value otherwise.
+
+### GetHydraOauth2MirrorTopLevelClaimsOk
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2MirrorTopLevelClaimsOk() (*bool, bool)`
+
+GetHydraOauth2MirrorTopLevelClaimsOk returns a tuple with the HydraOauth2MirrorTopLevelClaims field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2MirrorTopLevelClaims
+
+`func (o *CreateProjectNormalizedPayload) SetHydraOauth2MirrorTopLevelClaims(v bool)`
+
+SetHydraOauth2MirrorTopLevelClaims sets HydraOauth2MirrorTopLevelClaims field to given value.
+
+### HasHydraOauth2MirrorTopLevelClaims
+
+`func (o *CreateProjectNormalizedPayload) HasHydraOauth2MirrorTopLevelClaims() bool`
+
+HasHydraOauth2MirrorTopLevelClaims returns a boolean if a field has been set.
 
 ### GetHydraOauth2PkceEnforced
 

@@ -19,6 +19,12 @@ void main() {
       // TODO
     });
 
+    //  prod Production dev Development
+    // String environment
+    test('to test the property `environment`', () async {
+      // TODO
+    });
+
     // BuiltList<String> hydraOauth2AllowedTopLevelClaims
     test('to test the property `hydraOauth2AllowedTopLevelClaims`', () async {
       // TODO
@@ -51,6 +57,12 @@ void main() {
     // Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
     // String hydraOauth2GrantJwtMaxTtl (default value: '720h')
     test('to test the property `hydraOauth2GrantJwtMaxTtl`', () async {
+      // TODO
+    });
+
+    // Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
+    // bool hydraOauth2MirrorTopLevelClaims
+    test('to test the property `hydraOauth2MirrorTopLevelClaims`', () async {
       // TODO
     });
 

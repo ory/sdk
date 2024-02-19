@@ -55,9 +55,11 @@ lib/ory/model/create_recovery_code_for_identity_body.ex
 lib/ory/model/create_recovery_link_for_identity_body.ex
 lib/ory/model/create_relationship_body.ex
 lib/ory/model/create_subscription_body.ex
+lib/ory/model/create_subscription_common.ex
 lib/ory/model/create_verifiable_credential_request_body.ex
 lib/ory/model/create_workspace_member_invite_body.ex
 lib/ory/model/create_workspace_payload.ex
+lib/ory/model/create_workspace_subscription_body.ex
 lib/ory/model/credential_supported_draft00.ex
 lib/ory/model/custom_domain.ex
 lib/ory/model/delete_my_sessions_count.ex
@@ -203,7 +205,6 @@ lib/ory/model/set_project_branding_theme_body.ex
 lib/ory/model/settings_flow.ex
 lib/ory/model/settings_flow_state.ex
 lib/ory/model/source_position.ex
-lib/ory/model/stripe_customer.ex
 lib/ory/model/subject_set.ex
 lib/ory/model/subscription.ex
 lib/ory/model/successful_code_exchange_response.ex

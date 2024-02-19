@@ -42,9 +42,11 @@ docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
+docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspacePayload.md
+docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -228,7 +230,6 @@ docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
 docs/StringSliceJSONFormat.md
-docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
 docs/SuccessfulCodeExchangeResponse.md
@@ -353,9 +354,11 @@ ory_client/model/create_recovery_code_for_identity_body.py
 ory_client/model/create_recovery_link_for_identity_body.py
 ory_client/model/create_relationship_body.py
 ory_client/model/create_subscription_body.py
+ory_client/model/create_subscription_common.py
 ory_client/model/create_verifiable_credential_request_body.py
 ory_client/model/create_workspace_member_invite_body.py
 ory_client/model/create_workspace_payload.py
+ory_client/model/create_workspace_subscription_body.py
 ory_client/model/credential_supported_draft00.py
 ory_client/model/custom_domain.py
 ory_client/model/delete_my_sessions_count.py
@@ -529,7 +532,6 @@ ory_client/model/settings_flow.py
 ory_client/model/settings_flow_state.py
 ory_client/model/source_position.py
 ory_client/model/string_slice_json_format.py
-ory_client/model/stripe_customer.py
 ory_client/model/subject_set.py
 ory_client/model/subscription.py
 ory_client/model/successful_code_exchange_response.py
@@ -642,9 +644,11 @@ test/test_create_recovery_code_for_identity_body.py
 test/test_create_recovery_link_for_identity_body.py
 test/test_create_relationship_body.py
 test/test_create_subscription_body.py
+test/test_create_subscription_common.py
 test/test_create_verifiable_credential_request_body.py
 test/test_create_workspace_member_invite_body.py
 test/test_create_workspace_payload.py
+test/test_create_workspace_subscription_body.py
 test/test_credential_supported_draft00.py
 test/test_custom_domain.py
 test/test_delete_my_sessions_count.py
@@ -828,7 +832,6 @@ test/test_settings_flow.py
 test/test_settings_flow_state.py
 test/test_source_position.py
 test/test_string_slice_json_format.py
-test/test_stripe_customer.py
 test/test_subject_set.py
 test/test_subscription.py
 test/test_successful_code_exchange_response.py

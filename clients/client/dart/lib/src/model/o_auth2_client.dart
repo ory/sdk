@@ -54,6 +54,7 @@ part 'o_auth2_client.g.dart';
 /// * [scope] - OAuth 2.0 Client Scope  Scope is a string containing a space-separated list of scope values (as described in Section 3.3 of OAuth 2.0 [RFC6749]) that the client can use when requesting access tokens.
 /// * [sectorIdentifierUri] - OpenID Connect Sector Identifier URI  URL using the https scheme to be used in calculating Pseudonymous Identifiers by the OP. The URL references a file with a single JSON array of redirect_uri values.
 /// * [skipConsent] - SkipConsent skips the consent screen for this client. This field can only be set from the admin API.
+/// * [skipLogoutConsent] - SkipLogoutConsent skips the logout consent screen for this client. This field can only be set from the admin API.
 /// * [subjectType] - OpenID Connect Subject Type  The `subject_types_supported` Discovery parameter contains a list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
 /// * [tokenEndpointAuthMethod] - OAuth 2.0 Token Endpoint Authentication Method  Requested Client Authentication method for the Token Endpoint. The options are:  `client_secret_basic`: (default) Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` encoded in the HTTP Authorization header. `client_secret_post`: Send `client_id` and `client_secret` as `application/x-www-form-urlencoded` in the HTTP body. `private_key_jwt`: Use JSON Web Tokens to authenticate the client. `none`: Used for public clients (native apps, mobile apps) which can not have secrets.
 /// * [tokenEndpointAuthSigningAlg] - OAuth 2.0 Token Endpoint Signing Algorithm  Requested Client Authentication signing algorithm for the Token Endpoint.
@@ -206,6 +207,10 @@ abstract class OAuth2Client implements Built<OAuth2Client, OAuth2ClientBuilder> 
   /// SkipConsent skips the consent screen for this client. This field can only be set from the admin API.
   @BuiltValueField(wireName: r'skip_consent')
   bool? get skipConsent;
+
+  /// SkipLogoutConsent skips the logout consent screen for this client. This field can only be set from the admin API.
+  @BuiltValueField(wireName: r'skip_logout_consent')
+  bool? get skipLogoutConsent;
 
   /// OpenID Connect Subject Type  The `subject_types_supported` Discovery parameter contains a list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
   @BuiltValueField(wireName: r'subject_type')
@@ -539,6 +544,13 @@ class _$OAuth2ClientSerializer implements PrimitiveSerializer<OAuth2Client> {
       yield r'skip_consent';
       yield serializers.serialize(
         object.skipConsent,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.skipLogoutConsent != null) {
+      yield r'skip_logout_consent';
+      yield serializers.serialize(
+        object.skipLogoutConsent,
         specifiedType: const FullType(bool),
       );
     }
@@ -904,6 +916,13 @@ class _$OAuth2ClientSerializer implements PrimitiveSerializer<OAuth2Client> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.skipConsent = valueDes;
+          break;
+        case r'skip_logout_consent':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.skipLogoutConsent = valueDes;
           break;
         case r'subject_type':
           final valueDes = serializers.deserialize(

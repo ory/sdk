@@ -119,7 +119,7 @@ import (
 )
 
 func main() {
-    createProjectBody := *openapiclient.NewCreateProjectBody("Name_example") // CreateProjectBody |  (optional)
+    createProjectBody := *openapiclient.NewCreateProjectBody("Environment_example", "Name_example") // CreateProjectBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

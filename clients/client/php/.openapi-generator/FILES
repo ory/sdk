@@ -52,9 +52,11 @@ docs/Model/CreateRecoveryCodeForIdentityBody.md
 docs/Model/CreateRecoveryLinkForIdentityBody.md
 docs/Model/CreateRelationshipBody.md
 docs/Model/CreateSubscriptionBody.md
+docs/Model/CreateSubscriptionCommon.md
 docs/Model/CreateVerifiableCredentialRequestBody.md
 docs/Model/CreateWorkspaceMemberInviteBody.md
 docs/Model/CreateWorkspacePayload.md
+docs/Model/CreateWorkspaceSubscriptionBody.md
 docs/Model/CredentialSupportedDraft00.md
 docs/Model/CustomDomain.md
 docs/Model/DeleteMySessionsCount.md
@@ -201,7 +203,6 @@ docs/Model/SetProjectBrandingThemeBody.md
 docs/Model/SettingsFlow.md
 docs/Model/SettingsFlowState.md
 docs/Model/SourcePosition.md
-docs/Model/StripeCustomer.md
 docs/Model/SubjectSet.md
 docs/Model/Subscription.md
 docs/Model/SuccessfulCodeExchangeResponse.md
@@ -315,9 +316,11 @@ lib/Model/CreateRecoveryCodeForIdentityBody.php
 lib/Model/CreateRecoveryLinkForIdentityBody.php
 lib/Model/CreateRelationshipBody.php
 lib/Model/CreateSubscriptionBody.php
+lib/Model/CreateSubscriptionCommon.php
 lib/Model/CreateVerifiableCredentialRequestBody.php
 lib/Model/CreateWorkspaceMemberInviteBody.php
 lib/Model/CreateWorkspacePayload.php
+lib/Model/CreateWorkspaceSubscriptionBody.php
 lib/Model/CredentialSupportedDraft00.php
 lib/Model/CustomDomain.php
 lib/Model/DeleteMySessionsCount.php
@@ -465,7 +468,6 @@ lib/Model/SetProjectBrandingThemeBody.php
 lib/Model/SettingsFlow.php
 lib/Model/SettingsFlowState.php
 lib/Model/SourcePosition.php
-lib/Model/StripeCustomer.php
 lib/Model/SubjectSet.php
 lib/Model/Subscription.php
 lib/Model/SuccessfulCodeExchangeResponse.php
@@ -577,9 +579,11 @@ test/Model/CreateRecoveryCodeForIdentityBodyTest.php
 test/Model/CreateRecoveryLinkForIdentityBodyTest.php
 test/Model/CreateRelationshipBodyTest.php
 test/Model/CreateSubscriptionBodyTest.php
+test/Model/CreateSubscriptionCommonTest.php
 test/Model/CreateVerifiableCredentialRequestBodyTest.php
 test/Model/CreateWorkspaceMemberInviteBodyTest.php
 test/Model/CreateWorkspacePayloadTest.php
+test/Model/CreateWorkspaceSubscriptionBodyTest.php
 test/Model/CredentialSupportedDraft00Test.php
 test/Model/CustomDomainTest.php
 test/Model/DeleteMySessionsCountTest.php
@@ -726,7 +730,6 @@ test/Model/SetProjectTest.php
 test/Model/SettingsFlowStateTest.php
 test/Model/SettingsFlowTest.php
 test/Model/SourcePositionTest.php
-test/Model/StripeCustomerTest.php
 test/Model/SubjectSetTest.php
 test/Model/SubscriptionTest.php
 test/Model/SuccessfulCodeExchangeResponseTest.php

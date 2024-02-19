@@ -41,9 +41,11 @@ docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
+docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspacePayload.md
+docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -199,7 +201,6 @@ docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
-docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
 docs/SuccessfulCodeExchangeResponse.md
@@ -315,9 +316,11 @@ src/models/create_recovery_code_for_identity_body.rs
 src/models/create_recovery_link_for_identity_body.rs
 src/models/create_relationship_body.rs
 src/models/create_subscription_body.rs
+src/models/create_subscription_common.rs
 src/models/create_verifiable_credential_request_body.rs
 src/models/create_workspace_member_invite_body.rs
 src/models/create_workspace_payload.rs
+src/models/create_workspace_subscription_body.rs
 src/models/credential_supported_draft00.rs
 src/models/custom_domain.rs
 src/models/delete_my_sessions_count.rs
@@ -464,7 +467,6 @@ src/models/set_project_branding_theme_body.rs
 src/models/settings_flow.rs
 src/models/settings_flow_state.rs
 src/models/source_position.rs
-src/models/stripe_customer.rs
 src/models/subject_set.rs
 src/models/subscription.rs
 src/models/successful_code_exchange_response.rs

@@ -39,9 +39,11 @@ docs/ClientCreateRecoveryCodeForIdentityBody.md
 docs/ClientCreateRecoveryLinkForIdentityBody.md
 docs/ClientCreateRelationshipBody.md
 docs/ClientCreateSubscriptionBody.md
+docs/ClientCreateSubscriptionCommon.md
 docs/ClientCreateVerifiableCredentialRequestBody.md
 docs/ClientCreateWorkspaceMemberInviteBody.md
 docs/ClientCreateWorkspacePayload.md
+docs/ClientCreateWorkspaceSubscriptionBody.md
 docs/ClientCredentialSupportedDraft00.md
 docs/ClientCustomDomain.md
 docs/ClientDeleteMySessionsCount.md
@@ -188,7 +190,6 @@ docs/ClientSetProjectBrandingThemeBody.md
 docs/ClientSettingsFlow.md
 docs/ClientSettingsFlowState.md
 docs/ClientSourcePosition.md
-docs/ClientStripeCustomer.md
 docs/ClientSubjectSet.md
 docs/ClientSubscription.md
 docs/ClientSuccessfulCodeExchangeResponse.md
@@ -311,9 +312,11 @@ src/Ory.Client.Test/Model/ClientCreateRecoveryCodeForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRecoveryLinkForIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateRelationshipBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateSubscriptionBodyTests.cs
+src/Ory.Client.Test/Model/ClientCreateSubscriptionCommonTests.cs
 src/Ory.Client.Test/Model/ClientCreateVerifiableCredentialRequestBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceMemberInviteBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspacePayloadTests.cs
+src/Ory.Client.Test/Model/ClientCreateWorkspaceSubscriptionBodyTests.cs
 src/Ory.Client.Test/Model/ClientCredentialSupportedDraft00Tests.cs
 src/Ory.Client.Test/Model/ClientCustomDomainTests.cs
 src/Ory.Client.Test/Model/ClientDeleteMySessionsCountTests.cs
@@ -460,7 +463,6 @@ src/Ory.Client.Test/Model/ClientSetProjectTests.cs
 src/Ory.Client.Test/Model/ClientSettingsFlowStateTests.cs
 src/Ory.Client.Test/Model/ClientSettingsFlowTests.cs
 src/Ory.Client.Test/Model/ClientSourcePositionTests.cs
-src/Ory.Client.Test/Model/ClientStripeCustomerTests.cs
 src/Ory.Client.Test/Model/ClientSubjectSetTests.cs
 src/Ory.Client.Test/Model/ClientSubscriptionTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulCodeExchangeResponseTests.cs
@@ -588,9 +590,11 @@ src/Ory.Client/Model/ClientCreateRecoveryCodeForIdentityBody.cs
 src/Ory.Client/Model/ClientCreateRecoveryLinkForIdentityBody.cs
 src/Ory.Client/Model/ClientCreateRelationshipBody.cs
 src/Ory.Client/Model/ClientCreateSubscriptionBody.cs
+src/Ory.Client/Model/ClientCreateSubscriptionCommon.cs
 src/Ory.Client/Model/ClientCreateVerifiableCredentialRequestBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceMemberInviteBody.cs
 src/Ory.Client/Model/ClientCreateWorkspacePayload.cs
+src/Ory.Client/Model/ClientCreateWorkspaceSubscriptionBody.cs
 src/Ory.Client/Model/ClientCredentialSupportedDraft00.cs
 src/Ory.Client/Model/ClientCustomDomain.cs
 src/Ory.Client/Model/ClientDeleteMySessionsCount.cs
@@ -737,7 +741,6 @@ src/Ory.Client/Model/ClientSetProjectBrandingThemeBody.cs
 src/Ory.Client/Model/ClientSettingsFlow.cs
 src/Ory.Client/Model/ClientSettingsFlowState.cs
 src/Ory.Client/Model/ClientSourcePosition.cs
-src/Ory.Client/Model/ClientStripeCustomer.cs
 src/Ory.Client/Model/ClientSubjectSet.cs
 src/Ory.Client/Model/ClientSubscription.cs
 src/Ory.Client/Model/ClientSuccessfulCodeExchangeResponse.cs

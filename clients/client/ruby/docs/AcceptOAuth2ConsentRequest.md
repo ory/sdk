@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **context** | **Object** |  | [optional] |
 | **grant_access_token_audience** | **Array&lt;String&gt;** |  | [optional] |
 | **grant_scope** | **Array&lt;String&gt;** |  | [optional] |
 | **handled_at** | **Time** |  | [optional] |
@@ -17,6 +18,7 @@
 require 'ory-client'
 
 instance = OryClient::AcceptOAuth2ConsentRequest.new(
+  context: null,
   grant_access_token_audience: null,
   grant_scope: null,
   handled_at: null,

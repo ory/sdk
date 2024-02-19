@@ -45,9 +45,11 @@ docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
+docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspacePayload.md
+docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -203,7 +205,6 @@ docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
-docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
 docs/SuccessfulCodeExchangeResponse.md
@@ -320,9 +321,11 @@ lib/ory-client/models/create_recovery_code_for_identity_body.rb
 lib/ory-client/models/create_recovery_link_for_identity_body.rb
 lib/ory-client/models/create_relationship_body.rb
 lib/ory-client/models/create_subscription_body.rb
+lib/ory-client/models/create_subscription_common.rb
 lib/ory-client/models/create_verifiable_credential_request_body.rb
 lib/ory-client/models/create_workspace_member_invite_body.rb
 lib/ory-client/models/create_workspace_payload.rb
+lib/ory-client/models/create_workspace_subscription_body.rb
 lib/ory-client/models/credential_supported_draft00.rb
 lib/ory-client/models/custom_domain.rb
 lib/ory-client/models/delete_my_sessions_count.rb
@@ -468,7 +471,6 @@ lib/ory-client/models/set_project_branding_theme_body.rb
 lib/ory-client/models/settings_flow.rb
 lib/ory-client/models/settings_flow_state.rb
 lib/ory-client/models/source_position.rb
-lib/ory-client/models/stripe_customer.rb
 lib/ory-client/models/subject_set.rb
 lib/ory-client/models/subscription.rb
 lib/ory-client/models/successful_code_exchange_response.rb
@@ -583,9 +585,11 @@ spec/models/create_recovery_code_for_identity_body_spec.rb
 spec/models/create_recovery_link_for_identity_body_spec.rb
 spec/models/create_relationship_body_spec.rb
 spec/models/create_subscription_body_spec.rb
+spec/models/create_subscription_common_spec.rb
 spec/models/create_verifiable_credential_request_body_spec.rb
 spec/models/create_workspace_member_invite_body_spec.rb
 spec/models/create_workspace_payload_spec.rb
+spec/models/create_workspace_subscription_body_spec.rb
 spec/models/credential_supported_draft00_spec.rb
 spec/models/custom_domain_spec.rb
 spec/models/delete_my_sessions_count_spec.rb
@@ -731,7 +735,6 @@ spec/models/set_project_spec.rb
 spec/models/settings_flow_spec.rb
 spec/models/settings_flow_state_spec.rb
 spec/models/source_position_spec.rb
-spec/models/stripe_customer_spec.rb
 spec/models/subject_set_spec.rb
 spec/models/subscription_spec.rb
 spec/models/successful_code_exchange_response_spec.rb

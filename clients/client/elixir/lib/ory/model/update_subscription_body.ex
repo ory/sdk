@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.UpdateSubscriptionBody do
   @moduledoc """
-  Update Subscription Request Body
+  
   """
 
   @derive Jason.Encoder

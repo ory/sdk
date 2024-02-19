@@ -5,6 +5,7 @@ Create Project Request Body
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Environment** | **string** | The environment of the project. prod Production dev Development | 
 **Name** | **string** | The name of the project to be created | 
 **WorkspaceId** | **string** |  | [optional] 
 

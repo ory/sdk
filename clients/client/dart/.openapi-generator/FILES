@@ -40,9 +40,11 @@ doc/CreateRecoveryCodeForIdentityBody.md
 doc/CreateRecoveryLinkForIdentityBody.md
 doc/CreateRelationshipBody.md
 doc/CreateSubscriptionBody.md
+doc/CreateSubscriptionCommon.md
 doc/CreateVerifiableCredentialRequestBody.md
 doc/CreateWorkspaceMemberInviteBody.md
 doc/CreateWorkspacePayload.md
+doc/CreateWorkspaceSubscriptionBody.md
 doc/CredentialSupportedDraft00.md
 doc/CustomDomain.md
 doc/DeleteMySessionsCount.md
@@ -198,7 +200,6 @@ doc/SetProjectBrandingThemeBody.md
 doc/SettingsFlow.md
 doc/SettingsFlowState.md
 doc/SourcePosition.md
-doc/StripeCustomer.md
 doc/SubjectSet.md
 doc/Subscription.md
 doc/SuccessfulCodeExchangeResponse.md
@@ -319,9 +320,11 @@ lib/src/model/create_recovery_code_for_identity_body.dart
 lib/src/model/create_recovery_link_for_identity_body.dart
 lib/src/model/create_relationship_body.dart
 lib/src/model/create_subscription_body.dart
+lib/src/model/create_subscription_common.dart
 lib/src/model/create_verifiable_credential_request_body.dart
 lib/src/model/create_workspace_member_invite_body.dart
 lib/src/model/create_workspace_payload.dart
+lib/src/model/create_workspace_subscription_body.dart
 lib/src/model/credential_supported_draft00.dart
 lib/src/model/custom_domain.dart
 lib/src/model/date.dart
@@ -468,7 +471,6 @@ lib/src/model/set_project_branding_theme_body.dart
 lib/src/model/settings_flow.dart
 lib/src/model/settings_flow_state.dart
 lib/src/model/source_position.dart
-lib/src/model/stripe_customer.dart
 lib/src/model/subject_set.dart
 lib/src/model/subscription.dart
 lib/src/model/successful_code_exchange_response.dart
@@ -570,9 +572,11 @@ test/create_recovery_code_for_identity_body_test.dart
 test/create_recovery_link_for_identity_body_test.dart
 test/create_relationship_body_test.dart
 test/create_subscription_body_test.dart
+test/create_subscription_common_test.dart
 test/create_verifiable_credential_request_body_test.dart
 test/create_workspace_member_invite_body_test.dart
 test/create_workspace_payload_test.dart
+test/create_workspace_subscription_body_test.dart
 test/credential_supported_draft00_test.dart
 test/custom_domain_test.dart
 test/delete_my_sessions_count_test.dart
@@ -728,7 +732,6 @@ test/set_project_test.dart
 test/settings_flow_state_test.dart
 test/settings_flow_test.dart
 test/source_position_test.dart
-test/stripe_customer_test.dart
 test/subject_set_test.dart
 test/subscription_test.dart
 test/successful_code_exchange_response_test.dart

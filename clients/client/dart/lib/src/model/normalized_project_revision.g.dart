@@ -293,6 +293,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? hydraOauth2GrantJwtMaxTtl;
   @override
+  final bool? hydraOauth2MirrorTopLevelClaims;
+  @override
   final bool? hydraOauth2PkceEnforced;
   @override
   final bool? hydraOauth2PkceEnforcedForPublicClients;
@@ -687,6 +689,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.hydraOauth2GrantJwtIatOptional,
       this.hydraOauth2GrantJwtJtiOptional,
       this.hydraOauth2GrantJwtMaxTtl,
+      this.hydraOauth2MirrorTopLevelClaims,
       this.hydraOauth2PkceEnforced,
       this.hydraOauth2PkceEnforcedForPublicClients,
       this.hydraOauth2RefreshTokenHook,
@@ -901,6 +904,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         hydraOauth2GrantJwtJtiOptional ==
             other.hydraOauth2GrantJwtJtiOptional &&
         hydraOauth2GrantJwtMaxTtl == other.hydraOauth2GrantJwtMaxTtl &&
+        hydraOauth2MirrorTopLevelClaims ==
+            other.hydraOauth2MirrorTopLevelClaims &&
         hydraOauth2PkceEnforced == other.hydraOauth2PkceEnforced &&
         hydraOauth2PkceEnforcedForPublicClients ==
             other.hydraOauth2PkceEnforcedForPublicClients &&
@@ -1250,6 +1255,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, hydraOauth2GrantJwtIatOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtJtiOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtMaxTtl.hashCode);
+    _$hash = $jc(_$hash, hydraOauth2MirrorTopLevelClaims.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforced.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforcedForPublicClients.hashCode);
     _$hash = $jc(_$hash, hydraOauth2RefreshTokenHook.hashCode);
@@ -1559,6 +1565,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add(
               'hydraOauth2GrantJwtJtiOptional', hydraOauth2GrantJwtJtiOptional)
           ..add('hydraOauth2GrantJwtMaxTtl', hydraOauth2GrantJwtMaxTtl)
+          ..add('hydraOauth2MirrorTopLevelClaims',
+              hydraOauth2MirrorTopLevelClaims)
           ..add('hydraOauth2PkceEnforced', hydraOauth2PkceEnforced)
           ..add('hydraOauth2PkceEnforcedForPublicClients',
               hydraOauth2PkceEnforcedForPublicClients)
@@ -1953,6 +1961,12 @@ class NormalizedProjectRevisionBuilder
   String? get hydraOauth2GrantJwtMaxTtl => _$this._hydraOauth2GrantJwtMaxTtl;
   set hydraOauth2GrantJwtMaxTtl(String? hydraOauth2GrantJwtMaxTtl) =>
       _$this._hydraOauth2GrantJwtMaxTtl = hydraOauth2GrantJwtMaxTtl;
+
+  bool? _hydraOauth2MirrorTopLevelClaims;
+  bool? get hydraOauth2MirrorTopLevelClaims =>
+      _$this._hydraOauth2MirrorTopLevelClaims;
+  set hydraOauth2MirrorTopLevelClaims(bool? hydraOauth2MirrorTopLevelClaims) =>
+      _$this._hydraOauth2MirrorTopLevelClaims = hydraOauth2MirrorTopLevelClaims;
 
   bool? _hydraOauth2PkceEnforced;
   bool? get hydraOauth2PkceEnforced => _$this._hydraOauth2PkceEnforced;
@@ -3370,6 +3384,7 @@ class NormalizedProjectRevisionBuilder
       _hydraOauth2GrantJwtIatOptional = $v.hydraOauth2GrantJwtIatOptional;
       _hydraOauth2GrantJwtJtiOptional = $v.hydraOauth2GrantJwtJtiOptional;
       _hydraOauth2GrantJwtMaxTtl = $v.hydraOauth2GrantJwtMaxTtl;
+      _hydraOauth2MirrorTopLevelClaims = $v.hydraOauth2MirrorTopLevelClaims;
       _hydraOauth2PkceEnforced = $v.hydraOauth2PkceEnforced;
       _hydraOauth2PkceEnforcedForPublicClients =
           $v.hydraOauth2PkceEnforcedForPublicClients;
@@ -3718,6 +3733,7 @@ class NormalizedProjectRevisionBuilder
               hydraOauth2GrantJwtIatOptional: hydraOauth2GrantJwtIatOptional,
               hydraOauth2GrantJwtJtiOptional: hydraOauth2GrantJwtJtiOptional,
               hydraOauth2GrantJwtMaxTtl: hydraOauth2GrantJwtMaxTtl,
+              hydraOauth2MirrorTopLevelClaims: hydraOauth2MirrorTopLevelClaims,
               hydraOauth2PkceEnforced: hydraOauth2PkceEnforced,
               hydraOauth2PkceEnforcedForPublicClients:
                   hydraOauth2PkceEnforcedForPublicClients,
@@ -3859,7 +3875,8 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesVerificationValidEmailBodyHtml,
               kratosCourierTemplatesVerificationValidEmailBodyPlaintext:
                   kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
+              kratosCourierTemplatesVerificationValidEmailSubject:
+                  kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),

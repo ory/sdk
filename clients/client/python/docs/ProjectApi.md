@@ -162,6 +162,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_api.ProjectApi(api_client)
     create_project_body = CreateProjectBody(
+        environment="prod",
         name="name_example",
         workspace_id="workspace_id_example",
     ) # CreateProjectBody |  (optional)

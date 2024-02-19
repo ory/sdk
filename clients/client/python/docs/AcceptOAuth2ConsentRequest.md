@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**context** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
 **grant_access_token_audience** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **grant_scope** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **handled_at** | **datetime** |  | [optional] 

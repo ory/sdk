@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **consent_request** | Option<[**crate::models::OAuth2ConsentRequest**](oAuth2ConsentRequest.md)> |  | [optional]
+**context** | Option<[**serde_json::Value**](.md)> |  | [optional]
 **expires_at** | Option<[**crate::models::OAuth2ConsentSessionExpiresAt**](oAuth2ConsentSession_expires_at.md)> |  | [optional]
 **grant_access_token_audience** | Option<**Vec<String>**> |  | [optional]
 **grant_scope** | Option<**Vec<String>**> |  | [optional]

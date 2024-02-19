@@ -21,12 +21,14 @@ part 'create_project_normalized_payload.g.dart';
 /// Properties:
 /// * [createdAt] - The Project's Revision Creation Date
 /// * [disableAccountExperienceWelcomeScreen] - Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+/// * [environment] -  prod Production dev Development
 /// * [hydraOauth2AllowedTopLevelClaims] 
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 /// * [hydraOauth2ExcludeNotBeforeClaim] - Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
 /// * [hydraOauth2GrantJwtIatOptional] - Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
 /// * [hydraOauth2GrantJwtJtiOptional] - Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
 /// * [hydraOauth2GrantJwtMaxTtl] - Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
+/// * [hydraOauth2MirrorTopLevelClaims] - Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
 /// * [hydraOauth2PkceEnforced] - Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 /// * [hydraOauth2PkceEnforcedForPublicClients] - Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
 /// * [hydraOauth2RefreshTokenHook] - Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
@@ -220,6 +222,11 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   @BuiltValueField(wireName: r'disable_account_experience_welcome_screen')
   bool? get disableAccountExperienceWelcomeScreen;
 
+  ///  prod Production dev Development
+  @BuiltValueField(wireName: r'environment')
+  CreateProjectNormalizedPayloadEnvironmentEnum get environment;
+  // enum environmentEnum {  prod,  dev,  };
+
   @BuiltValueField(wireName: r'hydra_oauth2_allowed_top_level_claims')
   BuiltList<String>? get hydraOauth2AllowedTopLevelClaims;
 
@@ -242,6 +249,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   /// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_grant_jwt_max_ttl')
   String? get hydraOauth2GrantJwtMaxTtl;
+
+  /// Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
+  @BuiltValueField(wireName: r'hydra_oauth2_mirror_top_level_claims')
+  bool? get hydraOauth2MirrorTopLevelClaims;
 
   /// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_pkce_enforced')
@@ -1006,6 +1017,11 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
         specifiedType: const FullType(bool),
       );
     }
+    yield r'environment';
+    yield serializers.serialize(
+      object.environment,
+      specifiedType: const FullType(CreateProjectNormalizedPayloadEnvironmentEnum),
+    );
     if (object.hydraOauth2AllowedTopLevelClaims != null) {
       yield r'hydra_oauth2_allowed_top_level_claims';
       yield serializers.serialize(
@@ -1046,6 +1062,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.hydraOauth2GrantJwtMaxTtl,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.hydraOauth2MirrorTopLevelClaims != null) {
+      yield r'hydra_oauth2_mirror_top_level_claims';
+      yield serializers.serialize(
+        object.hydraOauth2MirrorTopLevelClaims,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.hydraOauth2PkceEnforced != null) {
@@ -2364,6 +2387,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
           ) as bool;
           result.disableAccountExperienceWelcomeScreen = valueDes;
           break;
+        case r'environment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CreateProjectNormalizedPayloadEnvironmentEnum),
+          ) as CreateProjectNormalizedPayloadEnvironmentEnum;
+          result.environment = valueDes;
+          break;
         case r'hydra_oauth2_allowed_top_level_claims':
           final valueDes = serializers.deserialize(
             value,
@@ -2405,6 +2435,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.hydraOauth2GrantJwtMaxTtl = valueDes;
+          break;
+        case r'hydra_oauth2_mirror_top_level_claims':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.hydraOauth2MirrorTopLevelClaims = valueDes;
           break;
         case r'hydra_oauth2_pkce_enforced':
           final valueDes = serializers.deserialize(
@@ -3718,6 +3755,23 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
     );
     return result.build();
   }
+}
+
+class CreateProjectNormalizedPayloadEnvironmentEnum extends EnumClass {
+
+  ///  prod Production dev Development
+  @BuiltValueEnumConst(wireName: r'prod')
+  static const CreateProjectNormalizedPayloadEnvironmentEnum prod = _$createProjectNormalizedPayloadEnvironmentEnum_prod;
+  ///  prod Production dev Development
+  @BuiltValueEnumConst(wireName: r'dev')
+  static const CreateProjectNormalizedPayloadEnvironmentEnum dev = _$createProjectNormalizedPayloadEnvironmentEnum_dev;
+
+  static Serializer<CreateProjectNormalizedPayloadEnvironmentEnum> get serializer => _$createProjectNormalizedPayloadEnvironmentEnumSerializer;
+
+  const CreateProjectNormalizedPayloadEnvironmentEnum._(String name): super(name);
+
+  static BuiltSet<CreateProjectNormalizedPayloadEnvironmentEnum> get values => _$createProjectNormalizedPayloadEnvironmentEnumValues;
+  static CreateProjectNormalizedPayloadEnvironmentEnum valueOf(String name) => _$createProjectNormalizedPayloadEnvironmentEnumValueOf(name);
 }
 
 class CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum extends EnumClass {

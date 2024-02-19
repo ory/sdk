@@ -119,7 +119,7 @@ end
 
 api_instance = OryClient::ProjectApi.new
 opts = {
-  create_project_body: OryClient::CreateProjectBody.new({name: 'name_example'}) # CreateProjectBody | 
+  create_project_body: OryClient::CreateProjectBody.new({environment: 'prod', name: 'name_example'}) # CreateProjectBody | 
 }
 
 begin

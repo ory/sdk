@@ -54,6 +54,12 @@ void main() {
       // TODO
     });
 
+    // Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
+    // bool hydraOauth2MirrorTopLevelClaims
+    test('to test the property `hydraOauth2MirrorTopLevelClaims`', () async {
+      // TODO
+    });
+
     // Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
     // bool hydraOauth2PkceEnforced
     test('to test the property `hydraOauth2PkceEnforced`', () async {

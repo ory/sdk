@@ -8,6 +8,7 @@ defmodule Ory.Model.AcceptOAuth2ConsentRequest do
 
   @derive Jason.Encoder
   defstruct [
+    :context,
     :grant_access_token_audience,
     :grant_scope,
     :handled_at,
@@ -17,6 +18,7 @@ defmodule Ory.Model.AcceptOAuth2ConsentRequest do
   ]
 
   @type t :: %__MODULE__{
+    :context => map() | nil,
     :grant_access_token_audience => [String.t] | nil,
     :grant_scope => [String.t] | nil,
     :handled_at => DateTime.t | nil,

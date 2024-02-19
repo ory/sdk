@@ -27,6 +27,7 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraOauth2GrantJwtIatOptional] - Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
 /// * [hydraOauth2GrantJwtJtiOptional] - Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
 /// * [hydraOauth2GrantJwtMaxTtl] - Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
+/// * [hydraOauth2MirrorTopLevelClaims] - Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
 /// * [hydraOauth2PkceEnforced] - Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 /// * [hydraOauth2PkceEnforcedForPublicClients] - Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
 /// * [hydraOauth2RefreshTokenHook] - Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
@@ -241,6 +242,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_grant_jwt_max_ttl')
   String? get hydraOauth2GrantJwtMaxTtl;
+
+  /// Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
+  @BuiltValueField(wireName: r'hydra_oauth2_mirror_top_level_claims')
+  bool? get hydraOauth2MirrorTopLevelClaims;
 
   /// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_pkce_enforced')
@@ -1042,6 +1047,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.hydraOauth2GrantJwtMaxTtl,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.hydraOauth2MirrorTopLevelClaims != null) {
+      yield r'hydra_oauth2_mirror_top_level_claims';
+      yield serializers.serialize(
+        object.hydraOauth2MirrorTopLevelClaims,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.hydraOauth2PkceEnforced != null) {
@@ -2394,6 +2406,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.hydraOauth2GrantJwtMaxTtl = valueDes;
+          break;
+        case r'hydra_oauth2_mirror_top_level_claims':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.hydraOauth2MirrorTopLevelClaims = valueDes;
           break;
         case r'hydra_oauth2_pkce_enforced':
           final valueDes = serializers.deserialize(

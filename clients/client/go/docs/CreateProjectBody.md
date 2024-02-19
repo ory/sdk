@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Environment** | **string** | The environment of the project. prod Production dev Development | 
 **Name** | **string** | The name of the project to be created | 
 **WorkspaceId** | Pointer to **NullableString** |  | [optional] 
 
@@ -11,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewCreateProjectBody
 
-`func NewCreateProjectBody(name string, ) *CreateProjectBody`
+`func NewCreateProjectBody(environment string, name string, ) *CreateProjectBody`
 
 NewCreateProjectBody instantiates a new CreateProjectBody object
 This constructor will assign default values to properties that have it defined,
@@ -25,6 +26,26 @@ will change when the set of required properties is changed
 NewCreateProjectBodyWithDefaults instantiates a new CreateProjectBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEnvironment
+
+`func (o *CreateProjectBody) GetEnvironment() string`
+
+GetEnvironment returns the Environment field if non-nil, zero value otherwise.
+
+### GetEnvironmentOk
+
+`func (o *CreateProjectBody) GetEnvironmentOk() (*string, bool)`
+
+GetEnvironmentOk returns a tuple with the Environment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironment
+
+`func (o *CreateProjectBody) SetEnvironment(v string)`
+
+SetEnvironment sets Environment field to given value.
+
 
 ### GetName
 

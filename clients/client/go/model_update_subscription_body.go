@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.1
+API version: v1.6.2
 Contact: support@ory.sh
 */
 
@@ -19,7 +19,7 @@ import (
 // checks if the UpdateSubscriptionBody type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateSubscriptionBody{}
 
-// UpdateSubscriptionBody Update Subscription Request Body
+// UpdateSubscriptionBody struct for UpdateSubscriptionBody
 type UpdateSubscriptionBody struct {
 	//  monthly Monthly yearly Yearly
 	Interval string `json:"interval"`

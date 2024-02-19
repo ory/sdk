@@ -6,6 +6,32 @@ part of 'create_project_normalized_payload.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const CreateProjectNormalizedPayloadEnvironmentEnum
+    _$createProjectNormalizedPayloadEnvironmentEnum_prod =
+    const CreateProjectNormalizedPayloadEnvironmentEnum._('prod');
+const CreateProjectNormalizedPayloadEnvironmentEnum
+    _$createProjectNormalizedPayloadEnvironmentEnum_dev =
+    const CreateProjectNormalizedPayloadEnvironmentEnum._('dev');
+
+CreateProjectNormalizedPayloadEnvironmentEnum
+    _$createProjectNormalizedPayloadEnvironmentEnumValueOf(String name) {
+  switch (name) {
+    case 'prod':
+      return _$createProjectNormalizedPayloadEnvironmentEnum_prod;
+    case 'dev':
+      return _$createProjectNormalizedPayloadEnvironmentEnum_dev;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<CreateProjectNormalizedPayloadEnvironmentEnum>
+    _$createProjectNormalizedPayloadEnvironmentEnumValues = new BuiltSet<
+        CreateProjectNormalizedPayloadEnvironmentEnum>(const <CreateProjectNormalizedPayloadEnvironmentEnum>[
+  _$createProjectNormalizedPayloadEnvironmentEnum_prod,
+  _$createProjectNormalizedPayloadEnvironmentEnum_dev,
+]);
+
 const CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum
     _$createProjectNormalizedPayloadHydraStrategiesAccessTokenEnum_opaque =
     const CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum._(
@@ -125,6 +151,9 @@ final BuiltSet<
   _$createProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnum_code,
 ]);
 
+Serializer<CreateProjectNormalizedPayloadEnvironmentEnum>
+    _$createProjectNormalizedPayloadEnvironmentEnumSerializer =
+    new _$CreateProjectNormalizedPayloadEnvironmentEnumSerializer();
 Serializer<CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum>
     _$createProjectNormalizedPayloadHydraStrategiesAccessTokenEnumSerializer =
     new _$CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnumSerializer();
@@ -138,6 +167,39 @@ Serializer<
         CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnum>
     _$createProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnumSerializer =
     new _$CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnumSerializer();
+
+class _$CreateProjectNormalizedPayloadEnvironmentEnumSerializer
+    implements
+        PrimitiveSerializer<CreateProjectNormalizedPayloadEnvironmentEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'prod': 'prod',
+    'dev': 'dev',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'prod': 'prod',
+    'dev': 'dev',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    CreateProjectNormalizedPayloadEnvironmentEnum
+  ];
+  @override
+  final String wireName = 'CreateProjectNormalizedPayloadEnvironmentEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          CreateProjectNormalizedPayloadEnvironmentEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  CreateProjectNormalizedPayloadEnvironmentEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      CreateProjectNormalizedPayloadEnvironmentEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
 
 class _$CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnumSerializer
     implements
@@ -291,6 +353,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final bool? disableAccountExperienceWelcomeScreen;
   @override
+  final CreateProjectNormalizedPayloadEnvironmentEnum environment;
+  @override
   final BuiltList<String>? hydraOauth2AllowedTopLevelClaims;
   @override
   final bool? hydraOauth2ClientCredentialsDefaultGrantAllowedScope;
@@ -302,6 +366,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   final bool? hydraOauth2GrantJwtJtiOptional;
   @override
   final String? hydraOauth2GrantJwtMaxTtl;
+  @override
+  final bool? hydraOauth2MirrorTopLevelClaims;
   @override
   final bool? hydraOauth2PkceEnforced;
   @override
@@ -694,12 +760,14 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   _$CreateProjectNormalizedPayload._(
       {this.createdAt,
       this.disableAccountExperienceWelcomeScreen,
+      required this.environment,
       this.hydraOauth2AllowedTopLevelClaims,
       this.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
       this.hydraOauth2ExcludeNotBeforeClaim,
       this.hydraOauth2GrantJwtIatOptional,
       this.hydraOauth2GrantJwtJtiOptional,
       this.hydraOauth2GrantJwtMaxTtl,
+      this.hydraOauth2MirrorTopLevelClaims,
       this.hydraOauth2PkceEnforced,
       this.hydraOauth2PkceEnforcedForPublicClients,
       this.hydraOauth2RefreshTokenHook,
@@ -885,6 +953,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.workspaceId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
+        environment, r'CreateProjectNormalizedPayload', 'environment');
+    BuiltValueNullFieldError.checkNotNull(
         name, r'CreateProjectNormalizedPayload', 'name');
   }
 
@@ -904,6 +974,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         createdAt == other.createdAt &&
         disableAccountExperienceWelcomeScreen ==
             other.disableAccountExperienceWelcomeScreen &&
+        environment == other.environment &&
         hydraOauth2AllowedTopLevelClaims ==
             other.hydraOauth2AllowedTopLevelClaims &&
         hydraOauth2ClientCredentialsDefaultGrantAllowedScope ==
@@ -915,6 +986,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         hydraOauth2GrantJwtJtiOptional ==
             other.hydraOauth2GrantJwtJtiOptional &&
         hydraOauth2GrantJwtMaxTtl == other.hydraOauth2GrantJwtMaxTtl &&
+        hydraOauth2MirrorTopLevelClaims ==
+            other.hydraOauth2MirrorTopLevelClaims &&
         hydraOauth2PkceEnforced == other.hydraOauth2PkceEnforced &&
         hydraOauth2PkceEnforcedForPublicClients ==
             other.hydraOauth2PkceEnforcedForPublicClients &&
@@ -1258,6 +1331,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, disableAccountExperienceWelcomeScreen.hashCode);
+    _$hash = $jc(_$hash, environment.hashCode);
     _$hash = $jc(_$hash, hydraOauth2AllowedTopLevelClaims.hashCode);
     _$hash = $jc(
         _$hash, hydraOauth2ClientCredentialsDefaultGrantAllowedScope.hashCode);
@@ -1265,6 +1339,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash, hydraOauth2GrantJwtIatOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtJtiOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtMaxTtl.hashCode);
+    _$hash = $jc(_$hash, hydraOauth2MirrorTopLevelClaims.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforced.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforcedForPublicClients.hashCode);
     _$hash = $jc(_$hash, hydraOauth2RefreshTokenHook.hashCode);
@@ -1564,6 +1639,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
           ..add('createdAt', createdAt)
           ..add('disableAccountExperienceWelcomeScreen',
               disableAccountExperienceWelcomeScreen)
+          ..add('environment', environment)
           ..add('hydraOauth2AllowedTopLevelClaims',
               hydraOauth2AllowedTopLevelClaims)
           ..add('hydraOauth2ClientCredentialsDefaultGrantAllowedScope',
@@ -1575,6 +1651,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
           ..add(
               'hydraOauth2GrantJwtJtiOptional', hydraOauth2GrantJwtJtiOptional)
           ..add('hydraOauth2GrantJwtMaxTtl', hydraOauth2GrantJwtMaxTtl)
+          ..add('hydraOauth2MirrorTopLevelClaims',
+              hydraOauth2MirrorTopLevelClaims)
           ..add('hydraOauth2PkceEnforced', hydraOauth2PkceEnforced)
           ..add('hydraOauth2PkceEnforcedForPublicClients',
               hydraOauth2PkceEnforcedForPublicClients)
@@ -1931,6 +2009,12 @@ class CreateProjectNormalizedPayloadBuilder
       _$this._disableAccountExperienceWelcomeScreen =
           disableAccountExperienceWelcomeScreen;
 
+  CreateProjectNormalizedPayloadEnvironmentEnum? _environment;
+  CreateProjectNormalizedPayloadEnvironmentEnum? get environment =>
+      _$this._environment;
+  set environment(CreateProjectNormalizedPayloadEnvironmentEnum? environment) =>
+      _$this._environment = environment;
+
   ListBuilder<String>? _hydraOauth2AllowedTopLevelClaims;
   ListBuilder<String> get hydraOauth2AllowedTopLevelClaims =>
       _$this._hydraOauth2AllowedTopLevelClaims ??= new ListBuilder<String>();
@@ -1971,6 +2055,12 @@ class CreateProjectNormalizedPayloadBuilder
   String? get hydraOauth2GrantJwtMaxTtl => _$this._hydraOauth2GrantJwtMaxTtl;
   set hydraOauth2GrantJwtMaxTtl(String? hydraOauth2GrantJwtMaxTtl) =>
       _$this._hydraOauth2GrantJwtMaxTtl = hydraOauth2GrantJwtMaxTtl;
+
+  bool? _hydraOauth2MirrorTopLevelClaims;
+  bool? get hydraOauth2MirrorTopLevelClaims =>
+      _$this._hydraOauth2MirrorTopLevelClaims;
+  set hydraOauth2MirrorTopLevelClaims(bool? hydraOauth2MirrorTopLevelClaims) =>
+      _$this._hydraOauth2MirrorTopLevelClaims = hydraOauth2MirrorTopLevelClaims;
 
   bool? _hydraOauth2PkceEnforced;
   bool? get hydraOauth2PkceEnforced => _$this._hydraOauth2PkceEnforced;
@@ -3384,6 +3474,7 @@ class CreateProjectNormalizedPayloadBuilder
       _createdAt = $v.createdAt;
       _disableAccountExperienceWelcomeScreen =
           $v.disableAccountExperienceWelcomeScreen;
+      _environment = $v.environment;
       _hydraOauth2AllowedTopLevelClaims =
           $v.hydraOauth2AllowedTopLevelClaims?.toBuilder();
       _hydraOauth2ClientCredentialsDefaultGrantAllowedScope =
@@ -3392,6 +3483,7 @@ class CreateProjectNormalizedPayloadBuilder
       _hydraOauth2GrantJwtIatOptional = $v.hydraOauth2GrantJwtIatOptional;
       _hydraOauth2GrantJwtJtiOptional = $v.hydraOauth2GrantJwtJtiOptional;
       _hydraOauth2GrantJwtMaxTtl = $v.hydraOauth2GrantJwtMaxTtl;
+      _hydraOauth2MirrorTopLevelClaims = $v.hydraOauth2MirrorTopLevelClaims;
       _hydraOauth2PkceEnforced = $v.hydraOauth2PkceEnforced;
       _hydraOauth2PkceEnforcedForPublicClients =
           $v.hydraOauth2PkceEnforcedForPublicClients;
@@ -3732,6 +3824,8 @@ class CreateProjectNormalizedPayloadBuilder
               createdAt: createdAt,
               disableAccountExperienceWelcomeScreen:
                   disableAccountExperienceWelcomeScreen,
+              environment: BuiltValueNullFieldError.checkNotNull(
+                  environment, r'CreateProjectNormalizedPayload', 'environment'),
               hydraOauth2AllowedTopLevelClaims:
                   _hydraOauth2AllowedTopLevelClaims?.build(),
               hydraOauth2ClientCredentialsDefaultGrantAllowedScope:
@@ -3741,6 +3835,7 @@ class CreateProjectNormalizedPayloadBuilder
               hydraOauth2GrantJwtIatOptional: hydraOauth2GrantJwtIatOptional,
               hydraOauth2GrantJwtJtiOptional: hydraOauth2GrantJwtJtiOptional,
               hydraOauth2GrantJwtMaxTtl: hydraOauth2GrantJwtMaxTtl,
+              hydraOauth2MirrorTopLevelClaims: hydraOauth2MirrorTopLevelClaims,
               hydraOauth2PkceEnforced: hydraOauth2PkceEnforced,
               hydraOauth2PkceEnforcedForPublicClients:
                   hydraOauth2PkceEnforcedForPublicClients,
@@ -3809,79 +3904,45 @@ class CreateProjectNormalizedPayloadBuilder
                   kratosCourierHttpRequestConfigAuthType,
               kratosCourierHttpRequestConfigBody:
                   kratosCourierHttpRequestConfigBody,
-              kratosCourierHttpRequestConfigHeaders:
-                  kratosCourierHttpRequestConfigHeaders,
-              kratosCourierHttpRequestConfigMethod:
-                  kratosCourierHttpRequestConfigMethod,
-              kratosCourierHttpRequestConfigUrl:
-                  kratosCourierHttpRequestConfigUrl,
+              kratosCourierHttpRequestConfigHeaders: kratosCourierHttpRequestConfigHeaders,
+              kratosCourierHttpRequestConfigMethod: kratosCourierHttpRequestConfigMethod,
+              kratosCourierHttpRequestConfigUrl: kratosCourierHttpRequestConfigUrl,
               kratosCourierSmtpConnectionUri: kratosCourierSmtpConnectionUri,
               kratosCourierSmtpFromAddress: kratosCourierSmtpFromAddress,
               kratosCourierSmtpFromName: kratosCourierSmtpFromName,
               kratosCourierSmtpHeaders: kratosCourierSmtpHeaders,
               kratosCourierSmtpLocalName: kratosCourierSmtpLocalName,
-              kratosCourierTemplatesLoginCodeValidEmailBodyHtml:
-                  kratosCourierTemplatesLoginCodeValidEmailBodyHtml,
-              kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext:
-                  kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext,
-              kratosCourierTemplatesLoginCodeValidEmailSubject:
-                  kratosCourierTemplatesLoginCodeValidEmailSubject,
-              kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext:
-                  kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
-              kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml:
-                  kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
-              kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext:
-                  kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryCodeInvalidEmailSubject:
-                  kratosCourierTemplatesRecoveryCodeInvalidEmailSubject,
-              kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml:
-                  kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml,
-              kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext:
-                  kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryCodeValidEmailSubject:
-                  kratosCourierTemplatesRecoveryCodeValidEmailSubject,
-              kratosCourierTemplatesRecoveryInvalidEmailBodyHtml:
-                  kratosCourierTemplatesRecoveryInvalidEmailBodyHtml,
-              kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext:
-                  kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryInvalidEmailSubject:
-                  kratosCourierTemplatesRecoveryInvalidEmailSubject,
-              kratosCourierTemplatesRecoveryValidEmailBodyHtml:
-                  kratosCourierTemplatesRecoveryValidEmailBodyHtml,
-              kratosCourierTemplatesRecoveryValidEmailBodyPlaintext:
-                  kratosCourierTemplatesRecoveryValidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryValidEmailSubject:
-                  kratosCourierTemplatesRecoveryValidEmailSubject,
-              kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml:
-                  kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml,
-              kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext:
-                  kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext,
-              kratosCourierTemplatesRegistrationCodeValidEmailSubject:
-                  kratosCourierTemplatesRegistrationCodeValidEmailSubject,
-              kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml:
-                  kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
-              kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext:
-                  kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationCodeInvalidEmailSubject:
-                  kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
-              kratosCourierTemplatesVerificationCodeValidEmailBodyHtml:
-                  kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
-              kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext:
-                  kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationCodeValidEmailSubject:
-                  kratosCourierTemplatesVerificationCodeValidEmailSubject,
-              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext:
-                  kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext,
-              kratosCourierTemplatesVerificationInvalidEmailBodyHtml:
-                  kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
-              kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext:
-                  kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationInvalidEmailSubject:
-                  kratosCourierTemplatesVerificationInvalidEmailSubject,
-              kratosCourierTemplatesVerificationValidEmailBodyHtml:
-                  kratosCourierTemplatesVerificationValidEmailBodyHtml,
-              kratosCourierTemplatesVerificationValidEmailBodyPlaintext:
-                  kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
+              kratosCourierTemplatesLoginCodeValidEmailBodyHtml: kratosCourierTemplatesLoginCodeValidEmailBodyHtml,
+              kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext: kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesLoginCodeValidEmailSubject: kratosCourierTemplatesLoginCodeValidEmailSubject,
+              kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext: kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
+              kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml: kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
+              kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext: kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesRecoveryCodeInvalidEmailSubject: kratosCourierTemplatesRecoveryCodeInvalidEmailSubject,
+              kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml: kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml,
+              kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext: kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesRecoveryCodeValidEmailSubject: kratosCourierTemplatesRecoveryCodeValidEmailSubject,
+              kratosCourierTemplatesRecoveryInvalidEmailBodyHtml: kratosCourierTemplatesRecoveryInvalidEmailBodyHtml,
+              kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext: kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesRecoveryInvalidEmailSubject: kratosCourierTemplatesRecoveryInvalidEmailSubject,
+              kratosCourierTemplatesRecoveryValidEmailBodyHtml: kratosCourierTemplatesRecoveryValidEmailBodyHtml,
+              kratosCourierTemplatesRecoveryValidEmailBodyPlaintext: kratosCourierTemplatesRecoveryValidEmailBodyPlaintext,
+              kratosCourierTemplatesRecoveryValidEmailSubject: kratosCourierTemplatesRecoveryValidEmailSubject,
+              kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml: kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml,
+              kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext: kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesRegistrationCodeValidEmailSubject: kratosCourierTemplatesRegistrationCodeValidEmailSubject,
+              kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml: kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
+              kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext: kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationCodeInvalidEmailSubject: kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
+              kratosCourierTemplatesVerificationCodeValidEmailBodyHtml: kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
+              kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext: kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationCodeValidEmailSubject: kratosCourierTemplatesVerificationCodeValidEmailSubject,
+              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext: kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext,
+              kratosCourierTemplatesVerificationInvalidEmailBodyHtml: kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
+              kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext: kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationInvalidEmailSubject: kratosCourierTemplatesVerificationInvalidEmailSubject,
+              kratosCourierTemplatesVerificationValidEmailBodyHtml: kratosCourierTemplatesVerificationValidEmailBodyHtml,
+              kratosCourierTemplatesVerificationValidEmailBodyPlaintext: kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
               kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,

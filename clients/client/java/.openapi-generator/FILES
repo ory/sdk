@@ -44,9 +44,11 @@ docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
+docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspacePayload.md
+docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -202,7 +204,6 @@ docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
-docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
 docs/SuccessfulCodeExchangeResponse.md
@@ -345,9 +346,11 @@ src/main/java/sh/ory/model/CreateRecoveryCodeForIdentityBody.java
 src/main/java/sh/ory/model/CreateRecoveryLinkForIdentityBody.java
 src/main/java/sh/ory/model/CreateRelationshipBody.java
 src/main/java/sh/ory/model/CreateSubscriptionBody.java
+src/main/java/sh/ory/model/CreateSubscriptionCommon.java
 src/main/java/sh/ory/model/CreateVerifiableCredentialRequestBody.java
 src/main/java/sh/ory/model/CreateWorkspaceMemberInviteBody.java
 src/main/java/sh/ory/model/CreateWorkspacePayload.java
+src/main/java/sh/ory/model/CreateWorkspaceSubscriptionBody.java
 src/main/java/sh/ory/model/CredentialSupportedDraft00.java
 src/main/java/sh/ory/model/CustomDomain.java
 src/main/java/sh/ory/model/DeleteMySessionsCount.java
@@ -493,7 +496,6 @@ src/main/java/sh/ory/model/SetProjectBrandingThemeBody.java
 src/main/java/sh/ory/model/SettingsFlow.java
 src/main/java/sh/ory/model/SettingsFlowState.java
 src/main/java/sh/ory/model/SourcePosition.java
-src/main/java/sh/ory/model/StripeCustomer.java
 src/main/java/sh/ory/model/SubjectSet.java
 src/main/java/sh/ory/model/Subscription.java
 src/main/java/sh/ory/model/SuccessfulCodeExchangeResponse.java
@@ -604,9 +606,11 @@ src/test/java/sh/ory/model/CreateRecoveryCodeForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRecoveryLinkForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRelationshipBodyTest.java
 src/test/java/sh/ory/model/CreateSubscriptionBodyTest.java
+src/test/java/sh/ory/model/CreateSubscriptionCommonTest.java
 src/test/java/sh/ory/model/CreateVerifiableCredentialRequestBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceMemberInviteBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspacePayloadTest.java
+src/test/java/sh/ory/model/CreateWorkspaceSubscriptionBodyTest.java
 src/test/java/sh/ory/model/CredentialSupportedDraft00Test.java
 src/test/java/sh/ory/model/CustomDomainTest.java
 src/test/java/sh/ory/model/DeleteMySessionsCountTest.java
@@ -752,7 +756,6 @@ src/test/java/sh/ory/model/SetProjectTest.java
 src/test/java/sh/ory/model/SettingsFlowStateTest.java
 src/test/java/sh/ory/model/SettingsFlowTest.java
 src/test/java/sh/ory/model/SourcePositionTest.java
-src/test/java/sh/ory/model/StripeCustomerTest.java
 src/test/java/sh/ory/model/SubjectSetTest.java
 src/test/java/sh/ory/model/SubscriptionTest.java
 src/test/java/sh/ory/model/SuccessfulCodeExchangeResponseTest.java

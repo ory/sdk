@@ -50,6 +50,12 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_sessionRateLimitTier =
 const QuotaUsageFeatureEnum
     _$quotaUsageFeatureEnum_identitiesListRateLimitTier =
     const QuotaUsageFeatureEnum._('identitiesListRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_permissionChecksRateLimitTier =
+    const QuotaUsageFeatureEnum._('permissionChecksRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier =
+    const QuotaUsageFeatureEnum._('oauth2IntrospectRateLimitTier');
 
 QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
   switch (name) {
@@ -95,6 +101,10 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_sessionRateLimitTier;
     case 'identitiesListRateLimitTier':
       return _$quotaUsageFeatureEnum_identitiesListRateLimitTier;
+    case 'permissionChecksRateLimitTier':
+      return _$quotaUsageFeatureEnum_permissionChecksRateLimitTier;
+    case 'oauth2IntrospectRateLimitTier':
+      return _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier;
     default:
       throw new ArgumentError(name);
   }
@@ -123,6 +133,8 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
   _$quotaUsageFeatureEnum_identitiesListRateLimitTier,
+  _$quotaUsageFeatureEnum_permissionChecksRateLimitTier,
+  _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier,
 ]);
 
 Serializer<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumSerializer =
@@ -152,6 +164,8 @@ class _$QuotaUsageFeatureEnumSerializer
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
     'identitiesListRateLimitTier': 'identities_list_rate_limit_tier',
+    'permissionChecksRateLimitTier': 'permission_checks_rate_limit_tier',
+    'oauth2IntrospectRateLimitTier': 'oauth2_introspect_rate_limit_tier',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'region_eu': 'regionEu',
@@ -175,6 +189,8 @@ class _$QuotaUsageFeatureEnumSerializer
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',
     'identities_list_rate_limit_tier': 'identitiesListRateLimitTier',
+    'permission_checks_rate_limit_tier': 'permissionChecksRateLimitTier',
+    'oauth2_introspect_rate_limit_tier': 'oauth2IntrospectRateLimitTier',
   };
 
   @override

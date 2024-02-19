@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.1
+API version: v1.6.2
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ var _ MappedNullable = &OAuth2ConsentSession{}
 // OAuth2ConsentSession A completed OAuth 2.0 Consent Session.
 type OAuth2ConsentSession struct {
 	ConsentRequest *OAuth2ConsentRequest `json:"consent_request,omitempty"`
+	Context map[string]interface{} `json:"context,omitempty"`
 	ExpiresAt *OAuth2ConsentSessionExpiresAt `json:"expires_at,omitempty"`
 	GrantAccessTokenAudience []string `json:"grant_access_token_audience,omitempty"`
 	GrantScope []string `json:"grant_scope,omitempty"`
@@ -83,6 +84,38 @@ func (o *OAuth2ConsentSession) HasConsentRequest() bool {
 // SetConsentRequest gets a reference to the given OAuth2ConsentRequest and assigns it to the ConsentRequest field.
 func (o *OAuth2ConsentSession) SetConsentRequest(v OAuth2ConsentRequest) {
 	o.ConsentRequest = &v
+}
+
+// GetContext returns the Context field value if set, zero value otherwise.
+func (o *OAuth2ConsentSession) GetContext() map[string]interface{} {
+	if o == nil || IsNil(o.Context) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Context
+}
+
+// GetContextOk returns a tuple with the Context field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OAuth2ConsentSession) GetContextOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Context) {
+		return map[string]interface{}{}, false
+	}
+	return o.Context, true
+}
+
+// HasContext returns a boolean if a field has been set.
+func (o *OAuth2ConsentSession) HasContext() bool {
+	if o != nil && !IsNil(o.Context) {
+		return true
+	}
+
+	return false
+}
+
+// SetContext gets a reference to the given map[string]interface{} and assigns it to the Context field.
+func (o *OAuth2ConsentSession) SetContext(v map[string]interface{}) {
+	o.Context = v
 }
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
@@ -322,6 +355,9 @@ func (o OAuth2ConsentSession) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ConsentRequest) {
 		toSerialize["consent_request"] = o.ConsentRequest
 	}
+	if !IsNil(o.Context) {
+		toSerialize["context"] = o.Context
+	}
 	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
@@ -366,6 +402,7 @@ func (o *OAuth2ConsentSession) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "consent_request")
+		delete(additionalProperties, "context")
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "grant_access_token_audience")
 		delete(additionalProperties, "grant_scope")

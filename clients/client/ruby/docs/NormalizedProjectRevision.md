@@ -12,6 +12,7 @@
 | **hydra_oauth2_grant_jwt_iat_optional** | **Boolean** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] |
 | **hydra_oauth2_grant_jwt_jti_optional** | **Boolean** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] |
 | **hydra_oauth2_grant_jwt_max_ttl** | **String** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional][default to &#39;720h&#39;] |
+| **hydra_oauth2_mirror_top_level_claims** | **Boolean** | Set to false if you don&#39;t want to mirror custom claims under &#39;ext&#39;.  This governs the \&quot;oauth2.mirror_top_level_claims\&quot; setting. | [optional] |
 | **hydra_oauth2_pkce_enforced** | **Boolean** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] |
 | **hydra_oauth2_pkce_enforced_for_public_clients** | **Boolean** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] |
 | **hydra_oauth2_refresh_token_hook** | **String** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] |
@@ -209,6 +210,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   hydra_oauth2_grant_jwt_iat_optional: null,
   hydra_oauth2_grant_jwt_jti_optional: null,
   hydra_oauth2_grant_jwt_max_ttl: 30m,
+  hydra_oauth2_mirror_top_level_claims: null,
   hydra_oauth2_pkce_enforced: null,
   hydra_oauth2_pkce_enforced_for_public_clients: null,
   hydra_oauth2_refresh_token_hook: null,
