@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the UiNodeMeta type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiNodeMeta{}
 
 // UiNodeMeta This might include a label and other information that can optionally be used to render UIs.
 type UiNodeMeta struct {
@@ -42,7 +45,7 @@ func NewUiNodeMetaWithDefaults() *UiNodeMeta {
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *UiNodeMeta) GetLabel() UiText {
-	if o == nil || o.Label == nil {
+	if o == nil || IsNil(o.Label) {
 		var ret UiText
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *UiNodeMeta) GetLabel() UiText {
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiNodeMeta) GetLabelOk() (*UiText, bool) {
-	if o == nil || o.Label == nil {
+	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
 	return o.Label, true
@@ -60,7 +63,7 @@ func (o *UiNodeMeta) GetLabelOk() (*UiText, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *UiNodeMeta) HasLabel() bool {
-	if o != nil && o.Label != nil {
+	if o != nil && !IsNil(o.Label) {
 		return true
 	}
 
@@ -73,8 +76,16 @@ func (o *UiNodeMeta) SetLabel(v UiText) {
 }
 
 func (o UiNodeMeta) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UiNodeMeta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Label != nil {
+	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
 
@@ -82,15 +93,19 @@ func (o UiNodeMeta) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UiNodeMeta) UnmarshalJSON(bytes []byte) (err error) {
 	varUiNodeMeta := _UiNodeMeta{}
 
-	if err = json.Unmarshal(bytes, &varUiNodeMeta); err == nil {
-		*o = UiNodeMeta(varUiNodeMeta)
+	err = json.Unmarshal(bytes, &varUiNodeMeta)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UiNodeMeta(varUiNodeMeta)
 
 	additionalProperties := make(map[string]interface{})
 

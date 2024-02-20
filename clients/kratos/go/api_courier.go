@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,14 +14,14 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-type CourierApi interface {
+type CourierAPI interface {
 
 	/*
 	GetCourierMessage Get a Message
@@ -30,13 +30,13 @@ type CourierApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id MessageID is the ID of the message.
-	@return CourierApiGetCourierMessageRequest
+	@return CourierAPIGetCourierMessageRequest
 	*/
-	GetCourierMessage(ctx context.Context, id string) CourierApiGetCourierMessageRequest
+	GetCourierMessage(ctx context.Context, id string) CourierAPIGetCourierMessageRequest
 
 	// GetCourierMessageExecute executes the request
 	//  @return Message
-	GetCourierMessageExecute(r CourierApiGetCourierMessageRequest) (*Message, *http.Response, error)
+	GetCourierMessageExecute(r CourierAPIGetCourierMessageRequest) (*Message, *http.Response, error)
 
 	/*
 	ListCourierMessages List Messages
@@ -44,25 +44,25 @@ type CourierApi interface {
 	Lists all messages by given status and recipient.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return CourierApiListCourierMessagesRequest
+	@return CourierAPIListCourierMessagesRequest
 	*/
-	ListCourierMessages(ctx context.Context) CourierApiListCourierMessagesRequest
+	ListCourierMessages(ctx context.Context) CourierAPIListCourierMessagesRequest
 
 	// ListCourierMessagesExecute executes the request
 	//  @return []Message
-	ListCourierMessagesExecute(r CourierApiListCourierMessagesRequest) ([]Message, *http.Response, error)
+	ListCourierMessagesExecute(r CourierAPIListCourierMessagesRequest) ([]Message, *http.Response, error)
 }
 
-// CourierApiService CourierApi service
-type CourierApiService service
+// CourierAPIService CourierAPI service
+type CourierAPIService service
 
-type CourierApiGetCourierMessageRequest struct {
+type CourierAPIGetCourierMessageRequest struct {
 	ctx context.Context
-	ApiService CourierApi
+	ApiService CourierAPI
 	id string
 }
 
-func (r CourierApiGetCourierMessageRequest) Execute() (*Message, *http.Response, error) {
+func (r CourierAPIGetCourierMessageRequest) Execute() (*Message, *http.Response, error) {
 	return r.ApiService.GetCourierMessageExecute(r)
 }
 
@@ -73,10 +73,10 @@ Gets a specific messages by the given ID.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id MessageID is the ID of the message.
- @return CourierApiGetCourierMessageRequest
+ @return CourierAPIGetCourierMessageRequest
 */
-func (a *CourierApiService) GetCourierMessage(ctx context.Context, id string) CourierApiGetCourierMessageRequest {
-	return CourierApiGetCourierMessageRequest{
+func (a *CourierAPIService) GetCourierMessage(ctx context.Context, id string) CourierAPIGetCourierMessageRequest {
+	return CourierAPIGetCourierMessageRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -85,7 +85,7 @@ func (a *CourierApiService) GetCourierMessage(ctx context.Context, id string) Co
 
 // Execute executes the request
 //  @return Message
-func (a *CourierApiService) GetCourierMessageExecute(r CourierApiGetCourierMessageRequest) (*Message, *http.Response, error) {
+func (a *CourierAPIService) GetCourierMessageExecute(r CourierAPIGetCourierMessageRequest) (*Message, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -93,13 +93,13 @@ func (a *CourierApiService) GetCourierMessageExecute(r CourierApiGetCourierMessa
 		localVarReturnValue  *Message
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CourierApiService.GetCourierMessage")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CourierAPIService.GetCourierMessage")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/courier/messages/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -146,9 +146,9 @@ func (a *CourierApiService) GetCourierMessageExecute(r CourierApiGetCourierMessa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -165,7 +165,8 @@ func (a *CourierApiService) GetCourierMessageExecute(r CourierApiGetCourierMessa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorGeneric
@@ -174,7 +175,8 @@ func (a *CourierApiService) GetCourierMessageExecute(r CourierApiGetCourierMessa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -190,9 +192,9 @@ func (a *CourierApiService) GetCourierMessageExecute(r CourierApiGetCourierMessa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type CourierApiListCourierMessagesRequest struct {
+type CourierAPIListCourierMessagesRequest struct {
 	ctx context.Context
-	ApiService CourierApi
+	ApiService CourierAPI
 	pageSize *int64
 	pageToken *string
 	status *CourierMessageStatus
@@ -200,30 +202,30 @@ type CourierApiListCourierMessagesRequest struct {
 }
 
 // Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-func (r CourierApiListCourierMessagesRequest) PageSize(pageSize int64) CourierApiListCourierMessagesRequest {
+func (r CourierAPIListCourierMessagesRequest) PageSize(pageSize int64) CourierAPIListCourierMessagesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-func (r CourierApiListCourierMessagesRequest) PageToken(pageToken string) CourierApiListCourierMessagesRequest {
+func (r CourierAPIListCourierMessagesRequest) PageToken(pageToken string) CourierAPIListCourierMessagesRequest {
 	r.pageToken = &pageToken
 	return r
 }
 
 // Status filters out messages based on status. If no value is provided, it doesn&#39;t take effect on filter.
-func (r CourierApiListCourierMessagesRequest) Status(status CourierMessageStatus) CourierApiListCourierMessagesRequest {
+func (r CourierAPIListCourierMessagesRequest) Status(status CourierMessageStatus) CourierAPIListCourierMessagesRequest {
 	r.status = &status
 	return r
 }
 
 // Recipient filters out messages based on recipient. If no value is provided, it doesn&#39;t take effect on filter.
-func (r CourierApiListCourierMessagesRequest) Recipient(recipient string) CourierApiListCourierMessagesRequest {
+func (r CourierAPIListCourierMessagesRequest) Recipient(recipient string) CourierAPIListCourierMessagesRequest {
 	r.recipient = &recipient
 	return r
 }
 
-func (r CourierApiListCourierMessagesRequest) Execute() ([]Message, *http.Response, error) {
+func (r CourierAPIListCourierMessagesRequest) Execute() ([]Message, *http.Response, error) {
 	return r.ApiService.ListCourierMessagesExecute(r)
 }
 
@@ -233,10 +235,10 @@ ListCourierMessages List Messages
 Lists all messages by given status and recipient.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return CourierApiListCourierMessagesRequest
+ @return CourierAPIListCourierMessagesRequest
 */
-func (a *CourierApiService) ListCourierMessages(ctx context.Context) CourierApiListCourierMessagesRequest {
-	return CourierApiListCourierMessagesRequest{
+func (a *CourierAPIService) ListCourierMessages(ctx context.Context) CourierAPIListCourierMessagesRequest {
+	return CourierAPIListCourierMessagesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -244,7 +246,7 @@ func (a *CourierApiService) ListCourierMessages(ctx context.Context) CourierApiL
 
 // Execute executes the request
 //  @return []Message
-func (a *CourierApiService) ListCourierMessagesExecute(r CourierApiListCourierMessagesRequest) ([]Message, *http.Response, error) {
+func (a *CourierAPIService) ListCourierMessagesExecute(r CourierAPIListCourierMessagesRequest) ([]Message, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -252,7 +254,7 @@ func (a *CourierApiService) ListCourierMessagesExecute(r CourierApiListCourierMe
 		localVarReturnValue  []Message
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CourierApiService.ListCourierMessages")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CourierAPIService.ListCourierMessages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -264,16 +266,19 @@ func (a *CourierApiService) ListCourierMessagesExecute(r CourierApiListCourierMe
 	localVarFormParams := url.Values{}
 
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+	} else {
+		var defaultValue int64 = 250
+		r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
-		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
 	}
 	if r.status != nil {
-		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
 	}
 	if r.recipient != nil {
-		localVarQueryParams.Add("recipient", parameterToString(*r.recipient, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "recipient", r.recipient, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -316,9 +321,9 @@ func (a *CourierApiService) ListCourierMessagesExecute(r CourierApiListCourierMe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -335,7 +340,8 @@ func (a *CourierApiService) ListCourierMessagesExecute(r CourierApiListCourierMe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorGeneric
@@ -344,7 +350,8 @@ func (a *CourierApiService) ListCourierMessagesExecute(r CourierApiListCourierMe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

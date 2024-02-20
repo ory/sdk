@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the IdentityPatchResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityPatchResponse{}
 
 // IdentityPatchResponse Response for a single identity patch
 type IdentityPatchResponse struct {
@@ -47,7 +50,7 @@ func NewIdentityPatchResponseWithDefaults() *IdentityPatchResponse {
 
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *IdentityPatchResponse) GetAction() string {
-	if o == nil || o.Action == nil {
+	if o == nil || IsNil(o.Action) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *IdentityPatchResponse) GetAction() string {
 // GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityPatchResponse) GetActionOk() (*string, bool) {
-	if o == nil || o.Action == nil {
+	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
 	return o.Action, true
@@ -65,7 +68,7 @@ func (o *IdentityPatchResponse) GetActionOk() (*string, bool) {
 
 // HasAction returns a boolean if a field has been set.
 func (o *IdentityPatchResponse) HasAction() bool {
-	if o != nil && o.Action != nil {
+	if o != nil && !IsNil(o.Action) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *IdentityPatchResponse) SetAction(v string) {
 
 // GetIdentity returns the Identity field value if set, zero value otherwise.
 func (o *IdentityPatchResponse) GetIdentity() string {
-	if o == nil || o.Identity == nil {
+	if o == nil || IsNil(o.Identity) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *IdentityPatchResponse) GetIdentity() string {
 // GetIdentityOk returns a tuple with the Identity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityPatchResponse) GetIdentityOk() (*string, bool) {
-	if o == nil || o.Identity == nil {
+	if o == nil || IsNil(o.Identity) {
 		return nil, false
 	}
 	return o.Identity, true
@@ -97,7 +100,7 @@ func (o *IdentityPatchResponse) GetIdentityOk() (*string, bool) {
 
 // HasIdentity returns a boolean if a field has been set.
 func (o *IdentityPatchResponse) HasIdentity() bool {
-	if o != nil && o.Identity != nil {
+	if o != nil && !IsNil(o.Identity) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *IdentityPatchResponse) SetIdentity(v string) {
 
 // GetPatchId returns the PatchId field value if set, zero value otherwise.
 func (o *IdentityPatchResponse) GetPatchId() string {
-	if o == nil || o.PatchId == nil {
+	if o == nil || IsNil(o.PatchId) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *IdentityPatchResponse) GetPatchId() string {
 // GetPatchIdOk returns a tuple with the PatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityPatchResponse) GetPatchIdOk() (*string, bool) {
-	if o == nil || o.PatchId == nil {
+	if o == nil || IsNil(o.PatchId) {
 		return nil, false
 	}
 	return o.PatchId, true
@@ -129,7 +132,7 @@ func (o *IdentityPatchResponse) GetPatchIdOk() (*string, bool) {
 
 // HasPatchId returns a boolean if a field has been set.
 func (o *IdentityPatchResponse) HasPatchId() bool {
-	if o != nil && o.PatchId != nil {
+	if o != nil && !IsNil(o.PatchId) {
 		return true
 	}
 
@@ -142,14 +145,22 @@ func (o *IdentityPatchResponse) SetPatchId(v string) {
 }
 
 func (o IdentityPatchResponse) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityPatchResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Action != nil {
+	if !IsNil(o.Action) {
 		toSerialize["action"] = o.Action
 	}
-	if o.Identity != nil {
+	if !IsNil(o.Identity) {
 		toSerialize["identity"] = o.Identity
 	}
-	if o.PatchId != nil {
+	if !IsNil(o.PatchId) {
 		toSerialize["patch_id"] = o.PatchId
 	}
 
@@ -157,15 +168,19 @@ func (o IdentityPatchResponse) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityPatchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityPatchResponse := _IdentityPatchResponse{}
 
-	if err = json.Unmarshal(bytes, &varIdentityPatchResponse); err == nil {
-		*o = IdentityPatchResponse(varIdentityPatchResponse)
+	err = json.Unmarshal(bytes, &varIdentityPatchResponse)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityPatchResponse(varIdentityPatchResponse)
 
 	additionalProperties := make(map[string]interface{})
 

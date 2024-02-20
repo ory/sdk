@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **string** | Action will always be &#x60;show_verification_ui&#x60; set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI | 
+**Action** | **string** | Action will always be &#x60;show_verification_ui&#x60; show_verification_ui ContinueWithActionShowVerificationUIString | 
 **Flow** | [**ContinueWithVerificationUiFlow**](ContinueWithVerificationUiFlow.md) |  | 
 
 ## Methods

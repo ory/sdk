@@ -16,6 +16,7 @@ part 'session_authentication_method.g.dart';
 /// * [aal] 
 /// * [completedAt] - When the authentication challenge was completed.
 /// * [method] 
+/// * [organization] - The Organization id used for authentication
 /// * [provider] - OIDC or SAML provider id used for authentication
 @BuiltValue()
 abstract class SessionAuthenticationMethod implements Built<SessionAuthenticationMethod, SessionAuthenticationMethodBuilder> {
@@ -29,7 +30,11 @@ abstract class SessionAuthenticationMethod implements Built<SessionAuthenticatio
 
   @BuiltValueField(wireName: r'method')
   SessionAuthenticationMethodMethodEnum? get method;
-  // enum methodEnum {  link_recovery,  code_recovery,  password,  totp,  oidc,  webauthn,  lookup_secret,  v0.6_legacy_session,  };
+  // enum methodEnum {  link_recovery,  code_recovery,  password,  code,  totp,  oidc,  webauthn,  lookup_secret,  v0.6_legacy_session,  };
+
+  /// The Organization id used for authentication
+  @BuiltValueField(wireName: r'organization')
+  String? get organization;
 
   /// OIDC or SAML provider id used for authentication
   @BuiltValueField(wireName: r'provider')
@@ -77,6 +82,13 @@ class _$SessionAuthenticationMethodSerializer implements PrimitiveSerializer<Ses
       yield serializers.serialize(
         object.method,
         specifiedType: const FullType(SessionAuthenticationMethodMethodEnum),
+      );
+    }
+    if (object.organization != null) {
+      yield r'organization';
+      yield serializers.serialize(
+        object.organization,
+        specifiedType: const FullType(String),
       );
     }
     if (object.provider != null) {
@@ -130,6 +142,13 @@ class _$SessionAuthenticationMethodSerializer implements PrimitiveSerializer<Ses
           ) as SessionAuthenticationMethodMethodEnum;
           result.method = valueDes;
           break;
+        case r'organization':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.organization = valueDes;
+          break;
         case r'provider':
           final valueDes = serializers.deserialize(
             value,
@@ -174,6 +193,8 @@ class SessionAuthenticationMethodMethodEnum extends EnumClass {
   static const SessionAuthenticationMethodMethodEnum codeRecovery = _$sessionAuthenticationMethodMethodEnum_codeRecovery;
   @BuiltValueEnumConst(wireName: r'password')
   static const SessionAuthenticationMethodMethodEnum password = _$sessionAuthenticationMethodMethodEnum_password;
+  @BuiltValueEnumConst(wireName: r'code')
+  static const SessionAuthenticationMethodMethodEnum code = _$sessionAuthenticationMethodMethodEnum_code;
   @BuiltValueEnumConst(wireName: r'totp')
   static const SessionAuthenticationMethodMethodEnum totp = _$sessionAuthenticationMethodMethodEnum_totp;
   @BuiltValueEnumConst(wireName: r'oidc')

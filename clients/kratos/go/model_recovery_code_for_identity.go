@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,11 +14,15 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the RecoveryCodeForIdentity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecoveryCodeForIdentity{}
 
 // RecoveryCodeForIdentity Used when an administrator creates a recovery code for an identity.
 type RecoveryCodeForIdentity struct {
-	// Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery link expires.
+	// Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery code expires.
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	// RecoveryCode is the code that can be used to recover the account
 	RecoveryCode string `json:"recovery_code"`
@@ -50,7 +54,7 @@ func NewRecoveryCodeForIdentityWithDefaults() *RecoveryCodeForIdentity {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *RecoveryCodeForIdentity) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -60,7 +64,7 @@ func (o *RecoveryCodeForIdentity) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryCodeForIdentity) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -68,7 +72,7 @@ func (o *RecoveryCodeForIdentity) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *RecoveryCodeForIdentity) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -129,30 +133,60 @@ func (o *RecoveryCodeForIdentity) SetRecoveryLink(v string) {
 }
 
 func (o RecoveryCodeForIdentity) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RecoveryCodeForIdentity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ExpiresAt != nil {
+	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
-	if true {
-		toSerialize["recovery_code"] = o.RecoveryCode
-	}
-	if true {
-		toSerialize["recovery_link"] = o.RecoveryLink
-	}
+	toSerialize["recovery_code"] = o.RecoveryCode
+	toSerialize["recovery_link"] = o.RecoveryLink
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *RecoveryCodeForIdentity) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"recovery_code",
+		"recovery_link",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varRecoveryCodeForIdentity := _RecoveryCodeForIdentity{}
 
-	if err = json.Unmarshal(bytes, &varRecoveryCodeForIdentity); err == nil {
-		*o = RecoveryCodeForIdentity(varRecoveryCodeForIdentity)
+	err = json.Unmarshal(bytes, &varRecoveryCodeForIdentity)
+
+	if err != nil {
+		return err
 	}
+
+	*o = RecoveryCodeForIdentity(varRecoveryCodeForIdentity)
 
 	additionalProperties := make(map[string]interface{})
 

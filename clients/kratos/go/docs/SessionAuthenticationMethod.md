@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Aal** | Pointer to [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
 **CompletedAt** | Pointer to **time.Time** | When the authentication challenge was completed. | [optional] 
 **Method** | Pointer to **string** |  | [optional] 
+**Organization** | Pointer to **string** | The Organization id used for authentication | [optional] 
 **Provider** | Pointer to **string** | OIDC or SAML provider id used for authentication | [optional] 
 
 ## Methods
@@ -102,6 +103,31 @@ SetMethod sets Method field to given value.
 `func (o *SessionAuthenticationMethod) HasMethod() bool`
 
 HasMethod returns a boolean if a field has been set.
+
+### GetOrganization
+
+`func (o *SessionAuthenticationMethod) GetOrganization() string`
+
+GetOrganization returns the Organization field if non-nil, zero value otherwise.
+
+### GetOrganizationOk
+
+`func (o *SessionAuthenticationMethod) GetOrganizationOk() (*string, bool)`
+
+GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganization
+
+`func (o *SessionAuthenticationMethod) SetOrganization(v string)`
+
+SetOrganization sets Organization field to given value.
+
+### HasOrganization
+
+`func (o *SessionAuthenticationMethod) HasOrganization() bool`
+
+HasOrganization returns a boolean if a field has been set.
 
 ### GetProvider
 

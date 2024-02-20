@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,11 +14,16 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the Message type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Message{}
 
 // Message struct for Message
 type Message struct {
 	Body string `json:"body"`
+	Channel *string `json:"channel,omitempty"`
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt time.Time `json:"created_at"`
 	// Dispatches store information about the attempts of delivering a message May contain an error if any happened, or just the `success` state.
@@ -28,7 +33,7 @@ type Message struct {
 	SendCount int64 `json:"send_count"`
 	Status CourierMessageStatus `json:"status"`
 	Subject string `json:"subject"`
-	//  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub
+	//  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid
 	TemplateType string `json:"template_type"`
 	Type CourierMessageType `json:"type"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
@@ -89,6 +94,38 @@ func (o *Message) SetBody(v string) {
 	o.Body = v
 }
 
+// GetChannel returns the Channel field value if set, zero value otherwise.
+func (o *Message) GetChannel() string {
+	if o == nil || IsNil(o.Channel) {
+		var ret string
+		return ret
+	}
+	return *o.Channel
+}
+
+// GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Message) GetChannelOk() (*string, bool) {
+	if o == nil || IsNil(o.Channel) {
+		return nil, false
+	}
+	return o.Channel, true
+}
+
+// HasChannel returns a boolean if a field has been set.
+func (o *Message) HasChannel() bool {
+	if o != nil && !IsNil(o.Channel) {
+		return true
+	}
+
+	return false
+}
+
+// SetChannel gets a reference to the given string and assigns it to the Channel field.
+func (o *Message) SetChannel(v string) {
+	o.Channel = &v
+}
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *Message) GetCreatedAt() time.Time {
 	if o == nil {
@@ -115,7 +152,7 @@ func (o *Message) SetCreatedAt(v time.Time) {
 
 // GetDispatches returns the Dispatches field value if set, zero value otherwise.
 func (o *Message) GetDispatches() []MessageDispatch {
-	if o == nil || o.Dispatches == nil {
+	if o == nil || IsNil(o.Dispatches) {
 		var ret []MessageDispatch
 		return ret
 	}
@@ -125,7 +162,7 @@ func (o *Message) GetDispatches() []MessageDispatch {
 // GetDispatchesOk returns a tuple with the Dispatches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message) GetDispatchesOk() ([]MessageDispatch, bool) {
-	if o == nil || o.Dispatches == nil {
+	if o == nil || IsNil(o.Dispatches) {
 		return nil, false
 	}
 	return o.Dispatches, true
@@ -133,7 +170,7 @@ func (o *Message) GetDispatchesOk() ([]MessageDispatch, bool) {
 
 // HasDispatches returns a boolean if a field has been set.
 func (o *Message) HasDispatches() bool {
-	if o != nil && o.Dispatches != nil {
+	if o != nil && !IsNil(o.Dispatches) {
 		return true
 	}
 
@@ -338,59 +375,85 @@ func (o *Message) SetUpdatedAt(v time.Time) {
 }
 
 func (o Message) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Message) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["body"] = o.Body
+	toSerialize["body"] = o.Body
+	if !IsNil(o.Channel) {
+		toSerialize["channel"] = o.Channel
 	}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.Dispatches != nil {
+	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.Dispatches) {
 		toSerialize["dispatches"] = o.Dispatches
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["recipient"] = o.Recipient
-	}
-	if true {
-		toSerialize["send_count"] = o.SendCount
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
-	if true {
-		toSerialize["template_type"] = o.TemplateType
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["id"] = o.Id
+	toSerialize["recipient"] = o.Recipient
+	toSerialize["send_count"] = o.SendCount
+	toSerialize["status"] = o.Status
+	toSerialize["subject"] = o.Subject
+	toSerialize["template_type"] = o.TemplateType
+	toSerialize["type"] = o.Type
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Message) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"body",
+		"created_at",
+		"id",
+		"recipient",
+		"send_count",
+		"status",
+		"subject",
+		"template_type",
+		"type",
+		"updated_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varMessage := _Message{}
 
-	if err = json.Unmarshal(bytes, &varMessage); err == nil {
-		*o = Message(varMessage)
+	err = json.Unmarshal(bytes, &varMessage)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Message(varMessage)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "body")
+		delete(additionalProperties, "channel")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "dispatches")
 		delete(additionalProperties, "id")

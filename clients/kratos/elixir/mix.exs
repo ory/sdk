@@ -4,12 +4,14 @@ defmodule Ory.Mixfile do
   def project do
     [
       app: :ory_kratos,
-      version: "1.0.0",
+      version: "1.1.0",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
-      description: "This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. ",
+      description: """
+      This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
+      """,
       deps: deps()
     ]
   end
@@ -33,9 +35,10 @@ defmodule Ory.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:tesla, "~> 1.4"},
-      {:poison, "~> 3.0"},
-      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
+      {:tesla, "~> 1.7"},
+      {:jason, "~> 1.4"},
+      {:ex_doc, "~> 0.30", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false}
     ]
   end
 

@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**action** | [**ActionEnum**](#ActionEnum) | Action will always be &#x60;set_ory_session_token&#x60; set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI |  |
-|**flow** | [**ContinueWithVerificationUiFlow**](ContinueWithVerificationUiFlow.md) |  |  |
+|**action** | [**ActionEnum**](#ActionEnum) | Action will always be &#x60;show_recovery_ui&#x60; show_recovery_ui ContinueWithActionShowRecoveryUIString |  |
+|**flow** | [**ContinueWithRecoveryUiFlow**](ContinueWithRecoveryUiFlow.md) |  |  |
 |**orySessionToken** | **String** | Token is the token of the session |  |
 
 
@@ -17,8 +17,7 @@
 
 | Name | Value |
 |---- | -----|
-| SET_ORY_SESSION_TOKEN | &quot;set_ory_session_token&quot; |
-| SHOW_VERIFICATION_UI | &quot;show_verification_ui&quot; |
+| SHOW_RECOVERY_UI | &quot;show_recovery_ui&quot; |
 
 
 

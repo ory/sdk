@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the IsAlive200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IsAlive200Response{}
 
 // IsAlive200Response struct for IsAlive200Response
 type IsAlive200Response struct {
@@ -67,24 +71,55 @@ func (o *IsAlive200Response) SetStatus(v string) {
 }
 
 func (o IsAlive200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IsAlive200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IsAlive200Response) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"status",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varIsAlive200Response := _IsAlive200Response{}
 
-	if err = json.Unmarshal(bytes, &varIsAlive200Response); err == nil {
-		*o = IsAlive200Response(varIsAlive200Response)
+	err = json.Unmarshal(bytes, &varIsAlive200Response)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IsAlive200Response(varIsAlive200Response)
 
 	additionalProperties := make(map[string]interface{})
 

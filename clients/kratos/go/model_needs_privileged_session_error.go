@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the NeedsPrivilegedSessionError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NeedsPrivilegedSessionError{}
 
 // NeedsPrivilegedSessionError struct for NeedsPrivilegedSessionError
 type NeedsPrivilegedSessionError struct {
@@ -45,7 +49,7 @@ func NewNeedsPrivilegedSessionErrorWithDefaults() *NeedsPrivilegedSessionError {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *NeedsPrivilegedSessionError) GetError() GenericError {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret GenericError
 		return ret
 	}
@@ -55,7 +59,7 @@ func (o *NeedsPrivilegedSessionError) GetError() GenericError {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeedsPrivilegedSessionError) GetErrorOk() (*GenericError, bool) {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
 	return o.Error, true
@@ -63,7 +67,7 @@ func (o *NeedsPrivilegedSessionError) GetErrorOk() (*GenericError, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *NeedsPrivilegedSessionError) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -100,27 +104,58 @@ func (o *NeedsPrivilegedSessionError) SetRedirectBrowserTo(v string) {
 }
 
 func (o NeedsPrivilegedSessionError) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o NeedsPrivilegedSessionError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Error != nil {
+	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	if true {
-		toSerialize["redirect_browser_to"] = o.RedirectBrowserTo
-	}
+	toSerialize["redirect_browser_to"] = o.RedirectBrowserTo
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *NeedsPrivilegedSessionError) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"redirect_browser_to",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varNeedsPrivilegedSessionError := _NeedsPrivilegedSessionError{}
 
-	if err = json.Unmarshal(bytes, &varNeedsPrivilegedSessionError); err == nil {
-		*o = NeedsPrivilegedSessionError(varNeedsPrivilegedSessionError)
+	err = json.Unmarshal(bytes, &varNeedsPrivilegedSessionError)
+
+	if err != nil {
+		return err
 	}
+
+	*o = NeedsPrivilegedSessionError(varNeedsPrivilegedSessionError)
 
 	additionalProperties := make(map[string]interface{})
 

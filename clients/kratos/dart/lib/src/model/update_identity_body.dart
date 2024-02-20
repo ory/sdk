@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_kratos_client/src/model/identity_with_credentials.dart';
-import 'package:ory_kratos_client/src/model/identity_state.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -18,7 +18,7 @@ part 'update_identity_body.g.dart';
 /// * [metadataAdmin] - Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
 /// * [metadataPublic] - Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
 /// * [schemaId] - SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set will update the Identity's SchemaID.
-/// * [state] 
+/// * [state] - State is the identity's state. active StateActive inactive StateInactive
 /// * [traits] - Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_id`.
 @BuiltValue()
 abstract class UpdateIdentityBody implements Built<UpdateIdentityBody, UpdateIdentityBodyBuilder> {
@@ -37,8 +37,9 @@ abstract class UpdateIdentityBody implements Built<UpdateIdentityBody, UpdateIde
   @BuiltValueField(wireName: r'schema_id')
   String get schemaId;
 
+  /// State is the identity's state. active StateActive inactive StateInactive
   @BuiltValueField(wireName: r'state')
-  IdentityState get state;
+  UpdateIdentityBodyStateEnum get state;
   // enum stateEnum {  active,  inactive,  };
 
   /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_id`.
@@ -97,7 +98,7 @@ class _$UpdateIdentityBodySerializer implements PrimitiveSerializer<UpdateIdenti
     yield r'state';
     yield serializers.serialize(
       object.state,
-      specifiedType: const FullType(IdentityState),
+      specifiedType: const FullType(UpdateIdentityBodyStateEnum),
     );
     yield r'traits';
     yield serializers.serialize(
@@ -160,8 +161,8 @@ class _$UpdateIdentityBodySerializer implements PrimitiveSerializer<UpdateIdenti
         case r'state':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(IdentityState),
-          ) as IdentityState;
+            specifiedType: const FullType(UpdateIdentityBodyStateEnum),
+          ) as UpdateIdentityBodyStateEnum;
           result.state = valueDes;
           break;
         case r'traits':
@@ -198,5 +199,22 @@ class _$UpdateIdentityBodySerializer implements PrimitiveSerializer<UpdateIdenti
     );
     return result.build();
   }
+}
+
+class UpdateIdentityBodyStateEnum extends EnumClass {
+
+  /// State is the identity's state. active StateActive inactive StateInactive
+  @BuiltValueEnumConst(wireName: r'active')
+  static const UpdateIdentityBodyStateEnum active = _$updateIdentityBodyStateEnum_active;
+  /// State is the identity's state. active StateActive inactive StateInactive
+  @BuiltValueEnumConst(wireName: r'inactive')
+  static const UpdateIdentityBodyStateEnum inactive = _$updateIdentityBodyStateEnum_inactive;
+
+  static Serializer<UpdateIdentityBodyStateEnum> get serializer => _$updateIdentityBodyStateEnumSerializer;
+
+  const UpdateIdentityBodyStateEnum._(String name): super(name);
+
+  static BuiltSet<UpdateIdentityBodyStateEnum> get values => _$updateIdentityBodyStateEnumValues;
+  static UpdateIdentityBodyStateEnum valueOf(String name) => _$updateIdentityBodyStateEnumValueOf(name);
 }
 

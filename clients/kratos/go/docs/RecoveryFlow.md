@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **string** | Active, if set, contains the recovery method that is being used. It is initially not set. | [optional] 
+**ContinueWith** | Pointer to [**[]ContinueWith**](ContinueWith.md) | Contains possible actions that could follow this flow | [optional] 
 **ExpiresAt** | **time.Time** | ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated. | 
 **Id** | **string** | ID represents the request&#39;s unique ID. When performing the recovery flow, this represents the id in the recovery ui&#39;s query parameter: http://&lt;selfservice.flows.recovery.ui_url&gt;?request&#x3D;&lt;id&gt; | 
 **IssuedAt** | **time.Time** | IssuedAt is the time (UTC) when the request occurred. | 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
-**State** | [**RecoveryFlowState**](RecoveryFlowState.md) |  | 
+**State** | **interface{}** | State represents the state of this request:  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed. | 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewRecoveryFlow
 
-`func NewRecoveryFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, state RecoveryFlowState, type_ string, ui UiContainer, ) *RecoveryFlow`
+`func NewRecoveryFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, state interface{}, type_ string, ui UiContainer, ) *RecoveryFlow`
 
 NewRecoveryFlow instantiates a new RecoveryFlow object
 This constructor will assign default values to properties that have it defined,
@@ -57,6 +58,31 @@ SetActive sets Active field to given value.
 `func (o *RecoveryFlow) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
+
+### GetContinueWith
+
+`func (o *RecoveryFlow) GetContinueWith() []ContinueWith`
+
+GetContinueWith returns the ContinueWith field if non-nil, zero value otherwise.
+
+### GetContinueWithOk
+
+`func (o *RecoveryFlow) GetContinueWithOk() (*[]ContinueWith, bool)`
+
+GetContinueWithOk returns a tuple with the ContinueWith field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContinueWith
+
+`func (o *RecoveryFlow) SetContinueWith(v []ContinueWith)`
+
+SetContinueWith sets ContinueWith field to given value.
+
+### HasContinueWith
+
+`func (o *RecoveryFlow) HasContinueWith() bool`
+
+HasContinueWith returns a boolean if a field has been set.
 
 ### GetExpiresAt
 
@@ -165,24 +191,34 @@ HasReturnTo returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *RecoveryFlow) GetState() RecoveryFlowState`
+`func (o *RecoveryFlow) GetState() interface{}`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *RecoveryFlow) GetStateOk() (*RecoveryFlowState, bool)`
+`func (o *RecoveryFlow) GetStateOk() (*interface{}, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *RecoveryFlow) SetState(v RecoveryFlowState)`
+`func (o *RecoveryFlow) SetState(v interface{})`
 
 SetState sets State field to given value.
 
 
+### SetStateNil
+
+`func (o *RecoveryFlow) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *RecoveryFlow) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 ### GetType
 
 `func (o *RecoveryFlow) GetType() string`

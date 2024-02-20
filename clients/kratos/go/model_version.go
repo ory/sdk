@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the Version type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Version{}
 
 // Version struct for Version
 type Version struct {
@@ -43,7 +46,7 @@ func NewVersionWithDefaults() *Version {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *Version) GetVersion() string {
-	if o == nil || o.Version == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *Version) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Version) GetVersionOk() (*string, bool) {
-	if o == nil || o.Version == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
 	return o.Version, true
@@ -61,7 +64,7 @@ func (o *Version) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *Version) HasVersion() bool {
-	if o != nil && o.Version != nil {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *Version) SetVersion(v string) {
 }
 
 func (o Version) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Version) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Version != nil {
+	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
 
@@ -83,15 +94,19 @@ func (o Version) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *Version) UnmarshalJSON(bytes []byte) (err error) {
 	varVersion := _Version{}
 
-	if err = json.Unmarshal(bytes, &varVersion); err == nil {
-		*o = Version(varVersion)
+	err = json.Unmarshal(bytes, &varVersion)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Version(varVersion)
 
 	additionalProperties := make(map[string]interface{})
 

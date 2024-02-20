@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the ErrorAuthenticatorAssuranceLevelNotSatisfied type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorAuthenticatorAssuranceLevelNotSatisfied{}
 
 // ErrorAuthenticatorAssuranceLevelNotSatisfied struct for ErrorAuthenticatorAssuranceLevelNotSatisfied
 type ErrorAuthenticatorAssuranceLevelNotSatisfied struct {
@@ -44,7 +47,7 @@ func NewErrorAuthenticatorAssuranceLevelNotSatisfiedWithDefaults() *ErrorAuthent
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) GetError() GenericError {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret GenericError
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) GetError() GenericError {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) GetErrorOk() (*GenericError, bool) {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
 	return o.Error, true
@@ -62,7 +65,7 @@ func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) GetErrorOk() (*GenericErr
 
 // HasError returns a boolean if a field has been set.
 func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) SetError(v GenericError) 
 
 // GetRedirectBrowserTo returns the RedirectBrowserTo field value if set, zero value otherwise.
 func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) GetRedirectBrowserTo() string {
-	if o == nil || o.RedirectBrowserTo == nil {
+	if o == nil || IsNil(o.RedirectBrowserTo) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) GetRedirectBrowserTo() st
 // GetRedirectBrowserToOk returns a tuple with the RedirectBrowserTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) GetRedirectBrowserToOk() (*string, bool) {
-	if o == nil || o.RedirectBrowserTo == nil {
+	if o == nil || IsNil(o.RedirectBrowserTo) {
 		return nil, false
 	}
 	return o.RedirectBrowserTo, true
@@ -94,7 +97,7 @@ func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) GetRedirectBrowserToOk() 
 
 // HasRedirectBrowserTo returns a boolean if a field has been set.
 func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) HasRedirectBrowserTo() bool {
-	if o != nil && o.RedirectBrowserTo != nil {
+	if o != nil && !IsNil(o.RedirectBrowserTo) {
 		return true
 	}
 
@@ -107,11 +110,19 @@ func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) SetRedirectBrowserTo(v st
 }
 
 func (o ErrorAuthenticatorAssuranceLevelNotSatisfied) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ErrorAuthenticatorAssuranceLevelNotSatisfied) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Error != nil {
+	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	if o.RedirectBrowserTo != nil {
+	if !IsNil(o.RedirectBrowserTo) {
 		toSerialize["redirect_browser_to"] = o.RedirectBrowserTo
 	}
 
@@ -119,15 +130,19 @@ func (o ErrorAuthenticatorAssuranceLevelNotSatisfied) MarshalJSON() ([]byte, err
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) UnmarshalJSON(bytes []byte) (err error) {
 	varErrorAuthenticatorAssuranceLevelNotSatisfied := _ErrorAuthenticatorAssuranceLevelNotSatisfied{}
 
-	if err = json.Unmarshal(bytes, &varErrorAuthenticatorAssuranceLevelNotSatisfied); err == nil {
-		*o = ErrorAuthenticatorAssuranceLevelNotSatisfied(varErrorAuthenticatorAssuranceLevelNotSatisfied)
+	err = json.Unmarshal(bytes, &varErrorAuthenticatorAssuranceLevelNotSatisfied)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ErrorAuthenticatorAssuranceLevelNotSatisfied(varErrorAuthenticatorAssuranceLevelNotSatisfied)
 
 	additionalProperties := make(map[string]interface{})
 

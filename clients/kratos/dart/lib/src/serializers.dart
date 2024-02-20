@@ -16,8 +16,13 @@ import 'package:ory_kratos_client/src/model/date.dart';
 
 import 'package:ory_kratos_client/src/model/authenticator_assurance_level.dart';
 import 'package:ory_kratos_client/src/model/batch_patch_identities_response.dart';
+import 'package:ory_kratos_client/src/model/consistency_request_parameters.dart';
 import 'package:ory_kratos_client/src/model/continue_with.dart';
+import 'package:ory_kratos_client/src/model/continue_with_recovery_ui.dart';
+import 'package:ory_kratos_client/src/model/continue_with_recovery_ui_flow.dart';
 import 'package:ory_kratos_client/src/model/continue_with_set_ory_session_token.dart';
+import 'package:ory_kratos_client/src/model/continue_with_settings_ui.dart';
+import 'package:ory_kratos_client/src/model/continue_with_settings_ui_flow.dart';
 import 'package:ory_kratos_client/src/model/continue_with_verification_ui.dart';
 import 'package:ory_kratos_client/src/model/continue_with_verification_ui_flow.dart';
 import 'package:ory_kratos_client/src/model/courier_message_status.dart';
@@ -37,14 +42,13 @@ import 'package:ory_kratos_client/src/model/health_not_ready_status.dart';
 import 'package:ory_kratos_client/src/model/health_status.dart';
 import 'package:ory_kratos_client/src/model/identity.dart';
 import 'package:ory_kratos_client/src/model/identity_credentials.dart';
+import 'package:ory_kratos_client/src/model/identity_credentials_code.dart';
 import 'package:ory_kratos_client/src/model/identity_credentials_oidc.dart';
 import 'package:ory_kratos_client/src/model/identity_credentials_oidc_provider.dart';
 import 'package:ory_kratos_client/src/model/identity_credentials_password.dart';
-import 'package:ory_kratos_client/src/model/identity_credentials_type.dart';
 import 'package:ory_kratos_client/src/model/identity_patch.dart';
 import 'package:ory_kratos_client/src/model/identity_patch_response.dart';
 import 'package:ory_kratos_client/src/model/identity_schema_container.dart';
-import 'package:ory_kratos_client/src/model/identity_state.dart';
 import 'package:ory_kratos_client/src/model/identity_with_credentials.dart';
 import 'package:ory_kratos_client/src/model/identity_with_credentials_oidc.dart';
 import 'package:ory_kratos_client/src/model/identity_with_credentials_oidc_config.dart';
@@ -55,6 +59,7 @@ import 'package:ory_kratos_client/src/model/is_alive200_response.dart';
 import 'package:ory_kratos_client/src/model/is_ready503_response.dart';
 import 'package:ory_kratos_client/src/model/json_patch.dart';
 import 'package:ory_kratos_client/src/model/login_flow.dart';
+import 'package:ory_kratos_client/src/model/login_flow_state.dart';
 import 'package:ory_kratos_client/src/model/logout_flow.dart';
 import 'package:ory_kratos_client/src/model/message.dart';
 import 'package:ory_kratos_client/src/model/message_dispatch.dart';
@@ -62,7 +67,6 @@ import 'package:ory_kratos_client/src/model/needs_privileged_session_error.dart'
 import 'package:ory_kratos_client/src/model/o_auth2_client.dart';
 import 'package:ory_kratos_client/src/model/o_auth2_consent_request_open_id_connect_context.dart';
 import 'package:ory_kratos_client/src/model/o_auth2_login_request.dart';
-import 'package:ory_kratos_client/src/model/pagination.dart';
 import 'package:ory_kratos_client/src/model/patch_identities_body.dart';
 import 'package:ory_kratos_client/src/model/perform_native_logout_body.dart';
 import 'package:ory_kratos_client/src/model/recovery_code_for_identity.dart';
@@ -71,6 +75,7 @@ import 'package:ory_kratos_client/src/model/recovery_flow_state.dart';
 import 'package:ory_kratos_client/src/model/recovery_identity_address.dart';
 import 'package:ory_kratos_client/src/model/recovery_link_for_identity.dart';
 import 'package:ory_kratos_client/src/model/registration_flow.dart';
+import 'package:ory_kratos_client/src/model/registration_flow_state.dart';
 import 'package:ory_kratos_client/src/model/self_service_flow_expired_error.dart';
 import 'package:ory_kratos_client/src/model/session.dart';
 import 'package:ory_kratos_client/src/model/session_authentication_method.dart';
@@ -94,6 +99,7 @@ import 'package:ory_kratos_client/src/model/ui_node_text_attributes.dart';
 import 'package:ory_kratos_client/src/model/ui_text.dart';
 import 'package:ory_kratos_client/src/model/update_identity_body.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_body.dart';
+import 'package:ory_kratos_client/src/model/update_login_flow_with_code_method.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_with_lookup_secret_method.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_with_oidc_method.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_with_password_method.dart';
@@ -103,6 +109,7 @@ import 'package:ory_kratos_client/src/model/update_recovery_flow_body.dart';
 import 'package:ory_kratos_client/src/model/update_recovery_flow_with_code_method.dart';
 import 'package:ory_kratos_client/src/model/update_recovery_flow_with_link_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_body.dart';
+import 'package:ory_kratos_client/src/model/update_registration_flow_with_code_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_oidc_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_password_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_web_authn_method.dart';
@@ -126,8 +133,13 @@ part 'serializers.g.dart';
 @SerializersFor([
   AuthenticatorAssuranceLevel,
   BatchPatchIdentitiesResponse,
+  ConsistencyRequestParameters,
   ContinueWith,
+  ContinueWithRecoveryUi,
+  ContinueWithRecoveryUiFlow,
   ContinueWithSetOrySessionToken,
+  ContinueWithSettingsUi,
+  ContinueWithSettingsUiFlow,
   ContinueWithVerificationUi,
   ContinueWithVerificationUiFlow,
   CourierMessageStatus,
@@ -147,14 +159,13 @@ part 'serializers.g.dart';
   HealthStatus,
   Identity,
   IdentityCredentials,
+  IdentityCredentialsCode,
   IdentityCredentialsOidc,
   IdentityCredentialsOidcProvider,
   IdentityCredentialsPassword,
-  IdentityCredentialsType,
   IdentityPatch,
   IdentityPatchResponse,
   IdentitySchemaContainer,
-  IdentityState,
   IdentityWithCredentials,
   IdentityWithCredentialsOidc,
   IdentityWithCredentialsOidcConfig,
@@ -165,6 +176,7 @@ part 'serializers.g.dart';
   IsReady503Response,
   JsonPatch,
   LoginFlow,
+  LoginFlowState,
   LogoutFlow,
   Message,
   MessageDispatch,
@@ -172,7 +184,6 @@ part 'serializers.g.dart';
   OAuth2Client,
   OAuth2ConsentRequestOpenIDConnectContext,
   OAuth2LoginRequest,
-  Pagination,
   PatchIdentitiesBody,
   PerformNativeLogoutBody,
   RecoveryCodeForIdentity,
@@ -181,6 +192,7 @@ part 'serializers.g.dart';
   RecoveryIdentityAddress,
   RecoveryLinkForIdentity,
   RegistrationFlow,
+  RegistrationFlowState,
   SelfServiceFlowExpiredError,
   Session,
   SessionAuthenticationMethod,
@@ -204,6 +216,7 @@ part 'serializers.g.dart';
   UiText,
   UpdateIdentityBody,
   UpdateLoginFlowBody,
+  UpdateLoginFlowWithCodeMethod,
   UpdateLoginFlowWithLookupSecretMethod,
   UpdateLoginFlowWithOidcMethod,
   UpdateLoginFlowWithPasswordMethod,
@@ -213,6 +226,7 @@ part 'serializers.g.dart';
   UpdateRecoveryFlowWithCodeMethod,
   UpdateRecoveryFlowWithLinkMethod,
   UpdateRegistrationFlowBody,
+  UpdateRegistrationFlowWithCodeMethod,
   UpdateRegistrationFlowWithOidcMethod,
   UpdateRegistrationFlowWithPasswordMethod,
   UpdateRegistrationFlowWithWebAuthnMethod,

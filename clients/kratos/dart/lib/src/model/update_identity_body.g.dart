@@ -6,6 +6,62 @@ part of 'update_identity_body.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UpdateIdentityBodyStateEnum _$updateIdentityBodyStateEnum_active =
+    const UpdateIdentityBodyStateEnum._('active');
+const UpdateIdentityBodyStateEnum _$updateIdentityBodyStateEnum_inactive =
+    const UpdateIdentityBodyStateEnum._('inactive');
+
+UpdateIdentityBodyStateEnum _$updateIdentityBodyStateEnumValueOf(String name) {
+  switch (name) {
+    case 'active':
+      return _$updateIdentityBodyStateEnum_active;
+    case 'inactive':
+      return _$updateIdentityBodyStateEnum_inactive;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateIdentityBodyStateEnum>
+    _$updateIdentityBodyStateEnumValues = new BuiltSet<
+        UpdateIdentityBodyStateEnum>(const <UpdateIdentityBodyStateEnum>[
+  _$updateIdentityBodyStateEnum_active,
+  _$updateIdentityBodyStateEnum_inactive,
+]);
+
+Serializer<UpdateIdentityBodyStateEnum>
+    _$updateIdentityBodyStateEnumSerializer =
+    new _$UpdateIdentityBodyStateEnumSerializer();
+
+class _$UpdateIdentityBodyStateEnumSerializer
+    implements PrimitiveSerializer<UpdateIdentityBodyStateEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'active': 'active',
+    'inactive': 'inactive',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'active': 'active',
+    'inactive': 'inactive',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[UpdateIdentityBodyStateEnum];
+  @override
+  final String wireName = 'UpdateIdentityBodyStateEnum';
+
+  @override
+  Object serialize(Serializers serializers, UpdateIdentityBodyStateEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateIdentityBodyStateEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateIdentityBodyStateEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateIdentityBody extends UpdateIdentityBody {
   @override
   final IdentityWithCredentials? credentials;
@@ -16,7 +72,7 @@ class _$UpdateIdentityBody extends UpdateIdentityBody {
   @override
   final String schemaId;
   @override
-  final IdentityState state;
+  final UpdateIdentityBodyStateEnum state;
   @override
   final JsonObject traits;
 
@@ -111,9 +167,9 @@ class UpdateIdentityBodyBuilder
   String? get schemaId => _$this._schemaId;
   set schemaId(String? schemaId) => _$this._schemaId = schemaId;
 
-  IdentityState? _state;
-  IdentityState? get state => _$this._state;
-  set state(IdentityState? state) => _$this._state = state;
+  UpdateIdentityBodyStateEnum? _state;
+  UpdateIdentityBodyStateEnum? get state => _$this._state;
+  set state(UpdateIdentityBodyStateEnum? state) => _$this._state = state;
 
   JsonObject? _traits;
   JsonObject? get traits => _$this._traits;

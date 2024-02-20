@@ -11,14 +11,15 @@ Name | Type | Description | Notes
 **Devices** | Pointer to [**[]SessionDevice**](SessionDevice.md) | Devices has history of all endpoints where the session was used | [optional] 
 **ExpiresAt** | Pointer to **time.Time** | The Session Expiry  When this session expires at. | [optional] 
 **Id** | **string** | Session ID | 
-**Identity** | [**Identity**](Identity.md) |  | 
+**Identity** | Pointer to [**Identity**](Identity.md) |  | [optional] 
 **IssuedAt** | Pointer to **time.Time** | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to &#x60;authenticated_at&#x60;. | [optional] 
+**Tokenized** | Pointer to **string** | Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the &#x60;tokenize&#x60; query parameter was set to a valid tokenize template during calls to &#x60;/session/whoami&#x60;. | [optional] 
 
 ## Methods
 
 ### NewSession
 
-`func NewSession(id string, identity Identity, ) *Session`
+`func NewSession(id string, ) *Session`
 
 NewSession instantiates a new Session object
 This constructor will assign default values to properties that have it defined,
@@ -222,6 +223,11 @@ and a boolean to check if the value has been set.
 
 SetIdentity sets Identity field to given value.
 
+### HasIdentity
+
+`func (o *Session) HasIdentity() bool`
+
+HasIdentity returns a boolean if a field has been set.
 
 ### GetIssuedAt
 
@@ -247,6 +253,31 @@ SetIssuedAt sets IssuedAt field to given value.
 `func (o *Session) HasIssuedAt() bool`
 
 HasIssuedAt returns a boolean if a field has been set.
+
+### GetTokenized
+
+`func (o *Session) GetTokenized() string`
+
+GetTokenized returns the Tokenized field if non-nil, zero value otherwise.
+
+### GetTokenizedOk
+
+`func (o *Session) GetTokenizedOk() (*string, bool)`
+
+GetTokenizedOk returns a tuple with the Tokenized field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenized
+
+`func (o *Session) SetTokenized(v string)`
+
+SetTokenized sets Tokenized field to given value.
+
+### HasTokenized
+
+`func (o *Session) HasTokenized() bool`
+
+HasTokenized returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

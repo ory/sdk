@@ -12,8 +12,13 @@ lib/ory/connection.ex
 lib/ory/deserializer.ex
 lib/ory/model/authenticator_assurance_level.ex
 lib/ory/model/batch_patch_identities_response.ex
+lib/ory/model/consistency_request_parameters.ex
 lib/ory/model/continue_with.ex
+lib/ory/model/continue_with_recovery_ui.ex
+lib/ory/model/continue_with_recovery_ui_flow.ex
 lib/ory/model/continue_with_set_ory_session_token.ex
+lib/ory/model/continue_with_settings_ui.ex
+lib/ory/model/continue_with_settings_ui_flow.ex
 lib/ory/model/continue_with_verification_ui.ex
 lib/ory/model/continue_with_verification_ui_flow.ex
 lib/ory/model/courier_message_status.ex
@@ -33,14 +38,13 @@ lib/ory/model/health_not_ready_status.ex
 lib/ory/model/health_status.ex
 lib/ory/model/identity.ex
 lib/ory/model/identity_credentials.ex
+lib/ory/model/identity_credentials_code.ex
 lib/ory/model/identity_credentials_oidc.ex
 lib/ory/model/identity_credentials_oidc_provider.ex
 lib/ory/model/identity_credentials_password.ex
-lib/ory/model/identity_credentials_type.ex
 lib/ory/model/identity_patch.ex
 lib/ory/model/identity_patch_response.ex
 lib/ory/model/identity_schema_container.ex
-lib/ory/model/identity_state.ex
 lib/ory/model/identity_with_credentials.ex
 lib/ory/model/identity_with_credentials_oidc.ex
 lib/ory/model/identity_with_credentials_oidc_config.ex
@@ -51,6 +55,7 @@ lib/ory/model/is_alive_200_response.ex
 lib/ory/model/is_ready_503_response.ex
 lib/ory/model/json_patch.ex
 lib/ory/model/login_flow.ex
+lib/ory/model/login_flow_state.ex
 lib/ory/model/logout_flow.ex
 lib/ory/model/message.ex
 lib/ory/model/message_dispatch.ex
@@ -58,7 +63,6 @@ lib/ory/model/needs_privileged_session_error.ex
 lib/ory/model/o_auth2_client.ex
 lib/ory/model/o_auth2_consent_request_open_id_connect_context.ex
 lib/ory/model/o_auth2_login_request.ex
-lib/ory/model/pagination.ex
 lib/ory/model/patch_identities_body.ex
 lib/ory/model/perform_native_logout_body.ex
 lib/ory/model/recovery_code_for_identity.ex
@@ -67,6 +71,7 @@ lib/ory/model/recovery_flow_state.ex
 lib/ory/model/recovery_identity_address.ex
 lib/ory/model/recovery_link_for_identity.ex
 lib/ory/model/registration_flow.ex
+lib/ory/model/registration_flow_state.ex
 lib/ory/model/self_service_flow_expired_error.ex
 lib/ory/model/session.ex
 lib/ory/model/session_authentication_method.ex
@@ -90,6 +95,7 @@ lib/ory/model/ui_node_text_attributes.ex
 lib/ory/model/ui_text.ex
 lib/ory/model/update_identity_body.ex
 lib/ory/model/update_login_flow_body.ex
+lib/ory/model/update_login_flow_with_code_method.ex
 lib/ory/model/update_login_flow_with_lookup_secret_method.ex
 lib/ory/model/update_login_flow_with_oidc_method.ex
 lib/ory/model/update_login_flow_with_password_method.ex
@@ -99,6 +105,7 @@ lib/ory/model/update_recovery_flow_body.ex
 lib/ory/model/update_recovery_flow_with_code_method.ex
 lib/ory/model/update_recovery_flow_with_link_method.ex
 lib/ory/model/update_registration_flow_body.ex
+lib/ory/model/update_registration_flow_with_code_method.ex
 lib/ory/model/update_registration_flow_with_oidc_method.ex
 lib/ory/model/update_registration_flow_with_password_method.ex
 lib/ory/model/update_registration_flow_with_web_authn_method.ex

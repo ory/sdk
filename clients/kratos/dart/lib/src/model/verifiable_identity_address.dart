@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -18,7 +19,7 @@ part 'verifiable_identity_address.g.dart';
 /// * [value] - The address value  example foo@user.com
 /// * [verified] - Indicates if the address has already been verified
 /// * [verifiedAt] 
-/// * [via] - VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema
+/// * [via] - The delivery method
 @BuiltValue()
 abstract class VerifiableIdentityAddress implements Built<VerifiableIdentityAddress, VerifiableIdentityAddressBuilder> {
   /// When this entry was created
@@ -48,9 +49,10 @@ abstract class VerifiableIdentityAddress implements Built<VerifiableIdentityAddr
   @BuiltValueField(wireName: r'verified_at')
   DateTime? get verifiedAt;
 
-  /// VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema
+  /// The delivery method
   @BuiltValueField(wireName: r'via')
-  String get via;
+  VerifiableIdentityAddressViaEnum get via;
+  // enum viaEnum {  email,  sms,  };
 
   VerifiableIdentityAddress._();
 
@@ -121,7 +123,7 @@ class _$VerifiableIdentityAddressSerializer implements PrimitiveSerializer<Verif
     yield r'via';
     yield serializers.serialize(
       object.via,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(VerifiableIdentityAddressViaEnum),
     );
   }
 
@@ -198,8 +200,8 @@ class _$VerifiableIdentityAddressSerializer implements PrimitiveSerializer<Verif
         case r'via':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(VerifiableIdentityAddressViaEnum),
+          ) as VerifiableIdentityAddressViaEnum;
           result.via = valueDes;
           break;
         default:
@@ -229,5 +231,22 @@ class _$VerifiableIdentityAddressSerializer implements PrimitiveSerializer<Verif
     );
     return result.build();
   }
+}
+
+class VerifiableIdentityAddressViaEnum extends EnumClass {
+
+  /// The delivery method
+  @BuiltValueEnumConst(wireName: r'email')
+  static const VerifiableIdentityAddressViaEnum email = _$verifiableIdentityAddressViaEnum_email;
+  /// The delivery method
+  @BuiltValueEnumConst(wireName: r'sms')
+  static const VerifiableIdentityAddressViaEnum sms = _$verifiableIdentityAddressViaEnum_sms;
+
+  static Serializer<VerifiableIdentityAddressViaEnum> get serializer => _$verifiableIdentityAddressViaEnumSerializer;
+
+  const VerifiableIdentityAddressViaEnum._(String name): super(name);
+
+  static BuiltSet<VerifiableIdentityAddressViaEnum> get values => _$verifiableIdentityAddressViaEnumValues;
+  static VerifiableIdentityAddressViaEnum valueOf(String name) => _$verifiableIdentityAddressViaEnumValueOf(name);
 }
 
