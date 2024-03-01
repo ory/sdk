@@ -1,6 +1,9 @@
-FROM openjdk:15-buster
+# can't use bookworm (latest LTS as of June23) yet, as elixir/erlang does not provide packages for it yet. Check if https://binaries.erlang-solutions.com/debian/dists/bookworm/ is available to change this
+FROM openjdk:21-bullseye
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates ssh bash
+
+COPY scripts/build ./scripts
 
 ENV GOLANG_VERSION 1.17
 
@@ -50,10 +53,10 @@ ENV GO111MODULE=on
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
-RUN curl -sL https://deb.nodesource.com/setup_15.x | bash - && apt-get install -y nodejs
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
 # the following is a workaround for openjdk-11-jre-headless erroring due to not having a man path in slim-debian
 RUN apt-get update -y
-RUN apt-get install -y --no-install-recommends python3 python3-dev python3-pip ruby jq gnupg git gettext libffi6 libffi-dev libssl-dev php composer php-curl php7.3-tokenizer php-dom php-xml php-simplexml php-xmlwriter maven pkg-config
+RUN apt-get install -y --no-install-recommends python3 python3-dev python3-pip ruby jq gnupg git gettext libffi-dev libssl-dev php composer php-curl php-dom php-xml php-simplexml php-xmlwriter maven pkg-config twine
 # RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby jq build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget php-dom php-xml php-simplexml php-xmlwriter maven
 
 # https://stackoverflow.com/questions/35736598/cannot-pip-install-cryptography-in-docker-alpine-linux-3-3-with-openssl-1-0-2g
@@ -72,8 +75,6 @@ RUN apt-get install -y --no-install-recommends python3 python3-dev python3-pip r
 RUN npm install -g npm@7.21.0
 RUN npm i -g @openapitools/openapi-generator-cli
 RUN openapi-generator-cli version-manager set 5.2.1
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --user --upgrade setuptools wheel twine
 
 # dotnet
 ENV PATH "$PATH:/root/.dotnet"
@@ -88,19 +89,10 @@ RUN apt-get install -y --no-install-recommends \
 	&& rm dotnet-install.sh
 
 # dart
-RUN \
-	apt-get -q update && apt-get install --no-install-recommends -y -q gnupg2 curl git ca-certificates apt-transport-https openssh-client && \
-	curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-	curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list && \
-	apt-get update && \
-	apt-get install dart=2.19.6-1
+RUN ./scripts/install-dart.sh
 
 # elixir
-RUN \
-	wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && \
-	dpkg -i erlang-solutions_2.0_all.deb && \
-	apt-get -q update && apt-get install --no-install-recommends -y -q esl-erlang elixir && \
-	rm erlang-solutions_2.0_all.deb && \
+RUN	apt-get -q update && apt-get install -y -q elixir && \
 	mix local.hex --force
 
 # rust
@@ -124,7 +116,7 @@ RUN td=$(mktemp) \
 
 RUN gem install bundler -v 2.3.26 && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends ruby-dev
+	apt-get install -y --no-install-recommends ruby-dev=1:2.7+2
 
 ADD go.mod go.mod
 ADD go.sum go.sum

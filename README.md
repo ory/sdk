@@ -38,13 +38,13 @@ docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/proj
 
 ### Debugging Failing Tests on CI
 
-If a tests fails on CI, you may run the following code snippet to reproduce the failure locally:
+If a test fails in CI, you may run the following code snippet to reproduce the failure locally:
 
 ```shell script
-docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd/sdk:v0.0.51 /bin/sh
+docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd/sdk:v0.0.51 /bin/bash
 
-export FORCE_VERSION=v1.2.17
 export FORCE_PROJECT=client # or hydra or something else
+export FORCE_VERSION=$(cat /project/spec/$FORCE_PROJECT/latest) # or a specific version, e.g. v1.2.17
 cd /project
 
 ./scripts/generate.sh

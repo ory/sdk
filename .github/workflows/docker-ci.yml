@@ -1,0 +1,23 @@
+name: Publish Docker image
+on:
+  push:
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - run: sudo chown runner:docker /var/run/docker.sock
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v5
+        with:
+          tags: oryd/sdk:${{ github.sha }}
+          push: false
+          outputs: type=docker,dest=./sdk.tar
+      - name: run generate.sh
+        run: |
+          docker load --input ./sdk.tar
+          docker run --mount type=bind,source="$(pwd)",target=/project -e FORCE_PROJECT=client -e FORCE_VERSION=$(cat ./spec/client/latest) -it oryd/sdk:${{ github.sha }} /bin/sh -c "cd /project && ./scripts/generate.sh && ./scripts/test.sh"
