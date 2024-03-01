@@ -25,4 +25,4 @@ jobs:
       - name: run generate.sh
         run: |
           docker load --input ./sdk.tar
-          docker run --mount type=bind,source="$(pwd)",target=/project -e FORCE_PROJECT=client -e FORCE_VERSION=$(cat ./spec/client/latest) -it oryd/sdk:${{ github.sha }} /bin/sh -c "cd /project && ./scripts/generate.sh && ./scripts/test.sh"
+          docker run --mount type=bind,source="$(pwd)",target=/project -e FORCE_PROJECT=client -e FORCE_VERSION=$(cat ./spec/client/latest) -i oryd/sdk:${{ github.sha }} /bin/sh -c "cd /project && ./scripts/generate.sh && ./scripts/test.sh"
