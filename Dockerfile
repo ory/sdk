@@ -125,4 +125,3 @@ RUN go build -o /usr/local/bin/ory github.com/ory/cli
 RUN swagger version
 RUN ory version
 
-ENTRYPOINT /bin/bash
