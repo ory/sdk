@@ -94,13 +94,22 @@ elixir () {
   (cd "${dir}"; mix test)
 }
 
-elixir
-typescript
-rust
-golang
-java
-php
-python
-ruby
-dart
-csharp
+swift() {
+  echo "Testing Swift..."
+
+  dir="clients/${PROJECT}/swift"
+  (cd "$dir" && command swift build)
+  (cd "$dir" && command swift test)
+}
+
+# elixir
+# typescript
+# rust
+# golang
+# java
+# php
+# python
+# ruby
+# dart
+# csharp
+swift

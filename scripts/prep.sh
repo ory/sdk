@@ -86,6 +86,9 @@ export NPM_NAME="@ory/$PROJECT-client"
 
 export ELIXIR_PACKAGE_NAME="ory_${PROJECT}"
 
+export SWIFT_PROJECT_NAME="Ory${PROJECT_UCF}Client"
+export SWIFT_POD_SOURCE="https://github.com/ory/sdk/tree/master/clients/${PROJECT}/swift"
+
 export GIT_REPO="${PROJECT}-client"
 
 export NETWORK_OR_SELFHOSTED="## Ory Self-Hosted
@@ -116,6 +119,8 @@ if [ $project == "client" ]; then
   export NPM_NAME="@ory/client"
 
   export ELIXIR_PACKAGE_NAME="ory_client"
+
+  export SWIFT_PROJECT_NAME="OryClient"
 
   export GIT_REPO="client"
   export NETWORK_OR_SELFHOSTED="## Ory Network
