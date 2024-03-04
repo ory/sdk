@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - Dockerfile
+      - .github/workflows/docker-ci.yaml
+      - scripts/build/**
     branches:
       - master
 concurrency:
@@ -14,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - run: sudo chown runner:docker /var/run/docker.sock
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
