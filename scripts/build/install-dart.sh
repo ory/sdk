@@ -14,7 +14,7 @@ else
 fi
 
 # Unzip the downloaded file
-unzip dart-sdk.zip
+unzip -q dart-sdk.zip
 
 # Remove the downloaded file
 rm dart-sdk.zip
