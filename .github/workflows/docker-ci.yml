@@ -24,11 +24,6 @@ jobs:
           tags: oryd/sdk:${{ github.sha }}
           push: false
           outputs: type=docker,dest=./sdk.tar
-      - name: upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: oryd-sdk-${{ github.sha }}
-          path: ./sdk.tar
       - name: run generate.sh and test.sh
         run: |
           docker load --input ./sdk.tar
