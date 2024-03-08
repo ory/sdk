@@ -100,7 +100,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
-docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
@@ -167,8 +166,10 @@ docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/PermissionsOnProject.md
+docs/PermissionsOnWorkpaceResponse.md
 docs/Plan.md
 docs/PlanDetails.md
+docs/PlanFeatures.md
 docs/Plans.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
@@ -283,6 +284,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/UpdateWorkspacePayload.md
 docs/Usage.md
 docs/VerifiableCredentialPrimingResponse.md
 docs/VerifiableCredentialProof.md
@@ -409,7 +411,6 @@ ory_client/model/internal_get_project_branding_body.py
 ory_client/model/internal_is_ax_welcome_screen_enabled_for_project_body.py
 ory_client/model/internal_is_owner_for_project_by_slug_body.py
 ory_client/model/internal_is_owner_for_project_by_slug_response.py
-ory_client/model/internal_provision_mock_subscription.py
 ory_client/model/introspected_o_auth2_token.py
 ory_client/model/is_owner_for_project_by_slug.py
 ory_client/model/is_ready200_response.py
@@ -471,8 +472,10 @@ ory_client/model/parse_error.py
 ory_client/model/patch_identities_body.py
 ory_client/model/perform_native_logout_body.py
 ory_client/model/permissions_on_project.py
+ory_client/model/permissions_on_workpace_response.py
 ory_client/model/plan.py
 ory_client/model/plan_details.py
+ory_client/model/plan_features.py
 ory_client/model/plans.py
 ory_client/model/post_check_permission_body.py
 ory_client/model/post_check_permission_or_error_body.py
@@ -585,6 +588,7 @@ ory_client/model/update_subscription_body.py
 ory_client/model/update_verification_flow_body.py
 ory_client/model/update_verification_flow_with_code_method.py
 ory_client/model/update_verification_flow_with_link_method.py
+ory_client/model/update_workspace_payload.py
 ory_client/model/usage.py
 ory_client/model/verifiable_credential_priming_response.py
 ory_client/model/verifiable_credential_proof.py
@@ -702,7 +706,6 @@ test/test_internal_get_project_branding_body.py
 test/test_internal_is_ax_welcome_screen_enabled_for_project_body.py
 test/test_internal_is_owner_for_project_by_slug_body.py
 test/test_internal_is_owner_for_project_by_slug_response.py
-test/test_internal_provision_mock_subscription.py
 test/test_introspected_o_auth2_token.py
 test/test_is_owner_for_project_by_slug.py
 test/test_is_ready200_response.py
@@ -769,8 +772,10 @@ test/test_patch_identities_body.py
 test/test_perform_native_logout_body.py
 test/test_permission_api.py
 test/test_permissions_on_project.py
+test/test_permissions_on_workpace_response.py
 test/test_plan.py
 test/test_plan_details.py
+test/test_plan_features.py
 test/test_plans.py
 test/test_post_check_permission_body.py
 test/test_post_check_permission_or_error_body.py
@@ -885,6 +890,7 @@ test/test_update_subscription_body.py
 test/test_update_verification_flow_body.py
 test/test_update_verification_flow_with_code_method.py
 test/test_update_verification_flow_with_link_method.py
+test/test_update_workspace_payload.py
 test/test_usage.py
 test/test_verifiable_credential_priming_response.py
 test/test_verifiable_credential_proof.py

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.6.2
+  version: v1.8.1
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -697,6 +697,20 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - description: |-
+          Include Credentials in Response
+
+          Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+        explode: true
+        in: query
+        name: include_credential
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       responses:
         "200":
@@ -4000,13 +4014,13 @@ paths:
       - description: |-
           The resolution of the buckets
 
-          The minimum resolution is 1 hour.
+          The minimum resolution is 1 minute.
         explode: true
         in: query
         name: resolution
         required: true
         schema:
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^[0-9]+(m|h|d|M|y)$"
           type: string
         style: form
       - description: The start RFC3339 date of the time window
@@ -5513,6 +5527,15 @@ paths:
         explode: true
         in: query
         name: organization
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Via should contain the identity's credential the code should
+          be sent to. Only relevant in aal2 flows.
+        explode: true
+        in: query
+        name: via
         required: false
         schema:
           type: string
@@ -7728,6 +7751,9 @@ components:
           description: "Whether to disable the account experience welcome screen,\
             \ which is hosted under `/ui/welcome`."
           type: boolean
+        enable_ax_v2:
+          description: Whether the new account experience is enabled and reachable.
+          type: boolean
         environment:
           description: |2-
 
@@ -9259,7 +9285,7 @@ components:
         features:
           additionalProperties:
             $ref: '#/components/schemas/GenericUsage'
-          description: Features are the feature definitions included in the plan.
+          title: Features are the feature definitions included in the plan.
           type: object
         name:
           description: Name is the name of the plan.
@@ -9277,6 +9303,11 @@ components:
       - features
       - name
       - version
+      type: object
+    PlanFeatures:
+      additionalProperties:
+        $ref: '#/components/schemas/GenericUsage'
+      title: Features are the feature definitions included in the plan.
       type: object
     Pricing:
       items:
@@ -9622,6 +9653,10 @@ components:
           type: string
         name:
           type: string
+      required:
+      - email
+      - id
+      - name
       type: object
     consistencyRequestParameters:
       description: Control API consistency guarantees
@@ -11141,46 +11176,6 @@ components:
       required:
       - project_id
       type: object
-    internalProvisionMockSubscription:
-      description: Internal Provision Mock Subscription Request Body
-      properties:
-        currency:
-          description: |-
-            Currency
-            usd USD
-            eur Euro
-          enum:
-          - usd
-          - eur
-          type: string
-          x-go-enum-desc: |-
-            usd USD
-            eur Euro
-        identity_id:
-          description: Identity ID
-          format: uuid
-          type: string
-        interval:
-          description: |-
-            Billing Interval
-            monthly Monthly
-            yearly Yearly
-          enum:
-          - monthly
-          - yearly
-          type: string
-          x-go-enum-desc: |-
-            monthly Monthly
-            yearly Yearly
-        plan:
-          description: Plan ID
-          type: string
-      required:
-      - currency
-      - identity_id
-      - interval
-      - plan
-      type: object
     introspectedOAuth2Token:
       description: |-
         Introspection contains an access token's session data as specified by
@@ -11686,6 +11681,7 @@ components:
           requested_scope:
           - requested_scope
           - requested_scope
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -11832,6 +11828,10 @@ components:
             choose_method: ask the user to choose a method to sign in with
             sent_email: the email has been sent to the user
             passed_challenge: the request was successful and the login challenge was passed.
+        transient_payload:
+          description: TransientPayload is used to pass data from the login to hooks
+            and email templates
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -12354,6 +12354,9 @@ components:
         disable_account_experience_welcome_screen:
           description: "Whether to disable the account experience welcome screen,\
             \ which is hosted under `/ui/welcome`."
+          type: boolean
+        enable_ax_v2:
+          description: Whether the new account experience is enabled and reachable.
           type: boolean
         hydra_oauth2_allowed_top_level_claims:
           items:
@@ -15606,6 +15609,14 @@ components:
         type: boolean
       description: Get Permissions on Project Request Parameters
       type: object
+    permissionsOnWorkpaceResponse:
+      description: Get Permissions on Project Request Parameters
+      properties:
+        permissions:
+          additionalProperties:
+            type: boolean
+          type: object
+      type: object
     plans:
       $ref: '#/components/schemas/Pricing'
     postCheckPermissionBody:
@@ -16150,7 +16161,27 @@ components:
       - project_id
       type: object
     projectMember:
-      $ref: '#/components/schemas/cloudAccount'
+      example:
+        role: role
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: email
+      properties:
+        email:
+          type: string
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+      required:
+      - email
+      - id
+      - name
+      - role
+      type: object
     projectMembers:
       items:
         $ref: '#/components/schemas/projectMember'
@@ -16340,6 +16371,7 @@ components:
             project_metrics_events_history ProjectMetricsEventsHistory
             organizations Organizations
             rop_grant ResourceOwnerPasswordGrant
+            concierge_onboarding ConciergeOnboarding
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
@@ -16364,6 +16396,7 @@ components:
           - project_metrics_events_history
           - organizations
           - rop_grant
+          - concierge_onboarding
           - rate_limit_tier
           - session_rate_limit_tier
           - identities_list_rate_limit_tier
@@ -16389,6 +16422,7 @@ components:
             project_metrics_events_history ProjectMetricsEventsHistory
             organizations Organizations
             rop_grant ResourceOwnerPasswordGrant
+            concierge_onboarding ConciergeOnboarding
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
@@ -16445,6 +16479,7 @@ components:
         We recommend reading the [Account Recovery Documentation](../self-service/flows/password-reset-account-recovery)
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -16546,6 +16581,10 @@ components:
             choose_method: ask the user to choose a method (e.g. recover account via email)
             sent_email: the email has been sent to the user
             passed_challenge: the request was successful and the recovery challenge was passed.
+        transient_payload:
+          description: TransientPayload is used to pass data from the recovery flow
+            to hooks and email templates
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -17379,6 +17418,7 @@ components:
         We recommend reading the [User Settings Documentation](../self-service/flows/user-settings)
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -17537,6 +17577,10 @@ components:
             success: Indicates that the settings flow has been updated successfully with the provided data.
             Done will stay true when repeatedly checking. If set to true, done will revert back to false only
             when a flow with invalid (e.g. "please use a valid phone number") data was sent.
+        transient_payload:
+          description: TransientPayload is used to pass data from the settings flow
+            to hooks and email templates
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -17621,6 +17665,8 @@ components:
           description: The currently active plan of the subscription
           readOnly: true
           type: string
+        current_plan_details:
+          $ref: '#/components/schemas/PlanDetails'
         customer_id:
           description: The ID of the stripe customer
           readOnly: true
@@ -17658,6 +17704,9 @@ components:
             If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
           title: "Possible values are `incomplete`, `incomplete_expired`, `trialing`,\
             \ `active`, `past_due`, `canceled`, or `unpaid`."
+          type: string
+        stripe_checkout_expires_at:
+          format: date-time
           type: string
         updated_at:
           format: date-time
@@ -18773,6 +18822,9 @@ components:
         resend:
           description: Resend is set when the user wants to resend the code
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - csrf_token
       - method
@@ -18831,6 +18883,9 @@ components:
           description: The identity traits. This is a placeholder for the registration
             flow.
           type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
         upstream_parameters:
           description: |-
             UpstreamParameters are the parameters that are passed to the upstream identity provider.
@@ -18868,6 +18923,9 @@ components:
             Identifier is the email or username of the user trying to log in.
             This field is deprecated!
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - identifier
       - method
@@ -18887,6 +18945,9 @@ components:
         totp_code:
           description: The TOTP code.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       - totp_code
@@ -18906,6 +18967,9 @@ components:
           description: Method should be set to "webAuthn" when logging in using the
             WebAuthn strategy.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
         webauthn_login:
           description: |-
             Login a WebAuthn Security Key
@@ -18966,6 +19030,9 @@ components:
           x-go-enum-desc: |-
             link RecoveryStrategyLink
             code RecoveryStrategyCode
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       type: object
@@ -19000,6 +19067,9 @@ components:
           x-go-enum-desc: |-
             link RecoveryStrategyLink
             code RecoveryStrategyCode
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - email
       - method
@@ -19202,6 +19272,9 @@ components:
 
             Should be set to "lookup" when trying to add, update, or remove a lookup pairing.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       type: object
@@ -19234,6 +19307,9 @@ components:
             The identity's traits
 
             in: body
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
           type: object
         unlink:
           description: |-
@@ -19272,6 +19348,9 @@ components:
         password:
           description: Password is the updated password
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       - password
@@ -19296,6 +19375,9 @@ components:
             Traits
 
             The identity's traits.
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
           type: object
       required:
       - method
@@ -19322,6 +19404,9 @@ components:
             effectively removing the credential. This can be used
             to set up a new TOTP device.
           type: boolean
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       type: object
@@ -19337,6 +19422,9 @@ components:
 
             Should be set to "webauthn" when trying to add, update, or remove a webAuthn pairing.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
         webauthn_register:
           description: |-
             Register a WebAuthn Security Key
@@ -19430,6 +19518,9 @@ components:
           x-go-enum-desc: |-
             link VerificationStrategyLink
             code VerificationStrategyCode
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       type: object
@@ -19464,9 +19555,20 @@ components:
           x-go-enum-desc: |-
             link VerificationStrategyLink
             code VerificationStrategyCode
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - email
       - method
+      type: object
+    updateWorkspacePayload:
+      properties:
+        name:
+          description: The name of the workspace.
+          type: string
+      required:
+      - name
       type: object
     verifiableCredentialPrimingResponse:
       properties:
@@ -19567,6 +19669,7 @@ components:
         For more information head over to: https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -19663,6 +19766,10 @@ components:
             choose_method: ask the user to choose a method (e.g. verify your email)
             sent_email: the email has been sent to the user
             passed_challenge: the request was successful and the verification challenge was passed.
+        transient_payload:
+          description: TransientPayload is used to pass data from the verification
+            flow to hooks and email templates
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.

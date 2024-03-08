@@ -17,7 +17,7 @@ part 'plan_details.g.dart';
 /// * [baseFeeYearly] - BaseFeeYearly is the yearly base fee for the plan.
 /// * [custom] - Custom is true if the plan is custom. This means it will be hidden from the pricing page.
 /// * [description] - Description is the description of the plan.
-/// * [features] - Features are the feature definitions included in the plan.
+/// * [features] 
 /// * [name] - Name is the name of the plan.
 /// * [version] - Version is the version of the plan. The combination of `name@version` must be unique.
 @BuiltValue()
@@ -38,7 +38,6 @@ abstract class PlanDetails implements Built<PlanDetails, PlanDetailsBuilder> {
   @BuiltValueField(wireName: r'description')
   String get description;
 
-  /// Features are the feature definitions included in the plan.
   @BuiltValueField(wireName: r'features')
   BuiltMap<String, GenericUsage> get features;
 

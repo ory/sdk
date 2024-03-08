@@ -947,7 +947,7 @@ Name | Type | Description  | Notes
 
 <a name="listidentities"></a>
 # **ListIdentities**
-> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null, string consistency = null, List<string> ids = null, string credentialsIdentifier = null, string previewCredentialsIdentifierSimilar = null)
+> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null, string consistency = null, List<string> ids = null, string credentialsIdentifier = null, string previewCredentialsIdentifierSimilar = null, List<string> includeCredential = null)
 
 List Identities
 
@@ -981,11 +981,12 @@ namespace Example
             var ids = new List<string>(); // List<string> | List of ids used to filter identities. If this list is empty, then no filter will be applied. (optional) 
             var credentialsIdentifier = "credentialsIdentifier_example";  // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional) 
             var previewCredentialsIdentifierSimilar = "previewCredentialsIdentifierSimilar_example";  // string | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional) 
+            var includeCredential = new List<string>(); // List<string> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional) 
 
             try
             {
                 // List Identities
-                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar);
+                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1011,6 +1012,7 @@ Name | Type | Description  | Notes
  **ids** | [**List&lt;string&gt;**](string.md)| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] 
  **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
  **previewCredentialsIdentifierSimilar** | **string**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
+ **includeCredential** | [**List&lt;string&gt;**](string.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
 
 ### Return type
 

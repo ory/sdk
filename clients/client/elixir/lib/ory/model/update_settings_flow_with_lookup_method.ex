@@ -13,7 +13,8 @@ defmodule Ory.Model.UpdateSettingsFlowWithLookupMethod do
     :lookup_secret_disable,
     :lookup_secret_regenerate,
     :lookup_secret_reveal,
-    :method
+    :method,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
@@ -22,7 +23,8 @@ defmodule Ory.Model.UpdateSettingsFlowWithLookupMethod do
     :lookup_secret_disable => boolean() | nil,
     :lookup_secret_regenerate => boolean() | nil,
     :lookup_secret_reveal => boolean() | nil,
-    :method => String.t
+    :method => String.t,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CsrfToken** | Pointer to **string** | CSRFToken is the anti-CSRF token | [optional] 
 **Method** | **string** | Method  Should be set to \&quot;lookup\&quot; when trying to add, update, or remove a lookup pairing. | 
 **Password** | **string** | Password is the updated password | 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 **Traits** | **map[string]interface{}** | The identity&#39;s traits  in: body | 
 **Flow** | Pointer to **string** | Flow ID is the flow&#39;s ID.  in: query | [optional] 
 **Link** | Pointer to **string** | Link this provider  Either this or &#x60;unlink&#x60; must be set.  type: string in: body | [optional] 
@@ -105,6 +106,31 @@ and a boolean to check if the value has been set.
 
 SetPassword sets Password field to given value.
 
+
+### GetTransientPayload
+
+`func (o *UpdateSettingsFlowBody) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateSettingsFlowBody) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateSettingsFlowBody) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateSettingsFlowBody) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 ### GetTraits
 

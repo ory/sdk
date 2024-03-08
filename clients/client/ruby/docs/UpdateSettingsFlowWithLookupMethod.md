@@ -10,6 +10,7 @@
 | **lookup_secret_regenerate** | **Boolean** | If set to true will regenerate the lookup secrets | [optional] |
 | **lookup_secret_reveal** | **Boolean** | If set to true will reveal the lookup secrets | [optional] |
 | **method** | **String** | Method  Should be set to \&quot;lookup\&quot; when trying to add, update, or remove a lookup pairing. |  |
+| **transient_payload** | **Object** | Transient data to pass along to any webhooks | [optional] |
 
 ## Example
 
@@ -22,7 +23,8 @@ instance = OryClient::UpdateSettingsFlowWithLookupMethod.new(
   lookup_secret_disable: null,
   lookup_secret_regenerate: null,
   lookup_secret_reveal: null,
-  method: null
+  method: null,
+  transient_payload: null
 )
 ```
 

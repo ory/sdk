@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **identifier** | Option<**String**> | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | [optional]
 **method** | **String** | Method should be set to \"code\" when logging in using the code strategy. | 
 **resend** | Option<**String**> | Resend is set when the user wants to resend the code | [optional]
+**transient_payload** | Option<[**serde_json::Value**](.md)> | Transient data to pass along to any webhooks | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

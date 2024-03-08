@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,6 +15,7 @@ part 'update_settings_flow_with_password_method.g.dart';
 /// * [csrfToken] - CSRFToken is the anti-CSRF token
 /// * [method] - Method  Should be set to password when trying to update a password.
 /// * [password] - Password is the updated password
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateSettingsFlowWithPasswordMethod implements Built<UpdateSettingsFlowWithPasswordMethod, UpdateSettingsFlowWithPasswordMethodBuilder> {
   /// CSRFToken is the anti-CSRF token
@@ -27,6 +29,10 @@ abstract class UpdateSettingsFlowWithPasswordMethod implements Built<UpdateSetti
   /// Password is the updated password
   @BuiltValueField(wireName: r'password')
   String get password;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateSettingsFlowWithPasswordMethod._();
 
@@ -68,6 +74,13 @@ class _$UpdateSettingsFlowWithPasswordMethodSerializer implements PrimitiveSeria
       object.password,
       specifiedType: const FullType(String),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
   }
 
   @override
@@ -111,6 +124,13 @@ class _$UpdateSettingsFlowWithPasswordMethodSerializer implements PrimitiveSeria
             specifiedType: const FullType(String),
           ) as String;
           result.password = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

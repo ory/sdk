@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.2
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -39,6 +39,8 @@ type SettingsFlow struct {
 	ReturnTo *string `json:"return_to,omitempty"`
 	// State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent.
 	State interface{} `json:"state"`
+	// TransientPayload is used to pass data from the settings flow to hooks and email templates
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
@@ -314,6 +316,38 @@ func (o *SettingsFlow) SetState(v interface{}) {
 	o.State = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *SettingsFlow) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SettingsFlow) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *SettingsFlow) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *SettingsFlow) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 // GetType returns the Type field value
 func (o *SettingsFlow) GetType() string {
 	if o == nil {
@@ -389,6 +423,9 @@ func (o SettingsFlow) ToMap() (map[string]interface{}, error) {
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 	toSerialize["type"] = o.Type
 	toSerialize["ui"] = o.Ui
 
@@ -450,6 +487,7 @@ func (o *SettingsFlow) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "request_url")
 		delete(additionalProperties, "return_to")
 		delete(additionalProperties, "state")
+		delete(additionalProperties, "transient_payload")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "ui")
 		o.AdditionalProperties = additionalProperties

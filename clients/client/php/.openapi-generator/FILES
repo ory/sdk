@@ -108,7 +108,6 @@ docs/Model/InternalGetProjectBrandingBody.md
 docs/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/Model/InternalIsOwnerForProjectBySlugBody.md
 docs/Model/InternalIsOwnerForProjectBySlugResponse.md
-docs/Model/InternalProvisionMockSubscription.md
 docs/Model/IntrospectedOAuth2Token.md
 docs/Model/IsOwnerForProjectBySlug.md
 docs/Model/JsonPatch.md
@@ -157,6 +156,7 @@ docs/Model/PaginationHeaders.md
 docs/Model/ParseError.md
 docs/Model/PatchIdentitiesBody.md
 docs/Model/PerformNativeLogoutBody.md
+docs/Model/PermissionsOnWorkpaceResponse.md
 docs/Model/Plan.md
 docs/Model/PlanDetails.md
 docs/Model/PostCheckPermissionBody.md
@@ -169,6 +169,7 @@ docs/Model/ProjectBrandingTheme.md
 docs/Model/ProjectCors.md
 docs/Model/ProjectEventsDatapoint.md
 docs/Model/ProjectHost.md
+docs/Model/ProjectMember.md
 docs/Model/ProjectMetadata.md
 docs/Model/ProjectServiceIdentity.md
 docs/Model/ProjectServiceOAuth2.md
@@ -253,6 +254,7 @@ docs/Model/UpdateSubscriptionBody.md
 docs/Model/UpdateVerificationFlowBody.md
 docs/Model/UpdateVerificationFlowWithCodeMethod.md
 docs/Model/UpdateVerificationFlowWithLinkMethod.md
+docs/Model/UpdateWorkspacePayload.md
 docs/Model/Usage.md
 docs/Model/VerifiableCredentialPrimingResponse.md
 docs/Model/VerifiableCredentialProof.md
@@ -372,7 +374,6 @@ lib/Model/InternalGetProjectBrandingBody.php
 lib/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.php
 lib/Model/InternalIsOwnerForProjectBySlugBody.php
 lib/Model/InternalIsOwnerForProjectBySlugResponse.php
-lib/Model/InternalProvisionMockSubscription.php
 lib/Model/IntrospectedOAuth2Token.php
 lib/Model/IsOwnerForProjectBySlug.php
 lib/Model/JsonPatch.php
@@ -422,6 +423,7 @@ lib/Model/PaginationHeaders.php
 lib/Model/ParseError.php
 lib/Model/PatchIdentitiesBody.php
 lib/Model/PerformNativeLogoutBody.php
+lib/Model/PermissionsOnWorkpaceResponse.php
 lib/Model/Plan.php
 lib/Model/PlanDetails.php
 lib/Model/PostCheckPermissionBody.php
@@ -434,6 +436,7 @@ lib/Model/ProjectBrandingTheme.php
 lib/Model/ProjectCors.php
 lib/Model/ProjectEventsDatapoint.php
 lib/Model/ProjectHost.php
+lib/Model/ProjectMember.php
 lib/Model/ProjectMetadata.php
 lib/Model/ProjectServiceIdentity.php
 lib/Model/ProjectServiceOAuth2.php
@@ -518,6 +521,7 @@ lib/Model/UpdateSubscriptionBody.php
 lib/Model/UpdateVerificationFlowBody.php
 lib/Model/UpdateVerificationFlowWithCodeMethod.php
 lib/Model/UpdateVerificationFlowWithLinkMethod.php
+lib/Model/UpdateWorkspacePayload.php
 lib/Model/Usage.php
 lib/Model/VerifiableCredentialPrimingResponse.php
 lib/Model/VerifiableCredentialProof.php
@@ -635,7 +639,6 @@ test/Model/InternalGetProjectBrandingBodyTest.php
 test/Model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugResponseTest.php
-test/Model/InternalProvisionMockSubscriptionTest.php
 test/Model/IntrospectedOAuth2TokenTest.php
 test/Model/IsOwnerForProjectBySlugTest.php
 test/Model/JsonPatchTest.php
@@ -684,6 +687,7 @@ test/Model/PaginationTest.php
 test/Model/ParseErrorTest.php
 test/Model/PatchIdentitiesBodyTest.php
 test/Model/PerformNativeLogoutBodyTest.php
+test/Model/PermissionsOnWorkpaceResponseTest.php
 test/Model/PlanDetailsTest.php
 test/Model/PlanTest.php
 test/Model/PostCheckPermissionBodyTest.php
@@ -695,6 +699,7 @@ test/Model/ProjectBrandingThemeTest.php
 test/Model/ProjectCorsTest.php
 test/Model/ProjectEventsDatapointTest.php
 test/Model/ProjectHostTest.php
+test/Model/ProjectMemberTest.php
 test/Model/ProjectMetadataTest.php
 test/Model/ProjectServiceIdentityTest.php
 test/Model/ProjectServiceOAuth2Test.php
@@ -780,6 +785,7 @@ test/Model/UpdateSubscriptionBodyTest.php
 test/Model/UpdateVerificationFlowBodyTest.php
 test/Model/UpdateVerificationFlowWithCodeMethodTest.php
 test/Model/UpdateVerificationFlowWithLinkMethodTest.php
+test/Model/UpdateWorkspacePayloadTest.php
 test/Model/UsageTest.php
 test/Model/VerifiableCredentialPrimingResponseTest.php
 test/Model/VerifiableCredentialProofTest.php

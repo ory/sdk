@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **RequestUrl** | Pointer to **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | [optional] 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
 **State** | **interface{}** | State represents the state of this request:  choose_method: ask the user to choose a method (e.g. verify your email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the verification challenge was passed. | 
+**TransientPayload** | Pointer to **map[string]interface{}** | TransientPayload is used to pass data from the verification flow to hooks and email templates | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
 
@@ -208,6 +209,31 @@ SetState sets State field to given value.
 `func (o *VerificationFlow) UnsetState()`
 
 UnsetState ensures that no value is present for State, not even an explicit nil
+### GetTransientPayload
+
+`func (o *VerificationFlow) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *VerificationFlow) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *VerificationFlow) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *VerificationFlow) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
+
 ### GetType
 
 `func (o *VerificationFlow) GetType() string`

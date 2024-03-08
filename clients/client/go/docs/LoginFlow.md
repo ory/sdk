@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
 **SessionTokenExchangeCode** | Pointer to **string** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the login flow. | [optional] 
 **State** | **interface{}** | State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed. | 
+**TransientPayload** | Pointer to **map[string]interface{}** | TransientPayload is used to pass data from the login to hooks and email templates | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
 **UpdatedAt** | Pointer to **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
@@ -386,6 +387,31 @@ SetState sets State field to given value.
 `func (o *LoginFlow) UnsetState()`
 
 UnsetState ensures that no value is present for State, not even an explicit nil
+### GetTransientPayload
+
+`func (o *LoginFlow) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *LoginFlow) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *LoginFlow) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *LoginFlow) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
+
 ### GetType
 
 `func (o *LoginFlow) GetType() string`

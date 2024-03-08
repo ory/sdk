@@ -10,6 +10,7 @@ defmodule Ory.Model.UpdateSettingsFlowWithWebAuthnMethod do
   defstruct [
     :csrf_token,
     :method,
+    :transient_payload,
     :webauthn_register,
     :webauthn_register_displayname,
     :webauthn_remove
@@ -18,6 +19,7 @@ defmodule Ory.Model.UpdateSettingsFlowWithWebAuthnMethod do
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :method => String.t,
+    :transient_payload => map() | nil,
     :webauthn_register => String.t | nil,
     :webauthn_register_displayname => String.t | nil,
     :webauthn_remove => String.t | nil

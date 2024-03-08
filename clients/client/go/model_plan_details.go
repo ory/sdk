@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.2
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -29,7 +29,6 @@ type PlanDetails struct {
 	Custom bool `json:"custom"`
 	// Description is the description of the plan.
 	Description string `json:"description"`
-	// Features are the feature definitions included in the plan.
 	Features map[string]GenericUsage `json:"features"`
 	// Name is the name of the plan.
 	Name string `json:"name"`

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
 **State** | **interface{}** | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent. | 
+**TransientPayload** | Pointer to **map[string]interface{}** | TransientPayload is used to pass data from the settings flow to hooks and email templates | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
 
@@ -240,6 +241,31 @@ SetState sets State field to given value.
 `func (o *SettingsFlow) UnsetState()`
 
 UnsetState ensures that no value is present for State, not even an explicit nil
+### GetTransientPayload
+
+`func (o *SettingsFlow) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *SettingsFlow) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *SettingsFlow) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *SettingsFlow) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
+
 ### GetType
 
 `func (o *SettingsFlow) GetType() string`

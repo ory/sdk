@@ -22,6 +22,7 @@ defmodule Ory.Model.LoginFlow do
     :return_to,
     :session_token_exchange_code,
     :state,
+    :transient_payload,
     :type,
     :ui,
     :updated_at
@@ -42,6 +43,7 @@ defmodule Ory.Model.LoginFlow do
     :return_to => String.t | nil,
     :session_token_exchange_code => String.t | nil,
     :state => any() | nil,
+    :transient_payload => map() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t,
     :updated_at => DateTime.t | nil

@@ -111,7 +111,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
-docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
@@ -167,6 +166,7 @@ docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionAPI.md
+docs/PermissionsOnWorkpaceResponse.md
 docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
@@ -180,6 +180,7 @@ docs/ProjectBrandingTheme.md
 docs/ProjectCors.md
 docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
+docs/ProjectMember.md
 docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
@@ -265,6 +266,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/UpdateWorkspacePayload.md
 docs/Usage.md
 docs/VerifiableCredentialPrimingResponse.md
 docs/VerifiableCredentialProof.md
@@ -370,7 +372,6 @@ model_internal_get_project_branding_body.go
 model_internal_is_ax_welcome_screen_enabled_for_project_body.go
 model_internal_is_owner_for_project_by_slug_body.go
 model_internal_is_owner_for_project_by_slug_response.go
-model_internal_provision_mock_subscription.go
 model_introspected_o_auth2_token.go
 model_is_owner_for_project_by_slug.go
 model_is_ready_200_response.go
@@ -421,6 +422,7 @@ model_pagination_headers.go
 model_parse_error.go
 model_patch_identities_body.go
 model_perform_native_logout_body.go
+model_permissions_on_workpace_response.go
 model_plan.go
 model_plan_details.go
 model_post_check_permission_body.go
@@ -433,6 +435,7 @@ model_project_branding_theme.go
 model_project_cors.go
 model_project_events_datapoint.go
 model_project_host.go
+model_project_member.go
 model_project_metadata.go
 model_project_service_identity.go
 model_project_service_o_auth2.go
@@ -517,6 +520,7 @@ model_update_subscription_body.go
 model_update_verification_flow_body.go
 model_update_verification_flow_with_code_method.go
 model_update_verification_flow_with_link_method.go
+model_update_workspace_payload.go
 model_usage.go
 model_verifiable_credential_priming_response.go
 model_verifiable_credential_proof.go

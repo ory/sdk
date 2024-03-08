@@ -9,6 +9,7 @@
 | **method** | **String** | Method should be set to \&quot;password\&quot; when logging in using the identifier and password strategy. |  |
 | **password** | **String** | The user&#39;s password. |  |
 | **password_identifier** | **String** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] |
+| **transient_payload** | **Object** | Transient data to pass along to any webhooks | [optional] |
 
 ## Example
 
@@ -20,7 +21,8 @@ instance = OryClient::UpdateLoginFlowWithPasswordMethod.new(
   identifier: null,
   method: null,
   password: null,
-  password_identifier: null
+  password_identifier: null,
+  transient_payload: null
 )
 ```
 

@@ -17,6 +17,8 @@ class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
   final String method;
   @override
   final String? resend;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateLoginFlowWithCodeMethod(
           [void Function(UpdateLoginFlowWithCodeMethodBuilder)? updates]) =>
@@ -27,7 +29,8 @@ class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
       required this.csrfToken,
       this.identifier,
       required this.method,
-      this.resend})
+      this.resend,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         csrfToken, r'UpdateLoginFlowWithCodeMethod', 'csrfToken');
@@ -52,7 +55,8 @@ class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
         csrfToken == other.csrfToken &&
         identifier == other.identifier &&
         method == other.method &&
-        resend == other.resend;
+        resend == other.resend &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -63,6 +67,7 @@ class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
     _$hash = $jc(_$hash, identifier.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, resend.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -74,7 +79,8 @@ class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
           ..add('csrfToken', csrfToken)
           ..add('identifier', identifier)
           ..add('method', method)
-          ..add('resend', resend))
+          ..add('resend', resend)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -105,6 +111,11 @@ class UpdateLoginFlowWithCodeMethodBuilder
   String? get resend => _$this._resend;
   set resend(String? resend) => _$this._resend = resend;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateLoginFlowWithCodeMethodBuilder() {
     UpdateLoginFlowWithCodeMethod._defaults(this);
   }
@@ -117,6 +128,7 @@ class UpdateLoginFlowWithCodeMethodBuilder
       _identifier = $v.identifier;
       _method = $v.method;
       _resend = $v.resend;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -145,7 +157,8 @@ class UpdateLoginFlowWithCodeMethodBuilder
             identifier: identifier,
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateLoginFlowWithCodeMethod', 'method'),
-            resend: resend);
+            resend: resend,
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

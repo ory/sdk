@@ -12,6 +12,7 @@ defmodule Ory.Model.Subscription do
     :currency,
     :current_interval,
     :current_plan,
+    :current_plan_details,
     :customer_id,
     :id,
     :interval_changes_to,
@@ -20,6 +21,7 @@ defmodule Ory.Model.Subscription do
     :plan_changes_at,
     :plan_changes_to,
     :status,
+    :stripe_checkout_expires_at,
     :updated_at
   ]
 
@@ -28,6 +30,7 @@ defmodule Ory.Model.Subscription do
     :currency => String.t,
     :current_interval => String.t,
     :current_plan => String.t,
+    :current_plan_details => Ory.Model.PlanDetails.t | nil,
     :customer_id => String.t,
     :id => String.t,
     :interval_changes_to => String.t | nil,
@@ -36,6 +39,7 @@ defmodule Ory.Model.Subscription do
     :plan_changes_at => DateTime.t | nil,
     :plan_changes_to => String.t | nil,
     :status => String.t,
+    :stripe_checkout_expires_at => DateTime.t | nil,
     :updated_at => DateTime.t
   }
 
@@ -44,8 +48,10 @@ defmodule Ory.Model.Subscription do
   def decode(value) do
     value
      |> Deserializer.deserialize(:created_at, :datetime, nil)
+     |> Deserializer.deserialize(:current_plan_details, :struct, Ory.Model.PlanDetails)
      |> Deserializer.deserialize(:payed_until, :datetime, nil)
      |> Deserializer.deserialize(:plan_changes_at, :datetime, nil)
+     |> Deserializer.deserialize(:stripe_checkout_expires_at, :datetime, nil)
      |> Deserializer.deserialize(:updated_at, :datetime, nil)
   end
 end

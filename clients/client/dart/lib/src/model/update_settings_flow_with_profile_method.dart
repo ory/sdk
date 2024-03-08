@@ -15,6 +15,7 @@ part 'update_settings_flow_with_profile_method.g.dart';
 /// * [csrfToken] - The Anti-CSRF Token  This token is only required when performing browser flows.
 /// * [method] - Method  Should be set to profile when trying to update a profile.
 /// * [traits] - Traits  The identity's traits.
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateSettingsFlowWithProfileMethod implements Built<UpdateSettingsFlowWithProfileMethod, UpdateSettingsFlowWithProfileMethodBuilder> {
   /// The Anti-CSRF Token  This token is only required when performing browser flows.
@@ -28,6 +29,10 @@ abstract class UpdateSettingsFlowWithProfileMethod implements Built<UpdateSettin
   /// Traits  The identity's traits.
   @BuiltValueField(wireName: r'traits')
   JsonObject get traits;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateSettingsFlowWithProfileMethod._();
 
@@ -69,6 +74,13 @@ class _$UpdateSettingsFlowWithProfileMethodSerializer implements PrimitiveSerial
       object.traits,
       specifiedType: const FullType(JsonObject),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
   }
 
   @override
@@ -112,6 +124,13 @@ class _$UpdateSettingsFlowWithProfileMethodSerializer implements PrimitiveSerial
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.traits = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

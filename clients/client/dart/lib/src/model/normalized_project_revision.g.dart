@@ -281,6 +281,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final bool? disableAccountExperienceWelcomeScreen;
   @override
+  final bool? enableAxV2;
+  @override
   final BuiltList<String>? hydraOauth2AllowedTopLevelClaims;
   @override
   final bool? hydraOauth2ClientCredentialsDefaultGrantAllowedScope;
@@ -683,6 +685,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   _$NormalizedProjectRevision._(
       {this.createdAt,
       this.disableAccountExperienceWelcomeScreen,
+      this.enableAxV2,
       this.hydraOauth2AllowedTopLevelClaims,
       this.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
       this.hydraOauth2ExcludeNotBeforeClaim,
@@ -893,6 +896,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         createdAt == other.createdAt &&
         disableAccountExperienceWelcomeScreen ==
             other.disableAccountExperienceWelcomeScreen &&
+        enableAxV2 == other.enableAxV2 &&
         hydraOauth2AllowedTopLevelClaims ==
             other.hydraOauth2AllowedTopLevelClaims &&
         hydraOauth2ClientCredentialsDefaultGrantAllowedScope ==
@@ -1248,6 +1252,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, disableAccountExperienceWelcomeScreen.hashCode);
+    _$hash = $jc(_$hash, enableAxV2.hashCode);
     _$hash = $jc(_$hash, hydraOauth2AllowedTopLevelClaims.hashCode);
     _$hash = $jc(
         _$hash, hydraOauth2ClientCredentialsDefaultGrantAllowedScope.hashCode);
@@ -1554,6 +1559,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('createdAt', createdAt)
           ..add('disableAccountExperienceWelcomeScreen',
               disableAccountExperienceWelcomeScreen)
+          ..add('enableAxV2', enableAxV2)
           ..add('hydraOauth2AllowedTopLevelClaims',
               hydraOauth2AllowedTopLevelClaims)
           ..add('hydraOauth2ClientCredentialsDefaultGrantAllowedScope',
@@ -1920,6 +1926,10 @@ class NormalizedProjectRevisionBuilder
           bool? disableAccountExperienceWelcomeScreen) =>
       _$this._disableAccountExperienceWelcomeScreen =
           disableAccountExperienceWelcomeScreen;
+
+  bool? _enableAxV2;
+  bool? get enableAxV2 => _$this._enableAxV2;
+  set enableAxV2(bool? enableAxV2) => _$this._enableAxV2 = enableAxV2;
 
   ListBuilder<String>? _hydraOauth2AllowedTopLevelClaims;
   ListBuilder<String> get hydraOauth2AllowedTopLevelClaims =>
@@ -3376,6 +3386,7 @@ class NormalizedProjectRevisionBuilder
       _createdAt = $v.createdAt;
       _disableAccountExperienceWelcomeScreen =
           $v.disableAccountExperienceWelcomeScreen;
+      _enableAxV2 = $v.enableAxV2;
       _hydraOauth2AllowedTopLevelClaims =
           $v.hydraOauth2AllowedTopLevelClaims?.toBuilder();
       _hydraOauth2ClientCredentialsDefaultGrantAllowedScope =
@@ -3724,6 +3735,7 @@ class NormalizedProjectRevisionBuilder
               createdAt: createdAt,
               disableAccountExperienceWelcomeScreen:
                   disableAccountExperienceWelcomeScreen,
+              enableAxV2: enableAxV2,
               hydraOauth2AllowedTopLevelClaims:
                   _hydraOauth2AllowedTopLevelClaims?.build(),
               hydraOauth2ClientCredentialsDefaultGrantAllowedScope:

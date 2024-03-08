@@ -457,6 +457,7 @@ defmodule Ory.Api.Identity do
     - `:ids` ([String.t]): List of ids used to filter identities. If this list is empty, then no filter will be applied.
     - `:credentials_identifier` (String.t): CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     - `:preview_credentials_identifier_similar` (String.t): This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+    - `:include_credential` ([String.t]): Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 
   ### Returns
 
@@ -473,7 +474,8 @@ defmodule Ory.Api.Identity do
       :consistency => :query,
       :ids => :query,
       :credentials_identifier => :query,
-      :preview_credentials_identifier_similar => :query
+      :preview_credentials_identifier_similar => :query,
+      :include_credential => :query
     }
 
     request =

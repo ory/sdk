@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.6.2
-  - Build date: 2024-02-19T11:38:00.024995137Z[Etc/UTC]
+- API version: v1.8.1
+  - Build date: 2024-03-08T12:29:59.344544236Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.6.2</version>
+  <version>v1.8.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.6.2"
+     implementation "sh.ory:client:v1.8.1"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.6.2.jar`
+* `target/client-v1.8.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -346,7 +346,6 @@ Class | Method | HTTP request | Description
  - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [InternalIsOwnerForProjectBySlugResponse](docs/InternalIsOwnerForProjectBySlugResponse.md)
- - [InternalProvisionMockSubscription](docs/InternalProvisionMockSubscription.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
  - [IsReady200Response](docs/IsReady200Response.md)
@@ -397,6 +396,7 @@ Class | Method | HTTP request | Description
  - [ParseError](docs/ParseError.md)
  - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
  - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
+ - [PermissionsOnWorkpaceResponse](docs/PermissionsOnWorkpaceResponse.md)
  - [Plan](docs/Plan.md)
  - [PlanDetails](docs/PlanDetails.md)
  - [PostCheckPermissionBody](docs/PostCheckPermissionBody.md)
@@ -409,6 +409,7 @@ Class | Method | HTTP request | Description
  - [ProjectCors](docs/ProjectCors.md)
  - [ProjectEventsDatapoint](docs/ProjectEventsDatapoint.md)
  - [ProjectHost](docs/ProjectHost.md)
+ - [ProjectMember](docs/ProjectMember.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
  - [ProjectServiceOAuth2](docs/ProjectServiceOAuth2.md)
@@ -493,6 +494,7 @@ Class | Method | HTTP request | Description
  - [UpdateVerificationFlowBody](docs/UpdateVerificationFlowBody.md)
  - [UpdateVerificationFlowWithCodeMethod](docs/UpdateVerificationFlowWithCodeMethod.md)
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
+ - [UpdateWorkspacePayload](docs/UpdateWorkspacePayload.md)
  - [Usage](docs/Usage.md)
  - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)
  - [VerifiableCredentialProof](docs/VerifiableCredentialProof.md)

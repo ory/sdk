@@ -12,7 +12,8 @@ defmodule Ory.Model.UpdateLoginFlowWithCodeMethod do
     :csrf_token,
     :identifier,
     :method,
-    :resend
+    :resend,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
@@ -20,7 +21,8 @@ defmodule Ory.Model.UpdateLoginFlowWithCodeMethod do
     :csrf_token => String.t,
     :identifier => String.t | nil,
     :method => String.t,
-    :resend => String.t | nil
+    :resend => String.t | nil,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do

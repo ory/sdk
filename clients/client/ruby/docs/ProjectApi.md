@@ -586,7 +586,7 @@ end
 
 ## get_project_members
 
-> <Array<CloudAccount>> get_project_members(project)
+> <Array<ProjectMember>> get_project_members(project)
 
 Get all members associated with this project
 
@@ -619,7 +619,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Array<CloudAccount>>, Integer, Hash)> get_project_members_with_http_info(project)
+> <Array(<Array<ProjectMember>>, Integer, Hash)> get_project_members_with_http_info(project)
 
 ```ruby
 begin
@@ -627,7 +627,7 @@ begin
   data, status_code, headers = api_instance.get_project_members_with_http_info(project)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Array<CloudAccount>>
+  p data # => <Array<ProjectMember>>
 rescue OryClient::ApiError => e
   puts "Error when calling ProjectApi->get_project_members_with_http_info: #{e}"
 end
@@ -641,7 +641,7 @@ end
 
 ### Return type
 
-[**Array&lt;CloudAccount&gt;**](CloudAccount.md)
+[**Array&lt;ProjectMember&gt;**](ProjectMember.md)
 
 ### Authorization
 
@@ -675,7 +675,7 @@ end
 api_instance = OryClient::ProjectApi.new
 project_id = 'project_id_example' # String | Project ID
 event_type = 'event_type_example' # String | The event type to query for
-resolution = 'resolution_example' # String | The resolution of the buckets  The minimum resolution is 1 hour.
+resolution = 'resolution_example' # String | The resolution of the buckets  The minimum resolution is 1 minute.
 from = Time.parse('2013-10-20T19:20:30+01:00') # Time | The start RFC3339 date of the time window
 to = Time.parse('2013-10-20T19:20:30+01:00') # Time | The end RFC3339 date of the time window
 
@@ -712,7 +712,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **project_id** | **String** | Project ID |  |
 | **event_type** | **String** | The event type to query for |  |
-| **resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 hour. |  |
+| **resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 minute. |  |
 | **from** | **Time** | The start RFC3339 date of the time window |  |
 | **to** | **Time** | The end RFC3339 date of the time window |  |
 

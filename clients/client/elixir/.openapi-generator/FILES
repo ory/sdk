@@ -108,7 +108,6 @@ lib/ory/model/internal_get_project_branding_body.ex
 lib/ory/model/internal_is_ax_welcome_screen_enabled_for_project_body.ex
 lib/ory/model/internal_is_owner_for_project_by_slug_body.ex
 lib/ory/model/internal_is_owner_for_project_by_slug_response.ex
-lib/ory/model/internal_provision_mock_subscription.ex
 lib/ory/model/introspected_o_auth2_token.ex
 lib/ory/model/is_owner_for_project_by_slug.ex
 lib/ory/model/is_ready_200_response.ex
@@ -159,6 +158,7 @@ lib/ory/model/pagination_headers.ex
 lib/ory/model/parse_error.ex
 lib/ory/model/patch_identities_body.ex
 lib/ory/model/perform_native_logout_body.ex
+lib/ory/model/permissions_on_workpace_response.ex
 lib/ory/model/plan.ex
 lib/ory/model/plan_details.ex
 lib/ory/model/post_check_permission_body.ex
@@ -171,6 +171,7 @@ lib/ory/model/project_branding_theme.ex
 lib/ory/model/project_cors.ex
 lib/ory/model/project_events_datapoint.ex
 lib/ory/model/project_host.ex
+lib/ory/model/project_member.ex
 lib/ory/model/project_metadata.ex
 lib/ory/model/project_service_identity.ex
 lib/ory/model/project_service_o_auth2.ex
@@ -255,6 +256,7 @@ lib/ory/model/update_subscription_body.ex
 lib/ory/model/update_verification_flow_body.ex
 lib/ory/model/update_verification_flow_with_code_method.ex
 lib/ory/model/update_verification_flow_with_link_method.ex
+lib/ory/model/update_workspace_payload.ex
 lib/ory/model/usage.ex
 lib/ory/model/verifiable_credential_priming_response.ex
 lib/ory/model/verifiable_credential_proof.ex

@@ -823,7 +823,7 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = project_api.ProjectApi(api_client)
     project_id = "project_id_example" # str | Project ID
     event_type = "event_type_example" # str | The event type to query for
-    resolution = "4ms" # str | The resolution of the buckets  The minimum resolution is 1 hour.
+    resolution = "4M" # str | The resolution of the buckets  The minimum resolution is 1 minute.
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The start RFC3339 date of the time window
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The end RFC3339 date of the time window
 
@@ -842,7 +842,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| Project ID |
  **event_type** | **str**| The event type to query for |
- **resolution** | **str**| The resolution of the buckets  The minimum resolution is 1 hour. |
+ **resolution** | **str**| The resolution of the buckets  The minimum resolution is 1 minute. |
  **_from** | **datetime**| The start RFC3339 date of the time window |
  **to** | **datetime**| The end RFC3339 date of the time window |
 

@@ -53,6 +53,7 @@ OryClient::UiNodeAttributes.openapi_discriminator_mapping
 #   :'script' => :'UiNodeScriptAttributes',
 #   :'text' => :'UiNodeTextAttributes'
 # }
+```
 
 ### build
 

@@ -101,7 +101,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
-docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
@@ -157,6 +156,7 @@ docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
+docs/PermissionsOnWorkpaceResponse.md
 docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
@@ -170,6 +170,7 @@ docs/ProjectBrandingTheme.md
 docs/ProjectCors.md
 docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
+docs/ProjectMember.md
 docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
@@ -255,6 +256,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/UpdateWorkspacePayload.md
 docs/Usage.md
 docs/VerifiableCredentialPrimingResponse.md
 docs/VerifiableCredentialProof.md
@@ -374,7 +376,6 @@ lib/ory-client/models/internal_get_project_branding_body.rb
 lib/ory-client/models/internal_is_ax_welcome_screen_enabled_for_project_body.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug_body.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug_response.rb
-lib/ory-client/models/internal_provision_mock_subscription.rb
 lib/ory-client/models/introspected_o_auth2_token.rb
 lib/ory-client/models/is_owner_for_project_by_slug.rb
 lib/ory-client/models/is_ready200_response.rb
@@ -425,6 +426,7 @@ lib/ory-client/models/pagination_headers.rb
 lib/ory-client/models/parse_error.rb
 lib/ory-client/models/patch_identities_body.rb
 lib/ory-client/models/perform_native_logout_body.rb
+lib/ory-client/models/permissions_on_workpace_response.rb
 lib/ory-client/models/plan.rb
 lib/ory-client/models/plan_details.rb
 lib/ory-client/models/post_check_permission_body.rb
@@ -437,6 +439,7 @@ lib/ory-client/models/project_branding_theme.rb
 lib/ory-client/models/project_cors.rb
 lib/ory-client/models/project_events_datapoint.rb
 lib/ory-client/models/project_host.rb
+lib/ory-client/models/project_member.rb
 lib/ory-client/models/project_metadata.rb
 lib/ory-client/models/project_service_identity.rb
 lib/ory-client/models/project_service_o_auth2.rb
@@ -521,6 +524,7 @@ lib/ory-client/models/update_subscription_body.rb
 lib/ory-client/models/update_verification_flow_body.rb
 lib/ory-client/models/update_verification_flow_with_code_method.rb
 lib/ory-client/models/update_verification_flow_with_link_method.rb
+lib/ory-client/models/update_workspace_payload.rb
 lib/ory-client/models/usage.rb
 lib/ory-client/models/verifiable_credential_priming_response.rb
 lib/ory-client/models/verifiable_credential_proof.rb
@@ -546,8 +550,6 @@ spec/api/permission_api_spec.rb
 spec/api/project_api_spec.rb
 spec/api/relationship_api_spec.rb
 spec/api/wellknown_api_spec.rb
-spec/api_client_spec.rb
-spec/configuration_spec.rb
 spec/models/accept_o_auth2_consent_request_session_spec.rb
 spec/models/accept_o_auth2_consent_request_spec.rb
 spec/models/accept_o_auth2_login_request_spec.rb
@@ -638,7 +640,6 @@ spec/models/internal_get_project_branding_body_spec.rb
 spec/models/internal_is_ax_welcome_screen_enabled_for_project_body_spec.rb
 spec/models/internal_is_owner_for_project_by_slug_body_spec.rb
 spec/models/internal_is_owner_for_project_by_slug_response_spec.rb
-spec/models/internal_provision_mock_subscription_spec.rb
 spec/models/introspected_o_auth2_token_spec.rb
 spec/models/is_owner_for_project_by_slug_spec.rb
 spec/models/is_ready200_response_spec.rb
@@ -689,6 +690,7 @@ spec/models/pagination_spec.rb
 spec/models/parse_error_spec.rb
 spec/models/patch_identities_body_spec.rb
 spec/models/perform_native_logout_body_spec.rb
+spec/models/permissions_on_workpace_response_spec.rb
 spec/models/plan_details_spec.rb
 spec/models/plan_spec.rb
 spec/models/post_check_permission_body_spec.rb
@@ -700,6 +702,7 @@ spec/models/project_branding_theme_spec.rb
 spec/models/project_cors_spec.rb
 spec/models/project_events_datapoint_spec.rb
 spec/models/project_host_spec.rb
+spec/models/project_member_spec.rb
 spec/models/project_metadata_spec.rb
 spec/models/project_service_identity_spec.rb
 spec/models/project_service_o_auth2_spec.rb
@@ -785,6 +788,7 @@ spec/models/update_subscription_body_spec.rb
 spec/models/update_verification_flow_body_spec.rb
 spec/models/update_verification_flow_with_code_method_spec.rb
 spec/models/update_verification_flow_with_link_method_spec.rb
+spec/models/update_workspace_payload_spec.rb
 spec/models/usage_spec.rb
 spec/models/verifiable_credential_priming_response_spec.rb
 spec/models/verifiable_credential_proof_spec.rb

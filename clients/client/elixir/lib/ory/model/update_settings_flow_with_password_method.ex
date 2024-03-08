@@ -10,13 +10,15 @@ defmodule Ory.Model.UpdateSettingsFlowWithPasswordMethod do
   defstruct [
     :csrf_token,
     :method,
-    :password
+    :password,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :method => String.t,
-    :password => String.t
+    :password => String.t,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do

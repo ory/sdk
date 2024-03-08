@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.2
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -1908,6 +1908,7 @@ type IdentityAPIListIdentitiesRequest struct {
 	ids *[]string
 	credentialsIdentifier *string
 	previewCredentialsIdentifierSimilar *string
+	includeCredential *[]string
 }
 
 // Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page.
@@ -1955,6 +1956,12 @@ func (r IdentityAPIListIdentitiesRequest) CredentialsIdentifier(credentialsIdent
 // This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
 func (r IdentityAPIListIdentitiesRequest) PreviewCredentialsIdentifierSimilar(previewCredentialsIdentifierSimilar string) IdentityAPIListIdentitiesRequest {
 	r.previewCredentialsIdentifierSimilar = &previewCredentialsIdentifierSimilar
+	return r
+}
+
+// Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+func (r IdentityAPIListIdentitiesRequest) IncludeCredential(includeCredential []string) IdentityAPIListIdentitiesRequest {
+	r.includeCredential = &includeCredential
 	return r
 }
 
@@ -2038,6 +2045,17 @@ func (a *IdentityAPIService) ListIdentitiesExecute(r IdentityAPIListIdentitiesRe
 	}
 	if r.previewCredentialsIdentifierSimilar != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "preview_credentials_identifier_similar", r.previewCredentialsIdentifierSimilar, "")
+	}
+	if r.includeCredential != nil {
+		t := *r.includeCredential
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", s.Index(i).Interface(), "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", t, "multi")
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

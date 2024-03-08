@@ -39,7 +39,7 @@ Method | HTTP request | Description
 
 ## CreateBrowserLoginFlow
 
-> LoginFlow CreateBrowserLoginFlow(ctx).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Organization(organization).Execute()
+> LoginFlow CreateBrowserLoginFlow(ctx).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Organization(organization).Via(via).Execute()
 
 Create Login Flow for Browsers
 
@@ -64,10 +64,11 @@ func main() {
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
     loginChallenge := "loginChallenge_example" // string | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
     organization := "organization_example" // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
+    via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FrontendAPI.CreateBrowserLoginFlow(context.Background()).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Organization(organization).Execute()
+    resp, r, err := apiClient.FrontendAPI.CreateBrowserLoginFlow(context.Background()).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Cookie(cookie).LoginChallenge(loginChallenge).Organization(organization).Via(via).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateBrowserLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -94,6 +95,7 @@ Name | Type | Description  | Notes
  **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | 
  **loginChallenge** | **string** | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | 
  **organization** | **string** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | 
+ **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | 
 
 ### Return type
 

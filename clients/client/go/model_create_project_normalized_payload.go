@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.2
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -26,6 +26,8 @@ type CreateProjectNormalizedPayload struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
 	DisableAccountExperienceWelcomeScreen *bool `json:"disable_account_experience_welcome_screen,omitempty"`
+	// Whether the new account experience is enabled and reachable.
+	EnableAxV2 *bool `json:"enable_ax_v2,omitempty"`
 	//  prod Production dev Development
 	Environment string `json:"environment"`
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
@@ -516,6 +518,38 @@ func (o *CreateProjectNormalizedPayload) HasDisableAccountExperienceWelcomeScree
 // SetDisableAccountExperienceWelcomeScreen gets a reference to the given bool and assigns it to the DisableAccountExperienceWelcomeScreen field.
 func (o *CreateProjectNormalizedPayload) SetDisableAccountExperienceWelcomeScreen(v bool) {
 	o.DisableAccountExperienceWelcomeScreen = &v
+}
+
+// GetEnableAxV2 returns the EnableAxV2 field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetEnableAxV2() bool {
+	if o == nil || IsNil(o.EnableAxV2) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableAxV2
+}
+
+// GetEnableAxV2Ok returns a tuple with the EnableAxV2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetEnableAxV2Ok() (*bool, bool) {
+	if o == nil || IsNil(o.EnableAxV2) {
+		return nil, false
+	}
+	return o.EnableAxV2, true
+}
+
+// HasEnableAxV2 returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasEnableAxV2() bool {
+	if o != nil && !IsNil(o.EnableAxV2) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableAxV2 gets a reference to the given bool and assigns it to the EnableAxV2 field.
+func (o *CreateProjectNormalizedPayload) SetEnableAxV2(v bool) {
+	o.EnableAxV2 = &v
 }
 
 // GetEnvironment returns the Environment field value
@@ -6643,6 +6677,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.DisableAccountExperienceWelcomeScreen) {
 		toSerialize["disable_account_experience_welcome_screen"] = o.DisableAccountExperienceWelcomeScreen
 	}
+	if !IsNil(o.EnableAxV2) {
+		toSerialize["enable_ax_v2"] = o.EnableAxV2
+	}
 	toSerialize["environment"] = o.Environment
 	if !IsNil(o.HydraOauth2AllowedTopLevelClaims) {
 		toSerialize["hydra_oauth2_allowed_top_level_claims"] = o.HydraOauth2AllowedTopLevelClaims
@@ -7258,6 +7295,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "disable_account_experience_welcome_screen")
+		delete(additionalProperties, "enable_ax_v2")
 		delete(additionalProperties, "environment")
 		delete(additionalProperties, "hydra_oauth2_allowed_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_client_credentials_default_grant_allowed_scope")

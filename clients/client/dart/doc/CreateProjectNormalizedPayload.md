@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] 
 **disableAccountExperienceWelcomeScreen** | **bool** | Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`. | [optional] 
+**enableAxV2** | **bool** | Whether the new account experience is enabled and reachable. | [optional] 
 **environment** | **String** |  prod Production dev Development | 
 **hydraOauth2AllowedTopLevelClaims** | **BuiltList&lt;String&gt;** |  | [optional] 
 **hydraOauth2ClientCredentialsDefaultGrantAllowedScope** | **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting. | [optional] 

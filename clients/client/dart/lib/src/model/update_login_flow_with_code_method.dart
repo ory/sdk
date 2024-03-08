@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -16,6 +17,7 @@ part 'update_login_flow_with_code_method.g.dart';
 /// * [identifier] - Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow.
 /// * [method] - Method should be set to \"code\" when logging in using the code strategy.
 /// * [resend] - Resend is set when the user wants to resend the code
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateLoginFlowWithCodeMethod implements Built<UpdateLoginFlowWithCodeMethod, UpdateLoginFlowWithCodeMethodBuilder> {
   /// Code is the 6 digits code sent to the user
@@ -37,6 +39,10 @@ abstract class UpdateLoginFlowWithCodeMethod implements Built<UpdateLoginFlowWit
   /// Resend is set when the user wants to resend the code
   @BuiltValueField(wireName: r'resend')
   String? get resend;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateLoginFlowWithCodeMethod._();
 
@@ -90,6 +96,13 @@ class _$UpdateLoginFlowWithCodeMethodSerializer implements PrimitiveSerializer<U
       yield serializers.serialize(
         object.resend,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
       );
     }
   }
@@ -149,6 +162,13 @@ class _$UpdateLoginFlowWithCodeMethodSerializer implements PrimitiveSerializer<U
             specifiedType: const FullType(String),
           ) as String;
           result.resend = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

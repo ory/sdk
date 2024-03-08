@@ -39,7 +39,7 @@ Method | HTTP request | Description
 
 ## create_browser_login_flow
 
-> crate::models::LoginFlow create_browser_login_flow(refresh, aal, return_to, cookie, login_challenge, organization)
+> crate::models::LoginFlow create_browser_login_flow(refresh, aal, return_to, cookie, login_challenge, organization, via)
 Create Login Flow for Browsers
 
 This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  The optional query parameter login_challenge is set when using Kratos with Hydra in an OAuth2 flow. See the oauth2_provider.url configuration option.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
@@ -55,6 +55,7 @@ Name | Type | Description  | Required | Notes
 **cookie** | Option<**String**> | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. |  |
 **login_challenge** | Option<**String**> | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). |  |
 **organization** | Option<**String**> | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. |  |
+**via** | Option<**String**> | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. |  |
 
 ### Return type
 

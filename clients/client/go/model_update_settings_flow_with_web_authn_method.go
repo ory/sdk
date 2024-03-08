@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.2
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -25,6 +25,8 @@ type UpdateSettingsFlowWithWebAuthnMethod struct {
 	CsrfToken *string `json:"csrf_token,omitempty"`
 	// Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
 	Method string `json:"method"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
 	WebauthnRegister *string `json:"webauthn_register,omitempty"`
 	// Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
@@ -108,6 +110,38 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetMethodOk() (*string, bool) {
 // SetMethod sets field value
 func (o *UpdateSettingsFlowWithWebAuthnMethod) SetMethod(v string) {
 	o.Method = v
+}
+
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithWebAuthnMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithWebAuthnMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithWebAuthnMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateSettingsFlowWithWebAuthnMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
 }
 
 // GetWebauthnRegister returns the WebauthnRegister field value if set, zero value otherwise.
@@ -220,6 +254,9 @@ func (o UpdateSettingsFlowWithWebAuthnMethod) ToMap() (map[string]interface{}, e
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
 	toSerialize["method"] = o.Method
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 	if !IsNil(o.WebauthnRegister) {
 		toSerialize["webauthn_register"] = o.WebauthnRegister
 	}
@@ -274,6 +311,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "csrf_token")
 		delete(additionalProperties, "method")
+		delete(additionalProperties, "transient_payload")
 		delete(additionalProperties, "webauthn_register")
 		delete(additionalProperties, "webauthn_register_displayname")
 		delete(additionalProperties, "webauthn_remove")

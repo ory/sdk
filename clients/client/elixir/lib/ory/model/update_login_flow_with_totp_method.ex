@@ -10,13 +10,15 @@ defmodule Ory.Model.UpdateLoginFlowWithTotpMethod do
   defstruct [
     :csrf_token,
     :method,
-    :totp_code
+    :totp_code,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :method => String.t,
-    :totp_code => String.t
+    :totp_code => String.t,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do

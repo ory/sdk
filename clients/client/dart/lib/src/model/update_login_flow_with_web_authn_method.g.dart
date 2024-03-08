@@ -15,6 +15,8 @@ class _$UpdateLoginFlowWithWebAuthnMethod
   @override
   final String method;
   @override
+  final JsonObject? transientPayload;
+  @override
   final String? webauthnLogin;
 
   factory _$UpdateLoginFlowWithWebAuthnMethod(
@@ -26,6 +28,7 @@ class _$UpdateLoginFlowWithWebAuthnMethod
       {this.csrfToken,
       required this.identifier,
       required this.method,
+      this.transientPayload,
       this.webauthnLogin})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -50,6 +53,7 @@ class _$UpdateLoginFlowWithWebAuthnMethod
         csrfToken == other.csrfToken &&
         identifier == other.identifier &&
         method == other.method &&
+        transientPayload == other.transientPayload &&
         webauthnLogin == other.webauthnLogin;
   }
 
@@ -59,6 +63,7 @@ class _$UpdateLoginFlowWithWebAuthnMethod
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, identifier.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, webauthnLogin.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -70,6 +75,7 @@ class _$UpdateLoginFlowWithWebAuthnMethod
           ..add('csrfToken', csrfToken)
           ..add('identifier', identifier)
           ..add('method', method)
+          ..add('transientPayload', transientPayload)
           ..add('webauthnLogin', webauthnLogin))
         .toString();
   }
@@ -93,6 +99,11 @@ class UpdateLoginFlowWithWebAuthnMethodBuilder
   String? get method => _$this._method;
   set method(String? method) => _$this._method = method;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   String? _webauthnLogin;
   String? get webauthnLogin => _$this._webauthnLogin;
   set webauthnLogin(String? webauthnLogin) =>
@@ -108,6 +119,7 @@ class UpdateLoginFlowWithWebAuthnMethodBuilder
       _csrfToken = $v.csrfToken;
       _identifier = $v.identifier;
       _method = $v.method;
+      _transientPayload = $v.transientPayload;
       _webauthnLogin = $v.webauthnLogin;
       _$v = null;
     }
@@ -137,6 +149,7 @@ class UpdateLoginFlowWithWebAuthnMethodBuilder
                 identifier, r'UpdateLoginFlowWithWebAuthnMethod', 'identifier'),
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateLoginFlowWithWebAuthnMethod', 'method'),
+            transientPayload: transientPayload,
             webauthnLogin: webauthnLogin);
     replace(_$result);
     return _$result;

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,6 +15,7 @@ part 'update_login_flow_with_totp_method.g.dart';
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
 /// * [method] - Method should be set to \"totp\" when logging in using the TOTP strategy.
 /// * [totpCode] - The TOTP code.
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateLoginFlowWithTotpMethod implements Built<UpdateLoginFlowWithTotpMethod, UpdateLoginFlowWithTotpMethodBuilder> {
   /// Sending the anti-csrf token is only required for browser login flows.
@@ -27,6 +29,10 @@ abstract class UpdateLoginFlowWithTotpMethod implements Built<UpdateLoginFlowWit
   /// The TOTP code.
   @BuiltValueField(wireName: r'totp_code')
   String get totpCode;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateLoginFlowWithTotpMethod._();
 
@@ -68,6 +74,13 @@ class _$UpdateLoginFlowWithTotpMethodSerializer implements PrimitiveSerializer<U
       object.totpCode,
       specifiedType: const FullType(String),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
   }
 
   @override
@@ -111,6 +124,13 @@ class _$UpdateLoginFlowWithTotpMethodSerializer implements PrimitiveSerializer<U
             specifiedType: const FullType(String),
           ) as String;
           result.totpCode = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

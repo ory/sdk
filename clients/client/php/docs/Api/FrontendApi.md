@@ -39,7 +39,7 @@ Method | HTTP request | Description
 ## `createBrowserLoginFlow()`
 
 ```php
-createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization): \Ory\Client\Model\LoginFlow
+createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization, $via): \Ory\Client\Model\LoginFlow
 ```
 
 Create Login Flow for Browsers
@@ -65,9 +65,10 @@ $returnTo = 'returnTo_example'; // string | The URL to return the browser to aft
 $cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 $loginChallenge = 'loginChallenge_example'; // string | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
 $organization = 'organization_example'; // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
+$via = 'via_example'; // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
 
 try {
-    $result = $apiInstance->createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization);
+    $result = $apiInstance->createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization, $via);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createBrowserLoginFlow: ', $e->getMessage(), PHP_EOL;
@@ -84,6 +85,7 @@ Name | Type | Description  | Notes
  **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
  **loginChallenge** | **string**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional]
  **organization** | **string**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional]
+ **via** | **string**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional]
 
 ### Return type
 

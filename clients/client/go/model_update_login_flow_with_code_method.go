@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.2
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -31,6 +31,8 @@ type UpdateLoginFlowWithCodeMethod struct {
 	Method string `json:"method"`
 	// Resend is set when the user wants to resend the code
 	Resend *string `json:"resend,omitempty"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -199,6 +201,38 @@ func (o *UpdateLoginFlowWithCodeMethod) SetResend(v string) {
 	o.Resend = &v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateLoginFlowWithCodeMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoginFlowWithCodeMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateLoginFlowWithCodeMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateLoginFlowWithCodeMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 func (o UpdateLoginFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -219,6 +253,9 @@ func (o UpdateLoginFlowWithCodeMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize["method"] = o.Method
 	if !IsNil(o.Resend) {
 		toSerialize["resend"] = o.Resend
+	}
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -269,6 +306,7 @@ func (o *UpdateLoginFlowWithCodeMethod) UnmarshalJSON(bytes []byte) (err error) 
 		delete(additionalProperties, "identifier")
 		delete(additionalProperties, "method")
 		delete(additionalProperties, "resend")
+		delete(additionalProperties, "transient_payload")
 		o.AdditionalProperties = additionalProperties
 	}
 

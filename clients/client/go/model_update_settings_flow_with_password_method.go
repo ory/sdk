@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.2
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -27,6 +27,8 @@ type UpdateSettingsFlowWithPasswordMethod struct {
 	Method string `json:"method"`
 	// Password is the updated password
 	Password string `json:"password"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -131,6 +133,38 @@ func (o *UpdateSettingsFlowWithPasswordMethod) SetPassword(v string) {
 	o.Password = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithPasswordMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithPasswordMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithPasswordMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateSettingsFlowWithPasswordMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 func (o UpdateSettingsFlowWithPasswordMethod) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -146,6 +180,9 @@ func (o UpdateSettingsFlowWithPasswordMethod) ToMap() (map[string]interface{}, e
 	}
 	toSerialize["method"] = o.Method
 	toSerialize["password"] = o.Password
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -193,6 +230,7 @@ func (o *UpdateSettingsFlowWithPasswordMethod) UnmarshalJSON(bytes []byte) (err 
 		delete(additionalProperties, "csrf_token")
 		delete(additionalProperties, "method")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "transient_payload")
 		o.AdditionalProperties = additionalProperties
 	}
 

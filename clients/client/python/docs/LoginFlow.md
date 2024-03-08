@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **requested_aal** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
 **return_to** | **str** | ReturnTo contains the requested return_to URL. | [optional] 
 **session_token_exchange_code** | **str** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the login flow. | [optional] 
+**transient_payload** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | TransientPayload is used to pass data from the login to hooks and email templates | [optional] 
 **updated_at** | **datetime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

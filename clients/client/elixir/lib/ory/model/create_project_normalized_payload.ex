@@ -10,6 +10,7 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
   defstruct [
     :created_at,
     :disable_account_experience_welcome_screen,
+    :enable_ax_v2,
     :environment,
     :hydra_oauth2_allowed_top_level_claims,
     :hydra_oauth2_client_credentials_default_grant_allowed_scope,
@@ -206,6 +207,7 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
     :disable_account_experience_welcome_screen => boolean() | nil,
+    :enable_ax_v2 => boolean() | nil,
     :environment => String.t,
     :hydra_oauth2_allowed_top_level_claims => [String.t] | nil,
     :hydra_oauth2_client_credentials_default_grant_allowed_scope => boolean() | nil,

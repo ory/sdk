@@ -43,6 +43,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_organizations =
     const QuotaUsageFeatureEnum._('organizations');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_ropGrant =
     const QuotaUsageFeatureEnum._('ropGrant');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_conciergeOnboarding =
+    const QuotaUsageFeatureEnum._('conciergeOnboarding');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
     const QuotaUsageFeatureEnum._('rateLimitTier');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_sessionRateLimitTier =
@@ -95,6 +97,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_organizations;
     case 'ropGrant':
       return _$quotaUsageFeatureEnum_ropGrant;
+    case 'conciergeOnboarding':
+      return _$quotaUsageFeatureEnum_conciergeOnboarding;
     case 'rateLimitTier':
       return _$quotaUsageFeatureEnum_rateLimitTier;
     case 'sessionRateLimitTier':
@@ -130,6 +134,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_projectMetricsEventsHistory,
   _$quotaUsageFeatureEnum_organizations,
   _$quotaUsageFeatureEnum_ropGrant,
+  _$quotaUsageFeatureEnum_conciergeOnboarding,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
   _$quotaUsageFeatureEnum_identitiesListRateLimitTier,
@@ -161,6 +166,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'projectMetricsEventsHistory': 'project_metrics_events_history',
     'organizations': 'organizations',
     'ropGrant': 'rop_grant',
+    'conciergeOnboarding': 'concierge_onboarding',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
     'identitiesListRateLimitTier': 'identities_list_rate_limit_tier',
@@ -186,6 +192,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'project_metrics_events_history': 'projectMetricsEventsHistory',
     'organizations': 'organizations',
     'rop_grant': 'ropGrant',
+    'concierge_onboarding': 'conciergeOnboarding',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',
     'identities_list_rate_limit_tier': 'identitiesListRateLimitTier',

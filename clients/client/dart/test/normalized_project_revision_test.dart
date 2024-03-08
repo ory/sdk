@@ -19,6 +19,12 @@ void main() {
       // TODO
     });
 
+    // Whether the new account experience is enabled and reachable.
+    // bool enableAxV2
+    test('to test the property `enableAxV2`', () async {
+      // TODO
+    });
+
     // BuiltList<String> hydraOauth2AllowedTopLevelClaims
     test('to test the property `hydraOauth2AllowedTopLevelClaims`', () async {
       // TODO

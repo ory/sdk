@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -15,6 +16,7 @@ part 'update_verification_flow_with_link_method.g.dart';
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
 /// * [email] - Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
 /// * [method] - Method is the method that should be used for this verification flow  Allowed values are `link` and `code` link VerificationStrategyLink code VerificationStrategyCode
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateVerificationFlowWithLinkMethod implements Built<UpdateVerificationFlowWithLinkMethod, UpdateVerificationFlowWithLinkMethodBuilder> {
   /// Sending the anti-csrf token is only required for browser login flows.
@@ -29,6 +31,10 @@ abstract class UpdateVerificationFlowWithLinkMethod implements Built<UpdateVerif
   @BuiltValueField(wireName: r'method')
   UpdateVerificationFlowWithLinkMethodMethodEnum get method;
   // enum methodEnum {  link,  code,  };
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateVerificationFlowWithLinkMethod._();
 
@@ -70,6 +76,13 @@ class _$UpdateVerificationFlowWithLinkMethodSerializer implements PrimitiveSeria
       object.method,
       specifiedType: const FullType(UpdateVerificationFlowWithLinkMethodMethodEnum),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
   }
 
   @override
@@ -113,6 +126,13 @@ class _$UpdateVerificationFlowWithLinkMethodSerializer implements PrimitiveSeria
             specifiedType: const FullType(UpdateVerificationFlowWithLinkMethodMethodEnum),
           ) as UpdateVerificationFlowWithLinkMethodMethodEnum;
           result.method = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

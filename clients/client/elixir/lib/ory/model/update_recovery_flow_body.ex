@@ -11,6 +11,7 @@ defmodule Ory.Model.UpdateRecoveryFlowBody do
     :csrf_token,
     :email,
     :method,
+    :transient_payload,
     :code
   ]
 
@@ -18,6 +19,7 @@ defmodule Ory.Model.UpdateRecoveryFlowBody do
     :csrf_token => String.t | nil,
     :email => String.t,
     :method => String.t,
+    :transient_payload => map() | nil,
     :code => String.t | nil
   }
 

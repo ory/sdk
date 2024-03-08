@@ -266,7 +266,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_project_members
 
-> Vec<crate::models::CloudAccount> get_project_members(project)
+> Vec<crate::models::ProjectMember> get_project_members(project)
 Get all members associated with this project
 
 This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
@@ -280,7 +280,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::CloudAccount>**](cloudAccount.md)
+[**Vec<crate::models::ProjectMember>**](projectMember.md)
 
 ### Authorization
 
@@ -308,7 +308,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **project_id** | **String** | Project ID | [required] |
 **event_type** | **String** | The event type to query for | [required] |
-**resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 hour. | [required] |
+**resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 minute. | [required] |
 **from** | **String** | The start RFC3339 date of the time window | [required] |
 **to** | **String** | The end RFC3339 date of the time window | [required] |
 

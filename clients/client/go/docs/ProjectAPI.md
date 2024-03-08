@@ -580,7 +580,7 @@ Name | Type | Description  | Notes
 
 ## GetProjectMembers
 
-> []CloudAccount GetProjectMembers(ctx, project).Execute()
+> []ProjectMember GetProjectMembers(ctx, project).Execute()
 
 Get all members associated with this project
 
@@ -608,7 +608,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.GetProjectMembers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetProjectMembers`: []CloudAccount
+    // response from `GetProjectMembers`: []ProjectMember
     fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.GetProjectMembers`: %v\n", resp)
 }
 ```
@@ -632,7 +632,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]CloudAccount**](CloudAccount.md)
+[**[]ProjectMember**](ProjectMember.md)
 
 ### Authorization
 
@@ -672,7 +672,7 @@ import (
 func main() {
     projectId := "projectId_example" // string | Project ID
     eventType := "eventType_example" // string | The event type to query for
-    resolution := "resolution_example" // string | The resolution of the buckets  The minimum resolution is 1 hour.
+    resolution := "resolution_example" // string | The resolution of the buckets  The minimum resolution is 1 minute.
     from := time.Now() // time.Time | The start RFC3339 date of the time window
     to := time.Now() // time.Time | The end RFC3339 date of the time window
 
@@ -705,7 +705,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **eventType** | **string** | The event type to query for | 
- **resolution** | **string** | The resolution of the buckets  The minimum resolution is 1 hour. | 
+ **resolution** | **string** | The resolution of the buckets  The minimum resolution is 1 minute. | 
  **from** | **time.Time** | The start RFC3339 date of the time window | 
  **to** | **time.Time** | The end RFC3339 date of the time window | 
 

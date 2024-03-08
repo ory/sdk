@@ -30,6 +30,7 @@ part 'login_flow.g.dart';
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
 /// * [sessionTokenExchangeCode] - SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the login flow.
 /// * [state] - State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
+/// * [transientPayload] - TransientPayload is used to pass data from the login to hooks and email templates
 /// * [type] - The flow type can either be `api` or `browser`.
 /// * [ui] 
 /// * [updatedAt] - UpdatedAt is a helper struct field for gobuffalo.pop.
@@ -89,6 +90,10 @@ abstract class LoginFlow implements Built<LoginFlow, LoginFlowBuilder> {
   /// State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
   @BuiltValueField(wireName: r'state')
   JsonObject? get state;
+
+  /// TransientPayload is used to pass data from the login to hooks and email templates
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   /// The flow type can either be `api` or `browser`.
   @BuiltValueField(wireName: r'type')
@@ -212,6 +217,13 @@ class _$LoginFlowSerializer implements PrimitiveSerializer<LoginFlow> {
       object.state,
       specifiedType: const FullType.nullable(JsonObject),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
     yield r'type';
     yield serializers.serialize(
       object.type,
@@ -351,6 +363,13 @@ class _$LoginFlowSerializer implements PrimitiveSerializer<LoginFlow> {
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.state = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(

@@ -353,6 +353,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final bool? disableAccountExperienceWelcomeScreen;
   @override
+  final bool? enableAxV2;
+  @override
   final CreateProjectNormalizedPayloadEnvironmentEnum environment;
   @override
   final BuiltList<String>? hydraOauth2AllowedTopLevelClaims;
@@ -760,6 +762,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   _$CreateProjectNormalizedPayload._(
       {this.createdAt,
       this.disableAccountExperienceWelcomeScreen,
+      this.enableAxV2,
       required this.environment,
       this.hydraOauth2AllowedTopLevelClaims,
       this.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
@@ -974,6 +977,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         createdAt == other.createdAt &&
         disableAccountExperienceWelcomeScreen ==
             other.disableAccountExperienceWelcomeScreen &&
+        enableAxV2 == other.enableAxV2 &&
         environment == other.environment &&
         hydraOauth2AllowedTopLevelClaims ==
             other.hydraOauth2AllowedTopLevelClaims &&
@@ -1331,6 +1335,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, disableAccountExperienceWelcomeScreen.hashCode);
+    _$hash = $jc(_$hash, enableAxV2.hashCode);
     _$hash = $jc(_$hash, environment.hashCode);
     _$hash = $jc(_$hash, hydraOauth2AllowedTopLevelClaims.hashCode);
     _$hash = $jc(
@@ -1639,6 +1644,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
           ..add('createdAt', createdAt)
           ..add('disableAccountExperienceWelcomeScreen',
               disableAccountExperienceWelcomeScreen)
+          ..add('enableAxV2', enableAxV2)
           ..add('environment', environment)
           ..add('hydraOauth2AllowedTopLevelClaims',
               hydraOauth2AllowedTopLevelClaims)
@@ -2008,6 +2014,10 @@ class CreateProjectNormalizedPayloadBuilder
           bool? disableAccountExperienceWelcomeScreen) =>
       _$this._disableAccountExperienceWelcomeScreen =
           disableAccountExperienceWelcomeScreen;
+
+  bool? _enableAxV2;
+  bool? get enableAxV2 => _$this._enableAxV2;
+  set enableAxV2(bool? enableAxV2) => _$this._enableAxV2 = enableAxV2;
 
   CreateProjectNormalizedPayloadEnvironmentEnum? _environment;
   CreateProjectNormalizedPayloadEnvironmentEnum? get environment =>
@@ -3474,6 +3484,7 @@ class CreateProjectNormalizedPayloadBuilder
       _createdAt = $v.createdAt;
       _disableAccountExperienceWelcomeScreen =
           $v.disableAccountExperienceWelcomeScreen;
+      _enableAxV2 = $v.enableAxV2;
       _environment = $v.environment;
       _hydraOauth2AllowedTopLevelClaims =
           $v.hydraOauth2AllowedTopLevelClaims?.toBuilder();
@@ -3824,6 +3835,7 @@ class CreateProjectNormalizedPayloadBuilder
               createdAt: createdAt,
               disableAccountExperienceWelcomeScreen:
                   disableAccountExperienceWelcomeScreen,
+              enableAxV2: enableAxV2,
               environment: BuiltValueNullFieldError.checkNotNull(
                   environment, r'CreateProjectNormalizedPayload', 'environment'),
               hydraOauth2AllowedTopLevelClaims:

@@ -304,10 +304,10 @@ defmodule Ory.Api.Project do
 
   ### Returns
 
-  - `{:ok, [%CloudAccount{}, ...]}` on success
+  - `{:ok, [%ProjectMember{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_project_members(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, list(Ory.Model.CloudAccount.t)} | {:error, Tesla.Env.t}
+  @spec get_project_members(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, list(Ory.Model.ProjectMember.t)} | {:error, Tesla.Env.t}
   def get_project_members(connection, project, _opts \\ []) do
     request =
       %{}
@@ -318,7 +318,7 @@ defmodule Ory.Api.Project do
     connection
     |> Connection.request(request)
     |> evaluate_response([
-      {200, Ory.Model.CloudAccount},
+      {200, Ory.Model.ProjectMember},
       {401, Ory.Model.GenericError},
       {406, Ory.Model.GenericError},
       {:default, Ory.Model.GenericError}
@@ -333,7 +333,7 @@ defmodule Ory.Api.Project do
   - `connection` (Ory.Connection): Connection to server
   - `project_id` (String.t): Project ID
   - `event_type` (String.t): The event type to query for
-  - `resolution` (String.t): The resolution of the buckets  The minimum resolution is 1 hour.
+  - `resolution` (String.t): The resolution of the buckets  The minimum resolution is 1 minute.
   - `from` (DateTime.t): The start RFC3339 date of the time window
   - `to` (DateTime.t): The end RFC3339 date of the time window
   - `opts` (keyword): Optional parameters

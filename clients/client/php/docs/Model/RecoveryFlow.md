@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **requestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |
 **returnTo** | **string** | ReturnTo contains the requested return_to URL. | [optional]
 **state** | **mixed** | State represents the state of this request:  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed. |
+**transientPayload** | **object** | TransientPayload is used to pass data from the recovery flow to hooks and email templates | [optional]
 **type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. |
 **ui** | [**\Ory\Client\Model\UiContainer**](UiContainer.md) |  |
 

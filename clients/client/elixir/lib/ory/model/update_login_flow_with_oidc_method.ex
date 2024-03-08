@@ -14,6 +14,7 @@ defmodule Ory.Model.UpdateLoginFlowWithOidcMethod do
     :method,
     :provider,
     :traits,
+    :transient_payload,
     :upstream_parameters
   ]
 
@@ -24,6 +25,7 @@ defmodule Ory.Model.UpdateLoginFlowWithOidcMethod do
     :method => String.t,
     :provider => String.t,
     :traits => map() | nil,
+    :transient_payload => map() | nil,
     :upstream_parameters => map() | nil
   }
 

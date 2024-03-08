@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **DisableAccountExperienceWelcomeScreen** | Pointer to **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] 
+**EnableAxV2** | Pointer to **bool** | Whether the new account experience is enabled and reachable. | [optional] 
 **Environment** | **string** |  prod Production dev Development | 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** |  | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
@@ -266,6 +267,31 @@ SetDisableAccountExperienceWelcomeScreen sets DisableAccountExperienceWelcomeScr
 `func (o *CreateProjectNormalizedPayload) HasDisableAccountExperienceWelcomeScreen() bool`
 
 HasDisableAccountExperienceWelcomeScreen returns a boolean if a field has been set.
+
+### GetEnableAxV2
+
+`func (o *CreateProjectNormalizedPayload) GetEnableAxV2() bool`
+
+GetEnableAxV2 returns the EnableAxV2 field if non-nil, zero value otherwise.
+
+### GetEnableAxV2Ok
+
+`func (o *CreateProjectNormalizedPayload) GetEnableAxV2Ok() (*bool, bool)`
+
+GetEnableAxV2Ok returns a tuple with the EnableAxV2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableAxV2
+
+`func (o *CreateProjectNormalizedPayload) SetEnableAxV2(v bool)`
+
+SetEnableAxV2 sets EnableAxV2 field to given value.
+
+### HasEnableAxV2
+
+`func (o *CreateProjectNormalizedPayload) HasEnableAxV2() bool`
+
+HasEnableAxV2 returns a boolean if a field has been set.
 
 ### GetEnvironment
 

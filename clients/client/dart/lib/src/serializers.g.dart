@@ -127,9 +127,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(InternalIsOwnerForProjectBySlugBody.serializer)
       ..add(InternalIsOwnerForProjectBySlugBodyNamespaceEnum.serializer)
       ..add(InternalIsOwnerForProjectBySlugResponse.serializer)
-      ..add(InternalProvisionMockSubscription.serializer)
-      ..add(InternalProvisionMockSubscriptionCurrencyEnum.serializer)
-      ..add(InternalProvisionMockSubscriptionIntervalEnum.serializer)
       ..add(IntrospectedOAuth2Token.serializer)
       ..add(IsOwnerForProjectBySlug.serializer)
       ..add(IsReady200Response.serializer)
@@ -198,6 +195,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ParseError.serializer)
       ..add(PatchIdentitiesBody.serializer)
       ..add(PerformNativeLogoutBody.serializer)
+      ..add(PermissionsOnWorkpaceResponse.serializer)
       ..add(Plan.serializer)
       ..add(PlanDetails.serializer)
       ..add(PostCheckPermissionBody.serializer)
@@ -210,6 +208,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ProjectCors.serializer)
       ..add(ProjectEventsDatapoint.serializer)
       ..add(ProjectHost.serializer)
+      ..add(ProjectMember.serializer)
       ..add(ProjectMetadata.serializer)
       ..add(ProjectMetadataEnvironmentEnum.serializer)
       ..add(ProjectMetadataStateEnum.serializer)
@@ -315,6 +314,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UpdateVerificationFlowWithCodeMethodMethodEnum.serializer)
       ..add(UpdateVerificationFlowWithLinkMethod.serializer)
       ..add(UpdateVerificationFlowWithLinkMethodMethodEnum.serializer)
+      ..add(UpdateWorkspacePayload.serializer)
       ..add(Usage.serializer)
       ..add(VerifiableCredentialPrimingResponse.serializer)
       ..add(VerifiableCredentialProof.serializer)
@@ -784,7 +784,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(String)]),
-          () => new MapBuilder<String, String>()))
+          () => new MapBuilder<String, String>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(bool)]),
+          () => new MapBuilder<String, bool>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

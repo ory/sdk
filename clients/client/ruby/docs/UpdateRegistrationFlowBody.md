@@ -51,6 +51,7 @@ OryClient::UpdateRegistrationFlowBody.openapi_discriminator_mapping
 #   :'password' => :'UpdateRegistrationFlowWithPasswordMethod',
 #   :'webauthn' => :'UpdateRegistrationFlowWithWebAuthnMethod'
 # }
+```
 
 ### build
 

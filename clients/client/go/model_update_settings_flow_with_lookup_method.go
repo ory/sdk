@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.6.2
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -33,6 +33,8 @@ type UpdateSettingsFlowWithLookupMethod struct {
 	LookupSecretReveal *bool `json:"lookup_secret_reveal,omitempty"`
 	// Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
 	Method string `json:"method"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -240,6 +242,38 @@ func (o *UpdateSettingsFlowWithLookupMethod) SetMethod(v string) {
 	o.Method = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithLookupMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithLookupMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithLookupMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateSettingsFlowWithLookupMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 func (o UpdateSettingsFlowWithLookupMethod) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -266,6 +300,9 @@ func (o UpdateSettingsFlowWithLookupMethod) ToMap() (map[string]interface{}, err
 		toSerialize["lookup_secret_reveal"] = o.LookupSecretReveal
 	}
 	toSerialize["method"] = o.Method
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -315,6 +352,7 @@ func (o *UpdateSettingsFlowWithLookupMethod) UnmarshalJSON(bytes []byte) (err er
 		delete(additionalProperties, "lookup_secret_regenerate")
 		delete(additionalProperties, "lookup_secret_reveal")
 		delete(additionalProperties, "method")
+		delete(additionalProperties, "transient_payload")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -16,13 +16,19 @@ class _$UpdateSettingsFlowWithTotpMethod
   final String? totpCode;
   @override
   final bool? totpUnlink;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateSettingsFlowWithTotpMethod(
           [void Function(UpdateSettingsFlowWithTotpMethodBuilder)? updates]) =>
       (new UpdateSettingsFlowWithTotpMethodBuilder()..update(updates))._build();
 
   _$UpdateSettingsFlowWithTotpMethod._(
-      {this.csrfToken, required this.method, this.totpCode, this.totpUnlink})
+      {this.csrfToken,
+      required this.method,
+      this.totpCode,
+      this.totpUnlink,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         method, r'UpdateSettingsFlowWithTotpMethod', 'method');
@@ -44,7 +50,8 @@ class _$UpdateSettingsFlowWithTotpMethod
         csrfToken == other.csrfToken &&
         method == other.method &&
         totpCode == other.totpCode &&
-        totpUnlink == other.totpUnlink;
+        totpUnlink == other.totpUnlink &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -54,6 +61,7 @@ class _$UpdateSettingsFlowWithTotpMethod
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, totpCode.hashCode);
     _$hash = $jc(_$hash, totpUnlink.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -64,7 +72,8 @@ class _$UpdateSettingsFlowWithTotpMethod
           ..add('csrfToken', csrfToken)
           ..add('method', method)
           ..add('totpCode', totpCode)
-          ..add('totpUnlink', totpUnlink))
+          ..add('totpUnlink', totpUnlink)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -91,6 +100,11 @@ class UpdateSettingsFlowWithTotpMethodBuilder
   bool? get totpUnlink => _$this._totpUnlink;
   set totpUnlink(bool? totpUnlink) => _$this._totpUnlink = totpUnlink;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateSettingsFlowWithTotpMethodBuilder() {
     UpdateSettingsFlowWithTotpMethod._defaults(this);
   }
@@ -102,6 +116,7 @@ class UpdateSettingsFlowWithTotpMethodBuilder
       _method = $v.method;
       _totpCode = $v.totpCode;
       _totpUnlink = $v.totpUnlink;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -128,7 +143,8 @@ class UpdateSettingsFlowWithTotpMethodBuilder
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateSettingsFlowWithTotpMethod', 'method'),
             totpCode: totpCode,
-            totpUnlink: totpUnlink);
+            totpUnlink: totpUnlink,
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

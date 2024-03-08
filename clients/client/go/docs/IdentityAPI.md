@@ -852,7 +852,7 @@ Name | Type | Description  | Notes
 
 ## ListIdentities
 
-> []Identity ListIdentities(ctx).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).Consistency(consistency).Ids(ids).CredentialsIdentifier(credentialsIdentifier).PreviewCredentialsIdentifierSimilar(previewCredentialsIdentifierSimilar).Execute()
+> []Identity ListIdentities(ctx).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).Consistency(consistency).Ids(ids).CredentialsIdentifier(credentialsIdentifier).PreviewCredentialsIdentifierSimilar(previewCredentialsIdentifierSimilar).IncludeCredential(includeCredential).Execute()
 
 List Identities
 
@@ -879,10 +879,11 @@ func main() {
     ids := []string{"Inner_example"} // []string | List of ids used to filter identities. If this list is empty, then no filter will be applied. (optional)
     credentialsIdentifier := "credentialsIdentifier_example" // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
     previewCredentialsIdentifierSimilar := "previewCredentialsIdentifierSimilar_example" // string | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
+    includeCredential := []string{"Inner_example"} // []string | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityAPI.ListIdentities(context.Background()).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).Consistency(consistency).Ids(ids).CredentialsIdentifier(credentialsIdentifier).PreviewCredentialsIdentifierSimilar(previewCredentialsIdentifierSimilar).Execute()
+    resp, r, err := apiClient.IdentityAPI.ListIdentities(context.Background()).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).Consistency(consistency).Ids(ids).CredentialsIdentifier(credentialsIdentifier).PreviewCredentialsIdentifierSimilar(previewCredentialsIdentifierSimilar).IncludeCredential(includeCredential).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.ListIdentities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -911,6 +912,7 @@ Name | Type | Description  | Notes
  **ids** | **[]string** | List of ids used to filter identities. If this list is empty, then no filter will be applied. | 
  **credentialsIdentifier** | **string** | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | 
  **previewCredentialsIdentifierSimilar** | **string** | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | 
+ **includeCredential** | **[]string** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | 
 
 ### Return type
 

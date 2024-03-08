@@ -128,6 +128,8 @@ class _$Subscription extends Subscription {
   @override
   final String currentPlan;
   @override
+  final PlanDetails? currentPlanDetails;
+  @override
   final String customerId;
   @override
   final String id;
@@ -144,6 +146,8 @@ class _$Subscription extends Subscription {
   @override
   final String status;
   @override
+  final DateTime? stripeCheckoutExpiresAt;
+  @override
   final DateTime updatedAt;
 
   factory _$Subscription([void Function(SubscriptionBuilder)? updates]) =>
@@ -154,6 +158,7 @@ class _$Subscription extends Subscription {
       required this.currency,
       required this.currentInterval,
       required this.currentPlan,
+      this.currentPlanDetails,
       required this.customerId,
       required this.id,
       this.intervalChangesTo,
@@ -162,6 +167,7 @@ class _$Subscription extends Subscription {
       this.planChangesAt,
       this.planChangesTo,
       required this.status,
+      this.stripeCheckoutExpiresAt,
       required this.updatedAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -197,6 +203,7 @@ class _$Subscription extends Subscription {
         currency == other.currency &&
         currentInterval == other.currentInterval &&
         currentPlan == other.currentPlan &&
+        currentPlanDetails == other.currentPlanDetails &&
         customerId == other.customerId &&
         id == other.id &&
         intervalChangesTo == other.intervalChangesTo &&
@@ -205,6 +212,7 @@ class _$Subscription extends Subscription {
         planChangesAt == other.planChangesAt &&
         planChangesTo == other.planChangesTo &&
         status == other.status &&
+        stripeCheckoutExpiresAt == other.stripeCheckoutExpiresAt &&
         updatedAt == other.updatedAt;
   }
 
@@ -215,6 +223,7 @@ class _$Subscription extends Subscription {
     _$hash = $jc(_$hash, currency.hashCode);
     _$hash = $jc(_$hash, currentInterval.hashCode);
     _$hash = $jc(_$hash, currentPlan.hashCode);
+    _$hash = $jc(_$hash, currentPlanDetails.hashCode);
     _$hash = $jc(_$hash, customerId.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, intervalChangesTo.hashCode);
@@ -223,6 +232,7 @@ class _$Subscription extends Subscription {
     _$hash = $jc(_$hash, planChangesAt.hashCode);
     _$hash = $jc(_$hash, planChangesTo.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, stripeCheckoutExpiresAt.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -235,6 +245,7 @@ class _$Subscription extends Subscription {
           ..add('currency', currency)
           ..add('currentInterval', currentInterval)
           ..add('currentPlan', currentPlan)
+          ..add('currentPlanDetails', currentPlanDetails)
           ..add('customerId', customerId)
           ..add('id', id)
           ..add('intervalChangesTo', intervalChangesTo)
@@ -243,6 +254,7 @@ class _$Subscription extends Subscription {
           ..add('planChangesAt', planChangesAt)
           ..add('planChangesTo', planChangesTo)
           ..add('status', status)
+          ..add('stripeCheckoutExpiresAt', stripeCheckoutExpiresAt)
           ..add('updatedAt', updatedAt))
         .toString();
   }
@@ -270,6 +282,12 @@ class SubscriptionBuilder
   String? _currentPlan;
   String? get currentPlan => _$this._currentPlan;
   set currentPlan(String? currentPlan) => _$this._currentPlan = currentPlan;
+
+  PlanDetailsBuilder? _currentPlanDetails;
+  PlanDetailsBuilder get currentPlanDetails =>
+      _$this._currentPlanDetails ??= new PlanDetailsBuilder();
+  set currentPlanDetails(PlanDetailsBuilder? currentPlanDetails) =>
+      _$this._currentPlanDetails = currentPlanDetails;
 
   String? _customerId;
   String? get customerId => _$this._customerId;
@@ -307,6 +325,11 @@ class SubscriptionBuilder
   String? get status => _$this._status;
   set status(String? status) => _$this._status = status;
 
+  DateTime? _stripeCheckoutExpiresAt;
+  DateTime? get stripeCheckoutExpiresAt => _$this._stripeCheckoutExpiresAt;
+  set stripeCheckoutExpiresAt(DateTime? stripeCheckoutExpiresAt) =>
+      _$this._stripeCheckoutExpiresAt = stripeCheckoutExpiresAt;
+
   DateTime? _updatedAt;
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
@@ -322,6 +345,7 @@ class SubscriptionBuilder
       _currency = $v.currency;
       _currentInterval = $v.currentInterval;
       _currentPlan = $v.currentPlan;
+      _currentPlanDetails = $v.currentPlanDetails?.toBuilder();
       _customerId = $v.customerId;
       _id = $v.id;
       _intervalChangesTo = $v.intervalChangesTo;
@@ -330,6 +354,7 @@ class SubscriptionBuilder
       _planChangesAt = $v.planChangesAt;
       _planChangesTo = $v.planChangesTo;
       _status = $v.status;
+      _stripeCheckoutExpiresAt = $v.stripeCheckoutExpiresAt;
       _updatedAt = $v.updatedAt;
       _$v = null;
     }
@@ -351,30 +376,45 @@ class SubscriptionBuilder
   Subscription build() => _build();
 
   _$Subscription _build() {
-    final _$result = _$v ??
-        new _$Subscription._(
-            createdAt: BuiltValueNullFieldError.checkNotNull(
-                createdAt, r'Subscription', 'createdAt'),
-            currency: BuiltValueNullFieldError.checkNotNull(
-                currency, r'Subscription', 'currency'),
-            currentInterval: BuiltValueNullFieldError.checkNotNull(
-                currentInterval, r'Subscription', 'currentInterval'),
-            currentPlan: BuiltValueNullFieldError.checkNotNull(
-                currentPlan, r'Subscription', 'currentPlan'),
-            customerId: BuiltValueNullFieldError.checkNotNull(
-                customerId, r'Subscription', 'customerId'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'Subscription', 'id'),
-            intervalChangesTo: intervalChangesTo,
-            ongoingStripeCheckoutId: ongoingStripeCheckoutId,
-            payedUntil: BuiltValueNullFieldError.checkNotNull(
-                payedUntil, r'Subscription', 'payedUntil'),
-            planChangesAt: planChangesAt,
-            planChangesTo: planChangesTo,
-            status: BuiltValueNullFieldError.checkNotNull(
-                status, r'Subscription', 'status'),
-            updatedAt:
-                BuiltValueNullFieldError.checkNotNull(updatedAt, r'Subscription', 'updatedAt'));
+    _$Subscription _$result;
+    try {
+      _$result = _$v ??
+          new _$Subscription._(
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'Subscription', 'createdAt'),
+              currency: BuiltValueNullFieldError.checkNotNull(
+                  currency, r'Subscription', 'currency'),
+              currentInterval: BuiltValueNullFieldError.checkNotNull(
+                  currentInterval, r'Subscription', 'currentInterval'),
+              currentPlan: BuiltValueNullFieldError.checkNotNull(
+                  currentPlan, r'Subscription', 'currentPlan'),
+              currentPlanDetails: _currentPlanDetails?.build(),
+              customerId: BuiltValueNullFieldError.checkNotNull(
+                  customerId, r'Subscription', 'customerId'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'Subscription', 'id'),
+              intervalChangesTo: intervalChangesTo,
+              ongoingStripeCheckoutId: ongoingStripeCheckoutId,
+              payedUntil: BuiltValueNullFieldError.checkNotNull(
+                  payedUntil, r'Subscription', 'payedUntil'),
+              planChangesAt: planChangesAt,
+              planChangesTo: planChangesTo,
+              status: BuiltValueNullFieldError.checkNotNull(
+                  status, r'Subscription', 'status'),
+              stripeCheckoutExpiresAt: stripeCheckoutExpiresAt,
+              updatedAt:
+                  BuiltValueNullFieldError.checkNotNull(updatedAt, r'Subscription', 'updatedAt'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'currentPlanDetails';
+        _currentPlanDetails?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Subscription', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -21,6 +21,7 @@ part 'create_project_normalized_payload.g.dart';
 /// Properties:
 /// * [createdAt] - The Project's Revision Creation Date
 /// * [disableAccountExperienceWelcomeScreen] - Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+/// * [enableAxV2] - Whether the new account experience is enabled and reachable.
 /// * [environment] -  prod Production dev Development
 /// * [hydraOauth2AllowedTopLevelClaims] 
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
@@ -221,6 +222,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   /// Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
   @BuiltValueField(wireName: r'disable_account_experience_welcome_screen')
   bool? get disableAccountExperienceWelcomeScreen;
+
+  /// Whether the new account experience is enabled and reachable.
+  @BuiltValueField(wireName: r'enable_ax_v2')
+  bool? get enableAxV2;
 
   ///  prod Production dev Development
   @BuiltValueField(wireName: r'environment')
@@ -1014,6 +1019,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield r'disable_account_experience_welcome_screen';
       yield serializers.serialize(
         object.disableAccountExperienceWelcomeScreen,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.enableAxV2 != null) {
+      yield r'enable_ax_v2';
+      yield serializers.serialize(
+        object.enableAxV2,
         specifiedType: const FullType(bool),
       );
     }
@@ -2386,6 +2398,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(bool),
           ) as bool;
           result.disableAccountExperienceWelcomeScreen = valueDes;
+          break;
+        case r'enable_ax_v2':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.enableAxV2 = valueDes;
           break;
         case r'environment':
           final valueDes = serializers.deserialize(

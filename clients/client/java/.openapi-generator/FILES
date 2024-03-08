@@ -100,7 +100,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
-docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
@@ -156,6 +155,7 @@ docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
+docs/PermissionsOnWorkpaceResponse.md
 docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
@@ -169,6 +169,7 @@ docs/ProjectBrandingTheme.md
 docs/ProjectCors.md
 docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
+docs/ProjectMember.md
 docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
@@ -254,6 +255,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/UpdateWorkspacePayload.md
 docs/Usage.md
 docs/VerifiableCredentialPrimingResponse.md
 docs/VerifiableCredentialProof.md
@@ -399,7 +401,6 @@ src/main/java/sh/ory/model/InternalGetProjectBrandingBody.java
 src/main/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponse.java
-src/main/java/sh/ory/model/InternalProvisionMockSubscription.java
 src/main/java/sh/ory/model/IntrospectedOAuth2Token.java
 src/main/java/sh/ory/model/IsOwnerForProjectBySlug.java
 src/main/java/sh/ory/model/IsReady200Response.java
@@ -450,6 +451,7 @@ src/main/java/sh/ory/model/PaginationHeaders.java
 src/main/java/sh/ory/model/ParseError.java
 src/main/java/sh/ory/model/PatchIdentitiesBody.java
 src/main/java/sh/ory/model/PerformNativeLogoutBody.java
+src/main/java/sh/ory/model/PermissionsOnWorkpaceResponse.java
 src/main/java/sh/ory/model/Plan.java
 src/main/java/sh/ory/model/PlanDetails.java
 src/main/java/sh/ory/model/PostCheckPermissionBody.java
@@ -462,6 +464,7 @@ src/main/java/sh/ory/model/ProjectBrandingTheme.java
 src/main/java/sh/ory/model/ProjectCors.java
 src/main/java/sh/ory/model/ProjectEventsDatapoint.java
 src/main/java/sh/ory/model/ProjectHost.java
+src/main/java/sh/ory/model/ProjectMember.java
 src/main/java/sh/ory/model/ProjectMetadata.java
 src/main/java/sh/ory/model/ProjectServiceIdentity.java
 src/main/java/sh/ory/model/ProjectServiceOAuth2.java
@@ -546,6 +549,7 @@ src/main/java/sh/ory/model/UpdateSubscriptionBody.java
 src/main/java/sh/ory/model/UpdateVerificationFlowBody.java
 src/main/java/sh/ory/model/UpdateVerificationFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateVerificationFlowWithLinkMethod.java
+src/main/java/sh/ory/model/UpdateWorkspacePayload.java
 src/main/java/sh/ory/model/Usage.java
 src/main/java/sh/ory/model/VerifiableCredentialPrimingResponse.java
 src/main/java/sh/ory/model/VerifiableCredentialProof.java
@@ -659,7 +663,6 @@ src/test/java/sh/ory/model/InternalGetProjectBrandingBodyTest.java
 src/test/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponseTest.java
-src/test/java/sh/ory/model/InternalProvisionMockSubscriptionTest.java
 src/test/java/sh/ory/model/IntrospectedOAuth2TokenTest.java
 src/test/java/sh/ory/model/IsOwnerForProjectBySlugTest.java
 src/test/java/sh/ory/model/IsReady200ResponseTest.java
@@ -710,6 +713,7 @@ src/test/java/sh/ory/model/PaginationTest.java
 src/test/java/sh/ory/model/ParseErrorTest.java
 src/test/java/sh/ory/model/PatchIdentitiesBodyTest.java
 src/test/java/sh/ory/model/PerformNativeLogoutBodyTest.java
+src/test/java/sh/ory/model/PermissionsOnWorkpaceResponseTest.java
 src/test/java/sh/ory/model/PlanDetailsTest.java
 src/test/java/sh/ory/model/PlanTest.java
 src/test/java/sh/ory/model/PostCheckPermissionBodyTest.java
@@ -721,6 +725,7 @@ src/test/java/sh/ory/model/ProjectBrandingThemeTest.java
 src/test/java/sh/ory/model/ProjectCorsTest.java
 src/test/java/sh/ory/model/ProjectEventsDatapointTest.java
 src/test/java/sh/ory/model/ProjectHostTest.java
+src/test/java/sh/ory/model/ProjectMemberTest.java
 src/test/java/sh/ory/model/ProjectMetadataTest.java
 src/test/java/sh/ory/model/ProjectServiceIdentityTest.java
 src/test/java/sh/ory/model/ProjectServiceOAuth2Test.java
@@ -806,6 +811,7 @@ src/test/java/sh/ory/model/UpdateSubscriptionBodyTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowWithLinkMethodTest.java
+src/test/java/sh/ory/model/UpdateWorkspacePayloadTest.java
 src/test/java/sh/ory/model/UsageTest.java
 src/test/java/sh/ory/model/VerifiableCredentialPrimingResponseTest.java
 src/test/java/sh/ory/model/VerifiableCredentialProofTest.java

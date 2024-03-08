@@ -96,7 +96,6 @@ doc/InternalGetProjectBrandingBody.md
 doc/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 doc/InternalIsOwnerForProjectBySlugBody.md
 doc/InternalIsOwnerForProjectBySlugResponse.md
-doc/InternalProvisionMockSubscription.md
 doc/IntrospectedOAuth2Token.md
 doc/IsOwnerForProjectBySlug.md
 doc/IsReady200Response.md
@@ -152,6 +151,7 @@ doc/ParseError.md
 doc/PatchIdentitiesBody.md
 doc/PerformNativeLogoutBody.md
 doc/PermissionApi.md
+doc/PermissionsOnWorkpaceResponse.md
 doc/Plan.md
 doc/PlanDetails.md
 doc/PostCheckPermissionBody.md
@@ -165,6 +165,7 @@ doc/ProjectBrandingTheme.md
 doc/ProjectCors.md
 doc/ProjectEventsDatapoint.md
 doc/ProjectHost.md
+doc/ProjectMember.md
 doc/ProjectMetadata.md
 doc/ProjectServiceIdentity.md
 doc/ProjectServiceOAuth2.md
@@ -250,6 +251,7 @@ doc/UpdateSubscriptionBody.md
 doc/UpdateVerificationFlowBody.md
 doc/UpdateVerificationFlowWithCodeMethod.md
 doc/UpdateVerificationFlowWithLinkMethod.md
+doc/UpdateWorkspacePayload.md
 doc/Usage.md
 doc/VerifiableCredentialPrimingResponse.md
 doc/VerifiableCredentialProof.md
@@ -374,7 +376,6 @@ lib/src/model/internal_get_project_branding_body.dart
 lib/src/model/internal_is_ax_welcome_screen_enabled_for_project_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_response.dart
-lib/src/model/internal_provision_mock_subscription.dart
 lib/src/model/introspected_o_auth2_token.dart
 lib/src/model/is_owner_for_project_by_slug.dart
 lib/src/model/is_ready200_response.dart
@@ -425,6 +426,7 @@ lib/src/model/pagination_headers.dart
 lib/src/model/parse_error.dart
 lib/src/model/patch_identities_body.dart
 lib/src/model/perform_native_logout_body.dart
+lib/src/model/permissions_on_workpace_response.dart
 lib/src/model/plan.dart
 lib/src/model/plan_details.dart
 lib/src/model/post_check_permission_body.dart
@@ -437,6 +439,7 @@ lib/src/model/project_branding_theme.dart
 lib/src/model/project_cors.dart
 lib/src/model/project_events_datapoint.dart
 lib/src/model/project_host.dart
+lib/src/model/project_member.dart
 lib/src/model/project_metadata.dart
 lib/src/model/project_service_identity.dart
 lib/src/model/project_service_o_auth2.dart
@@ -521,6 +524,7 @@ lib/src/model/update_subscription_body.dart
 lib/src/model/update_verification_flow_body.dart
 lib/src/model/update_verification_flow_with_code_method.dart
 lib/src/model/update_verification_flow_with_link_method.dart
+lib/src/model/update_workspace_payload.dart
 lib/src/model/usage.dart
 lib/src/model/verifiable_credential_priming_response.dart
 lib/src/model/verifiable_credential_proof.dart
@@ -628,7 +632,6 @@ test/internal_get_project_branding_body_test.dart
 test/internal_is_ax_welcome_screen_enabled_for_project_body_test.dart
 test/internal_is_owner_for_project_by_slug_body_test.dart
 test/internal_is_owner_for_project_by_slug_response_test.dart
-test/internal_provision_mock_subscription_test.dart
 test/introspected_o_auth2_token_test.dart
 test/is_owner_for_project_by_slug_test.dart
 test/is_ready200_response_test.dart
@@ -684,6 +687,7 @@ test/parse_error_test.dart
 test/patch_identities_body_test.dart
 test/perform_native_logout_body_test.dart
 test/permission_api_test.dart
+test/permissions_on_workpace_response_test.dart
 test/plan_details_test.dart
 test/plan_test.dart
 test/post_check_permission_body_test.dart
@@ -696,6 +700,7 @@ test/project_branding_theme_test.dart
 test/project_cors_test.dart
 test/project_events_datapoint_test.dart
 test/project_host_test.dart
+test/project_member_test.dart
 test/project_metadata_test.dart
 test/project_service_identity_test.dart
 test/project_service_o_auth2_test.dart
@@ -782,6 +787,7 @@ test/update_subscription_body_test.dart
 test/update_verification_flow_body_test.dart
 test/update_verification_flow_with_code_method_test.dart
 test/update_verification_flow_with_link_method_test.dart
+test/update_workspace_payload_test.dart
 test/usage_test.dart
 test/verifiable_credential_priming_response_test.dart
 test/verifiable_credential_proof_test.dart

@@ -8,16 +8,21 @@ part of 'cloud_account.dart';
 
 class _$CloudAccount extends CloudAccount {
   @override
-  final String? email;
+  final String email;
   @override
-  final String? id;
+  final String id;
   @override
-  final String? name;
+  final String name;
 
   factory _$CloudAccount([void Function(CloudAccountBuilder)? updates]) =>
       (new CloudAccountBuilder()..update(updates))._build();
 
-  _$CloudAccount._({this.email, this.id, this.name}) : super._();
+  _$CloudAccount._({required this.email, required this.id, required this.name})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(email, r'CloudAccount', 'email');
+    BuiltValueNullFieldError.checkNotNull(id, r'CloudAccount', 'id');
+    BuiltValueNullFieldError.checkNotNull(name, r'CloudAccount', 'name');
+  }
 
   @override
   CloudAccount rebuild(void Function(CloudAccountBuilder) updates) =>
@@ -101,8 +106,14 @@ class CloudAccountBuilder
   CloudAccount build() => _build();
 
   _$CloudAccount _build() {
-    final _$result =
-        _$v ?? new _$CloudAccount._(email: email, id: id, name: name);
+    final _$result = _$v ??
+        new _$CloudAccount._(
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'CloudAccount', 'email'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'CloudAccount', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'CloudAccount', 'name'));
     replace(_$result);
     return _$result;
   }

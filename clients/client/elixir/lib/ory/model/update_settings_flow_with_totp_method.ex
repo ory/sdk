@@ -11,14 +11,16 @@ defmodule Ory.Model.UpdateSettingsFlowWithTotpMethod do
     :csrf_token,
     :method,
     :totp_code,
-    :totp_unlink
+    :totp_unlink,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :method => String.t,
     :totp_code => String.t | nil,
-    :totp_unlink => boolean() | nil
+    :totp_unlink => boolean() | nil,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do
