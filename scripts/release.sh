@@ -187,23 +187,23 @@ dotnet() {
 dart() {
   dir="clients/${PROJECT}/dart"
 
-  mkdir -p ~/.pub-cache || true
-  set +x
-  cat <<EOF > ~/.pub-cache/credentials.json
-{
-  "accessToken":"${DART_ACCESS_TOKEN}",
-  "refreshToken":"${DART_REFRESH_TOKEN}",
-  "tokenEndpoint": "https://accounts.google.com/o/oauth2/token",
-  "scopes": [
-    "openid",
-    "https://www.googleapis.com/auth/userinfo.email"
-  ],
-  "expiration": 1611594593613
-}
-EOF
-  set -x
+#   mkdir -p ~/.pub-cache || true
+#   set +x
+#   cat <<EOF > ~/.pub-cache/credentials.json
+# {
+#   "accessToken":"${DART_ACCESS_TOKEN}",
+#   "refreshToken":"${DART_REFRESH_TOKEN}",
+#   "tokenEndpoint": "https://accounts.google.com/o/oauth2/token",
+#   "scopes": [
+#     "openid",
+#     "https://www.googleapis.com/auth/userinfo.email"
+#   ],
+#   "expiration": 1611594593613
+# }
+# EOF
+#   set -x
 
-  (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
+#   (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
   to_git "dart" "yes"
 }
 
