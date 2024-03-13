@@ -2,7 +2,6 @@
 
 # CreateSubscriptionBody
 
-Create Subscription Request Body
 
 ## Properties
 
@@ -11,9 +10,8 @@ Create Subscription Request Body
 |**currency** | [**CurrencyEnum**](#CurrencyEnum) |  usd USD eur Euro |  [optional] |
 |**interval** | [**IntervalEnum**](#IntervalEnum) |  monthly Monthly yearly Yearly |  |
 |**plan** | **String** |  |  |
-|**provisionFirstProject** | **String** |  |  [optional] |
+|**provisionFirstProject** | **String** |  |  |
 |**returnTo** | **String** |  |  [optional] |
-|**workspace** | **String** |  |  [optional] |
 
 
 

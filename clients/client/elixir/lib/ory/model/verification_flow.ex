@@ -15,6 +15,7 @@ defmodule Ory.Model.VerificationFlow do
     :request_url,
     :return_to,
     :state,
+    :transient_payload,
     :type,
     :ui
   ]
@@ -27,6 +28,7 @@ defmodule Ory.Model.VerificationFlow do
     :request_url => String.t | nil,
     :return_to => String.t | nil,
     :state => any() | nil,
+    :transient_payload => map() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t
   }

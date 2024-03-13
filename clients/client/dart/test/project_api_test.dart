@@ -77,7 +77,7 @@ void main() {
     //
     // This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
     //
-    //Future<BuiltList<CloudAccount>> getProjectMembers(String project) async
+    //Future<BuiltList<ProjectMember>> getProjectMembers(String project) async
     test('test getProjectMembers', () async {
       // TODO
     });

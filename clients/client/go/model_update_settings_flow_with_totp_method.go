@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.1
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -29,6 +29,8 @@ type UpdateSettingsFlowWithTotpMethod struct {
 	TotpCode *string `json:"totp_code,omitempty"`
 	// UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
 	TotpUnlink *bool `json:"totp_unlink,omitempty"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -172,6 +174,38 @@ func (o *UpdateSettingsFlowWithTotpMethod) SetTotpUnlink(v bool) {
 	o.TotpUnlink = &v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithTotpMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithTotpMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithTotpMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateSettingsFlowWithTotpMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 func (o UpdateSettingsFlowWithTotpMethod) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -191,6 +225,9 @@ func (o UpdateSettingsFlowWithTotpMethod) ToMap() (map[string]interface{}, error
 	}
 	if !IsNil(o.TotpUnlink) {
 		toSerialize["totp_unlink"] = o.TotpUnlink
+	}
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -239,6 +276,7 @@ func (o *UpdateSettingsFlowWithTotpMethod) UnmarshalJSON(bytes []byte) (err erro
 		delete(additionalProperties, "method")
 		delete(additionalProperties, "totp_code")
 		delete(additionalProperties, "totp_unlink")
+		delete(additionalProperties, "transient_payload")
 		o.AdditionalProperties = additionalProperties
 	}
 

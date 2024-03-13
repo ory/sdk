@@ -47,6 +47,7 @@ class FrontendApi {
   /// * [cookie] - HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
   /// * [loginChallenge] - An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
   /// * [organization] - An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
+  /// * [via] - Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -63,6 +64,7 @@ class FrontendApi {
     String? cookie,
     String? loginChallenge,
     String? organization,
+    String? via,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -90,6 +92,7 @@ class FrontendApi {
       if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
       if (loginChallenge != null) r'login_challenge': encodeQueryParameter(_serializers, loginChallenge, const FullType(String)),
       if (organization != null) r'organization': encodeQueryParameter(_serializers, organization, const FullType(String)),
+      if (via != null) r'via': encodeQueryParameter(_serializers, via, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -556,6 +559,7 @@ class FrontendApi {
   /// * [xSessionToken] - The Session Token of the Identity performing the settings flow.
   /// * [returnSessionTokenExchangeCode] - EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
   /// * [returnTo] - The URL to return the browser to after the flow was completed.
+  /// * [via] - Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -571,6 +575,7 @@ class FrontendApi {
     String? xSessionToken,
     bool? returnSessionTokenExchangeCode,
     String? returnTo,
+    String? via,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -597,6 +602,7 @@ class FrontendApi {
       if (aal != null) r'aal': encodeQueryParameter(_serializers, aal, const FullType(String)),
       if (returnSessionTokenExchangeCode != null) r'return_session_token_exchange_code': encodeQueryParameter(_serializers, returnSessionTokenExchangeCode, const FullType(bool)),
       if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
+      if (via != null) r'via': encodeQueryParameter(_serializers, via, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

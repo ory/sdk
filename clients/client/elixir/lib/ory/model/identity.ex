@@ -34,7 +34,7 @@ defmodule Ory.Model.Identity do
     :recovery_addresses => [Ory.Model.RecoveryIdentityAddress.t] | nil,
     :schema_id => String.t,
     :schema_url => String.t,
-    :state => Ory.Model.IdentityState.t | nil,
+    :state => String.t | nil,
     :state_changed_at => DateTime.t | nil,
     :traits => any() | nil,
     :updated_at => DateTime.t | nil,
@@ -48,7 +48,6 @@ defmodule Ory.Model.Identity do
      |> Deserializer.deserialize(:created_at, :datetime, nil)
      |> Deserializer.deserialize(:credentials, :map, Ory.Model.IdentityCredentials)
      |> Deserializer.deserialize(:recovery_addresses, :list, Ory.Model.RecoveryIdentityAddress)
-     |> Deserializer.deserialize(:state, :struct, Ory.Model.IdentityState)
      |> Deserializer.deserialize(:state_changed_at, :datetime, nil)
      |> Deserializer.deserialize(:updated_at, :datetime, nil)
      |> Deserializer.deserialize(:verifiable_addresses, :list, Ory.Model.VerifiableIdentityAddress)

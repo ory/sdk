@@ -7,7 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(RegistrationFlow, () {
-    // IdentityCredentialsType active
+    // Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    // String active
     test('to test the property `active`', () async {
       // TODO
     });

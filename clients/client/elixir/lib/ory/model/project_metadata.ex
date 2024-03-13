@@ -9,6 +9,7 @@ defmodule Ory.Model.ProjectMetadata do
   @derive Jason.Encoder
   defstruct [
     :created_at,
+    :environment,
     :hosts,
     :id,
     :name,
@@ -22,6 +23,7 @@ defmodule Ory.Model.ProjectMetadata do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t,
+    :environment => String.t,
     :hosts => [String.t],
     :id => String.t,
     :name => String.t,

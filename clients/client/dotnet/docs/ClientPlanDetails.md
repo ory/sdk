@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **BaseFeeYearly** | **long** | BaseFeeYearly is the yearly base fee for the plan. | 
 **Custom** | **bool** | Custom is true if the plan is custom. This means it will be hidden from the pricing page. | 
 **Description** | **string** | Description is the description of the plan. | 
-**Features** | [**Dictionary&lt;string, ClientGenericUsage&gt;**](ClientGenericUsage.md) | Features are the feature definitions included in the plan. | 
+**Features** | [**Dictionary&lt;string, ClientGenericUsage&gt;**](ClientGenericUsage.md) |  | 
 **Name** | **string** | Name is the name of the plan. | 
 **_Version** | **long** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | 
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **String** | The Project's Creation Date | 
+**environment** | **String** | The environment of the project. prod Production dev Development | 
 **hosts** | **Vec<String>** |  | 
 **id** | **String** | The project's ID. | [readonly]
 **name** | **String** | The project's name if set | 

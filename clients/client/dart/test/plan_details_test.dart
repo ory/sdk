@@ -31,7 +31,6 @@ void main() {
       // TODO
     });
 
-    // Features are the feature definitions included in the plan.
     // BuiltMap<String, GenericUsage> features
     test('to test the property `features`', () async {
       // TODO

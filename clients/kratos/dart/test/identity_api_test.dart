@@ -38,7 +38,7 @@ void main() {
     //
     // This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
     //
-    //Future<RecoveryLinkForIdentity> createRecoveryLinkForIdentity({ CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody }) async
+    //Future<RecoveryLinkForIdentity> createRecoveryLinkForIdentity({ String returnTo, CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody }) async
     test('test createRecoveryLinkForIdentity', () async {
       // TODO
     });
@@ -119,7 +119,7 @@ void main() {
     //
     // Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
     //
-    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, String credentialsIdentifier }) async
+    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, int pageSize, String pageToken, String consistency, BuiltList<String> ids, String credentialsIdentifier, String previewCredentialsIdentifierSimilar }) async
     test('test listIdentities', () async {
       // TODO
     });
@@ -128,7 +128,7 @@ void main() {
     //
     // Returns a list of all identity schemas currently in use.
     //
-    //Future<BuiltList<IdentitySchemaContainer>> listIdentitySchemas({ int perPage, int page }) async
+    //Future<BuiltList<IdentitySchemaContainer>> listIdentitySchemas({ int perPage, int page, int pageSize, String pageToken }) async
     test('test listIdentitySchemas', () async {
       // TODO
     });
@@ -137,7 +137,7 @@ void main() {
     //
     // This endpoint returns all sessions that belong to the given Identity.
     //
-    //Future<BuiltList<Session>> listIdentitySessions(String id, { int perPage, int page, bool active }) async
+    //Future<BuiltList<Session>> listIdentitySessions(String id, { int perPage, int page, int pageSize, String pageToken, bool active }) async
     test('test listIdentitySessions', () async {
       // TODO
     });

@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/src/model/workspace.dart';
+import 'package:ory_client/src/model/workspace_meta.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -25,7 +25,7 @@ abstract class ListMyWorkspacesResponse implements Built<ListMyWorkspacesRespons
   String get nextPageToken;
 
   @BuiltValueField(wireName: r'workspaces')
-  BuiltList<Workspace> get workspaces;
+  BuiltList<WorkspaceMeta> get workspaces;
 
   ListMyWorkspacesResponse._();
 
@@ -63,7 +63,7 @@ class _$ListMyWorkspacesResponseSerializer implements PrimitiveSerializer<ListMy
     yield r'workspaces';
     yield serializers.serialize(
       object.workspaces,
-      specifiedType: const FullType(BuiltList, [FullType(Workspace)]),
+      specifiedType: const FullType(BuiltList, [FullType(WorkspaceMeta)]),
     );
   }
 
@@ -105,8 +105,8 @@ class _$ListMyWorkspacesResponseSerializer implements PrimitiveSerializer<ListMy
         case r'workspaces':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Workspace)]),
-          ) as BuiltList<Workspace>;
+            specifiedType: const FullType(BuiltList, [FullType(WorkspaceMeta)]),
+          ) as BuiltList<WorkspaceMeta>;
           result.workspaces.replace(valueDes);
           break;
         default:

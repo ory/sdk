@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -160,11 +160,11 @@ func (dst *UpdateSettingsFlowBody) UnmarshalJSON(data []byte) error {
 		dst.UpdateSettingsFlowWithTotpMethod = nil
 		dst.UpdateSettingsFlowWithWebAuthnMethod = nil
 
-		return fmt.Errorf("Data matches more than one schema in oneOf(UpdateSettingsFlowBody)")
+		return fmt.Errorf("data matches more than one schema in oneOf(UpdateSettingsFlowBody)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(UpdateSettingsFlowBody)")
+		return fmt.Errorf("data failed to match schemas in oneOf(UpdateSettingsFlowBody)")
 	}
 }
 

@@ -8,8 +8,13 @@ docs/FrontendApi.md
 docs/IdentityApi.md
 docs/KratosAuthenticatorAssuranceLevel.md
 docs/KratosBatchPatchIdentitiesResponse.md
+docs/KratosConsistencyRequestParameters.md
 docs/KratosContinueWith.md
+docs/KratosContinueWithRecoveryUi.md
+docs/KratosContinueWithRecoveryUiFlow.md
 docs/KratosContinueWithSetOrySessionToken.md
+docs/KratosContinueWithSettingsUi.md
+docs/KratosContinueWithSettingsUiFlow.md
 docs/KratosContinueWithVerificationUi.md
 docs/KratosContinueWithVerificationUiFlow.md
 docs/KratosCourierMessageStatus.md
@@ -28,14 +33,13 @@ docs/KratosHealthNotReadyStatus.md
 docs/KratosHealthStatus.md
 docs/KratosIdentity.md
 docs/KratosIdentityCredentials.md
+docs/KratosIdentityCredentialsCode.md
 docs/KratosIdentityCredentialsOidc.md
 docs/KratosIdentityCredentialsOidcProvider.md
 docs/KratosIdentityCredentialsPassword.md
-docs/KratosIdentityCredentialsType.md
 docs/KratosIdentityPatch.md
 docs/KratosIdentityPatchResponse.md
 docs/KratosIdentitySchemaContainer.md
-docs/KratosIdentityState.md
 docs/KratosIdentityWithCredentials.md
 docs/KratosIdentityWithCredentialsOidc.md
 docs/KratosIdentityWithCredentialsOidcConfig.md
@@ -47,6 +51,7 @@ docs/KratosInlineResponse2001.md
 docs/KratosInlineResponse503.md
 docs/KratosJsonPatch.md
 docs/KratosLoginFlow.md
+docs/KratosLoginFlowState.md
 docs/KratosLogoutFlow.md
 docs/KratosMessage.md
 docs/KratosMessageDispatch.md
@@ -54,7 +59,6 @@ docs/KratosNeedsPrivilegedSessionError.md
 docs/KratosOAuth2Client.md
 docs/KratosOAuth2ConsentRequestOpenIDConnectContext.md
 docs/KratosOAuth2LoginRequest.md
-docs/KratosPagination.md
 docs/KratosPatchIdentitiesBody.md
 docs/KratosPerformNativeLogoutBody.md
 docs/KratosRecoveryCodeForIdentity.md
@@ -63,6 +67,7 @@ docs/KratosRecoveryFlowState.md
 docs/KratosRecoveryIdentityAddress.md
 docs/KratosRecoveryLinkForIdentity.md
 docs/KratosRegistrationFlow.md
+docs/KratosRegistrationFlowState.md
 docs/KratosSelfServiceFlowExpiredError.md
 docs/KratosSession.md
 docs/KratosSessionAuthenticationMethod.md
@@ -86,6 +91,7 @@ docs/KratosUiNodeTextAttributes.md
 docs/KratosUiText.md
 docs/KratosUpdateIdentityBody.md
 docs/KratosUpdateLoginFlowBody.md
+docs/KratosUpdateLoginFlowWithCodeMethod.md
 docs/KratosUpdateLoginFlowWithLookupSecretMethod.md
 docs/KratosUpdateLoginFlowWithOidcMethod.md
 docs/KratosUpdateLoginFlowWithPasswordMethod.md
@@ -95,6 +101,7 @@ docs/KratosUpdateRecoveryFlowBody.md
 docs/KratosUpdateRecoveryFlowWithCodeMethod.md
 docs/KratosUpdateRecoveryFlowWithLinkMethod.md
 docs/KratosUpdateRegistrationFlowBody.md
+docs/KratosUpdateRegistrationFlowWithCodeMethod.md
 docs/KratosUpdateRegistrationFlowWithOidcMethod.md
 docs/KratosUpdateRegistrationFlowWithPasswordMethod.md
 docs/KratosUpdateRegistrationFlowWithWebAuthnMethod.md
@@ -120,7 +127,12 @@ src/Ory.Kratos.Client.Test/Api/IdentityApiTests.cs
 src/Ory.Kratos.Client.Test/Api/MetadataApiTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosAuthenticatorAssuranceLevelTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosBatchPatchIdentitiesResponseTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosConsistencyRequestParametersTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosContinueWithRecoveryUiFlowTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosContinueWithRecoveryUiTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosContinueWithSetOrySessionTokenTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosContinueWithSettingsUiFlowTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosContinueWithSettingsUiTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosContinueWithTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosContinueWithVerificationUiFlowTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosContinueWithVerificationUiTests.cs
@@ -138,15 +150,14 @@ src/Ory.Kratos.Client.Test/Model/KratosFlowErrorTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosGenericErrorTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosHealthNotReadyStatusTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosHealthStatusTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsCodeTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsOidcProviderTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsOidcTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsPasswordTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsTests.cs
-src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsTypeTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityPatchResponseTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityPatchTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentitySchemaContainerTests.cs
-src/Ory.Kratos.Client.Test/Model/KratosIdentityStateTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityWithCredentialsOidcConfigProviderTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityWithCredentialsOidcConfigTests.cs
@@ -158,6 +169,7 @@ src/Ory.Kratos.Client.Test/Model/KratosInlineResponse2001Tests.cs
 src/Ory.Kratos.Client.Test/Model/KratosInlineResponse200Tests.cs
 src/Ory.Kratos.Client.Test/Model/KratosInlineResponse503Tests.cs
 src/Ory.Kratos.Client.Test/Model/KratosJsonPatchTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosLoginFlowStateTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosLoginFlowTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosLogoutFlowTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosMessageDispatchTests.cs
@@ -166,7 +178,6 @@ src/Ory.Kratos.Client.Test/Model/KratosNeedsPrivilegedSessionErrorTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosOAuth2ClientTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosOAuth2ConsentRequestOpenIDConnectContextTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosOAuth2LoginRequestTests.cs
-src/Ory.Kratos.Client.Test/Model/KratosPaginationTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosPatchIdentitiesBodyTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosPerformNativeLogoutBodyTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosRecoveryCodeForIdentityTests.cs
@@ -174,6 +185,7 @@ src/Ory.Kratos.Client.Test/Model/KratosRecoveryFlowStateTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosRecoveryFlowTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosRecoveryIdentityAddressTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosRecoveryLinkForIdentityTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosRegistrationFlowStateTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosRegistrationFlowTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosSelfServiceFlowExpiredErrorTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosSessionAuthenticationMethodTests.cs
@@ -198,6 +210,7 @@ src/Ory.Kratos.Client.Test/Model/KratosUiNodeTextAttributesTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUiTextTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateIdentityBodyTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowBodyTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithCodeMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithLookupSecretMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithOidcMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithPasswordMethodTests.cs
@@ -207,6 +220,7 @@ src/Ory.Kratos.Client.Test/Model/KratosUpdateRecoveryFlowBodyTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRecoveryFlowWithCodeMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRecoveryFlowWithLinkMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowBodyTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithCodeMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithOidcMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithPasswordMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithWebAuthnMethodTests.cs
@@ -248,8 +262,13 @@ src/Ory.Kratos.Client/Client/RetryConfiguration.cs
 src/Ory.Kratos.Client/Model/AbstractOpenAPISchema.cs
 src/Ory.Kratos.Client/Model/KratosAuthenticatorAssuranceLevel.cs
 src/Ory.Kratos.Client/Model/KratosBatchPatchIdentitiesResponse.cs
+src/Ory.Kratos.Client/Model/KratosConsistencyRequestParameters.cs
 src/Ory.Kratos.Client/Model/KratosContinueWith.cs
+src/Ory.Kratos.Client/Model/KratosContinueWithRecoveryUi.cs
+src/Ory.Kratos.Client/Model/KratosContinueWithRecoveryUiFlow.cs
 src/Ory.Kratos.Client/Model/KratosContinueWithSetOrySessionToken.cs
+src/Ory.Kratos.Client/Model/KratosContinueWithSettingsUi.cs
+src/Ory.Kratos.Client/Model/KratosContinueWithSettingsUiFlow.cs
 src/Ory.Kratos.Client/Model/KratosContinueWithVerificationUi.cs
 src/Ory.Kratos.Client/Model/KratosContinueWithVerificationUiFlow.cs
 src/Ory.Kratos.Client/Model/KratosCourierMessageStatus.cs
@@ -268,14 +287,13 @@ src/Ory.Kratos.Client/Model/KratosHealthNotReadyStatus.cs
 src/Ory.Kratos.Client/Model/KratosHealthStatus.cs
 src/Ory.Kratos.Client/Model/KratosIdentity.cs
 src/Ory.Kratos.Client/Model/KratosIdentityCredentials.cs
+src/Ory.Kratos.Client/Model/KratosIdentityCredentialsCode.cs
 src/Ory.Kratos.Client/Model/KratosIdentityCredentialsOidc.cs
 src/Ory.Kratos.Client/Model/KratosIdentityCredentialsOidcProvider.cs
 src/Ory.Kratos.Client/Model/KratosIdentityCredentialsPassword.cs
-src/Ory.Kratos.Client/Model/KratosIdentityCredentialsType.cs
 src/Ory.Kratos.Client/Model/KratosIdentityPatch.cs
 src/Ory.Kratos.Client/Model/KratosIdentityPatchResponse.cs
 src/Ory.Kratos.Client/Model/KratosIdentitySchemaContainer.cs
-src/Ory.Kratos.Client/Model/KratosIdentityState.cs
 src/Ory.Kratos.Client/Model/KratosIdentityWithCredentials.cs
 src/Ory.Kratos.Client/Model/KratosIdentityWithCredentialsOidc.cs
 src/Ory.Kratos.Client/Model/KratosIdentityWithCredentialsOidcConfig.cs
@@ -287,6 +305,7 @@ src/Ory.Kratos.Client/Model/KratosInlineResponse2001.cs
 src/Ory.Kratos.Client/Model/KratosInlineResponse503.cs
 src/Ory.Kratos.Client/Model/KratosJsonPatch.cs
 src/Ory.Kratos.Client/Model/KratosLoginFlow.cs
+src/Ory.Kratos.Client/Model/KratosLoginFlowState.cs
 src/Ory.Kratos.Client/Model/KratosLogoutFlow.cs
 src/Ory.Kratos.Client/Model/KratosMessage.cs
 src/Ory.Kratos.Client/Model/KratosMessageDispatch.cs
@@ -294,7 +313,6 @@ src/Ory.Kratos.Client/Model/KratosNeedsPrivilegedSessionError.cs
 src/Ory.Kratos.Client/Model/KratosOAuth2Client.cs
 src/Ory.Kratos.Client/Model/KratosOAuth2ConsentRequestOpenIDConnectContext.cs
 src/Ory.Kratos.Client/Model/KratosOAuth2LoginRequest.cs
-src/Ory.Kratos.Client/Model/KratosPagination.cs
 src/Ory.Kratos.Client/Model/KratosPatchIdentitiesBody.cs
 src/Ory.Kratos.Client/Model/KratosPerformNativeLogoutBody.cs
 src/Ory.Kratos.Client/Model/KratosRecoveryCodeForIdentity.cs
@@ -303,6 +321,7 @@ src/Ory.Kratos.Client/Model/KratosRecoveryFlowState.cs
 src/Ory.Kratos.Client/Model/KratosRecoveryIdentityAddress.cs
 src/Ory.Kratos.Client/Model/KratosRecoveryLinkForIdentity.cs
 src/Ory.Kratos.Client/Model/KratosRegistrationFlow.cs
+src/Ory.Kratos.Client/Model/KratosRegistrationFlowState.cs
 src/Ory.Kratos.Client/Model/KratosSelfServiceFlowExpiredError.cs
 src/Ory.Kratos.Client/Model/KratosSession.cs
 src/Ory.Kratos.Client/Model/KratosSessionAuthenticationMethod.cs
@@ -326,6 +345,7 @@ src/Ory.Kratos.Client/Model/KratosUiNodeTextAttributes.cs
 src/Ory.Kratos.Client/Model/KratosUiText.cs
 src/Ory.Kratos.Client/Model/KratosUpdateIdentityBody.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowBody.cs
+src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithCodeMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithLookupSecretMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithOidcMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithPasswordMethod.cs
@@ -335,6 +355,7 @@ src/Ory.Kratos.Client/Model/KratosUpdateRecoveryFlowBody.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRecoveryFlowWithCodeMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRecoveryFlowWithLinkMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowBody.cs
+src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithCodeMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithOidcMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithPasswordMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithWebAuthnMethod.cs

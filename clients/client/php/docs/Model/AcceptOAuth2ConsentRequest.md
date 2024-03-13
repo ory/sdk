@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**context** | **object** |  | [optional]
 **grantAccessTokenAudience** | **string[]** |  | [optional]
 **grantScope** | **string[]** |  | [optional]
 **handledAt** | **\DateTime** |  | [optional]

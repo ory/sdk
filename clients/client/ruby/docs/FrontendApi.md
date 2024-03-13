@@ -57,7 +57,8 @@ opts = {
   return_to: 'return_to_example', # String | The URL to return the browser to after the flow was completed.
   cookie: 'cookie_example', # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
   login_challenge: 'login_challenge_example', # String | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
-  organization: 'organization_example' # String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
+  organization: 'organization_example', # String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
+  via: 'via_example' # String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
 }
 
 begin
@@ -97,6 +98,7 @@ end
 | **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 | **login_challenge** | **String** | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] |
 | **organization** | **String** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
+| **via** | **String** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] |
 
 ### Return type
 
@@ -472,7 +474,8 @@ opts = {
   aal: 'aal_example', # String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\".
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
   return_session_token_exchange_code: true, # Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
-  return_to: 'return_to_example' # String | The URL to return the browser to after the flow was completed.
+  return_to: 'return_to_example', # String | The URL to return the browser to after the flow was completed.
+  via: 'via_example' # String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
 }
 
 begin
@@ -511,6 +514,7 @@ end
 | **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
 | **return_session_token_exchange_code** | **Boolean** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
 | **return_to** | **String** | The URL to return the browser to after the flow was completed. | [optional] |
+| **via** | **String** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] |
 
 ### Return type
 

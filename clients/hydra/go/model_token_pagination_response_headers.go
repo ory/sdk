@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0-rc.3
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the TokenPaginationResponseHeaders type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenPaginationResponseHeaders{}
 
 // TokenPaginationResponseHeaders The `Link` HTTP header contains multiple links (`first`, `next`, `last`, `previous`) formatted as: `<https://{project-slug}.projects.oryapis.com/admin/clients?page_size={limit}&page_token={offset}>; rel=\"{page}\"`  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 type TokenPaginationResponseHeaders struct {
@@ -45,7 +48,7 @@ func NewTokenPaginationResponseHeadersWithDefaults() *TokenPaginationResponseHea
 
 // GetLink returns the Link field value if set, zero value otherwise.
 func (o *TokenPaginationResponseHeaders) GetLink() string {
-	if o == nil || o.Link == nil {
+	if o == nil || IsNil(o.Link) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *TokenPaginationResponseHeaders) GetLink() string {
 // GetLinkOk returns a tuple with the Link field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenPaginationResponseHeaders) GetLinkOk() (*string, bool) {
-	if o == nil || o.Link == nil {
+	if o == nil || IsNil(o.Link) {
 		return nil, false
 	}
 	return o.Link, true
@@ -63,7 +66,7 @@ func (o *TokenPaginationResponseHeaders) GetLinkOk() (*string, bool) {
 
 // HasLink returns a boolean if a field has been set.
 func (o *TokenPaginationResponseHeaders) HasLink() bool {
-	if o != nil && o.Link != nil {
+	if o != nil && !IsNil(o.Link) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *TokenPaginationResponseHeaders) SetLink(v string) {
 
 // GetXTotalCount returns the XTotalCount field value if set, zero value otherwise.
 func (o *TokenPaginationResponseHeaders) GetXTotalCount() int64 {
-	if o == nil || o.XTotalCount == nil {
+	if o == nil || IsNil(o.XTotalCount) {
 		var ret int64
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *TokenPaginationResponseHeaders) GetXTotalCount() int64 {
 // GetXTotalCountOk returns a tuple with the XTotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenPaginationResponseHeaders) GetXTotalCountOk() (*int64, bool) {
-	if o == nil || o.XTotalCount == nil {
+	if o == nil || IsNil(o.XTotalCount) {
 		return nil, false
 	}
 	return o.XTotalCount, true
@@ -95,7 +98,7 @@ func (o *TokenPaginationResponseHeaders) GetXTotalCountOk() (*int64, bool) {
 
 // HasXTotalCount returns a boolean if a field has been set.
 func (o *TokenPaginationResponseHeaders) HasXTotalCount() bool {
-	if o != nil && o.XTotalCount != nil {
+	if o != nil && !IsNil(o.XTotalCount) {
 		return true
 	}
 
@@ -108,11 +111,19 @@ func (o *TokenPaginationResponseHeaders) SetXTotalCount(v int64) {
 }
 
 func (o TokenPaginationResponseHeaders) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TokenPaginationResponseHeaders) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Link != nil {
+	if !IsNil(o.Link) {
 		toSerialize["link"] = o.Link
 	}
-	if o.XTotalCount != nil {
+	if !IsNil(o.XTotalCount) {
 		toSerialize["x-total-count"] = o.XTotalCount
 	}
 
@@ -120,15 +131,19 @@ func (o TokenPaginationResponseHeaders) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *TokenPaginationResponseHeaders) UnmarshalJSON(bytes []byte) (err error) {
 	varTokenPaginationResponseHeaders := _TokenPaginationResponseHeaders{}
 
-	if err = json.Unmarshal(bytes, &varTokenPaginationResponseHeaders); err == nil {
-		*o = TokenPaginationResponseHeaders(varTokenPaginationResponseHeaders)
+	err = json.Unmarshal(bytes, &varTokenPaginationResponseHeaders)
+
+	if err != nil {
+		return err
 	}
+
+	*o = TokenPaginationResponseHeaders(varTokenPaginationResponseHeaders)
 
 	additionalProperties := make(map[string]interface{})
 

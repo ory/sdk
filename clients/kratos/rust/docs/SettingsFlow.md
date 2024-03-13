@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **issued_at** | **String** | IssuedAt is the time (UTC) when the flow occurred. | 
 **request_url** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example. | 
 **return_to** | Option<**String**> | ReturnTo contains the requested return_to URL. | [optional]
-**state** | [**crate::models::SettingsFlowState**](settingsFlowState.md) |  | 
+**state** | Option<[**serde_json::Value**](.md)> | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent. | 
 **_type** | **String** | The flow type can either be `api` or `browser`. | 
 **ui** | [**crate::models::UiContainer**](uiContainer.md) |  | 
 

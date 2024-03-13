@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HashedPassword** | Pointer to **string** | The hashed password in [PHC format]( https://www.ory.sh/docs/kratos/concepts/credentials/username-email-password#hashed-password-format) | [optional] 
+**HashedPassword** | Pointer to **string** | The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords) | [optional] 
 **Password** | Pointer to **string** | The password in plain text if no hash is available. | [optional] 
 
 ## Methods

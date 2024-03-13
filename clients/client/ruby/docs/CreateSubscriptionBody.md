@@ -7,9 +7,8 @@
 | **currency** | **String** |  usd USD eur Euro | [optional] |
 | **interval** | **String** |  monthly Monthly yearly Yearly |  |
 | **plan** | **String** |  |  |
-| **provision_first_project** | **String** |  | [optional] |
+| **provision_first_project** | **String** |  |  |
 | **return_to** | **String** |  | [optional] |
-| **workspace** | **String** |  | [optional] |
 
 ## Example
 
@@ -21,8 +20,7 @@ instance = OryClient::CreateSubscriptionBody.new(
   interval: null,
   plan: null,
   provision_first_project: null,
-  return_to: null,
-  workspace: null
+  return_to: null
 )
 ```
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | Option<[**crate::models::IdentityCredentialsType**](identityCredentialsType.md)> |  | [optional]
+**active** | Option<**String**> | The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional]
 **created_at** | Option<**String**> | CreatedAt is a helper struct field for gobuffalo.pop. | [optional]
 **expires_at** | **String** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. | 
 **id** | **String** | ID represents the flow's unique ID. When performing the login flow, this represents the id in the login UI's query parameter: http://<selfservice.flows.login.ui_url>/?flow=<flow_id> | 
@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **return_to** | Option<**String**> | ReturnTo contains the requested return_to URL. | [optional]
 **session_token_exchange_code** | Option<**String**> | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the login flow. | [optional]
 **state** | Option<[**serde_json::Value**](.md)> | State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed. | 
+**transient_payload** | Option<[**serde_json::Value**](.md)> | TransientPayload is used to pass data from the login to hooks and email templates | [optional]
 **_type** | **String** | The flow type can either be `api` or `browser`. | 
 **ui** | [**crate::models::UiContainer**](uiContainer.md) |  | 
 **updated_at** | Option<**String**> | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional]

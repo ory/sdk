@@ -44,8 +44,11 @@ docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
+docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspacePayload.md
+docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -83,12 +86,10 @@ docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
-docs/IdentityCredentialsType.md
 docs/IdentityPatch.md
 docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
-docs/IdentityState.md
 docs/IdentityWithCredentials.md
 docs/IdentityWithCredentialsOidc.md
 docs/IdentityWithCredentialsOidcConfig.md
@@ -99,7 +100,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
-docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
@@ -112,6 +112,7 @@ docs/KetoNamespace.md
 docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceProjectsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -122,6 +123,7 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/MetricsDatapoint.md
+docs/MigrationOptions.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -153,6 +155,7 @@ docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
+docs/PermissionsOnWorkpaceResponse.md
 docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
@@ -166,6 +169,7 @@ docs/ProjectBrandingTheme.md
 docs/ProjectCors.md
 docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
+docs/ProjectMember.md
 docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
@@ -201,7 +205,6 @@ docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
-docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
 docs/SuccessfulCodeExchangeResponse.md
@@ -252,6 +255,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/UpdateWorkspacePayload.md
 docs/Usage.md
 docs/VerifiableCredentialPrimingResponse.md
 docs/VerifiableCredentialProof.md
@@ -263,6 +267,7 @@ docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
 docs/Workspace.md
+docs/WorkspaceMeta.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -343,8 +348,11 @@ src/main/java/sh/ory/model/CreateRecoveryCodeForIdentityBody.java
 src/main/java/sh/ory/model/CreateRecoveryLinkForIdentityBody.java
 src/main/java/sh/ory/model/CreateRelationshipBody.java
 src/main/java/sh/ory/model/CreateSubscriptionBody.java
+src/main/java/sh/ory/model/CreateSubscriptionCommon.java
 src/main/java/sh/ory/model/CreateVerifiableCredentialRequestBody.java
 src/main/java/sh/ory/model/CreateWorkspaceMemberInviteBody.java
+src/main/java/sh/ory/model/CreateWorkspacePayload.java
+src/main/java/sh/ory/model/CreateWorkspaceSubscriptionBody.java
 src/main/java/sh/ory/model/CredentialSupportedDraft00.java
 src/main/java/sh/ory/model/CustomDomain.java
 src/main/java/sh/ory/model/DeleteMySessionsCount.java
@@ -379,12 +387,10 @@ src/main/java/sh/ory/model/IdentityCredentialsCode.java
 src/main/java/sh/ory/model/IdentityCredentialsOidc.java
 src/main/java/sh/ory/model/IdentityCredentialsOidcProvider.java
 src/main/java/sh/ory/model/IdentityCredentialsPassword.java
-src/main/java/sh/ory/model/IdentityCredentialsType.java
 src/main/java/sh/ory/model/IdentityPatch.java
 src/main/java/sh/ory/model/IdentityPatchResponse.java
 src/main/java/sh/ory/model/IdentitySchemaContainer.java
 src/main/java/sh/ory/model/IdentitySchemaPreset.java
-src/main/java/sh/ory/model/IdentityState.java
 src/main/java/sh/ory/model/IdentityWithCredentials.java
 src/main/java/sh/ory/model/IdentityWithCredentialsOidc.java
 src/main/java/sh/ory/model/IdentityWithCredentialsOidcConfig.java
@@ -395,7 +401,6 @@ src/main/java/sh/ory/model/InternalGetProjectBrandingBody.java
 src/main/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponse.java
-src/main/java/sh/ory/model/InternalProvisionMockSubscription.java
 src/main/java/sh/ory/model/IntrospectedOAuth2Token.java
 src/main/java/sh/ory/model/IsOwnerForProjectBySlug.java
 src/main/java/sh/ory/model/IsReady200Response.java
@@ -407,6 +412,7 @@ src/main/java/sh/ory/model/KetoNamespace.java
 src/main/java/sh/ory/model/ListEventStreams.java
 src/main/java/sh/ory/model/ListMyWorkspacesResponse.java
 src/main/java/sh/ory/model/ListOrganizationsResponse.java
+src/main/java/sh/ory/model/ListWorkspaceProjectsResponse.java
 src/main/java/sh/ory/model/LoginFlow.java
 src/main/java/sh/ory/model/LoginFlowState.java
 src/main/java/sh/ory/model/LogoutFlow.java
@@ -416,6 +422,7 @@ src/main/java/sh/ory/model/MemberInvite.java
 src/main/java/sh/ory/model/Message.java
 src/main/java/sh/ory/model/MessageDispatch.java
 src/main/java/sh/ory/model/MetricsDatapoint.java
+src/main/java/sh/ory/model/MigrationOptions.java
 src/main/java/sh/ory/model/Namespace.java
 src/main/java/sh/ory/model/NeedsPrivilegedSessionError.java
 src/main/java/sh/ory/model/NormalizedProject.java
@@ -444,6 +451,7 @@ src/main/java/sh/ory/model/PaginationHeaders.java
 src/main/java/sh/ory/model/ParseError.java
 src/main/java/sh/ory/model/PatchIdentitiesBody.java
 src/main/java/sh/ory/model/PerformNativeLogoutBody.java
+src/main/java/sh/ory/model/PermissionsOnWorkpaceResponse.java
 src/main/java/sh/ory/model/Plan.java
 src/main/java/sh/ory/model/PlanDetails.java
 src/main/java/sh/ory/model/PostCheckPermissionBody.java
@@ -456,6 +464,7 @@ src/main/java/sh/ory/model/ProjectBrandingTheme.java
 src/main/java/sh/ory/model/ProjectCors.java
 src/main/java/sh/ory/model/ProjectEventsDatapoint.java
 src/main/java/sh/ory/model/ProjectHost.java
+src/main/java/sh/ory/model/ProjectMember.java
 src/main/java/sh/ory/model/ProjectMetadata.java
 src/main/java/sh/ory/model/ProjectServiceIdentity.java
 src/main/java/sh/ory/model/ProjectServiceOAuth2.java
@@ -490,7 +499,6 @@ src/main/java/sh/ory/model/SetProjectBrandingThemeBody.java
 src/main/java/sh/ory/model/SettingsFlow.java
 src/main/java/sh/ory/model/SettingsFlowState.java
 src/main/java/sh/ory/model/SourcePosition.java
-src/main/java/sh/ory/model/StripeCustomer.java
 src/main/java/sh/ory/model/SubjectSet.java
 src/main/java/sh/ory/model/Subscription.java
 src/main/java/sh/ory/model/SuccessfulCodeExchangeResponse.java
@@ -541,6 +549,7 @@ src/main/java/sh/ory/model/UpdateSubscriptionBody.java
 src/main/java/sh/ory/model/UpdateVerificationFlowBody.java
 src/main/java/sh/ory/model/UpdateVerificationFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateVerificationFlowWithLinkMethod.java
+src/main/java/sh/ory/model/UpdateWorkspacePayload.java
 src/main/java/sh/ory/model/Usage.java
 src/main/java/sh/ory/model/VerifiableCredentialPrimingResponse.java
 src/main/java/sh/ory/model/VerifiableCredentialProof.java
@@ -551,6 +560,7 @@ src/main/java/sh/ory/model/VerificationFlowState.java
 src/main/java/sh/ory/model/Version.java
 src/main/java/sh/ory/model/Warning.java
 src/main/java/sh/ory/model/Workspace.java
+src/main/java/sh/ory/model/WorkspaceMeta.java
 src/test/java/sh/ory/api/CourierApiTest.java
 src/test/java/sh/ory/api/EventsApiTest.java
 src/test/java/sh/ory/api/FrontendApiTest.java
@@ -600,8 +610,11 @@ src/test/java/sh/ory/model/CreateRecoveryCodeForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRecoveryLinkForIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateRelationshipBodyTest.java
 src/test/java/sh/ory/model/CreateSubscriptionBodyTest.java
+src/test/java/sh/ory/model/CreateSubscriptionCommonTest.java
 src/test/java/sh/ory/model/CreateVerifiableCredentialRequestBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceMemberInviteBodyTest.java
+src/test/java/sh/ory/model/CreateWorkspacePayloadTest.java
+src/test/java/sh/ory/model/CreateWorkspaceSubscriptionBodyTest.java
 src/test/java/sh/ory/model/CredentialSupportedDraft00Test.java
 src/test/java/sh/ory/model/CustomDomainTest.java
 src/test/java/sh/ory/model/DeleteMySessionsCountTest.java
@@ -635,12 +648,10 @@ src/test/java/sh/ory/model/IdentityCredentialsOidcProviderTest.java
 src/test/java/sh/ory/model/IdentityCredentialsOidcTest.java
 src/test/java/sh/ory/model/IdentityCredentialsPasswordTest.java
 src/test/java/sh/ory/model/IdentityCredentialsTest.java
-src/test/java/sh/ory/model/IdentityCredentialsTypeTest.java
 src/test/java/sh/ory/model/IdentityPatchResponseTest.java
 src/test/java/sh/ory/model/IdentityPatchTest.java
 src/test/java/sh/ory/model/IdentitySchemaContainerTest.java
 src/test/java/sh/ory/model/IdentitySchemaPresetTest.java
-src/test/java/sh/ory/model/IdentityStateTest.java
 src/test/java/sh/ory/model/IdentityTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsOidcConfigProviderTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsOidcConfigTest.java
@@ -652,7 +663,6 @@ src/test/java/sh/ory/model/InternalGetProjectBrandingBodyTest.java
 src/test/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponseTest.java
-src/test/java/sh/ory/model/InternalProvisionMockSubscriptionTest.java
 src/test/java/sh/ory/model/IntrospectedOAuth2TokenTest.java
 src/test/java/sh/ory/model/IsOwnerForProjectBySlugTest.java
 src/test/java/sh/ory/model/IsReady200ResponseTest.java
@@ -664,6 +674,7 @@ src/test/java/sh/ory/model/KetoNamespaceTest.java
 src/test/java/sh/ory/model/ListEventStreamsTest.java
 src/test/java/sh/ory/model/ListMyWorkspacesResponseTest.java
 src/test/java/sh/ory/model/ListOrganizationsResponseTest.java
+src/test/java/sh/ory/model/ListWorkspaceProjectsResponseTest.java
 src/test/java/sh/ory/model/LoginFlowStateTest.java
 src/test/java/sh/ory/model/LoginFlowTest.java
 src/test/java/sh/ory/model/LogoutFlowTest.java
@@ -673,6 +684,7 @@ src/test/java/sh/ory/model/MemberInviteTest.java
 src/test/java/sh/ory/model/MessageDispatchTest.java
 src/test/java/sh/ory/model/MessageTest.java
 src/test/java/sh/ory/model/MetricsDatapointTest.java
+src/test/java/sh/ory/model/MigrationOptionsTest.java
 src/test/java/sh/ory/model/NamespaceTest.java
 src/test/java/sh/ory/model/NeedsPrivilegedSessionErrorTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionCourierChannelTest.java
@@ -701,6 +713,7 @@ src/test/java/sh/ory/model/PaginationTest.java
 src/test/java/sh/ory/model/ParseErrorTest.java
 src/test/java/sh/ory/model/PatchIdentitiesBodyTest.java
 src/test/java/sh/ory/model/PerformNativeLogoutBodyTest.java
+src/test/java/sh/ory/model/PermissionsOnWorkpaceResponseTest.java
 src/test/java/sh/ory/model/PlanDetailsTest.java
 src/test/java/sh/ory/model/PlanTest.java
 src/test/java/sh/ory/model/PostCheckPermissionBodyTest.java
@@ -712,6 +725,7 @@ src/test/java/sh/ory/model/ProjectBrandingThemeTest.java
 src/test/java/sh/ory/model/ProjectCorsTest.java
 src/test/java/sh/ory/model/ProjectEventsDatapointTest.java
 src/test/java/sh/ory/model/ProjectHostTest.java
+src/test/java/sh/ory/model/ProjectMemberTest.java
 src/test/java/sh/ory/model/ProjectMetadataTest.java
 src/test/java/sh/ory/model/ProjectServiceIdentityTest.java
 src/test/java/sh/ory/model/ProjectServiceOAuth2Test.java
@@ -747,7 +761,6 @@ src/test/java/sh/ory/model/SetProjectTest.java
 src/test/java/sh/ory/model/SettingsFlowStateTest.java
 src/test/java/sh/ory/model/SettingsFlowTest.java
 src/test/java/sh/ory/model/SourcePositionTest.java
-src/test/java/sh/ory/model/StripeCustomerTest.java
 src/test/java/sh/ory/model/SubjectSetTest.java
 src/test/java/sh/ory/model/SubscriptionTest.java
 src/test/java/sh/ory/model/SuccessfulCodeExchangeResponseTest.java
@@ -798,6 +811,7 @@ src/test/java/sh/ory/model/UpdateSubscriptionBodyTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowWithLinkMethodTest.java
+src/test/java/sh/ory/model/UpdateWorkspacePayloadTest.java
 src/test/java/sh/ory/model/UsageTest.java
 src/test/java/sh/ory/model/VerifiableCredentialPrimingResponseTest.java
 src/test/java/sh/ory/model/VerifiableCredentialProofTest.java
@@ -807,4 +821,5 @@ src/test/java/sh/ory/model/VerificationFlowStateTest.java
 src/test/java/sh/ory/model/VerificationFlowTest.java
 src/test/java/sh/ory/model/VersionTest.java
 src/test/java/sh/ory/model/WarningTest.java
+src/test/java/sh/ory/model/WorkspaceMetaTest.java
 src/test/java/sh/ory/model/WorkspaceTest.java

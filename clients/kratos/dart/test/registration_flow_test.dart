@@ -7,7 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(RegistrationFlow, () {
-    // IdentityCredentialsType active
+    // Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    // String active
     test('to test the property `active`', () async {
       // TODO
     });
@@ -41,6 +42,11 @@ void main() {
       // TODO
     });
 
+    // String organizationId
+    test('to test the property `organizationId`', () async {
+      // TODO
+    });
+
     // RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
     // String requestUrl
     test('to test the property `requestUrl`', () async {
@@ -56,6 +62,12 @@ void main() {
     // SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the flow.
     // String sessionTokenExchangeCode
     test('to test the property `sessionTokenExchangeCode`', () async {
+      // TODO
+    });
+
+    // State represents the state of this request:  choose_method: ask the user to choose a method (e.g. registration with email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the registration challenge was passed.
+    // JsonObject state
+    test('to test the property `state`', () async {
       // TODO
     });
 

@@ -8,6 +8,8 @@ part of 'o_auth2_client.dart';
 
 class _$OAuth2Client extends OAuth2Client {
   @override
+  final String? accessTokenStrategy;
+  @override
   final BuiltList<String>? allowedCorsOrigins;
   @override
   final BuiltList<String>? audience;
@@ -86,6 +88,10 @@ class _$OAuth2Client extends OAuth2Client {
   @override
   final String? sectorIdentifierUri;
   @override
+  final bool? skipConsent;
+  @override
+  final bool? skipLogoutConsent;
+  @override
   final String? subjectType;
   @override
   final String? tokenEndpointAuthMethod;
@@ -102,7 +108,8 @@ class _$OAuth2Client extends OAuth2Client {
       (new OAuth2ClientBuilder()..update(updates))._build();
 
   _$OAuth2Client._(
-      {this.allowedCorsOrigins,
+      {this.accessTokenStrategy,
+      this.allowedCorsOrigins,
       this.audience,
       this.authorizationCodeGrantAccessTokenLifespan,
       this.authorizationCodeGrantIdTokenLifespan,
@@ -141,6 +148,8 @@ class _$OAuth2Client extends OAuth2Client {
       this.responseTypes,
       this.scope,
       this.sectorIdentifierUri,
+      this.skipConsent,
+      this.skipLogoutConsent,
       this.subjectType,
       this.tokenEndpointAuthMethod,
       this.tokenEndpointAuthSigningAlg,
@@ -160,6 +169,7 @@ class _$OAuth2Client extends OAuth2Client {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is OAuth2Client &&
+        accessTokenStrategy == other.accessTokenStrategy &&
         allowedCorsOrigins == other.allowedCorsOrigins &&
         audience == other.audience &&
         authorizationCodeGrantAccessTokenLifespan ==
@@ -210,6 +220,8 @@ class _$OAuth2Client extends OAuth2Client {
         responseTypes == other.responseTypes &&
         scope == other.scope &&
         sectorIdentifierUri == other.sectorIdentifierUri &&
+        skipConsent == other.skipConsent &&
+        skipLogoutConsent == other.skipLogoutConsent &&
         subjectType == other.subjectType &&
         tokenEndpointAuthMethod == other.tokenEndpointAuthMethod &&
         tokenEndpointAuthSigningAlg == other.tokenEndpointAuthSigningAlg &&
@@ -221,6 +233,7 @@ class _$OAuth2Client extends OAuth2Client {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, accessTokenStrategy.hashCode);
     _$hash = $jc(_$hash, allowedCorsOrigins.hashCode);
     _$hash = $jc(_$hash, audience.hashCode);
     _$hash = $jc(_$hash, authorizationCodeGrantAccessTokenLifespan.hashCode);
@@ -260,6 +273,8 @@ class _$OAuth2Client extends OAuth2Client {
     _$hash = $jc(_$hash, responseTypes.hashCode);
     _$hash = $jc(_$hash, scope.hashCode);
     _$hash = $jc(_$hash, sectorIdentifierUri.hashCode);
+    _$hash = $jc(_$hash, skipConsent.hashCode);
+    _$hash = $jc(_$hash, skipLogoutConsent.hashCode);
     _$hash = $jc(_$hash, subjectType.hashCode);
     _$hash = $jc(_$hash, tokenEndpointAuthMethod.hashCode);
     _$hash = $jc(_$hash, tokenEndpointAuthSigningAlg.hashCode);
@@ -273,6 +288,7 @@ class _$OAuth2Client extends OAuth2Client {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'OAuth2Client')
+          ..add('accessTokenStrategy', accessTokenStrategy)
           ..add('allowedCorsOrigins', allowedCorsOrigins)
           ..add('audience', audience)
           ..add('authorizationCodeGrantAccessTokenLifespan',
@@ -323,6 +339,8 @@ class _$OAuth2Client extends OAuth2Client {
           ..add('responseTypes', responseTypes)
           ..add('scope', scope)
           ..add('sectorIdentifierUri', sectorIdentifierUri)
+          ..add('skipConsent', skipConsent)
+          ..add('skipLogoutConsent', skipLogoutConsent)
           ..add('subjectType', subjectType)
           ..add('tokenEndpointAuthMethod', tokenEndpointAuthMethod)
           ..add('tokenEndpointAuthSigningAlg', tokenEndpointAuthSigningAlg)
@@ -336,6 +354,11 @@ class _$OAuth2Client extends OAuth2Client {
 class OAuth2ClientBuilder
     implements Builder<OAuth2Client, OAuth2ClientBuilder> {
   _$OAuth2Client? _$v;
+
+  String? _accessTokenStrategy;
+  String? get accessTokenStrategy => _$this._accessTokenStrategy;
+  set accessTokenStrategy(String? accessTokenStrategy) =>
+      _$this._accessTokenStrategy = accessTokenStrategy;
 
   ListBuilder<String>? _allowedCorsOrigins;
   ListBuilder<String> get allowedCorsOrigins =>
@@ -560,6 +583,15 @@ class OAuth2ClientBuilder
   set sectorIdentifierUri(String? sectorIdentifierUri) =>
       _$this._sectorIdentifierUri = sectorIdentifierUri;
 
+  bool? _skipConsent;
+  bool? get skipConsent => _$this._skipConsent;
+  set skipConsent(bool? skipConsent) => _$this._skipConsent = skipConsent;
+
+  bool? _skipLogoutConsent;
+  bool? get skipLogoutConsent => _$this._skipLogoutConsent;
+  set skipLogoutConsent(bool? skipLogoutConsent) =>
+      _$this._skipLogoutConsent = skipLogoutConsent;
+
   String? _subjectType;
   String? get subjectType => _$this._subjectType;
   set subjectType(String? subjectType) => _$this._subjectType = subjectType;
@@ -595,6 +627,7 @@ class OAuth2ClientBuilder
   OAuth2ClientBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _accessTokenStrategy = $v.accessTokenStrategy;
       _allowedCorsOrigins = $v.allowedCorsOrigins?.toBuilder();
       _audience = $v.audience?.toBuilder();
       _authorizationCodeGrantAccessTokenLifespan =
@@ -640,6 +673,8 @@ class OAuth2ClientBuilder
       _responseTypes = $v.responseTypes?.toBuilder();
       _scope = $v.scope;
       _sectorIdentifierUri = $v.sectorIdentifierUri;
+      _skipConsent = $v.skipConsent;
+      _skipLogoutConsent = $v.skipLogoutConsent;
       _subjectType = $v.subjectType;
       _tokenEndpointAuthMethod = $v.tokenEndpointAuthMethod;
       _tokenEndpointAuthSigningAlg = $v.tokenEndpointAuthSigningAlg;
@@ -670,6 +705,7 @@ class OAuth2ClientBuilder
     try {
       _$result = _$v ??
           new _$OAuth2Client._(
+              accessTokenStrategy: accessTokenStrategy,
               allowedCorsOrigins: _allowedCorsOrigins?.build(),
               audience: _audience?.build(),
               authorizationCodeGrantAccessTokenLifespan:
@@ -720,6 +756,8 @@ class OAuth2ClientBuilder
               responseTypes: _responseTypes?.build(),
               scope: scope,
               sectorIdentifierUri: sectorIdentifierUri,
+              skipConsent: skipConsent,
+              skipLogoutConsent: skipLogoutConsent,
               subjectType: subjectType,
               tokenEndpointAuthMethod: tokenEndpointAuthMethod,
               tokenEndpointAuthSigningAlg: tokenEndpointAuthSigningAlg,

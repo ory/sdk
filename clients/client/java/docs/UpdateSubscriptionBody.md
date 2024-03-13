@@ -2,7 +2,6 @@
 
 # UpdateSubscriptionBody
 
-Update Subscription Request Body
 
 ## Properties
 

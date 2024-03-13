@@ -14,9 +14,9 @@ defmodule Ory.Model.CloudAccount do
   ]
 
   @type t :: %__MODULE__{
-    :email => String.t | nil,
-    :id => String.t | nil,
-    :name => String.t | nil
+    :email => String.t,
+    :id => String.t,
+    :name => String.t
   }
 
   def decode(value) do

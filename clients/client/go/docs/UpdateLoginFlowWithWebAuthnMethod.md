@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CsrfToken** | Pointer to **string** | Sending the anti-csrf token is only required for browser login flows. | [optional] 
 **Identifier** | **string** | Identifier is the email or username of the user trying to log in. | 
 **Method** | **string** | Method should be set to \&quot;webAuthn\&quot; when logging in using the WebAuthn strategy. | 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 **WebauthnLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 
 ## Methods
@@ -92,6 +93,31 @@ and a boolean to check if the value has been set.
 
 SetMethod sets Method field to given value.
 
+
+### GetTransientPayload
+
+`func (o *UpdateLoginFlowWithWebAuthnMethod) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateLoginFlowWithWebAuthnMethod) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateLoginFlowWithWebAuthnMethod) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateLoginFlowWithWebAuthnMethod) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 ### GetWebauthnLogin
 

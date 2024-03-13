@@ -11,6 +11,7 @@ defmodule Ory.Model.UpdateLoginFlowWithWebAuthnMethod do
     :csrf_token,
     :identifier,
     :method,
+    :transient_payload,
     :webauthn_login
   ]
 
@@ -18,6 +19,7 @@ defmodule Ory.Model.UpdateLoginFlowWithWebAuthnMethod do
     :csrf_token => String.t | nil,
     :identifier => String.t,
     :method => String.t,
+    :transient_payload => map() | nil,
     :webauthn_login => String.t | nil
   }
 

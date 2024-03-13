@@ -75,6 +75,7 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = o_auth2_api.OAuth2Api(api_client)
     consent_challenge = "consent_challenge_example" # str | OAuth 2.0 Consent Request Challenge
     accept_o_auth2_consent_request = AcceptOAuth2ConsentRequest(
+        context={},
         grant_access_token_audience=StringSliceJSONFormat([
             "grant_access_token_audience_example",
         ]),
@@ -417,6 +418,7 @@ with ory_client.ApiClient(configuration) as api_client:
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
         skip_consent=True,
+        skip_logout_consent=True,
         subject_type="subject_type_example",
         token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
@@ -2343,6 +2345,7 @@ with ory_client.ApiClient(configuration) as api_client:
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
         skip_consent=True,
+        skip_logout_consent=True,
         subject_type="subject_type_example",
         token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",

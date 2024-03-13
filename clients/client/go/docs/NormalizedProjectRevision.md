@@ -6,12 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **DisableAccountExperienceWelcomeScreen** | Pointer to **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] 
+**EnableAxV2** | Pointer to **bool** | Whether the new account experience is enabled and reachable. | [optional] 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** |  | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtIatOptional** | Pointer to **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtJtiOptional** | Pointer to **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtMaxTtl** | Pointer to **string** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional] [default to "720h"]
+**HydraOauth2MirrorTopLevelClaims** | Pointer to **bool** | Set to false if you don&#39;t want to mirror custom claims under &#39;ext&#39;.  This governs the \&quot;oauth2.mirror_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
@@ -70,6 +72,7 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesLoginCodeValidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesLoginCodeValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesLoginCodeValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.subject\&quot; setting. | [optional] 
+**KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \&quot;courier.smtp.templates.login_code.valid.sms.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesRecoveryCodeInvalidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery_code.invalid.email.body.html\&quot; setting. | [optional] 
@@ -155,6 +158,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
 **KratosSelfserviceMethodsCodeConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeEnabled** | Pointer to **bool** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsCodeMfaEnabled** | Pointer to **bool** | Configues whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessEnabled** | Pointer to **bool** | Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigBaseUrl** | Pointer to **string** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] 
@@ -261,6 +265,31 @@ SetDisableAccountExperienceWelcomeScreen sets DisableAccountExperienceWelcomeScr
 `func (o *NormalizedProjectRevision) HasDisableAccountExperienceWelcomeScreen() bool`
 
 HasDisableAccountExperienceWelcomeScreen returns a boolean if a field has been set.
+
+### GetEnableAxV2
+
+`func (o *NormalizedProjectRevision) GetEnableAxV2() bool`
+
+GetEnableAxV2 returns the EnableAxV2 field if non-nil, zero value otherwise.
+
+### GetEnableAxV2Ok
+
+`func (o *NormalizedProjectRevision) GetEnableAxV2Ok() (*bool, bool)`
+
+GetEnableAxV2Ok returns a tuple with the EnableAxV2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableAxV2
+
+`func (o *NormalizedProjectRevision) SetEnableAxV2(v bool)`
+
+SetEnableAxV2 sets EnableAxV2 field to given value.
+
+### HasEnableAxV2
+
+`func (o *NormalizedProjectRevision) HasEnableAxV2() bool`
+
+HasEnableAxV2 returns a boolean if a field has been set.
 
 ### GetHydraOauth2AllowedTopLevelClaims
 
@@ -411,6 +440,31 @@ SetHydraOauth2GrantJwtMaxTtl sets HydraOauth2GrantJwtMaxTtl field to given value
 `func (o *NormalizedProjectRevision) HasHydraOauth2GrantJwtMaxTtl() bool`
 
 HasHydraOauth2GrantJwtMaxTtl returns a boolean if a field has been set.
+
+### GetHydraOauth2MirrorTopLevelClaims
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2MirrorTopLevelClaims() bool`
+
+GetHydraOauth2MirrorTopLevelClaims returns the HydraOauth2MirrorTopLevelClaims field if non-nil, zero value otherwise.
+
+### GetHydraOauth2MirrorTopLevelClaimsOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2MirrorTopLevelClaimsOk() (*bool, bool)`
+
+GetHydraOauth2MirrorTopLevelClaimsOk returns a tuple with the HydraOauth2MirrorTopLevelClaims field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2MirrorTopLevelClaims
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2MirrorTopLevelClaims(v bool)`
+
+SetHydraOauth2MirrorTopLevelClaims sets HydraOauth2MirrorTopLevelClaims field to given value.
+
+### HasHydraOauth2MirrorTopLevelClaims
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2MirrorTopLevelClaims() bool`
+
+HasHydraOauth2MirrorTopLevelClaims returns a boolean if a field has been set.
 
 ### GetHydraOauth2PkceEnforced
 
@@ -1881,6 +1935,31 @@ SetKratosCourierTemplatesLoginCodeValidEmailSubject sets KratosCourierTemplatesL
 `func (o *NormalizedProjectRevision) HasKratosCourierTemplatesLoginCodeValidEmailSubject() bool`
 
 HasKratosCourierTemplatesLoginCodeValidEmailSubject returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext() string`
+
+GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext returns the KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintextOk returns a tuple with the KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext sets KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext() bool`
+
+HasKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext returns a boolean if a field has been set.
 
 ### GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
 
@@ -4016,6 +4095,31 @@ SetKratosSelfserviceMethodsCodeEnabled sets KratosSelfserviceMethodsCodeEnabled 
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeEnabled() bool`
 
 HasKratosSelfserviceMethodsCodeEnabled returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCodeMfaEnabled
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeMfaEnabled() bool`
+
+GetKratosSelfserviceMethodsCodeMfaEnabled returns the KratosSelfserviceMethodsCodeMfaEnabled field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCodeMfaEnabledOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeMfaEnabledOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsCodeMfaEnabledOk returns a tuple with the KratosSelfserviceMethodsCodeMfaEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCodeMfaEnabled
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeMfaEnabled(v bool)`
+
+SetKratosSelfserviceMethodsCodeMfaEnabled sets KratosSelfserviceMethodsCodeMfaEnabled field to given value.
+
+### HasKratosSelfserviceMethodsCodeMfaEnabled
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeMfaEnabled() bool`
+
+HasKratosSelfserviceMethodsCodeMfaEnabled returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsCodePasswordlessEnabled
 

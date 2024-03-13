@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** | The Project&#39;s Creation Date |  |
+| **environment** | **String** | The environment of the project. prod Production dev Development |  |
 | **hosts** | **Array&lt;String&gt;** |  |  |
 | **id** | **String** | The project&#39;s ID. | [readonly] |
 | **name** | **String** | The project&#39;s name if set |  |
@@ -22,6 +23,7 @@ require 'ory-client'
 
 instance = OryClient::ProjectMetadata.new(
   created_at: null,
+  environment: null,
   hosts: null,
   id: null,
   name: null,

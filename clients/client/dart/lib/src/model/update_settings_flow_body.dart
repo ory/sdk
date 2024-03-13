@@ -22,6 +22,7 @@ part 'update_settings_flow_body.g.dart';
 /// * [csrfToken] - CSRFToken is the anti-CSRF token
 /// * [method] - Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
 /// * [password] - Password is the updated password
+/// * [transientPayload] - Transient data to pass along to any webhooks
 /// * [traits] - The identity's traits  in: body
 /// * [flow] - Flow ID is the flow's ID.  in: query
 /// * [link] - Link this provider  Either this or `unlink` must be set.  type: string in: body

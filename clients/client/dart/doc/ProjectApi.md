@@ -399,7 +399,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getProjectMembers**
-> BuiltList<CloudAccount> getProjectMembers(project)
+> BuiltList<ProjectMember> getProjectMembers(project)
 
 Get all members associated with this project
 
@@ -431,7 +431,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList&lt;CloudAccount&gt;**](CloudAccount.md)
+[**BuiltList&lt;ProjectMember&gt;**](ProjectMember.md)
 
 ### Authorization
 
@@ -461,7 +461,7 @@ import 'package:ory_client/api.dart';
 final api = OryClient().getProjectApi();
 final String projectId = projectId_example; // String | Project ID
 final String eventType = eventType_example; // String | The event type to query for
-final String resolution = resolution_example; // String | The resolution of the buckets  The minimum resolution is 1 hour.
+final String resolution = resolution_example; // String | The resolution of the buckets  The minimum resolution is 1 minute.
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | The start RFC3339 date of the time window
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | The end RFC3339 date of the time window
 
@@ -479,7 +479,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **String**| Project ID | 
  **eventType** | **String**| The event type to query for | 
- **resolution** | **String**| The resolution of the buckets  The minimum resolution is 1 hour. | 
+ **resolution** | **String**| The resolution of the buckets  The minimum resolution is 1 minute. | 
  **from** | **DateTime**| The start RFC3339 date of the time window | 
  **to** | **DateTime**| The end RFC3339 date of the time window | 
 

@@ -9,7 +9,7 @@ import 'package:built_value/serializer.dart';
 
 part 'update_subscription_body.g.dart';
 
-/// Update Subscription Request Body
+/// UpdateSubscriptionBody
 ///
 /// Properties:
 /// * [interval] -  monthly Monthly yearly Yearly

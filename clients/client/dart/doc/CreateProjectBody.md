@@ -8,6 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**environment** | **String** | The environment of the project. prod Production dev Development | 
 **name** | **String** | The name of the project to be created | 
 **workspaceId** | **String** |  | [optional] 
 

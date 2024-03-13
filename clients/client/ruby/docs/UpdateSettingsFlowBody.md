@@ -55,6 +55,7 @@ OryClient::UpdateSettingsFlowBody.openapi_discriminator_mapping
 #   :'totp' => :'UpdateSettingsFlowWithTotpMethod',
 #   :'webauthn' => :'UpdateSettingsFlowWithWebAuthnMethod'
 # }
+```
 
 ### build
 

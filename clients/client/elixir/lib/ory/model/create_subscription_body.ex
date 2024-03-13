@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.CreateSubscriptionBody do
   @moduledoc """
-  Create Subscription Request Body
+  
   """
 
   @derive Jason.Encoder
@@ -12,17 +12,15 @@ defmodule Ory.Model.CreateSubscriptionBody do
     :interval,
     :plan,
     :provision_first_project,
-    :return_to,
-    :workspace
+    :return_to
   ]
 
   @type t :: %__MODULE__{
     :currency => String.t | nil,
     :interval => String.t,
     :plan => String.t,
-    :provision_first_project => String.t | nil,
-    :return_to => String.t | nil,
-    :workspace => String.t | nil
+    :provision_first_project => String.t,
+    :return_to => String.t | nil
   }
 
   def decode(value) do

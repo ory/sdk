@@ -263,7 +263,7 @@ Name | Type | Description  | Notes
 
 <a name="createrecoverylinkforidentity"></a>
 # **CreateRecoveryLinkForIdentity**
-> KratosRecoveryLinkForIdentity CreateRecoveryLinkForIdentity (KratosCreateRecoveryLinkForIdentityBody kratosCreateRecoveryLinkForIdentityBody = null)
+> KratosRecoveryLinkForIdentity CreateRecoveryLinkForIdentity (string returnTo = null, KratosCreateRecoveryLinkForIdentityBody kratosCreateRecoveryLinkForIdentityBody = null)
 
 Create a Recovery Link
 
@@ -291,12 +291,13 @@ namespace Example
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
             var apiInstance = new IdentityApi(config);
+            var returnTo = "returnTo_example";  // string |  (optional) 
             var kratosCreateRecoveryLinkForIdentityBody = new KratosCreateRecoveryLinkForIdentityBody(); // KratosCreateRecoveryLinkForIdentityBody |  (optional) 
 
             try
             {
                 // Create a Recovery Link
-                KratosRecoveryLinkForIdentity result = apiInstance.CreateRecoveryLinkForIdentity(kratosCreateRecoveryLinkForIdentityBody);
+                KratosRecoveryLinkForIdentity result = apiInstance.CreateRecoveryLinkForIdentity(returnTo, kratosCreateRecoveryLinkForIdentityBody);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -314,6 +315,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **returnTo** | **string**|  | [optional] 
  **kratosCreateRecoveryLinkForIdentityBody** | [**KratosCreateRecoveryLinkForIdentityBody**](KratosCreateRecoveryLinkForIdentityBody.md)|  | [optional] 
 
 ### Return type
@@ -448,7 +450,7 @@ namespace Example
 
             var apiInstance = new IdentityApi(config);
             var id = "id_example";  // string | ID is the identity's ID.
-            var type = "totp";  // string | Type is the credential's Type. One of totp, webauthn, lookup
+            var type = "password";  // string | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 
             try
             {
@@ -471,7 +473,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the identity&#39;s ID. | 
- **type** | **string**| Type is the credential&#39;s Type. One of totp, webauthn, lookup | 
+ **type** | **string**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
 
 ### Return type
 
@@ -967,7 +969,7 @@ Name | Type | Description  | Notes
 
 <a name="listidentities"></a>
 # **ListIdentities**
-> List&lt;KratosIdentity&gt; ListIdentities (long? perPage = null, long? page = null, string credentialsIdentifier = null)
+> List&lt;KratosIdentity&gt; ListIdentities (long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null, string consistency = null, List<string> ids = null, string credentialsIdentifier = null, string previewCredentialsIdentifierSimilar = null)
 
 List Identities
 
@@ -995,14 +997,19 @@ namespace Example
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
             var apiInstance = new IdentityApi(config);
-            var perPage = 250L;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 250)
-            var page = 1L;  // long? | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional)  (default to 1)
-            var credentialsIdentifier = "credentialsIdentifier_example";  // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. (optional) 
+            var perPage = 250L;  // long? | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)  (default to 250)
+            var page = 789L;  // long? | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
+            var pageSize = 250L;  // long? | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
+            var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
+            var consistency = "";  // string | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project - -replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. (optional) 
+            var ids = new List<string>(); // List<string> | List of ids used to filter identities. If this list is empty, then no filter will be applied. (optional) 
+            var credentialsIdentifier = "credentialsIdentifier_example";  // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional) 
+            var previewCredentialsIdentifierSimilar = "previewCredentialsIdentifierSimilar_example";  // string | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional) 
 
             try
             {
                 // List Identities
-                List<KratosIdentity> result = apiInstance.ListIdentities(perPage, page, credentialsIdentifier);
+                List<KratosIdentity> result = apiInstance.ListIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1020,9 +1027,14 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **long?**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **long?**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
- **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] 
+ **perPage** | **long?**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **long?**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **pageSize** | **long?**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
+ **consistency** | **string**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project - -replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] 
+ **ids** | [**List&lt;string&gt;**](string.md)| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] 
+ **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
+ **previewCredentialsIdentifierSimilar** | **string**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
 
 ### Return type
 
@@ -1048,7 +1060,7 @@ Name | Type | Description  | Notes
 
 <a name="listidentityschemas"></a>
 # **ListIdentitySchemas**
-> List&lt;KratosIdentitySchemaContainer&gt; ListIdentitySchemas (long? perPage = null, long? page = null)
+> List&lt;KratosIdentitySchemaContainer&gt; ListIdentitySchemas (long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null)
 
 Get all Identity Schemas
 
@@ -1071,13 +1083,15 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new IdentityApi(config);
-            var perPage = 250L;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 250)
-            var page = 1L;  // long? | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional)  (default to 1)
+            var perPage = 250L;  // long? | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)  (default to 250)
+            var page = 789L;  // long? | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
+            var pageSize = 250L;  // long? | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
+            var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
 
             try
             {
                 // Get all Identity Schemas
-                List<KratosIdentitySchemaContainer> result = apiInstance.ListIdentitySchemas(perPage, page);
+                List<KratosIdentitySchemaContainer> result = apiInstance.ListIdentitySchemas(perPage, page, pageSize, pageToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1095,8 +1109,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **long?**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **long?**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+ **perPage** | **long?**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **long?**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **pageSize** | **long?**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
 
 ### Return type
 
@@ -1122,7 +1138,7 @@ No authorization required
 
 <a name="listidentitysessions"></a>
 # **ListIdentitySessions**
-> List&lt;KratosSession&gt; ListIdentitySessions (string id, long? perPage = null, long? page = null, bool? active = null)
+> List&lt;KratosSession&gt; ListIdentitySessions (string id, long? perPage = null, long? page = null, long? pageSize = null, string pageToken = null, bool? active = null)
 
 List an Identity's Sessions
 
@@ -1151,14 +1167,16 @@ namespace Example
 
             var apiInstance = new IdentityApi(config);
             var id = "id_example";  // string | ID is the identity's ID.
-            var perPage = 250L;  // long? | Items per Page  This is the number of items per page. (optional)  (default to 250)
-            var page = 1L;  // long? | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional)  (default to 1)
+            var perPage = 250L;  // long? | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)  (default to 250)
+            var page = 789L;  // long? | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
+            var pageSize = 250L;  // long? | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
+            var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
             var active = true;  // bool? | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional) 
 
             try
             {
                 // List an Identity's Sessions
-                List<KratosSession> result = apiInstance.ListIdentitySessions(id, perPage, page, active);
+                List<KratosSession> result = apiInstance.ListIdentitySessions(id, perPage, page, pageSize, pageToken, active);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1177,8 +1195,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| ID is the identity&#39;s ID. | 
- **perPage** | **long?**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **long?**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+ **perPage** | **long?**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **long?**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **pageSize** | **long?**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
  **active** | **bool?**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] 
 
 ### Return type

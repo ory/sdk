@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the SettingsFlow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SettingsFlow{}
 
 // SettingsFlow This flow is used when an identity wants to update settings (e.g. profile data, passwords, ...) in a selfservice manner.  We recommend reading the [User Settings Documentation](../self-service/flows/user-settings)
 type SettingsFlow struct {
@@ -33,7 +37,8 @@ type SettingsFlow struct {
 	RequestUrl string `json:"request_url"`
 	// ReturnTo contains the requested return_to URL.
 	ReturnTo *string `json:"return_to,omitempty"`
-	State SettingsFlowState `json:"state"`
+	// State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent.
+	State interface{} `json:"state"`
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
@@ -46,7 +51,7 @@ type _SettingsFlow SettingsFlow
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSettingsFlow(expiresAt time.Time, id string, identity Identity, issuedAt time.Time, requestUrl string, state SettingsFlowState, type_ string, ui UiContainer) *SettingsFlow {
+func NewSettingsFlow(expiresAt time.Time, id string, identity Identity, issuedAt time.Time, requestUrl string, state interface{}, type_ string, ui UiContainer) *SettingsFlow {
 	this := SettingsFlow{}
 	this.ExpiresAt = expiresAt
 	this.Id = id
@@ -69,7 +74,7 @@ func NewSettingsFlowWithDefaults() *SettingsFlow {
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *SettingsFlow) GetActive() string {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret string
 		return ret
 	}
@@ -79,7 +84,7 @@ func (o *SettingsFlow) GetActive() string {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SettingsFlow) GetActiveOk() (*string, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
 	return o.Active, true
@@ -87,7 +92,7 @@ func (o *SettingsFlow) GetActiveOk() (*string, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *SettingsFlow) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -101,7 +106,7 @@ func (o *SettingsFlow) SetActive(v string) {
 
 // GetContinueWith returns the ContinueWith field value if set, zero value otherwise.
 func (o *SettingsFlow) GetContinueWith() []ContinueWith {
-	if o == nil || o.ContinueWith == nil {
+	if o == nil || IsNil(o.ContinueWith) {
 		var ret []ContinueWith
 		return ret
 	}
@@ -111,7 +116,7 @@ func (o *SettingsFlow) GetContinueWith() []ContinueWith {
 // GetContinueWithOk returns a tuple with the ContinueWith field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SettingsFlow) GetContinueWithOk() ([]ContinueWith, bool) {
-	if o == nil || o.ContinueWith == nil {
+	if o == nil || IsNil(o.ContinueWith) {
 		return nil, false
 	}
 	return o.ContinueWith, true
@@ -119,7 +124,7 @@ func (o *SettingsFlow) GetContinueWithOk() ([]ContinueWith, bool) {
 
 // HasContinueWith returns a boolean if a field has been set.
 func (o *SettingsFlow) HasContinueWith() bool {
-	if o != nil && o.ContinueWith != nil {
+	if o != nil && !IsNil(o.ContinueWith) {
 		return true
 	}
 
@@ -253,7 +258,7 @@ func (o *SettingsFlow) SetRequestUrl(v string) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *SettingsFlow) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -263,7 +268,7 @@ func (o *SettingsFlow) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SettingsFlow) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -271,7 +276,7 @@ func (o *SettingsFlow) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *SettingsFlow) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -284,9 +289,10 @@ func (o *SettingsFlow) SetReturnTo(v string) {
 }
 
 // GetState returns the State field value
-func (o *SettingsFlow) GetState() SettingsFlowState {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *SettingsFlow) GetState() interface{} {
 	if o == nil {
-		var ret SettingsFlowState
+		var ret interface{}
 		return ret
 	}
 
@@ -295,15 +301,16 @@ func (o *SettingsFlow) GetState() SettingsFlowState {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *SettingsFlow) GetStateOk() (*SettingsFlowState, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SettingsFlow) GetStateOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return &o.State, true
 }
 
 // SetState sets field value
-func (o *SettingsFlow) SetState(v SettingsFlowState) {
+func (o *SettingsFlow) SetState(v interface{}) {
 	o.State = v
 }
 
@@ -356,54 +363,80 @@ func (o *SettingsFlow) SetUi(v UiContainer) {
 }
 
 func (o SettingsFlow) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SettingsFlow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Active != nil {
+	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if o.ContinueWith != nil {
+	if !IsNil(o.ContinueWith) {
 		toSerialize["continue_with"] = o.ContinueWith
 	}
-	if true {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["identity"] = o.Identity
-	}
-	if true {
-		toSerialize["issued_at"] = o.IssuedAt
-	}
-	if true {
-		toSerialize["request_url"] = o.RequestUrl
-	}
-	if o.ReturnTo != nil {
+	toSerialize["expires_at"] = o.ExpiresAt
+	toSerialize["id"] = o.Id
+	toSerialize["identity"] = o.Identity
+	toSerialize["issued_at"] = o.IssuedAt
+	toSerialize["request_url"] = o.RequestUrl
+	if !IsNil(o.ReturnTo) {
 		toSerialize["return_to"] = o.ReturnTo
 	}
-	if true {
+	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["ui"] = o.Ui
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["ui"] = o.Ui
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *SettingsFlow) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"expires_at",
+		"id",
+		"identity",
+		"issued_at",
+		"request_url",
+		"state",
+		"type",
+		"ui",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varSettingsFlow := _SettingsFlow{}
 
-	if err = json.Unmarshal(bytes, &varSettingsFlow); err == nil {
-		*o = SettingsFlow(varSettingsFlow)
+	err = json.Unmarshal(bytes, &varSettingsFlow)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SettingsFlow(varSettingsFlow)
 
 	additionalProperties := make(map[string]interface{})
 

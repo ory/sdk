@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0-rc.3
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the HealthNotReadyStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HealthNotReadyStatus{}
 
 // HealthNotReadyStatus struct for HealthNotReadyStatus
 type HealthNotReadyStatus struct {
@@ -43,7 +46,7 @@ func NewHealthNotReadyStatusWithDefaults() *HealthNotReadyStatus {
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *HealthNotReadyStatus) GetErrors() map[string]string {
-	if o == nil || o.Errors == nil {
+	if o == nil || IsNil(o.Errors) {
 		var ret map[string]string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *HealthNotReadyStatus) GetErrors() map[string]string {
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HealthNotReadyStatus) GetErrorsOk() (*map[string]string, bool) {
-	if o == nil || o.Errors == nil {
+	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
 	return o.Errors, true
@@ -61,7 +64,7 @@ func (o *HealthNotReadyStatus) GetErrorsOk() (*map[string]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *HealthNotReadyStatus) HasErrors() bool {
-	if o != nil && o.Errors != nil {
+	if o != nil && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *HealthNotReadyStatus) SetErrors(v map[string]string) {
 }
 
 func (o HealthNotReadyStatus) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o HealthNotReadyStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Errors != nil {
+	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
 	}
 
@@ -83,15 +94,19 @@ func (o HealthNotReadyStatus) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *HealthNotReadyStatus) UnmarshalJSON(bytes []byte) (err error) {
 	varHealthNotReadyStatus := _HealthNotReadyStatus{}
 
-	if err = json.Unmarshal(bytes, &varHealthNotReadyStatus); err == nil {
-		*o = HealthNotReadyStatus(varHealthNotReadyStatus)
+	err = json.Unmarshal(bytes, &varHealthNotReadyStatus)
+
+	if err != nil {
+		return err
 	}
+
+	*o = HealthNotReadyStatus(varHealthNotReadyStatus)
 
 	additionalProperties := make(map[string]interface{})
 

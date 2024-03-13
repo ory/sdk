@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**environment** | **string** | The environment of the project. prod Production dev Development |
 **name** | **string** | The name of the project to be created |
 **workspaceId** | **string** |  | [optional]
 

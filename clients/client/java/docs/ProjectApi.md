@@ -587,7 +587,7 @@ public class Example {
 
 <a name="getProjectMembers"></a>
 # **getProjectMembers**
-> List&lt;CloudAccount&gt; getProjectMembers(project)
+> List&lt;ProjectMember&gt; getProjectMembers(project)
 
 Get all members associated with this project
 
@@ -615,7 +615,7 @@ public class Example {
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String project = "project_example"; // String | 
     try {
-      List<CloudAccount> result = apiInstance.getProjectMembers(project);
+      List<ProjectMember> result = apiInstance.getProjectMembers(project);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProjectApi#getProjectMembers");
@@ -636,7 +636,7 @@ public class Example {
 
 ### Return type
 
-[**List&lt;CloudAccount&gt;**](CloudAccount.md)
+[**List&lt;ProjectMember&gt;**](ProjectMember.md)
 
 ### Authorization
 
@@ -685,7 +685,7 @@ public class Example {
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID
     String eventType = "eventType_example"; // String | The event type to query for
-    String resolution = "resolution_example"; // String | The resolution of the buckets  The minimum resolution is 1 hour.
+    String resolution = "resolution_example"; // String | The resolution of the buckets  The minimum resolution is 1 minute.
     OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | The start RFC3339 date of the time window
     OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | The end RFC3339 date of the time window
     try {
@@ -708,7 +708,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**| Project ID | |
 | **eventType** | **String**| The event type to query for | |
-| **resolution** | **String**| The resolution of the buckets  The minimum resolution is 1 hour. | |
+| **resolution** | **String**| The resolution of the buckets  The minimum resolution is 1 minute. | |
 | **from** | **OffsetDateTime**| The start RFC3339 date of the time window | |
 | **to** | **OffsetDateTime**| The end RFC3339 date of the time window | |
 

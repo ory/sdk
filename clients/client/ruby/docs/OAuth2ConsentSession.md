@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **consent_request** | [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] |
+| **context** | **Object** |  | [optional] |
 | **expires_at** | [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] |
 | **grant_access_token_audience** | **Array&lt;String&gt;** |  | [optional] |
 | **grant_scope** | **Array&lt;String&gt;** |  | [optional] |
@@ -20,6 +21,7 @@ require 'ory-client'
 
 instance = OryClient::OAuth2ConsentSession.new(
   consent_request: null,
+  context: null,
   expires_at: null,
   grant_access_token_audience: null,
   grant_scope: null,

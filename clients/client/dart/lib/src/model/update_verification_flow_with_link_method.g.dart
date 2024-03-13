@@ -77,6 +77,8 @@ class _$UpdateVerificationFlowWithLinkMethod
   final String email;
   @override
   final UpdateVerificationFlowWithLinkMethodMethodEnum method;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateVerificationFlowWithLinkMethod(
           [void Function(UpdateVerificationFlowWithLinkMethodBuilder)?
@@ -85,7 +87,10 @@ class _$UpdateVerificationFlowWithLinkMethod
           ._build();
 
   _$UpdateVerificationFlowWithLinkMethod._(
-      {this.csrfToken, required this.email, required this.method})
+      {this.csrfToken,
+      required this.email,
+      required this.method,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         email, r'UpdateVerificationFlowWithLinkMethod', 'email');
@@ -108,7 +113,8 @@ class _$UpdateVerificationFlowWithLinkMethod
     return other is UpdateVerificationFlowWithLinkMethod &&
         csrfToken == other.csrfToken &&
         email == other.email &&
-        method == other.method;
+        method == other.method &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -117,6 +123,7 @@ class _$UpdateVerificationFlowWithLinkMethod
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -126,7 +133,8 @@ class _$UpdateVerificationFlowWithLinkMethod
     return (newBuiltValueToStringHelper(r'UpdateVerificationFlowWithLinkMethod')
           ..add('csrfToken', csrfToken)
           ..add('email', email)
-          ..add('method', method))
+          ..add('method', method)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -150,6 +158,11 @@ class UpdateVerificationFlowWithLinkMethodBuilder
   set method(UpdateVerificationFlowWithLinkMethodMethodEnum? method) =>
       _$this._method = method;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateVerificationFlowWithLinkMethodBuilder() {
     UpdateVerificationFlowWithLinkMethod._defaults(this);
   }
@@ -160,6 +173,7 @@ class UpdateVerificationFlowWithLinkMethodBuilder
       _csrfToken = $v.csrfToken;
       _email = $v.email;
       _method = $v.method;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -187,7 +201,8 @@ class UpdateVerificationFlowWithLinkMethodBuilder
             email: BuiltValueNullFieldError.checkNotNull(
                 email, r'UpdateVerificationFlowWithLinkMethod', 'email'),
             method: BuiltValueNullFieldError.checkNotNull(
-                method, r'UpdateVerificationFlowWithLinkMethod', 'method'));
+                method, r'UpdateVerificationFlowWithLinkMethod', 'method'),
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

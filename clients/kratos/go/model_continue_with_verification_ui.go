@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,11 +13,15 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the ContinueWithVerificationUi type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContinueWithVerificationUi{}
 
 // ContinueWithVerificationUi Indicates, that the UI flow could be continued by showing a verification ui
 type ContinueWithVerificationUi struct {
-	// Action will always be `show_verification_ui` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+	// Action will always be `show_verification_ui` show_verification_ui ContinueWithActionShowVerificationUIString
 	Action string `json:"action"`
 	Flow ContinueWithVerificationUiFlow `json:"flow"`
 	AdditionalProperties map[string]interface{}
@@ -93,27 +97,57 @@ func (o *ContinueWithVerificationUi) SetFlow(v ContinueWithVerificationUiFlow) {
 }
 
 func (o ContinueWithVerificationUi) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ContinueWithVerificationUi) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["action"] = o.Action
-	}
-	if true {
-		toSerialize["flow"] = o.Flow
-	}
+	toSerialize["action"] = o.Action
+	toSerialize["flow"] = o.Flow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ContinueWithVerificationUi) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"action",
+		"flow",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varContinueWithVerificationUi := _ContinueWithVerificationUi{}
 
-	if err = json.Unmarshal(bytes, &varContinueWithVerificationUi); err == nil {
-		*o = ContinueWithVerificationUi(varContinueWithVerificationUi)
+	err = json.Unmarshal(bytes, &varContinueWithVerificationUi)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ContinueWithVerificationUi(varContinueWithVerificationUi)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the IdentitySchemaContainer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentitySchemaContainer{}
 
 // IdentitySchemaContainer An Identity JSON Schema Container
 type IdentitySchemaContainer struct {
@@ -45,7 +48,7 @@ func NewIdentitySchemaContainerWithDefaults() *IdentitySchemaContainer {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *IdentitySchemaContainer) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *IdentitySchemaContainer) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentitySchemaContainer) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -63,7 +66,7 @@ func (o *IdentitySchemaContainer) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IdentitySchemaContainer) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *IdentitySchemaContainer) SetId(v string) {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *IdentitySchemaContainer) GetSchema() map[string]interface{} {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *IdentitySchemaContainer) GetSchema() map[string]interface{} {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentitySchemaContainer) GetSchemaOk() (map[string]interface{}, bool) {
-	if o == nil || o.Schema == nil {
-		return nil, false
+	if o == nil || IsNil(o.Schema) {
+		return map[string]interface{}{}, false
 	}
 	return o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *IdentitySchemaContainer) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -108,11 +111,19 @@ func (o *IdentitySchemaContainer) SetSchema(v map[string]interface{}) {
 }
 
 func (o IdentitySchemaContainer) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentitySchemaContainer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Schema != nil {
+	if !IsNil(o.Schema) {
 		toSerialize["schema"] = o.Schema
 	}
 
@@ -120,15 +131,19 @@ func (o IdentitySchemaContainer) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentitySchemaContainer) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentitySchemaContainer := _IdentitySchemaContainer{}
 
-	if err = json.Unmarshal(bytes, &varIdentitySchemaContainer); err == nil {
-		*o = IdentitySchemaContainer(varIdentitySchemaContainer)
+	err = json.Unmarshal(bytes, &varIdentitySchemaContainer)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentitySchemaContainer(varIdentitySchemaContainer)
 
 	additionalProperties := make(map[string]interface{})
 

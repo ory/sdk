@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **IssuedAt** | **DateTime** | IssuedAt is the time (UTC) when the request occurred. | [optional] 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | [optional] 
 **ReturnTo** | **string** | ReturnTo contains the requested return_to URL. | [optional] 
-**State** | [**KratosVerificationFlowState**](KratosVerificationFlowState.md) |  | 
+**State** | **Object** | State represents the state of this request:  choose_method: ask the user to choose a method (e.g. verify your email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the verification challenge was passed. | 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**KratosUiContainer**](KratosUiContainer.md) |  | 
 

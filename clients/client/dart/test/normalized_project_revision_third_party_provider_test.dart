@@ -41,6 +41,11 @@ void main() {
       // TODO
     });
 
+    // String claimsSource
+    test('to test the property `claimsSource`', () async {
+      // TODO
+    });
+
     // ClientID is the application's Client ID.
     // String clientId
     test('to test the property `clientId`', () async {

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Method** | **string** | Method should be set to \&quot;password\&quot; when logging in using the identifier and password strategy. | 
 **Password** | **string** | The user&#39;s password. | 
 **PasswordIdentifier** | Pointer to **string** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 
 ## Methods
 
@@ -138,6 +139,31 @@ SetPasswordIdentifier sets PasswordIdentifier field to given value.
 `func (o *UpdateLoginFlowWithPasswordMethod) HasPasswordIdentifier() bool`
 
 HasPasswordIdentifier returns a boolean if a field has been set.
+
+### GetTransientPayload
+
+`func (o *UpdateLoginFlowWithPasswordMethod) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateLoginFlowWithPasswordMethod) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateLoginFlowWithPasswordMethod) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateLoginFlowWithPasswordMethod) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

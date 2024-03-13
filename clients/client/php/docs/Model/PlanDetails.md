@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **baseFeeYearly** | **int** | BaseFeeYearly is the yearly base fee for the plan. |
 **custom** | **bool** | Custom is true if the plan is custom. This means it will be hidden from the pricing page. |
 **description** | **string** | Description is the description of the plan. |
-**features** | [**array<string,\Ory\Client\Model\GenericUsage>**](GenericUsage.md) | Features are the feature definitions included in the plan. |
+**features** | [**array<string,\Ory\Client\Model\GenericUsage>**](GenericUsage.md) |  |
 **name** | **string** | Name is the name of the plan. |
 **version** | **int** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. |
 

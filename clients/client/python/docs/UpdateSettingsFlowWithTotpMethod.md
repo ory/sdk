@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **csrf_token** | **str** | CSRFToken is the anti-CSRF token | [optional] 
 **totp_code** | **str** | ValidationTOTP must contain a valid TOTP based on the | [optional] 
 **totp_unlink** | **bool** | UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device. | [optional] 
+**transient_payload** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Transient data to pass along to any webhooks | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -52,8 +52,11 @@ docs/Model/CreateRecoveryCodeForIdentityBody.md
 docs/Model/CreateRecoveryLinkForIdentityBody.md
 docs/Model/CreateRelationshipBody.md
 docs/Model/CreateSubscriptionBody.md
+docs/Model/CreateSubscriptionCommon.md
 docs/Model/CreateVerifiableCredentialRequestBody.md
 docs/Model/CreateWorkspaceMemberInviteBody.md
+docs/Model/CreateWorkspacePayload.md
+docs/Model/CreateWorkspaceSubscriptionBody.md
 docs/Model/CredentialSupportedDraft00.md
 docs/Model/CustomDomain.md
 docs/Model/DeleteMySessionsCount.md
@@ -87,12 +90,10 @@ docs/Model/IdentityCredentialsCode.md
 docs/Model/IdentityCredentialsOidc.md
 docs/Model/IdentityCredentialsOidcProvider.md
 docs/Model/IdentityCredentialsPassword.md
-docs/Model/IdentityCredentialsType.md
 docs/Model/IdentityPatch.md
 docs/Model/IdentityPatchResponse.md
 docs/Model/IdentitySchemaContainer.md
 docs/Model/IdentitySchemaPreset.md
-docs/Model/IdentityState.md
 docs/Model/IdentityWithCredentials.md
 docs/Model/IdentityWithCredentialsOidc.md
 docs/Model/IdentityWithCredentialsOidcConfig.md
@@ -107,7 +108,6 @@ docs/Model/InternalGetProjectBrandingBody.md
 docs/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/Model/InternalIsOwnerForProjectBySlugBody.md
 docs/Model/InternalIsOwnerForProjectBySlugResponse.md
-docs/Model/InternalProvisionMockSubscription.md
 docs/Model/IntrospectedOAuth2Token.md
 docs/Model/IsOwnerForProjectBySlug.md
 docs/Model/JsonPatch.md
@@ -117,6 +117,7 @@ docs/Model/KetoNamespace.md
 docs/Model/ListEventStreams.md
 docs/Model/ListMyWorkspacesResponse.md
 docs/Model/ListOrganizationsResponse.md
+docs/Model/ListWorkspaceProjectsResponse.md
 docs/Model/LoginFlow.md
 docs/Model/LoginFlowState.md
 docs/Model/LogoutFlow.md
@@ -126,6 +127,7 @@ docs/Model/MemberInvite.md
 docs/Model/Message.md
 docs/Model/MessageDispatch.md
 docs/Model/MetricsDatapoint.md
+docs/Model/MigrationOptions.md
 docs/Model/ModelNamespace.md
 docs/Model/NeedsPrivilegedSessionError.md
 docs/Model/NormalizedProject.md
@@ -154,6 +156,7 @@ docs/Model/PaginationHeaders.md
 docs/Model/ParseError.md
 docs/Model/PatchIdentitiesBody.md
 docs/Model/PerformNativeLogoutBody.md
+docs/Model/PermissionsOnWorkpaceResponse.md
 docs/Model/Plan.md
 docs/Model/PlanDetails.md
 docs/Model/PostCheckPermissionBody.md
@@ -166,6 +169,7 @@ docs/Model/ProjectBrandingTheme.md
 docs/Model/ProjectCors.md
 docs/Model/ProjectEventsDatapoint.md
 docs/Model/ProjectHost.md
+docs/Model/ProjectMember.md
 docs/Model/ProjectMetadata.md
 docs/Model/ProjectServiceIdentity.md
 docs/Model/ProjectServiceOAuth2.md
@@ -200,7 +204,6 @@ docs/Model/SetProjectBrandingThemeBody.md
 docs/Model/SettingsFlow.md
 docs/Model/SettingsFlowState.md
 docs/Model/SourcePosition.md
-docs/Model/StripeCustomer.md
 docs/Model/SubjectSet.md
 docs/Model/Subscription.md
 docs/Model/SuccessfulCodeExchangeResponse.md
@@ -251,6 +254,7 @@ docs/Model/UpdateSubscriptionBody.md
 docs/Model/UpdateVerificationFlowBody.md
 docs/Model/UpdateVerificationFlowWithCodeMethod.md
 docs/Model/UpdateVerificationFlowWithLinkMethod.md
+docs/Model/UpdateWorkspacePayload.md
 docs/Model/Usage.md
 docs/Model/VerifiableCredentialPrimingResponse.md
 docs/Model/VerifiableCredentialProof.md
@@ -261,6 +265,7 @@ docs/Model/VerificationFlowState.md
 docs/Model/Version.md
 docs/Model/Warning.md
 docs/Model/Workspace.md
+docs/Model/WorkspaceMeta.md
 git_push.sh
 lib/Api/CourierApi.php
 lib/Api/EventsApi.php
@@ -313,8 +318,11 @@ lib/Model/CreateRecoveryCodeForIdentityBody.php
 lib/Model/CreateRecoveryLinkForIdentityBody.php
 lib/Model/CreateRelationshipBody.php
 lib/Model/CreateSubscriptionBody.php
+lib/Model/CreateSubscriptionCommon.php
 lib/Model/CreateVerifiableCredentialRequestBody.php
 lib/Model/CreateWorkspaceMemberInviteBody.php
+lib/Model/CreateWorkspacePayload.php
+lib/Model/CreateWorkspaceSubscriptionBody.php
 lib/Model/CredentialSupportedDraft00.php
 lib/Model/CustomDomain.php
 lib/Model/DeleteMySessionsCount.php
@@ -348,12 +356,10 @@ lib/Model/IdentityCredentialsCode.php
 lib/Model/IdentityCredentialsOidc.php
 lib/Model/IdentityCredentialsOidcProvider.php
 lib/Model/IdentityCredentialsPassword.php
-lib/Model/IdentityCredentialsType.php
 lib/Model/IdentityPatch.php
 lib/Model/IdentityPatchResponse.php
 lib/Model/IdentitySchemaContainer.php
 lib/Model/IdentitySchemaPreset.php
-lib/Model/IdentityState.php
 lib/Model/IdentityWithCredentials.php
 lib/Model/IdentityWithCredentialsOidc.php
 lib/Model/IdentityWithCredentialsOidcConfig.php
@@ -368,7 +374,6 @@ lib/Model/InternalGetProjectBrandingBody.php
 lib/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.php
 lib/Model/InternalIsOwnerForProjectBySlugBody.php
 lib/Model/InternalIsOwnerForProjectBySlugResponse.php
-lib/Model/InternalProvisionMockSubscription.php
 lib/Model/IntrospectedOAuth2Token.php
 lib/Model/IsOwnerForProjectBySlug.php
 lib/Model/JsonPatch.php
@@ -378,6 +383,7 @@ lib/Model/KetoNamespace.php
 lib/Model/ListEventStreams.php
 lib/Model/ListMyWorkspacesResponse.php
 lib/Model/ListOrganizationsResponse.php
+lib/Model/ListWorkspaceProjectsResponse.php
 lib/Model/LoginFlow.php
 lib/Model/LoginFlowState.php
 lib/Model/LogoutFlow.php
@@ -387,6 +393,7 @@ lib/Model/MemberInvite.php
 lib/Model/Message.php
 lib/Model/MessageDispatch.php
 lib/Model/MetricsDatapoint.php
+lib/Model/MigrationOptions.php
 lib/Model/ModelInterface.php
 lib/Model/ModelNamespace.php
 lib/Model/NeedsPrivilegedSessionError.php
@@ -416,6 +423,7 @@ lib/Model/PaginationHeaders.php
 lib/Model/ParseError.php
 lib/Model/PatchIdentitiesBody.php
 lib/Model/PerformNativeLogoutBody.php
+lib/Model/PermissionsOnWorkpaceResponse.php
 lib/Model/Plan.php
 lib/Model/PlanDetails.php
 lib/Model/PostCheckPermissionBody.php
@@ -428,6 +436,7 @@ lib/Model/ProjectBrandingTheme.php
 lib/Model/ProjectCors.php
 lib/Model/ProjectEventsDatapoint.php
 lib/Model/ProjectHost.php
+lib/Model/ProjectMember.php
 lib/Model/ProjectMetadata.php
 lib/Model/ProjectServiceIdentity.php
 lib/Model/ProjectServiceOAuth2.php
@@ -462,7 +471,6 @@ lib/Model/SetProjectBrandingThemeBody.php
 lib/Model/SettingsFlow.php
 lib/Model/SettingsFlowState.php
 lib/Model/SourcePosition.php
-lib/Model/StripeCustomer.php
 lib/Model/SubjectSet.php
 lib/Model/Subscription.php
 lib/Model/SuccessfulCodeExchangeResponse.php
@@ -513,6 +521,7 @@ lib/Model/UpdateSubscriptionBody.php
 lib/Model/UpdateVerificationFlowBody.php
 lib/Model/UpdateVerificationFlowWithCodeMethod.php
 lib/Model/UpdateVerificationFlowWithLinkMethod.php
+lib/Model/UpdateWorkspacePayload.php
 lib/Model/Usage.php
 lib/Model/VerifiableCredentialPrimingResponse.php
 lib/Model/VerifiableCredentialProof.php
@@ -523,6 +532,7 @@ lib/Model/VerificationFlowState.php
 lib/Model/Version.php
 lib/Model/Warning.php
 lib/Model/Workspace.php
+lib/Model/WorkspaceMeta.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/CourierApiTest.php
@@ -573,8 +583,11 @@ test/Model/CreateRecoveryCodeForIdentityBodyTest.php
 test/Model/CreateRecoveryLinkForIdentityBodyTest.php
 test/Model/CreateRelationshipBodyTest.php
 test/Model/CreateSubscriptionBodyTest.php
+test/Model/CreateSubscriptionCommonTest.php
 test/Model/CreateVerifiableCredentialRequestBodyTest.php
 test/Model/CreateWorkspaceMemberInviteBodyTest.php
+test/Model/CreateWorkspacePayloadTest.php
+test/Model/CreateWorkspaceSubscriptionBodyTest.php
 test/Model/CredentialSupportedDraft00Test.php
 test/Model/CustomDomainTest.php
 test/Model/DeleteMySessionsCountTest.php
@@ -607,12 +620,10 @@ test/Model/IdentityCredentialsOidcProviderTest.php
 test/Model/IdentityCredentialsOidcTest.php
 test/Model/IdentityCredentialsPasswordTest.php
 test/Model/IdentityCredentialsTest.php
-test/Model/IdentityCredentialsTypeTest.php
 test/Model/IdentityPatchResponseTest.php
 test/Model/IdentityPatchTest.php
 test/Model/IdentitySchemaContainerTest.php
 test/Model/IdentitySchemaPresetTest.php
-test/Model/IdentityStateTest.php
 test/Model/IdentityTest.php
 test/Model/IdentityWithCredentialsOidcConfigProviderTest.php
 test/Model/IdentityWithCredentialsOidcConfigTest.php
@@ -628,7 +639,6 @@ test/Model/InternalGetProjectBrandingBodyTest.php
 test/Model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugResponseTest.php
-test/Model/InternalProvisionMockSubscriptionTest.php
 test/Model/IntrospectedOAuth2TokenTest.php
 test/Model/IsOwnerForProjectBySlugTest.php
 test/Model/JsonPatchTest.php
@@ -638,6 +648,7 @@ test/Model/KetoNamespaceTest.php
 test/Model/ListEventStreamsTest.php
 test/Model/ListMyWorkspacesResponseTest.php
 test/Model/ListOrganizationsResponseTest.php
+test/Model/ListWorkspaceProjectsResponseTest.php
 test/Model/LoginFlowStateTest.php
 test/Model/LoginFlowTest.php
 test/Model/LogoutFlowTest.php
@@ -647,6 +658,7 @@ test/Model/MemberInviteTest.php
 test/Model/MessageDispatchTest.php
 test/Model/MessageTest.php
 test/Model/MetricsDatapointTest.php
+test/Model/MigrationOptionsTest.php
 test/Model/ModelNamespaceTest.php
 test/Model/NeedsPrivilegedSessionErrorTest.php
 test/Model/NormalizedProjectRevisionCourierChannelTest.php
@@ -675,6 +687,7 @@ test/Model/PaginationTest.php
 test/Model/ParseErrorTest.php
 test/Model/PatchIdentitiesBodyTest.php
 test/Model/PerformNativeLogoutBodyTest.php
+test/Model/PermissionsOnWorkpaceResponseTest.php
 test/Model/PlanDetailsTest.php
 test/Model/PlanTest.php
 test/Model/PostCheckPermissionBodyTest.php
@@ -686,6 +699,7 @@ test/Model/ProjectBrandingThemeTest.php
 test/Model/ProjectCorsTest.php
 test/Model/ProjectEventsDatapointTest.php
 test/Model/ProjectHostTest.php
+test/Model/ProjectMemberTest.php
 test/Model/ProjectMetadataTest.php
 test/Model/ProjectServiceIdentityTest.php
 test/Model/ProjectServiceOAuth2Test.php
@@ -721,7 +735,6 @@ test/Model/SetProjectTest.php
 test/Model/SettingsFlowStateTest.php
 test/Model/SettingsFlowTest.php
 test/Model/SourcePositionTest.php
-test/Model/StripeCustomerTest.php
 test/Model/SubjectSetTest.php
 test/Model/SubscriptionTest.php
 test/Model/SuccessfulCodeExchangeResponseTest.php
@@ -772,6 +785,7 @@ test/Model/UpdateSubscriptionBodyTest.php
 test/Model/UpdateVerificationFlowBodyTest.php
 test/Model/UpdateVerificationFlowWithCodeMethodTest.php
 test/Model/UpdateVerificationFlowWithLinkMethodTest.php
+test/Model/UpdateWorkspacePayloadTest.php
 test/Model/UsageTest.php
 test/Model/VerifiableCredentialPrimingResponseTest.php
 test/Model/VerifiableCredentialProofTest.php
@@ -781,4 +795,5 @@ test/Model/VerificationFlowStateTest.php
 test/Model/VerificationFlowTest.php
 test/Model/VersionTest.php
 test/Model/WarningTest.php
+test/Model/WorkspaceMetaTest.php
 test/Model/WorkspaceTest.php

@@ -13,13 +13,18 @@ class _$UpdateLoginFlowWithTotpMethod extends UpdateLoginFlowWithTotpMethod {
   final String method;
   @override
   final String totpCode;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateLoginFlowWithTotpMethod(
           [void Function(UpdateLoginFlowWithTotpMethodBuilder)? updates]) =>
       (new UpdateLoginFlowWithTotpMethodBuilder()..update(updates))._build();
 
   _$UpdateLoginFlowWithTotpMethod._(
-      {this.csrfToken, required this.method, required this.totpCode})
+      {this.csrfToken,
+      required this.method,
+      required this.totpCode,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         method, r'UpdateLoginFlowWithTotpMethod', 'method');
@@ -42,7 +47,8 @@ class _$UpdateLoginFlowWithTotpMethod extends UpdateLoginFlowWithTotpMethod {
     return other is UpdateLoginFlowWithTotpMethod &&
         csrfToken == other.csrfToken &&
         method == other.method &&
-        totpCode == other.totpCode;
+        totpCode == other.totpCode &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -51,6 +57,7 @@ class _$UpdateLoginFlowWithTotpMethod extends UpdateLoginFlowWithTotpMethod {
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, totpCode.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -60,7 +67,8 @@ class _$UpdateLoginFlowWithTotpMethod extends UpdateLoginFlowWithTotpMethod {
     return (newBuiltValueToStringHelper(r'UpdateLoginFlowWithTotpMethod')
           ..add('csrfToken', csrfToken)
           ..add('method', method)
-          ..add('totpCode', totpCode))
+          ..add('totpCode', totpCode)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -83,6 +91,11 @@ class UpdateLoginFlowWithTotpMethodBuilder
   String? get totpCode => _$this._totpCode;
   set totpCode(String? totpCode) => _$this._totpCode = totpCode;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateLoginFlowWithTotpMethodBuilder() {
     UpdateLoginFlowWithTotpMethod._defaults(this);
   }
@@ -93,6 +106,7 @@ class UpdateLoginFlowWithTotpMethodBuilder
       _csrfToken = $v.csrfToken;
       _method = $v.method;
       _totpCode = $v.totpCode;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -119,7 +133,8 @@ class UpdateLoginFlowWithTotpMethodBuilder
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateLoginFlowWithTotpMethod', 'method'),
             totpCode: BuiltValueNullFieldError.checkNotNull(
-                totpCode, r'UpdateLoginFlowWithTotpMethod', 'totpCode'));
+                totpCode, r'UpdateLoginFlowWithTotpMethod', 'totpCode'),
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

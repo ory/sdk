@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.5.1
-  - Build date: 2024-01-11T16:56:26.893672652Z[Etc/UTC]
+- API version: v1.8.1
+  - Build date: 2024-03-08T12:29:59.344544236Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.5.1</version>
+  <version>v1.8.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.5.1"
+     implementation "sh.ory:client:v1.8.1"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.5.1.jar`
+* `target/client-v1.8.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -293,8 +293,11 @@ Class | Method | HTTP request | Description
  - [CreateRecoveryLinkForIdentityBody](docs/CreateRecoveryLinkForIdentityBody.md)
  - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
+ - [CreateSubscriptionCommon](docs/CreateSubscriptionCommon.md)
  - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
  - [CreateWorkspaceMemberInviteBody](docs/CreateWorkspaceMemberInviteBody.md)
+ - [CreateWorkspacePayload](docs/CreateWorkspacePayload.md)
+ - [CreateWorkspaceSubscriptionBody](docs/CreateWorkspaceSubscriptionBody.md)
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
@@ -329,12 +332,10 @@ Class | Method | HTTP request | Description
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
- - [IdentityCredentialsType](docs/IdentityCredentialsType.md)
  - [IdentityPatch](docs/IdentityPatch.md)
  - [IdentityPatchResponse](docs/IdentityPatchResponse.md)
  - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
  - [IdentitySchemaPreset](docs/IdentitySchemaPreset.md)
- - [IdentityState](docs/IdentityState.md)
  - [IdentityWithCredentials](docs/IdentityWithCredentials.md)
  - [IdentityWithCredentialsOidc](docs/IdentityWithCredentialsOidc.md)
  - [IdentityWithCredentialsOidcConfig](docs/IdentityWithCredentialsOidcConfig.md)
@@ -345,7 +346,6 @@ Class | Method | HTTP request | Description
  - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [InternalIsOwnerForProjectBySlugResponse](docs/InternalIsOwnerForProjectBySlugResponse.md)
- - [InternalProvisionMockSubscription](docs/InternalProvisionMockSubscription.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
  - [IsReady200Response](docs/IsReady200Response.md)
@@ -357,6 +357,7 @@ Class | Method | HTTP request | Description
  - [ListEventStreams](docs/ListEventStreams.md)
  - [ListMyWorkspacesResponse](docs/ListMyWorkspacesResponse.md)
  - [ListOrganizationsResponse](docs/ListOrganizationsResponse.md)
+ - [ListWorkspaceProjectsResponse](docs/ListWorkspaceProjectsResponse.md)
  - [LoginFlow](docs/LoginFlow.md)
  - [LoginFlowState](docs/LoginFlowState.md)
  - [LogoutFlow](docs/LogoutFlow.md)
@@ -366,6 +367,7 @@ Class | Method | HTTP request | Description
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
  - [MetricsDatapoint](docs/MetricsDatapoint.md)
+ - [MigrationOptions](docs/MigrationOptions.md)
  - [Namespace](docs/Namespace.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)
@@ -394,6 +396,7 @@ Class | Method | HTTP request | Description
  - [ParseError](docs/ParseError.md)
  - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
  - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
+ - [PermissionsOnWorkpaceResponse](docs/PermissionsOnWorkpaceResponse.md)
  - [Plan](docs/Plan.md)
  - [PlanDetails](docs/PlanDetails.md)
  - [PostCheckPermissionBody](docs/PostCheckPermissionBody.md)
@@ -406,6 +409,7 @@ Class | Method | HTTP request | Description
  - [ProjectCors](docs/ProjectCors.md)
  - [ProjectEventsDatapoint](docs/ProjectEventsDatapoint.md)
  - [ProjectHost](docs/ProjectHost.md)
+ - [ProjectMember](docs/ProjectMember.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
  - [ProjectServiceOAuth2](docs/ProjectServiceOAuth2.md)
@@ -440,7 +444,6 @@ Class | Method | HTTP request | Description
  - [SettingsFlow](docs/SettingsFlow.md)
  - [SettingsFlowState](docs/SettingsFlowState.md)
  - [SourcePosition](docs/SourcePosition.md)
- - [StripeCustomer](docs/StripeCustomer.md)
  - [SubjectSet](docs/SubjectSet.md)
  - [Subscription](docs/Subscription.md)
  - [SuccessfulCodeExchangeResponse](docs/SuccessfulCodeExchangeResponse.md)
@@ -491,6 +494,7 @@ Class | Method | HTTP request | Description
  - [UpdateVerificationFlowBody](docs/UpdateVerificationFlowBody.md)
  - [UpdateVerificationFlowWithCodeMethod](docs/UpdateVerificationFlowWithCodeMethod.md)
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
+ - [UpdateWorkspacePayload](docs/UpdateWorkspacePayload.md)
  - [Usage](docs/Usage.md)
  - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)
  - [VerifiableCredentialProof](docs/VerifiableCredentialProof.md)
@@ -501,6 +505,7 @@ Class | Method | HTTP request | Description
  - [Version](docs/Version.md)
  - [Warning](docs/Warning.md)
  - [Workspace](docs/Workspace.md)
+ - [WorkspaceMeta](docs/WorkspaceMeta.md)
 
 
 ## Documentation for Authorization

@@ -509,7 +509,7 @@ Name | Type | Description  | Notes
 ## `getProjectMembers()`
 
 ```php
-getProjectMembers($project): \Ory\Client\Model\CloudAccount[]
+getProjectMembers($project): \Ory\Client\Model\ProjectMember[]
 ```
 
 Get all members associated with this project
@@ -551,7 +551,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Ory\Client\Model\CloudAccount[]**](../Model/CloudAccount.md)
+[**\Ory\Client\Model\ProjectMember[]**](../Model/ProjectMember.md)
 
 ### Authorization
 
@@ -595,7 +595,7 @@ $apiInstance = new Ory\Client\Api\ProjectApi(
 );
 $projectId = 'projectId_example'; // string | Project ID
 $eventType = 'eventType_example'; // string | The event type to query for
-$resolution = 'resolution_example'; // string | The resolution of the buckets  The minimum resolution is 1 hour.
+$resolution = 'resolution_example'; // string | The resolution of the buckets  The minimum resolution is 1 minute.
 $from = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | The start RFC3339 date of the time window
 $to = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | The end RFC3339 date of the time window
 
@@ -613,7 +613,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string**| Project ID |
  **eventType** | **string**| The event type to query for |
- **resolution** | **string**| The resolution of the buckets  The minimum resolution is 1 hour. |
+ **resolution** | **string**| The resolution of the buckets  The minimum resolution is 1 minute. |
  **from** | **\DateTime**| The start RFC3339 date of the time window |
  **to** | **\DateTime**| The end RFC3339 date of the time window |
 

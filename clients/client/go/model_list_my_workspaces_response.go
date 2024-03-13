@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.1
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &ListMyWorkspacesResponse{}
 type ListMyWorkspacesResponse struct {
 	HasNextPage bool `json:"has_next_page"`
 	NextPageToken string `json:"next_page_token"`
-	Workspaces []Workspace `json:"workspaces"`
+	Workspaces []WorkspaceMeta `json:"workspaces"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,7 +33,7 @@ type _ListMyWorkspacesResponse ListMyWorkspacesResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListMyWorkspacesResponse(hasNextPage bool, nextPageToken string, workspaces []Workspace) *ListMyWorkspacesResponse {
+func NewListMyWorkspacesResponse(hasNextPage bool, nextPageToken string, workspaces []WorkspaceMeta) *ListMyWorkspacesResponse {
 	this := ListMyWorkspacesResponse{}
 	this.HasNextPage = hasNextPage
 	this.NextPageToken = nextPageToken
@@ -98,9 +98,9 @@ func (o *ListMyWorkspacesResponse) SetNextPageToken(v string) {
 }
 
 // GetWorkspaces returns the Workspaces field value
-func (o *ListMyWorkspacesResponse) GetWorkspaces() []Workspace {
+func (o *ListMyWorkspacesResponse) GetWorkspaces() []WorkspaceMeta {
 	if o == nil {
-		var ret []Workspace
+		var ret []WorkspaceMeta
 		return ret
 	}
 
@@ -109,7 +109,7 @@ func (o *ListMyWorkspacesResponse) GetWorkspaces() []Workspace {
 
 // GetWorkspacesOk returns a tuple with the Workspaces field value
 // and a boolean to check if the value has been set.
-func (o *ListMyWorkspacesResponse) GetWorkspacesOk() ([]Workspace, bool) {
+func (o *ListMyWorkspacesResponse) GetWorkspacesOk() ([]WorkspaceMeta, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,7 +117,7 @@ func (o *ListMyWorkspacesResponse) GetWorkspacesOk() ([]Workspace, bool) {
 }
 
 // SetWorkspaces sets field value
-func (o *ListMyWorkspacesResponse) SetWorkspaces(v []Workspace) {
+func (o *ListMyWorkspacesResponse) SetWorkspaces(v []WorkspaceMeta) {
 	o.Workspaces = v
 }
 

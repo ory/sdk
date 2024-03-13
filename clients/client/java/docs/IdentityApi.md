@@ -236,7 +236,7 @@ public class Example {
 
 <a name="createRecoveryLinkForIdentity"></a>
 # **createRecoveryLinkForIdentity**
-> RecoveryLinkForIdentity createRecoveryLinkForIdentity(createRecoveryLinkForIdentityBody)
+> RecoveryLinkForIdentity createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody)
 
 Create a Recovery Link
 
@@ -262,9 +262,10 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
+    String returnTo = "returnTo_example"; // String | 
     CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody = new CreateRecoveryLinkForIdentityBody(); // CreateRecoveryLinkForIdentityBody | 
     try {
-      RecoveryLinkForIdentity result = apiInstance.createRecoveryLinkForIdentity(createRecoveryLinkForIdentityBody);
+      RecoveryLinkForIdentity result = apiInstance.createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#createRecoveryLinkForIdentity");
@@ -281,6 +282,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **returnTo** | **String**|  | [optional] |
 | **createRecoveryLinkForIdentityBody** | [**CreateRecoveryLinkForIdentityBody**](CreateRecoveryLinkForIdentityBody.md)|  | [optional] |
 
 ### Return type
@@ -401,7 +403,7 @@ public class Example {
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID is the identity's ID.
-    String type = "totp"; // String | Type is the credential's Type. One of totp, webauthn, lookup
+    String type = "password"; // String | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
     try {
       apiInstance.deleteIdentityCredentials(id, type);
     } catch (ApiException e) {
@@ -420,7 +422,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID is the identity&#39;s ID. | |
-| **type** | **String**| Type is the credential&#39;s Type. One of totp, webauthn, lookup | [enum: totp, webauthn, lookup] |
+| **type** | **String**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [enum: password, oidc, totp, lookup_secret, webauthn, code, link_recovery, code_recovery] |
 
 ### Return type
 
@@ -700,7 +702,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID must be set to the ID of identity you want to get | |
-| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] [enum: password, totp, oidc, webauthn, lookup_secret, code] |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] [enum: password, oidc, totp, lookup_secret, webauthn, code, link_recovery, code_recovery] |
 
 ### Return type
 
@@ -859,7 +861,7 @@ public class Example {
 
 <a name="listIdentities"></a>
 # **listIdentities**
-> List&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, consistency, idsFilter, credentialsIdentifier, previewCredentialsIdentifierSimilar)
+> List&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential)
 
 List Identities
 
@@ -890,11 +892,12 @@ public class Example {
     Long pageSize = 250L; // Long | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     String pageToken = "1"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     String consistency = ""; // String | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-    List<String> idsFilter = Arrays.asList(); // List<String> | IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied.
+    List<String> ids = Arrays.asList(); // List<String> | List of ids used to filter identities. If this list is empty, then no filter will be applied.
     String credentialsIdentifier = "credentialsIdentifier_example"; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     String previewCredentialsIdentifierSimilar = "previewCredentialsIdentifierSimilar_example"; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+    List<String> includeCredential = Arrays.asList(); // List<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
     try {
-      List<Identity> result = apiInstance.listIdentities(perPage, page, pageSize, pageToken, consistency, idsFilter, credentialsIdentifier, previewCredentialsIdentifierSimilar);
+      List<Identity> result = apiInstance.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentities");
@@ -916,9 +919,10 @@ public class Example {
 | **pageSize** | **Long**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
 | **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 1] |
 | **consistency** | **String**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] [enum: , strong, eventual] |
-| **idsFilter** | [**List&lt;String&gt;**](String.md)| IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] |
+| **ids** | [**List&lt;String&gt;**](String.md)| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] |
 | **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **previewCredentialsIdentifierSimilar** | **String**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
 
 ### Return type
 

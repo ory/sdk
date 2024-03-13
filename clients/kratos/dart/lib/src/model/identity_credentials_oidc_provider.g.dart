@@ -15,6 +15,8 @@ class _$IdentityCredentialsOidcProvider
   @override
   final String? initialRefreshToken;
   @override
+  final String? organization;
+  @override
   final String? provider;
   @override
   final String? subject;
@@ -27,6 +29,7 @@ class _$IdentityCredentialsOidcProvider
       {this.initialAccessToken,
       this.initialIdToken,
       this.initialRefreshToken,
+      this.organization,
       this.provider,
       this.subject})
       : super._();
@@ -47,6 +50,7 @@ class _$IdentityCredentialsOidcProvider
         initialAccessToken == other.initialAccessToken &&
         initialIdToken == other.initialIdToken &&
         initialRefreshToken == other.initialRefreshToken &&
+        organization == other.organization &&
         provider == other.provider &&
         subject == other.subject;
   }
@@ -57,6 +61,7 @@ class _$IdentityCredentialsOidcProvider
     _$hash = $jc(_$hash, initialAccessToken.hashCode);
     _$hash = $jc(_$hash, initialIdToken.hashCode);
     _$hash = $jc(_$hash, initialRefreshToken.hashCode);
+    _$hash = $jc(_$hash, organization.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, subject.hashCode);
     _$hash = $jf(_$hash);
@@ -69,6 +74,7 @@ class _$IdentityCredentialsOidcProvider
           ..add('initialAccessToken', initialAccessToken)
           ..add('initialIdToken', initialIdToken)
           ..add('initialRefreshToken', initialRefreshToken)
+          ..add('organization', organization)
           ..add('provider', provider)
           ..add('subject', subject))
         .toString();
@@ -96,6 +102,10 @@ class IdentityCredentialsOidcProviderBuilder
   set initialRefreshToken(String? initialRefreshToken) =>
       _$this._initialRefreshToken = initialRefreshToken;
 
+  String? _organization;
+  String? get organization => _$this._organization;
+  set organization(String? organization) => _$this._organization = organization;
+
   String? _provider;
   String? get provider => _$this._provider;
   set provider(String? provider) => _$this._provider = provider;
@@ -114,6 +124,7 @@ class IdentityCredentialsOidcProviderBuilder
       _initialAccessToken = $v.initialAccessToken;
       _initialIdToken = $v.initialIdToken;
       _initialRefreshToken = $v.initialRefreshToken;
+      _organization = $v.organization;
       _provider = $v.provider;
       _subject = $v.subject;
       _$v = null;
@@ -141,6 +152,7 @@ class IdentityCredentialsOidcProviderBuilder
             initialAccessToken: initialAccessToken,
             initialIdToken: initialIdToken,
             initialRefreshToken: initialRefreshToken,
+            organization: organization,
             provider: provider,
             subject: subject);
     replace(_$result);

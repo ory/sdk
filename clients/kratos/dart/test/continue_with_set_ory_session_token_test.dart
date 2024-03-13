@@ -7,7 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ContinueWithSetOrySessionToken, () {
-    // Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+    // Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString
     // String action
     test('to test the property `action`', () async {
       // TODO

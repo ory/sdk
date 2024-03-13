@@ -78,13 +78,19 @@ class _$UpdateRecoveryFlowWithCodeMethod
   final String? email;
   @override
   final UpdateRecoveryFlowWithCodeMethodMethodEnum method;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateRecoveryFlowWithCodeMethod(
           [void Function(UpdateRecoveryFlowWithCodeMethodBuilder)? updates]) =>
       (new UpdateRecoveryFlowWithCodeMethodBuilder()..update(updates))._build();
 
   _$UpdateRecoveryFlowWithCodeMethod._(
-      {this.code, this.csrfToken, this.email, required this.method})
+      {this.code,
+      this.csrfToken,
+      this.email,
+      required this.method,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         method, r'UpdateRecoveryFlowWithCodeMethod', 'method');
@@ -106,7 +112,8 @@ class _$UpdateRecoveryFlowWithCodeMethod
         code == other.code &&
         csrfToken == other.csrfToken &&
         email == other.email &&
-        method == other.method;
+        method == other.method &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -116,6 +123,7 @@ class _$UpdateRecoveryFlowWithCodeMethod
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -126,7 +134,8 @@ class _$UpdateRecoveryFlowWithCodeMethod
           ..add('code', code)
           ..add('csrfToken', csrfToken)
           ..add('email', email)
-          ..add('method', method))
+          ..add('method', method)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -154,6 +163,11 @@ class UpdateRecoveryFlowWithCodeMethodBuilder
   set method(UpdateRecoveryFlowWithCodeMethodMethodEnum? method) =>
       _$this._method = method;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateRecoveryFlowWithCodeMethodBuilder() {
     UpdateRecoveryFlowWithCodeMethod._defaults(this);
   }
@@ -165,6 +179,7 @@ class UpdateRecoveryFlowWithCodeMethodBuilder
       _csrfToken = $v.csrfToken;
       _email = $v.email;
       _method = $v.method;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -191,7 +206,8 @@ class UpdateRecoveryFlowWithCodeMethodBuilder
             csrfToken: csrfToken,
             email: email,
             method: BuiltValueNullFieldError.checkNotNull(
-                method, r'UpdateRecoveryFlowWithCodeMethod', 'method'));
+                method, r'UpdateRecoveryFlowWithCodeMethod', 'method'),
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

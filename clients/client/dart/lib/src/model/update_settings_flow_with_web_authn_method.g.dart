@@ -13,6 +13,8 @@ class _$UpdateSettingsFlowWithWebAuthnMethod
   @override
   final String method;
   @override
+  final JsonObject? transientPayload;
+  @override
   final String? webauthnRegister;
   @override
   final String? webauthnRegisterDisplayname;
@@ -28,6 +30,7 @@ class _$UpdateSettingsFlowWithWebAuthnMethod
   _$UpdateSettingsFlowWithWebAuthnMethod._(
       {this.csrfToken,
       required this.method,
+      this.transientPayload,
       this.webauthnRegister,
       this.webauthnRegisterDisplayname,
       this.webauthnRemove})
@@ -51,6 +54,7 @@ class _$UpdateSettingsFlowWithWebAuthnMethod
     return other is UpdateSettingsFlowWithWebAuthnMethod &&
         csrfToken == other.csrfToken &&
         method == other.method &&
+        transientPayload == other.transientPayload &&
         webauthnRegister == other.webauthnRegister &&
         webauthnRegisterDisplayname == other.webauthnRegisterDisplayname &&
         webauthnRemove == other.webauthnRemove;
@@ -61,6 +65,7 @@ class _$UpdateSettingsFlowWithWebAuthnMethod
     var _$hash = 0;
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, webauthnRegister.hashCode);
     _$hash = $jc(_$hash, webauthnRegisterDisplayname.hashCode);
     _$hash = $jc(_$hash, webauthnRemove.hashCode);
@@ -73,6 +78,7 @@ class _$UpdateSettingsFlowWithWebAuthnMethod
     return (newBuiltValueToStringHelper(r'UpdateSettingsFlowWithWebAuthnMethod')
           ..add('csrfToken', csrfToken)
           ..add('method', method)
+          ..add('transientPayload', transientPayload)
           ..add('webauthnRegister', webauthnRegister)
           ..add('webauthnRegisterDisplayname', webauthnRegisterDisplayname)
           ..add('webauthnRemove', webauthnRemove))
@@ -93,6 +99,11 @@ class UpdateSettingsFlowWithWebAuthnMethodBuilder
   String? _method;
   String? get method => _$this._method;
   set method(String? method) => _$this._method = method;
+
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
 
   String? _webauthnRegister;
   String? get webauthnRegister => _$this._webauthnRegister;
@@ -119,6 +130,7 @@ class UpdateSettingsFlowWithWebAuthnMethodBuilder
     if ($v != null) {
       _csrfToken = $v.csrfToken;
       _method = $v.method;
+      _transientPayload = $v.transientPayload;
       _webauthnRegister = $v.webauthnRegister;
       _webauthnRegisterDisplayname = $v.webauthnRegisterDisplayname;
       _webauthnRemove = $v.webauthnRemove;
@@ -148,6 +160,7 @@ class UpdateSettingsFlowWithWebAuthnMethodBuilder
             csrfToken: csrfToken,
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateSettingsFlowWithWebAuthnMethod', 'method'),
+            transientPayload: transientPayload,
             webauthnRegister: webauthnRegister,
             webauthnRegisterDisplayname: webauthnRegisterDisplayname,
             webauthnRemove: webauthnRemove);

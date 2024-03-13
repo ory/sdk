@@ -339,6 +339,7 @@ class IdentityApi {
   /// This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
   ///
   /// Parameters:
+  /// * [returnTo] 
   /// * [createRecoveryLinkForIdentityBody] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -350,6 +351,7 @@ class IdentityApi {
   /// Returns a [Future] containing a [Response] with a [RecoveryLinkForIdentity] as data
   /// Throws [DioError] if API call or serialization fails
   Future<Response<RecoveryLinkForIdentity>> createRecoveryLinkForIdentity({ 
+    String? returnTo,
     CreateRecoveryLinkForIdentityBody? createRecoveryLinkForIdentityBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -378,6 +380,10 @@ class IdentityApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
+    };
+
     dynamic _bodyData;
 
     try {
@@ -389,6 +395,7 @@ class IdentityApi {
          requestOptions: _options.compose(
           _dio.options,
           _path,
+          queryParameters: _queryParameters,
         ),
         type: DioErrorType.unknown,
         error: error,
@@ -400,6 +407,7 @@ class IdentityApi {
       _path,
       data: _bodyData,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
@@ -494,7 +502,7 @@ class IdentityApi {
   ///
   /// Parameters:
   /// * [id] - ID is the identity's ID.
-  /// * [type] - Type is the credential's Type. One of totp, webauthn, lookup
+  /// * [type] - Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -991,9 +999,10 @@ class IdentityApi {
   /// * [pageSize] - Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [consistency] - Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-  /// * [idsFilter] - IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied.
+  /// * [ids] - List of ids used to filter identities. If this list is empty, then no filter will be applied.
   /// * [credentialsIdentifier] - CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
   /// * [previewCredentialsIdentifierSimilar] - This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+  /// * [includeCredential] - Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1009,9 +1018,10 @@ class IdentityApi {
     int? pageSize = 250,
     String? pageToken = '1',
     String? consistency,
-    BuiltList<String>? idsFilter,
+    BuiltList<String>? ids,
     String? credentialsIdentifier,
     String? previewCredentialsIdentifierSimilar,
+    BuiltList<String>? includeCredential,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1044,9 +1054,10 @@ class IdentityApi {
       if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
       if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       if (consistency != null) r'consistency': encodeQueryParameter(_serializers, consistency, const FullType(String)),
-      if (idsFilter != null) r'ids_filter': encodeCollectionQueryParameter<String>(_serializers, idsFilter, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      if (ids != null) r'ids': encodeCollectionQueryParameter<String>(_serializers, ids, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
       if (credentialsIdentifier != null) r'credentials_identifier': encodeQueryParameter(_serializers, credentialsIdentifier, const FullType(String)),
       if (previewCredentialsIdentifierSimilar != null) r'preview_credentials_identifier_similar': encodeQueryParameter(_serializers, previewCredentialsIdentifierSimilar, const FullType(String)),
+      if (includeCredential != null) r'include_credential': encodeCollectionQueryParameter<String>(_serializers, includeCredential, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
     };
 
     final _response = await _dio.request<Object>(

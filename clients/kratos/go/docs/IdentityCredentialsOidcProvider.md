@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **InitialAccessToken** | Pointer to **string** |  | [optional] 
 **InitialIdToken** | Pointer to **string** |  | [optional] 
 **InitialRefreshToken** | Pointer to **string** |  | [optional] 
+**Organization** | Pointer to **string** |  | [optional] 
 **Provider** | Pointer to **string** |  | [optional] 
 **Subject** | Pointer to **string** |  | [optional] 
 
@@ -103,6 +104,31 @@ SetInitialRefreshToken sets InitialRefreshToken field to given value.
 `func (o *IdentityCredentialsOidcProvider) HasInitialRefreshToken() bool`
 
 HasInitialRefreshToken returns a boolean if a field has been set.
+
+### GetOrganization
+
+`func (o *IdentityCredentialsOidcProvider) GetOrganization() string`
+
+GetOrganization returns the Organization field if non-nil, zero value otherwise.
+
+### GetOrganizationOk
+
+`func (o *IdentityCredentialsOidcProvider) GetOrganizationOk() (*string, bool)`
+
+GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganization
+
+`func (o *IdentityCredentialsOidcProvider) SetOrganization(v string)`
+
+SetOrganization sets Organization field to given value.
+
+### HasOrganization
+
+`func (o *IdentityCredentialsOidcProvider) HasOrganization() bool`
+
+HasOrganization returns a boolean if a field has been set.
 
 ### GetProvider
 

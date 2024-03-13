@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **lookup_secret_disable** | **bool** | Disables this method if true. | [optional] 
 **lookup_secret_regenerate** | **bool** | If set to true will regenerate the lookup secrets | [optional] 
 **lookup_secret_reveal** | **bool** | If set to true will reveal the lookup secrets | [optional] 
+**transient_payload** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Transient data to pass along to any webhooks | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

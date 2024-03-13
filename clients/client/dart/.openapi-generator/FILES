@@ -40,8 +40,11 @@ doc/CreateRecoveryCodeForIdentityBody.md
 doc/CreateRecoveryLinkForIdentityBody.md
 doc/CreateRelationshipBody.md
 doc/CreateSubscriptionBody.md
+doc/CreateSubscriptionCommon.md
 doc/CreateVerifiableCredentialRequestBody.md
 doc/CreateWorkspaceMemberInviteBody.md
+doc/CreateWorkspacePayload.md
+doc/CreateWorkspaceSubscriptionBody.md
 doc/CredentialSupportedDraft00.md
 doc/CustomDomain.md
 doc/DeleteMySessionsCount.md
@@ -79,12 +82,10 @@ doc/IdentityCredentialsCode.md
 doc/IdentityCredentialsOidc.md
 doc/IdentityCredentialsOidcProvider.md
 doc/IdentityCredentialsPassword.md
-doc/IdentityCredentialsType.md
 doc/IdentityPatch.md
 doc/IdentityPatchResponse.md
 doc/IdentitySchemaContainer.md
 doc/IdentitySchemaPreset.md
-doc/IdentityState.md
 doc/IdentityWithCredentials.md
 doc/IdentityWithCredentialsOidc.md
 doc/IdentityWithCredentialsOidcConfig.md
@@ -95,7 +96,6 @@ doc/InternalGetProjectBrandingBody.md
 doc/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 doc/InternalIsOwnerForProjectBySlugBody.md
 doc/InternalIsOwnerForProjectBySlugResponse.md
-doc/InternalProvisionMockSubscription.md
 doc/IntrospectedOAuth2Token.md
 doc/IsOwnerForProjectBySlug.md
 doc/IsReady200Response.md
@@ -108,6 +108,7 @@ doc/KetoNamespace.md
 doc/ListEventStreams.md
 doc/ListMyWorkspacesResponse.md
 doc/ListOrganizationsResponse.md
+doc/ListWorkspaceProjectsResponse.md
 doc/LoginFlow.md
 doc/LoginFlowState.md
 doc/LogoutFlow.md
@@ -118,6 +119,7 @@ doc/Message.md
 doc/MessageDispatch.md
 doc/MetadataApi.md
 doc/MetricsDatapoint.md
+doc/MigrationOptions.md
 doc/Namespace.md
 doc/NeedsPrivilegedSessionError.md
 doc/NormalizedProject.md
@@ -149,6 +151,7 @@ doc/ParseError.md
 doc/PatchIdentitiesBody.md
 doc/PerformNativeLogoutBody.md
 doc/PermissionApi.md
+doc/PermissionsOnWorkpaceResponse.md
 doc/Plan.md
 doc/PlanDetails.md
 doc/PostCheckPermissionBody.md
@@ -162,6 +165,7 @@ doc/ProjectBrandingTheme.md
 doc/ProjectCors.md
 doc/ProjectEventsDatapoint.md
 doc/ProjectHost.md
+doc/ProjectMember.md
 doc/ProjectMetadata.md
 doc/ProjectServiceIdentity.md
 doc/ProjectServiceOAuth2.md
@@ -197,7 +201,6 @@ doc/SetProjectBrandingThemeBody.md
 doc/SettingsFlow.md
 doc/SettingsFlowState.md
 doc/SourcePosition.md
-doc/StripeCustomer.md
 doc/SubjectSet.md
 doc/Subscription.md
 doc/SuccessfulCodeExchangeResponse.md
@@ -248,6 +251,7 @@ doc/UpdateSubscriptionBody.md
 doc/UpdateVerificationFlowBody.md
 doc/UpdateVerificationFlowWithCodeMethod.md
 doc/UpdateVerificationFlowWithLinkMethod.md
+doc/UpdateWorkspacePayload.md
 doc/Usage.md
 doc/VerifiableCredentialPrimingResponse.md
 doc/VerifiableCredentialProof.md
@@ -259,6 +263,7 @@ doc/Version.md
 doc/Warning.md
 doc/WellknownApi.md
 doc/Workspace.md
+doc/WorkspaceMeta.md
 lib/ory_client.dart
 lib/src/api.dart
 lib/src/api/courier_api.dart
@@ -317,8 +322,11 @@ lib/src/model/create_recovery_code_for_identity_body.dart
 lib/src/model/create_recovery_link_for_identity_body.dart
 lib/src/model/create_relationship_body.dart
 lib/src/model/create_subscription_body.dart
+lib/src/model/create_subscription_common.dart
 lib/src/model/create_verifiable_credential_request_body.dart
 lib/src/model/create_workspace_member_invite_body.dart
+lib/src/model/create_workspace_payload.dart
+lib/src/model/create_workspace_subscription_body.dart
 lib/src/model/credential_supported_draft00.dart
 lib/src/model/custom_domain.dart
 lib/src/model/date.dart
@@ -354,12 +362,10 @@ lib/src/model/identity_credentials_code.dart
 lib/src/model/identity_credentials_oidc.dart
 lib/src/model/identity_credentials_oidc_provider.dart
 lib/src/model/identity_credentials_password.dart
-lib/src/model/identity_credentials_type.dart
 lib/src/model/identity_patch.dart
 lib/src/model/identity_patch_response.dart
 lib/src/model/identity_schema_container.dart
 lib/src/model/identity_schema_preset.dart
-lib/src/model/identity_state.dart
 lib/src/model/identity_with_credentials.dart
 lib/src/model/identity_with_credentials_oidc.dart
 lib/src/model/identity_with_credentials_oidc_config.dart
@@ -370,7 +376,6 @@ lib/src/model/internal_get_project_branding_body.dart
 lib/src/model/internal_is_ax_welcome_screen_enabled_for_project_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_response.dart
-lib/src/model/internal_provision_mock_subscription.dart
 lib/src/model/introspected_o_auth2_token.dart
 lib/src/model/is_owner_for_project_by_slug.dart
 lib/src/model/is_ready200_response.dart
@@ -382,6 +387,7 @@ lib/src/model/keto_namespace.dart
 lib/src/model/list_event_streams.dart
 lib/src/model/list_my_workspaces_response.dart
 lib/src/model/list_organizations_response.dart
+lib/src/model/list_workspace_projects_response.dart
 lib/src/model/login_flow.dart
 lib/src/model/login_flow_state.dart
 lib/src/model/logout_flow.dart
@@ -391,6 +397,7 @@ lib/src/model/member_invite.dart
 lib/src/model/message.dart
 lib/src/model/message_dispatch.dart
 lib/src/model/metrics_datapoint.dart
+lib/src/model/migration_options.dart
 lib/src/model/namespace.dart
 lib/src/model/needs_privileged_session_error.dart
 lib/src/model/normalized_project.dart
@@ -419,6 +426,7 @@ lib/src/model/pagination_headers.dart
 lib/src/model/parse_error.dart
 lib/src/model/patch_identities_body.dart
 lib/src/model/perform_native_logout_body.dart
+lib/src/model/permissions_on_workpace_response.dart
 lib/src/model/plan.dart
 lib/src/model/plan_details.dart
 lib/src/model/post_check_permission_body.dart
@@ -431,6 +439,7 @@ lib/src/model/project_branding_theme.dart
 lib/src/model/project_cors.dart
 lib/src/model/project_events_datapoint.dart
 lib/src/model/project_host.dart
+lib/src/model/project_member.dart
 lib/src/model/project_metadata.dart
 lib/src/model/project_service_identity.dart
 lib/src/model/project_service_o_auth2.dart
@@ -465,7 +474,6 @@ lib/src/model/set_project_branding_theme_body.dart
 lib/src/model/settings_flow.dart
 lib/src/model/settings_flow_state.dart
 lib/src/model/source_position.dart
-lib/src/model/stripe_customer.dart
 lib/src/model/subject_set.dart
 lib/src/model/subscription.dart
 lib/src/model/successful_code_exchange_response.dart
@@ -516,6 +524,7 @@ lib/src/model/update_subscription_body.dart
 lib/src/model/update_verification_flow_body.dart
 lib/src/model/update_verification_flow_with_code_method.dart
 lib/src/model/update_verification_flow_with_link_method.dart
+lib/src/model/update_workspace_payload.dart
 lib/src/model/usage.dart
 lib/src/model/verifiable_credential_priming_response.dart
 lib/src/model/verifiable_credential_proof.dart
@@ -526,6 +535,7 @@ lib/src/model/verification_flow_state.dart
 lib/src/model/version.dart
 lib/src/model/warning.dart
 lib/src/model/workspace.dart
+lib/src/model/workspace_meta.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/accept_o_auth2_consent_request_session_test.dart
@@ -566,8 +576,11 @@ test/create_recovery_code_for_identity_body_test.dart
 test/create_recovery_link_for_identity_body_test.dart
 test/create_relationship_body_test.dart
 test/create_subscription_body_test.dart
+test/create_subscription_common_test.dart
 test/create_verifiable_credential_request_body_test.dart
 test/create_workspace_member_invite_body_test.dart
+test/create_workspace_payload_test.dart
+test/create_workspace_subscription_body_test.dart
 test/credential_supported_draft00_test.dart
 test/custom_domain_test.dart
 test/delete_my_sessions_count_test.dart
@@ -604,12 +617,10 @@ test/identity_credentials_oidc_provider_test.dart
 test/identity_credentials_oidc_test.dart
 test/identity_credentials_password_test.dart
 test/identity_credentials_test.dart
-test/identity_credentials_type_test.dart
 test/identity_patch_response_test.dart
 test/identity_patch_test.dart
 test/identity_schema_container_test.dart
 test/identity_schema_preset_test.dart
-test/identity_state_test.dart
 test/identity_test.dart
 test/identity_with_credentials_oidc_config_provider_test.dart
 test/identity_with_credentials_oidc_config_test.dart
@@ -621,7 +632,6 @@ test/internal_get_project_branding_body_test.dart
 test/internal_is_ax_welcome_screen_enabled_for_project_body_test.dart
 test/internal_is_owner_for_project_by_slug_body_test.dart
 test/internal_is_owner_for_project_by_slug_response_test.dart
-test/internal_provision_mock_subscription_test.dart
 test/introspected_o_auth2_token_test.dart
 test/is_owner_for_project_by_slug_test.dart
 test/is_ready200_response_test.dart
@@ -634,6 +644,7 @@ test/keto_namespace_test.dart
 test/list_event_streams_test.dart
 test/list_my_workspaces_response_test.dart
 test/list_organizations_response_test.dart
+test/list_workspace_projects_response_test.dart
 test/login_flow_state_test.dart
 test/login_flow_test.dart
 test/logout_flow_test.dart
@@ -644,6 +655,7 @@ test/message_dispatch_test.dart
 test/message_test.dart
 test/metadata_api_test.dart
 test/metrics_datapoint_test.dart
+test/migration_options_test.dart
 test/namespace_test.dart
 test/needs_privileged_session_error_test.dart
 test/normalized_project_revision_courier_channel_test.dart
@@ -675,6 +687,7 @@ test/parse_error_test.dart
 test/patch_identities_body_test.dart
 test/perform_native_logout_body_test.dart
 test/permission_api_test.dart
+test/permissions_on_workpace_response_test.dart
 test/plan_details_test.dart
 test/plan_test.dart
 test/post_check_permission_body_test.dart
@@ -687,6 +700,7 @@ test/project_branding_theme_test.dart
 test/project_cors_test.dart
 test/project_events_datapoint_test.dart
 test/project_host_test.dart
+test/project_member_test.dart
 test/project_metadata_test.dart
 test/project_service_identity_test.dart
 test/project_service_o_auth2_test.dart
@@ -723,7 +737,6 @@ test/set_project_test.dart
 test/settings_flow_state_test.dart
 test/settings_flow_test.dart
 test/source_position_test.dart
-test/stripe_customer_test.dart
 test/subject_set_test.dart
 test/subscription_test.dart
 test/successful_code_exchange_response_test.dart
@@ -774,6 +787,7 @@ test/update_subscription_body_test.dart
 test/update_verification_flow_body_test.dart
 test/update_verification_flow_with_code_method_test.dart
 test/update_verification_flow_with_link_method_test.dart
+test/update_workspace_payload_test.dart
 test/usage_test.dart
 test/verifiable_credential_priming_response_test.dart
 test/verifiable_credential_proof_test.dart
@@ -784,4 +798,5 @@ test/verification_flow_test.dart
 test/version_test.dart
 test/warning_test.dart
 test/wellknown_api_test.dart
+test/workspace_meta_test.dart
 test/workspace_test.dart

@@ -6,9 +6,104 @@ part of 'login_flow.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const LoginFlowActiveEnum _$loginFlowActiveEnum_password =
+    const LoginFlowActiveEnum._('password');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_oidc =
+    const LoginFlowActiveEnum._('oidc');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_totp =
+    const LoginFlowActiveEnum._('totp');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_lookupSecret =
+    const LoginFlowActiveEnum._('lookupSecret');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_webauthn =
+    const LoginFlowActiveEnum._('webauthn');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_code =
+    const LoginFlowActiveEnum._('code');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_linkRecovery =
+    const LoginFlowActiveEnum._('linkRecovery');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_codeRecovery =
+    const LoginFlowActiveEnum._('codeRecovery');
+
+LoginFlowActiveEnum _$loginFlowActiveEnumValueOf(String name) {
+  switch (name) {
+    case 'password':
+      return _$loginFlowActiveEnum_password;
+    case 'oidc':
+      return _$loginFlowActiveEnum_oidc;
+    case 'totp':
+      return _$loginFlowActiveEnum_totp;
+    case 'lookupSecret':
+      return _$loginFlowActiveEnum_lookupSecret;
+    case 'webauthn':
+      return _$loginFlowActiveEnum_webauthn;
+    case 'code':
+      return _$loginFlowActiveEnum_code;
+    case 'linkRecovery':
+      return _$loginFlowActiveEnum_linkRecovery;
+    case 'codeRecovery':
+      return _$loginFlowActiveEnum_codeRecovery;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<LoginFlowActiveEnum> _$loginFlowActiveEnumValues =
+    new BuiltSet<LoginFlowActiveEnum>(const <LoginFlowActiveEnum>[
+  _$loginFlowActiveEnum_password,
+  _$loginFlowActiveEnum_oidc,
+  _$loginFlowActiveEnum_totp,
+  _$loginFlowActiveEnum_lookupSecret,
+  _$loginFlowActiveEnum_webauthn,
+  _$loginFlowActiveEnum_code,
+  _$loginFlowActiveEnum_linkRecovery,
+  _$loginFlowActiveEnum_codeRecovery,
+]);
+
+Serializer<LoginFlowActiveEnum> _$loginFlowActiveEnumSerializer =
+    new _$LoginFlowActiveEnumSerializer();
+
+class _$LoginFlowActiveEnumSerializer
+    implements PrimitiveSerializer<LoginFlowActiveEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookupSecret': 'lookup_secret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'linkRecovery': 'link_recovery',
+    'codeRecovery': 'code_recovery',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookup_secret': 'lookupSecret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'link_recovery': 'linkRecovery',
+    'code_recovery': 'codeRecovery',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[LoginFlowActiveEnum];
+  @override
+  final String wireName = 'LoginFlowActiveEnum';
+
+  @override
+  Object serialize(Serializers serializers, LoginFlowActiveEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  LoginFlowActiveEnum deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      LoginFlowActiveEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$LoginFlow extends LoginFlow {
   @override
-  final IdentityCredentialsType? active;
+  final LoginFlowActiveEnum? active;
   @override
   final DateTime? createdAt;
   @override
@@ -36,6 +131,8 @@ class _$LoginFlow extends LoginFlow {
   @override
   final JsonObject? state;
   @override
+  final JsonObject? transientPayload;
+  @override
   final String type;
   @override
   final UiContainer ui;
@@ -60,6 +157,7 @@ class _$LoginFlow extends LoginFlow {
       this.returnTo,
       this.sessionTokenExchangeCode,
       this.state,
+      this.transientPayload,
       required this.type,
       required this.ui,
       this.updatedAt})
@@ -98,6 +196,7 @@ class _$LoginFlow extends LoginFlow {
         returnTo == other.returnTo &&
         sessionTokenExchangeCode == other.sessionTokenExchangeCode &&
         state == other.state &&
+        transientPayload == other.transientPayload &&
         type == other.type &&
         ui == other.ui &&
         updatedAt == other.updatedAt;
@@ -120,6 +219,7 @@ class _$LoginFlow extends LoginFlow {
     _$hash = $jc(_$hash, returnTo.hashCode);
     _$hash = $jc(_$hash, sessionTokenExchangeCode.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, ui.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
@@ -144,6 +244,7 @@ class _$LoginFlow extends LoginFlow {
           ..add('returnTo', returnTo)
           ..add('sessionTokenExchangeCode', sessionTokenExchangeCode)
           ..add('state', state)
+          ..add('transientPayload', transientPayload)
           ..add('type', type)
           ..add('ui', ui)
           ..add('updatedAt', updatedAt))
@@ -154,9 +255,9 @@ class _$LoginFlow extends LoginFlow {
 class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
   _$LoginFlow? _$v;
 
-  IdentityCredentialsType? _active;
-  IdentityCredentialsType? get active => _$this._active;
-  set active(IdentityCredentialsType? active) => _$this._active = active;
+  LoginFlowActiveEnum? _active;
+  LoginFlowActiveEnum? get active => _$this._active;
+  set active(LoginFlowActiveEnum? active) => _$this._active = active;
 
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
@@ -216,6 +317,11 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
   JsonObject? get state => _$this._state;
   set state(JsonObject? state) => _$this._state = state;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   String? _type;
   String? get type => _$this._type;
   set type(String? type) => _$this._type = type;
@@ -249,6 +355,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
       _returnTo = $v.returnTo;
       _sessionTokenExchangeCode = $v.sessionTokenExchangeCode;
       _state = $v.state;
+      _transientPayload = $v.transientPayload;
       _type = $v.type;
       _ui = $v.ui.toBuilder();
       _updatedAt = $v.updatedAt;
@@ -293,6 +400,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
               returnTo: returnTo,
               sessionTokenExchangeCode: sessionTokenExchangeCode,
               state: state,
+              transientPayload: transientPayload,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'LoginFlow', 'type'),
               ui: ui.build(),

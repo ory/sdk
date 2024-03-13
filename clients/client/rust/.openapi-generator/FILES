@@ -41,8 +41,11 @@ docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
+docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspacePayload.md
+docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -80,12 +83,10 @@ docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
-docs/IdentityCredentialsType.md
 docs/IdentityPatch.md
 docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
-docs/IdentityState.md
 docs/IdentityWithCredentials.md
 docs/IdentityWithCredentialsOidc.md
 docs/IdentityWithCredentialsOidcConfig.md
@@ -96,7 +97,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAxWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
-docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
@@ -109,6 +109,7 @@ docs/KetoNamespace.md
 docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceProjectsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -119,6 +120,7 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/MetricsDatapoint.md
+docs/MigrationOptions.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -150,6 +152,7 @@ docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
+docs/PermissionsOnWorkpaceResponse.md
 docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
@@ -163,6 +166,7 @@ docs/ProjectBrandingTheme.md
 docs/ProjectCors.md
 docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
+docs/ProjectMember.md
 docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
@@ -198,7 +202,6 @@ docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
-docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
 docs/SuccessfulCodeExchangeResponse.md
@@ -249,6 +252,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/UpdateWorkspacePayload.md
 docs/Usage.md
 docs/VerifiableCredentialPrimingResponse.md
 docs/VerifiableCredentialProof.md
@@ -260,6 +264,7 @@ docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
 docs/Workspace.md
+docs/WorkspaceMeta.md
 git_push.sh
 src/apis/configuration.rs
 src/apis/courier_api.rs
@@ -313,8 +318,11 @@ src/models/create_recovery_code_for_identity_body.rs
 src/models/create_recovery_link_for_identity_body.rs
 src/models/create_relationship_body.rs
 src/models/create_subscription_body.rs
+src/models/create_subscription_common.rs
 src/models/create_verifiable_credential_request_body.rs
 src/models/create_workspace_member_invite_body.rs
+src/models/create_workspace_payload.rs
+src/models/create_workspace_subscription_body.rs
 src/models/credential_supported_draft00.rs
 src/models/custom_domain.rs
 src/models/delete_my_sessions_count.rs
@@ -349,12 +357,10 @@ src/models/identity_credentials_code.rs
 src/models/identity_credentials_oidc.rs
 src/models/identity_credentials_oidc_provider.rs
 src/models/identity_credentials_password.rs
-src/models/identity_credentials_type.rs
 src/models/identity_patch.rs
 src/models/identity_patch_response.rs
 src/models/identity_schema_container.rs
 src/models/identity_schema_preset.rs
-src/models/identity_state.rs
 src/models/identity_with_credentials.rs
 src/models/identity_with_credentials_oidc.rs
 src/models/identity_with_credentials_oidc_config.rs
@@ -365,7 +371,6 @@ src/models/internal_get_project_branding_body.rs
 src/models/internal_is_ax_welcome_screen_enabled_for_project_body.rs
 src/models/internal_is_owner_for_project_by_slug_body.rs
 src/models/internal_is_owner_for_project_by_slug_response.rs
-src/models/internal_provision_mock_subscription.rs
 src/models/introspected_o_auth2_token.rs
 src/models/is_owner_for_project_by_slug.rs
 src/models/is_ready_200_response.rs
@@ -377,6 +382,7 @@ src/models/keto_namespace.rs
 src/models/list_event_streams.rs
 src/models/list_my_workspaces_response.rs
 src/models/list_organizations_response.rs
+src/models/list_workspace_projects_response.rs
 src/models/login_flow.rs
 src/models/login_flow_state.rs
 src/models/logout_flow.rs
@@ -386,6 +392,7 @@ src/models/member_invite.rs
 src/models/message.rs
 src/models/message_dispatch.rs
 src/models/metrics_datapoint.rs
+src/models/migration_options.rs
 src/models/mod.rs
 src/models/namespace.rs
 src/models/needs_privileged_session_error.rs
@@ -415,6 +422,7 @@ src/models/pagination_headers.rs
 src/models/parse_error.rs
 src/models/patch_identities_body.rs
 src/models/perform_native_logout_body.rs
+src/models/permissions_on_workpace_response.rs
 src/models/plan.rs
 src/models/plan_details.rs
 src/models/post_check_permission_body.rs
@@ -427,6 +435,7 @@ src/models/project_branding_theme.rs
 src/models/project_cors.rs
 src/models/project_events_datapoint.rs
 src/models/project_host.rs
+src/models/project_member.rs
 src/models/project_metadata.rs
 src/models/project_service_identity.rs
 src/models/project_service_o_auth2.rs
@@ -461,7 +470,6 @@ src/models/set_project_branding_theme_body.rs
 src/models/settings_flow.rs
 src/models/settings_flow_state.rs
 src/models/source_position.rs
-src/models/stripe_customer.rs
 src/models/subject_set.rs
 src/models/subscription.rs
 src/models/successful_code_exchange_response.rs
@@ -512,6 +520,7 @@ src/models/update_subscription_body.rs
 src/models/update_verification_flow_body.rs
 src/models/update_verification_flow_with_code_method.rs
 src/models/update_verification_flow_with_link_method.rs
+src/models/update_workspace_payload.rs
 src/models/usage.rs
 src/models/verifiable_credential_priming_response.rs
 src/models/verifiable_credential_proof.rs
@@ -522,3 +531,4 @@ src/models/verification_flow_state.rs
 src/models/version.rs
 src/models/warning.rs
 src/models/workspace.rs
+src/models/workspace_meta.rs

@@ -22,13 +22,14 @@ defmodule Ory.Model.LoginFlow do
     :return_to,
     :session_token_exchange_code,
     :state,
+    :transient_payload,
     :type,
     :ui,
     :updated_at
   ]
 
   @type t :: %__MODULE__{
-    :active => Ory.Model.IdentityCredentialsType.t | nil,
+    :active => String.t | nil,
     :created_at => DateTime.t | nil,
     :expires_at => DateTime.t,
     :id => String.t,
@@ -42,6 +43,7 @@ defmodule Ory.Model.LoginFlow do
     :return_to => String.t | nil,
     :session_token_exchange_code => String.t | nil,
     :state => any() | nil,
+    :transient_payload => map() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t,
     :updated_at => DateTime.t | nil
@@ -51,7 +53,6 @@ defmodule Ory.Model.LoginFlow do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:active, :struct, Ory.Model.IdentityCredentialsType)
      |> Deserializer.deserialize(:created_at, :datetime, nil)
      |> Deserializer.deserialize(:expires_at, :datetime, nil)
      |> Deserializer.deserialize(:issued_at, :datetime, nil)

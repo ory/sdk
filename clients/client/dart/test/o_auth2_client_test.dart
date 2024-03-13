@@ -234,6 +234,12 @@ void main() {
       // TODO
     });
 
+    // SkipLogoutConsent skips the logout consent screen for this client. This field can only be set from the admin API.
+    // bool skipLogoutConsent
+    test('to test the property `skipLogoutConsent`', () async {
+      // TODO
+    });
+
     // OpenID Connect Subject Type  The `subject_types_supported` Discovery parameter contains a list of the supported subject_type values for this server. Valid types include `pairwise` and `public`.
     // String subjectType
     test('to test the property `subjectType`', () async {

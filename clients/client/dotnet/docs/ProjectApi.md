@@ -642,7 +642,7 @@ Name | Type | Description  | Notes
 
 <a name="getprojectmembers"></a>
 # **GetProjectMembers**
-> List&lt;ClientCloudAccount&gt; GetProjectMembers (string project)
+> List&lt;ClientProjectMember&gt; GetProjectMembers (string project)
 
 Get all members associated with this project
 
@@ -673,7 +673,7 @@ namespace Example
             try
             {
                 // Get all members associated with this project
-                List<ClientCloudAccount> result = apiInstance.GetProjectMembers(project);
+                List<ClientProjectMember> result = apiInstance.GetProjectMembers(project);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -695,7 +695,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;ClientCloudAccount&gt;**](ClientCloudAccount.md)
+[**List&lt;ClientProjectMember&gt;**](ClientProjectMember.md)
 
 ### Authorization
 
@@ -747,7 +747,7 @@ namespace Example
             var apiInstance = new ProjectApi(config);
             var projectId = "projectId_example";  // string | Project ID
             var eventType = "eventType_example";  // string | The event type to query for
-            var resolution = "resolution_example";  // string | The resolution of the buckets  The minimum resolution is 1 hour.
+            var resolution = "resolution_example";  // string | The resolution of the buckets  The minimum resolution is 1 minute.
             var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The start RFC3339 date of the time window
             var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The end RFC3339 date of the time window
 
@@ -773,7 +773,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string**| Project ID | 
  **eventType** | **string**| The event type to query for | 
- **resolution** | **string**| The resolution of the buckets  The minimum resolution is 1 hour. | 
+ **resolution** | **string**| The resolution of the buckets  The minimum resolution is 1 minute. | 
  **from** | **DateTime**| The start RFC3339 date of the time window | 
  **to** | **DateTime**| The end RFC3339 date of the time window | 
 

@@ -6,6 +6,7 @@ A completed OAuth 2.0 Consent Session.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **consent_request** | [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] 
+**context** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
 **expires_at** | [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] 
 **grant_access_token_audience** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
 **grant_scope** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 

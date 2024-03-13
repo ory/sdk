@@ -17,7 +17,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<Workspace> workspaces
+    // BuiltList<WorkspaceMeta> workspaces
     test('to test the property `workspaces`', () async {
       // TODO
     });

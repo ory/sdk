@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.1
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,7 @@ var _ MappedNullable = &IdentityCredentialsCode{}
 
 // IdentityCredentialsCode CredentialsCode represents a one time login/registration code
 type IdentityCredentialsCode struct {
+	// The type of the address for this code
 	AddressType *string `json:"address_type,omitempty"`
 	UsedAt NullableTime `json:"used_at,omitempty"`
 	AdditionalProperties map[string]interface{}

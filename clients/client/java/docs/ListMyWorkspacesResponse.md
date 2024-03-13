@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**hasNextPage** | **Boolean** |  |  |
 |**nextPageToken** | **String** |  |  |
-|**workspaces** | [**List&lt;Workspace&gt;**](Workspace.md) |  |  |
+|**workspaces** | [**List&lt;WorkspaceMeta&gt;**](WorkspaceMeta.md) |  |  |
 
 
 

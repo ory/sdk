@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.1
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -151,8 +151,8 @@ type ProjectAPI interface {
 	GetProjectMembers(ctx context.Context, project string) ProjectAPIGetProjectMembersRequest
 
 	// GetProjectMembersExecute executes the request
-	//  @return []CloudAccount
-	GetProjectMembersExecute(r ProjectAPIGetProjectMembersRequest) ([]CloudAccount, *http.Response, error)
+	//  @return []ProjectMember
+	GetProjectMembersExecute(r ProjectAPIGetProjectMembersRequest) ([]ProjectMember, *http.Response, error)
 
 	/*
 	GetProjectMetrics Method for GetProjectMetrics
@@ -1412,7 +1412,7 @@ type ProjectAPIGetProjectMembersRequest struct {
 	project string
 }
 
-func (r ProjectAPIGetProjectMembersRequest) Execute() ([]CloudAccount, *http.Response, error) {
+func (r ProjectAPIGetProjectMembersRequest) Execute() ([]ProjectMember, *http.Response, error) {
 	return r.ApiService.GetProjectMembersExecute(r)
 }
 
@@ -1434,13 +1434,13 @@ func (a *ProjectAPIService) GetProjectMembers(ctx context.Context, project strin
 }
 
 // Execute executes the request
-//  @return []CloudAccount
-func (a *ProjectAPIService) GetProjectMembersExecute(r ProjectAPIGetProjectMembersRequest) ([]CloudAccount, *http.Response, error) {
+//  @return []ProjectMember
+func (a *ProjectAPIService) GetProjectMembersExecute(r ProjectAPIGetProjectMembersRequest) ([]ProjectMember, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []CloudAccount
+		localVarReturnValue  []ProjectMember
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectAPIService.GetProjectMembers")
@@ -1555,7 +1555,7 @@ func (r ProjectAPIGetProjectMetricsRequest) EventType(eventType string) ProjectA
 	return r
 }
 
-// The resolution of the buckets  The minimum resolution is 1 hour.
+// The resolution of the buckets  The minimum resolution is 1 minute.
 func (r ProjectAPIGetProjectMetricsRequest) Resolution(resolution string) ProjectAPIGetProjectMetricsRequest {
 	r.resolution = &resolution
 	return r

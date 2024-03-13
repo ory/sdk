@@ -248,8 +248,11 @@ Class | Method | HTTP request | Description
 - [CreateRecoveryLinkForIdentityBody](docs/Model/CreateRecoveryLinkForIdentityBody.md)
 - [CreateRelationshipBody](docs/Model/CreateRelationshipBody.md)
 - [CreateSubscriptionBody](docs/Model/CreateSubscriptionBody.md)
+- [CreateSubscriptionCommon](docs/Model/CreateSubscriptionCommon.md)
 - [CreateVerifiableCredentialRequestBody](docs/Model/CreateVerifiableCredentialRequestBody.md)
 - [CreateWorkspaceMemberInviteBody](docs/Model/CreateWorkspaceMemberInviteBody.md)
+- [CreateWorkspacePayload](docs/Model/CreateWorkspacePayload.md)
+- [CreateWorkspaceSubscriptionBody](docs/Model/CreateWorkspaceSubscriptionBody.md)
 - [CredentialSupportedDraft00](docs/Model/CredentialSupportedDraft00.md)
 - [CustomDomain](docs/Model/CustomDomain.md)
 - [DeleteMySessionsCount](docs/Model/DeleteMySessionsCount.md)
@@ -283,12 +286,10 @@ Class | Method | HTTP request | Description
 - [IdentityCredentialsOidc](docs/Model/IdentityCredentialsOidc.md)
 - [IdentityCredentialsOidcProvider](docs/Model/IdentityCredentialsOidcProvider.md)
 - [IdentityCredentialsPassword](docs/Model/IdentityCredentialsPassword.md)
-- [IdentityCredentialsType](docs/Model/IdentityCredentialsType.md)
 - [IdentityPatch](docs/Model/IdentityPatch.md)
 - [IdentityPatchResponse](docs/Model/IdentityPatchResponse.md)
 - [IdentitySchemaContainer](docs/Model/IdentitySchemaContainer.md)
 - [IdentitySchemaPreset](docs/Model/IdentitySchemaPreset.md)
-- [IdentityState](docs/Model/IdentityState.md)
 - [IdentityWithCredentials](docs/Model/IdentityWithCredentials.md)
 - [IdentityWithCredentialsOidc](docs/Model/IdentityWithCredentialsOidc.md)
 - [IdentityWithCredentialsOidcConfig](docs/Model/IdentityWithCredentialsOidcConfig.md)
@@ -303,7 +304,6 @@ Class | Method | HTTP request | Description
 - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
 - [InternalIsOwnerForProjectBySlugBody](docs/Model/InternalIsOwnerForProjectBySlugBody.md)
 - [InternalIsOwnerForProjectBySlugResponse](docs/Model/InternalIsOwnerForProjectBySlugResponse.md)
-- [InternalProvisionMockSubscription](docs/Model/InternalProvisionMockSubscription.md)
 - [IntrospectedOAuth2Token](docs/Model/IntrospectedOAuth2Token.md)
 - [IsOwnerForProjectBySlug](docs/Model/IsOwnerForProjectBySlug.md)
 - [JsonPatch](docs/Model/JsonPatch.md)
@@ -313,6 +313,7 @@ Class | Method | HTTP request | Description
 - [ListEventStreams](docs/Model/ListEventStreams.md)
 - [ListMyWorkspacesResponse](docs/Model/ListMyWorkspacesResponse.md)
 - [ListOrganizationsResponse](docs/Model/ListOrganizationsResponse.md)
+- [ListWorkspaceProjectsResponse](docs/Model/ListWorkspaceProjectsResponse.md)
 - [LoginFlow](docs/Model/LoginFlow.md)
 - [LoginFlowState](docs/Model/LoginFlowState.md)
 - [LogoutFlow](docs/Model/LogoutFlow.md)
@@ -322,6 +323,7 @@ Class | Method | HTTP request | Description
 - [Message](docs/Model/Message.md)
 - [MessageDispatch](docs/Model/MessageDispatch.md)
 - [MetricsDatapoint](docs/Model/MetricsDatapoint.md)
+- [MigrationOptions](docs/Model/MigrationOptions.md)
 - [ModelNamespace](docs/Model/ModelNamespace.md)
 - [NeedsPrivilegedSessionError](docs/Model/NeedsPrivilegedSessionError.md)
 - [NormalizedProject](docs/Model/NormalizedProject.md)
@@ -350,6 +352,7 @@ Class | Method | HTTP request | Description
 - [ParseError](docs/Model/ParseError.md)
 - [PatchIdentitiesBody](docs/Model/PatchIdentitiesBody.md)
 - [PerformNativeLogoutBody](docs/Model/PerformNativeLogoutBody.md)
+- [PermissionsOnWorkpaceResponse](docs/Model/PermissionsOnWorkpaceResponse.md)
 - [Plan](docs/Model/Plan.md)
 - [PlanDetails](docs/Model/PlanDetails.md)
 - [PostCheckPermissionBody](docs/Model/PostCheckPermissionBody.md)
@@ -362,6 +365,7 @@ Class | Method | HTTP request | Description
 - [ProjectCors](docs/Model/ProjectCors.md)
 - [ProjectEventsDatapoint](docs/Model/ProjectEventsDatapoint.md)
 - [ProjectHost](docs/Model/ProjectHost.md)
+- [ProjectMember](docs/Model/ProjectMember.md)
 - [ProjectMetadata](docs/Model/ProjectMetadata.md)
 - [ProjectServiceIdentity](docs/Model/ProjectServiceIdentity.md)
 - [ProjectServiceOAuth2](docs/Model/ProjectServiceOAuth2.md)
@@ -396,7 +400,6 @@ Class | Method | HTTP request | Description
 - [SettingsFlow](docs/Model/SettingsFlow.md)
 - [SettingsFlowState](docs/Model/SettingsFlowState.md)
 - [SourcePosition](docs/Model/SourcePosition.md)
-- [StripeCustomer](docs/Model/StripeCustomer.md)
 - [SubjectSet](docs/Model/SubjectSet.md)
 - [Subscription](docs/Model/Subscription.md)
 - [SuccessfulCodeExchangeResponse](docs/Model/SuccessfulCodeExchangeResponse.md)
@@ -447,6 +450,7 @@ Class | Method | HTTP request | Description
 - [UpdateVerificationFlowBody](docs/Model/UpdateVerificationFlowBody.md)
 - [UpdateVerificationFlowWithCodeMethod](docs/Model/UpdateVerificationFlowWithCodeMethod.md)
 - [UpdateVerificationFlowWithLinkMethod](docs/Model/UpdateVerificationFlowWithLinkMethod.md)
+- [UpdateWorkspacePayload](docs/Model/UpdateWorkspacePayload.md)
 - [Usage](docs/Model/Usage.md)
 - [VerifiableCredentialPrimingResponse](docs/Model/VerifiableCredentialPrimingResponse.md)
 - [VerifiableCredentialProof](docs/Model/VerifiableCredentialProof.md)
@@ -457,6 +461,7 @@ Class | Method | HTTP request | Description
 - [Version](docs/Model/Version.md)
 - [Warning](docs/Model/Warning.md)
 - [Workspace](docs/Model/Workspace.md)
+- [WorkspaceMeta](docs/Model/WorkspaceMeta.md)
 
 ## Authorization
 
@@ -502,5 +507,5 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.5.1`
+- API version: `v1.8.1`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

@@ -7,7 +7,6 @@ import 'package:ory_kratos_client/src/model/identity_with_credentials.dart';
 import 'package:ory_kratos_client/src/model/recovery_identity_address.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_kratos_client/src/model/verifiable_identity_address.dart';
-import 'package:ory_kratos_client/src/model/identity_state.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -22,7 +21,7 @@ part 'create_identity_body.g.dart';
 /// * [metadataPublic] - Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
 /// * [recoveryAddresses] - RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
 /// * [schemaId] - SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
-/// * [state] 
+/// * [state] - State is the identity's state. active StateActive inactive StateInactive
 /// * [traits] - Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
 /// * [verifiableAddresses] - VerifiableAddresses contains all the addresses that can be verified by the user.  Use this structure to import verified addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
 @BuiltValue()
@@ -46,8 +45,9 @@ abstract class CreateIdentityBody implements Built<CreateIdentityBody, CreateIde
   @BuiltValueField(wireName: r'schema_id')
   String get schemaId;
 
+  /// State is the identity's state. active StateActive inactive StateInactive
   @BuiltValueField(wireName: r'state')
-  IdentityState? get state;
+  CreateIdentityBodyStateEnum? get state;
   // enum stateEnum {  active,  inactive,  };
 
   /// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
@@ -118,7 +118,7 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
       yield r'state';
       yield serializers.serialize(
         object.state,
-        specifiedType: const FullType(IdentityState),
+        specifiedType: const FullType(CreateIdentityBodyStateEnum),
       );
     }
     yield r'traits';
@@ -196,8 +196,8 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
         case r'state':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(IdentityState),
-          ) as IdentityState;
+            specifiedType: const FullType(CreateIdentityBodyStateEnum),
+          ) as CreateIdentityBodyStateEnum;
           result.state = valueDes;
           break;
         case r'traits':
@@ -241,5 +241,22 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
     );
     return result.build();
   }
+}
+
+class CreateIdentityBodyStateEnum extends EnumClass {
+
+  /// State is the identity's state. active StateActive inactive StateInactive
+  @BuiltValueEnumConst(wireName: r'active')
+  static const CreateIdentityBodyStateEnum active = _$createIdentityBodyStateEnum_active;
+  /// State is the identity's state. active StateActive inactive StateInactive
+  @BuiltValueEnumConst(wireName: r'inactive')
+  static const CreateIdentityBodyStateEnum inactive = _$createIdentityBodyStateEnum_inactive;
+
+  static Serializer<CreateIdentityBodyStateEnum> get serializer => _$createIdentityBodyStateEnumSerializer;
+
+  const CreateIdentityBodyStateEnum._(String name): super(name);
+
+  static BuiltSet<CreateIdentityBodyStateEnum> get values => _$createIdentityBodyStateEnumValues;
+  static CreateIdentityBodyStateEnum valueOf(String name) => _$createIdentityBodyStateEnumValueOf(name);
 }
 

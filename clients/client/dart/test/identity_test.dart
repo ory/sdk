@@ -60,7 +60,8 @@ void main() {
       // TODO
     });
 
-    // IdentityState state
+    // State is the identity's state.  This value has currently no effect. active StateActive inactive StateInactive
+    // String state
     test('to test the property `state`', () async {
       // TODO
     });

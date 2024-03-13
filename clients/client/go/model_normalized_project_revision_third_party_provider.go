@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.1
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -31,6 +31,7 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	AuthUrl *string `json:"auth_url,omitempty"`
 	// Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
 	AzureTenant *string `json:"azure_tenant,omitempty"`
+	ClaimsSource NullableString `json:"claims_source,omitempty"`
 	// ClientID is the application's Client ID.
 	ClientId *string `json:"client_id,omitempty"`
 	ClientSecret NullableString `json:"client_secret,omitempty"`
@@ -281,6 +282,48 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) HasAzureTenant() bool {
 // SetAzureTenant gets a reference to the given string and assigns it to the AzureTenant field.
 func (o *NormalizedProjectRevisionThirdPartyProvider) SetAzureTenant(v string) {
 	o.AzureTenant = &v
+}
+
+// GetClaimsSource returns the ClaimsSource field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetClaimsSource() string {
+	if o == nil || IsNil(o.ClaimsSource.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ClaimsSource.Get()
+}
+
+// GetClaimsSourceOk returns a tuple with the ClaimsSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetClaimsSourceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ClaimsSource.Get(), o.ClaimsSource.IsSet()
+}
+
+// HasClaimsSource returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasClaimsSource() bool {
+	if o != nil && o.ClaimsSource.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetClaimsSource gets a reference to the given NullableString and assigns it to the ClaimsSource field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetClaimsSource(v string) {
+	o.ClaimsSource.Set(&v)
+}
+// SetClaimsSourceNil sets the value for ClaimsSource to be an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetClaimsSourceNil() {
+	o.ClaimsSource.Set(nil)
+}
+
+// UnsetClaimsSource ensures that no value is present for ClaimsSource, not even an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetClaimsSource() {
+	o.ClaimsSource.Unset()
 }
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
@@ -885,6 +928,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interfa
 	if !IsNil(o.AzureTenant) {
 		toSerialize["azure_tenant"] = o.AzureTenant
 	}
+	if o.ClaimsSource.IsSet() {
+		toSerialize["claims_source"] = o.ClaimsSource.Get()
+	}
 	if !IsNil(o.ClientId) {
 		toSerialize["client_id"] = o.ClientId
 	}
@@ -964,6 +1010,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(bytes []byte
 		delete(additionalProperties, "apple_team_id")
 		delete(additionalProperties, "auth_url")
 		delete(additionalProperties, "azure_tenant")
+		delete(additionalProperties, "claims_source")
 		delete(additionalProperties, "client_id")
 		delete(additionalProperties, "client_secret")
 		delete(additionalProperties, "created_at")

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the IdentityWithCredentials type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityWithCredentials{}
 
 // IdentityWithCredentials Create Identity and Import Credentials
 type IdentityWithCredentials struct {
@@ -43,7 +46,7 @@ func NewIdentityWithCredentialsWithDefaults() *IdentityWithCredentials {
 
 // GetOidc returns the Oidc field value if set, zero value otherwise.
 func (o *IdentityWithCredentials) GetOidc() IdentityWithCredentialsOidc {
-	if o == nil || o.Oidc == nil {
+	if o == nil || IsNil(o.Oidc) {
 		var ret IdentityWithCredentialsOidc
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *IdentityWithCredentials) GetOidc() IdentityWithCredentialsOidc {
 // GetOidcOk returns a tuple with the Oidc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentials) GetOidcOk() (*IdentityWithCredentialsOidc, bool) {
-	if o == nil || o.Oidc == nil {
+	if o == nil || IsNil(o.Oidc) {
 		return nil, false
 	}
 	return o.Oidc, true
@@ -61,7 +64,7 @@ func (o *IdentityWithCredentials) GetOidcOk() (*IdentityWithCredentialsOidc, boo
 
 // HasOidc returns a boolean if a field has been set.
 func (o *IdentityWithCredentials) HasOidc() bool {
-	if o != nil && o.Oidc != nil {
+	if o != nil && !IsNil(o.Oidc) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *IdentityWithCredentials) SetOidc(v IdentityWithCredentialsOidc) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *IdentityWithCredentials) GetPassword() IdentityWithCredentialsPassword {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret IdentityWithCredentialsPassword
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *IdentityWithCredentials) GetPassword() IdentityWithCredentialsPassword 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentials) GetPasswordOk() (*IdentityWithCredentialsPassword, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -93,7 +96,7 @@ func (o *IdentityWithCredentials) GetPasswordOk() (*IdentityWithCredentialsPassw
 
 // HasPassword returns a boolean if a field has been set.
 func (o *IdentityWithCredentials) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -106,11 +109,19 @@ func (o *IdentityWithCredentials) SetPassword(v IdentityWithCredentialsPassword)
 }
 
 func (o IdentityWithCredentials) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IdentityWithCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Oidc != nil {
+	if !IsNil(o.Oidc) {
 		toSerialize["oidc"] = o.Oidc
 	}
-	if o.Password != nil {
+	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
 
@@ -118,15 +129,19 @@ func (o IdentityWithCredentials) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IdentityWithCredentials) UnmarshalJSON(bytes []byte) (err error) {
 	varIdentityWithCredentials := _IdentityWithCredentials{}
 
-	if err = json.Unmarshal(bytes, &varIdentityWithCredentials); err == nil {
-		*o = IdentityWithCredentials(varIdentityWithCredentials)
+	err = json.Unmarshal(bytes, &varIdentityWithCredentials)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IdentityWithCredentials(varIdentityWithCredentials)
 
 	additionalProperties := make(map[string]interface{})
 

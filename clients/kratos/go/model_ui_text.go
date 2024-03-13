@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UiText type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiText{}
 
 // UiText struct for UiText
 type UiText struct {
@@ -51,7 +55,7 @@ func NewUiTextWithDefaults() *UiText {
 
 // GetContext returns the Context field value if set, zero value otherwise.
 func (o *UiText) GetContext() map[string]interface{} {
-	if o == nil || o.Context == nil {
+	if o == nil || IsNil(o.Context) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -61,15 +65,15 @@ func (o *UiText) GetContext() map[string]interface{} {
 // GetContextOk returns a tuple with the Context field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiText) GetContextOk() (map[string]interface{}, bool) {
-	if o == nil || o.Context == nil {
-		return nil, false
+	if o == nil || IsNil(o.Context) {
+		return map[string]interface{}{}, false
 	}
 	return o.Context, true
 }
 
 // HasContext returns a boolean if a field has been set.
 func (o *UiText) HasContext() bool {
-	if o != nil && o.Context != nil {
+	if o != nil && !IsNil(o.Context) {
 		return true
 	}
 
@@ -154,33 +158,62 @@ func (o *UiText) SetType(v string) {
 }
 
 func (o UiText) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UiText) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Context != nil {
+	if !IsNil(o.Context) {
 		toSerialize["context"] = o.Context
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["text"] = o.Text
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["id"] = o.Id
+	toSerialize["text"] = o.Text
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UiText) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"text",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUiText := _UiText{}
 
-	if err = json.Unmarshal(bytes, &varUiText); err == nil {
-		*o = UiText(varUiText)
+	err = json.Unmarshal(bytes, &varUiText)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UiText(varUiText)
 
 	additionalProperties := make(map[string]interface{})
 

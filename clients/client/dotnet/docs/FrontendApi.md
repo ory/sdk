@@ -38,7 +38,7 @@ Method | HTTP request | Description
 
 <a name="createbrowserloginflow"></a>
 # **CreateBrowserLoginFlow**
-> ClientLoginFlow CreateBrowserLoginFlow (bool? refresh = null, string aal = null, string returnTo = null, string cookie = null, string loginChallenge = null, string organization = null)
+> ClientLoginFlow CreateBrowserLoginFlow (bool? refresh = null, string aal = null, string returnTo = null, string cookie = null, string loginChallenge = null, string organization = null, string via = null)
 
 Create Login Flow for Browsers
 
@@ -67,11 +67,12 @@ namespace Example
             var cookie = "cookie_example";  // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
             var loginChallenge = "loginChallenge_example";  // string | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional) 
             var organization = "organization_example";  // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional) 
+            var via = "via_example";  // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional) 
 
             try
             {
                 // Create Login Flow for Browsers
-                ClientLoginFlow result = apiInstance.CreateBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization);
+                ClientLoginFlow result = apiInstance.CreateBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -95,6 +96,7 @@ Name | Type | Description  | Notes
  **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
  **loginChallenge** | **string**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] 
  **organization** | **string**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
+ **via** | **string**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
 
 ### Return type
 
@@ -502,7 +504,7 @@ No authorization required
 
 <a name="createnativeloginflow"></a>
 # **CreateNativeLoginFlow**
-> ClientLoginFlow CreateNativeLoginFlow (bool? refresh = null, string aal = null, string xSessionToken = null, bool? returnSessionTokenExchangeCode = null, string returnTo = null)
+> ClientLoginFlow CreateNativeLoginFlow (bool? refresh = null, string aal = null, string xSessionToken = null, bool? returnSessionTokenExchangeCode = null, string returnTo = null, string via = null)
 
 Create Login Flow for Native Apps
 
@@ -530,11 +532,12 @@ namespace Example
             var xSessionToken = "xSessionToken_example";  // string | The Session Token of the Identity performing the settings flow. (optional) 
             var returnSessionTokenExchangeCode = true;  // bool? | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional) 
             var returnTo = "returnTo_example";  // string | The URL to return the browser to after the flow was completed. (optional) 
+            var via = "via_example";  // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional) 
 
             try
             {
                 // Create Login Flow for Native Apps
-                ClientLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo);
+                ClientLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -557,6 +560,7 @@ Name | Type | Description  | Notes
  **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] 
  **returnSessionTokenExchangeCode** | **bool?**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional] 
+ **via** | **string**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
 
 ### Return type
 

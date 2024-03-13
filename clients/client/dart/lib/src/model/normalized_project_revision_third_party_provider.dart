@@ -19,6 +19,7 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// * [appleTeamId] - Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret
 /// * [authUrl] - AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 /// * [azureTenant] - Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
+/// * [claimsSource] 
 /// * [clientId] - ClientID is the application's Client ID.
 /// * [clientSecret] 
 /// * [createdAt] - The Project's Revision Creation Date
@@ -59,6 +60,9 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
   /// Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
   @BuiltValueField(wireName: r'azure_tenant')
   String? get azureTenant;
+
+  @BuiltValueField(wireName: r'claims_source')
+  String? get claimsSource;
 
   /// ClientID is the application's Client ID.
   @BuiltValueField(wireName: r'client_id')
@@ -186,6 +190,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       yield serializers.serialize(
         object.azureTenant,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.claimsSource != null) {
+      yield r'claims_source';
+      yield serializers.serialize(
+        object.claimsSource,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.clientId != null) {
@@ -372,6 +383,14 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
             specifiedType: const FullType(String),
           ) as String;
           result.azureTenant = valueDes;
+          break;
+        case r'claims_source':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.claimsSource = valueDes;
           break;
         case r'client_id':
           final valueDes = serializers.deserialize(

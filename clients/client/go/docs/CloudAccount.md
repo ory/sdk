@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Email** | **string** |  | 
+**Id** | **string** |  | 
+**Name** | **string** |  | 
 
 ## Methods
 
 ### NewCloudAccount
 
-`func NewCloudAccount() *CloudAccount`
+`func NewCloudAccount(email string, id string, name string, ) *CloudAccount`
 
 NewCloudAccount instantiates a new CloudAccount object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
-### HasEmail
-
-`func (o *CloudAccount) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetId
 
@@ -71,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *CloudAccount) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -96,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *CloudAccount) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

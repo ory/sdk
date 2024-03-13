@@ -6,6 +6,59 @@ part of 'identity.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const IdentityStateEnum _$identityStateEnum_active =
+    const IdentityStateEnum._('active');
+const IdentityStateEnum _$identityStateEnum_inactive =
+    const IdentityStateEnum._('inactive');
+
+IdentityStateEnum _$identityStateEnumValueOf(String name) {
+  switch (name) {
+    case 'active':
+      return _$identityStateEnum_active;
+    case 'inactive':
+      return _$identityStateEnum_inactive;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<IdentityStateEnum> _$identityStateEnumValues =
+    new BuiltSet<IdentityStateEnum>(const <IdentityStateEnum>[
+  _$identityStateEnum_active,
+  _$identityStateEnum_inactive,
+]);
+
+Serializer<IdentityStateEnum> _$identityStateEnumSerializer =
+    new _$IdentityStateEnumSerializer();
+
+class _$IdentityStateEnumSerializer
+    implements PrimitiveSerializer<IdentityStateEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'active': 'active',
+    'inactive': 'inactive',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'active': 'active',
+    'inactive': 'inactive',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[IdentityStateEnum];
+  @override
+  final String wireName = 'IdentityStateEnum';
+
+  @override
+  Object serialize(Serializers serializers, IdentityStateEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  IdentityStateEnum deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      IdentityStateEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$Identity extends Identity {
   @override
   final DateTime? createdAt;
@@ -26,7 +79,7 @@ class _$Identity extends Identity {
   @override
   final String schemaUrl;
   @override
-  final IdentityState? state;
+  final IdentityStateEnum? state;
   @override
   final DateTime? stateChangedAt;
   @override
@@ -176,9 +229,9 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
   String? get schemaUrl => _$this._schemaUrl;
   set schemaUrl(String? schemaUrl) => _$this._schemaUrl = schemaUrl;
 
-  IdentityState? _state;
-  IdentityState? get state => _$this._state;
-  set state(IdentityState? state) => _$this._state = state;
+  IdentityStateEnum? _state;
+  IdentityStateEnum? get state => _$this._state;
+  set state(IdentityStateEnum? state) => _$this._state = state;
 
   DateTime? _stateChangedAt;
   DateTime? get stateChangedAt => _$this._stateChangedAt;

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **csrfToken** | **string** | CSRFToken is the anti-CSRF token | [optional]
 **method** | **string** | Method  Should be set to \&quot;lookup\&quot; when trying to add, update, or remove a lookup pairing. |
 **password** | **string** | Password is the updated password |
+**transientPayload** | **object** | Transient data to pass along to any webhooks | [optional]
 **traits** | **object** | The identity&#39;s traits  in: body |
 **flow** | **string** | Flow ID is the flow&#39;s ID.  in: query | [optional]
 **link** | **string** | Link this provider  Either this or &#x60;unlink&#x60; must be set.  type: string in: body | [optional]

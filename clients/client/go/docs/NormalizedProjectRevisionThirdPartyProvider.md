@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **AppleTeamId** | Pointer to **string** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 
 **AuthUrl** | Pointer to **string** | AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
 **AzureTenant** | Pointer to **string** | Tenant is the Azure AD Tenant to use for authentication, and must be set when &#x60;provider&#x60; is set to &#x60;microsoft&#x60;.  Can be either &#x60;common&#x60;, &#x60;organizations&#x60;, &#x60;consumers&#x60; for a multitenant application or a specific tenant like &#x60;8eaef023-2b34-4da1-9baa-8bc8c9d6a490&#x60; or &#x60;contoso.onmicrosoft.com&#x60;. | [optional] 
+**ClaimsSource** | Pointer to **NullableString** |  | [optional] 
 **ClientId** | Pointer to **string** | ClientID is the application&#39;s Client ID. | [optional] 
 **ClientSecret** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
@@ -207,6 +208,41 @@ SetAzureTenant sets AzureTenant field to given value.
 
 HasAzureTenant returns a boolean if a field has been set.
 
+### GetClaimsSource
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetClaimsSource() string`
+
+GetClaimsSource returns the ClaimsSource field if non-nil, zero value otherwise.
+
+### GetClaimsSourceOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetClaimsSourceOk() (*string, bool)`
+
+GetClaimsSourceOk returns a tuple with the ClaimsSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClaimsSource
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetClaimsSource(v string)`
+
+SetClaimsSource sets ClaimsSource field to given value.
+
+### HasClaimsSource
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasClaimsSource() bool`
+
+HasClaimsSource returns a boolean if a field has been set.
+
+### SetClaimsSourceNil
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetClaimsSourceNil(b bool)`
+
+ SetClaimsSourceNil sets the value for ClaimsSource to be an explicit nil
+
+### UnsetClaimsSource
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetClaimsSource()`
+
+UnsetClaimsSource ensures that no value is present for ClaimsSource, not even an explicit nil
 ### GetClientId
 
 `func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientId() string`

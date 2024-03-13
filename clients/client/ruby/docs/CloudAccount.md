@@ -4,9 +4,9 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **email** | **String** |  | [optional] |
-| **id** | **String** |  | [optional] |
-| **name** | **String** |  | [optional] |
+| **email** | **String** |  |  |
+| **id** | **String** |  |  |
+| **name** | **String** |  |  |
 
 ## Example
 

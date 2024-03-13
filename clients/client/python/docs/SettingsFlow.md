@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **active** | **str** | Active, if set, contains the registration method that is being used. It is initially not set. | [optional] 
 **continue_with** | [**[ContinueWith]**](ContinueWith.md) | Contains a list of actions, that could follow this flow  It can, for example, contain a reference to the verification flow, created as part of the user&#39;s registration. | [optional] 
 **return_to** | **str** | ReturnTo contains the requested return_to URL. | [optional] 
+**transient_payload** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | TransientPayload is used to pass data from the settings flow to hooks and email templates | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

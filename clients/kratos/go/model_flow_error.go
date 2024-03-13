@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the FlowError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FlowError{}
 
 // FlowError struct for FlowError
 type FlowError struct {
@@ -50,7 +54,7 @@ func NewFlowErrorWithDefaults() *FlowError {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FlowError) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -60,7 +64,7 @@ func (o *FlowError) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FlowError) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -68,7 +72,7 @@ func (o *FlowError) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *FlowError) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -82,7 +86,7 @@ func (o *FlowError) SetCreatedAt(v time.Time) {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *FlowError) GetError() map[string]interface{} {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -92,15 +96,15 @@ func (o *FlowError) GetError() map[string]interface{} {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FlowError) GetErrorOk() (map[string]interface{}, bool) {
-	if o == nil || o.Error == nil {
-		return nil, false
+	if o == nil || IsNil(o.Error) {
+		return map[string]interface{}{}, false
 	}
 	return o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *FlowError) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -138,7 +142,7 @@ func (o *FlowError) SetId(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *FlowError) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -148,7 +152,7 @@ func (o *FlowError) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FlowError) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -156,7 +160,7 @@ func (o *FlowError) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *FlowError) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -169,17 +173,23 @@ func (o *FlowError) SetUpdatedAt(v time.Time) {
 }
 
 func (o FlowError) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FlowError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Error != nil {
+	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.UpdatedAt != nil {
+	toSerialize["id"] = o.Id
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 
@@ -187,15 +197,40 @@ func (o FlowError) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *FlowError) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varFlowError := _FlowError{}
 
-	if err = json.Unmarshal(bytes, &varFlowError); err == nil {
-		*o = FlowError(varFlowError)
+	err = json.Unmarshal(bytes, &varFlowError)
+
+	if err != nil {
+		return err
 	}
+
+	*o = FlowError(varFlowError)
 
 	additionalProperties := make(map[string]interface{})
 

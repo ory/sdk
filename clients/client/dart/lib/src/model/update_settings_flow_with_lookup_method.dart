@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -17,6 +18,7 @@ part 'update_settings_flow_with_lookup_method.g.dart';
 /// * [lookupSecretRegenerate] - If set to true will regenerate the lookup secrets
 /// * [lookupSecretReveal] - If set to true will reveal the lookup secrets
 /// * [method] - Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateSettingsFlowWithLookupMethod implements Built<UpdateSettingsFlowWithLookupMethod, UpdateSettingsFlowWithLookupMethodBuilder> {
   /// CSRFToken is the anti-CSRF token
@@ -42,6 +44,10 @@ abstract class UpdateSettingsFlowWithLookupMethod implements Built<UpdateSetting
   /// Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
   @BuiltValueField(wireName: r'method')
   String get method;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateSettingsFlowWithLookupMethod._();
 
@@ -106,6 +112,13 @@ class _$UpdateSettingsFlowWithLookupMethodSerializer implements PrimitiveSeriali
       object.method,
       specifiedType: const FullType(String),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
   }
 
   @override
@@ -170,6 +183,13 @@ class _$UpdateSettingsFlowWithLookupMethodSerializer implements PrimitiveSeriali
             specifiedType: const FullType(String),
           ) as String;
           result.method = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

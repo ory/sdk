@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0-rc.3
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the IsReady200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IsReady200Response{}
 
 // IsReady200Response struct for IsReady200Response
 type IsReady200Response struct {
@@ -43,7 +46,7 @@ func NewIsReady200ResponseWithDefaults() *IsReady200Response {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *IsReady200Response) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *IsReady200Response) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IsReady200Response) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -61,7 +64,7 @@ func (o *IsReady200Response) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *IsReady200Response) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *IsReady200Response) SetStatus(v string) {
 }
 
 func (o IsReady200Response) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o IsReady200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 
@@ -83,15 +94,19 @@ func (o IsReady200Response) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *IsReady200Response) UnmarshalJSON(bytes []byte) (err error) {
 	varIsReady200Response := _IsReady200Response{}
 
-	if err = json.Unmarshal(bytes, &varIsReady200Response); err == nil {
-		*o = IsReady200Response(varIsReady200Response)
+	err = json.Unmarshal(bytes, &varIsReady200Response)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IsReady200Response(varIsReady200Response)
 
 	additionalProperties := make(map[string]interface{})
 

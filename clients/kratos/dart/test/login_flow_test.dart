@@ -7,7 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(LoginFlow, () {
-    // IdentityCredentialsType active
+    // The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    // String active
     test('to test the property `active`', () async {
       // TODO
     });
@@ -47,6 +48,11 @@ void main() {
       // TODO
     });
 
+    // String organizationId
+    test('to test the property `organizationId`', () async {
+      // TODO
+    });
+
     // Refresh stores whether this login flow should enforce re-authentication.
     // bool refresh
     test('to test the property `refresh`', () async {
@@ -73,6 +79,12 @@ void main() {
     // SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \"api\", and only on creating the login flow.
     // String sessionTokenExchangeCode
     test('to test the property `sessionTokenExchangeCode`', () async {
+      // TODO
+    });
+
+    // State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
+    // JsonObject state
+    test('to test the property `state`', () async {
       // TODO
     });
 

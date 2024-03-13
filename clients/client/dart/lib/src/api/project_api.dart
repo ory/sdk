@@ -10,7 +10,6 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/api_util.dart';
 import 'package:ory_client/src/model/active_project_in_console.dart';
-import 'package:ory_client/src/model/cloud_account.dart';
 import 'package:ory_client/src/model/create_project_api_key_request.dart';
 import 'package:ory_client/src/model/create_project_body.dart';
 import 'package:ory_client/src/model/error_generic.dart';
@@ -23,6 +22,7 @@ import 'package:ory_client/src/model/organization.dart';
 import 'package:ory_client/src/model/organization_body.dart';
 import 'package:ory_client/src/model/project.dart';
 import 'package:ory_client/src/model/project_api_key.dart';
+import 'package:ory_client/src/model/project_member.dart';
 import 'package:ory_client/src/model/project_metadata.dart';
 import 'package:ory_client/src/model/set_active_project_in_console_body.dart';
 import 'package:ory_client/src/model/set_project.dart';
@@ -708,9 +708,9 @@ class ProjectApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<CloudAccount>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<ProjectMember>] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<BuiltList<CloudAccount>>> getProjectMembers({ 
+  Future<Response<BuiltList<ProjectMember>>> getProjectMembers({ 
     required String project,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -746,14 +746,14 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<CloudAccount>? _responseData;
+    BuiltList<ProjectMember>? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(BuiltList, [FullType(CloudAccount)]),
-      ) as BuiltList<CloudAccount>;
+        specifiedType: const FullType(BuiltList, [FullType(ProjectMember)]),
+      ) as BuiltList<ProjectMember>;
 
     } catch (error, stackTrace) {
       throw DioError(
@@ -765,7 +765,7 @@ class ProjectApi {
       );
     }
 
-    return Response<BuiltList<CloudAccount>>(
+    return Response<BuiltList<ProjectMember>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -783,7 +783,7 @@ class ProjectApi {
   /// Parameters:
   /// * [projectId] - Project ID
   /// * [eventType] - The event type to query for
-  /// * [resolution] - The resolution of the buckets  The minimum resolution is 1 hour.
+  /// * [resolution] - The resolution of the buckets  The minimum resolution is 1 minute.
   /// * [from] - The start RFC3339 date of the time window
   /// * [to] - The end RFC3339 date of the time window
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation

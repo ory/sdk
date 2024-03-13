@@ -24,7 +24,7 @@ class _$SettingsFlow extends SettingsFlow {
   @override
   final String? returnTo;
   @override
-  final SettingsFlowState state;
+  final JsonObject? state;
   @override
   final String type;
   @override
@@ -42,7 +42,7 @@ class _$SettingsFlow extends SettingsFlow {
       required this.issuedAt,
       required this.requestUrl,
       this.returnTo,
-      required this.state,
+      this.state,
       required this.type,
       required this.ui})
       : super._() {
@@ -55,7 +55,6 @@ class _$SettingsFlow extends SettingsFlow {
         issuedAt, r'SettingsFlow', 'issuedAt');
     BuiltValueNullFieldError.checkNotNull(
         requestUrl, r'SettingsFlow', 'requestUrl');
-    BuiltValueNullFieldError.checkNotNull(state, r'SettingsFlow', 'state');
     BuiltValueNullFieldError.checkNotNull(type, r'SettingsFlow', 'type');
     BuiltValueNullFieldError.checkNotNull(ui, r'SettingsFlow', 'ui');
   }
@@ -158,9 +157,9 @@ class SettingsFlowBuilder
   String? get returnTo => _$this._returnTo;
   set returnTo(String? returnTo) => _$this._returnTo = returnTo;
 
-  SettingsFlowState? _state;
-  SettingsFlowState? get state => _$this._state;
-  set state(SettingsFlowState? state) => _$this._state = state;
+  JsonObject? _state;
+  JsonObject? get state => _$this._state;
+  set state(JsonObject? state) => _$this._state = state;
 
   String? _type;
   String? get type => _$this._type;
@@ -224,8 +223,7 @@ class SettingsFlowBuilder
               requestUrl: BuiltValueNullFieldError.checkNotNull(
                   requestUrl, r'SettingsFlow', 'requestUrl'),
               returnTo: returnTo,
-              state: BuiltValueNullFieldError.checkNotNull(
-                  state, r'SettingsFlow', 'state'),
+              state: state,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'SettingsFlow', 'type'),
               ui: ui.build());

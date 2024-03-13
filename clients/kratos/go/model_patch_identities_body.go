@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the PatchIdentitiesBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchIdentitiesBody{}
 
 // PatchIdentitiesBody Patch Identities Body
 type PatchIdentitiesBody struct {
@@ -43,7 +46,7 @@ func NewPatchIdentitiesBodyWithDefaults() *PatchIdentitiesBody {
 
 // GetIdentities returns the Identities field value if set, zero value otherwise.
 func (o *PatchIdentitiesBody) GetIdentities() []IdentityPatch {
-	if o == nil || o.Identities == nil {
+	if o == nil || IsNil(o.Identities) {
 		var ret []IdentityPatch
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *PatchIdentitiesBody) GetIdentities() []IdentityPatch {
 // GetIdentitiesOk returns a tuple with the Identities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchIdentitiesBody) GetIdentitiesOk() ([]IdentityPatch, bool) {
-	if o == nil || o.Identities == nil {
+	if o == nil || IsNil(o.Identities) {
 		return nil, false
 	}
 	return o.Identities, true
@@ -61,7 +64,7 @@ func (o *PatchIdentitiesBody) GetIdentitiesOk() ([]IdentityPatch, bool) {
 
 // HasIdentities returns a boolean if a field has been set.
 func (o *PatchIdentitiesBody) HasIdentities() bool {
-	if o != nil && o.Identities != nil {
+	if o != nil && !IsNil(o.Identities) {
 		return true
 	}
 
@@ -74,8 +77,16 @@ func (o *PatchIdentitiesBody) SetIdentities(v []IdentityPatch) {
 }
 
 func (o PatchIdentitiesBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PatchIdentitiesBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Identities != nil {
+	if !IsNil(o.Identities) {
 		toSerialize["identities"] = o.Identities
 	}
 
@@ -83,15 +94,19 @@ func (o PatchIdentitiesBody) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *PatchIdentitiesBody) UnmarshalJSON(bytes []byte) (err error) {
 	varPatchIdentitiesBody := _PatchIdentitiesBody{}
 
-	if err = json.Unmarshal(bytes, &varPatchIdentitiesBody); err == nil {
-		*o = PatchIdentitiesBody(varPatchIdentitiesBody)
+	err = json.Unmarshal(bytes, &varPatchIdentitiesBody)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PatchIdentitiesBody(varPatchIdentitiesBody)
 
 	additionalProperties := make(map[string]interface{})
 

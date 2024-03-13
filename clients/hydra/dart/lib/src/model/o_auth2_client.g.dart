@@ -90,6 +90,8 @@ class _$OAuth2Client extends OAuth2Client {
   @override
   final bool? skipConsent;
   @override
+  final bool? skipLogoutConsent;
+  @override
   final String? subjectType;
   @override
   final String? tokenEndpointAuthMethod;
@@ -147,6 +149,7 @@ class _$OAuth2Client extends OAuth2Client {
       this.scope,
       this.sectorIdentifierUri,
       this.skipConsent,
+      this.skipLogoutConsent,
       this.subjectType,
       this.tokenEndpointAuthMethod,
       this.tokenEndpointAuthSigningAlg,
@@ -218,6 +221,7 @@ class _$OAuth2Client extends OAuth2Client {
         scope == other.scope &&
         sectorIdentifierUri == other.sectorIdentifierUri &&
         skipConsent == other.skipConsent &&
+        skipLogoutConsent == other.skipLogoutConsent &&
         subjectType == other.subjectType &&
         tokenEndpointAuthMethod == other.tokenEndpointAuthMethod &&
         tokenEndpointAuthSigningAlg == other.tokenEndpointAuthSigningAlg &&
@@ -270,6 +274,7 @@ class _$OAuth2Client extends OAuth2Client {
     _$hash = $jc(_$hash, scope.hashCode);
     _$hash = $jc(_$hash, sectorIdentifierUri.hashCode);
     _$hash = $jc(_$hash, skipConsent.hashCode);
+    _$hash = $jc(_$hash, skipLogoutConsent.hashCode);
     _$hash = $jc(_$hash, subjectType.hashCode);
     _$hash = $jc(_$hash, tokenEndpointAuthMethod.hashCode);
     _$hash = $jc(_$hash, tokenEndpointAuthSigningAlg.hashCode);
@@ -335,6 +340,7 @@ class _$OAuth2Client extends OAuth2Client {
           ..add('scope', scope)
           ..add('sectorIdentifierUri', sectorIdentifierUri)
           ..add('skipConsent', skipConsent)
+          ..add('skipLogoutConsent', skipLogoutConsent)
           ..add('subjectType', subjectType)
           ..add('tokenEndpointAuthMethod', tokenEndpointAuthMethod)
           ..add('tokenEndpointAuthSigningAlg', tokenEndpointAuthSigningAlg)
@@ -581,6 +587,11 @@ class OAuth2ClientBuilder
   bool? get skipConsent => _$this._skipConsent;
   set skipConsent(bool? skipConsent) => _$this._skipConsent = skipConsent;
 
+  bool? _skipLogoutConsent;
+  bool? get skipLogoutConsent => _$this._skipLogoutConsent;
+  set skipLogoutConsent(bool? skipLogoutConsent) =>
+      _$this._skipLogoutConsent = skipLogoutConsent;
+
   String? _subjectType;
   String? get subjectType => _$this._subjectType;
   set subjectType(String? subjectType) => _$this._subjectType = subjectType;
@@ -663,6 +674,7 @@ class OAuth2ClientBuilder
       _scope = $v.scope;
       _sectorIdentifierUri = $v.sectorIdentifierUri;
       _skipConsent = $v.skipConsent;
+      _skipLogoutConsent = $v.skipLogoutConsent;
       _subjectType = $v.subjectType;
       _tokenEndpointAuthMethod = $v.tokenEndpointAuthMethod;
       _tokenEndpointAuthSigningAlg = $v.tokenEndpointAuthSigningAlg;
@@ -745,6 +757,7 @@ class OAuth2ClientBuilder
               scope: scope,
               sectorIdentifierUri: sectorIdentifierUri,
               skipConsent: skipConsent,
+              skipLogoutConsent: skipLogoutConsent,
               subjectType: subjectType,
               tokenEndpointAuthMethod: tokenEndpointAuthMethod,
               tokenEndpointAuthSigningAlg: tokenEndpointAuthSigningAlg,

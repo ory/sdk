@@ -21,12 +21,14 @@ part 'normalized_project_revision.g.dart';
 /// Properties:
 /// * [createdAt] - The Project's Revision Creation Date
 /// * [disableAccountExperienceWelcomeScreen] - Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+/// * [enableAxV2] - Whether the new account experience is enabled and reachable.
 /// * [hydraOauth2AllowedTopLevelClaims] 
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 /// * [hydraOauth2ExcludeNotBeforeClaim] - Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
 /// * [hydraOauth2GrantJwtIatOptional] - Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
 /// * [hydraOauth2GrantJwtJtiOptional] - Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
 /// * [hydraOauth2GrantJwtMaxTtl] - Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
+/// * [hydraOauth2MirrorTopLevelClaims] - Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
 /// * [hydraOauth2PkceEnforced] - Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 /// * [hydraOauth2PkceEnforcedForPublicClients] - Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
 /// * [hydraOauth2RefreshTokenHook] - Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
@@ -85,6 +87,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosCourierTemplatesLoginCodeValidEmailBodyHtml] - Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.html\" setting.
 /// * [kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesLoginCodeValidEmailSubject] - Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \"courier.smtp.templates.login_code.valid.email.subject\" setting.
+/// * [kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext] - Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \"courier.smtp.templates.login_code.valid.sms.plaintext\" setting.
 /// * [kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml] - Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
 /// * [kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext] - Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesRecoveryCodeInvalidEmailSubject] - Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
@@ -170,6 +173,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 /// * [kratosSelfserviceMethodsCodeEnabled] - Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
+/// * [kratosSelfserviceMethodsCodeMfaEnabled] - Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
 /// * [kratosSelfserviceMethodsCodePasswordlessEnabled] - Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigBaseUrl] - Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigLifespan] - Configures the Ory Kratos Link Method's lifespan  This governs the \"selfservice.methods.link.config.lifespan\" setting.
@@ -217,6 +221,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'disable_account_experience_welcome_screen')
   bool? get disableAccountExperienceWelcomeScreen;
 
+  /// Whether the new account experience is enabled and reachable.
+  @BuiltValueField(wireName: r'enable_ax_v2')
+  bool? get enableAxV2;
+
   @BuiltValueField(wireName: r'hydra_oauth2_allowed_top_level_claims')
   BuiltList<String>? get hydraOauth2AllowedTopLevelClaims;
 
@@ -239,6 +247,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_grant_jwt_max_ttl')
   String? get hydraOauth2GrantJwtMaxTtl;
+
+  /// Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
+  @BuiltValueField(wireName: r'hydra_oauth2_mirror_top_level_claims')
+  bool? get hydraOauth2MirrorTopLevelClaims;
 
   /// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_pkce_enforced')
@@ -464,6 +476,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \"courier.smtp.templates.login_code.valid.email.subject\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_login_code_valid_email_subject')
   String? get kratosCourierTemplatesLoginCodeValidEmailSubject;
+
+  /// Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \"courier.smtp.templates.login_code.valid.sms.plaintext\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_login_code_valid_sms_body_plaintext')
+  String? get kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
 
   /// Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_recovery_code_invalid_email_body_html')
@@ -802,6 +818,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_enabled')
   bool? get kratosSelfserviceMethodsCodeEnabled;
 
+  /// Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_code_mfa_enabled')
+  bool? get kratosSelfserviceMethodsCodeMfaEnabled;
+
   /// Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_passwordless_enabled')
   bool? get kratosSelfserviceMethodsCodePasswordlessEnabled;
@@ -992,6 +1012,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(bool),
       );
     }
+    if (object.enableAxV2 != null) {
+      yield r'enable_ax_v2';
+      yield serializers.serialize(
+        object.enableAxV2,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.hydraOauth2AllowedTopLevelClaims != null) {
       yield r'hydra_oauth2_allowed_top_level_claims';
       yield serializers.serialize(
@@ -1032,6 +1059,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.hydraOauth2GrantJwtMaxTtl,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.hydraOauth2MirrorTopLevelClaims != null) {
+      yield r'hydra_oauth2_mirror_top_level_claims';
+      yield serializers.serialize(
+        object.hydraOauth2MirrorTopLevelClaims,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.hydraOauth2PkceEnforced != null) {
@@ -1437,6 +1471,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_courier_templates_login_code_valid_email_subject';
       yield serializers.serialize(
         object.kratosCourierTemplatesLoginCodeValidEmailSubject,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext != null) {
+      yield r'kratos_courier_templates_login_code_valid_sms_body_plaintext';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
         specifiedType: const FullType(String),
       );
     }
@@ -2035,6 +2076,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(bool),
       );
     }
+    if (object.kratosSelfserviceMethodsCodeMfaEnabled != null) {
+      yield r'kratos_selfservice_methods_code_mfa_enabled';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCodeMfaEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.kratosSelfserviceMethodsCodePasswordlessEnabled != null) {
       yield r'kratos_selfservice_methods_code_passwordless_enabled';
       yield serializers.serialize(
@@ -2329,6 +2377,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as bool;
           result.disableAccountExperienceWelcomeScreen = valueDes;
           break;
+        case r'enable_ax_v2':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.enableAxV2 = valueDes;
+          break;
         case r'hydra_oauth2_allowed_top_level_claims':
           final valueDes = serializers.deserialize(
             value,
@@ -2370,6 +2425,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.hydraOauth2GrantJwtMaxTtl = valueDes;
+          break;
+        case r'hydra_oauth2_mirror_top_level_claims':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.hydraOauth2MirrorTopLevelClaims = valueDes;
           break;
         case r'hydra_oauth2_pkce_enforced':
           final valueDes = serializers.deserialize(
@@ -2778,6 +2840,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosCourierTemplatesLoginCodeValidEmailSubject = valueDes;
+          break;
+        case r'kratos_courier_templates_login_code_valid_sms_body_plaintext':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext = valueDes;
           break;
         case r'kratos_courier_templates_recovery_code_invalid_email_body_html':
           final valueDes = serializers.deserialize(
@@ -3374,6 +3443,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(bool),
           ) as bool;
           result.kratosSelfserviceMethodsCodeEnabled = valueDes;
+          break;
+        case r'kratos_selfservice_methods_code_mfa_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceMethodsCodeMfaEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_code_passwordless_enabled':
           final valueDes = serializers.deserialize(

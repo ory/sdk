@@ -7,6 +7,7 @@ import 'package:ory_hydra_client/src/model/o_auth2_consent_session_expires_at.da
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_hydra_client/src/model/accept_o_auth2_consent_request_session.dart';
 import 'package:ory_hydra_client/src/model/o_auth2_consent_request.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -16,6 +17,7 @@ part 'o_auth2_consent_session.g.dart';
 ///
 /// Properties:
 /// * [consentRequest] 
+/// * [context] 
 /// * [expiresAt] 
 /// * [grantAccessTokenAudience] 
 /// * [grantScope] 
@@ -27,6 +29,9 @@ part 'o_auth2_consent_session.g.dart';
 abstract class OAuth2ConsentSession implements Built<OAuth2ConsentSession, OAuth2ConsentSessionBuilder> {
   @BuiltValueField(wireName: r'consent_request')
   OAuth2ConsentRequest? get consentRequest;
+
+  @BuiltValueField(wireName: r'context')
+  JsonObject? get context;
 
   @BuiltValueField(wireName: r'expires_at')
   OAuth2ConsentSessionExpiresAt? get expiresAt;
@@ -79,6 +84,13 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
       yield serializers.serialize(
         object.consentRequest,
         specifiedType: const FullType(OAuth2ConsentRequest),
+      );
+    }
+    if (object.context != null) {
+      yield r'context';
+      yield serializers.serialize(
+        object.context,
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.expiresAt != null) {
@@ -159,6 +171,14 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
             specifiedType: const FullType(OAuth2ConsentRequest),
           ) as OAuth2ConsentRequest;
           result.consentRequest.replace(valueDes);
+          break;
+        case r'context':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
+          result.context = valueDes;
           break;
         case r'expires_at':
           final valueDes = serializers.deserialize(

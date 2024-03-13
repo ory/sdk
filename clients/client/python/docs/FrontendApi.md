@@ -70,12 +70,13 @@ with ory_client.ApiClient() as api_client:
     cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
     login_challenge = "login_challenge_example" # str | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
     organization = "organization_example" # str | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
+    via = "via_example" # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Create Login Flow for Browsers
-        api_response = api_instance.create_browser_login_flow(refresh=refresh, aal=aal, return_to=return_to, cookie=cookie, login_challenge=login_challenge, organization=organization)
+        api_response = api_instance.create_browser_login_flow(refresh=refresh, aal=aal, return_to=return_to, cookie=cookie, login_challenge=login_challenge, organization=organization, via=via)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling FrontendApi->create_browser_login_flow: %s\n" % e)
@@ -92,6 +93,7 @@ Name | Type | Description  | Notes
  **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
  **login_challenge** | **str**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional]
  **organization** | **str**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional]
+ **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional]
 
 ### Return type
 
@@ -521,12 +523,13 @@ with ory_client.ApiClient() as api_client:
     x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
     return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
     return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
+    via = "via_example" # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Create Login Flow for Native Apps
-        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
+        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, via=via)
         pprint(api_response)
     except ory_client.ApiException as e:
         print("Exception when calling FrontendApi->create_native_login_flow: %s\n" % e)
@@ -542,6 +545,7 @@ Name | Type | Description  | Notes
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
  **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
+ **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional]
 
 ### Return type
 

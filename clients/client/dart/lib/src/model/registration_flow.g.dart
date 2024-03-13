@@ -6,9 +6,105 @@ part of 'registration_flow.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_password =
+    const RegistrationFlowActiveEnum._('password');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_oidc =
+    const RegistrationFlowActiveEnum._('oidc');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_totp =
+    const RegistrationFlowActiveEnum._('totp');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_lookupSecret =
+    const RegistrationFlowActiveEnum._('lookupSecret');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_webauthn =
+    const RegistrationFlowActiveEnum._('webauthn');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_code =
+    const RegistrationFlowActiveEnum._('code');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_linkRecovery =
+    const RegistrationFlowActiveEnum._('linkRecovery');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_codeRecovery =
+    const RegistrationFlowActiveEnum._('codeRecovery');
+
+RegistrationFlowActiveEnum _$registrationFlowActiveEnumValueOf(String name) {
+  switch (name) {
+    case 'password':
+      return _$registrationFlowActiveEnum_password;
+    case 'oidc':
+      return _$registrationFlowActiveEnum_oidc;
+    case 'totp':
+      return _$registrationFlowActiveEnum_totp;
+    case 'lookupSecret':
+      return _$registrationFlowActiveEnum_lookupSecret;
+    case 'webauthn':
+      return _$registrationFlowActiveEnum_webauthn;
+    case 'code':
+      return _$registrationFlowActiveEnum_code;
+    case 'linkRecovery':
+      return _$registrationFlowActiveEnum_linkRecovery;
+    case 'codeRecovery':
+      return _$registrationFlowActiveEnum_codeRecovery;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<RegistrationFlowActiveEnum> _$registrationFlowActiveEnumValues =
+    new BuiltSet<RegistrationFlowActiveEnum>(const <RegistrationFlowActiveEnum>[
+  _$registrationFlowActiveEnum_password,
+  _$registrationFlowActiveEnum_oidc,
+  _$registrationFlowActiveEnum_totp,
+  _$registrationFlowActiveEnum_lookupSecret,
+  _$registrationFlowActiveEnum_webauthn,
+  _$registrationFlowActiveEnum_code,
+  _$registrationFlowActiveEnum_linkRecovery,
+  _$registrationFlowActiveEnum_codeRecovery,
+]);
+
+Serializer<RegistrationFlowActiveEnum> _$registrationFlowActiveEnumSerializer =
+    new _$RegistrationFlowActiveEnumSerializer();
+
+class _$RegistrationFlowActiveEnumSerializer
+    implements PrimitiveSerializer<RegistrationFlowActiveEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookupSecret': 'lookup_secret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'linkRecovery': 'link_recovery',
+    'codeRecovery': 'code_recovery',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookup_secret': 'lookupSecret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'link_recovery': 'linkRecovery',
+    'code_recovery': 'codeRecovery',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[RegistrationFlowActiveEnum];
+  @override
+  final String wireName = 'RegistrationFlowActiveEnum';
+
+  @override
+  Object serialize(Serializers serializers, RegistrationFlowActiveEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  RegistrationFlowActiveEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      RegistrationFlowActiveEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$RegistrationFlow extends RegistrationFlow {
   @override
-  final IdentityCredentialsType? active;
+  final RegistrationFlowActiveEnum? active;
   @override
   final DateTime expiresAt;
   @override
@@ -141,9 +237,9 @@ class RegistrationFlowBuilder
     implements Builder<RegistrationFlow, RegistrationFlowBuilder> {
   _$RegistrationFlow? _$v;
 
-  IdentityCredentialsType? _active;
-  IdentityCredentialsType? get active => _$this._active;
-  set active(IdentityCredentialsType? active) => _$this._active = active;
+  RegistrationFlowActiveEnum? _active;
+  RegistrationFlowActiveEnum? get active => _$this._active;
+  set active(RegistrationFlowActiveEnum? active) => _$this._active = active;
 
   DateTime? _expiresAt;
   DateTime? get expiresAt => _$this._expiresAt;

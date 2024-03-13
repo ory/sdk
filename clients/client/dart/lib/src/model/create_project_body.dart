@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,10 +12,16 @@ part 'create_project_body.g.dart';
 /// Create Project Request Body
 ///
 /// Properties:
+/// * [environment] - The environment of the project. prod Production dev Development
 /// * [name] - The name of the project to be created
 /// * [workspaceId] 
 @BuiltValue()
 abstract class CreateProjectBody implements Built<CreateProjectBody, CreateProjectBodyBuilder> {
+  /// The environment of the project. prod Production dev Development
+  @BuiltValueField(wireName: r'environment')
+  CreateProjectBodyEnvironmentEnum get environment;
+  // enum environmentEnum {  prod,  dev,  };
+
   /// The name of the project to be created
   @BuiltValueField(wireName: r'name')
   String get name;
@@ -45,6 +52,11 @@ class _$CreateProjectBodySerializer implements PrimitiveSerializer<CreateProject
     CreateProjectBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    yield r'environment';
+    yield serializers.serialize(
+      object.environment,
+      specifiedType: const FullType(CreateProjectBodyEnvironmentEnum),
+    );
     yield r'name';
     yield serializers.serialize(
       object.name,
@@ -80,6 +92,13 @@ class _$CreateProjectBodySerializer implements PrimitiveSerializer<CreateProject
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'environment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CreateProjectBodyEnvironmentEnum),
+          ) as CreateProjectBodyEnvironmentEnum;
+          result.environment = valueDes;
+          break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
@@ -122,5 +141,22 @@ class _$CreateProjectBodySerializer implements PrimitiveSerializer<CreateProject
     );
     return result.build();
   }
+}
+
+class CreateProjectBodyEnvironmentEnum extends EnumClass {
+
+  /// The environment of the project. prod Production dev Development
+  @BuiltValueEnumConst(wireName: r'prod')
+  static const CreateProjectBodyEnvironmentEnum prod = _$createProjectBodyEnvironmentEnum_prod;
+  /// The environment of the project. prod Production dev Development
+  @BuiltValueEnumConst(wireName: r'dev')
+  static const CreateProjectBodyEnvironmentEnum dev = _$createProjectBodyEnvironmentEnum_dev;
+
+  static Serializer<CreateProjectBodyEnvironmentEnum> get serializer => _$createProjectBodyEnvironmentEnumSerializer;
+
+  const CreateProjectBodyEnvironmentEnum._(String name): super(name);
+
+  static BuiltSet<CreateProjectBodyEnvironmentEnum> get values => _$createProjectBodyEnvironmentEnumValues;
+  static CreateProjectBodyEnvironmentEnum valueOf(String name) => _$createProjectBodyEnvironmentEnumValueOf(name);
 }
 

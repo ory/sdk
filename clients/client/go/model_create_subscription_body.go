@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.1
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -19,16 +19,15 @@ import (
 // checks if the CreateSubscriptionBody type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateSubscriptionBody{}
 
-// CreateSubscriptionBody Create Subscription Request Body
+// CreateSubscriptionBody struct for CreateSubscriptionBody
 type CreateSubscriptionBody struct {
 	//  usd USD eur Euro
 	Currency *string `json:"currency,omitempty"`
 	//  monthly Monthly yearly Yearly
 	Interval string `json:"interval"`
 	Plan string `json:"plan"`
-	ProvisionFirstProject NullableString `json:"provision_first_project,omitempty"`
+	ProvisionFirstProject string `json:"provision_first_project"`
 	ReturnTo *string `json:"return_to,omitempty"`
-	Workspace NullableString `json:"workspace,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,10 +37,11 @@ type _CreateSubscriptionBody CreateSubscriptionBody
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateSubscriptionBody(interval string, plan string) *CreateSubscriptionBody {
+func NewCreateSubscriptionBody(interval string, plan string, provisionFirstProject string) *CreateSubscriptionBody {
 	this := CreateSubscriptionBody{}
 	this.Interval = interval
 	this.Plan = plan
+	this.ProvisionFirstProject = provisionFirstProject
 	return &this
 }
 
@@ -133,46 +133,28 @@ func (o *CreateSubscriptionBody) SetPlan(v string) {
 	o.Plan = v
 }
 
-// GetProvisionFirstProject returns the ProvisionFirstProject field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProvisionFirstProject returns the ProvisionFirstProject field value
 func (o *CreateSubscriptionBody) GetProvisionFirstProject() string {
-	if o == nil || IsNil(o.ProvisionFirstProject.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProvisionFirstProject.Get()
+
+	return o.ProvisionFirstProject
 }
 
-// GetProvisionFirstProjectOk returns a tuple with the ProvisionFirstProject field value if set, nil otherwise
+// GetProvisionFirstProjectOk returns a tuple with the ProvisionFirstProject field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateSubscriptionBody) GetProvisionFirstProjectOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ProvisionFirstProject.Get(), o.ProvisionFirstProject.IsSet()
+	return &o.ProvisionFirstProject, true
 }
 
-// HasProvisionFirstProject returns a boolean if a field has been set.
-func (o *CreateSubscriptionBody) HasProvisionFirstProject() bool {
-	if o != nil && o.ProvisionFirstProject.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProvisionFirstProject gets a reference to the given NullableString and assigns it to the ProvisionFirstProject field.
+// SetProvisionFirstProject sets field value
 func (o *CreateSubscriptionBody) SetProvisionFirstProject(v string) {
-	o.ProvisionFirstProject.Set(&v)
-}
-// SetProvisionFirstProjectNil sets the value for ProvisionFirstProject to be an explicit nil
-func (o *CreateSubscriptionBody) SetProvisionFirstProjectNil() {
-	o.ProvisionFirstProject.Set(nil)
-}
-
-// UnsetProvisionFirstProject ensures that no value is present for ProvisionFirstProject, not even an explicit nil
-func (o *CreateSubscriptionBody) UnsetProvisionFirstProject() {
-	o.ProvisionFirstProject.Unset()
+	o.ProvisionFirstProject = v
 }
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
@@ -207,48 +189,6 @@ func (o *CreateSubscriptionBody) SetReturnTo(v string) {
 	o.ReturnTo = &v
 }
 
-// GetWorkspace returns the Workspace field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateSubscriptionBody) GetWorkspace() string {
-	if o == nil || IsNil(o.Workspace.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Workspace.Get()
-}
-
-// GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateSubscriptionBody) GetWorkspaceOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Workspace.Get(), o.Workspace.IsSet()
-}
-
-// HasWorkspace returns a boolean if a field has been set.
-func (o *CreateSubscriptionBody) HasWorkspace() bool {
-	if o != nil && o.Workspace.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkspace gets a reference to the given NullableString and assigns it to the Workspace field.
-func (o *CreateSubscriptionBody) SetWorkspace(v string) {
-	o.Workspace.Set(&v)
-}
-// SetWorkspaceNil sets the value for Workspace to be an explicit nil
-func (o *CreateSubscriptionBody) SetWorkspaceNil() {
-	o.Workspace.Set(nil)
-}
-
-// UnsetWorkspace ensures that no value is present for Workspace, not even an explicit nil
-func (o *CreateSubscriptionBody) UnsetWorkspace() {
-	o.Workspace.Unset()
-}
-
 func (o CreateSubscriptionBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -264,14 +204,9 @@ func (o CreateSubscriptionBody) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["interval"] = o.Interval
 	toSerialize["plan"] = o.Plan
-	if o.ProvisionFirstProject.IsSet() {
-		toSerialize["provision_first_project"] = o.ProvisionFirstProject.Get()
-	}
+	toSerialize["provision_first_project"] = o.ProvisionFirstProject
 	if !IsNil(o.ReturnTo) {
 		toSerialize["return_to"] = o.ReturnTo
-	}
-	if o.Workspace.IsSet() {
-		toSerialize["workspace"] = o.Workspace.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -288,6 +223,7 @@ func (o *CreateSubscriptionBody) UnmarshalJSON(bytes []byte) (err error) {
 	requiredProperties := []string{
 		"interval",
 		"plan",
+		"provision_first_project",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -322,7 +258,6 @@ func (o *CreateSubscriptionBody) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "plan")
 		delete(additionalProperties, "provision_first_project")
 		delete(additionalProperties, "return_to")
-		delete(additionalProperties, "workspace")
 		o.AdditionalProperties = additionalProperties
 	}
 

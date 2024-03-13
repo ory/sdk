@@ -55,8 +55,11 @@ docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
+docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspacePayload.md
+docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
@@ -94,12 +97,10 @@ docs/IdentityCredentialsCode.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
-docs/IdentityCredentialsType.md
 docs/IdentityPatch.md
 docs/IdentityPatchResponse.md
 docs/IdentitySchemaContainer.md
 docs/IdentitySchemaPreset.md
-docs/IdentityState.md
 docs/IdentityWithCredentials.md
 docs/IdentityWithCredentialsOidc.md
 docs/IdentityWithCredentialsOidcConfig.md
@@ -110,7 +111,6 @@ docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
-docs/InternalProvisionMockSubscription.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsReady200Response.md
@@ -123,6 +123,7 @@ docs/KetoNamespace.md
 docs/ListEventStreams.md
 docs/ListMyWorkspacesResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceProjectsResponse.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
 docs/LogoutFlow.md
@@ -133,6 +134,7 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataAPI.md
 docs/MetricsDatapoint.md
+docs/MigrationOptions.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -164,6 +166,7 @@ docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionAPI.md
+docs/PermissionsOnWorkpaceResponse.md
 docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
@@ -177,6 +180,7 @@ docs/ProjectBrandingTheme.md
 docs/ProjectCors.md
 docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
+docs/ProjectMember.md
 docs/ProjectMetadata.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
@@ -212,7 +216,6 @@ docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
 docs/SettingsFlowState.md
 docs/SourcePosition.md
-docs/StripeCustomer.md
 docs/SubjectSet.md
 docs/Subscription.md
 docs/SuccessfulCodeExchangeResponse.md
@@ -263,6 +266,7 @@ docs/UpdateSubscriptionBody.md
 docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
+docs/UpdateWorkspacePayload.md
 docs/Usage.md
 docs/VerifiableCredentialPrimingResponse.md
 docs/VerifiableCredentialProof.md
@@ -274,6 +278,7 @@ docs/Version.md
 docs/Warning.md
 docs/WellknownAPI.md
 docs/Workspace.md
+docs/WorkspaceMeta.md
 git_push.sh
 go.mod
 go.sum
@@ -314,8 +319,11 @@ model_create_recovery_code_for_identity_body.go
 model_create_recovery_link_for_identity_body.go
 model_create_relationship_body.go
 model_create_subscription_body.go
+model_create_subscription_common.go
 model_create_verifiable_credential_request_body.go
 model_create_workspace_member_invite_body.go
+model_create_workspace_payload.go
+model_create_workspace_subscription_body.go
 model_credential_supported_draft00.go
 model_custom_domain.go
 model_delete_my_sessions_count.go
@@ -350,12 +358,10 @@ model_identity_credentials_code.go
 model_identity_credentials_oidc.go
 model_identity_credentials_oidc_provider.go
 model_identity_credentials_password.go
-model_identity_credentials_type.go
 model_identity_patch.go
 model_identity_patch_response.go
 model_identity_schema_container.go
 model_identity_schema_preset.go
-model_identity_state.go
 model_identity_with_credentials.go
 model_identity_with_credentials_oidc.go
 model_identity_with_credentials_oidc_config.go
@@ -366,7 +372,6 @@ model_internal_get_project_branding_body.go
 model_internal_is_ax_welcome_screen_enabled_for_project_body.go
 model_internal_is_owner_for_project_by_slug_body.go
 model_internal_is_owner_for_project_by_slug_response.go
-model_internal_provision_mock_subscription.go
 model_introspected_o_auth2_token.go
 model_is_owner_for_project_by_slug.go
 model_is_ready_200_response.go
@@ -378,6 +383,7 @@ model_keto_namespace.go
 model_list_event_streams.go
 model_list_my_workspaces_response.go
 model_list_organizations_response.go
+model_list_workspace_projects_response.go
 model_login_flow.go
 model_login_flow_state.go
 model_logout_flow.go
@@ -387,6 +393,7 @@ model_member_invite.go
 model_message.go
 model_message_dispatch.go
 model_metrics_datapoint.go
+model_migration_options.go
 model_namespace.go
 model_needs_privileged_session_error.go
 model_normalized_project.go
@@ -415,6 +422,7 @@ model_pagination_headers.go
 model_parse_error.go
 model_patch_identities_body.go
 model_perform_native_logout_body.go
+model_permissions_on_workpace_response.go
 model_plan.go
 model_plan_details.go
 model_post_check_permission_body.go
@@ -427,6 +435,7 @@ model_project_branding_theme.go
 model_project_cors.go
 model_project_events_datapoint.go
 model_project_host.go
+model_project_member.go
 model_project_metadata.go
 model_project_service_identity.go
 model_project_service_o_auth2.go
@@ -461,7 +470,6 @@ model_set_project_branding_theme_body.go
 model_settings_flow.go
 model_settings_flow_state.go
 model_source_position.go
-model_stripe_customer.go
 model_subject_set.go
 model_subscription.go
 model_successful_code_exchange_response.go
@@ -512,6 +520,7 @@ model_update_subscription_body.go
 model_update_verification_flow_body.go
 model_update_verification_flow_with_code_method.go
 model_update_verification_flow_with_link_method.go
+model_update_workspace_payload.go
 model_usage.go
 model_verifiable_credential_priming_response.go
 model_verifiable_credential_proof.go
@@ -522,6 +531,7 @@ model_verification_flow_state.go
 model_version.go
 model_warning.go
 model_workspace.go
+model_workspace_meta.go
 response.go
 test/api_courier_test.go
 test/api_events_test.go

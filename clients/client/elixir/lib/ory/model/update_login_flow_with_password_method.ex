@@ -12,7 +12,8 @@ defmodule Ory.Model.UpdateLoginFlowWithPasswordMethod do
     :identifier,
     :method,
     :password,
-    :password_identifier
+    :password_identifier,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
@@ -20,7 +21,8 @@ defmodule Ory.Model.UpdateLoginFlowWithPasswordMethod do
     :identifier => String.t,
     :method => String.t,
     :password => String.t,
-    :password_identifier => String.t | nil
+    :password_identifier => String.t | nil,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do

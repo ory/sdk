@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** | The Project&#39;s Creation Date | 
+**Environment** | **string** | The environment of the project. prod Production dev Development | 
 **Hosts** | **List&lt;string&gt;** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The project&#39;s name if set | 

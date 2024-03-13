@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Identifier** | Pointer to **string** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | [optional] 
 **Method** | **string** | Method should be set to \&quot;code\&quot; when logging in using the code strategy. | 
 **Resend** | Pointer to **string** | Resend is set when the user wants to resend the code | [optional] 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 
 ## Methods
 
@@ -143,6 +144,31 @@ SetResend sets Resend field to given value.
 `func (o *UpdateLoginFlowWithCodeMethod) HasResend() bool`
 
 HasResend returns a boolean if a field has been set.
+
+### GetTransientPayload
+
+`func (o *UpdateLoginFlowWithCodeMethod) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateLoginFlowWithCodeMethod) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateLoginFlowWithCodeMethod) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateLoginFlowWithCodeMethod) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

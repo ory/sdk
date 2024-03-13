@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.5.1
+API version: v1.8.1
 Contact: support@ory.sh
 */
 
@@ -26,6 +26,10 @@ type CreateProjectNormalizedPayload struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
 	DisableAccountExperienceWelcomeScreen *bool `json:"disable_account_experience_welcome_screen,omitempty"`
+	// Whether the new account experience is enabled and reachable.
+	EnableAxV2 *bool `json:"enable_ax_v2,omitempty"`
+	//  prod Production dev Development
+	Environment string `json:"environment"`
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
@@ -37,6 +41,8 @@ type CreateProjectNormalizedPayload struct {
 	HydraOauth2GrantJwtJtiOptional *bool `json:"hydra_oauth2_grant_jwt_jti_optional,omitempty"`
 	// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
 	HydraOauth2GrantJwtMaxTtl *string `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty"`
+	// Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
+	HydraOauth2MirrorTopLevelClaims *bool `json:"hydra_oauth2_mirror_top_level_claims,omitempty"`
 	// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 	HydraOauth2PkceEnforced *bool `json:"hydra_oauth2_pkce_enforced,omitempty"`
 	// Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
@@ -144,6 +150,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosCourierTemplatesLoginCodeValidEmailBodyPlaintext *string `json:"kratos_courier_templates_login_code_valid_email_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \"courier.smtp.templates.login_code.valid.email.subject\" setting.
 	KratosCourierTemplatesLoginCodeValidEmailSubject *string `json:"kratos_courier_templates_login_code_valid_email_subject,omitempty"`
+	// Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \"courier.smtp.templates.login_code.valid.sms.plaintext\" setting.
+	KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext *string `json:"kratos_courier_templates_login_code_valid_sms_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
 	KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_code_invalid_email_body_html,omitempty"`
 	// Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.plaintext\" setting.
@@ -309,6 +317,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsCodeConfigLifespan *string `json:"kratos_selfservice_methods_code_config_lifespan,omitempty"`
 	// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
 	KratosSelfserviceMethodsCodeEnabled *bool `json:"kratos_selfservice_methods_code_enabled,omitempty"`
+	// Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
+	KratosSelfserviceMethodsCodeMfaEnabled *bool `json:"kratos_selfservice_methods_code_mfa_enabled,omitempty"`
 	// Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
 	KratosSelfserviceMethodsCodePasswordlessEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_enabled,omitempty"`
 	// Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
@@ -387,8 +397,9 @@ type _CreateProjectNormalizedPayload CreateProjectNormalizedPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateProjectNormalizedPayload(name string) *CreateProjectNormalizedPayload {
+func NewCreateProjectNormalizedPayload(environment string, name string) *CreateProjectNormalizedPayload {
 	this := CreateProjectNormalizedPayload{}
+	this.Environment = environment
 	var hydraOauth2GrantJwtMaxTtl string = "720h"
 	this.HydraOauth2GrantJwtMaxTtl = &hydraOauth2GrantJwtMaxTtl
 	var hydraStrategiesAccessToken string = "opaque"
@@ -507,6 +518,62 @@ func (o *CreateProjectNormalizedPayload) HasDisableAccountExperienceWelcomeScree
 // SetDisableAccountExperienceWelcomeScreen gets a reference to the given bool and assigns it to the DisableAccountExperienceWelcomeScreen field.
 func (o *CreateProjectNormalizedPayload) SetDisableAccountExperienceWelcomeScreen(v bool) {
 	o.DisableAccountExperienceWelcomeScreen = &v
+}
+
+// GetEnableAxV2 returns the EnableAxV2 field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetEnableAxV2() bool {
+	if o == nil || IsNil(o.EnableAxV2) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableAxV2
+}
+
+// GetEnableAxV2Ok returns a tuple with the EnableAxV2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetEnableAxV2Ok() (*bool, bool) {
+	if o == nil || IsNil(o.EnableAxV2) {
+		return nil, false
+	}
+	return o.EnableAxV2, true
+}
+
+// HasEnableAxV2 returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasEnableAxV2() bool {
+	if o != nil && !IsNil(o.EnableAxV2) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableAxV2 gets a reference to the given bool and assigns it to the EnableAxV2 field.
+func (o *CreateProjectNormalizedPayload) SetEnableAxV2(v bool) {
+	o.EnableAxV2 = &v
+}
+
+// GetEnvironment returns the Environment field value
+func (o *CreateProjectNormalizedPayload) GetEnvironment() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Environment
+}
+
+// GetEnvironmentOk returns a tuple with the Environment field value
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetEnvironmentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Environment, true
+}
+
+// SetEnvironment sets field value
+func (o *CreateProjectNormalizedPayload) SetEnvironment(v string) {
+	o.Environment = v
 }
 
 // GetHydraOauth2AllowedTopLevelClaims returns the HydraOauth2AllowedTopLevelClaims field value if set, zero value otherwise.
@@ -699,6 +766,38 @@ func (o *CreateProjectNormalizedPayload) HasHydraOauth2GrantJwtMaxTtl() bool {
 // SetHydraOauth2GrantJwtMaxTtl gets a reference to the given string and assigns it to the HydraOauth2GrantJwtMaxTtl field.
 func (o *CreateProjectNormalizedPayload) SetHydraOauth2GrantJwtMaxTtl(v string) {
 	o.HydraOauth2GrantJwtMaxTtl = &v
+}
+
+// GetHydraOauth2MirrorTopLevelClaims returns the HydraOauth2MirrorTopLevelClaims field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2MirrorTopLevelClaims() bool {
+	if o == nil || IsNil(o.HydraOauth2MirrorTopLevelClaims) {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2MirrorTopLevelClaims
+}
+
+// GetHydraOauth2MirrorTopLevelClaimsOk returns a tuple with the HydraOauth2MirrorTopLevelClaims field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2MirrorTopLevelClaimsOk() (*bool, bool) {
+	if o == nil || IsNil(o.HydraOauth2MirrorTopLevelClaims) {
+		return nil, false
+	}
+	return o.HydraOauth2MirrorTopLevelClaims, true
+}
+
+// HasHydraOauth2MirrorTopLevelClaims returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHydraOauth2MirrorTopLevelClaims() bool {
+	if o != nil && !IsNil(o.HydraOauth2MirrorTopLevelClaims) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2MirrorTopLevelClaims gets a reference to the given bool and assigns it to the HydraOauth2MirrorTopLevelClaims field.
+func (o *CreateProjectNormalizedPayload) SetHydraOauth2MirrorTopLevelClaims(v bool) {
+	o.HydraOauth2MirrorTopLevelClaims = &v
 }
 
 // GetHydraOauth2PkceEnforced returns the HydraOauth2PkceEnforced field value if set, zero value otherwise.
@@ -2557,6 +2656,38 @@ func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesLoginCodeValid
 // SetKratosCourierTemplatesLoginCodeValidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesLoginCodeValidEmailSubject field.
 func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesLoginCodeValidEmailSubject(v string) {
 	o.KratosCourierTemplatesLoginCodeValidEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext returns the KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext() string {
+	if o == nil || IsNil(o.KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext) {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext
+}
+
+// GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintextOk returns a tuple with the KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintextOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext) {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext() bool {
+	if o != nil && !IsNil(o.KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext field.
+func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesLoginCodeValidSmsBodyPlaintext(v string) {
+	o.KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext = &v
 }
 
 // GetKratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml returns the KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml field value if set, zero value otherwise.
@@ -5280,6 +5411,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodeEnabled(
 	o.KratosSelfserviceMethodsCodeEnabled = &v
 }
 
+// GetKratosSelfserviceMethodsCodeMfaEnabled returns the KratosSelfserviceMethodsCodeMfaEnabled field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCodeMfaEnabled() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCodeMfaEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsCodeMfaEnabled
+}
+
+// GetKratosSelfserviceMethodsCodeMfaEnabledOk returns a tuple with the KratosSelfserviceMethodsCodeMfaEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCodeMfaEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCodeMfaEnabled) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsCodeMfaEnabled, true
+}
+
+// HasKratosSelfserviceMethodsCodeMfaEnabled returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsCodeMfaEnabled() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsCodeMfaEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsCodeMfaEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsCodeMfaEnabled field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodeMfaEnabled(v bool) {
+	o.KratosSelfserviceMethodsCodeMfaEnabled = &v
+}
+
 // GetKratosSelfserviceMethodsCodePasswordlessEnabled returns the KratosSelfserviceMethodsCodePasswordlessEnabled field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCodePasswordlessEnabled() bool {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsCodePasswordlessEnabled) {
@@ -6514,6 +6677,10 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.DisableAccountExperienceWelcomeScreen) {
 		toSerialize["disable_account_experience_welcome_screen"] = o.DisableAccountExperienceWelcomeScreen
 	}
+	if !IsNil(o.EnableAxV2) {
+		toSerialize["enable_ax_v2"] = o.EnableAxV2
+	}
+	toSerialize["environment"] = o.Environment
 	if !IsNil(o.HydraOauth2AllowedTopLevelClaims) {
 		toSerialize["hydra_oauth2_allowed_top_level_claims"] = o.HydraOauth2AllowedTopLevelClaims
 	}
@@ -6531,6 +6698,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.HydraOauth2GrantJwtMaxTtl) {
 		toSerialize["hydra_oauth2_grant_jwt_max_ttl"] = o.HydraOauth2GrantJwtMaxTtl
+	}
+	if !IsNil(o.HydraOauth2MirrorTopLevelClaims) {
+		toSerialize["hydra_oauth2_mirror_top_level_claims"] = o.HydraOauth2MirrorTopLevelClaims
 	}
 	if !IsNil(o.HydraOauth2PkceEnforced) {
 		toSerialize["hydra_oauth2_pkce_enforced"] = o.HydraOauth2PkceEnforced
@@ -6705,6 +6875,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosCourierTemplatesLoginCodeValidEmailSubject) {
 		toSerialize["kratos_courier_templates_login_code_valid_email_subject"] = o.KratosCourierTemplatesLoginCodeValidEmailSubject
+	}
+	if !IsNil(o.KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext) {
+		toSerialize["kratos_courier_templates_login_code_valid_sms_body_plaintext"] = o.KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext
 	}
 	if !IsNil(o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml) {
 		toSerialize["kratos_courier_templates_recovery_code_invalid_email_body_html"] = o.KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml
@@ -6961,6 +7134,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceMethodsCodeEnabled) {
 		toSerialize["kratos_selfservice_methods_code_enabled"] = o.KratosSelfserviceMethodsCodeEnabled
 	}
+	if !IsNil(o.KratosSelfserviceMethodsCodeMfaEnabled) {
+		toSerialize["kratos_selfservice_methods_code_mfa_enabled"] = o.KratosSelfserviceMethodsCodeMfaEnabled
+	}
 	if !IsNil(o.KratosSelfserviceMethodsCodePasswordlessEnabled) {
 		toSerialize["kratos_selfservice_methods_code_passwordless_enabled"] = o.KratosSelfserviceMethodsCodePasswordlessEnabled
 	}
@@ -7086,6 +7262,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"environment",
 		"name",
 	}
 
@@ -7118,12 +7295,15 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "disable_account_experience_welcome_screen")
+		delete(additionalProperties, "enable_ax_v2")
+		delete(additionalProperties, "environment")
 		delete(additionalProperties, "hydra_oauth2_allowed_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_client_credentials_default_grant_allowed_scope")
 		delete(additionalProperties, "hydra_oauth2_exclude_not_before_claim")
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_iat_optional")
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_jti_optional")
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_max_ttl")
+		delete(additionalProperties, "hydra_oauth2_mirror_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced")
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced_for_public_clients")
 		delete(additionalProperties, "hydra_oauth2_refresh_token_hook")
@@ -7182,6 +7362,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "kratos_courier_templates_login_code_valid_email_body_html")
 		delete(additionalProperties, "kratos_courier_templates_login_code_valid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_login_code_valid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_login_code_valid_sms_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_recovery_code_invalid_email_body_html")
 		delete(additionalProperties, "kratos_courier_templates_recovery_code_invalid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_recovery_code_invalid_email_subject")
@@ -7267,6 +7448,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "kratos_selfservice_flows_verification_use")
 		delete(additionalProperties, "kratos_selfservice_methods_code_config_lifespan")
 		delete(additionalProperties, "kratos_selfservice_methods_code_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_code_mfa_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_base_url")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_lifespan")

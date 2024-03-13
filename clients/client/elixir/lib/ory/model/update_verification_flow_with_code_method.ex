@@ -11,14 +11,16 @@ defmodule Ory.Model.UpdateVerificationFlowWithCodeMethod do
     :code,
     :csrf_token,
     :email,
-    :method
+    :method,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
     :code => String.t | nil,
     :csrf_token => String.t | nil,
     :email => String.t | nil,
-    :method => String.t
+    :method => String.t,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do

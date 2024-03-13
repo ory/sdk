@@ -281,6 +281,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final bool? disableAccountExperienceWelcomeScreen;
   @override
+  final bool? enableAxV2;
+  @override
   final BuiltList<String>? hydraOauth2AllowedTopLevelClaims;
   @override
   final bool? hydraOauth2ClientCredentialsDefaultGrantAllowedScope;
@@ -292,6 +294,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final bool? hydraOauth2GrantJwtJtiOptional;
   @override
   final String? hydraOauth2GrantJwtMaxTtl;
+  @override
+  final bool? hydraOauth2MirrorTopLevelClaims;
   @override
   final bool? hydraOauth2PkceEnforced;
   @override
@@ -410,6 +414,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final String? kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext;
   @override
   final String? kratosCourierTemplatesLoginCodeValidEmailSubject;
+  @override
+  final String? kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
   @override
   final String? kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
   @override
@@ -593,6 +599,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final bool? kratosSelfserviceMethodsCodeEnabled;
   @override
+  final bool? kratosSelfserviceMethodsCodeMfaEnabled;
+  @override
   final bool? kratosSelfserviceMethodsCodePasswordlessEnabled;
   @override
   final String? kratosSelfserviceMethodsLinkConfigBaseUrl;
@@ -677,12 +685,14 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   _$NormalizedProjectRevision._(
       {this.createdAt,
       this.disableAccountExperienceWelcomeScreen,
+      this.enableAxV2,
       this.hydraOauth2AllowedTopLevelClaims,
       this.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
       this.hydraOauth2ExcludeNotBeforeClaim,
       this.hydraOauth2GrantJwtIatOptional,
       this.hydraOauth2GrantJwtJtiOptional,
       this.hydraOauth2GrantJwtMaxTtl,
+      this.hydraOauth2MirrorTopLevelClaims,
       this.hydraOauth2PkceEnforced,
       this.hydraOauth2PkceEnforcedForPublicClients,
       this.hydraOauth2RefreshTokenHook,
@@ -741,6 +751,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosCourierTemplatesLoginCodeValidEmailBodyHtml,
       this.kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext,
       this.kratosCourierTemplatesLoginCodeValidEmailSubject,
+      this.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailSubject,
@@ -826,6 +837,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceFlowsVerificationUse,
       this.kratosSelfserviceMethodsCodeConfigLifespan,
       this.kratosSelfserviceMethodsCodeEnabled,
+      this.kratosSelfserviceMethodsCodeMfaEnabled,
       this.kratosSelfserviceMethodsCodePasswordlessEnabled,
       this.kratosSelfserviceMethodsLinkConfigBaseUrl,
       this.kratosSelfserviceMethodsLinkConfigLifespan,
@@ -884,6 +896,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         createdAt == other.createdAt &&
         disableAccountExperienceWelcomeScreen ==
             other.disableAccountExperienceWelcomeScreen &&
+        enableAxV2 == other.enableAxV2 &&
         hydraOauth2AllowedTopLevelClaims ==
             other.hydraOauth2AllowedTopLevelClaims &&
         hydraOauth2ClientCredentialsDefaultGrantAllowedScope ==
@@ -895,6 +908,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         hydraOauth2GrantJwtJtiOptional ==
             other.hydraOauth2GrantJwtJtiOptional &&
         hydraOauth2GrantJwtMaxTtl == other.hydraOauth2GrantJwtMaxTtl &&
+        hydraOauth2MirrorTopLevelClaims ==
+            other.hydraOauth2MirrorTopLevelClaims &&
         hydraOauth2PkceEnforced == other.hydraOauth2PkceEnforced &&
         hydraOauth2PkceEnforcedForPublicClients ==
             other.hydraOauth2PkceEnforcedForPublicClients &&
@@ -981,6 +996,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext &&
         kratosCourierTemplatesLoginCodeValidEmailSubject ==
             other.kratosCourierTemplatesLoginCodeValidEmailSubject &&
+        kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext ==
+            other.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext &&
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml ==
             other.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml &&
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext ==
@@ -1163,6 +1180,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceMethodsCodeConfigLifespan &&
         kratosSelfserviceMethodsCodeEnabled ==
             other.kratosSelfserviceMethodsCodeEnabled &&
+        kratosSelfserviceMethodsCodeMfaEnabled ==
+            other.kratosSelfserviceMethodsCodeMfaEnabled &&
         kratosSelfserviceMethodsCodePasswordlessEnabled ==
             other.kratosSelfserviceMethodsCodePasswordlessEnabled &&
         kratosSelfserviceMethodsLinkConfigBaseUrl ==
@@ -1233,6 +1252,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, disableAccountExperienceWelcomeScreen.hashCode);
+    _$hash = $jc(_$hash, enableAxV2.hashCode);
     _$hash = $jc(_$hash, hydraOauth2AllowedTopLevelClaims.hashCode);
     _$hash = $jc(
         _$hash, hydraOauth2ClientCredentialsDefaultGrantAllowedScope.hashCode);
@@ -1240,6 +1260,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, hydraOauth2GrantJwtIatOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtJtiOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtMaxTtl.hashCode);
+    _$hash = $jc(_$hash, hydraOauth2MirrorTopLevelClaims.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforced.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforcedForPublicClients.hashCode);
     _$hash = $jc(_$hash, hydraOauth2RefreshTokenHook.hashCode);
@@ -1306,6 +1327,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext.hashCode);
     _$hash =
         $jc(_$hash, kratosCourierTemplatesLoginCodeValidEmailSubject.hashCode);
+    _$hash = $jc(
+        _$hash, kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext.hashCode);
     _$hash = $jc(_$hash,
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml.hashCode);
     _$hash = $jc(_$hash,
@@ -1476,6 +1499,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationUse.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeConfigLifespan.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeEnabled.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeMfaEnabled.hashCode);
     _$hash =
         $jc(_$hash, kratosSelfserviceMethodsCodePasswordlessEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsLinkConfigBaseUrl.hashCode);
@@ -1535,6 +1559,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('createdAt', createdAt)
           ..add('disableAccountExperienceWelcomeScreen',
               disableAccountExperienceWelcomeScreen)
+          ..add('enableAxV2', enableAxV2)
           ..add('hydraOauth2AllowedTopLevelClaims',
               hydraOauth2AllowedTopLevelClaims)
           ..add('hydraOauth2ClientCredentialsDefaultGrantAllowedScope',
@@ -1546,6 +1571,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add(
               'hydraOauth2GrantJwtJtiOptional', hydraOauth2GrantJwtJtiOptional)
           ..add('hydraOauth2GrantJwtMaxTtl', hydraOauth2GrantJwtMaxTtl)
+          ..add('hydraOauth2MirrorTopLevelClaims',
+              hydraOauth2MirrorTopLevelClaims)
           ..add('hydraOauth2PkceEnforced', hydraOauth2PkceEnforced)
           ..add('hydraOauth2PkceEnforcedForPublicClients',
               hydraOauth2PkceEnforcedForPublicClients)
@@ -1632,6 +1659,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext)
           ..add('kratosCourierTemplatesLoginCodeValidEmailSubject',
               kratosCourierTemplatesLoginCodeValidEmailSubject)
+          ..add('kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext',
+              kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext)
           ..add('kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml',
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml)
           ..add('kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext',
@@ -1812,6 +1841,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceMethodsCodeConfigLifespan)
           ..add('kratosSelfserviceMethodsCodeEnabled',
               kratosSelfserviceMethodsCodeEnabled)
+          ..add('kratosSelfserviceMethodsCodeMfaEnabled',
+              kratosSelfserviceMethodsCodeMfaEnabled)
           ..add('kratosSelfserviceMethodsCodePasswordlessEnabled',
               kratosSelfserviceMethodsCodePasswordlessEnabled)
           ..add('kratosSelfserviceMethodsLinkConfigBaseUrl',
@@ -1896,6 +1927,10 @@ class NormalizedProjectRevisionBuilder
       _$this._disableAccountExperienceWelcomeScreen =
           disableAccountExperienceWelcomeScreen;
 
+  bool? _enableAxV2;
+  bool? get enableAxV2 => _$this._enableAxV2;
+  set enableAxV2(bool? enableAxV2) => _$this._enableAxV2 = enableAxV2;
+
   ListBuilder<String>? _hydraOauth2AllowedTopLevelClaims;
   ListBuilder<String> get hydraOauth2AllowedTopLevelClaims =>
       _$this._hydraOauth2AllowedTopLevelClaims ??= new ListBuilder<String>();
@@ -1936,6 +1971,12 @@ class NormalizedProjectRevisionBuilder
   String? get hydraOauth2GrantJwtMaxTtl => _$this._hydraOauth2GrantJwtMaxTtl;
   set hydraOauth2GrantJwtMaxTtl(String? hydraOauth2GrantJwtMaxTtl) =>
       _$this._hydraOauth2GrantJwtMaxTtl = hydraOauth2GrantJwtMaxTtl;
+
+  bool? _hydraOauth2MirrorTopLevelClaims;
+  bool? get hydraOauth2MirrorTopLevelClaims =>
+      _$this._hydraOauth2MirrorTopLevelClaims;
+  set hydraOauth2MirrorTopLevelClaims(bool? hydraOauth2MirrorTopLevelClaims) =>
+      _$this._hydraOauth2MirrorTopLevelClaims = hydraOauth2MirrorTopLevelClaims;
 
   bool? _hydraOauth2PkceEnforced;
   bool? get hydraOauth2PkceEnforced => _$this._hydraOauth2PkceEnforced;
@@ -2331,6 +2372,14 @@ class NormalizedProjectRevisionBuilder
           String? kratosCourierTemplatesLoginCodeValidEmailSubject) =>
       _$this._kratosCourierTemplatesLoginCodeValidEmailSubject =
           kratosCourierTemplatesLoginCodeValidEmailSubject;
+
+  String? _kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
+  String? get kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext =>
+      _$this._kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
+  set kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext(
+          String? kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext) =>
+      _$this._kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext =
+          kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
 
   String? _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
   String? get kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml =>
@@ -3043,6 +3092,14 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceMethodsCodeEnabled =
           kratosSelfserviceMethodsCodeEnabled;
 
+  bool? _kratosSelfserviceMethodsCodeMfaEnabled;
+  bool? get kratosSelfserviceMethodsCodeMfaEnabled =>
+      _$this._kratosSelfserviceMethodsCodeMfaEnabled;
+  set kratosSelfserviceMethodsCodeMfaEnabled(
+          bool? kratosSelfserviceMethodsCodeMfaEnabled) =>
+      _$this._kratosSelfserviceMethodsCodeMfaEnabled =
+          kratosSelfserviceMethodsCodeMfaEnabled;
+
   bool? _kratosSelfserviceMethodsCodePasswordlessEnabled;
   bool? get kratosSelfserviceMethodsCodePasswordlessEnabled =>
       _$this._kratosSelfserviceMethodsCodePasswordlessEnabled;
@@ -3329,6 +3386,7 @@ class NormalizedProjectRevisionBuilder
       _createdAt = $v.createdAt;
       _disableAccountExperienceWelcomeScreen =
           $v.disableAccountExperienceWelcomeScreen;
+      _enableAxV2 = $v.enableAxV2;
       _hydraOauth2AllowedTopLevelClaims =
           $v.hydraOauth2AllowedTopLevelClaims?.toBuilder();
       _hydraOauth2ClientCredentialsDefaultGrantAllowedScope =
@@ -3337,6 +3395,7 @@ class NormalizedProjectRevisionBuilder
       _hydraOauth2GrantJwtIatOptional = $v.hydraOauth2GrantJwtIatOptional;
       _hydraOauth2GrantJwtJtiOptional = $v.hydraOauth2GrantJwtJtiOptional;
       _hydraOauth2GrantJwtMaxTtl = $v.hydraOauth2GrantJwtMaxTtl;
+      _hydraOauth2MirrorTopLevelClaims = $v.hydraOauth2MirrorTopLevelClaims;
       _hydraOauth2PkceEnforced = $v.hydraOauth2PkceEnforced;
       _hydraOauth2PkceEnforcedForPublicClients =
           $v.hydraOauth2PkceEnforcedForPublicClients;
@@ -3421,6 +3480,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext;
       _kratosCourierTemplatesLoginCodeValidEmailSubject =
           $v.kratosCourierTemplatesLoginCodeValidEmailSubject;
+      _kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext =
+          $v.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
       _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml =
           $v.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
       _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext =
@@ -3582,6 +3643,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceMethodsCodeConfigLifespan;
       _kratosSelfserviceMethodsCodeEnabled =
           $v.kratosSelfserviceMethodsCodeEnabled;
+      _kratosSelfserviceMethodsCodeMfaEnabled =
+          $v.kratosSelfserviceMethodsCodeMfaEnabled;
       _kratosSelfserviceMethodsCodePasswordlessEnabled =
           $v.kratosSelfserviceMethodsCodePasswordlessEnabled;
       _kratosSelfserviceMethodsLinkConfigBaseUrl =
@@ -3672,6 +3735,7 @@ class NormalizedProjectRevisionBuilder
               createdAt: createdAt,
               disableAccountExperienceWelcomeScreen:
                   disableAccountExperienceWelcomeScreen,
+              enableAxV2: enableAxV2,
               hydraOauth2AllowedTopLevelClaims:
                   _hydraOauth2AllowedTopLevelClaims?.build(),
               hydraOauth2ClientCredentialsDefaultGrantAllowedScope:
@@ -3681,6 +3745,7 @@ class NormalizedProjectRevisionBuilder
               hydraOauth2GrantJwtIatOptional: hydraOauth2GrantJwtIatOptional,
               hydraOauth2GrantJwtJtiOptional: hydraOauth2GrantJwtJtiOptional,
               hydraOauth2GrantJwtMaxTtl: hydraOauth2GrantJwtMaxTtl,
+              hydraOauth2MirrorTopLevelClaims: hydraOauth2MirrorTopLevelClaims,
               hydraOauth2PkceEnforced: hydraOauth2PkceEnforced,
               hydraOauth2PkceEnforcedForPublicClients:
                   hydraOauth2PkceEnforcedForPublicClients,
@@ -3766,6 +3831,8 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext,
               kratosCourierTemplatesLoginCodeValidEmailSubject:
                   kratosCourierTemplatesLoginCodeValidEmailSubject,
+              kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext:
+                  kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml:
                   kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext:
@@ -3879,6 +3946,7 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsVerificationUse: kratosSelfserviceFlowsVerificationUse,
               kratosSelfserviceMethodsCodeConfigLifespan: kratosSelfserviceMethodsCodeConfigLifespan,
               kratosSelfserviceMethodsCodeEnabled: kratosSelfserviceMethodsCodeEnabled,
+              kratosSelfserviceMethodsCodeMfaEnabled: kratosSelfserviceMethodsCodeMfaEnabled,
               kratosSelfserviceMethodsCodePasswordlessEnabled: kratosSelfserviceMethodsCodePasswordlessEnabled,
               kratosSelfserviceMethodsLinkConfigBaseUrl: kratosSelfserviceMethodsLinkConfigBaseUrl,
               kratosSelfserviceMethodsLinkConfigLifespan: kratosSelfserviceMethodsLinkConfigLifespan,

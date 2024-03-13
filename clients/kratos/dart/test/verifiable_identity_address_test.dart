@@ -48,7 +48,7 @@ void main() {
       // TODO
     });
 
-    // VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema
+    // The delivery method
     // String via
     test('to test the property `via`', () async {
       // TODO

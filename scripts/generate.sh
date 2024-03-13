@@ -178,7 +178,7 @@ ruby () {
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 7.3.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \

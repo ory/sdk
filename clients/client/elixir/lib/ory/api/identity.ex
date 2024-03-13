@@ -134,6 +134,7 @@ defmodule Ory.Api.Identity do
 
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
+    - `:return_to` (String.t): 
     - `:body` (CreateRecoveryLinkForIdentityBody): 
 
   ### Returns
@@ -144,6 +145,7 @@ defmodule Ory.Api.Identity do
   @spec create_recovery_link_for_identity(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.RecoveryLinkForIdentity.t} | {:error, Tesla.Env.t}
   def create_recovery_link_for_identity(connection, opts \\ []) do
     optional_params = %{
+      :return_to => :query,
       :body => :body
     }
 
@@ -205,7 +207,7 @@ defmodule Ory.Api.Identity do
 
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): ID is the identity's ID.
-  - `type` (String.t): Type is the credential's Type. One of totp, webauthn, lookup
+  - `type` (String.t): Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -452,9 +454,10 @@ defmodule Ory.Api.Identity do
     - `:page_size` (integer()): Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - `:page_token` (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - `:consistency` (String.t): Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-    - `:ids_filter` ([String.t]): IdsFilter is list of ids used to filter identities. If this list is empty, then no filter will be applied.
+    - `:ids` ([String.t]): List of ids used to filter identities. If this list is empty, then no filter will be applied.
     - `:credentials_identifier` (String.t): CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     - `:preview_credentials_identifier_similar` (String.t): This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+    - `:include_credential` ([String.t]): Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 
   ### Returns
 
@@ -469,9 +472,10 @@ defmodule Ory.Api.Identity do
       :page_size => :query,
       :page_token => :query,
       :consistency => :query,
-      :ids_filter => :query,
+      :ids => :query,
       :credentials_identifier => :query,
-      :preview_credentials_identifier_similar => :query
+      :preview_credentials_identifier_similar => :query,
+      :include_credential => :query
     }
 
     request =

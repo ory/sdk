@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.0.0
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateRecoveryFlowWithCodeMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateRecoveryFlowWithCodeMethod{}
 
 // UpdateRecoveryFlowWithCodeMethod Update Recovery Flow with Code Method
 type UpdateRecoveryFlowWithCodeMethod struct {
@@ -50,7 +54,7 @@ func NewUpdateRecoveryFlowWithCodeMethodWithDefaults() *UpdateRecoveryFlowWithCo
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -60,7 +64,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -68,7 +72,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) HasCode() bool {
-	if o != nil && o.Code != nil {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -82,7 +86,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) SetCode(v string) {
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -92,7 +96,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -100,7 +104,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetCsrfTokenOk() (*string, bool) {
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -114,7 +118,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) SetCsrfToken(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -124,7 +128,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -132,7 +136,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -169,33 +173,64 @@ func (o *UpdateRecoveryFlowWithCodeMethod) SetMethod(v string) {
 }
 
 func (o UpdateRecoveryFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateRecoveryFlowWithCodeMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if o.CsrfToken != nil {
+	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if o.Email != nil {
+	if !IsNil(o.Email) {
 		toSerialize["email"] = o.Email
 	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
+	toSerialize["method"] = o.Method
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *UpdateRecoveryFlowWithCodeMethod) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"method",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateRecoveryFlowWithCodeMethod := _UpdateRecoveryFlowWithCodeMethod{}
 
-	if err = json.Unmarshal(bytes, &varUpdateRecoveryFlowWithCodeMethod); err == nil {
-		*o = UpdateRecoveryFlowWithCodeMethod(varUpdateRecoveryFlowWithCodeMethod)
+	err = json.Unmarshal(bytes, &varUpdateRecoveryFlowWithCodeMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UpdateRecoveryFlowWithCodeMethod(varUpdateRecoveryFlowWithCodeMethod)
 
 	additionalProperties := make(map[string]interface{})
 
