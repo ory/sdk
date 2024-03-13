@@ -65,6 +65,9 @@ npm i ${NPM_NAME}
       ;;
     elixir)
       export INSTALL="[Elixir (Hex)](https://hex.pm/packages/${ELIXIR_PACKAGE_NAME}/)"
+      ;;  
+    swift)
+    export INSTALL="Install via [Swift Package Manager](https://github.com/ory/${GIT_REPO})"
       ;;
     PATTERN_N)
       STATEMENTS
@@ -76,9 +79,15 @@ npm i ${NPM_NAME}
   esac
 
   rm "${gitdir}/README.md" || true
+
   LANG=$lang \
-    GIT_REPO=${repo} \
+    GIT_REPO=${repo}
+
+  if [ $lang = swift ]; then
+    envsubst < "contrib/clients/swift/README.md" > "${gitdir}/README.md"
+  else 
     envsubst < "config/README.md" > "${gitdir}/README.md"
+  fi
 
   (cd "${gitdir}"; git add -A || true; (git commit -a  -F- <<EOF
 autogen: regenerate OpenAPI client for ${VERSION}
@@ -226,6 +235,12 @@ elixir() {
   (cd "${dir}"; mix hex.publish --yes)
 }
 
+swift() {
+  dir="clients/${PROJECT}/swift"
+
+  to_git "swift" "yes"
+} 
+
 
 FAIL=0
 
@@ -241,6 +256,7 @@ rust || let "FAIL+=1"
 elixir || let "FAIL+=1"
 java || let "FAIL+=1"
 dotnet || let "FAIL+=1"
+swift || let "FAIL+=1"
 upstream || let "FAIL+=1"
 
 echo "$FAIL"

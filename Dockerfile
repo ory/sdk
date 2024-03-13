@@ -119,6 +119,11 @@ RUN gem install bundler -v 2.3.26 && \
 	apt-get install -y --no-install-recommends ruby-dev=1:2.7+2
 
 # swift
+
+RUN apt-get -y install libncurses5 clang 
+
+RUN apt-get -y install libxml2
+
 RUN \
 	curl https://download.swift.org/swift-5.9.2-release/ubuntu1804/swift-5.9.2-RELEASE/swift-5.9.2-RELEASE-ubuntu18.04.tar.gz -o swift.tar.gz &&\
 	tar xzf swift.tar.gz && \
