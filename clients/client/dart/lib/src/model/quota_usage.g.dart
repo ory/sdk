@@ -16,6 +16,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_regionGlobal =
     const QuotaUsageFeatureEnum._('regionGlobal');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_productionProjects =
     const QuotaUsageFeatureEnum._('productionProjects');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_developmentProjects =
+    const QuotaUsageFeatureEnum._('developmentProjects');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dailyActiveUsers =
     const QuotaUsageFeatureEnum._('dailyActiveUsers');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_customDomains =
@@ -45,6 +47,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_ropGrant =
     const QuotaUsageFeatureEnum._('ropGrant');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_conciergeOnboarding =
     const QuotaUsageFeatureEnum._('conciergeOnboarding');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_credit =
+    const QuotaUsageFeatureEnum._('credit');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
     const QuotaUsageFeatureEnum._('rateLimitTier');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_sessionRateLimitTier =
@@ -71,6 +75,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_regionGlobal;
     case 'productionProjects':
       return _$quotaUsageFeatureEnum_productionProjects;
+    case 'developmentProjects':
+      return _$quotaUsageFeatureEnum_developmentProjects;
     case 'dailyActiveUsers':
       return _$quotaUsageFeatureEnum_dailyActiveUsers;
     case 'customDomains':
@@ -99,6 +105,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_ropGrant;
     case 'conciergeOnboarding':
       return _$quotaUsageFeatureEnum_conciergeOnboarding;
+    case 'credit':
+      return _$quotaUsageFeatureEnum_credit;
     case 'rateLimitTier':
       return _$quotaUsageFeatureEnum_rateLimitTier;
     case 'sessionRateLimitTier':
@@ -121,6 +129,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_regionApac,
   _$quotaUsageFeatureEnum_regionGlobal,
   _$quotaUsageFeatureEnum_productionProjects,
+  _$quotaUsageFeatureEnum_developmentProjects,
   _$quotaUsageFeatureEnum_dailyActiveUsers,
   _$quotaUsageFeatureEnum_customDomains,
   _$quotaUsageFeatureEnum_eventStreams,
@@ -135,6 +144,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_organizations,
   _$quotaUsageFeatureEnum_ropGrant,
   _$quotaUsageFeatureEnum_conciergeOnboarding,
+  _$quotaUsageFeatureEnum_credit,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
   _$quotaUsageFeatureEnum_identitiesListRateLimitTier,
@@ -153,6 +163,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'regionApac': 'region_apac',
     'regionGlobal': 'region_global',
     'productionProjects': 'production_projects',
+    'developmentProjects': 'development_projects',
     'dailyActiveUsers': 'daily_active_users',
     'customDomains': 'custom_domains',
     'eventStreams': 'event_streams',
@@ -167,6 +178,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'organizations': 'organizations',
     'ropGrant': 'rop_grant',
     'conciergeOnboarding': 'concierge_onboarding',
+    'credit': 'credit',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
     'identitiesListRateLimitTier': 'identities_list_rate_limit_tier',
@@ -179,6 +191,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'region_apac': 'regionApac',
     'region_global': 'regionGlobal',
     'production_projects': 'productionProjects',
+    'development_projects': 'developmentProjects',
     'daily_active_users': 'dailyActiveUsers',
     'custom_domains': 'customDomains',
     'event_streams': 'eventStreams',
@@ -193,6 +206,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'organizations': 'organizations',
     'rop_grant': 'ropGrant',
     'concierge_onboarding': 'conciergeOnboarding',
+    'credit': 'credit',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',
     'identities_list_rate_limit_tier': 'identitiesListRateLimitTier',

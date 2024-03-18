@@ -550,6 +550,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final bool? kratosFeatureFlagsCacheableSessions;
   @override
+  final String? kratosFeatureFlagsCacheableSessionsMaxAge;
+  @override
   final bool? kratosFeatureFlagsUseContinueWithTransitions;
   @override
   final BuiltList<NormalizedProjectRevisionIdentitySchema>?
@@ -859,6 +861,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
       this.kratosCourierTemplatesVerificationValidEmailSubject,
       this.kratosFeatureFlagsCacheableSessions,
+      this.kratosFeatureFlagsCacheableSessionsMaxAge,
       this.kratosFeatureFlagsUseContinueWithTransitions,
       this.kratosIdentitySchemas,
       this.kratosOauth2ProviderHeaders,
@@ -1141,6 +1144,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.kratosCourierTemplatesVerificationValidEmailSubject &&
         kratosFeatureFlagsCacheableSessions ==
             other.kratosFeatureFlagsCacheableSessions &&
+        kratosFeatureFlagsCacheableSessionsMaxAge ==
+            other.kratosFeatureFlagsCacheableSessionsMaxAge &&
         kratosFeatureFlagsUseContinueWithTransitions ==
             other.kratosFeatureFlagsUseContinueWithTransitions &&
         kratosIdentitySchemas == other.kratosIdentitySchemas &&
@@ -1472,6 +1477,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(
         _$hash, kratosCourierTemplatesVerificationValidEmailSubject.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessions.hashCode);
+    _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessionsMaxAge.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsUseContinueWithTransitions.hashCode);
     _$hash = $jc(_$hash, kratosIdentitySchemas.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderHeaders.hashCode);
@@ -1806,6 +1812,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosCourierTemplatesVerificationValidEmailSubject)
           ..add('kratosFeatureFlagsCacheableSessions',
               kratosFeatureFlagsCacheableSessions)
+          ..add('kratosFeatureFlagsCacheableSessionsMaxAge',
+              kratosFeatureFlagsCacheableSessionsMaxAge)
           ..add('kratosFeatureFlagsUseContinueWithTransitions',
               kratosFeatureFlagsUseContinueWithTransitions)
           ..add('kratosIdentitySchemas', kratosIdentitySchemas)
@@ -2712,6 +2720,14 @@ class CreateProjectNormalizedPayloadBuilder
           bool? kratosFeatureFlagsCacheableSessions) =>
       _$this._kratosFeatureFlagsCacheableSessions =
           kratosFeatureFlagsCacheableSessions;
+
+  String? _kratosFeatureFlagsCacheableSessionsMaxAge;
+  String? get kratosFeatureFlagsCacheableSessionsMaxAge =>
+      _$this._kratosFeatureFlagsCacheableSessionsMaxAge;
+  set kratosFeatureFlagsCacheableSessionsMaxAge(
+          String? kratosFeatureFlagsCacheableSessionsMaxAge) =>
+      _$this._kratosFeatureFlagsCacheableSessionsMaxAge =
+          kratosFeatureFlagsCacheableSessionsMaxAge;
 
   bool? _kratosFeatureFlagsUseContinueWithTransitions;
   bool? get kratosFeatureFlagsUseContinueWithTransitions =>
@@ -3639,6 +3655,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosCourierTemplatesVerificationValidEmailSubject;
       _kratosFeatureFlagsCacheableSessions =
           $v.kratosFeatureFlagsCacheableSessions;
+      _kratosFeatureFlagsCacheableSessionsMaxAge =
+          $v.kratosFeatureFlagsCacheableSessionsMaxAge;
       _kratosFeatureFlagsUseContinueWithTransitions =
           $v.kratosFeatureFlagsUseContinueWithTransitions;
       _kratosIdentitySchemas = $v.kratosIdentitySchemas?.toBuilder();
@@ -3957,6 +3975,7 @@ class CreateProjectNormalizedPayloadBuilder
               kratosCourierTemplatesVerificationValidEmailBodyPlaintext: kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
               kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
+              kratosFeatureFlagsCacheableSessionsMaxAge: kratosFeatureFlagsCacheableSessionsMaxAge,
               kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,

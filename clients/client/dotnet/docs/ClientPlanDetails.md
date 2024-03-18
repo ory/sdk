@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Custom** | **bool** | Custom is true if the plan is custom. This means it will be hidden from the pricing page. | 
 **Description** | **string** | Description is the description of the plan. | 
 **Features** | [**Dictionary&lt;string, ClientGenericUsage&gt;**](ClientGenericUsage.md) |  | 
+**Latest** | **bool** | Latest is true if the plan is the latest version of a plan and should be available for self-service usage. | [optional] 
 **Name** | **string** | Name is the name of the plan. | 
 **_Version** | **long** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | 
 

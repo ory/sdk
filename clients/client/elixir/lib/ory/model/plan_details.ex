@@ -13,6 +13,7 @@ defmodule Ory.Model.PlanDetails do
     :custom,
     :description,
     :features,
+    :latest,
     :name,
     :version
   ]
@@ -23,6 +24,7 @@ defmodule Ory.Model.PlanDetails do
     :custom => boolean(),
     :description => String.t,
     :features => %{optional(String.t) => Ory.Model.GenericUsage.t},
+    :latest => boolean() | nil,
     :name => String.t,
     :version => integer()
   }

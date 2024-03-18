@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.8.1
+  version: v1.9.0
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -8224,6 +8224,12 @@ components:
 
             This governs the "feature_flags.cacheable_sessions" setting.
           type: boolean
+        kratos_feature_flags_cacheable_sessions_max_age:
+          description: |-
+            Configures the Ory Kratos Session caching max-age feature flag
+
+            This governs the "feature_flags.cacheable_sessions_max_age" setting.
+          type: string
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
             Configures the Ory Kratos Session use_continue_with_transitions flag
@@ -9112,6 +9118,10 @@ components:
             $ref: '#/components/schemas/GenericUsage'
           title: Features are the feature definitions included in the plan.
           type: object
+        latest:
+          description: Latest is true if the plan is the latest version of a plan
+            and should be available for self-service usage.
+          type: boolean
         name:
           description: Name is the name of the plan.
           type: string
@@ -12816,6 +12826,12 @@ components:
 
             This governs the "feature_flags.cacheable_sessions" setting.
           type: boolean
+        kratos_feature_flags_cacheable_sessions_max_age:
+          description: |-
+            Configures the Ory Kratos Session caching max-age feature flag
+
+            This governs the "feature_flags.cacheable_sessions_max_age" setting.
+          type: string
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
             Configures the Ory Kratos Session use_continue_with_transitions flag
@@ -16183,6 +16199,7 @@ components:
             region_apac RegionAPAC
             region_global RegionGlobal
             production_projects ProductionProjects
+            development_projects DevelopmentProjects
             daily_active_users DailyActiveUsers
             custom_domains CustomDomains
             event_streams EventStreams
@@ -16197,6 +16214,7 @@ components:
             organizations Organizations
             rop_grant ResourceOwnerPasswordGrant
             concierge_onboarding ConciergeOnboarding
+            credit Credit
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
@@ -16208,6 +16226,7 @@ components:
           - region_apac
           - region_global
           - production_projects
+          - development_projects
           - daily_active_users
           - custom_domains
           - event_streams
@@ -16222,6 +16241,7 @@ components:
           - organizations
           - rop_grant
           - concierge_onboarding
+          - credit
           - rate_limit_tier
           - session_rate_limit_tier
           - identities_list_rate_limit_tier
@@ -16234,6 +16254,7 @@ components:
             region_apac RegionAPAC
             region_global RegionGlobal
             production_projects ProductionProjects
+            development_projects DevelopmentProjects
             daily_active_users DailyActiveUsers
             custom_domains CustomDomains
             event_streams EventStreams
@@ -16248,6 +16269,7 @@ components:
             organizations Organizations
             rop_grant ResourceOwnerPasswordGrant
             concierge_onboarding ConciergeOnboarding
+            credit Credit
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList

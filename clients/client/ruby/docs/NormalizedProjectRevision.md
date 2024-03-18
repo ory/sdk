@@ -102,6 +102,7 @@
 | **kratos_courier_templates_verification_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_valid_email_subject** | **String** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] |
 | **kratos_feature_flags_cacheable_sessions** | **Boolean** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] |
+| **kratos_feature_flags_cacheable_sessions_max_age** | **String** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] |
 | **kratos_feature_flags_use_continue_with_transitions** | **Boolean** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] |
 | **kratos_identity_schemas** | [**Array&lt;NormalizedProjectRevisionIdentitySchema&gt;**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] |
 | **kratos_oauth2_provider_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
@@ -301,6 +302,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_courier_templates_verification_valid_email_body_plaintext: null,
   kratos_courier_templates_verification_valid_email_subject: null,
   kratos_feature_flags_cacheable_sessions: null,
+  kratos_feature_flags_cacheable_sessions_max_age: null,
   kratos_feature_flags_use_continue_with_transitions: null,
   kratos_identity_schemas: null,
   kratos_oauth2_provider_headers: null,

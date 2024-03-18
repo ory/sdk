@@ -591,6 +591,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
+    // String kratosFeatureFlagsCacheableSessionsMaxAge
+    test('to test the property `kratosFeatureFlagsCacheableSessionsMaxAge`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
     // bool kratosFeatureFlagsUseContinueWithTransitions
     test('to test the property `kratosFeatureFlagsUseContinueWithTransitions`', () async {

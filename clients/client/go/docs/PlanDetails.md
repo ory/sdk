@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Custom** | **bool** | Custom is true if the plan is custom. This means it will be hidden from the pricing page. | 
 **Description** | **string** | Description is the description of the plan. | 
 **Features** | [**map[string]GenericUsage**](GenericUsage.md) |  | 
+**Latest** | Pointer to **bool** | Latest is true if the plan is the latest version of a plan and should be available for self-service usage. | [optional] 
 **Name** | **string** | Name is the name of the plan. | 
 **Version** | **int64** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | 
 
@@ -130,6 +131,31 @@ and a boolean to check if the value has been set.
 
 SetFeatures sets Features field to given value.
 
+
+### GetLatest
+
+`func (o *PlanDetails) GetLatest() bool`
+
+GetLatest returns the Latest field if non-nil, zero value otherwise.
+
+### GetLatestOk
+
+`func (o *PlanDetails) GetLatestOk() (*bool, bool)`
+
+GetLatestOk returns a tuple with the Latest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLatest
+
+`func (o *PlanDetails) SetLatest(v bool)`
+
+SetLatest sets Latest field to given value.
+
+### HasLatest
+
+`func (o *PlanDetails) HasLatest() bool`
+
+HasLatest returns a boolean if a field has been set.
 
 ### GetName
 

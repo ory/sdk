@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **features** | [**PlanFeatures**](PlanFeatures.md) |  | 
 **name** | **str** | Name is the name of the plan. | 
 **version** | **int** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | 
+**latest** | **bool** | Latest is true if the plan is the latest version of a plan and should be available for self-service usage. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.8.1
+API version: v1.9.0
 Contact: support@ory.sh
 */
 
@@ -210,6 +210,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosCourierTemplatesVerificationValidEmailSubject *string `json:"kratos_courier_templates_verification_valid_email_subject,omitempty"`
 	// Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
 	KratosFeatureFlagsCacheableSessions *bool `json:"kratos_feature_flags_cacheable_sessions,omitempty"`
+	// Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
+	KratosFeatureFlagsCacheableSessionsMaxAge *string `json:"kratos_feature_flags_cacheable_sessions_max_age,omitempty"`
 	// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 	KratosFeatureFlagsUseContinueWithTransitions *bool `json:"kratos_feature_flags_use_continue_with_transitions,omitempty"`
 	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
@@ -3618,6 +3620,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsCacheableSessions(
 	o.KratosFeatureFlagsCacheableSessions = &v
 }
 
+// GetKratosFeatureFlagsCacheableSessionsMaxAge returns the KratosFeatureFlagsCacheableSessionsMaxAge field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsCacheableSessionsMaxAge() string {
+	if o == nil || IsNil(o.KratosFeatureFlagsCacheableSessionsMaxAge) {
+		var ret string
+		return ret
+	}
+	return *o.KratosFeatureFlagsCacheableSessionsMaxAge
+}
+
+// GetKratosFeatureFlagsCacheableSessionsMaxAgeOk returns a tuple with the KratosFeatureFlagsCacheableSessionsMaxAge field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsCacheableSessionsMaxAgeOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosFeatureFlagsCacheableSessionsMaxAge) {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsCacheableSessionsMaxAge, true
+}
+
+// HasKratosFeatureFlagsCacheableSessionsMaxAge returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsCacheableSessionsMaxAge() bool {
+	if o != nil && !IsNil(o.KratosFeatureFlagsCacheableSessionsMaxAge) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsCacheableSessionsMaxAge gets a reference to the given string and assigns it to the KratosFeatureFlagsCacheableSessionsMaxAge field.
+func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsCacheableSessionsMaxAge(v string) {
+	o.KratosFeatureFlagsCacheableSessionsMaxAge = &v
+}
+
 // GetKratosFeatureFlagsUseContinueWithTransitions returns the KratosFeatureFlagsUseContinueWithTransitions field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsUseContinueWithTransitions() bool {
 	if o == nil || IsNil(o.KratosFeatureFlagsUseContinueWithTransitions) {
@@ -6966,6 +7000,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosFeatureFlagsCacheableSessions) {
 		toSerialize["kratos_feature_flags_cacheable_sessions"] = o.KratosFeatureFlagsCacheableSessions
 	}
+	if !IsNil(o.KratosFeatureFlagsCacheableSessionsMaxAge) {
+		toSerialize["kratos_feature_flags_cacheable_sessions_max_age"] = o.KratosFeatureFlagsCacheableSessionsMaxAge
+	}
 	if !IsNil(o.KratosFeatureFlagsUseContinueWithTransitions) {
 		toSerialize["kratos_feature_flags_use_continue_with_transitions"] = o.KratosFeatureFlagsUseContinueWithTransitions
 	}
@@ -7392,6 +7429,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "kratos_courier_templates_verification_valid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_verification_valid_email_subject")
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions")
+		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions_max_age")
 		delete(additionalProperties, "kratos_feature_flags_use_continue_with_transitions")
 		delete(additionalProperties, "kratos_identity_schemas")
 		delete(additionalProperties, "kratos_oauth2_provider_headers")

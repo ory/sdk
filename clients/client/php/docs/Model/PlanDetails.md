@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **custom** | **bool** | Custom is true if the plan is custom. This means it will be hidden from the pricing page. |
 **description** | **string** | Description is the description of the plan. |
 **features** | [**array<string,\Ory\Client\Model\GenericUsage>**](GenericUsage.md) |  |
+**latest** | **bool** | Latest is true if the plan is the latest version of a plan and should be available for self-service usage. | [optional]
 **name** | **string** | Name is the name of the plan. |
 **version** | **int** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. |
 

@@ -102,6 +102,7 @@ Name | Type | Description | Notes
 **kratosCourierTemplatesVerificationValidEmailBodyPlaintext** | **string** | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.body.plaintext\&quot; setting. | [optional]
 **kratosCourierTemplatesVerificationValidEmailSubject** | **string** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional]
 **kratosFeatureFlagsCacheableSessions** | **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional]
+**kratosFeatureFlagsCacheableSessionsMaxAge** | **string** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional]
 **kratosFeatureFlagsUseContinueWithTransitions** | **bool** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional]
 **kratosIdentitySchemas** | [**\Ory\Client\Model\NormalizedProjectRevisionIdentitySchema[]**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional]
 **kratosOauth2ProviderHeaders** | **object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional]

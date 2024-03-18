@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.8.1
+API version: v1.9.0
 Contact: support@ory.sh
 */
 
@@ -30,6 +30,8 @@ type PlanDetails struct {
 	// Description is the description of the plan.
 	Description string `json:"description"`
 	Features map[string]GenericUsage `json:"features"`
+	// Latest is true if the plan is the latest version of a plan and should be available for self-service usage.
+	Latest *bool `json:"latest,omitempty"`
 	// Name is the name of the plan.
 	Name string `json:"name"`
 	// Version is the version of the plan. The combination of `name@version` must be unique.
@@ -183,6 +185,38 @@ func (o *PlanDetails) SetFeatures(v map[string]GenericUsage) {
 	o.Features = v
 }
 
+// GetLatest returns the Latest field value if set, zero value otherwise.
+func (o *PlanDetails) GetLatest() bool {
+	if o == nil || IsNil(o.Latest) {
+		var ret bool
+		return ret
+	}
+	return *o.Latest
+}
+
+// GetLatestOk returns a tuple with the Latest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlanDetails) GetLatestOk() (*bool, bool) {
+	if o == nil || IsNil(o.Latest) {
+		return nil, false
+	}
+	return o.Latest, true
+}
+
+// HasLatest returns a boolean if a field has been set.
+func (o *PlanDetails) HasLatest() bool {
+	if o != nil && !IsNil(o.Latest) {
+		return true
+	}
+
+	return false
+}
+
+// SetLatest gets a reference to the given bool and assigns it to the Latest field.
+func (o *PlanDetails) SetLatest(v bool) {
+	o.Latest = &v
+}
+
 // GetName returns the Name field value
 func (o *PlanDetails) GetName() string {
 	if o == nil {
@@ -246,6 +280,9 @@ func (o PlanDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize["custom"] = o.Custom
 	toSerialize["description"] = o.Description
 	toSerialize["features"] = o.Features
+	if !IsNil(o.Latest) {
+		toSerialize["latest"] = o.Latest
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["version"] = o.Version
 
@@ -302,6 +339,7 @@ func (o *PlanDetails) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "custom")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "features")
+		delete(additionalProperties, "latest")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties

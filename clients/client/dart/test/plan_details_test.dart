@@ -36,6 +36,12 @@ void main() {
       // TODO
     });
 
+    // Latest is true if the plan is the latest version of a plan and should be available for self-service usage.
+    // bool latest
+    test('to test the property `latest`', () async {
+      // TODO
+    });
+
     // Name is the name of the plan.
     // String name
     test('to test the property `name`', () async {

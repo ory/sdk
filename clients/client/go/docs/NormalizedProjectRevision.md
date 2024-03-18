@@ -102,6 +102,7 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesVerificationValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] 
 **KratosFeatureFlagsCacheableSessions** | Pointer to **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
+**KratosFeatureFlagsCacheableSessionsMaxAge** | Pointer to **string** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] 
 **KratosFeatureFlagsUseContinueWithTransitions** | Pointer to **bool** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] 
 **KratosIdentitySchemas** | Pointer to [**[]NormalizedProjectRevisionIdentitySchema**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **KratosOauth2ProviderHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
@@ -2685,6 +2686,31 @@ SetKratosFeatureFlagsCacheableSessions sets KratosFeatureFlagsCacheableSessions 
 `func (o *NormalizedProjectRevision) HasKratosFeatureFlagsCacheableSessions() bool`
 
 HasKratosFeatureFlagsCacheableSessions returns a boolean if a field has been set.
+
+### GetKratosFeatureFlagsCacheableSessionsMaxAge
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsCacheableSessionsMaxAge() string`
+
+GetKratosFeatureFlagsCacheableSessionsMaxAge returns the KratosFeatureFlagsCacheableSessionsMaxAge field if non-nil, zero value otherwise.
+
+### GetKratosFeatureFlagsCacheableSessionsMaxAgeOk
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsCacheableSessionsMaxAgeOk() (*string, bool)`
+
+GetKratosFeatureFlagsCacheableSessionsMaxAgeOk returns a tuple with the KratosFeatureFlagsCacheableSessionsMaxAge field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosFeatureFlagsCacheableSessionsMaxAge
+
+`func (o *NormalizedProjectRevision) SetKratosFeatureFlagsCacheableSessionsMaxAge(v string)`
+
+SetKratosFeatureFlagsCacheableSessionsMaxAge sets KratosFeatureFlagsCacheableSessionsMaxAge field to given value.
+
+### HasKratosFeatureFlagsCacheableSessionsMaxAge
+
+`func (o *NormalizedProjectRevision) HasKratosFeatureFlagsCacheableSessionsMaxAge() bool`
+
+HasKratosFeatureFlagsCacheableSessionsMaxAge returns a boolean if a field has been set.
 
 ### GetKratosFeatureFlagsUseContinueWithTransitions
 
