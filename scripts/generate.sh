@@ -41,7 +41,7 @@ typescript () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.2.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-axios \
     -o "$dir" \
@@ -65,7 +65,7 @@ typescript_fetch () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.2.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-fetch \
     -o "$dir" \
@@ -91,7 +91,7 @@ java () {
 
   # Upgrading Java requires adjusting the pom.xml files in contrib/client. Usually,
   # new versions of the generator introduce changes to the pom dependencies.
-  openapi-generator-cli version-manager set 7.3.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
@@ -157,7 +157,7 @@ php() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
@@ -182,7 +182,7 @@ python () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
@@ -202,7 +202,7 @@ ruby () {
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
-  openapi-generator-cli version-manager set 7.3.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
@@ -230,7 +230,7 @@ golang () {
 
   mkdir -p "${dir}"
 
-  openapi-generator-cli version-manager set 7.1.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
@@ -256,7 +256,7 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp-netcore \
     -o "$dir" \
@@ -275,7 +275,7 @@ dart () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 6.6.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g dart-dio \
     -o "$dir" \
@@ -330,7 +330,7 @@ elixir () {
 
   file="${dir}/mix.exs"
 
-  openapi-generator-cli version-manager set 7.2.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     	-g elixir \
 	    -o "$dir" \
