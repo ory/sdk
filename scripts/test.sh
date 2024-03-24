@@ -13,6 +13,13 @@ typescript () {
   (cd "$dir" && npm i && npm run build)
 }
 
+typescript_fetch () {
+  echo "Testing TypeScript Fetch..."
+
+  dir="clients/${PROJECT}/typescript-fetch"
+  (cd "$dir" && npm i && npm run build)
+}
+
 java () {
   echo "Testing Java..."
 
@@ -96,6 +103,7 @@ elixir () {
 
 elixir
 typescript
+typescript_fetch
 rust
 golang
 java

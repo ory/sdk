@@ -114,6 +114,15 @@ typescript() {
   to_git "js" "yes"
 }
 
+typescript-fetch() {
+  dir="clients/${PROJECT}/typescript-fetch"
+
+  (cd "${dir}"; npm install; npm run build)
+  (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}" || true; npm publish --access public)
+
+  to_git "ts-fetch" "yes"
+}
+
 java() {
   gitdir=$(mktemp -d -t "${GIT_REPO}-java.XXXXXX")
   to_git "java" "no" "$gitdir"
@@ -236,6 +245,7 @@ ruby || let "FAIL+=1"
 golang || let "FAIL+=1"
 php || let "FAIL+=1"
 typescript || let "FAIL+=1"
+typescript_fetch || let "FAIL+=1"
 dart || let "FAIL+=1"
 rust || let "FAIL+=1"
 elixir || let "FAIL+=1"
