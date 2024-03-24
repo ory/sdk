@@ -24,8 +24,8 @@ You may also manually build and publish this image using:
 
 ```shell script
 docker build --platform linux/amd64 -t oryd/sdk:latest .
-docker tag oryd/sdk:latest oryd/sdk:v0.0.51
-docker push oryd/sdk:v0.0.51
+docker tag oryd/sdk:latest oryd/sdk:v0.0.53
+docker push oryd/sdk:v0.0.53
 ```
 
 ## Running the Image Locally
