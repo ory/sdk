@@ -91,7 +91,7 @@ java () {
 
   # Upgrading Java requires adjusting the pom.xml files in contrib/client. Usually,
   # new versions of the generator introduce changes to the pom dependencies.
-  openapi-generator-cli version-manager set 6.2.1
+  openapi-generator-cli version-manager set 7.3.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
