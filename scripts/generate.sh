@@ -258,7 +258,7 @@ dotnet () {
 
   openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
-    -g csharp-netcore \
+    -g csharp \
     -o "$dir" \
     --model-name-prefix "${PROJECT_UCF}" \
     --git-user-id ory \
