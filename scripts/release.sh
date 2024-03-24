@@ -114,6 +114,15 @@ typescript() {
   to_git "js" "yes"
 }
 
+typescript-fetch() {
+  dir="clients/${PROJECT}/typescript-fetch"
+
+  (cd "${dir}"; npm install; npm run build)
+  (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}" || true; npm publish --access public)
+
+  to_git "ts-fetch" "yes"
+}
+
 java() {
   gitdir=$(mktemp -d -t "${GIT_REPO}-java.XXXXXX")
   to_git "java" "no" "$gitdir"

@@ -51,11 +51,35 @@ typescript () {
     -c ./config/client/typescript.yml.proc.yml
 
   file="${dir}/package.json"
-  jq -r ".author = "'"'"ORY GmbH"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
+  jq -r ".author = "'"'"Ory Corp"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
   cp "LICENSE" "clients/${PROJECT}/typescript"
+}
+
+typescript_fetch () {
+  echo "Generating TypeScript Fetch..."
+
+  dir="clients/${PROJECT}/typescript-fetch"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
+
+  openapi-generator-cli version-manager set 7.2.0
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
+    -g typescript-fetch \
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/typescript-fetch.yml.proc.yml
+
+  file="${dir}/package.json"
+  jq -r ".author = "'"'"Ory Corp"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
+     > tmp.$$.json && mv tmp.$$.json "${file}"
+
+  cat "${file}"
+  cp "LICENSE" "clients/${PROJECT}/typescript-fetch"
 }
 
 java () {
@@ -144,7 +168,7 @@ php() {
 
   file="${dir}/composer.json"
 
-  jq -r ".name=\"${PHP_PACKAGE_NAME}-php\" | .homepage = \"https://github.com/ory/${GIT_REPO}-php\" | .authors[0].name = \"Ory GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
+  jq -r ".name=\"${PHP_PACKAGE_NAME}-php\" | .homepage = \"https://github.com/ory/${GIT_REPO}-php\" | .authors[0].name = \"Ory Corp\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
