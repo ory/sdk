@@ -1,4 +1,4 @@
-npmName: "${NPM_NAME}"
+npmName: "${NPM_NAME}-fetch"
 npmVersion: $VERSION
 # typescriptThreePlus: true
 supportsES6: true

@@ -103,6 +103,7 @@ elixir () {
 
 elixir
 typescript
+typescript_fetch
 rust
 golang
 java
