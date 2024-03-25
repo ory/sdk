@@ -91,7 +91,7 @@ java () {
 
   # Upgrading Java requires adjusting the pom.xml files in contrib/client. Usually,
   # new versions of the generator introduce changes to the pom dependencies.
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.3.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
@@ -297,14 +297,13 @@ rust () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 7.4.0
   # We use a custom rust template to fix some of the compilation issues:
   # - https://github.com/OpenAPITools/openapi-generator/issues/13257
   # - https://github.com/OpenAPITools/openapi-generator/issues/10845
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g rust \
     -o "$dir" \
-    -t ./openapi/templates/rust \
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
