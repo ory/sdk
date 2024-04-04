@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@4.9.3
 
 jobs:
   publish:
@@ -18,6 +20,9 @@ jobs:
       - run: ./scripts/generate.sh
       - run: ./scripts/test.sh
       - run: ./scripts/release.sh
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
 workflows:
   publish:
@@ -26,3 +31,4 @@ workflows:
           filters:
             branches:
               only: master
+          context: slack-secrets
