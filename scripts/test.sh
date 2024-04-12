@@ -101,6 +101,14 @@ elixir () {
   (cd "${dir}"; mix test)
 }
 
+swift () {
+  echo "Testing Swift..."
+
+  dir="clients/${PROJECT}/swift/OryClient"
+
+  command swift build
+} 
+
 elixir
 typescript
 typescript_fetch
@@ -112,3 +120,4 @@ python
 ruby
 dart
 csharp
+swift

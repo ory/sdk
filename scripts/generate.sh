@@ -344,6 +344,45 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
+swift () {
+  echo "Generating Swift..."
+
+  dir="clients/${PROJECT}/swift"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
+
+  # file="${dir}/mix.exs"
+  
+  cd $dir
+  mkdir OryClient
+
+  # create swift package 
+  command swift package --package-path OryClient init --type executable
+
+  # copy transcoder to package sources
+  cp ../../../contrib/clients/swift/CustomDateTranscoder.swift ../../../clients/${PROJECT}/swift/OryClient/Sources
+
+  # copy openapi specification
+  cp ../../../contrib/clients/swift/openapi.yaml ../../../clients/${PROJECT}/swift/OryClient/Sources
+
+  cd OryClient
+
+  # delete unused file
+  rm Sources/main.swift
+
+  # replace package description
+  cp ../../../../contrib/clients/swift/Package.swift Package.swift
+
+  # generate client
+  swift-openapi-generator generate --mode types --mode client --output-directory Sources/Classes Sources/openapi.yaml  
+
+  # generate docs
+  sourcedocs generate --spm-module OryClient --min-acl internal --table-of-contents
+
+   # copy license
+  cp ../../../../LICENSE ".."
+}
+
 elixir
 typescript
 typescript_fetch
@@ -355,5 +394,6 @@ python
 ruby
 dotnet
 dart
+swift 
 
 cleanup
