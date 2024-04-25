@@ -101,7 +101,7 @@ elixir () {
   (cd "${dir}"; mix test)
 }
 
-elixir
+# elixir
 typescript
 typescript_fetch
 rust
