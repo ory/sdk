@@ -239,7 +239,7 @@ golang () {
     --git-host github.com \
     -c ./config/client/go.yml.proc.yml
   cp "LICENSE" "clients/${PROJECT}/go"
-  
+
   if [ "${PROJECT}" == "hydra" ]; then
     (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v2"; go mod tidy -compat=1.17)
   elif [ "${PROJECT}" == "client" ]; then
@@ -329,6 +329,7 @@ elixir () {
 
   file="${dir}/mix.exs"
 
+  # 7.4.0
   openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     	-g elixir \
@@ -344,7 +345,8 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-elixir
+# elixir is broken right now: https://github.com/ory/sdk/issues/350
+#elixir
 typescript
 typescript_fetch
 rust
