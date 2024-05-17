@@ -233,7 +233,7 @@ FAIL=0
 echo "starting"
 
 python || let "FAIL+=1"
-ruby || let "FAIL+=1"
+# ruby || let "FAIL+=1"
 golang || let "FAIL+=1"
 php || let "FAIL+=1"
 typescript || let "FAIL+=1"

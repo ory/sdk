@@ -354,7 +354,9 @@ golang
 java
 php
 python
-ruby
+
+# ruby is broken right now: https://github.com/ory/sdk/issues/357
+# ruby
 dotnet
 dart
 
