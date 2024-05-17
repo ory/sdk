@@ -109,6 +109,6 @@ golang
 java
 php
 python
-ruby
+# ruby
 dart
 csharp
