@@ -114,7 +114,7 @@ typescript() {
   to_git "js" "yes"
 }
 
-typescript-fetch() {
+typescript_fetch() {
   dir="clients/${PROJECT}/typescript-fetch"
 
   (cd "${dir}"; npm install; npm run build)
