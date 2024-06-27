@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -32,6 +32,10 @@ type ProjectBrandingTheme struct {
 	AccentMutedColor *string `json:"accent_muted_color,omitempty"`
 	// AccentSubtleColor is a hex color code used by the Ory Account Experience theme.
 	AccentSubtleColor *string `json:"accent_subtle_color,omitempty"`
+	// The Account Experience Theme Variables.
+	AccountExperienceVariables []AccountExperienceThemeVariables `json:"account_experience_variables,omitempty"`
+	// AccountExperienceVariableStylesheet holds a reference to the current stylesheet that can be used in the AX
+	AccountExperienceVariablesStylesheet *string `json:"account_experience_variables_stylesheet,omitempty"`
 	// BackgroundCanvasColor is a hex color code used by the Ory Account Experience theme.
 	BackgroundCanvasColor *string `json:"background_canvas_color,omitempty"`
 	// BackgroundSubtleColor is a hex color code used by the Ory Account Experience theme.
@@ -283,6 +287,70 @@ func (o *ProjectBrandingTheme) HasAccentSubtleColor() bool {
 // SetAccentSubtleColor gets a reference to the given string and assigns it to the AccentSubtleColor field.
 func (o *ProjectBrandingTheme) SetAccentSubtleColor(v string) {
 	o.AccentSubtleColor = &v
+}
+
+// GetAccountExperienceVariables returns the AccountExperienceVariables field value if set, zero value otherwise.
+func (o *ProjectBrandingTheme) GetAccountExperienceVariables() []AccountExperienceThemeVariables {
+	if o == nil || IsNil(o.AccountExperienceVariables) {
+		var ret []AccountExperienceThemeVariables
+		return ret
+	}
+	return o.AccountExperienceVariables
+}
+
+// GetAccountExperienceVariablesOk returns a tuple with the AccountExperienceVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectBrandingTheme) GetAccountExperienceVariablesOk() ([]AccountExperienceThemeVariables, bool) {
+	if o == nil || IsNil(o.AccountExperienceVariables) {
+		return nil, false
+	}
+	return o.AccountExperienceVariables, true
+}
+
+// HasAccountExperienceVariables returns a boolean if a field has been set.
+func (o *ProjectBrandingTheme) HasAccountExperienceVariables() bool {
+	if o != nil && !IsNil(o.AccountExperienceVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceVariables gets a reference to the given []AccountExperienceThemeVariables and assigns it to the AccountExperienceVariables field.
+func (o *ProjectBrandingTheme) SetAccountExperienceVariables(v []AccountExperienceThemeVariables) {
+	o.AccountExperienceVariables = v
+}
+
+// GetAccountExperienceVariablesStylesheet returns the AccountExperienceVariablesStylesheet field value if set, zero value otherwise.
+func (o *ProjectBrandingTheme) GetAccountExperienceVariablesStylesheet() string {
+	if o == nil || IsNil(o.AccountExperienceVariablesStylesheet) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceVariablesStylesheet
+}
+
+// GetAccountExperienceVariablesStylesheetOk returns a tuple with the AccountExperienceVariablesStylesheet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectBrandingTheme) GetAccountExperienceVariablesStylesheetOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceVariablesStylesheet) {
+		return nil, false
+	}
+	return o.AccountExperienceVariablesStylesheet, true
+}
+
+// HasAccountExperienceVariablesStylesheet returns a boolean if a field has been set.
+func (o *ProjectBrandingTheme) HasAccountExperienceVariablesStylesheet() bool {
+	if o != nil && !IsNil(o.AccountExperienceVariablesStylesheet) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceVariablesStylesheet gets a reference to the given string and assigns it to the AccountExperienceVariablesStylesheet field.
+func (o *ProjectBrandingTheme) SetAccountExperienceVariablesStylesheet(v string) {
+	o.AccountExperienceVariablesStylesheet = &v
 }
 
 // GetBackgroundCanvasColor returns the BackgroundCanvasColor field value if set, zero value otherwise.
@@ -1326,6 +1394,12 @@ func (o ProjectBrandingTheme) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccentSubtleColor) {
 		toSerialize["accent_subtle_color"] = o.AccentSubtleColor
 	}
+	if !IsNil(o.AccountExperienceVariables) {
+		toSerialize["account_experience_variables"] = o.AccountExperienceVariables
+	}
+	if !IsNil(o.AccountExperienceVariablesStylesheet) {
+		toSerialize["account_experience_variables_stylesheet"] = o.AccountExperienceVariablesStylesheet
+	}
 	if !IsNil(o.BackgroundCanvasColor) {
 		toSerialize["background_canvas_color"] = o.BackgroundCanvasColor
 	}
@@ -1423,8 +1497,8 @@ func (o ProjectBrandingTheme) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ProjectBrandingTheme) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *ProjectBrandingTheme) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -1437,7 +1511,7 @@ func (o *ProjectBrandingTheme) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -1451,7 +1525,7 @@ func (o *ProjectBrandingTheme) UnmarshalJSON(bytes []byte) (err error) {
 
 	varProjectBrandingTheme := _ProjectBrandingTheme{}
 
-	err = json.Unmarshal(bytes, &varProjectBrandingTheme)
+	err = json.Unmarshal(data, &varProjectBrandingTheme)
 
 	if err != nil {
 		return err
@@ -1461,12 +1535,14 @@ func (o *ProjectBrandingTheme) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "accent_default_color")
 		delete(additionalProperties, "accent_disabled_color")
 		delete(additionalProperties, "accent_emphasis_color")
 		delete(additionalProperties, "accent_muted_color")
 		delete(additionalProperties, "accent_subtle_color")
+		delete(additionalProperties, "account_experience_variables")
+		delete(additionalProperties, "account_experience_variables_stylesheet")
 		delete(additionalProperties, "background_canvas_color")
 		delete(additionalProperties, "background_subtle_color")
 		delete(additionalProperties, "background_surface_color")

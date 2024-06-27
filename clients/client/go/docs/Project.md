@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CorsAdmin** | Pointer to [**ProjectCors**](ProjectCors.md) |  | [optional] 
 **CorsPublic** | Pointer to [**ProjectCors**](ProjectCors.md) |  | [optional] 
+**Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
+**HomeRegion** | **string** | The project home region.  This is used to set where the project data is stored and where the project&#39;s endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The name of the project. | 
 **RevisionId** | **string** | The configuration revision ID. | [readonly] 
@@ -18,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewProject
 
-`func NewProject(id string, name string, revisionId string, services ProjectServices, slug string, state string, ) *Project`
+`func NewProject(environment string, homeRegion string, id string, name string, revisionId string, services ProjectServices, slug string, state string, ) *Project`
 
 NewProject instantiates a new Project object
 This constructor will assign default values to properties that have it defined,
@@ -82,6 +84,46 @@ SetCorsPublic sets CorsPublic field to given value.
 `func (o *Project) HasCorsPublic() bool`
 
 HasCorsPublic returns a boolean if a field has been set.
+
+### GetEnvironment
+
+`func (o *Project) GetEnvironment() string`
+
+GetEnvironment returns the Environment field if non-nil, zero value otherwise.
+
+### GetEnvironmentOk
+
+`func (o *Project) GetEnvironmentOk() (*string, bool)`
+
+GetEnvironmentOk returns a tuple with the Environment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironment
+
+`func (o *Project) SetEnvironment(v string)`
+
+SetEnvironment sets Environment field to given value.
+
+
+### GetHomeRegion
+
+`func (o *Project) GetHomeRegion() string`
+
+GetHomeRegion returns the HomeRegion field if non-nil, zero value otherwise.
+
+### GetHomeRegionOk
+
+`func (o *Project) GetHomeRegionOk() (*string, bool)`
+
+GetHomeRegionOk returns a tuple with the HomeRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHomeRegion
+
+`func (o *Project) SetHomeRegion(v string)`
+
+SetHomeRegion sets HomeRegion field to given value.
+
 
 ### GetId
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -142,10 +142,10 @@ func (o TokenPagination) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *TokenPagination) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TokenPagination) UnmarshalJSON(data []byte) (err error) {
 	varTokenPagination := _TokenPagination{}
 
-	err = json.Unmarshal(bytes, &varTokenPagination)
+	err = json.Unmarshal(data, &varTokenPagination)
 
 	if err != nil {
 		return err
@@ -155,7 +155,7 @@ func (o *TokenPagination) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "page_size")
 		delete(additionalProperties, "page_token")
 		o.AdditionalProperties = additionalProperties

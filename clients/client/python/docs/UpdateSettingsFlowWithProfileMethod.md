@@ -3,14 +3,31 @@
 Update Settings Flow with Profile Method
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**method** | **str** | Method  Should be set to profile when trying to update a profile. | 
-**traits** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Traits  The identity&#39;s traits. | 
 **csrf_token** | **str** | The Anti-CSRF Token  This token is only required when performing browser flows. | [optional] 
-**transient_payload** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Transient data to pass along to any webhooks | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**method** | **str** | Method  Should be set to profile when trying to update a profile. | 
+**traits** | **object** | Traits  The identity&#39;s traits. | 
+**transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] 
 
+## Example
+
+```python
+from ory_client.models.update_settings_flow_with_profile_method import UpdateSettingsFlowWithProfileMethod
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of UpdateSettingsFlowWithProfileMethod from a JSON string
+update_settings_flow_with_profile_method_instance = UpdateSettingsFlowWithProfileMethod.from_json(json)
+# print the JSON string representation of the object
+print(UpdateSettingsFlowWithProfileMethod.to_json())
+
+# convert the object into a dict
+update_settings_flow_with_profile_method_dict = update_settings_flow_with_profile_method_instance.to_dict()
+# create an instance of UpdateSettingsFlowWithProfileMethod from a dict
+update_settings_flow_with_profile_method_form_dict = update_settings_flow_with_profile_method.from_dict(update_settings_flow_with_profile_method_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **challenge** | **String** | ID is the identifier (\"login challenge\") of the login request. It is used to identify the session. | 
-**client** | [**crate::models::OAuth2Client**](oAuth2Client.md) |  | 
-**oidc_context** | Option<[**crate::models::OAuth2ConsentRequestOpenIdConnectContext**](oAuth2ConsentRequestOpenIDConnectContext.md)> |  | [optional]
+**client** | [**models::OAuth2Client**](oAuth2Client.md) |  | 
+**oidc_context** | Option<[**models::OAuth2ConsentRequestOpenIdConnectContext**](oAuth2ConsentRequestOpenIDConnectContext.md)> |  | [optional]
 **request_url** | **String** | RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but might come in handy if you want to deal with additional request parameters. | 
 **requested_access_token_audience** | Option<**Vec<String>**> |  | [optional]
 **requested_scope** | Option<**Vec<String>**> |  | [optional]

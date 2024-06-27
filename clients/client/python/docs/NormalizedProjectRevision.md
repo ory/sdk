@@ -2,38 +2,39 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | The project&#39;s name. | 
 **created_at** | **datetime** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **disable_account_experience_welcome_screen** | **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] 
 **enable_ax_v2** | **bool** | Whether the new account experience is enabled and reachable. | [optional] 
-**hydra_oauth2_allowed_top_level_claims** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**hydra_oauth2_allowed_top_level_claims** | **List[str]** |  | [optional] 
 **hydra_oauth2_client_credentials_default_grant_allowed_scope** | **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **hydra_oauth2_exclude_not_before_claim** | **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
 **hydra_oauth2_grant_jwt_iat_optional** | **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **hydra_oauth2_grant_jwt_jti_optional** | **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
-**hydra_oauth2_grant_jwt_max_ttl** | **str** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional]  if omitted the server will use the default value of "720h"
+**hydra_oauth2_grant_jwt_max_ttl** | **str** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional] [default to '720h']
 **hydra_oauth2_mirror_top_level_claims** | **bool** | Set to false if you don&#39;t want to mirror custom claims under &#39;ext&#39;.  This governs the \&quot;oauth2.mirror_top_level_claims\&quot; setting. | [optional] 
 **hydra_oauth2_pkce_enforced** | **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **hydra_oauth2_pkce_enforced_for_public_clients** | **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **hydra_oauth2_refresh_token_hook** | **str** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
 **hydra_oauth2_token_hook** | **str** | Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \&quot;oauth2.token_hook.url\&quot; setting. | [optional] 
-**hydra_oidc_dynamic_client_registration_default_scope** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**hydra_oidc_dynamic_client_registration_default_scope** | **List[str]** |  | [optional] 
 **hydra_oidc_dynamic_client_registration_enabled** | **bool** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] 
 **hydra_oidc_subject_identifiers_pairwise_salt** | **str** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] 
-**hydra_oidc_subject_identifiers_supported_types** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
-**hydra_secrets_cookie** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
-**hydra_secrets_system** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**hydra_oidc_subject_identifiers_supported_types** | **List[str]** |  | [optional] 
+**hydra_secrets_cookie** | **List[str]** |  | [optional] 
+**hydra_secrets_system** | **List[str]** |  | [optional] 
 **hydra_serve_cookies_same_site_legacy_workaround** | **bool** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] 
 **hydra_serve_cookies_same_site_mode** | **str** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] 
-**hydra_strategies_access_token** | **str** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional]  if omitted the server will use the default value of "opaque"
-**hydra_strategies_scope** | **str** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional]  if omitted the server will use the default value of "wildcard"
-**hydra_ttl_access_token** | **str** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional]  if omitted the server will use the default value of "30m"
-**hydra_ttl_auth_code** | **str** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. | [optional]  if omitted the server will use the default value of "720h"
-**hydra_ttl_id_token** | **str** | This governs the \&quot;ttl.id_token\&quot; setting. | [optional]  if omitted the server will use the default value of "30m"
-**hydra_ttl_login_consent_request** | **str** | Configures how long a user login and consent flow may take.  This governs the \&quot;ttl.login_consent_request\&quot; setting. | [optional]  if omitted the server will use the default value of "30m"
-**hydra_ttl_refresh_token** | **str** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.refresh_token\&quot; setting. | [optional]  if omitted the server will use the default value of "720h"
+**hydra_strategies_access_token** | **str** | Defines access token type  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional] [default to 'opaque']
+**hydra_strategies_jwt_scope_claim** | **str** | Define the claim to use as the scope in the access token.  This governs the \&quot;strategies.jwt.scope_claim\&quot; setting:  list: The scope claim is an array of strings named &#x60;scope&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;] }&#x60; string: The scope claim is a space delimited list of strings named &#x60;scp&#x60;: &#x60;{ \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; both: The scope claim is both a space delimited list and an array of strings named &#x60;scope&#x60; and &#x60;scp&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;], \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth | [optional] [default to 'list']
+**hydra_strategies_scope** | **str** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional] [default to 'wildcard']
+**hydra_ttl_access_token** | **str** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional] [default to '30m']
+**hydra_ttl_auth_code** | **str** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. | [optional] [default to '720h']
+**hydra_ttl_id_token** | **str** | This governs the \&quot;ttl.id_token\&quot; setting. | [optional] [default to '30m']
+**hydra_ttl_login_consent_request** | **str** | Configures how long a user login and consent flow may take.  This governs the \&quot;ttl.login_consent_request\&quot; setting. | [optional] [default to '30m']
+**hydra_ttl_refresh_token** | **str** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.refresh_token\&quot; setting. | [optional] [default to '720h']
 **hydra_urls_consent** | **str** | Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.consent\&quot; setting. | [optional] 
 **hydra_urls_error** | **str** | Sets the OAuth2 Error URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.error\&quot; setting. | [optional] 
 **hydra_urls_login** | **str** | Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.login\&quot; setting. | [optional] 
@@ -41,34 +42,34 @@ Name | Type | Description | Notes
 **hydra_urls_post_logout_redirect** | **str** | When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \&quot;urls.post_logout_redirect\&quot; setting. | [optional] 
 **hydra_urls_registration** | **str** | Sets the OAuth2 Registration Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.registration\&quot; setting. | [optional] 
 **hydra_urls_self_issuer** | **str** | This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \&quot;urls.self.issuer\&quot; setting. | [optional] 
-**hydra_webfinger_jwks_broadcast_keys** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**hydra_webfinger_jwks_broadcast_keys** | **List[str]** |  | [optional] 
 **hydra_webfinger_oidc_discovery_auth_url** | **str** | Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \&quot;webfinger.oidc.discovery.auth_url\&quot; setting. | [optional] 
 **hydra_webfinger_oidc_discovery_client_registration_url** | **str** | Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \&quot;webfinger.oidc.discovery.client_registration_url\&quot; setting. | [optional] 
 **hydra_webfinger_oidc_discovery_jwks_url** | **str** | Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \&quot;webfinger.oidc.discovery.jwks_url\&quot; setting. | [optional] 
-**hydra_webfinger_oidc_discovery_supported_claims** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
-**hydra_webfinger_oidc_discovery_supported_scope** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**hydra_webfinger_oidc_discovery_supported_claims** | **List[str]** |  | [optional] 
+**hydra_webfinger_oidc_discovery_supported_scope** | **List[str]** |  | [optional] 
 **hydra_webfinger_oidc_discovery_token_url** | **str** | Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \&quot;webfinger.oidc.discovery.token_url\&quot; setting. | [optional] 
 **hydra_webfinger_oidc_discovery_userinfo_url** | **str** | Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra&#39;s userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \&quot;webfinger.oidc.discovery.userinfo_url\&quot; setting. | [optional] 
 **id** | **str** | The revision ID. | [optional] [readonly] 
 **keto_namespace_configuration** | **str** | The Revisions&#39; Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration. | [optional] 
-**keto_namespaces** | [**KetoNamespaces**](KetoNamespaces.md) |  | [optional] 
+**keto_namespaces** | [**List[KetoNamespace]**](KetoNamespace.md) |  | [optional] 
 **kratos_cookies_same_site** | **str** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] 
-**kratos_courier_channels** | [**RevisionCourierChannels**](RevisionCourierChannels.md) |  | [optional] 
-**kratos_courier_delivery_strategy** | **str** | The delivery strategy to use when sending emails  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional]  if omitted the server will use the default value of "smtp"
+**kratos_courier_channels** | [**List[NormalizedProjectRevisionCourierChannel]**](NormalizedProjectRevisionCourierChannel.md) |  | [optional] 
+**kratos_courier_delivery_strategy** | **str** | The delivery strategy to use when sending emails  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional] [default to 'smtp']
 **kratos_courier_http_request_config_auth_api_key_in** | **str** | The location of the API key to use in the HTTP email sending service&#39;s authentication  &#x60;header&#x60;: Send the key value pair as a header &#x60;cookie&#x60;: Send the key value pair as a cookie This governs the \&quot;courier.http.auth.config.in\&quot; setting | [optional] 
 **kratos_courier_http_request_config_auth_api_key_name** | **str** | The name of the API key to use in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.name\&quot; setting | [optional] 
 **kratos_courier_http_request_config_auth_api_key_value** | **str** | The value of the API key to use in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.value\&quot; setting | [optional] 
 **kratos_courier_http_request_config_auth_basic_auth_password** | **str** | The password to use for basic auth in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.password\&quot; setting | [optional] 
 **kratos_courier_http_request_config_auth_basic_auth_user** | **str** | The user to use for basic auth in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.auth.config.user\&quot; setting | [optional] 
-**kratos_courier_http_request_config_auth_type** | **str** | The authentication type to use while contacting the remote HTTP email sending service  &#x60;basic_auth&#x60;: Use Basic Authentication &#x60;api_key&#x60;: Use API Key Authentication in a header or cookie | [optional]  if omitted the server will use the default value of "empty (no authentication)"
+**kratos_courier_http_request_config_auth_type** | **str** | The authentication type to use while contacting the remote HTTP email sending service  &#x60;basic_auth&#x60;: Use Basic Authentication &#x60;api_key&#x60;: Use API Key Authentication in a header or cookie | [optional] [default to 'empty (no authentication)']
 **kratos_courier_http_request_config_body** | **str** | The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \&quot;courier.http.body\&quot; setting | [optional] 
-**kratos_courier_http_request_config_headers** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
-**kratos_courier_http_request_config_method** | **str** | The http METHOD to use when calling the remote HTTP email sending service | [optional]  if omitted the server will use the default value of "POST"
+**kratos_courier_http_request_config_headers** | **object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**kratos_courier_http_request_config_method** | **str** | The http METHOD to use when calling the remote HTTP email sending service | [optional] [default to 'POST']
 **kratos_courier_http_request_config_url** | **str** | The URL of the remote HTTP email sending service  This governs the \&quot;courier.http.url\&quot; setting | [optional] 
 **kratos_courier_smtp_connection_uri** | **str** | Configures the Ory Kratos SMTP Connection URI  This governs the \&quot;courier.smtp.connection_uri\&quot; setting. | [optional] 
 **kratos_courier_smtp_from_address** | **str** | Configures the Ory Kratos SMTP From Address  This governs the \&quot;courier.smtp.from_address\&quot; setting. | [optional] 
 **kratos_courier_smtp_from_name** | **str** | Configures the Ory Kratos SMTP From Name  This governs the \&quot;courier.smtp.from_name\&quot; setting. | [optional] 
-**kratos_courier_smtp_headers** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**kratos_courier_smtp_headers** | **object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **kratos_courier_smtp_local_name** | **str** | Configures the local_name to use in SMTP connections  This governs the \&quot;courier.smtp.local_name\&quot; setting. | [optional] 
 **kratos_courier_templates_login_code_valid_email_body_html** | **str** | Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.body.html\&quot; setting. | [optional] 
 **kratos_courier_templates_login_code_valid_email_body_plaintext** | **str** | Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.login_code.valid.email.body.plaintext\&quot; setting. | [optional] 
@@ -105,21 +106,22 @@ Name | Type | Description | Notes
 **kratos_feature_flags_cacheable_sessions** | **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
 **kratos_feature_flags_cacheable_sessions_max_age** | **str** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] 
 **kratos_feature_flags_use_continue_with_transitions** | **bool** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] 
-**kratos_identity_schemas** | [**ProjectRevisionIdentitySchemas**](ProjectRevisionIdentitySchemas.md) |  | [optional] 
-**kratos_oauth2_provider_headers** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**kratos_identity_schemas** | [**List[NormalizedProjectRevisionIdentitySchema]**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
+**kratos_oauth2_provider_headers** | **object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **kratos_oauth2_provider_override_return_to** | **bool** | Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow. | [optional] 
 **kratos_oauth2_provider_url** | **str** | The Revisions&#39; OAuth2 Provider Integration URL  This governs the \&quot;oauth2_provider.url\&quot; setting. | [optional] 
 **kratos_preview_default_read_consistency_level** | **str** | Configures the default read consistency level for identity APIs  This governs the &#x60;preview.default_read_consistency_level&#x60; setting.  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  Defaults to \&quot;strong\&quot; for new and existing projects. This feature is in preview. Use with caution. | [optional] 
-**kratos_secrets_cipher** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
-**kratos_secrets_cookie** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
-**kratos_secrets_default** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
-**kratos_selfservice_allowed_return_urls** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**kratos_secrets_cipher** | **List[str]** |  | [optional] 
+**kratos_secrets_cookie** | **List[str]** |  | [optional] 
+**kratos_secrets_default** | **List[str]** |  | [optional] 
+**kratos_selfservice_allowed_return_urls** | **List[str]** |  | [optional] 
 **kratos_selfservice_default_browser_return_url** | **str** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] 
 **kratos_selfservice_flows_error_ui_url** | **str** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_login_after_code_default_browser_return_url** | **str** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.code.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_login_after_default_browser_return_url** | **str** | Configures the Ory Kratos Login Default Return URL  This governs the \&quot;selfservice.flows.login.after.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url** | **str** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.lookup_secret.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_login_after_oidc_default_browser_return_url** | **str** | Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \&quot;selfservice.flows.login.after.oidc.default_browser_return_url\&quot; setting. | [optional] 
+**kratos_selfservice_flows_login_after_passkey_default_browser_return_url** | **str** | Configures the Ory Kratos Login After Passkey Default Return URL  This governs the \&quot;selfservice.flows.login.after.passkey.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_login_after_password_default_browser_return_url** | **str** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.login.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_login_after_totp_default_browser_return_url** | **str** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.totp.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_login_after_webauthn_default_browser_return_url** | **str** | Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \&quot;selfservice.flows.login.after.webauthn.default_browser_return_url\&quot; setting. | [optional] 
@@ -135,8 +137,10 @@ Name | Type | Description | Notes
 **kratos_selfservice_flows_registration_after_code_default_browser_return_url** | **str** | Configures the Ory Kratos Registration After Code Default Return URL  This governs the \&quot;selfservice.flows.registration.after.code.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_registration_after_default_browser_return_url** | **str** | Configures the Ory Kratos Registration Default Return URL  This governs the \&quot;selfservice.flows.registration.after.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_registration_after_oidc_default_browser_return_url** | **str** | Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \&quot;selfservice.flows.registration.after.oidc.default_browser_return_url\&quot; setting. | [optional] 
+**kratos_selfservice_flows_registration_after_passkey_default_browser_return_url** | **str** | Configures the Ory Kratos Registration After Passkey Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_registration_after_password_default_browser_return_url** | **str** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] 
-**kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url** | **str** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] 
+**kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url** | **str** | Configures the Ory Kratos Registration After Webauthn Default Return URL  This governs the \&quot;selfservice.flows.registration.after.webauthn.default_browser_return_url\&quot; setting. | [optional] 
+**kratos_selfservice_flows_registration_enable_legacy_one_step** | **bool** | Disable two-step registration  Two-step registration is a significantly improved sign up flow and recommended when using more than one sign up methods. To revert to one-step registration, set this to &#x60;true&#x60;.  This governs the \&quot;selfservice.flows.registration.enable_legacy_one_step\&quot; setting. | [optional] 
 **kratos_selfservice_flows_registration_enabled** | **bool** | Configures the Whether Ory Kratos Registration is Enabled  This governs the \&quot;selfservice.flows.registration.enabled\&quot; setting.0 | [optional] 
 **kratos_selfservice_flows_registration_lifespan** | **str** | Configures the Ory Kratos Registration Lifespan  This governs the \&quot;selfservice.flows.registration.lifespan\&quot; setting. | [optional] 
 **kratos_selfservice_flows_registration_login_hints** | **bool** | Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \&quot;selfservice.flows.registration.login_hints\&quot; setting. | [optional] 
@@ -144,10 +148,11 @@ Name | Type | Description | Notes
 **kratos_selfservice_flows_settings_after_default_browser_return_url** | **str** | Configures the Ory Kratos Settings Default Return URL  This governs the \&quot;selfservice.flows.settings.after.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url** | **str** | Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets  This governs the \&quot;selfservice.flows.settings.after.lookup_secret.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_settings_after_oidc_default_browser_return_url** | **str** | Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \&quot;selfservice.flows.settings.after.oidc.default_browser_return_url\&quot; setting. | [optional] 
+**kratos_selfservice_flows_settings_after_passkey_default_browser_return_url** | **str** | Configures the Ory Kratos Settings Default Return URL After Updating Passkey  This governs the \&quot;selfservice.flows.settings.after.passkey.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_settings_after_password_default_browser_return_url** | **str** | Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \&quot;selfservice.flows.settings.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_settings_after_profile_default_browser_return_url** | **str** | Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \&quot;selfservice.flows.settings.after.profile.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_settings_after_totp_default_browser_return_url** | **str** | Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \&quot;selfservice.flows.settings.after.totp.default_browser_return_url\&quot; setting. | [optional] 
-**kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url** | **str** | Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \&quot;selfservice.flows.settings.webauthn.profile.default_browser_return_url\&quot; setting. | [optional] 
+**kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url** | **str** | Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \&quot;selfservice.flows.settings.after.webauthn.default_browser_return_url\&quot; setting. | [optional] 
 **kratos_selfservice_flows_settings_lifespan** | **str** | Configures the Ory Kratos Settings Lifespan  This governs the \&quot;selfservice.flows.settings.lifespan\&quot; setting. | [optional] 
 **kratos_selfservice_flows_settings_privileged_session_max_age** | **str** | Configures the Ory Kratos Settings Privileged Session Max Age  This governs the \&quot;selfservice.flows.settings.privileged_session_max_age\&quot; setting. | [optional] 
 **kratos_selfservice_flows_settings_required_aal** | **str** | Configures the Ory Kratos Settings Required AAL  This governs the \&quot;selfservice.flows.settings.required_aal\&quot; setting. | [optional] 
@@ -160,15 +165,20 @@ Name | Type | Description | Notes
 **kratos_selfservice_flows_verification_use** | **str** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
 **kratos_selfservice_methods_code_config_lifespan** | **str** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
 **kratos_selfservice_methods_code_enabled** | **bool** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] 
-**kratos_selfservice_methods_code_mfa_enabled** | **bool** | Configues whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] 
-**kratos_selfservice_methods_code_passwordless_enabled** | **bool** | Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
+**kratos_selfservice_methods_code_mfa_enabled** | **bool** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] 
+**kratos_selfservice_methods_code_passwordless_enabled** | **bool** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
+**kratos_selfservice_methods_code_passwordless_login_fallback_enabled** | **bool** | This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \&quot;selfservice.methods.code.passwordless_login_fallback_enabled\&quot; setting. | [optional] 
 **kratos_selfservice_methods_link_config_base_url** | **str** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] 
 **kratos_selfservice_methods_link_config_lifespan** | **str** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] 
 **kratos_selfservice_methods_link_enabled** | **bool** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.enabled\&quot; setting. | [optional] 
 **kratos_selfservice_methods_lookup_secret_enabled** | **bool** | Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \&quot;selfservice.methods.lookup_secret.enabled\&quot; setting. | [optional] 
 **kratos_selfservice_methods_oidc_config_base_redirect_uri** | **str** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \&quot;selfservice.methods.oidc.config.base_redirect_uri\&quot; setting. | [optional] 
-**kratos_selfservice_methods_oidc_config_providers** | [**ProjectRevisionThirdPartyLoginProviders**](ProjectRevisionThirdPartyLoginProviders.md) |  | [optional] 
+**kratos_selfservice_methods_oidc_config_providers** | [**List[NormalizedProjectRevisionThirdPartyProvider]**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] 
 **kratos_selfservice_methods_oidc_enabled** | **bool** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \&quot;selfservice.methods.oidc.enabled\&quot; setting. | [optional] 
+**kratos_selfservice_methods_passkey_config_rp_display_name** | **str** | Configures the Ory Kratos Passkey RP Display Name  This governs the \&quot;selfservice.methods.passkey.config.rp.display_name\&quot; setting. | [optional] 
+**kratos_selfservice_methods_passkey_config_rp_id** | **str** | Configures the Ory Kratos Passkey RP ID  This governs the \&quot;selfservice.methods.passkey.config.rp.id\&quot; setting. | [optional] 
+**kratos_selfservice_methods_passkey_config_rp_origins** | **List[str]** |  | [optional] 
+**kratos_selfservice_methods_passkey_enabled** | **bool** | Configures whether Ory Kratos Passkey authentication is enabled  This governs the \&quot;selfservice.methods.passkey.enabled\&quot; setting. | [optional] 
 **kratos_selfservice_methods_password_config_haveibeenpwned_enabled** | **bool** | Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_enabled\&quot; setting. | [optional] 
 **kratos_selfservice_methods_password_config_identifier_similarity_check_enabled** | **bool** | Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \&quot;selfservice.methods.password.config.identifier_similarity_check_enabled\&quot; setting. | [optional] 
 **kratos_selfservice_methods_password_config_ignore_network_errors** | **bool** | Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \&quot;selfservice.methods.password.config.ignore_network_errors\&quot; setting. | [optional] 
@@ -182,23 +192,40 @@ Name | Type | Description | Notes
 **kratos_selfservice_methods_webauthn_config_rp_display_name** | **str** | Configures the Ory Kratos Webauthn RP Display Name  This governs the \&quot;selfservice.methods.webauthn.config.rp.display_name\&quot; setting. | [optional] 
 **kratos_selfservice_methods_webauthn_config_rp_icon** | **str** | Configures the Ory Kratos Webauthn RP Icon  This governs the \&quot;selfservice.methods.webauthn.config.rp.icon\&quot; setting. Deprecated: This value will be ignored due to security considerations. | [optional] 
 **kratos_selfservice_methods_webauthn_config_rp_id** | **str** | Configures the Ory Kratos Webauthn RP ID  This governs the \&quot;selfservice.methods.webauthn.config.rp.id\&quot; setting. | [optional] 
-**kratos_selfservice_methods_webauthn_config_rp_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**kratos_selfservice_methods_webauthn_config_rp_origins** | **List[str]** |  | [optional] 
 **kratos_selfservice_methods_webauthn_enabled** | **bool** | Configures whether Ory Kratos Webauthn is enabled  This governs the \&quot;selfservice.methods.webauthn.enabled\&quot; setting. | [optional] 
 **kratos_session_cookie_persistent** | **bool** | Configures the Ory Kratos Session Cookie Persistent Attribute  This governs the \&quot;session.cookie.persistent\&quot; setting. | [optional] 
 **kratos_session_cookie_same_site** | **str** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] 
 **kratos_session_lifespan** | **str** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional] 
 **kratos_session_whoami_required_aal** | **str** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] 
-**kratos_session_whoami_tokenizer_templates** | [**NormalizedProjectRevisionTokenizerTemplates**](NormalizedProjectRevisionTokenizerTemplates.md) |  | [optional] 
+**kratos_session_whoami_tokenizer_templates** | [**List[NormalizedProjectRevisionTokenizerTemplate]**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] 
+**name** | **str** | The project&#39;s name. | 
 **project_id** | **str** | The Revision&#39;s Project ID | [optional] 
-**project_revision_hooks** | [**ProjectRevisionHooks**](ProjectRevisionHooks.md) |  | [optional] 
-**serve_admin_cors_allowed_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**project_revision_hooks** | [**List[NormalizedProjectRevisionHook]**](NormalizedProjectRevisionHook.md) |  | [optional] 
+**serve_admin_cors_allowed_origins** | **List[str]** |  | [optional] 
 **serve_admin_cors_enabled** | **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
-**serve_public_cors_allowed_origins** | [**StringSliceJSONFormat**](StringSliceJSONFormat.md) |  | [optional] 
+**serve_public_cors_allowed_origins** | **List[str]** |  | [optional] 
 **serve_public_cors_enabled** | **bool** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] 
 **strict_security** | **bool** | Whether the project should employ strict security measures. Setting this to true is recommended for going into production. | [optional] 
 **updated_at** | **datetime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.normalized_project_revision import NormalizedProjectRevision
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of NormalizedProjectRevision from a JSON string
+normalized_project_revision_instance = NormalizedProjectRevision.from_json(json)
+# print the JSON string representation of the object
+print(NormalizedProjectRevision.to_json())
+
+# convert the object into a dict
+normalized_project_revision_dict = normalized_project_revision_instance.to_dict()
+# create an instance of NormalizedProjectRevision from a dict
+normalized_project_revision_form_dict = normalized_project_revision.from_dict(normalized_project_revision_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

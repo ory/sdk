@@ -10,6 +10,9 @@ const CreateProjectNormalizedPayloadEnvironmentEnum
     _$createProjectNormalizedPayloadEnvironmentEnum_prod =
     const CreateProjectNormalizedPayloadEnvironmentEnum._('prod');
 const CreateProjectNormalizedPayloadEnvironmentEnum
+    _$createProjectNormalizedPayloadEnvironmentEnum_stage =
+    const CreateProjectNormalizedPayloadEnvironmentEnum._('stage');
+const CreateProjectNormalizedPayloadEnvironmentEnum
     _$createProjectNormalizedPayloadEnvironmentEnum_dev =
     const CreateProjectNormalizedPayloadEnvironmentEnum._('dev');
 
@@ -18,6 +21,8 @@ CreateProjectNormalizedPayloadEnvironmentEnum
   switch (name) {
     case 'prod':
       return _$createProjectNormalizedPayloadEnvironmentEnum_prod;
+    case 'stage':
+      return _$createProjectNormalizedPayloadEnvironmentEnum_stage;
     case 'dev':
       return _$createProjectNormalizedPayloadEnvironmentEnum_dev;
     default:
@@ -29,7 +34,46 @@ final BuiltSet<CreateProjectNormalizedPayloadEnvironmentEnum>
     _$createProjectNormalizedPayloadEnvironmentEnumValues = new BuiltSet<
         CreateProjectNormalizedPayloadEnvironmentEnum>(const <CreateProjectNormalizedPayloadEnvironmentEnum>[
   _$createProjectNormalizedPayloadEnvironmentEnum_prod,
+  _$createProjectNormalizedPayloadEnvironmentEnum_stage,
   _$createProjectNormalizedPayloadEnvironmentEnum_dev,
+]);
+
+const CreateProjectNormalizedPayloadHomeRegionEnum
+    _$createProjectNormalizedPayloadHomeRegionEnum_euCentral =
+    const CreateProjectNormalizedPayloadHomeRegionEnum._('euCentral');
+const CreateProjectNormalizedPayloadHomeRegionEnum
+    _$createProjectNormalizedPayloadHomeRegionEnum_usEast =
+    const CreateProjectNormalizedPayloadHomeRegionEnum._('usEast');
+const CreateProjectNormalizedPayloadHomeRegionEnum
+    _$createProjectNormalizedPayloadHomeRegionEnum_usWest =
+    const CreateProjectNormalizedPayloadHomeRegionEnum._('usWest');
+const CreateProjectNormalizedPayloadHomeRegionEnum
+    _$createProjectNormalizedPayloadHomeRegionEnum_global =
+    const CreateProjectNormalizedPayloadHomeRegionEnum._('global');
+
+CreateProjectNormalizedPayloadHomeRegionEnum
+    _$createProjectNormalizedPayloadHomeRegionEnumValueOf(String name) {
+  switch (name) {
+    case 'euCentral':
+      return _$createProjectNormalizedPayloadHomeRegionEnum_euCentral;
+    case 'usEast':
+      return _$createProjectNormalizedPayloadHomeRegionEnum_usEast;
+    case 'usWest':
+      return _$createProjectNormalizedPayloadHomeRegionEnum_usWest;
+    case 'global':
+      return _$createProjectNormalizedPayloadHomeRegionEnum_global;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<CreateProjectNormalizedPayloadHomeRegionEnum>
+    _$createProjectNormalizedPayloadHomeRegionEnumValues = new BuiltSet<
+        CreateProjectNormalizedPayloadHomeRegionEnum>(const <CreateProjectNormalizedPayloadHomeRegionEnum>[
+  _$createProjectNormalizedPayloadHomeRegionEnum_euCentral,
+  _$createProjectNormalizedPayloadHomeRegionEnum_usEast,
+  _$createProjectNormalizedPayloadHomeRegionEnum_usWest,
+  _$createProjectNormalizedPayloadHomeRegionEnum_global,
 ]);
 
 const CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum
@@ -59,6 +103,43 @@ final BuiltSet<CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum>
         CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum>(const <CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum>[
   _$createProjectNormalizedPayloadHydraStrategiesAccessTokenEnum_opaque,
   _$createProjectNormalizedPayloadHydraStrategiesAccessTokenEnum_jwt,
+]);
+
+const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum
+    _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_list =
+    const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum._(
+        'list');
+const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum
+    _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_string =
+    const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum._(
+        'string');
+const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum
+    _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_both =
+    const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum._(
+        'both');
+
+CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum
+    _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnumValueOf(
+        String name) {
+  switch (name) {
+    case 'list':
+      return _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_list;
+    case 'string':
+      return _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_string;
+    case 'both':
+      return _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_both;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum>
+    _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnumValues =
+    new BuiltSet<
+        CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum>(const <CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum>[
+  _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_list,
+  _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_string,
+  _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_both,
 ]);
 
 const CreateProjectNormalizedPayloadHydraStrategiesScopeEnum
@@ -154,9 +235,15 @@ final BuiltSet<
 Serializer<CreateProjectNormalizedPayloadEnvironmentEnum>
     _$createProjectNormalizedPayloadEnvironmentEnumSerializer =
     new _$CreateProjectNormalizedPayloadEnvironmentEnumSerializer();
+Serializer<CreateProjectNormalizedPayloadHomeRegionEnum>
+    _$createProjectNormalizedPayloadHomeRegionEnumSerializer =
+    new _$CreateProjectNormalizedPayloadHomeRegionEnumSerializer();
 Serializer<CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum>
     _$createProjectNormalizedPayloadHydraStrategiesAccessTokenEnumSerializer =
     new _$CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnumSerializer();
+Serializer<CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum>
+    _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnumSerializer =
+    new _$CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnumSerializer();
 Serializer<CreateProjectNormalizedPayloadHydraStrategiesScopeEnum>
     _$createProjectNormalizedPayloadHydraStrategiesScopeEnumSerializer =
     new _$CreateProjectNormalizedPayloadHydraStrategiesScopeEnumSerializer();
@@ -173,10 +260,12 @@ class _$CreateProjectNormalizedPayloadEnvironmentEnumSerializer
         PrimitiveSerializer<CreateProjectNormalizedPayloadEnvironmentEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'prod': 'prod',
+    'stage': 'stage',
     'dev': 'dev',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'prod': 'prod',
+    'stage': 'stage',
     'dev': 'dev',
   };
 
@@ -198,6 +287,43 @@ class _$CreateProjectNormalizedPayloadEnvironmentEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       CreateProjectNormalizedPayloadEnvironmentEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$CreateProjectNormalizedPayloadHomeRegionEnumSerializer
+    implements
+        PrimitiveSerializer<CreateProjectNormalizedPayloadHomeRegionEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'euCentral': 'eu-central',
+    'usEast': 'us-east',
+    'usWest': 'us-west',
+    'global': 'global',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'eu-central': 'euCentral',
+    'us-east': 'usEast',
+    'us-west': 'usWest',
+    'global': 'global',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    CreateProjectNormalizedPayloadHomeRegionEnum
+  ];
+  @override
+  final String wireName = 'CreateProjectNormalizedPayloadHomeRegionEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          CreateProjectNormalizedPayloadHomeRegionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  CreateProjectNormalizedPayloadHomeRegionEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      CreateProjectNormalizedPayloadHomeRegionEnum.valueOf(
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
@@ -233,6 +359,43 @@ class _$CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnumSerializer
+    implements
+        PrimitiveSerializer<
+            CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'list': 'list',
+    'string': 'string',
+    'both': 'both',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'list': 'list',
+    'string': 'string',
+    'both': 'both',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum
+  ];
+  @override
+  final String wireName =
+      'CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum.valueOf(
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
@@ -357,6 +520,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final CreateProjectNormalizedPayloadEnvironmentEnum environment;
   @override
+  final CreateProjectNormalizedPayloadHomeRegionEnum? homeRegion;
+  @override
   final BuiltList<String>? hydraOauth2AllowedTopLevelClaims;
   @override
   final bool? hydraOauth2ClientCredentialsDefaultGrantAllowedScope;
@@ -397,6 +562,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum?
       hydraStrategiesAccessToken;
+  @override
+  final CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum?
+      hydraStrategiesJwtScopeClaim;
   @override
   final CreateProjectNormalizedPayloadHydraStrategiesScopeEnum?
       hydraStrategiesScope;
@@ -586,6 +754,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final String? kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
   @override
+  final String? kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
+  @override
   final String? kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
@@ -620,10 +790,15 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl;
   @override
   final String?
+      kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
+  @override
+  final String?
       kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl;
   @override
   final String?
       kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
+  @override
+  final bool? kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
   @override
   final bool? kratosSelfserviceFlowsRegistrationEnabled;
   @override
@@ -639,6 +814,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+  @override
+  final String?
+      kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
   @override
   final String?
       kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
@@ -680,6 +858,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final bool? kratosSelfserviceMethodsCodePasswordlessEnabled;
   @override
+  final bool? kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
+  @override
   final String? kratosSelfserviceMethodsLinkConfigBaseUrl;
   @override
   final String? kratosSelfserviceMethodsLinkConfigLifespan;
@@ -694,6 +874,14 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       kratosSelfserviceMethodsOidcConfigProviders;
   @override
   final bool? kratosSelfserviceMethodsOidcEnabled;
+  @override
+  final String? kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+  @override
+  final String? kratosSelfserviceMethodsPasskeyConfigRpId;
+  @override
+  final BuiltList<String>? kratosSelfserviceMethodsPasskeyConfigRpOrigins;
+  @override
+  final bool? kratosSelfserviceMethodsPasskeyEnabled;
   @override
   final bool? kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
   @override
@@ -766,6 +954,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.disableAccountExperienceWelcomeScreen,
       this.enableAxV2,
       required this.environment,
+      this.homeRegion,
       this.hydraOauth2AllowedTopLevelClaims,
       this.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
       this.hydraOauth2ExcludeNotBeforeClaim,
@@ -786,6 +975,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.hydraServeCookiesSameSiteLegacyWorkaround,
       this.hydraServeCookiesSameSiteMode,
       this.hydraStrategiesAccessToken,
+      this.hydraStrategiesJwtScopeClaim,
       this.hydraStrategiesScope,
       this.hydraTtlAccessToken,
       this.hydraTtlAuthCode,
@@ -878,6 +1068,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
@@ -893,8 +1084,10 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsRegistrationEnableLegacyOneStep,
       this.kratosSelfserviceFlowsRegistrationEnabled,
       this.kratosSelfserviceFlowsRegistrationLifespan,
       this.kratosSelfserviceFlowsRegistrationLoginHints,
@@ -902,6 +1095,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl,
@@ -920,6 +1114,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosSelfserviceMethodsCodeEnabled,
       this.kratosSelfserviceMethodsCodeMfaEnabled,
       this.kratosSelfserviceMethodsCodePasswordlessEnabled,
+      this.kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled,
       this.kratosSelfserviceMethodsLinkConfigBaseUrl,
       this.kratosSelfserviceMethodsLinkConfigLifespan,
       this.kratosSelfserviceMethodsLinkEnabled,
@@ -927,6 +1122,10 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosSelfserviceMethodsOidcConfigBaseRedirectUri,
       this.kratosSelfserviceMethodsOidcConfigProviders,
       this.kratosSelfserviceMethodsOidcEnabled,
+      this.kratosSelfserviceMethodsPasskeyConfigRpDisplayName,
+      this.kratosSelfserviceMethodsPasskeyConfigRpId,
+      this.kratosSelfserviceMethodsPasskeyConfigRpOrigins,
+      this.kratosSelfserviceMethodsPasskeyEnabled,
       this.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled,
       this.kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled,
       this.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors,
@@ -982,6 +1181,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.disableAccountExperienceWelcomeScreen &&
         enableAxV2 == other.enableAxV2 &&
         environment == other.environment &&
+        homeRegion == other.homeRegion &&
         hydraOauth2AllowedTopLevelClaims ==
             other.hydraOauth2AllowedTopLevelClaims &&
         hydraOauth2ClientCredentialsDefaultGrantAllowedScope ==
@@ -1014,6 +1214,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.hydraServeCookiesSameSiteLegacyWorkaround &&
         hydraServeCookiesSameSiteMode == other.hydraServeCookiesSameSiteMode &&
         hydraStrategiesAccessToken == other.hydraStrategiesAccessToken &&
+        hydraStrategiesJwtScopeClaim == other.hydraStrategiesJwtScopeClaim &&
         hydraStrategiesScope == other.hydraStrategiesScope &&
         hydraTtlAccessToken == other.hydraTtlAccessToken &&
         hydraTtlAuthCode == other.hydraTtlAuthCode &&
@@ -1173,6 +1374,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
                 .kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl ==
             other.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl &&
@@ -1208,12 +1412,17 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsRegistrationEnableLegacyOneStep ==
+            other.kratosSelfserviceFlowsRegistrationEnableLegacyOneStep &&
         kratosSelfserviceFlowsRegistrationEnabled ==
             other.kratosSelfserviceFlowsRegistrationEnabled &&
         kratosSelfserviceFlowsRegistrationLifespan ==
@@ -1230,6 +1439,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl &&
@@ -1271,6 +1483,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.kratosSelfserviceMethodsCodeMfaEnabled &&
         kratosSelfserviceMethodsCodePasswordlessEnabled ==
             other.kratosSelfserviceMethodsCodePasswordlessEnabled &&
+        kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled ==
+            other
+                .kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled &&
         kratosSelfserviceMethodsLinkConfigBaseUrl ==
             other.kratosSelfserviceMethodsLinkConfigBaseUrl &&
         kratosSelfserviceMethodsLinkConfigLifespan ==
@@ -1285,6 +1500,14 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.kratosSelfserviceMethodsOidcConfigProviders &&
         kratosSelfserviceMethodsOidcEnabled ==
             other.kratosSelfserviceMethodsOidcEnabled &&
+        kratosSelfserviceMethodsPasskeyConfigRpDisplayName ==
+            other.kratosSelfserviceMethodsPasskeyConfigRpDisplayName &&
+        kratosSelfserviceMethodsPasskeyConfigRpId ==
+            other.kratosSelfserviceMethodsPasskeyConfigRpId &&
+        kratosSelfserviceMethodsPasskeyConfigRpOrigins ==
+            other.kratosSelfserviceMethodsPasskeyConfigRpOrigins &&
+        kratosSelfserviceMethodsPasskeyEnabled ==
+            other.kratosSelfserviceMethodsPasskeyEnabled &&
         kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled ==
             other.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled &&
         kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled ==
@@ -1342,6 +1565,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash, disableAccountExperienceWelcomeScreen.hashCode);
     _$hash = $jc(_$hash, enableAxV2.hashCode);
     _$hash = $jc(_$hash, environment.hashCode);
+    _$hash = $jc(_$hash, homeRegion.hashCode);
     _$hash = $jc(_$hash, hydraOauth2AllowedTopLevelClaims.hashCode);
     _$hash = $jc(
         _$hash, hydraOauth2ClientCredentialsDefaultGrantAllowedScope.hashCode);
@@ -1364,6 +1588,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash, hydraServeCookiesSameSiteLegacyWorkaround.hashCode);
     _$hash = $jc(_$hash, hydraServeCookiesSameSiteMode.hashCode);
     _$hash = $jc(_$hash, hydraStrategiesAccessToken.hashCode);
+    _$hash = $jc(_$hash, hydraStrategiesJwtScopeClaim.hashCode);
     _$hash = $jc(_$hash, hydraStrategiesScope.hashCode);
     _$hash = $jc(_$hash, hydraTtlAccessToken.hashCode);
     _$hash = $jc(_$hash, hydraTtlAuthCode.hashCode);
@@ -1502,6 +1727,10 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(
         _$hash,
+        kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
         kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
             .hashCode);
     _$hash = $jc(_$hash,
@@ -1536,12 +1765,18 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             .hashCode);
     _$hash = $jc(
         _$hash,
+        kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
         kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl
             .hashCode);
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
             .hashCode);
+    _$hash = $jc(
+        _$hash, kratosSelfserviceFlowsRegistrationEnableLegacyOneStep.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRegistrationEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRegistrationLifespan.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRegistrationLoginHints.hashCode);
@@ -1555,6 +1790,10 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl
             .hashCode);
     _$hash = $jc(
         _$hash,
@@ -1592,6 +1831,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeMfaEnabled.hashCode);
     _$hash =
         $jc(_$hash, kratosSelfserviceMethodsCodePasswordlessEnabled.hashCode);
+    _$hash = $jc(_$hash,
+        kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsLinkConfigBaseUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsLinkConfigLifespan.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsLinkEnabled.hashCode);
@@ -1600,6 +1841,12 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         $jc(_$hash, kratosSelfserviceMethodsOidcConfigBaseRedirectUri.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsOidcConfigProviders.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsOidcEnabled.hashCode);
+    _$hash = $jc(
+        _$hash, kratosSelfserviceMethodsPasskeyConfigRpDisplayName.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsPasskeyConfigRpId.hashCode);
+    _$hash =
+        $jc(_$hash, kratosSelfserviceMethodsPasskeyConfigRpOrigins.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsPasskeyEnabled.hashCode);
     _$hash = $jc(_$hash,
         kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.hashCode);
     _$hash = $jc(
@@ -1652,6 +1899,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               disableAccountExperienceWelcomeScreen)
           ..add('enableAxV2', enableAxV2)
           ..add('environment', environment)
+          ..add('homeRegion', homeRegion)
           ..add('hydraOauth2AllowedTopLevelClaims',
               hydraOauth2AllowedTopLevelClaims)
           ..add('hydraOauth2ClientCredentialsDefaultGrantAllowedScope',
@@ -1684,6 +1932,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               hydraServeCookiesSameSiteLegacyWorkaround)
           ..add('hydraServeCookiesSameSiteMode', hydraServeCookiesSameSiteMode)
           ..add('hydraStrategiesAccessToken', hydraStrategiesAccessToken)
+          ..add('hydraStrategiesJwtScopeClaim', hydraStrategiesJwtScopeClaim)
           ..add('hydraStrategiesScope', hydraStrategiesScope)
           ..add('hydraTtlAccessToken', hydraTtlAccessToken)
           ..add('hydraTtlAuthCode', hydraTtlAuthCode)
@@ -1842,6 +2091,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
           ..add('kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl)
           ..add(
+              'kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl)
+          ..add(
               'kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl',
@@ -1877,11 +2129,16 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               'kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl)
           ..add(
+              'kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl)
+          ..add(
               'kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl)
+          ..add('kratosSelfserviceFlowsRegistrationEnableLegacyOneStep',
+              kratosSelfserviceFlowsRegistrationEnableLegacyOneStep)
           ..add('kratosSelfserviceFlowsRegistrationEnabled',
               kratosSelfserviceFlowsRegistrationEnabled)
           ..add('kratosSelfserviceFlowsRegistrationLifespan',
@@ -1898,6 +2155,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
           ..add(
               'kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl)
@@ -1939,6 +2199,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosSelfserviceMethodsCodeMfaEnabled)
           ..add('kratosSelfserviceMethodsCodePasswordlessEnabled',
               kratosSelfserviceMethodsCodePasswordlessEnabled)
+          ..add('kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled',
+              kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled)
           ..add('kratosSelfserviceMethodsLinkConfigBaseUrl',
               kratosSelfserviceMethodsLinkConfigBaseUrl)
           ..add('kratosSelfserviceMethodsLinkConfigLifespan',
@@ -1953,6 +2215,14 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosSelfserviceMethodsOidcConfigProviders)
           ..add('kratosSelfserviceMethodsOidcEnabled',
               kratosSelfserviceMethodsOidcEnabled)
+          ..add('kratosSelfserviceMethodsPasskeyConfigRpDisplayName',
+              kratosSelfserviceMethodsPasskeyConfigRpDisplayName)
+          ..add('kratosSelfserviceMethodsPasskeyConfigRpId',
+              kratosSelfserviceMethodsPasskeyConfigRpId)
+          ..add('kratosSelfserviceMethodsPasskeyConfigRpOrigins',
+              kratosSelfserviceMethodsPasskeyConfigRpOrigins)
+          ..add('kratosSelfserviceMethodsPasskeyEnabled',
+              kratosSelfserviceMethodsPasskeyEnabled)
           ..add('kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled',
               kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled)
           ..add(
@@ -2032,6 +2302,12 @@ class CreateProjectNormalizedPayloadBuilder
       _$this._environment;
   set environment(CreateProjectNormalizedPayloadEnvironmentEnum? environment) =>
       _$this._environment = environment;
+
+  CreateProjectNormalizedPayloadHomeRegionEnum? _homeRegion;
+  CreateProjectNormalizedPayloadHomeRegionEnum? get homeRegion =>
+      _$this._homeRegion;
+  set homeRegion(CreateProjectNormalizedPayloadHomeRegionEnum? homeRegion) =>
+      _$this._homeRegion = homeRegion;
 
   ListBuilder<String>? _hydraOauth2AllowedTopLevelClaims;
   ListBuilder<String> get hydraOauth2AllowedTopLevelClaims =>
@@ -2173,6 +2449,15 @@ class CreateProjectNormalizedPayloadBuilder
           CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum?
               hydraStrategiesAccessToken) =>
       _$this._hydraStrategiesAccessToken = hydraStrategiesAccessToken;
+
+  CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum?
+      _hydraStrategiesJwtScopeClaim;
+  CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum?
+      get hydraStrategiesJwtScopeClaim => _$this._hydraStrategiesJwtScopeClaim;
+  set hydraStrategiesJwtScopeClaim(
+          CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum?
+              hydraStrategiesJwtScopeClaim) =>
+      _$this._hydraStrategiesJwtScopeClaim = hydraStrategiesJwtScopeClaim;
 
   CreateProjectNormalizedPayloadHydraStrategiesScopeEnum? _hydraStrategiesScope;
   CreateProjectNormalizedPayloadHydraStrategiesScopeEnum?
@@ -2851,6 +3136,15 @@ class CreateProjectNormalizedPayloadBuilder
       _$this._kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
 
+  String? _kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
+
   String? _kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl =>
       _$this._kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
@@ -2983,6 +3277,17 @@ class CreateProjectNormalizedPayloadBuilder
           kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl;
 
   String?
+      _kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
+
+  String?
       _kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl =>
       _$this
@@ -3003,6 +3308,14 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
+
+  bool? _kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
+  bool? get kratosSelfserviceFlowsRegistrationEnableLegacyOneStep =>
+      _$this._kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
+  set kratosSelfserviceFlowsRegistrationEnableLegacyOneStep(
+          bool? kratosSelfserviceFlowsRegistrationEnableLegacyOneStep) =>
+      _$this._kratosSelfserviceFlowsRegistrationEnableLegacyOneStep =
+          kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
 
   bool? _kratosSelfserviceFlowsRegistrationEnabled;
   bool? get kratosSelfserviceFlowsRegistrationEnabled =>
@@ -3063,6 +3376,15 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
 
   String? _kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl =>
@@ -3218,6 +3540,14 @@ class CreateProjectNormalizedPayloadBuilder
       _$this._kratosSelfserviceMethodsCodePasswordlessEnabled =
           kratosSelfserviceMethodsCodePasswordlessEnabled;
 
+  bool? _kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
+  bool? get kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled =>
+      _$this._kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
+  set kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled(
+          bool? kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled) =>
+      _$this._kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled =
+          kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
+
   String? _kratosSelfserviceMethodsLinkConfigBaseUrl;
   String? get kratosSelfserviceMethodsLinkConfigBaseUrl =>
       _$this._kratosSelfserviceMethodsLinkConfigBaseUrl;
@@ -3277,6 +3607,40 @@ class CreateProjectNormalizedPayloadBuilder
           bool? kratosSelfserviceMethodsOidcEnabled) =>
       _$this._kratosSelfserviceMethodsOidcEnabled =
           kratosSelfserviceMethodsOidcEnabled;
+
+  String? _kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+  String? get kratosSelfserviceMethodsPasskeyConfigRpDisplayName =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+  set kratosSelfserviceMethodsPasskeyConfigRpDisplayName(
+          String? kratosSelfserviceMethodsPasskeyConfigRpDisplayName) =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpDisplayName =
+          kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+
+  String? _kratosSelfserviceMethodsPasskeyConfigRpId;
+  String? get kratosSelfserviceMethodsPasskeyConfigRpId =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpId;
+  set kratosSelfserviceMethodsPasskeyConfigRpId(
+          String? kratosSelfserviceMethodsPasskeyConfigRpId) =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpId =
+          kratosSelfserviceMethodsPasskeyConfigRpId;
+
+  ListBuilder<String>? _kratosSelfserviceMethodsPasskeyConfigRpOrigins;
+  ListBuilder<String> get kratosSelfserviceMethodsPasskeyConfigRpOrigins =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpOrigins ??=
+          new ListBuilder<String>();
+  set kratosSelfserviceMethodsPasskeyConfigRpOrigins(
+          ListBuilder<String>?
+              kratosSelfserviceMethodsPasskeyConfigRpOrigins) =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpOrigins =
+          kratosSelfserviceMethodsPasskeyConfigRpOrigins;
+
+  bool? _kratosSelfserviceMethodsPasskeyEnabled;
+  bool? get kratosSelfserviceMethodsPasskeyEnabled =>
+      _$this._kratosSelfserviceMethodsPasskeyEnabled;
+  set kratosSelfserviceMethodsPasskeyEnabled(
+          bool? kratosSelfserviceMethodsPasskeyEnabled) =>
+      _$this._kratosSelfserviceMethodsPasskeyEnabled =
+          kratosSelfserviceMethodsPasskeyEnabled;
 
   bool? _kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
   bool? get kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled =>
@@ -3502,6 +3866,7 @@ class CreateProjectNormalizedPayloadBuilder
           $v.disableAccountExperienceWelcomeScreen;
       _enableAxV2 = $v.enableAxV2;
       _environment = $v.environment;
+      _homeRegion = $v.homeRegion;
       _hydraOauth2AllowedTopLevelClaims =
           $v.hydraOauth2AllowedTopLevelClaims?.toBuilder();
       _hydraOauth2ClientCredentialsDefaultGrantAllowedScope =
@@ -3530,6 +3895,7 @@ class CreateProjectNormalizedPayloadBuilder
           $v.hydraServeCookiesSameSiteLegacyWorkaround;
       _hydraServeCookiesSameSiteMode = $v.hydraServeCookiesSameSiteMode;
       _hydraStrategiesAccessToken = $v.hydraStrategiesAccessToken;
+      _hydraStrategiesJwtScopeClaim = $v.hydraStrategiesJwtScopeClaim;
       _hydraStrategiesScope = $v.hydraStrategiesScope;
       _hydraTtlAccessToken = $v.hydraTtlAccessToken;
       _hydraTtlAuthCode = $v.hydraTtlAuthCode;
@@ -3682,6 +4048,8 @@ class CreateProjectNormalizedPayloadBuilder
           .kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl =
@@ -3710,10 +4078,14 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl = $v
+          .kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsRegistrationEnableLegacyOneStep =
+          $v.kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
       _kratosSelfserviceFlowsRegistrationEnabled =
           $v.kratosSelfserviceFlowsRegistrationEnabled;
       _kratosSelfserviceFlowsRegistrationLifespan =
@@ -3728,6 +4100,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl =
@@ -3764,6 +4138,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosSelfserviceMethodsCodeMfaEnabled;
       _kratosSelfserviceMethodsCodePasswordlessEnabled =
           $v.kratosSelfserviceMethodsCodePasswordlessEnabled;
+      _kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled =
+          $v.kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
       _kratosSelfserviceMethodsLinkConfigBaseUrl =
           $v.kratosSelfserviceMethodsLinkConfigBaseUrl;
       _kratosSelfserviceMethodsLinkConfigLifespan =
@@ -3778,6 +4154,14 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosSelfserviceMethodsOidcConfigProviders?.toBuilder();
       _kratosSelfserviceMethodsOidcEnabled =
           $v.kratosSelfserviceMethodsOidcEnabled;
+      _kratosSelfserviceMethodsPasskeyConfigRpDisplayName =
+          $v.kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+      _kratosSelfserviceMethodsPasskeyConfigRpId =
+          $v.kratosSelfserviceMethodsPasskeyConfigRpId;
+      _kratosSelfserviceMethodsPasskeyConfigRpOrigins =
+          $v.kratosSelfserviceMethodsPasskeyConfigRpOrigins?.toBuilder();
+      _kratosSelfserviceMethodsPasskeyEnabled =
+          $v.kratosSelfserviceMethodsPasskeyEnabled;
       _kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled =
           $v.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
       _kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled =
@@ -3856,6 +4240,7 @@ class CreateProjectNormalizedPayloadBuilder
               enableAxV2: enableAxV2,
               environment: BuiltValueNullFieldError.checkNotNull(
                   environment, r'CreateProjectNormalizedPayload', 'environment'),
+              homeRegion: homeRegion,
               hydraOauth2AllowedTopLevelClaims:
                   _hydraOauth2AllowedTopLevelClaims?.build(),
               hydraOauth2ClientCredentialsDefaultGrantAllowedScope:
@@ -3885,6 +4270,7 @@ class CreateProjectNormalizedPayloadBuilder
                   hydraServeCookiesSameSiteLegacyWorkaround,
               hydraServeCookiesSameSiteMode: hydraServeCookiesSameSiteMode,
               hydraStrategiesAccessToken: hydraStrategiesAccessToken,
+              hydraStrategiesJwtScopeClaim: hydraStrategiesJwtScopeClaim,
               hydraStrategiesScope: hydraStrategiesScope,
               hydraTtlAccessToken: hydraTtlAccessToken,
               hydraTtlAuthCode: hydraTtlAuthCode,
@@ -3992,6 +4378,7 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
@@ -4007,8 +4394,10 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsRegistrationEnableLegacyOneStep: kratosSelfserviceFlowsRegistrationEnableLegacyOneStep,
               kratosSelfserviceFlowsRegistrationEnabled: kratosSelfserviceFlowsRegistrationEnabled,
               kratosSelfserviceFlowsRegistrationLifespan: kratosSelfserviceFlowsRegistrationLifespan,
               kratosSelfserviceFlowsRegistrationLoginHints: kratosSelfserviceFlowsRegistrationLoginHints,
@@ -4016,6 +4405,7 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl,
@@ -4034,6 +4424,7 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSelfserviceMethodsCodeEnabled: kratosSelfserviceMethodsCodeEnabled,
               kratosSelfserviceMethodsCodeMfaEnabled: kratosSelfserviceMethodsCodeMfaEnabled,
               kratosSelfserviceMethodsCodePasswordlessEnabled: kratosSelfserviceMethodsCodePasswordlessEnabled,
+              kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled: kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled,
               kratosSelfserviceMethodsLinkConfigBaseUrl: kratosSelfserviceMethodsLinkConfigBaseUrl,
               kratosSelfserviceMethodsLinkConfigLifespan: kratosSelfserviceMethodsLinkConfigLifespan,
               kratosSelfserviceMethodsLinkEnabled: kratosSelfserviceMethodsLinkEnabled,
@@ -4041,6 +4432,10 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSelfserviceMethodsOidcConfigBaseRedirectUri: kratosSelfserviceMethodsOidcConfigBaseRedirectUri,
               kratosSelfserviceMethodsOidcConfigProviders: _kratosSelfserviceMethodsOidcConfigProviders?.build(),
               kratosSelfserviceMethodsOidcEnabled: kratosSelfserviceMethodsOidcEnabled,
+              kratosSelfserviceMethodsPasskeyConfigRpDisplayName: kratosSelfserviceMethodsPasskeyConfigRpDisplayName,
+              kratosSelfserviceMethodsPasskeyConfigRpId: kratosSelfserviceMethodsPasskeyConfigRpId,
+              kratosSelfserviceMethodsPasskeyConfigRpOrigins: _kratosSelfserviceMethodsPasskeyConfigRpOrigins?.build(),
+              kratosSelfserviceMethodsPasskeyEnabled: kratosSelfserviceMethodsPasskeyEnabled,
               kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled: kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled,
               kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled: kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled,
               kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors: kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors,
@@ -4115,6 +4510,9 @@ class CreateProjectNormalizedPayloadBuilder
 
         _$failedField = 'kratosSelfserviceMethodsOidcConfigProviders';
         _kratosSelfserviceMethodsOidcConfigProviders?.build();
+
+        _$failedField = 'kratosSelfserviceMethodsPasskeyConfigRpOrigins';
+        _kratosSelfserviceMethodsPasskeyConfigRpOrigins?.build();
 
         _$failedField = 'kratosSelfserviceMethodsWebauthnConfigRpOrigins';
         _kratosSelfserviceMethodsWebauthnConfigRpOrigins?.build();

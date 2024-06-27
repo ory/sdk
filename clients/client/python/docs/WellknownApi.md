@@ -1,6 +1,6 @@
 # ory_client.WellknownApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -18,35 +18,36 @@ This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Toke
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import wellknown_api
-from ory_client.model.error_o_auth2 import ErrorOAuth2
-from ory_client.model.json_web_key_set import JsonWebKeySet
+from ory_client.models.json_web_key_set import JsonWebKeySet
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = wellknown_api.WellknownApi(api_client)
+    api_instance = ory_client.WellknownApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Discover Well-Known JSON Web Keys
         api_response = api_instance.discover_json_web_keys()
+        print("The response of WellknownApi->discover_json_web_keys:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling WellknownApi->discover_json_web_keys: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -61,7 +62,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 

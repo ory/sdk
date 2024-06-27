@@ -1,6 +1,6 @@
 # EventsApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -10,7 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**setEventStream**](EventsApi.md#setEventStream) | **PUT** /projects/{project_id}/eventstreams/{event_stream_id} | Update an event stream for a project. |
 
 
-<a name="createEventStream"></a>
+<a id="createEventStream"></a>
 # **createEventStream**
 > EventStream createEventStream(projectId, createEventStreamBody)
 
@@ -29,11 +29,11 @@ import sh.ory.api.EventsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     EventsApi apiInstance = new EventsApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -65,7 +65,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -81,7 +81,7 @@ public class Example {
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteEventStream"></a>
+<a id="deleteEventStream"></a>
 # **deleteEventStream**
 > deleteEventStream(projectId, eventStreamId)
 
@@ -102,11 +102,11 @@ import sh.ory.api.EventsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     EventsApi apiInstance = new EventsApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -137,7 +137,7 @@ null (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -153,7 +153,7 @@ null (empty response body)
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listEventStreams"></a>
+<a id="listEventStreams"></a>
 # **listEventStreams**
 > ListEventStreams listEventStreams(projectId)
 
@@ -172,11 +172,11 @@ import sh.ory.api.EventsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     EventsApi apiInstance = new EventsApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -206,7 +206,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -221,7 +221,7 @@ public class Example {
 | **403** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="setEventStream"></a>
+<a id="setEventStream"></a>
 # **setEventStream**
 > EventStream setEventStream(projectId, eventStreamId, setEventStreamBody)
 
@@ -240,11 +240,11 @@ import sh.ory.api.EventsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     EventsApi apiInstance = new EventsApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -278,7 +278,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

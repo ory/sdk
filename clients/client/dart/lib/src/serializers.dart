@@ -17,12 +17,16 @@ import 'package:ory_client/src/model/date.dart';
 import 'package:ory_client/src/model/accept_o_auth2_consent_request.dart';
 import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart';
 import 'package:ory_client/src/model/accept_o_auth2_login_request.dart';
+import 'package:ory_client/src/model/account_experience_configuration.dart';
+import 'package:ory_client/src/model/account_experience_theme_variables.dart';
 import 'package:ory_client/src/model/active_project_in_console.dart';
+import 'package:ory_client/src/model/add_project_to_workspace_body.dart';
 import 'package:ory_client/src/model/attribute.dart';
 import 'package:ory_client/src/model/attribute_filter.dart';
 import 'package:ory_client/src/model/attributes_count_datapoint.dart';
 import 'package:ory_client/src/model/authenticator_assurance_level.dart';
 import 'package:ory_client/src/model/batch_patch_identities_response.dart';
+import 'package:ory_client/src/model/billing_period_bucket.dart';
 import 'package:ory_client/src/model/check_opl_syntax_result.dart';
 import 'package:ory_client/src/model/check_permission_result.dart';
 import 'package:ory_client/src/model/cloud_account.dart';
@@ -53,8 +57,8 @@ import 'package:ory_client/src/model/create_relationship_body.dart';
 import 'package:ory_client/src/model/create_subscription_body.dart';
 import 'package:ory_client/src/model/create_subscription_common.dart';
 import 'package:ory_client/src/model/create_verifiable_credential_request_body.dart';
+import 'package:ory_client/src/model/create_workspace_body.dart';
 import 'package:ory_client/src/model/create_workspace_member_invite_body.dart';
-import 'package:ory_client/src/model/create_workspace_payload.dart';
 import 'package:ory_client/src/model/create_workspace_subscription_body.dart';
 import 'package:ory_client/src/model/credential_supported_draft00.dart';
 import 'package:ory_client/src/model/custom_domain.dart';
@@ -105,17 +109,19 @@ import 'package:ory_client/src/model/internal_is_ax_welcome_screen_enabled_for_p
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_body.dart';
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_response.dart';
 import 'package:ory_client/src/model/introspected_o_auth2_token.dart';
+import 'package:ory_client/src/model/invoice.dart';
+import 'package:ory_client/src/model/invoice_data_v1.dart';
 import 'package:ory_client/src/model/is_owner_for_project_by_slug.dart';
-import 'package:ory_client/src/model/is_ready200_response.dart';
-import 'package:ory_client/src/model/is_ready503_response.dart';
 import 'package:ory_client/src/model/json_patch.dart';
 import 'package:ory_client/src/model/json_web_key.dart';
 import 'package:ory_client/src/model/json_web_key_set.dart';
 import 'package:ory_client/src/model/keto_namespace.dart';
+import 'package:ory_client/src/model/line_item_v1.dart';
 import 'package:ory_client/src/model/list_event_streams.dart';
-import 'package:ory_client/src/model/list_my_workspaces_response.dart';
+import 'package:ory_client/src/model/list_invoices_response.dart';
 import 'package:ory_client/src/model/list_organizations_response.dart';
-import 'package:ory_client/src/model/list_workspace_projects_response.dart';
+import 'package:ory_client/src/model/list_workspace_projects.dart';
+import 'package:ory_client/src/model/list_workspaces.dart';
 import 'package:ory_client/src/model/login_flow.dart';
 import 'package:ory_client/src/model/login_flow_state.dart';
 import 'package:ory_client/src/model/logout_flow.dart';
@@ -125,7 +131,7 @@ import 'package:ory_client/src/model/member_invite.dart';
 import 'package:ory_client/src/model/message.dart';
 import 'package:ory_client/src/model/message_dispatch.dart';
 import 'package:ory_client/src/model/metrics_datapoint.dart';
-import 'package:ory_client/src/model/migration_options.dart';
+import 'package:ory_client/src/model/money.dart';
 import 'package:ory_client/src/model/namespace.dart';
 import 'package:ory_client/src/model/needs_privileged_session_error.dart';
 import 'package:ory_client/src/model/normalized_project.dart';
@@ -154,7 +160,7 @@ import 'package:ory_client/src/model/pagination_headers.dart';
 import 'package:ory_client/src/model/parse_error.dart';
 import 'package:ory_client/src/model/patch_identities_body.dart';
 import 'package:ory_client/src/model/perform_native_logout_body.dart';
-import 'package:ory_client/src/model/permissions_on_workpace_response.dart';
+import 'package:ory_client/src/model/permissions_on_workspace.dart';
 import 'package:ory_client/src/model/plan.dart';
 import 'package:ory_client/src/model/plan_details.dart';
 import 'package:ory_client/src/model/post_check_permission_body.dart';
@@ -208,6 +214,8 @@ import 'package:ory_client/src/model/successful_code_exchange_response.dart';
 import 'package:ory_client/src/model/successful_native_login.dart';
 import 'package:ory_client/src/model/successful_native_registration.dart';
 import 'package:ory_client/src/model/successful_project_update.dart';
+import 'package:ory_client/src/model/tax_line_item.dart';
+import 'package:ory_client/src/model/time_interval.dart';
 import 'package:ory_client/src/model/token_pagination.dart';
 import 'package:ory_client/src/model/token_pagination_headers.dart';
 import 'package:ory_client/src/model/token_pagination_request_parameters.dart';
@@ -230,6 +238,7 @@ import 'package:ory_client/src/model/update_login_flow_body.dart';
 import 'package:ory_client/src/model/update_login_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_lookup_secret_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_oidc_method.dart';
+import 'package:ory_client/src/model/update_login_flow_with_passkey_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_password_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_totp_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_web_authn_method.dart';
@@ -239,11 +248,14 @@ import 'package:ory_client/src/model/update_recovery_flow_with_link_method.dart'
 import 'package:ory_client/src/model/update_registration_flow_body.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_oidc_method.dart';
+import 'package:ory_client/src/model/update_registration_flow_with_passkey_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_password_method.dart';
+import 'package:ory_client/src/model/update_registration_flow_with_profile_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_web_authn_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_body.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_lookup_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_oidc_method.dart';
+import 'package:ory_client/src/model/update_settings_flow_with_passkey_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_password_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_profile_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_totp_method.dart';
@@ -252,7 +264,7 @@ import 'package:ory_client/src/model/update_subscription_body.dart';
 import 'package:ory_client/src/model/update_verification_flow_body.dart';
 import 'package:ory_client/src/model/update_verification_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_verification_flow_with_link_method.dart';
-import 'package:ory_client/src/model/update_workspace_payload.dart';
+import 'package:ory_client/src/model/update_workspace_body.dart';
 import 'package:ory_client/src/model/usage.dart';
 import 'package:ory_client/src/model/verifiable_credential_priming_response.dart';
 import 'package:ory_client/src/model/verifiable_credential_proof.dart';
@@ -263,7 +275,7 @@ import 'package:ory_client/src/model/verification_flow_state.dart';
 import 'package:ory_client/src/model/version.dart';
 import 'package:ory_client/src/model/warning.dart';
 import 'package:ory_client/src/model/workspace.dart';
-import 'package:ory_client/src/model/workspace_meta.dart';
+import 'package:ory_client/src/model/workspace_api_key.dart';
 
 part 'serializers.g.dart';
 
@@ -271,12 +283,16 @@ part 'serializers.g.dart';
   AcceptOAuth2ConsentRequest,
   AcceptOAuth2ConsentRequestSession,
   AcceptOAuth2LoginRequest,
+  AccountExperienceConfiguration,
+  AccountExperienceThemeVariables,
   ActiveProjectInConsole,
+  AddProjectToWorkspaceBody,
   Attribute,
   AttributeFilter,
   AttributesCountDatapoint,
   AuthenticatorAssuranceLevel,
   BatchPatchIdentitiesResponse,
+  BillingPeriodBucket,
   CheckOplSyntaxResult,
   CheckPermissionResult,
   CloudAccount,
@@ -307,8 +323,8 @@ part 'serializers.g.dart';
   CreateSubscriptionBody,
   CreateSubscriptionCommon,
   CreateVerifiableCredentialRequestBody,
+  CreateWorkspaceBody,
   CreateWorkspaceMemberInviteBody,
-  CreateWorkspacePayload,
   CreateWorkspaceSubscriptionBody,
   CredentialSupportedDraft00,
   CustomDomain,
@@ -359,17 +375,19 @@ part 'serializers.g.dart';
   InternalIsOwnerForProjectBySlugBody,
   InternalIsOwnerForProjectBySlugResponse,
   IntrospectedOAuth2Token,
+  Invoice,
+  InvoiceDataV1,
   IsOwnerForProjectBySlug,
-  IsReady200Response,
-  IsReady503Response,
   JsonPatch,
   JsonWebKey,
   JsonWebKeySet,
   KetoNamespace,
+  LineItemV1,
   ListEventStreams,
-  ListMyWorkspacesResponse,
+  ListInvoicesResponse,
   ListOrganizationsResponse,
-  ListWorkspaceProjectsResponse,
+  ListWorkspaceProjects,
+  ListWorkspaces,
   LoginFlow,
   LoginFlowState,
   LogoutFlow,
@@ -379,7 +397,7 @@ part 'serializers.g.dart';
   Message,
   MessageDispatch,
   MetricsDatapoint,
-  MigrationOptions,
+  Money,
   Namespace,
   NeedsPrivilegedSessionError,
   NormalizedProject,
@@ -408,7 +426,7 @@ part 'serializers.g.dart';
   ParseError,
   PatchIdentitiesBody,
   PerformNativeLogoutBody,
-  PermissionsOnWorkpaceResponse,
+  PermissionsOnWorkspace,
   Plan,
   PlanDetails,
   PostCheckPermissionBody,
@@ -462,6 +480,8 @@ part 'serializers.g.dart';
   SuccessfulNativeLogin,
   SuccessfulNativeRegistration,
   SuccessfulProjectUpdate,
+  TaxLineItem,
+  TimeInterval,
   TokenPagination,
   TokenPaginationHeaders,
   TokenPaginationRequestParameters,
@@ -484,6 +504,7 @@ part 'serializers.g.dart';
   UpdateLoginFlowWithCodeMethod,
   UpdateLoginFlowWithLookupSecretMethod,
   UpdateLoginFlowWithOidcMethod,
+  UpdateLoginFlowWithPasskeyMethod,
   UpdateLoginFlowWithPasswordMethod,
   UpdateLoginFlowWithTotpMethod,
   UpdateLoginFlowWithWebAuthnMethod,
@@ -493,11 +514,14 @@ part 'serializers.g.dart';
   UpdateRegistrationFlowBody,
   UpdateRegistrationFlowWithCodeMethod,
   UpdateRegistrationFlowWithOidcMethod,
+  UpdateRegistrationFlowWithPasskeyMethod,
   UpdateRegistrationFlowWithPasswordMethod,
+  UpdateRegistrationFlowWithProfileMethod,
   UpdateRegistrationFlowWithWebAuthnMethod,
   UpdateSettingsFlowBody,
   UpdateSettingsFlowWithLookupMethod,
   UpdateSettingsFlowWithOidcMethod,
+  UpdateSettingsFlowWithPasskeyMethod,
   UpdateSettingsFlowWithPasswordMethod,
   UpdateSettingsFlowWithProfileMethod,
   UpdateSettingsFlowWithTotpMethod,
@@ -506,7 +530,7 @@ part 'serializers.g.dart';
   UpdateVerificationFlowBody,
   UpdateVerificationFlowWithCodeMethod,
   UpdateVerificationFlowWithLinkMethod,
-  UpdateWorkspacePayload,
+  UpdateWorkspaceBody,
   Usage,
   VerifiableCredentialPrimingResponse,
   VerifiableCredentialProof,
@@ -517,7 +541,7 @@ part 'serializers.g.dart';
   Version,
   Warning,
   Workspace,
-  WorkspaceMeta,
+  WorkspaceApiKey,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(

@@ -1,6 +1,6 @@
 # ory_client.PermissionApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **check_permission**
-> CheckPermissionResult check_permission()
+> CheckPermissionResult check_permission(namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation, max_depth=max_depth)
 
 Check a permission
 
@@ -23,16 +23,15 @@ To learn how relationship tuples and the check works, head over to [the document
 * Bearer Authentication (oryAccessToken):
 
 ```python
-import time
 import ory_client
-from ory_client.api import permission_api
-from ory_client.model.check_permission_result import CheckPermissionResult
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.check_permission_result import CheckPermissionResult
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -42,45 +41,46 @@ configuration = ory_client.Configuration(
 
 # Configure Bearer authorization: oryAccessToken
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = permission_api.PermissionApi(api_client)
-    namespace = "namespace_example" # str | Namespace of the Relationship (optional)
-    object = "object_example" # str | Object of the Relationship (optional)
-    relation = "relation_example" # str | Relation of the Relationship (optional)
-    subject_id = "subject_id_example" # str | SubjectID of the Relationship (optional)
-    subject_set_namespace = "subject_set.namespace_example" # str | Namespace of the Subject Set (optional)
-    subject_set_object = "subject_set.object_example" # str | Object of the Subject Set (optional)
-    subject_set_relation = "subject_set.relation_example" # str | Relation of the Subject Set (optional)
-    max_depth = 1 # int |  (optional)
+    api_instance = ory_client.PermissionApi(api_client)
+    namespace = 'namespace_example' # str | Namespace of the Relationship (optional)
+    object = 'object_example' # str | Object of the Relationship (optional)
+    relation = 'relation_example' # str | Relation of the Relationship (optional)
+    subject_id = 'subject_id_example' # str | SubjectID of the Relationship (optional)
+    subject_set_namespace = 'subject_set_namespace_example' # str | Namespace of the Subject Set (optional)
+    subject_set_object = 'subject_set_object_example' # str | Object of the Subject Set (optional)
+    subject_set_relation = 'subject_set_relation_example' # str | Relation of the Subject Set (optional)
+    max_depth = 56 # int |  (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Check a permission
         api_response = api_instance.check_permission(namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation, max_depth=max_depth)
+        print("The response of PermissionApi->check_permission:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling PermissionApi->check_permission: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**| Namespace of the Relationship | [optional]
- **object** | **str**| Object of the Relationship | [optional]
- **relation** | **str**| Relation of the Relationship | [optional]
- **subject_id** | **str**| SubjectID of the Relationship | [optional]
- **subject_set_namespace** | **str**| Namespace of the Subject Set | [optional]
- **subject_set_object** | **str**| Object of the Subject Set | [optional]
- **subject_set_relation** | **str**| Relation of the Subject Set | [optional]
- **max_depth** | **int**|  | [optional]
+ **namespace** | **str**| Namespace of the Relationship | [optional] 
+ **object** | **str**| Object of the Relationship | [optional] 
+ **relation** | **str**| Relation of the Relationship | [optional] 
+ **subject_id** | **str**| SubjectID of the Relationship | [optional] 
+ **subject_set_namespace** | **str**| Namespace of the Subject Set | [optional] 
+ **subject_set_object** | **str**| Object of the Subject Set | [optional] 
+ **subject_set_relation** | **str**| Relation of the Subject Set | [optional] 
+ **max_depth** | **int**|  | [optional] 
 
 ### Return type
 
@@ -94,7 +94,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -107,7 +106,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **check_permission_or_error**
-> CheckPermissionResult check_permission_or_error()
+> CheckPermissionResult check_permission_or_error(namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation, max_depth=max_depth)
 
 Check a permission
 
@@ -118,16 +117,15 @@ To learn how relationship tuples and the check works, head over to [the document
 * Bearer Authentication (oryAccessToken):
 
 ```python
-import time
 import ory_client
-from ory_client.api import permission_api
-from ory_client.model.check_permission_result import CheckPermissionResult
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.check_permission_result import CheckPermissionResult
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -137,45 +135,46 @@ configuration = ory_client.Configuration(
 
 # Configure Bearer authorization: oryAccessToken
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = permission_api.PermissionApi(api_client)
-    namespace = "namespace_example" # str | Namespace of the Relationship (optional)
-    object = "object_example" # str | Object of the Relationship (optional)
-    relation = "relation_example" # str | Relation of the Relationship (optional)
-    subject_id = "subject_id_example" # str | SubjectID of the Relationship (optional)
-    subject_set_namespace = "subject_set.namespace_example" # str | Namespace of the Subject Set (optional)
-    subject_set_object = "subject_set.object_example" # str | Object of the Subject Set (optional)
-    subject_set_relation = "subject_set.relation_example" # str | Relation of the Subject Set (optional)
-    max_depth = 1 # int |  (optional)
+    api_instance = ory_client.PermissionApi(api_client)
+    namespace = 'namespace_example' # str | Namespace of the Relationship (optional)
+    object = 'object_example' # str | Object of the Relationship (optional)
+    relation = 'relation_example' # str | Relation of the Relationship (optional)
+    subject_id = 'subject_id_example' # str | SubjectID of the Relationship (optional)
+    subject_set_namespace = 'subject_set_namespace_example' # str | Namespace of the Subject Set (optional)
+    subject_set_object = 'subject_set_object_example' # str | Object of the Subject Set (optional)
+    subject_set_relation = 'subject_set_relation_example' # str | Relation of the Subject Set (optional)
+    max_depth = 56 # int |  (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Check a permission
         api_response = api_instance.check_permission_or_error(namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation, max_depth=max_depth)
+        print("The response of PermissionApi->check_permission_or_error:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling PermissionApi->check_permission_or_error: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**| Namespace of the Relationship | [optional]
- **object** | **str**| Object of the Relationship | [optional]
- **relation** | **str**| Relation of the Relationship | [optional]
- **subject_id** | **str**| SubjectID of the Relationship | [optional]
- **subject_set_namespace** | **str**| Namespace of the Subject Set | [optional]
- **subject_set_object** | **str**| Object of the Subject Set | [optional]
- **subject_set_relation** | **str**| Relation of the Subject Set | [optional]
- **max_depth** | **int**|  | [optional]
+ **namespace** | **str**| Namespace of the Relationship | [optional] 
+ **object** | **str**| Object of the Relationship | [optional] 
+ **relation** | **str**| Relation of the Relationship | [optional] 
+ **subject_id** | **str**| SubjectID of the Relationship | [optional] 
+ **subject_set_namespace** | **str**| Namespace of the Subject Set | [optional] 
+ **subject_set_object** | **str**| Object of the Subject Set | [optional] 
+ **subject_set_relation** | **str**| Relation of the Subject Set | [optional] 
+ **max_depth** | **int**|  | [optional] 
 
 ### Return type
 
@@ -189,7 +188,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -203,7 +201,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **expand_permissions**
-> ExpandedPermissionTree expand_permissions(namespace, object, relation)
+> ExpandedPermissionTree expand_permissions(namespace, object, relation, max_depth=max_depth)
 
 Expand a Relationship into permissions.
 
@@ -214,16 +212,15 @@ Use this endpoint to expand a relationship tuple into permissions.
 * Bearer Authentication (oryAccessToken):
 
 ```python
-import time
 import ory_client
-from ory_client.api import permission_api
-from ory_client.model.expanded_permission_tree import ExpandedPermissionTree
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.expanded_permission_tree import ExpandedPermissionTree
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -233,45 +230,38 @@ configuration = ory_client.Configuration(
 
 # Configure Bearer authorization: oryAccessToken
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = permission_api.PermissionApi(api_client)
-    namespace = "namespace_example" # str | Namespace of the Subject Set
-    object = "object_example" # str | Object of the Subject Set
-    relation = "relation_example" # str | Relation of the Subject Set
-    max_depth = 1 # int |  (optional)
+    api_instance = ory_client.PermissionApi(api_client)
+    namespace = 'namespace_example' # str | Namespace of the Subject Set
+    object = 'object_example' # str | Object of the Subject Set
+    relation = 'relation_example' # str | Relation of the Subject Set
+    max_depth = 56 # int |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Expand a Relationship into permissions.
-        api_response = api_instance.expand_permissions(namespace, object, relation)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling PermissionApi->expand_permissions: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Expand a Relationship into permissions.
         api_response = api_instance.expand_permissions(namespace, object, relation, max_depth=max_depth)
+        print("The response of PermissionApi->expand_permissions:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling PermissionApi->expand_permissions: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**| Namespace of the Subject Set |
- **object** | **str**| Object of the Subject Set |
- **relation** | **str**| Relation of the Subject Set |
- **max_depth** | **int**|  | [optional]
+ **namespace** | **str**| Namespace of the Subject Set | 
+ **object** | **str**| Object of the Subject Set | 
+ **relation** | **str**| Relation of the Subject Set | 
+ **max_depth** | **int**|  | [optional] 
 
 ### Return type
 
@@ -286,7 +276,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -299,7 +288,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_check_permission**
-> CheckPermissionResult post_check_permission()
+> CheckPermissionResult post_check_permission(max_depth=max_depth, post_check_permission_body=post_check_permission_body)
 
 Check a permission
 
@@ -310,17 +299,16 @@ To learn how relationship tuples and the check works, head over to [the document
 * Bearer Authentication (oryAccessToken):
 
 ```python
-import time
 import ory_client
-from ory_client.api import permission_api
-from ory_client.model.check_permission_result import CheckPermissionResult
-from ory_client.model.post_check_permission_body import PostCheckPermissionBody
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.check_permission_result import CheckPermissionResult
+from ory_client.models.post_check_permission_body import PostCheckPermissionBody
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -330,43 +318,34 @@ configuration = ory_client.Configuration(
 
 # Configure Bearer authorization: oryAccessToken
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = permission_api.PermissionApi(api_client)
-    max_depth = 1 # int |  (optional)
-    post_check_permission_body = PostCheckPermissionBody(
-        namespace="namespace_example",
-        object="object_example",
-        relation="relation_example",
-        subject_id="subject_id_example",
-        subject_set=SubjectSet(
-            namespace="namespace_example",
-            object="object_example",
-            relation="relation_example",
-        ),
-    ) # PostCheckPermissionBody |  (optional)
+    api_instance = ory_client.PermissionApi(api_client)
+    max_depth = 56 # int |  (optional)
+    post_check_permission_body = ory_client.PostCheckPermissionBody() # PostCheckPermissionBody |  (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Check a permission
         api_response = api_instance.post_check_permission(max_depth=max_depth, post_check_permission_body=post_check_permission_body)
+        print("The response of PermissionApi->post_check_permission:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling PermissionApi->post_check_permission: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_depth** | **int**|  | [optional]
- **post_check_permission_body** | [**PostCheckPermissionBody**](PostCheckPermissionBody.md)|  | [optional]
+ **max_depth** | **int**|  | [optional] 
+ **post_check_permission_body** | [**PostCheckPermissionBody**](PostCheckPermissionBody.md)|  | [optional] 
 
 ### Return type
 
@@ -380,7 +359,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -393,7 +371,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_check_permission_or_error**
-> CheckPermissionResult post_check_permission_or_error()
+> CheckPermissionResult post_check_permission_or_error(max_depth=max_depth, post_check_permission_or_error_body=post_check_permission_or_error_body)
 
 Check a permission
 
@@ -404,17 +382,16 @@ To learn how relationship tuples and the check works, head over to [the document
 * Bearer Authentication (oryAccessToken):
 
 ```python
-import time
 import ory_client
-from ory_client.api import permission_api
-from ory_client.model.post_check_permission_or_error_body import PostCheckPermissionOrErrorBody
-from ory_client.model.check_permission_result import CheckPermissionResult
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.check_permission_result import CheckPermissionResult
+from ory_client.models.post_check_permission_or_error_body import PostCheckPermissionOrErrorBody
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -424,43 +401,34 @@ configuration = ory_client.Configuration(
 
 # Configure Bearer authorization: oryAccessToken
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = permission_api.PermissionApi(api_client)
-    max_depth = 1 # int |  (optional)
-    post_check_permission_or_error_body = PostCheckPermissionOrErrorBody(
-        namespace="namespace_example",
-        object="object_example",
-        relation="relation_example",
-        subject_id="subject_id_example",
-        subject_set=SubjectSet(
-            namespace="namespace_example",
-            object="object_example",
-            relation="relation_example",
-        ),
-    ) # PostCheckPermissionOrErrorBody |  (optional)
+    api_instance = ory_client.PermissionApi(api_client)
+    max_depth = 56 # int |  (optional)
+    post_check_permission_or_error_body = ory_client.PostCheckPermissionOrErrorBody() # PostCheckPermissionOrErrorBody |  (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Check a permission
         api_response = api_instance.post_check_permission_or_error(max_depth=max_depth, post_check_permission_or_error_body=post_check_permission_or_error_body)
+        print("The response of PermissionApi->post_check_permission_or_error:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling PermissionApi->post_check_permission_or_error: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_depth** | **int**|  | [optional]
- **post_check_permission_or_error_body** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)|  | [optional]
+ **max_depth** | **int**|  | [optional] 
+ **post_check_permission_or_error_body** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)|  | [optional] 
 
 ### Return type
 
@@ -474,7 +442,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 

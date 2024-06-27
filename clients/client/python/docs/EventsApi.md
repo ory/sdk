@@ -1,6 +1,6 @@
 # ory_client.EventsApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,20 +17,19 @@ Create an event stream for your project.
 
 ### Example
 
-* Bearer Authentication (oryAccessToken):
+* Bearer Authentication (oryWorkspaceApiKey):
 
 ```python
-import time
 import ory_client
-from ory_client.api import events_api
-from ory_client.model.event_stream import EventStream
-from ory_client.model.error_generic import ErrorGeneric
-from ory_client.model.create_event_stream_body import CreateEventStreamBody
+from ory_client.models.create_event_stream_body import CreateEventStreamBody
+from ory_client.models.event_stream import EventStream
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -38,38 +37,36 @@ configuration = ory_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization: oryAccessToken
+# Configure Bearer authorization: oryWorkspaceApiKey
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    project_id = "project_id_example" # str | Project ID  The project's ID.
-    create_event_stream_body = CreateEventStreamBody(
-        role_arn="role_arn_example",
-        topic_arn="topic_arn_example",
-        type="sns",
-    ) # CreateEventStreamBody | 
+    api_instance = ory_client.EventsApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    create_event_stream_body = ory_client.CreateEventStreamBody() # CreateEventStreamBody | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Create an event stream for your project.
         api_response = api_instance.create_event_stream(project_id, create_event_stream_body)
+        print("The response of EventsApi->create_event_stream:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling EventsApi->create_event_stream: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **str**| Project ID  The project&#39;s ID. |
- **create_event_stream_body** | [**CreateEventStreamBody**](CreateEventStreamBody.md)|  |
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **create_event_stream_body** | [**CreateEventStreamBody**](CreateEventStreamBody.md)|  | 
 
 ### Return type
 
@@ -77,13 +74,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -106,18 +102,17 @@ Remove an event stream from a project.
 
 ### Example
 
-* Bearer Authentication (oryAccessToken):
+* Bearer Authentication (oryWorkspaceApiKey):
 
 ```python
-import time
 import ory_client
-from ory_client.api import events_api
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -125,33 +120,34 @@ configuration = ory_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization: oryAccessToken
+# Configure Bearer authorization: oryWorkspaceApiKey
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    project_id = "project_id_example" # str | Project ID  The project's ID.
-    event_stream_id = "event_stream_id_example" # str | Event Stream ID  The ID of the event stream to be deleted, as returned when created.
+    api_instance = ory_client.EventsApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    event_stream_id = 'event_stream_id_example' # str | Event Stream ID  The ID of the event stream to be deleted, as returned when created.
 
-    # example passing only required values which don't have defaults set
     try:
         # Remove an event stream from a project
         api_instance.delete_event_stream(project_id, event_stream_id)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling EventsApi->delete_event_stream: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **str**| Project ID  The project&#39;s ID. |
- **event_stream_id** | **str**| Event Stream ID  The ID of the event stream to be deleted, as returned when created. |
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **event_stream_id** | **str**| Event Stream ID  The ID of the event stream to be deleted, as returned when created. | 
 
 ### Return type
 
@@ -159,13 +155,12 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -186,19 +181,18 @@ List all event streams for the project. This endpoint is not paginated.
 
 ### Example
 
-* Bearer Authentication (oryAccessToken):
+* Bearer Authentication (oryWorkspaceApiKey):
 
 ```python
-import time
 import ory_client
-from ory_client.api import events_api
-from ory_client.model.error_generic import ErrorGeneric
-from ory_client.model.list_event_streams import ListEventStreams
+from ory_client.models.list_event_streams import ListEventStreams
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -206,32 +200,34 @@ configuration = ory_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization: oryAccessToken
+# Configure Bearer authorization: oryWorkspaceApiKey
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    project_id = "project_id_example" # str | Project ID  The project's ID.
+    api_instance = ory_client.EventsApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
 
-    # example passing only required values which don't have defaults set
     try:
         # List all event streams for the project. This endpoint is not paginated.
         api_response = api_instance.list_event_streams(project_id)
+        print("The response of EventsApi->list_event_streams:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling EventsApi->list_event_streams: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **str**| Project ID  The project&#39;s ID. |
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
 
 ### Return type
 
@@ -239,13 +235,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -259,26 +254,25 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_event_stream**
-> EventStream set_event_stream(project_id, event_stream_id)
+> EventStream set_event_stream(project_id, event_stream_id, set_event_stream_body=set_event_stream_body)
 
 Update an event stream for a project.
 
 ### Example
 
-* Bearer Authentication (oryAccessToken):
+* Bearer Authentication (oryWorkspaceApiKey):
 
 ```python
-import time
 import ory_client
-from ory_client.api import events_api
-from ory_client.model.set_event_stream_body import SetEventStreamBody
-from ory_client.model.event_stream import EventStream
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.event_stream import EventStream
+from ory_client.models.set_event_stream_body import SetEventStreamBody
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -286,49 +280,38 @@ configuration = ory_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization: oryAccessToken
+# Configure Bearer authorization: oryWorkspaceApiKey
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    project_id = "project_id_example" # str | Project ID  The project's ID.
-    event_stream_id = "event_stream_id_example" # str | Event Stream ID  The event stream's ID.
-    set_event_stream_body = SetEventStreamBody(
-        role_arn="role_arn_example",
-        topic_arn="topic_arn_example",
-        type="sns",
-    ) # SetEventStreamBody |  (optional)
+    api_instance = ory_client.EventsApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    event_stream_id = 'event_stream_id_example' # str | Event Stream ID  The event stream's ID.
+    set_event_stream_body = ory_client.SetEventStreamBody() # SetEventStreamBody |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update an event stream for a project.
-        api_response = api_instance.set_event_stream(project_id, event_stream_id)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling EventsApi->set_event_stream: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Update an event stream for a project.
         api_response = api_instance.set_event_stream(project_id, event_stream_id, set_event_stream_body=set_event_stream_body)
+        print("The response of EventsApi->set_event_stream:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling EventsApi->set_event_stream: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **str**| Project ID  The project&#39;s ID. |
- **event_stream_id** | **str**| Event Stream ID  The event stream&#39;s ID. |
- **set_event_stream_body** | [**SetEventStreamBody**](SetEventStreamBody.md)|  | [optional]
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **event_stream_id** | **str**| Event Stream ID  The event stream&#39;s ID. | 
+ **set_event_stream_body** | [**SetEventStreamBody**](SetEventStreamBody.md)|  | [optional] 
 
 ### Return type
 
@@ -336,13 +319,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 

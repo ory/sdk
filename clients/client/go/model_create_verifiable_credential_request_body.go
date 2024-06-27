@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -168,10 +168,10 @@ func (o CreateVerifiableCredentialRequestBody) ToMap() (map[string]interface{}, 
 	return toSerialize, nil
 }
 
-func (o *CreateVerifiableCredentialRequestBody) UnmarshalJSON(bytes []byte) (err error) {
+func (o *CreateVerifiableCredentialRequestBody) UnmarshalJSON(data []byte) (err error) {
 	varCreateVerifiableCredentialRequestBody := _CreateVerifiableCredentialRequestBody{}
 
-	err = json.Unmarshal(bytes, &varCreateVerifiableCredentialRequestBody)
+	err = json.Unmarshal(data, &varCreateVerifiableCredentialRequestBody)
 
 	if err != nil {
 		return err
@@ -181,7 +181,7 @@ func (o *CreateVerifiableCredentialRequestBody) UnmarshalJSON(bytes []byte) (err
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "format")
 		delete(additionalProperties, "proof")
 		delete(additionalProperties, "types")

@@ -1,31 +1,28 @@
 # ProjectApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createOrganization**](ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations |  |
 | [**createProject**](ProjectApi.md#createProject) | **POST** /projects | Create a Project |
 | [**createProjectApiKey**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token |
-| [**deleteOrganization**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project. |
+| [**deleteOrganization**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} |  |
 | [**deleteProjectApiKey**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
-| [**getActiveProjectInConsole**](ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
-| [**getOrganization**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID. |
+| [**getOrganization**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID |
 | [**getProject**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
 | [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
-| [**getProjectMetrics**](ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics |  |
 | [**listOrganizations**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations |  |
 | [**listProjectApiKeys**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**listProjects**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects |
 | [**patchProject**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**purgeProject**](ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
 | [**removeProjectMember**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
-| [**setActiveProjectInConsole**](ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console |
 | [**setProject**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
-| [**updateOrganization**](ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project. |
+| [**updateOrganization**](ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} |  |
 
 
-<a name="createOrganization"></a>
+<a id="createOrganization"></a>
 # **createOrganization**
 > Organization createOrganization(projectId, organizationBody)
 
@@ -46,11 +43,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -82,7 +79,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -98,7 +95,7 @@ public class Example {
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createProject"></a>
+<a id="createProject"></a>
 # **createProject**
 > Project createProject(createProjectBody)
 
@@ -119,11 +116,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     CreateProjectBody createProjectBody = new CreateProjectBody(); // CreateProjectBody | 
@@ -153,7 +150,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -169,7 +166,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createProjectApiKey"></a>
+<a id="createProjectApiKey"></a>
 # **createProjectApiKey**
 > ProjectApiKey createProjectApiKey(project, createProjectApiKeyRequest)
 
@@ -190,11 +187,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String project = "project_example"; // String | The Project ID or Project slug
@@ -226,7 +223,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -239,11 +236,13 @@ public class Example {
 | **201** | projectApiKey |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteOrganization"></a>
+<a id="deleteOrganization"></a>
 # **deleteOrganization**
 > deleteOrganization(projectId, organizationId)
 
-Delete a B2B SSO Organization for a project.
+
+
+Delete a B2B SSO Organization for a project
 
 ### Example
 ```java
@@ -258,11 +257,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -293,7 +292,7 @@ null (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -310,7 +309,7 @@ null (empty response body)
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteProjectApiKey"></a>
+<a id="deleteProjectApiKey"></a>
 # **deleteProjectApiKey**
 > deleteProjectApiKey(project, tokenId)
 
@@ -331,11 +330,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String project = "project_example"; // String | The Project ID or Project slug
@@ -366,7 +365,7 @@ null (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -379,76 +378,11 @@ null (empty response body)
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getActiveProjectInConsole"></a>
-# **getActiveProjectInConsole**
-> ActiveProjectInConsole getActiveProjectInConsole()
-
-Returns the Ory Network Project selected in the Ory Network Console
-
-Use this API to get your active project in the Ory Network Console UI.
-
-### Example
-```java
-// Import classes:
-import sh.ory.ApiClient;
-import sh.ory.ApiException;
-import sh.ory.Configuration;
-import sh.ory.auth.*;
-import sh.ory.models.*;
-import sh.ory.api.ProjectApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
-    
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
-
-    ProjectApi apiInstance = new ProjectApi(defaultClient);
-    try {
-      ActiveProjectInConsole result = apiInstance.getActiveProjectInConsole();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ProjectApi#getActiveProjectInConsole");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ActiveProjectInConsole**](ActiveProjectInConsole.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | activeProjectInConsole |  -  |
-| **401** | genericError |  -  |
-| **0** | genericError |  -  |
-
-<a name="getOrganization"></a>
+<a id="getOrganization"></a>
 # **getOrganization**
 > GetOrganizationResponse getOrganization(projectId, organizationId)
 
-Returns a B2B SSO Organization for a project by it&#39;s ID.
+Returns a B2B SSO Organization for a project by its ID
 
 ### Example
 ```java
@@ -463,11 +397,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -499,7 +433,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -514,7 +448,7 @@ public class Example {
 | **403** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getProject"></a>
+<a id="getProject"></a>
 # **getProject**
 > Project getProject(projectId)
 
@@ -535,11 +469,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -569,7 +503,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -585,7 +519,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getProjectMembers"></a>
+<a id="getProjectMembers"></a>
 # **getProjectMembers**
 > List&lt;ProjectMember&gt; getProjectMembers(project)
 
@@ -606,11 +540,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String project = "project_example"; // String | 
@@ -640,7 +574,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -655,89 +589,13 @@ public class Example {
 | **406** | genericError |  -  |
 | **0** | genericError |  -  |
 
-<a name="getProjectMetrics"></a>
-# **getProjectMetrics**
-> GetProjectMetricsResponse getProjectMetrics(projectId, eventType, resolution, from, to)
-
-
-
-Retrieves project metrics for the specified event type and time range
-
-### Example
-```java
-// Import classes:
-import sh.ory.ApiClient;
-import sh.ory.ApiException;
-import sh.ory.Configuration;
-import sh.ory.auth.*;
-import sh.ory.models.*;
-import sh.ory.api.ProjectApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
-    
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
-
-    ProjectApi apiInstance = new ProjectApi(defaultClient);
-    String projectId = "projectId_example"; // String | Project ID
-    String eventType = "eventType_example"; // String | The event type to query for
-    String resolution = "resolution_example"; // String | The resolution of the buckets  The minimum resolution is 1 minute.
-    OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | The start RFC3339 date of the time window
-    OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | The end RFC3339 date of the time window
-    try {
-      GetProjectMetricsResponse result = apiInstance.getProjectMetrics(projectId, eventType, resolution, from, to);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ProjectApi#getProjectMetrics");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **projectId** | **String**| Project ID | |
-| **eventType** | **String**| The event type to query for | |
-| **resolution** | **String**| The resolution of the buckets  The minimum resolution is 1 minute. | |
-| **from** | **OffsetDateTime**| The start RFC3339 date of the time window | |
-| **to** | **OffsetDateTime**| The end RFC3339 date of the time window | |
-
-### Return type
-
-[**GetProjectMetricsResponse**](GetProjectMetricsResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | getProjectMetricsResponse |  -  |
-| **400** | genericError |  -  |
-| **403** | genericError |  -  |
-| **0** | genericError |  -  |
-
-<a name="listOrganizations"></a>
+<a id="listOrganizations"></a>
 # **listOrganizations**
-> ListOrganizationsResponse listOrganizations(projectId)
+> ListOrganizationsResponse listOrganizations(projectId, pageSize, pageToken, domain)
 
 
+
+List all B2B SSO Organizations for a project
 
 ### Example
 ```java
@@ -752,16 +610,19 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    Long pageSize = 250L; // Long | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String pageToken = "pageToken_example"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String domain = "domain_example"; // String | Domain  If set, only organizations with that domain will be returned.
     try {
-      ListOrganizationsResponse result = apiInstance.listOrganizations(projectId);
+      ListOrganizationsResponse result = apiInstance.listOrganizations(projectId, pageSize, pageToken, domain);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProjectApi#listOrganizations");
@@ -779,6 +640,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **pageSize** | **Long**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
+| **domain** | **String**| Domain  If set, only organizations with that domain will be returned. | [optional] |
 
 ### Return type
 
@@ -786,7 +650,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -801,7 +665,7 @@ public class Example {
 | **403** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listProjectApiKeys"></a>
+<a id="listProjectApiKeys"></a>
 # **listProjectApiKeys**
 > List&lt;ProjectApiKey&gt; listProjectApiKeys(project)
 
@@ -822,11 +686,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String project = "project_example"; // String | The Project ID or Project slug
@@ -856,7 +720,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -869,7 +733,7 @@ public class Example {
 | **200** | projectApiKeys |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listProjects"></a>
+<a id="listProjects"></a>
 # **listProjects**
 > List&lt;ProjectMetadata&gt; listProjects()
 
@@ -890,11 +754,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     try {
@@ -920,7 +784,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -936,7 +800,7 @@ This endpoint does not need any parameter.
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="patchProject"></a>
+<a id="patchProject"></a>
 # **patchProject**
 > SuccessfulProjectUpdate patchProject(projectId, jsonPatch)
 
@@ -957,11 +821,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -993,7 +857,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1010,7 +874,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="purgeProject"></a>
+<a id="purgeProject"></a>
 # **purgeProject**
 > purgeProject(projectId)
 
@@ -1031,11 +895,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -1064,7 +928,7 @@ null (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1080,7 +944,7 @@ null (empty response body)
 | **404** | genericError |  -  |
 | **0** | genericError |  -  |
 
-<a name="removeProjectMember"></a>
+<a id="removeProjectMember"></a>
 # **removeProjectMember**
 > removeProjectMember(project, member)
 
@@ -1101,11 +965,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String project = "project_example"; // String | 
@@ -1136,7 +1000,7 @@ null (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1151,75 +1015,7 @@ null (empty response body)
 | **406** | genericError |  -  |
 | **0** | genericError |  -  |
 
-<a name="setActiveProjectInConsole"></a>
-# **setActiveProjectInConsole**
-> setActiveProjectInConsole(setActiveProjectInConsoleBody)
-
-Sets the Ory Network Project active in the Ory Network Console
-
-Use this API to set your active project in the Ory Network Console UI.
-
-### Example
-```java
-// Import classes:
-import sh.ory.ApiClient;
-import sh.ory.ApiException;
-import sh.ory.Configuration;
-import sh.ory.auth.*;
-import sh.ory.models.*;
-import sh.ory.api.ProjectApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
-    
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
-
-    ProjectApi apiInstance = new ProjectApi(defaultClient);
-    SetActiveProjectInConsoleBody setActiveProjectInConsoleBody = new SetActiveProjectInConsoleBody(); // SetActiveProjectInConsoleBody | 
-    try {
-      apiInstance.setActiveProjectInConsole(setActiveProjectInConsoleBody);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ProjectApi#setActiveProjectInConsole");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **setActiveProjectInConsoleBody** | [**SetActiveProjectInConsoleBody**](SetActiveProjectInConsoleBody.md)|  | [optional] |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **401** | genericError |  -  |
-| **0** | genericError |  -  |
-
-<a name="setProject"></a>
+<a id="setProject"></a>
 # **setProject**
 > SuccessfulProjectUpdate setProject(projectId, setProject)
 
@@ -1240,11 +1036,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -1276,7 +1072,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1293,11 +1089,13 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateOrganization"></a>
+<a id="updateOrganization"></a>
 # **updateOrganization**
 > Organization updateOrganization(projectId, organizationId, organizationBody)
 
-Update a B2B SSO Organization for a project.
+
+
+Update a B2B SSO Organization for a project
 
 ### Example
 ```java
@@ -1312,11 +1110,11 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String projectId = "projectId_example"; // String | Project ID  The project's ID.
@@ -1350,7 +1148,7 @@ public class Example {
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

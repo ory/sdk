@@ -18,6 +18,10 @@ const LoginFlowActiveEnum _$loginFlowActiveEnum_webauthn =
     const LoginFlowActiveEnum._('webauthn');
 const LoginFlowActiveEnum _$loginFlowActiveEnum_code =
     const LoginFlowActiveEnum._('code');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_passkey =
+    const LoginFlowActiveEnum._('passkey');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_profile =
+    const LoginFlowActiveEnum._('profile');
 const LoginFlowActiveEnum _$loginFlowActiveEnum_linkRecovery =
     const LoginFlowActiveEnum._('linkRecovery');
 const LoginFlowActiveEnum _$loginFlowActiveEnum_codeRecovery =
@@ -37,6 +41,10 @@ LoginFlowActiveEnum _$loginFlowActiveEnumValueOf(String name) {
       return _$loginFlowActiveEnum_webauthn;
     case 'code':
       return _$loginFlowActiveEnum_code;
+    case 'passkey':
+      return _$loginFlowActiveEnum_passkey;
+    case 'profile':
+      return _$loginFlowActiveEnum_profile;
     case 'linkRecovery':
       return _$loginFlowActiveEnum_linkRecovery;
     case 'codeRecovery':
@@ -54,6 +62,8 @@ final BuiltSet<LoginFlowActiveEnum> _$loginFlowActiveEnumValues =
   _$loginFlowActiveEnum_lookupSecret,
   _$loginFlowActiveEnum_webauthn,
   _$loginFlowActiveEnum_code,
+  _$loginFlowActiveEnum_passkey,
+  _$loginFlowActiveEnum_profile,
   _$loginFlowActiveEnum_linkRecovery,
   _$loginFlowActiveEnum_codeRecovery,
 ]);
@@ -70,6 +80,8 @@ class _$LoginFlowActiveEnumSerializer
     'lookupSecret': 'lookup_secret',
     'webauthn': 'webauthn',
     'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
   };
@@ -80,6 +92,8 @@ class _$LoginFlowActiveEnumSerializer
     'lookup_secret': 'lookupSecret',
     'webauthn': 'webauthn',
     'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
   };

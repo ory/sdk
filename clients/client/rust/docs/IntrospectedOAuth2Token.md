@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **aud** | Option<**Vec<String>**> | Audience contains a list of the token's intended audiences. | [optional]
 **client_id** | Option<**String**> | ID is aclient identifier for the OAuth 2.0 client that requested this token. | [optional]
 **exp** | Option<**i64**> | Expires at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire. | [optional]
-**ext** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Extra is arbitrary data set by the session. | [optional]
+**ext** | Option<[**std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Extra is arbitrary data set by the session. | [optional]
 **iat** | Option<**i64**> | Issued at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued. | [optional]
 **iss** | Option<**String**> | IssuerURL is a string representing the issuer of this token | [optional]
 **nbf** | Option<**i64**> | NotBefore is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token is not to be used before. | [optional]

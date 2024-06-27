@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -97,10 +97,10 @@ func (o IdentityCredentialsPassword) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *IdentityCredentialsPassword) UnmarshalJSON(bytes []byte) (err error) {
+func (o *IdentityCredentialsPassword) UnmarshalJSON(data []byte) (err error) {
 	varIdentityCredentialsPassword := _IdentityCredentialsPassword{}
 
-	err = json.Unmarshal(bytes, &varIdentityCredentialsPassword)
+	err = json.Unmarshal(data, &varIdentityCredentialsPassword)
 
 	if err != nil {
 		return err
@@ -110,7 +110,7 @@ func (o *IdentityCredentialsPassword) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "hashed_password")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -1,6 +1,6 @@
 # \CourierApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## get_courier_message
 
-> crate::models::Message get_courier_message(id)
+> models::Message get_courier_message(id)
 Get a Message
 
 Gets a specific messages by the given ID.
@@ -25,7 +25,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Message**](message.md)
+[**models::Message**](message.md)
 
 ### Authorization
 
@@ -41,7 +41,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_courier_messages
 
-> Vec<crate::models::Message> list_courier_messages(page_size, page_token, status, recipient)
+> Vec<models::Message> list_courier_messages(page_size, page_token, status, recipient)
 List Messages
 
 Lists all messages by given status and recipient.
@@ -58,7 +58,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Message>**](message.md)
+[**Vec<models::Message>**](message.md)
 
 ### Authorization
 

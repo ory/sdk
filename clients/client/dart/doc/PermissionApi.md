@@ -5,7 +5,7 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -26,9 +26,6 @@ To learn how relationship tuples and the check works, head over to [the document
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getPermissionApi();
 final String namespace = namespace_example; // String | Namespace of the Relationship
@@ -43,7 +40,7 @@ final int maxDepth = 789; // int |
 try {
     final response = api.checkPermission(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->checkPermission: $e\n');
 }
 ```
@@ -86,9 +83,6 @@ To learn how relationship tuples and the check works, head over to [the document
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getPermissionApi();
 final String namespace = namespace_example; // String | Namespace of the Relationship
@@ -103,7 +97,7 @@ final int maxDepth = 789; // int |
 try {
     final response = api.checkPermissionOrError(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->checkPermissionOrError: $e\n');
 }
 ```
@@ -146,9 +140,6 @@ Use this endpoint to expand a relationship tuple into permissions.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getPermissionApi();
 final String namespace = namespace_example; // String | Namespace of the Subject Set
@@ -159,7 +150,7 @@ final int maxDepth = 789; // int |
 try {
     final response = api.expandPermissions(namespace, object, relation, maxDepth);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->expandPermissions: $e\n');
 }
 ```
@@ -198,9 +189,6 @@ To learn how relationship tuples and the check works, head over to [the document
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getPermissionApi();
 final int maxDepth = 789; // int | 
@@ -209,7 +197,7 @@ final PostCheckPermissionBody postCheckPermissionBody = ; // PostCheckPermission
 try {
     final response = api.postCheckPermission(maxDepth, postCheckPermissionBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->postCheckPermission: $e\n');
 }
 ```
@@ -246,9 +234,6 @@ To learn how relationship tuples and the check works, head over to [the document
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getPermissionApi();
 final int maxDepth = 789; // int | 
@@ -257,7 +242,7 @@ final PostCheckPermissionOrErrorBody postCheckPermissionOrErrorBody = ; // PostC
 try {
     final response = api.postCheckPermissionOrError(maxDepth, postCheckPermissionOrErrorBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->postCheckPermissionOrError: $e\n');
 }
 ```

@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:ory_client/src/api_util.dart';
 import 'package:ory_client/src/model/create_event_stream_body.dart';
 import 'package:ory_client/src/model/error_generic.dart';
 import 'package:ory_client/src/model/event_stream.dart';
@@ -35,7 +36,7 @@ class EventsApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [EventStream] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<EventStream>> createEventStream({ 
     required String projectId,
     required CreateEventStreamBody createEventStreamBody,
@@ -46,7 +47,7 @@ class EventsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}/eventstreams'.replaceAll('{' r'project_id' '}', projectId.toString());
+    final _path = r'/projects/{project_id}/eventstreams'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -57,7 +58,7 @@ class EventsApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -73,12 +74,12 @@ class EventsApi {
       _bodyData = _serializers.serialize(createEventStreamBody, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -103,10 +104,10 @@ class EventsApi {
       ) as EventStream;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -138,7 +139,7 @@ class EventsApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> deleteEventStream({ 
     required String projectId,
     required String eventStreamId,
@@ -149,7 +150,7 @@ class EventsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}/eventstreams/{event_stream_id}'.replaceAll('{' r'project_id' '}', projectId.toString()).replaceAll('{' r'event_stream_id' '}', eventStreamId.toString());
+    final _path = r'/projects/{project_id}/eventstreams/{event_stream_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString()).replaceAll('{' r'event_stream_id' '}', encodeQueryParameter(_serializers, eventStreamId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -160,7 +161,7 @@ class EventsApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -192,7 +193,7 @@ class EventsApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [ListEventStreams] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<ListEventStreams>> listEventStreams({ 
     required String projectId,
     CancelToken? cancelToken,
@@ -202,7 +203,7 @@ class EventsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}/eventstreams'.replaceAll('{' r'project_id' '}', projectId.toString());
+    final _path = r'/projects/{project_id}/eventstreams'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -213,7 +214,7 @@ class EventsApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -239,10 +240,10 @@ class EventsApi {
       ) as ListEventStreams;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -275,7 +276,7 @@ class EventsApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [EventStream] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<EventStream>> setEventStream({ 
     required String projectId,
     required String eventStreamId,
@@ -287,7 +288,7 @@ class EventsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}/eventstreams/{event_stream_id}'.replaceAll('{' r'project_id' '}', projectId.toString()).replaceAll('{' r'event_stream_id' '}', eventStreamId.toString());
+    final _path = r'/projects/{project_id}/eventstreams/{event_stream_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString()).replaceAll('{' r'event_stream_id' '}', encodeQueryParameter(_serializers, eventStreamId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -298,7 +299,7 @@ class EventsApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -314,12 +315,12 @@ class EventsApi {
       _bodyData = setEventStreamBody == null ? null : _serializers.serialize(setEventStreamBody, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -344,10 +345,10 @@ class EventsApi {
       ) as EventStream;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

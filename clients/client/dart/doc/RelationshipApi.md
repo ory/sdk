@@ -5,7 +5,7 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,9 +27,6 @@ The OPL file is expected in the body of the request.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getRelationshipApi();
 final String body = body_example; // String | 
@@ -37,7 +34,7 @@ final String body = body_example; // String |
 try {
     final response = api.checkOplSyntax(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->checkOplSyntax: $e\n');
 }
 ```
@@ -73,9 +70,6 @@ Use this endpoint to create a relationship.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getRelationshipApi();
 final CreateRelationshipBody createRelationshipBody = ; // CreateRelationshipBody | 
@@ -83,7 +77,7 @@ final CreateRelationshipBody createRelationshipBody = ; // CreateRelationshipBod
 try {
     final response = api.createRelationship(createRelationshipBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->createRelationship: $e\n');
 }
 ```
@@ -119,9 +113,6 @@ Use this endpoint to delete relationships
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getRelationshipApi();
 final String namespace = namespace_example; // String | Namespace of the Relationship
@@ -134,7 +125,7 @@ final String subjectSetPeriodRelation = subjectSetPeriodRelation_example; // Str
 
 try {
     api.deleteRelationships(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->deleteRelationships: $e\n');
 }
 ```
@@ -176,9 +167,6 @@ Get all relationships that match the query. Only the namespace field is required
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getRelationshipApi();
 final String pageToken = pageToken_example; // String | 
@@ -194,7 +182,7 @@ final String subjectSetPeriodRelation = subjectSetPeriodRelation_example; // Str
 try {
     final response = api.getRelationships(pageToken, pageSize, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->getRelationships: $e\n');
 }
 ```
@@ -238,16 +226,13 @@ Get all namespaces
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getRelationshipApi();
 
 try {
     final response = api.listRelationshipNamespaces();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->listRelationshipNamespaces: $e\n');
 }
 ```
@@ -280,16 +265,13 @@ Use this endpoint to patch one or more relationships.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getRelationshipApi();
 final BuiltList<RelationshipPatch> relationshipPatch = ; // BuiltList<RelationshipPatch> | 
 
 try {
     api.patchRelationships(relationshipPatch);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->patchRelationships: $e\n');
 }
 ```

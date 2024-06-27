@@ -11,8 +11,9 @@
 |**disabled** | **Boolean** | Sets the input&#39;s disabled field to true or false. |  |
 |**label** | [**UiText**](UiText.md) |  |  [optional] |
 |**name** | **String** | The input&#39;s element name. |  |
-|**nodeType** | **String** | NodeType represents this node&#39;s types. It is a mirror of &#x60;node.type&#x60; and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \&quot;script\&quot;. |  |
+|**nodeType** | [**NodeTypeEnum**](#NodeTypeEnum) | NodeType represents this node&#39;s types. It is a mirror of &#x60;node.type&#x60; and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \&quot;script\&quot;. text Text input Input img Image a Anchor script Script |  |
 |**onclick** | **String** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. |  [optional] |
+|**onload** | **String** | OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn. |  [optional] |
 |**pattern** | **String** | The input&#39;s pattern. |  [optional] |
 |**required** | **Boolean** | Mark this input field as required. |  [optional] |
 |**type** | **String** | The script MIME type |  |
@@ -42,6 +43,18 @@
 | CURRENT_PASSWORD | &quot;current-password&quot; |
 | NEW_PASSWORD | &quot;new-password&quot; |
 | ONE_TIME_CODE | &quot;one-time-code&quot; |
+
+
+
+## Enum: NodeTypeEnum
+
+| Name | Value |
+|---- | -----|
+| TEXT | &quot;text&quot; |
+| INPUT | &quot;input&quot; |
+| IMG | &quot;img&quot; |
+| A | &quot;a&quot; |
+| SCRIPT | &quot;script&quot; |
 
 
 

@@ -15,6 +15,7 @@ part 'workspace.g.dart';
 /// * [id] 
 /// * [name] 
 /// * [subscriptionId] 
+/// * [subscriptionPlan] 
 /// * [updatedAt] 
 @BuiltValue()
 abstract class Workspace implements Built<Workspace, WorkspaceBuilder> {
@@ -29,6 +30,9 @@ abstract class Workspace implements Built<Workspace, WorkspaceBuilder> {
 
   @BuiltValueField(wireName: r'subscription_id')
   String? get subscriptionId;
+
+  @BuiltValueField(wireName: r'subscription_plan')
+  String? get subscriptionPlan;
 
   @BuiltValueField(wireName: r'updated_at')
   DateTime get updatedAt;
@@ -75,6 +79,13 @@ class _$WorkspaceSerializer implements PrimitiveSerializer<Workspace> {
       yield r'subscription_id';
       yield serializers.serialize(
         object.subscriptionId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.subscriptionPlan != null) {
+      yield r'subscription_plan';
+      yield serializers.serialize(
+        object.subscriptionPlan,
         specifiedType: const FullType.nullable(String),
       );
     }
@@ -134,6 +145,14 @@ class _$WorkspaceSerializer implements PrimitiveSerializer<Workspace> {
           ) as String?;
           if (valueDes == null) continue;
           result.subscriptionId = valueDes;
+          break;
+        case r'subscription_plan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.subscriptionPlan = valueDes;
           break;
         case r'updated_at':
           final valueDes = serializers.deserialize(

@@ -6,13 +6,96 @@ part of 'ui_node_image_attributes.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UiNodeImageAttributesNodeTypeEnum
+    _$uiNodeImageAttributesNodeTypeEnum_text =
+    const UiNodeImageAttributesNodeTypeEnum._('text');
+const UiNodeImageAttributesNodeTypeEnum
+    _$uiNodeImageAttributesNodeTypeEnum_input =
+    const UiNodeImageAttributesNodeTypeEnum._('input');
+const UiNodeImageAttributesNodeTypeEnum
+    _$uiNodeImageAttributesNodeTypeEnum_img =
+    const UiNodeImageAttributesNodeTypeEnum._('img');
+const UiNodeImageAttributesNodeTypeEnum _$uiNodeImageAttributesNodeTypeEnum_a =
+    const UiNodeImageAttributesNodeTypeEnum._('a');
+const UiNodeImageAttributesNodeTypeEnum
+    _$uiNodeImageAttributesNodeTypeEnum_script =
+    const UiNodeImageAttributesNodeTypeEnum._('script');
+
+UiNodeImageAttributesNodeTypeEnum _$uiNodeImageAttributesNodeTypeEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'text':
+      return _$uiNodeImageAttributesNodeTypeEnum_text;
+    case 'input':
+      return _$uiNodeImageAttributesNodeTypeEnum_input;
+    case 'img':
+      return _$uiNodeImageAttributesNodeTypeEnum_img;
+    case 'a':
+      return _$uiNodeImageAttributesNodeTypeEnum_a;
+    case 'script':
+      return _$uiNodeImageAttributesNodeTypeEnum_script;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UiNodeImageAttributesNodeTypeEnum>
+    _$uiNodeImageAttributesNodeTypeEnumValues = new BuiltSet<
+        UiNodeImageAttributesNodeTypeEnum>(const <UiNodeImageAttributesNodeTypeEnum>[
+  _$uiNodeImageAttributesNodeTypeEnum_text,
+  _$uiNodeImageAttributesNodeTypeEnum_input,
+  _$uiNodeImageAttributesNodeTypeEnum_img,
+  _$uiNodeImageAttributesNodeTypeEnum_a,
+  _$uiNodeImageAttributesNodeTypeEnum_script,
+]);
+
+Serializer<UiNodeImageAttributesNodeTypeEnum>
+    _$uiNodeImageAttributesNodeTypeEnumSerializer =
+    new _$UiNodeImageAttributesNodeTypeEnumSerializer();
+
+class _$UiNodeImageAttributesNodeTypeEnumSerializer
+    implements PrimitiveSerializer<UiNodeImageAttributesNodeTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[UiNodeImageAttributesNodeTypeEnum];
+  @override
+  final String wireName = 'UiNodeImageAttributesNodeTypeEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, UiNodeImageAttributesNodeTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UiNodeImageAttributesNodeTypeEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UiNodeImageAttributesNodeTypeEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UiNodeImageAttributes extends UiNodeImageAttributes {
   @override
   final int height;
   @override
   final String id;
   @override
-  final String nodeType;
+  final UiNodeImageAttributesNodeTypeEnum nodeType;
   @override
   final String src;
   @override
@@ -95,9 +178,10 @@ class UiNodeImageAttributesBuilder
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
 
-  String? _nodeType;
-  String? get nodeType => _$this._nodeType;
-  set nodeType(String? nodeType) => _$this._nodeType = nodeType;
+  UiNodeImageAttributesNodeTypeEnum? _nodeType;
+  UiNodeImageAttributesNodeTypeEnum? get nodeType => _$this._nodeType;
+  set nodeType(UiNodeImageAttributesNodeTypeEnum? nodeType) =>
+      _$this._nodeType = nodeType;
 
   String? _src;
   String? get src => _$this._src;

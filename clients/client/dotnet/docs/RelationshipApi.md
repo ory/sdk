@@ -1,20 +1,19 @@
 # Ory.Client.Api.RelationshipApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**CheckOplSyntax**](RelationshipApi.md#checkoplsyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
-[**CreateRelationship**](RelationshipApi.md#createrelationship) | **PUT** /admin/relation-tuples | Create a Relationship
-[**DeleteRelationships**](RelationshipApi.md#deleterelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
-[**GetRelationships**](RelationshipApi.md#getrelationships) | **GET** /relation-tuples | Query relationships
-[**ListRelationshipNamespaces**](RelationshipApi.md#listrelationshipnamespaces) | **GET** /namespaces | Query namespaces
-[**PatchRelationships**](RelationshipApi.md#patchrelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**CheckOplSyntax**](RelationshipApi.md#checkoplsyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file |
+| [**CreateRelationship**](RelationshipApi.md#createrelationship) | **PUT** /admin/relation-tuples | Create a Relationship |
+| [**DeleteRelationships**](RelationshipApi.md#deleterelationships) | **DELETE** /admin/relation-tuples | Delete Relationships |
+| [**GetRelationships**](RelationshipApi.md#getrelationships) | **GET** /relation-tuples | Query relationships |
+| [**ListRelationshipNamespaces**](RelationshipApi.md#listrelationshipnamespaces) | **GET** /namespaces | Query namespaces |
+| [**PatchRelationships**](RelationshipApi.md#patchrelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships |
 
-
-<a name="checkoplsyntax"></a>
+<a id="checkoplsyntax"></a>
 # **CheckOplSyntax**
-> ClientCheckOplSyntaxResult CheckOplSyntax (string body = null)
+> ClientCheckOplSyntaxResult CheckOplSyntax (string? body = null)
 
 Check the syntax of an OPL file
 
@@ -35,12 +34,12 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RelationshipApi(config);
-            var body = "body_example";  // string |  (optional) 
+            var body = "body_example";  // string? |  (optional) 
 
             try
             {
@@ -50,8 +49,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RelationshipApi.CheckOplSyntax: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RelationshipApi.CheckOplSyntax: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -59,11 +58,31 @@ namespace Example
 }
 ```
 
+#### Using the CheckOplSyntaxWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Check the syntax of an OPL file
+    ApiResponse<ClientCheckOplSyntaxResult> response = apiInstance.CheckOplSyntaxWithHttpInfo(body);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RelationshipApi.CheckOplSyntaxWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | **string**|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **body** | **string?** |  | [optional]  |
 
 ### Return type
 
@@ -88,9 +107,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="createrelationship"></a>
+<a id="createrelationship"></a>
 # **CreateRelationship**
-> ClientRelationship CreateRelationship (ClientCreateRelationshipBody clientCreateRelationshipBody = null)
+> ClientRelationship CreateRelationship (ClientCreateRelationshipBody? clientCreateRelationshipBody = null)
 
 Create a Relationship
 
@@ -111,12 +130,12 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RelationshipApi(config);
-            var clientCreateRelationshipBody = new ClientCreateRelationshipBody(); // ClientCreateRelationshipBody |  (optional) 
+            var clientCreateRelationshipBody = new ClientCreateRelationshipBody?(); // ClientCreateRelationshipBody? |  (optional) 
 
             try
             {
@@ -126,8 +145,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RelationshipApi.CreateRelationship: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RelationshipApi.CreateRelationship: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -135,11 +154,31 @@ namespace Example
 }
 ```
 
+#### Using the CreateRelationshipWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a Relationship
+    ApiResponse<ClientRelationship> response = apiInstance.CreateRelationshipWithHttpInfo(clientCreateRelationshipBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RelationshipApi.CreateRelationshipWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientCreateRelationshipBody** | [**ClientCreateRelationshipBody**](ClientCreateRelationshipBody.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **clientCreateRelationshipBody** | [**ClientCreateRelationshipBody?**](ClientCreateRelationshipBody?.md) |  | [optional]  |
 
 ### Return type
 
@@ -164,9 +203,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleterelationships"></a>
+<a id="deleterelationships"></a>
 # **DeleteRelationships**
-> void DeleteRelationships (string _namespace = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
+> void DeleteRelationships (string? varNamespace = null, string? varObject = null, string? relation = null, string? subjectId = null, string? subjectSetNamespace = null, string? subjectSetObject = null, string? subjectSetRelation = null)
 
 Delete Relationships
 
@@ -187,28 +226,28 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RelationshipApi(config);
-            var _namespace = "_namespace_example";  // string | Namespace of the Relationship (optional) 
-            var _object = "_object_example";  // string | Object of the Relationship (optional) 
-            var relation = "relation_example";  // string | Relation of the Relationship (optional) 
-            var subjectId = "subjectId_example";  // string | SubjectID of the Relationship (optional) 
-            var subjectSetNamespace = "subjectSetNamespace_example";  // string | Namespace of the Subject Set (optional) 
-            var subjectSetObject = "subjectSetObject_example";  // string | Object of the Subject Set (optional) 
-            var subjectSetRelation = "subjectSetRelation_example";  // string | Relation of the Subject Set (optional) 
+            var varNamespace = "varNamespace_example";  // string? | Namespace of the Relationship (optional) 
+            var varObject = "varObject_example";  // string? | Object of the Relationship (optional) 
+            var relation = "relation_example";  // string? | Relation of the Relationship (optional) 
+            var subjectId = "subjectId_example";  // string? | SubjectID of the Relationship (optional) 
+            var subjectSetNamespace = "subjectSetNamespace_example";  // string? | Namespace of the Subject Set (optional) 
+            var subjectSetObject = "subjectSetObject_example";  // string? | Object of the Subject Set (optional) 
+            var subjectSetRelation = "subjectSetRelation_example";  // string? | Relation of the Subject Set (optional) 
 
             try
             {
                 // Delete Relationships
-                apiInstance.DeleteRelationships(_namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+                apiInstance.DeleteRelationships(varNamespace, varObject, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RelationshipApi.DeleteRelationships: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RelationshipApi.DeleteRelationships: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -216,17 +255,34 @@ namespace Example
 }
 ```
 
+#### Using the DeleteRelationshipsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete Relationships
+    apiInstance.DeleteRelationshipsWithHttpInfo(varNamespace, varObject, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RelationshipApi.DeleteRelationshipsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_namespace** | **string**| Namespace of the Relationship | [optional] 
- **_object** | **string**| Object of the Relationship | [optional] 
- **relation** | **string**| Relation of the Relationship | [optional] 
- **subjectId** | **string**| SubjectID of the Relationship | [optional] 
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] 
- **subjectSetObject** | **string**| Object of the Subject Set | [optional] 
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **varNamespace** | **string?** | Namespace of the Relationship | [optional]  |
+| **varObject** | **string?** | Object of the Relationship | [optional]  |
+| **relation** | **string?** | Relation of the Relationship | [optional]  |
+| **subjectId** | **string?** | SubjectID of the Relationship | [optional]  |
+| **subjectSetNamespace** | **string?** | Namespace of the Subject Set | [optional]  |
+| **subjectSetObject** | **string?** | Object of the Subject Set | [optional]  |
+| **subjectSetRelation** | **string?** | Relation of the Subject Set | [optional]  |
 
 ### Return type
 
@@ -251,9 +307,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getrelationships"></a>
+<a id="getrelationships"></a>
 # **GetRelationships**
-> ClientRelationships GetRelationships (string pageToken = null, long? pageSize = null, string _namespace = null, string _object = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
+> ClientRelationships GetRelationships (string? pageToken = null, long? pageSize = null, string? varNamespace = null, string? varObject = null, string? relation = null, string? subjectId = null, string? subjectSetNamespace = null, string? subjectSetObject = null, string? subjectSetRelation = null)
 
 Query relationships
 
@@ -274,31 +330,31 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RelationshipApi(config);
-            var pageToken = "pageToken_example";  // string |  (optional) 
+            var pageToken = "pageToken_example";  // string? |  (optional) 
             var pageSize = 789L;  // long? |  (optional) 
-            var _namespace = "_namespace_example";  // string | Namespace of the Relationship (optional) 
-            var _object = "_object_example";  // string | Object of the Relationship (optional) 
-            var relation = "relation_example";  // string | Relation of the Relationship (optional) 
-            var subjectId = "subjectId_example";  // string | SubjectID of the Relationship (optional) 
-            var subjectSetNamespace = "subjectSetNamespace_example";  // string | Namespace of the Subject Set (optional) 
-            var subjectSetObject = "subjectSetObject_example";  // string | Object of the Subject Set (optional) 
-            var subjectSetRelation = "subjectSetRelation_example";  // string | Relation of the Subject Set (optional) 
+            var varNamespace = "varNamespace_example";  // string? | Namespace of the Relationship (optional) 
+            var varObject = "varObject_example";  // string? | Object of the Relationship (optional) 
+            var relation = "relation_example";  // string? | Relation of the Relationship (optional) 
+            var subjectId = "subjectId_example";  // string? | SubjectID of the Relationship (optional) 
+            var subjectSetNamespace = "subjectSetNamespace_example";  // string? | Namespace of the Subject Set (optional) 
+            var subjectSetObject = "subjectSetObject_example";  // string? | Object of the Subject Set (optional) 
+            var subjectSetRelation = "subjectSetRelation_example";  // string? | Relation of the Subject Set (optional) 
 
             try
             {
                 // Query relationships
-                ClientRelationships result = apiInstance.GetRelationships(pageToken, pageSize, _namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+                ClientRelationships result = apiInstance.GetRelationships(pageToken, pageSize, varNamespace, varObject, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RelationshipApi.GetRelationships: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RelationshipApi.GetRelationships: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -306,19 +362,39 @@ namespace Example
 }
 ```
 
+#### Using the GetRelationshipsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Query relationships
+    ApiResponse<ClientRelationships> response = apiInstance.GetRelationshipsWithHttpInfo(pageToken, pageSize, varNamespace, varObject, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RelationshipApi.GetRelationshipsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageToken** | **string**|  | [optional] 
- **pageSize** | **long?**|  | [optional] 
- **_namespace** | **string**| Namespace of the Relationship | [optional] 
- **_object** | **string**| Object of the Relationship | [optional] 
- **relation** | **string**| Relation of the Relationship | [optional] 
- **subjectId** | **string**| SubjectID of the Relationship | [optional] 
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] 
- **subjectSetObject** | **string**| Object of the Subject Set | [optional] 
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **pageToken** | **string?** |  | [optional]  |
+| **pageSize** | **long?** |  | [optional]  |
+| **varNamespace** | **string?** | Namespace of the Relationship | [optional]  |
+| **varObject** | **string?** | Object of the Relationship | [optional]  |
+| **relation** | **string?** | Relation of the Relationship | [optional]  |
+| **subjectId** | **string?** | SubjectID of the Relationship | [optional]  |
+| **subjectSetNamespace** | **string?** | Namespace of the Subject Set | [optional]  |
+| **subjectSetObject** | **string?** | Object of the Subject Set | [optional]  |
+| **subjectSetRelation** | **string?** | Relation of the Subject Set | [optional]  |
 
 ### Return type
 
@@ -343,7 +419,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listrelationshipnamespaces"></a>
+<a id="listrelationshipnamespaces"></a>
 # **ListRelationshipNamespaces**
 > ClientRelationshipNamespaces ListRelationshipNamespaces ()
 
@@ -366,7 +442,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -380,8 +456,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RelationshipApi.ListRelationshipNamespaces: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RelationshipApi.ListRelationshipNamespaces: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -389,9 +465,28 @@ namespace Example
 }
 ```
 
+#### Using the ListRelationshipNamespacesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Query namespaces
+    ApiResponse<ClientRelationshipNamespaces> response = apiInstance.ListRelationshipNamespacesWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RelationshipApi.ListRelationshipNamespacesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**ClientRelationshipNamespaces**](ClientRelationshipNamespaces.md)
@@ -414,9 +509,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="patchrelationships"></a>
+<a id="patchrelationships"></a>
 # **PatchRelationships**
-> void PatchRelationships (List<ClientRelationshipPatch> clientRelationshipPatch = null)
+> void PatchRelationships (List<ClientRelationshipPatch>? clientRelationshipPatch = null)
 
 Patch Multiple Relationships
 
@@ -437,12 +532,12 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RelationshipApi(config);
-            var clientRelationshipPatch = new List<ClientRelationshipPatch>(); // List<ClientRelationshipPatch> |  (optional) 
+            var clientRelationshipPatch = new List<ClientRelationshipPatch>?(); // List<ClientRelationshipPatch>? |  (optional) 
 
             try
             {
@@ -451,8 +546,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RelationshipApi.PatchRelationships: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RelationshipApi.PatchRelationships: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -460,11 +555,28 @@ namespace Example
 }
 ```
 
+#### Using the PatchRelationshipsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Patch Multiple Relationships
+    apiInstance.PatchRelationshipsWithHttpInfo(clientRelationshipPatch);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RelationshipApi.PatchRelationshipsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientRelationshipPatch** | [**List&lt;ClientRelationshipPatch&gt;**](ClientRelationshipPatch.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **clientRelationshipPatch** | [**List&lt;ClientRelationshipPatch&gt;?**](ClientRelationshipPatch.md) |  | [optional]  |
 
 ### Return type
 

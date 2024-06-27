@@ -27,6 +27,11 @@ void main() {
       // TODO
     });
 
+    // String subscriptionPlan
+    test('to test the property `subscriptionPlan`', () async {
+      // TODO
+    });
+
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
       // TODO

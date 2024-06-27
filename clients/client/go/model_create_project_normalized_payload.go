@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -28,8 +28,10 @@ type CreateProjectNormalizedPayload struct {
 	DisableAccountExperienceWelcomeScreen *bool `json:"disable_account_experience_welcome_screen,omitempty"`
 	// Whether the new account experience is enabled and reachable.
 	EnableAxV2 *bool `json:"enable_ax_v2,omitempty"`
-	//  prod Production dev Development
+	//  prod Production stage Staging dev Development
 	Environment string `json:"environment"`
+	//  eu-central EUCentral us-east USEast us-west USWest global Global
+	HomeRegion *string `json:"home_region,omitempty"`
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
@@ -63,8 +65,10 @@ type CreateProjectNormalizedPayload struct {
 	HydraServeCookiesSameSiteLegacyWorkaround *bool `json:"hydra_serve_cookies_same_site_legacy_workaround,omitempty"`
 	// Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
 	HydraServeCookiesSameSiteMode *string `json:"hydra_serve_cookies_same_site_mode,omitempty"`
-	// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+	// Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
 	HydraStrategiesAccessToken *string `json:"hydra_strategies_access_token,omitempty"`
+	// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+	HydraStrategiesJwtScopeClaim *string `json:"hydra_strategies_jwt_scope_claim,omitempty"`
 	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 	HydraStrategiesScope *string `json:"hydra_strategies_scope,omitempty"`
 	// This governs the \"ttl.access_token\" setting.
@@ -239,6 +243,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_oidc_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Login After Passkey Default Return URL  This governs the \"selfservice.flows.login.after.passkey.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_passkey_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_password_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.totp.after.password.default_browser_return_url\" setting.
@@ -269,10 +275,14 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_oidc_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Registration After Passkey Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_passkey_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_password_default_browser_return_url,omitempty"`
-	// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+	// Configures the Ory Kratos Registration After Webauthn Default Return URL  This governs the \"selfservice.flows.registration.after.webauthn.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url,omitempty"`
+	// Disable two-step registration  Two-step registration is a significantly improved sign up flow and recommended when using more than one sign up methods. To revert to one-step registration, set this to `true`.  This governs the \"selfservice.flows.registration.enable_legacy_one_step\" setting.
+	KratosSelfserviceFlowsRegistrationEnableLegacyOneStep *bool `json:"kratos_selfservice_flows_registration_enable_legacy_one_step,omitempty"`
 	// Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
 	KratosSelfserviceFlowsRegistrationEnabled *bool `json:"kratos_selfservice_flows_registration_enabled,omitempty"`
 	// Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
@@ -287,13 +297,15 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \"selfservice.flows.settings.after.oidc.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_oidc_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Settings Default Return URL After Updating Passkey  This governs the \"selfservice.flows.settings.after.passkey.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_passkey_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_password_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \"selfservice.flows.settings.after.profile.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_profile_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \"selfservice.flows.settings.after.totp.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_totp_default_browser_return_url,omitempty"`
-	// Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.webauthn.profile.default_browser_return_url\" setting.
+	// Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.after.webauthn.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Settings Lifespan  This governs the \"selfservice.flows.settings.lifespan\" setting.
 	KratosSelfserviceFlowsSettingsLifespan *string `json:"kratos_selfservice_flows_settings_lifespan,omitempty"`
@@ -319,10 +331,12 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsCodeConfigLifespan *string `json:"kratos_selfservice_methods_code_config_lifespan,omitempty"`
 	// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
 	KratosSelfserviceMethodsCodeEnabled *bool `json:"kratos_selfservice_methods_code_enabled,omitempty"`
-	// Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
+	// Configures whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
 	KratosSelfserviceMethodsCodeMfaEnabled *bool `json:"kratos_selfservice_methods_code_mfa_enabled,omitempty"`
-	// Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
+	// Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
 	KratosSelfserviceMethodsCodePasswordlessEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_enabled,omitempty"`
+	// This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \"selfservice.methods.code.passwordless_login_fallback_enabled\" setting.
+	KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_login_fallback_enabled,omitempty"`
 	// Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
 	KratosSelfserviceMethodsLinkConfigBaseUrl *string `json:"kratos_selfservice_methods_link_config_base_url,omitempty"`
 	// Configures the Ory Kratos Link Method's lifespan  This governs the \"selfservice.methods.link.config.lifespan\" setting.
@@ -336,6 +350,13 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider `json:"kratos_selfservice_methods_oidc_config_providers,omitempty"`
 	// Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
 	KratosSelfserviceMethodsOidcEnabled *bool `json:"kratos_selfservice_methods_oidc_enabled,omitempty"`
+	// Configures the Ory Kratos Passkey RP Display Name  This governs the \"selfservice.methods.passkey.config.rp.display_name\" setting.
+	KratosSelfserviceMethodsPasskeyConfigRpDisplayName *string `json:"kratos_selfservice_methods_passkey_config_rp_display_name,omitempty"`
+	// Configures the Ory Kratos Passkey RP ID  This governs the \"selfservice.methods.passkey.config.rp.id\" setting.
+	KratosSelfserviceMethodsPasskeyConfigRpId *string `json:"kratos_selfservice_methods_passkey_config_rp_id,omitempty"`
+	KratosSelfserviceMethodsPasskeyConfigRpOrigins []string `json:"kratos_selfservice_methods_passkey_config_rp_origins,omitempty"`
+	// Configures whether Ory Kratos Passkey authentication is enabled  This governs the \"selfservice.methods.passkey.enabled\" setting.
+	KratosSelfserviceMethodsPasskeyEnabled *bool `json:"kratos_selfservice_methods_passkey_enabled,omitempty"`
 	// Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
 	KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled *bool `json:"kratos_selfservice_methods_password_config_haveibeenpwned_enabled,omitempty"`
 	// Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
@@ -389,7 +410,7 @@ type CreateProjectNormalizedPayload struct {
 	StrictSecurity *bool `json:"strict_security,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	WorkspaceId NullableString `json:"workspace_id,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -406,6 +427,8 @@ func NewCreateProjectNormalizedPayload(environment string, name string) *CreateP
 	this.HydraOauth2GrantJwtMaxTtl = &hydraOauth2GrantJwtMaxTtl
 	var hydraStrategiesAccessToken string = "opaque"
 	this.HydraStrategiesAccessToken = &hydraStrategiesAccessToken
+	var hydraStrategiesJwtScopeClaim string = "list"
+	this.HydraStrategiesJwtScopeClaim = &hydraStrategiesJwtScopeClaim
 	var hydraStrategiesScope string = "wildcard"
 	this.HydraStrategiesScope = &hydraStrategiesScope
 	var hydraTtlAccessToken string = "30m"
@@ -437,6 +460,8 @@ func NewCreateProjectNormalizedPayloadWithDefaults() *CreateProjectNormalizedPay
 	this.HydraOauth2GrantJwtMaxTtl = &hydraOauth2GrantJwtMaxTtl
 	var hydraStrategiesAccessToken string = "opaque"
 	this.HydraStrategiesAccessToken = &hydraStrategiesAccessToken
+	var hydraStrategiesJwtScopeClaim string = "list"
+	this.HydraStrategiesJwtScopeClaim = &hydraStrategiesJwtScopeClaim
 	var hydraStrategiesScope string = "wildcard"
 	this.HydraStrategiesScope = &hydraStrategiesScope
 	var hydraTtlAccessToken string = "30m"
@@ -576,6 +601,38 @@ func (o *CreateProjectNormalizedPayload) GetEnvironmentOk() (*string, bool) {
 // SetEnvironment sets field value
 func (o *CreateProjectNormalizedPayload) SetEnvironment(v string) {
 	o.Environment = v
+}
+
+// GetHomeRegion returns the HomeRegion field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHomeRegion() string {
+	if o == nil || IsNil(o.HomeRegion) {
+		var ret string
+		return ret
+	}
+	return *o.HomeRegion
+}
+
+// GetHomeRegionOk returns a tuple with the HomeRegion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHomeRegionOk() (*string, bool) {
+	if o == nil || IsNil(o.HomeRegion) {
+		return nil, false
+	}
+	return o.HomeRegion, true
+}
+
+// HasHomeRegion returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHomeRegion() bool {
+	if o != nil && !IsNil(o.HomeRegion) {
+		return true
+	}
+
+	return false
+}
+
+// SetHomeRegion gets a reference to the given string and assigns it to the HomeRegion field.
+func (o *CreateProjectNormalizedPayload) SetHomeRegion(v string) {
+	o.HomeRegion = &v
 }
 
 // GetHydraOauth2AllowedTopLevelClaims returns the HydraOauth2AllowedTopLevelClaims field value if set, zero value otherwise.
@@ -1216,6 +1273,38 @@ func (o *CreateProjectNormalizedPayload) HasHydraStrategiesAccessToken() bool {
 // SetHydraStrategiesAccessToken gets a reference to the given string and assigns it to the HydraStrategiesAccessToken field.
 func (o *CreateProjectNormalizedPayload) SetHydraStrategiesAccessToken(v string) {
 	o.HydraStrategiesAccessToken = &v
+}
+
+// GetHydraStrategiesJwtScopeClaim returns the HydraStrategiesJwtScopeClaim field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHydraStrategiesJwtScopeClaim() string {
+	if o == nil || IsNil(o.HydraStrategiesJwtScopeClaim) {
+		var ret string
+		return ret
+	}
+	return *o.HydraStrategiesJwtScopeClaim
+}
+
+// GetHydraStrategiesJwtScopeClaimOk returns a tuple with the HydraStrategiesJwtScopeClaim field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHydraStrategiesJwtScopeClaimOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraStrategiesJwtScopeClaim) {
+		return nil, false
+	}
+	return o.HydraStrategiesJwtScopeClaim, true
+}
+
+// HasHydraStrategiesJwtScopeClaim returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHydraStrategiesJwtScopeClaim() bool {
+	if o != nil && !IsNil(o.HydraStrategiesJwtScopeClaim) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraStrategiesJwtScopeClaim gets a reference to the given string and assigns it to the HydraStrategiesJwtScopeClaim field.
+func (o *CreateProjectNormalizedPayload) SetHydraStrategiesJwtScopeClaim(v string) {
+	o.HydraStrategiesJwtScopeClaim = &v
 }
 
 // GetHydraStrategiesScope returns the HydraStrategiesScope field value if set, zero value otherwise.
@@ -2327,7 +2416,7 @@ func (o *CreateProjectNormalizedPayload) GetKratosCourierHttpRequestConfigHeader
 
 // HasKratosCourierHttpRequestConfigHeaders returns a boolean if a field has been set.
 func (o *CreateProjectNormalizedPayload) HasKratosCourierHttpRequestConfigHeaders() bool {
-	if o != nil && IsNil(o.KratosCourierHttpRequestConfigHeaders) {
+	if o != nil && !IsNil(o.KratosCourierHttpRequestConfigHeaders) {
 		return true
 	}
 
@@ -2520,7 +2609,7 @@ func (o *CreateProjectNormalizedPayload) GetKratosCourierSmtpHeadersOk() (map[st
 
 // HasKratosCourierSmtpHeaders returns a boolean if a field has been set.
 func (o *CreateProjectNormalizedPayload) HasKratosCourierSmtpHeaders() bool {
-	if o != nil && IsNil(o.KratosCourierSmtpHeaders) {
+	if o != nil && !IsNil(o.KratosCourierSmtpHeaders) {
 		return true
 	}
 
@@ -3737,7 +3826,7 @@ func (o *CreateProjectNormalizedPayload) GetKratosOauth2ProviderHeadersOk() (map
 
 // HasKratosOauth2ProviderHeaders returns a boolean if a field has been set.
 func (o *CreateProjectNormalizedPayload) HasKratosOauth2ProviderHeaders() bool {
-	if o != nil && IsNil(o.KratosOauth2ProviderHeaders) {
+	if o != nil && !IsNil(o.KratosOauth2ProviderHeaders) {
 		return true
 	}
 
@@ -4163,6 +4252,38 @@ func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceFlowsLoginAfterOidc
 // SetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl field.
 func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl field value if set, zero value otherwise.
@@ -4645,6 +4766,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsRegistrationAf
 	o.KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl = &v
 }
 
+// GetKratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl = &v
+}
+
 // GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl() string {
 	if o == nil || IsNil(o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl) {
@@ -4707,6 +4860,38 @@ func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceFlowsRegistrationAf
 // SetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field.
 func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsRegistrationEnableLegacyOneStep returns the KratosSelfserviceFlowsRegistrationEnableLegacyOneStep field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsRegistrationEnableLegacyOneStep() bool {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsRegistrationEnableLegacyOneStep) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRegistrationEnableLegacyOneStep
+}
+
+// GetKratosSelfserviceFlowsRegistrationEnableLegacyOneStepOk returns a tuple with the KratosSelfserviceFlowsRegistrationEnableLegacyOneStep field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsRegistrationEnableLegacyOneStepOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsRegistrationEnableLegacyOneStep) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRegistrationEnableLegacyOneStep, true
+}
+
+// HasKratosSelfserviceFlowsRegistrationEnableLegacyOneStep returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceFlowsRegistrationEnableLegacyOneStep() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsRegistrationEnableLegacyOneStep) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRegistrationEnableLegacyOneStep gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsRegistrationEnableLegacyOneStep field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsRegistrationEnableLegacyOneStep(v bool) {
+	o.KratosSelfserviceFlowsRegistrationEnableLegacyOneStep = &v
 }
 
 // GetKratosSelfserviceFlowsRegistrationEnabled returns the KratosSelfserviceFlowsRegistrationEnabled field value if set, zero value otherwise.
@@ -4931,6 +5116,38 @@ func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceFlowsSettingsAfterO
 // SetKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl field.
 func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl field value if set, zero value otherwise.
@@ -5509,6 +5726,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodePassword
 	o.KratosSelfserviceMethodsCodePasswordlessEnabled = &v
 }
 
+// GetKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled returns the KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled
+}
+
+// GetKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabledOk returns a tuple with the KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled, true
+}
+
+// HasKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled(v bool) {
+	o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled = &v
+}
+
 // GetKratosSelfserviceMethodsLinkConfigBaseUrl returns the KratosSelfserviceMethodsLinkConfigBaseUrl field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsLinkConfigBaseUrl() string {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsLinkConfigBaseUrl) {
@@ -5731,6 +5980,134 @@ func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsOidcEnabled(
 // SetKratosSelfserviceMethodsOidcEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsOidcEnabled field.
 func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsOidcEnabled(v bool) {
 	o.KratosSelfserviceMethodsOidcEnabled = &v
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigRpDisplayName returns the KratosSelfserviceMethodsPasskeyConfigRpDisplayName field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigRpDisplayName() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigRpDisplayNameOk returns a tuple with the KratosSelfserviceMethodsPasskeyConfigRpDisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigRpDisplayNameOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyConfigRpDisplayName returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfigRpDisplayName() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyConfigRpDisplayName gets a reference to the given string and assigns it to the KratosSelfserviceMethodsPasskeyConfigRpDisplayName field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigRpDisplayName(v string) {
+	o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName = &v
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigRpId returns the KratosSelfserviceMethodsPasskeyConfigRpId field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigRpId() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpId) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasskeyConfigRpId
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigRpIdOk returns a tuple with the KratosSelfserviceMethodsPasskeyConfigRpId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigRpIdOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpId) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigRpId, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyConfigRpId returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfigRpId() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpId) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyConfigRpId gets a reference to the given string and assigns it to the KratosSelfserviceMethodsPasskeyConfigRpId field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigRpId(v string) {
+	o.KratosSelfserviceMethodsPasskeyConfigRpId = &v
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigRpOrigins returns the KratosSelfserviceMethodsPasskeyConfigRpOrigins field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigRpOrigins() []string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpOrigins) {
+		var ret []string
+		return ret
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigRpOrigins
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigRpOriginsOk returns a tuple with the KratosSelfserviceMethodsPasskeyConfigRpOrigins field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigRpOriginsOk() ([]string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpOrigins) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigRpOrigins, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyConfigRpOrigins returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfigRpOrigins() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpOrigins) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyConfigRpOrigins gets a reference to the given []string and assigns it to the KratosSelfserviceMethodsPasskeyConfigRpOrigins field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigRpOrigins(v []string) {
+	o.KratosSelfserviceMethodsPasskeyConfigRpOrigins = v
+}
+
+// GetKratosSelfserviceMethodsPasskeyEnabled returns the KratosSelfserviceMethodsPasskeyEnabled field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyEnabled() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasskeyEnabled
+}
+
+// GetKratosSelfserviceMethodsPasskeyEnabledOk returns a tuple with the KratosSelfserviceMethodsPasskeyEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyEnabled) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyEnabled, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyEnabled returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyEnabled() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsPasskeyEnabled field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyEnabled(v bool) {
+	o.KratosSelfserviceMethodsPasskeyEnabled = &v
 }
 
 // GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field value if set, zero value otherwise.
@@ -6653,46 +7030,36 @@ func (o *CreateProjectNormalizedPayload) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
-// GetWorkspaceId returns the WorkspaceId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWorkspaceId returns the WorkspaceId field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetWorkspaceId() string {
-	if o == nil || IsNil(o.WorkspaceId.Get()) {
+	if o == nil || IsNil(o.WorkspaceId) {
 		var ret string
 		return ret
 	}
-	return *o.WorkspaceId.Get()
+	return *o.WorkspaceId
 }
 
 // GetWorkspaceIdOk returns a tuple with the WorkspaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateProjectNormalizedPayload) GetWorkspaceIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WorkspaceId) {
 		return nil, false
 	}
-	return o.WorkspaceId.Get(), o.WorkspaceId.IsSet()
+	return o.WorkspaceId, true
 }
 
 // HasWorkspaceId returns a boolean if a field has been set.
 func (o *CreateProjectNormalizedPayload) HasWorkspaceId() bool {
-	if o != nil && o.WorkspaceId.IsSet() {
+	if o != nil && !IsNil(o.WorkspaceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetWorkspaceId gets a reference to the given NullableString and assigns it to the WorkspaceId field.
+// SetWorkspaceId gets a reference to the given string and assigns it to the WorkspaceId field.
 func (o *CreateProjectNormalizedPayload) SetWorkspaceId(v string) {
-	o.WorkspaceId.Set(&v)
-}
-// SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
-func (o *CreateProjectNormalizedPayload) SetWorkspaceIdNil() {
-	o.WorkspaceId.Set(nil)
-}
-
-// UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
-func (o *CreateProjectNormalizedPayload) UnsetWorkspaceId() {
-	o.WorkspaceId.Unset()
+	o.WorkspaceId = &v
 }
 
 func (o CreateProjectNormalizedPayload) MarshalJSON() ([]byte, error) {
@@ -6715,6 +7082,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 		toSerialize["enable_ax_v2"] = o.EnableAxV2
 	}
 	toSerialize["environment"] = o.Environment
+	if !IsNil(o.HomeRegion) {
+		toSerialize["home_region"] = o.HomeRegion
+	}
 	if !IsNil(o.HydraOauth2AllowedTopLevelClaims) {
 		toSerialize["hydra_oauth2_allowed_top_level_claims"] = o.HydraOauth2AllowedTopLevelClaims
 	}
@@ -6774,6 +7144,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.HydraStrategiesAccessToken) {
 		toSerialize["hydra_strategies_access_token"] = o.HydraStrategiesAccessToken
+	}
+	if !IsNil(o.HydraStrategiesJwtScopeClaim) {
+		toSerialize["hydra_strategies_jwt_scope_claim"] = o.HydraStrategiesJwtScopeClaim
 	}
 	if !IsNil(o.HydraStrategiesScope) {
 		toSerialize["hydra_strategies_scope"] = o.HydraStrategiesScope
@@ -7051,6 +7424,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl) {
 		toSerialize["kratos_selfservice_flows_login_after_oidc_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl
 	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl) {
+		toSerialize["kratos_selfservice_flows_login_after_passkey_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl
+	}
 	if !IsNil(o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl) {
 		toSerialize["kratos_selfservice_flows_login_after_password_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
 	}
@@ -7096,11 +7472,17 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl) {
 		toSerialize["kratos_selfservice_flows_registration_after_oidc_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl
 	}
+	if !IsNil(o.KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl) {
+		toSerialize["kratos_selfservice_flows_registration_after_passkey_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl
+	}
 	if !IsNil(o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl) {
 		toSerialize["kratos_selfservice_flows_registration_after_password_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl
 	}
 	if !IsNil(o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl) {
 		toSerialize["kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
+	}
+	if !IsNil(o.KratosSelfserviceFlowsRegistrationEnableLegacyOneStep) {
+		toSerialize["kratos_selfservice_flows_registration_enable_legacy_one_step"] = o.KratosSelfserviceFlowsRegistrationEnableLegacyOneStep
 	}
 	if !IsNil(o.KratosSelfserviceFlowsRegistrationEnabled) {
 		toSerialize["kratos_selfservice_flows_registration_enabled"] = o.KratosSelfserviceFlowsRegistrationEnabled
@@ -7122,6 +7504,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl) {
 		toSerialize["kratos_selfservice_flows_settings_after_oidc_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl
+	}
+	if !IsNil(o.KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl) {
+		toSerialize["kratos_selfservice_flows_settings_after_passkey_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl
 	}
 	if !IsNil(o.KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl) {
 		toSerialize["kratos_selfservice_flows_settings_after_password_default_browser_return_url"] = o.KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
@@ -7177,6 +7562,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceMethodsCodePasswordlessEnabled) {
 		toSerialize["kratos_selfservice_methods_code_passwordless_enabled"] = o.KratosSelfserviceMethodsCodePasswordlessEnabled
 	}
+	if !IsNil(o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled) {
+		toSerialize["kratos_selfservice_methods_code_passwordless_login_fallback_enabled"] = o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled
+	}
 	if !IsNil(o.KratosSelfserviceMethodsLinkConfigBaseUrl) {
 		toSerialize["kratos_selfservice_methods_link_config_base_url"] = o.KratosSelfserviceMethodsLinkConfigBaseUrl
 	}
@@ -7197,6 +7585,18 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosSelfserviceMethodsOidcEnabled) {
 		toSerialize["kratos_selfservice_methods_oidc_enabled"] = o.KratosSelfserviceMethodsOidcEnabled
+	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName) {
+		toSerialize["kratos_selfservice_methods_passkey_config_rp_display_name"] = o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName
+	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpId) {
+		toSerialize["kratos_selfservice_methods_passkey_config_rp_id"] = o.KratosSelfserviceMethodsPasskeyConfigRpId
+	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpOrigins) {
+		toSerialize["kratos_selfservice_methods_passkey_config_rp_origins"] = o.KratosSelfserviceMethodsPasskeyConfigRpOrigins
+	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyEnabled) {
+		toSerialize["kratos_selfservice_methods_passkey_enabled"] = o.KratosSelfserviceMethodsPasskeyEnabled
 	}
 	if !IsNil(o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled) {
 		toSerialize["kratos_selfservice_methods_password_config_haveibeenpwned_enabled"] = o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
@@ -7283,8 +7683,8 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.WorkspaceId.IsSet() {
-		toSerialize["workspace_id"] = o.WorkspaceId.Get()
+	if !IsNil(o.WorkspaceId) {
+		toSerialize["workspace_id"] = o.WorkspaceId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -7294,8 +7694,8 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	return toSerialize, nil
 }
 
-func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -7305,7 +7705,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -7319,7 +7719,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 
 	varCreateProjectNormalizedPayload := _CreateProjectNormalizedPayload{}
 
-	err = json.Unmarshal(bytes, &varCreateProjectNormalizedPayload)
+	err = json.Unmarshal(data, &varCreateProjectNormalizedPayload)
 
 	if err != nil {
 		return err
@@ -7329,11 +7729,12 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "disable_account_experience_welcome_screen")
 		delete(additionalProperties, "enable_ax_v2")
 		delete(additionalProperties, "environment")
+		delete(additionalProperties, "home_region")
 		delete(additionalProperties, "hydra_oauth2_allowed_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_client_credentials_default_grant_allowed_scope")
 		delete(additionalProperties, "hydra_oauth2_exclude_not_before_claim")
@@ -7354,6 +7755,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "hydra_serve_cookies_same_site_legacy_workaround")
 		delete(additionalProperties, "hydra_serve_cookies_same_site_mode")
 		delete(additionalProperties, "hydra_strategies_access_token")
+		delete(additionalProperties, "hydra_strategies_jwt_scope_claim")
 		delete(additionalProperties, "hydra_strategies_scope")
 		delete(additionalProperties, "hydra_ttl_access_token")
 		delete(additionalProperties, "hydra_ttl_auth_code")
@@ -7446,6 +7848,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_oidc_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_login_after_passkey_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_password_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_totp_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_webauthn_default_browser_return_url")
@@ -7461,8 +7864,10 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "kratos_selfservice_flows_registration_after_code_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_after_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_after_oidc_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_after_passkey_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_after_password_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_registration_enable_legacy_one_step")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_enabled")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_lifespan")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_login_hints")
@@ -7470,6 +7875,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_lookup_secret_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_oidc_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_settings_after_passkey_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_password_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_profile_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_settings_after_totp_default_browser_return_url")
@@ -7488,6 +7894,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "kratos_selfservice_methods_code_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_mfa_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_login_fallback_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_base_url")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_lifespan")
 		delete(additionalProperties, "kratos_selfservice_methods_link_enabled")
@@ -7495,6 +7902,10 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(bytes []byte) (err error)
 		delete(additionalProperties, "kratos_selfservice_methods_oidc_config_base_redirect_uri")
 		delete(additionalProperties, "kratos_selfservice_methods_oidc_config_providers")
 		delete(additionalProperties, "kratos_selfservice_methods_oidc_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_rp_display_name")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_rp_id")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_rp_origins")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_haveibeenpwned_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_identifier_similarity_check_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_ignore_network_errors")

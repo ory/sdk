@@ -1,19 +1,18 @@
 # Ory.Client.Api.JwkApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**CreateJsonWebKeySet**](JwkApi.md#createjsonwebkeyset) | **POST** /admin/keys/{set} | Create JSON Web Key
-[**DeleteJsonWebKey**](JwkApi.md#deletejsonwebkey) | **DELETE** /admin/keys/{set}/{kid} | Delete JSON Web Key
-[**DeleteJsonWebKeySet**](JwkApi.md#deletejsonwebkeyset) | **DELETE** /admin/keys/{set} | Delete JSON Web Key Set
-[**GetJsonWebKey**](JwkApi.md#getjsonwebkey) | **GET** /admin/keys/{set}/{kid} | Get JSON Web Key
-[**GetJsonWebKeySet**](JwkApi.md#getjsonwebkeyset) | **GET** /admin/keys/{set} | Retrieve a JSON Web Key Set
-[**SetJsonWebKey**](JwkApi.md#setjsonwebkey) | **PUT** /admin/keys/{set}/{kid} | Set JSON Web Key
-[**SetJsonWebKeySet**](JwkApi.md#setjsonwebkeyset) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**CreateJsonWebKeySet**](JwkApi.md#createjsonwebkeyset) | **POST** /admin/keys/{set} | Create JSON Web Key |
+| [**DeleteJsonWebKey**](JwkApi.md#deletejsonwebkey) | **DELETE** /admin/keys/{set}/{kid} | Delete JSON Web Key |
+| [**DeleteJsonWebKeySet**](JwkApi.md#deletejsonwebkeyset) | **DELETE** /admin/keys/{set} | Delete JSON Web Key Set |
+| [**GetJsonWebKey**](JwkApi.md#getjsonwebkey) | **GET** /admin/keys/{set}/{kid} | Get JSON Web Key |
+| [**GetJsonWebKeySet**](JwkApi.md#getjsonwebkeyset) | **GET** /admin/keys/{set} | Retrieve a JSON Web Key Set |
+| [**SetJsonWebKey**](JwkApi.md#setjsonwebkey) | **PUT** /admin/keys/{set}/{kid} | Set JSON Web Key |
+| [**SetJsonWebKeySet**](JwkApi.md#setjsonwebkeyset) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set |
 
-
-<a name="createjsonwebkeyset"></a>
+<a id="createjsonwebkeyset"></a>
 # **CreateJsonWebKeySet**
 > ClientJsonWebKeySet CreateJsonWebKeySet (string set, ClientCreateJsonWebKeySet clientCreateJsonWebKeySet)
 
@@ -36,7 +35,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -52,8 +51,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling JwkApi.CreateJsonWebKeySet: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling JwkApi.CreateJsonWebKeySet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -61,12 +60,32 @@ namespace Example
 }
 ```
 
+#### Using the CreateJsonWebKeySetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create JSON Web Key
+    ApiResponse<ClientJsonWebKeySet> response = apiInstance.CreateJsonWebKeySetWithHttpInfo(set, clientCreateJsonWebKeySet);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling JwkApi.CreateJsonWebKeySetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set ID | 
- **clientCreateJsonWebKeySet** | [**ClientCreateJsonWebKeySet**](ClientCreateJsonWebKeySet.md)|  | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **set** | **string** | The JSON Web Key Set ID |  |
+| **clientCreateJsonWebKeySet** | [**ClientCreateJsonWebKeySet**](ClientCreateJsonWebKeySet.md) |  |  |
 
 ### Return type
 
@@ -90,7 +109,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deletejsonwebkey"></a>
+<a id="deletejsonwebkey"></a>
 # **DeleteJsonWebKey**
 > void DeleteJsonWebKey (string set, string kid)
 
@@ -113,7 +132,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -128,8 +147,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling JwkApi.DeleteJsonWebKey: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling JwkApi.DeleteJsonWebKey: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -137,12 +156,29 @@ namespace Example
 }
 ```
 
+#### Using the DeleteJsonWebKeyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete JSON Web Key
+    apiInstance.DeleteJsonWebKeyWithHttpInfo(set, kid);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling JwkApi.DeleteJsonWebKeyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set | 
- **kid** | **string**| The JSON Web Key ID (kid) | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **set** | **string** | The JSON Web Key Set |  |
+| **kid** | **string** | The JSON Web Key ID (kid) |  |
 
 ### Return type
 
@@ -166,7 +202,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deletejsonwebkeyset"></a>
+<a id="deletejsonwebkeyset"></a>
 # **DeleteJsonWebKeySet**
 > void DeleteJsonWebKeySet (string set)
 
@@ -189,7 +225,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -203,8 +239,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling JwkApi.DeleteJsonWebKeySet: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling JwkApi.DeleteJsonWebKeySet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -212,11 +248,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteJsonWebKeySetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete JSON Web Key Set
+    apiInstance.DeleteJsonWebKeySetWithHttpInfo(set);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling JwkApi.DeleteJsonWebKeySetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **set** | **string** | The JSON Web Key Set |  |
 
 ### Return type
 
@@ -240,7 +293,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getjsonwebkey"></a>
+<a id="getjsonwebkey"></a>
 # **GetJsonWebKey**
 > ClientJsonWebKeySet GetJsonWebKey (string set, string kid)
 
@@ -263,7 +316,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -279,8 +332,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling JwkApi.GetJsonWebKey: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling JwkApi.GetJsonWebKey: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -288,12 +341,32 @@ namespace Example
 }
 ```
 
+#### Using the GetJsonWebKeyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get JSON Web Key
+    ApiResponse<ClientJsonWebKeySet> response = apiInstance.GetJsonWebKeyWithHttpInfo(set, kid);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling JwkApi.GetJsonWebKeyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| JSON Web Key Set ID | 
- **kid** | **string**| JSON Web Key ID | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **set** | **string** | JSON Web Key Set ID |  |
+| **kid** | **string** | JSON Web Key ID |  |
 
 ### Return type
 
@@ -317,7 +390,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getjsonwebkeyset"></a>
+<a id="getjsonwebkeyset"></a>
 # **GetJsonWebKeySet**
 > ClientJsonWebKeySet GetJsonWebKeySet (string set)
 
@@ -340,7 +413,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -355,8 +428,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling JwkApi.GetJsonWebKeySet: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling JwkApi.GetJsonWebKeySet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -364,11 +437,31 @@ namespace Example
 }
 ```
 
+#### Using the GetJsonWebKeySetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Retrieve a JSON Web Key Set
+    ApiResponse<ClientJsonWebKeySet> response = apiInstance.GetJsonWebKeySetWithHttpInfo(set);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling JwkApi.GetJsonWebKeySetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| JSON Web Key Set ID | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **set** | **string** | JSON Web Key Set ID |  |
 
 ### Return type
 
@@ -392,9 +485,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="setjsonwebkey"></a>
+<a id="setjsonwebkey"></a>
 # **SetJsonWebKey**
-> ClientJsonWebKey SetJsonWebKey (string set, string kid, ClientJsonWebKey clientJsonWebKey = null)
+> ClientJsonWebKey SetJsonWebKey (string set, string kid, ClientJsonWebKey? clientJsonWebKey = null)
 
 Set JSON Web Key
 
@@ -415,14 +508,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new JwkApi(config);
             var set = "set_example";  // string | The JSON Web Key Set ID
             var kid = "kid_example";  // string | JSON Web Key ID
-            var clientJsonWebKey = new ClientJsonWebKey(); // ClientJsonWebKey |  (optional) 
+            var clientJsonWebKey = new ClientJsonWebKey?(); // ClientJsonWebKey? |  (optional) 
 
             try
             {
@@ -432,8 +525,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling JwkApi.SetJsonWebKey: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling JwkApi.SetJsonWebKey: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -441,13 +534,33 @@ namespace Example
 }
 ```
 
+#### Using the SetJsonWebKeyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set JSON Web Key
+    ApiResponse<ClientJsonWebKey> response = apiInstance.SetJsonWebKeyWithHttpInfo(set, kid, clientJsonWebKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling JwkApi.SetJsonWebKeyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set ID | 
- **kid** | **string**| JSON Web Key ID | 
- **clientJsonWebKey** | [**ClientJsonWebKey**](ClientJsonWebKey.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **set** | **string** | The JSON Web Key Set ID |  |
+| **kid** | **string** | JSON Web Key ID |  |
+| **clientJsonWebKey** | [**ClientJsonWebKey?**](ClientJsonWebKey?.md) |  | [optional]  |
 
 ### Return type
 
@@ -471,9 +584,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="setjsonwebkeyset"></a>
+<a id="setjsonwebkeyset"></a>
 # **SetJsonWebKeySet**
-> ClientJsonWebKeySet SetJsonWebKeySet (string set, ClientJsonWebKeySet clientJsonWebKeySet = null)
+> ClientJsonWebKeySet SetJsonWebKeySet (string set, ClientJsonWebKeySet? clientJsonWebKeySet = null)
 
 Update a JSON Web Key Set
 
@@ -494,13 +607,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new JwkApi(config);
             var set = "set_example";  // string | The JSON Web Key Set ID
-            var clientJsonWebKeySet = new ClientJsonWebKeySet(); // ClientJsonWebKeySet |  (optional) 
+            var clientJsonWebKeySet = new ClientJsonWebKeySet?(); // ClientJsonWebKeySet? |  (optional) 
 
             try
             {
@@ -510,8 +623,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling JwkApi.SetJsonWebKeySet: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling JwkApi.SetJsonWebKeySet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -519,12 +632,32 @@ namespace Example
 }
 ```
 
+#### Using the SetJsonWebKeySetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update a JSON Web Key Set
+    ApiResponse<ClientJsonWebKeySet> response = apiInstance.SetJsonWebKeySetWithHttpInfo(set, clientJsonWebKeySet);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling JwkApi.SetJsonWebKeySetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set ID | 
- **clientJsonWebKeySet** | [**ClientJsonWebKeySet**](ClientJsonWebKeySet.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **set** | **string** | The JSON Web Key Set ID |  |
+| **clientJsonWebKeySet** | [**ClientJsonWebKeySet?**](ClientJsonWebKeySet?.md) |  | [optional]  |
 
 ### Return type
 

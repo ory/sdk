@@ -5,11 +5,11 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batchPatchIdentities**](IdentityApi.md#batchpatchidentities) | **PATCH** /admin/identities | Create and deletes multiple identities
+[**batchPatchIdentities**](IdentityApi.md#batchpatchidentities) | **PATCH** /admin/identities | Create multiple identities
 [**createIdentity**](IdentityApi.md#createidentity) | **POST** /admin/identities | Create an Identity
 [**createRecoveryCodeForIdentity**](IdentityApi.md#createrecoverycodeforidentity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**createRecoveryLinkForIdentity**](IdentityApi.md#createrecoverylinkforidentity) | **POST** /admin/recovery/link | Create a Recovery Link
@@ -32,16 +32,13 @@ Method | HTTP request | Description
 # **batchPatchIdentities**
 > BatchPatchIdentitiesResponse batchPatchIdentities(patchIdentitiesBody)
 
-Create and deletes multiple identities
+Create multiple identities
 
-Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final PatchIdentitiesBody patchIdentitiesBody = ; // PatchIdentitiesBody | 
@@ -49,7 +46,7 @@ final PatchIdentitiesBody patchIdentitiesBody = ; // PatchIdentitiesBody |
 try {
     final response = api.batchPatchIdentities(patchIdentitiesBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->batchPatchIdentities: $e\n');
 }
 ```
@@ -85,9 +82,6 @@ Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final CreateIdentityBody createIdentityBody = ; // CreateIdentityBody | 
@@ -95,7 +89,7 @@ final CreateIdentityBody createIdentityBody = ; // CreateIdentityBody |
 try {
     final response = api.createIdentity(createIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->createIdentity: $e\n');
 }
 ```
@@ -131,9 +125,6 @@ This endpoint creates a recovery code which should be given to the user in order
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final CreateRecoveryCodeForIdentityBody createRecoveryCodeForIdentityBody = ; // CreateRecoveryCodeForIdentityBody | 
@@ -141,7 +132,7 @@ final CreateRecoveryCodeForIdentityBody createRecoveryCodeForIdentityBody = ; //
 try {
     final response = api.createRecoveryCodeForIdentity(createRecoveryCodeForIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->createRecoveryCodeForIdentity: $e\n');
 }
 ```
@@ -177,9 +168,6 @@ This endpoint creates a recovery link which should be given to the user in order
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String returnTo = returnTo_example; // String | 
@@ -188,7 +176,7 @@ final CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody = ; //
 try {
     final response = api.createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->createRecoveryLinkForIdentity: $e\n');
 }
 ```
@@ -225,16 +213,13 @@ Calling this endpoint irrecoverably and permanently deletes the [identity](https
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
 
 try {
     api.deleteIdentity(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->deleteIdentity: $e\n');
 }
 ```
@@ -261,26 +246,24 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteIdentityCredentials**
-> deleteIdentityCredentials(id, type)
+> deleteIdentityCredentials(id, type, identifier)
 
 Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
-final String type = type_example; // String | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+final String type = type_example; // String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+final String identifier = identifier_example; // String | Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint.
 
 try {
-    api.deleteIdentityCredentials(id, type);
-} catch on DioError (e) {
+    api.deleteIdentityCredentials(id, type, identifier);
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->deleteIdentityCredentials: $e\n');
 }
 ```
@@ -290,7 +273,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the identity's ID. | 
- **type** | **String**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
+ **type** | **String**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
+ **identifier** | **String**| Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint. | [optional] 
 
 ### Return type
 
@@ -317,16 +301,13 @@ Calling this endpoint irrecoverably and permanently deletes and invalidates all 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
 
 try {
     api.deleteIdentitySessions(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->deleteIdentitySessions: $e\n');
 }
 ```
@@ -362,16 +343,13 @@ Calling this endpoint deactivates the specified session. Session data is not del
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the session's ID.
 
 try {
     api.disableSession(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->disableSession: $e\n');
 }
 ```
@@ -402,14 +380,11 @@ void (empty response body)
 
 Extend a Session
 
-Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the session's ID.
@@ -417,7 +392,7 @@ final String id = id_example; // String | ID is the session's ID.
 try {
     final response = api.extendSession(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->extendSession: $e\n');
 }
 ```
@@ -453,9 +428,6 @@ Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID must be set to the ID of identity you want to get
@@ -464,7 +436,7 @@ final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Cre
 try {
     final response = api.getIdentity(id, includeCredential);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->getIdentity: $e\n');
 }
 ```
@@ -508,7 +480,7 @@ final String id = id_example; // String | ID must be set to the ID of schema you
 try {
     final response = api.getIdentitySchema(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->getIdentitySchema: $e\n');
 }
 ```
@@ -544,9 +516,6 @@ This endpoint is useful for:  Getting a session object with all specified expand
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the session's ID.
@@ -555,7 +524,7 @@ final BuiltList<String> expand = ; // BuiltList<String> | ExpandOptions is a que
 try {
     final response = api.getSession(id, expand);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->getSession: $e\n');
 }
 ```
@@ -592,9 +561,6 @@ Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-mod
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final int perPage = 789; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
@@ -610,7 +576,7 @@ final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Cre
 try {
     final response = api.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentities: $e\n');
 }
 ```
@@ -664,7 +630,7 @@ final String pageToken = pageToken_example; // String | Next Page Token  The nex
 try {
     final response = api.listIdentitySchemas(perPage, page, pageSize, pageToken);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentitySchemas: $e\n');
 }
 ```
@@ -703,9 +669,6 @@ This endpoint returns all sessions that belong to the given Identity.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
@@ -718,7 +681,7 @@ final bool active = true; // bool | Active is a boolean flag that filters out se
 try {
     final response = api.listIdentitySessions(id, perPage, page, pageSize, pageToken, active);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentitySessions: $e\n');
 }
 ```
@@ -759,9 +722,6 @@ Listing all sessions that exist.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
@@ -772,7 +732,7 @@ final BuiltList<String> expand = ; // BuiltList<String> | ExpandOptions is a que
 try {
     final response = api.listSessions(pageSize, pageToken, active, expand);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listSessions: $e\n');
 }
 ```
@@ -811,9 +771,6 @@ Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identi
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID must be set to the ID of identity you want to update
@@ -822,7 +779,7 @@ final BuiltList<JsonPatch> jsonPatch = ; // BuiltList<JsonPatch> |
 try {
     final response = api.patchIdentity(id, jsonPatch);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->patchIdentity: $e\n');
 }
 ```
@@ -859,9 +816,6 @@ This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/iden
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID must be set to the ID of identity you want to update
@@ -870,7 +824,7 @@ final UpdateIdentityBody updateIdentityBody = ; // UpdateIdentityBody |
 try {
     final response = api.updateIdentity(id, updateIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->updateIdentity: $e\n');
 }
 ```

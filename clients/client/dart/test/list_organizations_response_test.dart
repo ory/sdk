@@ -7,6 +7,17 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ListOrganizationsResponse, () {
+    // bool hasNextPage
+    test('to test the property `hasNextPage`', () async {
+      // TODO
+    });
+
+    // String nextPageToken
+    test('to test the property `nextPageToken`', () async {
+      // TODO
+    });
+
+    // The list of organizations
     // BuiltList<Organization> organizations
     test('to test the property `organizations`', () async {
       // TODO

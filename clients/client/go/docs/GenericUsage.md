@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdditionalPrice** | **int64** | AdditionalPrice is the price per-unit in cent exceeding IncludedUsage. A price of 0 means that no other items can be consumed. | 
+**AdditionalPrice** | [**Money**](Money.md) |  | 
 **IncludedUsage** | **int64** | IncludedUsage is the number of included items. | 
 
 ## Methods
 
 ### NewGenericUsage
 
-`func NewGenericUsage(additionalPrice int64, includedUsage int64, ) *GenericUsage`
+`func NewGenericUsage(additionalPrice Money, includedUsage int64, ) *GenericUsage`
 
 NewGenericUsage instantiates a new GenericUsage object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAdditionalPrice
 
-`func (o *GenericUsage) GetAdditionalPrice() int64`
+`func (o *GenericUsage) GetAdditionalPrice() Money`
 
 GetAdditionalPrice returns the AdditionalPrice field if non-nil, zero value otherwise.
 
 ### GetAdditionalPriceOk
 
-`func (o *GenericUsage) GetAdditionalPriceOk() (*int64, bool)`
+`func (o *GenericUsage) GetAdditionalPriceOk() (*Money, bool)`
 
 GetAdditionalPriceOk returns a tuple with the AdditionalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdditionalPrice
 
-`func (o *GenericUsage) SetAdditionalPrice(v int64)`
+`func (o *GenericUsage) SetAdditionalPrice(v Money)`
 
 SetAdditionalPrice sets AdditionalPrice field to given value.
 

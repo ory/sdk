@@ -1,6 +1,6 @@
 # \WellknownAPI
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -22,23 +22,23 @@ Discover Well-Known JSON Web Keys
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WellknownAPI.DiscoverJsonWebKeys(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WellknownAPI.DiscoverJsonWebKeys``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DiscoverJsonWebKeys`: JsonWebKeySet
-    fmt.Fprintf(os.Stdout, "Response from `WellknownAPI.DiscoverJsonWebKeys`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WellknownAPI.DiscoverJsonWebKeys(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WellknownAPI.DiscoverJsonWebKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DiscoverJsonWebKeys`: JsonWebKeySet
+	fmt.Fprintf(os.Stdout, "Response from `WellknownAPI.DiscoverJsonWebKeys`: %v\n", resp)
 }
 ```
 

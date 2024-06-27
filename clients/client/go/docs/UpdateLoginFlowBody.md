@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CsrfToken** | **string** | CSRFToken is the anti-CSRF token | 
+**CsrfToken** | **string** | Sending the anti-csrf token is only required for browser login flows. | 
 **Identifier** | **string** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | 
-**Method** | **string** | Method should be set to \&quot;code\&quot; when logging in using the code strategy. | 
+**Method** | **string** | Method should be set to \&quot;passkey\&quot; when logging in using the Passkey strategy. | 
 **Password** | **string** | The user&#39;s password. | 
 **PasswordIdentifier** | Pointer to **string** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **LookupSecret** | **string** | The lookup secret. | 
 **Code** | Pointer to **string** | Code is the 6 digits code sent to the user | [optional] 
 **Resend** | Pointer to **string** | Resend is set when the user wants to resend the code | [optional] 
+**PasskeyLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 
 ## Methods
 
@@ -404,6 +405,31 @@ SetResend sets Resend field to given value.
 `func (o *UpdateLoginFlowBody) HasResend() bool`
 
 HasResend returns a boolean if a field has been set.
+
+### GetPasskeyLogin
+
+`func (o *UpdateLoginFlowBody) GetPasskeyLogin() string`
+
+GetPasskeyLogin returns the PasskeyLogin field if non-nil, zero value otherwise.
+
+### GetPasskeyLoginOk
+
+`func (o *UpdateLoginFlowBody) GetPasskeyLoginOk() (*string, bool)`
+
+GetPasskeyLoginOk returns a tuple with the PasskeyLogin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasskeyLogin
+
+`func (o *UpdateLoginFlowBody) SetPasskeyLogin(v string)`
+
+SetPasskeyLogin sets PasskeyLogin field to given value.
+
+### HasPasskeyLogin
+
+`func (o *UpdateLoginFlowBody) HasPasskeyLogin() bool`
+
+HasPasskeyLogin returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -25,8 +25,10 @@ type NormalizedProject struct {
 	// The Project's Creation Date
 	CreatedAt time.Time `json:"created_at"`
 	CurrentRevision NormalizedProjectRevision `json:"current_revision"`
-	// The environment of the project. prod Production dev Development
+	// The environment of the project. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
+	// The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global
+	HomeRegion string `json:"home_region"`
 	Hosts []string `json:"hosts"`
 	// The project's ID.
 	Id string `json:"id"`
@@ -38,6 +40,7 @@ type NormalizedProject struct {
 	SubscriptionPlan NullableString `json:"subscription_plan,omitempty"`
 	// Last Time Project was Updated
 	UpdatedAt time.Time `json:"updated_at"`
+	Workspace *Workspace `json:"workspace,omitempty"`
 	WorkspaceId NullableString `json:"workspace_id"`
 	AdditionalProperties map[string]interface{}
 }
@@ -48,11 +51,12 @@ type _NormalizedProject NormalizedProject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, hosts []string, id string, slug string, state string, updatedAt time.Time, workspaceId NullableString) *NormalizedProject {
+func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, homeRegion string, hosts []string, id string, slug string, state string, updatedAt time.Time, workspaceId NullableString) *NormalizedProject {
 	this := NormalizedProject{}
 	this.CreatedAt = createdAt
 	this.CurrentRevision = currentRevision
 	this.Environment = environment
+	this.HomeRegion = homeRegion
 	this.Hosts = hosts
 	this.Id = id
 	this.Slug = slug
@@ -140,6 +144,30 @@ func (o *NormalizedProject) GetEnvironmentOk() (*string, bool) {
 // SetEnvironment sets field value
 func (o *NormalizedProject) SetEnvironment(v string) {
 	o.Environment = v
+}
+
+// GetHomeRegion returns the HomeRegion field value
+func (o *NormalizedProject) GetHomeRegion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HomeRegion
+}
+
+// GetHomeRegionOk returns a tuple with the HomeRegion field value
+// and a boolean to check if the value has been set.
+func (o *NormalizedProject) GetHomeRegionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HomeRegion, true
+}
+
+// SetHomeRegion sets field value
+func (o *NormalizedProject) SetHomeRegion(v string) {
+	o.HomeRegion = v
 }
 
 // GetHosts returns the Hosts field value
@@ -346,6 +374,38 @@ func (o *NormalizedProject) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
+// GetWorkspace returns the Workspace field value if set, zero value otherwise.
+func (o *NormalizedProject) GetWorkspace() Workspace {
+	if o == nil || IsNil(o.Workspace) {
+		var ret Workspace
+		return ret
+	}
+	return *o.Workspace
+}
+
+// GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProject) GetWorkspaceOk() (*Workspace, bool) {
+	if o == nil || IsNil(o.Workspace) {
+		return nil, false
+	}
+	return o.Workspace, true
+}
+
+// HasWorkspace returns a boolean if a field has been set.
+func (o *NormalizedProject) HasWorkspace() bool {
+	if o != nil && !IsNil(o.Workspace) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkspace gets a reference to the given Workspace and assigns it to the Workspace field.
+func (o *NormalizedProject) SetWorkspace(v Workspace) {
+	o.Workspace = &v
+}
+
 // GetWorkspaceId returns the WorkspaceId field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *NormalizedProject) GetWorkspaceId() string {
@@ -385,6 +445,7 @@ func (o NormalizedProject) ToMap() (map[string]interface{}, error) {
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["current_revision"] = o.CurrentRevision
 	toSerialize["environment"] = o.Environment
+	toSerialize["home_region"] = o.HomeRegion
 	toSerialize["hosts"] = o.Hosts
 	toSerialize["id"] = o.Id
 	toSerialize["slug"] = o.Slug
@@ -396,6 +457,9 @@ func (o NormalizedProject) ToMap() (map[string]interface{}, error) {
 		toSerialize["subscription_plan"] = o.SubscriptionPlan.Get()
 	}
 	toSerialize["updated_at"] = o.UpdatedAt
+	if !IsNil(o.Workspace) {
+		toSerialize["workspace"] = o.Workspace
+	}
 	toSerialize["workspace_id"] = o.WorkspaceId.Get()
 
 	for key, value := range o.AdditionalProperties {
@@ -405,14 +469,15 @@ func (o NormalizedProject) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *NormalizedProject) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"created_at",
 		"current_revision",
 		"environment",
+		"home_region",
 		"hosts",
 		"id",
 		"slug",
@@ -423,7 +488,7 @@ func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -437,7 +502,7 @@ func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
 
 	varNormalizedProject := _NormalizedProject{}
 
-	err = json.Unmarshal(bytes, &varNormalizedProject)
+	err = json.Unmarshal(data, &varNormalizedProject)
 
 	if err != nil {
 		return err
@@ -447,10 +512,11 @@ func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "current_revision")
 		delete(additionalProperties, "environment")
+		delete(additionalProperties, "home_region")
 		delete(additionalProperties, "hosts")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "slug")
@@ -458,6 +524,7 @@ func (o *NormalizedProject) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "subscription_id")
 		delete(additionalProperties, "subscription_plan")
 		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "workspace")
 		delete(additionalProperties, "workspace_id")
 		o.AdditionalProperties = additionalProperties
 	}

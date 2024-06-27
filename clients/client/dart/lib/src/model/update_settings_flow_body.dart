@@ -9,6 +9,7 @@ import 'package:ory_client/src/model/update_settings_flow_with_password_method.d
 import 'package:ory_client/src/model/update_settings_flow_with_oidc_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_lookup_method.dart';
 import 'package:built_value/json_object.dart';
+import 'package:ory_client/src/model/update_settings_flow_with_passkey_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_web_authn_method.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,7 +21,7 @@ part 'update_settings_flow_body.g.dart';
 ///
 /// Properties:
 /// * [csrfToken] - CSRFToken is the anti-CSRF token
-/// * [method] - Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
+/// * [method] - Method  Should be set to \"passkey\" when trying to add, update, or remove a webAuthn pairing.
 /// * [password] - Password is the updated password
 /// * [transientPayload] - Transient data to pass along to any webhooks
 /// * [traits] - The identity's traits  in: body
@@ -37,9 +38,11 @@ part 'update_settings_flow_body.g.dart';
 /// * [lookupSecretDisable] - Disables this method if true.
 /// * [lookupSecretRegenerate] - If set to true will regenerate the lookup secrets
 /// * [lookupSecretReveal] - If set to true will reveal the lookup secrets
+/// * [passkeyRemove] - Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
+/// * [passkeySettingsRegister] - Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
 @BuiltValue()
 abstract class UpdateSettingsFlowBody implements Built<UpdateSettingsFlowBody, UpdateSettingsFlowBodyBuilder> {
-  /// One Of [UpdateSettingsFlowWithLookupMethod], [UpdateSettingsFlowWithOidcMethod], [UpdateSettingsFlowWithPasswordMethod], [UpdateSettingsFlowWithProfileMethod], [UpdateSettingsFlowWithTotpMethod], [UpdateSettingsFlowWithWebAuthnMethod]
+  /// One Of [UpdateSettingsFlowWithLookupMethod], [UpdateSettingsFlowWithOidcMethod], [UpdateSettingsFlowWithPasskeyMethod], [UpdateSettingsFlowWithPasswordMethod], [UpdateSettingsFlowWithProfileMethod], [UpdateSettingsFlowWithTotpMethod], [UpdateSettingsFlowWithWebAuthnMethod]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'method';
@@ -47,6 +50,7 @@ abstract class UpdateSettingsFlowBody implements Built<UpdateSettingsFlowBody, U
   static const Map<String, Type> discriminatorMapping = {
     r'lookup_secret': UpdateSettingsFlowWithLookupMethod,
     r'oidc': UpdateSettingsFlowWithOidcMethod,
+    r'passkey': UpdateSettingsFlowWithPasskeyMethod,
     r'password': UpdateSettingsFlowWithPasswordMethod,
     r'profile': UpdateSettingsFlowWithProfileMethod,
     r'totp': UpdateSettingsFlowWithTotpMethod,
@@ -72,6 +76,9 @@ extension UpdateSettingsFlowBodyDiscriminatorExt on UpdateSettingsFlowBody {
         if (this is UpdateSettingsFlowWithOidcMethod) {
             return r'oidc';
         }
+        if (this is UpdateSettingsFlowWithPasskeyMethod) {
+            return r'passkey';
+        }
         if (this is UpdateSettingsFlowWithPasswordMethod) {
             return r'password';
         }
@@ -94,6 +101,9 @@ extension UpdateSettingsFlowBodyBuilderDiscriminatorExt on UpdateSettingsFlowBod
         }
         if (this is UpdateSettingsFlowWithOidcMethodBuilder) {
             return r'oidc';
+        }
+        if (this is UpdateSettingsFlowWithPasskeyMethodBuilder) {
+            return r'passkey';
         }
         if (this is UpdateSettingsFlowWithPasswordMethodBuilder) {
             return r'password';
@@ -147,7 +157,7 @@ class _$UpdateSettingsFlowBodySerializer implements PrimitiveSerializer<UpdateSe
     final discIndex = serializedList.indexOf(UpdateSettingsFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateSettingsFlowWithLookupMethod, UpdateSettingsFlowWithOidcMethod, UpdateSettingsFlowWithPasswordMethod, UpdateSettingsFlowWithProfileMethod, UpdateSettingsFlowWithTotpMethod, UpdateSettingsFlowWithWebAuthnMethod, ];
+    final oneOfTypes = [UpdateSettingsFlowWithLookupMethod, UpdateSettingsFlowWithOidcMethod, UpdateSettingsFlowWithPasskeyMethod, UpdateSettingsFlowWithPasswordMethod, UpdateSettingsFlowWithProfileMethod, UpdateSettingsFlowWithTotpMethod, UpdateSettingsFlowWithWebAuthnMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
@@ -164,6 +174,13 @@ class _$UpdateSettingsFlowBodySerializer implements PrimitiveSerializer<UpdateSe
           specifiedType: FullType(UpdateSettingsFlowWithOidcMethod),
         ) as UpdateSettingsFlowWithOidcMethod;
         oneOfType = UpdateSettingsFlowWithOidcMethod;
+        break;
+      case r'passkey':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UpdateSettingsFlowWithPasskeyMethod),
+        ) as UpdateSettingsFlowWithPasskeyMethod;
+        oneOfType = UpdateSettingsFlowWithPasskeyMethod;
         break;
       case r'password':
         oneOfResult = serializers.deserialize(

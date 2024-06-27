@@ -21,9 +21,10 @@ import 'package:ory_client/src/api/permission_api.dart';
 import 'package:ory_client/src/api/project_api.dart';
 import 'package:ory_client/src/api/relationship_api.dart';
 import 'package:ory_client/src/api/wellknown_api.dart';
+import 'package:ory_client/src/api/workspace_api.dart';
 
 class OryClient {
-  static const String basePath = r'https://playground.projects.oryapis.com';
+  static const String basePath = r'https://.projects.oryapis.com';
 
   final Dio dio;
   final Serializers serializers;
@@ -146,5 +147,11 @@ class OryClient {
   /// by doing that all interceptors will not be executed
   WellknownApi getWellknownApi() {
     return WellknownApi(dio, serializers);
+  }
+
+  /// Get WorkspaceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  WorkspaceApi getWorkspaceApi() {
+    return WorkspaceApi(dio, serializers);
   }
 }

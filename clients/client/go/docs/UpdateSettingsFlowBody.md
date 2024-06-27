@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CsrfToken** | Pointer to **string** | CSRFToken is the anti-CSRF token | [optional] 
-**Method** | **string** | Method  Should be set to \&quot;lookup\&quot; when trying to add, update, or remove a lookup pairing. | 
+**Method** | **string** | Method  Should be set to \&quot;passkey\&quot; when trying to add, update, or remove a webAuthn pairing. | 
 **Password** | **string** | Password is the updated password | 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 **Traits** | **map[string]interface{}** | The identity&#39;s traits  in: body | 
@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **LookupSecretDisable** | Pointer to **bool** | Disables this method if true. | [optional] 
 **LookupSecretRegenerate** | Pointer to **bool** | If set to true will regenerate the lookup secrets | [optional] 
 **LookupSecretReveal** | Pointer to **bool** | If set to true will reveal the lookup secrets | [optional] 
+**PasskeyRemove** | Pointer to **string** | Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
+**PasskeySettingsRegister** | Pointer to **string** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] 
 
 ## Methods
 
@@ -476,6 +478,56 @@ SetLookupSecretReveal sets LookupSecretReveal field to given value.
 `func (o *UpdateSettingsFlowBody) HasLookupSecretReveal() bool`
 
 HasLookupSecretReveal returns a boolean if a field has been set.
+
+### GetPasskeyRemove
+
+`func (o *UpdateSettingsFlowBody) GetPasskeyRemove() string`
+
+GetPasskeyRemove returns the PasskeyRemove field if non-nil, zero value otherwise.
+
+### GetPasskeyRemoveOk
+
+`func (o *UpdateSettingsFlowBody) GetPasskeyRemoveOk() (*string, bool)`
+
+GetPasskeyRemoveOk returns a tuple with the PasskeyRemove field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasskeyRemove
+
+`func (o *UpdateSettingsFlowBody) SetPasskeyRemove(v string)`
+
+SetPasskeyRemove sets PasskeyRemove field to given value.
+
+### HasPasskeyRemove
+
+`func (o *UpdateSettingsFlowBody) HasPasskeyRemove() bool`
+
+HasPasskeyRemove returns a boolean if a field has been set.
+
+### GetPasskeySettingsRegister
+
+`func (o *UpdateSettingsFlowBody) GetPasskeySettingsRegister() string`
+
+GetPasskeySettingsRegister returns the PasskeySettingsRegister field if non-nil, zero value otherwise.
+
+### GetPasskeySettingsRegisterOk
+
+`func (o *UpdateSettingsFlowBody) GetPasskeySettingsRegisterOk() (*string, bool)`
+
+GetPasskeySettingsRegisterOk returns a tuple with the PasskeySettingsRegister field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasskeySettingsRegister
+
+`func (o *UpdateSettingsFlowBody) SetPasskeySettingsRegister(v string)`
+
+SetPasskeySettingsRegister sets PasskeySettingsRegister field to given value.
+
+### HasPasskeySettingsRegister
+
+`func (o *UpdateSettingsFlowBody) HasPasskeySettingsRegister() bool`
+
+HasPasskeySettingsRegister returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

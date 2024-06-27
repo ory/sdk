@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accent_default_color** | **str** | AccentDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional] 
@@ -33,8 +34,24 @@ Name | Type | Description | Notes
 **success_emphasis_color** | **str** | SuccessEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **text_default_color** | **str** | TextDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **text_disabled_color** | **str** | TextDisabledColor is a hex color code used by the Ory Account Experience theme. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.project_branding_colors import ProjectBrandingColors
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ProjectBrandingColors from a JSON string
+project_branding_colors_instance = ProjectBrandingColors.from_json(json)
+# print the JSON string representation of the object
+print(ProjectBrandingColors.to_json())
+
+# convert the object into a dict
+project_branding_colors_dict = project_branding_colors_instance.to_dict()
+# create an instance of ProjectBrandingColors from a dict
+project_branding_colors_form_dict = project_branding_colors.from_dict(project_branding_colors_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

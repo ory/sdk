@@ -1,15 +1,15 @@
 # Ory\Client\RelationshipApi
 
-All URIs are relative to https://playground.projects.oryapis.com.
+All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**checkOplSyntax()**](RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
-[**createRelationship()**](RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship
-[**deleteRelationships()**](RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
-[**getRelationships()**](RelationshipApi.md#getRelationships) | **GET** /relation-tuples | Query relationships
-[**listRelationshipNamespaces()**](RelationshipApi.md#listRelationshipNamespaces) | **GET** /namespaces | Query namespaces
-[**patchRelationships()**](RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**checkOplSyntax()**](RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file |
+| [**createRelationship()**](RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship |
+| [**deleteRelationships()**](RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships |
+| [**getRelationships()**](RelationshipApi.md#getRelationships) | **GET** /relation-tuples | Query relationships |
+| [**listRelationshipNamespaces()**](RelationshipApi.md#listRelationshipNamespaces) | **GET** /namespaces | Query namespaces |
+| [**patchRelationships()**](RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships |
 
 
 ## `checkOplSyntax()`
@@ -51,9 +51,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | **string**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | **string**|  | [optional] |
 
 ### Return type
 
@@ -111,9 +111,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createRelationshipBody** | [**\Ory\Client\Model\CreateRelationshipBody**](../Model/CreateRelationshipBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **createRelationshipBody** | [**\Ory\Client\Model\CreateRelationshipBody**](../Model/CreateRelationshipBody.md)|  | [optional] |
 
 ### Return type
 
@@ -176,15 +176,15 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relationship | [optional]
- **object** | **string**| Object of the Relationship | [optional]
- **relation** | **string**| Relation of the Relationship | [optional]
- **subjectId** | **string**| SubjectID of the Relationship | [optional]
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **string**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **namespace** | **string**| Namespace of the Relationship | [optional] |
+| **object** | **string**| Object of the Relationship | [optional] |
+| **relation** | **string**| Relation of the Relationship | [optional] |
+| **subjectId** | **string**| SubjectID of the Relationship | [optional] |
+| **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **string**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] |
 
 ### Return type
 
@@ -250,17 +250,17 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageToken** | **string**|  | [optional]
- **pageSize** | **int**|  | [optional]
- **namespace** | **string**| Namespace of the Relationship | [optional]
- **object** | **string**| Object of the Relationship | [optional]
- **relation** | **string**| Relation of the Relationship | [optional]
- **subjectId** | **string**| SubjectID of the Relationship | [optional]
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **string**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pageToken** | **string**|  | [optional] |
+| **pageSize** | **int**|  | [optional] |
+| **namespace** | **string**| Namespace of the Relationship | [optional] |
+| **object** | **string**| Object of the Relationship | [optional] |
+| **relation** | **string**| Relation of the Relationship | [optional] |
+| **subjectId** | **string**| SubjectID of the Relationship | [optional] |
+| **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **string**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] |
 
 ### Return type
 
@@ -374,9 +374,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **relationshipPatch** | [**\Ory\Client\Model\RelationshipPatch[]**](../Model/RelationshipPatch.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **relationshipPatch** | [**\Ory\Client\Model\RelationshipPatch[]**](../Model/RelationshipPatch.md)|  | [optional] |
 
 ### Return type
 

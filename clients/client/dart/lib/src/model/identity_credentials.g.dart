@@ -18,6 +18,10 @@ const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_webauthn =
     const IdentityCredentialsTypeEnum._('webauthn');
 const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_code =
     const IdentityCredentialsTypeEnum._('code');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_passkey =
+    const IdentityCredentialsTypeEnum._('passkey');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_profile =
+    const IdentityCredentialsTypeEnum._('profile');
 const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_linkRecovery =
     const IdentityCredentialsTypeEnum._('linkRecovery');
 const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_codeRecovery =
@@ -37,6 +41,10 @@ IdentityCredentialsTypeEnum _$identityCredentialsTypeEnumValueOf(String name) {
       return _$identityCredentialsTypeEnum_webauthn;
     case 'code':
       return _$identityCredentialsTypeEnum_code;
+    case 'passkey':
+      return _$identityCredentialsTypeEnum_passkey;
+    case 'profile':
+      return _$identityCredentialsTypeEnum_profile;
     case 'linkRecovery':
       return _$identityCredentialsTypeEnum_linkRecovery;
     case 'codeRecovery':
@@ -55,6 +63,8 @@ final BuiltSet<IdentityCredentialsTypeEnum>
   _$identityCredentialsTypeEnum_lookupSecret,
   _$identityCredentialsTypeEnum_webauthn,
   _$identityCredentialsTypeEnum_code,
+  _$identityCredentialsTypeEnum_passkey,
+  _$identityCredentialsTypeEnum_profile,
   _$identityCredentialsTypeEnum_linkRecovery,
   _$identityCredentialsTypeEnum_codeRecovery,
 ]);
@@ -72,6 +82,8 @@ class _$IdentityCredentialsTypeEnumSerializer
     'lookupSecret': 'lookup_secret',
     'webauthn': 'webauthn',
     'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
   };
@@ -82,6 +94,8 @@ class _$IdentityCredentialsTypeEnumSerializer
     'lookup_secret': 'lookupSecret',
     'webauthn': 'webauthn',
     'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
   };

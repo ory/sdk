@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -21,11 +21,14 @@ var _ MappedNullable = &CreateProjectBody{}
 
 // CreateProjectBody Create Project Request Body
 type CreateProjectBody struct {
-	// The environment of the project. prod Production dev Development
+	// The environment of the project. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
+	// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global
+	HomeRegion *string `json:"home_region,omitempty"`
 	// The name of the project to be created
 	Name string `json:"name"`
-	WorkspaceId NullableString `json:"workspace_id,omitempty"`
+	// The workspace to create the project in.
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -74,6 +77,38 @@ func (o *CreateProjectBody) SetEnvironment(v string) {
 	o.Environment = v
 }
 
+// GetHomeRegion returns the HomeRegion field value if set, zero value otherwise.
+func (o *CreateProjectBody) GetHomeRegion() string {
+	if o == nil || IsNil(o.HomeRegion) {
+		var ret string
+		return ret
+	}
+	return *o.HomeRegion
+}
+
+// GetHomeRegionOk returns a tuple with the HomeRegion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectBody) GetHomeRegionOk() (*string, bool) {
+	if o == nil || IsNil(o.HomeRegion) {
+		return nil, false
+	}
+	return o.HomeRegion, true
+}
+
+// HasHomeRegion returns a boolean if a field has been set.
+func (o *CreateProjectBody) HasHomeRegion() bool {
+	if o != nil && !IsNil(o.HomeRegion) {
+		return true
+	}
+
+	return false
+}
+
+// SetHomeRegion gets a reference to the given string and assigns it to the HomeRegion field.
+func (o *CreateProjectBody) SetHomeRegion(v string) {
+	o.HomeRegion = &v
+}
+
 // GetName returns the Name field value
 func (o *CreateProjectBody) GetName() string {
 	if o == nil {
@@ -98,46 +133,36 @@ func (o *CreateProjectBody) SetName(v string) {
 	o.Name = v
 }
 
-// GetWorkspaceId returns the WorkspaceId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWorkspaceId returns the WorkspaceId field value if set, zero value otherwise.
 func (o *CreateProjectBody) GetWorkspaceId() string {
-	if o == nil || IsNil(o.WorkspaceId.Get()) {
+	if o == nil || IsNil(o.WorkspaceId) {
 		var ret string
 		return ret
 	}
-	return *o.WorkspaceId.Get()
+	return *o.WorkspaceId
 }
 
 // GetWorkspaceIdOk returns a tuple with the WorkspaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateProjectBody) GetWorkspaceIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WorkspaceId) {
 		return nil, false
 	}
-	return o.WorkspaceId.Get(), o.WorkspaceId.IsSet()
+	return o.WorkspaceId, true
 }
 
 // HasWorkspaceId returns a boolean if a field has been set.
 func (o *CreateProjectBody) HasWorkspaceId() bool {
-	if o != nil && o.WorkspaceId.IsSet() {
+	if o != nil && !IsNil(o.WorkspaceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetWorkspaceId gets a reference to the given NullableString and assigns it to the WorkspaceId field.
+// SetWorkspaceId gets a reference to the given string and assigns it to the WorkspaceId field.
 func (o *CreateProjectBody) SetWorkspaceId(v string) {
-	o.WorkspaceId.Set(&v)
-}
-// SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
-func (o *CreateProjectBody) SetWorkspaceIdNil() {
-	o.WorkspaceId.Set(nil)
-}
-
-// UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
-func (o *CreateProjectBody) UnsetWorkspaceId() {
-	o.WorkspaceId.Unset()
+	o.WorkspaceId = &v
 }
 
 func (o CreateProjectBody) MarshalJSON() ([]byte, error) {
@@ -151,9 +176,12 @@ func (o CreateProjectBody) MarshalJSON() ([]byte, error) {
 func (o CreateProjectBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["environment"] = o.Environment
+	if !IsNil(o.HomeRegion) {
+		toSerialize["home_region"] = o.HomeRegion
+	}
 	toSerialize["name"] = o.Name
-	if o.WorkspaceId.IsSet() {
-		toSerialize["workspace_id"] = o.WorkspaceId.Get()
+	if !IsNil(o.WorkspaceId) {
+		toSerialize["workspace_id"] = o.WorkspaceId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -163,8 +191,8 @@ func (o CreateProjectBody) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CreateProjectBody) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CreateProjectBody) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -174,7 +202,7 @@ func (o *CreateProjectBody) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -188,7 +216,7 @@ func (o *CreateProjectBody) UnmarshalJSON(bytes []byte) (err error) {
 
 	varCreateProjectBody := _CreateProjectBody{}
 
-	err = json.Unmarshal(bytes, &varCreateProjectBody)
+	err = json.Unmarshal(data, &varCreateProjectBody)
 
 	if err != nil {
 		return err
@@ -198,8 +226,9 @@ func (o *CreateProjectBody) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "environment")
+		delete(additionalProperties, "home_region")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "workspace_id")
 		o.AdditionalProperties = additionalProperties

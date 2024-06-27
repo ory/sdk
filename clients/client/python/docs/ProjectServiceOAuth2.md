@@ -2,11 +2,28 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**config** | **object** |  | 
 
+## Example
+
+```python
+from ory_client.models.project_service_o_auth2 import ProjectServiceOAuth2
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ProjectServiceOAuth2 from a JSON string
+project_service_o_auth2_instance = ProjectServiceOAuth2.from_json(json)
+# print the JSON string representation of the object
+print(ProjectServiceOAuth2.to_json())
+
+# convert the object into a dict
+project_service_o_auth2_dict = project_service_o_auth2_instance.to_dict()
+# create an instance of ProjectServiceOAuth2 from a dict
+project_service_o_auth2_form_dict = project_service_o_auth2.from_dict(project_service_o_auth2_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

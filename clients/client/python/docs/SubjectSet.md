@@ -2,13 +2,30 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **namespace** | **str** | Namespace of the Subject Set | 
 **object** | **str** | Object of the Subject Set | 
 **relation** | **str** | Relation of the Subject Set | 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.subject_set import SubjectSet
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of SubjectSet from a JSON string
+subject_set_instance = SubjectSet.from_json(json)
+# print the JSON string representation of the object
+print(SubjectSet.to_json())
+
+# convert the object into a dict
+subject_set_dict = subject_set_instance.to_dict()
+# create an instance of SubjectSet from a dict
+subject_set_form_dict = subject_set.from_dict(subject_set_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attributes** | [**Vec<crate::models::Attribute>**](Attribute.md) | Event attributes with details | 
+**attributes** | [**Vec<models::Attribute>**](Attribute.md) | Event attributes with details | 
 **name** | **String** | Name of the event | 
 **timestamp** | **String** | Time of occurence | 
 

@@ -1,10 +1,10 @@
 # \IdentityApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create and deletes multiple identities
+[**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create multiple identities
 [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity
 [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link
@@ -27,10 +27,10 @@ Method | HTTP request | Description
 
 ## batch_patch_identities
 
-> crate::models::BatchPatchIdentitiesResponse batch_patch_identities(patch_identities_body)
-Create and deletes multiple identities
+> models::BatchPatchIdentitiesResponse batch_patch_identities(patch_identities_body)
+Create multiple identities
 
-Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
 
 ### Parameters
 
@@ -41,7 +41,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::BatchPatchIdentitiesResponse**](batchPatchIdentitiesResponse.md)
+[**models::BatchPatchIdentitiesResponse**](batchPatchIdentitiesResponse.md)
 
 ### Authorization
 
@@ -57,7 +57,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_identity
 
-> crate::models::Identity create_identity(create_identity_body)
+> models::Identity create_identity(create_identity_body)
 Create an Identity
 
 Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
@@ -71,7 +71,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+[**models::Identity**](identity.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_recovery_code_for_identity
 
-> crate::models::RecoveryCodeForIdentity create_recovery_code_for_identity(create_recovery_code_for_identity_body)
+> models::RecoveryCodeForIdentity create_recovery_code_for_identity(create_recovery_code_for_identity_body)
 Create a Recovery Code
 
 This endpoint creates a recovery code which should be given to the user in order for them to recover (or activate) their account.
@@ -101,7 +101,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::RecoveryCodeForIdentity**](recoveryCodeForIdentity.md)
+[**models::RecoveryCodeForIdentity**](recoveryCodeForIdentity.md)
 
 ### Authorization
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_recovery_link_for_identity
 
-> crate::models::RecoveryLinkForIdentity create_recovery_link_for_identity(return_to, create_recovery_link_for_identity_body)
+> models::RecoveryLinkForIdentity create_recovery_link_for_identity(return_to, create_recovery_link_for_identity_body)
 Create a Recovery Link
 
 This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
@@ -132,7 +132,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::RecoveryLinkForIdentity**](recoveryLinkForIdentity.md)
+[**models::RecoveryLinkForIdentity**](recoveryLinkForIdentity.md)
 
 ### Authorization
 
@@ -178,10 +178,10 @@ Name | Type | Description  | Required | Notes
 
 ## delete_identity_credentials
 
-> delete_identity_credentials(id, _type)
+> delete_identity_credentials(id, r#type, identifier)
 Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
 
 ### Parameters
 
@@ -189,7 +189,8 @@ Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID is the identity's ID. | [required] |
-**_type** | **String** | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [required] |
+**r#type** | **String** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [required] |
+**identifier** | Option<**String**> | Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint. |  |
 
 ### Return type
 
@@ -269,10 +270,10 @@ Name | Type | Description  | Required | Notes
 
 ## extend_session
 
-> crate::models::Session extend_session(id)
+> models::Session extend_session(id)
 Extend a Session
 
-Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
 ### Parameters
 
@@ -283,7 +284,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Session**](session.md)
+[**models::Session**](session.md)
 
 ### Authorization
 
@@ -299,7 +300,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_identity
 
-> crate::models::Identity get_identity(id, include_credential)
+> models::Identity get_identity(id, include_credential)
 Get an Identity
 
 Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
@@ -314,7 +315,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+[**models::Identity**](identity.md)
 
 ### Authorization
 
@@ -360,7 +361,7 @@ No authorization required
 
 ## get_session
 
-> crate::models::Session get_session(id, expand)
+> models::Session get_session(id, expand)
 Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
@@ -375,7 +376,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Session**](session.md)
+[**models::Session**](session.md)
 
 ### Authorization
 
@@ -391,7 +392,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_identities
 
-> Vec<crate::models::Identity> list_identities(per_page, page, page_size, page_token, consistency, ids, credentials_identifier, preview_credentials_identifier_similar, include_credential)
+> Vec<models::Identity> list_identities(per_page, page, page_size, page_token, consistency, ids, credentials_identifier, preview_credentials_identifier_similar, include_credential)
 List Identities
 
 Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
@@ -413,7 +414,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Identity>**](identity.md)
+[**Vec<models::Identity>**](identity.md)
 
 ### Authorization
 
@@ -429,7 +430,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_identity_schemas
 
-> Vec<crate::models::IdentitySchemaContainer> list_identity_schemas(per_page, page, page_size, page_token)
+> Vec<models::IdentitySchemaContainer> list_identity_schemas(per_page, page, page_size, page_token)
 Get all Identity Schemas
 
 Returns a list of all identity schemas currently in use.
@@ -446,7 +447,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::IdentitySchemaContainer>**](identitySchemaContainer.md)
+[**Vec<models::IdentitySchemaContainer>**](identitySchemaContainer.md)
 
 ### Authorization
 
@@ -462,7 +463,7 @@ No authorization required
 
 ## list_identity_sessions
 
-> Vec<crate::models::Session> list_identity_sessions(id, per_page, page, page_size, page_token, active)
+> Vec<models::Session> list_identity_sessions(id, per_page, page, page_size, page_token, active)
 List an Identity's Sessions
 
 This endpoint returns all sessions that belong to the given Identity.
@@ -481,7 +482,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Session>**](session.md)
+[**Vec<models::Session>**](session.md)
 
 ### Authorization
 
@@ -497,7 +498,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_sessions
 
-> Vec<crate::models::Session> list_sessions(page_size, page_token, active, expand)
+> Vec<models::Session> list_sessions(page_size, page_token, active, expand)
 List All Sessions
 
 Listing all sessions that exist.
@@ -514,7 +515,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Session>**](session.md)
+[**Vec<models::Session>**](session.md)
 
 ### Authorization
 
@@ -530,7 +531,7 @@ Name | Type | Description  | Required | Notes
 
 ## patch_identity
 
-> crate::models::Identity patch_identity(id, json_patch)
+> models::Identity patch_identity(id, json_patch)
 Patch an Identity
 
 Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/). The fields `id`, `stateChangedAt` and `credentials` can not be updated using this method.
@@ -541,11 +542,11 @@ Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identi
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID must be set to the ID of identity you want to update | [required] |
-**json_patch** | Option<[**Vec<crate::models::JsonPatch>**](jsonPatch.md)> |  |  |
+**json_patch** | Option<[**Vec<models::JsonPatch>**](jsonPatch.md)> |  |  |
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+[**models::Identity**](identity.md)
 
 ### Authorization
 
@@ -561,7 +562,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_identity
 
-> crate::models::Identity update_identity(id, update_identity_body)
+> models::Identity update_identity(id, update_identity_body)
 Update an Identity
 
 This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity payload (except credentials) is expected. It is possible to update the identity's credentials as well.
@@ -576,7 +577,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+[**models::Identity**](identity.md)
 
 ### Authorization
 

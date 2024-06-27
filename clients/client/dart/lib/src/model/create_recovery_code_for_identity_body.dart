@@ -12,12 +12,17 @@ part 'create_recovery_code_for_identity_body.g.dart';
 ///
 /// Properties:
 /// * [expiresIn] - Code Expires In  The recovery code will expire after that amount of time has passed. Defaults to the configuration value of `selfservice.methods.code.config.lifespan`.
+/// * [flowType] - The flow type can either be `api` or `browser`.
 /// * [identityId] - Identity to Recover  The identity's ID you wish to recover.
 @BuiltValue()
 abstract class CreateRecoveryCodeForIdentityBody implements Built<CreateRecoveryCodeForIdentityBody, CreateRecoveryCodeForIdentityBodyBuilder> {
   /// Code Expires In  The recovery code will expire after that amount of time has passed. Defaults to the configuration value of `selfservice.methods.code.config.lifespan`.
   @BuiltValueField(wireName: r'expires_in')
   String? get expiresIn;
+
+  /// The flow type can either be `api` or `browser`.
+  @BuiltValueField(wireName: r'flow_type')
+  String? get flowType;
 
   /// Identity to Recover  The identity's ID you wish to recover.
   @BuiltValueField(wireName: r'identity_id')
@@ -50,6 +55,13 @@ class _$CreateRecoveryCodeForIdentityBodySerializer implements PrimitiveSerializ
       yield r'expires_in';
       yield serializers.serialize(
         object.expiresIn,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.flowType != null) {
+      yield r'flow_type';
+      yield serializers.serialize(
+        object.flowType,
         specifiedType: const FullType(String),
       );
     }
@@ -87,6 +99,13 @@ class _$CreateRecoveryCodeForIdentityBodySerializer implements PrimitiveSerializ
             specifiedType: const FullType(String),
           ) as String;
           result.expiresIn = valueDes;
+          break;
+        case r'flow_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.flowType = valueDes;
           break;
         case r'identity_id':
           final valueDes = serializers.deserialize(

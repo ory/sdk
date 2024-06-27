@@ -16,6 +16,8 @@ class _$Workspace extends Workspace {
   @override
   final String? subscriptionId;
   @override
+  final String? subscriptionPlan;
+  @override
   final DateTime updatedAt;
 
   factory _$Workspace([void Function(WorkspaceBuilder)? updates]) =>
@@ -26,6 +28,7 @@ class _$Workspace extends Workspace {
       required this.id,
       required this.name,
       this.subscriptionId,
+      this.subscriptionPlan,
       required this.updatedAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(createdAt, r'Workspace', 'createdAt');
@@ -49,6 +52,7 @@ class _$Workspace extends Workspace {
         id == other.id &&
         name == other.name &&
         subscriptionId == other.subscriptionId &&
+        subscriptionPlan == other.subscriptionPlan &&
         updatedAt == other.updatedAt;
   }
 
@@ -59,6 +63,7 @@ class _$Workspace extends Workspace {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, subscriptionId.hashCode);
+    _$hash = $jc(_$hash, subscriptionPlan.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -71,6 +76,7 @@ class _$Workspace extends Workspace {
           ..add('id', id)
           ..add('name', name)
           ..add('subscriptionId', subscriptionId)
+          ..add('subscriptionPlan', subscriptionPlan)
           ..add('updatedAt', updatedAt))
         .toString();
   }
@@ -96,6 +102,11 @@ class WorkspaceBuilder implements Builder<Workspace, WorkspaceBuilder> {
   set subscriptionId(String? subscriptionId) =>
       _$this._subscriptionId = subscriptionId;
 
+  String? _subscriptionPlan;
+  String? get subscriptionPlan => _$this._subscriptionPlan;
+  set subscriptionPlan(String? subscriptionPlan) =>
+      _$this._subscriptionPlan = subscriptionPlan;
+
   DateTime? _updatedAt;
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
@@ -111,6 +122,7 @@ class WorkspaceBuilder implements Builder<Workspace, WorkspaceBuilder> {
       _id = $v.id;
       _name = $v.name;
       _subscriptionId = $v.subscriptionId;
+      _subscriptionPlan = $v.subscriptionPlan;
       _updatedAt = $v.updatedAt;
       _$v = null;
     }
@@ -140,6 +152,7 @@ class WorkspaceBuilder implements Builder<Workspace, WorkspaceBuilder> {
             name: BuiltValueNullFieldError.checkNotNull(
                 name, r'Workspace', 'name'),
             subscriptionId: subscriptionId,
+            subscriptionPlan: subscriptionPlan,
             updatedAt: BuiltValueNullFieldError.checkNotNull(
                 updatedAt, r'Workspace', 'updatedAt'));
     replace(_$result);

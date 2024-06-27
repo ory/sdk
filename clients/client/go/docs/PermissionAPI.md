@@ -1,6 +1,6 @@
 # \PermissionAPI
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -26,31 +26,31 @@ Check a permission
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
-    namespace := "namespace_example" // string | Namespace of the Relationship (optional)
-    object := "object_example" // string | Object of the Relationship (optional)
-    relation := "relation_example" // string | Relation of the Relationship (optional)
-    subjectId := "subjectId_example" // string | SubjectID of the Relationship (optional)
-    subjectSetNamespace := "subjectSetNamespace_example" // string | Namespace of the Subject Set (optional)
-    subjectSetObject := "subjectSetObject_example" // string | Object of the Subject Set (optional)
-    subjectSetRelation := "subjectSetRelation_example" // string | Relation of the Subject Set (optional)
-    maxDepth := int64(789) // int64 |  (optional)
+	namespace := "namespace_example" // string | Namespace of the Relationship (optional)
+	object := "object_example" // string | Object of the Relationship (optional)
+	relation := "relation_example" // string | Relation of the Relationship (optional)
+	subjectId := "subjectId_example" // string | SubjectID of the Relationship (optional)
+	subjectSetNamespace := "subjectSetNamespace_example" // string | Namespace of the Subject Set (optional)
+	subjectSetObject := "subjectSetObject_example" // string | Object of the Subject Set (optional)
+	subjectSetRelation := "subjectSetRelation_example" // string | Relation of the Subject Set (optional)
+	maxDepth := int64(789) // int64 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionAPI.CheckPermission(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).MaxDepth(maxDepth).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.CheckPermission``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CheckPermission`: CheckPermissionResult
-    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.CheckPermission`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PermissionAPI.CheckPermission(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).MaxDepth(maxDepth).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.CheckPermission``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CheckPermission`: CheckPermissionResult
+	fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.CheckPermission`: %v\n", resp)
 }
 ```
 
@@ -106,31 +106,31 @@ Check a permission
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
-    namespace := "namespace_example" // string | Namespace of the Relationship (optional)
-    object := "object_example" // string | Object of the Relationship (optional)
-    relation := "relation_example" // string | Relation of the Relationship (optional)
-    subjectId := "subjectId_example" // string | SubjectID of the Relationship (optional)
-    subjectSetNamespace := "subjectSetNamespace_example" // string | Namespace of the Subject Set (optional)
-    subjectSetObject := "subjectSetObject_example" // string | Object of the Subject Set (optional)
-    subjectSetRelation := "subjectSetRelation_example" // string | Relation of the Subject Set (optional)
-    maxDepth := int64(789) // int64 |  (optional)
+	namespace := "namespace_example" // string | Namespace of the Relationship (optional)
+	object := "object_example" // string | Object of the Relationship (optional)
+	relation := "relation_example" // string | Relation of the Relationship (optional)
+	subjectId := "subjectId_example" // string | SubjectID of the Relationship (optional)
+	subjectSetNamespace := "subjectSetNamespace_example" // string | Namespace of the Subject Set (optional)
+	subjectSetObject := "subjectSetObject_example" // string | Object of the Subject Set (optional)
+	subjectSetRelation := "subjectSetRelation_example" // string | Relation of the Subject Set (optional)
+	maxDepth := int64(789) // int64 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionAPI.CheckPermissionOrError(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).MaxDepth(maxDepth).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.CheckPermissionOrError``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CheckPermissionOrError`: CheckPermissionResult
-    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.CheckPermissionOrError`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PermissionAPI.CheckPermissionOrError(context.Background()).Namespace(namespace).Object(object).Relation(relation).SubjectId(subjectId).SubjectSetNamespace(subjectSetNamespace).SubjectSetObject(subjectSetObject).SubjectSetRelation(subjectSetRelation).MaxDepth(maxDepth).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.CheckPermissionOrError``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CheckPermissionOrError`: CheckPermissionResult
+	fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.CheckPermissionOrError`: %v\n", resp)
 }
 ```
 
@@ -186,27 +186,27 @@ Expand a Relationship into permissions.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
-    namespace := "namespace_example" // string | Namespace of the Subject Set
-    object := "object_example" // string | Object of the Subject Set
-    relation := "relation_example" // string | Relation of the Subject Set
-    maxDepth := int64(789) // int64 |  (optional)
+	namespace := "namespace_example" // string | Namespace of the Subject Set
+	object := "object_example" // string | Object of the Subject Set
+	relation := "relation_example" // string | Relation of the Subject Set
+	maxDepth := int64(789) // int64 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionAPI.ExpandPermissions(context.Background()).Namespace(namespace).Object(object).Relation(relation).MaxDepth(maxDepth).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.ExpandPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExpandPermissions`: ExpandedPermissionTree
-    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.ExpandPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PermissionAPI.ExpandPermissions(context.Background()).Namespace(namespace).Object(object).Relation(relation).MaxDepth(maxDepth).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.ExpandPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExpandPermissions`: ExpandedPermissionTree
+	fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.ExpandPermissions`: %v\n", resp)
 }
 ```
 
@@ -258,25 +258,25 @@ Check a permission
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
-    maxDepth := int64(789) // int64 |  (optional)
-    postCheckPermissionBody := *openapiclient.NewPostCheckPermissionBody() // PostCheckPermissionBody |  (optional)
+	maxDepth := int64(789) // int64 |  (optional)
+	postCheckPermissionBody := *openapiclient.NewPostCheckPermissionBody() // PostCheckPermissionBody |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionAPI.PostCheckPermission(context.Background()).MaxDepth(maxDepth).PostCheckPermissionBody(postCheckPermissionBody).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.PostCheckPermission``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostCheckPermission`: CheckPermissionResult
-    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.PostCheckPermission`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PermissionAPI.PostCheckPermission(context.Background()).MaxDepth(maxDepth).PostCheckPermissionBody(postCheckPermissionBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.PostCheckPermission``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostCheckPermission`: CheckPermissionResult
+	fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.PostCheckPermission`: %v\n", resp)
 }
 ```
 
@@ -326,25 +326,25 @@ Check a permission
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
-    maxDepth := int64(789) // int64 |  (optional)
-    postCheckPermissionOrErrorBody := *openapiclient.NewPostCheckPermissionOrErrorBody() // PostCheckPermissionOrErrorBody |  (optional)
+	maxDepth := int64(789) // int64 |  (optional)
+	postCheckPermissionOrErrorBody := *openapiclient.NewPostCheckPermissionOrErrorBody() // PostCheckPermissionOrErrorBody |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionAPI.PostCheckPermissionOrError(context.Background()).MaxDepth(maxDepth).PostCheckPermissionOrErrorBody(postCheckPermissionOrErrorBody).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.PostCheckPermissionOrError``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostCheckPermissionOrError`: CheckPermissionResult
-    fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.PostCheckPermissionOrError`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PermissionAPI.PostCheckPermissionOrError(context.Background()).MaxDepth(maxDepth).PostCheckPermissionOrErrorBody(postCheckPermissionOrErrorBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.PostCheckPermissionOrError``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostCheckPermissionOrError`: CheckPermissionResult
+	fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.PostCheckPermissionOrError`: %v\n", resp)
 }
 ```
 

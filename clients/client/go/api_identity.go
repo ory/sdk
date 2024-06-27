@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -25,9 +25,9 @@ import (
 type IdentityAPI interface {
 
 	/*
-	BatchPatchIdentities Create and deletes multiple identities
+	BatchPatchIdentities Create multiple identities
 
-	Creates or delete multiple
+	Creates multiple
 [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
 This endpoint can also be used to [import
 credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
@@ -107,12 +107,12 @@ assumed that is has been deleted already.
 	/*
 	DeleteIdentityCredentials Delete a credential for a specific identity
 
-	Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type
-You can only delete second factor (aal2) credentials.
+	Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+You cannot delete password or code auth credentials through this API.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID is the identity's ID.
-	@param type_ Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	@return IdentityAPIDeleteIdentityCredentialsRequest
 	*/
 	DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest
@@ -153,6 +153,13 @@ You can only delete second factor (aal2) credentials.
 
 	Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it
 will only extend the session after the specified time has passed.
+
+This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may
+return a 200 OK response with the session in the body. Returning the session as part of the response
+will be deprecated in the future and should not be relied upon.
+
+This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those
+scenarios. This endpoint also returns 404 errors if the session does not exist.
 
 Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
@@ -323,9 +330,9 @@ func (r IdentityAPIBatchPatchIdentitiesRequest) Execute() (*BatchPatchIdentities
 }
 
 /*
-BatchPatchIdentities Create and deletes multiple identities
+BatchPatchIdentities Create multiple identities
 
-Creates or delete multiple
+Creates multiple
 [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
 This endpoint can also be used to [import
 credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
@@ -990,6 +997,13 @@ type IdentityAPIDeleteIdentityCredentialsRequest struct {
 	ApiService IdentityAPI
 	id string
 	type_ string
+	identifier *string
+}
+
+// Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;oidc&#x60; endpoint.
+func (r IdentityAPIDeleteIdentityCredentialsRequest) Identifier(identifier string) IdentityAPIDeleteIdentityCredentialsRequest {
+	r.identifier = &identifier
+	return r
 }
 
 func (r IdentityAPIDeleteIdentityCredentialsRequest) Execute() (*http.Response, error) {
@@ -999,12 +1013,12 @@ func (r IdentityAPIDeleteIdentityCredentialsRequest) Execute() (*http.Response, 
 /*
 DeleteIdentityCredentials Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type
-You can only delete second factor (aal2) credentials.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+You cannot delete password or code auth credentials through this API.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID is the identity's ID.
- @param type_ Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+ @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
  @return IdentityAPIDeleteIdentityCredentialsRequest
 */
 func (a *IdentityAPIService) DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest {
@@ -1037,6 +1051,9 @@ func (a *IdentityAPIService) DeleteIdentityCredentialsExecute(r IdentityAPIDelet
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.identifier != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifier", r.identifier, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1371,6 +1388,13 @@ ExtendSession Extend a Session
 
 Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it
 will only extend the session after the specified time has passed.
+
+This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may
+return a 200 OK response with the session in the body. Returning the session as part of the response
+will be deprecated in the future and should not be relied upon.
+
+This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those
+scenarios. This endpoint also returns 404 errors if the session does not exist.
 
 Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 

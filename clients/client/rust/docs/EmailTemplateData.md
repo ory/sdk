@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**body** | [**crate::models::EmailTemplateDataBody**](emailTemplateDataBody.md) |  | 
+**body** | [**models::EmailTemplateDataBody**](emailTemplateDataBody.md) |  | 
 **subject** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

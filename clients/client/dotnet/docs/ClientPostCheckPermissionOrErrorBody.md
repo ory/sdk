@@ -5,8 +5,8 @@ Post Check Permission Or Error Body
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Namespace** | **string** | Namespace to query | [optional] 
-**Object** | **string** | Object to query | [optional] 
+**VarNamespace** | **string** | Namespace to query | [optional] 
+**VarObject** | **string** | Object to query | [optional] 
 **Relation** | **string** | Relation to query | [optional] 
 **SubjectId** | **string** | SubjectID to query  Either SubjectSet or SubjectID can be provided. | [optional] 
 **SubjectSet** | [**ClientSubjectSet**](ClientSubjectSet.md) |  | [optional] 

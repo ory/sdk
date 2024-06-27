@@ -3,6 +3,7 @@
 OpenID Connect Userinfo
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **birthdate** | **str** | End-User&#39;s birthday, represented as an ISO 8601:2004 [ISO8601‑2004] YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform&#39;s date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates. | [optional] 
@@ -24,8 +25,24 @@ Name | Type | Description | Notes
 **updated_at** | **int** | Time the End-User&#39;s information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time. | [optional] 
 **website** | **str** | URL of the End-User&#39;s Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with. | [optional] 
 **zoneinfo** | **str** | String from zoneinfo [zoneinfo] time zone database representing the End-User&#39;s time zone. For example, Europe/Paris or America/Los_Angeles. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.oidc_user_info import OidcUserInfo
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of OidcUserInfo from a JSON string
+oidc_user_info_instance = OidcUserInfo.from_json(json)
+# print the JSON string representation of the object
+print(OidcUserInfo.to_json())
+
+# convert the object into a dict
+oidc_user_info_dict = oidc_user_info_instance.to_dict()
+# create an instance of OidcUserInfo from a dict
+oidc_user_info_form_dict = oidc_user_info.from_dict(oidc_user_info_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

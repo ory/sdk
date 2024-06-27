@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -321,8 +321,8 @@ func (o VerifiableIdentityAddress) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *VerifiableIdentityAddress) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *VerifiableIdentityAddress) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -334,7 +334,7 @@ func (o *VerifiableIdentityAddress) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -348,7 +348,7 @@ func (o *VerifiableIdentityAddress) UnmarshalJSON(bytes []byte) (err error) {
 
 	varVerifiableIdentityAddress := _VerifiableIdentityAddress{}
 
-	err = json.Unmarshal(bytes, &varVerifiableIdentityAddress)
+	err = json.Unmarshal(data, &varVerifiableIdentityAddress)
 
 	if err != nil {
 		return err
@@ -358,7 +358,7 @@ func (o *VerifiableIdentityAddress) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "status")

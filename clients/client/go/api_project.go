@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -18,7 +18,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-	"time"
 )
 
 
@@ -69,7 +68,9 @@ type ProjectAPI interface {
 	CreateProjectApiKeyExecute(r ProjectAPICreateProjectApiKeyRequest) (*ProjectApiKey, *http.Response, error)
 
 	/*
-	DeleteOrganization Delete a B2B SSO Organization for a project.
+	DeleteOrganization Method for DeleteOrganization
+
+	Delete a B2B SSO Organization for a project
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -97,21 +98,7 @@ type ProjectAPI interface {
 	DeleteProjectApiKeyExecute(r ProjectAPIDeleteProjectApiKeyRequest) (*http.Response, error)
 
 	/*
-	GetActiveProjectInConsole Returns the Ory Network Project selected in the Ory Network Console
-
-	Use this API to get your active project in the Ory Network Console UI.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ProjectAPIGetActiveProjectInConsoleRequest
-	*/
-	GetActiveProjectInConsole(ctx context.Context) ProjectAPIGetActiveProjectInConsoleRequest
-
-	// GetActiveProjectInConsoleExecute executes the request
-	//  @return ActiveProjectInConsole
-	GetActiveProjectInConsoleExecute(r ProjectAPIGetActiveProjectInConsoleRequest) (*ActiveProjectInConsole, *http.Response, error)
-
-	/*
-	GetOrganization Returns a B2B SSO Organization for a project by it's ID.
+	GetOrganization Returns a B2B SSO Organization for a project by its ID
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -155,22 +142,9 @@ type ProjectAPI interface {
 	GetProjectMembersExecute(r ProjectAPIGetProjectMembersRequest) ([]ProjectMember, *http.Response, error)
 
 	/*
-	GetProjectMetrics Method for GetProjectMetrics
-
-	Retrieves project metrics for the specified event type and time range
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Project ID
-	@return ProjectAPIGetProjectMetricsRequest
-	*/
-	GetProjectMetrics(ctx context.Context, projectId string) ProjectAPIGetProjectMetricsRequest
-
-	// GetProjectMetricsExecute executes the request
-	//  @return GetProjectMetricsResponse
-	GetProjectMetricsExecute(r ProjectAPIGetProjectMetricsRequest) (*GetProjectMetricsResponse, *http.Response, error)
-
-	/*
 	ListOrganizations Method for ListOrganizations
+
+	List all B2B SSO Organizations for a project
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -278,19 +252,6 @@ This endpoint requires the user to be a member of the project with the role `OWN
 	RemoveProjectMemberExecute(r ProjectAPIRemoveProjectMemberRequest) (*http.Response, error)
 
 	/*
-	SetActiveProjectInConsole Sets the Ory Network Project active in the Ory Network Console
-
-	Use this API to set your active project in the Ory Network Console UI.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ProjectAPISetActiveProjectInConsoleRequest
-	*/
-	SetActiveProjectInConsole(ctx context.Context) ProjectAPISetActiveProjectInConsoleRequest
-
-	// SetActiveProjectInConsoleExecute executes the request
-	SetActiveProjectInConsoleExecute(r ProjectAPISetActiveProjectInConsoleRequest) (*http.Response, error)
-
-	/*
 	SetProject Update an Ory Network Project Configuration
 
 	This endpoints allows you to update the Ory Network project configuration for
@@ -323,7 +284,9 @@ service!
 	SetProjectExecute(r ProjectAPISetProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error)
 
 	/*
-	UpdateOrganization Update a B2B SSO Organization for a project.
+	UpdateOrganization Method for UpdateOrganization
+
+	Update a B2B SSO Organization for a project
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -771,7 +734,9 @@ func (r ProjectAPIDeleteOrganizationRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteOrganization Delete a B2B SSO Organization for a project.
+DeleteOrganization Method for DeleteOrganization
+
+Delete a B2B SSO Organization for a project
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.
@@ -1009,124 +974,6 @@ func (a *ProjectAPIService) DeleteProjectApiKeyExecute(r ProjectAPIDeleteProject
 	return localVarHTTPResponse, nil
 }
 
-type ProjectAPIGetActiveProjectInConsoleRequest struct {
-	ctx context.Context
-	ApiService ProjectAPI
-}
-
-func (r ProjectAPIGetActiveProjectInConsoleRequest) Execute() (*ActiveProjectInConsole, *http.Response, error) {
-	return r.ApiService.GetActiveProjectInConsoleExecute(r)
-}
-
-/*
-GetActiveProjectInConsole Returns the Ory Network Project selected in the Ory Network Console
-
-Use this API to get your active project in the Ory Network Console UI.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ProjectAPIGetActiveProjectInConsoleRequest
-*/
-func (a *ProjectAPIService) GetActiveProjectInConsole(ctx context.Context) ProjectAPIGetActiveProjectInConsoleRequest {
-	return ProjectAPIGetActiveProjectInConsoleRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return ActiveProjectInConsole
-func (a *ProjectAPIService) GetActiveProjectInConsoleExecute(r ProjectAPIGetActiveProjectInConsoleRequest) (*ActiveProjectInConsole, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ActiveProjectInConsole
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectAPIService.GetActiveProjectInConsole")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/console/active/project"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v GenericError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-			var v GenericError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ProjectAPIGetOrganizationRequest struct {
 	ctx context.Context
 	ApiService ProjectAPI
@@ -1139,7 +986,7 @@ func (r ProjectAPIGetOrganizationRequest) Execute() (*GetOrganizationResponse, *
 }
 
 /*
-GetOrganization Returns a B2B SSO Organization for a project by it's ID.
+GetOrganization Returns a B2B SSO Organization for a project by its ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.
@@ -1539,187 +1386,31 @@ func (a *ProjectAPIService) GetProjectMembersExecute(r ProjectAPIGetProjectMembe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProjectAPIGetProjectMetricsRequest struct {
-	ctx context.Context
-	ApiService ProjectAPI
-	projectId string
-	eventType *string
-	resolution *string
-	from *time.Time
-	to *time.Time
-}
-
-// The event type to query for
-func (r ProjectAPIGetProjectMetricsRequest) EventType(eventType string) ProjectAPIGetProjectMetricsRequest {
-	r.eventType = &eventType
-	return r
-}
-
-// The resolution of the buckets  The minimum resolution is 1 minute.
-func (r ProjectAPIGetProjectMetricsRequest) Resolution(resolution string) ProjectAPIGetProjectMetricsRequest {
-	r.resolution = &resolution
-	return r
-}
-
-// The start RFC3339 date of the time window
-func (r ProjectAPIGetProjectMetricsRequest) From(from time.Time) ProjectAPIGetProjectMetricsRequest {
-	r.from = &from
-	return r
-}
-
-// The end RFC3339 date of the time window
-func (r ProjectAPIGetProjectMetricsRequest) To(to time.Time) ProjectAPIGetProjectMetricsRequest {
-	r.to = &to
-	return r
-}
-
-func (r ProjectAPIGetProjectMetricsRequest) Execute() (*GetProjectMetricsResponse, *http.Response, error) {
-	return r.ApiService.GetProjectMetricsExecute(r)
-}
-
-/*
-GetProjectMetrics Method for GetProjectMetrics
-
-Retrieves project metrics for the specified event type and time range
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId Project ID
- @return ProjectAPIGetProjectMetricsRequest
-*/
-func (a *ProjectAPIService) GetProjectMetrics(ctx context.Context, projectId string) ProjectAPIGetProjectMetricsRequest {
-	return ProjectAPIGetProjectMetricsRequest{
-		ApiService: a,
-		ctx: ctx,
-		projectId: projectId,
-	}
-}
-
-// Execute executes the request
-//  @return GetProjectMetricsResponse
-func (a *ProjectAPIService) GetProjectMetricsExecute(r ProjectAPIGetProjectMetricsRequest) (*GetProjectMetricsResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetProjectMetricsResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectAPIService.GetProjectMetrics")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{project_id}/metrics"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.eventType == nil {
-		return localVarReturnValue, nil, reportError("eventType is required and must be specified")
-	}
-	if r.resolution == nil {
-		return localVarReturnValue, nil, reportError("resolution is required and must be specified")
-	}
-	if r.from == nil {
-		return localVarReturnValue, nil, reportError("from is required and must be specified")
-	}
-	if r.to == nil {
-		return localVarReturnValue, nil, reportError("to is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "event_type", r.eventType, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "resolution", r.resolution, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GenericError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-			var v GenericError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ProjectAPIListOrganizationsRequest struct {
 	ctx context.Context
 	ApiService ProjectAPI
 	projectId string
+	pageSize *int64
+	pageToken *string
+	domain *string
+}
+
+// Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r ProjectAPIListOrganizationsRequest) PageSize(pageSize int64) ProjectAPIListOrganizationsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r ProjectAPIListOrganizationsRequest) PageToken(pageToken string) ProjectAPIListOrganizationsRequest {
+	r.pageToken = &pageToken
+	return r
+}
+
+// Domain  If set, only organizations with that domain will be returned.
+func (r ProjectAPIListOrganizationsRequest) Domain(domain string) ProjectAPIListOrganizationsRequest {
+	r.domain = &domain
+	return r
 }
 
 func (r ProjectAPIListOrganizationsRequest) Execute() (*ListOrganizationsResponse, *http.Response, error) {
@@ -1728,6 +1419,8 @@ func (r ProjectAPIListOrganizationsRequest) Execute() (*ListOrganizationsRespons
 
 /*
 ListOrganizations Method for ListOrganizations
+
+List all B2B SSO Organizations for a project
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.
@@ -1763,6 +1456,18 @@ func (a *ProjectAPIService) ListOrganizationsExecute(r ProjectAPIListOrganizatio
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+	} else {
+		var defaultValue int64 = 250
+		r.pageSize = &defaultValue
+	}
+	if r.pageToken != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+	}
+	if r.domain != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "domain", r.domain, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2542,121 +2247,6 @@ func (a *ProjectAPIService) RemoveProjectMemberExecute(r ProjectAPIRemoveProject
 	return localVarHTTPResponse, nil
 }
 
-type ProjectAPISetActiveProjectInConsoleRequest struct {
-	ctx context.Context
-	ApiService ProjectAPI
-	setActiveProjectInConsoleBody *SetActiveProjectInConsoleBody
-}
-
-func (r ProjectAPISetActiveProjectInConsoleRequest) SetActiveProjectInConsoleBody(setActiveProjectInConsoleBody SetActiveProjectInConsoleBody) ProjectAPISetActiveProjectInConsoleRequest {
-	r.setActiveProjectInConsoleBody = &setActiveProjectInConsoleBody
-	return r
-}
-
-func (r ProjectAPISetActiveProjectInConsoleRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SetActiveProjectInConsoleExecute(r)
-}
-
-/*
-SetActiveProjectInConsole Sets the Ory Network Project active in the Ory Network Console
-
-Use this API to set your active project in the Ory Network Console UI.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ProjectAPISetActiveProjectInConsoleRequest
-*/
-func (a *ProjectAPIService) SetActiveProjectInConsole(ctx context.Context) ProjectAPISetActiveProjectInConsoleRequest {
-	return ProjectAPISetActiveProjectInConsoleRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-func (a *ProjectAPIService) SetActiveProjectInConsoleExecute(r ProjectAPISetActiveProjectInConsoleRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectAPIService.SetActiveProjectInConsole")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/console/active/project"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.setActiveProjectInConsoleBody
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v GenericError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-			var v GenericError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
 type ProjectAPISetProjectRequest struct {
 	ctx context.Context
 	ApiService ProjectAPI
@@ -2855,7 +2445,9 @@ func (r ProjectAPIUpdateOrganizationRequest) Execute() (*Organization, *http.Res
 }
 
 /*
-UpdateOrganization Update a B2B SSO Organization for a project.
+UpdateOrganization Method for UpdateOrganization
+
+Update a B2B SSO Organization for a project
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.

@@ -1,6 +1,6 @@
 # FrontendApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -36,7 +36,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**updateVerificationFlow**](FrontendApi.md#updateVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow |
 
 
-<a name="createBrowserLoginFlow"></a>
+<a id="createBrowserLoginFlow"></a>
 # **createBrowserLoginFlow**
 > LoginFlow createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via)
 
@@ -56,7 +56,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     Boolean refresh = true; // Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
@@ -113,7 +113,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createBrowserLogoutFlow"></a>
+<a id="createBrowserLogoutFlow"></a>
 # **createBrowserLogoutFlow**
 > LogoutFlow createBrowserLogoutFlow(cookie, returnTo)
 
@@ -133,7 +133,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String cookie = "cookie_example"; // String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request.
@@ -180,7 +180,7 @@ No authorization required
 | **401** | errorGeneric |  -  |
 | **500** | errorGeneric |  -  |
 
-<a name="createBrowserRecoveryFlow"></a>
+<a id="createBrowserRecoveryFlow"></a>
 # **createBrowserRecoveryFlow**
 > RecoveryFlow createBrowserRecoveryFlow(returnTo)
 
@@ -200,7 +200,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
@@ -245,7 +245,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createBrowserRegistrationFlow"></a>
+<a id="createBrowserRegistrationFlow"></a>
 # **createBrowserRegistrationFlow**
 > RegistrationFlow createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization)
 
@@ -265,7 +265,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
@@ -315,7 +315,7 @@ No authorization required
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createBrowserSettingsFlow"></a>
+<a id="createBrowserSettingsFlow"></a>
 # **createBrowserSettingsFlow**
 > SettingsFlow createBrowserSettingsFlow(returnTo, cookie)
 
@@ -335,7 +335,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
@@ -384,7 +384,7 @@ No authorization required
 | **403** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createBrowserVerificationFlow"></a>
+<a id="createBrowserVerificationFlow"></a>
 # **createBrowserVerificationFlow**
 > VerificationFlow createBrowserVerificationFlow(returnTo)
 
@@ -404,7 +404,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
@@ -448,7 +448,7 @@ No authorization required
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeLoginFlow"></a>
+<a id="createNativeLoginFlow"></a>
 # **createNativeLoginFlow**
 > LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via)
 
@@ -468,7 +468,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     Boolean refresh = true; // Boolean | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
@@ -522,7 +522,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeRecoveryFlow"></a>
+<a id="createNativeRecoveryFlow"></a>
 # **createNativeRecoveryFlow**
 > RecoveryFlow createNativeRecoveryFlow()
 
@@ -542,7 +542,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     try {
@@ -582,7 +582,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeRegistrationFlow"></a>
+<a id="createNativeRegistrationFlow"></a>
 # **createNativeRegistrationFlow**
 > RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo)
 
@@ -602,7 +602,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     Boolean returnSessionTokenExchangeCode = true; // Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
@@ -648,7 +648,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeSettingsFlow"></a>
+<a id="createNativeSettingsFlow"></a>
 # **createNativeSettingsFlow**
 > SettingsFlow createNativeSettingsFlow(xSessionToken)
 
@@ -668,7 +668,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
@@ -712,7 +712,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeVerificationFlow"></a>
+<a id="createNativeVerificationFlow"></a>
 # **createNativeVerificationFlow**
 > VerificationFlow createNativeVerificationFlow()
 
@@ -732,7 +732,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     try {
@@ -772,7 +772,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="disableMyOtherSessions"></a>
+<a id="disableMyOtherSessions"></a>
 # **disableMyOtherSessions**
 > DeleteMySessionsCount disableMyOtherSessions(xSessionToken, cookie)
 
@@ -792,7 +792,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String xSessionToken = "xSessionToken_example"; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
@@ -839,7 +839,7 @@ No authorization required
 | **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="disableMySession"></a>
+<a id="disableMySession"></a>
 # **disableMySession**
 > disableMySession(id, xSessionToken, cookie)
 
@@ -859,7 +859,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String id = "id_example"; // String | ID is the session's ID.
@@ -907,7 +907,7 @@ No authorization required
 | **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="exchangeSessionToken"></a>
+<a id="exchangeSessionToken"></a>
 # **exchangeSessionToken**
 > SuccessfulNativeLogin exchangeSessionToken(initCode, returnToCode)
 
@@ -925,7 +925,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String initCode = "initCode_example"; // String | The part of the code return when initializing the flow.
@@ -973,7 +973,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getFlowError"></a>
+<a id="getFlowError"></a>
 # **getFlowError**
 > FlowError getFlowError(id)
 
@@ -993,7 +993,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String id = "id_example"; // String | Error is the error's ID
@@ -1038,7 +1038,7 @@ No authorization required
 | **404** | errorGeneric |  -  |
 | **500** | errorGeneric |  -  |
 
-<a name="getLoginFlow"></a>
+<a id="getLoginFlow"></a>
 # **getLoginFlow**
 > LoginFlow getLoginFlow(id, cookie)
 
@@ -1058,7 +1058,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String id = "id_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -1106,7 +1106,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getRecoveryFlow"></a>
+<a id="getRecoveryFlow"></a>
 # **getRecoveryFlow**
 > RecoveryFlow getRecoveryFlow(id, cookie)
 
@@ -1126,7 +1126,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
@@ -1173,7 +1173,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getRegistrationFlow"></a>
+<a id="getRegistrationFlow"></a>
 # **getRegistrationFlow**
 > RegistrationFlow getRegistrationFlow(id, cookie)
 
@@ -1193,7 +1193,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String id = "id_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -1241,7 +1241,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getSettingsFlow"></a>
+<a id="getSettingsFlow"></a>
 # **getSettingsFlow**
 > SettingsFlow getSettingsFlow(id, xSessionToken, cookie)
 
@@ -1261,7 +1261,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String id = "id_example"; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
@@ -1312,7 +1312,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getVerificationFlow"></a>
+<a id="getVerificationFlow"></a>
 # **getVerificationFlow**
 > VerificationFlow getVerificationFlow(id, cookie)
 
@@ -1332,7 +1332,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
@@ -1379,7 +1379,7 @@ No authorization required
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getWebAuthnJavaScript"></a>
+<a id="getWebAuthnJavaScript"></a>
 # **getWebAuthnJavaScript**
 > String getWebAuthnJavaScript()
 
@@ -1399,7 +1399,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     try {
@@ -1437,7 +1437,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | webAuthnJavaScript |  -  |
 
-<a name="listMySessions"></a>
+<a id="listMySessions"></a>
 # **listMySessions**
 > List&lt;Session&gt; listMySessions(perPage, page, pageSize, pageToken, xSessionToken, cookie)
 
@@ -1457,7 +1457,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     Long perPage = 250L; // Long | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
@@ -1512,7 +1512,7 @@ No authorization required
 | **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="performNativeLogout"></a>
+<a id="performNativeLogout"></a>
 # **performNativeLogout**
 > performNativeLogout(performNativeLogoutBody)
 
@@ -1532,7 +1532,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     PerformNativeLogoutBody performNativeLogoutBody = new PerformNativeLogoutBody(); // PerformNativeLogoutBody | 
@@ -1575,7 +1575,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="toSession"></a>
+<a id="toSession"></a>
 # **toSession**
 > Session toSession(xSessionToken, cookie, tokenizeAs)
 
@@ -1595,7 +1595,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String xSessionToken = "MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj"; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
@@ -1644,7 +1644,7 @@ No authorization required
 | **403** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateLoginFlow"></a>
+<a id="updateLoginFlow"></a>
 # **updateLoginFlow**
 > SuccessfulNativeLogin updateLoginFlow(flow, updateLoginFlowBody, xSessionToken, cookie)
 
@@ -1664,7 +1664,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String flow = "flow_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
@@ -1717,7 +1717,7 @@ No authorization required
 | **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateLogoutFlow"></a>
+<a id="updateLogoutFlow"></a>
 # **updateLogoutFlow**
 > updateLogoutFlow(token, returnTo, cookie)
 
@@ -1737,7 +1737,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String token = "token_example"; // String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint.
@@ -1784,7 +1784,7 @@ No authorization required
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateRecoveryFlow"></a>
+<a id="updateRecoveryFlow"></a>
 # **updateRecoveryFlow**
 > RecoveryFlow updateRecoveryFlow(flow, updateRecoveryFlowBody, token, cookie)
 
@@ -1804,7 +1804,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String flow = "flow_example"; // String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
@@ -1857,7 +1857,7 @@ No authorization required
 | **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateRegistrationFlow"></a>
+<a id="updateRegistrationFlow"></a>
 # **updateRegistrationFlow**
 > SuccessfulNativeRegistration updateRegistrationFlow(flow, updateRegistrationFlowBody, cookie)
 
@@ -1877,7 +1877,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String flow = "flow_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
@@ -1928,7 +1928,7 @@ No authorization required
 | **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateSettingsFlow"></a>
+<a id="updateSettingsFlow"></a>
 # **updateSettingsFlow**
 > SettingsFlow updateSettingsFlow(flow, updateSettingsFlowBody, xSessionToken, cookie)
 
@@ -1948,7 +1948,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String flow = "flow_example"; // String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
@@ -2003,7 +2003,7 @@ No authorization required
 | **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateVerificationFlow"></a>
+<a id="updateVerificationFlow"></a>
 # **updateVerificationFlow**
 > VerificationFlow updateVerificationFlow(flow, updateVerificationFlowBody, token, cookie)
 
@@ -2023,7 +2023,7 @@ import sh.ory.api.FrontendApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String flow = "flow_example"; // String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).

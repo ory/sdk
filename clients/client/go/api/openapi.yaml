@@ -11,13 +11,14 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.9.0
+  version: v1.12.0
 servers:
-- url: "https://{project}.projects.oryapis.com/"
+- url: "https://{project-slug}.projects.oryapis.com/"
   variables:
     project:
       default: playground
-      description: Project slug as provided by the Ory Console.
+      description: "Your Ory Network Project slug. You can find it in the [Ory Network\
+        \ Console](https://console.ory.sh/projects/current/developers/guides)."
 tags:
 - description: APIs for managing identities.
   name: identity
@@ -718,7 +719,7 @@ paths:
       - identity
     patch:
       description: |-
-        Creates or delete multiple
+        Creates multiple
         [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
         This endpoint can also be used to [import
         credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
@@ -757,7 +758,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: Create and deletes multiple identities
+      summary: Create multiple identities
       tags:
       - identity
     post:
@@ -872,6 +873,8 @@ paths:
             - lookup_secret
             - webauthn
             - code
+            - passkey
+            - profile
             - link_recovery
             - code_recovery
             type: string
@@ -1016,8 +1019,8 @@ paths:
   /admin/identities/{id}/credentials/{type}:
     delete:
       description: |-
-        Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type
-        You can only delete second factor (aal2) credentials.
+        Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+        You cannot delete password or code auth credentials through this API.
       operationId: deleteIdentityCredentials
       parameters:
       - description: ID is the identity's ID.
@@ -1029,13 +1032,15 @@ paths:
           type: string
         style: simple
       - description: |-
-          Type is the type of credentials to be deleted.
+          Type is the type of credentials to delete.
           password CredentialsTypePassword
           oidc CredentialsTypeOIDC
           totp CredentialsTypeTOTP
           lookup_secret CredentialsTypeLookup
           webauthn CredentialsTypeWebAuthn
           code CredentialsTypeCodeAuth
+          passkey CredentialsTypePasskey
+          profile CredentialsTypeProfile
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
         explode: false
@@ -1050,6 +1055,8 @@ paths:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -1061,8 +1068,20 @@ paths:
           lookup_secret CredentialsTypeLookup
           webauthn CredentialsTypeWebAuthn
           code CredentialsTypeCodeAuth
+          passkey CredentialsTypePasskey
+          profile CredentialsTypeProfile
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
+      - description: |-
+          Identifier is the identifier of the OIDC credential to delete.
+          Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint.
+        explode: true
+        in: query
+        name: identifier
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "204":
           description: |-
@@ -2455,10 +2474,10 @@ paths:
         name: expand
         required: false
         schema:
-          enum:
-          - identity
-          - devices
           items:
+            enum:
+            - identity
+            - devices
             type: string
           type: array
         style: form
@@ -2549,10 +2568,10 @@ paths:
         name: expand
         required: false
         schema:
-          enum:
-          - identity
-          - devices
           items:
+            enum:
+            - identity
+            - devices
             type: string
           type: array
         style: form
@@ -2594,6 +2613,13 @@ paths:
         Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it
         will only extend the session after the specified time has passed.
 
+        This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may
+        return a 200 OK response with the session in the body. Returning the session as part of the response
+        will be deprecated in the future and should not be relied upon.
+
+        This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those
+        scenarios. This endpoint also returns 404 errors if the session does not exist.
+
         Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
       operationId: extendSession
       parameters:
@@ -2612,6 +2638,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/session'
           description: session
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -2779,67 +2809,6 @@ paths:
       summary: Get Trusted OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - oAuth2
-  /console/active/project:
-    get:
-      description: Use this API to get your active project in the Ory Network Console
-        UI.
-      operationId: getActiveProjectInConsole
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/activeProjectInConsole'
-          description: activeProjectInConsole
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      security:
-      - oryAccessToken: []
-      summary: Returns the Ory Network Project selected in the Ory Network Console
-      tags:
-      - project
-    put:
-      description: Use this API to set your active project in the Ory Network Console
-        UI.
-      operationId: setActiveProjectInConsole
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/setActiveProjectInConsoleBody'
-        x-originalParamName: Body
-      responses:
-        "204":
-          description: |-
-            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
-            typically 201.
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      security:
-      - oryAccessToken: []
-      summary: Sets the Ory Network Project active in the Ory Network Console
-      tags:
-      - project
   /credentials:
     post:
       description: |-
@@ -2878,78 +2847,6 @@ paths:
       summary: Issues a Verifiable Credential
       tags:
       - oidc
-  /health/alive:
-    get:
-      description: |-
-        This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming
-        HTTP requests. This status does currently not include checks whether the database connection is working.
-
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of this service, the health status will never
-        refer to the cluster state, only to a single instance.
-      operationId: isAlive
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: Ory Kratos is ready to accept connections.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        default:
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Unexpected error
-      security:
-      - oryAccessToken: []
-      summary: Check HTTP Server Status
-      tags:
-      - metadata
-  /health/ready:
-    get:
-      description: |-
-        This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g.
-        the database) are responsive as well.
-
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of Ory Kratos, the health status will never
-        refer to the cluster state, only to a single instance.
-      operationId: isReady
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/isReady_200_response'
-          description: Ory Kratos is ready to accept requests.
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/isReady_503_response'
-          description: Ory Kratos is not yet ready to accept requests.
-        default:
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Unexpected error
-      security:
-      - oryAccessToken: []
-      summary: Check HTTP Server and Database Status
-      tags:
-      - metadata
   /namespaces:
     get:
       description: Get all namespaces
@@ -3326,7 +3223,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: List All Projects
       tags:
       - project
@@ -3371,7 +3272,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Create a Project
       tags:
       - project
@@ -3427,7 +3332,11 @@ paths:
                 $ref: '#/components/schemas/genericError'
           description: genericError
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Irrecoverably purge a project
       tags:
       - project
@@ -3478,7 +3387,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Get a Project
       tags:
       - project
@@ -3560,7 +3473,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Patch an Ory Network Project Configuration
       tags:
       - project
@@ -3641,7 +3558,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Update an Ory Network Project Configuration
       tags:
       - project
@@ -3686,7 +3607,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: List all event streams for the project. This endpoint is not paginated.
       tags:
       - events
@@ -3743,7 +3668,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Create an event stream for your project.
       tags:
       - events
@@ -3804,7 +3733,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Remove an event stream from a project
       tags:
       - events
@@ -3871,95 +3804,47 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Update an event stream for a project.
       tags:
       - events
-  /projects/{project_id}/metrics:
-    get:
-      description: Retrieves project metrics for the specified event type and time
-        range
-      operationId: getProjectMetrics
-      parameters:
-      - description: Project ID
-        explode: false
-        in: path
-        name: project_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The event type to query for
-        explode: true
-        in: query
-        name: event_type
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: |-
-          The resolution of the buckets
-
-          The minimum resolution is 1 minute.
-        explode: true
-        in: query
-        name: resolution
-        required: true
-        schema:
-          pattern: "^[0-9]+(m|h|d|M|y)$"
-          type: string
-        style: form
-      - description: The start RFC3339 date of the time window
-        explode: true
-        in: query
-        name: from
-        required: true
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: The end RFC3339 date of the time window
-        explode: true
-        in: query
-        name: to
-        required: true
-        schema:
-          format: date-time
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getProjectMetricsResponse'
-          description: getProjectMetricsResponse
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      security:
-      - oryAccessToken: []
-      tags:
-      - project
   /projects/{project_id}/organizations:
     get:
+      description: List all B2B SSO Organizations for a project
       operationId: listOrganizations
       parameters:
+      - description: |-
+          Items per Page
+
+          This is the number of items per page to return.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          type: string
+        style: form
       - description: |-
           Project ID
 
@@ -3971,6 +3856,17 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          Domain
+
+          If set, only organizations with that domain will be returned.
+        explode: true
+        in: query
+        name: domain
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -3997,7 +3893,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       tags:
       - project
     post:
@@ -4053,11 +3953,16 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       tags:
       - project
   /projects/{project_id}/organizations/{organization_id}:
     delete:
+      description: Delete a B2B SSO Organization for a project
       operationId: deleteOrganization
       parameters:
       - description: |-
@@ -4118,8 +4023,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
-      summary: Delete a B2B SSO Organization for a project.
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       tags:
       - project
     get:
@@ -4173,11 +4081,16 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
-      summary: Returns a B2B SSO Organization for a project by it's ID.
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Returns a B2B SSO Organization for a project by its ID
       tags:
       - project
     put:
+      description: Update a B2B SSO Organization for a project
       operationId: updateOrganization
       parameters:
       - description: |-
@@ -4246,8 +4159,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
-      summary: Update a B2B SSO Organization for a project.
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       tags:
       - project
   /projects/{project}/members:
@@ -4289,7 +4205,11 @@ paths:
                 $ref: '#/components/schemas/genericError'
           description: genericError
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Get all members associated with this project
       tags:
       - project
@@ -4338,7 +4258,11 @@ paths:
                 $ref: '#/components/schemas/genericError'
           description: genericError
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Remove a member associated with this project
       tags:
       - project
@@ -4369,7 +4293,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: List a project's API Tokens
       tags:
       - project
@@ -4405,7 +4333,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Create project API token
       tags:
       - project
@@ -4442,7 +4374,11 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
       security:
-      - oryAccessToken: []
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
       summary: Delete project API token
       tags:
       - project
@@ -7415,6 +7351,317 @@ paths:
       summary: Return Running Software Version.
       tags:
       - metadata
+  /workspaces:
+    get:
+      operationId: listWorkspaces
+      parameters:
+      - description: |-
+          Items per Page
+
+          This is the number of items per page to return.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listWorkspaces'
+          description: listWorkspaces
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: List workspaces the user is a member of
+      tags:
+      - workspace
+    post:
+      operationId: createWorkspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createWorkspaceBody'
+        x-originalParamName: Body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workspace'
+          description: workspace
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Create a new workspace
+      tags:
+      - workspace
+  /workspaces/{workspace}:
+    get:
+      description: Any workspace member can access this endpoint.
+      operationId: getWorkspace
+      parameters:
+      - explode: false
+        in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workspace'
+          description: workspace
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Get a workspace
+      tags:
+      - workspace
+    put:
+      description: Workspace members with the role `OWNER` can access this endpoint.
+      operationId: updateWorkspace
+      parameters:
+      - explode: false
+        in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateWorkspaceBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workspace'
+          description: workspace
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Update an workspace
+      tags:
+      - workspace
+  /workspaces/{workspace}/projects:
+    get:
+      description: Any workspace member can access this endpoint.
+      operationId: listWorkspaceProjects
+      parameters:
+      - explode: false
+        in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listWorkspaceProjects'
+          description: listWorkspaceProjects
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: List all projects of a workspace
+      tags:
+      - workspace
 components:
   responses:
     emptyResponse:
@@ -7497,6 +7744,9 @@ components:
 
         The response given when listing sessions in an administrative context.
   schemas:
+    AmountInCent:
+      format: int64
+      type: integer
     Attribute:
       properties:
         key:
@@ -7544,6 +7794,17 @@ components:
       - count
       - name
       type: object
+    BillingPeriodBucket:
+      properties:
+        base_invoices:
+          items:
+            $ref: '#/components/schemas/invoice'
+          type: array
+        billing_period:
+          $ref: '#/components/schemas/TimeInterval'
+        usage_invoice:
+          $ref: '#/components/schemas/invoice'
+      type: object
     CreateInviteResponse:
       properties:
         all_invites:
@@ -7583,14 +7844,35 @@ components:
           description: |2-
 
             prod Production
+            stage Staging
             dev Development
           enum:
           - prod
+          - stage
           - dev
           type: string
           x-go-enum-desc: |-
             prod Production
+            stage Staging
             dev Development
+        home_region:
+          description: |2-
+
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         hydra_oauth2_allowed_top_level_claims:
           items:
             type: string
@@ -7726,7 +8008,7 @@ components:
         hydra_strategies_access_token:
           default: opaque
           description: |-
-            Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens
+            Defines access token type
 
             This governs the "strategies.access_token" setting.
             opaque Oauth2AccessTokenStrategyOpaque
@@ -7738,6 +8020,28 @@ components:
           x-go-enum-desc: |-
             opaque Oauth2AccessTokenStrategyOpaque
             jwt Oauth2AccessTokenStrategyJwt
+        hydra_strategies_jwt_scope_claim:
+          default: list
+          description: |-
+            Define the claim to use as the scope in the access token.
+
+            This governs the "strategies.jwt.scope_claim" setting:
+
+            list: The scope claim is an array of strings named `scope`: `{ "scope": ["read", "write"] }`
+            string: The scope claim is a space delimited list of strings named `scp`: `{ "scp": "read write" }`
+            both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ "scope": ["read", "write"], "scp": "read write" }`
+            list OAuth2JWTScopeClaimList
+            string OAuth2JWTScopeClaimString
+            both OAuth2JWTScopeClaimBoth
+          enum:
+          - list
+          - string
+          - both
+          type: string
+          x-go-enum-desc: |-
+            list OAuth2JWTScopeClaimList
+            string OAuth2JWTScopeClaimString
+            both OAuth2JWTScopeClaimBoth
         hydra_strategies_scope:
           default: wildcard
           description: |-
@@ -8335,6 +8639,12 @@ components:
 
             This governs the "selfservice.flows.login.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_login_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login After Passkey Default Return URL
+
+            This governs the "selfservice.flows.login.after.passkey.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_login_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Login After Password Default Return URL
@@ -8433,6 +8743,12 @@ components:
 
             This governs the "selfservice.flows.registration.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_registration_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Registration After Passkey Default Return URL
+
+            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_registration_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Registration After Password Default Return URL
@@ -8441,10 +8757,20 @@ components:
           type: string
         kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Registration After Password Default Return URL
+            Configures the Ory Kratos Registration After Webauthn Default Return URL
 
-            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.registration.after.webauthn.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_registration_enable_legacy_one_step:
+          description: |-
+            Disable two-step registration
+
+            Two-step registration is a significantly improved sign up flow and recommended
+            when using more than one sign up methods. To revert to one-step registration,
+            set this to `true`.
+
+            This governs the "selfservice.flows.registration.enable_legacy_one_step" setting.
+          type: boolean
         kratos_selfservice_flows_registration_enabled:
           description: |-
             Configures the Whether Ory Kratos Registration is Enabled
@@ -8489,6 +8815,12 @@ components:
 
             This governs the "selfservice.flows.settings.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_settings_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating Passkey
+
+            This governs the "selfservice.flows.settings.after.passkey.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_settings_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Settings Default Return URL After Updating Passwords
@@ -8511,7 +8843,7 @@ components:
           description: |-
             Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn
 
-            This governs the "selfservice.flows.settings.webauthn.profile.default_browser_return_url" setting.
+            This governs the "selfservice.flows.settings.after.webauthn.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_settings_lifespan:
           description: |-
@@ -8595,15 +8927,21 @@ components:
           type: boolean
         kratos_selfservice_methods_code_mfa_enabled:
           description: |-
-            Configues whether the code method can be used to fulfil MFA flows
+            Configures whether the code method can be used to fulfil MFA flows
 
             This governs the "selfservice.methods.code.mfa_enabled" setting.
           type: boolean
         kratos_selfservice_methods_code_passwordless_enabled:
           description: |-
-            Configues whether Ory Kratos Passwordless should use the Code Method
+            Configures whether Ory Kratos Passwordless should use the Code Method
 
             This governs the "selfservice.methods.code.passwordless_enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_code_passwordless_login_fallback_enabled:
+          description: |-
+            This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.
+
+            This governs the "selfservice.methods.code.passwordless_login_fallback_enabled" setting.
           type: boolean
         kratos_selfservice_methods_link_config_base_url:
           description: |-
@@ -8647,6 +8985,30 @@ components:
             Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled
 
             This governs the "selfservice.methods.oidc.enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_passkey_config_rp_display_name:
+          description: |-
+            Configures the Ory Kratos Passkey RP Display Name
+
+            This governs the "selfservice.methods.passkey.config.rp.display_name" setting.
+          type: string
+        kratos_selfservice_methods_passkey_config_rp_id:
+          description: |-
+            Configures the Ory Kratos Passkey RP ID
+
+            This governs the "selfservice.methods.passkey.config.rp.id" setting.
+          type: string
+        kratos_selfservice_methods_passkey_config_rp_origins:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        kratos_selfservice_methods_passkey_enabled:
+          description: |-
+            Configures whether Ory Kratos Passkey authentication is enabled
+
+            This governs the "selfservice.methods.passkey.enabled" setting.
           type: boolean
         kratos_selfservice_methods_password_config_haveibeenpwned_enabled:
           description: |-
@@ -8814,8 +9176,7 @@ components:
           readOnly: true
           type: string
         workspace_id:
-          format: uuid4
-          nullable: true
+          format: uuid
           type: string
       required:
       - environment
@@ -8898,10 +9259,7 @@ components:
     GenericUsage:
       properties:
         additional_price:
-          description: AdditionalPrice is the price per-unit in cent exceeding IncludedUsage.
-            A price of 0 means that no other items can be consumed.
-          format: int64
-          type: integer
+          $ref: '#/components/schemas/Money'
         included_usage:
           description: IncludedUsage is the number of included items.
           format: int64
@@ -8914,6 +9272,62 @@ components:
     ID:
       format: int64
       type: integer
+    InvoiceDataV1:
+      properties:
+        billing_period:
+          $ref: '#/components/schemas/TimeInterval'
+        currency:
+          description: The currency of the invoice.
+          readOnly: true
+          type: string
+        items:
+          description: The items that are part of this invoice.
+          items:
+            $ref: '#/components/schemas/LineItemV1'
+          readOnly: true
+          type: array
+        plan:
+          description: The plan that this invoice is based on.
+          readOnly: true
+          type: string
+        stripe_invoice_item:
+          type: string
+        stripe_invoice_status:
+          description: "The status of the invoice, one of `draft`, `open`, `paid`,\
+            \ `uncollectible`, or `void`. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview)"
+          type: string
+        stripe_link:
+          description: An optional link to the invoice on Stripe.
+          readOnly: true
+          type: string
+        subtitle:
+          description: The subtitle of the invoice.
+          readOnly: true
+          type: string
+        tax:
+          $ref: '#/components/schemas/TaxLineItem'
+        title:
+          description: The title of the invoice.
+          readOnly: true
+          type: string
+        total_in_cent:
+          format: int64
+          type: integer
+      required:
+      - billing_period
+      - currency
+      - items
+      - title
+      - total_in_cent
+      type: object
+    InvoiceStatus:
+      description: "The status of the invoice, one of `draft`, `open`, `paid`, `uncollectible`,\
+        \ or `void`. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview)"
+      type: string
+    Invoices:
+      items:
+        $ref: '#/components/schemas/invoice'
+      type: array
     JSONRawMessage:
       title: "JSONRawMessage represents a json.RawMessage that works well with JSON,\
         \ SQL, and Swagger."
@@ -8930,20 +9344,35 @@ components:
       items:
         $ref: '#/components/schemas/KetoNamespace'
       type: array
-    ListMyWorkspacesResponse:
+    LineItemV1:
       properties:
-        has_next_page:
-          type: boolean
-        next_page_token:
+        amount_in_cent:
+          format: int64
+          type: integer
+        description:
           type: string
-        workspaces:
+        items:
+          description: Each line item can have sub-items to create a hierarchy.
           items:
-            $ref: '#/components/schemas/workspaceMeta'
+            $ref: '#/components/schemas/LineItemV1'
           type: array
-      required:
-      - has_next_page
-      - next_page_token
-      - workspaces
+        quantity:
+          format: int64
+          type: integer
+        title:
+          type: string
+        unit_price:
+          type: string
+      type: object
+    Money:
+      properties:
+        Cents:
+          format: int64
+          type: integer
+        String:
+          type: string
+        Unit:
+          type: string
       type: object
     NormalizedProjectRevisionCourierChannel:
       properties:
@@ -9226,19 +9655,43 @@ components:
       type: array
     SubscriptionStatus:
       description: |-
-        For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.
+        For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this status can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` status. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal status, the open invoice will be voided and no further invoices will be generated.
 
         A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.
+
+        A subscription can only enter a `paused` status [when a trial ends without a payment method](https://stripe.com/billing/subscriptions/trials#create-free-trials-without-payment). A `paused` subscription doesn't generate invoices and can be resumed after your customer adds their payment method. The `paused` status is different from [pausing collection](https://stripe.com/billing/subscriptions/pause-payment), which still generates invoices and leaves the subscription's status unchanged.
 
         If subscription `collection_method=charge_automatically`, it becomes `past_due` when payment is required but cannot be paid (due to failed payment or awaiting additional user actions). Once Stripe has exhausted all payment retry attempts, the subscription will become `canceled` or `unpaid` (depending on your subscriptions settings).
 
         If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
       title: "Possible values are `incomplete`, `incomplete_expired`, `trialing`,\
-        \ `active`, `past_due`, `canceled`, or `unpaid`."
+        \ `active`, `past_due`, `canceled`, `unpaid`, or `paused`."
       type: string
+    TaxLineItem:
+      properties:
+        amount_in_cent:
+          format: int64
+          type: integer
+        title:
+          type: string
+      type: object
     Time:
       format: date-time
       type: string
+    TimeInterval:
+      properties:
+        end:
+          description: The end of the time period.
+          format: date-time
+          type: string
+        start:
+          description: The start of the time period.
+          format: date-time
+          type: string
+      required:
+      - end
+      - start
+      type: object
     UUID:
       format: uuid4
       type: string
@@ -9392,10 +9845,211 @@ components:
       - subject
       title: HandledLoginRequest is the request payload used to accept a login request.
       type: object
+    accountExperienceConfiguration:
+      properties:
+        account_experience_theme_stylesheet:
+          type: string
+        kratos_selfservice_flows_recovery_enabled:
+          type: boolean
+        kratos_selfservice_flows_registration_enabled:
+          type: boolean
+        kratos_selfservice_flows_verification_enabled:
+          type: boolean
+        organization_map:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    accountExperienceThemeVariables:
+      properties:
+        accent:
+          type: string
+        bg-default:
+          type: string
+        border-radius-branding:
+          type: string
+        border-radius-buttons:
+          type: string
+        border-radius-cards:
+          type: string
+        border-radius-forms:
+          type: string
+        border-radius-general:
+          type: string
+        button-primary-bg-default:
+          type: string
+        button-primary-bg-disabled:
+          type: string
+        button-primary-bg-hover:
+          type: string
+        button-primary-border-default:
+          type: string
+        button-primary-border-disabled:
+          type: string
+        button-primary-border-hover:
+          type: string
+        button-primary-fg-default:
+          type: string
+        button-primary-fg-disabled:
+          type: string
+        button-primary-fg-hover:
+          type: string
+        button-secondary-bg-default:
+          type: string
+        button-secondary-bg-disabled:
+          type: string
+        button-secondary-bg-hover:
+          type: string
+        button-secondary-border-default:
+          type: string
+        button-secondary-border-disabled:
+          type: string
+        button-secondary-border-hover:
+          type: string
+        button-secondary-fg-default:
+          type: string
+        button-secondary-fg-disabled:
+          type: string
+        button-secondary-fg-hover:
+          type: string
+        button-social-bg-default:
+          type: string
+        button-social-bg-disabled:
+          type: string
+        button-social-bg-hover:
+          type: string
+        button-social-bg-provider:
+          type: string
+        button-social-border-default:
+          type: string
+        button-social-border-disabled:
+          type: string
+        button-social-border-hover:
+          type: string
+        button-social-border-provider:
+          type: string
+        button-social-fg-default:
+          type: string
+        button-social-fg-disabled:
+          type: string
+        button-social-fg-hover:
+          type: string
+        button-social-fg-provider:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        dialog-bg-default:
+          type: string
+        dialog-bg-subtle:
+          type: string
+        dialog-border-default:
+          type: string
+        dialog-fg-default:
+          type: string
+        dialog-fg-mute:
+          type: string
+        dialog-fg-subtle:
+          type: string
+        forms-bg-default:
+          type: string
+        forms-bg-disabled:
+          type: string
+        forms-bg-hover:
+          type: string
+        forms-border-default:
+          type: string
+        forms-border-disabled:
+          type: string
+        forms-border-error:
+          type: string
+        forms-border-focus:
+          type: string
+        forms-border-hover:
+          type: string
+        forms-border-success:
+          type: string
+        forms-border-warn:
+          type: string
+        forms-checkbox-bg-checked:
+          type: string
+        forms-checkbox-bg-default:
+          type: string
+        forms-checkbox-border-checked:
+          type: string
+        forms-checkbox-border-default:
+          type: string
+        forms-checkbox-fg-checked:
+          type: string
+        forms-checkbox-fg-default:
+          type: string
+        forms-fg-default:
+          type: string
+        forms-fg-error:
+          type: string
+        forms-fg-mute:
+          type: string
+        forms-fg-subtle:
+          type: string
+        forms-fg-success:
+          type: string
+        forms-fg-warn:
+          type: string
+        forms-radio-bg-checked:
+          type: string
+        forms-radio-bg-default:
+          type: string
+        forms-radio-border-checked:
+          type: string
+        forms-radio-border-default:
+          type: string
+        forms-radio-fg-checked:
+          type: string
+        forms-radio-fg-default:
+          type: string
+        forms-toggle-bg-checked:
+          type: string
+        forms-toggle-bg-default:
+          type: string
+        forms-toggle-border-checked:
+          type: string
+        forms-toggle-border-default:
+          type: string
+        forms-toggle-fg-checked:
+          type: string
+        forms-toggle-fg-default:
+          type: string
+        id:
+          format: uuid
+          type: string
+        links-link-default:
+          type: string
+        links-link-disabled:
+          type: string
+        links-link-hover:
+          type: string
+        links-link-inverted-default:
+          type: string
+        links-link-inverted-hover:
+          type: string
+        links-link-mute-default:
+          type: string
+        links-link-mute-hover:
+          type: string
+        syntax-syntax:
+          type: string
+        syntax-syntax-key:
+          type: string
+        syntax-syntax-num:
+          type: string
+        syntax-syntax-value:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
     activeProjectInConsole:
       description: The Active Project ID
-      example:
-        project_id: project_id
       properties:
         project_id:
           description: |-
@@ -9403,6 +10057,45 @@ components:
 
             format: uuid
           type: string
+      type: object
+    addProjectToWorkspaceBody:
+      properties:
+        environment:
+          description: |-
+            The environment of the project in the workspace. Can be one of "prod" or
+            "dev". Note that the number of projects in the "prod" environment is limited
+            depending on the subscription.
+            prod Production
+            stage Staging
+            dev Development
+          enum:
+          - prod
+          - stage
+          - dev
+          type: string
+          x-go-enum-desc: |-
+            prod Production
+            stage Staging
+            dev Development
+        project_subscription:
+          description: |-
+            The action to take with the project subscription. Can be one of "migrate", and
+            "ignore". "migrate" will migrate the project subscription to the workspace.
+            "ignore" will ignore the project subscription.
+            migrate ProjectSubscriptionActionMigrate  ProjectSubscriptionActionMigrate will migrate the project subscription to the  workspace.
+            ignore ProjectSubscriptionActionIgnore  ProjectSubscriptionActionIgnore will ignore the project subscription.
+          enum:
+          - migrate
+          - ignore
+          type: string
+          x-go-enum-desc: |-
+            migrate ProjectSubscriptionActionMigrate  ProjectSubscriptionActionMigrate will migrate the project subscription to the  workspace.
+            ignore ProjectSubscriptionActionIgnore  ProjectSubscriptionActionIgnore will ignore the project subscription.
+      required:
+      - environment
+      - project_subscription
+      title: AddProjectToWorkspaceBody contains the options for migrating a project
+        to a workspace.
       type: object
     authenticatorAssuranceLevel:
       description: |-
@@ -9619,6 +10312,12 @@ components:
     continueWithVerificationUi:
       description: "Indicates, that the UI flow could be continued by showing a verification\
         \ ui"
+      example:
+        action: show_verification_ui
+        flow:
+          verifiable_address: verifiable_address
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          url: url
       properties:
         action:
           description: |-
@@ -9635,6 +10334,10 @@ components:
       - flow
       type: object
     continueWithVerificationUiFlow:
+      example:
+        verifiable_address: verifiable_address
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        url: url
       properties:
         id:
           description: The ID of the verification flow
@@ -9802,20 +10505,43 @@ components:
           description: |-
             The environment of the project.
             prod Production
+            stage Staging
             dev Development
           enum:
           - prod
+          - stage
           - dev
           type: string
           x-go-enum-desc: |-
             prod Production
+            stage Staging
             dev Development
+        home_region:
+          description: |-
+            Home Region
+
+            The home region of the project. This is the region where the project will be created.
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         name:
           description: The name of the project to be created
           type: string
         workspace_id:
-          format: uuid4
-          nullable: true
+          description: The workspace to create the project in.
+          format: uuid
           type: string
       required:
       - environment
@@ -9847,6 +10573,10 @@ components:
             The recovery code will expire after that amount of time has passed. Defaults to the configuration value of
             `selfservice.methods.code.config.lifespan`.
           pattern: "^([0-9]+(ns|us|ms|s|m|h))*$"
+          type: string
+        flow_type:
+          description: The flow type can either be `api` or `browser`.
+          title: Type is the flow type.
           type: string
         identity_id:
           description: |-
@@ -9938,7 +10668,7 @@ components:
       - plan
       - provision_first_project
       type: object
-    createWorkspacePayload:
+    createWorkspaceBody:
       properties:
         name:
           description: The name of the workspace
@@ -10152,6 +10882,15 @@ components:
         not satisfied.
       type: object
     errorBrowserLocationChangeRequired:
+      example:
+        error:
+          error:
+            debug: The database adapter was unable to find the element
+            status_code: 404
+            error_description: Object with ID 12345 does not exist
+            error: The requested resource could not be found
+            message: message
+        redirect_browser_to: redirect_browser_to
       properties:
         error:
           $ref: '#/components/schemas/errorGeneric'
@@ -10174,6 +10913,13 @@ components:
       type: object
     errorGeneric:
       description: The standard Ory JSON API error format.
+      example:
+        error:
+          debug: The database adapter was unable to find the element
+          status_code: 404
+          error_description: Object with ID 12345 does not exist
+          error: The requested resource could not be found
+          message: message
       properties:
         error:
           $ref: '#/components/schemas/genericErrorContent'
@@ -10328,6 +11074,21 @@ components:
     genericError:
       description: "Error responses are sent when an error (e.g. unauthorized, bad\
         \ request, ...) occurred."
+      example:
+        reason: User with ID 1234 does not exist.
+        request: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+        code: 404
+        debug: SQL field "foo" is not a bool.
+        details: ""
+        id: id
+        error:
+          debug: The database adapter was unable to find the element
+          status_code: 404
+          error_description: Object with ID 12345 does not exist
+          error: The requested resource could not be found
+          message: message
+        message: The resource could not be found
+        status: Not Found
       properties:
         code:
           description: The status code
@@ -10381,6 +11142,12 @@ components:
       type: object
     genericErrorContent:
       description: Error response
+      example:
+        debug: The database adapter was unable to find the element
+        status_code: 404
+        error_description: Object with ID 12345 does not exist
+        error: The requested resource could not be found
+        message: message
       properties:
         debug:
           description: Debug contains debug information. This is usually not available
@@ -10515,12 +11282,6 @@ components:
       type: object
     getProjectMetricsResponse:
       description: Response of the getMetrics endpoint
-      example:
-        data:
-        - count: 0
-          time: 2000-01-23T04:56:07.000+00:00
-        - count: 0
-          time: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           description: The list of data points.
@@ -10551,14 +11312,14 @@ components:
           description: Errors contains a list of errors that caused the not ready
             status.
           type: object
+      title: The not ready status of the service.
       type: object
     healthStatus:
-      example:
-        status: status
       properties:
         status:
           description: Status always contains "ok".
           type: string
+      title: The health status of the service.
       type: object
     identity:
       description: "An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
@@ -10739,6 +11500,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -10748,6 +11511,8 @@ components:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -10758,6 +11523,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         updated_at:
@@ -11114,6 +11881,39 @@ components:
       required:
       - active
       type: object
+    invoice:
+      properties:
+        id:
+          description: The ID of the subscription
+          format: uuid
+          readOnly: true
+          type: string
+        invoiced_at:
+          format: date-time
+          type: string
+        type:
+          description: |-
+            Type is the type of the invoice.
+            usage InvoiceTypeUsage
+            base InvoiceTypeBase
+          enum:
+          - usage
+          - base
+          readOnly: true
+          type: string
+          x-go-enum-desc: |-
+            usage InvoiceTypeUsage
+            base InvoiceTypeBase
+        updated_at:
+          format: date-time
+          type: string
+        v1:
+          $ref: '#/components/schemas/InvoiceDataV1'
+      required:
+      - id
+      - invoiced_at
+      - type
+      type: object
     isOwnerForProjectBySlug:
       properties:
         ProjectSlug:
@@ -11368,9 +12168,26 @@ components:
             $ref: '#/components/schemas/eventStream'
           type: array
       type: object
+    listInvoicesResponse:
+      properties:
+        buckets:
+          items:
+            $ref: '#/components/schemas/BillingPeriodBucket'
+          type: array
+        has_next_page:
+          type: boolean
+        next_page_token:
+          type: string
+      required:
+      - buckets
+      - has_next_page
+      - next_page_token
+      type: object
     listOrganizationsResponse:
       description: B2B SSO Organization List
       example:
+        next_page_token: next_page_token
+        has_next_page: true
         organizations:
         - updated_at: 2000-01-23T04:56:07.000+00:00
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -11389,14 +12206,67 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
       properties:
+        has_next_page:
+          type: boolean
+        next_page_token:
+          type: string
         organizations:
+          description: The list of organizations
           items:
             $ref: '#/components/schemas/organization'
           type: array
       required:
+      - has_next_page
+      - next_page_token
       - organizations
       type: object
-    listWorkspaceProjectsResponse:
+    listWorkspaceProjects:
+      example:
+        next_page: next_page
+        projects:
+        - workspace:
+            subscription_id: subscription_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            subscription_plan: subscription_plan
+          home_region: eu-central
+          hosts:
+          - hosts
+          - hosts
+          created_at: 2000-01-23T04:56:07.000+00:00
+          subscription_plan: subscription_plan
+          subscription_id: subscription_id
+          workspace_id: workspace_id
+          environment: prod
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: running
+          slug: slug
+        - workspace:
+            subscription_id: subscription_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            subscription_plan: subscription_plan
+          home_region: eu-central
+          hosts:
+          - hosts
+          - hosts
+          created_at: 2000-01-23T04:56:07.000+00:00
+          subscription_plan: subscription_plan
+          subscription_id: subscription_id
+          workspace_id: workspace_id
+          environment: prod
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: running
+          slug: slug
+        has_next_page: true
       properties:
         has_next_page:
           type: boolean
@@ -11410,6 +12280,37 @@ components:
       - has_next_page
       - next_page
       - projects
+      type: object
+    listWorkspaces:
+      example:
+        next_page_token: next_page_token
+        has_next_page: true
+        workspaces:
+        - subscription_id: subscription_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          subscription_plan: subscription_plan
+        - subscription_id: subscription_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          subscription_plan: subscription_plan
+      properties:
+        has_next_page:
+          type: boolean
+        next_page_token:
+          type: string
+        workspaces:
+          items:
+            $ref: '#/components/schemas/workspace'
+          type: array
+      required:
+      - has_next_page
+      - next_page_token
+      - workspaces
       type: object
     loginFlow:
       description: |-
@@ -11534,7 +12435,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -11552,7 +12468,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -11583,6 +12514,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -11592,6 +12525,8 @@ components:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -11602,6 +12537,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         created_at:
@@ -12029,9 +12966,6 @@ components:
       type: object
     metricsDatapoint:
       description: Represents a single datapoint/bucket of a time series
-      example:
-        count: 0
-        time: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           description: The count of events that occured in this time
@@ -12044,41 +12978,6 @@ components:
       required:
       - count
       - time
-      type: object
-    migrationOptions:
-      properties:
-        environment:
-          description: |-
-            The environment of the project in the workspace. Can be one of "prod" or
-            "dev". Note that the number of projects in the "prod" environment is limited
-            depending on the subscription.
-            prod Production
-            dev Development
-          enum:
-          - prod
-          - dev
-          type: string
-          x-go-enum-desc: |-
-            prod Production
-            dev Development
-        project_subscription:
-          description: |-
-            The action to take with the project subscription. Can be one of "migrate", and
-            "ignore". "migrate" will migrate the project subscription to the workspace.
-            "ignore" will ignore the project subscription.
-            migrate ProjectSubscriptionActionMigrate  ProjectSubscriptionActionMigrate will migrate the project subscription to the  workspace.
-            ignore ProjectSubscriptionActionIgnore  ProjectSubscriptionActionIgnore will ignore the project subscription.
-          enum:
-          - migrate
-          - ignore
-          type: string
-          x-go-enum-desc: |-
-            migrate ProjectSubscriptionActionMigrate  ProjectSubscriptionActionMigrate will migrate the project subscription to the  workspace.
-            ignore ProjectSubscriptionActionIgnore  ProjectSubscriptionActionIgnore will ignore the project subscription.
-      required:
-      - environment
-      - project_subscription
-      title: MigrationOptions contain the options for migrating a project to a workspace.
       type: object
     namespace:
       example:
@@ -12113,14 +13012,36 @@ components:
           description: |-
             The environment of the project.
             prod Production
+            stage Staging
             dev Development
           enum:
           - prod
+          - stage
           - dev
           type: string
           x-go-enum-desc: |-
             prod Production
+            stage Staging
             dev Development
+        home_region:
+          description: |-
+            The project's data home region.
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          readOnly: true
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         hosts:
           items:
             type: string
@@ -12164,6 +13085,8 @@ components:
           format: date-time
           readOnly: true
           type: string
+        workspace:
+          $ref: '#/components/schemas/workspace'
         workspace_id:
           format: uuid4
           nullable: true
@@ -12172,6 +13095,7 @@ components:
       - created_at
       - current_revision
       - environment
+      - home_region
       - hosts
       - id
       - slug
@@ -12328,7 +13252,7 @@ components:
         hydra_strategies_access_token:
           default: opaque
           description: |-
-            Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens
+            Defines access token type
 
             This governs the "strategies.access_token" setting.
             opaque Oauth2AccessTokenStrategyOpaque
@@ -12340,6 +13264,28 @@ components:
           x-go-enum-desc: |-
             opaque Oauth2AccessTokenStrategyOpaque
             jwt Oauth2AccessTokenStrategyJwt
+        hydra_strategies_jwt_scope_claim:
+          default: list
+          description: |-
+            Define the claim to use as the scope in the access token.
+
+            This governs the "strategies.jwt.scope_claim" setting:
+
+            list: The scope claim is an array of strings named `scope`: `{ "scope": ["read", "write"] }`
+            string: The scope claim is a space delimited list of strings named `scp`: `{ "scp": "read write" }`
+            both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ "scope": ["read", "write"], "scp": "read write" }`
+            list OAuth2JWTScopeClaimList
+            string OAuth2JWTScopeClaimString
+            both OAuth2JWTScopeClaimBoth
+          enum:
+          - list
+          - string
+          - both
+          type: string
+          x-go-enum-desc: |-
+            list OAuth2JWTScopeClaimList
+            string OAuth2JWTScopeClaimString
+            both OAuth2JWTScopeClaimBoth
         hydra_strategies_scope:
           default: wildcard
           description: |-
@@ -12937,6 +13883,12 @@ components:
 
             This governs the "selfservice.flows.login.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_login_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login After Passkey Default Return URL
+
+            This governs the "selfservice.flows.login.after.passkey.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_login_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Login After Password Default Return URL
@@ -13035,6 +13987,12 @@ components:
 
             This governs the "selfservice.flows.registration.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_registration_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Registration After Passkey Default Return URL
+
+            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_registration_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Registration After Password Default Return URL
@@ -13043,10 +14001,20 @@ components:
           type: string
         kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Registration After Password Default Return URL
+            Configures the Ory Kratos Registration After Webauthn Default Return URL
 
-            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.registration.after.webauthn.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_registration_enable_legacy_one_step:
+          description: |-
+            Disable two-step registration
+
+            Two-step registration is a significantly improved sign up flow and recommended
+            when using more than one sign up methods. To revert to one-step registration,
+            set this to `true`.
+
+            This governs the "selfservice.flows.registration.enable_legacy_one_step" setting.
+          type: boolean
         kratos_selfservice_flows_registration_enabled:
           description: |-
             Configures the Whether Ory Kratos Registration is Enabled
@@ -13091,6 +14059,12 @@ components:
 
             This governs the "selfservice.flows.settings.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_settings_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating Passkey
+
+            This governs the "selfservice.flows.settings.after.passkey.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_settings_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Settings Default Return URL After Updating Passwords
@@ -13113,7 +14087,7 @@ components:
           description: |-
             Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn
 
-            This governs the "selfservice.flows.settings.webauthn.profile.default_browser_return_url" setting.
+            This governs the "selfservice.flows.settings.after.webauthn.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_settings_lifespan:
           description: |-
@@ -13197,15 +14171,21 @@ components:
           type: boolean
         kratos_selfservice_methods_code_mfa_enabled:
           description: |-
-            Configues whether the code method can be used to fulfil MFA flows
+            Configures whether the code method can be used to fulfil MFA flows
 
             This governs the "selfservice.methods.code.mfa_enabled" setting.
           type: boolean
         kratos_selfservice_methods_code_passwordless_enabled:
           description: |-
-            Configues whether Ory Kratos Passwordless should use the Code Method
+            Configures whether Ory Kratos Passwordless should use the Code Method
 
             This governs the "selfservice.methods.code.passwordless_enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_code_passwordless_login_fallback_enabled:
+          description: |-
+            This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.
+
+            This governs the "selfservice.methods.code.passwordless_login_fallback_enabled" setting.
           type: boolean
         kratos_selfservice_methods_link_config_base_url:
           description: |-
@@ -13249,6 +14229,30 @@ components:
             Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled
 
             This governs the "selfservice.methods.oidc.enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_passkey_config_rp_display_name:
+          description: |-
+            Configures the Ory Kratos Passkey RP Display Name
+
+            This governs the "selfservice.methods.passkey.config.rp.display_name" setting.
+          type: string
+        kratos_selfservice_methods_passkey_config_rp_id:
+          description: |-
+            Configures the Ory Kratos Passkey RP ID
+
+            This governs the "selfservice.methods.passkey.config.rp.id" setting.
+          type: string
+        kratos_selfservice_methods_passkey_config_rp_origins:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        kratos_selfservice_methods_passkey_enabled:
+          description: |-
+            Configures whether Ory Kratos Passkey authentication is enabled
+
+            This governs the "selfservice.methods.passkey.enabled" setting.
           type: boolean
         kratos_selfservice_methods_password_config_haveibeenpwned_enabled:
           description: |-
@@ -15450,7 +16454,7 @@ components:
         type: boolean
       description: Get Permissions on Project Request Parameters
       type: object
-    permissionsOnWorkpaceResponse:
+    permissionsOnWorkspace:
       description: Get Permissions on Project Request Parameters
       properties:
         permissions:
@@ -15505,6 +16509,8 @@ components:
     project:
       example:
         workspace_id: workspace_id
+        environment: prod
+        home_region: eu-central
         name: name
         cors_admin:
           origins:
@@ -15532,6 +16538,41 @@ components:
           $ref: '#/components/schemas/projectCors'
         cors_public:
           $ref: '#/components/schemas/projectCors'
+        environment:
+          description: |-
+            The environment of the project.
+            prod Production
+            stage Staging
+            dev Development
+          enum:
+          - prod
+          - stage
+          - dev
+          type: string
+          x-go-enum-desc: |-
+            prod Production
+            stage Staging
+            dev Development
+        home_region:
+          description: |-
+            The project home region.
+
+            This is used to set where the project data is stored and where the project's endpoints are located.
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         id:
           description: The project's ID.
           format: uuid
@@ -15572,6 +16613,8 @@ components:
           nullable: true
           type: string
       required:
+      - environment
+      - home_region
       - id
       - name
       - revision_id
@@ -15813,6 +16856,15 @@ components:
           description: AccentSubtleColor is a hex color code used by the Ory Account
             Experience theme.
           type: string
+        account_experience_variables:
+          description: The Account Experience Theme Variables.
+          items:
+            $ref: '#/components/schemas/accountExperienceThemeVariables'
+          type: array
+        account_experience_variables_stylesheet:
+          description: AccountExperienceVariableStylesheet holds a reference to the
+            current stylesheet that can be used in the AX
+          type: string
         background_canvas_color:
           description: BackgroundCanvasColor is a hex color code used by the Ory Account
             Experience theme.
@@ -16029,19 +17081,27 @@ components:
       type: array
     projectMetadata:
       example:
+        workspace:
+          subscription_id: subscription_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          subscription_plan: subscription_plan
+        home_region: eu-central
+        hosts:
+        - hosts
+        - hosts
+        created_at: 2000-01-23T04:56:07.000+00:00
+        subscription_plan: subscription_plan
         subscription_id: subscription_id
         workspace_id: workspace_id
         environment: prod
         updated_at: 2000-01-23T04:56:07.000+00:00
-        hosts:
-        - hosts
-        - hosts
         name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: running
         slug: slug
-        subscription_plan: subscription_plan
       properties:
         created_at:
           description: The Project's Creation Date
@@ -16051,14 +17111,35 @@ components:
           description: |-
             The environment of the project.
             prod Production
+            stage Staging
             dev Development
           enum:
           - prod
+          - stage
           - dev
           type: string
           x-go-enum-desc: |-
             prod Production
+            stage Staging
             dev Development
+        home_region:
+          description: |-
+            The project's data home region
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         hosts:
           items:
             type: string
@@ -16103,6 +17184,8 @@ components:
           description: Last Time Project was Updated
           format: date-time
           type: string
+        workspace:
+          $ref: '#/components/schemas/workspace'
         workspace_id:
           format: uuid4
           nullable: true
@@ -16110,9 +17193,11 @@ components:
       required:
       - created_at
       - environment
+      - home_region
       - hosts
       - id
       - name
+      - slug
       - state
       - updated_at
       type: object
@@ -16179,30 +17264,23 @@ components:
         permission:
           $ref: '#/components/schemas/projectServicePermission'
       type: object
-    projects:
-      items:
-        $ref: '#/components/schemas/project'
-      type: array
     quotaUsage:
       properties:
         additional_price:
           description: The additional price per unit in cents.
-          format: int64
-          type: integer
+          type: string
         can_use_more:
           type: boolean
         feature:
           description: |2-
 
-            region_eu RegionEU
-            region_us RegionUS
-            region_apac RegionAPAC
-            region_global RegionGlobal
             production_projects ProductionProjects
+            staging_projects StagingProjects
             development_projects DevelopmentProjects
             daily_active_users DailyActiveUsers
             custom_domains CustomDomains
             event_streams EventStreams
+            event_stream_events EventStreamEvents
             sla SLA
             collaborator_seats CollaboratorSeats
             edge_cache EdgeCache
@@ -16215,21 +17293,23 @@ components:
             rop_grant ResourceOwnerPasswordGrant
             concierge_onboarding ConciergeOnboarding
             credit Credit
+            data_location_global DataLocationGlobal
+            m2m_token_issuance M2MTokenIssuance
+            permission_checks PermissionChecks
+            data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
             permission_checks_rate_limit_tier RateLimitTierPermissionChecks
             oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
           enum:
-          - region_eu
-          - region_us
-          - region_apac
-          - region_global
           - production_projects
+          - staging_projects
           - development_projects
           - daily_active_users
           - custom_domains
           - event_streams
+          - event_stream_events
           - sla
           - collaborator_seats
           - edge_cache
@@ -16242,6 +17322,10 @@ components:
           - rop_grant
           - concierge_onboarding
           - credit
+          - data_location_global
+          - m2m_token_issuance
+          - permission_checks
+          - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
           - identities_list_rate_limit_tier
@@ -16249,15 +17333,13 @@ components:
           - oauth2_introspect_rate_limit_tier
           type: string
           x-go-enum-desc: |-
-            region_eu RegionEU
-            region_us RegionUS
-            region_apac RegionAPAC
-            region_global RegionGlobal
             production_projects ProductionProjects
+            staging_projects StagingProjects
             development_projects DevelopmentProjects
             daily_active_users DailyActiveUsers
             custom_domains CustomDomains
             event_streams EventStreams
+            event_stream_events EventStreamEvents
             sla SLA
             collaborator_seats CollaboratorSeats
             edge_cache EdgeCache
@@ -16270,6 +17352,10 @@ components:
             rop_grant ResourceOwnerPasswordGrant
             concierge_onboarding ConciergeOnboarding
             credit Credit
+            data_location_global DataLocationGlobal
+            m2m_token_issuance M2MTokenIssuance
+            permission_checks PermissionChecks
+            data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
@@ -16344,7 +17430,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -16362,7 +17463,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -16377,8 +17493,16 @@ components:
             text: text
             type: info
         continue_with:
-        - null
-        - null
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -16629,7 +17753,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -16647,7 +17786,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -16676,6 +17830,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -16685,6 +17841,8 @@ components:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -16695,6 +17853,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         expires_at:
@@ -17283,7 +18443,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -17301,7 +18476,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -17366,8 +18556,16 @@ components:
           state: active
           metadata_public: "{}"
         continue_with:
-        - null
-        - null
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -17542,15 +18740,17 @@ components:
           type: string
         status:
           description: |-
-            For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.
+            For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this status can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` status. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal status, the open invoice will be voided and no further invoices will be generated.
 
             A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.
+
+            A subscription can only enter a `paused` status [when a trial ends without a payment method](https://stripe.com/billing/subscriptions/trials#create-free-trials-without-payment). A `paused` subscription doesn't generate invoices and can be resumed after your customer adds their payment method. The `paused` status is different from [pausing collection](https://stripe.com/billing/subscriptions/pause-payment), which still generates invoices and leaves the subscription's status unchanged.
 
             If subscription `collection_method=charge_automatically`, it becomes `past_due` when payment is required but cannot be paid (due to failed payment or awaiting additional user actions). Once Stripe has exhausted all payment retry attempts, the subscription will become `canceled` or `unpaid` (depending on your subscriptions settings).
 
             If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
           title: "Possible values are `incomplete`, `incomplete_expired`, `trialing`,\
-            \ `active`, `past_due`, `canceled`, or `unpaid`."
+            \ `active`, `past_due`, `canceled`, `unpaid`, or `paused`."
           type: string
         stripe_checkout_expires_at:
           format: date-time
@@ -17673,7 +18873,27 @@ components:
           active: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           issued_at: 2000-01-23T04:56:07.000+00:00
+        continue_with:
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
       properties:
+        continue_with:
+          description: |-
+            Contains a list of actions, that could follow this flow
+
+            It can, for example, this will contain a reference to the verification flow, created as part of the user's
+            registration or the token of the session.
+          items:
+            $ref: '#/components/schemas/continueWith'
+          type: array
         session:
           $ref: '#/components/schemas/session'
         session_token:
@@ -17823,8 +19043,16 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           issued_at: 2000-01-23T04:56:07.000+00:00
         continue_with:
-        - null
-        - null
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
       properties:
         continue_with:
           description: |-
@@ -17864,6 +19092,8 @@ components:
           message: message
         project:
           workspace_id: workspace_id
+          environment: prod
+          home_region: eu-central
           name: name
           cors_admin:
             origins:
@@ -18142,7 +19372,22 @@ components:
             id: 0
             text: text
             type: info
-          attributes: null
+          attributes:
+            node_type: text
+            autocomplete: email
+            onclick: onclick
+            name: name
+            pattern: pattern
+            disabled: true
+            label:
+              context: "{}"
+              id: 0
+              text: text
+              type: info
+            type: text
+            value: ""
+            required: true
+            onload: onload
           type: text
           group: default
         - meta:
@@ -18160,7 +19405,22 @@ components:
             id: 0
             text: text
             type: info
-          attributes: null
+          attributes:
+            node_type: text
+            autocomplete: email
+            onclick: onclick
+            name: name
+            pattern: pattern
+            disabled: true
+            label:
+              context: "{}"
+              id: 0
+              text: text
+              type: info
+            type: text
+            value: ""
+            required: true
+            onload: onload
           type: text
           group: default
         method: method
@@ -18215,7 +19475,22 @@ components:
           id: 0
           text: text
           type: info
-        attributes: null
+        attributes:
+          node_type: text
+          autocomplete: email
+          onclick: onclick
+          name: name
+          pattern: pattern
+          disabled: true
+          label:
+            context: "{}"
+            id: 0
+            text: text
+            type: info
+          type: text
+          value: ""
+          required: true
+          onload: onload
         type: text
         group: default
       properties:
@@ -18233,6 +19508,7 @@ components:
             totp TOTPGroup
             lookup_secret LookupGroup
             webauthn WebAuthnGroup
+            passkey PasskeyGroup
           enum:
           - default
           - password
@@ -18243,6 +19519,7 @@ components:
           - totp
           - lookup_secret
           - webauthn
+          - passkey
           type: string
           x-go-enum-desc: |-
             default DefaultGroup
@@ -18254,6 +19531,7 @@ components:
             totp TOTPGroup
             lookup_secret LookupGroup
             webauthn WebAuthnGroup
+            passkey PasskeyGroup
         messages:
           items:
             $ref: '#/components/schemas/uiText'
@@ -18304,7 +19582,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "a".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         title:
           $ref: '#/components/schemas/uiText'
       required:
@@ -18343,7 +19638,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "img".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         src:
           description: |-
             The image's source URL.
@@ -18364,6 +19676,22 @@ components:
       type: object
     uiNodeInputAttributes:
       description: InputAttributes represents the attributes of an input node
+      example:
+        node_type: text
+        autocomplete: email
+        onclick: onclick
+        name: name
+        pattern: pattern
+        disabled: true
+        label:
+          context: "{}"
+          id: 0
+          text: text
+          type: info
+        type: text
+        value: ""
+        required: true
+        onload: onload
       properties:
         autocomplete:
           description: |-
@@ -18401,10 +19729,32 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "input".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         onclick:
           description: |-
             OnClick may contain javascript which should be executed on click. This is primarily
+            used for WebAuthn.
+          type: string
+        onload:
+          description: |-
+            OnLoad may contain javascript which should be executed on load. This is primarily
             used for WebAuthn.
           type: string
         pattern:
@@ -18497,7 +19847,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is "script".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         nonce:
           description: |-
             Nonce for CSP
@@ -18536,7 +19903,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "text".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         text:
           $ref: '#/components/schemas/uiText'
       required:
@@ -18637,6 +20021,7 @@ components:
           code: '#/components/schemas/updateLoginFlowWithCodeMethod'
           lookup_secret: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
           oidc: '#/components/schemas/updateLoginFlowWithOidcMethod'
+          passkey: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
           password: '#/components/schemas/updateLoginFlowWithPasswordMethod'
           totp: '#/components/schemas/updateLoginFlowWithTotpMethod'
           webauthn: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
@@ -18648,6 +20033,7 @@ components:
       - $ref: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithCodeMethod'
+      - $ref: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
     updateLoginFlowWithCodeMethod:
       description: Update Login flow using the code method
       properties:
@@ -18746,6 +20132,26 @@ components:
       required:
       - method
       - provider
+      type: object
+    updateLoginFlowWithPasskeyMethod:
+      description: Update Login Flow with Passkey Method
+      properties:
+        csrf_token:
+          description: Sending the anti-csrf token is only required for browser login
+            flows.
+          type: string
+        method:
+          description: Method should be set to "passkey" when logging in using the
+            Passkey strategy.
+          type: string
+        passkey_login:
+          description: |-
+            Login a WebAuthn Security Key
+
+            This must contain the ID of the WebAuthN connection.
+          type: string
+      required:
+      - method
       type: object
     updateLoginFlowWithPasswordMethod:
       description: Update Login Flow with Password Method
@@ -18927,6 +20333,7 @@ components:
         mapping:
           code: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
           oidc: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
+          passKey: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
           password: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
           webauthn: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
         propertyName: method
@@ -18935,6 +20342,7 @@ components:
       - $ref: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
+      - $ref: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
     updateRegistrationFlowWithCodeMethod:
       description: Update Registration Flow with Code Method
       properties:
@@ -19015,6 +20423,35 @@ components:
       - method
       - provider
       type: object
+    updateRegistrationFlowWithPasskeyMethod:
+      description: Update Registration Flow with Passkey Method
+      properties:
+        csrf_token:
+          description: CSRFToken is the anti-CSRF token
+          type: string
+        method:
+          description: |-
+            Method
+
+            Should be set to "passkey" when trying to add, update, or remove a Passkey.
+          type: string
+        passkey_register:
+          description: |-
+            Register a WebAuthn Security Key
+
+            It is expected that the JSON returned by the WebAuthn registration process
+            is included here.
+          type: string
+        traits:
+          description: The identity's traits
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
+      - traits
+      type: object
     updateRegistrationFlowWithPasswordMethod:
       description: Update Registration Flow with Password Method
       properties:
@@ -19039,6 +20476,41 @@ components:
       required:
       - method
       - password
+      - traits
+      type: object
+    updateRegistrationFlowWithProfileMethod:
+      description: Update Registration Flow with Profile Method
+      properties:
+        csrf_token:
+          description: |-
+            The Anti-CSRF Token
+
+            This token is only required when performing browser flows.
+          type: string
+        method:
+          description: |-
+            Method
+
+            Should be set to profile when trying to update a profile.
+          type: string
+        screen:
+          description: |-
+            Screen requests navigation to a previous screen.
+
+            This must be set to credential-selection to go back to the credential
+            selection screen.
+          type: string
+        traits:
+          description: |-
+            Traits
+
+            The identity's traits.
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
       - traits
       type: object
     updateRegistrationFlowWithWebAuthnMethod:
@@ -19082,6 +20554,7 @@ components:
         mapping:
           lookup_secret: '#/components/schemas/updateSettingsFlowWithLookupMethod'
           oidc: '#/components/schemas/updateSettingsFlowWithOidcMethod'
+          passkey: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
           password: '#/components/schemas/updateSettingsFlowWithPasswordMethod'
           profile: '#/components/schemas/updateSettingsFlowWithProfileMethod'
           totp: '#/components/schemas/updateSettingsFlowWithTotpMethod'
@@ -19091,10 +20564,10 @@ components:
       - $ref: '#/components/schemas/updateSettingsFlowWithPasswordMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithProfileMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithOidcMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithOidcMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithTotpMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithLookupMethod'
+      - $ref: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
     updateSettingsFlowWithLookupMethod:
       description: Update Settings Flow with Lookup Method
       properties:
@@ -19177,6 +20650,34 @@ components:
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
           type: object
+      required:
+      - method
+      type: object
+    updateSettingsFlowWithPasskeyMethod:
+      description: Update Settings Flow with Passkey Method
+      properties:
+        csrf_token:
+          description: CSRFToken is the anti-CSRF token
+          type: string
+        method:
+          description: |-
+            Method
+
+            Should be set to "passkey" when trying to add, update, or remove a webAuthn pairing.
+          type: string
+        passkey_remove:
+          description: |-
+            Remove a WebAuthn Security Key
+
+            This must contain the ID of the WebAuthN connection.
+          type: string
+        passkey_settings_register:
+          description: |-
+            Register a WebAuthn Security Key
+
+            It is expected that the JSON returned by the WebAuthn registration process
+            is included here.
+          type: string
       required:
       - method
       type: object
@@ -19409,7 +20910,7 @@ components:
       - email
       - method
       type: object
-    updateWorkspacePayload:
+    updateWorkspaceBody:
       properties:
         name:
           description: The name of the workspace.
@@ -19418,6 +20919,15 @@ components:
       - name
       type: object
     verifiableCredentialPrimingResponse:
+      example:
+        c_nonce_expires_in: 0
+        error_debug: error_debug
+        status_code: 6
+        c_nonce: c_nonce
+        error_description: error_description
+        format: format
+        error: error
+        error_hint: error_hint
       properties:
         c_nonce:
           type: string
@@ -19534,7 +21044,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -19552,7 +21077,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -19652,29 +21192,13 @@ components:
     webAuthnJavaScript:
       type: string
     workspace:
-      properties:
-        created_at:
-          format: date-time
-          type: string
-        id:
-          format: uuid
-          type: string
-        name:
-          type: string
-        subscription_id:
-          format: uuid4
-          nullable: true
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      required:
-      - created_at
-      - id
-      - name
-      - updated_at
-      type: object
-    workspaceMeta:
+      example:
+        subscription_id: subscription_id
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        subscription_plan: subscription_plan
       properties:
         created_at:
           format: date-time
@@ -19700,6 +21224,52 @@ components:
       - name
       - updated_at
       type: object
+    workspaceApiKey:
+      properties:
+        created_at:
+          description: The API key's creation date
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: The key's ID.
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          description: |-
+            The API key's Name
+
+            Set this to help you remember, for example, where you use the API key.
+          type: string
+        owner_id:
+          description: The key's owner
+          format: uuid
+          readOnly: true
+          type: string
+        updated_at:
+          description: The API key's last update date
+          format: date-time
+          readOnly: true
+          type: string
+        value:
+          description: The key's value
+          readOnly: true
+          type: string
+        workspace_id:
+          description: The API token's workspace ID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      - owner_id
+      type: object
+    workspaceApiKeys:
+      items:
+        $ref: '#/components/schemas/workspaceApiKey'
+      type: array
     workspaces:
       items:
         $ref: '#/components/schemas/workspace'
@@ -19724,27 +21294,6 @@ components:
           x-formData-name: token
       required:
       - token
-      type: object
-    isReady_200_response:
-      example:
-        status: status
-      properties:
-        status:
-          description: Always "ok".
-          type: string
-      required:
-      - status
-      type: object
-    isReady_503_response:
-      properties:
-        errors:
-          additionalProperties:
-            type: string
-          description: Errors contains a list of errors that caused the not ready
-            status.
-          type: object
-      required:
-      - errors
       type: object
     revokeOAuth2Token_request:
       properties:
@@ -19849,6 +21398,12 @@ components:
           tokenUrl: https://hydra.demo.ory.sh/oauth2/token
       type: oauth2
     oryAccessToken:
+      description: "To use this endpoint you need an [Ory Network API key](https://www.ory.sh/docs/concepts/personal-access-token)."
+      scheme: bearer
+      type: http
+    oryWorkspaceApiKey:
+      description: "To use this endpoint you need a workspace-level [Ory Network API\
+        \ key](https://www.ory.sh/docs/concepts/personal-access-token)."
       scheme: bearer
       type: http
 x-forwarded-proto: string

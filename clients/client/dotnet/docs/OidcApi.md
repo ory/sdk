@@ -1,20 +1,19 @@
 # Ory.Client.Api.OidcApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**CreateOidcDynamicClient**](OidcApi.md#createoidcdynamicclient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
-[**CreateVerifiableCredential**](OidcApi.md#createverifiablecredential) | **POST** /credentials | Issues a Verifiable Credential
-[**DeleteOidcDynamicClient**](OidcApi.md#deleteoidcdynamicclient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
-[**DiscoverOidcConfiguration**](OidcApi.md#discoveroidcconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**GetOidcDynamicClient**](OidcApi.md#getoidcdynamicclient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
-[**GetOidcUserInfo**](OidcApi.md#getoidcuserinfo) | **GET** /userinfo | OpenID Connect Userinfo
-[**RevokeOidcSession**](OidcApi.md#revokeoidcsession) | **GET** /oauth2/sessions/logout | OpenID Connect Front- and Back-channel Enabled Logout
-[**SetOidcDynamicClient**](OidcApi.md#setoidcdynamicclient) | **PUT** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**CreateOidcDynamicClient**](OidcApi.md#createoidcdynamicclient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration |
+| [**CreateVerifiableCredential**](OidcApi.md#createverifiablecredential) | **POST** /credentials | Issues a Verifiable Credential |
+| [**DeleteOidcDynamicClient**](OidcApi.md#deleteoidcdynamicclient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol |
+| [**DiscoverOidcConfiguration**](OidcApi.md#discoveroidcconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery |
+| [**GetOidcDynamicClient**](OidcApi.md#getoidcdynamicclient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration |
+| [**GetOidcUserInfo**](OidcApi.md#getoidcuserinfo) | **GET** /userinfo | OpenID Connect Userinfo |
+| [**RevokeOidcSession**](OidcApi.md#revokeoidcsession) | **GET** /oauth2/sessions/logout | OpenID Connect Front- and Back-channel Enabled Logout |
+| [**SetOidcDynamicClient**](OidcApi.md#setoidcdynamicclient) | **PUT** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration |
 
-
-<a name="createoidcdynamicclient"></a>
+<a id="createoidcdynamicclient"></a>
 # **CreateOidcDynamicClient**
 > ClientOAuth2Client CreateOidcDynamicClient (ClientOAuth2Client clientOAuth2Client)
 
@@ -37,7 +36,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             var apiInstance = new OidcApi(config);
             var clientOAuth2Client = new ClientOAuth2Client(); // ClientOAuth2Client | Dynamic Client Registration Request Body
 
@@ -49,8 +48,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OidcApi.CreateOidcDynamicClient: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OidcApi.CreateOidcDynamicClient: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -58,11 +57,31 @@ namespace Example
 }
 ```
 
+#### Using the CreateOidcDynamicClientWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Register OAuth2 Client using OpenID Dynamic Client Registration
+    ApiResponse<ClientOAuth2Client> response = apiInstance.CreateOidcDynamicClientWithHttpInfo(clientOAuth2Client);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OidcApi.CreateOidcDynamicClientWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientOAuth2Client** | [**ClientOAuth2Client**](ClientOAuth2Client.md)| Dynamic Client Registration Request Body | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **clientOAuth2Client** | [**ClientOAuth2Client**](ClientOAuth2Client.md) | Dynamic Client Registration Request Body |  |
 
 ### Return type
 
@@ -87,9 +106,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="createverifiablecredential"></a>
+<a id="createverifiablecredential"></a>
 # **CreateVerifiableCredential**
-> ClientVerifiableCredentialResponse CreateVerifiableCredential (ClientCreateVerifiableCredentialRequestBody clientCreateVerifiableCredentialRequestBody = null)
+> ClientVerifiableCredentialResponse CreateVerifiableCredential (ClientCreateVerifiableCredentialRequestBody? clientCreateVerifiableCredentialRequestBody = null)
 
 Issues a Verifiable Credential
 
@@ -110,9 +129,9 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             var apiInstance = new OidcApi(config);
-            var clientCreateVerifiableCredentialRequestBody = new ClientCreateVerifiableCredentialRequestBody(); // ClientCreateVerifiableCredentialRequestBody |  (optional) 
+            var clientCreateVerifiableCredentialRequestBody = new ClientCreateVerifiableCredentialRequestBody?(); // ClientCreateVerifiableCredentialRequestBody? |  (optional) 
 
             try
             {
@@ -122,8 +141,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OidcApi.CreateVerifiableCredential: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OidcApi.CreateVerifiableCredential: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -131,11 +150,31 @@ namespace Example
 }
 ```
 
+#### Using the CreateVerifiableCredentialWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Issues a Verifiable Credential
+    ApiResponse<ClientVerifiableCredentialResponse> response = apiInstance.CreateVerifiableCredentialWithHttpInfo(clientCreateVerifiableCredentialRequestBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OidcApi.CreateVerifiableCredentialWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientCreateVerifiableCredentialRequestBody** | [**ClientCreateVerifiableCredentialRequestBody**](ClientCreateVerifiableCredentialRequestBody.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **clientCreateVerifiableCredentialRequestBody** | [**ClientCreateVerifiableCredentialRequestBody?**](ClientCreateVerifiableCredentialRequestBody?.md) |  | [optional]  |
 
 ### Return type
 
@@ -160,7 +199,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteoidcdynamicclient"></a>
+<a id="deleteoidcdynamicclient"></a>
 # **DeleteOidcDynamicClient**
 > void DeleteOidcDynamicClient (string id)
 
@@ -183,7 +222,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: bearer
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -197,8 +236,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OidcApi.DeleteOidcDynamicClient: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OidcApi.DeleteOidcDynamicClient: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -206,11 +245,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteOidcDynamicClientWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
+    apiInstance.DeleteOidcDynamicClientWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OidcApi.DeleteOidcDynamicClientWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | The id of the OAuth 2.0 Client. |  |
 
 ### Return type
 
@@ -234,7 +290,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="discoveroidcconfiguration"></a>
+<a id="discoveroidcconfiguration"></a>
 # **DiscoverOidcConfiguration**
 > ClientOidcConfiguration DiscoverOidcConfiguration ()
 
@@ -257,7 +313,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             var apiInstance = new OidcApi(config);
 
             try
@@ -268,8 +324,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OidcApi.DiscoverOidcConfiguration: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OidcApi.DiscoverOidcConfiguration: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -277,9 +333,28 @@ namespace Example
 }
 ```
 
+#### Using the DiscoverOidcConfigurationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // OpenID Connect Discovery
+    ApiResponse<ClientOidcConfiguration> response = apiInstance.DiscoverOidcConfigurationWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OidcApi.DiscoverOidcConfigurationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**ClientOidcConfiguration**](ClientOidcConfiguration.md)
@@ -302,7 +377,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getoidcdynamicclient"></a>
+<a id="getoidcdynamicclient"></a>
 # **GetOidcDynamicClient**
 > ClientOAuth2Client GetOidcDynamicClient (string id)
 
@@ -325,7 +400,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: bearer
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -340,8 +415,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OidcApi.GetOidcDynamicClient: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OidcApi.GetOidcDynamicClient: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -349,11 +424,31 @@ namespace Example
 }
 ```
 
+#### Using the GetOidcDynamicClientWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get OAuth2 Client using OpenID Dynamic Client Registration
+    ApiResponse<ClientOAuth2Client> response = apiInstance.GetOidcDynamicClientWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OidcApi.GetOidcDynamicClientWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | The id of the OAuth 2.0 Client. |  |
 
 ### Return type
 
@@ -377,7 +472,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getoidcuserinfo"></a>
+<a id="getoidcuserinfo"></a>
 # **GetOidcUserInfo**
 > ClientOidcUserInfo GetOidcUserInfo ()
 
@@ -400,7 +495,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure OAuth2 access token for authorization: oauth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -414,8 +509,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OidcApi.GetOidcUserInfo: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OidcApi.GetOidcUserInfo: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -423,9 +518,28 @@ namespace Example
 }
 ```
 
+#### Using the GetOidcUserInfoWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // OpenID Connect Userinfo
+    ApiResponse<ClientOidcUserInfo> response = apiInstance.GetOidcUserInfoWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OidcApi.GetOidcUserInfoWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**ClientOidcUserInfo**](ClientOidcUserInfo.md)
@@ -448,7 +562,7 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="revokeoidcsession"></a>
+<a id="revokeoidcsession"></a>
 # **RevokeOidcSession**
 > void RevokeOidcSession ()
 
@@ -471,7 +585,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             var apiInstance = new OidcApi(config);
 
             try
@@ -481,8 +595,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OidcApi.RevokeOidcSession: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OidcApi.RevokeOidcSession: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -490,9 +604,25 @@ namespace Example
 }
 ```
 
+#### Using the RevokeOidcSessionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // OpenID Connect Front- and Back-channel Enabled Logout
+    apiInstance.RevokeOidcSessionWithHttpInfo();
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OidcApi.RevokeOidcSessionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 void (empty response body)
@@ -514,7 +644,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="setoidcdynamicclient"></a>
+<a id="setoidcdynamicclient"></a>
 # **SetOidcDynamicClient**
 > ClientOAuth2Client SetOidcDynamicClient (string id, ClientOAuth2Client clientOAuth2Client)
 
@@ -537,7 +667,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: bearer
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -553,8 +683,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OidcApi.SetOidcDynamicClient: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OidcApi.SetOidcDynamicClient: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -562,12 +692,32 @@ namespace Example
 }
 ```
 
+#### Using the SetOidcDynamicClientWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set OAuth2 Client using OpenID Dynamic Client Registration
+    ApiResponse<ClientOAuth2Client> response = apiInstance.SetOidcDynamicClientWithHttpInfo(id, clientOAuth2Client);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OidcApi.SetOidcDynamicClientWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| OAuth 2.0 Client ID | 
- **clientOAuth2Client** | [**ClientOAuth2Client**](ClientOAuth2Client.md)| OAuth 2.0 Client Request Body | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | OAuth 2.0 Client ID |  |
+| **clientOAuth2Client** | [**ClientOAuth2Client**](ClientOAuth2Client.md) | OAuth 2.0 Client Request Body |  |
 
 ### Return type
 

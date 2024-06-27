@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**credentials** | Option<[**crate::models::IdentityWithCredentials**](identityWithCredentials.md)> |  | [optional]
+**credentials** | Option<[**models::IdentityWithCredentials**](identityWithCredentials.md)> |  | [optional]
 **metadata_admin** | Option<[**serde_json::Value**](.md)> | Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`. | [optional]
 **metadata_public** | Option<[**serde_json::Value**](.md)> | Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field. | [optional]
 **schema_id** | **String** | SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set will update the Identity's SchemaID. | 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -990,10 +990,10 @@ func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interfa
 	return toSerialize, nil
 }
 
-func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(bytes []byte) (err error) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(data []byte) (err error) {
 	varNormalizedProjectRevisionThirdPartyProvider := _NormalizedProjectRevisionThirdPartyProvider{}
 
-	err = json.Unmarshal(bytes, &varNormalizedProjectRevisionThirdPartyProvider)
+	err = json.Unmarshal(data, &varNormalizedProjectRevisionThirdPartyProvider)
 
 	if err != nil {
 		return err
@@ -1003,7 +1003,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(bytes []byte
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "additional_id_token_audiences")
 		delete(additionalProperties, "apple_private_key")
 		delete(additionalProperties, "apple_private_key_id")

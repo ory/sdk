@@ -13,9 +13,18 @@ part 'list_organizations_response.g.dart';
 /// B2B SSO Organization List
 ///
 /// Properties:
-/// * [organizations] 
+/// * [hasNextPage] 
+/// * [nextPageToken] 
+/// * [organizations] - The list of organizations
 @BuiltValue()
 abstract class ListOrganizationsResponse implements Built<ListOrganizationsResponse, ListOrganizationsResponseBuilder> {
+  @BuiltValueField(wireName: r'has_next_page')
+  bool get hasNextPage;
+
+  @BuiltValueField(wireName: r'next_page_token')
+  String get nextPageToken;
+
+  /// The list of organizations
   @BuiltValueField(wireName: r'organizations')
   BuiltList<Organization> get organizations;
 
@@ -42,6 +51,16 @@ class _$ListOrganizationsResponseSerializer implements PrimitiveSerializer<ListO
     ListOrganizationsResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    yield r'has_next_page';
+    yield serializers.serialize(
+      object.hasNextPage,
+      specifiedType: const FullType(bool),
+    );
+    yield r'next_page_token';
+    yield serializers.serialize(
+      object.nextPageToken,
+      specifiedType: const FullType(String),
+    );
     yield r'organizations';
     yield serializers.serialize(
       object.organizations,
@@ -70,6 +89,20 @@ class _$ListOrganizationsResponseSerializer implements PrimitiveSerializer<ListO
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'has_next_page':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.hasNextPage = valueDes;
+          break;
+        case r'next_page_token':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.nextPageToken = valueDes;
+          break;
         case r'organizations':
           final valueDes = serializers.deserialize(
             value,

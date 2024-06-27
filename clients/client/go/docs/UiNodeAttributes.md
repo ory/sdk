@@ -8,8 +8,9 @@ Name | Type | Description | Notes
 **Disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
 **Label** | Pointer to [**UiText**](UiText.md) |  | [optional] 
 **Name** | **string** | The input&#39;s element name. | 
-**NodeType** | **string** | NodeType represents this node&#39;s types. It is a mirror of &#x60;node.type&#x60; and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \&quot;script\&quot;. | 
+**NodeType** | **string** | NodeType represents this node&#39;s types. It is a mirror of &#x60;node.type&#x60; and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \&quot;script\&quot;. text Text input Input img Image a Anchor script Script | 
 **Onclick** | Pointer to **string** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. | [optional] 
+**Onload** | Pointer to **string** | OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn. | [optional] 
 **Pattern** | Pointer to **string** | The input&#39;s pattern. | [optional] 
 **Required** | Pointer to **bool** | Mark this input field as required. | [optional] 
 **Type** | **string** | The script MIME type | 
@@ -180,6 +181,31 @@ SetOnclick sets Onclick field to given value.
 `func (o *UiNodeAttributes) HasOnclick() bool`
 
 HasOnclick returns a boolean if a field has been set.
+
+### GetOnload
+
+`func (o *UiNodeAttributes) GetOnload() string`
+
+GetOnload returns the Onload field if non-nil, zero value otherwise.
+
+### GetOnloadOk
+
+`func (o *UiNodeAttributes) GetOnloadOk() (*string, bool)`
+
+GetOnloadOk returns a tuple with the Onload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnload
+
+`func (o *UiNodeAttributes) SetOnload(v string)`
+
+SetOnload sets Onload field to given value.
+
+### HasOnload
+
+`func (o *UiNodeAttributes) HasOnload() bool`
+
+HasOnload returns a boolean if a field has been set.
 
 ### GetPattern
 

@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **config_key** | **str** | The Hooks Config Key | 
-**hook** | **str** | The Hook Type | 
 **created_at** | **datetime** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
+**hook** | **str** | The Hook Type | 
 **id** | **str** | ID of the entry | [optional] 
 **project_revision_id** | **str** | The Revision&#39;s ID this schema belongs to | [optional] 
 **updated_at** | **datetime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
@@ -22,8 +23,24 @@ Name | Type | Description | Notes
 **web_hook_config_response_ignore** | **bool** | Whether to ignore the Web Hook response | [optional] 
 **web_hook_config_response_parse** | **bool** | Whether to parse the Web Hook response | [optional] 
 **web_hook_config_url** | **str** | The URL the Web-Hook should call | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.normalized_project_revision_hook import NormalizedProjectRevisionHook
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of NormalizedProjectRevisionHook from a JSON string
+normalized_project_revision_hook_instance = NormalizedProjectRevisionHook.from_json(json)
+# print the JSON string representation of the object
+print(NormalizedProjectRevisionHook.to_json())
+
+# convert the object into a dict
+normalized_project_revision_hook_dict = normalized_project_revision_hook_instance.to_dict()
+# create an instance of NormalizedProjectRevisionHook from a dict
+normalized_project_revision_hook_form_dict = normalized_project_revision_hook.from_dict(normalized_project_revision_hook_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

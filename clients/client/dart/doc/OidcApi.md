@@ -5,7 +5,7 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,7 +36,7 @@ final OAuth2Client oAuth2Client = ; // OAuth2Client | Dynamic Client Registratio
 try {
     final response = api.createOidcDynamicClient(oAuth2Client);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OidcApi->createOidcDynamicClient: $e\n');
 }
 ```
@@ -79,7 +79,7 @@ final CreateVerifiableCredentialRequestBody createVerifiableCredentialRequestBod
 try {
     final response = api.createVerifiableCredential(createVerifiableCredentialRequestBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OidcApi->createVerifiableCredential: $e\n');
 }
 ```
@@ -115,16 +115,13 @@ This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`)
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOidcApi();
 final String id = id_example; // String | The id of the OAuth 2.0 Client.
 
 try {
     api.deleteOidcDynamicClient(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OidcApi->deleteOidcDynamicClient: $e\n');
 }
 ```
@@ -166,7 +163,7 @@ final api = OryClient().getOidcApi();
 try {
     final response = api.discoverOidcConfiguration();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OidcApi->discoverOidcConfiguration: $e\n');
 }
 ```
@@ -199,9 +196,6 @@ This endpoint behaves like the administrative counterpart (`getOAuth2Client`) bu
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOidcApi();
 final String id = id_example; // String | The id of the OAuth 2.0 Client.
@@ -209,7 +203,7 @@ final String id = id_example; // String | The id of the OAuth 2.0 Client.
 try {
     final response = api.getOidcDynamicClient(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OidcApi->getOidcDynamicClient: $e\n');
 }
 ```
@@ -253,7 +247,7 @@ final api = OryClient().getOidcApi();
 try {
     final response = api.getOidcUserInfo();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OidcApi->getOidcUserInfo: $e\n');
 }
 ```
@@ -291,7 +285,7 @@ final api = OryClient().getOidcApi();
 
 try {
     api.revokeOidcSession();
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OidcApi->revokeOidcSession: $e\n');
 }
 ```
@@ -324,9 +318,6 @@ This endpoint behaves like the administrative counterpart (`setOAuth2Client`) bu
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOidcApi();
 final String id = id_example; // String | OAuth 2.0 Client ID
@@ -335,7 +326,7 @@ final OAuth2Client oAuth2Client = ; // OAuth2Client | OAuth 2.0 Client Request B
 try {
     final response = api.setOidcDynamicClient(id, oAuth2Client);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OidcApi->setOidcDynamicClient: $e\n');
 }
 ```

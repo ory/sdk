@@ -6,6 +6,65 @@ part of 'project.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const ProjectEnvironmentEnum _$projectEnvironmentEnum_prod =
+    const ProjectEnvironmentEnum._('prod');
+const ProjectEnvironmentEnum _$projectEnvironmentEnum_stage =
+    const ProjectEnvironmentEnum._('stage');
+const ProjectEnvironmentEnum _$projectEnvironmentEnum_dev =
+    const ProjectEnvironmentEnum._('dev');
+
+ProjectEnvironmentEnum _$projectEnvironmentEnumValueOf(String name) {
+  switch (name) {
+    case 'prod':
+      return _$projectEnvironmentEnum_prod;
+    case 'stage':
+      return _$projectEnvironmentEnum_stage;
+    case 'dev':
+      return _$projectEnvironmentEnum_dev;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<ProjectEnvironmentEnum> _$projectEnvironmentEnumValues =
+    new BuiltSet<ProjectEnvironmentEnum>(const <ProjectEnvironmentEnum>[
+  _$projectEnvironmentEnum_prod,
+  _$projectEnvironmentEnum_stage,
+  _$projectEnvironmentEnum_dev,
+]);
+
+const ProjectHomeRegionEnum _$projectHomeRegionEnum_euCentral =
+    const ProjectHomeRegionEnum._('euCentral');
+const ProjectHomeRegionEnum _$projectHomeRegionEnum_usEast =
+    const ProjectHomeRegionEnum._('usEast');
+const ProjectHomeRegionEnum _$projectHomeRegionEnum_usWest =
+    const ProjectHomeRegionEnum._('usWest');
+const ProjectHomeRegionEnum _$projectHomeRegionEnum_global =
+    const ProjectHomeRegionEnum._('global');
+
+ProjectHomeRegionEnum _$projectHomeRegionEnumValueOf(String name) {
+  switch (name) {
+    case 'euCentral':
+      return _$projectHomeRegionEnum_euCentral;
+    case 'usEast':
+      return _$projectHomeRegionEnum_usEast;
+    case 'usWest':
+      return _$projectHomeRegionEnum_usWest;
+    case 'global':
+      return _$projectHomeRegionEnum_global;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<ProjectHomeRegionEnum> _$projectHomeRegionEnumValues =
+    new BuiltSet<ProjectHomeRegionEnum>(const <ProjectHomeRegionEnum>[
+  _$projectHomeRegionEnum_euCentral,
+  _$projectHomeRegionEnum_usEast,
+  _$projectHomeRegionEnum_usWest,
+  _$projectHomeRegionEnum_global,
+]);
+
 const ProjectStateEnum _$projectStateEnum_running =
     const ProjectStateEnum._('running');
 const ProjectStateEnum _$projectStateEnum_halted =
@@ -33,8 +92,74 @@ final BuiltSet<ProjectStateEnum> _$projectStateEnumValues =
   _$projectStateEnum_deleted,
 ]);
 
+Serializer<ProjectEnvironmentEnum> _$projectEnvironmentEnumSerializer =
+    new _$ProjectEnvironmentEnumSerializer();
+Serializer<ProjectHomeRegionEnum> _$projectHomeRegionEnumSerializer =
+    new _$ProjectHomeRegionEnumSerializer();
 Serializer<ProjectStateEnum> _$projectStateEnumSerializer =
     new _$ProjectStateEnumSerializer();
+
+class _$ProjectEnvironmentEnumSerializer
+    implements PrimitiveSerializer<ProjectEnvironmentEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'prod': 'prod',
+    'stage': 'stage',
+    'dev': 'dev',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'prod': 'prod',
+    'stage': 'stage',
+    'dev': 'dev',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[ProjectEnvironmentEnum];
+  @override
+  final String wireName = 'ProjectEnvironmentEnum';
+
+  @override
+  Object serialize(Serializers serializers, ProjectEnvironmentEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  ProjectEnvironmentEnum deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      ProjectEnvironmentEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$ProjectHomeRegionEnumSerializer
+    implements PrimitiveSerializer<ProjectHomeRegionEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'euCentral': 'eu-central',
+    'usEast': 'us-east',
+    'usWest': 'us-west',
+    'global': 'global',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'eu-central': 'euCentral',
+    'us-east': 'usEast',
+    'us-west': 'usWest',
+    'global': 'global',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[ProjectHomeRegionEnum];
+  @override
+  final String wireName = 'ProjectHomeRegionEnum';
+
+  @override
+  Object serialize(Serializers serializers, ProjectHomeRegionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  ProjectHomeRegionEnum deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      ProjectHomeRegionEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
 
 class _$ProjectStateEnumSerializer
     implements PrimitiveSerializer<ProjectStateEnum> {
@@ -72,6 +197,10 @@ class _$Project extends Project {
   @override
   final ProjectCors? corsPublic;
   @override
+  final ProjectEnvironmentEnum environment;
+  @override
+  final ProjectHomeRegionEnum homeRegion;
+  @override
   final String id;
   @override
   final String name;
@@ -92,6 +221,8 @@ class _$Project extends Project {
   _$Project._(
       {this.corsAdmin,
       this.corsPublic,
+      required this.environment,
+      required this.homeRegion,
       required this.id,
       required this.name,
       required this.revisionId,
@@ -100,6 +231,9 @@ class _$Project extends Project {
       required this.state,
       this.workspaceId})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        environment, r'Project', 'environment');
+    BuiltValueNullFieldError.checkNotNull(homeRegion, r'Project', 'homeRegion');
     BuiltValueNullFieldError.checkNotNull(id, r'Project', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'Project', 'name');
     BuiltValueNullFieldError.checkNotNull(revisionId, r'Project', 'revisionId');
@@ -121,6 +255,8 @@ class _$Project extends Project {
     return other is Project &&
         corsAdmin == other.corsAdmin &&
         corsPublic == other.corsPublic &&
+        environment == other.environment &&
+        homeRegion == other.homeRegion &&
         id == other.id &&
         name == other.name &&
         revisionId == other.revisionId &&
@@ -135,6 +271,8 @@ class _$Project extends Project {
     var _$hash = 0;
     _$hash = $jc(_$hash, corsAdmin.hashCode);
     _$hash = $jc(_$hash, corsPublic.hashCode);
+    _$hash = $jc(_$hash, environment.hashCode);
+    _$hash = $jc(_$hash, homeRegion.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, revisionId.hashCode);
@@ -151,6 +289,8 @@ class _$Project extends Project {
     return (newBuiltValueToStringHelper(r'Project')
           ..add('corsAdmin', corsAdmin)
           ..add('corsPublic', corsPublic)
+          ..add('environment', environment)
+          ..add('homeRegion', homeRegion)
           ..add('id', id)
           ..add('name', name)
           ..add('revisionId', revisionId)
@@ -175,6 +315,16 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
       _$this._corsPublic ??= new ProjectCorsBuilder();
   set corsPublic(ProjectCorsBuilder? corsPublic) =>
       _$this._corsPublic = corsPublic;
+
+  ProjectEnvironmentEnum? _environment;
+  ProjectEnvironmentEnum? get environment => _$this._environment;
+  set environment(ProjectEnvironmentEnum? environment) =>
+      _$this._environment = environment;
+
+  ProjectHomeRegionEnum? _homeRegion;
+  ProjectHomeRegionEnum? get homeRegion => _$this._homeRegion;
+  set homeRegion(ProjectHomeRegionEnum? homeRegion) =>
+      _$this._homeRegion = homeRegion;
 
   String? _id;
   String? get id => _$this._id;
@@ -214,6 +364,8 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
     if ($v != null) {
       _corsAdmin = $v.corsAdmin?.toBuilder();
       _corsPublic = $v.corsPublic?.toBuilder();
+      _environment = $v.environment;
+      _homeRegion = $v.homeRegion;
       _id = $v.id;
       _name = $v.name;
       _revisionId = $v.revisionId;
@@ -247,6 +399,10 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
           new _$Project._(
               corsAdmin: _corsAdmin?.build(),
               corsPublic: _corsPublic?.build(),
+              environment: BuiltValueNullFieldError.checkNotNull(
+                  environment, r'Project', 'environment'),
+              homeRegion: BuiltValueNullFieldError.checkNotNull(
+                  homeRegion, r'Project', 'homeRegion'),
               id: BuiltValueNullFieldError.checkNotNull(id, r'Project', 'id'),
               name: BuiltValueNullFieldError.checkNotNull(
                   name, r'Project', 'name'),

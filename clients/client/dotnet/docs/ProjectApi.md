@@ -1,33 +1,29 @@
 # Ory.Client.Api.ProjectApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**CreateOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | 
-[**CreateProject**](ProjectApi.md#createproject) | **POST** /projects | Create a Project
-[**CreateProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API token
-[**DeleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
-[**DeleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
-[**GetActiveProjectInConsole**](ProjectApi.md#getactiveprojectinconsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
-[**GetOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID.
-[**GetProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
-[**GetProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
-[**GetProjectMetrics**](ProjectApi.md#getprojectmetrics) | **GET** /projects/{project_id}/metrics | 
-[**ListOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | 
-[**ListProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
-[**ListProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects
-[**PatchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
-[**PurgeProject**](ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-[**RemoveProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
-[**SetActiveProjectInConsole**](ProjectApi.md#setactiveprojectinconsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
-[**SetProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
-[**UpdateOrganization**](ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**CreateOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations |  |
+| [**CreateProject**](ProjectApi.md#createproject) | **POST** /projects | Create a Project |
+| [**CreateProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API token |
+| [**DeleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} |  |
+| [**DeleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
+| [**GetOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID |
+| [**GetProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project |
+| [**GetProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project |
+| [**ListOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations |  |
+| [**ListProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
+| [**ListProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects |
+| [**PatchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
+| [**PurgeProject**](ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
+| [**RemoveProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
+| [**SetProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
+| [**UpdateOrganization**](ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} |  |
 
-
-<a name="createorganization"></a>
+<a id="createorganization"></a>
 # **CreateOrganization**
-> ClientOrganization CreateOrganization (string projectId, ClientOrganizationBody clientOrganizationBody = null)
+> ClientOrganization CreateOrganization (string projectId, ClientOrganizationBody? clientOrganizationBody = null)
 
 
 
@@ -48,13 +44,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
             var projectId = "projectId_example";  // string | Project ID  The project's ID.
-            var clientOrganizationBody = new ClientOrganizationBody(); // ClientOrganizationBody |  (optional) 
+            var clientOrganizationBody = new ClientOrganizationBody?(); // ClientOrganizationBody? |  (optional) 
 
             try
             {
@@ -63,8 +59,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.CreateOrganization: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.CreateOrganization: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -72,12 +68,31 @@ namespace Example
 }
 ```
 
+#### Using the CreateOrganizationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<ClientOrganization> response = apiInstance.CreateOrganizationWithHttpInfo(projectId, clientOrganizationBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.CreateOrganizationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
- **clientOrganizationBody** | [**ClientOrganizationBody**](ClientOrganizationBody.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
+| **clientOrganizationBody** | [**ClientOrganizationBody?**](ClientOrganizationBody?.md) |  | [optional]  |
 
 ### Return type
 
@@ -85,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -104,9 +119,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="createproject"></a>
+<a id="createproject"></a>
 # **CreateProject**
-> ClientProject CreateProject (ClientCreateProjectBody clientCreateProjectBody = null)
+> ClientProject CreateProject (ClientCreateProjectBody? clientCreateProjectBody = null)
 
 Create a Project
 
@@ -127,12 +142,12 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
-            var clientCreateProjectBody = new ClientCreateProjectBody(); // ClientCreateProjectBody |  (optional) 
+            var clientCreateProjectBody = new ClientCreateProjectBody?(); // ClientCreateProjectBody? |  (optional) 
 
             try
             {
@@ -142,8 +157,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.CreateProject: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.CreateProject: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -151,11 +166,31 @@ namespace Example
 }
 ```
 
+#### Using the CreateProjectWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a Project
+    ApiResponse<ClientProject> response = apiInstance.CreateProjectWithHttpInfo(clientCreateProjectBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.CreateProjectWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientCreateProjectBody** | [**ClientCreateProjectBody**](ClientCreateProjectBody.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **clientCreateProjectBody** | [**ClientCreateProjectBody?**](ClientCreateProjectBody?.md) |  | [optional]  |
 
 ### Return type
 
@@ -163,7 +198,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -182,9 +217,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="createprojectapikey"></a>
+<a id="createprojectapikey"></a>
 # **CreateProjectApiKey**
-> ClientProjectApiKey CreateProjectApiKey (string project, ClientInlineObject3 clientInlineObject3 = null)
+> ClientProjectApiKey CreateProjectApiKey (string project, ClientCreateProjectApiKeyRequest? clientCreateProjectApiKeyRequest = null)
 
 Create project API token
 
@@ -205,24 +240,24 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
             var project = "project_example";  // string | The Project ID or Project slug
-            var clientInlineObject3 = new ClientInlineObject3(); // ClientInlineObject3 |  (optional) 
+            var clientCreateProjectApiKeyRequest = new ClientCreateProjectApiKeyRequest?(); // ClientCreateProjectApiKeyRequest? |  (optional) 
 
             try
             {
                 // Create project API token
-                ClientProjectApiKey result = apiInstance.CreateProjectApiKey(project, clientInlineObject3);
+                ClientProjectApiKey result = apiInstance.CreateProjectApiKey(project, clientCreateProjectApiKeyRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.CreateProjectApiKey: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.CreateProjectApiKey: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -230,12 +265,32 @@ namespace Example
 }
 ```
 
+#### Using the CreateProjectApiKeyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create project API token
+    ApiResponse<ClientProjectApiKey> response = apiInstance.CreateProjectApiKeyWithHttpInfo(project, clientCreateProjectApiKeyRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.CreateProjectApiKeyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **project** | **string**| The Project ID or Project slug | 
- **clientInlineObject3** | [**ClientInlineObject3**](ClientInlineObject3.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **project** | **string** | The Project ID or Project slug |  |
+| **clientCreateProjectApiKeyRequest** | [**ClientCreateProjectApiKeyRequest?**](ClientCreateProjectApiKeyRequest?.md) |  | [optional]  |
 
 ### Return type
 
@@ -243,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -259,11 +314,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteorganization"></a>
+<a id="deleteorganization"></a>
 # **DeleteOrganization**
 > void DeleteOrganization (string projectId, string organizationId)
 
-Delete a B2B SSO Organization for a project.
+
+
+Delete a B2B SSO Organization for a project
 
 ### Example
 ```csharp
@@ -280,8 +337,8 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
@@ -290,13 +347,12 @@ namespace Example
 
             try
             {
-                // Delete a B2B SSO Organization for a project.
                 apiInstance.DeleteOrganization(projectId, organizationId);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.DeleteOrganization: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.DeleteOrganization: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -304,12 +360,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteOrganizationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    apiInstance.DeleteOrganizationWithHttpInfo(projectId, organizationId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.DeleteOrganizationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
- **organizationId** | **string**| Organization ID  The Organization&#39;s ID. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
+| **organizationId** | **string** | Organization ID  The Organization&#39;s ID. |  |
 
 ### Return type
 
@@ -317,7 +389,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -337,7 +409,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteprojectapikey"></a>
+<a id="deleteprojectapikey"></a>
 # **DeleteProjectApiKey**
 > void DeleteProjectApiKey (string project, string tokenId)
 
@@ -360,8 +432,8 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
@@ -375,8 +447,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.DeleteProjectApiKey: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.DeleteProjectApiKey: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -384,12 +456,29 @@ namespace Example
 }
 ```
 
+#### Using the DeleteProjectApiKeyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete project API token
+    apiInstance.DeleteProjectApiKeyWithHttpInfo(project, tokenId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.DeleteProjectApiKeyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **project** | **string**| The Project ID or Project slug | 
- **tokenId** | **string**| The Token ID | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **project** | **string** | The Project ID or Project slug |  |
+| **tokenId** | **string** | The Token ID |  |
 
 ### Return type
 
@@ -397,7 +486,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -413,83 +502,11 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getactiveprojectinconsole"></a>
-# **GetActiveProjectInConsole**
-> ClientActiveProjectInConsole GetActiveProjectInConsole ()
-
-Returns the Ory Network Project selected in the Ory Network Console
-
-Use this API to get your active project in the Ory Network Console UI.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Client.Api;
-using Ory.Client.Client;
-using Ory.Client.Model;
-
-namespace Example
-{
-    public class GetActiveProjectInConsoleExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            var apiInstance = new ProjectApi(config);
-
-            try
-            {
-                // Returns the Ory Network Project selected in the Ory Network Console
-                ClientActiveProjectInConsole result = apiInstance.GetActiveProjectInConsole();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling ProjectApi.GetActiveProjectInConsole: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ClientActiveProjectInConsole**](ClientActiveProjectInConsole.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | activeProjectInConsole |  -  |
-| **401** | genericError |  -  |
-| **0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="getorganization"></a>
+<a id="getorganization"></a>
 # **GetOrganization**
 > ClientGetOrganizationResponse GetOrganization (string projectId, string organizationId)
 
-Returns a B2B SSO Organization for a project by it's ID.
+Returns a B2B SSO Organization for a project by its ID
 
 ### Example
 ```csharp
@@ -506,8 +523,8 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
@@ -516,14 +533,14 @@ namespace Example
 
             try
             {
-                // Returns a B2B SSO Organization for a project by it's ID.
+                // Returns a B2B SSO Organization for a project by its ID
                 ClientGetOrganizationResponse result = apiInstance.GetOrganization(projectId, organizationId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.GetOrganization: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.GetOrganization: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -531,12 +548,32 @@ namespace Example
 }
 ```
 
+#### Using the GetOrganizationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Returns a B2B SSO Organization for a project by its ID
+    ApiResponse<ClientGetOrganizationResponse> response = apiInstance.GetOrganizationWithHttpInfo(projectId, organizationId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.GetOrganizationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
- **organizationId** | **string**| Organization ID  The Organization&#39;s ID. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
+| **organizationId** | **string** | Organization ID  The Organization&#39;s ID. |  |
 
 ### Return type
 
@@ -544,7 +581,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -562,7 +599,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getproject"></a>
+<a id="getproject"></a>
 # **GetProject**
 > ClientProject GetProject (string projectId)
 
@@ -585,8 +622,8 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
@@ -600,8 +637,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.GetProject: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.GetProject: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -609,11 +646,31 @@ namespace Example
 }
 ```
 
+#### Using the GetProjectWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a Project
+    ApiResponse<ClientProject> response = apiInstance.GetProjectWithHttpInfo(projectId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.GetProjectWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
 
 ### Return type
 
@@ -621,7 +678,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -640,7 +697,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getprojectmembers"></a>
+<a id="getprojectmembers"></a>
 # **GetProjectMembers**
 > List&lt;ClientProjectMember&gt; GetProjectMembers (string project)
 
@@ -663,8 +720,8 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
@@ -678,8 +735,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.GetProjectMembers: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.GetProjectMembers: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -687,11 +744,31 @@ namespace Example
 }
 ```
 
+#### Using the GetProjectMembersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get all members associated with this project
+    ApiResponse<List<ClientProjectMember>> response = apiInstance.GetProjectMembersWithHttpInfo(project);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.GetProjectMembersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **project** | **string**|  | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **project** | **string** |  |  |
 
 ### Return type
 
@@ -699,7 +776,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -717,95 +794,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getprojectmetrics"></a>
-# **GetProjectMetrics**
-> ClientGetProjectMetricsResponse GetProjectMetrics (string projectId, string eventType, string resolution, DateTime from, DateTime to)
-
-
-
-Retrieves project metrics for the specified event type and time range
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Client.Api;
-using Ory.Client.Client;
-using Ory.Client.Model;
-
-namespace Example
-{
-    public class GetProjectMetricsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            var apiInstance = new ProjectApi(config);
-            var projectId = "projectId_example";  // string | Project ID
-            var eventType = "eventType_example";  // string | The event type to query for
-            var resolution = "resolution_example";  // string | The resolution of the buckets  The minimum resolution is 1 minute.
-            var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The start RFC3339 date of the time window
-            var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | The end RFC3339 date of the time window
-
-            try
-            {
-                ClientGetProjectMetricsResponse result = apiInstance.GetProjectMetrics(projectId, eventType, resolution, from, to);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling ProjectApi.GetProjectMetrics: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID | 
- **eventType** | **string**| The event type to query for | 
- **resolution** | **string**| The resolution of the buckets  The minimum resolution is 1 minute. | 
- **from** | **DateTime**| The start RFC3339 date of the time window | 
- **to** | **DateTime**| The end RFC3339 date of the time window | 
-
-### Return type
-
-[**ClientGetProjectMetricsResponse**](ClientGetProjectMetricsResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | getProjectMetricsResponse |  -  |
-| **400** | genericError |  -  |
-| **403** | genericError |  -  |
-| **0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="listorganizations"></a>
+<a id="listorganizations"></a>
 # **ListOrganizations**
-> ClientListOrganizationsResponse ListOrganizations (string projectId)
+> ClientListOrganizationsResponse ListOrganizations (string projectId, long? pageSize = null, string? pageToken = null, string? domain = null)
 
 
+
+List all B2B SSO Organizations for a project
 
 ### Example
 ```csharp
@@ -822,22 +817,25 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
             var projectId = "projectId_example";  // string | Project ID  The project's ID.
+            var pageSize = 250L;  // long? | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
+            var pageToken = "pageToken_example";  // string? | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) 
+            var domain = "domain_example";  // string? | Domain  If set, only organizations with that domain will be returned. (optional) 
 
             try
             {
-                ClientListOrganizationsResponse result = apiInstance.ListOrganizations(projectId);
+                ClientListOrganizationsResponse result = apiInstance.ListOrganizations(projectId, pageSize, pageToken, domain);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.ListOrganizations: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.ListOrganizations: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -845,11 +843,33 @@ namespace Example
 }
 ```
 
+#### Using the ListOrganizationsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<ClientListOrganizationsResponse> response = apiInstance.ListOrganizationsWithHttpInfo(projectId, pageSize, pageToken, domain);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.ListOrganizationsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
+| **pageSize** | **long?** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string?** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]  |
+| **domain** | **string?** | Domain  If set, only organizations with that domain will be returned. | [optional]  |
 
 ### Return type
 
@@ -857,7 +877,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -875,7 +895,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listprojectapikeys"></a>
+<a id="listprojectapikeys"></a>
 # **ListProjectApiKeys**
 > List&lt;ClientProjectApiKey&gt; ListProjectApiKeys (string project)
 
@@ -898,8 +918,8 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
@@ -913,8 +933,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.ListProjectApiKeys: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.ListProjectApiKeys: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -922,11 +942,31 @@ namespace Example
 }
 ```
 
+#### Using the ListProjectApiKeysWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List a project's API Tokens
+    ApiResponse<List<ClientProjectApiKey>> response = apiInstance.ListProjectApiKeysWithHttpInfo(project);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.ListProjectApiKeysWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **project** | **string**| The Project ID or Project slug | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **project** | **string** | The Project ID or Project slug |  |
 
 ### Return type
 
@@ -934,7 +974,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -950,7 +990,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listprojects"></a>
+<a id="listprojects"></a>
 # **ListProjects**
 > List&lt;ClientProjectMetadata&gt; ListProjects ()
 
@@ -973,8 +1013,8 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
@@ -987,8 +1027,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.ListProjects: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.ListProjects: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -996,16 +1036,35 @@ namespace Example
 }
 ```
 
+#### Using the ListProjectsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List All Projects
+    ApiResponse<List<ClientProjectMetadata>> response = apiInstance.ListProjectsWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.ListProjectsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**List&lt;ClientProjectMetadata&gt;**](ClientProjectMetadata.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1024,9 +1083,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="patchproject"></a>
+<a id="patchproject"></a>
 # **PatchProject**
-> ClientSuccessfulProjectUpdate PatchProject (string projectId, List<ClientJsonPatch> clientJsonPatch = null)
+> ClientSuccessfulProjectUpdate PatchProject (string projectId, List<ClientJsonPatch>? clientJsonPatch = null)
 
 Patch an Ory Network Project Configuration
 
@@ -1047,13 +1106,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
             var projectId = "projectId_example";  // string | Project ID  The project's ID.
-            var clientJsonPatch = new List<ClientJsonPatch>(); // List<ClientJsonPatch> |  (optional) 
+            var clientJsonPatch = new List<ClientJsonPatch>?(); // List<ClientJsonPatch>? |  (optional) 
 
             try
             {
@@ -1063,8 +1122,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.PatchProject: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.PatchProject: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1072,12 +1131,32 @@ namespace Example
 }
 ```
 
+#### Using the PatchProjectWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Patch an Ory Network Project Configuration
+    ApiResponse<ClientSuccessfulProjectUpdate> response = apiInstance.PatchProjectWithHttpInfo(projectId, clientJsonPatch);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.PatchProjectWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
- **clientJsonPatch** | [**List&lt;ClientJsonPatch&gt;**](ClientJsonPatch.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
+| **clientJsonPatch** | [**List&lt;ClientJsonPatch&gt;?**](ClientJsonPatch.md) |  | [optional]  |
 
 ### Return type
 
@@ -1085,7 +1164,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1105,7 +1184,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="purgeproject"></a>
+<a id="purgeproject"></a>
 # **PurgeProject**
 > void PurgeProject (string projectId)
 
@@ -1128,8 +1207,8 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
@@ -1142,8 +1221,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.PurgeProject: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.PurgeProject: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1151,11 +1230,28 @@ namespace Example
 }
 ```
 
+#### Using the PurgeProjectWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Irrecoverably purge a project
+    apiInstance.PurgeProjectWithHttpInfo(projectId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.PurgeProjectWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
 
 ### Return type
 
@@ -1163,7 +1259,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1182,7 +1278,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="removeprojectmember"></a>
+<a id="removeprojectmember"></a>
 # **RemoveProjectMember**
 > void RemoveProjectMember (string project, string member)
 
@@ -1205,8 +1301,8 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
@@ -1220,8 +1316,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.RemoveProjectMember: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.RemoveProjectMember: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1229,12 +1325,29 @@ namespace Example
 }
 ```
 
+#### Using the RemoveProjectMemberWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove a member associated with this project
+    apiInstance.RemoveProjectMemberWithHttpInfo(project, member);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.RemoveProjectMemberWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **project** | **string**|  | 
- **member** | **string**|  | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **project** | **string** |  |  |
+| **member** | **string** |  |  |
 
 ### Return type
 
@@ -1242,7 +1355,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1260,84 +1373,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="setactiveprojectinconsole"></a>
-# **SetActiveProjectInConsole**
-> void SetActiveProjectInConsole (ClientSetActiveProjectInConsoleBody clientSetActiveProjectInConsoleBody = null)
-
-Sets the Ory Network Project active in the Ory Network Console
-
-Use this API to set your active project in the Ory Network Console UI.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ory.Client.Api;
-using Ory.Client.Client;
-using Ory.Client.Model;
-
-namespace Example
-{
-    public class SetActiveProjectInConsoleExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            var apiInstance = new ProjectApi(config);
-            var clientSetActiveProjectInConsoleBody = new ClientSetActiveProjectInConsoleBody(); // ClientSetActiveProjectInConsoleBody |  (optional) 
-
-            try
-            {
-                // Sets the Ory Network Project active in the Ory Network Console
-                apiInstance.SetActiveProjectInConsole(clientSetActiveProjectInConsoleBody);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling ProjectApi.SetActiveProjectInConsole: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientSetActiveProjectInConsoleBody** | [**ClientSetActiveProjectInConsoleBody**](ClientSetActiveProjectInConsoleBody.md)|  | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **401** | genericError |  -  |
-| **0** | genericError |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="setproject"></a>
+<a id="setproject"></a>
 # **SetProject**
-> ClientSuccessfulProjectUpdate SetProject (string projectId, ClientSetProject clientSetProject = null)
+> ClientSuccessfulProjectUpdate SetProject (string projectId, ClientSetProject? clientSetProject = null)
 
 Update an Ory Network Project Configuration
 
@@ -1358,13 +1396,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
             var projectId = "projectId_example";  // string | Project ID  The project's ID.
-            var clientSetProject = new ClientSetProject(); // ClientSetProject |  (optional) 
+            var clientSetProject = new ClientSetProject?(); // ClientSetProject? |  (optional) 
 
             try
             {
@@ -1374,8 +1412,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.SetProject: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.SetProject: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1383,12 +1421,32 @@ namespace Example
 }
 ```
 
+#### Using the SetProjectWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update an Ory Network Project Configuration
+    ApiResponse<ClientSuccessfulProjectUpdate> response = apiInstance.SetProjectWithHttpInfo(projectId, clientSetProject);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.SetProjectWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
- **clientSetProject** | [**ClientSetProject**](ClientSetProject.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
+| **clientSetProject** | [**ClientSetProject?**](ClientSetProject?.md) |  | [optional]  |
 
 ### Return type
 
@@ -1396,7 +1454,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1416,11 +1474,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updateorganization"></a>
+<a id="updateorganization"></a>
 # **UpdateOrganization**
-> ClientOrganization UpdateOrganization (string projectId, string organizationId, ClientOrganizationBody clientOrganizationBody = null)
+> ClientOrganization UpdateOrganization (string projectId, string organizationId, ClientOrganizationBody? clientOrganizationBody = null)
 
-Update a B2B SSO Organization for a project.
+
+
+Update a B2B SSO Organization for a project
 
 ### Example
 ```csharp
@@ -1437,25 +1497,24 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
-            // Configure Bearer token for authorization: oryAccessToken
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ProjectApi(config);
             var projectId = "projectId_example";  // string | Project ID  The project's ID.
             var organizationId = "organizationId_example";  // string | Organization ID  The Organization's ID.
-            var clientOrganizationBody = new ClientOrganizationBody(); // ClientOrganizationBody |  (optional) 
+            var clientOrganizationBody = new ClientOrganizationBody?(); // ClientOrganizationBody? |  (optional) 
 
             try
             {
-                // Update a B2B SSO Organization for a project.
                 ClientOrganization result = apiInstance.UpdateOrganization(projectId, organizationId, clientOrganizationBody);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ProjectApi.UpdateOrganization: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ProjectApi.UpdateOrganization: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1463,13 +1522,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdateOrganizationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<ClientOrganization> response = apiInstance.UpdateOrganizationWithHttpInfo(projectId, organizationId, clientOrganizationBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.UpdateOrganizationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| Project ID  The project&#39;s ID. | 
- **organizationId** | **string**| Organization ID  The Organization&#39;s ID. | 
- **clientOrganizationBody** | [**ClientOrganizationBody**](ClientOrganizationBody.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
+| **organizationId** | **string** | Organization ID  The Organization&#39;s ID. |  |
+| **clientOrganizationBody** | [**ClientOrganizationBody?**](ClientOrganizationBody?.md) |  | [optional]  |
 
 ### Return type
 
@@ -1477,7 +1555,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

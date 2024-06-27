@@ -37,6 +37,18 @@ void main() {
       // TODO
     });
 
+    // The Account Experience Theme Variables.
+    // BuiltList<AccountExperienceThemeVariables> accountExperienceVariables
+    test('to test the property `accountExperienceVariables`', () async {
+      // TODO
+    });
+
+    // AccountExperienceVariableStylesheet holds a reference to the current stylesheet that can be used in the AX
+    // String accountExperienceVariablesStylesheet
+    test('to test the property `accountExperienceVariablesStylesheet`', () async {
+      // TODO
+    });
+
     // BackgroundCanvasColor is a hex color code used by the Ory Account Experience theme.
     // String backgroundCanvasColor
     test('to test the property `backgroundCanvasColor`', () async {

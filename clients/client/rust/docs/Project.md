@@ -4,12 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cors_admin** | Option<[**crate::models::ProjectCors**](projectCors.md)> |  | [optional]
-**cors_public** | Option<[**crate::models::ProjectCors**](projectCors.md)> |  | [optional]
+**cors_admin** | Option<[**models::ProjectCors**](projectCors.md)> |  | [optional]
+**cors_public** | Option<[**models::ProjectCors**](projectCors.md)> |  | [optional]
+**environment** | **String** | The environment of the project. prod Production stage Staging dev Development | 
+**home_region** | **String** | The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global | 
 **id** | **String** | The project's ID. | [readonly]
 **name** | **String** | The name of the project. | 
 **revision_id** | **String** | The configuration revision ID. | [readonly]
-**services** | [**crate::models::ProjectServices**](projectServices.md) |  | 
+**services** | [**models::ProjectServices**](projectServices.md) |  | 
 **slug** | **String** | The project's slug | [readonly]
 **state** | **String** | The state of the project. running Running halted Halted deleted Deleted | [readonly]
 **workspace_id** | Option<**String**> |  | [optional]

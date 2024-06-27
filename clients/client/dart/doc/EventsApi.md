@@ -5,7 +5,7 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -23,9 +23,6 @@ Create an event stream for your project.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getEventsApi();
 final String projectId = projectId_example; // String | Project ID  The project's ID.
@@ -34,7 +31,7 @@ final CreateEventStreamBody createEventStreamBody = ; // CreateEventStreamBody |
 try {
     final response = api.createEventStream(projectId, createEventStreamBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling EventsApi->createEventStream: $e\n');
 }
 ```
@@ -52,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -71,9 +68,6 @@ Remove an event stream from a project.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getEventsApi();
 final String projectId = projectId_example; // String | Project ID  The project's ID.
@@ -81,7 +75,7 @@ final String eventStreamId = eventStreamId_example; // String | Event Stream ID 
 
 try {
     api.deleteEventStream(projectId, eventStreamId);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling EventsApi->deleteEventStream: $e\n');
 }
 ```
@@ -99,7 +93,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -116,9 +110,6 @@ List all event streams for the project. This endpoint is not paginated.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getEventsApi();
 final String projectId = projectId_example; // String | Project ID  The project's ID.
@@ -126,7 +117,7 @@ final String projectId = projectId_example; // String | Project ID  The project'
 try {
     final response = api.listEventStreams(projectId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling EventsApi->listEventStreams: $e\n');
 }
 ```
@@ -143,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -160,9 +151,6 @@ Update an event stream for a project.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getEventsApi();
 final String projectId = projectId_example; // String | Project ID  The project's ID.
@@ -172,7 +160,7 @@ final SetEventStreamBody setEventStreamBody = ; // SetEventStreamBody |
 try {
     final response = api.setEventStream(projectId, eventStreamId, setEventStreamBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling EventsApi->setEventStream: $e\n');
 }
 ```
@@ -191,7 +179,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

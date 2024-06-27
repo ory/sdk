@@ -90,18 +90,6 @@ func Test_client_ProjectAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ProjectAPIService GetActiveProjectInConsole", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.ProjectAPI.GetActiveProjectInConsole(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test ProjectAPIService GetOrganization", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -138,20 +126,6 @@ func Test_client_ProjectAPIService(t *testing.T) {
 		var project string
 
 		resp, httpRes, err := apiClient.ProjectAPI.GetProjectMembers(context.Background(), project).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ProjectAPIService GetProjectMetrics", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId string
-
-		resp, httpRes, err := apiClient.ProjectAPI.GetProjectMetrics(context.Background(), projectId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -234,17 +208,6 @@ func Test_client_ProjectAPIService(t *testing.T) {
 		var member string
 
 		httpRes, err := apiClient.ProjectAPI.RemoveProjectMember(context.Background(), project, member).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ProjectAPIService SetActiveProjectInConsole", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		httpRes, err := apiClient.ProjectAPI.SetActiveProjectInConsole(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

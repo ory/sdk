@@ -1,6 +1,6 @@
 # \EventsApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## create_event_stream
 
-> crate::models::EventStream create_event_stream(project_id, create_event_stream_body)
+> models::EventStream create_event_stream(project_id, create_event_stream_body)
 Create an event stream for your project.
 
 ### Parameters
@@ -26,11 +26,11 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::EventStream**](eventStream.md)
+[**models::EventStream**](eventStream.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -73,7 +73,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_event_streams
 
-> crate::models::ListEventStreams list_event_streams(project_id)
+> models::ListEventStreams list_event_streams(project_id)
 List all event streams for the project. This endpoint is not paginated.
 
 ### Parameters
@@ -85,11 +85,11 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::ListEventStreams**](listEventStreams.md)
+[**models::ListEventStreams**](listEventStreams.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Required | Notes
 
 ## set_event_stream
 
-> crate::models::EventStream set_event_stream(project_id, event_stream_id, set_event_stream_body)
+> models::EventStream set_event_stream(project_id, event_stream_id, set_event_stream_body)
 Update an event stream for a project.
 
 ### Parameters
@@ -115,11 +115,11 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::EventStream**](eventStream.md)
+[**models::EventStream**](eventStream.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

@@ -1,6 +1,6 @@
 # \EventsAPI
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -23,25 +23,25 @@ Create an event stream for your project.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
-    projectId := "projectId_example" // string | Project ID  The project's ID.
-    createEventStreamBody := *openapiclient.NewCreateEventStreamBody("RoleArn_example", "TopicArn_example", "Type_example") // CreateEventStreamBody | 
+	projectId := "projectId_example" // string | Project ID  The project's ID.
+	createEventStreamBody := *openapiclient.NewCreateEventStreamBody("RoleArn_example", "TopicArn_example", "Type_example") // CreateEventStreamBody | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsAPI.CreateEventStream(context.Background(), projectId).CreateEventStreamBody(createEventStreamBody).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.CreateEventStream``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateEventStream`: EventStream
-    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.CreateEventStream`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.CreateEventStream(context.Background(), projectId).CreateEventStreamBody(createEventStreamBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.CreateEventStream``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateEventStream`: EventStream
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.CreateEventStream`: %v\n", resp)
 }
 ```
 
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -95,23 +95,23 @@ Remove an event stream from a project
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
-    projectId := "projectId_example" // string | Project ID  The project's ID.
-    eventStreamId := "eventStreamId_example" // string | Event Stream ID  The ID of the event stream to be deleted, as returned when created.
+	projectId := "projectId_example" // string | Project ID  The project's ID.
+	eventStreamId := "eventStreamId_example" // string | Event Stream ID  The ID of the event stream to be deleted, as returned when created.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.EventsAPI.DeleteEventStream(context.Background(), projectId, eventStreamId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.DeleteEventStream``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.EventsAPI.DeleteEventStream(context.Background(), projectId, eventStreamId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.DeleteEventStream``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -164,24 +164,24 @@ List all event streams for the project. This endpoint is not paginated.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
-    projectId := "projectId_example" // string | Project ID  The project's ID.
+	projectId := "projectId_example" // string | Project ID  The project's ID.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsAPI.ListEventStreams(context.Background(), projectId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ListEventStreams``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListEventStreams`: ListEventStreams
-    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ListEventStreams`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.ListEventStreams(context.Background(), projectId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ListEventStreams``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListEventStreams`: ListEventStreams
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ListEventStreams`: %v\n", resp)
 }
 ```
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -232,26 +232,26 @@ Update an event stream for a project.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
 )
 
 func main() {
-    projectId := "projectId_example" // string | Project ID  The project's ID.
-    eventStreamId := "eventStreamId_example" // string | Event Stream ID  The event stream's ID.
-    setEventStreamBody := *openapiclient.NewSetEventStreamBody("RoleArn_example", "TopicArn_example", "Type_example") // SetEventStreamBody |  (optional)
+	projectId := "projectId_example" // string | Project ID  The project's ID.
+	eventStreamId := "eventStreamId_example" // string | Event Stream ID  The event stream's ID.
+	setEventStreamBody := *openapiclient.NewSetEventStreamBody("RoleArn_example", "TopicArn_example", "Type_example") // SetEventStreamBody |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsAPI.SetEventStream(context.Background(), projectId, eventStreamId).SetEventStreamBody(setEventStreamBody).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.SetEventStream``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetEventStream`: EventStream
-    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.SetEventStream`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.SetEventStream(context.Background(), projectId, eventStreamId).SetEventStreamBody(setEventStreamBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.SetEventStream``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetEventStream`: EventStream
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.SetEventStream`: %v\n", resp)
 }
 ```
 
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

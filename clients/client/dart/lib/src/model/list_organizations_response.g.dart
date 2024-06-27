@@ -8,13 +8,25 @@ part of 'list_organizations_response.dart';
 
 class _$ListOrganizationsResponse extends ListOrganizationsResponse {
   @override
+  final bool hasNextPage;
+  @override
+  final String nextPageToken;
+  @override
   final BuiltList<Organization> organizations;
 
   factory _$ListOrganizationsResponse(
           [void Function(ListOrganizationsResponseBuilder)? updates]) =>
       (new ListOrganizationsResponseBuilder()..update(updates))._build();
 
-  _$ListOrganizationsResponse._({required this.organizations}) : super._() {
+  _$ListOrganizationsResponse._(
+      {required this.hasNextPage,
+      required this.nextPageToken,
+      required this.organizations})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        hasNextPage, r'ListOrganizationsResponse', 'hasNextPage');
+    BuiltValueNullFieldError.checkNotNull(
+        nextPageToken, r'ListOrganizationsResponse', 'nextPageToken');
     BuiltValueNullFieldError.checkNotNull(
         organizations, r'ListOrganizationsResponse', 'organizations');
   }
@@ -32,12 +44,16 @@ class _$ListOrganizationsResponse extends ListOrganizationsResponse {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ListOrganizationsResponse &&
+        hasNextPage == other.hasNextPage &&
+        nextPageToken == other.nextPageToken &&
         organizations == other.organizations;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, hasNextPage.hashCode);
+    _$hash = $jc(_$hash, nextPageToken.hashCode);
     _$hash = $jc(_$hash, organizations.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -46,6 +62,8 @@ class _$ListOrganizationsResponse extends ListOrganizationsResponse {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ListOrganizationsResponse')
+          ..add('hasNextPage', hasNextPage)
+          ..add('nextPageToken', nextPageToken)
           ..add('organizations', organizations))
         .toString();
   }
@@ -55,6 +73,15 @@ class ListOrganizationsResponseBuilder
     implements
         Builder<ListOrganizationsResponse, ListOrganizationsResponseBuilder> {
   _$ListOrganizationsResponse? _$v;
+
+  bool? _hasNextPage;
+  bool? get hasNextPage => _$this._hasNextPage;
+  set hasNextPage(bool? hasNextPage) => _$this._hasNextPage = hasNextPage;
+
+  String? _nextPageToken;
+  String? get nextPageToken => _$this._nextPageToken;
+  set nextPageToken(String? nextPageToken) =>
+      _$this._nextPageToken = nextPageToken;
 
   ListBuilder<Organization>? _organizations;
   ListBuilder<Organization> get organizations =>
@@ -69,6 +96,8 @@ class ListOrganizationsResponseBuilder
   ListOrganizationsResponseBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _hasNextPage = $v.hasNextPage;
+      _nextPageToken = $v.nextPageToken;
       _organizations = $v.organizations.toBuilder();
       _$v = null;
     }
@@ -94,6 +123,10 @@ class ListOrganizationsResponseBuilder
     try {
       _$result = _$v ??
           new _$ListOrganizationsResponse._(
+              hasNextPage: BuiltValueNullFieldError.checkNotNull(
+                  hasNextPage, r'ListOrganizationsResponse', 'hasNextPage'),
+              nextPageToken: BuiltValueNullFieldError.checkNotNull(
+                  nextPageToken, r'ListOrganizationsResponse', 'nextPageToken'),
               organizations: organizations.build());
     } catch (_) {
       late String _$failedField;

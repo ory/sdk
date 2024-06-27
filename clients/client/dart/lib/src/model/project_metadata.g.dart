@@ -8,6 +8,8 @@ part of 'project_metadata.dart';
 
 const ProjectMetadataEnvironmentEnum _$projectMetadataEnvironmentEnum_prod =
     const ProjectMetadataEnvironmentEnum._('prod');
+const ProjectMetadataEnvironmentEnum _$projectMetadataEnvironmentEnum_stage =
+    const ProjectMetadataEnvironmentEnum._('stage');
 const ProjectMetadataEnvironmentEnum _$projectMetadataEnvironmentEnum_dev =
     const ProjectMetadataEnvironmentEnum._('dev');
 
@@ -16,6 +18,8 @@ ProjectMetadataEnvironmentEnum _$projectMetadataEnvironmentEnumValueOf(
   switch (name) {
     case 'prod':
       return _$projectMetadataEnvironmentEnum_prod;
+    case 'stage':
+      return _$projectMetadataEnvironmentEnum_stage;
     case 'dev':
       return _$projectMetadataEnvironmentEnum_dev;
     default:
@@ -27,7 +31,42 @@ final BuiltSet<ProjectMetadataEnvironmentEnum>
     _$projectMetadataEnvironmentEnumValues = new BuiltSet<
         ProjectMetadataEnvironmentEnum>(const <ProjectMetadataEnvironmentEnum>[
   _$projectMetadataEnvironmentEnum_prod,
+  _$projectMetadataEnvironmentEnum_stage,
   _$projectMetadataEnvironmentEnum_dev,
+]);
+
+const ProjectMetadataHomeRegionEnum _$projectMetadataHomeRegionEnum_euCentral =
+    const ProjectMetadataHomeRegionEnum._('euCentral');
+const ProjectMetadataHomeRegionEnum _$projectMetadataHomeRegionEnum_usEast =
+    const ProjectMetadataHomeRegionEnum._('usEast');
+const ProjectMetadataHomeRegionEnum _$projectMetadataHomeRegionEnum_usWest =
+    const ProjectMetadataHomeRegionEnum._('usWest');
+const ProjectMetadataHomeRegionEnum _$projectMetadataHomeRegionEnum_global =
+    const ProjectMetadataHomeRegionEnum._('global');
+
+ProjectMetadataHomeRegionEnum _$projectMetadataHomeRegionEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'euCentral':
+      return _$projectMetadataHomeRegionEnum_euCentral;
+    case 'usEast':
+      return _$projectMetadataHomeRegionEnum_usEast;
+    case 'usWest':
+      return _$projectMetadataHomeRegionEnum_usWest;
+    case 'global':
+      return _$projectMetadataHomeRegionEnum_global;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<ProjectMetadataHomeRegionEnum>
+    _$projectMetadataHomeRegionEnumValues = new BuiltSet<
+        ProjectMetadataHomeRegionEnum>(const <ProjectMetadataHomeRegionEnum>[
+  _$projectMetadataHomeRegionEnum_euCentral,
+  _$projectMetadataHomeRegionEnum_usEast,
+  _$projectMetadataHomeRegionEnum_usWest,
+  _$projectMetadataHomeRegionEnum_global,
 ]);
 
 const ProjectMetadataStateEnum _$projectMetadataStateEnum_running =
@@ -60,6 +99,9 @@ final BuiltSet<ProjectMetadataStateEnum> _$projectMetadataStateEnumValues =
 Serializer<ProjectMetadataEnvironmentEnum>
     _$projectMetadataEnvironmentEnumSerializer =
     new _$ProjectMetadataEnvironmentEnumSerializer();
+Serializer<ProjectMetadataHomeRegionEnum>
+    _$projectMetadataHomeRegionEnumSerializer =
+    new _$ProjectMetadataHomeRegionEnumSerializer();
 Serializer<ProjectMetadataStateEnum> _$projectMetadataStateEnumSerializer =
     new _$ProjectMetadataStateEnumSerializer();
 
@@ -67,10 +109,12 @@ class _$ProjectMetadataEnvironmentEnumSerializer
     implements PrimitiveSerializer<ProjectMetadataEnvironmentEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'prod': 'prod',
+    'stage': 'stage',
     'dev': 'dev',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'prod': 'prod',
+    'stage': 'stage',
     'dev': 'dev',
   };
 
@@ -90,6 +134,40 @@ class _$ProjectMetadataEnvironmentEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       ProjectMetadataEnvironmentEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$ProjectMetadataHomeRegionEnumSerializer
+    implements PrimitiveSerializer<ProjectMetadataHomeRegionEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'euCentral': 'eu-central',
+    'usEast': 'us-east',
+    'usWest': 'us-west',
+    'global': 'global',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'eu-central': 'euCentral',
+    'us-east': 'usEast',
+    'us-west': 'usWest',
+    'global': 'global',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[ProjectMetadataHomeRegionEnum];
+  @override
+  final String wireName = 'ProjectMetadataHomeRegionEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, ProjectMetadataHomeRegionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  ProjectMetadataHomeRegionEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      ProjectMetadataHomeRegionEnum.valueOf(
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
@@ -130,13 +208,15 @@ class _$ProjectMetadata extends ProjectMetadata {
   @override
   final ProjectMetadataEnvironmentEnum environment;
   @override
+  final ProjectMetadataHomeRegionEnum homeRegion;
+  @override
   final BuiltList<String> hosts;
   @override
   final String id;
   @override
   final String name;
   @override
-  final String? slug;
+  final String slug;
   @override
   final ProjectMetadataStateEnum state;
   @override
@@ -146,6 +226,8 @@ class _$ProjectMetadata extends ProjectMetadata {
   @override
   final DateTime updatedAt;
   @override
+  final Workspace? workspace;
+  @override
   final String? workspaceId;
 
   factory _$ProjectMetadata([void Function(ProjectMetadataBuilder)? updates]) =>
@@ -154,23 +236,28 @@ class _$ProjectMetadata extends ProjectMetadata {
   _$ProjectMetadata._(
       {required this.createdAt,
       required this.environment,
+      required this.homeRegion,
       required this.hosts,
       required this.id,
       required this.name,
-      this.slug,
+      required this.slug,
       required this.state,
       this.subscriptionId,
       this.subscriptionPlan,
       required this.updatedAt,
+      this.workspace,
       this.workspaceId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'ProjectMetadata', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
         environment, r'ProjectMetadata', 'environment');
+    BuiltValueNullFieldError.checkNotNull(
+        homeRegion, r'ProjectMetadata', 'homeRegion');
     BuiltValueNullFieldError.checkNotNull(hosts, r'ProjectMetadata', 'hosts');
     BuiltValueNullFieldError.checkNotNull(id, r'ProjectMetadata', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'ProjectMetadata', 'name');
+    BuiltValueNullFieldError.checkNotNull(slug, r'ProjectMetadata', 'slug');
     BuiltValueNullFieldError.checkNotNull(state, r'ProjectMetadata', 'state');
     BuiltValueNullFieldError.checkNotNull(
         updatedAt, r'ProjectMetadata', 'updatedAt');
@@ -190,6 +277,7 @@ class _$ProjectMetadata extends ProjectMetadata {
     return other is ProjectMetadata &&
         createdAt == other.createdAt &&
         environment == other.environment &&
+        homeRegion == other.homeRegion &&
         hosts == other.hosts &&
         id == other.id &&
         name == other.name &&
@@ -198,6 +286,7 @@ class _$ProjectMetadata extends ProjectMetadata {
         subscriptionId == other.subscriptionId &&
         subscriptionPlan == other.subscriptionPlan &&
         updatedAt == other.updatedAt &&
+        workspace == other.workspace &&
         workspaceId == other.workspaceId;
   }
 
@@ -206,6 +295,7 @@ class _$ProjectMetadata extends ProjectMetadata {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, environment.hashCode);
+    _$hash = $jc(_$hash, homeRegion.hashCode);
     _$hash = $jc(_$hash, hosts.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
@@ -214,6 +304,7 @@ class _$ProjectMetadata extends ProjectMetadata {
     _$hash = $jc(_$hash, subscriptionId.hashCode);
     _$hash = $jc(_$hash, subscriptionPlan.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, workspace.hashCode);
     _$hash = $jc(_$hash, workspaceId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -224,6 +315,7 @@ class _$ProjectMetadata extends ProjectMetadata {
     return (newBuiltValueToStringHelper(r'ProjectMetadata')
           ..add('createdAt', createdAt)
           ..add('environment', environment)
+          ..add('homeRegion', homeRegion)
           ..add('hosts', hosts)
           ..add('id', id)
           ..add('name', name)
@@ -232,6 +324,7 @@ class _$ProjectMetadata extends ProjectMetadata {
           ..add('subscriptionId', subscriptionId)
           ..add('subscriptionPlan', subscriptionPlan)
           ..add('updatedAt', updatedAt)
+          ..add('workspace', workspace)
           ..add('workspaceId', workspaceId))
         .toString();
   }
@@ -249,6 +342,11 @@ class ProjectMetadataBuilder
   ProjectMetadataEnvironmentEnum? get environment => _$this._environment;
   set environment(ProjectMetadataEnvironmentEnum? environment) =>
       _$this._environment = environment;
+
+  ProjectMetadataHomeRegionEnum? _homeRegion;
+  ProjectMetadataHomeRegionEnum? get homeRegion => _$this._homeRegion;
+  set homeRegion(ProjectMetadataHomeRegionEnum? homeRegion) =>
+      _$this._homeRegion = homeRegion;
 
   ListBuilder<String>? _hosts;
   ListBuilder<String> get hosts => _$this._hosts ??= new ListBuilder<String>();
@@ -284,6 +382,11 @@ class ProjectMetadataBuilder
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
 
+  WorkspaceBuilder? _workspace;
+  WorkspaceBuilder get workspace =>
+      _$this._workspace ??= new WorkspaceBuilder();
+  set workspace(WorkspaceBuilder? workspace) => _$this._workspace = workspace;
+
   String? _workspaceId;
   String? get workspaceId => _$this._workspaceId;
   set workspaceId(String? workspaceId) => _$this._workspaceId = workspaceId;
@@ -297,6 +400,7 @@ class ProjectMetadataBuilder
     if ($v != null) {
       _createdAt = $v.createdAt;
       _environment = $v.environment;
+      _homeRegion = $v.homeRegion;
       _hosts = $v.hosts.toBuilder();
       _id = $v.id;
       _name = $v.name;
@@ -305,6 +409,7 @@ class ProjectMetadataBuilder
       _subscriptionId = $v.subscriptionId;
       _subscriptionPlan = $v.subscriptionPlan;
       _updatedAt = $v.updatedAt;
+      _workspace = $v.workspace?.toBuilder();
       _workspaceId = $v.workspaceId;
       _$v = null;
     }
@@ -334,24 +439,31 @@ class ProjectMetadataBuilder
                   createdAt, r'ProjectMetadata', 'createdAt'),
               environment: BuiltValueNullFieldError.checkNotNull(
                   environment, r'ProjectMetadata', 'environment'),
+              homeRegion: BuiltValueNullFieldError.checkNotNull(
+                  homeRegion, r'ProjectMetadata', 'homeRegion'),
               hosts: hosts.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'ProjectMetadata', 'id'),
               name: BuiltValueNullFieldError.checkNotNull(
                   name, r'ProjectMetadata', 'name'),
-              slug: slug,
+              slug: BuiltValueNullFieldError.checkNotNull(
+                  slug, r'ProjectMetadata', 'slug'),
               state: BuiltValueNullFieldError.checkNotNull(
                   state, r'ProjectMetadata', 'state'),
               subscriptionId: subscriptionId,
               subscriptionPlan: subscriptionPlan,
               updatedAt: BuiltValueNullFieldError.checkNotNull(
                   updatedAt, r'ProjectMetadata', 'updatedAt'),
+              workspace: _workspace?.build(),
               workspaceId: workspaceId);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'hosts';
         hosts.build();
+
+        _$failedField = 'workspace';
+        _workspace?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'ProjectMetadata', _$failedField, e.toString());

@@ -1,13 +1,13 @@
 # WellknownApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**discoverJsonWebKeys**](WellknownApi.md#discoverJsonWebKeys) | **GET** /.well-known/jwks.json | Discover Well-Known JSON Web Keys |
 
 
-<a name="discoverJsonWebKeys"></a>
+<a id="discoverJsonWebKeys"></a>
 # **discoverJsonWebKeys**
 > JsonWebKeySet discoverJsonWebKeys()
 
@@ -27,7 +27,7 @@ import sh.ory.api.WellknownApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     WellknownApi apiInstance = new WellknownApi(defaultClient);
     try {

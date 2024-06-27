@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Creation Date | 
 **currentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
-**environment** | **String** | The environment of the project. prod Production dev Development | 
+**environment** | **String** | The environment of the project. prod Production stage Staging dev Development | 
+**homeRegion** | **String** | The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global | 
 **hosts** | **BuiltList&lt;String&gt;** |  | 
 **id** | **String** | The project's ID. | 
 **slug** | **String** | The project's slug | 
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **subscriptionId** | **String** |  | [optional] 
 **subscriptionPlan** | **String** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project was Updated | 
+**workspace** | [**Workspace**](Workspace.md) |  | [optional] 
 **workspaceId** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

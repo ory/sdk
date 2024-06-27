@@ -1,6 +1,6 @@
 # CourierApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -8,7 +8,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**listCourierMessages**](CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages |
 
 
-<a name="getCourierMessage"></a>
+<a id="getCourierMessage"></a>
 # **getCourierMessage**
 > Message getCourierMessage(id)
 
@@ -29,7 +29,7 @@ import sh.ory.api.CourierApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -77,7 +77,7 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listCourierMessages"></a>
+<a id="listCourierMessages"></a>
 # **listCourierMessages**
 > List&lt;Message&gt; listCourierMessages(pageSize, pageToken, status, recipient)
 
@@ -98,7 +98,7 @@ import sh.ory.api.CourierApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");

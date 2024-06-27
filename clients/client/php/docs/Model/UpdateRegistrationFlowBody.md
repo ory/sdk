@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**csrfToken** | **string** | The CSRF Token | [optional]
-**method** | **string** | Method to use  This field must be set to &#x60;code&#x60; when using the code method. |
+**csrfToken** | **string** | CSRFToken is the anti-CSRF token | [optional]
+**method** | **string** | Method  Should be set to \&quot;passkey\&quot; when trying to add, update, or remove a Passkey. |
 **password** | **string** | Password to sign the user up with |
 **traits** | **object** | The identity&#39;s traits |
 **transientPayload** | **object** | Transient data to pass along to any webhooks | [optional]
@@ -17,5 +17,6 @@ Name | Type | Description | Notes
 **webauthnRegisterDisplayname** | **string** | Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added. | [optional]
 **code** | **string** | The OTP Code sent to the user | [optional]
 **resend** | **string** | Resend restarts the flow with a new code | [optional]
+**passkeyRegister** | **string** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

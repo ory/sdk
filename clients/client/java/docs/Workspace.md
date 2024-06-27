@@ -11,6 +11,7 @@
 |**id** | **String** |  |  |
 |**name** | **String** |  |  |
 |**subscriptionId** | **String** |  |  [optional] |
+|**subscriptionPlan** | **String** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** |  |  |
 
 

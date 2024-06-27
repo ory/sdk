@@ -13,9 +13,15 @@ void main() {
       // TODO
     });
 
-    // The environment of the project. prod Production dev Development
+    // The environment of the project. prod Production stage Staging dev Development
     // String environment
     test('to test the property `environment`', () async {
+      // TODO
+    });
+
+    // The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+    // String homeRegion
+    test('to test the property `homeRegion`', () async {
       // TODO
     });
 
@@ -61,6 +67,11 @@ void main() {
     // Last Time Project was Updated
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
+      // TODO
+    });
+
+    // Workspace workspace
+    test('to test the property `workspace`', () async {
       // TODO
     });
 

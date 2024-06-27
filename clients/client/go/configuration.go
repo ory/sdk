@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -100,17 +100,167 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://{project}.projects.oryapis.com",
+				URL: "https://{project-slug}.projects.oryapis.com",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
 					"project": ServerVariable{
-						Description: "Project slug as provided by the Ory Console.",
+						Description: "Your Ory Network Project slug. You can find it in the [Ory Network Console](https://console.ory.sh/projects/current/developers/guides).",
 						DefaultValue: "playground",
 					},
 				},
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{
+			"EventsAPIService.CreateEventStream": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"EventsAPIService.DeleteEventStream": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"EventsAPIService.ListEventStreams": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"EventsAPIService.SetEventStream": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.CreateOrganization": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.CreateProject": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.CreateProjectApiKey": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.DeleteOrganization": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.DeleteProjectApiKey": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.GetOrganization": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.GetProject": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.GetProjectMembers": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.ListOrganizations": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.ListProjectApiKeys": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.ListProjects": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.PatchProject": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.PurgeProject": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.RemoveProjectMember": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.SetProject": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.UpdateOrganization": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"WorkspaceAPIService.CreateWorkspace": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"WorkspaceAPIService.GetWorkspace": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"WorkspaceAPIService.ListWorkspaceProjects": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"WorkspaceAPIService.ListWorkspaces": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"WorkspaceAPIService.UpdateWorkspace": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
 		},
 	}
 	return cfg

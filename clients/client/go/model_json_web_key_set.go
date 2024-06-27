@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -97,10 +97,10 @@ func (o JsonWebKeySet) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *JsonWebKeySet) UnmarshalJSON(bytes []byte) (err error) {
+func (o *JsonWebKeySet) UnmarshalJSON(data []byte) (err error) {
 	varJsonWebKeySet := _JsonWebKeySet{}
 
-	err = json.Unmarshal(bytes, &varJsonWebKeySet)
+	err = json.Unmarshal(data, &varJsonWebKeySet)
 
 	if err != nil {
 		return err
@@ -110,7 +110,7 @@ func (o *JsonWebKeySet) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "keys")
 		o.AdditionalProperties = additionalProperties
 	}

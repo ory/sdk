@@ -134,9 +134,15 @@ void main() {
       // TODO
     });
 
-    // Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+    // Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
     // String hydraStrategiesAccessToken (default value: 'opaque')
     test('to test the property `hydraStrategiesAccessToken`', () async {
+      // TODO
+    });
+
+    // Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+    // String hydraStrategiesJwtScopeClaim (default value: 'list')
+    test('to test the property `hydraStrategiesJwtScopeClaim`', () async {
       // TODO
     });
 
@@ -682,6 +688,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Login After Passkey Default Return URL  This governs the \"selfservice.flows.login.after.passkey.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl`', () async {
@@ -772,15 +784,27 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Registration After Passkey Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl`', () async {
       // TODO
     });
 
-    // Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+    // Configures the Ory Kratos Registration After Webauthn Default Return URL  This governs the \"selfservice.flows.registration.after.webauthn.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Disable two-step registration  Two-step registration is a significantly improved sign up flow and recommended when using more than one sign up methods. To revert to one-step registration, set this to `true`.  This governs the \"selfservice.flows.registration.enable_legacy_one_step\" setting.
+    // bool kratosSelfserviceFlowsRegistrationEnableLegacyOneStep
+    test('to test the property `kratosSelfserviceFlowsRegistrationEnableLegacyOneStep`', () async {
       // TODO
     });
 
@@ -826,6 +850,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Settings Default Return URL After Updating Passkey  This governs the \"selfservice.flows.settings.after.passkey.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl`', () async {
@@ -844,7 +874,7 @@ void main() {
       // TODO
     });
 
-    // Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.webauthn.profile.default_browser_return_url\" setting.
+    // Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.after.webauthn.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl`', () async {
       // TODO
@@ -922,15 +952,21 @@ void main() {
       // TODO
     });
 
-    // Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
+    // Configures whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
     // bool kratosSelfserviceMethodsCodeMfaEnabled
     test('to test the property `kratosSelfserviceMethodsCodeMfaEnabled`', () async {
       // TODO
     });
 
-    // Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
+    // Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
     // bool kratosSelfserviceMethodsCodePasswordlessEnabled
     test('to test the property `kratosSelfserviceMethodsCodePasswordlessEnabled`', () async {
+      // TODO
+    });
+
+    // This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \"selfservice.methods.code.passwordless_login_fallback_enabled\" setting.
+    // bool kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled
+    test('to test the property `kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled`', () async {
       // TODO
     });
 
@@ -972,6 +1008,29 @@ void main() {
     // Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
     // bool kratosSelfserviceMethodsOidcEnabled
     test('to test the property `kratosSelfserviceMethodsOidcEnabled`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Passkey RP Display Name  This governs the \"selfservice.methods.passkey.config.rp.display_name\" setting.
+    // String kratosSelfserviceMethodsPasskeyConfigRpDisplayName
+    test('to test the property `kratosSelfserviceMethodsPasskeyConfigRpDisplayName`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Passkey RP ID  This governs the \"selfservice.methods.passkey.config.rp.id\" setting.
+    // String kratosSelfserviceMethodsPasskeyConfigRpId
+    test('to test the property `kratosSelfserviceMethodsPasskeyConfigRpId`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> kratosSelfserviceMethodsPasskeyConfigRpOrigins
+    test('to test the property `kratosSelfserviceMethodsPasskeyConfigRpOrigins`', () async {
+      // TODO
+    });
+
+    // Configures whether Ory Kratos Passkey authentication is enabled  This governs the \"selfservice.methods.passkey.enabled\" setting.
+    // bool kratosSelfserviceMethodsPasskeyEnabled
+    test('to test the property `kratosSelfserviceMethodsPasskeyEnabled`', () async {
       // TODO
     });
 

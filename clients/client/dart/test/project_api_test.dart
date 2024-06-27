@@ -32,7 +32,7 @@ void main() {
       // TODO
     });
 
-    // Delete a B2B SSO Organization for a project.
+    // Delete a B2B SSO Organization for a project
     //
     //Future deleteOrganization(String projectId, String organizationId) async
     test('test deleteOrganization', () async {
@@ -48,16 +48,7 @@ void main() {
       // TODO
     });
 
-    // Returns the Ory Network Project selected in the Ory Network Console
-    //
-    // Use this API to get your active project in the Ory Network Console UI.
-    //
-    //Future<ActiveProjectInConsole> getActiveProjectInConsole() async
-    test('test getActiveProjectInConsole', () async {
-      // TODO
-    });
-
-    // Returns a B2B SSO Organization for a project by it's ID.
+    // Returns a B2B SSO Organization for a project by its ID
     //
     //Future<GetOrganizationResponse> getOrganization(String projectId, String organizationId) async
     test('test getOrganization', () async {
@@ -82,14 +73,9 @@ void main() {
       // TODO
     });
 
-    // Retrieves project metrics for the specified event type and time range
+    // List all B2B SSO Organizations for a project
     //
-    //Future<GetProjectMetricsResponse> getProjectMetrics(String projectId, String eventType, String resolution, DateTime from, DateTime to) async
-    test('test getProjectMetrics', () async {
-      // TODO
-    });
-
-    //Future<ListOrganizationsResponse> listOrganizations(String projectId) async
+    //Future<ListOrganizationsResponse> listOrganizations(String projectId, { int pageSize, String pageToken, String domain }) async
     test('test listOrganizations', () async {
       // TODO
     });
@@ -139,15 +125,6 @@ void main() {
       // TODO
     });
 
-    // Sets the Ory Network Project active in the Ory Network Console
-    //
-    // Use this API to set your active project in the Ory Network Console UI.
-    //
-    //Future setActiveProjectInConsole({ SetActiveProjectInConsoleBody setActiveProjectInConsoleBody }) async
-    test('test setActiveProjectInConsole', () async {
-      // TODO
-    });
-
     // Update an Ory Network Project Configuration
     //
     // This endpoints allows you to update the Ory Network project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
@@ -157,7 +134,7 @@ void main() {
       // TODO
     });
 
-    // Update a B2B SSO Organization for a project.
+    // Update a B2B SSO Organization for a project
     //
     //Future<Organization> updateOrganization(String projectId, String organizationId, { OrganizationBody organizationBody }) async
     test('test updateOrganization', () async {

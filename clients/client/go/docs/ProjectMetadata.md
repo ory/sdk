@@ -5,22 +5,24 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | 
-**Environment** | **string** | The environment of the project. prod Production dev Development | 
+**Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
+**HomeRegion** | **string** | The project&#39;s data home region eu-central EUCentral us-east USEast us-west USWest global Global | 
 **Hosts** | **[]string** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The project&#39;s name if set | 
-**Slug** | Pointer to **string** | The project&#39;s slug | [optional] [readonly] 
+**Slug** | **string** | The project&#39;s slug | [readonly] 
 **State** | **string** | The state of the project. running Running halted Halted deleted Deleted | 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionPlan** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | 
+**Workspace** | Pointer to [**Workspace**](Workspace.md) |  | [optional] 
 **WorkspaceId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewProjectMetadata
 
-`func NewProjectMetadata(createdAt time.Time, environment string, hosts []string, id string, name string, state string, updatedAt time.Time, ) *ProjectMetadata`
+`func NewProjectMetadata(createdAt time.Time, environment string, homeRegion string, hosts []string, id string, name string, slug string, state string, updatedAt time.Time, ) *ProjectMetadata`
 
 NewProjectMetadata instantiates a new ProjectMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -73,6 +75,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectMetadata) SetEnvironment(v string)`
 
 SetEnvironment sets Environment field to given value.
+
+
+### GetHomeRegion
+
+`func (o *ProjectMetadata) GetHomeRegion() string`
+
+GetHomeRegion returns the HomeRegion field if non-nil, zero value otherwise.
+
+### GetHomeRegionOk
+
+`func (o *ProjectMetadata) GetHomeRegionOk() (*string, bool)`
+
+GetHomeRegionOk returns a tuple with the HomeRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHomeRegion
+
+`func (o *ProjectMetadata) SetHomeRegion(v string)`
+
+SetHomeRegion sets HomeRegion field to given value.
 
 
 ### GetHosts
@@ -154,11 +176,6 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
-### HasSlug
-
-`func (o *ProjectMetadata) HasSlug() bool`
-
-HasSlug returns a boolean if a field has been set.
 
 ### GetState
 
@@ -269,6 +286,31 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
+
+### GetWorkspace
+
+`func (o *ProjectMetadata) GetWorkspace() Workspace`
+
+GetWorkspace returns the Workspace field if non-nil, zero value otherwise.
+
+### GetWorkspaceOk
+
+`func (o *ProjectMetadata) GetWorkspaceOk() (*Workspace, bool)`
+
+GetWorkspaceOk returns a tuple with the Workspace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspace
+
+`func (o *ProjectMetadata) SetWorkspace(v Workspace)`
+
+SetWorkspace sets Workspace field to given value.
+
+### HasWorkspace
+
+`func (o *ProjectMetadata) HasWorkspace() bool`
+
+HasWorkspace returns a boolean if a field has been set.
 
 ### GetWorkspaceId
 

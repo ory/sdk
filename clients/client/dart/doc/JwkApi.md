@@ -5,7 +5,7 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,9 +28,6 @@ This endpoint is capable of generating JSON Web Key Sets for you. There a differ
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getJwkApi();
 final String set_ = set__example; // String | The JSON Web Key Set ID
@@ -39,7 +36,7 @@ final CreateJsonWebKeySet createJsonWebKeySet = ; // CreateJsonWebKeySet |
 try {
     final response = api.createJsonWebKeySet(set_, createJsonWebKeySet);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->createJsonWebKeySet: $e\n');
 }
 ```
@@ -76,9 +73,6 @@ Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a Ja
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getJwkApi();
 final String set_ = set__example; // String | The JSON Web Key Set
@@ -86,7 +80,7 @@ final String kid = kid_example; // String | The JSON Web Key ID (kid)
 
 try {
     api.deleteJsonWebKey(set_, kid);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->deleteJsonWebKey: $e\n');
 }
 ```
@@ -123,16 +117,13 @@ Use this endpoint to delete a complete JSON Web Key Set and all the keys in that
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getJwkApi();
 final String set_ = set__example; // String | The JSON Web Key Set
 
 try {
     api.deleteJsonWebKeySet(set_);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->deleteJsonWebKeySet: $e\n');
 }
 ```
@@ -168,9 +159,6 @@ This endpoint returns a singular JSON Web Key contained in a set. It is identifi
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getJwkApi();
 final String set_ = set__example; // String | JSON Web Key Set ID
@@ -179,7 +167,7 @@ final String kid = kid_example; // String | JSON Web Key ID
 try {
     final response = api.getJsonWebKey(set_, kid);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->getJsonWebKey: $e\n');
 }
 ```
@@ -216,9 +204,6 @@ This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getJwkApi();
 final String set_ = set__example; // String | JSON Web Key Set ID
@@ -226,7 +211,7 @@ final String set_ = set__example; // String | JSON Web Key Set ID
 try {
     final response = api.getJsonWebKeySet(set_);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->getJsonWebKeySet: $e\n');
 }
 ```
@@ -262,9 +247,6 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getJwkApi();
 final String set_ = set__example; // String | The JSON Web Key Set ID
@@ -274,7 +256,7 @@ final JsonWebKey jsonWebKey = ; // JsonWebKey |
 try {
     final response = api.setJsonWebKey(set_, kid, jsonWebKey);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->setJsonWebKey: $e\n');
 }
 ```
@@ -312,9 +294,6 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getJwkApi();
 final String set_ = set__example; // String | The JSON Web Key Set ID
@@ -323,7 +302,7 @@ final JsonWebKeySet jsonWebKeySet = ; // JsonWebKeySet |
 try {
     final response = api.setJsonWebKeySet(set_, jsonWebKeySet);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->setJsonWebKeySet: $e\n');
 }
 ```

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -133,10 +133,10 @@ func (o ErrorBrowserLocationChangeRequired) ToMap() (map[string]interface{}, err
 	return toSerialize, nil
 }
 
-func (o *ErrorBrowserLocationChangeRequired) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ErrorBrowserLocationChangeRequired) UnmarshalJSON(data []byte) (err error) {
 	varErrorBrowserLocationChangeRequired := _ErrorBrowserLocationChangeRequired{}
 
-	err = json.Unmarshal(bytes, &varErrorBrowserLocationChangeRequired)
+	err = json.Unmarshal(data, &varErrorBrowserLocationChangeRequired)
 
 	if err != nil {
 		return err
@@ -146,7 +146,7 @@ func (o *ErrorBrowserLocationChangeRequired) UnmarshalJSON(bytes []byte) (err er
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "error")
 		delete(additionalProperties, "redirect_browser_to")
 		o.AdditionalProperties = additionalProperties

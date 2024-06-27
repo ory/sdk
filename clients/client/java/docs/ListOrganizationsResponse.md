@@ -8,7 +8,9 @@ B2B SSO Organization List
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**organizations** | [**List&lt;Organization&gt;**](Organization.md) |  |  |
+|**hasNextPage** | **Boolean** |  |  |
+|**nextPageToken** | **String** |  |  |
+|**organizations** | [**List&lt;Organization&gt;**](Organization.md) | The list of organizations |  |
 
 
 

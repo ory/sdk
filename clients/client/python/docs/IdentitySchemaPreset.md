@@ -2,12 +2,29 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**schema** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Schema is the Identity JSON Schema | 
+**var_schema** | **object** | Schema is the Identity JSON Schema | 
 **url** | **str** | URL is the preset identifier | 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.identity_schema_preset import IdentitySchemaPreset
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of IdentitySchemaPreset from a JSON string
+identity_schema_preset_instance = IdentitySchemaPreset.from_json(json)
+# print the JSON string representation of the object
+print(IdentitySchemaPreset.to_json())
+
+# convert the object into a dict
+identity_schema_preset_dict = identity_schema_preset_instance.to_dict()
+# create an instance of IdentitySchemaPreset from a dict
+identity_schema_preset_form_dict = identity_schema_preset.from_dict(identity_schema_preset_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

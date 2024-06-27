@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -1133,10 +1133,10 @@ func (o ProjectBrandingColors) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ProjectBrandingColors) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ProjectBrandingColors) UnmarshalJSON(data []byte) (err error) {
 	varProjectBrandingColors := _ProjectBrandingColors{}
 
-	err = json.Unmarshal(bytes, &varProjectBrandingColors)
+	err = json.Unmarshal(data, &varProjectBrandingColors)
 
 	if err != nil {
 		return err
@@ -1146,7 +1146,7 @@ func (o *ProjectBrandingColors) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "accent_default_color")
 		delete(additionalProperties, "accent_disabled_color")
 		delete(additionalProperties, "accent_emphasis_color")

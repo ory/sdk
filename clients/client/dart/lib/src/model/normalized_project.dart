@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/normalized_project_revision.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/model/workspace.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -15,7 +16,8 @@ part 'normalized_project.g.dart';
 /// Properties:
 /// * [createdAt] - The Project's Creation Date
 /// * [currentRevision] 
-/// * [environment] - The environment of the project. prod Production dev Development
+/// * [environment] - The environment of the project. prod Production stage Staging dev Development
+/// * [homeRegion] - The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global
 /// * [hosts] 
 /// * [id] - The project's ID.
 /// * [slug] - The project's slug
@@ -23,6 +25,7 @@ part 'normalized_project.g.dart';
 /// * [subscriptionId] 
 /// * [subscriptionPlan] 
 /// * [updatedAt] - Last Time Project was Updated
+/// * [workspace] 
 /// * [workspaceId] 
 @BuiltValue()
 abstract class NormalizedProject implements Built<NormalizedProject, NormalizedProjectBuilder> {
@@ -33,10 +36,15 @@ abstract class NormalizedProject implements Built<NormalizedProject, NormalizedP
   @BuiltValueField(wireName: r'current_revision')
   NormalizedProjectRevision get currentRevision;
 
-  /// The environment of the project. prod Production dev Development
+  /// The environment of the project. prod Production stage Staging dev Development
   @BuiltValueField(wireName: r'environment')
   NormalizedProjectEnvironmentEnum get environment;
-  // enum environmentEnum {  prod,  dev,  };
+  // enum environmentEnum {  prod,  stage,  dev,  };
+
+  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueField(wireName: r'home_region')
+  NormalizedProjectHomeRegionEnum get homeRegion;
+  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  global,  };
 
   @BuiltValueField(wireName: r'hosts')
   BuiltList<String> get hosts;
@@ -63,6 +71,9 @@ abstract class NormalizedProject implements Built<NormalizedProject, NormalizedP
   /// Last Time Project was Updated
   @BuiltValueField(wireName: r'updated_at')
   DateTime get updatedAt;
+
+  @BuiltValueField(wireName: r'workspace')
+  Workspace? get workspace;
 
   @BuiltValueField(wireName: r'workspace_id')
   String? get workspaceId;
@@ -105,6 +116,11 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
       object.environment,
       specifiedType: const FullType(NormalizedProjectEnvironmentEnum),
     );
+    yield r'home_region';
+    yield serializers.serialize(
+      object.homeRegion,
+      specifiedType: const FullType(NormalizedProjectHomeRegionEnum),
+    );
     yield r'hosts';
     yield serializers.serialize(
       object.hosts,
@@ -144,6 +160,13 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
       object.updatedAt,
       specifiedType: const FullType(DateTime),
     );
+    if (object.workspace != null) {
+      yield r'workspace';
+      yield serializers.serialize(
+        object.workspace,
+        specifiedType: const FullType(Workspace),
+      );
+    }
     yield r'workspace_id';
     yield object.workspaceId == null ? null : serializers.serialize(
       object.workspaceId,
@@ -192,6 +215,13 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
             specifiedType: const FullType(NormalizedProjectEnvironmentEnum),
           ) as NormalizedProjectEnvironmentEnum;
           result.environment = valueDes;
+          break;
+        case r'home_region':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(NormalizedProjectHomeRegionEnum),
+          ) as NormalizedProjectHomeRegionEnum;
+          result.homeRegion = valueDes;
           break;
         case r'hosts':
           final valueDes = serializers.deserialize(
@@ -244,6 +274,13 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
           ) as DateTime;
           result.updatedAt = valueDes;
           break;
+        case r'workspace':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Workspace),
+          ) as Workspace;
+          result.workspace.replace(valueDes);
+          break;
         case r'workspace_id':
           final valueDes = serializers.deserialize(
             value,
@@ -283,10 +320,13 @@ class _$NormalizedProjectSerializer implements PrimitiveSerializer<NormalizedPro
 
 class NormalizedProjectEnvironmentEnum extends EnumClass {
 
-  /// The environment of the project. prod Production dev Development
+  /// The environment of the project. prod Production stage Staging dev Development
   @BuiltValueEnumConst(wireName: r'prod')
   static const NormalizedProjectEnvironmentEnum prod = _$normalizedProjectEnvironmentEnum_prod;
-  /// The environment of the project. prod Production dev Development
+  /// The environment of the project. prod Production stage Staging dev Development
+  @BuiltValueEnumConst(wireName: r'stage')
+  static const NormalizedProjectEnvironmentEnum stage = _$normalizedProjectEnvironmentEnum_stage;
+  /// The environment of the project. prod Production stage Staging dev Development
   @BuiltValueEnumConst(wireName: r'dev')
   static const NormalizedProjectEnvironmentEnum dev = _$normalizedProjectEnvironmentEnum_dev;
 
@@ -296,6 +336,29 @@ class NormalizedProjectEnvironmentEnum extends EnumClass {
 
   static BuiltSet<NormalizedProjectEnvironmentEnum> get values => _$normalizedProjectEnvironmentEnumValues;
   static NormalizedProjectEnvironmentEnum valueOf(String name) => _$normalizedProjectEnvironmentEnumValueOf(name);
+}
+
+class NormalizedProjectHomeRegionEnum extends EnumClass {
+
+  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'eu-central')
+  static const NormalizedProjectHomeRegionEnum euCentral = _$normalizedProjectHomeRegionEnum_euCentral;
+  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'us-east')
+  static const NormalizedProjectHomeRegionEnum usEast = _$normalizedProjectHomeRegionEnum_usEast;
+  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'us-west')
+  static const NormalizedProjectHomeRegionEnum usWest = _$normalizedProjectHomeRegionEnum_usWest;
+  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'global')
+  static const NormalizedProjectHomeRegionEnum global = _$normalizedProjectHomeRegionEnum_global;
+
+  static Serializer<NormalizedProjectHomeRegionEnum> get serializer => _$normalizedProjectHomeRegionEnumSerializer;
+
+  const NormalizedProjectHomeRegionEnum._(String name): super(name);
+
+  static BuiltSet<NormalizedProjectHomeRegionEnum> get values => _$normalizedProjectHomeRegionEnumValues;
+  static NormalizedProjectHomeRegionEnum valueOf(String name) => _$normalizedProjectHomeRegionEnumValueOf(name);
 }
 
 class NormalizedProjectStateEnum extends EnumClass {

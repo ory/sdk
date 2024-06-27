@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -132,10 +132,10 @@ func (o ManagedIdentitySchemaValidationResult) ToMap() (map[string]interface{}, 
 	return toSerialize, nil
 }
 
-func (o *ManagedIdentitySchemaValidationResult) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ManagedIdentitySchemaValidationResult) UnmarshalJSON(data []byte) (err error) {
 	varManagedIdentitySchemaValidationResult := _ManagedIdentitySchemaValidationResult{}
 
-	err = json.Unmarshal(bytes, &varManagedIdentitySchemaValidationResult)
+	err = json.Unmarshal(data, &varManagedIdentitySchemaValidationResult)
 
 	if err != nil {
 		return err
@@ -145,7 +145,7 @@ func (o *ManagedIdentitySchemaValidationResult) UnmarshalJSON(bytes []byte) (err
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "message")
 		delete(additionalProperties, "valid")
 		o.AdditionalProperties = additionalProperties

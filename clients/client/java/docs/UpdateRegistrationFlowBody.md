@@ -8,8 +8,8 @@ Update Registration Request Body
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**csrfToken** | **String** | The CSRF Token |  [optional] |
-|**method** | **String** | Method to use  This field must be set to &#x60;code&#x60; when using the code method. |  |
+|**csrfToken** | **String** | CSRFToken is the anti-CSRF token |  [optional] |
+|**method** | **String** | Method  Should be set to \&quot;passkey\&quot; when trying to add, update, or remove a Passkey. |  |
 |**password** | **String** | Password to sign the user up with |  |
 |**traits** | **Object** | The identity&#39;s traits |  |
 |**transientPayload** | **Object** | Transient data to pass along to any webhooks |  [optional] |
@@ -21,6 +21,7 @@ Update Registration Request Body
 |**webauthnRegisterDisplayname** | **String** | Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added. |  [optional] |
 |**code** | **String** | The OTP Code sent to the user |  [optional] |
 |**resend** | **String** | Resend restarts the flow with a new code |  [optional] |
+|**passkeyRegister** | **String** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. |  [optional] |
 
 
 

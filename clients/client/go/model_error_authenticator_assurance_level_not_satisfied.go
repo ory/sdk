@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -133,10 +133,10 @@ func (o ErrorAuthenticatorAssuranceLevelNotSatisfied) ToMap() (map[string]interf
 	return toSerialize, nil
 }
 
-func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) UnmarshalJSON(data []byte) (err error) {
 	varErrorAuthenticatorAssuranceLevelNotSatisfied := _ErrorAuthenticatorAssuranceLevelNotSatisfied{}
 
-	err = json.Unmarshal(bytes, &varErrorAuthenticatorAssuranceLevelNotSatisfied)
+	err = json.Unmarshal(data, &varErrorAuthenticatorAssuranceLevelNotSatisfied)
 
 	if err != nil {
 		return err
@@ -146,7 +146,7 @@ func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) UnmarshalJSON(bytes []byt
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "error")
 		delete(additionalProperties, "redirect_browser_to")
 		o.AdditionalProperties = additionalProperties

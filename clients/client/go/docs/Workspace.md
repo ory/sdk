@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
+**SubscriptionPlan** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** |  | 
 
 ## Methods
@@ -124,6 +125,41 @@ HasSubscriptionId returns a boolean if a field has been set.
 `func (o *Workspace) UnsetSubscriptionId()`
 
 UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+### GetSubscriptionPlan
+
+`func (o *Workspace) GetSubscriptionPlan() string`
+
+GetSubscriptionPlan returns the SubscriptionPlan field if non-nil, zero value otherwise.
+
+### GetSubscriptionPlanOk
+
+`func (o *Workspace) GetSubscriptionPlanOk() (*string, bool)`
+
+GetSubscriptionPlanOk returns a tuple with the SubscriptionPlan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscriptionPlan
+
+`func (o *Workspace) SetSubscriptionPlan(v string)`
+
+SetSubscriptionPlan sets SubscriptionPlan field to given value.
+
+### HasSubscriptionPlan
+
+`func (o *Workspace) HasSubscriptionPlan() bool`
+
+HasSubscriptionPlan returns a boolean if a field has been set.
+
+### SetSubscriptionPlanNil
+
+`func (o *Workspace) SetSubscriptionPlanNil(b bool)`
+
+ SetSubscriptionPlanNil sets the value for SubscriptionPlan to be an explicit nil
+
+### UnsetSubscriptionPlan
+`func (o *Workspace) UnsetSubscriptionPlan()`
+
+UnsetSubscriptionPlan ensures that no value is present for SubscriptionPlan, not even an explicit nil
 ### GetUpdatedAt
 
 `func (o *Workspace) GetUpdatedAt() time.Time`

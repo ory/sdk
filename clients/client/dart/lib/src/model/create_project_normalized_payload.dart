@@ -22,7 +22,8 @@ part 'create_project_normalized_payload.g.dart';
 /// * [createdAt] - The Project's Revision Creation Date
 /// * [disableAccountExperienceWelcomeScreen] - Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
 /// * [enableAxV2] - Whether the new account experience is enabled and reachable.
-/// * [environment] -  prod Production dev Development
+/// * [environment] -  prod Production stage Staging dev Development
+/// * [homeRegion] -  eu-central EUCentral us-east USEast us-west USWest global Global
 /// * [hydraOauth2AllowedTopLevelClaims] 
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 /// * [hydraOauth2ExcludeNotBeforeClaim] - Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
@@ -42,7 +43,8 @@ part 'create_project_normalized_payload.g.dart';
 /// * [hydraSecretsSystem] 
 /// * [hydraServeCookiesSameSiteLegacyWorkaround] - Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
 /// * [hydraServeCookiesSameSiteMode] - Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
-/// * [hydraStrategiesAccessToken] - Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+/// * [hydraStrategiesAccessToken] - Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+/// * [hydraStrategiesJwtScopeClaim] - Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
 /// * [hydraStrategiesScope] - Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 /// * [hydraTtlAccessToken] - This governs the \"ttl.access_token\" setting.
 /// * [hydraTtlAuthCode] - Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
@@ -135,6 +137,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.lookup_secret.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Passkey Default Return URL  This governs the \"selfservice.flows.login.after.passkey.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.totp.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \"selfservice.flows.login.after.webauthn.default_browser_return_url\" setting.
@@ -150,8 +153,10 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Code Default Return URL  This governs the \"selfservice.flows.registration.after.code.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Passkey Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
-/// * [kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Registration After Webauthn Default Return URL  This governs the \"selfservice.flows.registration.after.webauthn.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsRegistrationEnableLegacyOneStep] - Disable two-step registration  Two-step registration is a significantly improved sign up flow and recommended when using more than one sign up methods. To revert to one-step registration, set this to `true`.  This governs the \"selfservice.flows.registration.enable_legacy_one_step\" setting.
 /// * [kratosSelfserviceFlowsRegistrationEnabled] - Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
 /// * [kratosSelfserviceFlowsRegistrationLifespan] - Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
 /// * [kratosSelfserviceFlowsRegistrationLoginHints] - Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \"selfservice.flows.registration.login_hints\" setting.
@@ -159,10 +164,11 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets  This governs the \"selfservice.flows.settings.after.lookup_secret.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \"selfservice.flows.settings.after.oidc.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Passkey  This governs the \"selfservice.flows.settings.after.passkey.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \"selfservice.flows.settings.after.profile.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \"selfservice.flows.settings.after.totp.default_browser_return_url\" setting.
-/// * [kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.webauthn.profile.default_browser_return_url\" setting.
+/// * [kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl] - Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.after.webauthn.default_browser_return_url\" setting.
 /// * [kratosSelfserviceFlowsSettingsLifespan] - Configures the Ory Kratos Settings Lifespan  This governs the \"selfservice.flows.settings.lifespan\" setting.
 /// * [kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge] - Configures the Ory Kratos Settings Privileged Session Max Age  This governs the \"selfservice.flows.settings.privileged_session_max_age\" setting.
 /// * [kratosSelfserviceFlowsSettingsRequiredAal] - Configures the Ory Kratos Settings Required AAL  This governs the \"selfservice.flows.settings.required_aal\" setting.
@@ -175,8 +181,9 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 /// * [kratosSelfserviceMethodsCodeEnabled] - Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
-/// * [kratosSelfserviceMethodsCodeMfaEnabled] - Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
-/// * [kratosSelfserviceMethodsCodePasswordlessEnabled] - Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
+/// * [kratosSelfserviceMethodsCodeMfaEnabled] - Configures whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
+/// * [kratosSelfserviceMethodsCodePasswordlessEnabled] - Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
+/// * [kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled] - This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \"selfservice.methods.code.passwordless_login_fallback_enabled\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigBaseUrl] - Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
 /// * [kratosSelfserviceMethodsLinkConfigLifespan] - Configures the Ory Kratos Link Method's lifespan  This governs the \"selfservice.methods.link.config.lifespan\" setting.
 /// * [kratosSelfserviceMethodsLinkEnabled] - Configures whether Ory Kratos Link Method is enabled  This governs the \"selfservice.methods.link.enabled\" setting.
@@ -184,6 +191,10 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSelfserviceMethodsOidcConfigBaseRedirectUri] - Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting.
 /// * [kratosSelfserviceMethodsOidcConfigProviders] 
 /// * [kratosSelfserviceMethodsOidcEnabled] - Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
+/// * [kratosSelfserviceMethodsPasskeyConfigRpDisplayName] - Configures the Ory Kratos Passkey RP Display Name  This governs the \"selfservice.methods.passkey.config.rp.display_name\" setting.
+/// * [kratosSelfserviceMethodsPasskeyConfigRpId] - Configures the Ory Kratos Passkey RP ID  This governs the \"selfservice.methods.passkey.config.rp.id\" setting.
+/// * [kratosSelfserviceMethodsPasskeyConfigRpOrigins] 
+/// * [kratosSelfserviceMethodsPasskeyEnabled] - Configures whether Ory Kratos Passkey authentication is enabled  This governs the \"selfservice.methods.passkey.enabled\" setting.
 /// * [kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled] - Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
 /// * [kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled] - Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
 /// * [kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors] - Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
@@ -228,10 +239,15 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   @BuiltValueField(wireName: r'enable_ax_v2')
   bool? get enableAxV2;
 
-  ///  prod Production dev Development
+  ///  prod Production stage Staging dev Development
   @BuiltValueField(wireName: r'environment')
   CreateProjectNormalizedPayloadEnvironmentEnum get environment;
-  // enum environmentEnum {  prod,  dev,  };
+  // enum environmentEnum {  prod,  stage,  dev,  };
+
+  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueField(wireName: r'home_region')
+  CreateProjectNormalizedPayloadHomeRegionEnum? get homeRegion;
+  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  global,  };
 
   @BuiltValueField(wireName: r'hydra_oauth2_allowed_top_level_claims')
   BuiltList<String>? get hydraOauth2AllowedTopLevelClaims;
@@ -304,10 +320,15 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   @BuiltValueField(wireName: r'hydra_serve_cookies_same_site_mode')
   String? get hydraServeCookiesSameSiteMode;
 
-  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+  /// Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
   @BuiltValueField(wireName: r'hydra_strategies_access_token')
   CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum? get hydraStrategiesAccessToken;
   // enum hydraStrategiesAccessTokenEnum {  opaque,  jwt,  };
+
+  /// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+  @BuiltValueField(wireName: r'hydra_strategies_jwt_scope_claim')
+  CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum? get hydraStrategiesJwtScopeClaim;
+  // enum hydraStrategiesJwtScopeClaimEnum {  list,  string,  both,  };
 
   /// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
   @BuiltValueField(wireName: r'hydra_strategies_scope')
@@ -668,6 +689,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_oidc_default_browser_return_url')
   String? get kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
 
+  /// Configures the Ory Kratos Login After Passkey Default Return URL  This governs the \"selfservice.flows.login.after.passkey.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_passkey_default_browser_return_url')
+  String? get kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
+
   /// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_login_after_password_default_browser_return_url')
   String? get kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
@@ -729,13 +754,21 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_oidc_default_browser_return_url')
   String? get kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl;
 
+  /// Configures the Ory Kratos Registration After Passkey Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_passkey_default_browser_return_url')
+  String? get kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
+
   /// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_password_default_browser_return_url')
   String? get kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl;
 
-  /// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+  /// Configures the Ory Kratos Registration After Webauthn Default Return URL  This governs the \"selfservice.flows.registration.after.webauthn.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url')
   String? get kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
+
+  /// Disable two-step registration  Two-step registration is a significantly improved sign up flow and recommended when using more than one sign up methods. To revert to one-step registration, set this to `true`.  This governs the \"selfservice.flows.registration.enable_legacy_one_step\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_enable_legacy_one_step')
+  bool? get kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
 
   /// Configures the Whether Ory Kratos Registration is Enabled  This governs the \"selfservice.flows.registration.enabled\" setting.0
   @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_enabled')
@@ -765,6 +798,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_oidc_default_browser_return_url')
   String? get kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
 
+  /// Configures the Ory Kratos Settings Default Return URL After Updating Passkey  This governs the \"selfservice.flows.settings.after.passkey.default_browser_return_url\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_passkey_default_browser_return_url')
+  String? get kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
+
   /// Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_password_default_browser_return_url')
   String? get kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
@@ -777,7 +814,7 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_totp_default_browser_return_url')
   String? get kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
 
-  /// Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.webauthn.profile.default_browser_return_url\" setting.
+  /// Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.after.webauthn.default_browser_return_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_flows_settings_after_webauthn_default_browser_return_url')
   String? get kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
 
@@ -830,13 +867,17 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_enabled')
   bool? get kratosSelfserviceMethodsCodeEnabled;
 
-  /// Configues whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
+  /// Configures whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_mfa_enabled')
   bool? get kratosSelfserviceMethodsCodeMfaEnabled;
 
-  /// Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
+  /// Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_passwordless_enabled')
   bool? get kratosSelfserviceMethodsCodePasswordlessEnabled;
+
+  /// This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \"selfservice.methods.code.passwordless_login_fallback_enabled\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_code_passwordless_login_fallback_enabled')
+  bool? get kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
 
   /// Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_link_config_base_url')
@@ -864,6 +905,21 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   /// Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_enabled')
   bool? get kratosSelfserviceMethodsOidcEnabled;
+
+  /// Configures the Ory Kratos Passkey RP Display Name  This governs the \"selfservice.methods.passkey.config.rp.display_name\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_passkey_config_rp_display_name')
+  String? get kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+
+  /// Configures the Ory Kratos Passkey RP ID  This governs the \"selfservice.methods.passkey.config.rp.id\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_passkey_config_rp_id')
+  String? get kratosSelfserviceMethodsPasskeyConfigRpId;
+
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_passkey_config_rp_origins')
+  BuiltList<String>? get kratosSelfserviceMethodsPasskeyConfigRpOrigins;
+
+  /// Configures whether Ory Kratos Passkey authentication is enabled  This governs the \"selfservice.methods.passkey.enabled\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_passkey_enabled')
+  bool? get kratosSelfserviceMethodsPasskeyEnabled;
 
   /// Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled')
@@ -987,6 +1043,7 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   static void _defaults(CreateProjectNormalizedPayloadBuilder b) => b
       ..hydraOauth2GrantJwtMaxTtl = '720h'
       ..hydraStrategiesAccessToken = const CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum._('opaque')
+      ..hydraStrategiesJwtScopeClaim = const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum._('list')
       ..hydraStrategiesScope = const CreateProjectNormalizedPayloadHydraStrategiesScopeEnum._('wildcard')
       ..hydraTtlAccessToken = '30m'
       ..hydraTtlAuthCode = '720h'
@@ -1039,6 +1096,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       object.environment,
       specifiedType: const FullType(CreateProjectNormalizedPayloadEnvironmentEnum),
     );
+    if (object.homeRegion != null) {
+      yield r'home_region';
+      yield serializers.serialize(
+        object.homeRegion,
+        specifiedType: const FullType(CreateProjectNormalizedPayloadHomeRegionEnum),
+      );
+    }
     if (object.hydraOauth2AllowedTopLevelClaims != null) {
       yield r'hydra_oauth2_allowed_top_level_claims';
       yield serializers.serialize(
@@ -1177,6 +1241,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.hydraStrategiesAccessToken,
         specifiedType: const FullType(CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum),
+      );
+    }
+    if (object.hydraStrategiesJwtScopeClaim != null) {
+      yield r'hydra_strategies_jwt_scope_claim';
+      yield serializers.serialize(
+        object.hydraStrategiesJwtScopeClaim,
+        specifiedType: const FullType(CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum),
       );
     }
     if (object.hydraStrategiesScope != null) {
@@ -1823,6 +1894,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_login_after_passkey_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl != null) {
       yield r'kratos_selfservice_flows_login_after_password_default_browser_return_url';
       yield serializers.serialize(
@@ -1928,6 +2006,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_registration_after_passkey_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl != null) {
       yield r'kratos_selfservice_flows_registration_after_password_default_browser_return_url';
       yield serializers.serialize(
@@ -1940,6 +2025,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceFlowsRegistrationEnableLegacyOneStep != null) {
+      yield r'kratos_selfservice_flows_registration_enable_legacy_one_step';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsRegistrationEnableLegacyOneStep,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceFlowsRegistrationEnabled != null) {
@@ -1988,6 +2080,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield r'kratos_selfservice_flows_settings_after_oidc_default_browser_return_url';
       yield serializers.serialize(
         object.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_flows_settings_after_passkey_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -2117,6 +2216,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
         specifiedType: const FullType(bool),
       );
     }
+    if (object.kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled != null) {
+      yield r'kratos_selfservice_methods_code_passwordless_login_fallback_enabled';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.kratosSelfserviceMethodsLinkConfigBaseUrl != null) {
       yield r'kratos_selfservice_methods_link_config_base_url';
       yield serializers.serialize(
@@ -2163,6 +2269,34 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield r'kratos_selfservice_methods_oidc_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsOidcEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.kratosSelfserviceMethodsPasskeyConfigRpDisplayName != null) {
+      yield r'kratos_selfservice_methods_passkey_config_rp_display_name';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsPasskeyConfigRpDisplayName,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceMethodsPasskeyConfigRpId != null) {
+      yield r'kratos_selfservice_methods_passkey_config_rp_id';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsPasskeyConfigRpId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceMethodsPasskeyConfigRpOrigins != null) {
+      yield r'kratos_selfservice_methods_passkey_config_rp_origins';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsPasskeyConfigRpOrigins,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.kratosSelfserviceMethodsPasskeyEnabled != null) {
+      yield r'kratos_selfservice_methods_passkey_enabled';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsPasskeyEnabled,
         specifiedType: const FullType(bool),
       );
     }
@@ -2371,7 +2505,7 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield r'workspace_id';
       yield serializers.serialize(
         object.workspaceId,
-        specifiedType: const FullType.nullable(String),
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -2424,6 +2558,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(CreateProjectNormalizedPayloadEnvironmentEnum),
           ) as CreateProjectNormalizedPayloadEnvironmentEnum;
           result.environment = valueDes;
+          break;
+        case r'home_region':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CreateProjectNormalizedPayloadHomeRegionEnum),
+          ) as CreateProjectNormalizedPayloadHomeRegionEnum;
+          result.homeRegion = valueDes;
           break;
         case r'hydra_oauth2_allowed_top_level_claims':
           final valueDes = serializers.deserialize(
@@ -2564,6 +2705,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum),
           ) as CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum;
           result.hydraStrategiesAccessToken = valueDes;
+          break;
+        case r'hydra_strategies_jwt_scope_claim':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum),
+          ) as CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum;
+          result.hydraStrategiesJwtScopeClaim = valueDes;
           break;
         case r'hydra_strategies_scope':
           final valueDes = serializers.deserialize(
@@ -3212,6 +3360,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
           ) as String;
           result.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl = valueDes;
           break;
+        case r'kratos_selfservice_flows_login_after_passkey_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl = valueDes;
+          break;
         case r'kratos_selfservice_flows_login_after_password_default_browser_return_url':
           final valueDes = serializers.deserialize(
             value,
@@ -3317,6 +3472,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
           ) as String;
           result.kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl = valueDes;
           break;
+        case r'kratos_selfservice_flows_registration_after_passkey_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl = valueDes;
+          break;
         case r'kratos_selfservice_flows_registration_after_password_default_browser_return_url':
           final valueDes = serializers.deserialize(
             value,
@@ -3330,6 +3492,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl = valueDes;
+          break;
+        case r'kratos_selfservice_flows_registration_enable_legacy_one_step':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceFlowsRegistrationEnableLegacyOneStep = valueDes;
           break;
         case r'kratos_selfservice_flows_registration_enabled':
           final valueDes = serializers.deserialize(
@@ -3379,6 +3548,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl = valueDes;
+          break;
+        case r'kratos_selfservice_flows_settings_after_passkey_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl = valueDes;
           break;
         case r'kratos_selfservice_flows_settings_after_password_default_browser_return_url':
           final valueDes = serializers.deserialize(
@@ -3506,6 +3682,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
           ) as bool;
           result.kratosSelfserviceMethodsCodePasswordlessEnabled = valueDes;
           break;
+        case r'kratos_selfservice_methods_code_passwordless_login_fallback_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled = valueDes;
+          break;
         case r'kratos_selfservice_methods_link_config_base_url':
           final valueDes = serializers.deserialize(
             value,
@@ -3554,6 +3737,34 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(bool),
           ) as bool;
           result.kratosSelfserviceMethodsOidcEnabled = valueDes;
+          break;
+        case r'kratos_selfservice_methods_passkey_config_rp_display_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceMethodsPasskeyConfigRpDisplayName = valueDes;
+          break;
+        case r'kratos_selfservice_methods_passkey_config_rp_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceMethodsPasskeyConfigRpId = valueDes;
+          break;
+        case r'kratos_selfservice_methods_passkey_config_rp_origins':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.kratosSelfserviceMethodsPasskeyConfigRpOrigins.replace(valueDes);
+          break;
+        case r'kratos_selfservice_methods_passkey_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceMethodsPasskeyEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_password_config_haveibeenpwned_enabled':
           final valueDes = serializers.deserialize(
@@ -3761,9 +3972,8 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
         case r'workspace_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
+            specifiedType: const FullType(String),
+          ) as String;
           result.workspaceId = valueDes;
           break;
         default:
@@ -3797,10 +4007,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
 
 class CreateProjectNormalizedPayloadEnvironmentEnum extends EnumClass {
 
-  ///  prod Production dev Development
+  ///  prod Production stage Staging dev Development
   @BuiltValueEnumConst(wireName: r'prod')
   static const CreateProjectNormalizedPayloadEnvironmentEnum prod = _$createProjectNormalizedPayloadEnvironmentEnum_prod;
-  ///  prod Production dev Development
+  ///  prod Production stage Staging dev Development
+  @BuiltValueEnumConst(wireName: r'stage')
+  static const CreateProjectNormalizedPayloadEnvironmentEnum stage = _$createProjectNormalizedPayloadEnvironmentEnum_stage;
+  ///  prod Production stage Staging dev Development
   @BuiltValueEnumConst(wireName: r'dev')
   static const CreateProjectNormalizedPayloadEnvironmentEnum dev = _$createProjectNormalizedPayloadEnvironmentEnum_dev;
 
@@ -3812,12 +4025,35 @@ class CreateProjectNormalizedPayloadEnvironmentEnum extends EnumClass {
   static CreateProjectNormalizedPayloadEnvironmentEnum valueOf(String name) => _$createProjectNormalizedPayloadEnvironmentEnumValueOf(name);
 }
 
+class CreateProjectNormalizedPayloadHomeRegionEnum extends EnumClass {
+
+  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'eu-central')
+  static const CreateProjectNormalizedPayloadHomeRegionEnum euCentral = _$createProjectNormalizedPayloadHomeRegionEnum_euCentral;
+  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'us-east')
+  static const CreateProjectNormalizedPayloadHomeRegionEnum usEast = _$createProjectNormalizedPayloadHomeRegionEnum_usEast;
+  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'us-west')
+  static const CreateProjectNormalizedPayloadHomeRegionEnum usWest = _$createProjectNormalizedPayloadHomeRegionEnum_usWest;
+  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'global')
+  static const CreateProjectNormalizedPayloadHomeRegionEnum global = _$createProjectNormalizedPayloadHomeRegionEnum_global;
+
+  static Serializer<CreateProjectNormalizedPayloadHomeRegionEnum> get serializer => _$createProjectNormalizedPayloadHomeRegionEnumSerializer;
+
+  const CreateProjectNormalizedPayloadHomeRegionEnum._(String name): super(name);
+
+  static BuiltSet<CreateProjectNormalizedPayloadHomeRegionEnum> get values => _$createProjectNormalizedPayloadHomeRegionEnumValues;
+  static CreateProjectNormalizedPayloadHomeRegionEnum valueOf(String name) => _$createProjectNormalizedPayloadHomeRegionEnumValueOf(name);
+}
+
 class CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum extends EnumClass {
 
-  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+  /// Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
   @BuiltValueEnumConst(wireName: r'opaque')
   static const CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum opaque = _$createProjectNormalizedPayloadHydraStrategiesAccessTokenEnum_opaque;
-  /// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+  /// Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
   @BuiltValueEnumConst(wireName: r'jwt')
   static const CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum jwt = _$createProjectNormalizedPayloadHydraStrategiesAccessTokenEnum_jwt;
 
@@ -3827,6 +4063,26 @@ class CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum extends EnumC
 
   static BuiltSet<CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum> get values => _$createProjectNormalizedPayloadHydraStrategiesAccessTokenEnumValues;
   static CreateProjectNormalizedPayloadHydraStrategiesAccessTokenEnum valueOf(String name) => _$createProjectNormalizedPayloadHydraStrategiesAccessTokenEnumValueOf(name);
+}
+
+class CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum extends EnumClass {
+
+  /// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+  @BuiltValueEnumConst(wireName: r'list')
+  static const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum list = _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_list;
+  /// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+  @BuiltValueEnumConst(wireName: r'string')
+  static const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum string = _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_string;
+  /// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+  @BuiltValueEnumConst(wireName: r'both')
+  static const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum both = _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum_both;
+
+  static Serializer<CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum> get serializer => _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnumSerializer;
+
+  const CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum._(String name): super(name);
+
+  static BuiltSet<CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum> get values => _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnumValues;
+  static CreateProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnum valueOf(String name) => _$createProjectNormalizedPayloadHydraStrategiesJwtScopeClaimEnumValueOf(name);
 }
 
 class CreateProjectNormalizedPayloadHydraStrategiesScopeEnum extends EnumClass {

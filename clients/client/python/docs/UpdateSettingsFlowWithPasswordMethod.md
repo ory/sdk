@@ -3,14 +3,31 @@
 Update Settings Flow with Password Method
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**csrf_token** | **str** | CSRFToken is the anti-CSRF token | [optional] 
 **method** | **str** | Method  Should be set to password when trying to update a password. | 
 **password** | **str** | Password is the updated password | 
-**csrf_token** | **str** | CSRFToken is the anti-CSRF token | [optional] 
-**transient_payload** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Transient data to pass along to any webhooks | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] 
 
+## Example
+
+```python
+from ory_client.models.update_settings_flow_with_password_method import UpdateSettingsFlowWithPasswordMethod
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of UpdateSettingsFlowWithPasswordMethod from a JSON string
+update_settings_flow_with_password_method_instance = UpdateSettingsFlowWithPasswordMethod.from_json(json)
+# print the JSON string representation of the object
+print(UpdateSettingsFlowWithPasswordMethod.to_json())
+
+# convert the object into a dict
+update_settings_flow_with_password_method_dict = update_settings_flow_with_password_method_instance.to_dict()
+# create an instance of UpdateSettingsFlowWithPasswordMethod from a dict
+update_settings_flow_with_password_method_form_dict = update_settings_flow_with_password_method.from_dict(update_settings_flow_with_password_method_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

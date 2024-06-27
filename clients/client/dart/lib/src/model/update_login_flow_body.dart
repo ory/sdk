@@ -10,6 +10,7 @@ import 'package:ory_client/src/model/update_login_flow_with_web_authn_method.dar
 import 'package:ory_client/src/model/update_login_flow_with_lookup_secret_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_password_method.dart';
 import 'package:built_value/json_object.dart';
+import 'package:ory_client/src/model/update_login_flow_with_passkey_method.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:one_of/one_of.dart';
@@ -19,9 +20,9 @@ part 'update_login_flow_body.g.dart';
 /// UpdateLoginFlowBody
 ///
 /// Properties:
-/// * [csrfToken] - CSRFToken is the anti-CSRF token
+/// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
 /// * [identifier] - Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow.
-/// * [method] - Method should be set to \"code\" when logging in using the code strategy.
+/// * [method] - Method should be set to \"passkey\" when logging in using the Passkey strategy.
 /// * [password] - The user's password.
 /// * [passwordIdentifier] - Identifier is the email or username of the user trying to log in. This field is deprecated!
 /// * [transientPayload] - Transient data to pass along to any webhooks
@@ -35,9 +36,10 @@ part 'update_login_flow_body.g.dart';
 /// * [lookupSecret] - The lookup secret.
 /// * [code] - Code is the 6 digits code sent to the user
 /// * [resend] - Resend is set when the user wants to resend the code
+/// * [passkeyLogin] - Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
 @BuiltValue()
 abstract class UpdateLoginFlowBody implements Built<UpdateLoginFlowBody, UpdateLoginFlowBodyBuilder> {
-  /// One Of [UpdateLoginFlowWithCodeMethod], [UpdateLoginFlowWithLookupSecretMethod], [UpdateLoginFlowWithOidcMethod], [UpdateLoginFlowWithPasswordMethod], [UpdateLoginFlowWithTotpMethod], [UpdateLoginFlowWithWebAuthnMethod]
+  /// One Of [UpdateLoginFlowWithCodeMethod], [UpdateLoginFlowWithLookupSecretMethod], [UpdateLoginFlowWithOidcMethod], [UpdateLoginFlowWithPasskeyMethod], [UpdateLoginFlowWithPasswordMethod], [UpdateLoginFlowWithTotpMethod], [UpdateLoginFlowWithWebAuthnMethod]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'method';
@@ -46,6 +48,7 @@ abstract class UpdateLoginFlowBody implements Built<UpdateLoginFlowBody, UpdateL
     r'code': UpdateLoginFlowWithCodeMethod,
     r'lookup_secret': UpdateLoginFlowWithLookupSecretMethod,
     r'oidc': UpdateLoginFlowWithOidcMethod,
+    r'passkey': UpdateLoginFlowWithPasskeyMethod,
     r'password': UpdateLoginFlowWithPasswordMethod,
     r'totp': UpdateLoginFlowWithTotpMethod,
     r'webauthn': UpdateLoginFlowWithWebAuthnMethod,
@@ -73,6 +76,9 @@ extension UpdateLoginFlowBodyDiscriminatorExt on UpdateLoginFlowBody {
         if (this is UpdateLoginFlowWithOidcMethod) {
             return r'oidc';
         }
+        if (this is UpdateLoginFlowWithPasskeyMethod) {
+            return r'passkey';
+        }
         if (this is UpdateLoginFlowWithPasswordMethod) {
             return r'password';
         }
@@ -95,6 +101,9 @@ extension UpdateLoginFlowBodyBuilderDiscriminatorExt on UpdateLoginFlowBodyBuild
         }
         if (this is UpdateLoginFlowWithOidcMethodBuilder) {
             return r'oidc';
+        }
+        if (this is UpdateLoginFlowWithPasskeyMethodBuilder) {
+            return r'passkey';
         }
         if (this is UpdateLoginFlowWithPasswordMethodBuilder) {
             return r'password';
@@ -145,7 +154,7 @@ class _$UpdateLoginFlowBodySerializer implements PrimitiveSerializer<UpdateLogin
     final discIndex = serializedList.indexOf(UpdateLoginFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateLoginFlowWithCodeMethod, UpdateLoginFlowWithLookupSecretMethod, UpdateLoginFlowWithOidcMethod, UpdateLoginFlowWithPasswordMethod, UpdateLoginFlowWithTotpMethod, UpdateLoginFlowWithWebAuthnMethod, ];
+    final oneOfTypes = [UpdateLoginFlowWithCodeMethod, UpdateLoginFlowWithLookupSecretMethod, UpdateLoginFlowWithOidcMethod, UpdateLoginFlowWithPasskeyMethod, UpdateLoginFlowWithPasswordMethod, UpdateLoginFlowWithTotpMethod, UpdateLoginFlowWithWebAuthnMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
@@ -169,6 +178,13 @@ class _$UpdateLoginFlowBodySerializer implements PrimitiveSerializer<UpdateLogin
           specifiedType: FullType(UpdateLoginFlowWithOidcMethod),
         ) as UpdateLoginFlowWithOidcMethod;
         oneOfType = UpdateLoginFlowWithOidcMethod;
+        break;
+      case r'passkey':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UpdateLoginFlowWithPasskeyMethod),
+        ) as UpdateLoginFlowWithPasskeyMethod;
+        oneOfType = UpdateLoginFlowWithPasskeyMethod;
         break;
       case r'password':
         oneOfResult = serializers.deserialize(

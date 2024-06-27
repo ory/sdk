@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.9.0
-  - Build date: 2024-03-18T16:46:44.886362867Z[Etc/UTC]
+- API version: v1.12.0
+  - Build date: 2024-06-27T15:28:34.042688941Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.9.0</version>
+  <version>v1.12.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.9.0"
+     implementation "sh.ory:client:v1.12.0"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.9.0.jar`
+* `target/client-v1.12.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -92,7 +92,7 @@ import sh.ory.api.CourierApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -117,7 +117,7 @@ public class Example {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -157,7 +157,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**updateRegistrationFlow**](docs/FrontendApi.md#updateRegistrationFlow) | **POST** /self-service/registration | Update Registration Flow
 *FrontendApi* | [**updateSettingsFlow**](docs/FrontendApi.md#updateSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow
 *FrontendApi* | [**updateVerificationFlow**](docs/FrontendApi.md#updateVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow
-*IdentityApi* | [**batchPatchIdentities**](docs/IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create and deletes multiple identities
+*IdentityApi* | [**batchPatchIdentities**](docs/IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create multiple identities
 *IdentityApi* | [**createIdentity**](docs/IdentityApi.md#createIdentity) | **POST** /admin/identities | Create an Identity
 *IdentityApi* | [**createRecoveryCodeForIdentity**](docs/IdentityApi.md#createRecoveryCodeForIdentity) | **POST** /admin/recovery/code | Create a Recovery Code
 *IdentityApi* | [**createRecoveryLinkForIdentity**](docs/IdentityApi.md#createRecoveryLinkForIdentity) | **POST** /admin/recovery/link | Create a Recovery Link
@@ -183,8 +183,6 @@ Class | Method | HTTP request | Description
 *JwkApi* | [**setJsonWebKey**](docs/JwkApi.md#setJsonWebKey) | **PUT** /admin/keys/{set}/{kid} | Set JSON Web Key
 *JwkApi* | [**setJsonWebKeySet**](docs/JwkApi.md#setJsonWebKeySet) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set
 *MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
-*MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
-*MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
 *OAuth2Api* | [**acceptOAuth2ConsentRequest**](docs/OAuth2Api.md#acceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 *OAuth2Api* | [**acceptOAuth2LoginRequest**](docs/OAuth2Api.md#acceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 *OAuth2Api* | [**acceptOAuth2LogoutRequest**](docs/OAuth2Api.md#acceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
@@ -229,22 +227,19 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**createOrganization**](docs/ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | 
 *ProjectApi* | [**createProject**](docs/ProjectApi.md#createProject) | **POST** /projects | Create a Project
 *ProjectApi* | [**createProjectApiKey**](docs/ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token
-*ProjectApi* | [**deleteOrganization**](docs/ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
+*ProjectApi* | [**deleteOrganization**](docs/ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | 
 *ProjectApi* | [**deleteProjectApiKey**](docs/ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
-*ProjectApi* | [**getActiveProjectInConsole**](docs/ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
-*ProjectApi* | [**getOrganization**](docs/ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID.
+*ProjectApi* | [**getOrganization**](docs/ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID
 *ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
 *ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project
-*ProjectApi* | [**getProjectMetrics**](docs/ProjectApi.md#getProjectMetrics) | **GET** /projects/{project_id}/metrics | 
 *ProjectApi* | [**listOrganizations**](docs/ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | 
 *ProjectApi* | [**listProjectApiKeys**](docs/ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 *ProjectApi* | [**listProjects**](docs/ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 *ProjectApi* | [**purgeProject**](docs/ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
 *ProjectApi* | [**removeProjectMember**](docs/ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
-*ProjectApi* | [**setActiveProjectInConsole**](docs/ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 *ProjectApi* | [**setProject**](docs/ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
-*ProjectApi* | [**updateOrganization**](docs/ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project.
+*ProjectApi* | [**updateOrganization**](docs/ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | 
 *RelationshipApi* | [**checkOplSyntax**](docs/RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
 *RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship
 *RelationshipApi* | [**deleteRelationships**](docs/RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
@@ -252,6 +247,11 @@ Class | Method | HTTP request | Description
 *RelationshipApi* | [**listRelationshipNamespaces**](docs/RelationshipApi.md#listRelationshipNamespaces) | **GET** /namespaces | Query namespaces
 *RelationshipApi* | [**patchRelationships**](docs/RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships
 *WellknownApi* | [**discoverJsonWebKeys**](docs/WellknownApi.md#discoverJsonWebKeys) | **GET** /.well-known/jwks.json | Discover Well-Known JSON Web Keys
+*WorkspaceApi* | [**createWorkspace**](docs/WorkspaceApi.md#createWorkspace) | **POST** /workspaces | Create a new workspace
+*WorkspaceApi* | [**getWorkspace**](docs/WorkspaceApi.md#getWorkspace) | **GET** /workspaces/{workspace} | Get a workspace
+*WorkspaceApi* | [**listWorkspaceProjects**](docs/WorkspaceApi.md#listWorkspaceProjects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace
+*WorkspaceApi* | [**listWorkspaces**](docs/WorkspaceApi.md#listWorkspaces) | **GET** /workspaces | List workspaces the user is a member of
+*WorkspaceApi* | [**updateWorkspace**](docs/WorkspaceApi.md#updateWorkspace) | **PUT** /workspaces/{workspace} | Update an workspace
 
 
 ## Documentation for Models
@@ -259,12 +259,16 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2ConsentRequest](docs/AcceptOAuth2ConsentRequest.md)
  - [AcceptOAuth2ConsentRequestSession](docs/AcceptOAuth2ConsentRequestSession.md)
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
+ - [AccountExperienceConfiguration](docs/AccountExperienceConfiguration.md)
+ - [AccountExperienceThemeVariables](docs/AccountExperienceThemeVariables.md)
  - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
+ - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
  - [Attribute](docs/Attribute.md)
  - [AttributeFilter](docs/AttributeFilter.md)
  - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
+ - [BillingPeriodBucket](docs/BillingPeriodBucket.md)
  - [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
  - [CheckPermissionResult](docs/CheckPermissionResult.md)
  - [CloudAccount](docs/CloudAccount.md)
@@ -295,8 +299,8 @@ Class | Method | HTTP request | Description
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
  - [CreateSubscriptionCommon](docs/CreateSubscriptionCommon.md)
  - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
+ - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
  - [CreateWorkspaceMemberInviteBody](docs/CreateWorkspaceMemberInviteBody.md)
- - [CreateWorkspacePayload](docs/CreateWorkspacePayload.md)
  - [CreateWorkspaceSubscriptionBody](docs/CreateWorkspaceSubscriptionBody.md)
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
@@ -347,17 +351,19 @@ Class | Method | HTTP request | Description
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [InternalIsOwnerForProjectBySlugResponse](docs/InternalIsOwnerForProjectBySlugResponse.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
+ - [Invoice](docs/Invoice.md)
+ - [InvoiceDataV1](docs/InvoiceDataV1.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
- - [IsReady200Response](docs/IsReady200Response.md)
- - [IsReady503Response](docs/IsReady503Response.md)
  - [JsonPatch](docs/JsonPatch.md)
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
+ - [LineItemV1](docs/LineItemV1.md)
  - [ListEventStreams](docs/ListEventStreams.md)
- - [ListMyWorkspacesResponse](docs/ListMyWorkspacesResponse.md)
+ - [ListInvoicesResponse](docs/ListInvoicesResponse.md)
  - [ListOrganizationsResponse](docs/ListOrganizationsResponse.md)
- - [ListWorkspaceProjectsResponse](docs/ListWorkspaceProjectsResponse.md)
+ - [ListWorkspaceProjects](docs/ListWorkspaceProjects.md)
+ - [ListWorkspaces](docs/ListWorkspaces.md)
  - [LoginFlow](docs/LoginFlow.md)
  - [LoginFlowState](docs/LoginFlowState.md)
  - [LogoutFlow](docs/LogoutFlow.md)
@@ -367,7 +373,7 @@ Class | Method | HTTP request | Description
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
  - [MetricsDatapoint](docs/MetricsDatapoint.md)
- - [MigrationOptions](docs/MigrationOptions.md)
+ - [Money](docs/Money.md)
  - [Namespace](docs/Namespace.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)
@@ -396,7 +402,7 @@ Class | Method | HTTP request | Description
  - [ParseError](docs/ParseError.md)
  - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
  - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
- - [PermissionsOnWorkpaceResponse](docs/PermissionsOnWorkpaceResponse.md)
+ - [PermissionsOnWorkspace](docs/PermissionsOnWorkspace.md)
  - [Plan](docs/Plan.md)
  - [PlanDetails](docs/PlanDetails.md)
  - [PostCheckPermissionBody](docs/PostCheckPermissionBody.md)
@@ -450,6 +456,8 @@ Class | Method | HTTP request | Description
  - [SuccessfulNativeLogin](docs/SuccessfulNativeLogin.md)
  - [SuccessfulNativeRegistration](docs/SuccessfulNativeRegistration.md)
  - [SuccessfulProjectUpdate](docs/SuccessfulProjectUpdate.md)
+ - [TaxLineItem](docs/TaxLineItem.md)
+ - [TimeInterval](docs/TimeInterval.md)
  - [TokenPagination](docs/TokenPagination.md)
  - [TokenPaginationHeaders](docs/TokenPaginationHeaders.md)
  - [TokenPaginationRequestParameters](docs/TokenPaginationRequestParameters.md)
@@ -472,6 +480,7 @@ Class | Method | HTTP request | Description
  - [UpdateLoginFlowWithCodeMethod](docs/UpdateLoginFlowWithCodeMethod.md)
  - [UpdateLoginFlowWithLookupSecretMethod](docs/UpdateLoginFlowWithLookupSecretMethod.md)
  - [UpdateLoginFlowWithOidcMethod](docs/UpdateLoginFlowWithOidcMethod.md)
+ - [UpdateLoginFlowWithPasskeyMethod](docs/UpdateLoginFlowWithPasskeyMethod.md)
  - [UpdateLoginFlowWithPasswordMethod](docs/UpdateLoginFlowWithPasswordMethod.md)
  - [UpdateLoginFlowWithTotpMethod](docs/UpdateLoginFlowWithTotpMethod.md)
  - [UpdateLoginFlowWithWebAuthnMethod](docs/UpdateLoginFlowWithWebAuthnMethod.md)
@@ -481,11 +490,14 @@ Class | Method | HTTP request | Description
  - [UpdateRegistrationFlowBody](docs/UpdateRegistrationFlowBody.md)
  - [UpdateRegistrationFlowWithCodeMethod](docs/UpdateRegistrationFlowWithCodeMethod.md)
  - [UpdateRegistrationFlowWithOidcMethod](docs/UpdateRegistrationFlowWithOidcMethod.md)
+ - [UpdateRegistrationFlowWithPasskeyMethod](docs/UpdateRegistrationFlowWithPasskeyMethod.md)
  - [UpdateRegistrationFlowWithPasswordMethod](docs/UpdateRegistrationFlowWithPasswordMethod.md)
+ - [UpdateRegistrationFlowWithProfileMethod](docs/UpdateRegistrationFlowWithProfileMethod.md)
  - [UpdateRegistrationFlowWithWebAuthnMethod](docs/UpdateRegistrationFlowWithWebAuthnMethod.md)
  - [UpdateSettingsFlowBody](docs/UpdateSettingsFlowBody.md)
  - [UpdateSettingsFlowWithLookupMethod](docs/UpdateSettingsFlowWithLookupMethod.md)
  - [UpdateSettingsFlowWithOidcMethod](docs/UpdateSettingsFlowWithOidcMethod.md)
+ - [UpdateSettingsFlowWithPasskeyMethod](docs/UpdateSettingsFlowWithPasskeyMethod.md)
  - [UpdateSettingsFlowWithPasswordMethod](docs/UpdateSettingsFlowWithPasswordMethod.md)
  - [UpdateSettingsFlowWithProfileMethod](docs/UpdateSettingsFlowWithProfileMethod.md)
  - [UpdateSettingsFlowWithTotpMethod](docs/UpdateSettingsFlowWithTotpMethod.md)
@@ -494,7 +506,7 @@ Class | Method | HTTP request | Description
  - [UpdateVerificationFlowBody](docs/UpdateVerificationFlowBody.md)
  - [UpdateVerificationFlowWithCodeMethod](docs/UpdateVerificationFlowWithCodeMethod.md)
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
- - [UpdateWorkspacePayload](docs/UpdateWorkspacePayload.md)
+ - [UpdateWorkspaceBody](docs/UpdateWorkspaceBody.md)
  - [Usage](docs/Usage.md)
  - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)
  - [VerifiableCredentialProof](docs/VerifiableCredentialProof.md)
@@ -505,20 +517,25 @@ Class | Method | HTTP request | Description
  - [Version](docs/Version.md)
  - [Warning](docs/Warning.md)
  - [Workspace](docs/Workspace.md)
- - [WorkspaceMeta](docs/WorkspaceMeta.md)
+ - [WorkspaceApiKey](docs/WorkspaceApiKey.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
+
 Authentication schemes defined for the API:
+<a id="basic"></a>
 ### basic
 
 - **Type**: HTTP basic authentication
 
+<a id="bearer"></a>
 ### bearer
 
-- **Type**: HTTP basic authentication
+- **Type**: HTTP Bearer Token authentication
 
+<a id="oauth2"></a>
 ### oauth2
 
 - **Type**: OAuth
@@ -529,9 +546,15 @@ Authentication schemes defined for the API:
   - offline_access: A scope required when requesting refresh tokens
   - openid: Request an OpenID Connect ID Token
 
+<a id="oryAccessToken"></a>
 ### oryAccessToken
 
-- **Type**: HTTP basic authentication
+- **Type**: HTTP Bearer Token authentication
+
+<a id="oryWorkspaceApiKey"></a>
+### oryWorkspaceApiKey
+
+- **Type**: HTTP Bearer Token authentication
 
 
 ## Recommendation

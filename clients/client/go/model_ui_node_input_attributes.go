@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -28,10 +28,12 @@ type UiNodeInputAttributes struct {
 	Label *UiText `json:"label,omitempty"`
 	// The input's element name.
 	Name string `json:"name"`
-	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\".
+	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
 	NodeType string `json:"node_type"`
 	// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
 	Onclick *string `json:"onclick,omitempty"`
+	// OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.
+	Onload *string `json:"onload,omitempty"`
 	// The input's pattern.
 	Pattern *string `json:"pattern,omitempty"`
 	// Mark this input field as required.
@@ -234,6 +236,38 @@ func (o *UiNodeInputAttributes) SetOnclick(v string) {
 	o.Onclick = &v
 }
 
+// GetOnload returns the Onload field value if set, zero value otherwise.
+func (o *UiNodeInputAttributes) GetOnload() string {
+	if o == nil || IsNil(o.Onload) {
+		var ret string
+		return ret
+	}
+	return *o.Onload
+}
+
+// GetOnloadOk returns a tuple with the Onload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UiNodeInputAttributes) GetOnloadOk() (*string, bool) {
+	if o == nil || IsNil(o.Onload) {
+		return nil, false
+	}
+	return o.Onload, true
+}
+
+// HasOnload returns a boolean if a field has been set.
+func (o *UiNodeInputAttributes) HasOnload() bool {
+	if o != nil && !IsNil(o.Onload) {
+		return true
+	}
+
+	return false
+}
+
+// SetOnload gets a reference to the given string and assigns it to the Onload field.
+func (o *UiNodeInputAttributes) SetOnload(v string) {
+	o.Onload = &v
+}
+
 // GetPattern returns the Pattern field value if set, zero value otherwise.
 func (o *UiNodeInputAttributes) GetPattern() string {
 	if o == nil || IsNil(o.Pattern) {
@@ -343,7 +377,7 @@ func (o *UiNodeInputAttributes) GetValueOk() (*interface{}, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *UiNodeInputAttributes) HasValue() bool {
-	if o != nil && IsNil(o.Value) {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -377,6 +411,9 @@ func (o UiNodeInputAttributes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Onclick) {
 		toSerialize["onclick"] = o.Onclick
 	}
+	if !IsNil(o.Onload) {
+		toSerialize["onload"] = o.Onload
+	}
 	if !IsNil(o.Pattern) {
 		toSerialize["pattern"] = o.Pattern
 	}
@@ -395,8 +432,8 @@ func (o UiNodeInputAttributes) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UiNodeInputAttributes) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *UiNodeInputAttributes) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -408,7 +445,7 @@ func (o *UiNodeInputAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -422,7 +459,7 @@ func (o *UiNodeInputAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	varUiNodeInputAttributes := _UiNodeInputAttributes{}
 
-	err = json.Unmarshal(bytes, &varUiNodeInputAttributes)
+	err = json.Unmarshal(data, &varUiNodeInputAttributes)
 
 	if err != nil {
 		return err
@@ -432,13 +469,14 @@ func (o *UiNodeInputAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "autocomplete")
 		delete(additionalProperties, "disabled")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "node_type")
 		delete(additionalProperties, "onclick")
+		delete(additionalProperties, "onload")
 		delete(additionalProperties, "pattern")
 		delete(additionalProperties, "required")
 		delete(additionalProperties, "type")

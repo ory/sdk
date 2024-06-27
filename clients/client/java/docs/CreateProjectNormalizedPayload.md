@@ -11,7 +11,8 @@ Create project (normalized) request payload
 |**createdAt** | **OffsetDateTime** | The Project&#39;s Revision Creation Date |  [optional] [readonly] |
 |**disableAccountExperienceWelcomeScreen** | **Boolean** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. |  [optional] |
 |**enableAxV2** | **Boolean** | Whether the new account experience is enabled and reachable. |  [optional] |
-|**environment** | [**EnvironmentEnum**](#EnvironmentEnum) |  prod Production dev Development |  |
+|**environment** | [**EnvironmentEnum**](#EnvironmentEnum) |  prod Production stage Staging dev Development |  |
+|**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) |  eu-central EUCentral us-east USEast us-west USWest global Global |  [optional] |
 |**hydraOauth2AllowedTopLevelClaims** | **List&lt;String&gt;** |  |  [optional] |
 |**hydraOauth2ClientCredentialsDefaultGrantAllowedScope** | **Boolean** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. |  [optional] |
 |**hydraOauth2ExcludeNotBeforeClaim** | **Boolean** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. |  [optional] |
@@ -31,7 +32,8 @@ Create project (normalized) request payload
 |**hydraSecretsSystem** | **List&lt;String&gt;** |  |  [optional] |
 |**hydraServeCookiesSameSiteLegacyWorkaround** | **Boolean** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. |  [optional] |
 |**hydraServeCookiesSameSiteMode** | **String** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. |  [optional] |
-|**hydraStrategiesAccessToken** | [**HydraStrategiesAccessTokenEnum**](#HydraStrategiesAccessTokenEnum) | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt |  [optional] |
+|**hydraStrategiesAccessToken** | [**HydraStrategiesAccessTokenEnum**](#HydraStrategiesAccessTokenEnum) | Defines access token type  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt |  [optional] |
+|**hydraStrategiesJwtScopeClaim** | [**HydraStrategiesJwtScopeClaimEnum**](#HydraStrategiesJwtScopeClaimEnum) | Define the claim to use as the scope in the access token.  This governs the \&quot;strategies.jwt.scope_claim\&quot; setting:  list: The scope claim is an array of strings named &#x60;scope&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;] }&#x60; string: The scope claim is a space delimited list of strings named &#x60;scp&#x60;: &#x60;{ \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; both: The scope claim is both a space delimited list and an array of strings named &#x60;scope&#x60; and &#x60;scp&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;], \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth |  [optional] |
 |**hydraStrategiesScope** | [**HydraStrategiesScopeEnum**](#HydraStrategiesScopeEnum) | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard |  [optional] |
 |**hydraTtlAccessToken** | **String** | This governs the \&quot;ttl.access_token\&quot; setting. |  [optional] |
 |**hydraTtlAuthCode** | **String** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. |  [optional] |
@@ -124,6 +126,7 @@ Create project (normalized) request payload
 |**kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login Default Return URL  This governs the \&quot;selfservice.flows.login.after.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.lookup_secret.after.password.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \&quot;selfservice.flows.login.after.oidc.default_browser_return_url\&quot; setting. |  [optional] |
+|**kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login After Passkey Default Return URL  This governs the \&quot;selfservice.flows.login.after.passkey.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.login.after.password.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.totp.after.password.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \&quot;selfservice.flows.login.after.webauthn.default_browser_return_url\&quot; setting. |  [optional] |
@@ -139,8 +142,10 @@ Create project (normalized) request payload
 |**kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Registration After Code Default Return URL  This governs the \&quot;selfservice.flows.registration.after.code.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Registration Default Return URL  This governs the \&quot;selfservice.flows.registration.after.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \&quot;selfservice.flows.registration.after.oidc.default_browser_return_url\&quot; setting. |  [optional] |
+|**kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Registration After Passkey Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. |  [optional] |
-|**kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. |  [optional] |
+|**kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Registration After Webauthn Default Return URL  This governs the \&quot;selfservice.flows.registration.after.webauthn.default_browser_return_url\&quot; setting. |  [optional] |
+|**kratosSelfserviceFlowsRegistrationEnableLegacyOneStep** | **Boolean** | Disable two-step registration  Two-step registration is a significantly improved sign up flow and recommended when using more than one sign up methods. To revert to one-step registration, set this to &#x60;true&#x60;.  This governs the \&quot;selfservice.flows.registration.enable_legacy_one_step\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsRegistrationEnabled** | **Boolean** | Configures the Whether Ory Kratos Registration is Enabled  This governs the \&quot;selfservice.flows.registration.enabled\&quot; setting.0 |  [optional] |
 |**kratosSelfserviceFlowsRegistrationLifespan** | **String** | Configures the Ory Kratos Registration Lifespan  This governs the \&quot;selfservice.flows.registration.lifespan\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsRegistrationLoginHints** | **Boolean** | Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \&quot;selfservice.flows.registration.login_hints\&quot; setting. |  [optional] |
@@ -148,10 +153,11 @@ Create project (normalized) request payload
 |**kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Settings Default Return URL  This governs the \&quot;selfservice.flows.settings.after.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets  This governs the \&quot;selfservice.flows.settings.after.lookup_secret.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \&quot;selfservice.flows.settings.after.oidc.default_browser_return_url\&quot; setting. |  [optional] |
+|**kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Passkey  This governs the \&quot;selfservice.flows.settings.after.passkey.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \&quot;selfservice.flows.settings.after.password.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \&quot;selfservice.flows.settings.after.profile.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \&quot;selfservice.flows.settings.after.totp.default_browser_return_url\&quot; setting. |  [optional] |
-|**kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \&quot;selfservice.flows.settings.webauthn.profile.default_browser_return_url\&quot; setting. |  [optional] |
+|**kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \&quot;selfservice.flows.settings.after.webauthn.default_browser_return_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsSettingsLifespan** | **String** | Configures the Ory Kratos Settings Lifespan  This governs the \&quot;selfservice.flows.settings.lifespan\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge** | **String** | Configures the Ory Kratos Settings Privileged Session Max Age  This governs the \&quot;selfservice.flows.settings.privileged_session_max_age\&quot; setting. |  [optional] |
 |**kratosSelfserviceFlowsSettingsRequiredAal** | **String** | Configures the Ory Kratos Settings Required AAL  This governs the \&quot;selfservice.flows.settings.required_aal\&quot; setting. |  [optional] |
@@ -164,8 +170,9 @@ Create project (normalized) request payload
 |**kratosSelfserviceFlowsVerificationUse** | [**KratosSelfserviceFlowsVerificationUseEnum**](#KratosSelfserviceFlowsVerificationUseEnum) | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode |  [optional] |
 |**kratosSelfserviceMethodsCodeConfigLifespan** | **String** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. |  [optional] |
 |**kratosSelfserviceMethodsCodeEnabled** | **Boolean** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. |  [optional] |
-|**kratosSelfserviceMethodsCodeMfaEnabled** | **Boolean** | Configues whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. |  [optional] |
-|**kratosSelfserviceMethodsCodePasswordlessEnabled** | **Boolean** | Configues whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. |  [optional] |
+|**kratosSelfserviceMethodsCodeMfaEnabled** | **Boolean** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. |  [optional] |
+|**kratosSelfserviceMethodsCodePasswordlessEnabled** | **Boolean** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. |  [optional] |
+|**kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled** | **Boolean** | This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \&quot;selfservice.methods.code.passwordless_login_fallback_enabled\&quot; setting. |  [optional] |
 |**kratosSelfserviceMethodsLinkConfigBaseUrl** | **String** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. |  [optional] |
 |**kratosSelfserviceMethodsLinkConfigLifespan** | **String** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. |  [optional] |
 |**kratosSelfserviceMethodsLinkEnabled** | **Boolean** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.enabled\&quot; setting. |  [optional] |
@@ -173,6 +180,10 @@ Create project (normalized) request payload
 |**kratosSelfserviceMethodsOidcConfigBaseRedirectUri** | **String** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \&quot;selfservice.methods.oidc.config.base_redirect_uri\&quot; setting. |  [optional] |
 |**kratosSelfserviceMethodsOidcConfigProviders** | [**List&lt;NormalizedProjectRevisionThirdPartyProvider&gt;**](NormalizedProjectRevisionThirdPartyProvider.md) |  |  [optional] |
 |**kratosSelfserviceMethodsOidcEnabled** | **Boolean** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \&quot;selfservice.methods.oidc.enabled\&quot; setting. |  [optional] |
+|**kratosSelfserviceMethodsPasskeyConfigRpDisplayName** | **String** | Configures the Ory Kratos Passkey RP Display Name  This governs the \&quot;selfservice.methods.passkey.config.rp.display_name\&quot; setting. |  [optional] |
+|**kratosSelfserviceMethodsPasskeyConfigRpId** | **String** | Configures the Ory Kratos Passkey RP ID  This governs the \&quot;selfservice.methods.passkey.config.rp.id\&quot; setting. |  [optional] |
+|**kratosSelfserviceMethodsPasskeyConfigRpOrigins** | **List&lt;String&gt;** |  |  [optional] |
+|**kratosSelfserviceMethodsPasskeyEnabled** | **Boolean** | Configures whether Ory Kratos Passkey authentication is enabled  This governs the \&quot;selfservice.methods.passkey.enabled\&quot; setting. |  [optional] |
 |**kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled** | **Boolean** | Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_enabled\&quot; setting. |  [optional] |
 |**kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled** | **Boolean** | Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \&quot;selfservice.methods.password.config.identifier_similarity_check_enabled\&quot; setting. |  [optional] |
 |**kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors** | **Boolean** | Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \&quot;selfservice.methods.password.config.ignore_network_errors\&quot; setting. |  [optional] |
@@ -211,7 +222,19 @@ Create project (normalized) request payload
 | Name | Value |
 |---- | -----|
 | PROD | &quot;prod&quot; |
+| STAGE | &quot;stage&quot; |
 | DEV | &quot;dev&quot; |
+
+
+
+## Enum: HomeRegionEnum
+
+| Name | Value |
+|---- | -----|
+| EU_CENTRAL | &quot;eu-central&quot; |
+| US_EAST | &quot;us-east&quot; |
+| US_WEST | &quot;us-west&quot; |
+| GLOBAL | &quot;global&quot; |
 
 
 
@@ -221,6 +244,16 @@ Create project (normalized) request payload
 |---- | -----|
 | OPAQUE | &quot;opaque&quot; |
 | JWT | &quot;jwt&quot; |
+
+
+
+## Enum: HydraStrategiesJwtScopeClaimEnum
+
+| Name | Value |
+|---- | -----|
+| LIST | &quot;list&quot; |
+| STRING | &quot;string&quot; |
+| BOTH | &quot;both&quot; |
 
 
 

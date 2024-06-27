@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.12.0
 Contact: support@ory.sh
 */
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &QuotaUsage{}
 // QuotaUsage struct for QuotaUsage
 type QuotaUsage struct {
 	// The additional price per unit in cents.
-	AdditionalPrice int64 `json:"additional_price"`
+	AdditionalPrice string `json:"additional_price"`
 	CanUseMore bool `json:"can_use_more"`
-	//  region_eu RegionEU region_us RegionUS region_apac RegionAPAC region_global RegionGlobal production_projects ProductionProjects development_projects DevelopmentProjects daily_active_users DailyActiveUsers custom_domains CustomDomains event_streams EventStreams sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport project_metrics ProjectMetrics project_metrics_time_window ProjectMetricsTimeWindow project_metrics_events_history ProjectMetricsEventsHistory organizations Organizations rop_grant ResourceOwnerPasswordGrant concierge_onboarding ConciergeOnboarding credit Credit rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList permission_checks_rate_limit_tier RateLimitTierPermissionChecks oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
+	//  production_projects ProductionProjects staging_projects StagingProjects development_projects DevelopmentProjects daily_active_users DailyActiveUsers custom_domains CustomDomains event_streams EventStreams event_stream_events EventStreamEvents sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport project_metrics ProjectMetrics project_metrics_time_window ProjectMetricsTimeWindow project_metrics_events_history ProjectMetricsEventsHistory organizations Organizations rop_grant ResourceOwnerPasswordGrant concierge_onboarding ConciergeOnboarding credit Credit data_location_global DataLocationGlobal m2m_token_issuance M2MTokenIssuance permission_checks PermissionChecks data_location_regional DataLocationRegional  Required Features rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList permission_checks_rate_limit_tier RateLimitTierPermissionChecks oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
 	Feature string `json:"feature"`
 	FeatureAvailable bool `json:"feature_available"`
 	Included int64 `json:"included"`
@@ -38,7 +38,7 @@ type _QuotaUsage QuotaUsage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuotaUsage(additionalPrice int64, canUseMore bool, feature string, featureAvailable bool, included int64, used int64) *QuotaUsage {
+func NewQuotaUsage(additionalPrice string, canUseMore bool, feature string, featureAvailable bool, included int64, used int64) *QuotaUsage {
 	this := QuotaUsage{}
 	this.AdditionalPrice = additionalPrice
 	this.CanUseMore = canUseMore
@@ -58,9 +58,9 @@ func NewQuotaUsageWithDefaults() *QuotaUsage {
 }
 
 // GetAdditionalPrice returns the AdditionalPrice field value
-func (o *QuotaUsage) GetAdditionalPrice() int64 {
+func (o *QuotaUsage) GetAdditionalPrice() string {
 	if o == nil {
-		var ret int64
+		var ret string
 		return ret
 	}
 
@@ -69,7 +69,7 @@ func (o *QuotaUsage) GetAdditionalPrice() int64 {
 
 // GetAdditionalPriceOk returns a tuple with the AdditionalPrice field value
 // and a boolean to check if the value has been set.
-func (o *QuotaUsage) GetAdditionalPriceOk() (*int64, bool) {
+func (o *QuotaUsage) GetAdditionalPriceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,7 +77,7 @@ func (o *QuotaUsage) GetAdditionalPriceOk() (*int64, bool) {
 }
 
 // SetAdditionalPrice sets field value
-func (o *QuotaUsage) SetAdditionalPrice(v int64) {
+func (o *QuotaUsage) SetAdditionalPrice(v string) {
 	o.AdditionalPrice = v
 }
 
@@ -225,8 +225,8 @@ func (o QuotaUsage) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *QuotaUsage) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *QuotaUsage) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -240,7 +240,7 @@ func (o *QuotaUsage) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -254,7 +254,7 @@ func (o *QuotaUsage) UnmarshalJSON(bytes []byte) (err error) {
 
 	varQuotaUsage := _QuotaUsage{}
 
-	err = json.Unmarshal(bytes, &varQuotaUsage)
+	err = json.Unmarshal(data, &varQuotaUsage)
 
 	if err != nil {
 		return err
@@ -264,7 +264,7 @@ func (o *QuotaUsage) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "additional_price")
 		delete(additionalProperties, "can_use_more")
 		delete(additionalProperties, "feature")
