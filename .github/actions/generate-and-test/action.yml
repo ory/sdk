@@ -8,12 +8,17 @@ runs:
   steps:
     - run: cp -r /root/. $HOME # Workaround, because $HOME is set to /github/home inside the action run
     - name: "client"
+      shell: bash
       run: ./scripts/generate-and-test.sh ${{ inputs.language }} latest client
     - name: "keto"
+      shell: bash
       run: ./scripts/generate-and-test.sh ${{ inputs.language }} latest keto
     - name: "kratos"
+      shell: bash
       run: ./scripts/generate-and-test.sh ${{ inputs.language }} latest kratos
     - name: "hydra"
+      shell: bash
       run: ./scripts/generate-and-test.sh ${{ inputs.language }} latest hydra
     - name: "oathkeeper"
+      shell: bash
       run: ./scripts/generate-and-test.sh ${{ inputs.language }} latest oathkeeper

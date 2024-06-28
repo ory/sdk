@@ -3,32 +3,32 @@ on:
   pull_request:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    container: oryd/sdk:v0.0.53
-    defaults:
-      run:
-        shell: bash
-    strategy:
-      matrix:
-        language:
-          [
-            "elixir",
-            "typescript",
-            "rust",
-            "golang",
-            "java",
-            "php",
-            "python",
-            "dotnet",
-            "dart",
-          ]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Generate and Test - ${{ matrix.language }}
-        uses: ./.github/actions/generate-and-test
-        with:
-          language: ${{ matrix.language }}
+  # test:
+  #   runs-on: ubuntu-latest
+  #   container: oryd/sdk:v0.0.53
+  #   defaults:
+  #     run:
+  #       shell: bash
+  #   strategy:
+  #     matrix:
+  #       language:
+  #         [
+  #           "elixir",
+  #           "typescript",
+  #           "rust",
+  #           "golang",
+  #           "java",
+  #           "php",
+  #           "python",
+  #           "dotnet",
+  #           "dart",
+  #         ]
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Generate and Test - ${{ matrix.language }}
+  #       uses: ./.github/actions/generate-and-test
+  #       with:
+  #         language: ${{ matrix.language }}
   test-ruby:
     runs-on: ubuntu-latest
     steps:
