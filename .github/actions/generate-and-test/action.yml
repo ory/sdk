@@ -6,7 +6,8 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: cp -r /root/. $HOME # Workaround, because $HOME is set to /github/home inside the action run
+    - shell: bash
+      run: cp -r /root/. $HOME # Workaround, because $HOME is set to /github/home inside the action run
     - name: "client"
       shell: bash
       run: ./scripts/generate-and-test.sh ${{ inputs.language }} latest client
