@@ -30,7 +30,6 @@ jobs:
           language: ${{ matrix.language }}
   test-ruby:
     runs-on: ubuntu-latest
-    container: oryd/sdk:v0.0.53
     steps:
       - name: Set up Ruby 2.7
         uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
