@@ -8,6 +8,8 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**faviconType** | **String** |  | [optional] 
+**faviconUrl** | **String** |  | [optional] 
 **logoType** | **String** |  | [optional] 
 **logoUrl** | **String** |  | [optional] 
 **name** | **String** |  | [optional] 

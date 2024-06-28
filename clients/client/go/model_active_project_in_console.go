@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,11 +15,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the ActiveProjectInConsole type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ActiveProjectInConsole{}
+
 // ActiveProjectInConsole The Active Project ID
 type ActiveProjectInConsole struct {
 	// The Active Project ID  format: uuid
 	ProjectId *string `json:"project_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ActiveProjectInConsole ActiveProjectInConsole
 
 // NewActiveProjectInConsole instantiates a new ActiveProjectInConsole object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewActiveProjectInConsoleWithDefaults() *ActiveProjectInConsole {
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *ActiveProjectInConsole) GetProjectId() string {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret string
 		return ret
 	}
@@ -50,7 +56,7 @@ func (o *ActiveProjectInConsole) GetProjectId() string {
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ActiveProjectInConsole) GetProjectIdOk() (*string, bool) {
-	if o == nil || o.ProjectId == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		return nil, false
 	}
 	return o.ProjectId, true
@@ -58,7 +64,7 @@ func (o *ActiveProjectInConsole) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *ActiveProjectInConsole) HasProjectId() bool {
-	if o != nil && o.ProjectId != nil {
+	if o != nil && !IsNil(o.ProjectId) {
 		return true
 	}
 
@@ -71,11 +77,45 @@ func (o *ActiveProjectInConsole) SetProjectId(v string) {
 }
 
 func (o ActiveProjectInConsole) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ProjectId != nil {
-		toSerialize["project_id"] = o.ProjectId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ActiveProjectInConsole) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ProjectId) {
+		toSerialize["project_id"] = o.ProjectId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *ActiveProjectInConsole) UnmarshalJSON(data []byte) (err error) {
+	varActiveProjectInConsole := _ActiveProjectInConsole{}
+
+	err = json.Unmarshal(data, &varActiveProjectInConsole)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ActiveProjectInConsole(varActiveProjectInConsole)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "project_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableActiveProjectInConsole struct {

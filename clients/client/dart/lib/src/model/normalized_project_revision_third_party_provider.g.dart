@@ -6,8 +6,75 @@ part of 'normalized_project_revision_third_party_provider.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const NormalizedProjectRevisionThirdPartyProviderStateEnum
+    _$normalizedProjectRevisionThirdPartyProviderStateEnum_enabled =
+    const NormalizedProjectRevisionThirdPartyProviderStateEnum._('enabled');
+const NormalizedProjectRevisionThirdPartyProviderStateEnum
+    _$normalizedProjectRevisionThirdPartyProviderStateEnum_disabled =
+    const NormalizedProjectRevisionThirdPartyProviderStateEnum._('disabled');
+
+NormalizedProjectRevisionThirdPartyProviderStateEnum
+    _$normalizedProjectRevisionThirdPartyProviderStateEnumValueOf(String name) {
+  switch (name) {
+    case 'enabled':
+      return _$normalizedProjectRevisionThirdPartyProviderStateEnum_enabled;
+    case 'disabled':
+      return _$normalizedProjectRevisionThirdPartyProviderStateEnum_disabled;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<NormalizedProjectRevisionThirdPartyProviderStateEnum>
+    _$normalizedProjectRevisionThirdPartyProviderStateEnumValues = new BuiltSet<
+        NormalizedProjectRevisionThirdPartyProviderStateEnum>(const <NormalizedProjectRevisionThirdPartyProviderStateEnum>[
+  _$normalizedProjectRevisionThirdPartyProviderStateEnum_enabled,
+  _$normalizedProjectRevisionThirdPartyProviderStateEnum_disabled,
+]);
+
+Serializer<NormalizedProjectRevisionThirdPartyProviderStateEnum>
+    _$normalizedProjectRevisionThirdPartyProviderStateEnumSerializer =
+    new _$NormalizedProjectRevisionThirdPartyProviderStateEnumSerializer();
+
+class _$NormalizedProjectRevisionThirdPartyProviderStateEnumSerializer
+    implements
+        PrimitiveSerializer<
+            NormalizedProjectRevisionThirdPartyProviderStateEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'enabled': 'enabled',
+    'disabled': 'disabled',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'enabled': 'enabled',
+    'disabled': 'disabled',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    NormalizedProjectRevisionThirdPartyProviderStateEnum
+  ];
+  @override
+  final String wireName =
+      'NormalizedProjectRevisionThirdPartyProviderStateEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          NormalizedProjectRevisionThirdPartyProviderStateEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  NormalizedProjectRevisionThirdPartyProviderStateEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      NormalizedProjectRevisionThirdPartyProviderStateEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$NormalizedProjectRevisionThirdPartyProvider
     extends NormalizedProjectRevisionThirdPartyProvider {
+  @override
+  final BuiltList<String>? additionalIdTokenAudiences;
   @override
   final String? applePrivateKey;
   @override
@@ -18,6 +85,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   final String? authUrl;
   @override
   final String? azureTenant;
+  @override
+  final String? claimsSource;
   @override
   final String? clientId;
   @override
@@ -33,6 +102,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   @override
   final String? mapperUrl;
   @override
+  final String? organizationId;
+  @override
   final String? projectRevisionId;
   @override
   final String? provider;
@@ -42,6 +113,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   final JsonObject? requestedClaims;
   @override
   final BuiltList<String>? scope;
+  @override
+  final NormalizedProjectRevisionThirdPartyProviderStateEnum? state;
   @override
   final String? subjectSource;
   @override
@@ -57,11 +130,13 @@ class _$NormalizedProjectRevisionThirdPartyProvider
           ._build();
 
   _$NormalizedProjectRevisionThirdPartyProvider._(
-      {this.applePrivateKey,
+      {this.additionalIdTokenAudiences,
+      this.applePrivateKey,
       this.applePrivateKeyId,
       this.appleTeamId,
       this.authUrl,
       this.azureTenant,
+      this.claimsSource,
       this.clientId,
       this.clientSecret,
       this.createdAt,
@@ -69,11 +144,13 @@ class _$NormalizedProjectRevisionThirdPartyProvider
       this.issuerUrl,
       this.label,
       this.mapperUrl,
+      this.organizationId,
       this.projectRevisionId,
       this.provider,
       this.providerId,
       this.requestedClaims,
       this.scope,
+      this.state,
       this.subjectSource,
       this.tokenUrl,
       this.updatedAt})
@@ -93,11 +170,13 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is NormalizedProjectRevisionThirdPartyProvider &&
+        additionalIdTokenAudiences == other.additionalIdTokenAudiences &&
         applePrivateKey == other.applePrivateKey &&
         applePrivateKeyId == other.applePrivateKeyId &&
         appleTeamId == other.appleTeamId &&
         authUrl == other.authUrl &&
         azureTenant == other.azureTenant &&
+        claimsSource == other.claimsSource &&
         clientId == other.clientId &&
         clientSecret == other.clientSecret &&
         createdAt == other.createdAt &&
@@ -105,11 +184,13 @@ class _$NormalizedProjectRevisionThirdPartyProvider
         issuerUrl == other.issuerUrl &&
         label == other.label &&
         mapperUrl == other.mapperUrl &&
+        organizationId == other.organizationId &&
         projectRevisionId == other.projectRevisionId &&
         provider == other.provider &&
         providerId == other.providerId &&
         requestedClaims == other.requestedClaims &&
         scope == other.scope &&
+        state == other.state &&
         subjectSource == other.subjectSource &&
         tokenUrl == other.tokenUrl &&
         updatedAt == other.updatedAt;
@@ -118,11 +199,13 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, additionalIdTokenAudiences.hashCode);
     _$hash = $jc(_$hash, applePrivateKey.hashCode);
     _$hash = $jc(_$hash, applePrivateKeyId.hashCode);
     _$hash = $jc(_$hash, appleTeamId.hashCode);
     _$hash = $jc(_$hash, authUrl.hashCode);
     _$hash = $jc(_$hash, azureTenant.hashCode);
+    _$hash = $jc(_$hash, claimsSource.hashCode);
     _$hash = $jc(_$hash, clientId.hashCode);
     _$hash = $jc(_$hash, clientSecret.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
@@ -130,11 +213,13 @@ class _$NormalizedProjectRevisionThirdPartyProvider
     _$hash = $jc(_$hash, issuerUrl.hashCode);
     _$hash = $jc(_$hash, label.hashCode);
     _$hash = $jc(_$hash, mapperUrl.hashCode);
+    _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, projectRevisionId.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, providerId.hashCode);
     _$hash = $jc(_$hash, requestedClaims.hashCode);
     _$hash = $jc(_$hash, scope.hashCode);
+    _$hash = $jc(_$hash, state.hashCode);
     _$hash = $jc(_$hash, subjectSource.hashCode);
     _$hash = $jc(_$hash, tokenUrl.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
@@ -146,11 +231,13 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   String toString() {
     return (newBuiltValueToStringHelper(
             r'NormalizedProjectRevisionThirdPartyProvider')
+          ..add('additionalIdTokenAudiences', additionalIdTokenAudiences)
           ..add('applePrivateKey', applePrivateKey)
           ..add('applePrivateKeyId', applePrivateKeyId)
           ..add('appleTeamId', appleTeamId)
           ..add('authUrl', authUrl)
           ..add('azureTenant', azureTenant)
+          ..add('claimsSource', claimsSource)
           ..add('clientId', clientId)
           ..add('clientSecret', clientSecret)
           ..add('createdAt', createdAt)
@@ -158,11 +245,13 @@ class _$NormalizedProjectRevisionThirdPartyProvider
           ..add('issuerUrl', issuerUrl)
           ..add('label', label)
           ..add('mapperUrl', mapperUrl)
+          ..add('organizationId', organizationId)
           ..add('projectRevisionId', projectRevisionId)
           ..add('provider', provider)
           ..add('providerId', providerId)
           ..add('requestedClaims', requestedClaims)
           ..add('scope', scope)
+          ..add('state', state)
           ..add('subjectSource', subjectSource)
           ..add('tokenUrl', tokenUrl)
           ..add('updatedAt', updatedAt))
@@ -175,6 +264,13 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
         Builder<NormalizedProjectRevisionThirdPartyProvider,
             NormalizedProjectRevisionThirdPartyProviderBuilder> {
   _$NormalizedProjectRevisionThirdPartyProvider? _$v;
+
+  ListBuilder<String>? _additionalIdTokenAudiences;
+  ListBuilder<String> get additionalIdTokenAudiences =>
+      _$this._additionalIdTokenAudiences ??= new ListBuilder<String>();
+  set additionalIdTokenAudiences(
+          ListBuilder<String>? additionalIdTokenAudiences) =>
+      _$this._additionalIdTokenAudiences = additionalIdTokenAudiences;
 
   String? _applePrivateKey;
   String? get applePrivateKey => _$this._applePrivateKey;
@@ -197,6 +293,10 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   String? _azureTenant;
   String? get azureTenant => _$this._azureTenant;
   set azureTenant(String? azureTenant) => _$this._azureTenant = azureTenant;
+
+  String? _claimsSource;
+  String? get claimsSource => _$this._claimsSource;
+  set claimsSource(String? claimsSource) => _$this._claimsSource = claimsSource;
 
   String? _clientId;
   String? get clientId => _$this._clientId;
@@ -226,6 +326,11 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   String? get mapperUrl => _$this._mapperUrl;
   set mapperUrl(String? mapperUrl) => _$this._mapperUrl = mapperUrl;
 
+  String? _organizationId;
+  String? get organizationId => _$this._organizationId;
+  set organizationId(String? organizationId) =>
+      _$this._organizationId = organizationId;
+
   String? _projectRevisionId;
   String? get projectRevisionId => _$this._projectRevisionId;
   set projectRevisionId(String? projectRevisionId) =>
@@ -248,6 +353,12 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   ListBuilder<String> get scope => _$this._scope ??= new ListBuilder<String>();
   set scope(ListBuilder<String>? scope) => _$this._scope = scope;
 
+  NormalizedProjectRevisionThirdPartyProviderStateEnum? _state;
+  NormalizedProjectRevisionThirdPartyProviderStateEnum? get state =>
+      _$this._state;
+  set state(NormalizedProjectRevisionThirdPartyProviderStateEnum? state) =>
+      _$this._state = state;
+
   String? _subjectSource;
   String? get subjectSource => _$this._subjectSource;
   set subjectSource(String? subjectSource) =>
@@ -268,11 +379,13 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   NormalizedProjectRevisionThirdPartyProviderBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _additionalIdTokenAudiences = $v.additionalIdTokenAudiences?.toBuilder();
       _applePrivateKey = $v.applePrivateKey;
       _applePrivateKeyId = $v.applePrivateKeyId;
       _appleTeamId = $v.appleTeamId;
       _authUrl = $v.authUrl;
       _azureTenant = $v.azureTenant;
+      _claimsSource = $v.claimsSource;
       _clientId = $v.clientId;
       _clientSecret = $v.clientSecret;
       _createdAt = $v.createdAt;
@@ -280,11 +393,13 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
       _issuerUrl = $v.issuerUrl;
       _label = $v.label;
       _mapperUrl = $v.mapperUrl;
+      _organizationId = $v.organizationId;
       _projectRevisionId = $v.projectRevisionId;
       _provider = $v.provider;
       _providerId = $v.providerId;
       _requestedClaims = $v.requestedClaims;
       _scope = $v.scope?.toBuilder();
+      _state = $v.state;
       _subjectSource = $v.subjectSource;
       _tokenUrl = $v.tokenUrl;
       _updatedAt = $v.updatedAt;
@@ -314,11 +429,13 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
     try {
       _$result = _$v ??
           new _$NormalizedProjectRevisionThirdPartyProvider._(
+              additionalIdTokenAudiences: _additionalIdTokenAudiences?.build(),
               applePrivateKey: applePrivateKey,
               applePrivateKeyId: applePrivateKeyId,
               appleTeamId: appleTeamId,
               authUrl: authUrl,
               azureTenant: azureTenant,
+              claimsSource: claimsSource,
               clientId: clientId,
               clientSecret: clientSecret,
               createdAt: createdAt,
@@ -326,17 +443,22 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
               issuerUrl: issuerUrl,
               label: label,
               mapperUrl: mapperUrl,
+              organizationId: organizationId,
               projectRevisionId: projectRevisionId,
               provider: provider,
               providerId: providerId,
               requestedClaims: requestedClaims,
               scope: _scope?.build(),
+              state: state,
               subjectSource: subjectSource,
               tokenUrl: tokenUrl,
               updatedAt: updatedAt);
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'additionalIdTokenAudiences';
+        _additionalIdTokenAudiences?.build();
+
         _$failedField = 'scope';
         _scope?.build();
       } catch (e) {

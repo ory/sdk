@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -13,7 +15,8 @@ part 'update_verification_flow_with_link_method.g.dart';
 /// Properties:
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
 /// * [email] - Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-/// * [method] - Method supports `link` only right now.
+/// * [method] - Method is the method that should be used for this verification flow  Allowed values are `link` and `code` link VerificationStrategyLink code VerificationStrategyCode
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateVerificationFlowWithLinkMethod implements Built<UpdateVerificationFlowWithLinkMethod, UpdateVerificationFlowWithLinkMethodBuilder> {
   /// Sending the anti-csrf token is only required for browser login flows.
@@ -24,9 +27,14 @@ abstract class UpdateVerificationFlowWithLinkMethod implements Built<UpdateVerif
   @BuiltValueField(wireName: r'email')
   String get email;
 
-  /// Method supports `link` only right now.
+  /// Method is the method that should be used for this verification flow  Allowed values are `link` and `code` link VerificationStrategyLink code VerificationStrategyCode
   @BuiltValueField(wireName: r'method')
-  String get method;
+  UpdateVerificationFlowWithLinkMethodMethodEnum get method;
+  // enum methodEnum {  link,  code,  };
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateVerificationFlowWithLinkMethod._();
 
@@ -66,8 +74,15 @@ class _$UpdateVerificationFlowWithLinkMethodSerializer implements PrimitiveSeria
     yield r'method';
     yield serializers.serialize(
       object.method,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(UpdateVerificationFlowWithLinkMethodMethodEnum),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
   }
 
   @override
@@ -108,9 +123,16 @@ class _$UpdateVerificationFlowWithLinkMethodSerializer implements PrimitiveSeria
         case r'method':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(UpdateVerificationFlowWithLinkMethodMethodEnum),
+          ) as UpdateVerificationFlowWithLinkMethodMethodEnum;
           result.method = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -139,5 +161,22 @@ class _$UpdateVerificationFlowWithLinkMethodSerializer implements PrimitiveSeria
     );
     return result.build();
   }
+}
+
+class UpdateVerificationFlowWithLinkMethodMethodEnum extends EnumClass {
+
+  /// Method is the method that should be used for this verification flow  Allowed values are `link` and `code` link VerificationStrategyLink code VerificationStrategyCode
+  @BuiltValueEnumConst(wireName: r'link')
+  static const UpdateVerificationFlowWithLinkMethodMethodEnum link = _$updateVerificationFlowWithLinkMethodMethodEnum_link;
+  /// Method is the method that should be used for this verification flow  Allowed values are `link` and `code` link VerificationStrategyLink code VerificationStrategyCode
+  @BuiltValueEnumConst(wireName: r'code')
+  static const UpdateVerificationFlowWithLinkMethodMethodEnum code = _$updateVerificationFlowWithLinkMethodMethodEnum_code;
+
+  static Serializer<UpdateVerificationFlowWithLinkMethodMethodEnum> get serializer => _$updateVerificationFlowWithLinkMethodMethodEnumSerializer;
+
+  const UpdateVerificationFlowWithLinkMethodMethodEnum._(String name): super(name);
+
+  static BuiltSet<UpdateVerificationFlowWithLinkMethodMethodEnum> get values => _$updateVerificationFlowWithLinkMethodMethodEnumValues;
+  static UpdateVerificationFlowWithLinkMethodMethodEnum valueOf(String name) => _$updateVerificationFlowWithLinkMethodMethodEnumValueOf(name);
 }
 

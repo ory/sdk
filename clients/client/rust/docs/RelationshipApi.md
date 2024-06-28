@@ -1,6 +1,6 @@
 # \RelationshipApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## check_opl_syntax
 
-> crate::models::CheckOplSyntaxResult check_opl_syntax(body)
+> models::CheckOplSyntaxResult check_opl_syntax(body)
 Check the syntax of an OPL file
 
 The OPL file is expected in the body of the request.
@@ -29,7 +29,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::CheckOplSyntaxResult**](checkOplSyntaxResult.md)
+[**models::CheckOplSyntaxResult**](checkOplSyntaxResult.md)
 
 ### Authorization
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_relationship
 
-> crate::models::Relationship create_relationship(create_relationship_body)
+> models::Relationship create_relationship(create_relationship_body)
 Create a Relationship
 
 Use this endpoint to create a relationship.
@@ -59,7 +59,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Relationship**](relationship.md)
+[**models::Relationship**](relationship.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_relationships
 
-> delete_relationships(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
+> delete_relationships(namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation)
 Delete Relationships
 
 Use this endpoint to delete relationships
@@ -89,9 +89,9 @@ Name | Type | Description  | Required | Notes
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
 
 ### Return type
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_relationships
 
-> crate::models::Relationships get_relationships(page_token, page_size, namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
+> models::Relationships get_relationships(page_token, page_size, namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation)
 Query relationships
 
 Get all relationships that match the query. Only the namespace field is required.
@@ -127,13 +127,13 @@ Name | Type | Description  | Required | Notes
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
 
 ### Return type
 
-[**crate::models::Relationships**](relationships.md)
+[**models::Relationships**](relationships.md)
 
 ### Authorization
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_relationship_namespaces
 
-> crate::models::RelationshipNamespaces list_relationship_namespaces()
+> models::RelationshipNamespaces list_relationship_namespaces()
 Query namespaces
 
 Get all namespaces
@@ -160,7 +160,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::RelationshipNamespaces**](relationshipNamespaces.md)
+[**models::RelationshipNamespaces**](relationshipNamespaces.md)
 
 ### Authorization
 
@@ -186,7 +186,7 @@ Use this endpoint to patch one or more relationships.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**relationship_patch** | Option<[**Vec<crate::models::RelationshipPatch>**](relationshipPatch.md)> |  |  |
+**relationship_patch** | Option<[**Vec<models::RelationshipPatch>**](relationshipPatch.md)> |  |  |
 
 ### Return type
 

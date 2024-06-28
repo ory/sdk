@@ -15,8 +15,9 @@ Name | Type | Description | Notes
 **devices** | [**BuiltList&lt;SessionDevice&gt;**](SessionDevice.md) | Devices has history of all endpoints where the session was used | [optional] 
 **expiresAt** | [**DateTime**](DateTime.md) | The Session Expiry  When this session expires at. | [optional] 
 **id** | **String** | Session ID | 
-**identity** | [**Identity**](Identity.md) |  | 
+**identity** | [**Identity**](Identity.md) |  | [optional] 
 **issuedAt** | [**DateTime**](DateTime.md) | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`. | [optional] 
+**tokenized** | **String** | Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the `tokenize` query parameter was set to a valid tokenize template during calls to `/session/whoami`. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

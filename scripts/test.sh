@@ -13,7 +13,14 @@ typescript() {
   (cd "$dir" && npm i && npm run build)
 }
 
-java() {
+typescript_fetch () {
+  echo "Testing TypeScript Fetch..."
+
+  dir="clients/${PROJECT}/typescript-fetch"
+  (cd "$dir" && npm i && npm run build)
+}
+
+java () {
   echo "Testing Java..."
 
   dir="$baseDir/clients/${PROJECT}/java"
@@ -47,10 +54,10 @@ golang() {
   dir="$baseDir/clients/${PROJECT}/go"
   if [ -f "$dir/README.md" ]; then
     # assuming swagger 3 in this case
-    (cd "${dir}" && go mod tidy && go build -o "$(mktemp)" .)
+    (cd "${dir}" && go mod tidy -compat=1.17 && go build -o "$(mktemp)" .)
   else
     # assuming swagger 2
-    (cd "${dir}" && go mod tidy)
+    (cd "${dir}" && go mod tidy -compat=1.17)
     (cd "${dir}/client" && go build -o "$(mktemp)" .)
     (cd "${dir}/models" && go build -o "$(mktemp)" .)
   fi
@@ -133,14 +140,15 @@ test() {
 if [ $# -lt 3 ]; then
   # if no parameter is given, just execute all generators, as before.
   # This is needed by the release pipeline
-  elixir
+  # elixir
   typescript
+  typescript_fetch
   rust
   golang
   java
   php
   python
-  ruby
+  # ruby
   dotnet
   dart
 

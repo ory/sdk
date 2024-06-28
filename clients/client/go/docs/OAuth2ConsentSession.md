@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConsentRequest** | Pointer to [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] 
+**Context** | Pointer to **map[string]interface{}** |  | [optional] 
 **ExpiresAt** | Pointer to [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] 
 **GrantAccessTokenAudience** | Pointer to **[]string** |  | [optional] 
 **GrantScope** | Pointer to **[]string** |  | [optional] 
@@ -56,6 +57,31 @@ SetConsentRequest sets ConsentRequest field to given value.
 `func (o *OAuth2ConsentSession) HasConsentRequest() bool`
 
 HasConsentRequest returns a boolean if a field has been set.
+
+### GetContext
+
+`func (o *OAuth2ConsentSession) GetContext() map[string]interface{}`
+
+GetContext returns the Context field if non-nil, zero value otherwise.
+
+### GetContextOk
+
+`func (o *OAuth2ConsentSession) GetContextOk() (*map[string]interface{}, bool)`
+
+GetContextOk returns a tuple with the Context field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContext
+
+`func (o *OAuth2ConsentSession) SetContext(v map[string]interface{})`
+
+SetContext sets Context field to given value.
+
+### HasContext
+
+`func (o *OAuth2ConsentSession) HasContext() bool`
+
+HasContext returns a boolean if a field has been set.
 
 ### GetExpiresAt
 

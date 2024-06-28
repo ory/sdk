@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Identities API
-  version: v0.13.1
+  version: v1.1.0
 servers:
 - url: /
 tags:
@@ -171,7 +171,9 @@ paths:
       operationId: listIdentities
       parameters:
       - description: |-
-          Items per Page
+          Deprecated Items per Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This is the number of items per page.
         explode: true
@@ -186,27 +188,120 @@ paths:
           type: integer
         style: form
       - description: |-
-          Pagination Page
+          Deprecated Pagination Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This value is currently an integer, but it is not sequential. The value is not the page number, but a
           reference. The next page can be any number and some numbers might return an empty list.
 
           For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+          The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the
+          `Link` header.
         explode: true
         in: query
         name: page
         required: false
         schema:
-          default: 1
           format: int64
+          type: integer
+        style: form
+      - description: |-
+          Page Size
+
+          This is the number of items per page to return. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 500
           minimum: 1
           type: integer
         style: form
-      - description: "CredentialsIdentifier is the identifier (username, email) of\
-          \ the credentials to look up."
+      - description: |-
+          Next Page Token
+
+          The next page token. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          default: "1"
+          minimum: 1
+          type: string
+        style: form
+      - description: |-
+          Read Consistency Level (preview)
+
+          The read consistency level determines the consistency guarantee for reads:
+
+          strong (slow): The read is guaranteed to return the most recent data committed at the start of the read.
+          eventual (very fast): The result will return data that is about 4.8 seconds old.
+
+          The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with
+          `ory patch project --replace '/previews/default_read_consistency_level="strong"'`.
+
+          Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency
+          controls to more APIs. Currently, the following APIs will be affected by this setting:
+
+          `GET /admin/identities`
+
+          This feature is in preview and only available in Ory Network.
+           ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level.
+          strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
+          eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+        explode: true
+        in: query
+        name: consistency
+        required: false
+        schema:
+          enum:
+          - ""
+          - strong
+          - eventual
+          type: string
+        style: form
+        x-go-enum-desc: |2-
+           ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level.
+          strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
+          eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+      - description: |-
+          List of ids used to filter identities.
+          If this list is empty, then no filter will be applied.
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match.
+          Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
         explode: true
         in: query
         name: credentials_identifier
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior.
+          THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.
+
+          CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search.
+          Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+        explode: true
+        in: query
+        name: preview_credentials_identifier_similar
         required: false
         schema:
           type: string
@@ -377,14 +472,23 @@ paths:
       - description: |-
           Include Credentials in Response
 
-          Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access,
-          Refresh and (optionally) OpenID Connect ID Token.
+          Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
         explode: true
         in: query
         name: include_credential
         required: false
         schema:
           items:
+            enum:
+            - password
+            - oidc
+            - totp
+            - lookup_secret
+            - webauthn
+            - code
+            - link_recovery
+            - code_recovery
             type: string
           type: array
         style: form
@@ -545,26 +649,44 @@ paths:
           type: string
         style: simple
       - description: |-
-          Type is the credential's Type.
-          One of totp, webauthn, lookup
+          Type is the type of credentials to be deleted.
+          password CredentialsTypePassword
+          oidc CredentialsTypeOIDC
+          totp CredentialsTypeTOTP
+          lookup_secret CredentialsTypeLookup
+          webauthn CredentialsTypeWebAuthn
+          code CredentialsTypeCodeAuth
+          link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
+          code_recovery CredentialsTypeRecoveryCode
         explode: false
         in: path
         name: type
         required: true
         schema:
           enum:
+          - password
+          - oidc
           - totp
+          - lookup_secret
           - webauthn
-          - lookup
+          - code
+          - link_recovery
+          - code_recovery
           type: string
         style: simple
+        x-go-enum-desc: |-
+          password CredentialsTypePassword
+          oidc CredentialsTypeOIDC
+          totp CredentialsTypeTOTP
+          lookup_secret CredentialsTypeLookup
+          webauthn CredentialsTypeWebAuthn
+          code CredentialsTypeCodeAuth
+          link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
+          code_recovery CredentialsTypeRecoveryCode
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/identity'
-          description: identity
+        "204":
+          description: "Empty responses are sent when, for example, resources are\
+            \ deleted. The HTTP status code for empty responses is typically 201."
         "404":
           content:
             application/json:
@@ -636,7 +758,9 @@ paths:
       operationId: listIdentitySessions
       parameters:
       - description: |-
-          Items per Page
+          Deprecated Items per Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This is the number of items per page.
         explode: true
@@ -651,21 +775,53 @@ paths:
           type: integer
         style: form
       - description: |-
-          Pagination Page
+          Deprecated Pagination Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This value is currently an integer, but it is not sequential. The value is not the page number, but a
           reference. The next page can be any number and some numbers might return an empty list.
 
           For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+          The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the
+          `Link` header.
         explode: true
         in: query
         name: page
         required: false
         schema:
-          default: 1
           format: int64
+          type: integer
+        style: form
+      - description: |-
+          Page Size
+
+          This is the number of items per page to return. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 500
           minimum: 1
           type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          default: "1"
+          minimum: 1
+          type: string
         style: form
       - description: ID is the identity's ID.
         explode: false
@@ -767,6 +923,14 @@ paths:
         This endpoint creates a recovery link which should be given to the user in order for them to recover
         (or activate) their account.
       operationId: createRecoveryLinkForIdentity
+      parameters:
+      - explode: true
+        in: query
+        name: return_to
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -1108,7 +1272,9 @@ paths:
       operationId: listIdentitySchemas
       parameters:
       - description: |-
-          Items per Page
+          Deprecated Items per Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This is the number of items per page.
         explode: true
@@ -1123,21 +1289,53 @@ paths:
           type: integer
         style: form
       - description: |-
-          Pagination Page
+          Deprecated Pagination Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This value is currently an integer, but it is not sequential. The value is not the page number, but a
           reference. The next page can be any number and some numbers might return an empty list.
 
           For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+          The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the
+          `Link` header.
         explode: true
         in: query
         name: page
         required: false
         schema:
-          default: 1
           format: int64
+          type: integer
+        style: form
+      - description: |-
+          Page Size
+
+          This is the number of items per page to return. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 500
           minimum: 1
           type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          default: "1"
+          minimum: 1
+          type: string
         style: form
       responses:
         "200":
@@ -1244,12 +1442,6 @@ paths:
   /self-service/login:
     post:
       description: |-
-        :::info
-
-        This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.
-
-        :::
-
         Use this endpoint to complete a login flow. This endpoint
         behaves differently for API and browser flows.
 
@@ -1420,6 +1612,33 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token
+          after the login flow has been completed.
+        explode: true
+        in: query
+        name: return_session_token_exchange_code
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: The URL to return the browser to after the flow was completed.
+        explode: true
+        in: query
+        name: return_to
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Via should contain the identity's credential the code should
+          be sent to. Only relevant in aal2 flows.
+        explode: true
+        in: query
+        name: via
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1527,6 +1746,16 @@ paths:
         explode: true
         in: query
         name: login_challenge
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          An optional organization ID that should be used for logging this user in.
+          This parameter is only effective in the Ory Network.
+        explode: true
+        in: query
+        name: organization
         required: false
         schema:
           type: string
@@ -1682,6 +1911,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          HTTP Cookies
+
+          When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header
+          sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "204":
           description: "Empty responses are sent when, for example, resources are\
@@ -1766,6 +2007,18 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          Return to URL
+
+          The URL to which the browser should be redirected to after the logout
+          has been performed.
+        explode: true
+        in: query
+        name: return_to
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1773,6 +2026,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/logoutFlow'
           description: logoutFlow
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
         "401":
           content:
             application/json:
@@ -1792,7 +2051,7 @@ paths:
   /self-service/recovery:
     post:
       description: |-
-        Use this endpoint to complete a recovery flow. This endpoint
+        Use this endpoint to update a recovery flow. This endpoint
         behaves differently for API and browser flows and has several states:
 
         `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
@@ -1892,7 +2151,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
-      summary: Complete Recovery Flow
+      summary: Update Recovery Flow
       tags:
       - frontend
       x-content-type: application/json
@@ -1904,7 +2163,7 @@ paths:
 
         If a valid provided session cookie or session token is provided, a 400 Bad Request error.
 
-        To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.
+        On an existing recovery flow, use the `getRecoveryFlow` API endpoint.
 
         You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server
         Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make
@@ -2191,6 +2450,25 @@ paths:
 
         More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
       operationId: createNativeRegistrationFlow
+      parameters:
+      - description: |-
+          EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token
+          after the login flow has been completed.
+        explode: true
+        in: query
+        name: return_session_token_exchange_code
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: The URL to return the browser to after the flow was completed.
+        explode: true
+        in: query
+        name: return_to
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2219,12 +2497,6 @@ paths:
       description: |-
         This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate
         cookies and anti-CSRF measures required for browser-based flows.
-
-        :::info
-
-        This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.
-
-        :::
 
         If this endpoint is opened as a link in the browser, it will be redirected to
         `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session
@@ -2277,6 +2549,13 @@ paths:
         explode: true
         in: query
         name: after_verification_return_to
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: organization
         required: false
         schema:
           type: string
@@ -3101,7 +3380,9 @@ paths:
       operationId: listMySessions
       parameters:
       - description: |-
-          Items per Page
+          Deprecated Items per Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This is the number of items per page.
         explode: true
@@ -3116,21 +3397,53 @@ paths:
           type: integer
         style: form
       - description: |-
-          Pagination Page
+          Deprecated Pagination Page
+
+          DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.
 
           This value is currently an integer, but it is not sequential. The value is not the page number, but a
           reference. The next page can be any number and some numbers might return an empty list.
 
           For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+          The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the
+          `Link` header.
         explode: true
         in: query
         name: page
         required: false
         schema:
-          default: 1
           format: int64
+          type: integer
+        style: form
+      - description: |-
+          Page Size
+
+          This is the number of items per page to return. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 500
           minimum: 1
           type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token. For details on pagination please head over to the
+          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          default: "1"
+          minimum: 1
+          type: string
         style: form
       - description: Set the Session Token when calling from non-browser clients.
           A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`.
@@ -3185,6 +3498,61 @@ paths:
       tags:
       - frontend
       x-accepts: application/json
+  /sessions/token-exchange:
+    get:
+      operationId: exchangeSessionToken
+      parameters:
+      - description: The part of the code return when initializing the flow.
+        explode: true
+        in: query
+        name: init_code
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The part of the code returned by the return_to URL.
+        explode: true
+        in: query
+        name: return_to_code
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulNativeLogin'
+          description: successfulNativeLogin
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "410":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      summary: Exchange Session Token
+      tags:
+      - frontend
+      x-accepts: application/json
   /sessions/whoami:
     get:
       description: |-
@@ -3214,6 +3582,16 @@ paths:
         console.log(session)
         ```
 
+        When using a token template, the token is included in the `tokenized` field of the session.
+
+        ```js
+        pseudo-code example
+        ...
+        const session = await client.toSession("the-session-token", { tokenize_as: "example-jwt-template" })
+
+        console.log(session.tokenized) // The JWT
+        ```
+
         Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator
         Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
         credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user
@@ -3231,7 +3609,7 @@ paths:
         if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
         if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
-        If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.
+        If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.
 
         As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
@@ -3263,6 +3641,17 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          Returns the session additionally as a token (such as a JWT)
+
+          The value of this parameter has to be a valid, configured Ory Session token template. For more information head over to [the documentation](http://ory.sh/docs/identities/session-to-jwt-cors).
+        explode: true
+        in: query
+        name: tokenize_as
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -3496,6 +3885,7 @@ components:
         client_name: client_name
         policy_uri: policy_uri
         owner: owner
+        skip_consent: true
         audience:
         - audience
         - audience
@@ -3514,10 +3904,12 @@ components:
         sector_identifier_uri: sector_identifier_uri
         frontchannel_logout_session_required: true
         frontchannel_logout_uri: frontchannel_logout_uri
+        skip_logout_consent: true
         refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
         implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
         client_secret_expires_at: 0
         implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+        access_token_strategy: access_token_strategy
         jwks_uri: jwks_uri
         request_object_signing_alg: request_object_signing_alg
         tos_uri: tos_uri
@@ -3528,6 +3920,12 @@ components:
         - response_types
         - response_types
       properties:
+        access_token_strategy:
+          description: "OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the\
+            \ strategy used to generate access tokens. Valid options are `jwt` and\
+            \ `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens\
+            \ Setting the stragegy here overrides the global setting in `strategies.access_token`."
+          type: string
         allowed_cors_origins:
           items:
             type: string
@@ -3564,7 +3962,8 @@ components:
             \ hours."
           type: string
         client_id:
-          description: OAuth 2.0 Client ID  The ID is autogenerated and immutable.
+          description: "OAuth 2.0 Client ID  The ID is immutable. If no ID is provided,\
+            \ a UUID4 will be generated."
           type: string
         client_name:
           description: OAuth 2.0 Client Name  The human-readable name of the client
@@ -3720,6 +4119,14 @@ components:
             to be used in calculating Pseudonymous Identifiers by the OP. The URL
             references a file with a single JSON array of redirect_uri values.
           type: string
+        skip_consent:
+          description: SkipConsent skips the consent screen for this client. This
+            field can only be set from the admin API.
+          type: boolean
+        skip_logout_consent:
+          description: SkipLogoutConsent skips the logout consent screen for this
+            client. This field can only be set from the admin API.
+          type: boolean
         subject_type:
           description: OpenID Connect Subject Type  The `subject_types_supported`
             Discovery parameter contains a list of the supported subject_type values
@@ -3728,12 +4135,12 @@ components:
         token_endpoint_auth_method:
           description: "OAuth 2.0 Token Endpoint Authentication Method  Requested\
             \ Client Authentication method for the Token Endpoint. The options are:\
-            \  `client_secret_post`: (default) Send `client_id` and `client_secret`\
-            \ as `application/x-www-form-urlencoded` in the HTTP body. `client_secret_basic`:\
-            \ Send `client_id` and `client_secret` as `application/x-www-form-urlencoded`\
-            \ encoded in the HTTP Authorization header. `private_key_jwt`: Use JSON\
-            \ Web Tokens to authenticate the client. `none`: Used for public clients\
-            \ (native apps, mobile apps) which can not have secrets."
+            \  `client_secret_basic`: (default) Send `client_id` and `client_secret`\
+            \ as `application/x-www-form-urlencoded` encoded in the HTTP Authorization\
+            \ header. `client_secret_post`: Send `client_id` and `client_secret` as\
+            \ `application/x-www-form-urlencoded` in the HTTP body. `private_key_jwt`:\
+            \ Use JSON Web Tokens to authenticate the client. `none`: Used for public\
+            \ clients (native apps, mobile apps) which can not have secrets."
           type: string
         token_endpoint_auth_signing_alg:
           description: OAuth 2.0 Token Endpoint Signing Algorithm  Requested Client
@@ -3835,6 +4242,8 @@ components:
             type: string
           type: array
       type: object
+    OAuth2LoginChallengeParams:
+      type: object
     OAuth2LoginRequest:
       description: OAuth2LoginRequest struct for OAuth2LoginRequest
       example:
@@ -3885,6 +4294,7 @@ components:
           client_name: client_name
           policy_uri: policy_uri
           owner: owner
+          skip_consent: true
           audience:
           - audience
           - audience
@@ -3903,10 +4313,12 @@ components:
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
+          skip_logout_consent: true
           refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          access_token_strategy: access_token_strategy
           jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
@@ -4012,15 +4424,83 @@ components:
             $ref: '#/components/schemas/identityPatchResponse'
           type: array
       type: object
+    consistencyRequestParameters:
+      description: Control API consistency guarantees
+      properties:
+        consistency:
+          description: |-
+            Read Consistency Level (preview)
+
+            The read consistency level determines the consistency guarantee for reads:
+
+            strong (slow): The read is guaranteed to return the most recent data committed at the start of the read.
+            eventual (very fast): The result will return data that is about 4.8 seconds old.
+
+            The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with
+            `ory patch project --replace '/previews/default_read_consistency_level="strong"'`.
+
+            Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency
+            controls to more APIs. Currently, the following APIs will be affected by this setting:
+
+            `GET /admin/identities`
+
+            This feature is in preview and only available in Ory Network.
+             ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level.
+            strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
+            eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+          enum:
+          - ""
+          - strong
+          - eventual
+          type: string
+          x-go-enum-desc: |2-
+             ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level.
+            strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
+            eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+      type: object
     continueWith:
       discriminator:
         mapping:
           set_ory_session_token: '#/components/schemas/continueWithSetOrySessionToken'
+          show_recovery_ui: '#/components/schemas/continueWithRecoveryUi'
+          show_settings_ui: '#/components/schemas/continueWithSettingsUi'
           show_verification_ui: '#/components/schemas/continueWithVerificationUi'
         propertyName: action
       oneOf:
       - $ref: '#/components/schemas/continueWithVerificationUi'
       - $ref: '#/components/schemas/continueWithSetOrySessionToken'
+      - $ref: '#/components/schemas/continueWithSettingsUi'
+      - $ref: '#/components/schemas/continueWithRecoveryUi'
+    continueWithRecoveryUi:
+      description: "Indicates, that the UI flow could be continued by showing a recovery\
+        \ ui"
+      properties:
+        action:
+          description: |-
+            Action will always be `show_recovery_ui`
+            show_recovery_ui ContinueWithActionShowRecoveryUIString
+          enum:
+          - show_recovery_ui
+          type: string
+          x-go-enum-desc: show_recovery_ui ContinueWithActionShowRecoveryUIString
+        flow:
+          $ref: '#/components/schemas/continueWithRecoveryUiFlow'
+      required:
+      - action
+      - flow
+      type: object
+    continueWithRecoveryUiFlow:
+      properties:
+        id:
+          description: The ID of the recovery flow
+          format: uuid
+          type: string
+        url:
+          description: The URL of the recovery flow
+          type: string
+      required:
+      - id
+      type: object
     continueWithSetOrySessionToken:
       description: "Indicates that a session was issued, and the application should\
         \ use this token for authenticated requests"
@@ -4028,21 +4508,44 @@ components:
         action:
           description: |-
             Action will always be `set_ory_session_token`
-            set_ory_session_token ContinueWithActionSetOrySessionToken
-            show_verification_ui ContinueWithActionShowVerificationUI
+            set_ory_session_token ContinueWithActionSetOrySessionTokenString
           enum:
           - set_ory_session_token
-          - show_verification_ui
           type: string
-          x-go-enum-desc: |-
-            set_ory_session_token ContinueWithActionSetOrySessionToken
-            show_verification_ui ContinueWithActionShowVerificationUI
+          x-go-enum-desc: set_ory_session_token ContinueWithActionSetOrySessionTokenString
         ory_session_token:
           description: Token is the token of the session
           type: string
       required:
       - action
       - ory_session_token
+      type: object
+    continueWithSettingsUi:
+      description: "Indicates, that the UI flow could be continued by showing a settings\
+        \ ui"
+      properties:
+        action:
+          description: |-
+            Action will always be `show_settings_ui`
+            show_settings_ui ContinueWithActionShowSettingsUIString
+          enum:
+          - show_settings_ui
+          type: string
+          x-go-enum-desc: show_settings_ui ContinueWithActionShowSettingsUIString
+        flow:
+          $ref: '#/components/schemas/continueWithSettingsUiFlow'
+      required:
+      - action
+      - flow
+      type: object
+    continueWithSettingsUiFlow:
+      properties:
+        id:
+          description: The ID of the settings flow
+          format: uuid
+          type: string
+      required:
+      - id
       type: object
     continueWithVerificationUi:
       description: "Indicates, that the UI flow could be continued by showing a verification\
@@ -4051,15 +4554,11 @@ components:
         action:
           description: |-
             Action will always be `show_verification_ui`
-            set_ory_session_token ContinueWithActionSetOrySessionToken
-            show_verification_ui ContinueWithActionShowVerificationUI
+            show_verification_ui ContinueWithActionShowVerificationUIString
           enum:
-          - set_ory_session_token
           - show_verification_ui
           type: string
-          x-go-enum-desc: |-
-            set_ory_session_token ContinueWithActionSetOrySessionToken
-            show_verification_ui ContinueWithActionShowVerificationUI
+          x-go-enum-desc: show_verification_ui ContinueWithActionShowVerificationUIString
         flow:
           $ref: '#/components/schemas/continueWithVerificationUiFlow'
       required:
@@ -4124,7 +4623,17 @@ components:
             the identity's traits.
           type: string
         state:
-          $ref: '#/components/schemas/identityState'
+          description: |-
+            State is the identity's state.
+            active StateActive
+            inactive StateInactive
+          enum:
+          - active
+          - inactive
+          type: string
+          x-go-enum-desc: |-
+            active StateActive
+            inactive StateInactive
         traits:
           description: |-
             Traits represent an identity's traits. The identity is able to create, modify, and delete traits
@@ -4339,7 +4848,7 @@ components:
             - identifiers
             - identifiers
             created_at: 2000-01-23T04:56:07.000+00:00
-            type: null
+            type: password
             config: "{}"
             version: 0
         state_changed_at: 2000-01-23T04:56:07.000+00:00
@@ -4365,7 +4874,7 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
           status: status
-          via: via
+          via: email
         - updated_at: 2014-01-01T23:28:56.782Z
           verified_at: 2000-01-23T04:56:07.000+00:00
           verified: true
@@ -4373,11 +4882,12 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
           status: status
-          via: via
+          via: email
+        organization_id: organization_id
         schema_id: schema_id
         schema_url: schema_url
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        state: null
+        state: active
         metadata_public: ""
       properties:
         created_at:
@@ -4406,6 +4916,10 @@ components:
           description: "NullJSONRawMessage represents a json.RawMessage that works\
             \ well with JSON, SQL, and Swagger and is NULLable-"
           nullable: true
+        organization_id:
+          format: uuid4
+          nullable: true
+          type: string
         recovery_addresses:
           description: RecoveryAddresses contains all the addresses that can be used
             to recover an identity.
@@ -4424,7 +4938,19 @@ components:
             format: url
           type: string
         state:
-          $ref: '#/components/schemas/identityState'
+          description: |-
+            State is the identity's state.
+
+            This value has currently no effect.
+            active StateActive
+            inactive StateInactive
+          enum:
+          - active
+          - inactive
+          type: string
+          x-go-enum-desc: |-
+            active StateActive
+            inactive StateInactive
         state_changed_at:
           format: date-time
           title: NullTime implements sql.NullTime functionality.
@@ -4460,7 +4986,7 @@ components:
         - identifiers
         - identifiers
         created_at: 2000-01-23T04:56:07.000+00:00
-        type: null
+        type: password
         config: "{}"
         version: 0
       properties:
@@ -4479,7 +5005,35 @@ components:
             type: string
           type: array
         type:
-          $ref: '#/components/schemas/identityCredentialsType'
+          description: |-
+            Type discriminates between different types of credentials.
+            password CredentialsTypePassword
+            oidc CredentialsTypeOIDC
+            totp CredentialsTypeTOTP
+            lookup_secret CredentialsTypeLookup
+            webauthn CredentialsTypeWebAuthn
+            code CredentialsTypeCodeAuth
+            link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
+            code_recovery CredentialsTypeRecoveryCode
+          enum:
+          - password
+          - oidc
+          - totp
+          - lookup_secret
+          - webauthn
+          - code
+          - link_recovery
+          - code_recovery
+          type: string
+          x-go-enum-desc: |-
+            password CredentialsTypePassword
+            oidc CredentialsTypeOIDC
+            totp CredentialsTypeTOTP
+            lookup_secret CredentialsTypeLookup
+            webauthn CredentialsTypeWebAuthn
+            code CredentialsTypeCodeAuth
+            link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
+            code_recovery CredentialsTypeRecoveryCode
         updated_at:
           description: UpdatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
@@ -4489,6 +5043,17 @@ components:
             changing the config schema.
           format: int64
           type: integer
+      type: object
+    identityCredentialsCode:
+      description: CredentialsCode represents a one time login/registration code
+      properties:
+        address_type:
+          description: The type of the address for this code
+          type: string
+        used_at:
+          format: date-time
+          nullable: true
+          type: string
       type: object
     identityCredentialsOidc:
       properties:
@@ -4507,6 +5072,8 @@ components:
           type: string
         initial_refresh_token:
           type: string
+        organization:
+          type: string
         provider:
           type: string
         subject:
@@ -4522,17 +5089,6 @@ components:
       title: CredentialsPassword is contains the configuration for credentials of
         the type password.
       type: object
-    identityCredentialsType:
-      description: and so on.
-      enum:
-      - password
-      - totp
-      - oidc
-      - webauthn
-      - lookup_secret
-      title: "CredentialsType  represents several different credential types, like\
-        \ password credentials, passwordless credentials,"
-      type: string
     identityPatch:
       description: Payload for patching an identity
       properties:
@@ -4594,13 +5150,6 @@ components:
       items:
         $ref: '#/components/schemas/identitySchemaContainer'
       type: array
-    identityState:
-      description: The state can either be `active` or `inactive`.
-      enum:
-      - active
-      - inactive
-      title: An Identity's State
-      type: string
     identityTraits:
       description: |-
         Traits represent an identity's traits. The identity is able to create, modify, and delete traits
@@ -4608,10 +5157,6 @@ components:
         in `schema_url`.
     identityVerifiableAddressStatus:
       description: VerifiableAddressStatus must not exceed 16 characters as that is
-        the limitation in the SQL Schema
-      type: string
-    identityVerifiableAddressType:
-      description: VerifiableAddressType must not exceed 16 characters as that is
         the limitation in the SQL Schema
       type: string
     identityWithCredentials:
@@ -4663,7 +5208,7 @@ components:
       description: Create Identity and Import Password Credentials Configuration
       properties:
         hashed_password:
-          description: "The hashed password in [PHC format]( https://www.ory.sh/docs/kratos/concepts/credentials/username-email-password#hashed-password-format)"
+          description: "The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)"
           type: string
         password:
           description: The password in plain text if no hash is available.
@@ -4714,10 +5259,11 @@ components:
         Once a login flow is completed successfully, a session cookie or session token will be issued.
       example:
         requested_aal: null
-        active: null
+        active: password
         created_at: 2000-01-23T04:56:07.000+00:00
         refresh: true
         return_to: return_to
+        session_token_exchange_code: session_token_exchange_code
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
         request_url: request_url
@@ -4770,6 +5316,7 @@ components:
             client_name: client_name
             policy_uri: policy_uri
             owner: owner
+            skip_consent: true
             audience:
             - audience
             - audience
@@ -4788,10 +5335,12 @@ components:
             sector_identifier_uri: sector_identifier_uri
             frontchannel_logout_session_required: true
             frontchannel_logout_uri: frontchannel_logout_uri
+            skip_logout_consent: true
             refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
             implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
             client_secret_expires_at: 0
             implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+            access_token_strategy: access_token_strategy
             jwks_uri: jwks_uri
             request_object_signing_alg: request_object_signing_alg
             tos_uri: tos_uri
@@ -4858,10 +5407,42 @@ components:
             type: info
         updated_at: 2000-01-23T04:56:07.000+00:00
         oauth2_login_challenge: oauth2_login_challenge
+        organization_id: organization_id
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: ""
       properties:
         active:
-          $ref: '#/components/schemas/identityCredentialsType'
+          description: |-
+            The active login method
+
+            If set contains the login method used. If the flow is new, it is unset.
+            password CredentialsTypePassword
+            oidc CredentialsTypeOIDC
+            totp CredentialsTypeTOTP
+            lookup_secret CredentialsTypeLookup
+            webauthn CredentialsTypeWebAuthn
+            code CredentialsTypeCodeAuth
+            link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
+            code_recovery CredentialsTypeRecoveryCode
+          enum:
+          - password
+          - oidc
+          - totp
+          - lookup_secret
+          - webauthn
+          - code
+          - link_recovery
+          - code_recovery
+          type: string
+          x-go-enum-desc: |-
+            password CredentialsTypePassword
+            oidc CredentialsTypeOIDC
+            totp CredentialsTypeTOTP
+            lookup_secret CredentialsTypeLookup
+            webauthn CredentialsTypeWebAuthn
+            code CredentialsTypeCodeAuth
+            link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
+            code_recovery CredentialsTypeRecoveryCode
         created_at:
           description: CreatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
@@ -4883,11 +5464,18 @@ components:
           format: date-time
           type: string
         oauth2_login_challenge:
-          format: uuid4
-          nullable: true
+          description: |-
+            Ory OAuth 2.0 Login Challenge.
+
+            This value is set using the `login_challenge` query parameter of the registration and login endpoints.
+            If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
           type: string
         oauth2_login_request:
           $ref: '#/components/schemas/OAuth2LoginRequest'
+        organization_id:
+          format: uuid4
+          nullable: true
+          type: string
         refresh:
           description: Refresh stores whether this login flow should enforce re-authentication.
           type: boolean
@@ -4901,6 +5489,19 @@ components:
         return_to:
           description: ReturnTo contains the requested return_to URL.
           type: string
+        session_token_exchange_code:
+          description: |-
+            SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed.
+            This is only set if the client has requested a session token exchange code, and if the flow is of type "api",
+            and only on creating the login flow.
+          type: string
+        state:
+          description: |-
+            State represents the state of this request:
+
+            choose_method: ask the user to choose a method to sign in with
+            sent_email: the email has been sent to the user
+            passed_challenge: the request was successful and the login challenge was passed.
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -4916,10 +5517,24 @@ components:
       - id
       - issued_at
       - request_url
+      - state
       - type
       - ui
       title: Login Flow
       type: object
+    loginFlowState:
+      description: |-
+        The state represents the state of the login flow.
+
+        choose_method: ask the user to choose a method (e.g. login account via email)
+        sent_email: the email has been sent to the user
+        passed_challenge: the request was successful and the login challenge was passed.
+      enum:
+      - choose_method
+      - sent_email
+      - passed_challenge
+      title: Login Flow State
+      type: string
     logoutFlow:
       description: Logout Flow
       example:
@@ -4956,6 +5571,7 @@ components:
           status: failed
         updated_at: 2000-01-23T04:56:07.000+00:00
         subject: subject
+        channel: channel
         recipient: recipient
         created_at: 2000-01-23T04:56:07.000+00:00
         send_count: 0
@@ -4966,6 +5582,8 @@ components:
         status: null
       properties:
         body:
+          type: string
+        channel:
           type: string
         created_at:
           description: CreatedAt is a helper struct field for gobuffalo.pop.
@@ -5001,8 +5619,9 @@ components:
             verification_valid TypeVerificationValid
             verification_code_invalid TypeVerificationCodeInvalid
             verification_code_valid TypeVerificationCodeValid
-            otp TypeOTP
             stub TypeTestStub
+            login_code_valid TypeLoginCodeValid
+            registration_code_valid TypeRegistrationCodeValid
           enum:
           - recovery_invalid
           - recovery_valid
@@ -5012,8 +5631,9 @@ components:
           - verification_valid
           - verification_code_invalid
           - verification_code_valid
-          - otp
           - stub
+          - login_code_valid
+          - registration_code_valid
           type: string
           x-go-enum-desc: |-
             recovery_invalid TypeRecoveryInvalid
@@ -5024,8 +5644,9 @@ components:
             verification_valid TypeVerificationValid
             verification_code_invalid TypeVerificationCodeInvalid
             verification_code_valid TypeVerificationCodeValid
-            otp TypeOTP
             stub TypeTestStub
+            login_code_valid TypeLoginCodeValid
+            registration_code_valid TypeRegistrationCodeValid
         type:
           $ref: '#/components/schemas/courierMessageType'
         updated_at:
@@ -5123,31 +5744,6 @@ components:
       format: date-time
       title: NullTime implements sql.NullTime functionality.
       type: string
-    pagination:
-      properties:
-        page:
-          default: 1
-          description: |-
-            Pagination Page
-
-            This value is currently an integer, but it is not sequential. The value is not the page number, but a
-            reference. The next page can be any number and some numbers might return an empty list.
-
-            For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-          format: int64
-          minimum: 1
-          type: integer
-        per_page:
-          default: 250
-          description: |-
-            Items per Page
-
-            This is the number of items per page.
-          format: int64
-          maximum: 1000
-          minimum: 1
-          type: integer
-      type: object
     patchIdentitiesBody:
       description: Patch Identities Body
       properties:
@@ -5183,7 +5779,7 @@ components:
           description: |-
             Expires At is the timestamp of when the recovery flow expires
 
-            The timestamp when the recovery link expires.
+            The timestamp when the recovery code expires.
           format: date-time
           type: string
         recovery_code:
@@ -5256,10 +5852,13 @@ components:
             id: 6
             text: text
             type: info
+        continue_with:
+        - null
+        - null
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        state: null
+        state: ""
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
         request_url: request_url
@@ -5269,6 +5868,11 @@ components:
             Active, if set, contains the recovery method that is being used. It is initially
             not set.
           type: string
+        continue_with:
+          description: Contains possible actions that could follow this flow
+          items:
+            $ref: '#/components/schemas/continueWith'
+          type: array
         expires_at:
           description: |-
             ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting,
@@ -5294,7 +5898,12 @@ components:
           description: ReturnTo contains the requested return_to URL.
           type: string
         state:
-          $ref: '#/components/schemas/recoveryFlowState'
+          description: |-
+            State represents the state of this request:
+
+            choose_method: ask the user to choose a method (e.g. recover account via email)
+            sent_email: the email has been sent to the user
+            passed_challenge: the request was successful and the recovery challenge was passed.
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -5379,6 +5988,12 @@ components:
       type: object
     registrationFlow:
       example:
+        active: password
+        return_to: return_to
+        session_token_exchange_code: session_token_exchange_code
+        type: type
+        issued_at: 2000-01-23T04:56:07.000+00:00
+        request_url: request_url
         expires_at: 2000-01-23T04:56:07.000+00:00
         oauth2_login_request:
           requested_access_token_audience:
@@ -5428,6 +6043,7 @@ components:
             client_name: client_name
             policy_uri: policy_uri
             owner: owner
+            skip_consent: true
             audience:
             - audience
             - audience
@@ -5446,10 +6062,12 @@ components:
             sector_identifier_uri: sector_identifier_uri
             frontchannel_logout_session_required: true
             frontchannel_logout_uri: frontchannel_logout_uri
+            skip_logout_consent: true
             refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
             implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
             client_secret_expires_at: 0
             implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+            access_token_strategy: access_token_strategy
             jwks_uri: jwks_uri
             request_object_signing_alg: request_object_signing_alg
             tos_uri: tos_uri
@@ -5516,15 +6134,41 @@ components:
             text: text
             type: info
         oauth2_login_challenge: oauth2_login_challenge
-        active: null
-        return_to: return_to
+        organization_id: organization_id
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        type: type
-        issued_at: 2000-01-23T04:56:07.000+00:00
-        request_url: request_url
+        state: ""
       properties:
         active:
-          $ref: '#/components/schemas/identityCredentialsType'
+          description: |-
+            Active, if set, contains the registration method that is being used. It is initially
+            not set.
+            password CredentialsTypePassword
+            oidc CredentialsTypeOIDC
+            totp CredentialsTypeTOTP
+            lookup_secret CredentialsTypeLookup
+            webauthn CredentialsTypeWebAuthn
+            code CredentialsTypeCodeAuth
+            link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
+            code_recovery CredentialsTypeRecoveryCode
+          enum:
+          - password
+          - oidc
+          - totp
+          - lookup_secret
+          - webauthn
+          - code
+          - link_recovery
+          - code_recovery
+          type: string
+          x-go-enum-desc: |-
+            password CredentialsTypePassword
+            oidc CredentialsTypeOIDC
+            totp CredentialsTypeTOTP
+            lookup_secret CredentialsTypeLookup
+            webauthn CredentialsTypeWebAuthn
+            code CredentialsTypeCodeAuth
+            link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
+            code_recovery CredentialsTypeRecoveryCode
         expires_at:
           description: |-
             ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in,
@@ -5542,11 +6186,18 @@ components:
           format: date-time
           type: string
         oauth2_login_challenge:
-          format: uuid4
-          nullable: true
+          description: |-
+            Ory OAuth 2.0 Login Challenge.
+
+            This value is set using the `login_challenge` query parameter of the registration and login endpoints.
+            If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
           type: string
         oauth2_login_request:
           $ref: '#/components/schemas/OAuth2LoginRequest'
+        organization_id:
+          format: uuid4
+          nullable: true
+          type: string
         request_url:
           description: |-
             RequestURL is the initial URL that was requested from Ory Kratos. It can be used
@@ -5555,6 +6206,19 @@ components:
         return_to:
           description: ReturnTo contains the requested return_to URL.
           type: string
+        session_token_exchange_code:
+          description: |-
+            SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the flow has been completed.
+            This is only set if the client has requested a session token exchange code, and if the flow is of type "api",
+            and only on creating the flow.
+          type: string
+        state:
+          description: |-
+            State represents the state of this request:
+
+            choose_method: ask the user to choose a method (e.g. registration with email)
+            sent_email: the email has been sent to the user
+            passed_challenge: the request was successful and the registration challenge was passed.
         transient_payload:
           description: TransientPayload is used to pass data from the registration
             to a webhook
@@ -5570,9 +6234,21 @@ components:
       - id
       - issued_at
       - request_url
+      - state
       - type
       - ui
       type: object
+    registrationFlowState:
+      description: |-
+        choose_method: ask the user to choose a method (e.g. registration with email)
+        sent_email: the email has been sent to the user
+        passed_challenge: the request was successful and the registration challenge was passed.
+      enum:
+      - choose_method
+      - sent_email
+      - passed_challenge
+      title: 'State represents the state of this request:'
+      type: string
     selfServiceFlowExpiredError:
       description: Is sent when a flow is expired
       properties:
@@ -5602,6 +6278,7 @@ components:
     session:
       description: A Session
       example:
+        tokenized: tokenized
         expires_at: 2000-01-23T04:56:07.000+00:00
         devices:
         - location: location
@@ -5615,9 +6292,13 @@ components:
         authentication_methods:
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
+          provider: provider
+          organization: organization
           aal: null
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
+          provider: provider
+          organization: organization
           aal: null
         authenticator_assurance_level: null
         identity:
@@ -5629,7 +6310,7 @@ components:
               - identifiers
               - identifiers
               created_at: 2000-01-23T04:56:07.000+00:00
-              type: null
+              type: password
               config: "{}"
               version: 0
           state_changed_at: 2000-01-23T04:56:07.000+00:00
@@ -5655,7 +6336,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
           - updated_at: 2014-01-01T23:28:56.782Z
             verified_at: 2000-01-23T04:56:07.000+00:00
             verified: true
@@ -5663,11 +6344,12 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
+          organization_id: organization_id
           schema_id: schema_id
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          state: null
+          state: active
           metadata_public: ""
         authenticated_at: 2000-01-23T04:56:07.000+00:00
         active: true
@@ -5720,15 +6402,22 @@ components:
             When this session was issued at. Usually equal or close to `authenticated_at`.
           format: date-time
           type: string
+        tokenized:
+          description: |-
+            Tokenized is the tokenized (e.g. JWT) version of the session.
+
+            It is only set when the `tokenize` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
+          type: string
       required:
       - id
-      - identity
       type: object
     sessionAuthenticationMethod:
       description: A singular authenticator used during authentication / login.
       example:
         completed_at: 2000-01-23T04:56:07.000+00:00
         method: link_recovery
+        provider: provider
+        organization: organization
         aal: null
       properties:
         aal:
@@ -5742,12 +6431,19 @@ components:
           - link_recovery
           - code_recovery
           - password
+          - code
           - totp
           - oidc
           - webauthn
           - lookup_secret
           - v0.6_legacy_session
           title: The method used
+          type: string
+        organization:
+          description: The Organization id used for authentication
+          type: string
+        provider:
+          description: OIDC or SAML provider id used for authentication
           type: string
       title: AuthenticationMethod identifies an authentication method
       type: object
@@ -5847,7 +6543,7 @@ components:
               - identifiers
               - identifiers
               created_at: 2000-01-23T04:56:07.000+00:00
-              type: null
+              type: password
               config: "{}"
               version: 0
           state_changed_at: 2000-01-23T04:56:07.000+00:00
@@ -5873,7 +6569,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
           - updated_at: 2014-01-01T23:28:56.782Z
             verified_at: 2000-01-23T04:56:07.000+00:00
             verified: true
@@ -5881,11 +6577,12 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
+          organization_id: organization_id
           schema_id: schema_id
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          state: null
+          state: active
           metadata_public: ""
         continue_with:
         - null
@@ -5893,7 +6590,7 @@ components:
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        state: null
+        state: ""
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
         request_url: request_url
@@ -5939,7 +6636,13 @@ components:
           description: ReturnTo contains the requested return_to URL.
           type: string
         state:
-          $ref: '#/components/schemas/settingsFlowState'
+          description: |-
+            State represents the state of this flow. It knows two states:
+
+            show_form: No user data has been collected, or it is invalid, and thus the form should be shown.
+            success: Indicates that the settings flow has been updated successfully with the provided data.
+            Done will stay true when repeatedly checking. If set to true, done will revert back to false only
+            when a flow with invalid (e.g. "please use a valid phone number") data was sent.
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -5968,11 +6671,31 @@ components:
       - success
       title: 'State represents the state of this flow. It knows two states:'
       type: string
+    successfulCodeExchangeResponse:
+      description: The Response for Registration Flows via API
+      properties:
+        session:
+          $ref: '#/components/schemas/session'
+        session_token:
+          description: |-
+            The Session Token
+
+            A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization
+            Header:
+
+            Authorization: bearer ${session-token}
+
+            The session token is only issued for API flows, not for Browser flows!
+          type: string
+      required:
+      - session
+      type: object
     successfulNativeLogin:
       description: The Response for Login Flows via API
       example:
         session_token: session_token
         session:
+          tokenized: tokenized
           expires_at: 2000-01-23T04:56:07.000+00:00
           devices:
           - location: location
@@ -5986,9 +6709,13 @@ components:
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
+            provider: provider
+            organization: organization
             aal: null
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
+            provider: provider
+            organization: organization
             aal: null
           authenticator_assurance_level: null
           identity:
@@ -6000,7 +6727,7 @@ components:
                 - identifiers
                 - identifiers
                 created_at: 2000-01-23T04:56:07.000+00:00
-                type: null
+                type: password
                 config: "{}"
                 version: 0
             state_changed_at: 2000-01-23T04:56:07.000+00:00
@@ -6026,7 +6753,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               status: status
-              via: via
+              via: email
             - updated_at: 2014-01-01T23:28:56.782Z
               verified_at: 2000-01-23T04:56:07.000+00:00
               verified: true
@@ -6034,11 +6761,12 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               status: status
-              via: via
+              via: email
+            organization_id: organization_id
             schema_id: schema_id
             schema_url: schema_url
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            state: null
+            state: active
             metadata_public: ""
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
@@ -6074,7 +6802,7 @@ components:
               - identifiers
               - identifiers
               created_at: 2000-01-23T04:56:07.000+00:00
-              type: null
+              type: password
               config: "{}"
               version: 0
           state_changed_at: 2000-01-23T04:56:07.000+00:00
@@ -6100,7 +6828,7 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
           - updated_at: 2014-01-01T23:28:56.782Z
             verified_at: 2000-01-23T04:56:07.000+00:00
             verified: true
@@ -6108,13 +6836,15 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             status: status
-            via: via
+            via: email
+          organization_id: organization_id
           schema_id: schema_id
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          state: null
+          state: active
           metadata_public: ""
         session:
+          tokenized: tokenized
           expires_at: 2000-01-23T04:56:07.000+00:00
           devices:
           - location: location
@@ -6128,9 +6858,13 @@ components:
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
+            provider: provider
+            organization: organization
             aal: null
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
+            provider: provider
+            organization: organization
             aal: null
           authenticator_assurance_level: null
           identity:
@@ -6142,7 +6876,7 @@ components:
                 - identifiers
                 - identifiers
                 created_at: 2000-01-23T04:56:07.000+00:00
-                type: null
+                type: password
                 config: "{}"
                 version: 0
             state_changed_at: 2000-01-23T04:56:07.000+00:00
@@ -6168,7 +6902,7 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               status: status
-              via: via
+              via: email
             - updated_at: 2014-01-01T23:28:56.782Z
               verified_at: 2000-01-23T04:56:07.000+00:00
               verified: true
@@ -6176,11 +6910,12 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               status: status
-              via: via
+              via: email
+            organization_id: organization_id
             schema_id: schema_id
             schema_url: schema_url
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            state: null
+            state: active
             metadata_public: ""
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
@@ -6746,7 +7481,17 @@ components:
             will update the Identity's SchemaID.
           type: string
         state:
-          $ref: '#/components/schemas/identityState'
+          description: |-
+            State is the identity's state.
+            active StateActive
+            inactive StateInactive
+          enum:
+          - active
+          - inactive
+          type: string
+          x-go-enum-desc: |-
+            active StateActive
+            inactive StateInactive
         traits:
           description: |-
             Traits represent an identity's traits. The identity is able to create, modify, and delete traits
@@ -6761,6 +7506,7 @@ components:
     updateLoginFlowBody:
       discriminator:
         mapping:
+          code: '#/components/schemas/updateLoginFlowWithCodeMethod'
           lookup_secret: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
           oidc: '#/components/schemas/updateLoginFlowWithOidcMethod'
           password: '#/components/schemas/updateLoginFlowWithPasswordMethod'
@@ -6773,6 +7519,32 @@ components:
       - $ref: '#/components/schemas/updateLoginFlowWithTotpMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
+      - $ref: '#/components/schemas/updateLoginFlowWithCodeMethod'
+    updateLoginFlowWithCodeMethod:
+      description: Update Login flow using the code method
+      properties:
+        code:
+          description: Code is the 6 digits code sent to the user
+          type: string
+        csrf_token:
+          description: CSRFToken is the anti-CSRF token
+          type: string
+        identifier:
+          description: |-
+            Identifier is the code identifier
+            The identifier requires that the user has already completed the registration or settings with code flow.
+          type: string
+        method:
+          description: Method should be set to "code" when logging in using the code
+            strategy.
+          type: string
+        resend:
+          description: Resend is set when the user wants to resend the code
+          type: string
+      required:
+      - csrf_token
+      - method
+      type: object
     updateLoginFlowWithLookupSecretMethod:
       description: Update Login Flow with Lookup Secret Method
       properties:
@@ -6797,6 +7569,23 @@ components:
         csrf_token:
           description: The CSRF Token
           type: string
+        id_token:
+          description: |-
+            IDToken is an optional id token provided by an OIDC provider
+
+            If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate
+            the OIDC credentials of the identity.
+            If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use
+            the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.
+
+            Supported providers are
+            Apple
+          type: string
+        id_token_nonce:
+          description: |-
+            IDTokenNonce is the nonce, used when generating the IDToken.
+            If the provider supports nonce validation, the nonce will be validated against this value and required.
+          type: string
         method:
           description: |-
             Method to use
@@ -6818,6 +7607,7 @@ components:
             Supported parameters are:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+            `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
           type: object
       required:
       - method
@@ -6986,6 +7776,7 @@ components:
       description: Update Registration Request Body
       discriminator:
         mapping:
+          code: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
           oidc: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
           password: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
           webauthn: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
@@ -6994,11 +7785,57 @@ components:
       - $ref: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
+      - $ref: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
+    updateRegistrationFlowWithCodeMethod:
+      description: Update Registration Flow with Code Method
+      properties:
+        code:
+          description: The OTP Code sent to the user
+          type: string
+        csrf_token:
+          description: The CSRF Token
+          type: string
+        method:
+          description: |-
+            Method to use
+
+            This field must be set to `code` when using the code method.
+          type: string
+        resend:
+          description: Resend restarts the flow with a new code
+          type: string
+        traits:
+          description: The identity's traits
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
+      - traits
+      type: object
     updateRegistrationFlowWithOidcMethod:
       description: Update Registration Flow with OpenID Connect Method
       properties:
         csrf_token:
           description: The CSRF Token
+          type: string
+        id_token:
+          description: |-
+            IDToken is an optional id token provided by an OIDC provider
+
+            If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate
+            the OIDC credentials of the identity.
+            If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use
+            the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.
+
+            Supported providers are
+            Apple
+          type: string
+        id_token_nonce:
+          description: |-
+            IDTokenNonce is the nonce, used when generating the IDToken.
+            If the provider supports nonce validation, the nonce will be validated against this value and is required.
           type: string
         method:
           description: |-
@@ -7023,6 +7860,7 @@ components:
             Supported parameters are:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+            `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
           type: object
       required:
       - method
@@ -7182,6 +8020,7 @@ components:
             Supported parameters are:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+            `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
           type: object
       required:
       - method
@@ -7362,7 +8201,15 @@ components:
             Method is the method that should be used for this verification flow
 
             Allowed values are `link` and `code`
+            link VerificationStrategyLink
+            code VerificationStrategyCode
+          enum:
+          - link
+          - code
           type: string
+          x-go-enum-desc: |-
+            link VerificationStrategyLink
+            code VerificationStrategyCode
       required:
       - email
       - method
@@ -7377,7 +8224,7 @@ components:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         value: value
         status: status
-        via: via
+        via: email
       properties:
         created_at:
           description: When this entry was created
@@ -7412,8 +8259,11 @@ components:
           title: NullTime implements sql.NullTime functionality.
           type: string
         via:
-          description: VerifiableAddressType must not exceed 16 characters as that
-            is the limitation in the SQL Schema
+          description: The delivery method
+          enum:
+          - email
+          - sms
+          example: email
           type: string
       required:
       - status
@@ -7481,7 +8331,7 @@ components:
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        state: null
+        state: ""
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
         request_url: request_url
@@ -7519,7 +8369,12 @@ components:
           description: ReturnTo contains the requested return_to URL.
           type: string
         state:
-          $ref: '#/components/schemas/verificationFlowState'
+          description: |-
+            State represents the state of this request:
+
+            choose_method: ask the user to choose a method (e.g. verify your email)
+            sent_email: the email has been sent to the user
+            passed_challenge: the request was successful and the verification challenge was passed.
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.

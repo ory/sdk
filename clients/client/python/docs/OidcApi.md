@@ -1,10 +1,11 @@
 # ory_client.OidcApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_oidc_dynamic_client**](OidcApi.md#create_oidc_dynamic_client) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+[**create_verifiable_credential**](OidcApi.md#create_verifiable_credential) | **POST** /credentials | Issues a Verifiable Credential
 [**delete_oidc_dynamic_client**](OidcApi.md#delete_oidc_dynamic_client) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 [**discover_oidc_configuration**](OidcApi.md#discover_oidc_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 [**get_oidc_dynamic_client**](OidcApi.md#get_oidc_dynamic_client) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -24,104 +25,41 @@ This endpoint behaves like the administrative counterpart (`createOAuth2Client`)
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import oidc_api
-from ory_client.model.error_o_auth2 import ErrorOAuth2
-from ory_client.model.o_auth2_client import OAuth2Client
+from ory_client.models.o_auth2_client import OAuth2Client
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = oidc_api.OidcApi(api_client)
-    o_auth2_client = OAuth2Client(
-        access_token_strategy="access_token_strategy_example",
-        allowed_cors_origins=StringSliceJSONFormat([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSliceJSONFormat([
-            "audience_example",
-        ]),
-        authorization_code_grant_access_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_id_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_refresh_token_lifespan=NullDuration("4ms"),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_credentials_grant_access_token_lifespan=NullDuration("4ms"),
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSliceJSONFormat([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSliceJSONFormat([
-            "grant_types_example",
-        ]),
-        implicit_grant_access_token_lifespan=NullDuration("4ms"),
-        implicit_grant_id_token_lifespan=NullDuration("4ms"),
-        jwks=None,
-        jwks_uri="jwks_uri_example",
-        jwt_bearer_grant_access_token_lifespan=NullDuration("4ms"),
-        logo_uri="logo_uri_example",
-        metadata={},
-        owner="owner_example",
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSliceJSONFormat([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSliceJSONFormat([
-            "redirect_uris_example",
-        ]),
-        refresh_token_grant_access_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_id_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_refresh_token_lifespan=NullDuration("4ms"),
-        registration_access_token="registration_access_token_example",
-        registration_client_uri="registration_client_uri_example",
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSliceJSONFormat([
-            "request_uris_example",
-        ]),
-        response_types=StringSliceJSONFormat([
-            "response_types_example",
-        ]),
-        scope="scope1 scope-2 scope.3 scope:4",
-        sector_identifier_uri="sector_identifier_uri_example",
-        skip_consent=True,
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="client_secret_basic",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | Dynamic Client Registration Request Body
+    api_instance = ory_client.OidcApi(api_client)
+    o_auth2_client = ory_client.OAuth2Client() # OAuth2Client | Dynamic Client Registration Request Body
 
-    # example passing only required values which don't have defaults set
     try:
         # Register OAuth2 Client using OpenID Dynamic Client Registration
         api_response = api_instance.create_oidc_dynamic_client(o_auth2_client)
+        print("The response of OidcApi->create_oidc_dynamic_client:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OidcApi->create_oidc_dynamic_client: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)| Dynamic Client Registration Request Body |
+ **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)| Dynamic Client Registration Request Body | 
 
 ### Return type
 
@@ -136,7 +74,6 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -144,6 +81,77 @@ No authorization required
 **201** | oAuth2Client |  -  |
 **400** | Bad Request Error Response |  -  |
 **0** | Default Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_verifiable_credential**
+> VerifiableCredentialResponse create_verifiable_credential(create_verifiable_credential_request_body=create_verifiable_credential_request_body)
+
+Issues a Verifiable Credential
+
+This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.models.create_verifiable_credential_request_body import CreateVerifiableCredentialRequestBody
+from ory_client.models.verifiable_credential_response import VerifiableCredentialResponse
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.OidcApi(api_client)
+    create_verifiable_credential_request_body = ory_client.CreateVerifiableCredentialRequestBody() # CreateVerifiableCredentialRequestBody |  (optional)
+
+    try:
+        # Issues a Verifiable Credential
+        api_response = api_instance.create_verifiable_credential(create_verifiable_credential_request_body=create_verifiable_credential_request_body)
+        print("The response of OidcApi->create_verifiable_credential:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OidcApi->create_verifiable_credential: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_verifiable_credential_request_body** | [**CreateVerifiableCredentialRequestBody**](CreateVerifiableCredentialRequestBody.md)|  | [optional] 
+
+### Return type
+
+[**VerifiableCredentialResponse**](VerifiableCredentialResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | verifiableCredentialResponse |  -  |
+**400** | verifiableCredentialPrimingResponse |  -  |
+**0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -159,15 +167,14 @@ This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`)
 * Bearer Authentication (bearer):
 
 ```python
-import time
 import ory_client
-from ory_client.api import oidc_api
-from ory_client.model.generic_error import GenericError
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -177,29 +184,30 @@ configuration = ory_client.Configuration(
 
 # Configure Bearer authorization: bearer
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = oidc_api.OidcApi(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
+    api_instance = ory_client.OidcApi(api_client)
+    id = 'id_example' # str | The id of the OAuth 2.0 Client.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
         api_instance.delete_oidc_dynamic_client(id)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OidcApi->delete_oidc_dynamic_client: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
+ **id** | **str**| The id of the OAuth 2.0 Client. | 
 
 ### Return type
 
@@ -213,7 +221,6 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -235,35 +242,36 @@ A mechanism for an OpenID Connect Relying Party to discover the End-User's OpenI
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import oidc_api
-from ory_client.model.error_o_auth2 import ErrorOAuth2
-from ory_client.model.oidc_configuration import OidcConfiguration
+from ory_client.models.oidc_configuration import OidcConfiguration
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = oidc_api.OidcApi(api_client)
+    api_instance = ory_client.OidcApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # OpenID Connect Discovery
         api_response = api_instance.discover_oidc_configuration()
+        print("The response of OidcApi->discover_oidc_configuration:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OidcApi->discover_oidc_configuration: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -278,7 +286,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -301,16 +308,15 @@ This endpoint behaves like the administrative counterpart (`getOAuth2Client`) bu
 * Bearer Authentication (bearer):
 
 ```python
-import time
 import ory_client
-from ory_client.api import oidc_api
-from ory_client.model.error_o_auth2 import ErrorOAuth2
-from ory_client.model.o_auth2_client import OAuth2Client
+from ory_client.models.o_auth2_client import OAuth2Client
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -320,30 +326,32 @@ configuration = ory_client.Configuration(
 
 # Configure Bearer authorization: bearer
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = oidc_api.OidcApi(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
+    api_instance = ory_client.OidcApi(api_client)
+    id = 'id_example' # str | The id of the OAuth 2.0 Client.
 
-    # example passing only required values which don't have defaults set
     try:
         # Get OAuth2 Client using OpenID Dynamic Client Registration
         api_response = api_instance.get_oidc_dynamic_client(id)
+        print("The response of OidcApi->get_oidc_dynamic_client:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OidcApi->get_oidc_dynamic_client: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
+ **id** | **str**| The id of the OAuth 2.0 Client. | 
 
 ### Return type
 
@@ -357,7 +365,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -380,16 +387,15 @@ This endpoint returns the payload of the ID Token, including `session.id_token` 
 * OAuth Authentication (oauth2):
 
 ```python
-import time
 import ory_client
-from ory_client.api import oidc_api
-from ory_client.model.error_o_auth2 import ErrorOAuth2
-from ory_client.model.oidc_user_info import OidcUserInfo
+from ory_client.models.oidc_user_info import OidcUserInfo
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -397,28 +403,26 @@ configuration = ory_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = oidc_api.OidcApi(api_client)
+    api_instance = ory_client.OidcApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # OpenID Connect Userinfo
         api_response = api_instance.get_oidc_user_info()
+        print("The response of OidcApi->get_oidc_user_info:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OidcApi->get_oidc_user_info: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -433,7 +437,6 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -455,32 +458,33 @@ This endpoint initiates and completes user logout at the Ory OAuth2 & OpenID pro
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import oidc_api
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = oidc_api.OidcApi(api_client)
+    api_instance = ory_client.OidcApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # OpenID Connect Front- and Back-channel Enabled Logout
         api_instance.revoke_oidc_session()
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OidcApi->revoke_oidc_session: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -495,7 +499,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
-
 
 ### HTTP response details
 
@@ -517,16 +520,15 @@ This endpoint behaves like the administrative counterpart (`setOAuth2Client`) bu
 * Bearer Authentication (bearer):
 
 ```python
-import time
 import ory_client
-from ory_client.api import oidc_api
-from ory_client.model.error_o_auth2 import ErrorOAuth2
-from ory_client.model.o_auth2_client import OAuth2Client
+from ory_client.models.o_auth2_client import OAuth2Client
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -536,96 +538,34 @@ configuration = ory_client.Configuration(
 
 # Configure Bearer authorization: bearer
 configuration = ory_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
+    access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = oidc_api.OidcApi(api_client)
-    id = "id_example" # str | OAuth 2.0 Client ID
-    o_auth2_client = OAuth2Client(
-        access_token_strategy="access_token_strategy_example",
-        allowed_cors_origins=StringSliceJSONFormat([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSliceJSONFormat([
-            "audience_example",
-        ]),
-        authorization_code_grant_access_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_id_token_lifespan=NullDuration("4ms"),
-        authorization_code_grant_refresh_token_lifespan=NullDuration("4ms"),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_credentials_grant_access_token_lifespan=NullDuration("4ms"),
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSliceJSONFormat([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSliceJSONFormat([
-            "grant_types_example",
-        ]),
-        implicit_grant_access_token_lifespan=NullDuration("4ms"),
-        implicit_grant_id_token_lifespan=NullDuration("4ms"),
-        jwks=None,
-        jwks_uri="jwks_uri_example",
-        jwt_bearer_grant_access_token_lifespan=NullDuration("4ms"),
-        logo_uri="logo_uri_example",
-        metadata={},
-        owner="owner_example",
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSliceJSONFormat([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSliceJSONFormat([
-            "redirect_uris_example",
-        ]),
-        refresh_token_grant_access_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_id_token_lifespan=NullDuration("4ms"),
-        refresh_token_grant_refresh_token_lifespan=NullDuration("4ms"),
-        registration_access_token="registration_access_token_example",
-        registration_client_uri="registration_client_uri_example",
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSliceJSONFormat([
-            "request_uris_example",
-        ]),
-        response_types=StringSliceJSONFormat([
-            "response_types_example",
-        ]),
-        scope="scope1 scope-2 scope.3 scope:4",
-        sector_identifier_uri="sector_identifier_uri_example",
-        skip_consent=True,
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="client_secret_basic",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | OAuth 2.0 Client Request Body
+    api_instance = ory_client.OidcApi(api_client)
+    id = 'id_example' # str | OAuth 2.0 Client ID
+    o_auth2_client = ory_client.OAuth2Client() # OAuth2Client | OAuth 2.0 Client Request Body
 
-    # example passing only required values which don't have defaults set
     try:
         # Set OAuth2 Client using OpenID Dynamic Client Registration
         api_response = api_instance.set_oidc_dynamic_client(id, o_auth2_client)
+        print("The response of OidcApi->set_oidc_dynamic_client:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OidcApi->set_oidc_dynamic_client: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| OAuth 2.0 Client ID |
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)| OAuth 2.0 Client Request Body |
+ **id** | **str**| OAuth 2.0 Client ID | 
+ **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)| OAuth 2.0 Client Request Body | 
 
 ### Return type
 
@@ -639,7 +579,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 

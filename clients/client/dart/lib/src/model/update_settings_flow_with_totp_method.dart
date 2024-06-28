@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -15,6 +16,7 @@ part 'update_settings_flow_with_totp_method.g.dart';
 /// * [method] - Method  Should be set to \"totp\" when trying to add, update, or remove a totp pairing.
 /// * [totpCode] - ValidationTOTP must contain a valid TOTP based on the
 /// * [totpUnlink] - UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateSettingsFlowWithTotpMethod implements Built<UpdateSettingsFlowWithTotpMethod, UpdateSettingsFlowWithTotpMethodBuilder> {
   /// CSRFToken is the anti-CSRF token
@@ -32,6 +34,10 @@ abstract class UpdateSettingsFlowWithTotpMethod implements Built<UpdateSettingsF
   /// UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
   @BuiltValueField(wireName: r'totp_unlink')
   bool? get totpUnlink;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateSettingsFlowWithTotpMethod._();
 
@@ -80,6 +86,13 @@ class _$UpdateSettingsFlowWithTotpMethodSerializer implements PrimitiveSerialize
       yield serializers.serialize(
         object.totpUnlink,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
       );
     }
   }
@@ -132,6 +145,13 @@ class _$UpdateSettingsFlowWithTotpMethodSerializer implements PrimitiveSerialize
             specifiedType: const FullType(bool),
           ) as bool;
           result.totpUnlink = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

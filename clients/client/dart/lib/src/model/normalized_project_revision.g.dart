@@ -34,6 +34,40 @@ final BuiltSet<NormalizedProjectRevisionHydraStrategiesAccessTokenEnum>
   _$normalizedProjectRevisionHydraStrategiesAccessTokenEnum_jwt,
 ]);
 
+const NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum
+    _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum_list =
+    const NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum._('list');
+const NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum
+    _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum_string =
+    const NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum._('string');
+const NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum
+    _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum_both =
+    const NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum._('both');
+
+NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum
+    _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnumValueOf(
+        String name) {
+  switch (name) {
+    case 'list':
+      return _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum_list;
+    case 'string':
+      return _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum_string;
+    case 'both':
+      return _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum_both;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum>
+    _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnumValues =
+    new BuiltSet<
+        NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum>(const <NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum>[
+  _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum_list,
+  _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum_string,
+  _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum_both,
+]);
+
 const NormalizedProjectRevisionHydraStrategiesScopeEnum
     _$normalizedProjectRevisionHydraStrategiesScopeEnum_exact =
     const NormalizedProjectRevisionHydraStrategiesScopeEnum._('exact');
@@ -124,6 +158,9 @@ final BuiltSet<
 Serializer<NormalizedProjectRevisionHydraStrategiesAccessTokenEnum>
     _$normalizedProjectRevisionHydraStrategiesAccessTokenEnumSerializer =
     new _$NormalizedProjectRevisionHydraStrategiesAccessTokenEnumSerializer();
+Serializer<NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum>
+    _$normalizedProjectRevisionHydraStrategiesJwtScopeClaimEnumSerializer =
+    new _$NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnumSerializer();
 Serializer<NormalizedProjectRevisionHydraStrategiesScopeEnum>
     _$normalizedProjectRevisionHydraStrategiesScopeEnumSerializer =
     new _$NormalizedProjectRevisionHydraStrategiesScopeEnumSerializer();
@@ -166,6 +203,43 @@ class _$NormalizedProjectRevisionHydraStrategiesAccessTokenEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       NormalizedProjectRevisionHydraStrategiesAccessTokenEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnumSerializer
+    implements
+        PrimitiveSerializer<
+            NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'list': 'list',
+    'string': 'string',
+    'both': 'both',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'list': 'list',
+    'string': 'string',
+    'both': 'both',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum
+  ];
+  @override
+  final String wireName =
+      'NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum.valueOf(
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
@@ -279,6 +353,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final DateTime? createdAt;
   @override
+  final bool? disableAccountExperienceWelcomeScreen;
+  @override
+  final bool? enableAxV2;
+  @override
   final BuiltList<String>? hydraOauth2AllowedTopLevelClaims;
   @override
   final bool? hydraOauth2ClientCredentialsDefaultGrantAllowedScope;
@@ -291,11 +369,15 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? hydraOauth2GrantJwtMaxTtl;
   @override
+  final bool? hydraOauth2MirrorTopLevelClaims;
+  @override
   final bool? hydraOauth2PkceEnforced;
   @override
   final bool? hydraOauth2PkceEnforcedForPublicClients;
   @override
   final String? hydraOauth2RefreshTokenHook;
+  @override
+  final String? hydraOauth2TokenHook;
   @override
   final BuiltList<String>? hydraOidcDynamicClientRegistrationDefaultScope;
   @override
@@ -309,20 +391,15 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final BuiltList<String>? hydraSecretsSystem;
   @override
-  final BuiltList<String>? hydraServeAdminCorsAllowedOrigins;
-  @override
-  final bool? hydraServeAdminCorsEnabled;
-  @override
   final bool? hydraServeCookiesSameSiteLegacyWorkaround;
   @override
   final String? hydraServeCookiesSameSiteMode;
   @override
-  final BuiltList<String>? hydraServePublicCorsAllowedOrigins;
-  @override
-  final bool? hydraServePublicCorsEnabled;
-  @override
   final NormalizedProjectRevisionHydraStrategiesAccessTokenEnum?
       hydraStrategiesAccessToken;
+  @override
+  final NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum?
+      hydraStrategiesJwtScopeClaim;
   @override
   final NormalizedProjectRevisionHydraStrategiesScopeEnum? hydraStrategiesScope;
   @override
@@ -345,6 +422,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final String? hydraUrlsLogout;
   @override
   final String? hydraUrlsPostLogoutRedirect;
+  @override
+  final String? hydraUrlsRegistration;
   @override
   final String? hydraUrlsSelfIssuer;
   @override
@@ -370,9 +449,32 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final BuiltList<KetoNamespace>? ketoNamespaces;
   @override
-  final int? ketoReadMaxDepth;
-  @override
   final String? kratosCookiesSameSite;
+  @override
+  final BuiltList<NormalizedProjectRevisionCourierChannel>?
+      kratosCourierChannels;
+  @override
+  final String? kratosCourierDeliveryStrategy;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthApiKeyIn;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthApiKeyName;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthApiKeyValue;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthBasicAuthUser;
+  @override
+  final String? kratosCourierHttpRequestConfigAuthType;
+  @override
+  final String? kratosCourierHttpRequestConfigBody;
+  @override
+  final JsonObject? kratosCourierHttpRequestConfigHeaders;
+  @override
+  final String? kratosCourierHttpRequestConfigMethod;
+  @override
+  final String? kratosCourierHttpRequestConfigUrl;
   @override
   final String? kratosCourierSmtpConnectionUri;
   @override
@@ -381,6 +483,16 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final String? kratosCourierSmtpFromName;
   @override
   final JsonObject? kratosCourierSmtpHeaders;
+  @override
+  final String? kratosCourierSmtpLocalName;
+  @override
+  final String? kratosCourierTemplatesLoginCodeValidEmailBodyHtml;
+  @override
+  final String? kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext;
+  @override
+  final String? kratosCourierTemplatesLoginCodeValidEmailSubject;
+  @override
+  final String? kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
   @override
   final String? kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
   @override
@@ -406,6 +518,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosCourierTemplatesRecoveryValidEmailSubject;
   @override
+  final String? kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml;
+  @override
+  final String? kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext;
+  @override
+  final String? kratosCourierTemplatesRegistrationCodeValidEmailSubject;
+  @override
   final String? kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml;
   @override
   final String? kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext;
@@ -417,6 +535,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final String? kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext;
   @override
   final String? kratosCourierTemplatesVerificationCodeValidEmailSubject;
+  @override
+  final String? kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
   @override
   final String? kratosCourierTemplatesVerificationInvalidEmailBodyHtml;
   @override
@@ -432,12 +552,20 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final bool? kratosFeatureFlagsCacheableSessions;
   @override
+  final String? kratosFeatureFlagsCacheableSessionsMaxAge;
+  @override
+  final bool? kratosFeatureFlagsUseContinueWithTransitions;
+  @override
   final BuiltList<NormalizedProjectRevisionIdentitySchema>?
       kratosIdentitySchemas;
   @override
   final JsonObject? kratosOauth2ProviderHeaders;
   @override
+  final bool? kratosOauth2ProviderOverrideReturnTo;
+  @override
   final String? kratosOauth2ProviderUrl;
+  @override
+  final String? kratosPreviewDefaultReadConsistencyLevel;
   @override
   final BuiltList<String>? kratosSecretsCipher;
   @override
@@ -451,13 +579,20 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosSelfserviceFlowsErrorUiUrl;
   @override
-  final BuiltList<NormalizedProjectRevisionHook>? kratosSelfserviceFlowsHooks;
+  final String? kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
   @override
+  final String?
+      kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
+  @override
   final String? kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
   @override
+  final String? kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
+  @override
   final String? kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
+  @override
+  final String? kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl;
   @override
@@ -480,10 +615,16 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final NormalizedProjectRevisionKratosSelfserviceFlowsRecoveryUseEnum?
       kratosSelfserviceFlowsRecoveryUse;
   @override
+  final String?
+      kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
+  @override
   final String? kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
   @override
   final String?
       kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl;
+  @override
+  final String?
+      kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
   @override
   final String?
       kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl;
@@ -491,19 +632,36 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final String?
       kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
   @override
+  final bool? kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
+  @override
   final bool? kratosSelfserviceFlowsRegistrationEnabled;
   @override
   final String? kratosSelfserviceFlowsRegistrationLifespan;
+  @override
+  final bool? kratosSelfserviceFlowsRegistrationLoginHints;
   @override
   final String? kratosSelfserviceFlowsRegistrationUiUrl;
   @override
   final String? kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl;
   @override
   final String?
+      kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+  @override
+  final String? kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+  @override
+  final String?
+      kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
+  @override
+  final String?
       kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
   @override
   final String?
       kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl;
+  @override
+  final String? kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+  @override
+  final String?
+      kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
   @override
   final String? kratosSelfserviceFlowsSettingsLifespan;
   @override
@@ -530,6 +688,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final bool? kratosSelfserviceMethodsCodeEnabled;
   @override
+  final bool? kratosSelfserviceMethodsCodeMfaEnabled;
+  @override
+  final bool? kratosSelfserviceMethodsCodePasswordlessEnabled;
+  @override
+  final bool? kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
+  @override
   final String? kratosSelfserviceMethodsLinkConfigBaseUrl;
   @override
   final String? kratosSelfserviceMethodsLinkConfigLifespan;
@@ -544,6 +708,14 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       kratosSelfserviceMethodsOidcConfigProviders;
   @override
   final bool? kratosSelfserviceMethodsOidcEnabled;
+  @override
+  final String? kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+  @override
+  final String? kratosSelfserviceMethodsPasskeyConfigRpId;
+  @override
+  final BuiltList<String>? kratosSelfserviceMethodsPasskeyConfigRpOrigins;
+  @override
+  final bool? kratosSelfserviceMethodsPasskeyEnabled;
   @override
   final bool? kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
   @override
@@ -572,7 +744,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosSelfserviceMethodsWebauthnConfigRpId;
   @override
-  final String? kratosSelfserviceMethodsWebauthnConfigRpOrigin;
+  final BuiltList<String>? kratosSelfserviceMethodsWebauthnConfigRpOrigins;
   @override
   final bool? kratosSelfserviceMethodsWebauthnEnabled;
   @override
@@ -584,11 +756,24 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosSessionWhoamiRequiredAal;
   @override
+  final BuiltList<NormalizedProjectRevisionTokenizerTemplate>?
+      kratosSessionWhoamiTokenizerTemplates;
+  @override
   final String name;
   @override
-  final bool? production;
-  @override
   final String? projectId;
+  @override
+  final BuiltList<NormalizedProjectRevisionHook>? projectRevisionHooks;
+  @override
+  final BuiltList<String>? serveAdminCorsAllowedOrigins;
+  @override
+  final bool? serveAdminCorsEnabled;
+  @override
+  final BuiltList<String>? servePublicCorsAllowedOrigins;
+  @override
+  final bool? servePublicCorsEnabled;
+  @override
+  final bool? strictSecurity;
   @override
   final DateTime? updatedAt;
 
@@ -598,28 +783,29 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
 
   _$NormalizedProjectRevision._(
       {this.createdAt,
+      this.disableAccountExperienceWelcomeScreen,
+      this.enableAxV2,
       this.hydraOauth2AllowedTopLevelClaims,
       this.hydraOauth2ClientCredentialsDefaultGrantAllowedScope,
       this.hydraOauth2ExcludeNotBeforeClaim,
       this.hydraOauth2GrantJwtIatOptional,
       this.hydraOauth2GrantJwtJtiOptional,
       this.hydraOauth2GrantJwtMaxTtl,
+      this.hydraOauth2MirrorTopLevelClaims,
       this.hydraOauth2PkceEnforced,
       this.hydraOauth2PkceEnforcedForPublicClients,
       this.hydraOauth2RefreshTokenHook,
+      this.hydraOauth2TokenHook,
       this.hydraOidcDynamicClientRegistrationDefaultScope,
       this.hydraOidcDynamicClientRegistrationEnabled,
       this.hydraOidcSubjectIdentifiersPairwiseSalt,
       this.hydraOidcSubjectIdentifiersSupportedTypes,
       this.hydraSecretsCookie,
       this.hydraSecretsSystem,
-      this.hydraServeAdminCorsAllowedOrigins,
-      this.hydraServeAdminCorsEnabled,
       this.hydraServeCookiesSameSiteLegacyWorkaround,
       this.hydraServeCookiesSameSiteMode,
-      this.hydraServePublicCorsAllowedOrigins,
-      this.hydraServePublicCorsEnabled,
       this.hydraStrategiesAccessToken,
+      this.hydraStrategiesJwtScopeClaim,
       this.hydraStrategiesScope,
       this.hydraTtlAccessToken,
       this.hydraTtlAuthCode,
@@ -631,6 +817,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.hydraUrlsLogin,
       this.hydraUrlsLogout,
       this.hydraUrlsPostLogoutRedirect,
+      this.hydraUrlsRegistration,
       this.hydraUrlsSelfIssuer,
       this.hydraWebfingerJwksBroadcastKeys,
       this.hydraWebfingerOidcDiscoveryAuthUrl,
@@ -643,12 +830,28 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.id,
       this.ketoNamespaceConfiguration,
       this.ketoNamespaces,
-      this.ketoReadMaxDepth,
       this.kratosCookiesSameSite,
+      this.kratosCourierChannels,
+      this.kratosCourierDeliveryStrategy,
+      this.kratosCourierHttpRequestConfigAuthApiKeyIn,
+      this.kratosCourierHttpRequestConfigAuthApiKeyName,
+      this.kratosCourierHttpRequestConfigAuthApiKeyValue,
+      this.kratosCourierHttpRequestConfigAuthBasicAuthPassword,
+      this.kratosCourierHttpRequestConfigAuthBasicAuthUser,
+      this.kratosCourierHttpRequestConfigAuthType,
+      this.kratosCourierHttpRequestConfigBody,
+      this.kratosCourierHttpRequestConfigHeaders,
+      this.kratosCourierHttpRequestConfigMethod,
+      this.kratosCourierHttpRequestConfigUrl,
       this.kratosCourierSmtpConnectionUri,
       this.kratosCourierSmtpFromAddress,
       this.kratosCourierSmtpFromName,
       this.kratosCourierSmtpHeaders,
+      this.kratosCourierSmtpLocalName,
+      this.kratosCourierTemplatesLoginCodeValidEmailBodyHtml,
+      this.kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext,
+      this.kratosCourierTemplatesLoginCodeValidEmailSubject,
+      this.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext,
       this.kratosCourierTemplatesRecoveryCodeInvalidEmailSubject,
@@ -661,12 +864,16 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosCourierTemplatesRecoveryValidEmailBodyHtml,
       this.kratosCourierTemplatesRecoveryValidEmailBodyPlaintext,
       this.kratosCourierTemplatesRecoveryValidEmailSubject,
+      this.kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml,
+      this.kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext,
+      this.kratosCourierTemplatesRegistrationCodeValidEmailSubject,
       this.kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
       this.kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
       this.kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
       this.kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
       this.kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
       this.kratosCourierTemplatesVerificationCodeValidEmailSubject,
+      this.kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext,
       this.kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
       this.kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
       this.kratosCourierTemplatesVerificationInvalidEmailSubject,
@@ -674,19 +881,26 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
       this.kratosCourierTemplatesVerificationValidEmailSubject,
       this.kratosFeatureFlagsCacheableSessions,
+      this.kratosFeatureFlagsCacheableSessionsMaxAge,
+      this.kratosFeatureFlagsUseContinueWithTransitions,
       this.kratosIdentitySchemas,
       this.kratosOauth2ProviderHeaders,
+      this.kratosOauth2ProviderOverrideReturnTo,
       this.kratosOauth2ProviderUrl,
+      this.kratosPreviewDefaultReadConsistencyLevel,
       this.kratosSecretsCipher,
       this.kratosSecretsCookie,
       this.kratosSecretsDefault,
       this.kratosSelfserviceAllowedReturnUrls,
       this.kratosSelfserviceDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsErrorUiUrl,
-      this.kratosSelfserviceFlowsHooks,
+      this.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsLoginLifespan,
       this.kratosSelfserviceFlowsLoginUiUrl,
@@ -697,16 +911,25 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients,
       this.kratosSelfserviceFlowsRecoveryUiUrl,
       this.kratosSelfserviceFlowsRecoveryUse,
+      this.kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsRegistrationEnableLegacyOneStep,
       this.kratosSelfserviceFlowsRegistrationEnabled,
       this.kratosSelfserviceFlowsRegistrationLifespan,
+      this.kratosSelfserviceFlowsRegistrationLoginHints,
       this.kratosSelfserviceFlowsRegistrationUiUrl,
       this.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl,
+      this.kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsSettingsLifespan,
       this.kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge,
       this.kratosSelfserviceFlowsSettingsRequiredAal,
@@ -719,6 +942,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceFlowsVerificationUse,
       this.kratosSelfserviceMethodsCodeConfigLifespan,
       this.kratosSelfserviceMethodsCodeEnabled,
+      this.kratosSelfserviceMethodsCodeMfaEnabled,
+      this.kratosSelfserviceMethodsCodePasswordlessEnabled,
+      this.kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled,
       this.kratosSelfserviceMethodsLinkConfigBaseUrl,
       this.kratosSelfserviceMethodsLinkConfigLifespan,
       this.kratosSelfserviceMethodsLinkEnabled,
@@ -726,6 +952,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceMethodsOidcConfigBaseRedirectUri,
       this.kratosSelfserviceMethodsOidcConfigProviders,
       this.kratosSelfserviceMethodsOidcEnabled,
+      this.kratosSelfserviceMethodsPasskeyConfigRpDisplayName,
+      this.kratosSelfserviceMethodsPasskeyConfigRpId,
+      this.kratosSelfserviceMethodsPasskeyConfigRpOrigins,
+      this.kratosSelfserviceMethodsPasskeyEnabled,
       this.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled,
       this.kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled,
       this.kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors,
@@ -739,15 +969,21 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceMethodsWebauthnConfigRpDisplayName,
       this.kratosSelfserviceMethodsWebauthnConfigRpIcon,
       this.kratosSelfserviceMethodsWebauthnConfigRpId,
-      this.kratosSelfserviceMethodsWebauthnConfigRpOrigin,
+      this.kratosSelfserviceMethodsWebauthnConfigRpOrigins,
       this.kratosSelfserviceMethodsWebauthnEnabled,
       this.kratosSessionCookiePersistent,
       this.kratosSessionCookieSameSite,
       this.kratosSessionLifespan,
       this.kratosSessionWhoamiRequiredAal,
+      this.kratosSessionWhoamiTokenizerTemplates,
       required this.name,
-      this.production,
       this.projectId,
+      this.projectRevisionHooks,
+      this.serveAdminCorsAllowedOrigins,
+      this.serveAdminCorsEnabled,
+      this.servePublicCorsAllowedOrigins,
+      this.servePublicCorsEnabled,
+      this.strictSecurity,
       this.updatedAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -768,6 +1004,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     if (identical(other, this)) return true;
     return other is NormalizedProjectRevision &&
         createdAt == other.createdAt &&
+        disableAccountExperienceWelcomeScreen ==
+            other.disableAccountExperienceWelcomeScreen &&
+        enableAxV2 == other.enableAxV2 &&
         hydraOauth2AllowedTopLevelClaims ==
             other.hydraOauth2AllowedTopLevelClaims &&
         hydraOauth2ClientCredentialsDefaultGrantAllowedScope ==
@@ -779,10 +1018,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         hydraOauth2GrantJwtJtiOptional ==
             other.hydraOauth2GrantJwtJtiOptional &&
         hydraOauth2GrantJwtMaxTtl == other.hydraOauth2GrantJwtMaxTtl &&
+        hydraOauth2MirrorTopLevelClaims ==
+            other.hydraOauth2MirrorTopLevelClaims &&
         hydraOauth2PkceEnforced == other.hydraOauth2PkceEnforced &&
         hydraOauth2PkceEnforcedForPublicClients ==
             other.hydraOauth2PkceEnforcedForPublicClients &&
         hydraOauth2RefreshTokenHook == other.hydraOauth2RefreshTokenHook &&
+        hydraOauth2TokenHook == other.hydraOauth2TokenHook &&
         hydraOidcDynamicClientRegistrationDefaultScope ==
             other.hydraOidcDynamicClientRegistrationDefaultScope &&
         hydraOidcDynamicClientRegistrationEnabled ==
@@ -793,16 +1035,11 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.hydraOidcSubjectIdentifiersSupportedTypes &&
         hydraSecretsCookie == other.hydraSecretsCookie &&
         hydraSecretsSystem == other.hydraSecretsSystem &&
-        hydraServeAdminCorsAllowedOrigins ==
-            other.hydraServeAdminCorsAllowedOrigins &&
-        hydraServeAdminCorsEnabled == other.hydraServeAdminCorsEnabled &&
         hydraServeCookiesSameSiteLegacyWorkaround ==
             other.hydraServeCookiesSameSiteLegacyWorkaround &&
         hydraServeCookiesSameSiteMode == other.hydraServeCookiesSameSiteMode &&
-        hydraServePublicCorsAllowedOrigins ==
-            other.hydraServePublicCorsAllowedOrigins &&
-        hydraServePublicCorsEnabled == other.hydraServePublicCorsEnabled &&
         hydraStrategiesAccessToken == other.hydraStrategiesAccessToken &&
+        hydraStrategiesJwtScopeClaim == other.hydraStrategiesJwtScopeClaim &&
         hydraStrategiesScope == other.hydraStrategiesScope &&
         hydraTtlAccessToken == other.hydraTtlAccessToken &&
         hydraTtlAuthCode == other.hydraTtlAuthCode &&
@@ -814,6 +1051,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         hydraUrlsLogin == other.hydraUrlsLogin &&
         hydraUrlsLogout == other.hydraUrlsLogout &&
         hydraUrlsPostLogoutRedirect == other.hydraUrlsPostLogoutRedirect &&
+        hydraUrlsRegistration == other.hydraUrlsRegistration &&
         hydraUrlsSelfIssuer == other.hydraUrlsSelfIssuer &&
         hydraWebfingerJwksBroadcastKeys ==
             other.hydraWebfingerJwksBroadcastKeys &&
@@ -834,13 +1072,43 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         id == other.id &&
         ketoNamespaceConfiguration == other.ketoNamespaceConfiguration &&
         ketoNamespaces == other.ketoNamespaces &&
-        ketoReadMaxDepth == other.ketoReadMaxDepth &&
         kratosCookiesSameSite == other.kratosCookiesSameSite &&
+        kratosCourierChannels == other.kratosCourierChannels &&
+        kratosCourierDeliveryStrategy == other.kratosCourierDeliveryStrategy &&
+        kratosCourierHttpRequestConfigAuthApiKeyIn ==
+            other.kratosCourierHttpRequestConfigAuthApiKeyIn &&
+        kratosCourierHttpRequestConfigAuthApiKeyName ==
+            other.kratosCourierHttpRequestConfigAuthApiKeyName &&
+        kratosCourierHttpRequestConfigAuthApiKeyValue ==
+            other.kratosCourierHttpRequestConfigAuthApiKeyValue &&
+        kratosCourierHttpRequestConfigAuthBasicAuthPassword ==
+            other.kratosCourierHttpRequestConfigAuthBasicAuthPassword &&
+        kratosCourierHttpRequestConfigAuthBasicAuthUser ==
+            other.kratosCourierHttpRequestConfigAuthBasicAuthUser &&
+        kratosCourierHttpRequestConfigAuthType ==
+            other.kratosCourierHttpRequestConfigAuthType &&
+        kratosCourierHttpRequestConfigBody ==
+            other.kratosCourierHttpRequestConfigBody &&
+        kratosCourierHttpRequestConfigHeaders ==
+            other.kratosCourierHttpRequestConfigHeaders &&
+        kratosCourierHttpRequestConfigMethod ==
+            other.kratosCourierHttpRequestConfigMethod &&
+        kratosCourierHttpRequestConfigUrl ==
+            other.kratosCourierHttpRequestConfigUrl &&
         kratosCourierSmtpConnectionUri ==
             other.kratosCourierSmtpConnectionUri &&
         kratosCourierSmtpFromAddress == other.kratosCourierSmtpFromAddress &&
         kratosCourierSmtpFromName == other.kratosCourierSmtpFromName &&
         kratosCourierSmtpHeaders == other.kratosCourierSmtpHeaders &&
+        kratosCourierSmtpLocalName == other.kratosCourierSmtpLocalName &&
+        kratosCourierTemplatesLoginCodeValidEmailBodyHtml ==
+            other.kratosCourierTemplatesLoginCodeValidEmailBodyHtml &&
+        kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext ==
+            other.kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext &&
+        kratosCourierTemplatesLoginCodeValidEmailSubject ==
+            other.kratosCourierTemplatesLoginCodeValidEmailSubject &&
+        kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext ==
+            other.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext &&
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml ==
             other.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml &&
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext ==
@@ -865,6 +1133,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosCourierTemplatesRecoveryValidEmailBodyPlaintext &&
         kratosCourierTemplatesRecoveryValidEmailSubject ==
             other.kratosCourierTemplatesRecoveryValidEmailSubject &&
+        kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml ==
+            other.kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml &&
+        kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext ==
+            other
+                .kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext &&
+        kratosCourierTemplatesRegistrationCodeValidEmailSubject ==
+            other.kratosCourierTemplatesRegistrationCodeValidEmailSubject &&
         kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml ==
             other.kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml &&
         kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext ==
@@ -879,6 +1154,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
                 .kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext &&
         kratosCourierTemplatesVerificationCodeValidEmailSubject ==
             other.kratosCourierTemplatesVerificationCodeValidEmailSubject &&
+        kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext ==
+            other.kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext &&
         kratosCourierTemplatesVerificationInvalidEmailBodyHtml ==
             other.kratosCourierTemplatesVerificationInvalidEmailBodyHtml &&
         kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext ==
@@ -893,9 +1170,17 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosCourierTemplatesVerificationValidEmailSubject &&
         kratosFeatureFlagsCacheableSessions ==
             other.kratosFeatureFlagsCacheableSessions &&
+        kratosFeatureFlagsCacheableSessionsMaxAge ==
+            other.kratosFeatureFlagsCacheableSessionsMaxAge &&
+        kratosFeatureFlagsUseContinueWithTransitions ==
+            other.kratosFeatureFlagsUseContinueWithTransitions &&
         kratosIdentitySchemas == other.kratosIdentitySchemas &&
         kratosOauth2ProviderHeaders == other.kratosOauth2ProviderHeaders &&
+        kratosOauth2ProviderOverrideReturnTo ==
+            other.kratosOauth2ProviderOverrideReturnTo &&
         kratosOauth2ProviderUrl == other.kratosOauth2ProviderUrl &&
+        kratosPreviewDefaultReadConsistencyLevel ==
+            other.kratosPreviewDefaultReadConsistencyLevel &&
         kratosSecretsCipher == other.kratosSecretsCipher &&
         kratosSecretsCookie == other.kratosSecretsCookie &&
         kratosSecretsDefault == other.kratosSecretsDefault &&
@@ -905,14 +1190,23 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsErrorUiUrl ==
             other.kratosSelfserviceFlowsErrorUiUrl &&
-        kratosSelfserviceFlowsHooks == other.kratosSelfserviceFlowsHooks &&
+        kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl ==
+            other.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl ==
             other.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl ==
             other.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl ==
+            other.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl &&
@@ -934,32 +1228,57 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceFlowsRecoveryUiUrl &&
         kratosSelfserviceFlowsRecoveryUse ==
             other.kratosSelfserviceFlowsRecoveryUse &&
+        kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsRegistrationEnableLegacyOneStep ==
+            other.kratosSelfserviceFlowsRegistrationEnableLegacyOneStep &&
         kratosSelfserviceFlowsRegistrationEnabled ==
             other.kratosSelfserviceFlowsRegistrationEnabled &&
         kratosSelfserviceFlowsRegistrationLifespan ==
             other.kratosSelfserviceFlowsRegistrationLifespan &&
+        kratosSelfserviceFlowsRegistrationLoginHints ==
+            other.kratosSelfserviceFlowsRegistrationLoginHints &&
         kratosSelfserviceFlowsRegistrationUiUrl ==
             other.kratosSelfserviceFlowsRegistrationUiUrl &&
         kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl ==
             other.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl ==
             other
                 .kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl &&
+        kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl ==
+            other
+                .kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsSettingsLifespan ==
             other.kratosSelfserviceFlowsSettingsLifespan &&
         kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge ==
@@ -985,6 +1304,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceMethodsCodeConfigLifespan &&
         kratosSelfserviceMethodsCodeEnabled ==
             other.kratosSelfserviceMethodsCodeEnabled &&
+        kratosSelfserviceMethodsCodeMfaEnabled ==
+            other.kratosSelfserviceMethodsCodeMfaEnabled &&
+        kratosSelfserviceMethodsCodePasswordlessEnabled ==
+            other.kratosSelfserviceMethodsCodePasswordlessEnabled &&
+        kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled ==
+            other
+                .kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled &&
         kratosSelfserviceMethodsLinkConfigBaseUrl ==
             other.kratosSelfserviceMethodsLinkConfigBaseUrl &&
         kratosSelfserviceMethodsLinkConfigLifespan ==
@@ -999,6 +1325,14 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceMethodsOidcConfigProviders &&
         kratosSelfserviceMethodsOidcEnabled ==
             other.kratosSelfserviceMethodsOidcEnabled &&
+        kratosSelfserviceMethodsPasskeyConfigRpDisplayName ==
+            other.kratosSelfserviceMethodsPasskeyConfigRpDisplayName &&
+        kratosSelfserviceMethodsPasskeyConfigRpId ==
+            other.kratosSelfserviceMethodsPasskeyConfigRpId &&
+        kratosSelfserviceMethodsPasskeyConfigRpOrigins ==
+            other.kratosSelfserviceMethodsPasskeyConfigRpOrigins &&
+        kratosSelfserviceMethodsPasskeyEnabled ==
+            other.kratosSelfserviceMethodsPasskeyEnabled &&
         kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled ==
             other.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled &&
         kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled ==
@@ -1026,8 +1360,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceMethodsWebauthnConfigRpIcon &&
         kratosSelfserviceMethodsWebauthnConfigRpId ==
             other.kratosSelfserviceMethodsWebauthnConfigRpId &&
-        kratosSelfserviceMethodsWebauthnConfigRpOrigin ==
-            other.kratosSelfserviceMethodsWebauthnConfigRpOrigin &&
+        kratosSelfserviceMethodsWebauthnConfigRpOrigins ==
+            other.kratosSelfserviceMethodsWebauthnConfigRpOrigins &&
         kratosSelfserviceMethodsWebauthnEnabled ==
             other.kratosSelfserviceMethodsWebauthnEnabled &&
         kratosSessionCookiePersistent == other.kratosSessionCookiePersistent &&
@@ -1035,9 +1369,16 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosSessionLifespan == other.kratosSessionLifespan &&
         kratosSessionWhoamiRequiredAal ==
             other.kratosSessionWhoamiRequiredAal &&
+        kratosSessionWhoamiTokenizerTemplates ==
+            other.kratosSessionWhoamiTokenizerTemplates &&
         name == other.name &&
-        production == other.production &&
         projectId == other.projectId &&
+        projectRevisionHooks == other.projectRevisionHooks &&
+        serveAdminCorsAllowedOrigins == other.serveAdminCorsAllowedOrigins &&
+        serveAdminCorsEnabled == other.serveAdminCorsEnabled &&
+        servePublicCorsAllowedOrigins == other.servePublicCorsAllowedOrigins &&
+        servePublicCorsEnabled == other.servePublicCorsEnabled &&
+        strictSecurity == other.strictSecurity &&
         updatedAt == other.updatedAt;
   }
 
@@ -1045,6 +1386,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, disableAccountExperienceWelcomeScreen.hashCode);
+    _$hash = $jc(_$hash, enableAxV2.hashCode);
     _$hash = $jc(_$hash, hydraOauth2AllowedTopLevelClaims.hashCode);
     _$hash = $jc(
         _$hash, hydraOauth2ClientCredentialsDefaultGrantAllowedScope.hashCode);
@@ -1052,9 +1395,11 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, hydraOauth2GrantJwtIatOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtJtiOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtMaxTtl.hashCode);
+    _$hash = $jc(_$hash, hydraOauth2MirrorTopLevelClaims.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforced.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforcedForPublicClients.hashCode);
     _$hash = $jc(_$hash, hydraOauth2RefreshTokenHook.hashCode);
+    _$hash = $jc(_$hash, hydraOauth2TokenHook.hashCode);
     _$hash =
         $jc(_$hash, hydraOidcDynamicClientRegistrationDefaultScope.hashCode);
     _$hash = $jc(_$hash, hydraOidcDynamicClientRegistrationEnabled.hashCode);
@@ -1062,13 +1407,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, hydraOidcSubjectIdentifiersSupportedTypes.hashCode);
     _$hash = $jc(_$hash, hydraSecretsCookie.hashCode);
     _$hash = $jc(_$hash, hydraSecretsSystem.hashCode);
-    _$hash = $jc(_$hash, hydraServeAdminCorsAllowedOrigins.hashCode);
-    _$hash = $jc(_$hash, hydraServeAdminCorsEnabled.hashCode);
     _$hash = $jc(_$hash, hydraServeCookiesSameSiteLegacyWorkaround.hashCode);
     _$hash = $jc(_$hash, hydraServeCookiesSameSiteMode.hashCode);
-    _$hash = $jc(_$hash, hydraServePublicCorsAllowedOrigins.hashCode);
-    _$hash = $jc(_$hash, hydraServePublicCorsEnabled.hashCode);
     _$hash = $jc(_$hash, hydraStrategiesAccessToken.hashCode);
+    _$hash = $jc(_$hash, hydraStrategiesJwtScopeClaim.hashCode);
     _$hash = $jc(_$hash, hydraStrategiesScope.hashCode);
     _$hash = $jc(_$hash, hydraTtlAccessToken.hashCode);
     _$hash = $jc(_$hash, hydraTtlAuthCode.hashCode);
@@ -1080,6 +1422,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, hydraUrlsLogin.hashCode);
     _$hash = $jc(_$hash, hydraUrlsLogout.hashCode);
     _$hash = $jc(_$hash, hydraUrlsPostLogoutRedirect.hashCode);
+    _$hash = $jc(_$hash, hydraUrlsRegistration.hashCode);
     _$hash = $jc(_$hash, hydraUrlsSelfIssuer.hashCode);
     _$hash = $jc(_$hash, hydraWebfingerJwksBroadcastKeys.hashCode);
     _$hash = $jc(_$hash, hydraWebfingerOidcDiscoveryAuthUrl.hashCode);
@@ -1093,12 +1436,35 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, ketoNamespaceConfiguration.hashCode);
     _$hash = $jc(_$hash, ketoNamespaces.hashCode);
-    _$hash = $jc(_$hash, ketoReadMaxDepth.hashCode);
     _$hash = $jc(_$hash, kratosCookiesSameSite.hashCode);
+    _$hash = $jc(_$hash, kratosCourierChannels.hashCode);
+    _$hash = $jc(_$hash, kratosCourierDeliveryStrategy.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigAuthApiKeyIn.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigAuthApiKeyName.hashCode);
+    _$hash =
+        $jc(_$hash, kratosCourierHttpRequestConfigAuthApiKeyValue.hashCode);
+    _$hash = $jc(
+        _$hash, kratosCourierHttpRequestConfigAuthBasicAuthPassword.hashCode);
+    _$hash =
+        $jc(_$hash, kratosCourierHttpRequestConfigAuthBasicAuthUser.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigAuthType.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigBody.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigHeaders.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigMethod.hashCode);
+    _$hash = $jc(_$hash, kratosCourierHttpRequestConfigUrl.hashCode);
     _$hash = $jc(_$hash, kratosCourierSmtpConnectionUri.hashCode);
     _$hash = $jc(_$hash, kratosCourierSmtpFromAddress.hashCode);
     _$hash = $jc(_$hash, kratosCourierSmtpFromName.hashCode);
     _$hash = $jc(_$hash, kratosCourierSmtpHeaders.hashCode);
+    _$hash = $jc(_$hash, kratosCourierSmtpLocalName.hashCode);
+    _$hash =
+        $jc(_$hash, kratosCourierTemplatesLoginCodeValidEmailBodyHtml.hashCode);
+    _$hash = $jc(_$hash,
+        kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext.hashCode);
+    _$hash =
+        $jc(_$hash, kratosCourierTemplatesLoginCodeValidEmailSubject.hashCode);
+    _$hash = $jc(
+        _$hash, kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext.hashCode);
     _$hash = $jc(_$hash,
         kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml.hashCode);
     _$hash = $jc(_$hash,
@@ -1124,6 +1490,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash =
         $jc(_$hash, kratosCourierTemplatesRecoveryValidEmailSubject.hashCode);
     _$hash = $jc(_$hash,
+        kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml.hashCode);
+    _$hash = $jc(_$hash,
+        kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext.hashCode);
+    _$hash = $jc(_$hash,
+        kratosCourierTemplatesRegistrationCodeValidEmailSubject.hashCode);
+    _$hash = $jc(_$hash,
         kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml.hashCode);
     _$hash = $jc(
         _$hash,
@@ -1138,6 +1510,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash,
         kratosCourierTemplatesVerificationCodeValidEmailSubject.hashCode);
     _$hash = $jc(_$hash,
+        kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext.hashCode);
+    _$hash = $jc(_$hash,
         kratosCourierTemplatesVerificationInvalidEmailBodyHtml.hashCode);
     _$hash = $jc(_$hash,
         kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext.hashCode);
@@ -1150,24 +1524,39 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(
         _$hash, kratosCourierTemplatesVerificationValidEmailSubject.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessions.hashCode);
+    _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessionsMaxAge.hashCode);
+    _$hash = $jc(_$hash, kratosFeatureFlagsUseContinueWithTransitions.hashCode);
     _$hash = $jc(_$hash, kratosIdentitySchemas.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderHeaders.hashCode);
+    _$hash = $jc(_$hash, kratosOauth2ProviderOverrideReturnTo.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderUrl.hashCode);
+    _$hash = $jc(_$hash, kratosPreviewDefaultReadConsistencyLevel.hashCode);
     _$hash = $jc(_$hash, kratosSecretsCipher.hashCode);
     _$hash = $jc(_$hash, kratosSecretsCookie.hashCode);
     _$hash = $jc(_$hash, kratosSecretsDefault.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceAllowedReturnUrls.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsErrorUiUrl.hashCode);
-    _$hash = $jc(_$hash, kratosSelfserviceFlowsHooks.hashCode);
+    _$hash = $jc(_$hash,
+        kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(_$hash,
         kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl.hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl
+            .hashCode);
     _$hash = $jc(_$hash,
         kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(
         _$hash,
+        kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
         kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
             .hashCode);
+    _$hash = $jc(_$hash,
+        kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
@@ -1186,11 +1575,19 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRecoveryUse.hashCode);
     _$hash = $jc(
         _$hash,
+        kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
         kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl
             .hashCode);
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl
             .hashCode);
     _$hash = $jc(
         _$hash,
@@ -1200,11 +1597,26 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         _$hash,
         kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
             .hashCode);
+    _$hash = $jc(
+        _$hash, kratosSelfserviceFlowsRegistrationEnableLegacyOneStep.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRegistrationEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRegistrationLifespan.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceFlowsRegistrationLoginHints.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRegistrationUiUrl.hashCode);
     _$hash = $jc(_$hash,
         kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl.hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl
+            .hashCode);
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
@@ -1212,6 +1624,14 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(
         _$hash,
         kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl
+            .hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl
             .hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsSettingsLifespan.hashCode);
     _$hash = $jc(
@@ -1230,6 +1650,11 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationUse.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeConfigLifespan.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeEnabled.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeMfaEnabled.hashCode);
+    _$hash =
+        $jc(_$hash, kratosSelfserviceMethodsCodePasswordlessEnabled.hashCode);
+    _$hash = $jc(_$hash,
+        kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsLinkConfigBaseUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsLinkConfigLifespan.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsLinkEnabled.hashCode);
@@ -1238,6 +1663,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         $jc(_$hash, kratosSelfserviceMethodsOidcConfigBaseRedirectUri.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsOidcConfigProviders.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsOidcEnabled.hashCode);
+    _$hash = $jc(
+        _$hash, kratosSelfserviceMethodsPasskeyConfigRpDisplayName.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsPasskeyConfigRpId.hashCode);
+    _$hash =
+        $jc(_$hash, kratosSelfserviceMethodsPasskeyConfigRpOrigins.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsPasskeyEnabled.hashCode);
     _$hash = $jc(_$hash,
         kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.hashCode);
     _$hash = $jc(
@@ -1261,15 +1692,21 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSelfserviceMethodsWebauthnConfigRpIcon.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsWebauthnConfigRpId.hashCode);
     _$hash =
-        $jc(_$hash, kratosSelfserviceMethodsWebauthnConfigRpOrigin.hashCode);
+        $jc(_$hash, kratosSelfserviceMethodsWebauthnConfigRpOrigins.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsWebauthnEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSessionCookiePersistent.hashCode);
     _$hash = $jc(_$hash, kratosSessionCookieSameSite.hashCode);
     _$hash = $jc(_$hash, kratosSessionLifespan.hashCode);
     _$hash = $jc(_$hash, kratosSessionWhoamiRequiredAal.hashCode);
+    _$hash = $jc(_$hash, kratosSessionWhoamiTokenizerTemplates.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, production.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
+    _$hash = $jc(_$hash, projectRevisionHooks.hashCode);
+    _$hash = $jc(_$hash, serveAdminCorsAllowedOrigins.hashCode);
+    _$hash = $jc(_$hash, serveAdminCorsEnabled.hashCode);
+    _$hash = $jc(_$hash, servePublicCorsAllowedOrigins.hashCode);
+    _$hash = $jc(_$hash, servePublicCorsEnabled.hashCode);
+    _$hash = $jc(_$hash, strictSecurity.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -1279,6 +1716,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   String toString() {
     return (newBuiltValueToStringHelper(r'NormalizedProjectRevision')
           ..add('createdAt', createdAt)
+          ..add('disableAccountExperienceWelcomeScreen',
+              disableAccountExperienceWelcomeScreen)
+          ..add('enableAxV2', enableAxV2)
           ..add('hydraOauth2AllowedTopLevelClaims',
               hydraOauth2AllowedTopLevelClaims)
           ..add('hydraOauth2ClientCredentialsDefaultGrantAllowedScope',
@@ -1290,10 +1730,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add(
               'hydraOauth2GrantJwtJtiOptional', hydraOauth2GrantJwtJtiOptional)
           ..add('hydraOauth2GrantJwtMaxTtl', hydraOauth2GrantJwtMaxTtl)
+          ..add('hydraOauth2MirrorTopLevelClaims',
+              hydraOauth2MirrorTopLevelClaims)
           ..add('hydraOauth2PkceEnforced', hydraOauth2PkceEnforced)
           ..add('hydraOauth2PkceEnforcedForPublicClients',
               hydraOauth2PkceEnforcedForPublicClients)
           ..add('hydraOauth2RefreshTokenHook', hydraOauth2RefreshTokenHook)
+          ..add('hydraOauth2TokenHook', hydraOauth2TokenHook)
           ..add('hydraOidcDynamicClientRegistrationDefaultScope',
               hydraOidcDynamicClientRegistrationDefaultScope)
           ..add('hydraOidcDynamicClientRegistrationEnabled',
@@ -1304,16 +1747,11 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               hydraOidcSubjectIdentifiersSupportedTypes)
           ..add('hydraSecretsCookie', hydraSecretsCookie)
           ..add('hydraSecretsSystem', hydraSecretsSystem)
-          ..add('hydraServeAdminCorsAllowedOrigins',
-              hydraServeAdminCorsAllowedOrigins)
-          ..add('hydraServeAdminCorsEnabled', hydraServeAdminCorsEnabled)
           ..add('hydraServeCookiesSameSiteLegacyWorkaround',
               hydraServeCookiesSameSiteLegacyWorkaround)
           ..add('hydraServeCookiesSameSiteMode', hydraServeCookiesSameSiteMode)
-          ..add('hydraServePublicCorsAllowedOrigins',
-              hydraServePublicCorsAllowedOrigins)
-          ..add('hydraServePublicCorsEnabled', hydraServePublicCorsEnabled)
           ..add('hydraStrategiesAccessToken', hydraStrategiesAccessToken)
+          ..add('hydraStrategiesJwtScopeClaim', hydraStrategiesJwtScopeClaim)
           ..add('hydraStrategiesScope', hydraStrategiesScope)
           ..add('hydraTtlAccessToken', hydraTtlAccessToken)
           ..add('hydraTtlAuthCode', hydraTtlAuthCode)
@@ -1325,6 +1763,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('hydraUrlsLogin', hydraUrlsLogin)
           ..add('hydraUrlsLogout', hydraUrlsLogout)
           ..add('hydraUrlsPostLogoutRedirect', hydraUrlsPostLogoutRedirect)
+          ..add('hydraUrlsRegistration', hydraUrlsRegistration)
           ..add('hydraUrlsSelfIssuer', hydraUrlsSelfIssuer)
           ..add('hydraWebfingerJwksBroadcastKeys',
               hydraWebfingerJwksBroadcastKeys)
@@ -1345,13 +1784,43 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('id', id)
           ..add('ketoNamespaceConfiguration', ketoNamespaceConfiguration)
           ..add('ketoNamespaces', ketoNamespaces)
-          ..add('ketoReadMaxDepth', ketoReadMaxDepth)
           ..add('kratosCookiesSameSite', kratosCookiesSameSite)
+          ..add('kratosCourierChannels', kratosCourierChannels)
+          ..add('kratosCourierDeliveryStrategy', kratosCourierDeliveryStrategy)
+          ..add('kratosCourierHttpRequestConfigAuthApiKeyIn',
+              kratosCourierHttpRequestConfigAuthApiKeyIn)
+          ..add('kratosCourierHttpRequestConfigAuthApiKeyName',
+              kratosCourierHttpRequestConfigAuthApiKeyName)
+          ..add('kratosCourierHttpRequestConfigAuthApiKeyValue',
+              kratosCourierHttpRequestConfigAuthApiKeyValue)
+          ..add('kratosCourierHttpRequestConfigAuthBasicAuthPassword',
+              kratosCourierHttpRequestConfigAuthBasicAuthPassword)
+          ..add('kratosCourierHttpRequestConfigAuthBasicAuthUser',
+              kratosCourierHttpRequestConfigAuthBasicAuthUser)
+          ..add('kratosCourierHttpRequestConfigAuthType',
+              kratosCourierHttpRequestConfigAuthType)
+          ..add('kratosCourierHttpRequestConfigBody',
+              kratosCourierHttpRequestConfigBody)
+          ..add('kratosCourierHttpRequestConfigHeaders',
+              kratosCourierHttpRequestConfigHeaders)
+          ..add('kratosCourierHttpRequestConfigMethod',
+              kratosCourierHttpRequestConfigMethod)
+          ..add('kratosCourierHttpRequestConfigUrl',
+              kratosCourierHttpRequestConfigUrl)
           ..add(
               'kratosCourierSmtpConnectionUri', kratosCourierSmtpConnectionUri)
           ..add('kratosCourierSmtpFromAddress', kratosCourierSmtpFromAddress)
           ..add('kratosCourierSmtpFromName', kratosCourierSmtpFromName)
           ..add('kratosCourierSmtpHeaders', kratosCourierSmtpHeaders)
+          ..add('kratosCourierSmtpLocalName', kratosCourierSmtpLocalName)
+          ..add('kratosCourierTemplatesLoginCodeValidEmailBodyHtml',
+              kratosCourierTemplatesLoginCodeValidEmailBodyHtml)
+          ..add('kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext',
+              kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext)
+          ..add('kratosCourierTemplatesLoginCodeValidEmailSubject',
+              kratosCourierTemplatesLoginCodeValidEmailSubject)
+          ..add('kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext',
+              kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext)
           ..add('kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml',
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml)
           ..add('kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext',
@@ -1376,6 +1845,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosCourierTemplatesRecoveryValidEmailBodyPlaintext)
           ..add('kratosCourierTemplatesRecoveryValidEmailSubject',
               kratosCourierTemplatesRecoveryValidEmailSubject)
+          ..add('kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml',
+              kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml)
+          ..add('kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext',
+              kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext)
+          ..add('kratosCourierTemplatesRegistrationCodeValidEmailSubject',
+              kratosCourierTemplatesRegistrationCodeValidEmailSubject)
           ..add('kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml',
               kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml)
           ..add(
@@ -1389,6 +1864,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext)
           ..add('kratosCourierTemplatesVerificationCodeValidEmailSubject',
               kratosCourierTemplatesVerificationCodeValidEmailSubject)
+          ..add('kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext',
+              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext)
           ..add('kratosCourierTemplatesVerificationInvalidEmailBodyHtml',
               kratosCourierTemplatesVerificationInvalidEmailBodyHtml)
           ..add('kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext',
@@ -1403,9 +1880,17 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosCourierTemplatesVerificationValidEmailSubject)
           ..add('kratosFeatureFlagsCacheableSessions',
               kratosFeatureFlagsCacheableSessions)
+          ..add('kratosFeatureFlagsCacheableSessionsMaxAge',
+              kratosFeatureFlagsCacheableSessionsMaxAge)
+          ..add('kratosFeatureFlagsUseContinueWithTransitions',
+              kratosFeatureFlagsUseContinueWithTransitions)
           ..add('kratosIdentitySchemas', kratosIdentitySchemas)
           ..add('kratosOauth2ProviderHeaders', kratosOauth2ProviderHeaders)
+          ..add('kratosOauth2ProviderOverrideReturnTo',
+              kratosOauth2ProviderOverrideReturnTo)
           ..add('kratosOauth2ProviderUrl', kratosOauth2ProviderUrl)
+          ..add('kratosPreviewDefaultReadConsistencyLevel',
+              kratosPreviewDefaultReadConsistencyLevel)
           ..add('kratosSecretsCipher', kratosSecretsCipher)
           ..add('kratosSecretsCookie', kratosSecretsCookie)
           ..add('kratosSecretsDefault', kratosSecretsDefault)
@@ -1415,14 +1900,23 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsErrorUiUrl',
               kratosSelfserviceFlowsErrorUiUrl)
-          ..add('kratosSelfserviceFlowsHooks', kratosSelfserviceFlowsHooks)
+          ..add('kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl)
           ..add(
+              'kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl)
+          ..add(
               'kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl)
+          ..add('kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl)
@@ -1445,31 +1939,56 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('kratosSelfserviceFlowsRecoveryUse',
               kratosSelfserviceFlowsRecoveryUse)
           ..add(
+              'kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl)
+          ..add(
               'kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl)
           ..add(
+              'kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl)
+          ..add(
               'kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl)
+          ..add('kratosSelfserviceFlowsRegistrationEnableLegacyOneStep',
+              kratosSelfserviceFlowsRegistrationEnableLegacyOneStep)
           ..add('kratosSelfserviceFlowsRegistrationEnabled',
               kratosSelfserviceFlowsRegistrationEnabled)
           ..add('kratosSelfserviceFlowsRegistrationLifespan',
               kratosSelfserviceFlowsRegistrationLifespan)
+          ..add('kratosSelfserviceFlowsRegistrationLoginHints',
+              kratosSelfserviceFlowsRegistrationLoginHints)
           ..add('kratosSelfserviceFlowsRegistrationUiUrl',
               kratosSelfserviceFlowsRegistrationUiUrl)
           ..add('kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl)
           ..add(
               'kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl',
               kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl)
+          ..add(
+              'kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl',
+              kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsSettingsLifespan',
               kratosSelfserviceFlowsSettingsLifespan)
           ..add('kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge',
@@ -1495,6 +2014,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceMethodsCodeConfigLifespan)
           ..add('kratosSelfserviceMethodsCodeEnabled',
               kratosSelfserviceMethodsCodeEnabled)
+          ..add('kratosSelfserviceMethodsCodeMfaEnabled',
+              kratosSelfserviceMethodsCodeMfaEnabled)
+          ..add('kratosSelfserviceMethodsCodePasswordlessEnabled',
+              kratosSelfserviceMethodsCodePasswordlessEnabled)
+          ..add('kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled',
+              kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled)
           ..add('kratosSelfserviceMethodsLinkConfigBaseUrl',
               kratosSelfserviceMethodsLinkConfigBaseUrl)
           ..add('kratosSelfserviceMethodsLinkConfigLifespan',
@@ -1509,6 +2034,14 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceMethodsOidcConfigProviders)
           ..add('kratosSelfserviceMethodsOidcEnabled',
               kratosSelfserviceMethodsOidcEnabled)
+          ..add('kratosSelfserviceMethodsPasskeyConfigRpDisplayName',
+              kratosSelfserviceMethodsPasskeyConfigRpDisplayName)
+          ..add('kratosSelfserviceMethodsPasskeyConfigRpId',
+              kratosSelfserviceMethodsPasskeyConfigRpId)
+          ..add('kratosSelfserviceMethodsPasskeyConfigRpOrigins',
+              kratosSelfserviceMethodsPasskeyConfigRpOrigins)
+          ..add('kratosSelfserviceMethodsPasskeyEnabled',
+              kratosSelfserviceMethodsPasskeyEnabled)
           ..add('kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled',
               kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled)
           ..add(
@@ -1536,8 +2069,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceMethodsWebauthnConfigRpIcon)
           ..add('kratosSelfserviceMethodsWebauthnConfigRpId',
               kratosSelfserviceMethodsWebauthnConfigRpId)
-          ..add('kratosSelfserviceMethodsWebauthnConfigRpOrigin',
-              kratosSelfserviceMethodsWebauthnConfigRpOrigin)
+          ..add('kratosSelfserviceMethodsWebauthnConfigRpOrigins',
+              kratosSelfserviceMethodsWebauthnConfigRpOrigins)
           ..add('kratosSelfserviceMethodsWebauthnEnabled',
               kratosSelfserviceMethodsWebauthnEnabled)
           ..add('kratosSessionCookiePersistent', kratosSessionCookiePersistent)
@@ -1545,9 +2078,16 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('kratosSessionLifespan', kratosSessionLifespan)
           ..add(
               'kratosSessionWhoamiRequiredAal', kratosSessionWhoamiRequiredAal)
+          ..add('kratosSessionWhoamiTokenizerTemplates',
+              kratosSessionWhoamiTokenizerTemplates)
           ..add('name', name)
-          ..add('production', production)
           ..add('projectId', projectId)
+          ..add('projectRevisionHooks', projectRevisionHooks)
+          ..add('serveAdminCorsAllowedOrigins', serveAdminCorsAllowedOrigins)
+          ..add('serveAdminCorsEnabled', serveAdminCorsEnabled)
+          ..add('servePublicCorsAllowedOrigins', servePublicCorsAllowedOrigins)
+          ..add('servePublicCorsEnabled', servePublicCorsEnabled)
+          ..add('strictSecurity', strictSecurity)
           ..add('updatedAt', updatedAt))
         .toString();
   }
@@ -1561,6 +2101,18 @@ class NormalizedProjectRevisionBuilder
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  bool? _disableAccountExperienceWelcomeScreen;
+  bool? get disableAccountExperienceWelcomeScreen =>
+      _$this._disableAccountExperienceWelcomeScreen;
+  set disableAccountExperienceWelcomeScreen(
+          bool? disableAccountExperienceWelcomeScreen) =>
+      _$this._disableAccountExperienceWelcomeScreen =
+          disableAccountExperienceWelcomeScreen;
+
+  bool? _enableAxV2;
+  bool? get enableAxV2 => _$this._enableAxV2;
+  set enableAxV2(bool? enableAxV2) => _$this._enableAxV2 = enableAxV2;
 
   ListBuilder<String>? _hydraOauth2AllowedTopLevelClaims;
   ListBuilder<String> get hydraOauth2AllowedTopLevelClaims =>
@@ -1603,6 +2155,12 @@ class NormalizedProjectRevisionBuilder
   set hydraOauth2GrantJwtMaxTtl(String? hydraOauth2GrantJwtMaxTtl) =>
       _$this._hydraOauth2GrantJwtMaxTtl = hydraOauth2GrantJwtMaxTtl;
 
+  bool? _hydraOauth2MirrorTopLevelClaims;
+  bool? get hydraOauth2MirrorTopLevelClaims =>
+      _$this._hydraOauth2MirrorTopLevelClaims;
+  set hydraOauth2MirrorTopLevelClaims(bool? hydraOauth2MirrorTopLevelClaims) =>
+      _$this._hydraOauth2MirrorTopLevelClaims = hydraOauth2MirrorTopLevelClaims;
+
   bool? _hydraOauth2PkceEnforced;
   bool? get hydraOauth2PkceEnforced => _$this._hydraOauth2PkceEnforced;
   set hydraOauth2PkceEnforced(bool? hydraOauth2PkceEnforced) =>
@@ -1621,6 +2179,11 @@ class NormalizedProjectRevisionBuilder
       _$this._hydraOauth2RefreshTokenHook;
   set hydraOauth2RefreshTokenHook(String? hydraOauth2RefreshTokenHook) =>
       _$this._hydraOauth2RefreshTokenHook = hydraOauth2RefreshTokenHook;
+
+  String? _hydraOauth2TokenHook;
+  String? get hydraOauth2TokenHook => _$this._hydraOauth2TokenHook;
+  set hydraOauth2TokenHook(String? hydraOauth2TokenHook) =>
+      _$this._hydraOauth2TokenHook = hydraOauth2TokenHook;
 
   ListBuilder<String>? _hydraOidcDynamicClientRegistrationDefaultScope;
   ListBuilder<String> get hydraOidcDynamicClientRegistrationDefaultScope =>
@@ -1669,19 +2232,6 @@ class NormalizedProjectRevisionBuilder
   set hydraSecretsSystem(ListBuilder<String>? hydraSecretsSystem) =>
       _$this._hydraSecretsSystem = hydraSecretsSystem;
 
-  ListBuilder<String>? _hydraServeAdminCorsAllowedOrigins;
-  ListBuilder<String> get hydraServeAdminCorsAllowedOrigins =>
-      _$this._hydraServeAdminCorsAllowedOrigins ??= new ListBuilder<String>();
-  set hydraServeAdminCorsAllowedOrigins(
-          ListBuilder<String>? hydraServeAdminCorsAllowedOrigins) =>
-      _$this._hydraServeAdminCorsAllowedOrigins =
-          hydraServeAdminCorsAllowedOrigins;
-
-  bool? _hydraServeAdminCorsEnabled;
-  bool? get hydraServeAdminCorsEnabled => _$this._hydraServeAdminCorsEnabled;
-  set hydraServeAdminCorsEnabled(bool? hydraServeAdminCorsEnabled) =>
-      _$this._hydraServeAdminCorsEnabled = hydraServeAdminCorsEnabled;
-
   bool? _hydraServeCookiesSameSiteLegacyWorkaround;
   bool? get hydraServeCookiesSameSiteLegacyWorkaround =>
       _$this._hydraServeCookiesSameSiteLegacyWorkaround;
@@ -1696,19 +2246,6 @@ class NormalizedProjectRevisionBuilder
   set hydraServeCookiesSameSiteMode(String? hydraServeCookiesSameSiteMode) =>
       _$this._hydraServeCookiesSameSiteMode = hydraServeCookiesSameSiteMode;
 
-  ListBuilder<String>? _hydraServePublicCorsAllowedOrigins;
-  ListBuilder<String> get hydraServePublicCorsAllowedOrigins =>
-      _$this._hydraServePublicCorsAllowedOrigins ??= new ListBuilder<String>();
-  set hydraServePublicCorsAllowedOrigins(
-          ListBuilder<String>? hydraServePublicCorsAllowedOrigins) =>
-      _$this._hydraServePublicCorsAllowedOrigins =
-          hydraServePublicCorsAllowedOrigins;
-
-  bool? _hydraServePublicCorsEnabled;
-  bool? get hydraServePublicCorsEnabled => _$this._hydraServePublicCorsEnabled;
-  set hydraServePublicCorsEnabled(bool? hydraServePublicCorsEnabled) =>
-      _$this._hydraServePublicCorsEnabled = hydraServePublicCorsEnabled;
-
   NormalizedProjectRevisionHydraStrategiesAccessTokenEnum?
       _hydraStrategiesAccessToken;
   NormalizedProjectRevisionHydraStrategiesAccessTokenEnum?
@@ -1717,6 +2254,15 @@ class NormalizedProjectRevisionBuilder
           NormalizedProjectRevisionHydraStrategiesAccessTokenEnum?
               hydraStrategiesAccessToken) =>
       _$this._hydraStrategiesAccessToken = hydraStrategiesAccessToken;
+
+  NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum?
+      _hydraStrategiesJwtScopeClaim;
+  NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum?
+      get hydraStrategiesJwtScopeClaim => _$this._hydraStrategiesJwtScopeClaim;
+  set hydraStrategiesJwtScopeClaim(
+          NormalizedProjectRevisionHydraStrategiesJwtScopeClaimEnum?
+              hydraStrategiesJwtScopeClaim) =>
+      _$this._hydraStrategiesJwtScopeClaim = hydraStrategiesJwtScopeClaim;
 
   NormalizedProjectRevisionHydraStrategiesScopeEnum? _hydraStrategiesScope;
   NormalizedProjectRevisionHydraStrategiesScopeEnum? get hydraStrategiesScope =>
@@ -1777,6 +2323,11 @@ class NormalizedProjectRevisionBuilder
       _$this._hydraUrlsPostLogoutRedirect;
   set hydraUrlsPostLogoutRedirect(String? hydraUrlsPostLogoutRedirect) =>
       _$this._hydraUrlsPostLogoutRedirect = hydraUrlsPostLogoutRedirect;
+
+  String? _hydraUrlsRegistration;
+  String? get hydraUrlsRegistration => _$this._hydraUrlsRegistration;
+  set hydraUrlsRegistration(String? hydraUrlsRegistration) =>
+      _$this._hydraUrlsRegistration = hydraUrlsRegistration;
 
   String? _hydraUrlsSelfIssuer;
   String? get hydraUrlsSelfIssuer => _$this._hydraUrlsSelfIssuer;
@@ -1863,15 +2414,105 @@ class NormalizedProjectRevisionBuilder
   set ketoNamespaces(ListBuilder<KetoNamespace>? ketoNamespaces) =>
       _$this._ketoNamespaces = ketoNamespaces;
 
-  int? _ketoReadMaxDepth;
-  int? get ketoReadMaxDepth => _$this._ketoReadMaxDepth;
-  set ketoReadMaxDepth(int? ketoReadMaxDepth) =>
-      _$this._ketoReadMaxDepth = ketoReadMaxDepth;
-
   String? _kratosCookiesSameSite;
   String? get kratosCookiesSameSite => _$this._kratosCookiesSameSite;
   set kratosCookiesSameSite(String? kratosCookiesSameSite) =>
       _$this._kratosCookiesSameSite = kratosCookiesSameSite;
+
+  ListBuilder<NormalizedProjectRevisionCourierChannel>? _kratosCourierChannels;
+  ListBuilder<NormalizedProjectRevisionCourierChannel>
+      get kratosCourierChannels => _$this._kratosCourierChannels ??=
+          new ListBuilder<NormalizedProjectRevisionCourierChannel>();
+  set kratosCourierChannels(
+          ListBuilder<NormalizedProjectRevisionCourierChannel>?
+              kratosCourierChannels) =>
+      _$this._kratosCourierChannels = kratosCourierChannels;
+
+  String? _kratosCourierDeliveryStrategy;
+  String? get kratosCourierDeliveryStrategy =>
+      _$this._kratosCourierDeliveryStrategy;
+  set kratosCourierDeliveryStrategy(String? kratosCourierDeliveryStrategy) =>
+      _$this._kratosCourierDeliveryStrategy = kratosCourierDeliveryStrategy;
+
+  String? _kratosCourierHttpRequestConfigAuthApiKeyIn;
+  String? get kratosCourierHttpRequestConfigAuthApiKeyIn =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyIn;
+  set kratosCourierHttpRequestConfigAuthApiKeyIn(
+          String? kratosCourierHttpRequestConfigAuthApiKeyIn) =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyIn =
+          kratosCourierHttpRequestConfigAuthApiKeyIn;
+
+  String? _kratosCourierHttpRequestConfigAuthApiKeyName;
+  String? get kratosCourierHttpRequestConfigAuthApiKeyName =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyName;
+  set kratosCourierHttpRequestConfigAuthApiKeyName(
+          String? kratosCourierHttpRequestConfigAuthApiKeyName) =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyName =
+          kratosCourierHttpRequestConfigAuthApiKeyName;
+
+  String? _kratosCourierHttpRequestConfigAuthApiKeyValue;
+  String? get kratosCourierHttpRequestConfigAuthApiKeyValue =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyValue;
+  set kratosCourierHttpRequestConfigAuthApiKeyValue(
+          String? kratosCourierHttpRequestConfigAuthApiKeyValue) =>
+      _$this._kratosCourierHttpRequestConfigAuthApiKeyValue =
+          kratosCourierHttpRequestConfigAuthApiKeyValue;
+
+  String? _kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+  String? get kratosCourierHttpRequestConfigAuthBasicAuthPassword =>
+      _$this._kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+  set kratosCourierHttpRequestConfigAuthBasicAuthPassword(
+          String? kratosCourierHttpRequestConfigAuthBasicAuthPassword) =>
+      _$this._kratosCourierHttpRequestConfigAuthBasicAuthPassword =
+          kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+
+  String? _kratosCourierHttpRequestConfigAuthBasicAuthUser;
+  String? get kratosCourierHttpRequestConfigAuthBasicAuthUser =>
+      _$this._kratosCourierHttpRequestConfigAuthBasicAuthUser;
+  set kratosCourierHttpRequestConfigAuthBasicAuthUser(
+          String? kratosCourierHttpRequestConfigAuthBasicAuthUser) =>
+      _$this._kratosCourierHttpRequestConfigAuthBasicAuthUser =
+          kratosCourierHttpRequestConfigAuthBasicAuthUser;
+
+  String? _kratosCourierHttpRequestConfigAuthType;
+  String? get kratosCourierHttpRequestConfigAuthType =>
+      _$this._kratosCourierHttpRequestConfigAuthType;
+  set kratosCourierHttpRequestConfigAuthType(
+          String? kratosCourierHttpRequestConfigAuthType) =>
+      _$this._kratosCourierHttpRequestConfigAuthType =
+          kratosCourierHttpRequestConfigAuthType;
+
+  String? _kratosCourierHttpRequestConfigBody;
+  String? get kratosCourierHttpRequestConfigBody =>
+      _$this._kratosCourierHttpRequestConfigBody;
+  set kratosCourierHttpRequestConfigBody(
+          String? kratosCourierHttpRequestConfigBody) =>
+      _$this._kratosCourierHttpRequestConfigBody =
+          kratosCourierHttpRequestConfigBody;
+
+  JsonObject? _kratosCourierHttpRequestConfigHeaders;
+  JsonObject? get kratosCourierHttpRequestConfigHeaders =>
+      _$this._kratosCourierHttpRequestConfigHeaders;
+  set kratosCourierHttpRequestConfigHeaders(
+          JsonObject? kratosCourierHttpRequestConfigHeaders) =>
+      _$this._kratosCourierHttpRequestConfigHeaders =
+          kratosCourierHttpRequestConfigHeaders;
+
+  String? _kratosCourierHttpRequestConfigMethod;
+  String? get kratosCourierHttpRequestConfigMethod =>
+      _$this._kratosCourierHttpRequestConfigMethod;
+  set kratosCourierHttpRequestConfigMethod(
+          String? kratosCourierHttpRequestConfigMethod) =>
+      _$this._kratosCourierHttpRequestConfigMethod =
+          kratosCourierHttpRequestConfigMethod;
+
+  String? _kratosCourierHttpRequestConfigUrl;
+  String? get kratosCourierHttpRequestConfigUrl =>
+      _$this._kratosCourierHttpRequestConfigUrl;
+  set kratosCourierHttpRequestConfigUrl(
+          String? kratosCourierHttpRequestConfigUrl) =>
+      _$this._kratosCourierHttpRequestConfigUrl =
+          kratosCourierHttpRequestConfigUrl;
 
   String? _kratosCourierSmtpConnectionUri;
   String? get kratosCourierSmtpConnectionUri =>
@@ -1894,6 +2535,43 @@ class NormalizedProjectRevisionBuilder
   JsonObject? get kratosCourierSmtpHeaders => _$this._kratosCourierSmtpHeaders;
   set kratosCourierSmtpHeaders(JsonObject? kratosCourierSmtpHeaders) =>
       _$this._kratosCourierSmtpHeaders = kratosCourierSmtpHeaders;
+
+  String? _kratosCourierSmtpLocalName;
+  String? get kratosCourierSmtpLocalName => _$this._kratosCourierSmtpLocalName;
+  set kratosCourierSmtpLocalName(String? kratosCourierSmtpLocalName) =>
+      _$this._kratosCourierSmtpLocalName = kratosCourierSmtpLocalName;
+
+  String? _kratosCourierTemplatesLoginCodeValidEmailBodyHtml;
+  String? get kratosCourierTemplatesLoginCodeValidEmailBodyHtml =>
+      _$this._kratosCourierTemplatesLoginCodeValidEmailBodyHtml;
+  set kratosCourierTemplatesLoginCodeValidEmailBodyHtml(
+          String? kratosCourierTemplatesLoginCodeValidEmailBodyHtml) =>
+      _$this._kratosCourierTemplatesLoginCodeValidEmailBodyHtml =
+          kratosCourierTemplatesLoginCodeValidEmailBodyHtml;
+
+  String? _kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext;
+  String? get kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext =>
+      _$this._kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext;
+  set kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext(
+          String? kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext) =>
+      _$this._kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext =
+          kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext;
+
+  String? _kratosCourierTemplatesLoginCodeValidEmailSubject;
+  String? get kratosCourierTemplatesLoginCodeValidEmailSubject =>
+      _$this._kratosCourierTemplatesLoginCodeValidEmailSubject;
+  set kratosCourierTemplatesLoginCodeValidEmailSubject(
+          String? kratosCourierTemplatesLoginCodeValidEmailSubject) =>
+      _$this._kratosCourierTemplatesLoginCodeValidEmailSubject =
+          kratosCourierTemplatesLoginCodeValidEmailSubject;
+
+  String? _kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
+  String? get kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext =>
+      _$this._kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
+  set kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext(
+          String? kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext) =>
+      _$this._kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext =
+          kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
 
   String? _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
   String? get kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml =>
@@ -1992,6 +2670,31 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosCourierTemplatesRecoveryValidEmailSubject =
           kratosCourierTemplatesRecoveryValidEmailSubject;
 
+  String? _kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml;
+  String? get kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml =>
+      _$this._kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml;
+  set kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml(
+          String? kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml) =>
+      _$this._kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml =
+          kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml;
+
+  String? _kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext;
+  String? get kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext =>
+      _$this._kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext;
+  set kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext(
+          String?
+              kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext) =>
+      _$this._kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext =
+          kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext;
+
+  String? _kratosCourierTemplatesRegistrationCodeValidEmailSubject;
+  String? get kratosCourierTemplatesRegistrationCodeValidEmailSubject =>
+      _$this._kratosCourierTemplatesRegistrationCodeValidEmailSubject;
+  set kratosCourierTemplatesRegistrationCodeValidEmailSubject(
+          String? kratosCourierTemplatesRegistrationCodeValidEmailSubject) =>
+      _$this._kratosCourierTemplatesRegistrationCodeValidEmailSubject =
+          kratosCourierTemplatesRegistrationCodeValidEmailSubject;
+
   String? _kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml;
   String? get kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml =>
       _$this._kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml;
@@ -2041,6 +2744,15 @@ class NormalizedProjectRevisionBuilder
           String? kratosCourierTemplatesVerificationCodeValidEmailSubject) =>
       _$this._kratosCourierTemplatesVerificationCodeValidEmailSubject =
           kratosCourierTemplatesVerificationCodeValidEmailSubject;
+
+  String? _kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
+  String? get kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext =>
+      _$this._kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
+  set kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext(
+          String?
+              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext) =>
+      _$this._kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext =
+          kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
 
   String? _kratosCourierTemplatesVerificationInvalidEmailBodyHtml;
   String? get kratosCourierTemplatesVerificationInvalidEmailBodyHtml =>
@@ -2099,6 +2811,22 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosFeatureFlagsCacheableSessions =
           kratosFeatureFlagsCacheableSessions;
 
+  String? _kratosFeatureFlagsCacheableSessionsMaxAge;
+  String? get kratosFeatureFlagsCacheableSessionsMaxAge =>
+      _$this._kratosFeatureFlagsCacheableSessionsMaxAge;
+  set kratosFeatureFlagsCacheableSessionsMaxAge(
+          String? kratosFeatureFlagsCacheableSessionsMaxAge) =>
+      _$this._kratosFeatureFlagsCacheableSessionsMaxAge =
+          kratosFeatureFlagsCacheableSessionsMaxAge;
+
+  bool? _kratosFeatureFlagsUseContinueWithTransitions;
+  bool? get kratosFeatureFlagsUseContinueWithTransitions =>
+      _$this._kratosFeatureFlagsUseContinueWithTransitions;
+  set kratosFeatureFlagsUseContinueWithTransitions(
+          bool? kratosFeatureFlagsUseContinueWithTransitions) =>
+      _$this._kratosFeatureFlagsUseContinueWithTransitions =
+          kratosFeatureFlagsUseContinueWithTransitions;
+
   ListBuilder<NormalizedProjectRevisionIdentitySchema>? _kratosIdentitySchemas;
   ListBuilder<NormalizedProjectRevisionIdentitySchema>
       get kratosIdentitySchemas => _$this._kratosIdentitySchemas ??=
@@ -2114,10 +2842,26 @@ class NormalizedProjectRevisionBuilder
   set kratosOauth2ProviderHeaders(JsonObject? kratosOauth2ProviderHeaders) =>
       _$this._kratosOauth2ProviderHeaders = kratosOauth2ProviderHeaders;
 
+  bool? _kratosOauth2ProviderOverrideReturnTo;
+  bool? get kratosOauth2ProviderOverrideReturnTo =>
+      _$this._kratosOauth2ProviderOverrideReturnTo;
+  set kratosOauth2ProviderOverrideReturnTo(
+          bool? kratosOauth2ProviderOverrideReturnTo) =>
+      _$this._kratosOauth2ProviderOverrideReturnTo =
+          kratosOauth2ProviderOverrideReturnTo;
+
   String? _kratosOauth2ProviderUrl;
   String? get kratosOauth2ProviderUrl => _$this._kratosOauth2ProviderUrl;
   set kratosOauth2ProviderUrl(String? kratosOauth2ProviderUrl) =>
       _$this._kratosOauth2ProviderUrl = kratosOauth2ProviderUrl;
+
+  String? _kratosPreviewDefaultReadConsistencyLevel;
+  String? get kratosPreviewDefaultReadConsistencyLevel =>
+      _$this._kratosPreviewDefaultReadConsistencyLevel;
+  set kratosPreviewDefaultReadConsistencyLevel(
+          String? kratosPreviewDefaultReadConsistencyLevel) =>
+      _$this._kratosPreviewDefaultReadConsistencyLevel =
+          kratosPreviewDefaultReadConsistencyLevel;
 
   ListBuilder<String>? _kratosSecretsCipher;
   ListBuilder<String> get kratosSecretsCipher =>
@@ -2161,14 +2905,14 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceFlowsErrorUiUrl =
           kratosSelfserviceFlowsErrorUiUrl;
 
-  ListBuilder<NormalizedProjectRevisionHook>? _kratosSelfserviceFlowsHooks;
-  ListBuilder<NormalizedProjectRevisionHook> get kratosSelfserviceFlowsHooks =>
-      _$this._kratosSelfserviceFlowsHooks ??=
-          new ListBuilder<NormalizedProjectRevisionHook>();
-  set kratosSelfserviceFlowsHooks(
-          ListBuilder<NormalizedProjectRevisionHook>?
-              kratosSelfserviceFlowsHooks) =>
-      _$this._kratosSelfserviceFlowsHooks = kratosSelfserviceFlowsHooks;
+  String? _kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
 
   String? _kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl =>
@@ -2177,6 +2921,16 @@ class NormalizedProjectRevisionBuilder
           String? kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
 
   String? _kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl =>
@@ -2187,6 +2941,15 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
 
+  String? _kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
+
   String? _kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl =>
       _$this._kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
@@ -2195,6 +2958,15 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
 
   String? _kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl =>
@@ -2280,6 +3052,16 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceFlowsRecoveryUse =
           kratosSelfserviceFlowsRecoveryUse;
 
+  String? _kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
+
   String? _kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl =>
       _$this._kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
@@ -2298,6 +3080,17 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl;
+
+  String?
+      _kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
 
   String?
       _kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl;
@@ -2321,6 +3114,14 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
 
+  bool? _kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
+  bool? get kratosSelfserviceFlowsRegistrationEnableLegacyOneStep =>
+      _$this._kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
+  set kratosSelfserviceFlowsRegistrationEnableLegacyOneStep(
+          bool? kratosSelfserviceFlowsRegistrationEnableLegacyOneStep) =>
+      _$this._kratosSelfserviceFlowsRegistrationEnableLegacyOneStep =
+          kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
+
   bool? _kratosSelfserviceFlowsRegistrationEnabled;
   bool? get kratosSelfserviceFlowsRegistrationEnabled =>
       _$this._kratosSelfserviceFlowsRegistrationEnabled;
@@ -2337,6 +3138,14 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceFlowsRegistrationLifespan =
           kratosSelfserviceFlowsRegistrationLifespan;
 
+  bool? _kratosSelfserviceFlowsRegistrationLoginHints;
+  bool? get kratosSelfserviceFlowsRegistrationLoginHints =>
+      _$this._kratosSelfserviceFlowsRegistrationLoginHints;
+  set kratosSelfserviceFlowsRegistrationLoginHints(
+          bool? kratosSelfserviceFlowsRegistrationLoginHints) =>
+      _$this._kratosSelfserviceFlowsRegistrationLoginHints =
+          kratosSelfserviceFlowsRegistrationLoginHints;
+
   String? _kratosSelfserviceFlowsRegistrationUiUrl;
   String? get kratosSelfserviceFlowsRegistrationUiUrl =>
       _$this._kratosSelfserviceFlowsRegistrationUiUrl;
@@ -2352,6 +3161,35 @@ class NormalizedProjectRevisionBuilder
           String? kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl;
+
+  String?
+      _kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
 
   String? _kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
   String? get kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl =>
@@ -2371,6 +3209,25 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl) =>
       _$this._kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl =
           kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+
+  String? _kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl =>
+      _$this
+          ._kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
+  set kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl(
+          String?
+              kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl =
+          kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
 
   String? _kratosSelfserviceFlowsSettingsLifespan;
   String? get kratosSelfserviceFlowsSettingsLifespan =>
@@ -2472,6 +3329,30 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceMethodsCodeEnabled =
           kratosSelfserviceMethodsCodeEnabled;
 
+  bool? _kratosSelfserviceMethodsCodeMfaEnabled;
+  bool? get kratosSelfserviceMethodsCodeMfaEnabled =>
+      _$this._kratosSelfserviceMethodsCodeMfaEnabled;
+  set kratosSelfserviceMethodsCodeMfaEnabled(
+          bool? kratosSelfserviceMethodsCodeMfaEnabled) =>
+      _$this._kratosSelfserviceMethodsCodeMfaEnabled =
+          kratosSelfserviceMethodsCodeMfaEnabled;
+
+  bool? _kratosSelfserviceMethodsCodePasswordlessEnabled;
+  bool? get kratosSelfserviceMethodsCodePasswordlessEnabled =>
+      _$this._kratosSelfserviceMethodsCodePasswordlessEnabled;
+  set kratosSelfserviceMethodsCodePasswordlessEnabled(
+          bool? kratosSelfserviceMethodsCodePasswordlessEnabled) =>
+      _$this._kratosSelfserviceMethodsCodePasswordlessEnabled =
+          kratosSelfserviceMethodsCodePasswordlessEnabled;
+
+  bool? _kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
+  bool? get kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled =>
+      _$this._kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
+  set kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled(
+          bool? kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled) =>
+      _$this._kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled =
+          kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
+
   String? _kratosSelfserviceMethodsLinkConfigBaseUrl;
   String? get kratosSelfserviceMethodsLinkConfigBaseUrl =>
       _$this._kratosSelfserviceMethodsLinkConfigBaseUrl;
@@ -2531,6 +3412,40 @@ class NormalizedProjectRevisionBuilder
           bool? kratosSelfserviceMethodsOidcEnabled) =>
       _$this._kratosSelfserviceMethodsOidcEnabled =
           kratosSelfserviceMethodsOidcEnabled;
+
+  String? _kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+  String? get kratosSelfserviceMethodsPasskeyConfigRpDisplayName =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+  set kratosSelfserviceMethodsPasskeyConfigRpDisplayName(
+          String? kratosSelfserviceMethodsPasskeyConfigRpDisplayName) =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpDisplayName =
+          kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+
+  String? _kratosSelfserviceMethodsPasskeyConfigRpId;
+  String? get kratosSelfserviceMethodsPasskeyConfigRpId =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpId;
+  set kratosSelfserviceMethodsPasskeyConfigRpId(
+          String? kratosSelfserviceMethodsPasskeyConfigRpId) =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpId =
+          kratosSelfserviceMethodsPasskeyConfigRpId;
+
+  ListBuilder<String>? _kratosSelfserviceMethodsPasskeyConfigRpOrigins;
+  ListBuilder<String> get kratosSelfserviceMethodsPasskeyConfigRpOrigins =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpOrigins ??=
+          new ListBuilder<String>();
+  set kratosSelfserviceMethodsPasskeyConfigRpOrigins(
+          ListBuilder<String>?
+              kratosSelfserviceMethodsPasskeyConfigRpOrigins) =>
+      _$this._kratosSelfserviceMethodsPasskeyConfigRpOrigins =
+          kratosSelfserviceMethodsPasskeyConfigRpOrigins;
+
+  bool? _kratosSelfserviceMethodsPasskeyEnabled;
+  bool? get kratosSelfserviceMethodsPasskeyEnabled =>
+      _$this._kratosSelfserviceMethodsPasskeyEnabled;
+  set kratosSelfserviceMethodsPasskeyEnabled(
+          bool? kratosSelfserviceMethodsPasskeyEnabled) =>
+      _$this._kratosSelfserviceMethodsPasskeyEnabled =
+          kratosSelfserviceMethodsPasskeyEnabled;
 
   bool? _kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
   bool? get kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled =>
@@ -2638,13 +3553,15 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceMethodsWebauthnConfigRpId =
           kratosSelfserviceMethodsWebauthnConfigRpId;
 
-  String? _kratosSelfserviceMethodsWebauthnConfigRpOrigin;
-  String? get kratosSelfserviceMethodsWebauthnConfigRpOrigin =>
-      _$this._kratosSelfserviceMethodsWebauthnConfigRpOrigin;
-  set kratosSelfserviceMethodsWebauthnConfigRpOrigin(
-          String? kratosSelfserviceMethodsWebauthnConfigRpOrigin) =>
-      _$this._kratosSelfserviceMethodsWebauthnConfigRpOrigin =
-          kratosSelfserviceMethodsWebauthnConfigRpOrigin;
+  ListBuilder<String>? _kratosSelfserviceMethodsWebauthnConfigRpOrigins;
+  ListBuilder<String> get kratosSelfserviceMethodsWebauthnConfigRpOrigins =>
+      _$this._kratosSelfserviceMethodsWebauthnConfigRpOrigins ??=
+          new ListBuilder<String>();
+  set kratosSelfserviceMethodsWebauthnConfigRpOrigins(
+          ListBuilder<String>?
+              kratosSelfserviceMethodsWebauthnConfigRpOrigins) =>
+      _$this._kratosSelfserviceMethodsWebauthnConfigRpOrigins =
+          kratosSelfserviceMethodsWebauthnConfigRpOrigins;
 
   bool? _kratosSelfserviceMethodsWebauthnEnabled;
   bool? get kratosSelfserviceMethodsWebauthnEnabled =>
@@ -2677,17 +3594,62 @@ class NormalizedProjectRevisionBuilder
   set kratosSessionWhoamiRequiredAal(String? kratosSessionWhoamiRequiredAal) =>
       _$this._kratosSessionWhoamiRequiredAal = kratosSessionWhoamiRequiredAal;
 
+  ListBuilder<NormalizedProjectRevisionTokenizerTemplate>?
+      _kratosSessionWhoamiTokenizerTemplates;
+  ListBuilder<NormalizedProjectRevisionTokenizerTemplate>
+      get kratosSessionWhoamiTokenizerTemplates =>
+          _$this._kratosSessionWhoamiTokenizerTemplates ??=
+              new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>();
+  set kratosSessionWhoamiTokenizerTemplates(
+          ListBuilder<NormalizedProjectRevisionTokenizerTemplate>?
+              kratosSessionWhoamiTokenizerTemplates) =>
+      _$this._kratosSessionWhoamiTokenizerTemplates =
+          kratosSessionWhoamiTokenizerTemplates;
+
   String? _name;
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  bool? _production;
-  bool? get production => _$this._production;
-  set production(bool? production) => _$this._production = production;
-
   String? _projectId;
   String? get projectId => _$this._projectId;
   set projectId(String? projectId) => _$this._projectId = projectId;
+
+  ListBuilder<NormalizedProjectRevisionHook>? _projectRevisionHooks;
+  ListBuilder<NormalizedProjectRevisionHook> get projectRevisionHooks =>
+      _$this._projectRevisionHooks ??=
+          new ListBuilder<NormalizedProjectRevisionHook>();
+  set projectRevisionHooks(
+          ListBuilder<NormalizedProjectRevisionHook>? projectRevisionHooks) =>
+      _$this._projectRevisionHooks = projectRevisionHooks;
+
+  ListBuilder<String>? _serveAdminCorsAllowedOrigins;
+  ListBuilder<String> get serveAdminCorsAllowedOrigins =>
+      _$this._serveAdminCorsAllowedOrigins ??= new ListBuilder<String>();
+  set serveAdminCorsAllowedOrigins(
+          ListBuilder<String>? serveAdminCorsAllowedOrigins) =>
+      _$this._serveAdminCorsAllowedOrigins = serveAdminCorsAllowedOrigins;
+
+  bool? _serveAdminCorsEnabled;
+  bool? get serveAdminCorsEnabled => _$this._serveAdminCorsEnabled;
+  set serveAdminCorsEnabled(bool? serveAdminCorsEnabled) =>
+      _$this._serveAdminCorsEnabled = serveAdminCorsEnabled;
+
+  ListBuilder<String>? _servePublicCorsAllowedOrigins;
+  ListBuilder<String> get servePublicCorsAllowedOrigins =>
+      _$this._servePublicCorsAllowedOrigins ??= new ListBuilder<String>();
+  set servePublicCorsAllowedOrigins(
+          ListBuilder<String>? servePublicCorsAllowedOrigins) =>
+      _$this._servePublicCorsAllowedOrigins = servePublicCorsAllowedOrigins;
+
+  bool? _servePublicCorsEnabled;
+  bool? get servePublicCorsEnabled => _$this._servePublicCorsEnabled;
+  set servePublicCorsEnabled(bool? servePublicCorsEnabled) =>
+      _$this._servePublicCorsEnabled = servePublicCorsEnabled;
+
+  bool? _strictSecurity;
+  bool? get strictSecurity => _$this._strictSecurity;
+  set strictSecurity(bool? strictSecurity) =>
+      _$this._strictSecurity = strictSecurity;
 
   DateTime? _updatedAt;
   DateTime? get updatedAt => _$this._updatedAt;
@@ -2701,6 +3663,9 @@ class NormalizedProjectRevisionBuilder
     final $v = _$v;
     if ($v != null) {
       _createdAt = $v.createdAt;
+      _disableAccountExperienceWelcomeScreen =
+          $v.disableAccountExperienceWelcomeScreen;
+      _enableAxV2 = $v.enableAxV2;
       _hydraOauth2AllowedTopLevelClaims =
           $v.hydraOauth2AllowedTopLevelClaims?.toBuilder();
       _hydraOauth2ClientCredentialsDefaultGrantAllowedScope =
@@ -2709,10 +3674,12 @@ class NormalizedProjectRevisionBuilder
       _hydraOauth2GrantJwtIatOptional = $v.hydraOauth2GrantJwtIatOptional;
       _hydraOauth2GrantJwtJtiOptional = $v.hydraOauth2GrantJwtJtiOptional;
       _hydraOauth2GrantJwtMaxTtl = $v.hydraOauth2GrantJwtMaxTtl;
+      _hydraOauth2MirrorTopLevelClaims = $v.hydraOauth2MirrorTopLevelClaims;
       _hydraOauth2PkceEnforced = $v.hydraOauth2PkceEnforced;
       _hydraOauth2PkceEnforcedForPublicClients =
           $v.hydraOauth2PkceEnforcedForPublicClients;
       _hydraOauth2RefreshTokenHook = $v.hydraOauth2RefreshTokenHook;
+      _hydraOauth2TokenHook = $v.hydraOauth2TokenHook;
       _hydraOidcDynamicClientRegistrationDefaultScope =
           $v.hydraOidcDynamicClientRegistrationDefaultScope?.toBuilder();
       _hydraOidcDynamicClientRegistrationEnabled =
@@ -2723,16 +3690,11 @@ class NormalizedProjectRevisionBuilder
           $v.hydraOidcSubjectIdentifiersSupportedTypes?.toBuilder();
       _hydraSecretsCookie = $v.hydraSecretsCookie?.toBuilder();
       _hydraSecretsSystem = $v.hydraSecretsSystem?.toBuilder();
-      _hydraServeAdminCorsAllowedOrigins =
-          $v.hydraServeAdminCorsAllowedOrigins?.toBuilder();
-      _hydraServeAdminCorsEnabled = $v.hydraServeAdminCorsEnabled;
       _hydraServeCookiesSameSiteLegacyWorkaround =
           $v.hydraServeCookiesSameSiteLegacyWorkaround;
       _hydraServeCookiesSameSiteMode = $v.hydraServeCookiesSameSiteMode;
-      _hydraServePublicCorsAllowedOrigins =
-          $v.hydraServePublicCorsAllowedOrigins?.toBuilder();
-      _hydraServePublicCorsEnabled = $v.hydraServePublicCorsEnabled;
       _hydraStrategiesAccessToken = $v.hydraStrategiesAccessToken;
+      _hydraStrategiesJwtScopeClaim = $v.hydraStrategiesJwtScopeClaim;
       _hydraStrategiesScope = $v.hydraStrategiesScope;
       _hydraTtlAccessToken = $v.hydraTtlAccessToken;
       _hydraTtlAuthCode = $v.hydraTtlAuthCode;
@@ -2744,6 +3706,7 @@ class NormalizedProjectRevisionBuilder
       _hydraUrlsLogin = $v.hydraUrlsLogin;
       _hydraUrlsLogout = $v.hydraUrlsLogout;
       _hydraUrlsPostLogoutRedirect = $v.hydraUrlsPostLogoutRedirect;
+      _hydraUrlsRegistration = $v.hydraUrlsRegistration;
       _hydraUrlsSelfIssuer = $v.hydraUrlsSelfIssuer;
       _hydraWebfingerJwksBroadcastKeys =
           $v.hydraWebfingerJwksBroadcastKeys?.toBuilder();
@@ -2764,12 +3727,41 @@ class NormalizedProjectRevisionBuilder
       _id = $v.id;
       _ketoNamespaceConfiguration = $v.ketoNamespaceConfiguration;
       _ketoNamespaces = $v.ketoNamespaces?.toBuilder();
-      _ketoReadMaxDepth = $v.ketoReadMaxDepth;
       _kratosCookiesSameSite = $v.kratosCookiesSameSite;
+      _kratosCourierChannels = $v.kratosCourierChannels?.toBuilder();
+      _kratosCourierDeliveryStrategy = $v.kratosCourierDeliveryStrategy;
+      _kratosCourierHttpRequestConfigAuthApiKeyIn =
+          $v.kratosCourierHttpRequestConfigAuthApiKeyIn;
+      _kratosCourierHttpRequestConfigAuthApiKeyName =
+          $v.kratosCourierHttpRequestConfigAuthApiKeyName;
+      _kratosCourierHttpRequestConfigAuthApiKeyValue =
+          $v.kratosCourierHttpRequestConfigAuthApiKeyValue;
+      _kratosCourierHttpRequestConfigAuthBasicAuthPassword =
+          $v.kratosCourierHttpRequestConfigAuthBasicAuthPassword;
+      _kratosCourierHttpRequestConfigAuthBasicAuthUser =
+          $v.kratosCourierHttpRequestConfigAuthBasicAuthUser;
+      _kratosCourierHttpRequestConfigAuthType =
+          $v.kratosCourierHttpRequestConfigAuthType;
+      _kratosCourierHttpRequestConfigBody =
+          $v.kratosCourierHttpRequestConfigBody;
+      _kratosCourierHttpRequestConfigHeaders =
+          $v.kratosCourierHttpRequestConfigHeaders;
+      _kratosCourierHttpRequestConfigMethod =
+          $v.kratosCourierHttpRequestConfigMethod;
+      _kratosCourierHttpRequestConfigUrl = $v.kratosCourierHttpRequestConfigUrl;
       _kratosCourierSmtpConnectionUri = $v.kratosCourierSmtpConnectionUri;
       _kratosCourierSmtpFromAddress = $v.kratosCourierSmtpFromAddress;
       _kratosCourierSmtpFromName = $v.kratosCourierSmtpFromName;
       _kratosCourierSmtpHeaders = $v.kratosCourierSmtpHeaders;
+      _kratosCourierSmtpLocalName = $v.kratosCourierSmtpLocalName;
+      _kratosCourierTemplatesLoginCodeValidEmailBodyHtml =
+          $v.kratosCourierTemplatesLoginCodeValidEmailBodyHtml;
+      _kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext =
+          $v.kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext;
+      _kratosCourierTemplatesLoginCodeValidEmailSubject =
+          $v.kratosCourierTemplatesLoginCodeValidEmailSubject;
+      _kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext =
+          $v.kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext;
       _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml =
           $v.kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml;
       _kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext =
@@ -2794,6 +3786,12 @@ class NormalizedProjectRevisionBuilder
           $v.kratosCourierTemplatesRecoveryValidEmailBodyPlaintext;
       _kratosCourierTemplatesRecoveryValidEmailSubject =
           $v.kratosCourierTemplatesRecoveryValidEmailSubject;
+      _kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml =
+          $v.kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml;
+      _kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext =
+          $v.kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext;
+      _kratosCourierTemplatesRegistrationCodeValidEmailSubject =
+          $v.kratosCourierTemplatesRegistrationCodeValidEmailSubject;
       _kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml =
           $v.kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml;
       _kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext =
@@ -2806,6 +3804,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext;
       _kratosCourierTemplatesVerificationCodeValidEmailSubject =
           $v.kratosCourierTemplatesVerificationCodeValidEmailSubject;
+      _kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext =
+          $v.kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext;
       _kratosCourierTemplatesVerificationInvalidEmailBodyHtml =
           $v.kratosCourierTemplatesVerificationInvalidEmailBodyHtml;
       _kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext =
@@ -2820,9 +3820,17 @@ class NormalizedProjectRevisionBuilder
           $v.kratosCourierTemplatesVerificationValidEmailSubject;
       _kratosFeatureFlagsCacheableSessions =
           $v.kratosFeatureFlagsCacheableSessions;
+      _kratosFeatureFlagsCacheableSessionsMaxAge =
+          $v.kratosFeatureFlagsCacheableSessionsMaxAge;
+      _kratosFeatureFlagsUseContinueWithTransitions =
+          $v.kratosFeatureFlagsUseContinueWithTransitions;
       _kratosIdentitySchemas = $v.kratosIdentitySchemas?.toBuilder();
       _kratosOauth2ProviderHeaders = $v.kratosOauth2ProviderHeaders;
+      _kratosOauth2ProviderOverrideReturnTo =
+          $v.kratosOauth2ProviderOverrideReturnTo;
       _kratosOauth2ProviderUrl = $v.kratosOauth2ProviderUrl;
+      _kratosPreviewDefaultReadConsistencyLevel =
+          $v.kratosPreviewDefaultReadConsistencyLevel;
       _kratosSecretsCipher = $v.kratosSecretsCipher?.toBuilder();
       _kratosSecretsCookie = $v.kratosSecretsCookie?.toBuilder();
       _kratosSecretsDefault = $v.kratosSecretsDefault?.toBuilder();
@@ -2831,14 +3839,20 @@ class NormalizedProjectRevisionBuilder
       _kratosSelfserviceDefaultBrowserReturnUrl =
           $v.kratosSelfserviceDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsErrorUiUrl = $v.kratosSelfserviceFlowsErrorUiUrl;
-      _kratosSelfserviceFlowsHooks =
-          $v.kratosSelfserviceFlowsHooks?.toBuilder();
+      _kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl = $v
+          .kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsLoginLifespan =
@@ -2857,26 +3871,44 @@ class NormalizedProjectRevisionBuilder
       _kratosSelfserviceFlowsRecoveryUiUrl =
           $v.kratosSelfserviceFlowsRecoveryUiUrl;
       _kratosSelfserviceFlowsRecoveryUse = $v.kratosSelfserviceFlowsRecoveryUse;
+      _kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl = $v
+          .kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsRegistrationEnableLegacyOneStep =
+          $v.kratosSelfserviceFlowsRegistrationEnableLegacyOneStep;
       _kratosSelfserviceFlowsRegistrationEnabled =
           $v.kratosSelfserviceFlowsRegistrationEnabled;
       _kratosSelfserviceFlowsRegistrationLifespan =
           $v.kratosSelfserviceFlowsRegistrationLifespan;
+      _kratosSelfserviceFlowsRegistrationLoginHints =
+          $v.kratosSelfserviceFlowsRegistrationLoginHints;
       _kratosSelfserviceFlowsRegistrationUiUrl =
           $v.kratosSelfserviceFlowsRegistrationUiUrl;
       _kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl =
           $v.kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl;
+      _kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsSettingsLifespan =
           $v.kratosSelfserviceFlowsSettingsLifespan;
       _kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge =
@@ -2901,6 +3933,12 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceMethodsCodeConfigLifespan;
       _kratosSelfserviceMethodsCodeEnabled =
           $v.kratosSelfserviceMethodsCodeEnabled;
+      _kratosSelfserviceMethodsCodeMfaEnabled =
+          $v.kratosSelfserviceMethodsCodeMfaEnabled;
+      _kratosSelfserviceMethodsCodePasswordlessEnabled =
+          $v.kratosSelfserviceMethodsCodePasswordlessEnabled;
+      _kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled =
+          $v.kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled;
       _kratosSelfserviceMethodsLinkConfigBaseUrl =
           $v.kratosSelfserviceMethodsLinkConfigBaseUrl;
       _kratosSelfserviceMethodsLinkConfigLifespan =
@@ -2915,6 +3953,14 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceMethodsOidcConfigProviders?.toBuilder();
       _kratosSelfserviceMethodsOidcEnabled =
           $v.kratosSelfserviceMethodsOidcEnabled;
+      _kratosSelfserviceMethodsPasskeyConfigRpDisplayName =
+          $v.kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
+      _kratosSelfserviceMethodsPasskeyConfigRpId =
+          $v.kratosSelfserviceMethodsPasskeyConfigRpId;
+      _kratosSelfserviceMethodsPasskeyConfigRpOrigins =
+          $v.kratosSelfserviceMethodsPasskeyConfigRpOrigins?.toBuilder();
+      _kratosSelfserviceMethodsPasskeyEnabled =
+          $v.kratosSelfserviceMethodsPasskeyEnabled;
       _kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled =
           $v.kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled;
       _kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled =
@@ -2941,17 +3987,26 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceMethodsWebauthnConfigRpIcon;
       _kratosSelfserviceMethodsWebauthnConfigRpId =
           $v.kratosSelfserviceMethodsWebauthnConfigRpId;
-      _kratosSelfserviceMethodsWebauthnConfigRpOrigin =
-          $v.kratosSelfserviceMethodsWebauthnConfigRpOrigin;
+      _kratosSelfserviceMethodsWebauthnConfigRpOrigins =
+          $v.kratosSelfserviceMethodsWebauthnConfigRpOrigins?.toBuilder();
       _kratosSelfserviceMethodsWebauthnEnabled =
           $v.kratosSelfserviceMethodsWebauthnEnabled;
       _kratosSessionCookiePersistent = $v.kratosSessionCookiePersistent;
       _kratosSessionCookieSameSite = $v.kratosSessionCookieSameSite;
       _kratosSessionLifespan = $v.kratosSessionLifespan;
       _kratosSessionWhoamiRequiredAal = $v.kratosSessionWhoamiRequiredAal;
+      _kratosSessionWhoamiTokenizerTemplates =
+          $v.kratosSessionWhoamiTokenizerTemplates?.toBuilder();
       _name = $v.name;
-      _production = $v.production;
       _projectId = $v.projectId;
+      _projectRevisionHooks = $v.projectRevisionHooks?.toBuilder();
+      _serveAdminCorsAllowedOrigins =
+          $v.serveAdminCorsAllowedOrigins?.toBuilder();
+      _serveAdminCorsEnabled = $v.serveAdminCorsEnabled;
+      _servePublicCorsAllowedOrigins =
+          $v.servePublicCorsAllowedOrigins?.toBuilder();
+      _servePublicCorsEnabled = $v.servePublicCorsEnabled;
+      _strictSecurity = $v.strictSecurity;
       _updatedAt = $v.updatedAt;
       _$v = null;
     }
@@ -2978,6 +4033,9 @@ class NormalizedProjectRevisionBuilder
       _$result = _$v ??
           new _$NormalizedProjectRevision._(
               createdAt: createdAt,
+              disableAccountExperienceWelcomeScreen:
+                  disableAccountExperienceWelcomeScreen,
+              enableAxV2: enableAxV2,
               hydraOauth2AllowedTopLevelClaims:
                   _hydraOauth2AllowedTopLevelClaims?.build(),
               hydraOauth2ClientCredentialsDefaultGrantAllowedScope:
@@ -2987,10 +4045,12 @@ class NormalizedProjectRevisionBuilder
               hydraOauth2GrantJwtIatOptional: hydraOauth2GrantJwtIatOptional,
               hydraOauth2GrantJwtJtiOptional: hydraOauth2GrantJwtJtiOptional,
               hydraOauth2GrantJwtMaxTtl: hydraOauth2GrantJwtMaxTtl,
+              hydraOauth2MirrorTopLevelClaims: hydraOauth2MirrorTopLevelClaims,
               hydraOauth2PkceEnforced: hydraOauth2PkceEnforced,
               hydraOauth2PkceEnforcedForPublicClients:
                   hydraOauth2PkceEnforcedForPublicClients,
               hydraOauth2RefreshTokenHook: hydraOauth2RefreshTokenHook,
+              hydraOauth2TokenHook: hydraOauth2TokenHook,
               hydraOidcDynamicClientRegistrationDefaultScope:
                   _hydraOidcDynamicClientRegistrationDefaultScope?.build(),
               hydraOidcDynamicClientRegistrationEnabled:
@@ -3001,16 +4061,11 @@ class NormalizedProjectRevisionBuilder
                   _hydraOidcSubjectIdentifiersSupportedTypes?.build(),
               hydraSecretsCookie: _hydraSecretsCookie?.build(),
               hydraSecretsSystem: _hydraSecretsSystem?.build(),
-              hydraServeAdminCorsAllowedOrigins:
-                  _hydraServeAdminCorsAllowedOrigins?.build(),
-              hydraServeAdminCorsEnabled: hydraServeAdminCorsEnabled,
               hydraServeCookiesSameSiteLegacyWorkaround:
                   hydraServeCookiesSameSiteLegacyWorkaround,
               hydraServeCookiesSameSiteMode: hydraServeCookiesSameSiteMode,
-              hydraServePublicCorsAllowedOrigins:
-                  _hydraServePublicCorsAllowedOrigins?.build(),
-              hydraServePublicCorsEnabled: hydraServePublicCorsEnabled,
               hydraStrategiesAccessToken: hydraStrategiesAccessToken,
+              hydraStrategiesJwtScopeClaim: hydraStrategiesJwtScopeClaim,
               hydraStrategiesScope: hydraStrategiesScope,
               hydraTtlAccessToken: hydraTtlAccessToken,
               hydraTtlAuthCode: hydraTtlAuthCode,
@@ -3022,6 +4077,7 @@ class NormalizedProjectRevisionBuilder
               hydraUrlsLogin: hydraUrlsLogin,
               hydraUrlsLogout: hydraUrlsLogout,
               hydraUrlsPostLogoutRedirect: hydraUrlsPostLogoutRedirect,
+              hydraUrlsRegistration: hydraUrlsRegistration,
               hydraUrlsSelfIssuer: hydraUrlsSelfIssuer,
               hydraWebfingerJwksBroadcastKeys:
                   _hydraWebfingerJwksBroadcastKeys?.build(),
@@ -3042,12 +4098,42 @@ class NormalizedProjectRevisionBuilder
               id: id,
               ketoNamespaceConfiguration: ketoNamespaceConfiguration,
               ketoNamespaces: _ketoNamespaces?.build(),
-              ketoReadMaxDepth: ketoReadMaxDepth,
               kratosCookiesSameSite: kratosCookiesSameSite,
+              kratosCourierChannels: _kratosCourierChannels?.build(),
+              kratosCourierDeliveryStrategy: kratosCourierDeliveryStrategy,
+              kratosCourierHttpRequestConfigAuthApiKeyIn:
+                  kratosCourierHttpRequestConfigAuthApiKeyIn,
+              kratosCourierHttpRequestConfigAuthApiKeyName:
+                  kratosCourierHttpRequestConfigAuthApiKeyName,
+              kratosCourierHttpRequestConfigAuthApiKeyValue:
+                  kratosCourierHttpRequestConfigAuthApiKeyValue,
+              kratosCourierHttpRequestConfigAuthBasicAuthPassword:
+                  kratosCourierHttpRequestConfigAuthBasicAuthPassword,
+              kratosCourierHttpRequestConfigAuthBasicAuthUser:
+                  kratosCourierHttpRequestConfigAuthBasicAuthUser,
+              kratosCourierHttpRequestConfigAuthType:
+                  kratosCourierHttpRequestConfigAuthType,
+              kratosCourierHttpRequestConfigBody:
+                  kratosCourierHttpRequestConfigBody,
+              kratosCourierHttpRequestConfigHeaders:
+                  kratosCourierHttpRequestConfigHeaders,
+              kratosCourierHttpRequestConfigMethod:
+                  kratosCourierHttpRequestConfigMethod,
+              kratosCourierHttpRequestConfigUrl:
+                  kratosCourierHttpRequestConfigUrl,
               kratosCourierSmtpConnectionUri: kratosCourierSmtpConnectionUri,
               kratosCourierSmtpFromAddress: kratosCourierSmtpFromAddress,
               kratosCourierSmtpFromName: kratosCourierSmtpFromName,
               kratosCourierSmtpHeaders: kratosCourierSmtpHeaders,
+              kratosCourierSmtpLocalName: kratosCourierSmtpLocalName,
+              kratosCourierTemplatesLoginCodeValidEmailBodyHtml:
+                  kratosCourierTemplatesLoginCodeValidEmailBodyHtml,
+              kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext:
+                  kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesLoginCodeValidEmailSubject:
+                  kratosCourierTemplatesLoginCodeValidEmailSubject,
+              kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext:
+                  kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml:
                   kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
               kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext:
@@ -3070,33 +4156,61 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesRecoveryValidEmailBodyHtml,
               kratosCourierTemplatesRecoveryValidEmailBodyPlaintext:
                   kratosCourierTemplatesRecoveryValidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryValidEmailSubject: kratosCourierTemplatesRecoveryValidEmailSubject,
-              kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml: kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
-              kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext: kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationCodeInvalidEmailSubject: kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
-              kratosCourierTemplatesVerificationCodeValidEmailBodyHtml: kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
-              kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext: kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationCodeValidEmailSubject: kratosCourierTemplatesVerificationCodeValidEmailSubject,
-              kratosCourierTemplatesVerificationInvalidEmailBodyHtml: kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
-              kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext: kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationInvalidEmailSubject: kratosCourierTemplatesVerificationInvalidEmailSubject,
-              kratosCourierTemplatesVerificationValidEmailBodyHtml: kratosCourierTemplatesVerificationValidEmailBodyHtml,
-              kratosCourierTemplatesVerificationValidEmailBodyPlaintext: kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
+              kratosCourierTemplatesRecoveryValidEmailSubject:
+                  kratosCourierTemplatesRecoveryValidEmailSubject,
+              kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml:
+                  kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml,
+              kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext:
+                  kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesRegistrationCodeValidEmailSubject:
+                  kratosCourierTemplatesRegistrationCodeValidEmailSubject,
+              kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml:
+                  kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
+              kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext:
+                  kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationCodeInvalidEmailSubject:
+                  kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
+              kratosCourierTemplatesVerificationCodeValidEmailBodyHtml:
+                  kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
+              kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext:
+                  kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationCodeValidEmailSubject:
+                  kratosCourierTemplatesVerificationCodeValidEmailSubject,
+              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext:
+                  kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext,
+              kratosCourierTemplatesVerificationInvalidEmailBodyHtml:
+                  kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
+              kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext:
+                  kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationInvalidEmailSubject:
+                  kratosCourierTemplatesVerificationInvalidEmailSubject,
+              kratosCourierTemplatesVerificationValidEmailBodyHtml:
+                  kratosCourierTemplatesVerificationValidEmailBodyHtml,
+              kratosCourierTemplatesVerificationValidEmailBodyPlaintext:
+                  kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationValidEmailSubject:
+                  kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
+              kratosFeatureFlagsCacheableSessionsMaxAge: kratosFeatureFlagsCacheableSessionsMaxAge,
+              kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,
+              kratosOauth2ProviderOverrideReturnTo: kratosOauth2ProviderOverrideReturnTo,
               kratosOauth2ProviderUrl: kratosOauth2ProviderUrl,
+              kratosPreviewDefaultReadConsistencyLevel: kratosPreviewDefaultReadConsistencyLevel,
               kratosSecretsCipher: _kratosSecretsCipher?.build(),
               kratosSecretsCookie: _kratosSecretsCookie?.build(),
               kratosSecretsDefault: _kratosSecretsDefault?.build(),
               kratosSelfserviceAllowedReturnUrls: _kratosSelfserviceAllowedReturnUrls?.build(),
               kratosSelfserviceDefaultBrowserReturnUrl: kratosSelfserviceDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsErrorUiUrl: kratosSelfserviceFlowsErrorUiUrl,
-              kratosSelfserviceFlowsHooks: _kratosSelfserviceFlowsHooks?.build(),
+              kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl: kratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsLoginLifespan: kratosSelfserviceFlowsLoginLifespan,
               kratosSelfserviceFlowsLoginUiUrl: kratosSelfserviceFlowsLoginUiUrl,
@@ -3107,16 +4221,25 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients: kratosSelfserviceFlowsRecoveryNotifyUnknownRecipients,
               kratosSelfserviceFlowsRecoveryUiUrl: kratosSelfserviceFlowsRecoveryUiUrl,
               kratosSelfserviceFlowsRecoveryUse: kratosSelfserviceFlowsRecoveryUse,
+              kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl: kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsRegistrationEnableLegacyOneStep: kratosSelfserviceFlowsRegistrationEnableLegacyOneStep,
               kratosSelfserviceFlowsRegistrationEnabled: kratosSelfserviceFlowsRegistrationEnabled,
               kratosSelfserviceFlowsRegistrationLifespan: kratosSelfserviceFlowsRegistrationLifespan,
+              kratosSelfserviceFlowsRegistrationLoginHints: kratosSelfserviceFlowsRegistrationLoginHints,
               kratosSelfserviceFlowsRegistrationUiUrl: kratosSelfserviceFlowsRegistrationUiUrl,
               kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl,
+              kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl: kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsSettingsLifespan: kratosSelfserviceFlowsSettingsLifespan,
               kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge: kratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge,
               kratosSelfserviceFlowsSettingsRequiredAal: kratosSelfserviceFlowsSettingsRequiredAal,
@@ -3129,6 +4252,9 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsVerificationUse: kratosSelfserviceFlowsVerificationUse,
               kratosSelfserviceMethodsCodeConfigLifespan: kratosSelfserviceMethodsCodeConfigLifespan,
               kratosSelfserviceMethodsCodeEnabled: kratosSelfserviceMethodsCodeEnabled,
+              kratosSelfserviceMethodsCodeMfaEnabled: kratosSelfserviceMethodsCodeMfaEnabled,
+              kratosSelfserviceMethodsCodePasswordlessEnabled: kratosSelfserviceMethodsCodePasswordlessEnabled,
+              kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled: kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled,
               kratosSelfserviceMethodsLinkConfigBaseUrl: kratosSelfserviceMethodsLinkConfigBaseUrl,
               kratosSelfserviceMethodsLinkConfigLifespan: kratosSelfserviceMethodsLinkConfigLifespan,
               kratosSelfserviceMethodsLinkEnabled: kratosSelfserviceMethodsLinkEnabled,
@@ -3136,6 +4262,10 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceMethodsOidcConfigBaseRedirectUri: kratosSelfserviceMethodsOidcConfigBaseRedirectUri,
               kratosSelfserviceMethodsOidcConfigProviders: _kratosSelfserviceMethodsOidcConfigProviders?.build(),
               kratosSelfserviceMethodsOidcEnabled: kratosSelfserviceMethodsOidcEnabled,
+              kratosSelfserviceMethodsPasskeyConfigRpDisplayName: kratosSelfserviceMethodsPasskeyConfigRpDisplayName,
+              kratosSelfserviceMethodsPasskeyConfigRpId: kratosSelfserviceMethodsPasskeyConfigRpId,
+              kratosSelfserviceMethodsPasskeyConfigRpOrigins: _kratosSelfserviceMethodsPasskeyConfigRpOrigins?.build(),
+              kratosSelfserviceMethodsPasskeyEnabled: kratosSelfserviceMethodsPasskeyEnabled,
               kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled: kratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled,
               kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled: kratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled,
               kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors: kratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors,
@@ -3149,15 +4279,21 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceMethodsWebauthnConfigRpDisplayName: kratosSelfserviceMethodsWebauthnConfigRpDisplayName,
               kratosSelfserviceMethodsWebauthnConfigRpIcon: kratosSelfserviceMethodsWebauthnConfigRpIcon,
               kratosSelfserviceMethodsWebauthnConfigRpId: kratosSelfserviceMethodsWebauthnConfigRpId,
-              kratosSelfserviceMethodsWebauthnConfigRpOrigin: kratosSelfserviceMethodsWebauthnConfigRpOrigin,
+              kratosSelfserviceMethodsWebauthnConfigRpOrigins: _kratosSelfserviceMethodsWebauthnConfigRpOrigins?.build(),
               kratosSelfserviceMethodsWebauthnEnabled: kratosSelfserviceMethodsWebauthnEnabled,
               kratosSessionCookiePersistent: kratosSessionCookiePersistent,
               kratosSessionCookieSameSite: kratosSessionCookieSameSite,
               kratosSessionLifespan: kratosSessionLifespan,
               kratosSessionWhoamiRequiredAal: kratosSessionWhoamiRequiredAal,
+              kratosSessionWhoamiTokenizerTemplates: _kratosSessionWhoamiTokenizerTemplates?.build(),
               name: BuiltValueNullFieldError.checkNotNull(name, r'NormalizedProjectRevision', 'name'),
-              production: production,
               projectId: projectId,
+              projectRevisionHooks: _projectRevisionHooks?.build(),
+              serveAdminCorsAllowedOrigins: _serveAdminCorsAllowedOrigins?.build(),
+              serveAdminCorsEnabled: serveAdminCorsEnabled,
+              servePublicCorsAllowedOrigins: _servePublicCorsAllowedOrigins?.build(),
+              servePublicCorsEnabled: servePublicCorsEnabled,
+              strictSecurity: strictSecurity,
               updatedAt: updatedAt);
     } catch (_) {
       late String _$failedField;
@@ -3174,11 +4310,6 @@ class NormalizedProjectRevisionBuilder
         _hydraSecretsCookie?.build();
         _$failedField = 'hydraSecretsSystem';
         _hydraSecretsSystem?.build();
-        _$failedField = 'hydraServeAdminCorsAllowedOrigins';
-        _hydraServeAdminCorsAllowedOrigins?.build();
-
-        _$failedField = 'hydraServePublicCorsAllowedOrigins';
-        _hydraServePublicCorsAllowedOrigins?.build();
 
         _$failedField = 'hydraWebfingerJwksBroadcastKeys';
         _hydraWebfingerJwksBroadcastKeys?.build();
@@ -3190,6 +4321,9 @@ class NormalizedProjectRevisionBuilder
 
         _$failedField = 'ketoNamespaces';
         _ketoNamespaces?.build();
+
+        _$failedField = 'kratosCourierChannels';
+        _kratosCourierChannels?.build();
 
         _$failedField = 'kratosIdentitySchemas';
         _kratosIdentitySchemas?.build();
@@ -3203,11 +4337,25 @@ class NormalizedProjectRevisionBuilder
         _$failedField = 'kratosSelfserviceAllowedReturnUrls';
         _kratosSelfserviceAllowedReturnUrls?.build();
 
-        _$failedField = 'kratosSelfserviceFlowsHooks';
-        _kratosSelfserviceFlowsHooks?.build();
-
         _$failedField = 'kratosSelfserviceMethodsOidcConfigProviders';
         _kratosSelfserviceMethodsOidcConfigProviders?.build();
+
+        _$failedField = 'kratosSelfserviceMethodsPasskeyConfigRpOrigins';
+        _kratosSelfserviceMethodsPasskeyConfigRpOrigins?.build();
+
+        _$failedField = 'kratosSelfserviceMethodsWebauthnConfigRpOrigins';
+        _kratosSelfserviceMethodsWebauthnConfigRpOrigins?.build();
+
+        _$failedField = 'kratosSessionWhoamiTokenizerTemplates';
+        _kratosSessionWhoamiTokenizerTemplates?.build();
+
+        _$failedField = 'projectRevisionHooks';
+        _projectRevisionHooks?.build();
+        _$failedField = 'serveAdminCorsAllowedOrigins';
+        _serveAdminCorsAllowedOrigins?.build();
+
+        _$failedField = 'servePublicCorsAllowedOrigins';
+        _servePublicCorsAllowedOrigins?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'NormalizedProjectRevision', _$failedField, e.toString());

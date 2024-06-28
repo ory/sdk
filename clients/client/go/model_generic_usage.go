@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,21 +13,27 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the GenericUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GenericUsage{}
 
 // GenericUsage struct for GenericUsage
 type GenericUsage struct {
-	// AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
-	AdditionalPrice int64 `json:"additional_price"`
+	AdditionalPrice Money `json:"additional_price"`
 	// IncludedUsage is the number of included items.
 	IncludedUsage int64 `json:"included_usage"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GenericUsage GenericUsage
 
 // NewGenericUsage instantiates a new GenericUsage object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenericUsage(additionalPrice int64, includedUsage int64) *GenericUsage {
+func NewGenericUsage(additionalPrice Money, includedUsage int64) *GenericUsage {
 	this := GenericUsage{}
 	this.AdditionalPrice = additionalPrice
 	this.IncludedUsage = includedUsage
@@ -43,9 +49,9 @@ func NewGenericUsageWithDefaults() *GenericUsage {
 }
 
 // GetAdditionalPrice returns the AdditionalPrice field value
-func (o *GenericUsage) GetAdditionalPrice() int64 {
+func (o *GenericUsage) GetAdditionalPrice() Money {
 	if o == nil {
-		var ret int64
+		var ret Money
 		return ret
 	}
 
@@ -54,7 +60,7 @@ func (o *GenericUsage) GetAdditionalPrice() int64 {
 
 // GetAdditionalPriceOk returns a tuple with the AdditionalPrice field value
 // and a boolean to check if the value has been set.
-func (o *GenericUsage) GetAdditionalPriceOk() (*int64, bool) {
+func (o *GenericUsage) GetAdditionalPriceOk() (*Money, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,7 +68,7 @@ func (o *GenericUsage) GetAdditionalPriceOk() (*int64, bool) {
 }
 
 // SetAdditionalPrice sets field value
-func (o *GenericUsage) SetAdditionalPrice(v int64) {
+func (o *GenericUsage) SetAdditionalPrice(v Money) {
 	o.AdditionalPrice = v
 }
 
@@ -91,14 +97,67 @@ func (o *GenericUsage) SetIncludedUsage(v int64) {
 }
 
 func (o GenericUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["additional_price"] = o.AdditionalPrice
-	}
-	if true {
-		toSerialize["included_usage"] = o.IncludedUsage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GenericUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["additional_price"] = o.AdditionalPrice
+	toSerialize["included_usage"] = o.IncludedUsage
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *GenericUsage) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"additional_price",
+		"included_usage",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGenericUsage := _GenericUsage{}
+
+	err = json.Unmarshal(data, &varGenericUsage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GenericUsage(varGenericUsage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "additional_price")
+		delete(additionalProperties, "included_usage")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGenericUsage struct {

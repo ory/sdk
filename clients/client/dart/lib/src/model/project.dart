@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/project_cors.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/project_services.dart';
 import 'package:built_value/built_value.dart';
@@ -13,14 +14,35 @@ part 'project.g.dart';
 /// Project
 ///
 /// Properties:
+/// * [corsAdmin] 
+/// * [corsPublic] 
+/// * [environment] - The environment of the project. prod Production stage Staging dev Development
+/// * [homeRegion] - The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global
 /// * [id] - The project's ID.
 /// * [name] - The name of the project.
 /// * [revisionId] - The configuration revision ID.
 /// * [services] 
 /// * [slug] - The project's slug
-/// * [state] - The state of the project. running Running halted Halted
+/// * [state] - The state of the project. running Running halted Halted deleted Deleted
+/// * [workspaceId] 
 @BuiltValue()
 abstract class Project implements Built<Project, ProjectBuilder> {
+  @BuiltValueField(wireName: r'cors_admin')
+  ProjectCors? get corsAdmin;
+
+  @BuiltValueField(wireName: r'cors_public')
+  ProjectCors? get corsPublic;
+
+  /// The environment of the project. prod Production stage Staging dev Development
+  @BuiltValueField(wireName: r'environment')
+  ProjectEnvironmentEnum get environment;
+  // enum environmentEnum {  prod,  stage,  dev,  };
+
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueField(wireName: r'home_region')
+  ProjectHomeRegionEnum get homeRegion;
+  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  global,  };
+
   /// The project's ID.
   @BuiltValueField(wireName: r'id')
   String get id;
@@ -40,10 +62,13 @@ abstract class Project implements Built<Project, ProjectBuilder> {
   @BuiltValueField(wireName: r'slug')
   String get slug;
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueField(wireName: r'state')
   ProjectStateEnum get state;
-  // enum stateEnum {  running,  halted,  };
+  // enum stateEnum {  running,  halted,  deleted,  };
+
+  @BuiltValueField(wireName: r'workspace_id')
+  String? get workspaceId;
 
   Project._();
 
@@ -68,6 +93,30 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
     Project object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.corsAdmin != null) {
+      yield r'cors_admin';
+      yield serializers.serialize(
+        object.corsAdmin,
+        specifiedType: const FullType(ProjectCors),
+      );
+    }
+    if (object.corsPublic != null) {
+      yield r'cors_public';
+      yield serializers.serialize(
+        object.corsPublic,
+        specifiedType: const FullType(ProjectCors),
+      );
+    }
+    yield r'environment';
+    yield serializers.serialize(
+      object.environment,
+      specifiedType: const FullType(ProjectEnvironmentEnum),
+    );
+    yield r'home_region';
+    yield serializers.serialize(
+      object.homeRegion,
+      specifiedType: const FullType(ProjectHomeRegionEnum),
+    );
     yield r'id';
     yield serializers.serialize(
       object.id,
@@ -98,6 +147,13 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
       object.state,
       specifiedType: const FullType(ProjectStateEnum),
     );
+    if (object.workspaceId != null) {
+      yield r'workspace_id';
+      yield serializers.serialize(
+        object.workspaceId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -121,6 +177,34 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'cors_admin':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ProjectCors),
+          ) as ProjectCors;
+          result.corsAdmin.replace(valueDes);
+          break;
+        case r'cors_public':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ProjectCors),
+          ) as ProjectCors;
+          result.corsPublic.replace(valueDes);
+          break;
+        case r'environment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ProjectEnvironmentEnum),
+          ) as ProjectEnvironmentEnum;
+          result.environment = valueDes;
+          break;
+        case r'home_region':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ProjectHomeRegionEnum),
+          ) as ProjectHomeRegionEnum;
+          result.homeRegion = valueDes;
+          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
@@ -163,6 +247,14 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
           ) as ProjectStateEnum;
           result.state = valueDes;
           break;
+        case r'workspace_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.workspaceId = valueDes;
+          break;
         default:
           unhandled.add(key);
           unhandled.add(value);
@@ -192,14 +284,60 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
   }
 }
 
+class ProjectEnvironmentEnum extends EnumClass {
+
+  /// The environment of the project. prod Production stage Staging dev Development
+  @BuiltValueEnumConst(wireName: r'prod')
+  static const ProjectEnvironmentEnum prod = _$projectEnvironmentEnum_prod;
+  /// The environment of the project. prod Production stage Staging dev Development
+  @BuiltValueEnumConst(wireName: r'stage')
+  static const ProjectEnvironmentEnum stage = _$projectEnvironmentEnum_stage;
+  /// The environment of the project. prod Production stage Staging dev Development
+  @BuiltValueEnumConst(wireName: r'dev')
+  static const ProjectEnvironmentEnum dev = _$projectEnvironmentEnum_dev;
+
+  static Serializer<ProjectEnvironmentEnum> get serializer => _$projectEnvironmentEnumSerializer;
+
+  const ProjectEnvironmentEnum._(String name): super(name);
+
+  static BuiltSet<ProjectEnvironmentEnum> get values => _$projectEnvironmentEnumValues;
+  static ProjectEnvironmentEnum valueOf(String name) => _$projectEnvironmentEnumValueOf(name);
+}
+
+class ProjectHomeRegionEnum extends EnumClass {
+
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'eu-central')
+  static const ProjectHomeRegionEnum euCentral = _$projectHomeRegionEnum_euCentral;
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'us-east')
+  static const ProjectHomeRegionEnum usEast = _$projectHomeRegionEnum_usEast;
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'us-west')
+  static const ProjectHomeRegionEnum usWest = _$projectHomeRegionEnum_usWest;
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'global')
+  static const ProjectHomeRegionEnum global = _$projectHomeRegionEnum_global;
+
+  static Serializer<ProjectHomeRegionEnum> get serializer => _$projectHomeRegionEnumSerializer;
+
+  const ProjectHomeRegionEnum._(String name): super(name);
+
+  static BuiltSet<ProjectHomeRegionEnum> get values => _$projectHomeRegionEnumValues;
+  static ProjectHomeRegionEnum valueOf(String name) => _$projectHomeRegionEnumValueOf(name);
+}
+
 class ProjectStateEnum extends EnumClass {
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueEnumConst(wireName: r'running')
   static const ProjectStateEnum running = _$projectStateEnum_running;
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueEnumConst(wireName: r'halted')
   static const ProjectStateEnum halted = _$projectStateEnum_halted;
+  /// The state of the project. running Running halted Halted deleted Deleted
+  @BuiltValueEnumConst(wireName: r'deleted')
+  static const ProjectStateEnum deleted = _$projectStateEnum_deleted;
 
   static Serializer<ProjectStateEnum> get serializer => _$projectStateEnumSerializer;
 

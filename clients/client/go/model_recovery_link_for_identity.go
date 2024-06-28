@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the RecoveryLinkForIdentity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecoveryLinkForIdentity{}
 
 // RecoveryLinkForIdentity Used when an administrator creates a recovery link for an identity.
 type RecoveryLinkForIdentity struct {
@@ -22,7 +26,10 @@ type RecoveryLinkForIdentity struct {
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	// Recovery Link  This link can be used to recover the account.
 	RecoveryLink string `json:"recovery_link"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecoveryLinkForIdentity RecoveryLinkForIdentity
 
 // NewRecoveryLinkForIdentity instantiates a new RecoveryLinkForIdentity object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +51,7 @@ func NewRecoveryLinkForIdentityWithDefaults() *RecoveryLinkForIdentity {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *RecoveryLinkForIdentity) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -54,7 +61,7 @@ func (o *RecoveryLinkForIdentity) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryLinkForIdentity) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -62,7 +69,7 @@ func (o *RecoveryLinkForIdentity) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *RecoveryLinkForIdentity) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -99,14 +106,68 @@ func (o *RecoveryLinkForIdentity) SetRecoveryLink(v string) {
 }
 
 func (o RecoveryLinkForIdentity) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ExpiresAt != nil {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
-	if true {
-		toSerialize["recovery_link"] = o.RecoveryLink
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RecoveryLinkForIdentity) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expires_at"] = o.ExpiresAt
+	}
+	toSerialize["recovery_link"] = o.RecoveryLink
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *RecoveryLinkForIdentity) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"recovery_link",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRecoveryLinkForIdentity := _RecoveryLinkForIdentity{}
+
+	err = json.Unmarshal(data, &varRecoveryLinkForIdentity)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RecoveryLinkForIdentity(varRecoveryLinkForIdentity)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "recovery_link")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecoveryLinkForIdentity struct {

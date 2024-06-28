@@ -8,6 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**context** | [**JsonObject**](.md) |  | [optional] 
 **grantAccessTokenAudience** | **BuiltList&lt;String&gt;** |  | [optional] 
 **grantScope** | **BuiltList&lt;String&gt;** |  | [optional] 
 **handledAt** | [**DateTime**](DateTime.md) |  | [optional] 

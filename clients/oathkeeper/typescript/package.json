@@ -1,6 +1,6 @@
 {
   "name": "@ory/oathkeeper-client",
-  "version": "v0.40.2",
+  "version": "v0.40.6",
   "description": "OpenAPI client for @ory/oathkeeper-client",
   "author": "ORY GmbH",
   "keywords": [

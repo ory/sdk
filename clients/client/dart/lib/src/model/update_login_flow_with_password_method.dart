@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -16,6 +17,7 @@ part 'update_login_flow_with_password_method.g.dart';
 /// * [method] - Method should be set to \"password\" when logging in using the identifier and password strategy.
 /// * [password] - The user's password.
 /// * [passwordIdentifier] - Identifier is the email or username of the user trying to log in. This field is deprecated!
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateLoginFlowWithPasswordMethod implements Built<UpdateLoginFlowWithPasswordMethod, UpdateLoginFlowWithPasswordMethodBuilder> {
   /// Sending the anti-csrf token is only required for browser login flows.
@@ -37,6 +39,10 @@ abstract class UpdateLoginFlowWithPasswordMethod implements Built<UpdateLoginFlo
   /// Identifier is the email or username of the user trying to log in. This field is deprecated!
   @BuiltValueField(wireName: r'password_identifier')
   String? get passwordIdentifier;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateLoginFlowWithPasswordMethod._();
 
@@ -88,6 +94,13 @@ class _$UpdateLoginFlowWithPasswordMethodSerializer implements PrimitiveSerializ
       yield serializers.serialize(
         object.passwordIdentifier,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
       );
     }
   }
@@ -147,6 +160,13 @@ class _$UpdateLoginFlowWithPasswordMethodSerializer implements PrimitiveSerializ
             specifiedType: const FullType(String),
           ) as String;
           result.passwordIdentifier = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

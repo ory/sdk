@@ -2,15 +2,32 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**created_at** | **datetime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **id** | **str** |  | 
+**updated_at** | **datetime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **value** | **str** |  | 
 **via** | **str** |  | 
-**created_at** | **datetime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
-**updated_at** | **datetime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.recovery_identity_address import RecoveryIdentityAddress
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of RecoveryIdentityAddress from a JSON string
+recovery_identity_address_instance = RecoveryIdentityAddress.from_json(json)
+# print the JSON string representation of the object
+print(RecoveryIdentityAddress.to_json())
+
+# convert the object into a dict
+recovery_identity_address_dict = recovery_identity_address_instance.to_dict()
+# create an instance of RecoveryIdentityAddress from a dict
+recovery_identity_address_form_dict = recovery_identity_address.from_dict(recovery_identity_address_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

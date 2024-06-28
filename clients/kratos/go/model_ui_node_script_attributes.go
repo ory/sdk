@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UiNodeScriptAttributes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiNodeScriptAttributes{}
 
 // UiNodeScriptAttributes struct for UiNodeScriptAttributes
 type UiNodeScriptAttributes struct {
@@ -35,7 +39,10 @@ type UiNodeScriptAttributes struct {
 	Src string `json:"src"`
 	// The script MIME type
 	Type string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNodeScriptAttributes UiNodeScriptAttributes
 
 // NewUiNodeScriptAttributes instantiates a new UiNodeScriptAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -280,35 +287,88 @@ func (o *UiNodeScriptAttributes) SetType(v string) {
 }
 
 func (o UiNodeScriptAttributes) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["async"] = o.Async
-	}
-	if true {
-		toSerialize["crossorigin"] = o.Crossorigin
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["integrity"] = o.Integrity
-	}
-	if true {
-		toSerialize["node_type"] = o.NodeType
-	}
-	if true {
-		toSerialize["nonce"] = o.Nonce
-	}
-	if true {
-		toSerialize["referrerpolicy"] = o.Referrerpolicy
-	}
-	if true {
-		toSerialize["src"] = o.Src
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UiNodeScriptAttributes) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["async"] = o.Async
+	toSerialize["crossorigin"] = o.Crossorigin
+	toSerialize["id"] = o.Id
+	toSerialize["integrity"] = o.Integrity
+	toSerialize["node_type"] = o.NodeType
+	toSerialize["nonce"] = o.Nonce
+	toSerialize["referrerpolicy"] = o.Referrerpolicy
+	toSerialize["src"] = o.Src
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UiNodeScriptAttributes) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"async",
+		"crossorigin",
+		"id",
+		"integrity",
+		"node_type",
+		"nonce",
+		"referrerpolicy",
+		"src",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUiNodeScriptAttributes := _UiNodeScriptAttributes{}
+
+	err = json.Unmarshal(bytes, &varUiNodeScriptAttributes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UiNodeScriptAttributes(varUiNodeScriptAttributes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "async")
+		delete(additionalProperties, "crossorigin")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "integrity")
+		delete(additionalProperties, "node_type")
+		delete(additionalProperties, "nonce")
+		delete(additionalProperties, "referrerpolicy")
+		delete(additionalProperties, "src")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNodeScriptAttributes struct {

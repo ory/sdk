@@ -8,3 +8,5 @@ gemAuthor: ORY GmbH
 gemHomepage: https://www.ory.sh
 gemLicense: Apache-2.0
 moduleName: ${RUBY_MODULE_NAME}
+
+disallowAdditionalPropertiesIfNotPresent: false

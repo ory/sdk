@@ -5,6 +5,7 @@ All URIs are relative to http://localhost.
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createOidcDynamicClient()**](OidcApi.md#createOidcDynamicClient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+[**createVerifiableCredential()**](OidcApi.md#createVerifiableCredential) | **POST** /credentials | Issues a Verifiable Credential
 [**deleteOidcDynamicClient()**](OidcApi.md#deleteOidcDynamicClient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 [**discoverOidcConfiguration()**](OidcApi.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 [**getOidcDynamicClient()**](OidcApi.md#getOidcDynamicClient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -55,6 +56,62 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createVerifiableCredential()`
+
+```php
+createVerifiableCredential($createVerifiableCredentialRequestBody): \Ory\Hydra\Client\Model\VerifiableCredentialResponse
+```
+
+Issues a Verifiable Credential
+
+This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Hydra\Client\Api\OidcApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$createVerifiableCredentialRequestBody = new \Ory\Hydra\Client\Model\CreateVerifiableCredentialRequestBody(); // \Ory\Hydra\Client\Model\CreateVerifiableCredentialRequestBody
+
+try {
+    $result = $apiInstance->createVerifiableCredential($createVerifiableCredentialRequestBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OidcApi->createVerifiableCredential: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createVerifiableCredentialRequestBody** | [**\Ory\Hydra\Client\Model\CreateVerifiableCredentialRequestBody**](../Model/CreateVerifiableCredentialRequestBody.md)|  | [optional]
+
+### Return type
+
+[**\Ory\Hydra\Client\Model\VerifiableCredentialResponse**](../Model/VerifiableCredentialResponse.md)
 
 ### Authorization
 

@@ -12,7 +12,8 @@ Name | Type | Description | Notes
 **IssuedAt** | **time.Time** | IssuedAt is the time (UTC) when the flow occurred. | 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
-**State** | [**SettingsFlowState**](SettingsFlowState.md) |  | 
+**State** | **interface{}** | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent. | 
+**TransientPayload** | Pointer to **map[string]interface{}** | TransientPayload is used to pass data from the settings flow to hooks and email templates | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
 
@@ -20,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewSettingsFlow
 
-`func NewSettingsFlow(expiresAt time.Time, id string, identity Identity, issuedAt time.Time, requestUrl string, state SettingsFlowState, type_ string, ui UiContainer, ) *SettingsFlow`
+`func NewSettingsFlow(expiresAt time.Time, id string, identity Identity, issuedAt time.Time, requestUrl string, state interface{}, type_ string, ui UiContainer, ) *SettingsFlow`
 
 NewSettingsFlow instantiates a new SettingsFlow object
 This constructor will assign default values to properties that have it defined,
@@ -212,23 +213,58 @@ HasReturnTo returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *SettingsFlow) GetState() SettingsFlowState`
+`func (o *SettingsFlow) GetState() interface{}`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *SettingsFlow) GetStateOk() (*SettingsFlowState, bool)`
+`func (o *SettingsFlow) GetStateOk() (*interface{}, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *SettingsFlow) SetState(v SettingsFlowState)`
+`func (o *SettingsFlow) SetState(v interface{})`
 
 SetState sets State field to given value.
 
+
+### SetStateNil
+
+`func (o *SettingsFlow) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *SettingsFlow) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
+### GetTransientPayload
+
+`func (o *SettingsFlow) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *SettingsFlow) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *SettingsFlow) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *SettingsFlow) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 ### GetType
 

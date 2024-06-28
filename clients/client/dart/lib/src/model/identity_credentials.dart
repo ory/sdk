@@ -4,7 +4,6 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/src/model/identity_credentials_type.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -17,7 +16,7 @@ part 'identity_credentials.g.dart';
 /// * [config] 
 /// * [createdAt] - CreatedAt is a helper struct field for gobuffalo.pop.
 /// * [identifiers] - Identifiers represents a list of unique identifiers this credential type matches.
-/// * [type] 
+/// * [type] - Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 /// * [updatedAt] - UpdatedAt is a helper struct field for gobuffalo.pop.
 /// * [version] - Version refers to the version of the credential. Useful when changing the config schema.
 @BuiltValue()
@@ -33,9 +32,10 @@ abstract class IdentityCredentials implements Built<IdentityCredentials, Identit
   @BuiltValueField(wireName: r'identifiers')
   BuiltList<String>? get identifiers;
 
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   @BuiltValueField(wireName: r'type')
-  IdentityCredentialsType? get type;
-  // enum typeEnum {  password,  totp,  oidc,  webauthn,  lookup_secret,  };
+  IdentityCredentialsTypeEnum? get type;
+  // enum typeEnum {  password,  oidc,  totp,  lookup_secret,  webauthn,  code,  passkey,  profile,  link_recovery,  code_recovery,  };
 
   /// UpdatedAt is a helper struct field for gobuffalo.pop.
   @BuiltValueField(wireName: r'updated_at')
@@ -93,7 +93,7 @@ class _$IdentityCredentialsSerializer implements PrimitiveSerializer<IdentityCre
       yield r'type';
       yield serializers.serialize(
         object.type,
-        specifiedType: const FullType(IdentityCredentialsType),
+        specifiedType: const FullType(IdentityCredentialsTypeEnum),
       );
     }
     if (object.updatedAt != null) {
@@ -157,8 +157,8 @@ class _$IdentityCredentialsSerializer implements PrimitiveSerializer<IdentityCre
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(IdentityCredentialsType),
-          ) as IdentityCredentialsType;
+            specifiedType: const FullType(IdentityCredentialsTypeEnum),
+          ) as IdentityCredentialsTypeEnum;
           result.type = valueDes;
           break;
         case r'updated_at':
@@ -202,5 +202,46 @@ class _$IdentityCredentialsSerializer implements PrimitiveSerializer<IdentityCre
     );
     return result.build();
   }
+}
+
+class IdentityCredentialsTypeEnum extends EnumClass {
+
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'password')
+  static const IdentityCredentialsTypeEnum password = _$identityCredentialsTypeEnum_password;
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'oidc')
+  static const IdentityCredentialsTypeEnum oidc = _$identityCredentialsTypeEnum_oidc;
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'totp')
+  static const IdentityCredentialsTypeEnum totp = _$identityCredentialsTypeEnum_totp;
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'lookup_secret')
+  static const IdentityCredentialsTypeEnum lookupSecret = _$identityCredentialsTypeEnum_lookupSecret;
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'webauthn')
+  static const IdentityCredentialsTypeEnum webauthn = _$identityCredentialsTypeEnum_webauthn;
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'code')
+  static const IdentityCredentialsTypeEnum code = _$identityCredentialsTypeEnum_code;
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'passkey')
+  static const IdentityCredentialsTypeEnum passkey = _$identityCredentialsTypeEnum_passkey;
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'profile')
+  static const IdentityCredentialsTypeEnum profile = _$identityCredentialsTypeEnum_profile;
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'link_recovery')
+  static const IdentityCredentialsTypeEnum linkRecovery = _$identityCredentialsTypeEnum_linkRecovery;
+  /// Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'code_recovery')
+  static const IdentityCredentialsTypeEnum codeRecovery = _$identityCredentialsTypeEnum_codeRecovery;
+
+  static Serializer<IdentityCredentialsTypeEnum> get serializer => _$identityCredentialsTypeEnumSerializer;
+
+  const IdentityCredentialsTypeEnum._(String name): super(name);
+
+  static BuiltSet<IdentityCredentialsTypeEnum> get values => _$identityCredentialsTypeEnumValues;
+  static IdentityCredentialsTypeEnum valueOf(String name) => _$identityCredentialsTypeEnumValueOf(name);
 }
 

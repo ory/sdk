@@ -6,6 +6,8 @@ doc/AcceptOAuth2ConsentRequest.md
 doc/AcceptOAuth2ConsentRequestSession.md
 doc/AcceptOAuth2LoginRequest.md
 doc/CreateJsonWebKeySet.md
+doc/CreateVerifiableCredentialRequestBody.md
+doc/CredentialSupportedDraft00.md
 doc/ErrorOAuth2.md
 doc/GenericError.md
 doc/GetVersion200Response.md
@@ -35,6 +37,7 @@ doc/OidcConfiguration.md
 doc/OidcUserInfo.md
 doc/Pagination.md
 doc/PaginationHeaders.md
+doc/RFC6749ErrorJson.md
 doc/RejectOAuth2Request.md
 doc/TokenPagination.md
 doc/TokenPaginationHeaders.md
@@ -43,6 +46,9 @@ doc/TokenPaginationResponseHeaders.md
 doc/TrustOAuth2JwtGrantIssuer.md
 doc/TrustedOAuth2JwtGrantIssuer.md
 doc/TrustedOAuth2JwtGrantJsonWebKey.md
+doc/VerifiableCredentialPrimingResponse.md
+doc/VerifiableCredentialProof.md
+doc/VerifiableCredentialResponse.md
 doc/Version.md
 doc/WellknownApi.md
 lib/ory_hydra_client.dart
@@ -63,6 +69,8 @@ lib/src/model/accept_o_auth2_consent_request.dart
 lib/src/model/accept_o_auth2_consent_request_session.dart
 lib/src/model/accept_o_auth2_login_request.dart
 lib/src/model/create_json_web_key_set.dart
+lib/src/model/create_verifiable_credential_request_body.dart
+lib/src/model/credential_supported_draft00.dart
 lib/src/model/date.dart
 lib/src/model/error_o_auth2.dart
 lib/src/model/generic_error.dart
@@ -90,6 +98,7 @@ lib/src/model/oidc_user_info.dart
 lib/src/model/pagination.dart
 lib/src/model/pagination_headers.dart
 lib/src/model/reject_o_auth2_request.dart
+lib/src/model/rfc6749_error_json.dart
 lib/src/model/token_pagination.dart
 lib/src/model/token_pagination_headers.dart
 lib/src/model/token_pagination_request_parameters.dart
@@ -97,6 +106,9 @@ lib/src/model/token_pagination_response_headers.dart
 lib/src/model/trust_o_auth2_jwt_grant_issuer.dart
 lib/src/model/trusted_o_auth2_jwt_grant_issuer.dart
 lib/src/model/trusted_o_auth2_jwt_grant_json_web_key.dart
+lib/src/model/verifiable_credential_priming_response.dart
+lib/src/model/verifiable_credential_proof.dart
+lib/src/model/verifiable_credential_response.dart
 lib/src/model/version.dart
 lib/src/serializers.dart
 pubspec.yaml
@@ -104,6 +116,8 @@ test/accept_o_auth2_consent_request_session_test.dart
 test/accept_o_auth2_consent_request_test.dart
 test/accept_o_auth2_login_request_test.dart
 test/create_json_web_key_set_test.dart
+test/create_verifiable_credential_request_body_test.dart
+test/credential_supported_draft00_test.dart
 test/error_o_auth2_test.dart
 test/generic_error_test.dart
 test/get_version200_response_test.dart
@@ -134,6 +148,7 @@ test/oidc_user_info_test.dart
 test/pagination_headers_test.dart
 test/pagination_test.dart
 test/reject_o_auth2_request_test.dart
+test/rfc6749_error_json_test.dart
 test/token_pagination_headers_test.dart
 test/token_pagination_request_parameters_test.dart
 test/token_pagination_response_headers_test.dart
@@ -141,5 +156,8 @@ test/token_pagination_test.dart
 test/trust_o_auth2_jwt_grant_issuer_test.dart
 test/trusted_o_auth2_jwt_grant_issuer_test.dart
 test/trusted_o_auth2_jwt_grant_json_web_key_test.dart
+test/verifiable_credential_priming_response_test.dart
+test/verifiable_credential_proof_test.dart
+test/verifiable_credential_response_test.dart
 test/version_test.dart
 test/wellknown_api_test.dart

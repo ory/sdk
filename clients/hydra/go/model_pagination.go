@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -15,13 +15,19 @@ import (
 	"encoding/json"
 )
 
+// checks if the Pagination type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Pagination{}
+
 // Pagination struct for Pagination
 type Pagination struct {
 	// Items per page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 	PageSize *int64 `json:"page_size,omitempty"`
 	// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 	PageToken *string `json:"page_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Pagination Pagination
 
 // NewPagination instantiates a new Pagination object
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +56,7 @@ func NewPaginationWithDefaults() *Pagination {
 
 // GetPageSize returns the PageSize field value if set, zero value otherwise.
 func (o *Pagination) GetPageSize() int64 {
-	if o == nil || o.PageSize == nil {
+	if o == nil || IsNil(o.PageSize) {
 		var ret int64
 		return ret
 	}
@@ -60,7 +66,7 @@ func (o *Pagination) GetPageSize() int64 {
 // GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pagination) GetPageSizeOk() (*int64, bool) {
-	if o == nil || o.PageSize == nil {
+	if o == nil || IsNil(o.PageSize) {
 		return nil, false
 	}
 	return o.PageSize, true
@@ -68,7 +74,7 @@ func (o *Pagination) GetPageSizeOk() (*int64, bool) {
 
 // HasPageSize returns a boolean if a field has been set.
 func (o *Pagination) HasPageSize() bool {
-	if o != nil && o.PageSize != nil {
+	if o != nil && !IsNil(o.PageSize) {
 		return true
 	}
 
@@ -82,7 +88,7 @@ func (o *Pagination) SetPageSize(v int64) {
 
 // GetPageToken returns the PageToken field value if set, zero value otherwise.
 func (o *Pagination) GetPageToken() string {
-	if o == nil || o.PageToken == nil {
+	if o == nil || IsNil(o.PageToken) {
 		var ret string
 		return ret
 	}
@@ -92,7 +98,7 @@ func (o *Pagination) GetPageToken() string {
 // GetPageTokenOk returns a tuple with the PageToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pagination) GetPageTokenOk() (*string, bool) {
-	if o == nil || o.PageToken == nil {
+	if o == nil || IsNil(o.PageToken) {
 		return nil, false
 	}
 	return o.PageToken, true
@@ -100,7 +106,7 @@ func (o *Pagination) GetPageTokenOk() (*string, bool) {
 
 // HasPageToken returns a boolean if a field has been set.
 func (o *Pagination) HasPageToken() bool {
-	if o != nil && o.PageToken != nil {
+	if o != nil && !IsNil(o.PageToken) {
 		return true
 	}
 
@@ -113,14 +119,49 @@ func (o *Pagination) SetPageToken(v string) {
 }
 
 func (o Pagination) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PageSize != nil {
-		toSerialize["page_size"] = o.PageSize
-	}
-	if o.PageToken != nil {
-		toSerialize["page_token"] = o.PageToken
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Pagination) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PageSize) {
+		toSerialize["page_size"] = o.PageSize
+	}
+	if !IsNil(o.PageToken) {
+		toSerialize["page_token"] = o.PageToken
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
+	varPagination := _Pagination{}
+
+	err = json.Unmarshal(bytes, &varPagination)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Pagination(varPagination)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "page_size")
+		delete(additionalProperties, "page_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePagination struct {

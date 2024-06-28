@@ -5,7 +5,7 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -49,9 +49,6 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String consentChallenge = consentChallenge_example; // String | OAuth 2.0 Consent Request Challenge
@@ -60,7 +57,7 @@ final AcceptOAuth2ConsentRequest acceptOAuth2ConsentRequest = ; // AcceptOAuth2C
 try {
     final response = api.acceptOAuth2ConsentRequest(consentChallenge, acceptOAuth2ConsentRequest);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->acceptOAuth2ConsentRequest: $e\n');
 }
 ```
@@ -97,9 +94,6 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String loginChallenge = loginChallenge_example; // String | OAuth 2.0 Login Request Challenge
@@ -108,7 +102,7 @@ final AcceptOAuth2LoginRequest acceptOAuth2LoginRequest = ; // AcceptOAuth2Login
 try {
     final response = api.acceptOAuth2LoginRequest(loginChallenge, acceptOAuth2LoginRequest);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->acceptOAuth2LoginRequest: $e\n');
 }
 ```
@@ -145,9 +139,6 @@ When a user or an application requests Ory OAuth 2.0 to remove the session state
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String logoutChallenge = logoutChallenge_example; // String | OAuth 2.0 Logout Request Challenge
@@ -155,7 +146,7 @@ final String logoutChallenge = logoutChallenge_example; // String | OAuth 2.0 Lo
 try {
     final response = api.acceptOAuth2LogoutRequest(logoutChallenge);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->acceptOAuth2LogoutRequest: $e\n');
 }
 ```
@@ -191,9 +182,6 @@ Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, o
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final OAuth2Client oAuth2Client = ; // OAuth2Client | OAuth 2.0 Client Request Body
@@ -201,7 +189,7 @@ final OAuth2Client oAuth2Client = ; // OAuth2Client | OAuth 2.0 Client Request B
 try {
     final response = api.createOAuth2Client(oAuth2Client);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->createOAuth2Client: $e\n');
 }
 ```
@@ -237,16 +225,13 @@ Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to pe
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String id = id_example; // String | The id of the OAuth 2.0 Client.
 
 try {
     api.deleteOAuth2Client(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->deleteOAuth2Client: $e\n');
 }
 ```
@@ -282,16 +267,13 @@ This endpoint deletes OAuth2 access tokens issued to an OAuth 2.0 Client from th
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String clientId = clientId_example; // String | OAuth 2.0 Client ID
 
 try {
     api.deleteOAuth2Token(clientId);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->deleteOAuth2Token: $e\n');
 }
 ```
@@ -327,16 +309,13 @@ Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String id = id_example; // String | The id of the desired grant
 
 try {
     api.deleteTrustedOAuth2JwtGrantIssuer(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->deleteTrustedOAuth2JwtGrantIssuer: $e\n');
 }
 ```
@@ -372,9 +351,6 @@ Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String id = id_example; // String | The id of the OAuth 2.0 Client.
@@ -382,7 +358,7 @@ final String id = id_example; // String | The id of the OAuth 2.0 Client.
 try {
     final response = api.getOAuth2Client(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getOAuth2Client: $e\n');
 }
 ```
@@ -418,9 +394,6 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String consentChallenge = consentChallenge_example; // String | OAuth 2.0 Consent Request Challenge
@@ -428,7 +401,7 @@ final String consentChallenge = consentChallenge_example; // String | OAuth 2.0 
 try {
     final response = api.getOAuth2ConsentRequest(consentChallenge);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getOAuth2ConsentRequest: $e\n');
 }
 ```
@@ -464,9 +437,6 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String loginChallenge = loginChallenge_example; // String | OAuth 2.0 Login Request Challenge
@@ -474,7 +444,7 @@ final String loginChallenge = loginChallenge_example; // String | OAuth 2.0 Logi
 try {
     final response = api.getOAuth2LoginRequest(loginChallenge);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getOAuth2LoginRequest: $e\n');
 }
 ```
@@ -510,9 +480,6 @@ Use this endpoint to fetch an Ory OAuth 2.0 logout request.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String logoutChallenge = logoutChallenge_example; // String | 
@@ -520,7 +487,7 @@ final String logoutChallenge = logoutChallenge_example; // String |
 try {
     final response = api.getOAuth2LogoutRequest(logoutChallenge);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getOAuth2LogoutRequest: $e\n');
 }
 ```
@@ -556,9 +523,6 @@ Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the o
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String id = id_example; // String | The id of the desired grant
@@ -566,7 +530,7 @@ final String id = id_example; // String | The id of the desired grant
 try {
     final response = api.getTrustedOAuth2JwtGrantIssuer(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getTrustedOAuth2JwtGrantIssuer: $e\n');
 }
 ```
@@ -602,9 +566,6 @@ The introspection endpoint allows to check if a token (both refresh and access) 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String token = token_example; // String | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
@@ -613,7 +574,7 @@ final String scope = scope_example; // String | An optional, space separated lis
 try {
     final response = api.introspectOAuth2Token(token, scope);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->introspectOAuth2Token: $e\n');
 }
 ```
@@ -650,9 +611,6 @@ This endpoint lists all clients in the database, and never returns client secret
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
@@ -663,7 +621,7 @@ final String owner = owner_example; // String | The owner of the clients to filt
 try {
     final response = api.listOAuth2Clients(pageSize, pageToken, clientName, owner);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->listOAuth2Clients: $e\n');
 }
 ```
@@ -702,9 +660,6 @@ This endpoint lists all subject's granted consent sessions, including client and
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String subject = subject_example; // String | The subject to list the consent sessions for.
@@ -715,7 +670,7 @@ final String loginSessionId = loginSessionId_example; // String | The login sess
 try {
     final response = api.listOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->listOAuth2ConsentSessions: $e\n');
 }
 ```
@@ -754,9 +709,6 @@ Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final int maxItems = 789; // int | 
@@ -766,7 +718,7 @@ final String issuer = issuer_example; // String | If optional \"issuer\" is supp
 try {
     final response = api.listTrustedOAuth2JwtGrantIssuers(maxItems, defaultItems, issuer);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->listTrustedOAuth2JwtGrantIssuers: $e\n');
 }
 ```
@@ -810,7 +762,7 @@ final api = OryClient().getOAuth2Api();
 try {
     final response = api.oAuth2Authorize();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->oAuth2Authorize: $e\n');
 }
 ```
@@ -859,7 +811,7 @@ final String refreshToken = refreshToken_example; // String |
 try {
     final response = api.oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->oauth2TokenExchange: $e\n');
 }
 ```
@@ -899,9 +851,6 @@ Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret`
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String id = id_example; // String | The id of the OAuth 2.0 Client.
@@ -910,7 +859,7 @@ final BuiltList<JsonPatch> jsonPatch = ; // BuiltList<JsonPatch> | OAuth 2.0 Cli
 try {
     final response = api.patchOAuth2Client(id, jsonPatch);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->patchOAuth2Client: $e\n');
 }
 ```
@@ -947,9 +896,6 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String consentChallenge = consentChallenge_example; // String | OAuth 2.0 Consent Request Challenge
@@ -958,7 +904,7 @@ final RejectOAuth2Request rejectOAuth2Request = ; // RejectOAuth2Request |
 try {
     final response = api.rejectOAuth2ConsentRequest(consentChallenge, rejectOAuth2Request);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->rejectOAuth2ConsentRequest: $e\n');
 }
 ```
@@ -995,9 +941,6 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String loginChallenge = loginChallenge_example; // String | OAuth 2.0 Login Request Challenge
@@ -1006,7 +949,7 @@ final RejectOAuth2Request rejectOAuth2Request = ; // RejectOAuth2Request |
 try {
     final response = api.rejectOAuth2LoginRequest(loginChallenge, rejectOAuth2Request);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->rejectOAuth2LoginRequest: $e\n');
 }
 ```
@@ -1043,16 +986,13 @@ When a user or an application requests Ory OAuth 2.0 to remove the session state
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String logoutChallenge = logoutChallenge_example; // String | 
 
 try {
     api.rejectOAuth2LogoutRequest(logoutChallenge);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->rejectOAuth2LogoutRequest: $e\n');
 }
 ```
@@ -1088,9 +1028,6 @@ This endpoint revokes a subject's granted consent sessions and invalidates all a
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String subject = subject_example; // String | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
@@ -1099,7 +1036,7 @@ final bool all = true; // bool | Revoke All Consent Sessions  If set to `true` d
 
 try {
     api.revokeOAuth2ConsentSessions(subject, client, all);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->revokeOAuth2ConsentSessions: $e\n');
 }
 ```
@@ -1132,14 +1069,11 @@ void (empty response body)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String subject = subject_example; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
@@ -1147,7 +1081,7 @@ final String sid = sid_example; // String | OAuth 2.0 Subject  The subject to re
 
 try {
     api.revokeOAuth2LoginSessions(subject, sid);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->revokeOAuth2LoginSessions: $e\n');
 }
 ```
@@ -1197,7 +1131,7 @@ final String clientSecret = clientSecret_example; // String |
 
 try {
     api.revokeOAuth2Token(token, clientId, clientSecret);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->revokeOAuth2Token: $e\n');
 }
 ```
@@ -1235,9 +1169,6 @@ Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `cl
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String id = id_example; // String | OAuth 2.0 Client ID
@@ -1246,7 +1177,7 @@ final OAuth2Client oAuth2Client = ; // OAuth2Client | OAuth 2.0 Client Request B
 try {
     final response = api.setOAuth2Client(id, oAuth2Client);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->setOAuth2Client: $e\n');
 }
 ```
@@ -1283,9 +1214,6 @@ Set lifespans of different token types issued for this OAuth 2.0 client. Does no
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final String id = id_example; // String | OAuth 2.0 Client ID
@@ -1294,7 +1222,7 @@ final OAuth2ClientTokenLifespans oAuth2ClientTokenLifespans = ; // OAuth2ClientT
 try {
     final response = api.setOAuth2ClientLifespans(id, oAuth2ClientTokenLifespans);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->setOAuth2ClientLifespans: $e\n');
 }
 ```
@@ -1331,9 +1259,6 @@ Use this endpoint to establish a trust relationship for a JWT issuer to perform 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getOAuth2Api();
 final TrustOAuth2JwtGrantIssuer trustOAuth2JwtGrantIssuer = ; // TrustOAuth2JwtGrantIssuer | 
@@ -1341,7 +1266,7 @@ final TrustOAuth2JwtGrantIssuer trustOAuth2JwtGrantIssuer = ; // TrustOAuth2JwtG
 try {
     final response = api.trustOAuth2JwtGrantIssuer(trustOAuth2JwtGrantIssuer);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->trustOAuth2JwtGrantIssuer: $e\n');
 }
 ```

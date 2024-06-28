@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -15,11 +15,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the HealthStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HealthStatus{}
+
 // HealthStatus struct for HealthStatus
 type HealthStatus struct {
 	// Status always contains \"ok\".
 	Status *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HealthStatus HealthStatus
 
 // NewHealthStatus instantiates a new HealthStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewHealthStatusWithDefaults() *HealthStatus {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *HealthStatus) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -50,7 +56,7 @@ func (o *HealthStatus) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HealthStatus) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -58,7 +64,7 @@ func (o *HealthStatus) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *HealthStatus) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -71,11 +77,45 @@ func (o *HealthStatus) SetStatus(v string) {
 }
 
 func (o HealthStatus) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o HealthStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *HealthStatus) UnmarshalJSON(bytes []byte) (err error) {
+	varHealthStatus := _HealthStatus{}
+
+	err = json.Unmarshal(bytes, &varHealthStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HealthStatus(varHealthStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHealthStatus struct {

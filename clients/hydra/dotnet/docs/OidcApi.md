@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateOidcDynamicClient**](OidcApi.md#createoidcdynamicclient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+[**CreateVerifiableCredential**](OidcApi.md#createverifiablecredential) | **POST** /credentials | Issues a Verifiable Credential
 [**DeleteOidcDynamicClient**](OidcApi.md#deleteoidcdynamicclient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 [**DiscoverOidcConfiguration**](OidcApi.md#discoveroidcconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 [**GetOidcDynamicClient**](OidcApi.md#getoidcdynamicclient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -83,6 +84,79 @@ No authorization required
 | **201** | oAuth2Client |  -  |
 | **400** | Bad Request Error Response |  -  |
 | **0** | Default Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="createverifiablecredential"></a>
+# **CreateVerifiableCredential**
+> HydraVerifiableCredentialResponse CreateVerifiableCredential (HydraCreateVerifiableCredentialRequestBody hydraCreateVerifiableCredentialRequestBody = null)
+
+Issues a Verifiable Credential
+
+This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Hydra.Client.Api;
+using Ory.Hydra.Client.Client;
+using Ory.Hydra.Client.Model;
+
+namespace Example
+{
+    public class CreateVerifiableCredentialExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new OidcApi(config);
+            var hydraCreateVerifiableCredentialRequestBody = new HydraCreateVerifiableCredentialRequestBody(); // HydraCreateVerifiableCredentialRequestBody |  (optional) 
+
+            try
+            {
+                // Issues a Verifiable Credential
+                HydraVerifiableCredentialResponse result = apiInstance.CreateVerifiableCredential(hydraCreateVerifiableCredentialRequestBody);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling OidcApi.CreateVerifiableCredential: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **hydraCreateVerifiableCredentialRequestBody** | [**HydraCreateVerifiableCredentialRequestBody**](HydraCreateVerifiableCredentialRequestBody.md)|  | [optional] 
+
+### Return type
+
+[**HydraVerifiableCredentialResponse**](HydraVerifiableCredentialResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | verifiableCredentialResponse |  -  |
+| **400** | verifiableCredentialPrimingResponse |  -  |
+| **0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

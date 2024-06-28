@@ -42,7 +42,7 @@ typescript() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-axios \
     -o "$dir" \
@@ -52,14 +52,38 @@ typescript() {
     -c ./config/client/typescript.yml.proc.yml
 
   file="${dir}/package.json"
-  jq -r ".author = "'"'"ORY GmbH"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
-    >tmp.$$.json && mv tmp.$$.json "${file}"
+  jq -r ".author = "'"'"Ory Corp"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
+     > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
   cp "LICENSE" "clients/${PROJECT}/typescript"
 }
 
-java() {
+typescript_fetch () {
+  echo "Generating TypeScript Fetch..."
+
+  dir="clients/${PROJECT}/typescript-fetch"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
+
+  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
+    -g typescript-fetch \
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/typescript-fetch.yml.proc.yml
+
+  file="${dir}/package.json"
+  jq -r ".author = "'"'"Ory Corp"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
+     > tmp.$$.json && mv tmp.$$.json "${file}"
+
+  cat "${file}"
+  cp "LICENSE" "clients/${PROJECT}/typescript-fetch"
+}
+
+java () {
   echo "Generating Java..."
 
   dir="clients/${PROJECT}/java"
@@ -68,7 +92,7 @@ java() {
 
   # Upgrading Java requires adjusting the pom.xml files in contrib/client. Usually,
   # new versions of the generator introduce changes to the pom dependencies.
-  openapi-generator-cli version-manager set 6.2.1
+  openapi-generator-cli version-manager set 7.3.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
@@ -134,7 +158,7 @@ php() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
@@ -145,8 +169,8 @@ php() {
 
   file="${dir}/composer.json"
 
-  jq -r ".name=\"${PHP_PACKAGE_NAME}-php\" | .homepage = \"https://github.com/ory/${GIT_REPO}-php\" | .authors[0].name = \"Ory GmbH\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
-    >tmp.$$.json && mv tmp.$$.json "${file}"
+  jq -r ".name=\"${PHP_PACKAGE_NAME}-php\" | .homepage = \"https://github.com/ory/${GIT_REPO}-php\" | .authors[0].name = \"Ory Corp\" | .authors[0].homepage = \"https://www.ory.sh\" | .license = \"Apache-2.0\"" "${file}" \
+     > tmp.$$.json && mv tmp.$$.json "${file}"
 
   cat "${file}"
   cp "LICENSE" "clients/${PROJECT}/php"
@@ -159,7 +183,7 @@ python() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
@@ -179,7 +203,7 @@ ruby() {
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
@@ -210,7 +234,7 @@ golang() {
 
   mkdir -p "${dir}"
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
@@ -221,26 +245,11 @@ golang() {
   cp "LICENSE" "clients/${PROJECT}/go"
 
   if [ "${PROJECT}" == "hydra" ]; then
-    (
-      cd "${dir}"
-      rm go.mod go.sum || true
-      go mod init "github.com/ory/${PROJECT}-client-go/v2"
-      go mod tidy
-    )
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v2"; go mod tidy -compat=1.17)
   elif [ "${PROJECT}" == "client" ]; then
-    (
-      cd "${dir}"
-      rm go.mod go.sum || true
-      go mod init "github.com/ory/client-go"
-      go mod tidy
-    )
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/client-go"; go mod tidy -compat=1.17)
   else
-    (
-      cd "${dir}"
-      rm go.mod go.sum || true
-      go mod init "github.com/ory/${PROJECT}-client-go"
-      go mod tidy
-    )
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go"; go mod tidy -compat=1.17)
   fi
 }
 
@@ -251,9 +260,9 @@ dotnet() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 5.4.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
-    -g csharp-netcore \
+    -g csharp \
     -o "$dir" \
     --model-name-prefix "${PROJECT_UCF}" \
     --git-user-id ory \
@@ -270,7 +279,7 @@ dart() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 6.1.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g dart-dio \
     -o "$dir" \
@@ -292,14 +301,13 @@ rust() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 6.0.1
+  openapi-generator-cli version-manager set 7.4.0
   # We use a custom rust template to fix some of the compilation issues:
   # - https://github.com/OpenAPITools/openapi-generator/issues/13257
   # - https://github.com/OpenAPITools/openapi-generator/issues/10845
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g rust \
     -o "$dir" \
-    -t ./openapi/templates/rust \
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
@@ -324,7 +332,8 @@ elixir() {
 
   file="${dir}/mix.exs"
 
-  openapi-generator-cli version-manager set 6.2.1
+  # 7.4.0
+  openapi-generator-cli version-manager set 7.4.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g elixir \
     -o "$dir" \
@@ -363,14 +372,14 @@ if [ $# -lt 3 ]; then
   # This is needed by the release pipeline
   init
 
-  elixir
+  # elixir
   typescript
   rust
   golang
   java
   php
   python
-  ruby
+  # ruby
   dotnet
   dart
 

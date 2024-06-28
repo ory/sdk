@@ -6,6 +6,59 @@ part of 'identity.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const IdentityStateEnum _$identityStateEnum_active =
+    const IdentityStateEnum._('active');
+const IdentityStateEnum _$identityStateEnum_inactive =
+    const IdentityStateEnum._('inactive');
+
+IdentityStateEnum _$identityStateEnumValueOf(String name) {
+  switch (name) {
+    case 'active':
+      return _$identityStateEnum_active;
+    case 'inactive':
+      return _$identityStateEnum_inactive;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<IdentityStateEnum> _$identityStateEnumValues =
+    new BuiltSet<IdentityStateEnum>(const <IdentityStateEnum>[
+  _$identityStateEnum_active,
+  _$identityStateEnum_inactive,
+]);
+
+Serializer<IdentityStateEnum> _$identityStateEnumSerializer =
+    new _$IdentityStateEnumSerializer();
+
+class _$IdentityStateEnumSerializer
+    implements PrimitiveSerializer<IdentityStateEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'active': 'active',
+    'inactive': 'inactive',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'active': 'active',
+    'inactive': 'inactive',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[IdentityStateEnum];
+  @override
+  final String wireName = 'IdentityStateEnum';
+
+  @override
+  Object serialize(Serializers serializers, IdentityStateEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  IdentityStateEnum deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      IdentityStateEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$Identity extends Identity {
   @override
   final DateTime? createdAt;
@@ -18,13 +71,15 @@ class _$Identity extends Identity {
   @override
   final JsonObject? metadataPublic;
   @override
+  final String? organizationId;
+  @override
   final BuiltList<RecoveryIdentityAddress>? recoveryAddresses;
   @override
   final String schemaId;
   @override
   final String schemaUrl;
   @override
-  final IdentityState? state;
+  final IdentityStateEnum? state;
   @override
   final DateTime? stateChangedAt;
   @override
@@ -43,6 +98,7 @@ class _$Identity extends Identity {
       required this.id,
       this.metadataAdmin,
       this.metadataPublic,
+      this.organizationId,
       this.recoveryAddresses,
       required this.schemaId,
       required this.schemaUrl,
@@ -73,6 +129,7 @@ class _$Identity extends Identity {
         id == other.id &&
         metadataAdmin == other.metadataAdmin &&
         metadataPublic == other.metadataPublic &&
+        organizationId == other.organizationId &&
         recoveryAddresses == other.recoveryAddresses &&
         schemaId == other.schemaId &&
         schemaUrl == other.schemaUrl &&
@@ -91,6 +148,7 @@ class _$Identity extends Identity {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, metadataAdmin.hashCode);
     _$hash = $jc(_$hash, metadataPublic.hashCode);
+    _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, recoveryAddresses.hashCode);
     _$hash = $jc(_$hash, schemaId.hashCode);
     _$hash = $jc(_$hash, schemaUrl.hashCode);
@@ -111,6 +169,7 @@ class _$Identity extends Identity {
           ..add('id', id)
           ..add('metadataAdmin', metadataAdmin)
           ..add('metadataPublic', metadataPublic)
+          ..add('organizationId', organizationId)
           ..add('recoveryAddresses', recoveryAddresses)
           ..add('schemaId', schemaId)
           ..add('schemaUrl', schemaUrl)
@@ -150,6 +209,11 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
   set metadataPublic(JsonObject? metadataPublic) =>
       _$this._metadataPublic = metadataPublic;
 
+  String? _organizationId;
+  String? get organizationId => _$this._organizationId;
+  set organizationId(String? organizationId) =>
+      _$this._organizationId = organizationId;
+
   ListBuilder<RecoveryIdentityAddress>? _recoveryAddresses;
   ListBuilder<RecoveryIdentityAddress> get recoveryAddresses =>
       _$this._recoveryAddresses ??= new ListBuilder<RecoveryIdentityAddress>();
@@ -165,9 +229,9 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
   String? get schemaUrl => _$this._schemaUrl;
   set schemaUrl(String? schemaUrl) => _$this._schemaUrl = schemaUrl;
 
-  IdentityState? _state;
-  IdentityState? get state => _$this._state;
-  set state(IdentityState? state) => _$this._state = state;
+  IdentityStateEnum? _state;
+  IdentityStateEnum? get state => _$this._state;
+  set state(IdentityStateEnum? state) => _$this._state = state;
 
   DateTime? _stateChangedAt;
   DateTime? get stateChangedAt => _$this._stateChangedAt;
@@ -202,6 +266,7 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
       _id = $v.id;
       _metadataAdmin = $v.metadataAdmin;
       _metadataPublic = $v.metadataPublic;
+      _organizationId = $v.organizationId;
       _recoveryAddresses = $v.recoveryAddresses?.toBuilder();
       _schemaId = $v.schemaId;
       _schemaUrl = $v.schemaUrl;
@@ -239,6 +304,7 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
               id: BuiltValueNullFieldError.checkNotNull(id, r'Identity', 'id'),
               metadataAdmin: metadataAdmin,
               metadataPublic: metadataPublic,
+              organizationId: organizationId,
               recoveryAddresses: _recoveryAddresses?.build(),
               schemaId: BuiltValueNullFieldError.checkNotNull(
                   schemaId, r'Identity', 'schemaId'),

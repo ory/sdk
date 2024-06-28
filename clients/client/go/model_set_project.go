@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,21 +13,32 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the SetProject type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SetProject{}
 
 // SetProject struct for SetProject
 type SetProject struct {
+	CorsAdmin ProjectCors `json:"cors_admin"`
+	CorsPublic ProjectCors `json:"cors_public"`
 	// The name of the project.
 	Name string `json:"name"`
 	Services ProjectServices `json:"services"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SetProject SetProject
 
 // NewSetProject instantiates a new SetProject object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSetProject(name string, services ProjectServices) *SetProject {
+func NewSetProject(corsAdmin ProjectCors, corsPublic ProjectCors, name string, services ProjectServices) *SetProject {
 	this := SetProject{}
+	this.CorsAdmin = corsAdmin
+	this.CorsPublic = corsPublic
 	this.Name = name
 	this.Services = services
 	return &this
@@ -39,6 +50,54 @@ func NewSetProject(name string, services ProjectServices) *SetProject {
 func NewSetProjectWithDefaults() *SetProject {
 	this := SetProject{}
 	return &this
+}
+
+// GetCorsAdmin returns the CorsAdmin field value
+func (o *SetProject) GetCorsAdmin() ProjectCors {
+	if o == nil {
+		var ret ProjectCors
+		return ret
+	}
+
+	return o.CorsAdmin
+}
+
+// GetCorsAdminOk returns a tuple with the CorsAdmin field value
+// and a boolean to check if the value has been set.
+func (o *SetProject) GetCorsAdminOk() (*ProjectCors, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CorsAdmin, true
+}
+
+// SetCorsAdmin sets field value
+func (o *SetProject) SetCorsAdmin(v ProjectCors) {
+	o.CorsAdmin = v
+}
+
+// GetCorsPublic returns the CorsPublic field value
+func (o *SetProject) GetCorsPublic() ProjectCors {
+	if o == nil {
+		var ret ProjectCors
+		return ret
+	}
+
+	return o.CorsPublic
+}
+
+// GetCorsPublicOk returns a tuple with the CorsPublic field value
+// and a boolean to check if the value has been set.
+func (o *SetProject) GetCorsPublicOk() (*ProjectCors, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CorsPublic, true
+}
+
+// SetCorsPublic sets field value
+func (o *SetProject) SetCorsPublic(v ProjectCors) {
+	o.CorsPublic = v
 }
 
 // GetName returns the Name field value
@@ -90,14 +149,73 @@ func (o *SetProject) SetServices(v ProjectServices) {
 }
 
 func (o SetProject) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["services"] = o.Services
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SetProject) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["cors_admin"] = o.CorsAdmin
+	toSerialize["cors_public"] = o.CorsPublic
+	toSerialize["name"] = o.Name
+	toSerialize["services"] = o.Services
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *SetProject) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"cors_admin",
+		"cors_public",
+		"name",
+		"services",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSetProject := _SetProject{}
+
+	err = json.Unmarshal(data, &varSetProject)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SetProject(varSetProject)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cors_admin")
+		delete(additionalProperties, "cors_public")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "services")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSetProject struct {

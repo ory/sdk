@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the Relationship type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Relationship{}
 
 // Relationship Relationship
 type Relationship struct {
@@ -26,7 +30,10 @@ type Relationship struct {
 	// SubjectID of the Relation Tuple  Either SubjectSet or SubjectID can be provided.
 	SubjectId *string `json:"subject_id,omitempty"`
 	SubjectSet *SubjectSet `json:"subject_set,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Relationship Relationship
 
 // NewRelationship instantiates a new Relationship object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +129,7 @@ func (o *Relationship) SetRelation(v string) {
 
 // GetSubjectId returns the SubjectId field value if set, zero value otherwise.
 func (o *Relationship) GetSubjectId() string {
-	if o == nil || o.SubjectId == nil {
+	if o == nil || IsNil(o.SubjectId) {
 		var ret string
 		return ret
 	}
@@ -132,7 +139,7 @@ func (o *Relationship) GetSubjectId() string {
 // GetSubjectIdOk returns a tuple with the SubjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Relationship) GetSubjectIdOk() (*string, bool) {
-	if o == nil || o.SubjectId == nil {
+	if o == nil || IsNil(o.SubjectId) {
 		return nil, false
 	}
 	return o.SubjectId, true
@@ -140,7 +147,7 @@ func (o *Relationship) GetSubjectIdOk() (*string, bool) {
 
 // HasSubjectId returns a boolean if a field has been set.
 func (o *Relationship) HasSubjectId() bool {
-	if o != nil && o.SubjectId != nil {
+	if o != nil && !IsNil(o.SubjectId) {
 		return true
 	}
 
@@ -154,7 +161,7 @@ func (o *Relationship) SetSubjectId(v string) {
 
 // GetSubjectSet returns the SubjectSet field value if set, zero value otherwise.
 func (o *Relationship) GetSubjectSet() SubjectSet {
-	if o == nil || o.SubjectSet == nil {
+	if o == nil || IsNil(o.SubjectSet) {
 		var ret SubjectSet
 		return ret
 	}
@@ -164,7 +171,7 @@ func (o *Relationship) GetSubjectSet() SubjectSet {
 // GetSubjectSetOk returns a tuple with the SubjectSet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Relationship) GetSubjectSetOk() (*SubjectSet, bool) {
-	if o == nil || o.SubjectSet == nil {
+	if o == nil || IsNil(o.SubjectSet) {
 		return nil, false
 	}
 	return o.SubjectSet, true
@@ -172,7 +179,7 @@ func (o *Relationship) GetSubjectSetOk() (*SubjectSet, bool) {
 
 // HasSubjectSet returns a boolean if a field has been set.
 func (o *Relationship) HasSubjectSet() bool {
-	if o != nil && o.SubjectSet != nil {
+	if o != nil && !IsNil(o.SubjectSet) {
 		return true
 	}
 
@@ -185,23 +192,78 @@ func (o *Relationship) SetSubjectSet(v SubjectSet) {
 }
 
 func (o Relationship) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["namespace"] = o.Namespace
-	}
-	if true {
-		toSerialize["object"] = o.Object
-	}
-	if true {
-		toSerialize["relation"] = o.Relation
-	}
-	if o.SubjectId != nil {
-		toSerialize["subject_id"] = o.SubjectId
-	}
-	if o.SubjectSet != nil {
-		toSerialize["subject_set"] = o.SubjectSet
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Relationship) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["namespace"] = o.Namespace
+	toSerialize["object"] = o.Object
+	toSerialize["relation"] = o.Relation
+	if !IsNil(o.SubjectId) {
+		toSerialize["subject_id"] = o.SubjectId
+	}
+	if !IsNil(o.SubjectSet) {
+		toSerialize["subject_set"] = o.SubjectSet
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *Relationship) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"namespace",
+		"object",
+		"relation",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRelationship := _Relationship{}
+
+	err = json.Unmarshal(data, &varRelationship)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Relationship(varRelationship)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "namespace")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "relation")
+		delete(additionalProperties, "subject_id")
+		delete(additionalProperties, "subject_set")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRelationship struct {

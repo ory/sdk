@@ -5,24 +5,72 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**createOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | 
 [**createProject**](ProjectApi.md#createproject) | **POST** /projects | Create a Project
 [**createProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API token
+[**deleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | 
 [**deleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
-[**getActiveProjectInConsole**](ProjectApi.md#getactiveprojectinconsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+[**getOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID
 [**getProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
-[**getProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+[**getProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
+[**listOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | 
 [**listProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**listProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 [**patchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**purgeProject**](ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-[**removeProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
-[**setActiveProjectInConsole**](ProjectApi.md#setactiveprojectinconsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
+[**removeProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**setProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
+[**updateOrganization**](ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | 
 
+
+# **createOrganization**
+> Organization createOrganization(projectId, organizationBody)
+
+
+
+Create a B2B SSO Organization
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | Project ID  The project's ID.
+final OrganizationBody organizationBody = ; // OrganizationBody | 
+
+try {
+    final response = api.createOrganization(projectId, organizationBody);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling ProjectApi->createOrganization: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **organizationBody** | [**OrganizationBody**](OrganizationBody.md)|  | [optional] 
+
+### Return type
+
+[**Organization**](Organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createProject**
 > Project createProject(createProjectBody)
@@ -34,9 +82,6 @@ Creates a new project.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
 final CreateProjectBody createProjectBody = ; // CreateProjectBody | 
@@ -44,7 +89,7 @@ final CreateProjectBody createProjectBody = ; // CreateProjectBody |
 try {
     final response = api.createProject(createProjectBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->createProject: $e\n');
 }
 ```
@@ -61,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -80,9 +125,6 @@ Create an API token for a project.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
 final String project = project_example; // String | The Project ID or Project slug
@@ -91,7 +133,7 @@ final CreateProjectApiKeyRequest createProjectApiKeyRequest = ; // CreateProject
 try {
     final response = api.createProjectApiKey(project, createProjectApiKeyRequest);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->createProjectApiKey: $e\n');
 }
 ```
@@ -109,11 +151,55 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteOrganization**
+> deleteOrganization(projectId, organizationId)
+
+
+
+Delete a B2B SSO Organization for a project
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | Project ID  The project's ID.
+final String organizationId = organizationId_example; // String | Organization ID  The Organization's ID.
+
+try {
+    api.deleteOrganization(projectId, organizationId);
+} catch on DioException (e) {
+    print('Exception when calling ProjectApi->deleteOrganization: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **organizationId** | **String**| Organization ID  The Organization's ID. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -128,9 +214,6 @@ Deletes an API token and immediately removes it.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
 final String project = project_example; // String | The Project ID or Project slug
@@ -138,7 +221,7 @@ final String tokenId = tokenId_example; // String | The Token ID
 
 try {
     api.deleteProjectApiKey(project, tokenId);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->deleteProjectApiKey: $e\n');
 }
 ```
@@ -156,7 +239,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -165,40 +248,41 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getActiveProjectInConsole**
-> ActiveProjectInConsole getActiveProjectInConsole()
+# **getOrganization**
+> GetOrganizationResponse getOrganization(projectId, organizationId)
 
-Returns the Ory Network Project selected in the Ory Network Console
-
-Use this API to get your active project in the Ory Network Console UI.
+Returns a B2B SSO Organization for a project by its ID
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | Project ID  The project's ID.
+final String organizationId = organizationId_example; // String | Organization ID  The Organization's ID.
 
 try {
-    final response = api.getActiveProjectInConsole();
+    final response = api.getOrganization(projectId, organizationId);
     print(response);
-} catch on DioError (e) {
-    print('Exception when calling ProjectApi->getActiveProjectInConsole: $e\n');
+} catch on DioException (e) {
+    print('Exception when calling ProjectApi->getOrganization: $e\n');
 }
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **organizationId** | **String**| Organization ID  The Organization's ID. | 
 
 ### Return type
 
-[**ActiveProjectInConsole**](ActiveProjectInConsole.md)
+[**GetOrganizationResponse**](GetOrganizationResponse.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -217,9 +301,6 @@ Get a projects you have access to by its ID.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
 final String projectId = projectId_example; // String | Project ID  The project's ID.
@@ -227,7 +308,7 @@ final String projectId = projectId_example; // String | Project ID  The project'
 try {
     final response = api.getProject(projectId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->getProject: $e\n');
 }
 ```
@@ -244,7 +325,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -254,7 +335,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getProjectMembers**
-> BuiltList<CloudAccount> getProjectMembers(projectId)
+> BuiltList<ProjectMember> getProjectMembers(project)
 
 Get all members associated with this project
 
@@ -263,17 +344,14 @@ This endpoint requires the user to be a member of the project with the role `OWN
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
-final String projectId = projectId_example; // String | Project ID  The project's ID.
+final String project = project_example; // String | 
 
 try {
-    final response = api.getProjectMembers(projectId);
+    final response = api.getProjectMembers(project);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->getProjectMembers: $e\n');
 }
 ```
@@ -282,15 +360,64 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project's ID. | 
+ **project** | **String**|  | 
 
 ### Return type
 
-[**BuiltList&lt;CloudAccount&gt;**](CloudAccount.md)
+[**BuiltList&lt;ProjectMember&gt;**](ProjectMember.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listOrganizations**
+> ListOrganizationsResponse listOrganizations(projectId, pageSize, pageToken, domain)
+
+
+
+List all B2B SSO Organizations for a project
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | Project ID  The project's ID.
+final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String domain = domain_example; // String | Domain  If set, only organizations with that domain will be returned.
+
+try {
+    final response = api.listOrganizations(projectId, pageSize, pageToken, domain);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling ProjectApi->listOrganizations: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] 
+ **domain** | **String**| Domain  If set, only organizations with that domain will be returned. | [optional] 
+
+### Return type
+
+[**ListOrganizationsResponse**](ListOrganizationsResponse.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -309,9 +436,6 @@ A list of all the project's API tokens.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
 final String project = project_example; // String | The Project ID or Project slug
@@ -319,7 +443,7 @@ final String project = project_example; // String | The Project ID or Project sl
 try {
     final response = api.listProjectApiKeys(project);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->listProjectApiKeys: $e\n');
 }
 ```
@@ -336,7 +460,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -355,16 +479,13 @@ Lists all projects you have access to.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
 
 try {
     final response = api.listProjects();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->listProjects: $e\n');
 }
 ```
@@ -378,7 +499,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -397,9 +518,6 @@ Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the e
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
 final String projectId = projectId_example; // String | Project ID  The project's ID.
@@ -408,7 +526,7 @@ final BuiltList<JsonPatch> jsonPatch = ; // BuiltList<JsonPatch> |
 try {
     final response = api.patchProject(projectId, jsonPatch);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->patchProject: $e\n');
 }
 ```
@@ -426,7 +544,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -445,16 +563,13 @@ Irrecoverably purge a project
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
 final String projectId = projectId_example; // String | Project ID  The project's ID.
 
 try {
     api.purgeProject(projectId);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->purgeProject: $e\n');
 }
 ```
@@ -471,7 +586,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -481,7 +596,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **removeProjectMember**
-> removeProjectMember(projectId, memberId)
+> removeProjectMember(project, member)
 
 Remove a member associated with this project
 
@@ -490,17 +605,14 @@ This also sets their invite status to `REMOVED`. This endpoint requires the user
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
-final String projectId = projectId_example; // String | Project ID  The project's ID.
-final String memberId = memberId_example; // String | Member ID
+final String project = project_example; // String | 
+final String member = member_example; // String | 
 
 try {
-    api.removeProjectMember(projectId, memberId);
-} catch on DioError (e) {
+    api.removeProjectMember(project, member);
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->removeProjectMember: $e\n');
 }
 ```
@@ -509,8 +621,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **String**| Project ID  The project's ID. | 
- **memberId** | **String**| Member ID | 
+ **project** | **String**|  | 
+ **member** | **String**|  | 
 
 ### Return type
 
@@ -518,56 +630,11 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **setActiveProjectInConsole**
-> setActiveProjectInConsole(setActiveProjectInConsoleBody)
-
-Sets the Ory Network Project active in the Ory Network Console
-
-Use this API to set your active project in the Ory Network Console UI.
-
-### Example
-```dart
-import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
-
-final api = OryClient().getProjectApi();
-final SetActiveProjectInConsoleBody setActiveProjectInConsoleBody = ; // SetActiveProjectInConsoleBody | 
-
-try {
-    api.setActiveProjectInConsole(setActiveProjectInConsoleBody);
-} catch on DioError (e) {
-    print('Exception when calling ProjectApi->setActiveProjectInConsole: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **setActiveProjectInConsoleBody** | [**SetActiveProjectInConsoleBody**](SetActiveProjectInConsoleBody.md)|  | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -582,9 +649,6 @@ This endpoints allows you to update the Ory Network project configuration for in
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getProjectApi();
 final String projectId = projectId_example; // String | Project ID  The project's ID.
@@ -593,7 +657,7 @@ final SetProject setProject = ; // SetProject |
 try {
     final response = api.setProject(projectId, setProject);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ProjectApi->setProject: $e\n');
 }
 ```
@@ -611,7 +675,54 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateOrganization**
+> Organization updateOrganization(projectId, organizationId, organizationBody)
+
+
+
+Update a B2B SSO Organization for a project
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | Project ID  The project's ID.
+final String organizationId = organizationId_example; // String | Organization ID  The Organization's ID.
+final OrganizationBody organizationBody = ; // OrganizationBody | 
+
+try {
+    final response = api.updateOrganization(projectId, organizationId, organizationBody);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling ProjectApi->updateOrganization: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **organizationId** | **String**| Organization ID  The Organization's ID. | 
+ **organizationBody** | [**OrganizationBody**](OrganizationBody.md)|  | [optional] 
+
+### Return type
+
+[**Organization**](Organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

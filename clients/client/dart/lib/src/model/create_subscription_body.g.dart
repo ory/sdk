@@ -6,6 +6,32 @@ part of 'create_subscription_body.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const CreateSubscriptionBodyCurrencyEnum
+    _$createSubscriptionBodyCurrencyEnum_usd =
+    const CreateSubscriptionBodyCurrencyEnum._('usd');
+const CreateSubscriptionBodyCurrencyEnum
+    _$createSubscriptionBodyCurrencyEnum_eur =
+    const CreateSubscriptionBodyCurrencyEnum._('eur');
+
+CreateSubscriptionBodyCurrencyEnum _$createSubscriptionBodyCurrencyEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'usd':
+      return _$createSubscriptionBodyCurrencyEnum_usd;
+    case 'eur':
+      return _$createSubscriptionBodyCurrencyEnum_eur;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<CreateSubscriptionBodyCurrencyEnum>
+    _$createSubscriptionBodyCurrencyEnumValues = new BuiltSet<
+        CreateSubscriptionBodyCurrencyEnum>(const <CreateSubscriptionBodyCurrencyEnum>[
+  _$createSubscriptionBodyCurrencyEnum_usd,
+  _$createSubscriptionBodyCurrencyEnum_eur,
+]);
+
 const CreateSubscriptionBodyIntervalEnum
     _$createSubscriptionBodyIntervalEnum_monthly =
     const CreateSubscriptionBodyIntervalEnum._('monthly');
@@ -32,9 +58,42 @@ final BuiltSet<CreateSubscriptionBodyIntervalEnum>
   _$createSubscriptionBodyIntervalEnum_yearly,
 ]);
 
+Serializer<CreateSubscriptionBodyCurrencyEnum>
+    _$createSubscriptionBodyCurrencyEnumSerializer =
+    new _$CreateSubscriptionBodyCurrencyEnumSerializer();
 Serializer<CreateSubscriptionBodyIntervalEnum>
     _$createSubscriptionBodyIntervalEnumSerializer =
     new _$CreateSubscriptionBodyIntervalEnumSerializer();
+
+class _$CreateSubscriptionBodyCurrencyEnumSerializer
+    implements PrimitiveSerializer<CreateSubscriptionBodyCurrencyEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'usd': 'usd',
+    'eur': 'eur',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'usd': 'usd',
+    'eur': 'eur',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[CreateSubscriptionBodyCurrencyEnum];
+  @override
+  final String wireName = 'CreateSubscriptionBodyCurrencyEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, CreateSubscriptionBodyCurrencyEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  CreateSubscriptionBodyCurrencyEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      CreateSubscriptionBodyCurrencyEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
 
 class _$CreateSubscriptionBodyIntervalEnumSerializer
     implements PrimitiveSerializer<CreateSubscriptionBodyIntervalEnum> {
@@ -68,6 +127,8 @@ class _$CreateSubscriptionBodyIntervalEnumSerializer
 
 class _$CreateSubscriptionBody extends CreateSubscriptionBody {
   @override
+  final CreateSubscriptionBodyCurrencyEnum? currency;
+  @override
   final CreateSubscriptionBodyIntervalEnum interval;
   @override
   final String plan;
@@ -81,7 +142,8 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
       (new CreateSubscriptionBodyBuilder()..update(updates))._build();
 
   _$CreateSubscriptionBody._(
-      {required this.interval,
+      {this.currency,
+      required this.interval,
       required this.plan,
       required this.provisionFirstProject,
       this.returnTo})
@@ -107,6 +169,7 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is CreateSubscriptionBody &&
+        currency == other.currency &&
         interval == other.interval &&
         plan == other.plan &&
         provisionFirstProject == other.provisionFirstProject &&
@@ -116,6 +179,7 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, currency.hashCode);
     _$hash = $jc(_$hash, interval.hashCode);
     _$hash = $jc(_$hash, plan.hashCode);
     _$hash = $jc(_$hash, provisionFirstProject.hashCode);
@@ -127,6 +191,7 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateSubscriptionBody')
+          ..add('currency', currency)
           ..add('interval', interval)
           ..add('plan', plan)
           ..add('provisionFirstProject', provisionFirstProject)
@@ -138,6 +203,11 @@ class _$CreateSubscriptionBody extends CreateSubscriptionBody {
 class CreateSubscriptionBodyBuilder
     implements Builder<CreateSubscriptionBody, CreateSubscriptionBodyBuilder> {
   _$CreateSubscriptionBody? _$v;
+
+  CreateSubscriptionBodyCurrencyEnum? _currency;
+  CreateSubscriptionBodyCurrencyEnum? get currency => _$this._currency;
+  set currency(CreateSubscriptionBodyCurrencyEnum? currency) =>
+      _$this._currency = currency;
 
   CreateSubscriptionBodyIntervalEnum? _interval;
   CreateSubscriptionBodyIntervalEnum? get interval => _$this._interval;
@@ -164,6 +234,7 @@ class CreateSubscriptionBodyBuilder
   CreateSubscriptionBodyBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _currency = $v.currency;
       _interval = $v.interval;
       _plan = $v.plan;
       _provisionFirstProject = $v.provisionFirstProject;
@@ -190,6 +261,7 @@ class CreateSubscriptionBodyBuilder
   _$CreateSubscriptionBody _build() {
     final _$result = _$v ??
         new _$CreateSubscriptionBody._(
+            currency: currency,
             interval: BuiltValueNullFieldError.checkNotNull(
                 interval, r'CreateSubscriptionBody', 'interval'),
             plan: BuiltValueNullFieldError.checkNotNull(

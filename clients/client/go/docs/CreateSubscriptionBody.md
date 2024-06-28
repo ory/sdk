@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Currency** | Pointer to **string** |  usd USD eur Euro | [optional] 
 **Interval** | **string** |  monthly Monthly yearly Yearly | 
 **Plan** | **string** |  | 
 **ProvisionFirstProject** | **string** |  | 
@@ -27,6 +28,31 @@ will change when the set of required properties is changed
 NewCreateSubscriptionBodyWithDefaults instantiates a new CreateSubscriptionBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCurrency
+
+`func (o *CreateSubscriptionBody) GetCurrency() string`
+
+GetCurrency returns the Currency field if non-nil, zero value otherwise.
+
+### GetCurrencyOk
+
+`func (o *CreateSubscriptionBody) GetCurrencyOk() (*string, bool)`
+
+GetCurrencyOk returns a tuple with the Currency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrency
+
+`func (o *CreateSubscriptionBody) SetCurrency(v string)`
+
+SetCurrency sets Currency field to given value.
+
+### HasCurrency
+
+`func (o *CreateSubscriptionBody) HasCurrency() bool`
+
+HasCurrency returns a boolean if a field has been set.
 
 ### GetInterval
 

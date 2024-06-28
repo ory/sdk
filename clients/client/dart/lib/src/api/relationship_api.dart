@@ -38,7 +38,7 @@ class RelationshipApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [CheckOplSyntaxResult] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<CheckOplSyntaxResult>> checkOplSyntax({ 
     String? body,
     CancelToken? cancelToken,
@@ -74,14 +74,15 @@ class RelationshipApi {
       _bodyData = body;
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -93,22 +94,23 @@ class RelationshipApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckOplSyntaxResult _responseData;
+    CheckOplSyntaxResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckOplSyntaxResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckOplSyntaxResult),
       ) as CheckOplSyntaxResult;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckOplSyntaxResult>(
@@ -136,7 +138,7 @@ class RelationshipApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [Relationship] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<Relationship>> createRelationship({ 
     CreateRelationshipBody? createRelationshipBody,
     CancelToken? cancelToken,
@@ -173,14 +175,15 @@ class RelationshipApi {
       _bodyData = createRelationshipBody == null ? null : _serializers.serialize(createRelationshipBody, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -192,22 +195,23 @@ class RelationshipApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Relationship _responseData;
+    Relationship? _responseData;
 
     try {
-      const _responseType = FullType(Relationship);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Relationship),
       ) as Relationship;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Relationship>(
@@ -241,7 +245,7 @@ class RelationshipApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> deleteRelationships({ 
     String? namespace,
     String? object,
@@ -319,7 +323,7 @@ class RelationshipApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [Relationships] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<Relationships>> getRelationships({ 
     String? pageToken,
     int? pageSize,
@@ -377,22 +381,23 @@ class RelationshipApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Relationships _responseData;
+    Relationships? _responseData;
 
     try {
-      const _responseType = FullType(Relationships);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Relationships),
       ) as Relationships;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Relationships>(
@@ -419,7 +424,7 @@ class RelationshipApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [RelationshipNamespaces] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<RelationshipNamespaces>> listRelationshipNamespaces({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -455,22 +460,23 @@ class RelationshipApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RelationshipNamespaces _responseData;
+    RelationshipNamespaces? _responseData;
 
     try {
-      const _responseType = FullType(RelationshipNamespaces);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RelationshipNamespaces),
       ) as RelationshipNamespaces;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RelationshipNamespaces>(
@@ -498,7 +504,7 @@ class RelationshipApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> patchRelationships({ 
     BuiltList<RelationshipPatch>? relationshipPatch,
     CancelToken? cancelToken,
@@ -535,14 +541,15 @@ class RelationshipApi {
       _bodyData = relationshipPatch == null ? null : _serializers.serialize(relationshipPatch, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,11 +15,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the HealthNotReadyStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HealthNotReadyStatus{}
+
 // HealthNotReadyStatus struct for HealthNotReadyStatus
 type HealthNotReadyStatus struct {
 	// Errors contains a list of errors that caused the not ready status.
 	Errors *map[string]string `json:"errors,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HealthNotReadyStatus HealthNotReadyStatus
 
 // NewHealthNotReadyStatus instantiates a new HealthNotReadyStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewHealthNotReadyStatusWithDefaults() *HealthNotReadyStatus {
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *HealthNotReadyStatus) GetErrors() map[string]string {
-	if o == nil || o.Errors == nil {
+	if o == nil || IsNil(o.Errors) {
 		var ret map[string]string
 		return ret
 	}
@@ -50,7 +56,7 @@ func (o *HealthNotReadyStatus) GetErrors() map[string]string {
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HealthNotReadyStatus) GetErrorsOk() (*map[string]string, bool) {
-	if o == nil || o.Errors == nil {
+	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
 	return o.Errors, true
@@ -58,7 +64,7 @@ func (o *HealthNotReadyStatus) GetErrorsOk() (*map[string]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *HealthNotReadyStatus) HasErrors() bool {
-	if o != nil && o.Errors != nil {
+	if o != nil && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -71,11 +77,45 @@ func (o *HealthNotReadyStatus) SetErrors(v map[string]string) {
 }
 
 func (o HealthNotReadyStatus) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Errors != nil {
-		toSerialize["errors"] = o.Errors
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o HealthNotReadyStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Errors) {
+		toSerialize["errors"] = o.Errors
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *HealthNotReadyStatus) UnmarshalJSON(data []byte) (err error) {
+	varHealthNotReadyStatus := _HealthNotReadyStatus{}
+
+	err = json.Unmarshal(data, &varHealthNotReadyStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HealthNotReadyStatus(varHealthNotReadyStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "errors")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHealthNotReadyStatus struct {

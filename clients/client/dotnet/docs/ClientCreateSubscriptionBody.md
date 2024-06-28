@@ -1,10 +1,10 @@
 # Ory.Client.Model.ClientCreateSubscriptionBody
-Create Subscription Request Body
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Currency** | **string** |  usd USD eur Euro | [optional] 
 **Interval** | **string** |  monthly Monthly yearly Yearly | 
 **Plan** | **string** |  | 
 **ProvisionFirstProject** | **string** |  | 

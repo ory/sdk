@@ -72,22 +72,23 @@ class CourierApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Message _responseData;
+    Message? _responseData;
 
     try {
-      const _responseType = FullType(Message);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Message),
       ) as Message;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Message>(
@@ -167,22 +168,23 @@ class CourierApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Message> _responseData;
+    BuiltList<Message>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Message)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Message)]),
       ) as BuiltList<Message>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Message>>(

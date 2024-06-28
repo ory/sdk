@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -14,6 +14,9 @@ package client
 import (
 	"encoding/json"
 )
+
+// checks if the CreateCustomDomainBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateCustomDomainBody{}
 
 // CreateCustomDomainBody Create Custom Hostname Request Body
 type CreateCustomDomainBody struct {
@@ -27,7 +30,10 @@ type CreateCustomDomainBody struct {
 	CustomUiBaseUrl *string `json:"custom_ui_base_url,omitempty"`
 	// The custom hostname where the API will be exposed.
 	Hostname *string `json:"hostname,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateCustomDomainBody CreateCustomDomainBody
 
 // NewCreateCustomDomainBody instantiates a new CreateCustomDomainBody object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +54,7 @@ func NewCreateCustomDomainBodyWithDefaults() *CreateCustomDomainBody {
 
 // GetCookieDomain returns the CookieDomain field value if set, zero value otherwise.
 func (o *CreateCustomDomainBody) GetCookieDomain() string {
-	if o == nil || o.CookieDomain == nil {
+	if o == nil || IsNil(o.CookieDomain) {
 		var ret string
 		return ret
 	}
@@ -58,7 +64,7 @@ func (o *CreateCustomDomainBody) GetCookieDomain() string {
 // GetCookieDomainOk returns a tuple with the CookieDomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateCustomDomainBody) GetCookieDomainOk() (*string, bool) {
-	if o == nil || o.CookieDomain == nil {
+	if o == nil || IsNil(o.CookieDomain) {
 		return nil, false
 	}
 	return o.CookieDomain, true
@@ -66,7 +72,7 @@ func (o *CreateCustomDomainBody) GetCookieDomainOk() (*string, bool) {
 
 // HasCookieDomain returns a boolean if a field has been set.
 func (o *CreateCustomDomainBody) HasCookieDomain() bool {
-	if o != nil && o.CookieDomain != nil {
+	if o != nil && !IsNil(o.CookieDomain) {
 		return true
 	}
 
@@ -80,7 +86,7 @@ func (o *CreateCustomDomainBody) SetCookieDomain(v string) {
 
 // GetCorsAllowedOrigins returns the CorsAllowedOrigins field value if set, zero value otherwise.
 func (o *CreateCustomDomainBody) GetCorsAllowedOrigins() []string {
-	if o == nil || o.CorsAllowedOrigins == nil {
+	if o == nil || IsNil(o.CorsAllowedOrigins) {
 		var ret []string
 		return ret
 	}
@@ -90,7 +96,7 @@ func (o *CreateCustomDomainBody) GetCorsAllowedOrigins() []string {
 // GetCorsAllowedOriginsOk returns a tuple with the CorsAllowedOrigins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateCustomDomainBody) GetCorsAllowedOriginsOk() ([]string, bool) {
-	if o == nil || o.CorsAllowedOrigins == nil {
+	if o == nil || IsNil(o.CorsAllowedOrigins) {
 		return nil, false
 	}
 	return o.CorsAllowedOrigins, true
@@ -98,7 +104,7 @@ func (o *CreateCustomDomainBody) GetCorsAllowedOriginsOk() ([]string, bool) {
 
 // HasCorsAllowedOrigins returns a boolean if a field has been set.
 func (o *CreateCustomDomainBody) HasCorsAllowedOrigins() bool {
-	if o != nil && o.CorsAllowedOrigins != nil {
+	if o != nil && !IsNil(o.CorsAllowedOrigins) {
 		return true
 	}
 
@@ -112,7 +118,7 @@ func (o *CreateCustomDomainBody) SetCorsAllowedOrigins(v []string) {
 
 // GetCorsEnabled returns the CorsEnabled field value if set, zero value otherwise.
 func (o *CreateCustomDomainBody) GetCorsEnabled() bool {
-	if o == nil || o.CorsEnabled == nil {
+	if o == nil || IsNil(o.CorsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -122,7 +128,7 @@ func (o *CreateCustomDomainBody) GetCorsEnabled() bool {
 // GetCorsEnabledOk returns a tuple with the CorsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateCustomDomainBody) GetCorsEnabledOk() (*bool, bool) {
-	if o == nil || o.CorsEnabled == nil {
+	if o == nil || IsNil(o.CorsEnabled) {
 		return nil, false
 	}
 	return o.CorsEnabled, true
@@ -130,7 +136,7 @@ func (o *CreateCustomDomainBody) GetCorsEnabledOk() (*bool, bool) {
 
 // HasCorsEnabled returns a boolean if a field has been set.
 func (o *CreateCustomDomainBody) HasCorsEnabled() bool {
-	if o != nil && o.CorsEnabled != nil {
+	if o != nil && !IsNil(o.CorsEnabled) {
 		return true
 	}
 
@@ -144,7 +150,7 @@ func (o *CreateCustomDomainBody) SetCorsEnabled(v bool) {
 
 // GetCustomUiBaseUrl returns the CustomUiBaseUrl field value if set, zero value otherwise.
 func (o *CreateCustomDomainBody) GetCustomUiBaseUrl() string {
-	if o == nil || o.CustomUiBaseUrl == nil {
+	if o == nil || IsNil(o.CustomUiBaseUrl) {
 		var ret string
 		return ret
 	}
@@ -154,7 +160,7 @@ func (o *CreateCustomDomainBody) GetCustomUiBaseUrl() string {
 // GetCustomUiBaseUrlOk returns a tuple with the CustomUiBaseUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateCustomDomainBody) GetCustomUiBaseUrlOk() (*string, bool) {
-	if o == nil || o.CustomUiBaseUrl == nil {
+	if o == nil || IsNil(o.CustomUiBaseUrl) {
 		return nil, false
 	}
 	return o.CustomUiBaseUrl, true
@@ -162,7 +168,7 @@ func (o *CreateCustomDomainBody) GetCustomUiBaseUrlOk() (*string, bool) {
 
 // HasCustomUiBaseUrl returns a boolean if a field has been set.
 func (o *CreateCustomDomainBody) HasCustomUiBaseUrl() bool {
-	if o != nil && o.CustomUiBaseUrl != nil {
+	if o != nil && !IsNil(o.CustomUiBaseUrl) {
 		return true
 	}
 
@@ -176,7 +182,7 @@ func (o *CreateCustomDomainBody) SetCustomUiBaseUrl(v string) {
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *CreateCustomDomainBody) GetHostname() string {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -186,7 +192,7 @@ func (o *CreateCustomDomainBody) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateCustomDomainBody) GetHostnameOk() (*string, bool) {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -194,7 +200,7 @@ func (o *CreateCustomDomainBody) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *CreateCustomDomainBody) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
+	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
 
@@ -207,23 +213,61 @@ func (o *CreateCustomDomainBody) SetHostname(v string) {
 }
 
 func (o CreateCustomDomainBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CookieDomain != nil {
-		toSerialize["cookie_domain"] = o.CookieDomain
-	}
-	if o.CorsAllowedOrigins != nil {
-		toSerialize["cors_allowed_origins"] = o.CorsAllowedOrigins
-	}
-	if o.CorsEnabled != nil {
-		toSerialize["cors_enabled"] = o.CorsEnabled
-	}
-	if o.CustomUiBaseUrl != nil {
-		toSerialize["custom_ui_base_url"] = o.CustomUiBaseUrl
-	}
-	if o.Hostname != nil {
-		toSerialize["hostname"] = o.Hostname
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateCustomDomainBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CookieDomain) {
+		toSerialize["cookie_domain"] = o.CookieDomain
+	}
+	if !IsNil(o.CorsAllowedOrigins) {
+		toSerialize["cors_allowed_origins"] = o.CorsAllowedOrigins
+	}
+	if !IsNil(o.CorsEnabled) {
+		toSerialize["cors_enabled"] = o.CorsEnabled
+	}
+	if !IsNil(o.CustomUiBaseUrl) {
+		toSerialize["custom_ui_base_url"] = o.CustomUiBaseUrl
+	}
+	if !IsNil(o.Hostname) {
+		toSerialize["hostname"] = o.Hostname
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *CreateCustomDomainBody) UnmarshalJSON(data []byte) (err error) {
+	varCreateCustomDomainBody := _CreateCustomDomainBody{}
+
+	err = json.Unmarshal(data, &varCreateCustomDomainBody)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateCustomDomainBody(varCreateCustomDomainBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cookie_domain")
+		delete(additionalProperties, "cors_allowed_origins")
+		delete(additionalProperties, "cors_enabled")
+		delete(additionalProperties, "custom_ui_base_url")
+		delete(additionalProperties, "hostname")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateCustomDomainBody struct {

@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_oidc_dynamic_client**](OidcApi.md#create_oidc_dynamic_client) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+[**create_verifiable_credential**](OidcApi.md#create_verifiable_credential) | **POST** /credentials | Issues a Verifiable Credential
 [**delete_oidc_dynamic_client**](OidcApi.md#delete_oidc_dynamic_client) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 [**discover_oidc_configuration**](OidcApi.md#discover_oidc_configuration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 [**get_oidc_dynamic_client**](OidcApi.md#get_oidc_dynamic_client) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -99,6 +100,7 @@ with ory_hydra_client.ApiClient() as api_client:
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
         skip_consent=True,
+        skip_logout_consent=True,
         subject_type="subject_type_example",
         token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
@@ -144,6 +146,88 @@ No authorization required
 **201** | oAuth2Client |  -  |
 **400** | Bad Request Error Response |  -  |
 **0** | Default Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_verifiable_credential**
+> VerifiableCredentialResponse create_verifiable_credential()
+
+Issues a Verifiable Credential
+
+This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+
+### Example
+
+
+```python
+import time
+import ory_hydra_client
+from ory_hydra_client.api import oidc_api
+from ory_hydra_client.model.create_verifiable_credential_request_body import CreateVerifiableCredentialRequestBody
+from ory_hydra_client.model.verifiable_credential_response import VerifiableCredentialResponse
+from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.model.verifiable_credential_priming_response import VerifiableCredentialPrimingResponse
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = oidc_api.OidcApi(api_client)
+    create_verifiable_credential_request_body = CreateVerifiableCredentialRequestBody(
+        format="format_example",
+        proof=VerifiableCredentialProof(
+            jwt="jwt_example",
+            proof_type="proof_type_example",
+        ),
+        types=[
+            "types_example",
+        ],
+    ) # CreateVerifiableCredentialRequestBody |  (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Issues a Verifiable Credential
+        api_response = api_instance.create_verifiable_credential(create_verifiable_credential_request_body=create_verifiable_credential_request_body)
+        pprint(api_response)
+    except ory_hydra_client.ApiException as e:
+        print("Exception when calling OidcApi->create_verifiable_credential: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_verifiable_credential_request_body** | [**CreateVerifiableCredentialRequestBody**](CreateVerifiableCredentialRequestBody.md)|  | [optional]
+
+### Return type
+
+[**VerifiableCredentialResponse**](VerifiableCredentialResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | verifiableCredentialResponse |  -  |
+**400** | verifiableCredentialPrimingResponse |  -  |
+**0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -602,6 +686,7 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
         skip_consent=True,
+        skip_logout_consent=True,
         subject_type="subject_type_example",
         token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",

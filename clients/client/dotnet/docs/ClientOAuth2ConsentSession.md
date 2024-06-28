@@ -6,6 +6,7 @@ A completed OAuth 2.0 Consent Session.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConsentRequest** | [**ClientOAuth2ConsentRequest**](ClientOAuth2ConsentRequest.md) |  | [optional] 
+**Context** | **Object** |  | [optional] 
 **ExpiresAt** | [**ClientOAuth2ConsentSessionExpiresAt**](ClientOAuth2ConsentSessionExpiresAt.md) |  | [optional] 
 **GrantAccessTokenAudience** | **List&lt;string&gt;** |  | [optional] 
 **GrantScope** | **List&lt;string&gt;** |  | [optional] 

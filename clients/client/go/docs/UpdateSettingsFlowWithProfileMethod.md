@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CsrfToken** | Pointer to **string** | The Anti-CSRF Token  This token is only required when performing browser flows. | [optional] 
 **Method** | **string** | Method  Should be set to profile when trying to update a profile. | 
 **Traits** | **map[string]interface{}** | Traits  The identity&#39;s traits. | 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 
 ## Methods
 
@@ -91,6 +92,31 @@ and a boolean to check if the value has been set.
 
 SetTraits sets Traits field to given value.
 
+
+### GetTransientPayload
+
+`func (o *UpdateSettingsFlowWithProfileMethod) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateSettingsFlowWithProfileMethod) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateSettingsFlowWithProfileMethod) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateSettingsFlowWithProfileMethod) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

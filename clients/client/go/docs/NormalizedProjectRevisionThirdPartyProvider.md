@@ -4,23 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AdditionalIdTokenAudiences** | Pointer to **[]string** |  | [optional] 
 **ApplePrivateKey** | Pointer to **NullableString** |  | [optional] 
 **ApplePrivateKeyId** | Pointer to **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **AppleTeamId** | Pointer to **string** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 
 **AuthUrl** | Pointer to **string** | AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
 **AzureTenant** | Pointer to **string** | Tenant is the Azure AD Tenant to use for authentication, and must be set when &#x60;provider&#x60; is set to &#x60;microsoft&#x60;.  Can be either &#x60;common&#x60;, &#x60;organizations&#x60;, &#x60;consumers&#x60; for a multitenant application or a specific tenant like &#x60;8eaef023-2b34-4da1-9baa-8bc8c9d6a490&#x60; or &#x60;contoso.onmicrosoft.com&#x60;. | [optional] 
+**ClaimsSource** | Pointer to **NullableString** |  | [optional] 
 **ClientId** | Pointer to **string** | ClientID is the application&#39;s Client ID. | [optional] 
 **ClientSecret** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Id** | Pointer to **string** |  | [optional] 
 **IssuerUrl** | Pointer to **string** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if &#x60;provider&#x60; is not set to &#x60;generic&#x60;. If set, neither &#x60;auth_url&#x60; nor &#x60;token_url&#x60; are required. | [optional] 
 **Label** | Pointer to **string** | Label represents an optional label which can be used in the UI generation. | [optional] 
-**MapperUrl** | Pointer to **string** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet. | [optional] 
+**MapperUrl** | Pointer to **string** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data. | [optional] 
+**OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
 **Provider** | Pointer to **string** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] 
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
 **RequestedClaims** | Pointer to **map[string]interface{}** |  | [optional] 
 **Scope** | Pointer to **[]string** |  | [optional] 
+**State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **SubjectSource** | Pointer to **NullableString** |  | [optional] 
 **TokenUrl** | Pointer to **string** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
@@ -43,6 +47,31 @@ will change when the set of required properties is changed
 NewNormalizedProjectRevisionThirdPartyProviderWithDefaults instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAdditionalIdTokenAudiences
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAdditionalIdTokenAudiences() []string`
+
+GetAdditionalIdTokenAudiences returns the AdditionalIdTokenAudiences field if non-nil, zero value otherwise.
+
+### GetAdditionalIdTokenAudiencesOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAdditionalIdTokenAudiencesOk() (*[]string, bool)`
+
+GetAdditionalIdTokenAudiencesOk returns a tuple with the AdditionalIdTokenAudiences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditionalIdTokenAudiences
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAdditionalIdTokenAudiences(v []string)`
+
+SetAdditionalIdTokenAudiences sets AdditionalIdTokenAudiences field to given value.
+
+### HasAdditionalIdTokenAudiences
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAdditionalIdTokenAudiences() bool`
+
+HasAdditionalIdTokenAudiences returns a boolean if a field has been set.
 
 ### GetApplePrivateKey
 
@@ -179,6 +208,41 @@ SetAzureTenant sets AzureTenant field to given value.
 
 HasAzureTenant returns a boolean if a field has been set.
 
+### GetClaimsSource
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetClaimsSource() string`
+
+GetClaimsSource returns the ClaimsSource field if non-nil, zero value otherwise.
+
+### GetClaimsSourceOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetClaimsSourceOk() (*string, bool)`
+
+GetClaimsSourceOk returns a tuple with the ClaimsSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClaimsSource
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetClaimsSource(v string)`
+
+SetClaimsSource sets ClaimsSource field to given value.
+
+### HasClaimsSource
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasClaimsSource() bool`
+
+HasClaimsSource returns a boolean if a field has been set.
+
+### SetClaimsSourceNil
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetClaimsSourceNil(b bool)`
+
+ SetClaimsSourceNil sets the value for ClaimsSource to be an explicit nil
+
+### UnsetClaimsSource
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetClaimsSource()`
+
+UnsetClaimsSource ensures that no value is present for ClaimsSource, not even an explicit nil
 ### GetClientId
 
 `func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientId() string`
@@ -364,6 +428,41 @@ SetMapperUrl sets MapperUrl field to given value.
 
 HasMapperUrl returns a boolean if a field has been set.
 
+### GetOrganizationId
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
+
+### SetOrganizationIdNil
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetOrganizationIdNil(b bool)`
+
+ SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+
+### UnsetOrganizationId
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetOrganizationId()`
+
+UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetProjectRevisionId
 
 `func (o *NormalizedProjectRevisionThirdPartyProvider) GetProjectRevisionId() string`
@@ -488,6 +587,31 @@ SetScope sets Scope field to given value.
 `func (o *NormalizedProjectRevisionThirdPartyProvider) HasScope() bool`
 
 HasScope returns a boolean if a field has been set.
+
+### GetState
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetState(v string)`
+
+SetState sets State field to given value.
+
+### HasState
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasState() bool`
+
+HasState returns a boolean if a field has been set.
 
 ### GetSubjectSource
 

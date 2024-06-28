@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Config** | Pointer to **map[string]interface{}** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **Identifiers** | Pointer to **[]string** | Identifiers represents a list of unique identifiers this credential type matches. | [optional] 
-**Type** | Pointer to [**IdentityCredentialsType**](IdentityCredentialsType.md) |  | [optional] 
+**Type** | Pointer to **string** | Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **Version** | Pointer to **int64** | Version refers to the version of the credential. Useful when changing the config schema. | [optional] 
 
@@ -107,20 +107,20 @@ HasIdentifiers returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *IdentityCredentials) GetType() IdentityCredentialsType`
+`func (o *IdentityCredentials) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *IdentityCredentials) GetTypeOk() (*IdentityCredentialsType, bool)`
+`func (o *IdentityCredentials) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *IdentityCredentials) SetType(v IdentityCredentialsType)`
+`func (o *IdentityCredentials) SetType(v string)`
 
 SetType sets Type field to given value.
 

@@ -16,6 +16,9 @@ const SessionAuthenticationMethodMethodEnum
     _$sessionAuthenticationMethodMethodEnum_password =
     const SessionAuthenticationMethodMethodEnum._('password');
 const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_code =
+    const SessionAuthenticationMethodMethodEnum._('code');
+const SessionAuthenticationMethodMethodEnum
     _$sessionAuthenticationMethodMethodEnum_totp =
     const SessionAuthenticationMethodMethodEnum._('totp');
 const SessionAuthenticationMethodMethodEnum
@@ -40,6 +43,8 @@ SessionAuthenticationMethodMethodEnum
       return _$sessionAuthenticationMethodMethodEnum_codeRecovery;
     case 'password':
       return _$sessionAuthenticationMethodMethodEnum_password;
+    case 'code':
+      return _$sessionAuthenticationMethodMethodEnum_code;
     case 'totp':
       return _$sessionAuthenticationMethodMethodEnum_totp;
     case 'oidc':
@@ -61,6 +66,7 @@ final BuiltSet<SessionAuthenticationMethodMethodEnum>
   _$sessionAuthenticationMethodMethodEnum_linkRecovery,
   _$sessionAuthenticationMethodMethodEnum_codeRecovery,
   _$sessionAuthenticationMethodMethodEnum_password,
+  _$sessionAuthenticationMethodMethodEnum_code,
   _$sessionAuthenticationMethodMethodEnum_totp,
   _$sessionAuthenticationMethodMethodEnum_oidc,
   _$sessionAuthenticationMethodMethodEnum_webauthn,
@@ -78,6 +84,7 @@ class _$SessionAuthenticationMethodMethodEnumSerializer
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
     'password': 'password',
+    'code': 'code',
     'totp': 'totp',
     'oidc': 'oidc',
     'webauthn': 'webauthn',
@@ -88,6 +95,7 @@ class _$SessionAuthenticationMethodMethodEnumSerializer
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
     'password': 'password',
+    'code': 'code',
     'totp': 'totp',
     'oidc': 'oidc',
     'webauthn': 'webauthn',
@@ -123,12 +131,21 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
   final DateTime? completedAt;
   @override
   final SessionAuthenticationMethodMethodEnum? method;
+  @override
+  final String? organization;
+  @override
+  final String? provider;
 
   factory _$SessionAuthenticationMethod(
           [void Function(SessionAuthenticationMethodBuilder)? updates]) =>
       (new SessionAuthenticationMethodBuilder()..update(updates))._build();
 
-  _$SessionAuthenticationMethod._({this.aal, this.completedAt, this.method})
+  _$SessionAuthenticationMethod._(
+      {this.aal,
+      this.completedAt,
+      this.method,
+      this.organization,
+      this.provider})
       : super._();
 
   @override
@@ -146,7 +163,9 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
     return other is SessionAuthenticationMethod &&
         aal == other.aal &&
         completedAt == other.completedAt &&
-        method == other.method;
+        method == other.method &&
+        organization == other.organization &&
+        provider == other.provider;
   }
 
   @override
@@ -155,6 +174,8 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
     _$hash = $jc(_$hash, aal.hashCode);
     _$hash = $jc(_$hash, completedAt.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, organization.hashCode);
+    _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -164,7 +185,9 @@ class _$SessionAuthenticationMethod extends SessionAuthenticationMethod {
     return (newBuiltValueToStringHelper(r'SessionAuthenticationMethod')
           ..add('aal', aal)
           ..add('completedAt', completedAt)
-          ..add('method', method))
+          ..add('method', method)
+          ..add('organization', organization)
+          ..add('provider', provider))
         .toString();
   }
 }
@@ -188,6 +211,14 @@ class SessionAuthenticationMethodBuilder
   set method(SessionAuthenticationMethodMethodEnum? method) =>
       _$this._method = method;
 
+  String? _organization;
+  String? get organization => _$this._organization;
+  set organization(String? organization) => _$this._organization = organization;
+
+  String? _provider;
+  String? get provider => _$this._provider;
+  set provider(String? provider) => _$this._provider = provider;
+
   SessionAuthenticationMethodBuilder() {
     SessionAuthenticationMethod._defaults(this);
   }
@@ -198,6 +229,8 @@ class SessionAuthenticationMethodBuilder
       _aal = $v.aal;
       _completedAt = $v.completedAt;
       _method = $v.method;
+      _organization = $v.organization;
+      _provider = $v.provider;
       _$v = null;
     }
     return this;
@@ -220,7 +253,11 @@ class SessionAuthenticationMethodBuilder
   _$SessionAuthenticationMethod _build() {
     final _$result = _$v ??
         new _$SessionAuthenticationMethod._(
-            aal: aal, completedAt: completedAt, method: method);
+            aal: aal,
+            completedAt: completedAt,
+            method: method,
+            organization: organization,
+            provider: provider);
     replace(_$result);
     return _$result;
   }

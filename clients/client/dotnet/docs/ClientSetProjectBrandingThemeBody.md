@@ -1,10 +1,11 @@
 # Ory.Client.Model.ClientSetProjectBrandingThemeBody
-Set Project Branding Theme Request Parameters
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**FaviconType** | **string** | Favicon Type | [optional] 
+**FaviconUrl** | **string** | Favicon URL | [optional] 
 **LogoType** | **string** | Logo type | [optional] 
 **LogoUrl** | **string** | Logo URL | [optional] 
 **Name** | **string** | Branding name | [optional] 

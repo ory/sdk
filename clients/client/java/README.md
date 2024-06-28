@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.1.25
-  - Build date: 2023-04-24T08:24:45.436303324Z[Etc/UTC]
+- API version: v1.12.1
+  - Build date: 2024-06-27T15:49:10.082207213Z[Etc/UTC]
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.1.25</version>
+  <version>v1.12.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.1.25"
+     implementation "sh.ory:client:v1.12.1"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.1.25.jar`
+* `target/client-v1.12.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -92,7 +92,7 @@ import sh.ory.api.CourierApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -117,12 +117,16 @@ public class Example {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getCourierMessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages
+*EventsApi* | [**createEventStream**](docs/EventsApi.md#createEventStream) | **POST** /projects/{project_id}/eventstreams | Create an event stream for your project.
+*EventsApi* | [**deleteEventStream**](docs/EventsApi.md#deleteEventStream) | **DELETE** /projects/{project_id}/eventstreams/{event_stream_id} | Remove an event stream from a project
+*EventsApi* | [**listEventStreams**](docs/EventsApi.md#listEventStreams) | **GET** /projects/{project_id}/eventstreams | List all event streams for the project. This endpoint is not paginated.
+*EventsApi* | [**setEventStream**](docs/EventsApi.md#setEventStream) | **PUT** /projects/{project_id}/eventstreams/{event_stream_id} | Update an event stream for a project.
 *FrontendApi* | [**createBrowserLoginFlow**](docs/FrontendApi.md#createBrowserLoginFlow) | **GET** /self-service/login/browser | Create Login Flow for Browsers
 *FrontendApi* | [**createBrowserLogoutFlow**](docs/FrontendApi.md#createBrowserLogoutFlow) | **GET** /self-service/logout/browser | Create a Logout URL for Browsers
 *FrontendApi* | [**createBrowserRecoveryFlow**](docs/FrontendApi.md#createBrowserRecoveryFlow) | **GET** /self-service/recovery/browser | Create Recovery Flow for Browsers
@@ -136,6 +140,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**createNativeVerificationFlow**](docs/FrontendApi.md#createNativeVerificationFlow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 *FrontendApi* | [**disableMyOtherSessions**](docs/FrontendApi.md#disableMyOtherSessions) | **DELETE** /sessions | Disable my other sessions
 *FrontendApi* | [**disableMySession**](docs/FrontendApi.md#disableMySession) | **DELETE** /sessions/{id} | Disable one of my sessions
+*FrontendApi* | [**exchangeSessionToken**](docs/FrontendApi.md#exchangeSessionToken) | **GET** /sessions/token-exchange | Exchange Session Token
 *FrontendApi* | [**getFlowError**](docs/FrontendApi.md#getFlowError) | **GET** /self-service/errors | Get User-Flow Errors
 *FrontendApi* | [**getLoginFlow**](docs/FrontendApi.md#getLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
 *FrontendApi* | [**getRecoveryFlow**](docs/FrontendApi.md#getRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -148,11 +153,11 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**toSession**](docs/FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *FrontendApi* | [**updateLoginFlow**](docs/FrontendApi.md#updateLoginFlow) | **POST** /self-service/login | Submit a Login Flow
 *FrontendApi* | [**updateLogoutFlow**](docs/FrontendApi.md#updateLogoutFlow) | **GET** /self-service/logout | Update Logout Flow
-*FrontendApi* | [**updateRecoveryFlow**](docs/FrontendApi.md#updateRecoveryFlow) | **POST** /self-service/recovery | Complete Recovery Flow
+*FrontendApi* | [**updateRecoveryFlow**](docs/FrontendApi.md#updateRecoveryFlow) | **POST** /self-service/recovery | Update Recovery Flow
 *FrontendApi* | [**updateRegistrationFlow**](docs/FrontendApi.md#updateRegistrationFlow) | **POST** /self-service/registration | Update Registration Flow
 *FrontendApi* | [**updateSettingsFlow**](docs/FrontendApi.md#updateSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow
 *FrontendApi* | [**updateVerificationFlow**](docs/FrontendApi.md#updateVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow
-*IdentityApi* | [**batchPatchIdentities**](docs/IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create and deletes multiple identities
+*IdentityApi* | [**batchPatchIdentities**](docs/IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create multiple identities
 *IdentityApi* | [**createIdentity**](docs/IdentityApi.md#createIdentity) | **POST** /admin/identities | Create an Identity
 *IdentityApi* | [**createRecoveryCodeForIdentity**](docs/IdentityApi.md#createRecoveryCodeForIdentity) | **POST** /admin/recovery/code | Create a Recovery Code
 *IdentityApi* | [**createRecoveryLinkForIdentity**](docs/IdentityApi.md#createRecoveryLinkForIdentity) | **POST** /admin/recovery/link | Create a Recovery Link
@@ -178,8 +183,6 @@ Class | Method | HTTP request | Description
 *JwkApi* | [**setJsonWebKey**](docs/JwkApi.md#setJsonWebKey) | **PUT** /admin/keys/{set}/{kid} | Set JSON Web Key
 *JwkApi* | [**setJsonWebKeySet**](docs/JwkApi.md#setJsonWebKeySet) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set
 *MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
-*MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
-*MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
 *OAuth2Api* | [**acceptOAuth2ConsentRequest**](docs/OAuth2Api.md#acceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 *OAuth2Api* | [**acceptOAuth2LoginRequest**](docs/OAuth2Api.md#acceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 *OAuth2Api* | [**acceptOAuth2LogoutRequest**](docs/OAuth2Api.md#acceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
@@ -209,6 +212,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**setOAuth2ClientLifespans**](docs/OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
 *OAuth2Api* | [**trustOAuth2JwtGrantIssuer**](docs/OAuth2Api.md#trustOAuth2JwtGrantIssuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
 *OidcApi* | [**createOidcDynamicClient**](docs/OidcApi.md#createOidcDynamicClient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
+*OidcApi* | [**createVerifiableCredential**](docs/OidcApi.md#createVerifiableCredential) | **POST** /credentials | Issues a Verifiable Credential
 *OidcApi* | [**deleteOidcDynamicClient**](docs/OidcApi.md#deleteOidcDynamicClient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
 *OidcApi* | [**discoverOidcConfiguration**](docs/OidcApi.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
 *OidcApi* | [**getOidcDynamicClient**](docs/OidcApi.md#getOidcDynamicClient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
@@ -220,19 +224,22 @@ Class | Method | HTTP request | Description
 *PermissionApi* | [**expandPermissions**](docs/PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
 *PermissionApi* | [**postCheckPermission**](docs/PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission
 *PermissionApi* | [**postCheckPermissionOrError**](docs/PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission
+*ProjectApi* | [**createOrganization**](docs/ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | 
 *ProjectApi* | [**createProject**](docs/ProjectApi.md#createProject) | **POST** /projects | Create a Project
 *ProjectApi* | [**createProjectApiKey**](docs/ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token
+*ProjectApi* | [**deleteOrganization**](docs/ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | 
 *ProjectApi* | [**deleteProjectApiKey**](docs/ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
-*ProjectApi* | [**getActiveProjectInConsole**](docs/ProjectApi.md#getActiveProjectInConsole) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
+*ProjectApi* | [**getOrganization**](docs/ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID
 *ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
-*ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project_id}/members | Get all members associated with this project
+*ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project
+*ProjectApi* | [**listOrganizations**](docs/ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | 
 *ProjectApi* | [**listProjectApiKeys**](docs/ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 *ProjectApi* | [**listProjects**](docs/ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 *ProjectApi* | [**purgeProject**](docs/ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
-*ProjectApi* | [**removeProjectMember**](docs/ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project
-*ProjectApi* | [**setActiveProjectInConsole**](docs/ProjectApi.md#setActiveProjectInConsole) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
+*ProjectApi* | [**removeProjectMember**](docs/ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 *ProjectApi* | [**setProject**](docs/ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
+*ProjectApi* | [**updateOrganization**](docs/ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | 
 *RelationshipApi* | [**checkOplSyntax**](docs/RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
 *RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship
 *RelationshipApi* | [**deleteRelationships**](docs/RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
@@ -240,6 +247,11 @@ Class | Method | HTTP request | Description
 *RelationshipApi* | [**listRelationshipNamespaces**](docs/RelationshipApi.md#listRelationshipNamespaces) | **GET** /namespaces | Query namespaces
 *RelationshipApi* | [**patchRelationships**](docs/RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships
 *WellknownApi* | [**discoverJsonWebKeys**](docs/WellknownApi.md#discoverJsonWebKeys) | **GET** /.well-known/jwks.json | Discover Well-Known JSON Web Keys
+*WorkspaceApi* | [**createWorkspace**](docs/WorkspaceApi.md#createWorkspace) | **POST** /workspaces | Create a new workspace
+*WorkspaceApi* | [**getWorkspace**](docs/WorkspaceApi.md#getWorkspace) | **GET** /workspaces/{workspace} | Get a workspace
+*WorkspaceApi* | [**listWorkspaceProjects**](docs/WorkspaceApi.md#listWorkspaceProjects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace
+*WorkspaceApi* | [**listWorkspaces**](docs/WorkspaceApi.md#listWorkspaces) | **GET** /workspaces | List workspaces the user is a member of
+*WorkspaceApi* | [**updateWorkspace**](docs/WorkspaceApi.md#updateWorkspace) | **PUT** /workspaces/{workspace} | Update an workspace
 
 
 ## Documentation for Models
@@ -247,56 +259,87 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2ConsentRequest](docs/AcceptOAuth2ConsentRequest.md)
  - [AcceptOAuth2ConsentRequestSession](docs/AcceptOAuth2ConsentRequestSession.md)
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
+ - [AccountExperienceConfiguration](docs/AccountExperienceConfiguration.md)
+ - [AccountExperienceThemeVariables](docs/AccountExperienceThemeVariables.md)
  - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
+ - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
+ - [Attribute](docs/Attribute.md)
+ - [AttributeFilter](docs/AttributeFilter.md)
+ - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
+ - [BillingPeriodBucket](docs/BillingPeriodBucket.md)
  - [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
  - [CheckPermissionResult](docs/CheckPermissionResult.md)
  - [CloudAccount](docs/CloudAccount.md)
+ - [ConsistencyRequestParameters](docs/ConsistencyRequestParameters.md)
  - [ContinueWith](docs/ContinueWith.md)
+ - [ContinueWithRecoveryUi](docs/ContinueWithRecoveryUi.md)
+ - [ContinueWithRecoveryUiFlow](docs/ContinueWithRecoveryUiFlow.md)
  - [ContinueWithSetOrySessionToken](docs/ContinueWithSetOrySessionToken.md)
+ - [ContinueWithSettingsUi](docs/ContinueWithSettingsUi.md)
+ - [ContinueWithSettingsUiFlow](docs/ContinueWithSettingsUiFlow.md)
  - [ContinueWithVerificationUi](docs/ContinueWithVerificationUi.md)
  - [ContinueWithVerificationUiFlow](docs/ContinueWithVerificationUiFlow.md)
  - [CourierMessageStatus](docs/CourierMessageStatus.md)
  - [CourierMessageType](docs/CourierMessageType.md)
  - [CreateCustomDomainBody](docs/CreateCustomDomainBody.md)
+ - [CreateEventStreamBody](docs/CreateEventStreamBody.md)
  - [CreateIdentityBody](docs/CreateIdentityBody.md)
+ - [CreateInviteResponse](docs/CreateInviteResponse.md)
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
  - [CreateProjectApiKeyRequest](docs/CreateProjectApiKeyRequest.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
  - [CreateProjectBranding](docs/CreateProjectBranding.md)
- - [CreateProjectInvite](docs/CreateProjectInvite.md)
+ - [CreateProjectMemberInviteBody](docs/CreateProjectMemberInviteBody.md)
+ - [CreateProjectNormalizedPayload](docs/CreateProjectNormalizedPayload.md)
  - [CreateRecoveryCodeForIdentityBody](docs/CreateRecoveryCodeForIdentityBody.md)
  - [CreateRecoveryLinkForIdentityBody](docs/CreateRecoveryLinkForIdentityBody.md)
  - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
+ - [CreateSubscriptionCommon](docs/CreateSubscriptionCommon.md)
+ - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
+ - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
+ - [CreateWorkspaceMemberInviteBody](docs/CreateWorkspaceMemberInviteBody.md)
+ - [CreateWorkspaceSubscriptionBody](docs/CreateWorkspaceSubscriptionBody.md)
+ - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+ - [EmailTemplateData](docs/EmailTemplateData.md)
+ - [EmailTemplateDataBody](docs/EmailTemplateDataBody.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
  - [ErrorBrowserLocationChangeRequired](docs/ErrorBrowserLocationChangeRequired.md)
  - [ErrorFlowReplaced](docs/ErrorFlowReplaced.md)
  - [ErrorGeneric](docs/ErrorGeneric.md)
  - [ErrorOAuth2](docs/ErrorOAuth2.md)
+ - [EventStream](docs/EventStream.md)
  - [ExpandedPermissionTree](docs/ExpandedPermissionTree.md)
  - [FlowError](docs/FlowError.md)
  - [GenericError](docs/GenericError.md)
  - [GenericErrorContent](docs/GenericErrorContent.md)
  - [GenericUsage](docs/GenericUsage.md)
+ - [GetAttributesCountResponse](docs/GetAttributesCountResponse.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
+ - [GetMetricsEventAttributesResponse](docs/GetMetricsEventAttributesResponse.md)
+ - [GetMetricsEventTypesResponse](docs/GetMetricsEventTypesResponse.md)
+ - [GetOrganizationResponse](docs/GetOrganizationResponse.md)
+ - [GetProjectEventsBody](docs/GetProjectEventsBody.md)
+ - [GetProjectEventsResponse](docs/GetProjectEventsResponse.md)
+ - [GetProjectMetricsResponse](docs/GetProjectMetricsResponse.md)
+ - [GetSessionActivityResponse](docs/GetSessionActivityResponse.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
+ - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
- - [IdentityCredentialsType](docs/IdentityCredentialsType.md)
  - [IdentityPatch](docs/IdentityPatch.md)
  - [IdentityPatchResponse](docs/IdentityPatchResponse.md)
  - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
  - [IdentitySchemaPreset](docs/IdentitySchemaPreset.md)
- - [IdentityState](docs/IdentityState.md)
  - [IdentityWithCredentials](docs/IdentityWithCredentials.md)
  - [IdentityWithCredentialsOidc](docs/IdentityWithCredentialsOidc.md)
  - [IdentityWithCredentialsOidcConfig](docs/IdentityWithCredentialsOidcConfig.md)
@@ -304,30 +347,42 @@ Class | Method | HTTP request | Description
  - [IdentityWithCredentialsPassword](docs/IdentityWithCredentialsPassword.md)
  - [IdentityWithCredentialsPasswordConfig](docs/IdentityWithCredentialsPasswordConfig.md)
  - [InternalGetProjectBrandingBody](docs/InternalGetProjectBrandingBody.md)
+ - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [InternalIsOwnerForProjectBySlugResponse](docs/InternalIsOwnerForProjectBySlugResponse.md)
- - [InternalProvisionMockSubscription](docs/InternalProvisionMockSubscription.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
+ - [Invoice](docs/Invoice.md)
+ - [InvoiceDataV1](docs/InvoiceDataV1.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
- - [IsReady200Response](docs/IsReady200Response.md)
- - [IsReady503Response](docs/IsReady503Response.md)
  - [JsonPatch](docs/JsonPatch.md)
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
+ - [LineItemV1](docs/LineItemV1.md)
+ - [ListEventStreams](docs/ListEventStreams.md)
+ - [ListInvoicesResponse](docs/ListInvoicesResponse.md)
+ - [ListOrganizationsResponse](docs/ListOrganizationsResponse.md)
+ - [ListWorkspaceProjects](docs/ListWorkspaceProjects.md)
+ - [ListWorkspaces](docs/ListWorkspaces.md)
  - [LoginFlow](docs/LoginFlow.md)
+ - [LoginFlowState](docs/LoginFlowState.md)
  - [LogoutFlow](docs/LogoutFlow.md)
  - [ManagedIdentitySchema](docs/ManagedIdentitySchema.md)
  - [ManagedIdentitySchemaValidationResult](docs/ManagedIdentitySchemaValidationResult.md)
+ - [MemberInvite](docs/MemberInvite.md)
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
+ - [MetricsDatapoint](docs/MetricsDatapoint.md)
+ - [Money](docs/Money.md)
  - [Namespace](docs/Namespace.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)
  - [NormalizedProjectRevision](docs/NormalizedProjectRevision.md)
+ - [NormalizedProjectRevisionCourierChannel](docs/NormalizedProjectRevisionCourierChannel.md)
  - [NormalizedProjectRevisionHook](docs/NormalizedProjectRevisionHook.md)
  - [NormalizedProjectRevisionIdentitySchema](docs/NormalizedProjectRevisionIdentitySchema.md)
  - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
+ - [NormalizedProjectRevisionTokenizerTemplate](docs/NormalizedProjectRevisionTokenizerTemplate.md)
  - [OAuth2Client](docs/OAuth2Client.md)
  - [OAuth2ClientTokenLifespans](docs/OAuth2ClientTokenLifespans.md)
  - [OAuth2ConsentRequest](docs/OAuth2ConsentRequest.md)
@@ -340,11 +395,14 @@ Class | Method | HTTP request | Description
  - [OAuth2TokenExchange](docs/OAuth2TokenExchange.md)
  - [OidcConfiguration](docs/OidcConfiguration.md)
  - [OidcUserInfo](docs/OidcUserInfo.md)
+ - [Organization](docs/Organization.md)
+ - [OrganizationBody](docs/OrganizationBody.md)
  - [Pagination](docs/Pagination.md)
  - [PaginationHeaders](docs/PaginationHeaders.md)
  - [ParseError](docs/ParseError.md)
  - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
  - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
+ - [PermissionsOnWorkspace](docs/PermissionsOnWorkspace.md)
  - [Plan](docs/Plan.md)
  - [PlanDetails](docs/PlanDetails.md)
  - [PostCheckPermissionBody](docs/PostCheckPermissionBody.md)
@@ -354,20 +412,24 @@ Class | Method | HTTP request | Description
  - [ProjectBranding](docs/ProjectBranding.md)
  - [ProjectBrandingColors](docs/ProjectBrandingColors.md)
  - [ProjectBrandingTheme](docs/ProjectBrandingTheme.md)
+ - [ProjectCors](docs/ProjectCors.md)
+ - [ProjectEventsDatapoint](docs/ProjectEventsDatapoint.md)
  - [ProjectHost](docs/ProjectHost.md)
- - [ProjectInvite](docs/ProjectInvite.md)
+ - [ProjectMember](docs/ProjectMember.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
  - [ProjectServiceOAuth2](docs/ProjectServiceOAuth2.md)
  - [ProjectServicePermission](docs/ProjectServicePermission.md)
  - [ProjectServices](docs/ProjectServices.md)
  - [QuotaUsage](docs/QuotaUsage.md)
+ - [RFC6749ErrorJson](docs/RFC6749ErrorJson.md)
  - [RecoveryCodeForIdentity](docs/RecoveryCodeForIdentity.md)
  - [RecoveryFlow](docs/RecoveryFlow.md)
  - [RecoveryFlowState](docs/RecoveryFlowState.md)
  - [RecoveryIdentityAddress](docs/RecoveryIdentityAddress.md)
  - [RecoveryLinkForIdentity](docs/RecoveryLinkForIdentity.md)
  - [RegistrationFlow](docs/RegistrationFlow.md)
+ - [RegistrationFlowState](docs/RegistrationFlowState.md)
  - [RejectOAuth2Request](docs/RejectOAuth2Request.md)
  - [RelationQuery](docs/RelationQuery.md)
  - [Relationship](docs/Relationship.md)
@@ -377,21 +439,25 @@ Class | Method | HTTP request | Description
  - [SchemaPatch](docs/SchemaPatch.md)
  - [SelfServiceFlowExpiredError](docs/SelfServiceFlowExpiredError.md)
  - [Session](docs/Session.md)
+ - [SessionActivityDatapoint](docs/SessionActivityDatapoint.md)
  - [SessionAuthenticationMethod](docs/SessionAuthenticationMethod.md)
  - [SessionDevice](docs/SessionDevice.md)
  - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)
  - [SetCustomDomainBody](docs/SetCustomDomainBody.md)
+ - [SetEventStreamBody](docs/SetEventStreamBody.md)
  - [SetProject](docs/SetProject.md)
  - [SetProjectBrandingThemeBody](docs/SetProjectBrandingThemeBody.md)
  - [SettingsFlow](docs/SettingsFlow.md)
  - [SettingsFlowState](docs/SettingsFlowState.md)
  - [SourcePosition](docs/SourcePosition.md)
- - [StripeCustomer](docs/StripeCustomer.md)
  - [SubjectSet](docs/SubjectSet.md)
  - [Subscription](docs/Subscription.md)
+ - [SuccessfulCodeExchangeResponse](docs/SuccessfulCodeExchangeResponse.md)
  - [SuccessfulNativeLogin](docs/SuccessfulNativeLogin.md)
  - [SuccessfulNativeRegistration](docs/SuccessfulNativeRegistration.md)
  - [SuccessfulProjectUpdate](docs/SuccessfulProjectUpdate.md)
+ - [TaxLineItem](docs/TaxLineItem.md)
+ - [TimeInterval](docs/TimeInterval.md)
  - [TokenPagination](docs/TokenPagination.md)
  - [TokenPaginationHeaders](docs/TokenPaginationHeaders.md)
  - [TokenPaginationRequestParameters](docs/TokenPaginationRequestParameters.md)
@@ -411,8 +477,10 @@ Class | Method | HTTP request | Description
  - [UiText](docs/UiText.md)
  - [UpdateIdentityBody](docs/UpdateIdentityBody.md)
  - [UpdateLoginFlowBody](docs/UpdateLoginFlowBody.md)
+ - [UpdateLoginFlowWithCodeMethod](docs/UpdateLoginFlowWithCodeMethod.md)
  - [UpdateLoginFlowWithLookupSecretMethod](docs/UpdateLoginFlowWithLookupSecretMethod.md)
  - [UpdateLoginFlowWithOidcMethod](docs/UpdateLoginFlowWithOidcMethod.md)
+ - [UpdateLoginFlowWithPasskeyMethod](docs/UpdateLoginFlowWithPasskeyMethod.md)
  - [UpdateLoginFlowWithPasswordMethod](docs/UpdateLoginFlowWithPasswordMethod.md)
  - [UpdateLoginFlowWithTotpMethod](docs/UpdateLoginFlowWithTotpMethod.md)
  - [UpdateLoginFlowWithWebAuthnMethod](docs/UpdateLoginFlowWithWebAuthnMethod.md)
@@ -420,12 +488,16 @@ Class | Method | HTTP request | Description
  - [UpdateRecoveryFlowWithCodeMethod](docs/UpdateRecoveryFlowWithCodeMethod.md)
  - [UpdateRecoveryFlowWithLinkMethod](docs/UpdateRecoveryFlowWithLinkMethod.md)
  - [UpdateRegistrationFlowBody](docs/UpdateRegistrationFlowBody.md)
+ - [UpdateRegistrationFlowWithCodeMethod](docs/UpdateRegistrationFlowWithCodeMethod.md)
  - [UpdateRegistrationFlowWithOidcMethod](docs/UpdateRegistrationFlowWithOidcMethod.md)
+ - [UpdateRegistrationFlowWithPasskeyMethod](docs/UpdateRegistrationFlowWithPasskeyMethod.md)
  - [UpdateRegistrationFlowWithPasswordMethod](docs/UpdateRegistrationFlowWithPasswordMethod.md)
+ - [UpdateRegistrationFlowWithProfileMethod](docs/UpdateRegistrationFlowWithProfileMethod.md)
  - [UpdateRegistrationFlowWithWebAuthnMethod](docs/UpdateRegistrationFlowWithWebAuthnMethod.md)
  - [UpdateSettingsFlowBody](docs/UpdateSettingsFlowBody.md)
  - [UpdateSettingsFlowWithLookupMethod](docs/UpdateSettingsFlowWithLookupMethod.md)
  - [UpdateSettingsFlowWithOidcMethod](docs/UpdateSettingsFlowWithOidcMethod.md)
+ - [UpdateSettingsFlowWithPasskeyMethod](docs/UpdateSettingsFlowWithPasskeyMethod.md)
  - [UpdateSettingsFlowWithPasswordMethod](docs/UpdateSettingsFlowWithPasswordMethod.md)
  - [UpdateSettingsFlowWithProfileMethod](docs/UpdateSettingsFlowWithProfileMethod.md)
  - [UpdateSettingsFlowWithTotpMethod](docs/UpdateSettingsFlowWithTotpMethod.md)
@@ -434,25 +506,36 @@ Class | Method | HTTP request | Description
  - [UpdateVerificationFlowBody](docs/UpdateVerificationFlowBody.md)
  - [UpdateVerificationFlowWithCodeMethod](docs/UpdateVerificationFlowWithCodeMethod.md)
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
+ - [UpdateWorkspaceBody](docs/UpdateWorkspaceBody.md)
  - [Usage](docs/Usage.md)
+ - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)
+ - [VerifiableCredentialProof](docs/VerifiableCredentialProof.md)
+ - [VerifiableCredentialResponse](docs/VerifiableCredentialResponse.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
  - [VerificationFlow](docs/VerificationFlow.md)
  - [VerificationFlowState](docs/VerificationFlowState.md)
  - [Version](docs/Version.md)
  - [Warning](docs/Warning.md)
+ - [Workspace](docs/Workspace.md)
+ - [WorkspaceApiKey](docs/WorkspaceApiKey.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
+
 Authentication schemes defined for the API:
+<a id="basic"></a>
 ### basic
 
 - **Type**: HTTP basic authentication
 
+<a id="bearer"></a>
 ### bearer
 
-- **Type**: HTTP basic authentication
+- **Type**: HTTP Bearer Token authentication
 
+<a id="oauth2"></a>
 ### oauth2
 
 - **Type**: OAuth
@@ -463,9 +546,15 @@ Authentication schemes defined for the API:
   - offline_access: A scope required when requesting refresh tokens
   - openid: Request an OpenID Connect ID Token
 
+<a id="oryAccessToken"></a>
 ### oryAccessToken
 
-- **Type**: HTTP basic authentication
+- **Type**: HTTP Bearer Token authentication
+
+<a id="oryWorkspaceApiKey"></a>
+### oryWorkspaceApiKey
+
+- **Type**: HTTP Bearer Token authentication
 
 
 ## Recommendation

@@ -9,6 +9,7 @@ import 'package:ory_client/src/model/update_settings_flow_with_password_method.d
 import 'package:ory_client/src/model/update_settings_flow_with_oidc_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_lookup_method.dart';
 import 'package:built_value/json_object.dart';
+import 'package:ory_client/src/model/update_settings_flow_with_passkey_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_web_authn_method.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,13 +21,14 @@ part 'update_settings_flow_body.g.dart';
 ///
 /// Properties:
 /// * [csrfToken] - CSRFToken is the anti-CSRF token
-/// * [method] - Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
+/// * [method] - Method  Should be set to \"passkey\" when trying to add, update, or remove a webAuthn pairing.
 /// * [password] - Password is the updated password
+/// * [transientPayload] - Transient data to pass along to any webhooks
 /// * [traits] - The identity's traits  in: body
 /// * [flow] - Flow ID is the flow's ID.  in: query
 /// * [link] - Link this provider  Either this or `unlink` must be set.  type: string in: body
 /// * [unlink] - Unlink this provider  Either this or `link` must be set.  type: string in: body
-/// * [upstreamParameters] - UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+/// * [upstreamParameters] - UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
 /// * [totpCode] - ValidationTOTP must contain a valid TOTP based on the
 /// * [totpUnlink] - UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
 /// * [webauthnRegister] - Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
@@ -36,9 +38,11 @@ part 'update_settings_flow_body.g.dart';
 /// * [lookupSecretDisable] - Disables this method if true.
 /// * [lookupSecretRegenerate] - If set to true will regenerate the lookup secrets
 /// * [lookupSecretReveal] - If set to true will reveal the lookup secrets
+/// * [passkeyRemove] - Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
+/// * [passkeySettingsRegister] - Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
 @BuiltValue()
 abstract class UpdateSettingsFlowBody implements Built<UpdateSettingsFlowBody, UpdateSettingsFlowBodyBuilder> {
-  /// One Of [UpdateSettingsFlowWithLookupMethod], [UpdateSettingsFlowWithOidcMethod], [UpdateSettingsFlowWithPasswordMethod], [UpdateSettingsFlowWithProfileMethod], [UpdateSettingsFlowWithTotpMethod], [UpdateSettingsFlowWithWebAuthnMethod]
+  /// One Of [UpdateSettingsFlowWithLookupMethod], [UpdateSettingsFlowWithOidcMethod], [UpdateSettingsFlowWithPasskeyMethod], [UpdateSettingsFlowWithPasswordMethod], [UpdateSettingsFlowWithProfileMethod], [UpdateSettingsFlowWithTotpMethod], [UpdateSettingsFlowWithWebAuthnMethod]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'method';
@@ -46,15 +50,10 @@ abstract class UpdateSettingsFlowBody implements Built<UpdateSettingsFlowBody, U
   static const Map<String, Type> discriminatorMapping = {
     r'lookup_secret': UpdateSettingsFlowWithLookupMethod,
     r'oidc': UpdateSettingsFlowWithOidcMethod,
+    r'passkey': UpdateSettingsFlowWithPasskeyMethod,
     r'password': UpdateSettingsFlowWithPasswordMethod,
     r'profile': UpdateSettingsFlowWithProfileMethod,
     r'totp': UpdateSettingsFlowWithTotpMethod,
-    r'updateSettingsFlowWithLookupMethod': UpdateSettingsFlowWithLookupMethod,
-    r'updateSettingsFlowWithOidcMethod': UpdateSettingsFlowWithOidcMethod,
-    r'updateSettingsFlowWithPasswordMethod': UpdateSettingsFlowWithPasswordMethod,
-    r'updateSettingsFlowWithProfileMethod': UpdateSettingsFlowWithProfileMethod,
-    r'updateSettingsFlowWithTotpMethod': UpdateSettingsFlowWithTotpMethod,
-    r'updateSettingsFlowWithWebAuthnMethod': UpdateSettingsFlowWithWebAuthnMethod,
     r'webauthn': UpdateSettingsFlowWithWebAuthnMethod,
   };
 
@@ -67,6 +66,59 @@ abstract class UpdateSettingsFlowBody implements Built<UpdateSettingsFlowBody, U
 
   @BuiltValueSerializer(custom: true)
   static Serializer<UpdateSettingsFlowBody> get serializer => _$UpdateSettingsFlowBodySerializer();
+}
+
+extension UpdateSettingsFlowBodyDiscriminatorExt on UpdateSettingsFlowBody {
+    String? get discriminatorValue {
+        if (this is UpdateSettingsFlowWithLookupMethod) {
+            return r'lookup_secret';
+        }
+        if (this is UpdateSettingsFlowWithOidcMethod) {
+            return r'oidc';
+        }
+        if (this is UpdateSettingsFlowWithPasskeyMethod) {
+            return r'passkey';
+        }
+        if (this is UpdateSettingsFlowWithPasswordMethod) {
+            return r'password';
+        }
+        if (this is UpdateSettingsFlowWithProfileMethod) {
+            return r'profile';
+        }
+        if (this is UpdateSettingsFlowWithTotpMethod) {
+            return r'totp';
+        }
+        if (this is UpdateSettingsFlowWithWebAuthnMethod) {
+            return r'webauthn';
+        }
+        return null;
+    }
+}
+extension UpdateSettingsFlowBodyBuilderDiscriminatorExt on UpdateSettingsFlowBodyBuilder {
+    String? get discriminatorValue {
+        if (this is UpdateSettingsFlowWithLookupMethodBuilder) {
+            return r'lookup_secret';
+        }
+        if (this is UpdateSettingsFlowWithOidcMethodBuilder) {
+            return r'oidc';
+        }
+        if (this is UpdateSettingsFlowWithPasskeyMethodBuilder) {
+            return r'passkey';
+        }
+        if (this is UpdateSettingsFlowWithPasswordMethodBuilder) {
+            return r'password';
+        }
+        if (this is UpdateSettingsFlowWithProfileMethodBuilder) {
+            return r'profile';
+        }
+        if (this is UpdateSettingsFlowWithTotpMethodBuilder) {
+            return r'totp';
+        }
+        if (this is UpdateSettingsFlowWithWebAuthnMethodBuilder) {
+            return r'webauthn';
+        }
+        return null;
+    }
 }
 
 class _$UpdateSettingsFlowBodySerializer implements PrimitiveSerializer<UpdateSettingsFlowBody> {
@@ -105,88 +157,53 @@ class _$UpdateSettingsFlowBodySerializer implements PrimitiveSerializer<UpdateSe
     final discIndex = serializedList.indexOf(UpdateSettingsFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateSettingsFlowWithLookupMethod, UpdateSettingsFlowWithOidcMethod, UpdateSettingsFlowWithPasswordMethod, UpdateSettingsFlowWithProfileMethod, UpdateSettingsFlowWithTotpMethod, UpdateSettingsFlowWithLookupMethod, UpdateSettingsFlowWithOidcMethod, UpdateSettingsFlowWithPasswordMethod, UpdateSettingsFlowWithProfileMethod, UpdateSettingsFlowWithTotpMethod, UpdateSettingsFlowWithWebAuthnMethod, UpdateSettingsFlowWithWebAuthnMethod, ];
+    final oneOfTypes = [UpdateSettingsFlowWithLookupMethod, UpdateSettingsFlowWithOidcMethod, UpdateSettingsFlowWithPasskeyMethod, UpdateSettingsFlowWithPasswordMethod, UpdateSettingsFlowWithProfileMethod, UpdateSettingsFlowWithTotpMethod, UpdateSettingsFlowWithWebAuthnMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
-      case 'lookup_secret':
+      case r'lookup_secret':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateSettingsFlowWithLookupMethod),
         ) as UpdateSettingsFlowWithLookupMethod;
         oneOfType = UpdateSettingsFlowWithLookupMethod;
         break;
-      case 'oidc':
+      case r'oidc':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateSettingsFlowWithOidcMethod),
         ) as UpdateSettingsFlowWithOidcMethod;
         oneOfType = UpdateSettingsFlowWithOidcMethod;
         break;
-      case 'password':
+      case r'passkey':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UpdateSettingsFlowWithPasskeyMethod),
+        ) as UpdateSettingsFlowWithPasskeyMethod;
+        oneOfType = UpdateSettingsFlowWithPasskeyMethod;
+        break;
+      case r'password':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateSettingsFlowWithPasswordMethod),
         ) as UpdateSettingsFlowWithPasswordMethod;
         oneOfType = UpdateSettingsFlowWithPasswordMethod;
         break;
-      case 'profile':
+      case r'profile':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateSettingsFlowWithProfileMethod),
         ) as UpdateSettingsFlowWithProfileMethod;
         oneOfType = UpdateSettingsFlowWithProfileMethod;
         break;
-      case 'totp':
+      case r'totp':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateSettingsFlowWithTotpMethod),
         ) as UpdateSettingsFlowWithTotpMethod;
         oneOfType = UpdateSettingsFlowWithTotpMethod;
         break;
-      case 'updateSettingsFlowWithLookupMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateSettingsFlowWithLookupMethod),
-        ) as UpdateSettingsFlowWithLookupMethod;
-        oneOfType = UpdateSettingsFlowWithLookupMethod;
-        break;
-      case 'updateSettingsFlowWithOidcMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateSettingsFlowWithOidcMethod),
-        ) as UpdateSettingsFlowWithOidcMethod;
-        oneOfType = UpdateSettingsFlowWithOidcMethod;
-        break;
-      case 'updateSettingsFlowWithPasswordMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateSettingsFlowWithPasswordMethod),
-        ) as UpdateSettingsFlowWithPasswordMethod;
-        oneOfType = UpdateSettingsFlowWithPasswordMethod;
-        break;
-      case 'updateSettingsFlowWithProfileMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateSettingsFlowWithProfileMethod),
-        ) as UpdateSettingsFlowWithProfileMethod;
-        oneOfType = UpdateSettingsFlowWithProfileMethod;
-        break;
-      case 'updateSettingsFlowWithTotpMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateSettingsFlowWithTotpMethod),
-        ) as UpdateSettingsFlowWithTotpMethod;
-        oneOfType = UpdateSettingsFlowWithTotpMethod;
-        break;
-      case 'updateSettingsFlowWithWebAuthnMethod':
-        oneOfResult = serializers.deserialize(
-          oneOfDataSrc,
-          specifiedType: FullType(UpdateSettingsFlowWithWebAuthnMethod),
-        ) as UpdateSettingsFlowWithWebAuthnMethod;
-        oneOfType = UpdateSettingsFlowWithWebAuthnMethod;
-        break;
-      case 'webauthn':
+      case r'webauthn':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(UpdateSettingsFlowWithWebAuthnMethod),

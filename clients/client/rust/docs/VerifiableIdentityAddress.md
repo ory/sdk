@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **value** | **String** | The address value  example foo@user.com | 
 **verified** | **bool** | Indicates if the address has already been verified | 
 **verified_at** | Option<**String**> |  | [optional]
-**via** | **String** | VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema | 
+**via** | **String** | The delivery method | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

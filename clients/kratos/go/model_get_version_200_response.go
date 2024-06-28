@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,13 +13,20 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the GetVersion200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetVersion200Response{}
 
 // GetVersion200Response struct for GetVersion200Response
 type GetVersion200Response struct {
 	// The version of Ory Kratos.
 	Version string `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetVersion200Response GetVersion200Response
 
 // NewGetVersion200Response instantiates a new GetVersion200Response object
 // This constructor will assign default values to properties that have it defined,
@@ -64,11 +71,64 @@ func (o *GetVersion200Response) SetVersion(v string) {
 }
 
 func (o GetVersion200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["version"] = o.Version
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetVersion200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *GetVersion200Response) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"version",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGetVersion200Response := _GetVersion200Response{}
+
+	err = json.Unmarshal(bytes, &varGetVersion200Response)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetVersion200Response(varGetVersion200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetVersion200Response struct {

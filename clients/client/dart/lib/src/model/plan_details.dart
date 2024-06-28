@@ -17,7 +17,8 @@ part 'plan_details.g.dart';
 /// * [baseFeeYearly] - BaseFeeYearly is the yearly base fee for the plan.
 /// * [custom] - Custom is true if the plan is custom. This means it will be hidden from the pricing page.
 /// * [description] - Description is the description of the plan.
-/// * [features] - Features are the feature definitions included in the plan.
+/// * [features] 
+/// * [latest] - Latest is true if the plan is the latest version of a plan and should be available for self-service usage.
 /// * [name] - Name is the name of the plan.
 /// * [version] - Version is the version of the plan. The combination of `name@version` must be unique.
 @BuiltValue()
@@ -38,9 +39,12 @@ abstract class PlanDetails implements Built<PlanDetails, PlanDetailsBuilder> {
   @BuiltValueField(wireName: r'description')
   String get description;
 
-  /// Features are the feature definitions included in the plan.
   @BuiltValueField(wireName: r'features')
   BuiltMap<String, GenericUsage> get features;
+
+  /// Latest is true if the plan is the latest version of a plan and should be available for self-service usage.
+  @BuiltValueField(wireName: r'latest')
+  bool? get latest;
 
   /// Name is the name of the plan.
   @BuiltValueField(wireName: r'name')
@@ -98,6 +102,13 @@ class _$PlanDetailsSerializer implements PrimitiveSerializer<PlanDetails> {
       object.features,
       specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GenericUsage)]),
     );
+    if (object.latest != null) {
+      yield r'latest';
+      yield serializers.serialize(
+        object.latest,
+        specifiedType: const FullType(bool),
+      );
+    }
     yield r'name';
     yield serializers.serialize(
       object.name,
@@ -165,6 +176,13 @@ class _$PlanDetailsSerializer implements PrimitiveSerializer<PlanDetails> {
             specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GenericUsage)]),
           ) as BuiltMap<String, GenericUsage>;
           result.features.replace(valueDes);
+          break;
+        case r'latest':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.latest = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(

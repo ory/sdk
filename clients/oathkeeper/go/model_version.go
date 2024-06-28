@@ -3,7 +3,7 @@ ORY Oathkeeper
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
-API version: v0.40.2
+API version: v0.40.6
 Contact: hi@ory.am
 */
 
@@ -19,7 +19,10 @@ import (
 type Version struct {
 	// Version is the service's version.
 	Version *string `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Version Version
 
 // NewVersion instantiates a new Version object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +78,29 @@ func (o Version) MarshalJSON() ([]byte, error) {
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Version) UnmarshalJSON(bytes []byte) (err error) {
+	varVersion := _Version{}
+
+	if err = json.Unmarshal(bytes, &varVersion); err == nil {
+		*o = Version(varVersion)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVersion struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateSettingsFlowWithPasswordMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSettingsFlowWithPasswordMethod{}
 
 // UpdateSettingsFlowWithPasswordMethod Update Settings Flow with Password Method
 type UpdateSettingsFlowWithPasswordMethod struct {
@@ -23,7 +27,12 @@ type UpdateSettingsFlowWithPasswordMethod struct {
 	Method string `json:"method"`
 	// Password is the updated password
 	Password string `json:"password"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSettingsFlowWithPasswordMethod UpdateSettingsFlowWithPasswordMethod
 
 // NewUpdateSettingsFlowWithPasswordMethod instantiates a new UpdateSettingsFlowWithPasswordMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +55,7 @@ func NewUpdateSettingsFlowWithPasswordMethodWithDefaults() *UpdateSettingsFlowWi
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithPasswordMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -56,7 +65,7 @@ func (o *UpdateSettingsFlowWithPasswordMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithPasswordMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -64,7 +73,7 @@ func (o *UpdateSettingsFlowWithPasswordMethod) GetCsrfTokenOk() (*string, bool) 
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithPasswordMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -124,18 +133,108 @@ func (o *UpdateSettingsFlowWithPasswordMethod) SetPassword(v string) {
 	o.Password = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithPasswordMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithPasswordMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithPasswordMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateSettingsFlowWithPasswordMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 func (o UpdateSettingsFlowWithPasswordMethod) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
-		toSerialize["csrf_token"] = o.CsrfToken
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if true {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateSettingsFlowWithPasswordMethod) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CsrfToken) {
+		toSerialize["csrf_token"] = o.CsrfToken
+	}
+	toSerialize["method"] = o.Method
+	toSerialize["password"] = o.Password
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UpdateSettingsFlowWithPasswordMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"method",
+		"password",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateSettingsFlowWithPasswordMethod := _UpdateSettingsFlowWithPasswordMethod{}
+
+	err = json.Unmarshal(data, &varUpdateSettingsFlowWithPasswordMethod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateSettingsFlowWithPasswordMethod(varUpdateSettingsFlowWithPasswordMethod)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "transient_payload")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSettingsFlowWithPasswordMethod struct {

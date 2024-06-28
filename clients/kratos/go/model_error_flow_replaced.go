@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -15,12 +15,18 @@ import (
 	"encoding/json"
 )
 
+// checks if the ErrorFlowReplaced type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorFlowReplaced{}
+
 // ErrorFlowReplaced Is sent when a flow is replaced by a different flow of the same class
 type ErrorFlowReplaced struct {
 	Error *GenericError `json:"error,omitempty"`
 	// The flow ID that should be used for the new flow as it contains the correct messages.
 	UseFlowId *string `json:"use_flow_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ErrorFlowReplaced ErrorFlowReplaced
 
 // NewErrorFlowReplaced instantiates a new ErrorFlowReplaced object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,7 @@ func NewErrorFlowReplacedWithDefaults() *ErrorFlowReplaced {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *ErrorFlowReplaced) GetError() GenericError {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret GenericError
 		return ret
 	}
@@ -51,7 +57,7 @@ func (o *ErrorFlowReplaced) GetError() GenericError {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorFlowReplaced) GetErrorOk() (*GenericError, bool) {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
 	return o.Error, true
@@ -59,7 +65,7 @@ func (o *ErrorFlowReplaced) GetErrorOk() (*GenericError, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *ErrorFlowReplaced) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -73,7 +79,7 @@ func (o *ErrorFlowReplaced) SetError(v GenericError) {
 
 // GetUseFlowId returns the UseFlowId field value if set, zero value otherwise.
 func (o *ErrorFlowReplaced) GetUseFlowId() string {
-	if o == nil || o.UseFlowId == nil {
+	if o == nil || IsNil(o.UseFlowId) {
 		var ret string
 		return ret
 	}
@@ -83,7 +89,7 @@ func (o *ErrorFlowReplaced) GetUseFlowId() string {
 // GetUseFlowIdOk returns a tuple with the UseFlowId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorFlowReplaced) GetUseFlowIdOk() (*string, bool) {
-	if o == nil || o.UseFlowId == nil {
+	if o == nil || IsNil(o.UseFlowId) {
 		return nil, false
 	}
 	return o.UseFlowId, true
@@ -91,7 +97,7 @@ func (o *ErrorFlowReplaced) GetUseFlowIdOk() (*string, bool) {
 
 // HasUseFlowId returns a boolean if a field has been set.
 func (o *ErrorFlowReplaced) HasUseFlowId() bool {
-	if o != nil && o.UseFlowId != nil {
+	if o != nil && !IsNil(o.UseFlowId) {
 		return true
 	}
 
@@ -104,14 +110,49 @@ func (o *ErrorFlowReplaced) SetUseFlowId(v string) {
 }
 
 func (o ErrorFlowReplaced) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Error != nil {
-		toSerialize["error"] = o.Error
-	}
-	if o.UseFlowId != nil {
-		toSerialize["use_flow_id"] = o.UseFlowId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ErrorFlowReplaced) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
+	if !IsNil(o.UseFlowId) {
+		toSerialize["use_flow_id"] = o.UseFlowId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *ErrorFlowReplaced) UnmarshalJSON(bytes []byte) (err error) {
+	varErrorFlowReplaced := _ErrorFlowReplaced{}
+
+	err = json.Unmarshal(bytes, &varErrorFlowReplaced)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ErrorFlowReplaced(varErrorFlowReplaced)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "use_flow_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableErrorFlowReplaced struct {

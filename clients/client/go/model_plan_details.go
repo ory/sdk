@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the PlanDetails type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PlanDetails{}
 
 // PlanDetails struct for PlanDetails
 type PlanDetails struct {
@@ -25,13 +29,17 @@ type PlanDetails struct {
 	Custom bool `json:"custom"`
 	// Description is the description of the plan.
 	Description string `json:"description"`
-	// Features are the feature definitions included in the plan.
 	Features map[string]GenericUsage `json:"features"`
+	// Latest is true if the plan is the latest version of a plan and should be available for self-service usage.
+	Latest *bool `json:"latest,omitempty"`
 	// Name is the name of the plan.
 	Name string `json:"name"`
 	// Version is the version of the plan. The combination of `name@version` must be unique.
 	Version int64 `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanDetails PlanDetails
 
 // NewPlanDetails instantiates a new PlanDetails object
 // This constructor will assign default values to properties that have it defined,
@@ -177,6 +185,38 @@ func (o *PlanDetails) SetFeatures(v map[string]GenericUsage) {
 	o.Features = v
 }
 
+// GetLatest returns the Latest field value if set, zero value otherwise.
+func (o *PlanDetails) GetLatest() bool {
+	if o == nil || IsNil(o.Latest) {
+		var ret bool
+		return ret
+	}
+	return *o.Latest
+}
+
+// GetLatestOk returns a tuple with the Latest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlanDetails) GetLatestOk() (*bool, bool) {
+	if o == nil || IsNil(o.Latest) {
+		return nil, false
+	}
+	return o.Latest, true
+}
+
+// HasLatest returns a boolean if a field has been set.
+func (o *PlanDetails) HasLatest() bool {
+	if o != nil && !IsNil(o.Latest) {
+		return true
+	}
+
+	return false
+}
+
+// SetLatest gets a reference to the given bool and assigns it to the Latest field.
+func (o *PlanDetails) SetLatest(v bool) {
+	o.Latest = &v
+}
+
 // GetName returns the Name field value
 func (o *PlanDetails) GetName() string {
 	if o == nil {
@@ -226,29 +266,86 @@ func (o *PlanDetails) SetVersion(v int64) {
 }
 
 func (o PlanDetails) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["base_fee_monthly"] = o.BaseFeeMonthly
-	}
-	if true {
-		toSerialize["base_fee_yearly"] = o.BaseFeeYearly
-	}
-	if true {
-		toSerialize["custom"] = o.Custom
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["features"] = o.Features
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["version"] = o.Version
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PlanDetails) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["base_fee_monthly"] = o.BaseFeeMonthly
+	toSerialize["base_fee_yearly"] = o.BaseFeeYearly
+	toSerialize["custom"] = o.Custom
+	toSerialize["description"] = o.Description
+	toSerialize["features"] = o.Features
+	if !IsNil(o.Latest) {
+		toSerialize["latest"] = o.Latest
+	}
+	toSerialize["name"] = o.Name
+	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *PlanDetails) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"base_fee_monthly",
+		"base_fee_yearly",
+		"custom",
+		"description",
+		"features",
+		"name",
+		"version",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPlanDetails := _PlanDetails{}
+
+	err = json.Unmarshal(data, &varPlanDetails)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PlanDetails(varPlanDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "base_fee_monthly")
+		delete(additionalProperties, "base_fee_yearly")
+		delete(additionalProperties, "custom")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "features")
+		delete(additionalProperties, "latest")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanDetails struct {

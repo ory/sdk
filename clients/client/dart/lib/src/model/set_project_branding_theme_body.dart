@@ -9,15 +9,25 @@ import 'package:built_value/serializer.dart';
 
 part 'set_project_branding_theme_body.g.dart';
 
-/// Set Project Branding Theme Request Parameters
+/// SetProjectBrandingThemeBody
 ///
 /// Properties:
+/// * [faviconType] - Favicon Type
+/// * [faviconUrl] - Favicon URL
 /// * [logoType] - Logo type
 /// * [logoUrl] - Logo URL
 /// * [name] - Branding name
 /// * [theme] 
 @BuiltValue()
 abstract class SetProjectBrandingThemeBody implements Built<SetProjectBrandingThemeBody, SetProjectBrandingThemeBodyBuilder> {
+  /// Favicon Type
+  @BuiltValueField(wireName: r'favicon_type')
+  String? get faviconType;
+
+  /// Favicon URL
+  @BuiltValueField(wireName: r'favicon_url')
+  String? get faviconUrl;
+
   /// Logo type
   @BuiltValueField(wireName: r'logo_type')
   String? get logoType;
@@ -56,6 +66,20 @@ class _$SetProjectBrandingThemeBodySerializer implements PrimitiveSerializer<Set
     SetProjectBrandingThemeBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.faviconType != null) {
+      yield r'favicon_type';
+      yield serializers.serialize(
+        object.faviconType,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.faviconUrl != null) {
+      yield r'favicon_url';
+      yield serializers.serialize(
+        object.faviconUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.logoType != null) {
       yield r'logo_type';
       yield serializers.serialize(
@@ -107,6 +131,20 @@ class _$SetProjectBrandingThemeBodySerializer implements PrimitiveSerializer<Set
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'favicon_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.faviconType = valueDes;
+          break;
+        case r'favicon_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.faviconUrl = valueDes;
+          break;
         case r'logo_type':
           final valueDes = serializers.deserialize(
             value,

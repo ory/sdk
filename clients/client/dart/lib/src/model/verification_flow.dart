@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:ory_client/src/model/verification_flow_state.dart';
 import 'package:ory_client/src/model/ui_container.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -19,7 +19,8 @@ part 'verification_flow.g.dart';
 /// * [issuedAt] - IssuedAt is the time (UTC) when the request occurred.
 /// * [requestUrl] - RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
-/// * [state] 
+/// * [state] - State represents the state of this request:  choose_method: ask the user to choose a method (e.g. verify your email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the verification challenge was passed.
+/// * [transientPayload] - TransientPayload is used to pass data from the verification flow to hooks and email templates
 /// * [type] - The flow type can either be `api` or `browser`.
 /// * [ui] 
 @BuiltValue()
@@ -48,9 +49,13 @@ abstract class VerificationFlow implements Built<VerificationFlow, VerificationF
   @BuiltValueField(wireName: r'return_to')
   String? get returnTo;
 
+  /// State represents the state of this request:  choose_method: ask the user to choose a method (e.g. verify your email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the verification challenge was passed.
   @BuiltValueField(wireName: r'state')
-  VerificationFlowState get state;
-  // enum stateEnum {  choose_method,  sent_email,  passed_challenge,  };
+  JsonObject? get state;
+
+  /// TransientPayload is used to pass data from the verification flow to hooks and email templates
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   /// The flow type can either be `api` or `browser`.
   @BuiltValueField(wireName: r'type')
@@ -123,10 +128,17 @@ class _$VerificationFlowSerializer implements PrimitiveSerializer<VerificationFl
       );
     }
     yield r'state';
-    yield serializers.serialize(
+    yield object.state == null ? null : serializers.serialize(
       object.state,
-      specifiedType: const FullType(VerificationFlowState),
+      specifiedType: const FullType.nullable(JsonObject),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
     yield r'type';
     yield serializers.serialize(
       object.type,
@@ -205,9 +217,17 @@ class _$VerificationFlowSerializer implements PrimitiveSerializer<VerificationFl
         case r'state':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VerificationFlowState),
-          ) as VerificationFlowState;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.state = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(

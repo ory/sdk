@@ -3,7 +3,7 @@ ORY Oathkeeper
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
-API version: v0.40.2
+API version: v0.40.6
 Contact: hi@ory.am
 */
 
@@ -39,7 +39,10 @@ type JsonWebKey struct {
 	// The \"x5c\" (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates [RFC5280].  The certificate chain is represented as a JSON array of certificate value strings.  Each string in the array is a base64-encoded (Section 4 of [RFC4648] -- not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value. The PKIX certificate containing the key value MUST be the first certificate.
 	X5c []string `json:"x5c,omitempty"`
 	Y *string `json:"y,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _JsonWebKey JsonWebKey
 
 // NewJsonWebKey instantiates a new JsonWebKey object
 // This constructor will assign default values to properties that have it defined,
@@ -655,7 +658,45 @@ func (o JsonWebKey) MarshalJSON() ([]byte, error) {
 	if o.Y != nil {
 		toSerialize["y"] = o.Y
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *JsonWebKey) UnmarshalJSON(bytes []byte) (err error) {
+	varJsonWebKey := _JsonWebKey{}
+
+	if err = json.Unmarshal(bytes, &varJsonWebKey); err == nil {
+		*o = JsonWebKey(varJsonWebKey)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "alg")
+		delete(additionalProperties, "crv")
+		delete(additionalProperties, "d")
+		delete(additionalProperties, "dp")
+		delete(additionalProperties, "dq")
+		delete(additionalProperties, "e")
+		delete(additionalProperties, "k")
+		delete(additionalProperties, "kid")
+		delete(additionalProperties, "kty")
+		delete(additionalProperties, "n")
+		delete(additionalProperties, "p")
+		delete(additionalProperties, "q")
+		delete(additionalProperties, "qi")
+		delete(additionalProperties, "use")
+		delete(additionalProperties, "x")
+		delete(additionalProperties, "x5c")
+		delete(additionalProperties, "y")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableJsonWebKey struct {

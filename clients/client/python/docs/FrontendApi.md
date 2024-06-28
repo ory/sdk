@@ -1,6 +1,6 @@
 # ory_client.FrontendApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**create_native_verification_flow**](FrontendApi.md#create_native_verification_flow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 [**disable_my_other_sessions**](FrontendApi.md#disable_my_other_sessions) | **DELETE** /sessions | Disable my other sessions
 [**disable_my_session**](FrontendApi.md#disable_my_session) | **DELETE** /sessions/{id} | Disable one of my sessions
+[**exchange_session_token**](FrontendApi.md#exchange_session_token) | **GET** /sessions/token-exchange | Exchange Session Token
 [**get_flow_error**](FrontendApi.md#get_flow_error) | **GET** /self-service/errors | Get User-Flow Errors
 [**get_login_flow**](FrontendApi.md#get_login_flow) | **GET** /self-service/login/flows | Get Login Flow
 [**get_recovery_flow**](FrontendApi.md#get_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -29,14 +30,14 @@ Method | HTTP request | Description
 [**to_session**](FrontendApi.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 [**update_login_flow**](FrontendApi.md#update_login_flow) | **POST** /self-service/login | Submit a Login Flow
 [**update_logout_flow**](FrontendApi.md#update_logout_flow) | **GET** /self-service/logout | Update Logout Flow
-[**update_recovery_flow**](FrontendApi.md#update_recovery_flow) | **POST** /self-service/recovery | Complete Recovery Flow
+[**update_recovery_flow**](FrontendApi.md#update_recovery_flow) | **POST** /self-service/recovery | Update Recovery Flow
 [**update_registration_flow**](FrontendApi.md#update_registration_flow) | **POST** /self-service/registration | Update Registration Flow
 [**update_settings_flow**](FrontendApi.md#update_settings_flow) | **POST** /self-service/settings | Complete Settings Flow
 [**update_verification_flow**](FrontendApi.md#update_verification_flow) | **POST** /self-service/verification | Complete Verification Flow
 
 
 # **create_browser_login_flow**
-> LoginFlow create_browser_login_flow()
+> LoginFlow create_browser_login_flow(refresh=refresh, aal=aal, return_to=return_to, cookie=cookie, login_challenge=login_challenge, organization=organization, via=via)
 
 Create Login Flow for Browsers
 
@@ -46,49 +47,53 @@ This endpoint initializes a browser-based user login flow. This endpoint will se
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.login_flow import LoginFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.login_flow import LoginFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
+    api_instance = ory_client.FrontendApi(api_client)
     refresh = True # bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
-    aal = "aal_example" # str | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
-    return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
-    login_challenge = "login_challenge_example" # str | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
+    aal = 'aal_example' # str | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
+    return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    login_challenge = 'login_challenge_example' # str | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
+    organization = 'organization_example' # str | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
+    via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Login Flow for Browsers
-        api_response = api_instance.create_browser_login_flow(refresh=refresh, aal=aal, return_to=return_to, cookie=cookie, login_challenge=login_challenge)
+        api_response = api_instance.create_browser_login_flow(refresh=refresh, aal=aal, return_to=return_to, cookie=cookie, login_challenge=login_challenge, organization=organization, via=via)
+        print("The response of FrontendApi->create_browser_login_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_browser_login_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
- **aal** | **str**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional]
- **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
- **login_challenge** | **str**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional]
+ **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] 
+ **aal** | **str**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional] 
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
+ **login_challenge** | **str**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] 
+ **organization** | **str**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
+ **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
 
 ### Return type
 
@@ -103,7 +108,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -116,7 +120,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_browser_logout_flow**
-> LogoutFlow create_browser_logout_flow()
+> LogoutFlow create_browser_logout_flow(cookie=cookie, return_to=return_to)
 
 Create a Logout URL for Browsers
 
@@ -126,41 +130,43 @@ This endpoint initializes a browser-based user logout flow and a URL which can b
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.logout_flow import LogoutFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.logout_flow import LogoutFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    cookie = "cookie_example" # str | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    cookie = 'cookie_example' # str | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional)
+    return_to = 'return_to_example' # str | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create a Logout URL for Browsers
-        api_response = api_instance.create_browser_logout_flow(cookie=cookie)
+        api_response = api_instance.create_browser_logout_flow(cookie=cookie, return_to=return_to)
+        print("The response of FrontendApi->create_browser_logout_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_browser_logout_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cookie** | **str**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional]
+ **cookie** | **str**| HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. | [optional] 
+ **return_to** | **str**| Return to URL  The URL to which the browser should be redirected to after the logout has been performed. | [optional] 
 
 ### Return type
 
@@ -175,19 +181,19 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | logoutFlow |  -  |
+**400** | errorGeneric |  -  |
 **401** | errorGeneric |  -  |
 **500** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_browser_recovery_flow**
-> RecoveryFlow create_browser_recovery_flow()
+> RecoveryFlow create_browser_recovery_flow(return_to=return_to)
 
 Create Recovery Flow for Browsers
 
@@ -197,41 +203,41 @@ This endpoint initializes a browser-based account recovery flow. Once initialize
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.error_generic import ErrorGeneric
-from ory_client.model.recovery_flow import RecoveryFlow
+from ory_client.models.recovery_flow import RecoveryFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Recovery Flow for Browsers
         api_response = api_instance.create_browser_recovery_flow(return_to=return_to)
+        print("The response of FrontendApi->create_browser_recovery_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_browser_recovery_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
 
 ### Return type
 
@@ -246,7 +252,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -259,55 +264,57 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_browser_registration_flow**
-> RegistrationFlow create_browser_registration_flow()
+> RegistrationFlow create_browser_registration_flow(return_to=return_to, login_challenge=login_challenge, after_verification_return_to=after_verification_return_to, organization=organization)
 
 Create Registration Flow for Browsers
 
-This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  :::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url`.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url`.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.registration_flow import RegistrationFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.registration_flow import RegistrationFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
-    login_challenge = "login_challenge_example" # str | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
-    after_verification_return_to = "after_verification_return_to_example" # str | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
+    login_challenge = 'login_challenge_example' # str | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
+    after_verification_return_to = 'after_verification_return_to_example' # str | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
+    organization = 'organization_example' # str |  (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Registration Flow for Browsers
-        api_response = api_instance.create_browser_registration_flow(return_to=return_to, login_challenge=login_challenge, after_verification_return_to=after_verification_return_to)
+        api_response = api_instance.create_browser_registration_flow(return_to=return_to, login_challenge=login_challenge, after_verification_return_to=after_verification_return_to, organization=organization)
+        print("The response of FrontendApi->create_browser_registration_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_browser_registration_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
- **login_challenge** | **str**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional]
- **after_verification_return_to** | **str**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional]
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
+ **login_challenge** | **str**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] 
+ **after_verification_return_to** | **str**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional] 
+ **organization** | **str**|  | [optional] 
 
 ### Return type
 
@@ -322,7 +329,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -334,7 +340,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_browser_settings_flow**
-> SettingsFlow create_browser_settings_flow()
+> SettingsFlow create_browser_settings_flow(return_to=return_to, cookie=cookie)
 
 Create Settings Flow for Browsers
 
@@ -344,43 +350,43 @@ This endpoint initializes a browser-based user settings flow. Once initialized, 
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.settings_flow import SettingsFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.settings_flow import SettingsFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Settings Flow for Browsers
         api_response = api_instance.create_browser_settings_flow(return_to=return_to, cookie=cookie)
+        print("The response of FrontendApi->create_browser_settings_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_browser_settings_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -394,7 +400,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -410,7 +415,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_browser_verification_flow**
-> VerificationFlow create_browser_verification_flow()
+> VerificationFlow create_browser_verification_flow(return_to=return_to)
 
 Create Verification Flow for Browser Clients
 
@@ -420,41 +425,41 @@ This endpoint initializes a browser-based account verification flow. Once initia
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.verification_flow import VerificationFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.verification_flow import VerificationFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    return_to = "return_to_example" # str | The URL to return the browser to after the flow was completed. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Verification Flow for Browser Clients
         api_response = api_instance.create_browser_verification_flow(return_to=return_to)
+        print("The response of FrontendApi->create_browser_verification_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_browser_verification_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional]
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
 
 ### Return type
 
@@ -469,7 +474,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -481,7 +485,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_login_flow**
-> LoginFlow create_native_login_flow()
+> LoginFlow create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, via=via)
 
 Create Login Flow for Native Apps
 
@@ -491,45 +495,51 @@ This endpoint initiates a login flow for native apps that do not use a browser, 
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.login_flow import LoginFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.login_flow import LoginFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
+    api_instance = ory_client.FrontendApi(api_client)
     refresh = True # bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
-    aal = "aal_example" # str | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
-    x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
+    aal = 'aal_example' # str | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
+    x_session_token = 'x_session_token_example' # str | The Session Token of the Identity performing the settings flow. (optional)
+    return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+    return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
+    via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Login Flow for Native Apps
-        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token)
+        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, via=via)
+        print("The response of FrontendApi->create_native_login_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_native_login_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional]
- **aal** | **str**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional]
- **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
+ **refresh** | **bool**| Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. | [optional] 
+ **aal** | **str**| Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session&#39;s authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \&quot;upgrade\&quot; the session&#39;s security by asking the user to perform TOTP / WebAuth/ ... you would set this to \&quot;aal2\&quot;. | [optional] 
+ **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional] 
+ **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
+ **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
 
 ### Return type
 
@@ -543,7 +553,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -560,41 +569,42 @@ No authorization required
 
 Create Recovery Flow for Native Apps
 
-This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  To fetch an existing recovery flow call `/self-service/recovery/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
+This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  On an existing recovery flow, use the `getRecoveryFlow` API endpoint.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
 ### Example
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.error_generic import ErrorGeneric
-from ory_client.model.recovery_flow import RecoveryFlow
+from ory_client.models.recovery_flow import RecoveryFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
+    api_instance = ory_client.FrontendApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Create Recovery Flow for Native Apps
         api_response = api_instance.create_native_recovery_flow()
+        print("The response of FrontendApi->create_native_recovery_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_native_recovery_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -610,7 +620,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -622,7 +631,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_registration_flow**
-> RegistrationFlow create_native_registration_flow()
+> RegistrationFlow create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
 
 Create Registration Flow for Native Apps
 
@@ -632,36 +641,43 @@ This endpoint initiates a registration flow for API clients such as mobile devic
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.registration_flow import RegistrationFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.registration_flow import RegistrationFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
+    api_instance = ory_client.FrontendApi(api_client)
+    return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+    return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Create Registration Flow for Native Apps
-        api_response = api_instance.create_native_registration_flow()
+        api_response = api_instance.create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
+        print("The response of FrontendApi->create_native_registration_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_native_registration_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
-This endpoint does not need any parameter.
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
+ **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
 
 ### Return type
 
@@ -676,7 +692,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -688,7 +703,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_settings_flow**
-> SettingsFlow create_native_settings_flow()
+> SettingsFlow create_native_settings_flow(x_session_token=x_session_token)
 
 Create Settings Flow for Native Apps
 
@@ -698,41 +713,41 @@ This endpoint initiates a settings flow for API clients such as mobile devices, 
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.settings_flow import SettingsFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.settings_flow import SettingsFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    x_session_token = 'x_session_token_example' # str | The Session Token of the Identity performing the settings flow. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Settings Flow for Native Apps
         api_response = api_instance.create_native_settings_flow(x_session_token=x_session_token)
+        print("The response of FrontendApi->create_native_settings_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_native_settings_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
+ **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional] 
 
 ### Return type
 
@@ -746,7 +761,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -769,35 +783,36 @@ This endpoint initiates a verification flow for API clients such as mobile devic
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.verification_flow import VerificationFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.verification_flow import VerificationFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
+    api_instance = ory_client.FrontendApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Create Verification Flow for Native Apps
         api_response = api_instance.create_native_verification_flow()
+        print("The response of FrontendApi->create_native_verification_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->create_native_verification_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -813,7 +828,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -825,7 +839,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **disable_my_other_sessions**
-> DeleteMySessionsCount disable_my_other_sessions()
+> DeleteMySessionsCount disable_my_other_sessions(x_session_token=x_session_token, cookie=cookie)
 
 Disable my other sessions
 
@@ -835,43 +849,43 @@ Calling this endpoint invalidates all except the current session that belong to 
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.delete_my_sessions_count import DeleteMySessionsCount
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.delete_my_sessions_count import DeleteMySessionsCount
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    x_session_token = "X-Session-Token_example" # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
-    cookie = "Cookie_example" # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    x_session_token = 'x_session_token_example' # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+    cookie = 'cookie_example' # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Disable my other sessions
         api_response = api_instance.disable_my_other_sessions(x_session_token=x_session_token, cookie=cookie)
+        print("The response of FrontendApi->disable_my_other_sessions:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->disable_my_other_sessions: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
- **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+ **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] 
+ **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] 
 
 ### Return type
 
@@ -886,7 +900,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -899,7 +912,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **disable_my_session**
-> disable_my_session(id)
+> disable_my_session(id, x_session_token=x_session_token, cookie=cookie)
 
 Disable one of my sessions
 
@@ -909,50 +922,42 @@ Calling this endpoint invalidates the specified session. The current session can
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    id = "id_example" # str | ID is the session's ID.
-    x_session_token = "X-Session-Token_example" # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
-    cookie = "Cookie_example" # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    id = 'id_example' # str | ID is the session's ID.
+    x_session_token = 'x_session_token_example' # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+    cookie = 'cookie_example' # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Disable one of my sessions
-        api_instance.disable_my_session(id)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->disable_my_session: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Disable one of my sessions
         api_instance.disable_my_session(id, x_session_token=x_session_token, cookie=cookie)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->disable_my_session: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| ID is the session&#39;s ID. |
- **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
- **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+ **id** | **str**| ID is the session&#39;s ID. | 
+ **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] 
+ **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] 
 
 ### Return type
 
@@ -967,7 +972,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -975,6 +979,78 @@ No authorization required
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | errorGeneric |  -  |
 **401** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **exchange_session_token**
+> SuccessfulNativeLogin exchange_session_token(init_code, return_to_code)
+
+Exchange Session Token
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.models.successful_native_login import SuccessfulNativeLogin
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+    init_code = 'init_code_example' # str | The part of the code return when initializing the flow.
+    return_to_code = 'return_to_code_example' # str | The part of the code returned by the return_to URL.
+
+    try:
+        # Exchange Session Token
+        api_response = api_instance.exchange_session_token(init_code, return_to_code)
+        print("The response of FrontendApi->exchange_session_token:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->exchange_session_token: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **init_code** | **str**| The part of the code return when initializing the flow. | 
+ **return_to_code** | **str**| The part of the code returned by the return_to URL. | 
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successfulNativeLogin |  -  |
+**403** | errorGeneric |  -  |
+**404** | errorGeneric |  -  |
+**410** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -990,40 +1066,41 @@ This endpoint returns the error associated with a user-facing self service error
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.flow_error import FlowError
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.flow_error import FlowError
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    id = "id_example" # str | Error is the error's ID
+    api_instance = ory_client.FrontendApi(api_client)
+    id = 'id_example' # str | Error is the error's ID
 
-    # example passing only required values which don't have defaults set
     try:
         # Get User-Flow Errors
         api_response = api_instance.get_flow_error(id)
+        print("The response of FrontendApi->get_flow_error:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->get_flow_error: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Error is the error&#39;s ID |
+ **id** | **str**| Error is the error&#39;s ID | 
 
 ### Return type
 
@@ -1038,7 +1115,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1051,7 +1127,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_login_flow**
-> LoginFlow get_login_flow(id)
+> LoginFlow get_login_flow(id, cookie=cookie)
 
 Get Login Flow
 
@@ -1061,51 +1137,43 @@ This endpoint returns a login flow's context with, for example, error details an
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.login_flow import LoginFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.login_flow import LoginFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    id = "id_example" # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    id = 'id_example' # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Login Flow
-        api_response = api_instance.get_login_flow(id)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->get_login_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Login Flow
         api_response = api_instance.get_login_flow(id, cookie=cookie)
+        print("The response of FrontendApi->get_login_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->get_login_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **id** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1120,7 +1188,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1134,7 +1201,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_recovery_flow**
-> RecoveryFlow get_recovery_flow(id)
+> RecoveryFlow get_recovery_flow(id, cookie=cookie)
 
 Get Recovery Flow
 
@@ -1144,51 +1211,43 @@ This endpoint returns a recovery flow's context with, for example, error details
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.error_generic import ErrorGeneric
-from ory_client.model.recovery_flow import RecoveryFlow
+from ory_client.models.recovery_flow import RecoveryFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    id = 'id_example' # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Recovery Flow
-        api_response = api_instance.get_recovery_flow(id)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->get_recovery_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Recovery Flow
         api_response = api_instance.get_recovery_flow(id, cookie=cookie)
+        print("The response of FrontendApi->get_recovery_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->get_recovery_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1203,7 +1262,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1216,7 +1274,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_registration_flow**
-> RegistrationFlow get_registration_flow(id)
+> RegistrationFlow get_registration_flow(id, cookie=cookie)
 
 Get Registration Flow
 
@@ -1226,51 +1284,43 @@ This endpoint returns a registration flow's context with, for example, error det
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.registration_flow import RegistrationFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.registration_flow import RegistrationFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    id = "id_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    id = 'id_example' # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Registration Flow
-        api_response = api_instance.get_registration_flow(id)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->get_registration_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Registration Flow
         api_response = api_instance.get_registration_flow(id, cookie=cookie)
+        print("The response of FrontendApi->get_registration_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->get_registration_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **id** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1285,7 +1335,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1299,7 +1348,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_settings_flow**
-> SettingsFlow get_settings_flow(id)
+> SettingsFlow get_settings_flow(id, x_session_token=x_session_token, cookie=cookie)
 
 Get Settings Flow
 
@@ -1309,53 +1358,45 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.settings_flow import SettingsFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.settings_flow import SettingsFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    id = "id_example" # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-    x_session_token = "X-Session-Token_example" # str | The Session Token  When using the SDK in an app without a browser, please include the session token here. (optional)
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    id = 'id_example' # str | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    x_session_token = 'x_session_token_example' # str | The Session Token  When using the SDK in an app without a browser, please include the session token here. (optional)
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Settings Flow
-        api_response = api_instance.get_settings_flow(id)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->get_settings_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Settings Flow
         api_response = api_instance.get_settings_flow(id, x_session_token=x_session_token, cookie=cookie)
+        print("The response of FrontendApi->get_settings_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->get_settings_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
- **x_session_token** | **str**| The Session Token  When using the SDK in an app without a browser, please include the session token here. | [optional]
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **id** | **str**| ID is the Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **x_session_token** | **str**| The Session Token  When using the SDK in an app without a browser, please include the session token here. | [optional] 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1369,7 +1410,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1385,7 +1425,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_verification_flow**
-> VerificationFlow get_verification_flow(id)
+> VerificationFlow get_verification_flow(id, cookie=cookie)
 
 Get Verification Flow
 
@@ -1395,51 +1435,43 @@ This endpoint returns a verification flow's context with, for example, error det
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.verification_flow import VerificationFlow
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.verification_flow import VerificationFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    id = "id_example" # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
-    cookie = "cookie_example" # str | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    id = 'id_example' # str | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Verification Flow
-        api_response = api_instance.get_verification_flow(id)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->get_verification_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Verification Flow
         api_response = api_instance.get_verification_flow(id, cookie=cookie)
+        print("The response of FrontendApi->get_verification_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->get_verification_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
- **cookie** | **str**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional]
+ **id** | **str**| The Flow ID  The value for this parameter comes from &#x60;request&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). | 
+ **cookie** | **str**| HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. | [optional] 
 
 ### Return type
 
@@ -1453,7 +1485,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1477,33 +1508,35 @@ This endpoint provides JavaScript which is needed in order to perform WebAuthn l
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
+    api_instance = ory_client.FrontendApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Get WebAuthn JavaScript
         api_response = api_instance.get_web_authn_java_script()
+        print("The response of FrontendApi->get_web_authn_java_script:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->get_web_authn_java_script: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1519,7 +1552,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1529,7 +1561,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_my_sessions**
-> [Session] list_my_sessions()
+> List[Session] list_my_sessions(per_page=per_page, page=page, page_size=page_size, page_token=page_token, x_session_token=x_session_token, cookie=cookie)
 
 Get My Active Sessions
 
@@ -1539,51 +1571,55 @@ This endpoints returns all other active sessions that belong to the logged-in us
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.session import Session
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.session import Session
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
-    page = 1 # int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional) if omitted the server will use the default value of 1
-    x_session_token = "X-Session-Token_example" # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
-    cookie = "Cookie_example" # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    per_page = 250 # int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional) (default to 250)
+    page = 56 # int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
+    page_size = 250 # int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+    page_token = '1' # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to '1')
+    x_session_token = 'x_session_token_example' # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+    cookie = 'cookie_example' # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get My Active Sessions
-        api_response = api_instance.list_my_sessions(per_page=per_page, page=page, x_session_token=x_session_token, cookie=cookie)
+        api_response = api_instance.list_my_sessions(per_page=per_page, page=page, page_size=page_size, page_token=page_token, x_session_token=x_session_token, cookie=cookie)
+        print("The response of FrontendApi->list_my_sessions:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->list_my_sessions: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] if omitted the server will use the default value of 1
- **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
- **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+ **per_page** | **int**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
+ **page_size** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
+ **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] 
+ **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] 
 
 ### Return type
 
-[**[Session]**](Session.md)
+[**List[Session]**](Session.md)
 
 ### Authorization
 
@@ -1593,7 +1629,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1617,41 +1652,39 @@ Use this endpoint to log out an identity using an Ory Session Token. If the Ory 
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.perform_native_logout_body import PerformNativeLogoutBody
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.perform_native_logout_body import PerformNativeLogoutBody
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    perform_native_logout_body = PerformNativeLogoutBody(
-        session_token="session_token_example",
-    ) # PerformNativeLogoutBody | 
+    api_instance = ory_client.FrontendApi(api_client)
+    perform_native_logout_body = ory_client.PerformNativeLogoutBody() # PerformNativeLogoutBody | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Perform Logout for Native Apps
         api_instance.perform_native_logout(perform_native_logout_body)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->perform_native_logout: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perform_native_logout_body** | [**PerformNativeLogoutBody**](PerformNativeLogoutBody.md)|  |
+ **perform_native_logout_body** | [**PerformNativeLogoutBody**](PerformNativeLogoutBody.md)|  | 
 
 ### Return type
 
@@ -1666,7 +1699,6 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1678,53 +1710,55 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **to_session**
-> Session to_session()
+> Session to_session(x_session_token=x_session_token, cookie=cookie, tokenize_as=tokenize_as)
 
 Check Who the Current HTTP Session Belongs To
 
-Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cooke or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  When using a token template, the token is included in the `tokenized` field of the session.  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\", { tokenize_as: \"example-jwt-template\" })  console.log(session.tokenized) // The JWT ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 
 ### Example
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.session import Session
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.session import Session
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    x_session_token = "MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj" # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
-    cookie = "ory_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==" # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    x_session_token = 'MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj' # str | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+    cookie = 'ory_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==' # str | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+    tokenize_as = 'tokenize_as_example' # str | Returns the session additionally as a token (such as a JWT)  The value of this parameter has to be a valid, configured Ory Session token template. For more information head over to [the documentation](http://ory.sh/docs/identities/session-to-jwt-cors). (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Check Who the Current HTTP Session Belongs To
-        api_response = api_instance.to_session(x_session_token=x_session_token, cookie=cookie)
+        api_response = api_instance.to_session(x_session_token=x_session_token, cookie=cookie, tokenize_as=tokenize_as)
+        print("The response of FrontendApi->to_session:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->to_session: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional]
- **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional]
+ **x_session_token** | **str**| Set the Session Token when calling from non-browser clients. A session token has a format of &#x60;MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj&#x60;. | [optional] 
+ **cookie** | **str**| Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: &#x60;ory_kratos_session&#x3D;a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f&#x3D;&#x3D;&#x60;.  It is ok if more than one cookie are included here as all other cookies will be ignored. | [optional] 
+ **tokenize_as** | **str**| Returns the session additionally as a token (such as a JWT)  The value of this parameter has to be a valid, configured Ory Session token template. For more information head over to [the documentation](http://ory.sh/docs/identities/session-to-jwt-cors). | [optional] 
 
 ### Return type
 
@@ -1739,7 +1773,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1752,68 +1785,58 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_login_flow**
-> SuccessfulNativeLogin update_login_flow(flow, update_login_flow_body)
+> SuccessfulNativeLogin update_login_flow(flow, update_login_flow_body, x_session_token=x_session_token, cookie=cookie)
 
 Submit a Login Flow
 
-:::info  This endpoint is EXPERIMENTAL and subject to potential breaking changes in the future.  :::  Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.login_flow import LoginFlow
-from ory_client.model.error_browser_location_change_required import ErrorBrowserLocationChangeRequired
-from ory_client.model.update_login_flow_body import UpdateLoginFlowBody
-from ory_client.model.error_generic import ErrorGeneric
-from ory_client.model.successful_native_login import SuccessfulNativeLogin
+from ory_client.models.successful_native_login import SuccessfulNativeLogin
+from ory_client.models.update_login_flow_body import UpdateLoginFlowBody
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    flow = "flow_example" # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
-    update_login_flow_body = UpdateLoginFlowBody(None) # UpdateLoginFlowBody | 
-    x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    flow = 'flow_example' # str | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+    update_login_flow_body = ory_client.UpdateLoginFlowBody() # UpdateLoginFlowBody | 
+    x_session_token = 'x_session_token_example' # str | The Session Token of the Identity performing the settings flow. (optional)
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Submit a Login Flow
-        api_response = api_instance.update_login_flow(flow, update_login_flow_body)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->update_login_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Submit a Login Flow
         api_response = api_instance.update_login_flow(flow, update_login_flow_body, x_session_token=x_session_token, cookie=cookie)
+        print("The response of FrontendApi->update_login_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->update_login_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flow** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |
- **update_login_flow_body** | [**UpdateLoginFlowBody**](UpdateLoginFlowBody.md)|  |
- **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **flow** | **str**| The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). | 
+ **update_login_flow_body** | [**UpdateLoginFlowBody**](UpdateLoginFlowBody.md)|  | 
+ **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional] 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1827,7 +1850,6 @@ No authorization required
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1843,7 +1865,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_logout_flow**
-> update_logout_flow()
+> update_logout_flow(token=token, return_to=return_to, cookie=cookie)
 
 Update Logout Flow
 
@@ -1853,41 +1875,42 @@ This endpoint logs out an identity in a self-service manner.  If the `Accept` HT
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    token = "token_example" # str | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. (optional)
-    return_to = "return_to_example" # str | The URL to return to after the logout was completed. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    token = 'token_example' # str | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. (optional)
+    return_to = 'return_to_example' # str | The URL to return to after the logout was completed. (optional)
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Update Logout Flow
-        api_instance.update_logout_flow(token=token, return_to=return_to)
-    except ory_client.ApiException as e:
+        api_instance.update_logout_flow(token=token, return_to=return_to, cookie=cookie)
+    except Exception as e:
         print("Exception when calling FrontendApi->update_logout_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **str**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional]
- **return_to** | **str**| The URL to return to after the logout was completed. | [optional]
+ **token** | **str**| A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call &#x60;/self-service/logout/browser&#x60; to generate a URL for this endpoint. | [optional] 
+ **return_to** | **str**| The URL to return to after the logout was completed. | [optional] 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1902,7 +1925,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1914,67 +1936,58 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_recovery_flow**
-> RecoveryFlow update_recovery_flow(flow, update_recovery_flow_body)
+> RecoveryFlow update_recovery_flow(flow, update_recovery_flow_body, token=token, cookie=cookie)
 
-Complete Recovery Flow
+Update Recovery Flow
 
-Use this endpoint to complete a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
+Use this endpoint to update a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
 ### Example
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.update_recovery_flow_body import UpdateRecoveryFlowBody
-from ory_client.model.error_browser_location_change_required import ErrorBrowserLocationChangeRequired
-from ory_client.model.error_generic import ErrorGeneric
-from ory_client.model.recovery_flow import RecoveryFlow
+from ory_client.models.recovery_flow import RecoveryFlow
+from ory_client.models.update_recovery_flow_body import UpdateRecoveryFlowBody
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    flow = "flow_example" # str | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
-    update_recovery_flow_body = UpdateRecoveryFlowBody(None) # UpdateRecoveryFlowBody | 
-    token = "token_example" # str | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    flow = 'flow_example' # str | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+    update_recovery_flow_body = ory_client.UpdateRecoveryFlowBody() # UpdateRecoveryFlowBody | 
+    token = 'token_example' # str | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
     try:
-        # Complete Recovery Flow
-        api_response = api_instance.update_recovery_flow(flow, update_recovery_flow_body)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->update_recovery_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Complete Recovery Flow
+        # Update Recovery Flow
         api_response = api_instance.update_recovery_flow(flow, update_recovery_flow_body, token=token, cookie=cookie)
+        print("The response of FrontendApi->update_recovery_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->update_recovery_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flow** | **str**| The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |
- **update_recovery_flow_body** | [**UpdateRecoveryFlowBody**](UpdateRecoveryFlowBody.md)|  |
- **token** | **str**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **flow** | **str**| The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). | 
+ **update_recovery_flow_body** | [**UpdateRecoveryFlowBody**](UpdateRecoveryFlowBody.md)|  | 
+ **token** | **str**| Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -1988,7 +2001,6 @@ No authorization required
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2004,7 +2016,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_registration_flow**
-> SuccessfulNativeRegistration update_registration_flow(flow, update_registration_flow_body)
+> SuccessfulNativeRegistration update_registration_flow(flow, update_registration_flow_body, cookie=cookie)
 
 Update Registration Flow
 
@@ -2014,56 +2026,46 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.registration_flow import RegistrationFlow
-from ory_client.model.successful_native_registration import SuccessfulNativeRegistration
-from ory_client.model.error_browser_location_change_required import ErrorBrowserLocationChangeRequired
-from ory_client.model.error_generic import ErrorGeneric
-from ory_client.model.update_registration_flow_body import UpdateRegistrationFlowBody
+from ory_client.models.successful_native_registration import SuccessfulNativeRegistration
+from ory_client.models.update_registration_flow_body import UpdateRegistrationFlowBody
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    flow = "flow_example" # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
-    update_registration_flow_body = UpdateRegistrationFlowBody(None) # UpdateRegistrationFlowBody | 
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    flow = 'flow_example' # str | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+    update_registration_flow_body = ory_client.UpdateRegistrationFlowBody() # UpdateRegistrationFlowBody | 
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update Registration Flow
-        api_response = api_instance.update_registration_flow(flow, update_registration_flow_body)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->update_registration_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Update Registration Flow
         api_response = api_instance.update_registration_flow(flow, update_registration_flow_body, cookie=cookie)
+        print("The response of FrontendApi->update_registration_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->update_registration_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flow** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |
- **update_registration_flow_body** | [**UpdateRegistrationFlowBody**](UpdateRegistrationFlowBody.md)|  |
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **flow** | **str**| The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). | 
+ **update_registration_flow_body** | [**UpdateRegistrationFlowBody**](UpdateRegistrationFlowBody.md)|  | 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -2077,7 +2079,6 @@ No authorization required
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2093,7 +2094,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_settings_flow**
-> SettingsFlow update_settings_flow(flow, update_settings_flow_body)
+> SettingsFlow update_settings_flow(flow, update_settings_flow_body, x_session_token=x_session_token, cookie=cookie)
 
 Complete Settings Flow
 
@@ -2103,57 +2104,48 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.settings_flow import SettingsFlow
-from ory_client.model.update_settings_flow_body import UpdateSettingsFlowBody
-from ory_client.model.error_browser_location_change_required import ErrorBrowserLocationChangeRequired
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.settings_flow import SettingsFlow
+from ory_client.models.update_settings_flow_body import UpdateSettingsFlowBody
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    flow = "flow_example" # str | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-    update_settings_flow_body = UpdateSettingsFlowBody(None) # UpdateSettingsFlowBody | 
-    x_session_token = "X-Session-Token_example" # str | The Session Token of the Identity performing the settings flow. (optional)
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    flow = 'flow_example' # str | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+    update_settings_flow_body = ory_client.UpdateSettingsFlowBody() # UpdateSettingsFlowBody | 
+    x_session_token = 'x_session_token_example' # str | The Session Token of the Identity performing the settings flow. (optional)
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Complete Settings Flow
-        api_response = api_instance.update_settings_flow(flow, update_settings_flow_body)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->update_settings_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Complete Settings Flow
         api_response = api_instance.update_settings_flow(flow, update_settings_flow_body, x_session_token=x_session_token, cookie=cookie)
+        print("The response of FrontendApi->update_settings_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->update_settings_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flow** | **str**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |
- **update_settings_flow_body** | [**UpdateSettingsFlowBody**](UpdateSettingsFlowBody.md)|  |
- **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional]
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **flow** | **str**| The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). | 
+ **update_settings_flow_body** | [**UpdateSettingsFlowBody**](UpdateSettingsFlowBody.md)|  | 
+ **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional] 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -2167,7 +2159,6 @@ No authorization required
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2185,7 +2176,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_verification_flow**
-> VerificationFlow update_verification_flow(flow, update_verification_flow_body)
+> VerificationFlow update_verification_flow(flow, update_verification_flow_body, token=token, cookie=cookie)
 
 Complete Verification Flow
 
@@ -2195,56 +2186,48 @@ Use this endpoint to complete a verification flow. This endpoint behaves differe
 
 
 ```python
-import time
 import ory_client
-from ory_client.api import frontend_api
-from ory_client.model.verification_flow import VerificationFlow
-from ory_client.model.update_verification_flow_body import UpdateVerificationFlowBody
-from ory_client.model.error_generic import ErrorGeneric
+from ory_client.models.update_verification_flow_body import UpdateVerificationFlowBody
+from ory_client.models.verification_flow import VerificationFlow
+from ory_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
+    host = "https://.projects.oryapis.com"
 )
 
 
 # Enter a context with an instance of the API client
-with ory_client.ApiClient() as api_client:
+with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = frontend_api.FrontendApi(api_client)
-    flow = "flow_example" # str | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
-    update_verification_flow_body = UpdateVerificationFlowBody(None) # UpdateVerificationFlowBody | 
-    token = "token_example" # str | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
-    cookie = "Cookie_example" # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    api_instance = ory_client.FrontendApi(api_client)
+    flow = 'flow_example' # str | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+    update_verification_flow_body = ory_client.UpdateVerificationFlowBody() # UpdateVerificationFlowBody | 
+    token = 'token_example' # str | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
+    cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Complete Verification Flow
-        api_response = api_instance.update_verification_flow(flow, update_verification_flow_body)
-        pprint(api_response)
-    except ory_client.ApiException as e:
-        print("Exception when calling FrontendApi->update_verification_flow: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Complete Verification Flow
         api_response = api_instance.update_verification_flow(flow, update_verification_flow_body, token=token, cookie=cookie)
+        print("The response of FrontendApi->update_verification_flow:\n")
         pprint(api_response)
-    except ory_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FrontendApi->update_verification_flow: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **flow** | **str**| The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |
- **update_verification_flow_body** | [**UpdateVerificationFlowBody**](UpdateVerificationFlowBody.md)|  |
- **token** | **str**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]
- **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]
+ **flow** | **str**| The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). | 
+ **update_verification_flow_body** | [**UpdateVerificationFlowBody**](UpdateVerificationFlowBody.md)|  | 
+ **token** | **str**| Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional] 
+ **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
 
 ### Return type
 
@@ -2258,7 +2241,6 @@ No authorization required
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
-
 
 ### HTTP response details
 

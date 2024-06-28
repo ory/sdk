@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,11 +15,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the ManagedIdentitySchemaValidationResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ManagedIdentitySchemaValidationResult{}
+
 // ManagedIdentitySchemaValidationResult Ory Identity Schema Validation Result
 type ManagedIdentitySchemaValidationResult struct {
 	Message *string `json:"message,omitempty"`
 	Valid *bool `json:"valid,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ManagedIdentitySchemaValidationResult ManagedIdentitySchemaValidationResult
 
 // NewManagedIdentitySchemaValidationResult instantiates a new ManagedIdentitySchemaValidationResult object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewManagedIdentitySchemaValidationResultWithDefaults() *ManagedIdentitySche
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ManagedIdentitySchemaValidationResult) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -50,7 +56,7 @@ func (o *ManagedIdentitySchemaValidationResult) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedIdentitySchemaValidationResult) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
 	return o.Message, true
@@ -58,7 +64,7 @@ func (o *ManagedIdentitySchemaValidationResult) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ManagedIdentitySchemaValidationResult) HasMessage() bool {
-	if o != nil && o.Message != nil {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -72,7 +78,7 @@ func (o *ManagedIdentitySchemaValidationResult) SetMessage(v string) {
 
 // GetValid returns the Valid field value if set, zero value otherwise.
 func (o *ManagedIdentitySchemaValidationResult) GetValid() bool {
-	if o == nil || o.Valid == nil {
+	if o == nil || IsNil(o.Valid) {
 		var ret bool
 		return ret
 	}
@@ -82,7 +88,7 @@ func (o *ManagedIdentitySchemaValidationResult) GetValid() bool {
 // GetValidOk returns a tuple with the Valid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ManagedIdentitySchemaValidationResult) GetValidOk() (*bool, bool) {
-	if o == nil || o.Valid == nil {
+	if o == nil || IsNil(o.Valid) {
 		return nil, false
 	}
 	return o.Valid, true
@@ -90,7 +96,7 @@ func (o *ManagedIdentitySchemaValidationResult) GetValidOk() (*bool, bool) {
 
 // HasValid returns a boolean if a field has been set.
 func (o *ManagedIdentitySchemaValidationResult) HasValid() bool {
-	if o != nil && o.Valid != nil {
+	if o != nil && !IsNil(o.Valid) {
 		return true
 	}
 
@@ -103,14 +109,49 @@ func (o *ManagedIdentitySchemaValidationResult) SetValid(v bool) {
 }
 
 func (o ManagedIdentitySchemaValidationResult) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
-	if o.Valid != nil {
-		toSerialize["valid"] = o.Valid
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ManagedIdentitySchemaValidationResult) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.Valid) {
+		toSerialize["valid"] = o.Valid
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *ManagedIdentitySchemaValidationResult) UnmarshalJSON(data []byte) (err error) {
+	varManagedIdentitySchemaValidationResult := _ManagedIdentitySchemaValidationResult{}
+
+	err = json.Unmarshal(data, &varManagedIdentitySchemaValidationResult)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ManagedIdentitySchemaValidationResult(varManagedIdentitySchemaValidationResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "valid")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableManagedIdentitySchemaValidationResult struct {

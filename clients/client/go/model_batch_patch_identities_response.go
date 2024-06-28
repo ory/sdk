@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,11 +15,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the BatchPatchIdentitiesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BatchPatchIdentitiesResponse{}
+
 // BatchPatchIdentitiesResponse Patch identities response
 type BatchPatchIdentitiesResponse struct {
 	// The patch responses for the individual identities.
 	Identities []IdentityPatchResponse `json:"identities,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BatchPatchIdentitiesResponse BatchPatchIdentitiesResponse
 
 // NewBatchPatchIdentitiesResponse instantiates a new BatchPatchIdentitiesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewBatchPatchIdentitiesResponseWithDefaults() *BatchPatchIdentitiesResponse
 
 // GetIdentities returns the Identities field value if set, zero value otherwise.
 func (o *BatchPatchIdentitiesResponse) GetIdentities() []IdentityPatchResponse {
-	if o == nil || o.Identities == nil {
+	if o == nil || IsNil(o.Identities) {
 		var ret []IdentityPatchResponse
 		return ret
 	}
@@ -50,7 +56,7 @@ func (o *BatchPatchIdentitiesResponse) GetIdentities() []IdentityPatchResponse {
 // GetIdentitiesOk returns a tuple with the Identities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BatchPatchIdentitiesResponse) GetIdentitiesOk() ([]IdentityPatchResponse, bool) {
-	if o == nil || o.Identities == nil {
+	if o == nil || IsNil(o.Identities) {
 		return nil, false
 	}
 	return o.Identities, true
@@ -58,7 +64,7 @@ func (o *BatchPatchIdentitiesResponse) GetIdentitiesOk() ([]IdentityPatchRespons
 
 // HasIdentities returns a boolean if a field has been set.
 func (o *BatchPatchIdentitiesResponse) HasIdentities() bool {
-	if o != nil && o.Identities != nil {
+	if o != nil && !IsNil(o.Identities) {
 		return true
 	}
 
@@ -71,11 +77,45 @@ func (o *BatchPatchIdentitiesResponse) SetIdentities(v []IdentityPatchResponse) 
 }
 
 func (o BatchPatchIdentitiesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Identities != nil {
-		toSerialize["identities"] = o.Identities
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o BatchPatchIdentitiesResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Identities) {
+		toSerialize["identities"] = o.Identities
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *BatchPatchIdentitiesResponse) UnmarshalJSON(data []byte) (err error) {
+	varBatchPatchIdentitiesResponse := _BatchPatchIdentitiesResponse{}
+
+	err = json.Unmarshal(data, &varBatchPatchIdentitiesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BatchPatchIdentitiesResponse(varBatchPatchIdentitiesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "identities")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBatchPatchIdentitiesResponse struct {

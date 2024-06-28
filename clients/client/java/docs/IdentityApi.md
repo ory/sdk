@@ -1,10 +1,10 @@
 # IdentityApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**batchPatchIdentities**](IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create and deletes multiple identities |
+| [**batchPatchIdentities**](IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create multiple identities |
 | [**createIdentity**](IdentityApi.md#createIdentity) | **POST** /admin/identities | Create an Identity |
 | [**createRecoveryCodeForIdentity**](IdentityApi.md#createRecoveryCodeForIdentity) | **POST** /admin/recovery/code | Create a Recovery Code |
 | [**createRecoveryLinkForIdentity**](IdentityApi.md#createRecoveryLinkForIdentity) | **POST** /admin/recovery/link | Create a Recovery Link |
@@ -24,13 +24,13 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**updateIdentity**](IdentityApi.md#updateIdentity) | **PUT** /admin/identities/{id} | Update an Identity |
 
 
-<a name="batchPatchIdentities"></a>
+<a id="batchPatchIdentities"></a>
 # **batchPatchIdentities**
 > BatchPatchIdentitiesResponse batchPatchIdentities(patchIdentitiesBody)
 
-Create and deletes multiple identities
+Create multiple identities
 
-Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
 
 ### Example
 ```java
@@ -45,7 +45,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -94,7 +94,7 @@ public class Example {
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createIdentity"></a>
+<a id="createIdentity"></a>
 # **createIdentity**
 > Identity createIdentity(createIdentityBody)
 
@@ -115,7 +115,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -164,7 +164,7 @@ public class Example {
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createRecoveryCodeForIdentity"></a>
+<a id="createRecoveryCodeForIdentity"></a>
 # **createRecoveryCodeForIdentity**
 > RecoveryCodeForIdentity createRecoveryCodeForIdentity(createRecoveryCodeForIdentityBody)
 
@@ -185,7 +185,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -234,9 +234,9 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createRecoveryLinkForIdentity"></a>
+<a id="createRecoveryLinkForIdentity"></a>
 # **createRecoveryLinkForIdentity**
-> RecoveryLinkForIdentity createRecoveryLinkForIdentity(createRecoveryLinkForIdentityBody)
+> RecoveryLinkForIdentity createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody)
 
 Create a Recovery Link
 
@@ -255,16 +255,17 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
+    String returnTo = "returnTo_example"; // String | 
     CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody = new CreateRecoveryLinkForIdentityBody(); // CreateRecoveryLinkForIdentityBody | 
     try {
-      RecoveryLinkForIdentity result = apiInstance.createRecoveryLinkForIdentity(createRecoveryLinkForIdentityBody);
+      RecoveryLinkForIdentity result = apiInstance.createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#createRecoveryLinkForIdentity");
@@ -281,6 +282,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **returnTo** | **String**|  | [optional] |
 | **createRecoveryLinkForIdentityBody** | [**CreateRecoveryLinkForIdentityBody**](CreateRecoveryLinkForIdentityBody.md)|  | [optional] |
 
 ### Return type
@@ -304,7 +306,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteIdentity"></a>
+<a id="deleteIdentity"></a>
 # **deleteIdentity**
 > deleteIdentity(id)
 
@@ -325,7 +327,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -372,13 +374,13 @@ null (empty response body)
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteIdentityCredentials"></a>
+<a id="deleteIdentityCredentials"></a>
 # **deleteIdentityCredentials**
-> Identity deleteIdentityCredentials(id, type)
+> deleteIdentityCredentials(id, type, identifier)
 
 Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
 
 ### Example
 ```java
@@ -393,7 +395,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -401,10 +403,10 @@ public class Example {
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID is the identity's ID.
-    String type = "totp"; // String | Type is the credential's Type. One of totp, webauthn, lookup
+    String type = "password"; // String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    String identifier = "identifier_example"; // String | Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint.
     try {
-      Identity result = apiInstance.deleteIdentityCredentials(id, type);
-      System.out.println(result);
+      apiInstance.deleteIdentityCredentials(id, type, identifier);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#deleteIdentityCredentials");
       System.err.println("Status code: " + e.getCode());
@@ -421,11 +423,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID is the identity&#39;s ID. | |
-| **type** | **String**| Type is the credential&#39;s Type. One of totp, webauthn, lookup | [enum: totp, webauthn, lookup] |
+| **type** | **String**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, link_recovery, code_recovery] |
+| **identifier** | **String**| Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;oidc&#x60; endpoint. | [optional] |
 
 ### Return type
 
-[**Identity**](Identity.md)
+null (empty response body)
 
 ### Authorization
 
@@ -439,11 +442,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identity |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteIdentitySessions"></a>
+<a id="deleteIdentitySessions"></a>
 # **deleteIdentitySessions**
 > deleteIdentitySessions(id)
 
@@ -464,7 +467,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -513,7 +516,7 @@ null (empty response body)
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="disableSession"></a>
+<a id="disableSession"></a>
 # **disableSession**
 > disableSession(id)
 
@@ -534,7 +537,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -582,13 +585,13 @@ null (empty response body)
 | **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="extendSession"></a>
+<a id="extendSession"></a>
 # **extendSession**
 > Session extendSession(id)
 
 Extend a Session
 
-Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the &#x60;/sessions/whoami&#x60; endpoint / &#x60;toSession&#x60; SDK method.
+Calling this endpoint extends the given session ID. If &#x60;session.earliest_possible_extend&#x60; is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the &#x60;/sessions/whoami&#x60; endpoint / &#x60;toSession&#x60; SDK method.
 
 ### Example
 ```java
@@ -603,7 +606,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -648,11 +651,12 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | session |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **400** | errorGeneric |  -  |
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getIdentity"></a>
+<a id="getIdentity"></a>
 # **getIdentity**
 > Identity getIdentity(id, includeCredential)
 
@@ -673,7 +677,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -681,7 +685,7 @@ public class Example {
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of identity you want to get
-    List<String> includeCredential = Arrays.asList(); // List<String> | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+    List<String> includeCredential = Arrays.asList(); // List<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
     try {
       Identity result = apiInstance.getIdentity(id, includeCredential);
       System.out.println(result);
@@ -701,7 +705,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID must be set to the ID of identity you want to get | |
-| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Currently, only &#x60;oidc&#x60; is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional] |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, link_recovery, code_recovery] |
 
 ### Return type
 
@@ -723,7 +727,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getIdentitySchema"></a>
+<a id="getIdentitySchema"></a>
 # **getIdentitySchema**
 > Object getIdentitySchema(id)
 
@@ -743,7 +747,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of schema you want to get
@@ -787,7 +791,7 @@ No authorization required
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getSession"></a>
+<a id="getSession"></a>
 # **getSession**
 > Session getSession(id, expand)
 
@@ -808,7 +812,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -858,9 +862,9 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listIdentities"></a>
+<a id="listIdentities"></a>
 # **listIdentities**
-> List&lt;Identity&gt; listIdentities(perPage, page, credentialsIdentifier)
+> List&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential)
 
 List Identities
 
@@ -879,18 +883,24 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
-    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
-    Long page = 1L; // Long | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-    String credentialsIdentifier = "credentialsIdentifier_example"; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
+    Long perPage = 250L; // Long | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+    Long page = 56L; // Long | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    Long pageSize = 250L; // Long | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String pageToken = "1"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String consistency = ""; // String | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+    List<String> ids = Arrays.asList(); // List<String> | List of ids used to filter identities. If this list is empty, then no filter will be applied.
+    String credentialsIdentifier = "credentialsIdentifier_example"; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+    String previewCredentialsIdentifierSimilar = "previewCredentialsIdentifierSimilar_example"; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+    List<String> includeCredential = Arrays.asList(); // List<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
     try {
-      List<Identity> result = apiInstance.listIdentities(perPage, page, credentialsIdentifier);
+      List<Identity> result = apiInstance.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentities");
@@ -907,9 +917,15 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
-| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1] |
-| **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] |
+| **perPage** | **Long**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
+| **pageSize** | **Long**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 1] |
+| **consistency** | **String**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] [enum: , strong, eventual] |
+| **ids** | [**List&lt;String&gt;**](String.md)| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] |
+| **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
+| **previewCredentialsIdentifierSimilar** | **String**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
 
 ### Return type
 
@@ -930,9 +946,9 @@ public class Example {
 | **200** | Paginated Identity List Response |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listIdentitySchemas"></a>
+<a id="listIdentitySchemas"></a>
 # **listIdentitySchemas**
-> List&lt;IdentitySchemaContainer&gt; listIdentitySchemas(perPage, page)
+> List&lt;IdentitySchemaContainer&gt; listIdentitySchemas(perPage, page, pageSize, pageToken)
 
 Get all Identity Schemas
 
@@ -950,13 +966,15 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
-    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
-    Long page = 1L; // Long | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+    Long perPage = 250L; // Long | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+    Long page = 56L; // Long | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    Long pageSize = 250L; // Long | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String pageToken = "1"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     try {
-      List<IdentitySchemaContainer> result = apiInstance.listIdentitySchemas(perPage, page);
+      List<IdentitySchemaContainer> result = apiInstance.listIdentitySchemas(perPage, page, pageSize, pageToken);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentitySchemas");
@@ -973,8 +991,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
-| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1] |
+| **perPage** | **Long**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
+| **pageSize** | **Long**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 1] |
 
 ### Return type
 
@@ -995,9 +1015,9 @@ No authorization required
 | **200** | List Identity JSON Schemas Response |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listIdentitySessions"></a>
+<a id="listIdentitySessions"></a>
 # **listIdentitySessions**
-> List&lt;Session&gt; listIdentitySessions(id, perPage, page, active)
+> List&lt;Session&gt; listIdentitySessions(id, perPage, page, pageSize, pageToken, active)
 
 List an Identity&#39;s Sessions
 
@@ -1016,7 +1036,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -1024,11 +1044,13 @@ public class Example {
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID is the identity's ID.
-    Long perPage = 250L; // Long | Items per Page  This is the number of items per page.
-    Long page = 1L; // Long | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+    Long perPage = 250L; // Long | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+    Long page = 56L; // Long | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+    Long pageSize = 250L; // Long | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String pageToken = "1"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     Boolean active = true; // Boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
     try {
-      List<Session> result = apiInstance.listIdentitySessions(id, perPage, page, active);
+      List<Session> result = apiInstance.listIdentitySessions(id, perPage, page, pageSize, pageToken, active);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentitySessions");
@@ -1046,8 +1068,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID is the identity&#39;s ID. | |
-| **perPage** | **Long**| Items per Page  This is the number of items per page. | [optional] [default to 250] |
-| **page** | **Long**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1] |
+| **perPage** | **Long**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250] |
+| **page** | **Long**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
+| **pageSize** | **Long**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 1] |
 | **active** | **Boolean**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] |
 
 ### Return type
@@ -1071,7 +1095,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listSessions"></a>
+<a id="listSessions"></a>
 # **listSessions**
 > List&lt;Session&gt; listSessions(pageSize, pageToken, active, expand)
 
@@ -1092,7 +1116,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -1146,7 +1170,7 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="patchIdentity"></a>
+<a id="patchIdentity"></a>
 # **patchIdentity**
 > Identity patchIdentity(id, jsonPatch)
 
@@ -1167,7 +1191,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -1219,7 +1243,7 @@ public class Example {
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateIdentity"></a>
+<a id="updateIdentity"></a>
 # **updateIdentity**
 > Identity updateIdentity(id, updateIdentityBody)
 
@@ -1240,7 +1264,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");

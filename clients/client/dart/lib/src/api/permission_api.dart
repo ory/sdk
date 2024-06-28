@@ -42,7 +42,7 @@ class PermissionApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [CheckPermissionResult] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<CheckPermissionResult>> checkPermission({ 
     String? namespace,
     String? object,
@@ -98,22 +98,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckPermissionResult _responseData;
+    CheckPermissionResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckPermissionResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckPermissionResult),
       ) as CheckPermissionResult;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckPermissionResult>(
@@ -148,7 +149,7 @@ class PermissionApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [CheckPermissionResult] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<CheckPermissionResult>> checkPermissionOrError({ 
     String? namespace,
     String? object,
@@ -204,22 +205,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckPermissionResult _responseData;
+    CheckPermissionResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckPermissionResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckPermissionResult),
       ) as CheckPermissionResult;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckPermissionResult>(
@@ -250,7 +252,7 @@ class PermissionApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [ExpandedPermissionTree] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<ExpandedPermissionTree>> expandPermissions({ 
     required String namespace,
     required String object,
@@ -298,22 +300,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ExpandedPermissionTree _responseData;
+    ExpandedPermissionTree? _responseData;
 
     try {
-      const _responseType = FullType(ExpandedPermissionTree);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ExpandedPermissionTree),
       ) as ExpandedPermissionTree;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<ExpandedPermissionTree>(
@@ -342,7 +345,7 @@ class PermissionApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [CheckPermissionResult] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<CheckPermissionResult>> postCheckPermission({ 
     int? maxDepth,
     PostCheckPermissionBody? postCheckPermissionBody,
@@ -384,15 +387,16 @@ class PermissionApi {
       _bodyData = postCheckPermissionBody == null ? null : _serializers.serialize(postCheckPermissionBody, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -405,22 +409,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckPermissionResult _responseData;
+    CheckPermissionResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckPermissionResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckPermissionResult),
       ) as CheckPermissionResult;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckPermissionResult>(
@@ -439,7 +444,7 @@ class PermissionApi {
   /// To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
   ///
   /// Parameters:
-  /// * [maxDepth] - nolint:deadcode,unused
+  /// * [maxDepth] 
   /// * [postCheckPermissionOrErrorBody] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -449,7 +454,7 @@ class PermissionApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [CheckPermissionResult] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<CheckPermissionResult>> postCheckPermissionOrError({ 
     int? maxDepth,
     PostCheckPermissionOrErrorBody? postCheckPermissionOrErrorBody,
@@ -491,15 +496,16 @@ class PermissionApi {
       _bodyData = postCheckPermissionOrErrorBody == null ? null : _serializers.serialize(postCheckPermissionOrErrorBody, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -512,22 +518,23 @@ class PermissionApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CheckPermissionResult _responseData;
+    CheckPermissionResult? _responseData;
 
     try {
-      const _responseType = FullType(CheckPermissionResult);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CheckPermissionResult),
       ) as CheckPermissionResult;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<CheckPermissionResult>(

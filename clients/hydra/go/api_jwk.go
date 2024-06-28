@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -14,14 +14,14 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-type JwkApi interface {
+type JwkAPI interface {
 
 	/*
 	CreateJsonWebKeySet Create JSON Web Key
@@ -32,13 +32,13 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set The JSON Web Key Set ID
-	@return JwkApiCreateJsonWebKeySetRequest
+	@return JwkAPICreateJsonWebKeySetRequest
 	*/
-	CreateJsonWebKeySet(ctx context.Context, set string) JwkApiCreateJsonWebKeySetRequest
+	CreateJsonWebKeySet(ctx context.Context, set string) JwkAPICreateJsonWebKeySetRequest
 
 	// CreateJsonWebKeySetExecute executes the request
 	//  @return JsonWebKeySet
-	CreateJsonWebKeySetExecute(r JwkApiCreateJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error)
+	CreateJsonWebKeySetExecute(r JwkAPICreateJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error)
 
 	/*
 	DeleteJsonWebKey Delete JSON Web Key
@@ -53,12 +53,12 @@ and allows storing user-defined keys as well.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set The JSON Web Key Set
 	@param kid The JSON Web Key ID (kid)
-	@return JwkApiDeleteJsonWebKeyRequest
+	@return JwkAPIDeleteJsonWebKeyRequest
 	*/
-	DeleteJsonWebKey(ctx context.Context, set string, kid string) JwkApiDeleteJsonWebKeyRequest
+	DeleteJsonWebKey(ctx context.Context, set string, kid string) JwkAPIDeleteJsonWebKeyRequest
 
 	// DeleteJsonWebKeyExecute executes the request
-	DeleteJsonWebKeyExecute(r JwkApiDeleteJsonWebKeyRequest) (*http.Response, error)
+	DeleteJsonWebKeyExecute(r JwkAPIDeleteJsonWebKeyRequest) (*http.Response, error)
 
 	/*
 	DeleteJsonWebKeySet Delete JSON Web Key Set
@@ -69,12 +69,12 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set The JSON Web Key Set
-	@return JwkApiDeleteJsonWebKeySetRequest
+	@return JwkAPIDeleteJsonWebKeySetRequest
 	*/
-	DeleteJsonWebKeySet(ctx context.Context, set string) JwkApiDeleteJsonWebKeySetRequest
+	DeleteJsonWebKeySet(ctx context.Context, set string) JwkAPIDeleteJsonWebKeySetRequest
 
 	// DeleteJsonWebKeySetExecute executes the request
-	DeleteJsonWebKeySetExecute(r JwkApiDeleteJsonWebKeySetRequest) (*http.Response, error)
+	DeleteJsonWebKeySetExecute(r JwkAPIDeleteJsonWebKeySetRequest) (*http.Response, error)
 
 	/*
 	GetJsonWebKey Get JSON Web Key
@@ -84,13 +84,13 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set JSON Web Key Set ID
 	@param kid JSON Web Key ID
-	@return JwkApiGetJsonWebKeyRequest
+	@return JwkAPIGetJsonWebKeyRequest
 	*/
-	GetJsonWebKey(ctx context.Context, set string, kid string) JwkApiGetJsonWebKeyRequest
+	GetJsonWebKey(ctx context.Context, set string, kid string) JwkAPIGetJsonWebKeyRequest
 
 	// GetJsonWebKeyExecute executes the request
 	//  @return JsonWebKeySet
-	GetJsonWebKeyExecute(r JwkApiGetJsonWebKeyRequest) (*JsonWebKeySet, *http.Response, error)
+	GetJsonWebKeyExecute(r JwkAPIGetJsonWebKeyRequest) (*JsonWebKeySet, *http.Response, error)
 
 	/*
 	GetJsonWebKeySet Retrieve a JSON Web Key Set
@@ -101,13 +101,13 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set JSON Web Key Set ID
-	@return JwkApiGetJsonWebKeySetRequest
+	@return JwkAPIGetJsonWebKeySetRequest
 	*/
-	GetJsonWebKeySet(ctx context.Context, set string) JwkApiGetJsonWebKeySetRequest
+	GetJsonWebKeySet(ctx context.Context, set string) JwkAPIGetJsonWebKeySetRequest
 
 	// GetJsonWebKeySetExecute executes the request
 	//  @return JsonWebKeySet
-	GetJsonWebKeySetExecute(r JwkApiGetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error)
+	GetJsonWebKeySetExecute(r JwkAPIGetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error)
 
 	/*
 	SetJsonWebKey Set JSON Web Key
@@ -119,13 +119,13 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set The JSON Web Key Set ID
 	@param kid JSON Web Key ID
-	@return JwkApiSetJsonWebKeyRequest
+	@return JwkAPISetJsonWebKeyRequest
 	*/
-	SetJsonWebKey(ctx context.Context, set string, kid string) JwkApiSetJsonWebKeyRequest
+	SetJsonWebKey(ctx context.Context, set string, kid string) JwkAPISetJsonWebKeyRequest
 
 	// SetJsonWebKeyExecute executes the request
 	//  @return JsonWebKey
-	SetJsonWebKeyExecute(r JwkApiSetJsonWebKeyRequest) (*JsonWebKey, *http.Response, error)
+	SetJsonWebKeyExecute(r JwkAPISetJsonWebKeyRequest) (*JsonWebKey, *http.Response, error)
 
 	/*
 	SetJsonWebKeySet Update a JSON Web Key Set
@@ -136,31 +136,31 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set The JSON Web Key Set ID
-	@return JwkApiSetJsonWebKeySetRequest
+	@return JwkAPISetJsonWebKeySetRequest
 	*/
-	SetJsonWebKeySet(ctx context.Context, set string) JwkApiSetJsonWebKeySetRequest
+	SetJsonWebKeySet(ctx context.Context, set string) JwkAPISetJsonWebKeySetRequest
 
 	// SetJsonWebKeySetExecute executes the request
 	//  @return JsonWebKeySet
-	SetJsonWebKeySetExecute(r JwkApiSetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error)
+	SetJsonWebKeySetExecute(r JwkAPISetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error)
 }
 
-// JwkApiService JwkApi service
-type JwkApiService service
+// JwkAPIService JwkAPI service
+type JwkAPIService service
 
-type JwkApiCreateJsonWebKeySetRequest struct {
+type JwkAPICreateJsonWebKeySetRequest struct {
 	ctx context.Context
-	ApiService JwkApi
+	ApiService JwkAPI
 	set string
 	createJsonWebKeySet *CreateJsonWebKeySet
 }
 
-func (r JwkApiCreateJsonWebKeySetRequest) CreateJsonWebKeySet(createJsonWebKeySet CreateJsonWebKeySet) JwkApiCreateJsonWebKeySetRequest {
+func (r JwkAPICreateJsonWebKeySetRequest) CreateJsonWebKeySet(createJsonWebKeySet CreateJsonWebKeySet) JwkAPICreateJsonWebKeySetRequest {
 	r.createJsonWebKeySet = &createJsonWebKeySet
 	return r
 }
 
-func (r JwkApiCreateJsonWebKeySetRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+func (r JwkAPICreateJsonWebKeySetRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
 	return r.ApiService.CreateJsonWebKeySetExecute(r)
 }
 
@@ -173,10 +173,10 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set The JSON Web Key Set ID
- @return JwkApiCreateJsonWebKeySetRequest
+ @return JwkAPICreateJsonWebKeySetRequest
 */
-func (a *JwkApiService) CreateJsonWebKeySet(ctx context.Context, set string) JwkApiCreateJsonWebKeySetRequest {
-	return JwkApiCreateJsonWebKeySetRequest{
+func (a *JwkAPIService) CreateJsonWebKeySet(ctx context.Context, set string) JwkAPICreateJsonWebKeySetRequest {
+	return JwkAPICreateJsonWebKeySetRequest{
 		ApiService: a,
 		ctx: ctx,
 		set: set,
@@ -185,7 +185,7 @@ func (a *JwkApiService) CreateJsonWebKeySet(ctx context.Context, set string) Jwk
 
 // Execute executes the request
 //  @return JsonWebKeySet
-func (a *JwkApiService) CreateJsonWebKeySetExecute(r JwkApiCreateJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error) {
+func (a *JwkAPIService) CreateJsonWebKeySetExecute(r JwkAPICreateJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -193,13 +193,13 @@ func (a *JwkApiService) CreateJsonWebKeySetExecute(r JwkApiCreateJsonWebKeySetRe
 		localVarReturnValue  *JsonWebKeySet
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkApiService.CreateJsonWebKeySet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkAPIService.CreateJsonWebKeySet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/keys/{set}"
-	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterValueToString(r.set, "set")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -237,9 +237,9 @@ func (a *JwkApiService) CreateJsonWebKeySetExecute(r JwkApiCreateJsonWebKeySetRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -255,7 +255,8 @@ func (a *JwkApiService) CreateJsonWebKeySetExecute(r JwkApiCreateJsonWebKeySetRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -271,14 +272,14 @@ func (a *JwkApiService) CreateJsonWebKeySetExecute(r JwkApiCreateJsonWebKeySetRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type JwkApiDeleteJsonWebKeyRequest struct {
+type JwkAPIDeleteJsonWebKeyRequest struct {
 	ctx context.Context
-	ApiService JwkApi
+	ApiService JwkAPI
 	set string
 	kid string
 }
 
-func (r JwkApiDeleteJsonWebKeyRequest) Execute() (*http.Response, error) {
+func (r JwkAPIDeleteJsonWebKeyRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteJsonWebKeyExecute(r)
 }
 
@@ -295,10 +296,10 @@ and allows storing user-defined keys as well.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set The JSON Web Key Set
  @param kid The JSON Web Key ID (kid)
- @return JwkApiDeleteJsonWebKeyRequest
+ @return JwkAPIDeleteJsonWebKeyRequest
 */
-func (a *JwkApiService) DeleteJsonWebKey(ctx context.Context, set string, kid string) JwkApiDeleteJsonWebKeyRequest {
-	return JwkApiDeleteJsonWebKeyRequest{
+func (a *JwkAPIService) DeleteJsonWebKey(ctx context.Context, set string, kid string) JwkAPIDeleteJsonWebKeyRequest {
+	return JwkAPIDeleteJsonWebKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		set: set,
@@ -307,21 +308,21 @@ func (a *JwkApiService) DeleteJsonWebKey(ctx context.Context, set string, kid st
 }
 
 // Execute executes the request
-func (a *JwkApiService) DeleteJsonWebKeyExecute(r JwkApiDeleteJsonWebKeyRequest) (*http.Response, error) {
+func (a *JwkAPIService) DeleteJsonWebKeyExecute(r JwkAPIDeleteJsonWebKeyRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkApiService.DeleteJsonWebKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkAPIService.DeleteJsonWebKey")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/keys/{set}/{kid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"kid"+"}", url.PathEscape(parameterToString(r.kid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterValueToString(r.set, "set")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"kid"+"}", url.PathEscape(parameterValueToString(r.kid, "kid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -354,9 +355,9 @@ func (a *JwkApiService) DeleteJsonWebKeyExecute(r JwkApiDeleteJsonWebKeyRequest)
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -372,20 +373,21 @@ func (a *JwkApiService) DeleteJsonWebKeyExecute(r JwkApiDeleteJsonWebKeyRequest)
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type JwkApiDeleteJsonWebKeySetRequest struct {
+type JwkAPIDeleteJsonWebKeySetRequest struct {
 	ctx context.Context
-	ApiService JwkApi
+	ApiService JwkAPI
 	set string
 }
 
-func (r JwkApiDeleteJsonWebKeySetRequest) Execute() (*http.Response, error) {
+func (r JwkAPIDeleteJsonWebKeySetRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteJsonWebKeySetExecute(r)
 }
 
@@ -398,10 +400,10 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set The JSON Web Key Set
- @return JwkApiDeleteJsonWebKeySetRequest
+ @return JwkAPIDeleteJsonWebKeySetRequest
 */
-func (a *JwkApiService) DeleteJsonWebKeySet(ctx context.Context, set string) JwkApiDeleteJsonWebKeySetRequest {
-	return JwkApiDeleteJsonWebKeySetRequest{
+func (a *JwkAPIService) DeleteJsonWebKeySet(ctx context.Context, set string) JwkAPIDeleteJsonWebKeySetRequest {
+	return JwkAPIDeleteJsonWebKeySetRequest{
 		ApiService: a,
 		ctx: ctx,
 		set: set,
@@ -409,20 +411,20 @@ func (a *JwkApiService) DeleteJsonWebKeySet(ctx context.Context, set string) Jwk
 }
 
 // Execute executes the request
-func (a *JwkApiService) DeleteJsonWebKeySetExecute(r JwkApiDeleteJsonWebKeySetRequest) (*http.Response, error) {
+func (a *JwkAPIService) DeleteJsonWebKeySetExecute(r JwkAPIDeleteJsonWebKeySetRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkApiService.DeleteJsonWebKeySet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkAPIService.DeleteJsonWebKeySet")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/keys/{set}"
-	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterValueToString(r.set, "set")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -455,9 +457,9 @@ func (a *JwkApiService) DeleteJsonWebKeySetExecute(r JwkApiDeleteJsonWebKeySetRe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -473,21 +475,22 @@ func (a *JwkApiService) DeleteJsonWebKeySetExecute(r JwkApiDeleteJsonWebKeySetRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type JwkApiGetJsonWebKeyRequest struct {
+type JwkAPIGetJsonWebKeyRequest struct {
 	ctx context.Context
-	ApiService JwkApi
+	ApiService JwkAPI
 	set string
 	kid string
 }
 
-func (r JwkApiGetJsonWebKeyRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+func (r JwkAPIGetJsonWebKeyRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
 	return r.ApiService.GetJsonWebKeyExecute(r)
 }
 
@@ -499,10 +502,10 @@ This endpoint returns a singular JSON Web Key contained in a set. It is identifi
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set JSON Web Key Set ID
  @param kid JSON Web Key ID
- @return JwkApiGetJsonWebKeyRequest
+ @return JwkAPIGetJsonWebKeyRequest
 */
-func (a *JwkApiService) GetJsonWebKey(ctx context.Context, set string, kid string) JwkApiGetJsonWebKeyRequest {
-	return JwkApiGetJsonWebKeyRequest{
+func (a *JwkAPIService) GetJsonWebKey(ctx context.Context, set string, kid string) JwkAPIGetJsonWebKeyRequest {
+	return JwkAPIGetJsonWebKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		set: set,
@@ -512,7 +515,7 @@ func (a *JwkApiService) GetJsonWebKey(ctx context.Context, set string, kid strin
 
 // Execute executes the request
 //  @return JsonWebKeySet
-func (a *JwkApiService) GetJsonWebKeyExecute(r JwkApiGetJsonWebKeyRequest) (*JsonWebKeySet, *http.Response, error) {
+func (a *JwkAPIService) GetJsonWebKeyExecute(r JwkAPIGetJsonWebKeyRequest) (*JsonWebKeySet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -520,14 +523,14 @@ func (a *JwkApiService) GetJsonWebKeyExecute(r JwkApiGetJsonWebKeyRequest) (*Jso
 		localVarReturnValue  *JsonWebKeySet
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkApiService.GetJsonWebKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkAPIService.GetJsonWebKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/keys/{set}/{kid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"kid"+"}", url.PathEscape(parameterToString(r.kid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterValueToString(r.set, "set")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"kid"+"}", url.PathEscape(parameterValueToString(r.kid, "kid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -560,9 +563,9 @@ func (a *JwkApiService) GetJsonWebKeyExecute(r JwkApiGetJsonWebKeyRequest) (*Jso
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -578,7 +581,8 @@ func (a *JwkApiService) GetJsonWebKeyExecute(r JwkApiGetJsonWebKeyRequest) (*Jso
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -594,13 +598,13 @@ func (a *JwkApiService) GetJsonWebKeyExecute(r JwkApiGetJsonWebKeyRequest) (*Jso
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type JwkApiGetJsonWebKeySetRequest struct {
+type JwkAPIGetJsonWebKeySetRequest struct {
 	ctx context.Context
-	ApiService JwkApi
+	ApiService JwkAPI
 	set string
 }
 
-func (r JwkApiGetJsonWebKeySetRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+func (r JwkAPIGetJsonWebKeySetRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
 	return r.ApiService.GetJsonWebKeySetExecute(r)
 }
 
@@ -613,10 +617,10 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set JSON Web Key Set ID
- @return JwkApiGetJsonWebKeySetRequest
+ @return JwkAPIGetJsonWebKeySetRequest
 */
-func (a *JwkApiService) GetJsonWebKeySet(ctx context.Context, set string) JwkApiGetJsonWebKeySetRequest {
-	return JwkApiGetJsonWebKeySetRequest{
+func (a *JwkAPIService) GetJsonWebKeySet(ctx context.Context, set string) JwkAPIGetJsonWebKeySetRequest {
+	return JwkAPIGetJsonWebKeySetRequest{
 		ApiService: a,
 		ctx: ctx,
 		set: set,
@@ -625,7 +629,7 @@ func (a *JwkApiService) GetJsonWebKeySet(ctx context.Context, set string) JwkApi
 
 // Execute executes the request
 //  @return JsonWebKeySet
-func (a *JwkApiService) GetJsonWebKeySetExecute(r JwkApiGetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error) {
+func (a *JwkAPIService) GetJsonWebKeySetExecute(r JwkAPIGetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -633,13 +637,13 @@ func (a *JwkApiService) GetJsonWebKeySetExecute(r JwkApiGetJsonWebKeySetRequest)
 		localVarReturnValue  *JsonWebKeySet
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkApiService.GetJsonWebKeySet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkAPIService.GetJsonWebKeySet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/keys/{set}"
-	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterValueToString(r.set, "set")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -672,9 +676,9 @@ func (a *JwkApiService) GetJsonWebKeySetExecute(r JwkApiGetJsonWebKeySetRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -690,7 +694,8 @@ func (a *JwkApiService) GetJsonWebKeySetExecute(r JwkApiGetJsonWebKeySetRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -706,20 +711,20 @@ func (a *JwkApiService) GetJsonWebKeySetExecute(r JwkApiGetJsonWebKeySetRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type JwkApiSetJsonWebKeyRequest struct {
+type JwkAPISetJsonWebKeyRequest struct {
 	ctx context.Context
-	ApiService JwkApi
+	ApiService JwkAPI
 	set string
 	kid string
 	jsonWebKey *JsonWebKey
 }
 
-func (r JwkApiSetJsonWebKeyRequest) JsonWebKey(jsonWebKey JsonWebKey) JwkApiSetJsonWebKeyRequest {
+func (r JwkAPISetJsonWebKeyRequest) JsonWebKey(jsonWebKey JsonWebKey) JwkAPISetJsonWebKeyRequest {
 	r.jsonWebKey = &jsonWebKey
 	return r
 }
 
-func (r JwkApiSetJsonWebKeyRequest) Execute() (*JsonWebKey, *http.Response, error) {
+func (r JwkAPISetJsonWebKeyRequest) Execute() (*JsonWebKey, *http.Response, error) {
 	return r.ApiService.SetJsonWebKeyExecute(r)
 }
 
@@ -733,10 +738,10 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set The JSON Web Key Set ID
  @param kid JSON Web Key ID
- @return JwkApiSetJsonWebKeyRequest
+ @return JwkAPISetJsonWebKeyRequest
 */
-func (a *JwkApiService) SetJsonWebKey(ctx context.Context, set string, kid string) JwkApiSetJsonWebKeyRequest {
-	return JwkApiSetJsonWebKeyRequest{
+func (a *JwkAPIService) SetJsonWebKey(ctx context.Context, set string, kid string) JwkAPISetJsonWebKeyRequest {
+	return JwkAPISetJsonWebKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		set: set,
@@ -746,7 +751,7 @@ func (a *JwkApiService) SetJsonWebKey(ctx context.Context, set string, kid strin
 
 // Execute executes the request
 //  @return JsonWebKey
-func (a *JwkApiService) SetJsonWebKeyExecute(r JwkApiSetJsonWebKeyRequest) (*JsonWebKey, *http.Response, error) {
+func (a *JwkAPIService) SetJsonWebKeyExecute(r JwkAPISetJsonWebKeyRequest) (*JsonWebKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -754,14 +759,14 @@ func (a *JwkApiService) SetJsonWebKeyExecute(r JwkApiSetJsonWebKeyRequest) (*Jso
 		localVarReturnValue  *JsonWebKey
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkApiService.SetJsonWebKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkAPIService.SetJsonWebKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/keys/{set}/{kid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"kid"+"}", url.PathEscape(parameterToString(r.kid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterValueToString(r.set, "set")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"kid"+"}", url.PathEscape(parameterValueToString(r.kid, "kid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -796,9 +801,9 @@ func (a *JwkApiService) SetJsonWebKeyExecute(r JwkApiSetJsonWebKeyRequest) (*Jso
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -814,7 +819,8 @@ func (a *JwkApiService) SetJsonWebKeyExecute(r JwkApiSetJsonWebKeyRequest) (*Jso
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -830,19 +836,19 @@ func (a *JwkApiService) SetJsonWebKeyExecute(r JwkApiSetJsonWebKeyRequest) (*Jso
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type JwkApiSetJsonWebKeySetRequest struct {
+type JwkAPISetJsonWebKeySetRequest struct {
 	ctx context.Context
-	ApiService JwkApi
+	ApiService JwkAPI
 	set string
 	jsonWebKeySet *JsonWebKeySet
 }
 
-func (r JwkApiSetJsonWebKeySetRequest) JsonWebKeySet(jsonWebKeySet JsonWebKeySet) JwkApiSetJsonWebKeySetRequest {
+func (r JwkAPISetJsonWebKeySetRequest) JsonWebKeySet(jsonWebKeySet JsonWebKeySet) JwkAPISetJsonWebKeySetRequest {
 	r.jsonWebKeySet = &jsonWebKeySet
 	return r
 }
 
-func (r JwkApiSetJsonWebKeySetRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+func (r JwkAPISetJsonWebKeySetRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
 	return r.ApiService.SetJsonWebKeySetExecute(r)
 }
 
@@ -855,10 +861,10 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set The JSON Web Key Set ID
- @return JwkApiSetJsonWebKeySetRequest
+ @return JwkAPISetJsonWebKeySetRequest
 */
-func (a *JwkApiService) SetJsonWebKeySet(ctx context.Context, set string) JwkApiSetJsonWebKeySetRequest {
-	return JwkApiSetJsonWebKeySetRequest{
+func (a *JwkAPIService) SetJsonWebKeySet(ctx context.Context, set string) JwkAPISetJsonWebKeySetRequest {
+	return JwkAPISetJsonWebKeySetRequest{
 		ApiService: a,
 		ctx: ctx,
 		set: set,
@@ -867,7 +873,7 @@ func (a *JwkApiService) SetJsonWebKeySet(ctx context.Context, set string) JwkApi
 
 // Execute executes the request
 //  @return JsonWebKeySet
-func (a *JwkApiService) SetJsonWebKeySetExecute(r JwkApiSetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error) {
+func (a *JwkAPIService) SetJsonWebKeySetExecute(r JwkAPISetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -875,13 +881,13 @@ func (a *JwkApiService) SetJsonWebKeySetExecute(r JwkApiSetJsonWebKeySetRequest)
 		localVarReturnValue  *JsonWebKeySet
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkApiService.SetJsonWebKeySet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JwkAPIService.SetJsonWebKeySet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/keys/{set}"
-	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterValueToString(r.set, "set")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -916,9 +922,9 @@ func (a *JwkApiService) SetJsonWebKeySetExecute(r JwkApiSetJsonWebKeySetRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -934,7 +940,8 @@ func (a *JwkApiService) SetJsonWebKeySetExecute(r JwkApiSetJsonWebKeySetRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

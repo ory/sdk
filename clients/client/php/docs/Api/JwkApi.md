@@ -1,16 +1,16 @@
 # Ory\Client\JwkApi
 
-All URIs are relative to https://playground.projects.oryapis.com.
+All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createJsonWebKeySet()**](JwkApi.md#createJsonWebKeySet) | **POST** /admin/keys/{set} | Create JSON Web Key
-[**deleteJsonWebKey()**](JwkApi.md#deleteJsonWebKey) | **DELETE** /admin/keys/{set}/{kid} | Delete JSON Web Key
-[**deleteJsonWebKeySet()**](JwkApi.md#deleteJsonWebKeySet) | **DELETE** /admin/keys/{set} | Delete JSON Web Key Set
-[**getJsonWebKey()**](JwkApi.md#getJsonWebKey) | **GET** /admin/keys/{set}/{kid} | Get JSON Web Key
-[**getJsonWebKeySet()**](JwkApi.md#getJsonWebKeySet) | **GET** /admin/keys/{set} | Retrieve a JSON Web Key Set
-[**setJsonWebKey()**](JwkApi.md#setJsonWebKey) | **PUT** /admin/keys/{set}/{kid} | Set JSON Web Key
-[**setJsonWebKeySet()**](JwkApi.md#setJsonWebKeySet) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createJsonWebKeySet()**](JwkApi.md#createJsonWebKeySet) | **POST** /admin/keys/{set} | Create JSON Web Key |
+| [**deleteJsonWebKey()**](JwkApi.md#deleteJsonWebKey) | **DELETE** /admin/keys/{set}/{kid} | Delete JSON Web Key |
+| [**deleteJsonWebKeySet()**](JwkApi.md#deleteJsonWebKeySet) | **DELETE** /admin/keys/{set} | Delete JSON Web Key Set |
+| [**getJsonWebKey()**](JwkApi.md#getJsonWebKey) | **GET** /admin/keys/{set}/{kid} | Get JSON Web Key |
+| [**getJsonWebKeySet()**](JwkApi.md#getJsonWebKeySet) | **GET** /admin/keys/{set} | Retrieve a JSON Web Key Set |
+| [**setJsonWebKey()**](JwkApi.md#setJsonWebKey) | **PUT** /admin/keys/{set}/{kid} | Set JSON Web Key |
+| [**setJsonWebKeySet()**](JwkApi.md#setJsonWebKeySet) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set |
 
 
 ## `createJsonWebKeySet()`
@@ -53,10 +53,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set ID |
- **createJsonWebKeySet** | [**\Ory\Client\Model\CreateJsonWebKeySet**](../Model/CreateJsonWebKeySet.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **set** | **string**| The JSON Web Key Set ID | |
+| **createJsonWebKeySet** | [**\Ory\Client\Model\CreateJsonWebKeySet**](../Model/CreateJsonWebKeySet.md)|  | |
 
 ### Return type
 
@@ -114,10 +114,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set |
- **kid** | **string**| The JSON Web Key ID (kid) |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **set** | **string**| The JSON Web Key Set | |
+| **kid** | **string**| The JSON Web Key ID (kid) | |
 
 ### Return type
 
@@ -174,9 +174,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **set** | **string**| The JSON Web Key Set | |
 
 ### Return type
 
@@ -235,10 +235,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| JSON Web Key Set ID |
- **kid** | **string**| JSON Web Key ID |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **set** | **string**| JSON Web Key Set ID | |
+| **kid** | **string**| JSON Web Key ID | |
 
 ### Return type
 
@@ -296,9 +296,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| JSON Web Key Set ID |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **set** | **string**| JSON Web Key Set ID | |
 
 ### Return type
 
@@ -358,11 +358,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set ID |
- **kid** | **string**| JSON Web Key ID |
- **jsonWebKey** | [**\Ory\Client\Model\JsonWebKey**](../Model/JsonWebKey.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **set** | **string**| The JSON Web Key Set ID | |
+| **kid** | **string**| JSON Web Key ID | |
+| **jsonWebKey** | [**\Ory\Client\Model\JsonWebKey**](../Model/JsonWebKey.md)|  | [optional] |
 
 ### Return type
 
@@ -421,10 +421,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **set** | **string**| The JSON Web Key Set ID |
- **jsonWebKeySet** | [**\Ory\Client\Model\JsonWebKeySet**](../Model/JsonWebKeySet.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **set** | **string**| The JSON Web Key Set ID | |
+| **jsonWebKeySet** | [**\Ory\Client\Model\JsonWebKeySet**](../Model/JsonWebKeySet.md)|  | [optional] |
 
 ### Return type
 

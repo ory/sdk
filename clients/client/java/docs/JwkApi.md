@@ -1,6 +1,6 @@
 # JwkApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -13,7 +13,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**setJsonWebKeySet**](JwkApi.md#setJsonWebKeySet) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set |
 
 
-<a name="createJsonWebKeySet"></a>
+<a id="createJsonWebKeySet"></a>
 # **createJsonWebKeySet**
 > JsonWebKeySet createJsonWebKeySet(set, createJsonWebKeySet)
 
@@ -34,7 +34,7 @@ import sh.ory.api.JwkApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -83,7 +83,7 @@ public class Example {
 | **201** | jsonWebKeySet |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="deleteJsonWebKey"></a>
+<a id="deleteJsonWebKey"></a>
 # **deleteJsonWebKey**
 > deleteJsonWebKey(set, kid)
 
@@ -104,7 +104,7 @@ import sh.ory.api.JwkApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -152,7 +152,7 @@ null (empty response body)
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="deleteJsonWebKeySet"></a>
+<a id="deleteJsonWebKeySet"></a>
 # **deleteJsonWebKeySet**
 > deleteJsonWebKeySet(set)
 
@@ -173,7 +173,7 @@ import sh.ory.api.JwkApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -219,7 +219,7 @@ null (empty response body)
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="getJsonWebKey"></a>
+<a id="getJsonWebKey"></a>
 # **getJsonWebKey**
 > JsonWebKeySet getJsonWebKey(set, kid)
 
@@ -240,7 +240,7 @@ import sh.ory.api.JwkApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -289,7 +289,7 @@ public class Example {
 | **200** | jsonWebKeySet |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="getJsonWebKeySet"></a>
+<a id="getJsonWebKeySet"></a>
 # **getJsonWebKeySet**
 > JsonWebKeySet getJsonWebKeySet(set)
 
@@ -310,7 +310,7 @@ import sh.ory.api.JwkApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -357,7 +357,7 @@ public class Example {
 | **200** | jsonWebKeySet |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="setJsonWebKey"></a>
+<a id="setJsonWebKey"></a>
 # **setJsonWebKey**
 > JsonWebKey setJsonWebKey(set, kid, jsonWebKey)
 
@@ -378,7 +378,7 @@ import sh.ory.api.JwkApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -429,7 +429,7 @@ public class Example {
 | **200** | jsonWebKey |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="setJsonWebKeySet"></a>
+<a id="setJsonWebKeySet"></a>
 # **setJsonWebKeySet**
 > JsonWebKeySet setJsonWebKeySet(set, jsonWebKeySet)
 
@@ -450,7 +450,7 @@ import sh.ory.api.JwkApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");

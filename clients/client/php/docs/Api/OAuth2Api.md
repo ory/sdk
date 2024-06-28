@@ -1,37 +1,37 @@
 # Ory\Client\OAuth2Api
 
-All URIs are relative to https://playground.projects.oryapis.com.
+All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**acceptOAuth2ConsentRequest()**](OAuth2Api.md#acceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
-[**acceptOAuth2LoginRequest()**](OAuth2Api.md#acceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
-[**acceptOAuth2LogoutRequest()**](OAuth2Api.md#acceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
-[**createOAuth2Client()**](OAuth2Api.md#createOAuth2Client) | **POST** /admin/clients | Create OAuth 2.0 Client
-[**deleteOAuth2Client()**](OAuth2Api.md#deleteOAuth2Client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
-[**deleteOAuth2Token()**](OAuth2Api.md#deleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
-[**deleteTrustedOAuth2JwtGrantIssuer()**](OAuth2Api.md#deleteTrustedOAuth2JwtGrantIssuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
-[**getOAuth2Client()**](OAuth2Api.md#getOAuth2Client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
-[**getOAuth2ConsentRequest()**](OAuth2Api.md#getOAuth2ConsentRequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request
-[**getOAuth2LoginRequest()**](OAuth2Api.md#getOAuth2LoginRequest) | **GET** /admin/oauth2/auth/requests/login | Get OAuth 2.0 Login Request
-[**getOAuth2LogoutRequest()**](OAuth2Api.md#getOAuth2LogoutRequest) | **GET** /admin/oauth2/auth/requests/logout | Get OAuth 2.0 Session Logout Request
-[**getTrustedOAuth2JwtGrantIssuer()**](OAuth2Api.md#getTrustedOAuth2JwtGrantIssuer) | **GET** /admin/trust/grants/jwt-bearer/issuers/{id} | Get Trusted OAuth2 JWT Bearer Grant Type Issuer
-[**introspectOAuth2Token()**](OAuth2Api.md#introspectOAuth2Token) | **POST** /admin/oauth2/introspect | Introspect OAuth2 Access and Refresh Tokens
-[**listOAuth2Clients()**](OAuth2Api.md#listOAuth2Clients) | **GET** /admin/clients | List OAuth 2.0 Clients
-[**listOAuth2ConsentSessions()**](OAuth2Api.md#listOAuth2ConsentSessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
-[**listTrustedOAuth2JwtGrantIssuers()**](OAuth2Api.md#listTrustedOAuth2JwtGrantIssuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
-[**oAuth2Authorize()**](OAuth2Api.md#oAuth2Authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint
-[**oauth2TokenExchange()**](OAuth2Api.md#oauth2TokenExchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
-[**patchOAuth2Client()**](OAuth2Api.md#patchOAuth2Client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client
-[**rejectOAuth2ConsentRequest()**](OAuth2Api.md#rejectOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
-[**rejectOAuth2LoginRequest()**](OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
-[**rejectOAuth2LogoutRequest()**](OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
-[**revokeOAuth2ConsentSessions()**](OAuth2Api.md#revokeOAuth2ConsentSessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-[**revokeOAuth2LoginSessions()**](OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
-[**revokeOAuth2Token()**](OAuth2Api.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
-[**setOAuth2Client()**](OAuth2Api.md#setOAuth2Client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
-[**setOAuth2ClientLifespans()**](OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
-[**trustOAuth2JwtGrantIssuer()**](OAuth2Api.md#trustOAuth2JwtGrantIssuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**acceptOAuth2ConsentRequest()**](OAuth2Api.md#acceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request |
+| [**acceptOAuth2LoginRequest()**](OAuth2Api.md#acceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request |
+| [**acceptOAuth2LogoutRequest()**](OAuth2Api.md#acceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request |
+| [**createOAuth2Client()**](OAuth2Api.md#createOAuth2Client) | **POST** /admin/clients | Create OAuth 2.0 Client |
+| [**deleteOAuth2Client()**](OAuth2Api.md#deleteOAuth2Client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client |
+| [**deleteOAuth2Token()**](OAuth2Api.md#deleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client |
+| [**deleteTrustedOAuth2JwtGrantIssuer()**](OAuth2Api.md#deleteTrustedOAuth2JwtGrantIssuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer |
+| [**getOAuth2Client()**](OAuth2Api.md#getOAuth2Client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client |
+| [**getOAuth2ConsentRequest()**](OAuth2Api.md#getOAuth2ConsentRequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request |
+| [**getOAuth2LoginRequest()**](OAuth2Api.md#getOAuth2LoginRequest) | **GET** /admin/oauth2/auth/requests/login | Get OAuth 2.0 Login Request |
+| [**getOAuth2LogoutRequest()**](OAuth2Api.md#getOAuth2LogoutRequest) | **GET** /admin/oauth2/auth/requests/logout | Get OAuth 2.0 Session Logout Request |
+| [**getTrustedOAuth2JwtGrantIssuer()**](OAuth2Api.md#getTrustedOAuth2JwtGrantIssuer) | **GET** /admin/trust/grants/jwt-bearer/issuers/{id} | Get Trusted OAuth2 JWT Bearer Grant Type Issuer |
+| [**introspectOAuth2Token()**](OAuth2Api.md#introspectOAuth2Token) | **POST** /admin/oauth2/introspect | Introspect OAuth2 Access and Refresh Tokens |
+| [**listOAuth2Clients()**](OAuth2Api.md#listOAuth2Clients) | **GET** /admin/clients | List OAuth 2.0 Clients |
+| [**listOAuth2ConsentSessions()**](OAuth2Api.md#listOAuth2ConsentSessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject |
+| [**listTrustedOAuth2JwtGrantIssuers()**](OAuth2Api.md#listTrustedOAuth2JwtGrantIssuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
+| [**oAuth2Authorize()**](OAuth2Api.md#oAuth2Authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint |
+| [**oauth2TokenExchange()**](OAuth2Api.md#oauth2TokenExchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
+| [**patchOAuth2Client()**](OAuth2Api.md#patchOAuth2Client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client |
+| [**rejectOAuth2ConsentRequest()**](OAuth2Api.md#rejectOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request |
+| [**rejectOAuth2LoginRequest()**](OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request |
+| [**rejectOAuth2LogoutRequest()**](OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request |
+| [**revokeOAuth2ConsentSessions()**](OAuth2Api.md#revokeOAuth2ConsentSessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject |
+| [**revokeOAuth2LoginSessions()**](OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID |
+| [**revokeOAuth2Token()**](OAuth2Api.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token |
+| [**setOAuth2Client()**](OAuth2Api.md#setOAuth2Client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client |
+| [**setOAuth2ClientLifespans()**](OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans |
+| [**trustOAuth2JwtGrantIssuer()**](OAuth2Api.md#trustOAuth2JwtGrantIssuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer |
 
 
 ## `acceptOAuth2ConsentRequest()`
@@ -74,10 +74,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consentChallenge** | **string**| OAuth 2.0 Consent Request Challenge |
- **acceptOAuth2ConsentRequest** | [**\Ory\Client\Model\AcceptOAuth2ConsentRequest**](../Model/AcceptOAuth2ConsentRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **consentChallenge** | **string**| OAuth 2.0 Consent Request Challenge | |
+| **acceptOAuth2ConsentRequest** | [**\Ory\Client\Model\AcceptOAuth2ConsentRequest**](../Model/AcceptOAuth2ConsentRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -136,10 +136,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginChallenge** | **string**| OAuth 2.0 Login Request Challenge |
- **acceptOAuth2LoginRequest** | [**\Ory\Client\Model\AcceptOAuth2LoginRequest**](../Model/AcceptOAuth2LoginRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **loginChallenge** | **string**| OAuth 2.0 Login Request Challenge | |
+| **acceptOAuth2LoginRequest** | [**\Ory\Client\Model\AcceptOAuth2LoginRequest**](../Model/AcceptOAuth2LoginRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -197,9 +197,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **string**| OAuth 2.0 Logout Request Challenge |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **logoutChallenge** | **string**| OAuth 2.0 Logout Request Challenge | |
 
 ### Return type
 
@@ -257,9 +257,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| OAuth 2.0 Client Request Body |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| OAuth 2.0 Client Request Body | |
 
 ### Return type
 
@@ -316,9 +316,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -375,9 +375,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientId** | **string**| OAuth 2.0 Client ID |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **clientId** | **string**| OAuth 2.0 Client ID | |
 
 ### Return type
 
@@ -434,9 +434,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the desired grant |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the desired grant | |
 
 ### Return type
 
@@ -494,9 +494,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -554,9 +554,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consentChallenge** | **string**| OAuth 2.0 Consent Request Challenge |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **consentChallenge** | **string**| OAuth 2.0 Consent Request Challenge | |
 
 ### Return type
 
@@ -614,9 +614,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginChallenge** | **string**| OAuth 2.0 Login Request Challenge |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **loginChallenge** | **string**| OAuth 2.0 Login Request Challenge | |
 
 ### Return type
 
@@ -674,9 +674,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **logoutChallenge** | **string**|  | |
 
 ### Return type
 
@@ -734,9 +734,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the desired grant |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the desired grant | |
 
 ### Return type
 
@@ -795,10 +795,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. |
- **scope** | **string**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **token** | **string**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. | |
+| **scope** | **string**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional] |
 
 ### Return type
 
@@ -859,12 +859,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
- **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
- **clientName** | **string**| The name of the clients to filter by. | [optional]
- **owner** | **string**| The owner of the clients to filter by. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;] |
+| **clientName** | **string**| The name of the clients to filter by. | [optional] |
+| **owner** | **string**| The owner of the clients to filter by. | [optional] |
 
 ### Return type
 
@@ -925,12 +925,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **string**| The subject to list the consent sessions for. |
- **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
- **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
- **loginSessionId** | **string**| The login session id to list the consent sessions for. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **subject** | **string**| The subject to list the consent sessions for. | |
+| **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;] |
+| **loginSessionId** | **string**| The login session id to list the consent sessions for. | [optional] |
 
 ### Return type
 
@@ -990,11 +990,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **maxItems** | **int**|  | [optional]
- **defaultItems** | **int**|  | [optional]
- **issuer** | **string**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **maxItems** | **int**|  | [optional] |
+| **defaultItems** | **int**|  | [optional] |
+| **issuer** | **string**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional] |
 
 ### Return type
 
@@ -1114,13 +1114,13 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **grantType** | **string**|  |
- **clientId** | **string**|  | [optional]
- **code** | **string**|  | [optional]
- **redirectUri** | **string**|  | [optional]
- **refreshToken** | **string**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **grantType** | **string**|  | |
+| **clientId** | **string**|  | [optional] |
+| **code** | **string**|  | [optional] |
+| **redirectUri** | **string**|  | [optional] |
+| **refreshToken** | **string**|  | [optional] |
 
 ### Return type
 
@@ -1179,10 +1179,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. |
- **jsonPatch** | [**\Ory\Client\Model\JsonPatch[]**](../Model/JsonPatch.md)| OAuth 2.0 Client JSON Patch Body |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the OAuth 2.0 Client. | |
+| **jsonPatch** | [**\Ory\Client\Model\JsonPatch[]**](../Model/JsonPatch.md)| OAuth 2.0 Client JSON Patch Body | |
 
 ### Return type
 
@@ -1241,10 +1241,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consentChallenge** | **string**| OAuth 2.0 Consent Request Challenge |
- **rejectOAuth2Request** | [**\Ory\Client\Model\RejectOAuth2Request**](../Model/RejectOAuth2Request.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **consentChallenge** | **string**| OAuth 2.0 Consent Request Challenge | |
+| **rejectOAuth2Request** | [**\Ory\Client\Model\RejectOAuth2Request**](../Model/RejectOAuth2Request.md)|  | [optional] |
 
 ### Return type
 
@@ -1303,10 +1303,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginChallenge** | **string**| OAuth 2.0 Login Request Challenge |
- **rejectOAuth2Request** | [**\Ory\Client\Model\RejectOAuth2Request**](../Model/RejectOAuth2Request.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **loginChallenge** | **string**| OAuth 2.0 Login Request Challenge | |
+| **rejectOAuth2Request** | [**\Ory\Client\Model\RejectOAuth2Request**](../Model/RejectOAuth2Request.md)|  | [optional] |
 
 ### Return type
 
@@ -1363,9 +1363,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **logoutChallenge** | **string**|  | |
 
 ### Return type
 
@@ -1424,11 +1424,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **string**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. |
- **client** | **string**| OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional]
- **all** | **bool**| Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **subject** | **string**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | |
+| **client** | **string**| OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional] |
+| **all** | **bool**| Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional] |
 
 ### Return type
 
@@ -1455,7 +1455,7 @@ revokeOAuth2LoginSessions($subject, $sid)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 
@@ -1486,10 +1486,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
- **sid** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **subject** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
+| **sid** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
 
 ### Return type
 
@@ -1553,11 +1553,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string**|  |
- **clientId** | **string**|  | [optional]
- **clientSecret** | **string**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **token** | **string**|  | |
+| **clientId** | **string**|  | [optional] |
+| **clientSecret** | **string**|  | [optional] |
 
 ### Return type
 
@@ -1616,10 +1616,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| OAuth 2.0 Client ID |
- **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| OAuth 2.0 Client Request Body |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| OAuth 2.0 Client ID | |
+| **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| OAuth 2.0 Client Request Body | |
 
 ### Return type
 
@@ -1678,10 +1678,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| OAuth 2.0 Client ID |
- **oAuth2ClientTokenLifespans** | [**\Ory\Client\Model\OAuth2ClientTokenLifespans**](../Model/OAuth2ClientTokenLifespans.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| OAuth 2.0 Client ID | |
+| **oAuth2ClientTokenLifespans** | [**\Ory\Client\Model\OAuth2ClientTokenLifespans**](../Model/OAuth2ClientTokenLifespans.md)|  | [optional] |
 
 ### Return type
 
@@ -1739,9 +1739,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **trustOAuth2JwtGrantIssuer** | [**\Ory\Client\Model\TrustOAuth2JwtGrantIssuer**](../Model/TrustOAuth2JwtGrantIssuer.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **trustOAuth2JwtGrantIssuer** | [**\Ory\Client\Model\TrustOAuth2JwtGrantIssuer**](../Model/TrustOAuth2JwtGrantIssuer.md)|  | [optional] |
 
 ### Return type
 

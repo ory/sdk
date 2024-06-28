@@ -94,6 +94,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**createNativeVerificationFlow**](docs/Api/FrontendApi.md#createnativeverificationflow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 *FrontendApi* | [**disableMyOtherSessions**](docs/Api/FrontendApi.md#disablemyothersessions) | **DELETE** /sessions | Disable my other sessions
 *FrontendApi* | [**disableMySession**](docs/Api/FrontendApi.md#disablemysession) | **DELETE** /sessions/{id} | Disable one of my sessions
+*FrontendApi* | [**exchangeSessionToken**](docs/Api/FrontendApi.md#exchangesessiontoken) | **GET** /sessions/token-exchange | Exchange Session Token
 *FrontendApi* | [**getFlowError**](docs/Api/FrontendApi.md#getflowerror) | **GET** /self-service/errors | Get User-Flow Errors
 *FrontendApi* | [**getLoginFlow**](docs/Api/FrontendApi.md#getloginflow) | **GET** /self-service/login/flows | Get Login Flow
 *FrontendApi* | [**getRecoveryFlow**](docs/Api/FrontendApi.md#getrecoveryflow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -106,7 +107,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**toSession**](docs/Api/FrontendApi.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *FrontendApi* | [**updateLoginFlow**](docs/Api/FrontendApi.md#updateloginflow) | **POST** /self-service/login | Submit a Login Flow
 *FrontendApi* | [**updateLogoutFlow**](docs/Api/FrontendApi.md#updatelogoutflow) | **GET** /self-service/logout | Update Logout Flow
-*FrontendApi* | [**updateRecoveryFlow**](docs/Api/FrontendApi.md#updaterecoveryflow) | **POST** /self-service/recovery | Complete Recovery Flow
+*FrontendApi* | [**updateRecoveryFlow**](docs/Api/FrontendApi.md#updaterecoveryflow) | **POST** /self-service/recovery | Update Recovery Flow
 *FrontendApi* | [**updateRegistrationFlow**](docs/Api/FrontendApi.md#updateregistrationflow) | **POST** /self-service/registration | Update Registration Flow
 *FrontendApi* | [**updateSettingsFlow**](docs/Api/FrontendApi.md#updatesettingsflow) | **POST** /self-service/settings | Complete Settings Flow
 *FrontendApi* | [**updateVerificationFlow**](docs/Api/FrontendApi.md#updateverificationflow) | **POST** /self-service/verification | Complete Verification Flow
@@ -136,8 +137,13 @@ Class | Method | HTTP request | Description
 
 - [AuthenticatorAssuranceLevel](docs/Model/AuthenticatorAssuranceLevel.md)
 - [BatchPatchIdentitiesResponse](docs/Model/BatchPatchIdentitiesResponse.md)
+- [ConsistencyRequestParameters](docs/Model/ConsistencyRequestParameters.md)
 - [ContinueWith](docs/Model/ContinueWith.md)
+- [ContinueWithRecoveryUi](docs/Model/ContinueWithRecoveryUi.md)
+- [ContinueWithRecoveryUiFlow](docs/Model/ContinueWithRecoveryUiFlow.md)
 - [ContinueWithSetOrySessionToken](docs/Model/ContinueWithSetOrySessionToken.md)
+- [ContinueWithSettingsUi](docs/Model/ContinueWithSettingsUi.md)
+- [ContinueWithSettingsUiFlow](docs/Model/ContinueWithSettingsUiFlow.md)
 - [ContinueWithVerificationUi](docs/Model/ContinueWithVerificationUi.md)
 - [ContinueWithVerificationUiFlow](docs/Model/ContinueWithVerificationUiFlow.md)
 - [CourierMessageStatus](docs/Model/CourierMessageStatus.md)
@@ -156,14 +162,13 @@ Class | Method | HTTP request | Description
 - [HealthStatus](docs/Model/HealthStatus.md)
 - [Identity](docs/Model/Identity.md)
 - [IdentityCredentials](docs/Model/IdentityCredentials.md)
+- [IdentityCredentialsCode](docs/Model/IdentityCredentialsCode.md)
 - [IdentityCredentialsOidc](docs/Model/IdentityCredentialsOidc.md)
 - [IdentityCredentialsOidcProvider](docs/Model/IdentityCredentialsOidcProvider.md)
 - [IdentityCredentialsPassword](docs/Model/IdentityCredentialsPassword.md)
-- [IdentityCredentialsType](docs/Model/IdentityCredentialsType.md)
 - [IdentityPatch](docs/Model/IdentityPatch.md)
 - [IdentityPatchResponse](docs/Model/IdentityPatchResponse.md)
 - [IdentitySchemaContainer](docs/Model/IdentitySchemaContainer.md)
-- [IdentityState](docs/Model/IdentityState.md)
 - [IdentityWithCredentials](docs/Model/IdentityWithCredentials.md)
 - [IdentityWithCredentialsOidc](docs/Model/IdentityWithCredentialsOidc.md)
 - [IdentityWithCredentialsOidcConfig](docs/Model/IdentityWithCredentialsOidcConfig.md)
@@ -175,6 +180,7 @@ Class | Method | HTTP request | Description
 - [InlineResponse503](docs/Model/InlineResponse503.md)
 - [JsonPatch](docs/Model/JsonPatch.md)
 - [LoginFlow](docs/Model/LoginFlow.md)
+- [LoginFlowState](docs/Model/LoginFlowState.md)
 - [LogoutFlow](docs/Model/LogoutFlow.md)
 - [Message](docs/Model/Message.md)
 - [MessageDispatch](docs/Model/MessageDispatch.md)
@@ -182,7 +188,6 @@ Class | Method | HTTP request | Description
 - [OAuth2Client](docs/Model/OAuth2Client.md)
 - [OAuth2ConsentRequestOpenIDConnectContext](docs/Model/OAuth2ConsentRequestOpenIDConnectContext.md)
 - [OAuth2LoginRequest](docs/Model/OAuth2LoginRequest.md)
-- [Pagination](docs/Model/Pagination.md)
 - [PatchIdentitiesBody](docs/Model/PatchIdentitiesBody.md)
 - [PerformNativeLogoutBody](docs/Model/PerformNativeLogoutBody.md)
 - [RecoveryCodeForIdentity](docs/Model/RecoveryCodeForIdentity.md)
@@ -191,12 +196,14 @@ Class | Method | HTTP request | Description
 - [RecoveryIdentityAddress](docs/Model/RecoveryIdentityAddress.md)
 - [RecoveryLinkForIdentity](docs/Model/RecoveryLinkForIdentity.md)
 - [RegistrationFlow](docs/Model/RegistrationFlow.md)
+- [RegistrationFlowState](docs/Model/RegistrationFlowState.md)
 - [SelfServiceFlowExpiredError](docs/Model/SelfServiceFlowExpiredError.md)
 - [Session](docs/Model/Session.md)
 - [SessionAuthenticationMethod](docs/Model/SessionAuthenticationMethod.md)
 - [SessionDevice](docs/Model/SessionDevice.md)
 - [SettingsFlow](docs/Model/SettingsFlow.md)
 - [SettingsFlowState](docs/Model/SettingsFlowState.md)
+- [SuccessfulCodeExchangeResponse](docs/Model/SuccessfulCodeExchangeResponse.md)
 - [SuccessfulNativeLogin](docs/Model/SuccessfulNativeLogin.md)
 - [SuccessfulNativeRegistration](docs/Model/SuccessfulNativeRegistration.md)
 - [TokenPagination](docs/Model/TokenPagination.md)
@@ -213,6 +220,7 @@ Class | Method | HTTP request | Description
 - [UiText](docs/Model/UiText.md)
 - [UpdateIdentityBody](docs/Model/UpdateIdentityBody.md)
 - [UpdateLoginFlowBody](docs/Model/UpdateLoginFlowBody.md)
+- [UpdateLoginFlowWithCodeMethod](docs/Model/UpdateLoginFlowWithCodeMethod.md)
 - [UpdateLoginFlowWithLookupSecretMethod](docs/Model/UpdateLoginFlowWithLookupSecretMethod.md)
 - [UpdateLoginFlowWithOidcMethod](docs/Model/UpdateLoginFlowWithOidcMethod.md)
 - [UpdateLoginFlowWithPasswordMethod](docs/Model/UpdateLoginFlowWithPasswordMethod.md)
@@ -222,6 +230,7 @@ Class | Method | HTTP request | Description
 - [UpdateRecoveryFlowWithCodeMethod](docs/Model/UpdateRecoveryFlowWithCodeMethod.md)
 - [UpdateRecoveryFlowWithLinkMethod](docs/Model/UpdateRecoveryFlowWithLinkMethod.md)
 - [UpdateRegistrationFlowBody](docs/Model/UpdateRegistrationFlowBody.md)
+- [UpdateRegistrationFlowWithCodeMethod](docs/Model/UpdateRegistrationFlowWithCodeMethod.md)
 - [UpdateRegistrationFlowWithOidcMethod](docs/Model/UpdateRegistrationFlowWithOidcMethod.md)
 - [UpdateRegistrationFlowWithPasswordMethod](docs/Model/UpdateRegistrationFlowWithPasswordMethod.md)
 - [UpdateRegistrationFlowWithWebAuthnMethod](docs/Model/UpdateRegistrationFlowWithWebAuthnMethod.md)
@@ -266,5 +275,5 @@ office@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v0.13.1`
+- API version: `v1.1.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

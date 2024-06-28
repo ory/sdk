@@ -13,28 +13,35 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// NormalizedProjectRevisionThirdPartyProvider
 ///
 /// Properties:
+/// * [additionalIdTokenAudiences] 
 /// * [applePrivateKey] 
 /// * [applePrivateKeyId] - Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret
 /// * [appleTeamId] - Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret
 /// * [authUrl] - AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 /// * [azureTenant] - Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
+/// * [claimsSource] 
 /// * [clientId] - ClientID is the application's Client ID.
 /// * [clientSecret] 
 /// * [createdAt] - The Project's Revision Creation Date
 /// * [id] 
 /// * [issuerUrl] - IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required.
 /// * [label] - Label represents an optional label which can be used in the UI generation.
-/// * [mapperUrl] - Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
+/// * [mapperUrl] - Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
+/// * [organizationId] 
 /// * [projectRevisionId] - The Revision's ID this schema belongs to
 /// * [provider] - Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple
 /// * [providerId] - ID is the provider's ID
 /// * [requestedClaims] 
 /// * [scope] 
+/// * [state] - State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
 /// * [subjectSource] 
 /// * [tokenUrl] - TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<NormalizedProjectRevisionThirdPartyProvider, NormalizedProjectRevisionThirdPartyProviderBuilder> {
+  @BuiltValueField(wireName: r'additional_id_token_audiences')
+  BuiltList<String>? get additionalIdTokenAudiences;
+
   @BuiltValueField(wireName: r'apple_private_key')
   String? get applePrivateKey;
 
@@ -53,6 +60,9 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
   /// Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
   @BuiltValueField(wireName: r'azure_tenant')
   String? get azureTenant;
+
+  @BuiltValueField(wireName: r'claims_source')
+  String? get claimsSource;
 
   /// ClientID is the application's Client ID.
   @BuiltValueField(wireName: r'client_id')
@@ -76,9 +86,12 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
   @BuiltValueField(wireName: r'label')
   String? get label;
 
-  /// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
+  /// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
   @BuiltValueField(wireName: r'mapper_url')
   String? get mapperUrl;
+
+  @BuiltValueField(wireName: r'organization_id')
+  String? get organizationId;
 
   /// The Revision's ID this schema belongs to
   @BuiltValueField(wireName: r'project_revision_id')
@@ -97,6 +110,11 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
 
   @BuiltValueField(wireName: r'scope')
   BuiltList<String>? get scope;
+
+  /// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
+  @BuiltValueField(wireName: r'state')
+  NormalizedProjectRevisionThirdPartyProviderStateEnum? get state;
+  // enum stateEnum {  enabled,  disabled,  };
 
   @BuiltValueField(wireName: r'subject_source')
   String? get subjectSource;
@@ -132,6 +150,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
     NormalizedProjectRevisionThirdPartyProvider object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.additionalIdTokenAudiences != null) {
+      yield r'additional_id_token_audiences';
+      yield serializers.serialize(
+        object.additionalIdTokenAudiences,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
     if (object.applePrivateKey != null) {
       yield r'apple_private_key';
       yield serializers.serialize(
@@ -165,6 +190,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       yield serializers.serialize(
         object.azureTenant,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.claimsSource != null) {
+      yield r'claims_source';
+      yield serializers.serialize(
+        object.claimsSource,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.clientId != null) {
@@ -216,6 +248,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
         specifiedType: const FullType(String),
       );
     }
+    if (object.organizationId != null) {
+      yield r'organization_id';
+      yield serializers.serialize(
+        object.organizationId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.projectRevisionId != null) {
       yield r'project_revision_id';
       yield serializers.serialize(
@@ -249,6 +288,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       yield serializers.serialize(
         object.scope,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.state != null) {
+      yield r'state';
+      yield serializers.serialize(
+        object.state,
+        specifiedType: const FullType(NormalizedProjectRevisionThirdPartyProviderStateEnum),
       );
     }
     if (object.subjectSource != null) {
@@ -295,6 +341,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'additional_id_token_audiences':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.additionalIdTokenAudiences.replace(valueDes);
+          break;
         case r'apple_private_key':
           final valueDes = serializers.deserialize(
             value,
@@ -330,6 +383,14 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
             specifiedType: const FullType(String),
           ) as String;
           result.azureTenant = valueDes;
+          break;
+        case r'claims_source':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.claimsSource = valueDes;
           break;
         case r'client_id':
           final valueDes = serializers.deserialize(
@@ -381,6 +442,14 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
           ) as String;
           result.mapperUrl = valueDes;
           break;
+        case r'organization_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.organizationId = valueDes;
+          break;
         case r'project_revision_id':
           final valueDes = serializers.deserialize(
             value,
@@ -415,6 +484,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
             specifiedType: const FullType(BuiltList, [FullType(String)]),
           ) as BuiltList<String>;
           result.scope.replace(valueDes);
+          break;
+        case r'state':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(NormalizedProjectRevisionThirdPartyProviderStateEnum),
+          ) as NormalizedProjectRevisionThirdPartyProviderStateEnum;
+          result.state = valueDes;
           break;
         case r'subject_source':
           final valueDes = serializers.deserialize(
@@ -465,5 +541,22 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
     );
     return result.build();
   }
+}
+
+class NormalizedProjectRevisionThirdPartyProviderStateEnum extends EnumClass {
+
+  /// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
+  @BuiltValueEnumConst(wireName: r'enabled')
+  static const NormalizedProjectRevisionThirdPartyProviderStateEnum enabled = _$normalizedProjectRevisionThirdPartyProviderStateEnum_enabled;
+  /// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
+  @BuiltValueEnumConst(wireName: r'disabled')
+  static const NormalizedProjectRevisionThirdPartyProviderStateEnum disabled = _$normalizedProjectRevisionThirdPartyProviderStateEnum_disabled;
+
+  static Serializer<NormalizedProjectRevisionThirdPartyProviderStateEnum> get serializer => _$normalizedProjectRevisionThirdPartyProviderStateEnumSerializer;
+
+  const NormalizedProjectRevisionThirdPartyProviderStateEnum._(String name): super(name);
+
+  static BuiltSet<NormalizedProjectRevisionThirdPartyProviderStateEnum> get values => _$normalizedProjectRevisionThirdPartyProviderStateEnumValues;
+  static NormalizedProjectRevisionThirdPartyProviderStateEnum valueOf(String name) => _$normalizedProjectRevisionThirdPartyProviderStateEnumValueOf(name);
 }
 

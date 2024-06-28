@@ -10,6 +10,7 @@ import 'package:ory_client/src/auth/basic_auth.dart';
 import 'package:ory_client/src/auth/bearer_auth.dart';
 import 'package:ory_client/src/auth/oauth.dart';
 import 'package:ory_client/src/api/courier_api.dart';
+import 'package:ory_client/src/api/events_api.dart';
 import 'package:ory_client/src/api/frontend_api.dart';
 import 'package:ory_client/src/api/identity_api.dart';
 import 'package:ory_client/src/api/jwk_api.dart';
@@ -20,9 +21,10 @@ import 'package:ory_client/src/api/permission_api.dart';
 import 'package:ory_client/src/api/project_api.dart';
 import 'package:ory_client/src/api/relationship_api.dart';
 import 'package:ory_client/src/api/wellknown_api.dart';
+import 'package:ory_client/src/api/workspace_api.dart';
 
 class OryClient {
-  static const String basePath = r'https://playground.projects.oryapis.com';
+  static const String basePath = r'https://.projects.oryapis.com';
 
   final Dio dio;
   final Serializers serializers;
@@ -36,8 +38,8 @@ class OryClient {
         this.dio = dio ??
             Dio(BaseOptions(
               baseUrl: basePathOverride ?? basePath,
-              connectTimeout: 5000,
-              receiveTimeout: 3000,
+              connectTimeout: const Duration(milliseconds: 5000),
+              receiveTimeout: const Duration(milliseconds: 3000),
             )) {
     if (interceptors == null) {
       this.dio.interceptors.addAll([
@@ -79,6 +81,12 @@ class OryClient {
   /// by doing that all interceptors will not be executed
   CourierApi getCourierApi() {
     return CourierApi(dio, serializers);
+  }
+
+  /// Get EventsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  EventsApi getEventsApi() {
+    return EventsApi(dio, serializers);
   }
 
   /// Get FrontendApi instance, base route and serializer can be overridden by a given but be careful,
@@ -139,5 +147,11 @@ class OryClient {
   /// by doing that all interceptors will not be executed
   WellknownApi getWellknownApi() {
     return WellknownApi(dio, serializers);
+  }
+
+  /// Get WorkspaceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  WorkspaceApi getWorkspaceApi() {
+    return WorkspaceApi(dio, serializers);
   }
 }

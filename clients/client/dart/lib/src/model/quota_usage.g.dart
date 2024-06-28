@@ -6,20 +6,20 @@ part of 'quota_usage.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_regionEu =
-    const QuotaUsageFeatureEnum._('regionEu');
-const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_regionUs =
-    const QuotaUsageFeatureEnum._('regionUs');
-const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_regionApac =
-    const QuotaUsageFeatureEnum._('regionApac');
-const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_regionGlobal =
-    const QuotaUsageFeatureEnum._('regionGlobal');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_productionProjects =
     const QuotaUsageFeatureEnum._('productionProjects');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_stagingProjects =
+    const QuotaUsageFeatureEnum._('stagingProjects');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_developmentProjects =
+    const QuotaUsageFeatureEnum._('developmentProjects');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dailyActiveUsers =
     const QuotaUsageFeatureEnum._('dailyActiveUsers');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_customDomains =
     const QuotaUsageFeatureEnum._('customDomains');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_eventStreams =
+    const QuotaUsageFeatureEnum._('eventStreams');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_eventStreamEvents =
+    const QuotaUsageFeatureEnum._('eventStreamEvents');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_sla =
     const QuotaUsageFeatureEnum._('sla');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_collaboratorSeats =
@@ -30,27 +30,59 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_brandingThemes =
     const QuotaUsageFeatureEnum._('brandingThemes');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_zendeskSupport =
     const QuotaUsageFeatureEnum._('zendeskSupport');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetrics =
+    const QuotaUsageFeatureEnum._('projectMetrics');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetricsTimeWindow =
+    const QuotaUsageFeatureEnum._('projectMetricsTimeWindow');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_projectMetricsEventsHistory =
+    const QuotaUsageFeatureEnum._('projectMetricsEventsHistory');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_organizations =
+    const QuotaUsageFeatureEnum._('organizations');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_ropGrant =
+    const QuotaUsageFeatureEnum._('ropGrant');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_conciergeOnboarding =
+    const QuotaUsageFeatureEnum._('conciergeOnboarding');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_credit =
+    const QuotaUsageFeatureEnum._('credit');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationGlobal =
+    const QuotaUsageFeatureEnum._('dataLocationGlobal');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_m2mTokenIssuance =
+    const QuotaUsageFeatureEnum._('m2mTokenIssuance');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_permissionChecks =
+    const QuotaUsageFeatureEnum._('permissionChecks');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationRegional =
+    const QuotaUsageFeatureEnum._('dataLocationRegional');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
     const QuotaUsageFeatureEnum._('rateLimitTier');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_sessionRateLimitTier =
     const QuotaUsageFeatureEnum._('sessionRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_identitiesListRateLimitTier =
+    const QuotaUsageFeatureEnum._('identitiesListRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_permissionChecksRateLimitTier =
+    const QuotaUsageFeatureEnum._('permissionChecksRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier =
+    const QuotaUsageFeatureEnum._('oauth2IntrospectRateLimitTier');
 
 QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
   switch (name) {
-    case 'regionEu':
-      return _$quotaUsageFeatureEnum_regionEu;
-    case 'regionUs':
-      return _$quotaUsageFeatureEnum_regionUs;
-    case 'regionApac':
-      return _$quotaUsageFeatureEnum_regionApac;
-    case 'regionGlobal':
-      return _$quotaUsageFeatureEnum_regionGlobal;
     case 'productionProjects':
       return _$quotaUsageFeatureEnum_productionProjects;
+    case 'stagingProjects':
+      return _$quotaUsageFeatureEnum_stagingProjects;
+    case 'developmentProjects':
+      return _$quotaUsageFeatureEnum_developmentProjects;
     case 'dailyActiveUsers':
       return _$quotaUsageFeatureEnum_dailyActiveUsers;
     case 'customDomains':
       return _$quotaUsageFeatureEnum_customDomains;
+    case 'eventStreams':
+      return _$quotaUsageFeatureEnum_eventStreams;
+    case 'eventStreamEvents':
+      return _$quotaUsageFeatureEnum_eventStreamEvents;
     case 'sla':
       return _$quotaUsageFeatureEnum_sla;
     case 'collaboratorSeats':
@@ -61,10 +93,38 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_brandingThemes;
     case 'zendeskSupport':
       return _$quotaUsageFeatureEnum_zendeskSupport;
+    case 'projectMetrics':
+      return _$quotaUsageFeatureEnum_projectMetrics;
+    case 'projectMetricsTimeWindow':
+      return _$quotaUsageFeatureEnum_projectMetricsTimeWindow;
+    case 'projectMetricsEventsHistory':
+      return _$quotaUsageFeatureEnum_projectMetricsEventsHistory;
+    case 'organizations':
+      return _$quotaUsageFeatureEnum_organizations;
+    case 'ropGrant':
+      return _$quotaUsageFeatureEnum_ropGrant;
+    case 'conciergeOnboarding':
+      return _$quotaUsageFeatureEnum_conciergeOnboarding;
+    case 'credit':
+      return _$quotaUsageFeatureEnum_credit;
+    case 'dataLocationGlobal':
+      return _$quotaUsageFeatureEnum_dataLocationGlobal;
+    case 'm2mTokenIssuance':
+      return _$quotaUsageFeatureEnum_m2mTokenIssuance;
+    case 'permissionChecks':
+      return _$quotaUsageFeatureEnum_permissionChecks;
+    case 'dataLocationRegional':
+      return _$quotaUsageFeatureEnum_dataLocationRegional;
     case 'rateLimitTier':
       return _$quotaUsageFeatureEnum_rateLimitTier;
     case 'sessionRateLimitTier':
       return _$quotaUsageFeatureEnum_sessionRateLimitTier;
+    case 'identitiesListRateLimitTier':
+      return _$quotaUsageFeatureEnum_identitiesListRateLimitTier;
+    case 'permissionChecksRateLimitTier':
+      return _$quotaUsageFeatureEnum_permissionChecksRateLimitTier;
+    case 'oauth2IntrospectRateLimitTier':
+      return _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier;
     default:
       throw new ArgumentError(name);
   }
@@ -72,20 +132,34 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
 
 final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
     new BuiltSet<QuotaUsageFeatureEnum>(const <QuotaUsageFeatureEnum>[
-  _$quotaUsageFeatureEnum_regionEu,
-  _$quotaUsageFeatureEnum_regionUs,
-  _$quotaUsageFeatureEnum_regionApac,
-  _$quotaUsageFeatureEnum_regionGlobal,
   _$quotaUsageFeatureEnum_productionProjects,
+  _$quotaUsageFeatureEnum_stagingProjects,
+  _$quotaUsageFeatureEnum_developmentProjects,
   _$quotaUsageFeatureEnum_dailyActiveUsers,
   _$quotaUsageFeatureEnum_customDomains,
+  _$quotaUsageFeatureEnum_eventStreams,
+  _$quotaUsageFeatureEnum_eventStreamEvents,
   _$quotaUsageFeatureEnum_sla,
   _$quotaUsageFeatureEnum_collaboratorSeats,
   _$quotaUsageFeatureEnum_edgeCache,
   _$quotaUsageFeatureEnum_brandingThemes,
   _$quotaUsageFeatureEnum_zendeskSupport,
+  _$quotaUsageFeatureEnum_projectMetrics,
+  _$quotaUsageFeatureEnum_projectMetricsTimeWindow,
+  _$quotaUsageFeatureEnum_projectMetricsEventsHistory,
+  _$quotaUsageFeatureEnum_organizations,
+  _$quotaUsageFeatureEnum_ropGrant,
+  _$quotaUsageFeatureEnum_conciergeOnboarding,
+  _$quotaUsageFeatureEnum_credit,
+  _$quotaUsageFeatureEnum_dataLocationGlobal,
+  _$quotaUsageFeatureEnum_m2mTokenIssuance,
+  _$quotaUsageFeatureEnum_permissionChecks,
+  _$quotaUsageFeatureEnum_dataLocationRegional,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
+  _$quotaUsageFeatureEnum_identitiesListRateLimitTier,
+  _$quotaUsageFeatureEnum_permissionChecksRateLimitTier,
+  _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier,
 ]);
 
 Serializer<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumSerializer =
@@ -94,36 +168,64 @@ Serializer<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumSerializer =
 class _$QuotaUsageFeatureEnumSerializer
     implements PrimitiveSerializer<QuotaUsageFeatureEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'regionEu': 'region_eu',
-    'regionUs': 'region_us',
-    'regionApac': 'region_apac',
-    'regionGlobal': 'region_global',
     'productionProjects': 'production_projects',
+    'stagingProjects': 'staging_projects',
+    'developmentProjects': 'development_projects',
     'dailyActiveUsers': 'daily_active_users',
     'customDomains': 'custom_domains',
+    'eventStreams': 'event_streams',
+    'eventStreamEvents': 'event_stream_events',
     'sla': 'sla',
     'collaboratorSeats': 'collaborator_seats',
     'edgeCache': 'edge_cache',
     'brandingThemes': 'branding_themes',
     'zendeskSupport': 'zendesk_support',
+    'projectMetrics': 'project_metrics',
+    'projectMetricsTimeWindow': 'project_metrics_time_window',
+    'projectMetricsEventsHistory': 'project_metrics_events_history',
+    'organizations': 'organizations',
+    'ropGrant': 'rop_grant',
+    'conciergeOnboarding': 'concierge_onboarding',
+    'credit': 'credit',
+    'dataLocationGlobal': 'data_location_global',
+    'm2mTokenIssuance': 'm2m_token_issuance',
+    'permissionChecks': 'permission_checks',
+    'dataLocationRegional': 'data_location_regional',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
+    'identitiesListRateLimitTier': 'identities_list_rate_limit_tier',
+    'permissionChecksRateLimitTier': 'permission_checks_rate_limit_tier',
+    'oauth2IntrospectRateLimitTier': 'oauth2_introspect_rate_limit_tier',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'region_eu': 'regionEu',
-    'region_us': 'regionUs',
-    'region_apac': 'regionApac',
-    'region_global': 'regionGlobal',
     'production_projects': 'productionProjects',
+    'staging_projects': 'stagingProjects',
+    'development_projects': 'developmentProjects',
     'daily_active_users': 'dailyActiveUsers',
     'custom_domains': 'customDomains',
+    'event_streams': 'eventStreams',
+    'event_stream_events': 'eventStreamEvents',
     'sla': 'sla',
     'collaborator_seats': 'collaboratorSeats',
     'edge_cache': 'edgeCache',
     'branding_themes': 'brandingThemes',
     'zendesk_support': 'zendeskSupport',
+    'project_metrics': 'projectMetrics',
+    'project_metrics_time_window': 'projectMetricsTimeWindow',
+    'project_metrics_events_history': 'projectMetricsEventsHistory',
+    'organizations': 'organizations',
+    'rop_grant': 'ropGrant',
+    'concierge_onboarding': 'conciergeOnboarding',
+    'credit': 'credit',
+    'data_location_global': 'dataLocationGlobal',
+    'm2m_token_issuance': 'm2mTokenIssuance',
+    'permission_checks': 'permissionChecks',
+    'data_location_regional': 'dataLocationRegional',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',
+    'identities_list_rate_limit_tier': 'identitiesListRateLimitTier',
+    'permission_checks_rate_limit_tier': 'permissionChecksRateLimitTier',
+    'oauth2_introspect_rate_limit_tier': 'oauth2IntrospectRateLimitTier',
   };
 
   @override
@@ -145,7 +247,7 @@ class _$QuotaUsageFeatureEnumSerializer
 
 class _$QuotaUsage extends QuotaUsage {
   @override
-  final int additionalPrice;
+  final String additionalPrice;
   @override
   final bool canUseMore;
   @override
@@ -227,9 +329,9 @@ class _$QuotaUsage extends QuotaUsage {
 class QuotaUsageBuilder implements Builder<QuotaUsage, QuotaUsageBuilder> {
   _$QuotaUsage? _$v;
 
-  int? _additionalPrice;
-  int? get additionalPrice => _$this._additionalPrice;
-  set additionalPrice(int? additionalPrice) =>
+  String? _additionalPrice;
+  String? get additionalPrice => _$this._additionalPrice;
+  set additionalPrice(String? additionalPrice) =>
       _$this._additionalPrice = additionalPrice;
 
   bool? _canUseMore;

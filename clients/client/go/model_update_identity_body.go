@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateIdentityBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateIdentityBody{}
 
 // UpdateIdentityBody Update Identity Body
 type UpdateIdentityBody struct {
@@ -24,16 +28,20 @@ type UpdateIdentityBody struct {
 	MetadataPublic interface{} `json:"metadata_public,omitempty"`
 	// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set will update the Identity's SchemaID.
 	SchemaId string `json:"schema_id"`
-	State IdentityState `json:"state"`
+	// State is the identity's state. active StateActive inactive StateInactive
+	State string `json:"state"`
 	// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_id`.
 	Traits map[string]interface{} `json:"traits"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateIdentityBody UpdateIdentityBody
 
 // NewUpdateIdentityBody instantiates a new UpdateIdentityBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateIdentityBody(schemaId string, state IdentityState, traits map[string]interface{}) *UpdateIdentityBody {
+func NewUpdateIdentityBody(schemaId string, state string, traits map[string]interface{}) *UpdateIdentityBody {
 	this := UpdateIdentityBody{}
 	this.SchemaId = schemaId
 	this.State = state
@@ -51,7 +59,7 @@ func NewUpdateIdentityBodyWithDefaults() *UpdateIdentityBody {
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *UpdateIdentityBody) GetCredentials() IdentityWithCredentials {
-	if o == nil || o.Credentials == nil {
+	if o == nil || IsNil(o.Credentials) {
 		var ret IdentityWithCredentials
 		return ret
 	}
@@ -61,7 +69,7 @@ func (o *UpdateIdentityBody) GetCredentials() IdentityWithCredentials {
 // GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateIdentityBody) GetCredentialsOk() (*IdentityWithCredentials, bool) {
-	if o == nil || o.Credentials == nil {
+	if o == nil || IsNil(o.Credentials) {
 		return nil, false
 	}
 	return o.Credentials, true
@@ -69,7 +77,7 @@ func (o *UpdateIdentityBody) GetCredentialsOk() (*IdentityWithCredentials, bool)
 
 // HasCredentials returns a boolean if a field has been set.
 func (o *UpdateIdentityBody) HasCredentials() bool {
-	if o != nil && o.Credentials != nil {
+	if o != nil && !IsNil(o.Credentials) {
 		return true
 	}
 
@@ -94,7 +102,7 @@ func (o *UpdateIdentityBody) GetMetadataAdmin() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateIdentityBody) GetMetadataAdminOk() (*interface{}, bool) {
-	if o == nil || o.MetadataAdmin == nil {
+	if o == nil || IsNil(o.MetadataAdmin) {
 		return nil, false
 	}
 	return &o.MetadataAdmin, true
@@ -102,7 +110,7 @@ func (o *UpdateIdentityBody) GetMetadataAdminOk() (*interface{}, bool) {
 
 // HasMetadataAdmin returns a boolean if a field has been set.
 func (o *UpdateIdentityBody) HasMetadataAdmin() bool {
-	if o != nil && o.MetadataAdmin != nil {
+	if o != nil && !IsNil(o.MetadataAdmin) {
 		return true
 	}
 
@@ -127,7 +135,7 @@ func (o *UpdateIdentityBody) GetMetadataPublic() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateIdentityBody) GetMetadataPublicOk() (*interface{}, bool) {
-	if o == nil || o.MetadataPublic == nil {
+	if o == nil || IsNil(o.MetadataPublic) {
 		return nil, false
 	}
 	return &o.MetadataPublic, true
@@ -135,7 +143,7 @@ func (o *UpdateIdentityBody) GetMetadataPublicOk() (*interface{}, bool) {
 
 // HasMetadataPublic returns a boolean if a field has been set.
 func (o *UpdateIdentityBody) HasMetadataPublic() bool {
-	if o != nil && o.MetadataPublic != nil {
+	if o != nil && !IsNil(o.MetadataPublic) {
 		return true
 	}
 
@@ -172,9 +180,9 @@ func (o *UpdateIdentityBody) SetSchemaId(v string) {
 }
 
 // GetState returns the State field value
-func (o *UpdateIdentityBody) GetState() IdentityState {
+func (o *UpdateIdentityBody) GetState() string {
 	if o == nil {
-		var ret IdentityState
+		var ret string
 		return ret
 	}
 
@@ -183,7 +191,7 @@ func (o *UpdateIdentityBody) GetState() IdentityState {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *UpdateIdentityBody) GetStateOk() (*IdentityState, bool) {
+func (o *UpdateIdentityBody) GetStateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -191,7 +199,7 @@ func (o *UpdateIdentityBody) GetStateOk() (*IdentityState, bool) {
 }
 
 // SetState sets field value
-func (o *UpdateIdentityBody) SetState(v IdentityState) {
+func (o *UpdateIdentityBody) SetState(v string) {
 	o.State = v
 }
 
@@ -209,7 +217,7 @@ func (o *UpdateIdentityBody) GetTraits() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *UpdateIdentityBody) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Traits, true
 }
@@ -220,8 +228,16 @@ func (o *UpdateIdentityBody) SetTraits(v map[string]interface{}) {
 }
 
 func (o UpdateIdentityBody) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateIdentityBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Credentials != nil {
+	if !IsNil(o.Credentials) {
 		toSerialize["credentials"] = o.Credentials
 	}
 	if o.MetadataAdmin != nil {
@@ -230,16 +246,64 @@ func (o UpdateIdentityBody) MarshalJSON() ([]byte, error) {
 	if o.MetadataPublic != nil {
 		toSerialize["metadata_public"] = o.MetadataPublic
 	}
-	if true {
-		toSerialize["schema_id"] = o.SchemaId
+	toSerialize["schema_id"] = o.SchemaId
+	toSerialize["state"] = o.State
+	toSerialize["traits"] = o.Traits
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
-	if true {
-		toSerialize["state"] = o.State
+
+	return toSerialize, nil
+}
+
+func (o *UpdateIdentityBody) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"schema_id",
+		"state",
+		"traits",
 	}
-	if true {
-		toSerialize["traits"] = o.Traits
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
 	}
-	return json.Marshal(toSerialize)
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateIdentityBody := _UpdateIdentityBody{}
+
+	err = json.Unmarshal(data, &varUpdateIdentityBody)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateIdentityBody(varUpdateIdentityBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "metadata_admin")
+		delete(additionalProperties, "metadata_public")
+		delete(additionalProperties, "schema_id")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "traits")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateIdentityBody struct {

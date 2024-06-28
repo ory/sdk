@@ -102,7 +102,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
                         ),
                     ],
                     schema_id="schema_id_example",
-                    state=IdentityState("active"),
+                    state="active",
                     traits={},
                     verifiable_addresses=[
                         VerifiableIdentityAddress(
@@ -113,7 +113,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
                             value="value_example",
                             verified=True,
                             verified_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                            via="via_example",
+                            via="email",
                         ),
                     ],
                 ),
@@ -239,7 +239,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
             ),
         ],
         schema_id="schema_id_example",
-        state=IdentityState("active"),
+        state="active",
         traits={},
         verifiable_addresses=[
             VerifiableIdentityAddress(
@@ -250,7 +250,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
                 value="value_example",
                 verified=True,
                 verified_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                via="via_example",
+                via="email",
             ),
         ],
     ) # CreateIdentityBody |  (optional)
@@ -424,6 +424,7 @@ configuration.api_key['oryAccessToken'] = 'YOUR_API_KEY'
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
+    return_to = "return_to_example" # str |  (optional)
     create_recovery_link_for_identity_body = CreateRecoveryLinkForIdentityBody(
         expires_in="4ms",
         identity_id="identity_id_example",
@@ -433,7 +434,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Create a Recovery Link
-        api_response = api_instance.create_recovery_link_for_identity(create_recovery_link_for_identity_body=create_recovery_link_for_identity_body)
+        api_response = api_instance.create_recovery_link_for_identity(return_to=return_to, create_recovery_link_for_identity_body=create_recovery_link_for_identity_body)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling IdentityApi->create_recovery_link_for_identity: %s\n" % e)
@@ -444,6 +445,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **return_to** | **str**|  | [optional]
  **create_recovery_link_for_identity_body** | [**CreateRecoveryLinkForIdentityBody**](CreateRecoveryLinkForIdentityBody.md)|  | [optional]
 
 ### Return type
@@ -551,7 +553,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_identity_credentials**
-> Identity delete_identity_credentials(id, type)
+> delete_identity_credentials(id, type)
 
 Delete a credential for a specific identity
 
@@ -565,7 +567,6 @@ Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 import time
 import ory_kratos_client
 from ory_kratos_client.api import identity_api
-from ory_kratos_client.model.identity import Identity
 from ory_kratos_client.model.error_generic import ErrorGeneric
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -590,13 +591,12 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
     id = "id_example" # str | ID is the identity's ID.
-    type = "totp" # str | Type is the credential's Type. One of totp, webauthn, lookup
+    type = "password" # str | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 
     # example passing only required values which don't have defaults set
     try:
         # Delete a credential for a specific identity
-        api_response = api_instance.delete_identity_credentials(id, type)
-        pprint(api_response)
+        api_instance.delete_identity_credentials(id, type)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling IdentityApi->delete_identity_credentials: %s\n" % e)
 ```
@@ -607,11 +607,11 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID is the identity&#39;s ID. |
- **type** | **str**| Type is the credential&#39;s Type. One of totp, webauthn, lookup |
+ **type** | **str**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode |
 
 ### Return type
 
-[**Identity**](Identity.md)
+void (empty response body)
 
 ### Authorization
 
@@ -627,7 +627,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identity |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **404** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
@@ -917,8 +917,8 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     api_instance = identity_api.IdentityApi(api_client)
     id = "id_example" # str | ID must be set to the ID of identity you want to get
     include_credential = [
-        "include_credential_example",
-    ] # [str] | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. (optional)
+        "password",
+    ] # [str] | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -944,7 +944,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID must be set to the ID of identity you want to get |
- **include_credential** | **[str]**| Include Credentials in Response  Currently, only &#x60;oidc&#x60; is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional]
+ **include_credential** | **[str]**| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional]
 
 ### Return type
 
@@ -1172,15 +1172,22 @@ configuration.api_key['oryAccessToken'] = 'YOUR_API_KEY'
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
-    per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
-    page = 1 # int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional) if omitted the server will use the default value of 1
-    credentials_identifier = "credentials_identifier_example" # str | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. (optional)
+    per_page = 250 # int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional) if omitted the server will use the default value of 250
+    page = 1 # int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
+    page_size = 250 # int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of 250
+    page_token = "1" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of "1"
+    consistency = "" # str | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. (optional)
+    ids = [
+        "ids_example",
+    ] # [str] | List of ids used to filter identities. If this list is empty, then no filter will be applied. (optional)
+    credentials_identifier = "credentials_identifier_example" # str | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
+    preview_credentials_identifier_similar = "preview_credentials_identifier_similar_example" # str | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # List Identities
-        api_response = api_instance.list_identities(per_page=per_page, page=page, credentials_identifier=credentials_identifier)
+        api_response = api_instance.list_identities(per_page=per_page, page=page, page_size=page_size, page_token=page_token, consistency=consistency, ids=ids, credentials_identifier=credentials_identifier, preview_credentials_identifier_similar=preview_credentials_identifier_similar)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling IdentityApi->list_identities: %s\n" % e)
@@ -1191,9 +1198,14 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] if omitted the server will use the default value of 1
- **credentials_identifier** | **str**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional]
+ **per_page** | **int**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional]
+ **page_size** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
+ **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of "1"
+ **consistency** | **str**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional]
+ **ids** | **[str]**| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional]
+ **credentials_identifier** | **str**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional]
+ **preview_credentials_identifier_similar** | **str**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional]
 
 ### Return type
 
@@ -1246,14 +1258,16 @@ configuration = ory_kratos_client.Configuration(
 with ory_kratos_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
-    per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
-    page = 1 # int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional) if omitted the server will use the default value of 1
+    per_page = 250 # int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional) if omitted the server will use the default value of 250
+    page = 1 # int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
+    page_size = 250 # int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of 250
+    page_token = "1" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of "1"
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Get all Identity Schemas
-        api_response = api_instance.list_identity_schemas(per_page=per_page, page=page)
+        api_response = api_instance.list_identity_schemas(per_page=per_page, page=page, page_size=page_size, page_token=page_token)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling IdentityApi->list_identity_schemas: %s\n" % e)
@@ -1264,8 +1278,10 @@ with ory_kratos_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] if omitted the server will use the default value of 1
+ **per_page** | **int**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional]
+ **page_size** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
+ **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of "1"
 
 ### Return type
 
@@ -1330,8 +1346,10 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = identity_api.IdentityApi(api_client)
     id = "id_example" # str | ID is the identity's ID.
-    per_page = 250 # int | Items per Page  This is the number of items per page. (optional) if omitted the server will use the default value of 250
-    page = 1 # int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. (optional) if omitted the server will use the default value of 1
+    per_page = 250 # int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional) if omitted the server will use the default value of 250
+    page = 1 # int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
+    page_size = 250 # int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of 250
+    page_token = "1" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of "1"
     active = True # bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
 
     # example passing only required values which don't have defaults set
@@ -1346,7 +1364,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # List an Identity's Sessions
-        api_response = api_instance.list_identity_sessions(id, per_page=per_page, page=page, active=active)
+        api_response = api_instance.list_identity_sessions(id, per_page=per_page, page=page, page_size=page_size, page_token=page_token, active=active)
         pprint(api_response)
     except ory_kratos_client.ApiException as e:
         print("Exception when calling IdentityApi->list_identity_sessions: %s\n" % e)
@@ -1358,8 +1376,10 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID is the identity&#39;s ID. |
- **per_page** | **int**| Items per Page  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] if omitted the server will use the default value of 1
+ **per_page** | **int**| Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] if omitted the server will use the default value of 250
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional]
+ **page_size** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
+ **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of "1"
  **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional]
 
 ### Return type
@@ -1646,7 +1666,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
         metadata_admin=None,
         metadata_public=None,
         schema_id="schema_id_example",
-        state=IdentityState("active"),
+        state="active",
         traits={},
     ) # UpdateIdentityBody |  (optional)
 

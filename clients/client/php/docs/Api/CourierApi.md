@@ -1,11 +1,11 @@
 # Ory\Client\CourierApi
 
-All URIs are relative to https://playground.projects.oryapis.com.
+All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getCourierMessage()**](CourierApi.md#getCourierMessage) | **GET** /admin/courier/messages/{id} | Get a Message
-[**listCourierMessages()**](CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getCourierMessage()**](CourierApi.md#getCourierMessage) | **GET** /admin/courier/messages/{id} | Get a Message |
+| [**listCourierMessages()**](CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages |
 
 
 ## `getCourierMessage()`
@@ -47,9 +47,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| MessageID is the ID of the message. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| MessageID is the ID of the message. | |
 
 ### Return type
 
@@ -97,7 +97,7 @@ $apiInstance = new Ory\Client\Api\CourierApi(
 );
 $pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $pageToken = 'pageToken_example'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-$status = new \Ory\Client\Model\\Ory\Client\Model\CourierMessageStatus(); // \Ory\Client\Model\CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
+$status = new \Ory\Client\Model\CourierMessageStatus(); // CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
 $recipient = 'recipient_example'; // string | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter.
 
 try {
@@ -110,12 +110,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
- **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]
- **status** | [**\Ory\Client\Model\CourierMessageStatus**](../Model/.md)| Status filters out messages based on status. If no value is provided, it doesn&#39;t take effect on filter. | [optional]
- **recipient** | **string**| Recipient filters out messages based on recipient. If no value is provided, it doesn&#39;t take effect on filter. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
+| **status** | [**CourierMessageStatus**](../Model/.md)| Status filters out messages based on status. If no value is provided, it doesn&#39;t take effect on filter. | [optional] |
+| **recipient** | **string**| Recipient filters out messages based on recipient. If no value is provided, it doesn&#39;t take effect on filter. | [optional] |
 
 ### Return type
 

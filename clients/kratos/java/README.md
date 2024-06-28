@@ -1,8 +1,8 @@
 # kratos-client
 
 Ory Identities API
-- API version: v0.13.1
-  - Build date: 2023-04-29T16:30:11.172323687Z[Etc/UTC]
+- API version: v1.1.0
+  - Build date: 2024-02-20T12:30:07.821655682Z[Etc/UTC]
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.kratos</groupId>
   <artifactId>kratos-client</artifactId>
-  <version>v0.13.1</version>
+  <version>v1.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.kratos:kratos-client:v0.13.1"
+     implementation "sh.ory.kratos:kratos-client:v1.1.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v0.13.1.jar`
+* `target/kratos-client-v1.1.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -137,6 +137,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**createNativeVerificationFlow**](docs/FrontendApi.md#createNativeVerificationFlow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
 *FrontendApi* | [**disableMyOtherSessions**](docs/FrontendApi.md#disableMyOtherSessions) | **DELETE** /sessions | Disable my other sessions
 *FrontendApi* | [**disableMySession**](docs/FrontendApi.md#disableMySession) | **DELETE** /sessions/{id} | Disable one of my sessions
+*FrontendApi* | [**exchangeSessionToken**](docs/FrontendApi.md#exchangeSessionToken) | **GET** /sessions/token-exchange | Exchange Session Token
 *FrontendApi* | [**getFlowError**](docs/FrontendApi.md#getFlowError) | **GET** /self-service/errors | Get User-Flow Errors
 *FrontendApi* | [**getLoginFlow**](docs/FrontendApi.md#getLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
 *FrontendApi* | [**getRecoveryFlow**](docs/FrontendApi.md#getRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow
@@ -149,7 +150,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**toSession**](docs/FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *FrontendApi* | [**updateLoginFlow**](docs/FrontendApi.md#updateLoginFlow) | **POST** /self-service/login | Submit a Login Flow
 *FrontendApi* | [**updateLogoutFlow**](docs/FrontendApi.md#updateLogoutFlow) | **GET** /self-service/logout | Update Logout Flow
-*FrontendApi* | [**updateRecoveryFlow**](docs/FrontendApi.md#updateRecoveryFlow) | **POST** /self-service/recovery | Complete Recovery Flow
+*FrontendApi* | [**updateRecoveryFlow**](docs/FrontendApi.md#updateRecoveryFlow) | **POST** /self-service/recovery | Update Recovery Flow
 *FrontendApi* | [**updateRegistrationFlow**](docs/FrontendApi.md#updateRegistrationFlow) | **POST** /self-service/registration | Update Registration Flow
 *FrontendApi* | [**updateSettingsFlow**](docs/FrontendApi.md#updateSettingsFlow) | **POST** /self-service/settings | Complete Settings Flow
 *FrontendApi* | [**updateVerificationFlow**](docs/FrontendApi.md#updateVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow
@@ -180,8 +181,13 @@ Class | Method | HTTP request | Description
 
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
+ - [ConsistencyRequestParameters](docs/ConsistencyRequestParameters.md)
  - [ContinueWith](docs/ContinueWith.md)
+ - [ContinueWithRecoveryUi](docs/ContinueWithRecoveryUi.md)
+ - [ContinueWithRecoveryUiFlow](docs/ContinueWithRecoveryUiFlow.md)
  - [ContinueWithSetOrySessionToken](docs/ContinueWithSetOrySessionToken.md)
+ - [ContinueWithSettingsUi](docs/ContinueWithSettingsUi.md)
+ - [ContinueWithSettingsUiFlow](docs/ContinueWithSettingsUiFlow.md)
  - [ContinueWithVerificationUi](docs/ContinueWithVerificationUi.md)
  - [ContinueWithVerificationUiFlow](docs/ContinueWithVerificationUiFlow.md)
  - [CourierMessageStatus](docs/CourierMessageStatus.md)
@@ -201,14 +207,13 @@ Class | Method | HTTP request | Description
  - [HealthStatus](docs/HealthStatus.md)
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
+ - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
- - [IdentityCredentialsType](docs/IdentityCredentialsType.md)
  - [IdentityPatch](docs/IdentityPatch.md)
  - [IdentityPatchResponse](docs/IdentityPatchResponse.md)
  - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
- - [IdentityState](docs/IdentityState.md)
  - [IdentityWithCredentials](docs/IdentityWithCredentials.md)
  - [IdentityWithCredentialsOidc](docs/IdentityWithCredentialsOidc.md)
  - [IdentityWithCredentialsOidcConfig](docs/IdentityWithCredentialsOidcConfig.md)
@@ -219,6 +224,7 @@ Class | Method | HTTP request | Description
  - [IsReady503Response](docs/IsReady503Response.md)
  - [JsonPatch](docs/JsonPatch.md)
  - [LoginFlow](docs/LoginFlow.md)
+ - [LoginFlowState](docs/LoginFlowState.md)
  - [LogoutFlow](docs/LogoutFlow.md)
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
@@ -226,7 +232,6 @@ Class | Method | HTTP request | Description
  - [OAuth2Client](docs/OAuth2Client.md)
  - [OAuth2ConsentRequestOpenIDConnectContext](docs/OAuth2ConsentRequestOpenIDConnectContext.md)
  - [OAuth2LoginRequest](docs/OAuth2LoginRequest.md)
- - [Pagination](docs/Pagination.md)
  - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
  - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
  - [RecoveryCodeForIdentity](docs/RecoveryCodeForIdentity.md)
@@ -235,12 +240,14 @@ Class | Method | HTTP request | Description
  - [RecoveryIdentityAddress](docs/RecoveryIdentityAddress.md)
  - [RecoveryLinkForIdentity](docs/RecoveryLinkForIdentity.md)
  - [RegistrationFlow](docs/RegistrationFlow.md)
+ - [RegistrationFlowState](docs/RegistrationFlowState.md)
  - [SelfServiceFlowExpiredError](docs/SelfServiceFlowExpiredError.md)
  - [Session](docs/Session.md)
  - [SessionAuthenticationMethod](docs/SessionAuthenticationMethod.md)
  - [SessionDevice](docs/SessionDevice.md)
  - [SettingsFlow](docs/SettingsFlow.md)
  - [SettingsFlowState](docs/SettingsFlowState.md)
+ - [SuccessfulCodeExchangeResponse](docs/SuccessfulCodeExchangeResponse.md)
  - [SuccessfulNativeLogin](docs/SuccessfulNativeLogin.md)
  - [SuccessfulNativeRegistration](docs/SuccessfulNativeRegistration.md)
  - [TokenPagination](docs/TokenPagination.md)
@@ -257,6 +264,7 @@ Class | Method | HTTP request | Description
  - [UiText](docs/UiText.md)
  - [UpdateIdentityBody](docs/UpdateIdentityBody.md)
  - [UpdateLoginFlowBody](docs/UpdateLoginFlowBody.md)
+ - [UpdateLoginFlowWithCodeMethod](docs/UpdateLoginFlowWithCodeMethod.md)
  - [UpdateLoginFlowWithLookupSecretMethod](docs/UpdateLoginFlowWithLookupSecretMethod.md)
  - [UpdateLoginFlowWithOidcMethod](docs/UpdateLoginFlowWithOidcMethod.md)
  - [UpdateLoginFlowWithPasswordMethod](docs/UpdateLoginFlowWithPasswordMethod.md)
@@ -266,6 +274,7 @@ Class | Method | HTTP request | Description
  - [UpdateRecoveryFlowWithCodeMethod](docs/UpdateRecoveryFlowWithCodeMethod.md)
  - [UpdateRecoveryFlowWithLinkMethod](docs/UpdateRecoveryFlowWithLinkMethod.md)
  - [UpdateRegistrationFlowBody](docs/UpdateRegistrationFlowBody.md)
+ - [UpdateRegistrationFlowWithCodeMethod](docs/UpdateRegistrationFlowWithCodeMethod.md)
  - [UpdateRegistrationFlowWithOidcMethod](docs/UpdateRegistrationFlowWithOidcMethod.md)
  - [UpdateRegistrationFlowWithPasswordMethod](docs/UpdateRegistrationFlowWithPasswordMethod.md)
  - [UpdateRegistrationFlowWithWebAuthnMethod](docs/UpdateRegistrationFlowWithWebAuthnMethod.md)

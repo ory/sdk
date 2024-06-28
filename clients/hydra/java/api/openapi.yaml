@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Hydra API
-  version: v2.1.1
+  version: v2.2.0
 servers:
 - url: /
 tags:
@@ -1183,7 +1183,7 @@ paths:
         has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.
 
         If you send the subject in a query param, all authentication sessions that belong to that subject are revoked.
-        No OpennID Connect Front- or Back-channel logout is performed in this case.
+        No OpenID Connect Front- or Back-channel logout is performed in this case.
 
         Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
         to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
@@ -1425,6 +1425,46 @@ paths:
       summary: Get Trusted OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - oAuth2
+      x-accepts: application/json
+  /credentials:
+    post:
+      description: |-
+        This endpoint creates a verifiable credential that attests that the user
+        authenticated with the provided access token owns a certain public/private key
+        pair.
+
+        More information can be found at
+        https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+      operationId: createVerifiableCredential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVerifiableCredentialRequestBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/verifiableCredentialResponse'
+          description: verifiableCredentialResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/verifiableCredentialPrimingResponse'
+          description: verifiableCredentialPrimingResponse
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorOAuth2'
+          description: errorOAuth2
+      summary: Issues a Verifiable Credential
+      tags:
+      - oidc
+      x-content-type: application/json
       x-accepts: application/json
   /health/alive:
     get:
@@ -1864,6 +1904,28 @@ components:
             type: array
       description: Paginated OAuth2 Client List Response
   schemas:
+    CreateVerifiableCredentialRequestBody:
+      example:
+        types:
+        - types
+        - types
+        format: format
+        proof:
+          proof_type: proof_type
+          jwt: jwt
+      properties:
+        format:
+          type: string
+        proof:
+          $ref: '#/components/schemas/VerifiableCredentialProof'
+        types:
+          items:
+            type: string
+          type: array
+      title: CreateVerifiableCredentialRequestBody contains the request body to request
+        a verifiable credential.
+      type: object
+    DefaultError: {}
     JSONRawMessage:
       title: "JSONRawMessage represents a json.RawMessage that works well with JSON,\
         \ SQL, and Swagger."
@@ -1889,6 +1951,21 @@ components:
       format: uuid4
       nullable: true
       type: string
+    RFC6749ErrorJson:
+      properties:
+        error:
+          type: string
+        error_debug:
+          type: string
+        error_description:
+          type: string
+        error_hint:
+          type: string
+        status_code:
+          format: int64
+          type: integer
+      title: RFC6749ErrorJson is a helper struct for JSON encoding/decoding of RFC6749Error.
+      type: object
     StringSliceJSONFormat:
       items:
         type: string
@@ -1901,8 +1978,22 @@ components:
     UUID:
       format: uuid4
       type: string
+    VerifiableCredentialProof:
+      example:
+        proof_type: proof_type
+        jwt: jwt
+      properties:
+        jwt:
+          type: string
+        proof_type:
+          type: string
+      title: VerifiableCredentialProof contains the proof of a verifiable credential.
+      type: object
     acceptOAuth2ConsentRequest:
       properties:
+        context:
+          title: "JSONRawMessage represents a json.RawMessage that works well with\
+            \ JSON, SQL, and Swagger."
         grant_access_token_audience:
           items:
             type: string
@@ -1995,6 +2086,11 @@ components:
 
             If you fail to compute the proper value, then authentication processes which have id_token_hint set might fail.
           type: string
+        identity_provider_session_id:
+          description: |-
+            IdentityProviderSessionID is the session ID of the end-user that authenticated.
+            If specified, we will use this value to propagate the logout.
+          type: string
         remember:
           description: |-
             Remember, if set to true, tells ORY Hydra to remember this user by telling the user agent (browser) to store
@@ -2042,6 +2138,52 @@ components:
       - alg
       - kid
       - use
+      type: object
+    credentialSupportedDraft00:
+      description: Includes information about the supported verifiable credentials.
+      example:
+        types:
+        - types
+        - types
+        cryptographic_suites_supported:
+        - cryptographic_suites_supported
+        - cryptographic_suites_supported
+        cryptographic_binding_methods_supported:
+        - cryptographic_binding_methods_supported
+        - cryptographic_binding_methods_supported
+        format: format
+      properties:
+        cryptographic_binding_methods_supported:
+          description: |-
+            OpenID Connect Verifiable Credentials Cryptographic Binding Methods Supported
+
+            Contains a list of cryptographic binding methods supported for signing the proof.
+          items:
+            type: string
+          type: array
+        cryptographic_suites_supported:
+          description: |-
+            OpenID Connect Verifiable Credentials Cryptographic Suites Supported
+
+            Contains a list of cryptographic suites methods supported for signing the proof.
+          items:
+            type: string
+          type: array
+        format:
+          description: |-
+            OpenID Connect Verifiable Credentials Format
+
+            Contains the format that is supported by this authorization server.
+          type: string
+        types:
+          description: |-
+            OpenID Connect Verifiable Credentials Types
+
+            Contains the types of verifiable credentials supported.
+          items:
+            type: string
+          type: array
+      title: Verifiable Credentials Metadata (Draft 00)
       type: object
     errorOAuth2:
       description: Error
@@ -2519,6 +2661,7 @@ components:
         sector_identifier_uri: sector_identifier_uri
         frontchannel_logout_session_required: true
         frontchannel_logout_uri: frontchannel_logout_uri
+        skip_logout_consent: true
         refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
         implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
         client_secret_expires_at: 0
@@ -2596,7 +2739,7 @@ components:
           description: |-
             OAuth 2.0 Client ID
 
-            The ID is autogenerated and immutable.
+            The ID is immutable. If no ID is provided, a UUID4 will be generated.
           type: string
         client_name:
           description: |-
@@ -2811,6 +2954,11 @@ components:
             SkipConsent skips the consent screen for this client. This field can only
             be set from the admin API.
           type: boolean
+        skip_logout_consent:
+          description: |-
+            SkipLogoutConsent skips the logout consent screen for this client. This field can only
+            be set from the admin API.
+          type: boolean
         subject_type:
           description: |-
             OpenID Connect Subject Type
@@ -3003,6 +3151,7 @@ components:
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
+          skip_logout_consent: true
           refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
@@ -3232,6 +3381,7 @@ components:
             sector_identifier_uri: sector_identifier_uri
             frontchannel_logout_session_required: true
             frontchannel_logout_uri: frontchannel_logout_uri
+            skip_logout_consent: true
             refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
             implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
             client_secret_expires_at: 0
@@ -3259,6 +3409,7 @@ components:
         session:
           access_token: ""
           id_token: ""
+        context: ""
         grant_access_token_audience:
         - grant_access_token_audience
         - grant_access_token_audience
@@ -3270,6 +3421,9 @@ components:
       properties:
         consent_request:
           $ref: '#/components/schemas/oAuth2ConsentRequest'
+        context:
+          title: "JSONRawMessage represents a json.RawMessage that works well with\
+            \ JSON, SQL, and Swagger."
         expires_at:
           $ref: '#/components/schemas/oAuth2ConsentSession_expires_at'
         grant_access_token_audience:
@@ -3380,6 +3534,7 @@ components:
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
+          skip_logout_consent: true
           refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
@@ -3452,8 +3607,6 @@ components:
       - challenge
       - client
       - request_url
-      - requested_access_token_audience
-      - requested_scope
       - skip
       - subject
       title: Contains information on an ongoing login request.
@@ -3512,6 +3665,7 @@ components:
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
+          skip_logout_consent: true
           refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
           implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
           client_secret_expires_at: 0
@@ -3573,7 +3727,7 @@ components:
         access_token: access_token
         refresh_token: refresh_token
         scope: scope
-        id_token: 6
+        id_token: id_token
         token_type: token_type
         expires_in: 0
       properties:
@@ -3589,8 +3743,7 @@ components:
           type: integer
         id_token:
           description: To retrieve a refresh token request the id_token scope.
-          format: int64
-          type: integer
+          type: string
         refresh_token:
           description: |-
             The refresh token, which can be used to obtain new
@@ -3651,8 +3804,30 @@ components:
         code_challenge_methods_supported:
         - code_challenge_methods_supported
         - code_challenge_methods_supported
+        credentials_endpoint_draft_00: credentials_endpoint_draft_00
         frontchannel_logout_session_supported: true
         jwks_uri: "https://{slug}.projects.oryapis.com/.well-known/jwks.json"
+        credentials_supported_draft_00:
+        - types:
+          - types
+          - types
+          cryptographic_suites_supported:
+          - cryptographic_suites_supported
+          - cryptographic_suites_supported
+          cryptographic_binding_methods_supported:
+          - cryptographic_binding_methods_supported
+          - cryptographic_binding_methods_supported
+          format: format
+        - types:
+          - types
+          - types
+          cryptographic_suites_supported:
+          - cryptographic_suites_supported
+          - cryptographic_suites_supported
+          cryptographic_binding_methods_supported:
+          - cryptographic_binding_methods_supported
+          - cryptographic_binding_methods_supported
+          format: format
         subject_types_supported:
         - subject_types_supported
         - subject_types_supported
@@ -3704,6 +3879,20 @@ components:
             by this authorization server.
           items:
             type: string
+          type: array
+        credentials_endpoint_draft_00:
+          description: |-
+            OpenID Connect Verifiable Credentials Endpoint
+
+            Contains the URL of the Verifiable Credentials Endpoint.
+          type: string
+        credentials_supported_draft_00:
+          description: |-
+            OpenID Connect Verifiable Credentials Supported
+
+            JSON array containing a list of the Verifiable Credentials supported by this authorization server.
+          items:
+            $ref: '#/components/schemas/credentialSupportedDraft00'
           type: array
         end_session_endpoint:
           description: |-
@@ -4314,6 +4503,42 @@ components:
             be the same as "issuer" in grant.
           example: https://jwt-idp.example.com
           type: string
+      type: object
+    unexpectedError:
+      type: string
+    verifiableCredentialPrimingResponse:
+      properties:
+        c_nonce:
+          type: string
+        c_nonce_expires_in:
+          format: int64
+          type: integer
+        error:
+          type: string
+        error_debug:
+          type: string
+        error_description:
+          type: string
+        error_hint:
+          type: string
+        format:
+          type: string
+        status_code:
+          format: int64
+          type: integer
+      title: VerifiableCredentialPrimingResponse contains the nonce to include in
+        the proof-of-possession JWT.
+      type: object
+    verifiableCredentialResponse:
+      example:
+        credential_draft_00: credential_draft_00
+        format: format
+      properties:
+        credential_draft_00:
+          type: string
+        format:
+          type: string
+      title: VerifiableCredentialResponse contains the verifiable credential.
       type: object
     version:
       properties:

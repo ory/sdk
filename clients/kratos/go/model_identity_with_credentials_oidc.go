@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -15,10 +15,16 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentityWithCredentialsOidc type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityWithCredentialsOidc{}
+
 // IdentityWithCredentialsOidc Create Identity and Import Social Sign In Credentials
 type IdentityWithCredentialsOidc struct {
 	Config *IdentityWithCredentialsOidcConfig `json:"config,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityWithCredentialsOidc IdentityWithCredentialsOidc
 
 // NewIdentityWithCredentialsOidc instantiates a new IdentityWithCredentialsOidc object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,7 @@ func NewIdentityWithCredentialsOidcWithDefaults() *IdentityWithCredentialsOidc {
 
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *IdentityWithCredentialsOidc) GetConfig() IdentityWithCredentialsOidcConfig {
-	if o == nil || o.Config == nil {
+	if o == nil || IsNil(o.Config) {
 		var ret IdentityWithCredentialsOidcConfig
 		return ret
 	}
@@ -49,7 +55,7 @@ func (o *IdentityWithCredentialsOidc) GetConfig() IdentityWithCredentialsOidcCon
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentialsOidc) GetConfigOk() (*IdentityWithCredentialsOidcConfig, bool) {
-	if o == nil || o.Config == nil {
+	if o == nil || IsNil(o.Config) {
 		return nil, false
 	}
 	return o.Config, true
@@ -57,7 +63,7 @@ func (o *IdentityWithCredentialsOidc) GetConfigOk() (*IdentityWithCredentialsOid
 
 // HasConfig returns a boolean if a field has been set.
 func (o *IdentityWithCredentialsOidc) HasConfig() bool {
-	if o != nil && o.Config != nil {
+	if o != nil && !IsNil(o.Config) {
 		return true
 	}
 
@@ -70,11 +76,45 @@ func (o *IdentityWithCredentialsOidc) SetConfig(v IdentityWithCredentialsOidcCon
 }
 
 func (o IdentityWithCredentialsOidc) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Config != nil {
-		toSerialize["config"] = o.Config
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IdentityWithCredentialsOidc) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Config) {
+		toSerialize["config"] = o.Config
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *IdentityWithCredentialsOidc) UnmarshalJSON(bytes []byte) (err error) {
+	varIdentityWithCredentialsOidc := _IdentityWithCredentialsOidc{}
+
+	err = json.Unmarshal(bytes, &varIdentityWithCredentialsOidc)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IdentityWithCredentialsOidc(varIdentityWithCredentialsOidc)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityWithCredentialsOidc struct {

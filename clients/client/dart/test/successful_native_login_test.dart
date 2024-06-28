@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(SuccessfulNativeLogin, () {
+    // Contains a list of actions, that could follow this flow  It can, for example, this will contain a reference to the verification flow, created as part of the user's registration or the token of the session.
+    // BuiltList<ContinueWith> continueWith
+    test('to test the property `continueWith`', () async {
+      // TODO
+    });
+
     // Session session
     test('to test the property `session`', () async {
       // TODO

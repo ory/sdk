@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**context** | Option<[**serde_json::Value**](.md)> |  | [optional]
 **grant_access_token_audience** | Option<**Vec<String>**> |  | [optional]
 **grant_scope** | Option<**Vec<String>**> |  | [optional]
 **handled_at** | Option<**String**> |  | [optional]

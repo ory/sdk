@@ -10,6 +10,8 @@ class _$RecoveryFlow extends RecoveryFlow {
   @override
   final String? active;
   @override
+  final BuiltList<ContinueWith>? continueWith;
+  @override
   final DateTime expiresAt;
   @override
   final String id;
@@ -20,7 +22,9 @@ class _$RecoveryFlow extends RecoveryFlow {
   @override
   final String? returnTo;
   @override
-  final RecoveryFlowState state;
+  final JsonObject? state;
+  @override
+  final JsonObject? transientPayload;
   @override
   final String type;
   @override
@@ -31,12 +35,14 @@ class _$RecoveryFlow extends RecoveryFlow {
 
   _$RecoveryFlow._(
       {this.active,
+      this.continueWith,
       required this.expiresAt,
       required this.id,
       required this.issuedAt,
       required this.requestUrl,
       this.returnTo,
-      required this.state,
+      this.state,
+      this.transientPayload,
       required this.type,
       required this.ui})
       : super._() {
@@ -47,7 +53,6 @@ class _$RecoveryFlow extends RecoveryFlow {
         issuedAt, r'RecoveryFlow', 'issuedAt');
     BuiltValueNullFieldError.checkNotNull(
         requestUrl, r'RecoveryFlow', 'requestUrl');
-    BuiltValueNullFieldError.checkNotNull(state, r'RecoveryFlow', 'state');
     BuiltValueNullFieldError.checkNotNull(type, r'RecoveryFlow', 'type');
     BuiltValueNullFieldError.checkNotNull(ui, r'RecoveryFlow', 'ui');
   }
@@ -64,12 +69,14 @@ class _$RecoveryFlow extends RecoveryFlow {
     if (identical(other, this)) return true;
     return other is RecoveryFlow &&
         active == other.active &&
+        continueWith == other.continueWith &&
         expiresAt == other.expiresAt &&
         id == other.id &&
         issuedAt == other.issuedAt &&
         requestUrl == other.requestUrl &&
         returnTo == other.returnTo &&
         state == other.state &&
+        transientPayload == other.transientPayload &&
         type == other.type &&
         ui == other.ui;
   }
@@ -78,12 +85,14 @@ class _$RecoveryFlow extends RecoveryFlow {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, active.hashCode);
+    _$hash = $jc(_$hash, continueWith.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, issuedAt.hashCode);
     _$hash = $jc(_$hash, requestUrl.hashCode);
     _$hash = $jc(_$hash, returnTo.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, ui.hashCode);
     _$hash = $jf(_$hash);
@@ -94,12 +103,14 @@ class _$RecoveryFlow extends RecoveryFlow {
   String toString() {
     return (newBuiltValueToStringHelper(r'RecoveryFlow')
           ..add('active', active)
+          ..add('continueWith', continueWith)
           ..add('expiresAt', expiresAt)
           ..add('id', id)
           ..add('issuedAt', issuedAt)
           ..add('requestUrl', requestUrl)
           ..add('returnTo', returnTo)
           ..add('state', state)
+          ..add('transientPayload', transientPayload)
           ..add('type', type)
           ..add('ui', ui))
         .toString();
@@ -113,6 +124,12 @@ class RecoveryFlowBuilder
   String? _active;
   String? get active => _$this._active;
   set active(String? active) => _$this._active = active;
+
+  ListBuilder<ContinueWith>? _continueWith;
+  ListBuilder<ContinueWith> get continueWith =>
+      _$this._continueWith ??= new ListBuilder<ContinueWith>();
+  set continueWith(ListBuilder<ContinueWith>? continueWith) =>
+      _$this._continueWith = continueWith;
 
   DateTime? _expiresAt;
   DateTime? get expiresAt => _$this._expiresAt;
@@ -134,9 +151,14 @@ class RecoveryFlowBuilder
   String? get returnTo => _$this._returnTo;
   set returnTo(String? returnTo) => _$this._returnTo = returnTo;
 
-  RecoveryFlowState? _state;
-  RecoveryFlowState? get state => _$this._state;
-  set state(RecoveryFlowState? state) => _$this._state = state;
+  JsonObject? _state;
+  JsonObject? get state => _$this._state;
+  set state(JsonObject? state) => _$this._state = state;
+
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
 
   String? _type;
   String? get type => _$this._type;
@@ -154,12 +176,14 @@ class RecoveryFlowBuilder
     final $v = _$v;
     if ($v != null) {
       _active = $v.active;
+      _continueWith = $v.continueWith?.toBuilder();
       _expiresAt = $v.expiresAt;
       _id = $v.id;
       _issuedAt = $v.issuedAt;
       _requestUrl = $v.requestUrl;
       _returnTo = $v.returnTo;
       _state = $v.state;
+      _transientPayload = $v.transientPayload;
       _type = $v.type;
       _ui = $v.ui.toBuilder();
       _$v = null;
@@ -187,6 +211,7 @@ class RecoveryFlowBuilder
       _$result = _$v ??
           new _$RecoveryFlow._(
               active: active,
+              continueWith: _continueWith?.build(),
               expiresAt: BuiltValueNullFieldError.checkNotNull(
                   expiresAt, r'RecoveryFlow', 'expiresAt'),
               id: BuiltValueNullFieldError.checkNotNull(
@@ -196,14 +221,17 @@ class RecoveryFlowBuilder
               requestUrl: BuiltValueNullFieldError.checkNotNull(
                   requestUrl, r'RecoveryFlow', 'requestUrl'),
               returnTo: returnTo,
-              state: BuiltValueNullFieldError.checkNotNull(
-                  state, r'RecoveryFlow', 'state'),
+              state: state,
+              transientPayload: transientPayload,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'RecoveryFlow', 'type'),
               ui: ui.build());
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'continueWith';
+        _continueWith?.build();
+
         _$failedField = 'ui';
         ui.build();
       } catch (e) {

@@ -1,6 +1,6 @@
 # \OAuth2Api
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -37,7 +37,7 @@ Method | HTTP request | Description
 
 ## accept_o_auth2_consent_request
 
-> crate::models::OAuth2RedirectTo accept_o_auth2_consent_request(consent_challenge, accept_o_auth2_consent_request)
+> models::OAuth2RedirectTo accept_o_auth2_consent_request(consent_challenge, accept_o_auth2_consent_request)
 Accept OAuth 2.0 Consent Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell Ory now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells Ory if the subject accepted or rejected the request.  This endpoint tells Ory that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.  The default consent provider is available via the Ory Managed Account Experience. To customize the consent provider, please head over to the OAuth 2.0 documentation.
@@ -52,7 +52,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
+[**models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
 
 ### Authorization
 
@@ -68,7 +68,7 @@ Name | Type | Description  | Required | Notes
 
 ## accept_o_auth2_login_request
 
-> crate::models::OAuth2RedirectTo accept_o_auth2_login_request(login_challenge, accept_o_auth2_login_request)
+> models::OAuth2RedirectTo accept_o_auth2_login_request(login_challenge, accept_o_auth2_login_request)
 Accept OAuth 2.0 Login Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell the Ory OAuth2 Service about it.  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells Ory that the subject has successfully authenticated and includes additional information such as the subject's ID and if Ory should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
@@ -83,7 +83,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
+[**models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
 
 ### Authorization
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Required | Notes
 
 ## accept_o_auth2_logout_request
 
-> crate::models::OAuth2RedirectTo accept_o_auth2_logout_request(logout_challenge)
+> models::OAuth2RedirectTo accept_o_auth2_logout_request(logout_challenge)
 Accept OAuth 2.0 Session Logout Request
 
 When a user or an application requests Ory OAuth 2.0 to remove the session state of a subject, this endpoint is used to confirm that logout request.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
@@ -113,7 +113,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
+[**models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
 
 ### Authorization
 
@@ -129,7 +129,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_o_auth2_client
 
-> crate::models::OAuth2Client create_o_auth2_client(o_auth2_client)
+> models::OAuth2Client create_o_auth2_client(o_auth2_client)
 Create OAuth 2.0 Client
 
 Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
@@ -143,7 +143,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2Client**](oAuth2Client.md)
+[**models::OAuth2Client**](oAuth2Client.md)
 
 ### Authorization
 
@@ -249,7 +249,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_o_auth2_client
 
-> crate::models::OAuth2Client get_o_auth2_client(id)
+> models::OAuth2Client get_o_auth2_client(id)
 Get an OAuth 2.0 Client
 
 Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -263,7 +263,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2Client**](oAuth2Client.md)
+[**models::OAuth2Client**](oAuth2Client.md)
 
 ### Authorization
 
@@ -279,7 +279,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_o_auth2_consent_request
 
-> crate::models::OAuth2ConsentRequest get_o_auth2_consent_request(consent_challenge)
+> models::OAuth2ConsentRequest get_o_auth2_consent_request(consent_challenge)
 Get OAuth 2.0 Consent Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell Ory now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells Ory if the subject accepted or rejected the request.  The default consent provider is available via the Ory Managed Account Experience. To customize the consent provider, please head over to the OAuth 2.0 documentation.
@@ -293,7 +293,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2ConsentRequest**](oAuth2ConsentRequest.md)
+[**models::OAuth2ConsentRequest**](oAuth2ConsentRequest.md)
 
 ### Authorization
 
@@ -309,7 +309,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_o_auth2_login_request
 
-> crate::models::OAuth2LoginRequest get_o_auth2_login_request(login_challenge)
+> models::OAuth2LoginRequest get_o_auth2_login_request(login_challenge)
 Get OAuth 2.0 Login Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell the Ory OAuth2 Service about it.  Per default, the login provider is Ory itself. You may use a different login provider which needs to be a web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
@@ -323,7 +323,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2LoginRequest**](oAuth2LoginRequest.md)
+[**models::OAuth2LoginRequest**](oAuth2LoginRequest.md)
 
 ### Authorization
 
@@ -339,7 +339,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_o_auth2_logout_request
 
-> crate::models::OAuth2LogoutRequest get_o_auth2_logout_request(logout_challenge)
+> models::OAuth2LogoutRequest get_o_auth2_logout_request(logout_challenge)
 Get OAuth 2.0 Session Logout Request
 
 Use this endpoint to fetch an Ory OAuth 2.0 logout request.
@@ -353,7 +353,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2LogoutRequest**](oAuth2LogoutRequest.md)
+[**models::OAuth2LogoutRequest**](oAuth2LogoutRequest.md)
 
 ### Authorization
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_trusted_o_auth2_jwt_grant_issuer
 
-> crate::models::TrustedOAuth2JwtGrantIssuer get_trusted_o_auth2_jwt_grant_issuer(id)
+> models::TrustedOAuth2JwtGrantIssuer get_trusted_o_auth2_jwt_grant_issuer(id)
 Get Trusted OAuth2 JWT Bearer Grant Type Issuer
 
 Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
@@ -383,7 +383,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::TrustedOAuth2JwtGrantIssuer**](trustedOAuth2JwtGrantIssuer.md)
+[**models::TrustedOAuth2JwtGrantIssuer**](trustedOAuth2JwtGrantIssuer.md)
 
 ### Authorization
 
@@ -399,7 +399,7 @@ Name | Type | Description  | Required | Notes
 
 ## introspect_o_auth2_token
 
-> crate::models::IntrospectedOAuth2Token introspect_o_auth2_token(token, scope)
+> models::IntrospectedOAuth2Token introspect_o_auth2_token(token, scope)
 Introspect OAuth2 Access and Refresh Tokens
 
 The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `session.access_token` during the consent flow.
@@ -414,7 +414,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::IntrospectedOAuth2Token**](introspectedOAuth2Token.md)
+[**models::IntrospectedOAuth2Token**](introspectedOAuth2Token.md)
 
 ### Authorization
 
@@ -430,7 +430,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_o_auth2_clients
 
-> Vec<crate::models::OAuth2Client> list_o_auth2_clients(page_size, page_token, client_name, owner)
+> Vec<models::OAuth2Client> list_o_auth2_clients(page_size, page_token, client_name, owner)
 List OAuth 2.0 Clients
 
 This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients.
@@ -447,7 +447,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::OAuth2Client>**](oAuth2Client.md)
+[**Vec<models::OAuth2Client>**](oAuth2Client.md)
 
 ### Authorization
 
@@ -463,7 +463,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_o_auth2_consent_sessions
 
-> Vec<crate::models::OAuth2ConsentSession> list_o_auth2_consent_sessions(subject, page_size, page_token, login_session_id)
+> Vec<models::OAuth2ConsentSession> list_o_auth2_consent_sessions(subject, page_size, page_token, login_session_id)
 List OAuth 2.0 Consent Sessions of a Subject
 
 This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.
@@ -480,7 +480,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::OAuth2ConsentSession>**](oAuth2ConsentSession.md)
+[**Vec<models::OAuth2ConsentSession>**](oAuth2ConsentSession.md)
 
 ### Authorization
 
@@ -496,7 +496,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_trusted_o_auth2_jwt_grant_issuers
 
-> Vec<crate::models::TrustedOAuth2JwtGrantIssuer> list_trusted_o_auth2_jwt_grant_issuers(max_items, default_items, issuer)
+> Vec<models::TrustedOAuth2JwtGrantIssuer> list_trusted_o_auth2_jwt_grant_issuers(max_items, default_items, issuer)
 List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
 Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
@@ -512,7 +512,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::TrustedOAuth2JwtGrantIssuer>**](trustedOAuth2JwtGrantIssuer.md)
+[**Vec<models::TrustedOAuth2JwtGrantIssuer>**](trustedOAuth2JwtGrantIssuer.md)
 
 ### Authorization
 
@@ -528,7 +528,7 @@ Name | Type | Description  | Required | Notes
 
 ## o_auth2_authorize
 
-> crate::models::ErrorOAuth2 o_auth2_authorize()
+> models::ErrorOAuth2 o_auth2_authorize()
 OAuth 2.0 Authorize Endpoint
 
 Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
@@ -539,7 +539,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::ErrorOAuth2**](errorOAuth2.md)
+[**models::ErrorOAuth2**](errorOAuth2.md)
 
 ### Authorization
 
@@ -555,7 +555,7 @@ No authorization required
 
 ## oauth2_token_exchange
 
-> crate::models::OAuth2TokenExchange oauth2_token_exchange(grant_type, client_id, code, redirect_uri, refresh_token)
+> models::OAuth2TokenExchange oauth2_token_exchange(grant_type, client_id, code, redirect_uri, refresh_token)
 The OAuth 2.0 Token Endpoint
 
 Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
@@ -573,7 +573,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2TokenExchange**](oAuth2TokenExchange.md)
+[**models::OAuth2TokenExchange**](oAuth2TokenExchange.md)
 
 ### Authorization
 
@@ -589,7 +589,7 @@ Name | Type | Description  | Required | Notes
 
 ## patch_o_auth2_client
 
-> crate::models::OAuth2Client patch_o_auth2_client(id, json_patch)
+> models::OAuth2Client patch_o_auth2_client(id, json_patch)
 Patch OAuth 2.0 Client
 
 Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -600,11 +600,11 @@ Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret`
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | The id of the OAuth 2.0 Client. | [required] |
-**json_patch** | [**Vec<crate::models::JsonPatch>**](jsonPatch.md) | OAuth 2.0 Client JSON Patch Body | [required] |
+**json_patch** | [**Vec<models::JsonPatch>**](jsonPatch.md) | OAuth 2.0 Client JSON Patch Body | [required] |
 
 ### Return type
 
-[**crate::models::OAuth2Client**](oAuth2Client.md)
+[**models::OAuth2Client**](oAuth2Client.md)
 
 ### Authorization
 
@@ -620,7 +620,7 @@ Name | Type | Description  | Required | Notes
 
 ## reject_o_auth2_consent_request
 
-> crate::models::OAuth2RedirectTo reject_o_auth2_consent_request(consent_challenge, reject_o_auth2_request)
+> models::OAuth2RedirectTo reject_o_auth2_consent_request(consent_challenge, reject_o_auth2_request)
 Reject OAuth 2.0 Consent Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell Ory now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells Ory if the subject accepted or rejected the request.  This endpoint tells Ory that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.  The default consent provider is available via the Ory Managed Account Experience. To customize the consent provider, please head over to the OAuth 2.0 documentation.
@@ -635,7 +635,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
+[**models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
 
 ### Authorization
 
@@ -651,7 +651,7 @@ Name | Type | Description  | Required | Notes
 
 ## reject_o_auth2_login_request
 
-> crate::models::OAuth2RedirectTo reject_o_auth2_login_request(login_challenge, reject_o_auth2_request)
+> models::OAuth2RedirectTo reject_o_auth2_login_request(login_challenge, reject_o_auth2_request)
 Reject OAuth 2.0 Login Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell the Ory OAuth2 Service about it.  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells Ory that the subject has not authenticated and includes a reason why the authentication was denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
@@ -666,7 +666,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
+[**models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
 
 ### Authorization
 
@@ -747,7 +747,7 @@ Name | Type | Description  | Required | Notes
 > revoke_o_auth2_login_sessions(subject, sid)
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Parameters
 
@@ -807,7 +807,7 @@ Name | Type | Description  | Required | Notes
 
 ## set_o_auth2_client
 
-> crate::models::OAuth2Client set_o_auth2_client(id, o_auth2_client)
+> models::OAuth2Client set_o_auth2_client(id, o_auth2_client)
 Set OAuth 2.0 Client
 
 Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -822,7 +822,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2Client**](oAuth2Client.md)
+[**models::OAuth2Client**](oAuth2Client.md)
 
 ### Authorization
 
@@ -838,7 +838,7 @@ Name | Type | Description  | Required | Notes
 
 ## set_o_auth2_client_lifespans
 
-> crate::models::OAuth2Client set_o_auth2_client_lifespans(id, o_auth2_client_token_lifespans)
+> models::OAuth2Client set_o_auth2_client_lifespans(id, o_auth2_client_token_lifespans)
 Set OAuth2 Client Token Lifespans
 
 Set lifespans of different token types issued for this OAuth 2.0 client. Does not modify other fields.
@@ -853,7 +853,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2Client**](oAuth2Client.md)
+[**models::OAuth2Client**](oAuth2Client.md)
 
 ### Authorization
 
@@ -869,7 +869,7 @@ Name | Type | Description  | Required | Notes
 
 ## trust_o_auth2_jwt_grant_issuer
 
-> crate::models::TrustedOAuth2JwtGrantIssuer trust_o_auth2_jwt_grant_issuer(trust_o_auth2_jwt_grant_issuer)
+> models::TrustedOAuth2JwtGrantIssuer trust_o_auth2_jwt_grant_issuer(trust_o_auth2_jwt_grant_issuer)
 Trust OAuth2 JWT Bearer Grant Type Issuer
 
 Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
@@ -883,7 +883,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::TrustedOAuth2JwtGrantIssuer**](trustedOAuth2JwtGrantIssuer.md)
+[**models::TrustedOAuth2JwtGrantIssuer**](trustedOAuth2JwtGrantIssuer.md)
 
 ### Authorization
 

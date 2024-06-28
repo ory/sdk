@@ -8,17 +8,20 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/src/model/active_project_in_console.dart';
-import 'package:ory_client/src/model/cloud_account.dart';
+import 'package:ory_client/src/api_util.dart';
 import 'package:ory_client/src/model/create_project_api_key_request.dart';
 import 'package:ory_client/src/model/create_project_body.dart';
 import 'package:ory_client/src/model/error_generic.dart';
 import 'package:ory_client/src/model/generic_error.dart';
+import 'package:ory_client/src/model/get_organization_response.dart';
 import 'package:ory_client/src/model/json_patch.dart';
+import 'package:ory_client/src/model/list_organizations_response.dart';
+import 'package:ory_client/src/model/organization.dart';
+import 'package:ory_client/src/model/organization_body.dart';
 import 'package:ory_client/src/model/project.dart';
 import 'package:ory_client/src/model/project_api_key.dart';
+import 'package:ory_client/src/model/project_member.dart';
 import 'package:ory_client/src/model/project_metadata.dart';
-import 'package:ory_client/src/model/set_active_project_in_console_body.dart';
 import 'package:ory_client/src/model/set_project.dart';
 import 'package:ory_client/src/model/successful_project_update.dart';
 
@@ -29,6 +32,109 @@ class ProjectApi {
   final Serializers _serializers;
 
   const ProjectApi(this._dio, this._serializers);
+
+  /// createOrganization
+  /// Create a B2B SSO Organization
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID  The project's ID.
+  /// * [organizationBody] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [Organization] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<Organization>> createOrganization({ 
+    required String projectId,
+    OrganizationBody? organizationBody,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/organizations'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(OrganizationBody);
+      _bodyData = organizationBody == null ? null : _serializers.serialize(organizationBody, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    Organization? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Organization),
+      ) as Organization;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<Organization>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
 
   /// Create a Project
   /// Creates a new project.
@@ -43,7 +149,7 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [Project] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<Project>> createProject({ 
     CreateProjectBody? createProjectBody,
     CancelToken? cancelToken,
@@ -64,7 +170,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -80,14 +186,15 @@ class ProjectApi {
       _bodyData = createProjectBody == null ? null : _serializers.serialize(createProjectBody, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -99,22 +206,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Project _responseData;
+    Project? _responseData;
 
     try {
-      const _responseType = FullType(Project);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Project),
       ) as Project;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Project>(
@@ -143,7 +251,7 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [ProjectApiKey] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<ProjectApiKey>> createProjectApiKey({ 
     required String project,
     CreateProjectApiKeyRequest? createProjectApiKeyRequest,
@@ -154,7 +262,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project}/tokens'.replaceAll('{' r'project' '}', project.toString());
+    final _path = r'/projects/{project}/tokens'.replaceAll('{' r'project' '}', encodeQueryParameter(_serializers, project, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -165,7 +273,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -181,14 +289,15 @@ class ProjectApi {
       _bodyData = createProjectApiKeyRequest == null ? null : _serializers.serialize(createProjectApiKeyRequest, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -200,22 +309,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProjectApiKey _responseData;
+    ProjectApiKey? _responseData;
 
     try {
-      const _responseType = FullType(ProjectApiKey);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ProjectApiKey),
       ) as ProjectApiKey;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<ProjectApiKey>(
@@ -230,12 +340,12 @@ class ProjectApi {
     );
   }
 
-  /// Delete project API token
-  /// Deletes an API token and immediately removes it.
+  /// deleteOrganization
+  /// Delete a B2B SSO Organization for a project
   ///
   /// Parameters:
-  /// * [project] - The Project ID or Project slug
-  /// * [tokenId] - The Token ID
+  /// * [projectId] - Project ID  The project's ID.
+  /// * [organizationId] - Organization ID  The Organization's ID.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -244,10 +354,10 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> deleteProjectApiKey({ 
-    required String project,
-    required String tokenId,
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> deleteOrganization({ 
+    required String projectId,
+    required String organizationId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -255,7 +365,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project}/tokens/{token_id}'.replaceAll('{' r'project' '}', project.toString()).replaceAll('{' r'token_id' '}', tokenId.toString());
+    final _path = r'/projects/{project_id}/organizations/{organization_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString()).replaceAll('{' r'organization_id' '}', encodeQueryParameter(_serializers, organizationId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -266,7 +376,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -285,10 +395,12 @@ class ProjectApi {
     return _response;
   }
 
-  /// Returns the Ory Network Project selected in the Ory Network Console
-  /// Use this API to get your active project in the Ory Network Console UI.
+  /// Delete project API token
+  /// Deletes an API token and immediately removes it.
   ///
   /// Parameters:
+  /// * [project] - The Project ID or Project slug
+  /// * [tokenId] - The Token ID
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -296,9 +408,11 @@ class ProjectApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ActiveProjectInConsole] as data
-  /// Throws [DioError] if API call or serialization fails
-  Future<Response<ActiveProjectInConsole>> getActiveProjectInConsole({ 
+  /// Returns a [Future]
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> deleteProjectApiKey({ 
+    required String project,
+    required String tokenId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -306,9 +420,9 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/console/active/project';
+    final _path = r'/projects/{project}/tokens/{token_id}'.replaceAll('{' r'project' '}', encodeQueryParameter(_serializers, project, const FullType(String)).toString()).replaceAll('{' r'token_id' '}', encodeQueryParameter(_serializers, tokenId, const FullType(String)).toString());
     final _options = Options(
-      method: r'GET',
+      method: r'DELETE',
       headers: <String, dynamic>{
         ...?headers,
       },
@@ -317,7 +431,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -333,25 +447,81 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ActiveProjectInConsole _responseData;
+    return _response;
+  }
+
+  /// Returns a B2B SSO Organization for a project by its ID
+  /// 
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID  The project's ID.
+  /// * [organizationId] - Organization ID  The Organization's ID.
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [GetOrganizationResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<GetOrganizationResponse>> getOrganization({ 
+    required String projectId,
+    required String organizationId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/organizations/{organization_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString()).replaceAll('{' r'organization_id' '}', encodeQueryParameter(_serializers, organizationId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    GetOrganizationResponse? _responseData;
 
     try {
-      const _responseType = FullType(ActiveProjectInConsole);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
-      ) as ActiveProjectInConsole;
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetOrganizationResponse),
+      ) as GetOrganizationResponse;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
-    return Response<ActiveProjectInConsole>(
+    return Response<GetOrganizationResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -376,7 +546,7 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [Project] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<Project>> getProject({ 
     required String projectId,
     CancelToken? cancelToken,
@@ -386,7 +556,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', projectId.toString());
+    final _path = r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -397,7 +567,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -413,22 +583,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Project _responseData;
+    Project? _responseData;
 
     try {
-      const _responseType = FullType(Project);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Project),
       ) as Project;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Project>(
@@ -447,7 +618,7 @@ class ProjectApi {
   /// This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60; or &#x60;DEVELOPER&#x60;.
   ///
   /// Parameters:
-  /// * [projectId] - Project ID  The project's ID.
+  /// * [project] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -455,10 +626,10 @@ class ProjectApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<CloudAccount>] as data
-  /// Throws [DioError] if API call or serialization fails
-  Future<Response<BuiltList<CloudAccount>>> getProjectMembers({ 
-    required String projectId,
+  /// Returns a [Future] containing a [Response] with a [BuiltList<ProjectMember>] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BuiltList<ProjectMember>>> getProjectMembers({ 
+    required String project,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -466,7 +637,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}/members'.replaceAll('{' r'project_id' '}', projectId.toString());
+    final _path = r'/projects/{project}/members'.replaceAll('{' r'project' '}', encodeQueryParameter(_serializers, project, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -477,7 +648,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -493,25 +664,120 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<CloudAccount> _responseData;
+    BuiltList<ProjectMember>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(CloudAccount)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
-      ) as BuiltList<CloudAccount>;
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ProjectMember)]),
+      ) as BuiltList<ProjectMember>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
-    return Response<BuiltList<CloudAccount>>(
+    return Response<BuiltList<ProjectMember>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// listOrganizations
+  /// List all B2B SSO Organizations for a project
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID  The project's ID.
+  /// * [pageSize] - Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [domain] - Domain  If set, only organizations with that domain will be returned.
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ListOrganizationsResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<ListOrganizationsResponse>> listOrganizations({ 
+    required String projectId,
+    int? pageSize = 250,
+    String? pageToken,
+    String? domain,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/organizations'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
+      if (domain != null) r'domain': encodeQueryParameter(_serializers, domain, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ListOrganizationsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ListOrganizationsResponse),
+      ) as ListOrganizationsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ListOrganizationsResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -536,7 +802,7 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<ProjectApiKey>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<ProjectApiKey>>> listProjectApiKeys({ 
     required String project,
     CancelToken? cancelToken,
@@ -546,7 +812,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project}/tokens'.replaceAll('{' r'project' '}', project.toString());
+    final _path = r'/projects/{project}/tokens'.replaceAll('{' r'project' '}', encodeQueryParameter(_serializers, project, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -557,7 +823,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -573,22 +839,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<ProjectApiKey> _responseData;
+    BuiltList<ProjectApiKey>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(ProjectApiKey)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ProjectApiKey)]),
       ) as BuiltList<ProjectApiKey>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<ProjectApiKey>>(
@@ -615,7 +882,7 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<ProjectMetadata>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<ProjectMetadata>>> listProjects({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -635,7 +902,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -651,22 +918,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<ProjectMetadata> _responseData;
+    BuiltList<ProjectMetadata>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(ProjectMetadata)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ProjectMetadata)]),
       ) as BuiltList<ProjectMetadata>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<ProjectMetadata>>(
@@ -695,7 +963,7 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [SuccessfulProjectUpdate] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<SuccessfulProjectUpdate>> patchProject({ 
     required String projectId,
     BuiltList<JsonPatch>? jsonPatch,
@@ -706,7 +974,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', projectId.toString());
+    final _path = r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString());
     final _options = Options(
       method: r'PATCH',
       headers: <String, dynamic>{
@@ -717,7 +985,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -733,14 +1001,15 @@ class ProjectApi {
       _bodyData = jsonPatch == null ? null : _serializers.serialize(jsonPatch, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -752,22 +1021,23 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SuccessfulProjectUpdate _responseData;
+    SuccessfulProjectUpdate? _responseData;
 
     try {
-      const _responseType = FullType(SuccessfulProjectUpdate);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulProjectUpdate),
       ) as SuccessfulProjectUpdate;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SuccessfulProjectUpdate>(
@@ -795,7 +1065,7 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> purgeProject({ 
     required String projectId,
     CancelToken? cancelToken,
@@ -805,7 +1075,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', projectId.toString());
+    final _path = r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -816,7 +1086,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -839,8 +1109,8 @@ class ProjectApi {
   /// This also sets their invite status to &#x60;REMOVED&#x60;. This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60;.
   ///
   /// Parameters:
-  /// * [projectId] - Project ID  The project's ID.
-  /// * [memberId] - Member ID
+  /// * [project] 
+  /// * [member] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -849,10 +1119,10 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> removeProjectMember({ 
-    required String projectId,
-    required String memberId,
+    required String project,
+    required String member,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -860,7 +1130,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}/members/{member_id}'.replaceAll('{' r'project_id' '}', projectId.toString()).replaceAll('{' r'member_id' '}', memberId.toString());
+    final _path = r'/projects/{project}/members/{member}'.replaceAll('{' r'project' '}', encodeQueryParameter(_serializers, project, const FullType(String)).toString()).replaceAll('{' r'member' '}', encodeQueryParameter(_serializers, member, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -871,7 +1141,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -881,78 +1151,6 @@ class ProjectApi {
 
     final _response = await _dio.request<Object>(
       _path,
-      options: _options,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    return _response;
-  }
-
-  /// Sets the Ory Network Project active in the Ory Network Console
-  /// Use this API to set your active project in the Ory Network Console UI.
-  ///
-  /// Parameters:
-  /// * [setActiveProjectInConsoleBody] 
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> setActiveProjectInConsole({ 
-    SetActiveProjectInConsoleBody? setActiveProjectInConsoleBody,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/console/active/project';
-    final _options = Options(
-      method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'oryAccessToken',
-          },
-        ],
-        ...?extra,
-      },
-      contentType: 'application/json',
-      validateStatus: validateStatus,
-    );
-
-    dynamic _bodyData;
-
-    try {
-      const _type = FullType(SetActiveProjectInConsoleBody);
-      _bodyData = setActiveProjectInConsoleBody == null ? null : _serializers.serialize(setActiveProjectInConsoleBody, specifiedType: _type);
-
-    } catch(error, stackTrace) {
-      throw DioError(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
-        type: DioErrorType.other,
-        error: error,
-      )..stackTrace = stackTrace;
-    }
-
-    final _response = await _dio.request<Object>(
-      _path,
-      data: _bodyData,
       options: _options,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
@@ -976,7 +1174,7 @@ class ProjectApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [SuccessfulProjectUpdate] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<SuccessfulProjectUpdate>> setProject({ 
     required String projectId,
     SetProject? setProject,
@@ -987,7 +1185,7 @@ class ProjectApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', projectId.toString());
+    final _path = r'/projects/{project_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -998,7 +1196,7 @@ class ProjectApi {
           {
             'type': 'http',
             'scheme': 'bearer',
-            'name': 'oryAccessToken',
+            'name': 'oryWorkspaceApiKey',
           },
         ],
         ...?extra,
@@ -1014,14 +1212,15 @@ class ProjectApi {
       _bodyData = setProject == null ? null : _serializers.serialize(setProject, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1033,25 +1232,131 @@ class ProjectApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    SuccessfulProjectUpdate _responseData;
+    SuccessfulProjectUpdate? _responseData;
 
     try {
-      const _responseType = FullType(SuccessfulProjectUpdate);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SuccessfulProjectUpdate),
       ) as SuccessfulProjectUpdate;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<SuccessfulProjectUpdate>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// updateOrganization
+  /// Update a B2B SSO Organization for a project
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID  The project's ID.
+  /// * [organizationId] - Organization ID  The Organization's ID.
+  /// * [organizationBody] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [Organization] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<Organization>> updateOrganization({ 
+    required String projectId,
+    required String organizationId,
+    OrganizationBody? organizationBody,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/organizations/{organization_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString()).replaceAll('{' r'organization_id' '}', encodeQueryParameter(_serializers, organizationId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'PUT',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(OrganizationBody);
+      _bodyData = organizationBody == null ? null : _serializers.serialize(organizationBody, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    Organization? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Organization),
+      ) as Organization;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<Organization>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

@@ -12,8 +12,9 @@ Name | Type | Description | Notes
 **Devices** | [**List&lt;KratosSessionDevice&gt;**](KratosSessionDevice.md) | Devices has history of all endpoints where the session was used | [optional] 
 **ExpiresAt** | **DateTime** | The Session Expiry  When this session expires at. | [optional] 
 **Id** | **string** | Session ID | 
-**Identity** | [**KratosIdentity**](KratosIdentity.md) |  | 
+**Identity** | [**KratosIdentity**](KratosIdentity.md) |  | [optional] 
 **IssuedAt** | **DateTime** | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to &#x60;authenticated_at&#x60;. | [optional] 
+**Tokenized** | **string** | Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the &#x60;tokenize&#x60; query parameter was set to a valid tokenize template during calls to &#x60;/session/whoami&#x60;. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

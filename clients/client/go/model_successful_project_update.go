@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,14 +13,21 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the SuccessfulProjectUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SuccessfulProjectUpdate{}
 
 // SuccessfulProjectUpdate struct for SuccessfulProjectUpdate
 type SuccessfulProjectUpdate struct {
 	Project Project `json:"project"`
 	// Import Warnings  Not all configuration items can be imported to the Ory Network. For example, setting the port does not make sense because the Ory Network provides the runtime and networking.  This field contains warnings where configuration keys were found but can not be imported. These keys will be ignored by the Ory Network. This field will help you understand why certain configuration keys might not be respected!
 	Warnings []Warning `json:"warnings"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SuccessfulProjectUpdate SuccessfulProjectUpdate
 
 // NewSuccessfulProjectUpdate instantiates a new SuccessfulProjectUpdate object
 // This constructor will assign default values to properties that have it defined,
@@ -90,14 +97,67 @@ func (o *SuccessfulProjectUpdate) SetWarnings(v []Warning) {
 }
 
 func (o SuccessfulProjectUpdate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["project"] = o.Project
-	}
-	if true {
-		toSerialize["warnings"] = o.Warnings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SuccessfulProjectUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["project"] = o.Project
+	toSerialize["warnings"] = o.Warnings
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *SuccessfulProjectUpdate) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"project",
+		"warnings",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSuccessfulProjectUpdate := _SuccessfulProjectUpdate{}
+
+	err = json.Unmarshal(data, &varSuccessfulProjectUpdate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SuccessfulProjectUpdate(varSuccessfulProjectUpdate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "warnings")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSuccessfulProjectUpdate struct {

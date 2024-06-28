@@ -6,6 +6,69 @@ part of 'update_verification_flow_with_code_method.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UpdateVerificationFlowWithCodeMethodMethodEnum
+    _$updateVerificationFlowWithCodeMethodMethodEnum_link =
+    const UpdateVerificationFlowWithCodeMethodMethodEnum._('link');
+const UpdateVerificationFlowWithCodeMethodMethodEnum
+    _$updateVerificationFlowWithCodeMethodMethodEnum_code =
+    const UpdateVerificationFlowWithCodeMethodMethodEnum._('code');
+
+UpdateVerificationFlowWithCodeMethodMethodEnum
+    _$updateVerificationFlowWithCodeMethodMethodEnumValueOf(String name) {
+  switch (name) {
+    case 'link':
+      return _$updateVerificationFlowWithCodeMethodMethodEnum_link;
+    case 'code':
+      return _$updateVerificationFlowWithCodeMethodMethodEnum_code;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateVerificationFlowWithCodeMethodMethodEnum>
+    _$updateVerificationFlowWithCodeMethodMethodEnumValues = new BuiltSet<
+        UpdateVerificationFlowWithCodeMethodMethodEnum>(const <UpdateVerificationFlowWithCodeMethodMethodEnum>[
+  _$updateVerificationFlowWithCodeMethodMethodEnum_link,
+  _$updateVerificationFlowWithCodeMethodMethodEnum_code,
+]);
+
+Serializer<UpdateVerificationFlowWithCodeMethodMethodEnum>
+    _$updateVerificationFlowWithCodeMethodMethodEnumSerializer =
+    new _$UpdateVerificationFlowWithCodeMethodMethodEnumSerializer();
+
+class _$UpdateVerificationFlowWithCodeMethodMethodEnumSerializer
+    implements
+        PrimitiveSerializer<UpdateVerificationFlowWithCodeMethodMethodEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'link': 'link',
+    'code': 'code',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'link': 'link',
+    'code': 'code',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UpdateVerificationFlowWithCodeMethodMethodEnum
+  ];
+  @override
+  final String wireName = 'UpdateVerificationFlowWithCodeMethodMethodEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          UpdateVerificationFlowWithCodeMethodMethodEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateVerificationFlowWithCodeMethodMethodEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateVerificationFlowWithCodeMethodMethodEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateVerificationFlowWithCodeMethod
     extends UpdateVerificationFlowWithCodeMethod {
   @override
@@ -15,9 +78,9 @@ class _$UpdateVerificationFlowWithCodeMethod
   @override
   final String? email;
   @override
-  final String? flow;
+  final UpdateVerificationFlowWithCodeMethodMethodEnum method;
   @override
-  final String? method;
+  final JsonObject? transientPayload;
 
   factory _$UpdateVerificationFlowWithCodeMethod(
           [void Function(UpdateVerificationFlowWithCodeMethodBuilder)?
@@ -26,8 +89,15 @@ class _$UpdateVerificationFlowWithCodeMethod
           ._build();
 
   _$UpdateVerificationFlowWithCodeMethod._(
-      {this.code, this.csrfToken, this.email, this.flow, this.method})
-      : super._();
+      {this.code,
+      this.csrfToken,
+      this.email,
+      required this.method,
+      this.transientPayload})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        method, r'UpdateVerificationFlowWithCodeMethod', 'method');
+  }
 
   @override
   UpdateVerificationFlowWithCodeMethod rebuild(
@@ -45,8 +115,8 @@ class _$UpdateVerificationFlowWithCodeMethod
         code == other.code &&
         csrfToken == other.csrfToken &&
         email == other.email &&
-        flow == other.flow &&
-        method == other.method;
+        method == other.method &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -55,8 +125,8 @@ class _$UpdateVerificationFlowWithCodeMethod
     _$hash = $jc(_$hash, code.hashCode);
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
-    _$hash = $jc(_$hash, flow.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -67,8 +137,8 @@ class _$UpdateVerificationFlowWithCodeMethod
           ..add('code', code)
           ..add('csrfToken', csrfToken)
           ..add('email', email)
-          ..add('flow', flow)
-          ..add('method', method))
+          ..add('method', method)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -91,13 +161,15 @@ class UpdateVerificationFlowWithCodeMethodBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
-  String? _flow;
-  String? get flow => _$this._flow;
-  set flow(String? flow) => _$this._flow = flow;
+  UpdateVerificationFlowWithCodeMethodMethodEnum? _method;
+  UpdateVerificationFlowWithCodeMethodMethodEnum? get method => _$this._method;
+  set method(UpdateVerificationFlowWithCodeMethodMethodEnum? method) =>
+      _$this._method = method;
 
-  String? _method;
-  String? get method => _$this._method;
-  set method(String? method) => _$this._method = method;
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
 
   UpdateVerificationFlowWithCodeMethodBuilder() {
     UpdateVerificationFlowWithCodeMethod._defaults(this);
@@ -109,8 +181,8 @@ class UpdateVerificationFlowWithCodeMethodBuilder
       _code = $v.code;
       _csrfToken = $v.csrfToken;
       _email = $v.email;
-      _flow = $v.flow;
       _method = $v.method;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -137,8 +209,9 @@ class UpdateVerificationFlowWithCodeMethodBuilder
             code: code,
             csrfToken: csrfToken,
             email: email,
-            flow: flow,
-            method: method);
+            method: BuiltValueNullFieldError.checkNotNull(
+                method, r'UpdateVerificationFlowWithCodeMethod', 'method'),
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

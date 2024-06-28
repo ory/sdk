@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/model/credential_supported_draft00.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -18,6 +19,8 @@ part 'oidc_configuration.g.dart';
 /// * [claimsParameterSupported] - OpenID Connect Claims Parameter Parameter Supported  Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support.
 /// * [claimsSupported] - OpenID Connect Supported Claims  JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list.
 /// * [codeChallengeMethodsSupported] - OAuth 2.0 PKCE Supported Code Challenge Methods  JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
+/// * [credentialsEndpointDraft00] - OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint.
+/// * [credentialsSupportedDraft00] - OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server.
 /// * [endSessionEndpoint] - OpenID Connect End-Session Endpoint  URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
 /// * [frontchannelLogoutSessionSupported] - OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also included in ID Tokens issued by the OP.
 /// * [frontchannelLogoutSupported] - OpenID Connect Front-Channel Logout Supported  Boolean value specifying whether the OP supports HTTP-based logout, with true indicating support.
@@ -66,6 +69,14 @@ abstract class OidcConfiguration implements Built<OidcConfiguration, OidcConfigu
   /// OAuth 2.0 PKCE Supported Code Challenge Methods  JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
   @BuiltValueField(wireName: r'code_challenge_methods_supported')
   BuiltList<String>? get codeChallengeMethodsSupported;
+
+  /// OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint.
+  @BuiltValueField(wireName: r'credentials_endpoint_draft_00')
+  String? get credentialsEndpointDraft00;
+
+  /// OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server.
+  @BuiltValueField(wireName: r'credentials_supported_draft_00')
+  BuiltList<CredentialSupportedDraft00>? get credentialsSupportedDraft00;
 
   /// OpenID Connect End-Session Endpoint  URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
   @BuiltValueField(wireName: r'end_session_endpoint')
@@ -220,6 +231,20 @@ class _$OidcConfigurationSerializer implements PrimitiveSerializer<OidcConfigura
       yield serializers.serialize(
         object.codeChallengeMethodsSupported,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.credentialsEndpointDraft00 != null) {
+      yield r'credentials_endpoint_draft_00';
+      yield serializers.serialize(
+        object.credentialsEndpointDraft00,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.credentialsSupportedDraft00 != null) {
+      yield r'credentials_supported_draft_00';
+      yield serializers.serialize(
+        object.credentialsSupportedDraft00,
+        specifiedType: const FullType(BuiltList, [FullType(CredentialSupportedDraft00)]),
       );
     }
     if (object.endSessionEndpoint != null) {
@@ -431,6 +456,20 @@ class _$OidcConfigurationSerializer implements PrimitiveSerializer<OidcConfigura
             specifiedType: const FullType(BuiltList, [FullType(String)]),
           ) as BuiltList<String>;
           result.codeChallengeMethodsSupported.replace(valueDes);
+          break;
+        case r'credentials_endpoint_draft_00':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.credentialsEndpointDraft00 = valueDes;
+          break;
+        case r'credentials_supported_draft_00':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(CredentialSupportedDraft00)]),
+          ) as BuiltList<CredentialSupportedDraft00>;
+          result.credentialsSupportedDraft00.replace(valueDes);
           break;
         case r'end_session_endpoint':
           final valueDes = serializers.deserialize(

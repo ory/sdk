@@ -1,10 +1,11 @@
 # OidcApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createOidcDynamicClient**](OidcApi.md#createOidcDynamicClient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration |
+| [**createVerifiableCredential**](OidcApi.md#createVerifiableCredential) | **POST** /credentials | Issues a Verifiable Credential |
 | [**deleteOidcDynamicClient**](OidcApi.md#deleteOidcDynamicClient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol |
 | [**discoverOidcConfiguration**](OidcApi.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery |
 | [**getOidcDynamicClient**](OidcApi.md#getOidcDynamicClient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration |
@@ -13,7 +14,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**setOidcDynamicClient**](OidcApi.md#setOidcDynamicClient) | **PUT** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration |
 
 
-<a name="createOidcDynamicClient"></a>
+<a id="createOidcDynamicClient"></a>
 # **createOidcDynamicClient**
 > OAuth2Client createOidcDynamicClient(oauth2Client)
 
@@ -33,7 +34,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     OidcApi apiInstance = new OidcApi(defaultClient);
     OAuth2Client oauth2Client = new OAuth2Client(); // OAuth2Client | Dynamic Client Registration Request Body
@@ -77,7 +78,71 @@ No authorization required
 | **400** | Bad Request Error Response |  -  |
 | **0** | Default Error Response |  -  |
 
-<a name="deleteOidcDynamicClient"></a>
+<a id="createVerifiableCredential"></a>
+# **createVerifiableCredential**
+> VerifiableCredentialResponse createVerifiableCredential(createVerifiableCredentialRequestBody)
+
+Issues a Verifiable Credential
+
+This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.OidcApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://.projects.oryapis.com");
+
+    OidcApi apiInstance = new OidcApi(defaultClient);
+    CreateVerifiableCredentialRequestBody createVerifiableCredentialRequestBody = new CreateVerifiableCredentialRequestBody(); // CreateVerifiableCredentialRequestBody | 
+    try {
+      VerifiableCredentialResponse result = apiInstance.createVerifiableCredential(createVerifiableCredentialRequestBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OidcApi#createVerifiableCredential");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createVerifiableCredentialRequestBody** | [**CreateVerifiableCredentialRequestBody**](CreateVerifiableCredentialRequestBody.md)|  | [optional] |
+
+### Return type
+
+[**VerifiableCredentialResponse**](VerifiableCredentialResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | verifiableCredentialResponse |  -  |
+| **400** | verifiableCredentialPrimingResponse |  -  |
+| **0** | errorOAuth2 |  -  |
+
+<a id="deleteOidcDynamicClient"></a>
 # **deleteOidcDynamicClient**
 > deleteOidcDynamicClient(id)
 
@@ -98,7 +163,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: bearer
     HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
@@ -144,7 +209,7 @@ null (empty response body)
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | genericError |  -  |
 
-<a name="discoverOidcConfiguration"></a>
+<a id="discoverOidcConfiguration"></a>
 # **discoverOidcConfiguration**
 > OidcConfiguration discoverOidcConfiguration()
 
@@ -164,7 +229,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     OidcApi apiInstance = new OidcApi(defaultClient);
     try {
@@ -203,7 +268,7 @@ No authorization required
 | **200** | oidcConfiguration |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="getOidcDynamicClient"></a>
+<a id="getOidcDynamicClient"></a>
 # **getOidcDynamicClient**
 > OAuth2Client getOidcDynamicClient(id)
 
@@ -224,7 +289,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: bearer
     HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
@@ -271,7 +336,7 @@ public class Example {
 | **200** | oAuth2Client |  -  |
 | **0** | Default Error Response |  -  |
 
-<a name="getOidcUserInfo"></a>
+<a id="getOidcUserInfo"></a>
 # **getOidcUserInfo**
 > OidcUserInfo getOidcUserInfo()
 
@@ -292,7 +357,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -335,7 +400,7 @@ This endpoint does not need any parameter.
 | **200** | oidcUserInfo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="revokeOidcSession"></a>
+<a id="revokeOidcSession"></a>
 # **revokeOidcSession**
 > revokeOidcSession()
 
@@ -355,7 +420,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
 
     OidcApi apiInstance = new OidcApi(defaultClient);
     try {
@@ -392,7 +457,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 
-<a name="setOidcDynamicClient"></a>
+<a id="setOidcDynamicClient"></a>
 # **setOidcDynamicClient**
 > OAuth2Client setOidcDynamicClient(id, oauth2Client)
 
@@ -413,7 +478,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: bearer
     HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");

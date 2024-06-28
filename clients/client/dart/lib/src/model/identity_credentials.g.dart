@@ -6,6 +6,118 @@ part of 'identity_credentials.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_password =
+    const IdentityCredentialsTypeEnum._('password');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_oidc =
+    const IdentityCredentialsTypeEnum._('oidc');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_totp =
+    const IdentityCredentialsTypeEnum._('totp');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_lookupSecret =
+    const IdentityCredentialsTypeEnum._('lookupSecret');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_webauthn =
+    const IdentityCredentialsTypeEnum._('webauthn');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_code =
+    const IdentityCredentialsTypeEnum._('code');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_passkey =
+    const IdentityCredentialsTypeEnum._('passkey');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_profile =
+    const IdentityCredentialsTypeEnum._('profile');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_linkRecovery =
+    const IdentityCredentialsTypeEnum._('linkRecovery');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_codeRecovery =
+    const IdentityCredentialsTypeEnum._('codeRecovery');
+
+IdentityCredentialsTypeEnum _$identityCredentialsTypeEnumValueOf(String name) {
+  switch (name) {
+    case 'password':
+      return _$identityCredentialsTypeEnum_password;
+    case 'oidc':
+      return _$identityCredentialsTypeEnum_oidc;
+    case 'totp':
+      return _$identityCredentialsTypeEnum_totp;
+    case 'lookupSecret':
+      return _$identityCredentialsTypeEnum_lookupSecret;
+    case 'webauthn':
+      return _$identityCredentialsTypeEnum_webauthn;
+    case 'code':
+      return _$identityCredentialsTypeEnum_code;
+    case 'passkey':
+      return _$identityCredentialsTypeEnum_passkey;
+    case 'profile':
+      return _$identityCredentialsTypeEnum_profile;
+    case 'linkRecovery':
+      return _$identityCredentialsTypeEnum_linkRecovery;
+    case 'codeRecovery':
+      return _$identityCredentialsTypeEnum_codeRecovery;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<IdentityCredentialsTypeEnum>
+    _$identityCredentialsTypeEnumValues = new BuiltSet<
+        IdentityCredentialsTypeEnum>(const <IdentityCredentialsTypeEnum>[
+  _$identityCredentialsTypeEnum_password,
+  _$identityCredentialsTypeEnum_oidc,
+  _$identityCredentialsTypeEnum_totp,
+  _$identityCredentialsTypeEnum_lookupSecret,
+  _$identityCredentialsTypeEnum_webauthn,
+  _$identityCredentialsTypeEnum_code,
+  _$identityCredentialsTypeEnum_passkey,
+  _$identityCredentialsTypeEnum_profile,
+  _$identityCredentialsTypeEnum_linkRecovery,
+  _$identityCredentialsTypeEnum_codeRecovery,
+]);
+
+Serializer<IdentityCredentialsTypeEnum>
+    _$identityCredentialsTypeEnumSerializer =
+    new _$IdentityCredentialsTypeEnumSerializer();
+
+class _$IdentityCredentialsTypeEnumSerializer
+    implements PrimitiveSerializer<IdentityCredentialsTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookupSecret': 'lookup_secret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
+    'linkRecovery': 'link_recovery',
+    'codeRecovery': 'code_recovery',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookup_secret': 'lookupSecret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
+    'link_recovery': 'linkRecovery',
+    'code_recovery': 'codeRecovery',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[IdentityCredentialsTypeEnum];
+  @override
+  final String wireName = 'IdentityCredentialsTypeEnum';
+
+  @override
+  Object serialize(Serializers serializers, IdentityCredentialsTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  IdentityCredentialsTypeEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      IdentityCredentialsTypeEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$IdentityCredentials extends IdentityCredentials {
   @override
   final JsonObject? config;
@@ -14,7 +126,7 @@ class _$IdentityCredentials extends IdentityCredentials {
   @override
   final BuiltList<String>? identifiers;
   @override
-  final IdentityCredentialsType? type;
+  final IdentityCredentialsTypeEnum? type;
   @override
   final DateTime? updatedAt;
   @override
@@ -98,9 +210,9 @@ class IdentityCredentialsBuilder
   set identifiers(ListBuilder<String>? identifiers) =>
       _$this._identifiers = identifiers;
 
-  IdentityCredentialsType? _type;
-  IdentityCredentialsType? get type => _$this._type;
-  set type(IdentityCredentialsType? type) => _$this._type = type;
+  IdentityCredentialsTypeEnum? _type;
+  IdentityCredentialsTypeEnum? get type => _$this._type;
+  set type(IdentityCredentialsTypeEnum? type) => _$this._type = type;
 
   DateTime? _updatedAt;
   DateTime? get updatedAt => _$this._updatedAt;

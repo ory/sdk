@@ -20,7 +20,7 @@ void main() {
     });
 
     // To retrieve a refresh token request the id_token scope.
-    // int idToken
+    // String idToken
     test('to test the property `idToken`', () async {
       // TODO
     });

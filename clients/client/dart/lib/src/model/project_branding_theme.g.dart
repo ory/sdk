@@ -18,6 +18,10 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
   @override
   final String? accentSubtleColor;
   @override
+  final BuiltList<AccountExperienceThemeVariables>? accountExperienceVariables;
+  @override
+  final String? accountExperienceVariablesStylesheet;
+  @override
   final String? backgroundCanvasColor;
   @override
   final String? backgroundSubtleColor;
@@ -35,6 +39,10 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
   final String? errorMutedColor;
   @override
   final String? errorSubtleColor;
+  @override
+  final String? faviconType;
+  @override
+  final String? faviconUrl;
   @override
   final String? foregroundDefaultColor;
   @override
@@ -90,6 +98,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
       this.accentEmphasisColor,
       this.accentMutedColor,
       this.accentSubtleColor,
+      this.accountExperienceVariables,
+      this.accountExperienceVariablesStylesheet,
       this.backgroundCanvasColor,
       this.backgroundSubtleColor,
       this.backgroundSurfaceColor,
@@ -99,6 +109,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
       this.errorEmphasisColor,
       this.errorMutedColor,
       this.errorSubtleColor,
+      this.faviconType,
+      this.faviconUrl,
       this.foregroundDefaultColor,
       this.foregroundDisabledColor,
       this.foregroundMutedColor,
@@ -151,6 +163,9 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
         accentEmphasisColor == other.accentEmphasisColor &&
         accentMutedColor == other.accentMutedColor &&
         accentSubtleColor == other.accentSubtleColor &&
+        accountExperienceVariables == other.accountExperienceVariables &&
+        accountExperienceVariablesStylesheet ==
+            other.accountExperienceVariablesStylesheet &&
         backgroundCanvasColor == other.backgroundCanvasColor &&
         backgroundSubtleColor == other.backgroundSubtleColor &&
         backgroundSurfaceColor == other.backgroundSurfaceColor &&
@@ -160,6 +175,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
         errorEmphasisColor == other.errorEmphasisColor &&
         errorMutedColor == other.errorMutedColor &&
         errorSubtleColor == other.errorSubtleColor &&
+        faviconType == other.faviconType &&
+        faviconUrl == other.faviconUrl &&
         foregroundDefaultColor == other.foregroundDefaultColor &&
         foregroundDisabledColor == other.foregroundDisabledColor &&
         foregroundMutedColor == other.foregroundMutedColor &&
@@ -192,6 +209,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
     _$hash = $jc(_$hash, accentEmphasisColor.hashCode);
     _$hash = $jc(_$hash, accentMutedColor.hashCode);
     _$hash = $jc(_$hash, accentSubtleColor.hashCode);
+    _$hash = $jc(_$hash, accountExperienceVariables.hashCode);
+    _$hash = $jc(_$hash, accountExperienceVariablesStylesheet.hashCode);
     _$hash = $jc(_$hash, backgroundCanvasColor.hashCode);
     _$hash = $jc(_$hash, backgroundSubtleColor.hashCode);
     _$hash = $jc(_$hash, backgroundSurfaceColor.hashCode);
@@ -201,6 +220,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
     _$hash = $jc(_$hash, errorEmphasisColor.hashCode);
     _$hash = $jc(_$hash, errorMutedColor.hashCode);
     _$hash = $jc(_$hash, errorSubtleColor.hashCode);
+    _$hash = $jc(_$hash, faviconType.hashCode);
+    _$hash = $jc(_$hash, faviconUrl.hashCode);
     _$hash = $jc(_$hash, foregroundDefaultColor.hashCode);
     _$hash = $jc(_$hash, foregroundDisabledColor.hashCode);
     _$hash = $jc(_$hash, foregroundMutedColor.hashCode);
@@ -235,6 +256,9 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
           ..add('accentEmphasisColor', accentEmphasisColor)
           ..add('accentMutedColor', accentMutedColor)
           ..add('accentSubtleColor', accentSubtleColor)
+          ..add('accountExperienceVariables', accountExperienceVariables)
+          ..add('accountExperienceVariablesStylesheet',
+              accountExperienceVariablesStylesheet)
           ..add('backgroundCanvasColor', backgroundCanvasColor)
           ..add('backgroundSubtleColor', backgroundSubtleColor)
           ..add('backgroundSurfaceColor', backgroundSurfaceColor)
@@ -244,6 +268,8 @@ class _$ProjectBrandingTheme extends ProjectBrandingTheme {
           ..add('errorEmphasisColor', errorEmphasisColor)
           ..add('errorMutedColor', errorMutedColor)
           ..add('errorSubtleColor', errorSubtleColor)
+          ..add('faviconType', faviconType)
+          ..add('faviconUrl', faviconUrl)
           ..add('foregroundDefaultColor', foregroundDefaultColor)
           ..add('foregroundDisabledColor', foregroundDisabledColor)
           ..add('foregroundMutedColor', foregroundMutedColor)
@@ -299,6 +325,23 @@ class ProjectBrandingThemeBuilder
   set accentSubtleColor(String? accentSubtleColor) =>
       _$this._accentSubtleColor = accentSubtleColor;
 
+  ListBuilder<AccountExperienceThemeVariables>? _accountExperienceVariables;
+  ListBuilder<AccountExperienceThemeVariables> get accountExperienceVariables =>
+      _$this._accountExperienceVariables ??=
+          new ListBuilder<AccountExperienceThemeVariables>();
+  set accountExperienceVariables(
+          ListBuilder<AccountExperienceThemeVariables>?
+              accountExperienceVariables) =>
+      _$this._accountExperienceVariables = accountExperienceVariables;
+
+  String? _accountExperienceVariablesStylesheet;
+  String? get accountExperienceVariablesStylesheet =>
+      _$this._accountExperienceVariablesStylesheet;
+  set accountExperienceVariablesStylesheet(
+          String? accountExperienceVariablesStylesheet) =>
+      _$this._accountExperienceVariablesStylesheet =
+          accountExperienceVariablesStylesheet;
+
   String? _backgroundCanvasColor;
   String? get backgroundCanvasColor => _$this._backgroundCanvasColor;
   set backgroundCanvasColor(String? backgroundCanvasColor) =>
@@ -342,6 +385,14 @@ class ProjectBrandingThemeBuilder
   String? get errorSubtleColor => _$this._errorSubtleColor;
   set errorSubtleColor(String? errorSubtleColor) =>
       _$this._errorSubtleColor = errorSubtleColor;
+
+  String? _faviconType;
+  String? get faviconType => _$this._faviconType;
+  set faviconType(String? faviconType) => _$this._faviconType = faviconType;
+
+  String? _faviconUrl;
+  String? get faviconUrl => _$this._faviconUrl;
+  set faviconUrl(String? faviconUrl) => _$this._faviconUrl = faviconUrl;
 
   String? _foregroundDefaultColor;
   String? get foregroundDefaultColor => _$this._foregroundDefaultColor;
@@ -459,6 +510,9 @@ class ProjectBrandingThemeBuilder
       _accentEmphasisColor = $v.accentEmphasisColor;
       _accentMutedColor = $v.accentMutedColor;
       _accentSubtleColor = $v.accentSubtleColor;
+      _accountExperienceVariables = $v.accountExperienceVariables?.toBuilder();
+      _accountExperienceVariablesStylesheet =
+          $v.accountExperienceVariablesStylesheet;
       _backgroundCanvasColor = $v.backgroundCanvasColor;
       _backgroundSubtleColor = $v.backgroundSubtleColor;
       _backgroundSurfaceColor = $v.backgroundSurfaceColor;
@@ -468,6 +522,8 @@ class ProjectBrandingThemeBuilder
       _errorEmphasisColor = $v.errorEmphasisColor;
       _errorMutedColor = $v.errorMutedColor;
       _errorSubtleColor = $v.errorSubtleColor;
+      _faviconType = $v.faviconType;
+      _faviconUrl = $v.faviconUrl;
       _foregroundDefaultColor = $v.foregroundDefaultColor;
       _foregroundDisabledColor = $v.foregroundDisabledColor;
       _foregroundMutedColor = $v.foregroundMutedColor;
@@ -510,51 +566,69 @@ class ProjectBrandingThemeBuilder
   ProjectBrandingTheme build() => _build();
 
   _$ProjectBrandingTheme _build() {
-    final _$result = _$v ??
-        new _$ProjectBrandingTheme._(
-            accentDefaultColor: accentDefaultColor,
-            accentDisabledColor: accentDisabledColor,
-            accentEmphasisColor: accentEmphasisColor,
-            accentMutedColor: accentMutedColor,
-            accentSubtleColor: accentSubtleColor,
-            backgroundCanvasColor: backgroundCanvasColor,
-            backgroundSubtleColor: backgroundSubtleColor,
-            backgroundSurfaceColor: backgroundSurfaceColor,
-            borderDefaultColor: borderDefaultColor,
-            createdAt: BuiltValueNullFieldError.checkNotNull(
-                createdAt, r'ProjectBrandingTheme', 'createdAt'),
-            errorDefaultColor: errorDefaultColor,
-            errorEmphasisColor: errorEmphasisColor,
-            errorMutedColor: errorMutedColor,
-            errorSubtleColor: errorSubtleColor,
-            foregroundDefaultColor: foregroundDefaultColor,
-            foregroundDisabledColor: foregroundDisabledColor,
-            foregroundMutedColor: foregroundMutedColor,
-            foregroundOnAccentColor: foregroundOnAccentColor,
-            foregroundOnDarkColor: foregroundOnDarkColor,
-            foregroundOnDisabledColor: foregroundOnDisabledColor,
-            foregroundSubtleColor: foregroundSubtleColor,
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'ProjectBrandingTheme', 'id'),
-            inputBackgroundColor: inputBackgroundColor,
-            inputDisabledColor: inputDisabledColor,
-            inputPlaceholderColor: inputPlaceholderColor,
-            inputTextColor: inputTextColor,
-            logoType: logoType,
-            logoUrl: logoUrl,
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'ProjectBrandingTheme', 'name'),
-            primaryColor: primaryColor,
-            projectBrandingId: BuiltValueNullFieldError.checkNotNull(
-                projectBrandingId,
-                r'ProjectBrandingTheme',
-                'projectBrandingId'),
-            secondaryColor: secondaryColor,
-            successEmphasisColor: successEmphasisColor,
-            textDefaultColor: textDefaultColor,
-            textDisabledColor: textDisabledColor,
-            updatedAt: BuiltValueNullFieldError.checkNotNull(
-                updatedAt, r'ProjectBrandingTheme', 'updatedAt'));
+    _$ProjectBrandingTheme _$result;
+    try {
+      _$result = _$v ??
+          new _$ProjectBrandingTheme._(
+              accentDefaultColor: accentDefaultColor,
+              accentDisabledColor: accentDisabledColor,
+              accentEmphasisColor: accentEmphasisColor,
+              accentMutedColor: accentMutedColor,
+              accentSubtleColor: accentSubtleColor,
+              accountExperienceVariables: _accountExperienceVariables?.build(),
+              accountExperienceVariablesStylesheet:
+                  accountExperienceVariablesStylesheet,
+              backgroundCanvasColor: backgroundCanvasColor,
+              backgroundSubtleColor: backgroundSubtleColor,
+              backgroundSurfaceColor: backgroundSurfaceColor,
+              borderDefaultColor: borderDefaultColor,
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'ProjectBrandingTheme', 'createdAt'),
+              errorDefaultColor: errorDefaultColor,
+              errorEmphasisColor: errorEmphasisColor,
+              errorMutedColor: errorMutedColor,
+              errorSubtleColor: errorSubtleColor,
+              faviconType: faviconType,
+              faviconUrl: faviconUrl,
+              foregroundDefaultColor: foregroundDefaultColor,
+              foregroundDisabledColor: foregroundDisabledColor,
+              foregroundMutedColor: foregroundMutedColor,
+              foregroundOnAccentColor: foregroundOnAccentColor,
+              foregroundOnDarkColor: foregroundOnDarkColor,
+              foregroundOnDisabledColor: foregroundOnDisabledColor,
+              foregroundSubtleColor: foregroundSubtleColor,
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'ProjectBrandingTheme', 'id'),
+              inputBackgroundColor: inputBackgroundColor,
+              inputDisabledColor: inputDisabledColor,
+              inputPlaceholderColor: inputPlaceholderColor,
+              inputTextColor: inputTextColor,
+              logoType: logoType,
+              logoUrl: logoUrl,
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'ProjectBrandingTheme', 'name'),
+              primaryColor: primaryColor,
+              projectBrandingId: BuiltValueNullFieldError.checkNotNull(
+                  projectBrandingId,
+                  r'ProjectBrandingTheme',
+                  'projectBrandingId'),
+              secondaryColor: secondaryColor,
+              successEmphasisColor: successEmphasisColor,
+              textDefaultColor: textDefaultColor,
+              textDisabledColor: textDisabledColor,
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'ProjectBrandingTheme', 'updatedAt'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'accountExperienceVariables';
+        _accountExperienceVariables?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'ProjectBrandingTheme', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

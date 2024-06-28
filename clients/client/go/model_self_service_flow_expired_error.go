@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -16,39 +16,29 @@ import (
 	"time"
 )
 
+// checks if the SelfServiceFlowExpiredError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SelfServiceFlowExpiredError{}
+
 // SelfServiceFlowExpiredError Is sent when a flow is expired
 type SelfServiceFlowExpiredError struct {
-	// The status code
-	Code *int64 `json:"code,omitempty"`
-	// Debug information  This field is often not exposed to protect against leaking sensitive information.
-	Debug *string `json:"debug,omitempty"`
-	// Further error details
-	Details map[string]interface{} `json:"details,omitempty"`
+	Error *GenericError `json:"error,omitempty"`
 	// When the flow has expired
 	ExpiredAt *time.Time `json:"expired_at,omitempty"`
-	// The error ID  Useful when trying to identify various errors in application logic.
-	Id *string `json:"id,omitempty"`
-	// Error message  The error's message.
-	Message string `json:"message"`
-	// A human-readable reason for the error
-	Reason *string `json:"reason,omitempty"`
-	// The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID.
-	Request *string `json:"request,omitempty"`
 	// A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
 	Since *int64 `json:"since,omitempty"`
-	// The status description
-	Status *string `json:"status,omitempty"`
 	// The flow ID that should be used for the new flow as it contains the correct messages.
 	UseFlowId *string `json:"use_flow_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SelfServiceFlowExpiredError SelfServiceFlowExpiredError
 
 // NewSelfServiceFlowExpiredError instantiates a new SelfServiceFlowExpiredError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSelfServiceFlowExpiredError(message string) *SelfServiceFlowExpiredError {
+func NewSelfServiceFlowExpiredError() *SelfServiceFlowExpiredError {
 	this := SelfServiceFlowExpiredError{}
-	this.Message = message
 	return &this
 }
 
@@ -60,105 +50,41 @@ func NewSelfServiceFlowExpiredErrorWithDefaults() *SelfServiceFlowExpiredError {
 	return &this
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
-func (o *SelfServiceFlowExpiredError) GetCode() int64 {
-	if o == nil || o.Code == nil {
-		var ret int64
+// GetError returns the Error field value if set, zero value otherwise.
+func (o *SelfServiceFlowExpiredError) GetError() GenericError {
+	if o == nil || IsNil(o.Error) {
+		var ret GenericError
 		return ret
 	}
-	return *o.Code
+	return *o.Error
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelfServiceFlowExpiredError) GetCodeOk() (*int64, bool) {
-	if o == nil || o.Code == nil {
+func (o *SelfServiceFlowExpiredError) GetErrorOk() (*GenericError, bool) {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
-	return o.Code, true
+	return o.Error, true
 }
 
-// HasCode returns a boolean if a field has been set.
-func (o *SelfServiceFlowExpiredError) HasCode() bool {
-	if o != nil && o.Code != nil {
+// HasError returns a boolean if a field has been set.
+func (o *SelfServiceFlowExpiredError) HasError() bool {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
 	return false
 }
 
-// SetCode gets a reference to the given int64 and assigns it to the Code field.
-func (o *SelfServiceFlowExpiredError) SetCode(v int64) {
-	o.Code = &v
-}
-
-// GetDebug returns the Debug field value if set, zero value otherwise.
-func (o *SelfServiceFlowExpiredError) GetDebug() string {
-	if o == nil || o.Debug == nil {
-		var ret string
-		return ret
-	}
-	return *o.Debug
-}
-
-// GetDebugOk returns a tuple with the Debug field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceFlowExpiredError) GetDebugOk() (*string, bool) {
-	if o == nil || o.Debug == nil {
-		return nil, false
-	}
-	return o.Debug, true
-}
-
-// HasDebug returns a boolean if a field has been set.
-func (o *SelfServiceFlowExpiredError) HasDebug() bool {
-	if o != nil && o.Debug != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDebug gets a reference to the given string and assigns it to the Debug field.
-func (o *SelfServiceFlowExpiredError) SetDebug(v string) {
-	o.Debug = &v
-}
-
-// GetDetails returns the Details field value if set, zero value otherwise.
-func (o *SelfServiceFlowExpiredError) GetDetails() map[string]interface{} {
-	if o == nil || o.Details == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Details
-}
-
-// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceFlowExpiredError) GetDetailsOk() (map[string]interface{}, bool) {
-	if o == nil || o.Details == nil {
-		return nil, false
-	}
-	return o.Details, true
-}
-
-// HasDetails returns a boolean if a field has been set.
-func (o *SelfServiceFlowExpiredError) HasDetails() bool {
-	if o != nil && o.Details != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDetails gets a reference to the given map[string]interface{} and assigns it to the Details field.
-func (o *SelfServiceFlowExpiredError) SetDetails(v map[string]interface{}) {
-	o.Details = v
+// SetError gets a reference to the given GenericError and assigns it to the Error field.
+func (o *SelfServiceFlowExpiredError) SetError(v GenericError) {
+	o.Error = &v
 }
 
 // GetExpiredAt returns the ExpiredAt field value if set, zero value otherwise.
 func (o *SelfServiceFlowExpiredError) GetExpiredAt() time.Time {
-	if o == nil || o.ExpiredAt == nil {
+	if o == nil || IsNil(o.ExpiredAt) {
 		var ret time.Time
 		return ret
 	}
@@ -168,7 +94,7 @@ func (o *SelfServiceFlowExpiredError) GetExpiredAt() time.Time {
 // GetExpiredAtOk returns a tuple with the ExpiredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceFlowExpiredError) GetExpiredAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiredAt == nil {
+	if o == nil || IsNil(o.ExpiredAt) {
 		return nil, false
 	}
 	return o.ExpiredAt, true
@@ -176,7 +102,7 @@ func (o *SelfServiceFlowExpiredError) GetExpiredAtOk() (*time.Time, bool) {
 
 // HasExpiredAt returns a boolean if a field has been set.
 func (o *SelfServiceFlowExpiredError) HasExpiredAt() bool {
-	if o != nil && o.ExpiredAt != nil {
+	if o != nil && !IsNil(o.ExpiredAt) {
 		return true
 	}
 
@@ -188,129 +114,9 @@ func (o *SelfServiceFlowExpiredError) SetExpiredAt(v time.Time) {
 	o.ExpiredAt = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *SelfServiceFlowExpiredError) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceFlowExpiredError) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *SelfServiceFlowExpiredError) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *SelfServiceFlowExpiredError) SetId(v string) {
-	o.Id = &v
-}
-
-// GetMessage returns the Message field value
-func (o *SelfServiceFlowExpiredError) GetMessage() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Message
-}
-
-// GetMessageOk returns a tuple with the Message field value
-// and a boolean to check if the value has been set.
-func (o *SelfServiceFlowExpiredError) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Message, true
-}
-
-// SetMessage sets field value
-func (o *SelfServiceFlowExpiredError) SetMessage(v string) {
-	o.Message = v
-}
-
-// GetReason returns the Reason field value if set, zero value otherwise.
-func (o *SelfServiceFlowExpiredError) GetReason() string {
-	if o == nil || o.Reason == nil {
-		var ret string
-		return ret
-	}
-	return *o.Reason
-}
-
-// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceFlowExpiredError) GetReasonOk() (*string, bool) {
-	if o == nil || o.Reason == nil {
-		return nil, false
-	}
-	return o.Reason, true
-}
-
-// HasReason returns a boolean if a field has been set.
-func (o *SelfServiceFlowExpiredError) HasReason() bool {
-	if o != nil && o.Reason != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetReason gets a reference to the given string and assigns it to the Reason field.
-func (o *SelfServiceFlowExpiredError) SetReason(v string) {
-	o.Reason = &v
-}
-
-// GetRequest returns the Request field value if set, zero value otherwise.
-func (o *SelfServiceFlowExpiredError) GetRequest() string {
-	if o == nil || o.Request == nil {
-		var ret string
-		return ret
-	}
-	return *o.Request
-}
-
-// GetRequestOk returns a tuple with the Request field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceFlowExpiredError) GetRequestOk() (*string, bool) {
-	if o == nil || o.Request == nil {
-		return nil, false
-	}
-	return o.Request, true
-}
-
-// HasRequest returns a boolean if a field has been set.
-func (o *SelfServiceFlowExpiredError) HasRequest() bool {
-	if o != nil && o.Request != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRequest gets a reference to the given string and assigns it to the Request field.
-func (o *SelfServiceFlowExpiredError) SetRequest(v string) {
-	o.Request = &v
-}
-
 // GetSince returns the Since field value if set, zero value otherwise.
 func (o *SelfServiceFlowExpiredError) GetSince() int64 {
-	if o == nil || o.Since == nil {
+	if o == nil || IsNil(o.Since) {
 		var ret int64
 		return ret
 	}
@@ -320,7 +126,7 @@ func (o *SelfServiceFlowExpiredError) GetSince() int64 {
 // GetSinceOk returns a tuple with the Since field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceFlowExpiredError) GetSinceOk() (*int64, bool) {
-	if o == nil || o.Since == nil {
+	if o == nil || IsNil(o.Since) {
 		return nil, false
 	}
 	return o.Since, true
@@ -328,7 +134,7 @@ func (o *SelfServiceFlowExpiredError) GetSinceOk() (*int64, bool) {
 
 // HasSince returns a boolean if a field has been set.
 func (o *SelfServiceFlowExpiredError) HasSince() bool {
-	if o != nil && o.Since != nil {
+	if o != nil && !IsNil(o.Since) {
 		return true
 	}
 
@@ -340,41 +146,9 @@ func (o *SelfServiceFlowExpiredError) SetSince(v int64) {
 	o.Since = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *SelfServiceFlowExpiredError) GetStatus() string {
-	if o == nil || o.Status == nil {
-		var ret string
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelfServiceFlowExpiredError) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *SelfServiceFlowExpiredError) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *SelfServiceFlowExpiredError) SetStatus(v string) {
-	o.Status = &v
-}
-
 // GetUseFlowId returns the UseFlowId field value if set, zero value otherwise.
 func (o *SelfServiceFlowExpiredError) GetUseFlowId() string {
-	if o == nil || o.UseFlowId == nil {
+	if o == nil || IsNil(o.UseFlowId) {
 		var ret string
 		return ret
 	}
@@ -384,7 +158,7 @@ func (o *SelfServiceFlowExpiredError) GetUseFlowId() string {
 // GetUseFlowIdOk returns a tuple with the UseFlowId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SelfServiceFlowExpiredError) GetUseFlowIdOk() (*string, bool) {
-	if o == nil || o.UseFlowId == nil {
+	if o == nil || IsNil(o.UseFlowId) {
 		return nil, false
 	}
 	return o.UseFlowId, true
@@ -392,7 +166,7 @@ func (o *SelfServiceFlowExpiredError) GetUseFlowIdOk() (*string, bool) {
 
 // HasUseFlowId returns a boolean if a field has been set.
 func (o *SelfServiceFlowExpiredError) HasUseFlowId() bool {
-	if o != nil && o.UseFlowId != nil {
+	if o != nil && !IsNil(o.UseFlowId) {
 		return true
 	}
 
@@ -405,41 +179,57 @@ func (o *SelfServiceFlowExpiredError) SetUseFlowId(v string) {
 }
 
 func (o SelfServiceFlowExpiredError) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
-		toSerialize["code"] = o.Code
-	}
-	if o.Debug != nil {
-		toSerialize["debug"] = o.Debug
-	}
-	if o.Details != nil {
-		toSerialize["details"] = o.Details
-	}
-	if o.ExpiredAt != nil {
-		toSerialize["expired_at"] = o.ExpiredAt
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["message"] = o.Message
-	}
-	if o.Reason != nil {
-		toSerialize["reason"] = o.Reason
-	}
-	if o.Request != nil {
-		toSerialize["request"] = o.Request
-	}
-	if o.Since != nil {
-		toSerialize["since"] = o.Since
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.UseFlowId != nil {
-		toSerialize["use_flow_id"] = o.UseFlowId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SelfServiceFlowExpiredError) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
+	if !IsNil(o.ExpiredAt) {
+		toSerialize["expired_at"] = o.ExpiredAt
+	}
+	if !IsNil(o.Since) {
+		toSerialize["since"] = o.Since
+	}
+	if !IsNil(o.UseFlowId) {
+		toSerialize["use_flow_id"] = o.UseFlowId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *SelfServiceFlowExpiredError) UnmarshalJSON(data []byte) (err error) {
+	varSelfServiceFlowExpiredError := _SelfServiceFlowExpiredError{}
+
+	err = json.Unmarshal(data, &varSelfServiceFlowExpiredError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SelfServiceFlowExpiredError(varSelfServiceFlowExpiredError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "expired_at")
+		delete(additionalProperties, "since")
+		delete(additionalProperties, "use_flow_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSelfServiceFlowExpiredError struct {

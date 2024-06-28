@@ -3,3 +3,6 @@ packageName: ${PYTHON_PACKAGE_NAME}
 packageVersion: $VERSION
 library: urllib3
 packageUrl: https://github.com/ory/sdk
+
+disallowAdditionalPropertiesIfNotPresent: false
+useOneOfDiscriminatorLookup: true

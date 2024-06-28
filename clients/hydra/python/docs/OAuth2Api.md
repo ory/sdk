@@ -65,6 +65,7 @@ with ory_hydra_client.ApiClient() as api_client:
     api_instance = o_auth2_api.OAuth2Api(api_client)
     consent_challenge = "consent_challenge_example" # str | OAuth 2.0 Consent Request Challenge
     accept_o_auth2_consent_request = AcceptOAuth2ConsentRequest(
+        context=None,
         grant_access_token_audience=StringSliceJSONFormat([
             "grant_access_token_audience_example",
         ]),
@@ -167,6 +168,7 @@ with ory_hydra_client.ApiClient() as api_client:
         context=None,
         extend_session_lifespan=True,
         force_subject_identifier="force_subject_identifier_example",
+        identity_provider_session_id="identity_provider_session_id_example",
         remember=True,
         remember_for=1,
         subject="subject_example",
@@ -376,6 +378,7 @@ with ory_hydra_client.ApiClient() as api_client:
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
         skip_consent=True,
+        skip_logout_consent=True,
         subject_type="subject_type_example",
         token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
@@ -1863,7 +1866,7 @@ No authorization required
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 
@@ -2112,6 +2115,7 @@ with ory_hydra_client.ApiClient() as api_client:
         scope="scope1 scope-2 scope.3 scope:4",
         sector_identifier_uri="sector_identifier_uri_example",
         skip_consent=True,
+        skip_logout_consent=True,
         subject_type="subject_type_example",
         token_endpoint_auth_method="client_secret_basic",
         token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",

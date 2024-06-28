@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateSettingsFlowWithOidcMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSettingsFlowWithOidcMethod{}
 
 // UpdateSettingsFlowWithOidcMethod Update Settings Flow with OpenID Connect Method
 type UpdateSettingsFlowWithOidcMethod struct {
@@ -25,11 +29,16 @@ type UpdateSettingsFlowWithOidcMethod struct {
 	Method string `json:"method"`
 	// The identity's traits  in: body
 	Traits map[string]interface{} `json:"traits,omitempty"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// Unlink this provider  Either this or `link` must be set.  type: string in: body
 	Unlink *string `json:"unlink,omitempty"`
-	// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+	// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
 	UpstreamParameters map[string]interface{} `json:"upstream_parameters,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSettingsFlowWithOidcMethod UpdateSettingsFlowWithOidcMethod
 
 // NewUpdateSettingsFlowWithOidcMethod instantiates a new UpdateSettingsFlowWithOidcMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +60,7 @@ func NewUpdateSettingsFlowWithOidcMethodWithDefaults() *UpdateSettingsFlowWithOi
 
 // GetFlow returns the Flow field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithOidcMethod) GetFlow() string {
-	if o == nil || o.Flow == nil {
+	if o == nil || IsNil(o.Flow) {
 		var ret string
 		return ret
 	}
@@ -61,7 +70,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) GetFlow() string {
 // GetFlowOk returns a tuple with the Flow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) GetFlowOk() (*string, bool) {
-	if o == nil || o.Flow == nil {
+	if o == nil || IsNil(o.Flow) {
 		return nil, false
 	}
 	return o.Flow, true
@@ -69,7 +78,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) GetFlowOk() (*string, bool) {
 
 // HasFlow returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) HasFlow() bool {
-	if o != nil && o.Flow != nil {
+	if o != nil && !IsNil(o.Flow) {
 		return true
 	}
 
@@ -83,7 +92,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) SetFlow(v string) {
 
 // GetLink returns the Link field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithOidcMethod) GetLink() string {
-	if o == nil || o.Link == nil {
+	if o == nil || IsNil(o.Link) {
 		var ret string
 		return ret
 	}
@@ -93,7 +102,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) GetLink() string {
 // GetLinkOk returns a tuple with the Link field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) GetLinkOk() (*string, bool) {
-	if o == nil || o.Link == nil {
+	if o == nil || IsNil(o.Link) {
 		return nil, false
 	}
 	return o.Link, true
@@ -101,7 +110,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) GetLinkOk() (*string, bool) {
 
 // HasLink returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) HasLink() bool {
-	if o != nil && o.Link != nil {
+	if o != nil && !IsNil(o.Link) {
 		return true
 	}
 
@@ -139,7 +148,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) SetMethod(v string) {
 
 // GetTraits returns the Traits field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithOidcMethod) GetTraits() map[string]interface{} {
-	if o == nil || o.Traits == nil {
+	if o == nil || IsNil(o.Traits) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -149,15 +158,15 @@ func (o *UpdateSettingsFlowWithOidcMethod) GetTraits() map[string]interface{} {
 // GetTraitsOk returns a tuple with the Traits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) GetTraitsOk() (map[string]interface{}, bool) {
-	if o == nil || o.Traits == nil {
-		return nil, false
+	if o == nil || IsNil(o.Traits) {
+		return map[string]interface{}{}, false
 	}
 	return o.Traits, true
 }
 
 // HasTraits returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) HasTraits() bool {
-	if o != nil && o.Traits != nil {
+	if o != nil && !IsNil(o.Traits) {
 		return true
 	}
 
@@ -169,9 +178,41 @@ func (o *UpdateSettingsFlowWithOidcMethod) SetTraits(v map[string]interface{}) {
 	o.Traits = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithOidcMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithOidcMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithOidcMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateSettingsFlowWithOidcMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 // GetUnlink returns the Unlink field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithOidcMethod) GetUnlink() string {
-	if o == nil || o.Unlink == nil {
+	if o == nil || IsNil(o.Unlink) {
 		var ret string
 		return ret
 	}
@@ -181,7 +222,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) GetUnlink() string {
 // GetUnlinkOk returns a tuple with the Unlink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) GetUnlinkOk() (*string, bool) {
-	if o == nil || o.Unlink == nil {
+	if o == nil || IsNil(o.Unlink) {
 		return nil, false
 	}
 	return o.Unlink, true
@@ -189,7 +230,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) GetUnlinkOk() (*string, bool) {
 
 // HasUnlink returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) HasUnlink() bool {
-	if o != nil && o.Unlink != nil {
+	if o != nil && !IsNil(o.Unlink) {
 		return true
 	}
 
@@ -203,7 +244,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) SetUnlink(v string) {
 
 // GetUpstreamParameters returns the UpstreamParameters field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithOidcMethod) GetUpstreamParameters() map[string]interface{} {
-	if o == nil || o.UpstreamParameters == nil {
+	if o == nil || IsNil(o.UpstreamParameters) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -213,15 +254,15 @@ func (o *UpdateSettingsFlowWithOidcMethod) GetUpstreamParameters() map[string]in
 // GetUpstreamParametersOk returns a tuple with the UpstreamParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) GetUpstreamParametersOk() (map[string]interface{}, bool) {
-	if o == nil || o.UpstreamParameters == nil {
-		return nil, false
+	if o == nil || IsNil(o.UpstreamParameters) {
+		return map[string]interface{}{}, false
 	}
 	return o.UpstreamParameters, true
 }
 
 // HasUpstreamParameters returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithOidcMethod) HasUpstreamParameters() bool {
-	if o != nil && o.UpstreamParameters != nil {
+	if o != nil && !IsNil(o.UpstreamParameters) {
 		return true
 	}
 
@@ -234,26 +275,88 @@ func (o *UpdateSettingsFlowWithOidcMethod) SetUpstreamParameters(v map[string]in
 }
 
 func (o UpdateSettingsFlowWithOidcMethod) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Flow != nil {
-		toSerialize["flow"] = o.Flow
-	}
-	if o.Link != nil {
-		toSerialize["link"] = o.Link
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if o.Traits != nil {
-		toSerialize["traits"] = o.Traits
-	}
-	if o.Unlink != nil {
-		toSerialize["unlink"] = o.Unlink
-	}
-	if o.UpstreamParameters != nil {
-		toSerialize["upstream_parameters"] = o.UpstreamParameters
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateSettingsFlowWithOidcMethod) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Flow) {
+		toSerialize["flow"] = o.Flow
+	}
+	if !IsNil(o.Link) {
+		toSerialize["link"] = o.Link
+	}
+	toSerialize["method"] = o.Method
+	if !IsNil(o.Traits) {
+		toSerialize["traits"] = o.Traits
+	}
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
+	if !IsNil(o.Unlink) {
+		toSerialize["unlink"] = o.Unlink
+	}
+	if !IsNil(o.UpstreamParameters) {
+		toSerialize["upstream_parameters"] = o.UpstreamParameters
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UpdateSettingsFlowWithOidcMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"method",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateSettingsFlowWithOidcMethod := _UpdateSettingsFlowWithOidcMethod{}
+
+	err = json.Unmarshal(data, &varUpdateSettingsFlowWithOidcMethod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateSettingsFlowWithOidcMethod(varUpdateSettingsFlowWithOidcMethod)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "flow")
+		delete(additionalProperties, "link")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "traits")
+		delete(additionalProperties, "transient_payload")
+		delete(additionalProperties, "unlink")
+		delete(additionalProperties, "upstream_parameters")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSettingsFlowWithOidcMethod struct {

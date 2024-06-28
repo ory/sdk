@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -14,12 +14,18 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the RecoveryFlow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecoveryFlow{}
 
 // RecoveryFlow This request is used when an identity wants to recover their account.  We recommend reading the [Account Recovery Documentation](../self-service/flows/password-reset-account-recovery)
 type RecoveryFlow struct {
 	// Active, if set, contains the recovery method that is being used. It is initially not set.
 	Active *string `json:"active,omitempty"`
+	// Contains possible actions that could follow this flow
+	ContinueWith []ContinueWith `json:"continue_with,omitempty"`
 	// ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated.
 	ExpiresAt time.Time `json:"expires_at"`
 	// ID represents the request's unique ID. When performing the recovery flow, this represents the id in the recovery ui's query parameter: http://<selfservice.flows.recovery.ui_url>?request=<id>
@@ -30,17 +36,21 @@ type RecoveryFlow struct {
 	RequestUrl string `json:"request_url"`
 	// ReturnTo contains the requested return_to URL.
 	ReturnTo *string `json:"return_to,omitempty"`
-	State RecoveryFlowState `json:"state"`
+	// State represents the state of this request:  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+	State interface{} `json:"state"`
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecoveryFlow RecoveryFlow
 
 // NewRecoveryFlow instantiates a new RecoveryFlow object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecoveryFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, state RecoveryFlowState, type_ string, ui UiContainer) *RecoveryFlow {
+func NewRecoveryFlow(expiresAt time.Time, id string, issuedAt time.Time, requestUrl string, state interface{}, type_ string, ui UiContainer) *RecoveryFlow {
 	this := RecoveryFlow{}
 	this.ExpiresAt = expiresAt
 	this.Id = id
@@ -62,7 +72,7 @@ func NewRecoveryFlowWithDefaults() *RecoveryFlow {
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *RecoveryFlow) GetActive() string {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret string
 		return ret
 	}
@@ -72,7 +82,7 @@ func (o *RecoveryFlow) GetActive() string {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryFlow) GetActiveOk() (*string, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
 	return o.Active, true
@@ -80,7 +90,7 @@ func (o *RecoveryFlow) GetActiveOk() (*string, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *RecoveryFlow) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -90,6 +100,38 @@ func (o *RecoveryFlow) HasActive() bool {
 // SetActive gets a reference to the given string and assigns it to the Active field.
 func (o *RecoveryFlow) SetActive(v string) {
 	o.Active = &v
+}
+
+// GetContinueWith returns the ContinueWith field value if set, zero value otherwise.
+func (o *RecoveryFlow) GetContinueWith() []ContinueWith {
+	if o == nil || IsNil(o.ContinueWith) {
+		var ret []ContinueWith
+		return ret
+	}
+	return o.ContinueWith
+}
+
+// GetContinueWithOk returns a tuple with the ContinueWith field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecoveryFlow) GetContinueWithOk() ([]ContinueWith, bool) {
+	if o == nil || IsNil(o.ContinueWith) {
+		return nil, false
+	}
+	return o.ContinueWith, true
+}
+
+// HasContinueWith returns a boolean if a field has been set.
+func (o *RecoveryFlow) HasContinueWith() bool {
+	if o != nil && !IsNil(o.ContinueWith) {
+		return true
+	}
+
+	return false
+}
+
+// SetContinueWith gets a reference to the given []ContinueWith and assigns it to the ContinueWith field.
+func (o *RecoveryFlow) SetContinueWith(v []ContinueWith) {
+	o.ContinueWith = v
 }
 
 // GetExpiresAt returns the ExpiresAt field value
@@ -190,7 +232,7 @@ func (o *RecoveryFlow) SetRequestUrl(v string) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *RecoveryFlow) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -200,7 +242,7 @@ func (o *RecoveryFlow) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecoveryFlow) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -208,7 +250,7 @@ func (o *RecoveryFlow) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *RecoveryFlow) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -221,9 +263,10 @@ func (o *RecoveryFlow) SetReturnTo(v string) {
 }
 
 // GetState returns the State field value
-func (o *RecoveryFlow) GetState() RecoveryFlowState {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RecoveryFlow) GetState() interface{} {
 	if o == nil {
-		var ret RecoveryFlowState
+		var ret interface{}
 		return ret
 	}
 
@@ -232,15 +275,16 @@ func (o *RecoveryFlow) GetState() RecoveryFlowState {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *RecoveryFlow) GetStateOk() (*RecoveryFlowState, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RecoveryFlow) GetStateOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return &o.State, true
 }
 
 // SetState sets field value
-func (o *RecoveryFlow) SetState(v RecoveryFlowState) {
+func (o *RecoveryFlow) SetState(v interface{}) {
 	o.State = v
 }
 
@@ -293,35 +337,96 @@ func (o *RecoveryFlow) SetUi(v UiContainer) {
 }
 
 func (o RecoveryFlow) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Active != nil {
-		toSerialize["active"] = o.Active
-	}
-	if true {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["issued_at"] = o.IssuedAt
-	}
-	if true {
-		toSerialize["request_url"] = o.RequestUrl
-	}
-	if o.ReturnTo != nil {
-		toSerialize["return_to"] = o.ReturnTo
-	}
-	if true {
-		toSerialize["state"] = o.State
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["ui"] = o.Ui
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RecoveryFlow) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.ContinueWith) {
+		toSerialize["continue_with"] = o.ContinueWith
+	}
+	toSerialize["expires_at"] = o.ExpiresAt
+	toSerialize["id"] = o.Id
+	toSerialize["issued_at"] = o.IssuedAt
+	toSerialize["request_url"] = o.RequestUrl
+	if !IsNil(o.ReturnTo) {
+		toSerialize["return_to"] = o.ReturnTo
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
+	toSerialize["type"] = o.Type
+	toSerialize["ui"] = o.Ui
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *RecoveryFlow) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"expires_at",
+		"id",
+		"issued_at",
+		"request_url",
+		"state",
+		"type",
+		"ui",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRecoveryFlow := _RecoveryFlow{}
+
+	err = json.Unmarshal(bytes, &varRecoveryFlow)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RecoveryFlow(varRecoveryFlow)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "continue_with")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "issued_at")
+		delete(additionalProperties, "request_url")
+		delete(additionalProperties, "return_to")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "ui")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecoveryFlow struct {

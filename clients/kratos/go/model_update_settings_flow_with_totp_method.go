@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateSettingsFlowWithTotpMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSettingsFlowWithTotpMethod{}
 
 // UpdateSettingsFlowWithTotpMethod Update Settings Flow with TOTP Method
 type UpdateSettingsFlowWithTotpMethod struct {
@@ -25,7 +29,10 @@ type UpdateSettingsFlowWithTotpMethod struct {
 	TotpCode *string `json:"totp_code,omitempty"`
 	// UnlinkTOTP if true will remove the TOTP pairing, effectively removing the credential. This can be used to set up a new TOTP device.
 	TotpUnlink *bool `json:"totp_unlink,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSettingsFlowWithTotpMethod UpdateSettingsFlowWithTotpMethod
 
 // NewUpdateSettingsFlowWithTotpMethod instantiates a new UpdateSettingsFlowWithTotpMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,7 @@ func NewUpdateSettingsFlowWithTotpMethodWithDefaults() *UpdateSettingsFlowWithTo
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithTotpMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -57,7 +64,7 @@ func (o *UpdateSettingsFlowWithTotpMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithTotpMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -65,7 +72,7 @@ func (o *UpdateSettingsFlowWithTotpMethod) GetCsrfTokenOk() (*string, bool) {
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithTotpMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -103,7 +110,7 @@ func (o *UpdateSettingsFlowWithTotpMethod) SetMethod(v string) {
 
 // GetTotpCode returns the TotpCode field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithTotpMethod) GetTotpCode() string {
-	if o == nil || o.TotpCode == nil {
+	if o == nil || IsNil(o.TotpCode) {
 		var ret string
 		return ret
 	}
@@ -113,7 +120,7 @@ func (o *UpdateSettingsFlowWithTotpMethod) GetTotpCode() string {
 // GetTotpCodeOk returns a tuple with the TotpCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithTotpMethod) GetTotpCodeOk() (*string, bool) {
-	if o == nil || o.TotpCode == nil {
+	if o == nil || IsNil(o.TotpCode) {
 		return nil, false
 	}
 	return o.TotpCode, true
@@ -121,7 +128,7 @@ func (o *UpdateSettingsFlowWithTotpMethod) GetTotpCodeOk() (*string, bool) {
 
 // HasTotpCode returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithTotpMethod) HasTotpCode() bool {
-	if o != nil && o.TotpCode != nil {
+	if o != nil && !IsNil(o.TotpCode) {
 		return true
 	}
 
@@ -135,7 +142,7 @@ func (o *UpdateSettingsFlowWithTotpMethod) SetTotpCode(v string) {
 
 // GetTotpUnlink returns the TotpUnlink field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithTotpMethod) GetTotpUnlink() bool {
-	if o == nil || o.TotpUnlink == nil {
+	if o == nil || IsNil(o.TotpUnlink) {
 		var ret bool
 		return ret
 	}
@@ -145,7 +152,7 @@ func (o *UpdateSettingsFlowWithTotpMethod) GetTotpUnlink() bool {
 // GetTotpUnlinkOk returns a tuple with the TotpUnlink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithTotpMethod) GetTotpUnlinkOk() (*bool, bool) {
-	if o == nil || o.TotpUnlink == nil {
+	if o == nil || IsNil(o.TotpUnlink) {
 		return nil, false
 	}
 	return o.TotpUnlink, true
@@ -153,7 +160,7 @@ func (o *UpdateSettingsFlowWithTotpMethod) GetTotpUnlinkOk() (*bool, bool) {
 
 // HasTotpUnlink returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithTotpMethod) HasTotpUnlink() bool {
-	if o != nil && o.TotpUnlink != nil {
+	if o != nil && !IsNil(o.TotpUnlink) {
 		return true
 	}
 
@@ -166,20 +173,76 @@ func (o *UpdateSettingsFlowWithTotpMethod) SetTotpUnlink(v bool) {
 }
 
 func (o UpdateSettingsFlowWithTotpMethod) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
-		toSerialize["csrf_token"] = o.CsrfToken
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if o.TotpCode != nil {
-		toSerialize["totp_code"] = o.TotpCode
-	}
-	if o.TotpUnlink != nil {
-		toSerialize["totp_unlink"] = o.TotpUnlink
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateSettingsFlowWithTotpMethod) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CsrfToken) {
+		toSerialize["csrf_token"] = o.CsrfToken
+	}
+	toSerialize["method"] = o.Method
+	if !IsNil(o.TotpCode) {
+		toSerialize["totp_code"] = o.TotpCode
+	}
+	if !IsNil(o.TotpUnlink) {
+		toSerialize["totp_unlink"] = o.TotpUnlink
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UpdateSettingsFlowWithTotpMethod) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"method",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateSettingsFlowWithTotpMethod := _UpdateSettingsFlowWithTotpMethod{}
+
+	err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithTotpMethod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateSettingsFlowWithTotpMethod(varUpdateSettingsFlowWithTotpMethod)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "totp_code")
+		delete(additionalProperties, "totp_unlink")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSettingsFlowWithTotpMethod struct {

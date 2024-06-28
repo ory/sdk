@@ -5,7 +5,7 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,7 +28,7 @@ final api = OryClient().getWellknownApi();
 try {
     final response = api.discoverJsonWebKeys();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling WellknownApi->discoverJsonWebKeys: $e\n');
 }
 ```

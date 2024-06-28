@@ -8,7 +8,7 @@ part of 'generic_usage.dart';
 
 class _$GenericUsage extends GenericUsage {
   @override
-  final int additionalPrice;
+  final Money additionalPrice;
   @override
   final int includedUsage;
 
@@ -60,9 +60,10 @@ class GenericUsageBuilder
     implements Builder<GenericUsage, GenericUsageBuilder> {
   _$GenericUsage? _$v;
 
-  int? _additionalPrice;
-  int? get additionalPrice => _$this._additionalPrice;
-  set additionalPrice(int? additionalPrice) =>
+  MoneyBuilder? _additionalPrice;
+  MoneyBuilder get additionalPrice =>
+      _$this._additionalPrice ??= new MoneyBuilder();
+  set additionalPrice(MoneyBuilder? additionalPrice) =>
       _$this._additionalPrice = additionalPrice;
 
   int? _includedUsage;
@@ -77,7 +78,7 @@ class GenericUsageBuilder
   GenericUsageBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _additionalPrice = $v.additionalPrice;
+      _additionalPrice = $v.additionalPrice.toBuilder();
       _includedUsage = $v.includedUsage;
       _$v = null;
     }
@@ -99,12 +100,24 @@ class GenericUsageBuilder
   GenericUsage build() => _build();
 
   _$GenericUsage _build() {
-    final _$result = _$v ??
-        new _$GenericUsage._(
-            additionalPrice: BuiltValueNullFieldError.checkNotNull(
-                additionalPrice, r'GenericUsage', 'additionalPrice'),
-            includedUsage: BuiltValueNullFieldError.checkNotNull(
-                includedUsage, r'GenericUsage', 'includedUsage'));
+    _$GenericUsage _$result;
+    try {
+      _$result = _$v ??
+          new _$GenericUsage._(
+              additionalPrice: additionalPrice.build(),
+              includedUsage: BuiltValueNullFieldError.checkNotNull(
+                  includedUsage, r'GenericUsage', 'includedUsage'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'additionalPrice';
+        additionalPrice.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GenericUsage', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

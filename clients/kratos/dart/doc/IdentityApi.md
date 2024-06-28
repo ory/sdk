@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createRecoveryLinkForIdentity**
-> RecoveryLinkForIdentity createRecoveryLinkForIdentity(createRecoveryLinkForIdentityBody)
+> RecoveryLinkForIdentity createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody)
 
 Create a Recovery Link
 
@@ -186,10 +186,11 @@ import 'package:ory_kratos_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api = OryKratosClient().getIdentityApi();
+final String returnTo = returnTo_example; // String | 
 final CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody = ; // CreateRecoveryLinkForIdentityBody | 
 
 try {
-    final response = api.createRecoveryLinkForIdentity(createRecoveryLinkForIdentityBody);
+    final response = api.createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling IdentityApi->createRecoveryLinkForIdentity: $e\n');
@@ -200,6 +201,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **returnTo** | **String**|  | [optional] 
  **createRecoveryLinkForIdentityBody** | [**CreateRecoveryLinkForIdentityBody**](CreateRecoveryLinkForIdentityBody.md)|  | [optional] 
 
 ### Return type
@@ -264,7 +266,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteIdentityCredentials**
-> Identity deleteIdentityCredentials(id, type)
+> deleteIdentityCredentials(id, type)
 
 Delete a credential for a specific identity
 
@@ -280,11 +282,10 @@ import 'package:ory_kratos_client/api.dart';
 
 final api = OryKratosClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
-final String type = type_example; // String | Type is the credential's Type. One of totp, webauthn, lookup
+final String type = type_example; // String | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 
 try {
-    final response = api.deleteIdentityCredentials(id, type);
-    print(response);
+    api.deleteIdentityCredentials(id, type);
 } catch on DioError (e) {
     print('Exception when calling IdentityApi->deleteIdentityCredentials: $e\n');
 }
@@ -295,11 +296,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the identity's ID. | 
- **type** | **String**| Type is the credential's Type. One of totp, webauthn, lookup | 
+ **type** | **String**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
 
 ### Return type
 
-[**Identity**](Identity.md)
+void (empty response body)
 
 ### Authorization
 
@@ -468,7 +469,7 @@ import 'package:ory_kratos_client/api.dart';
 
 final api = OryKratosClient().getIdentityApi();
 final String id = id_example; // String | ID must be set to the ID of identity you want to get
-final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 
 try {
     final response = api.getIdentity(id, includeCredential);
@@ -483,7 +484,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID must be set to the ID of identity you want to get | 
- **includeCredential** | [**BuiltList&lt;String&gt;**](String.md)| Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional] 
+ **includeCredential** | [**BuiltList&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
 
 ### Return type
 
@@ -593,7 +594,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentities**
-> BuiltList<Identity> listIdentities(perPage, page, credentialsIdentifier)
+> BuiltList<Identity> listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar)
 
 List Identities
 
@@ -608,12 +609,17 @@ import 'package:ory_kratos_client/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('oryAccessToken').apiKeyPrefix = 'Bearer';
 
 final api = OryKratosClient().getIdentityApi();
-final int perPage = 789; // int | Items per Page  This is the number of items per page.
-final int page = 789; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-final String credentialsIdentifier = credentialsIdentifier_example; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
+final int perPage = 789; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+final int page = 789; // int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+final int pageSize = 789; // int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String consistency = consistency_example; // String | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+final BuiltList<String> ids = ; // BuiltList<String> | List of ids used to filter identities. If this list is empty, then no filter will be applied.
+final String credentialsIdentifier = credentialsIdentifier_example; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+final String previewCredentialsIdentifierSimilar = previewCredentialsIdentifierSimilar_example; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
 
 try {
-    final response = api.listIdentities(perPage, page, credentialsIdentifier);
+    final response = api.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling IdentityApi->listIdentities: $e\n');
@@ -624,9 +630,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
- **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] 
+ **perPage** | **int**| Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. | [optional] 
+ **pageSize** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to '1']
+ **consistency** | **String**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] 
+ **ids** | [**BuiltList&lt;String&gt;**](String.md)| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] 
+ **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
+ **previewCredentialsIdentifierSimilar** | **String**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
 
 ### Return type
 
@@ -644,7 +655,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentitySchemas**
-> BuiltList<IdentitySchemaContainer> listIdentitySchemas(perPage, page)
+> BuiltList<IdentitySchemaContainer> listIdentitySchemas(perPage, page, pageSize, pageToken)
 
 Get all Identity Schemas
 
@@ -655,11 +666,13 @@ Returns a list of all identity schemas currently in use.
 import 'package:ory_kratos_client/api.dart';
 
 final api = OryKratosClient().getIdentityApi();
-final int perPage = 789; // int | Items per Page  This is the number of items per page.
-final int page = 789; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+final int perPage = 789; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+final int page = 789; // int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+final int pageSize = 789; // int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 
 try {
-    final response = api.listIdentitySchemas(perPage, page);
+    final response = api.listIdentitySchemas(perPage, page, pageSize, pageToken);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling IdentityApi->listIdentitySchemas: $e\n');
@@ -670,8 +683,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+ **perPage** | **int**| Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. | [optional] 
+ **pageSize** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to '1']
 
 ### Return type
 
@@ -689,7 +704,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentitySessions**
-> BuiltList<Session> listIdentitySessions(id, perPage, page, active)
+> BuiltList<Session> listIdentitySessions(id, perPage, page, pageSize, pageToken, active)
 
 List an Identity's Sessions
 
@@ -705,12 +720,14 @@ import 'package:ory_kratos_client/api.dart';
 
 final api = OryKratosClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
-final int perPage = 789; // int | Items per Page  This is the number of items per page.
-final int page = 789; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+final int perPage = 789; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+final int page = 789; // int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+final int pageSize = 789; // int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 final bool active = true; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
 
 try {
-    final response = api.listIdentitySessions(id, perPage, page, active);
+    final response = api.listIdentitySessions(id, perPage, page, pageSize, pageToken, active);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling IdentityApi->listIdentitySessions: $e\n');
@@ -722,8 +739,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the identity's ID. | 
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+ **perPage** | **int**| Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. | [optional] 
+ **pageSize** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to '1']
  **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] 
 
 ### Return type

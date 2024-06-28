@@ -14,6 +14,7 @@ part 'identity_credentials_oidc_provider.g.dart';
 /// * [initialAccessToken] 
 /// * [initialIdToken] 
 /// * [initialRefreshToken] 
+/// * [organization] 
 /// * [provider] 
 /// * [subject] 
 @BuiltValue()
@@ -26,6 +27,9 @@ abstract class IdentityCredentialsOidcProvider implements Built<IdentityCredenti
 
   @BuiltValueField(wireName: r'initial_refresh_token')
   String? get initialRefreshToken;
+
+  @BuiltValueField(wireName: r'organization')
+  String? get organization;
 
   @BuiltValueField(wireName: r'provider')
   String? get provider;
@@ -74,6 +78,13 @@ class _$IdentityCredentialsOidcProviderSerializer implements PrimitiveSerializer
       yield r'initial_refresh_token';
       yield serializers.serialize(
         object.initialRefreshToken,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.organization != null) {
+      yield r'organization';
+      yield serializers.serialize(
+        object.organization,
         specifiedType: const FullType(String),
       );
     }
@@ -134,6 +145,13 @@ class _$IdentityCredentialsOidcProviderSerializer implements PrimitiveSerializer
             specifiedType: const FullType(String),
           ) as String;
           result.initialRefreshToken = valueDes;
+          break;
+        case r'organization':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.organization = valueDes;
           break;
         case r'provider':
           final valueDes = serializers.deserialize(

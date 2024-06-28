@@ -1,42 +1,41 @@
 # Ory.Client.Api.OAuth2Api
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**AcceptOAuth2ConsentRequest**](OAuth2Api.md#acceptoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
-[**AcceptOAuth2LoginRequest**](OAuth2Api.md#acceptoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
-[**AcceptOAuth2LogoutRequest**](OAuth2Api.md#acceptoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
-[**CreateOAuth2Client**](OAuth2Api.md#createoauth2client) | **POST** /admin/clients | Create OAuth 2.0 Client
-[**DeleteOAuth2Client**](OAuth2Api.md#deleteoauth2client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
-[**DeleteOAuth2Token**](OAuth2Api.md#deleteoauth2token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
-[**DeleteTrustedOAuth2JwtGrantIssuer**](OAuth2Api.md#deletetrustedoauth2jwtgrantissuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
-[**GetOAuth2Client**](OAuth2Api.md#getoauth2client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
-[**GetOAuth2ConsentRequest**](OAuth2Api.md#getoauth2consentrequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request
-[**GetOAuth2LoginRequest**](OAuth2Api.md#getoauth2loginrequest) | **GET** /admin/oauth2/auth/requests/login | Get OAuth 2.0 Login Request
-[**GetOAuth2LogoutRequest**](OAuth2Api.md#getoauth2logoutrequest) | **GET** /admin/oauth2/auth/requests/logout | Get OAuth 2.0 Session Logout Request
-[**GetTrustedOAuth2JwtGrantIssuer**](OAuth2Api.md#gettrustedoauth2jwtgrantissuer) | **GET** /admin/trust/grants/jwt-bearer/issuers/{id} | Get Trusted OAuth2 JWT Bearer Grant Type Issuer
-[**IntrospectOAuth2Token**](OAuth2Api.md#introspectoauth2token) | **POST** /admin/oauth2/introspect | Introspect OAuth2 Access and Refresh Tokens
-[**ListOAuth2Clients**](OAuth2Api.md#listoauth2clients) | **GET** /admin/clients | List OAuth 2.0 Clients
-[**ListOAuth2ConsentSessions**](OAuth2Api.md#listoauth2consentsessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
-[**ListTrustedOAuth2JwtGrantIssuers**](OAuth2Api.md#listtrustedoauth2jwtgrantissuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
-[**OAuth2Authorize**](OAuth2Api.md#oauth2authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint
-[**Oauth2TokenExchange**](OAuth2Api.md#oauth2tokenexchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
-[**PatchOAuth2Client**](OAuth2Api.md#patchoauth2client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client
-[**RejectOAuth2ConsentRequest**](OAuth2Api.md#rejectoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
-[**RejectOAuth2LoginRequest**](OAuth2Api.md#rejectoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
-[**RejectOAuth2LogoutRequest**](OAuth2Api.md#rejectoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
-[**RevokeOAuth2ConsentSessions**](OAuth2Api.md#revokeoauth2consentsessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
-[**RevokeOAuth2LoginSessions**](OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
-[**RevokeOAuth2Token**](OAuth2Api.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
-[**SetOAuth2Client**](OAuth2Api.md#setoauth2client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
-[**SetOAuth2ClientLifespans**](OAuth2Api.md#setoauth2clientlifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
-[**TrustOAuth2JwtGrantIssuer**](OAuth2Api.md#trustoauth2jwtgrantissuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**AcceptOAuth2ConsentRequest**](OAuth2Api.md#acceptoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request |
+| [**AcceptOAuth2LoginRequest**](OAuth2Api.md#acceptoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request |
+| [**AcceptOAuth2LogoutRequest**](OAuth2Api.md#acceptoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request |
+| [**CreateOAuth2Client**](OAuth2Api.md#createoauth2client) | **POST** /admin/clients | Create OAuth 2.0 Client |
+| [**DeleteOAuth2Client**](OAuth2Api.md#deleteoauth2client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client |
+| [**DeleteOAuth2Token**](OAuth2Api.md#deleteoauth2token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client |
+| [**DeleteTrustedOAuth2JwtGrantIssuer**](OAuth2Api.md#deletetrustedoauth2jwtgrantissuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer |
+| [**GetOAuth2Client**](OAuth2Api.md#getoauth2client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client |
+| [**GetOAuth2ConsentRequest**](OAuth2Api.md#getoauth2consentrequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request |
+| [**GetOAuth2LoginRequest**](OAuth2Api.md#getoauth2loginrequest) | **GET** /admin/oauth2/auth/requests/login | Get OAuth 2.0 Login Request |
+| [**GetOAuth2LogoutRequest**](OAuth2Api.md#getoauth2logoutrequest) | **GET** /admin/oauth2/auth/requests/logout | Get OAuth 2.0 Session Logout Request |
+| [**GetTrustedOAuth2JwtGrantIssuer**](OAuth2Api.md#gettrustedoauth2jwtgrantissuer) | **GET** /admin/trust/grants/jwt-bearer/issuers/{id} | Get Trusted OAuth2 JWT Bearer Grant Type Issuer |
+| [**IntrospectOAuth2Token**](OAuth2Api.md#introspectoauth2token) | **POST** /admin/oauth2/introspect | Introspect OAuth2 Access and Refresh Tokens |
+| [**ListOAuth2Clients**](OAuth2Api.md#listoauth2clients) | **GET** /admin/clients | List OAuth 2.0 Clients |
+| [**ListOAuth2ConsentSessions**](OAuth2Api.md#listoauth2consentsessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject |
+| [**ListTrustedOAuth2JwtGrantIssuers**](OAuth2Api.md#listtrustedoauth2jwtgrantissuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
+| [**OAuth2Authorize**](OAuth2Api.md#oauth2authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint |
+| [**Oauth2TokenExchange**](OAuth2Api.md#oauth2tokenexchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
+| [**PatchOAuth2Client**](OAuth2Api.md#patchoauth2client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client |
+| [**RejectOAuth2ConsentRequest**](OAuth2Api.md#rejectoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request |
+| [**RejectOAuth2LoginRequest**](OAuth2Api.md#rejectoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request |
+| [**RejectOAuth2LogoutRequest**](OAuth2Api.md#rejectoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request |
+| [**RevokeOAuth2ConsentSessions**](OAuth2Api.md#revokeoauth2consentsessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject |
+| [**RevokeOAuth2LoginSessions**](OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID |
+| [**RevokeOAuth2Token**](OAuth2Api.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token |
+| [**SetOAuth2Client**](OAuth2Api.md#setoauth2client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client |
+| [**SetOAuth2ClientLifespans**](OAuth2Api.md#setoauth2clientlifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans |
+| [**TrustOAuth2JwtGrantIssuer**](OAuth2Api.md#trustoauth2jwtgrantissuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer |
 
-
-<a name="acceptoauth2consentrequest"></a>
+<a id="acceptoauth2consentrequest"></a>
 # **AcceptOAuth2ConsentRequest**
-> ClientOAuth2RedirectTo AcceptOAuth2ConsentRequest (string consentChallenge, ClientAcceptOAuth2ConsentRequest clientAcceptOAuth2ConsentRequest = null)
+> ClientOAuth2RedirectTo AcceptOAuth2ConsentRequest (string consentChallenge, ClientAcceptOAuth2ConsentRequest? clientAcceptOAuth2ConsentRequest = null)
 
 Accept OAuth 2.0 Consent Request
 
@@ -57,13 +56,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var consentChallenge = "consentChallenge_example";  // string | OAuth 2.0 Consent Request Challenge
-            var clientAcceptOAuth2ConsentRequest = new ClientAcceptOAuth2ConsentRequest(); // ClientAcceptOAuth2ConsentRequest |  (optional) 
+            var clientAcceptOAuth2ConsentRequest = new ClientAcceptOAuth2ConsentRequest?(); // ClientAcceptOAuth2ConsentRequest? |  (optional) 
 
             try
             {
@@ -73,8 +72,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.AcceptOAuth2ConsentRequest: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.AcceptOAuth2ConsentRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -82,12 +81,32 @@ namespace Example
 }
 ```
 
+#### Using the AcceptOAuth2ConsentRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Accept OAuth 2.0 Consent Request
+    ApiResponse<ClientOAuth2RedirectTo> response = apiInstance.AcceptOAuth2ConsentRequestWithHttpInfo(consentChallenge, clientAcceptOAuth2ConsentRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.AcceptOAuth2ConsentRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consentChallenge** | **string**| OAuth 2.0 Consent Request Challenge | 
- **clientAcceptOAuth2ConsentRequest** | [**ClientAcceptOAuth2ConsentRequest**](ClientAcceptOAuth2ConsentRequest.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **consentChallenge** | **string** | OAuth 2.0 Consent Request Challenge |  |
+| **clientAcceptOAuth2ConsentRequest** | [**ClientAcceptOAuth2ConsentRequest?**](ClientAcceptOAuth2ConsentRequest?.md) |  | [optional]  |
 
 ### Return type
 
@@ -111,9 +130,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="acceptoauth2loginrequest"></a>
+<a id="acceptoauth2loginrequest"></a>
 # **AcceptOAuth2LoginRequest**
-> ClientOAuth2RedirectTo AcceptOAuth2LoginRequest (string loginChallenge, ClientAcceptOAuth2LoginRequest clientAcceptOAuth2LoginRequest = null)
+> ClientOAuth2RedirectTo AcceptOAuth2LoginRequest (string loginChallenge, ClientAcceptOAuth2LoginRequest? clientAcceptOAuth2LoginRequest = null)
 
 Accept OAuth 2.0 Login Request
 
@@ -134,13 +153,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var loginChallenge = "loginChallenge_example";  // string | OAuth 2.0 Login Request Challenge
-            var clientAcceptOAuth2LoginRequest = new ClientAcceptOAuth2LoginRequest(); // ClientAcceptOAuth2LoginRequest |  (optional) 
+            var clientAcceptOAuth2LoginRequest = new ClientAcceptOAuth2LoginRequest?(); // ClientAcceptOAuth2LoginRequest? |  (optional) 
 
             try
             {
@@ -150,8 +169,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.AcceptOAuth2LoginRequest: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.AcceptOAuth2LoginRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -159,12 +178,32 @@ namespace Example
 }
 ```
 
+#### Using the AcceptOAuth2LoginRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Accept OAuth 2.0 Login Request
+    ApiResponse<ClientOAuth2RedirectTo> response = apiInstance.AcceptOAuth2LoginRequestWithHttpInfo(loginChallenge, clientAcceptOAuth2LoginRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.AcceptOAuth2LoginRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginChallenge** | **string**| OAuth 2.0 Login Request Challenge | 
- **clientAcceptOAuth2LoginRequest** | [**ClientAcceptOAuth2LoginRequest**](ClientAcceptOAuth2LoginRequest.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **loginChallenge** | **string** | OAuth 2.0 Login Request Challenge |  |
+| **clientAcceptOAuth2LoginRequest** | [**ClientAcceptOAuth2LoginRequest?**](ClientAcceptOAuth2LoginRequest?.md) |  | [optional]  |
 
 ### Return type
 
@@ -188,7 +227,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="acceptoauth2logoutrequest"></a>
+<a id="acceptoauth2logoutrequest"></a>
 # **AcceptOAuth2LogoutRequest**
 > ClientOAuth2RedirectTo AcceptOAuth2LogoutRequest (string logoutChallenge)
 
@@ -211,7 +250,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -226,8 +265,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.AcceptOAuth2LogoutRequest: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.AcceptOAuth2LogoutRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -235,11 +274,31 @@ namespace Example
 }
 ```
 
+#### Using the AcceptOAuth2LogoutRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Accept OAuth 2.0 Session Logout Request
+    ApiResponse<ClientOAuth2RedirectTo> response = apiInstance.AcceptOAuth2LogoutRequestWithHttpInfo(logoutChallenge);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.AcceptOAuth2LogoutRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **string**| OAuth 2.0 Logout Request Challenge | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **logoutChallenge** | **string** | OAuth 2.0 Logout Request Challenge |  |
 
 ### Return type
 
@@ -263,7 +322,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="createoauth2client"></a>
+<a id="createoauth2client"></a>
 # **CreateOAuth2Client**
 > ClientOAuth2Client CreateOAuth2Client (ClientOAuth2Client clientOAuth2Client)
 
@@ -286,7 +345,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -301,8 +360,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.CreateOAuth2Client: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.CreateOAuth2Client: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -310,11 +369,31 @@ namespace Example
 }
 ```
 
+#### Using the CreateOAuth2ClientWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create OAuth 2.0 Client
+    ApiResponse<ClientOAuth2Client> response = apiInstance.CreateOAuth2ClientWithHttpInfo(clientOAuth2Client);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.CreateOAuth2ClientWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientOAuth2Client** | [**ClientOAuth2Client**](ClientOAuth2Client.md)| OAuth 2.0 Client Request Body | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **clientOAuth2Client** | [**ClientOAuth2Client**](ClientOAuth2Client.md) | OAuth 2.0 Client Request Body |  |
 
 ### Return type
 
@@ -339,7 +418,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteoauth2client"></a>
+<a id="deleteoauth2client"></a>
 # **DeleteOAuth2Client**
 > void DeleteOAuth2Client (string id)
 
@@ -362,7 +441,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -376,8 +455,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.DeleteOAuth2Client: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.DeleteOAuth2Client: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -385,11 +464,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteOAuth2ClientWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete OAuth 2.0 Client
+    apiInstance.DeleteOAuth2ClientWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.DeleteOAuth2ClientWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | The id of the OAuth 2.0 Client. |  |
 
 ### Return type
 
@@ -413,7 +509,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteoauth2token"></a>
+<a id="deleteoauth2token"></a>
 # **DeleteOAuth2Token**
 > void DeleteOAuth2Token (string clientId)
 
@@ -436,7 +532,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -450,8 +546,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.DeleteOAuth2Token: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.DeleteOAuth2Token: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -459,11 +555,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteOAuth2TokenWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
+    apiInstance.DeleteOAuth2TokenWithHttpInfo(clientId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.DeleteOAuth2TokenWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientId** | **string**| OAuth 2.0 Client ID | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **clientId** | **string** | OAuth 2.0 Client ID |  |
 
 ### Return type
 
@@ -487,7 +600,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deletetrustedoauth2jwtgrantissuer"></a>
+<a id="deletetrustedoauth2jwtgrantissuer"></a>
 # **DeleteTrustedOAuth2JwtGrantIssuer**
 > void DeleteTrustedOAuth2JwtGrantIssuer (string id)
 
@@ -510,7 +623,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -524,8 +637,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.DeleteTrustedOAuth2JwtGrantIssuer: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.DeleteTrustedOAuth2JwtGrantIssuer: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -533,11 +646,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteTrustedOAuth2JwtGrantIssuerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
+    apiInstance.DeleteTrustedOAuth2JwtGrantIssuerWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.DeleteTrustedOAuth2JwtGrantIssuerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the desired grant | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | The id of the desired grant |  |
 
 ### Return type
 
@@ -561,7 +691,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getoauth2client"></a>
+<a id="getoauth2client"></a>
 # **GetOAuth2Client**
 > ClientOAuth2Client GetOAuth2Client (string id)
 
@@ -584,7 +714,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -599,8 +729,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.GetOAuth2Client: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.GetOAuth2Client: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -608,11 +738,31 @@ namespace Example
 }
 ```
 
+#### Using the GetOAuth2ClientWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get an OAuth 2.0 Client
+    ApiResponse<ClientOAuth2Client> response = apiInstance.GetOAuth2ClientWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.GetOAuth2ClientWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | The id of the OAuth 2.0 Client. |  |
 
 ### Return type
 
@@ -636,7 +786,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getoauth2consentrequest"></a>
+<a id="getoauth2consentrequest"></a>
 # **GetOAuth2ConsentRequest**
 > ClientOAuth2ConsentRequest GetOAuth2ConsentRequest (string consentChallenge)
 
@@ -659,7 +809,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -674,8 +824,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.GetOAuth2ConsentRequest: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.GetOAuth2ConsentRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -683,11 +833,31 @@ namespace Example
 }
 ```
 
+#### Using the GetOAuth2ConsentRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get OAuth 2.0 Consent Request
+    ApiResponse<ClientOAuth2ConsentRequest> response = apiInstance.GetOAuth2ConsentRequestWithHttpInfo(consentChallenge);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.GetOAuth2ConsentRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consentChallenge** | **string**| OAuth 2.0 Consent Request Challenge | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **consentChallenge** | **string** | OAuth 2.0 Consent Request Challenge |  |
 
 ### Return type
 
@@ -712,7 +882,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getoauth2loginrequest"></a>
+<a id="getoauth2loginrequest"></a>
 # **GetOAuth2LoginRequest**
 > ClientOAuth2LoginRequest GetOAuth2LoginRequest (string loginChallenge)
 
@@ -735,7 +905,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -750,8 +920,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.GetOAuth2LoginRequest: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.GetOAuth2LoginRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -759,11 +929,31 @@ namespace Example
 }
 ```
 
+#### Using the GetOAuth2LoginRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get OAuth 2.0 Login Request
+    ApiResponse<ClientOAuth2LoginRequest> response = apiInstance.GetOAuth2LoginRequestWithHttpInfo(loginChallenge);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.GetOAuth2LoginRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginChallenge** | **string**| OAuth 2.0 Login Request Challenge | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **loginChallenge** | **string** | OAuth 2.0 Login Request Challenge |  |
 
 ### Return type
 
@@ -788,7 +978,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getoauth2logoutrequest"></a>
+<a id="getoauth2logoutrequest"></a>
 # **GetOAuth2LogoutRequest**
 > ClientOAuth2LogoutRequest GetOAuth2LogoutRequest (string logoutChallenge)
 
@@ -811,7 +1001,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -826,8 +1016,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.GetOAuth2LogoutRequest: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.GetOAuth2LogoutRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -835,11 +1025,31 @@ namespace Example
 }
 ```
 
+#### Using the GetOAuth2LogoutRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get OAuth 2.0 Session Logout Request
+    ApiResponse<ClientOAuth2LogoutRequest> response = apiInstance.GetOAuth2LogoutRequestWithHttpInfo(logoutChallenge);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.GetOAuth2LogoutRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **string**|  | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **logoutChallenge** | **string** |  |  |
 
 ### Return type
 
@@ -864,7 +1074,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gettrustedoauth2jwtgrantissuer"></a>
+<a id="gettrustedoauth2jwtgrantissuer"></a>
 # **GetTrustedOAuth2JwtGrantIssuer**
 > ClientTrustedOAuth2JwtGrantIssuer GetTrustedOAuth2JwtGrantIssuer (string id)
 
@@ -887,7 +1097,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -902,8 +1112,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.GetTrustedOAuth2JwtGrantIssuer: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.GetTrustedOAuth2JwtGrantIssuer: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -911,11 +1121,31 @@ namespace Example
 }
 ```
 
+#### Using the GetTrustedOAuth2JwtGrantIssuerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Trusted OAuth2 JWT Bearer Grant Type Issuer
+    ApiResponse<ClientTrustedOAuth2JwtGrantIssuer> response = apiInstance.GetTrustedOAuth2JwtGrantIssuerWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.GetTrustedOAuth2JwtGrantIssuerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the desired grant | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | The id of the desired grant |  |
 
 ### Return type
 
@@ -939,9 +1169,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="introspectoauth2token"></a>
+<a id="introspectoauth2token"></a>
 # **IntrospectOAuth2Token**
-> ClientIntrospectedOAuth2Token IntrospectOAuth2Token (string token, string scope = null)
+> ClientIntrospectedOAuth2Token IntrospectOAuth2Token (string token, string? scope = null)
 
 Introspect OAuth2 Access and Refresh Tokens
 
@@ -962,13 +1192,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var token = "token_example";  // string | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
-            var scope = "scope_example";  // string | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional) 
+            var scope = "scope_example";  // string? | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional) 
 
             try
             {
@@ -978,8 +1208,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.IntrospectOAuth2Token: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.IntrospectOAuth2Token: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -987,12 +1217,32 @@ namespace Example
 }
 ```
 
+#### Using the IntrospectOAuth2TokenWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Introspect OAuth2 Access and Refresh Tokens
+    ApiResponse<ClientIntrospectedOAuth2Token> response = apiInstance.IntrospectOAuth2TokenWithHttpInfo(token, scope);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.IntrospectOAuth2TokenWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. | 
- **scope** | **string**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **token** | **string** | The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. |  |
+| **scope** | **string?** | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional]  |
 
 ### Return type
 
@@ -1016,9 +1266,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listoauth2clients"></a>
+<a id="listoauth2clients"></a>
 # **ListOAuth2Clients**
-> List&lt;ClientOAuth2Client&gt; ListOAuth2Clients (long? pageSize = null, string pageToken = null, string clientName = null, string owner = null)
+> List&lt;ClientOAuth2Client&gt; ListOAuth2Clients (long? pageSize = null, string? pageToken = null, string? clientName = null, string? owner = null)
 
 List OAuth 2.0 Clients
 
@@ -1039,15 +1289,15 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var pageSize = 250L;  // long? | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
-            var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
-            var clientName = "clientName_example";  // string | The name of the clients to filter by. (optional) 
-            var owner = "owner_example";  // string | The owner of the clients to filter by. (optional) 
+            var pageToken = "\"1\"";  // string? | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
+            var clientName = "clientName_example";  // string? | The name of the clients to filter by. (optional) 
+            var owner = "owner_example";  // string? | The owner of the clients to filter by. (optional) 
 
             try
             {
@@ -1057,8 +1307,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.ListOAuth2Clients: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.ListOAuth2Clients: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1066,14 +1316,34 @@ namespace Example
 }
 ```
 
+#### Using the ListOAuth2ClientsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List OAuth 2.0 Clients
+    ApiResponse<List<ClientOAuth2Client>> response = apiInstance.ListOAuth2ClientsWithHttpInfo(pageSize, pageToken, clientName, owner);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.ListOAuth2ClientsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageSize** | **long?**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
- **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
- **clientName** | **string**| The name of the clients to filter by. | [optional] 
- **owner** | **string**| The owner of the clients to filter by. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **pageSize** | **long?** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string?** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;] |
+| **clientName** | **string?** | The name of the clients to filter by. | [optional]  |
+| **owner** | **string?** | The owner of the clients to filter by. | [optional]  |
 
 ### Return type
 
@@ -1097,9 +1367,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listoauth2consentsessions"></a>
+<a id="listoauth2consentsessions"></a>
 # **ListOAuth2ConsentSessions**
-> List&lt;ClientOAuth2ConsentSession&gt; ListOAuth2ConsentSessions (string subject, long? pageSize = null, string pageToken = null, string loginSessionId = null)
+> List&lt;ClientOAuth2ConsentSession&gt; ListOAuth2ConsentSessions (string subject, long? pageSize = null, string? pageToken = null, string? loginSessionId = null)
 
 List OAuth 2.0 Consent Sessions of a Subject
 
@@ -1120,15 +1390,15 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var subject = "subject_example";  // string | The subject to list the consent sessions for.
             var pageSize = 250L;  // long? | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
-            var pageToken = "\"1\"";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
-            var loginSessionId = "loginSessionId_example";  // string | The login session id to list the consent sessions for. (optional) 
+            var pageToken = "\"1\"";  // string? | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to "1")
+            var loginSessionId = "loginSessionId_example";  // string? | The login session id to list the consent sessions for. (optional) 
 
             try
             {
@@ -1138,8 +1408,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.ListOAuth2ConsentSessions: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.ListOAuth2ConsentSessions: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1147,14 +1417,34 @@ namespace Example
 }
 ```
 
+#### Using the ListOAuth2ConsentSessionsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List OAuth 2.0 Consent Sessions of a Subject
+    ApiResponse<List<ClientOAuth2ConsentSession>> response = apiInstance.ListOAuth2ConsentSessionsWithHttpInfo(subject, pageSize, pageToken, loginSessionId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.ListOAuth2ConsentSessionsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **string**| The subject to list the consent sessions for. | 
- **pageSize** | **long?**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
- **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;]
- **loginSessionId** | **string**| The login session id to list the consent sessions for. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **subject** | **string** | The subject to list the consent sessions for. |  |
+| **pageSize** | **long?** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string?** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;] |
+| **loginSessionId** | **string?** | The login session id to list the consent sessions for. | [optional]  |
 
 ### Return type
 
@@ -1178,9 +1468,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listtrustedoauth2jwtgrantissuers"></a>
+<a id="listtrustedoauth2jwtgrantissuers"></a>
 # **ListTrustedOAuth2JwtGrantIssuers**
-> List&lt;ClientTrustedOAuth2JwtGrantIssuer&gt; ListTrustedOAuth2JwtGrantIssuers (long? maxItems = null, long? defaultItems = null, string issuer = null)
+> List&lt;ClientTrustedOAuth2JwtGrantIssuer&gt; ListTrustedOAuth2JwtGrantIssuers (long? maxItems = null, long? defaultItems = null, string? issuer = null)
 
 List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
@@ -1201,14 +1491,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var maxItems = 789L;  // long? |  (optional) 
             var defaultItems = 789L;  // long? |  (optional) 
-            var issuer = "issuer_example";  // string | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. (optional) 
+            var issuer = "issuer_example";  // string? | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. (optional) 
 
             try
             {
@@ -1218,8 +1508,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.ListTrustedOAuth2JwtGrantIssuers: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.ListTrustedOAuth2JwtGrantIssuers: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1227,13 +1517,33 @@ namespace Example
 }
 ```
 
+#### Using the ListTrustedOAuth2JwtGrantIssuersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Trusted OAuth2 JWT Bearer Grant Type Issuers
+    ApiResponse<List<ClientTrustedOAuth2JwtGrantIssuer>> response = apiInstance.ListTrustedOAuth2JwtGrantIssuersWithHttpInfo(maxItems, defaultItems, issuer);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.ListTrustedOAuth2JwtGrantIssuersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **maxItems** | **long?**|  | [optional] 
- **defaultItems** | **long?**|  | [optional] 
- **issuer** | **string**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **maxItems** | **long?** |  | [optional]  |
+| **defaultItems** | **long?** |  | [optional]  |
+| **issuer** | **string?** | If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional]  |
 
 ### Return type
 
@@ -1257,7 +1567,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="oauth2authorize"></a>
+<a id="oauth2authorize"></a>
 # **OAuth2Authorize**
 > ClientErrorOAuth2 OAuth2Authorize ()
 
@@ -1280,7 +1590,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             var apiInstance = new OAuth2Api(config);
 
             try
@@ -1291,8 +1601,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.OAuth2Authorize: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.OAuth2Authorize: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1300,9 +1610,28 @@ namespace Example
 }
 ```
 
+#### Using the OAuth2AuthorizeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // OAuth 2.0 Authorize Endpoint
+    ApiResponse<ClientErrorOAuth2> response = apiInstance.OAuth2AuthorizeWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.OAuth2AuthorizeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**ClientErrorOAuth2**](ClientErrorOAuth2.md)
@@ -1325,9 +1654,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="oauth2tokenexchange"></a>
+<a id="oauth2tokenexchange"></a>
 # **Oauth2TokenExchange**
-> ClientOAuth2TokenExchange Oauth2TokenExchange (string grantType, string clientId = null, string code = null, string redirectUri = null, string refreshToken = null)
+> ClientOAuth2TokenExchange Oauth2TokenExchange (string grantType, string? clientId = null, string? code = null, string? redirectUri = null, string? refreshToken = null)
 
 The OAuth 2.0 Token Endpoint
 
@@ -1348,7 +1677,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure HTTP basic authorization: basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
@@ -1357,10 +1686,10 @@ namespace Example
 
             var apiInstance = new OAuth2Api(config);
             var grantType = "grantType_example";  // string | 
-            var clientId = "clientId_example";  // string |  (optional) 
-            var code = "code_example";  // string |  (optional) 
-            var redirectUri = "redirectUri_example";  // string |  (optional) 
-            var refreshToken = "refreshToken_example";  // string |  (optional) 
+            var clientId = "clientId_example";  // string? |  (optional) 
+            var code = "code_example";  // string? |  (optional) 
+            var redirectUri = "redirectUri_example";  // string? |  (optional) 
+            var refreshToken = "refreshToken_example";  // string? |  (optional) 
 
             try
             {
@@ -1370,8 +1699,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.Oauth2TokenExchange: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.Oauth2TokenExchange: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1379,15 +1708,35 @@ namespace Example
 }
 ```
 
+#### Using the Oauth2TokenExchangeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // The OAuth 2.0 Token Endpoint
+    ApiResponse<ClientOAuth2TokenExchange> response = apiInstance.Oauth2TokenExchangeWithHttpInfo(grantType, clientId, code, redirectUri, refreshToken);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.Oauth2TokenExchangeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **grantType** | **string**|  | 
- **clientId** | **string**|  | [optional] 
- **code** | **string**|  | [optional] 
- **redirectUri** | **string**|  | [optional] 
- **refreshToken** | **string**|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **grantType** | **string** |  |  |
+| **clientId** | **string?** |  | [optional]  |
+| **code** | **string?** |  | [optional]  |
+| **redirectUri** | **string?** |  | [optional]  |
+| **refreshToken** | **string?** |  | [optional]  |
 
 ### Return type
 
@@ -1411,7 +1760,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="patchoauth2client"></a>
+<a id="patchoauth2client"></a>
 # **PatchOAuth2Client**
 > ClientOAuth2Client PatchOAuth2Client (string id, List<ClientJsonPatch> clientJsonPatch)
 
@@ -1434,7 +1783,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1450,8 +1799,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.PatchOAuth2Client: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.PatchOAuth2Client: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1459,12 +1808,32 @@ namespace Example
 }
 ```
 
+#### Using the PatchOAuth2ClientWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Patch OAuth 2.0 Client
+    ApiResponse<ClientOAuth2Client> response = apiInstance.PatchOAuth2ClientWithHttpInfo(id, clientJsonPatch);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.PatchOAuth2ClientWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. | 
- **clientJsonPatch** | [**List&lt;ClientJsonPatch&gt;**](ClientJsonPatch.md)| OAuth 2.0 Client JSON Patch Body | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | The id of the OAuth 2.0 Client. |  |
+| **clientJsonPatch** | [**List&lt;ClientJsonPatch&gt;**](ClientJsonPatch.md) | OAuth 2.0 Client JSON Patch Body |  |
 
 ### Return type
 
@@ -1489,9 +1858,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="rejectoauth2consentrequest"></a>
+<a id="rejectoauth2consentrequest"></a>
 # **RejectOAuth2ConsentRequest**
-> ClientOAuth2RedirectTo RejectOAuth2ConsentRequest (string consentChallenge, ClientRejectOAuth2Request clientRejectOAuth2Request = null)
+> ClientOAuth2RedirectTo RejectOAuth2ConsentRequest (string consentChallenge, ClientRejectOAuth2Request? clientRejectOAuth2Request = null)
 
 Reject OAuth 2.0 Consent Request
 
@@ -1512,13 +1881,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var consentChallenge = "consentChallenge_example";  // string | OAuth 2.0 Consent Request Challenge
-            var clientRejectOAuth2Request = new ClientRejectOAuth2Request(); // ClientRejectOAuth2Request |  (optional) 
+            var clientRejectOAuth2Request = new ClientRejectOAuth2Request?(); // ClientRejectOAuth2Request? |  (optional) 
 
             try
             {
@@ -1528,8 +1897,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.RejectOAuth2ConsentRequest: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.RejectOAuth2ConsentRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1537,12 +1906,32 @@ namespace Example
 }
 ```
 
+#### Using the RejectOAuth2ConsentRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Reject OAuth 2.0 Consent Request
+    ApiResponse<ClientOAuth2RedirectTo> response = apiInstance.RejectOAuth2ConsentRequestWithHttpInfo(consentChallenge, clientRejectOAuth2Request);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.RejectOAuth2ConsentRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **consentChallenge** | **string**| OAuth 2.0 Consent Request Challenge | 
- **clientRejectOAuth2Request** | [**ClientRejectOAuth2Request**](ClientRejectOAuth2Request.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **consentChallenge** | **string** | OAuth 2.0 Consent Request Challenge |  |
+| **clientRejectOAuth2Request** | [**ClientRejectOAuth2Request?**](ClientRejectOAuth2Request?.md) |  | [optional]  |
 
 ### Return type
 
@@ -1566,9 +1955,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="rejectoauth2loginrequest"></a>
+<a id="rejectoauth2loginrequest"></a>
 # **RejectOAuth2LoginRequest**
-> ClientOAuth2RedirectTo RejectOAuth2LoginRequest (string loginChallenge, ClientRejectOAuth2Request clientRejectOAuth2Request = null)
+> ClientOAuth2RedirectTo RejectOAuth2LoginRequest (string loginChallenge, ClientRejectOAuth2Request? clientRejectOAuth2Request = null)
 
 Reject OAuth 2.0 Login Request
 
@@ -1589,13 +1978,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var loginChallenge = "loginChallenge_example";  // string | OAuth 2.0 Login Request Challenge
-            var clientRejectOAuth2Request = new ClientRejectOAuth2Request(); // ClientRejectOAuth2Request |  (optional) 
+            var clientRejectOAuth2Request = new ClientRejectOAuth2Request?(); // ClientRejectOAuth2Request? |  (optional) 
 
             try
             {
@@ -1605,8 +1994,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.RejectOAuth2LoginRequest: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.RejectOAuth2LoginRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1614,12 +2003,32 @@ namespace Example
 }
 ```
 
+#### Using the RejectOAuth2LoginRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Reject OAuth 2.0 Login Request
+    ApiResponse<ClientOAuth2RedirectTo> response = apiInstance.RejectOAuth2LoginRequestWithHttpInfo(loginChallenge, clientRejectOAuth2Request);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.RejectOAuth2LoginRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginChallenge** | **string**| OAuth 2.0 Login Request Challenge | 
- **clientRejectOAuth2Request** | [**ClientRejectOAuth2Request**](ClientRejectOAuth2Request.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **loginChallenge** | **string** | OAuth 2.0 Login Request Challenge |  |
+| **clientRejectOAuth2Request** | [**ClientRejectOAuth2Request?**](ClientRejectOAuth2Request?.md) |  | [optional]  |
 
 ### Return type
 
@@ -1643,7 +2052,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="rejectoauth2logoutrequest"></a>
+<a id="rejectoauth2logoutrequest"></a>
 # **RejectOAuth2LogoutRequest**
 > void RejectOAuth2LogoutRequest (string logoutChallenge)
 
@@ -1666,7 +2075,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1680,8 +2089,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.RejectOAuth2LogoutRequest: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.RejectOAuth2LogoutRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1689,11 +2098,28 @@ namespace Example
 }
 ```
 
+#### Using the RejectOAuth2LogoutRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Reject OAuth 2.0 Session Logout Request
+    apiInstance.RejectOAuth2LogoutRequestWithHttpInfo(logoutChallenge);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.RejectOAuth2LogoutRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **logoutChallenge** | **string**|  | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **logoutChallenge** | **string** |  |  |
 
 ### Return type
 
@@ -1717,9 +2143,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="revokeoauth2consentsessions"></a>
+<a id="revokeoauth2consentsessions"></a>
 # **RevokeOAuth2ConsentSessions**
-> void RevokeOAuth2ConsentSessions (string subject, string _client = null, bool? all = null)
+> void RevokeOAuth2ConsentSessions (string subject, string? varClient = null, bool? all = null)
 
 Revoke OAuth 2.0 Consent Sessions of a Subject
 
@@ -1740,24 +2166,24 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var subject = "subject_example";  // string | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
-            var _client = "_client_example";  // string | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. (optional) 
+            var varClient = "varClient_example";  // string? | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. (optional) 
             var all = true;  // bool? | Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted. (optional) 
 
             try
             {
                 // Revoke OAuth 2.0 Consent Sessions of a Subject
-                apiInstance.RevokeOAuth2ConsentSessions(subject, _client, all);
+                apiInstance.RevokeOAuth2ConsentSessions(subject, varClient, all);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.RevokeOAuth2ConsentSessions: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.RevokeOAuth2ConsentSessions: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1765,13 +2191,30 @@ namespace Example
 }
 ```
 
+#### Using the RevokeOAuth2ConsentSessionsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Revoke OAuth 2.0 Consent Sessions of a Subject
+    apiInstance.RevokeOAuth2ConsentSessionsWithHttpInfo(subject, varClient, all);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.RevokeOAuth2ConsentSessionsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **string**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | 
- **_client** | **string**| OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional] 
- **all** | **bool?**| Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **subject** | **string** | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. |  |
+| **varClient** | **string?** | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional]  |
+| **all** | **bool?** | Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional]  |
 
 ### Return type
 
@@ -1795,13 +2238,13 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="revokeoauth2loginsessions"></a>
+<a id="revokeoauth2loginsessions"></a>
 # **RevokeOAuth2LoginSessions**
-> void RevokeOAuth2LoginSessions (string subject = null, string sid = null)
+> void RevokeOAuth2LoginSessions (string? subject = null, string? sid = null)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 ### Example
 ```csharp
@@ -1818,13 +2261,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
-            var subject = "subject_example";  // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional) 
-            var sid = "sid_example";  // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional) 
+            var subject = "subject_example";  // string? | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional) 
+            var sid = "sid_example";  // string? | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional) 
 
             try
             {
@@ -1833,8 +2276,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.RevokeOAuth2LoginSessions: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.RevokeOAuth2LoginSessions: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1842,12 +2285,29 @@ namespace Example
 }
 ```
 
+#### Using the RevokeOAuth2LoginSessionsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+    apiInstance.RevokeOAuth2LoginSessionsWithHttpInfo(subject, sid);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.RevokeOAuth2LoginSessionsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
- **sid** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **subject** | **string?** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]  |
+| **sid** | **string?** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]  |
 
 ### Return type
 
@@ -1871,9 +2331,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="revokeoauth2token"></a>
+<a id="revokeoauth2token"></a>
 # **RevokeOAuth2Token**
-> void RevokeOAuth2Token (string token, string clientId = null, string clientSecret = null)
+> void RevokeOAuth2Token (string token, string? clientId = null, string? clientSecret = null)
 
 Revoke OAuth 2.0 Access or Refresh Token
 
@@ -1894,7 +2354,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure HTTP basic authorization: basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
@@ -1903,8 +2363,8 @@ namespace Example
 
             var apiInstance = new OAuth2Api(config);
             var token = "token_example";  // string | 
-            var clientId = "clientId_example";  // string |  (optional) 
-            var clientSecret = "clientSecret_example";  // string |  (optional) 
+            var clientId = "clientId_example";  // string? |  (optional) 
+            var clientSecret = "clientSecret_example";  // string? |  (optional) 
 
             try
             {
@@ -1913,8 +2373,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.RevokeOAuth2Token: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.RevokeOAuth2Token: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -1922,13 +2382,30 @@ namespace Example
 }
 ```
 
+#### Using the RevokeOAuth2TokenWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Revoke OAuth 2.0 Access or Refresh Token
+    apiInstance.RevokeOAuth2TokenWithHttpInfo(token, clientId, clientSecret);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.RevokeOAuth2TokenWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string**|  | 
- **clientId** | **string**|  | [optional] 
- **clientSecret** | **string**|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **token** | **string** |  |  |
+| **clientId** | **string?** |  | [optional]  |
+| **clientSecret** | **string?** |  | [optional]  |
 
 ### Return type
 
@@ -1952,7 +2429,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="setoauth2client"></a>
+<a id="setoauth2client"></a>
 # **SetOAuth2Client**
 > ClientOAuth2Client SetOAuth2Client (string id, ClientOAuth2Client clientOAuth2Client)
 
@@ -1975,7 +2452,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1991,8 +2468,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.SetOAuth2Client: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.SetOAuth2Client: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -2000,12 +2477,32 @@ namespace Example
 }
 ```
 
+#### Using the SetOAuth2ClientWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set OAuth 2.0 Client
+    ApiResponse<ClientOAuth2Client> response = apiInstance.SetOAuth2ClientWithHttpInfo(id, clientOAuth2Client);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.SetOAuth2ClientWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| OAuth 2.0 Client ID | 
- **clientOAuth2Client** | [**ClientOAuth2Client**](ClientOAuth2Client.md)| OAuth 2.0 Client Request Body | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | OAuth 2.0 Client ID |  |
+| **clientOAuth2Client** | [**ClientOAuth2Client**](ClientOAuth2Client.md) | OAuth 2.0 Client Request Body |  |
 
 ### Return type
 
@@ -2031,9 +2528,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="setoauth2clientlifespans"></a>
+<a id="setoauth2clientlifespans"></a>
 # **SetOAuth2ClientLifespans**
-> ClientOAuth2Client SetOAuth2ClientLifespans (string id, ClientOAuth2ClientTokenLifespans clientOAuth2ClientTokenLifespans = null)
+> ClientOAuth2Client SetOAuth2ClientLifespans (string id, ClientOAuth2ClientTokenLifespans? clientOAuth2ClientTokenLifespans = null)
 
 Set OAuth2 Client Token Lifespans
 
@@ -2054,13 +2551,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
             var id = "id_example";  // string | OAuth 2.0 Client ID
-            var clientOAuth2ClientTokenLifespans = new ClientOAuth2ClientTokenLifespans(); // ClientOAuth2ClientTokenLifespans |  (optional) 
+            var clientOAuth2ClientTokenLifespans = new ClientOAuth2ClientTokenLifespans?(); // ClientOAuth2ClientTokenLifespans? |  (optional) 
 
             try
             {
@@ -2070,8 +2567,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.SetOAuth2ClientLifespans: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.SetOAuth2ClientLifespans: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -2079,12 +2576,32 @@ namespace Example
 }
 ```
 
+#### Using the SetOAuth2ClientLifespansWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set OAuth2 Client Token Lifespans
+    ApiResponse<ClientOAuth2Client> response = apiInstance.SetOAuth2ClientLifespansWithHttpInfo(id, clientOAuth2ClientTokenLifespans);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.SetOAuth2ClientLifespansWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| OAuth 2.0 Client ID | 
- **clientOAuth2ClientTokenLifespans** | [**ClientOAuth2ClientTokenLifespans**](ClientOAuth2ClientTokenLifespans.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | OAuth 2.0 Client ID |  |
+| **clientOAuth2ClientTokenLifespans** | [**ClientOAuth2ClientTokenLifespans?**](ClientOAuth2ClientTokenLifespans?.md) |  | [optional]  |
 
 ### Return type
 
@@ -2108,9 +2625,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="trustoauth2jwtgrantissuer"></a>
+<a id="trustoauth2jwtgrantissuer"></a>
 # **TrustOAuth2JwtGrantIssuer**
-> ClientTrustedOAuth2JwtGrantIssuer TrustOAuth2JwtGrantIssuer (ClientTrustOAuth2JwtGrantIssuer clientTrustOAuth2JwtGrantIssuer = null)
+> ClientTrustedOAuth2JwtGrantIssuer TrustOAuth2JwtGrantIssuer (ClientTrustOAuth2JwtGrantIssuer? clientTrustOAuth2JwtGrantIssuer = null)
 
 Trust OAuth2 JWT Bearer Grant Type Issuer
 
@@ -2131,12 +2648,12 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://playground.projects.oryapis.com";
+            config.BasePath = "https://.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
-            var clientTrustOAuth2JwtGrantIssuer = new ClientTrustOAuth2JwtGrantIssuer(); // ClientTrustOAuth2JwtGrantIssuer |  (optional) 
+            var clientTrustOAuth2JwtGrantIssuer = new ClientTrustOAuth2JwtGrantIssuer?(); // ClientTrustOAuth2JwtGrantIssuer? |  (optional) 
 
             try
             {
@@ -2146,8 +2663,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling OAuth2Api.TrustOAuth2JwtGrantIssuer: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling OAuth2Api.TrustOAuth2JwtGrantIssuer: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -2155,11 +2672,31 @@ namespace Example
 }
 ```
 
+#### Using the TrustOAuth2JwtGrantIssuerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Trust OAuth2 JWT Bearer Grant Type Issuer
+    ApiResponse<ClientTrustedOAuth2JwtGrantIssuer> response = apiInstance.TrustOAuth2JwtGrantIssuerWithHttpInfo(clientTrustOAuth2JwtGrantIssuer);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling OAuth2Api.TrustOAuth2JwtGrantIssuerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientTrustOAuth2JwtGrantIssuer** | [**ClientTrustOAuth2JwtGrantIssuer**](ClientTrustOAuth2JwtGrantIssuer.md)|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **clientTrustOAuth2JwtGrantIssuer** | [**ClientTrustOAuth2JwtGrantIssuer?**](ClientTrustOAuth2JwtGrantIssuer?.md) |  | [optional]  |
 
 ### Return type
 

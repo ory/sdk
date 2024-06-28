@@ -6,9 +6,119 @@ part of 'registration_flow.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_password =
+    const RegistrationFlowActiveEnum._('password');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_oidc =
+    const RegistrationFlowActiveEnum._('oidc');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_totp =
+    const RegistrationFlowActiveEnum._('totp');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_lookupSecret =
+    const RegistrationFlowActiveEnum._('lookupSecret');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_webauthn =
+    const RegistrationFlowActiveEnum._('webauthn');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_code =
+    const RegistrationFlowActiveEnum._('code');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_passkey =
+    const RegistrationFlowActiveEnum._('passkey');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_profile =
+    const RegistrationFlowActiveEnum._('profile');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_linkRecovery =
+    const RegistrationFlowActiveEnum._('linkRecovery');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_codeRecovery =
+    const RegistrationFlowActiveEnum._('codeRecovery');
+
+RegistrationFlowActiveEnum _$registrationFlowActiveEnumValueOf(String name) {
+  switch (name) {
+    case 'password':
+      return _$registrationFlowActiveEnum_password;
+    case 'oidc':
+      return _$registrationFlowActiveEnum_oidc;
+    case 'totp':
+      return _$registrationFlowActiveEnum_totp;
+    case 'lookupSecret':
+      return _$registrationFlowActiveEnum_lookupSecret;
+    case 'webauthn':
+      return _$registrationFlowActiveEnum_webauthn;
+    case 'code':
+      return _$registrationFlowActiveEnum_code;
+    case 'passkey':
+      return _$registrationFlowActiveEnum_passkey;
+    case 'profile':
+      return _$registrationFlowActiveEnum_profile;
+    case 'linkRecovery':
+      return _$registrationFlowActiveEnum_linkRecovery;
+    case 'codeRecovery':
+      return _$registrationFlowActiveEnum_codeRecovery;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<RegistrationFlowActiveEnum> _$registrationFlowActiveEnumValues =
+    new BuiltSet<RegistrationFlowActiveEnum>(const <RegistrationFlowActiveEnum>[
+  _$registrationFlowActiveEnum_password,
+  _$registrationFlowActiveEnum_oidc,
+  _$registrationFlowActiveEnum_totp,
+  _$registrationFlowActiveEnum_lookupSecret,
+  _$registrationFlowActiveEnum_webauthn,
+  _$registrationFlowActiveEnum_code,
+  _$registrationFlowActiveEnum_passkey,
+  _$registrationFlowActiveEnum_profile,
+  _$registrationFlowActiveEnum_linkRecovery,
+  _$registrationFlowActiveEnum_codeRecovery,
+]);
+
+Serializer<RegistrationFlowActiveEnum> _$registrationFlowActiveEnumSerializer =
+    new _$RegistrationFlowActiveEnumSerializer();
+
+class _$RegistrationFlowActiveEnumSerializer
+    implements PrimitiveSerializer<RegistrationFlowActiveEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookupSecret': 'lookup_secret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
+    'linkRecovery': 'link_recovery',
+    'codeRecovery': 'code_recovery',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookup_secret': 'lookupSecret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
+    'link_recovery': 'linkRecovery',
+    'code_recovery': 'codeRecovery',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[RegistrationFlowActiveEnum];
+  @override
+  final String wireName = 'RegistrationFlowActiveEnum';
+
+  @override
+  Object serialize(Serializers serializers, RegistrationFlowActiveEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  RegistrationFlowActiveEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      RegistrationFlowActiveEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$RegistrationFlow extends RegistrationFlow {
   @override
-  final IdentityCredentialsType? active;
+  final RegistrationFlowActiveEnum? active;
   @override
   final DateTime expiresAt;
   @override
@@ -20,9 +130,15 @@ class _$RegistrationFlow extends RegistrationFlow {
   @override
   final OAuth2LoginRequest? oauth2LoginRequest;
   @override
+  final String? organizationId;
+  @override
   final String requestUrl;
   @override
   final String? returnTo;
+  @override
+  final String? sessionTokenExchangeCode;
+  @override
+  final JsonObject? state;
   @override
   final JsonObject? transientPayload;
   @override
@@ -41,8 +157,11 @@ class _$RegistrationFlow extends RegistrationFlow {
       required this.issuedAt,
       this.oauth2LoginChallenge,
       this.oauth2LoginRequest,
+      this.organizationId,
       required this.requestUrl,
       this.returnTo,
+      this.sessionTokenExchangeCode,
+      this.state,
       this.transientPayload,
       required this.type,
       required this.ui})
@@ -76,8 +195,11 @@ class _$RegistrationFlow extends RegistrationFlow {
         issuedAt == other.issuedAt &&
         oauth2LoginChallenge == other.oauth2LoginChallenge &&
         oauth2LoginRequest == other.oauth2LoginRequest &&
+        organizationId == other.organizationId &&
         requestUrl == other.requestUrl &&
         returnTo == other.returnTo &&
+        sessionTokenExchangeCode == other.sessionTokenExchangeCode &&
+        state == other.state &&
         transientPayload == other.transientPayload &&
         type == other.type &&
         ui == other.ui;
@@ -92,8 +214,11 @@ class _$RegistrationFlow extends RegistrationFlow {
     _$hash = $jc(_$hash, issuedAt.hashCode);
     _$hash = $jc(_$hash, oauth2LoginChallenge.hashCode);
     _$hash = $jc(_$hash, oauth2LoginRequest.hashCode);
+    _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, requestUrl.hashCode);
     _$hash = $jc(_$hash, returnTo.hashCode);
+    _$hash = $jc(_$hash, sessionTokenExchangeCode.hashCode);
+    _$hash = $jc(_$hash, state.hashCode);
     _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, ui.hashCode);
@@ -110,8 +235,11 @@ class _$RegistrationFlow extends RegistrationFlow {
           ..add('issuedAt', issuedAt)
           ..add('oauth2LoginChallenge', oauth2LoginChallenge)
           ..add('oauth2LoginRequest', oauth2LoginRequest)
+          ..add('organizationId', organizationId)
           ..add('requestUrl', requestUrl)
           ..add('returnTo', returnTo)
+          ..add('sessionTokenExchangeCode', sessionTokenExchangeCode)
+          ..add('state', state)
           ..add('transientPayload', transientPayload)
           ..add('type', type)
           ..add('ui', ui))
@@ -123,9 +251,9 @@ class RegistrationFlowBuilder
     implements Builder<RegistrationFlow, RegistrationFlowBuilder> {
   _$RegistrationFlow? _$v;
 
-  IdentityCredentialsType? _active;
-  IdentityCredentialsType? get active => _$this._active;
-  set active(IdentityCredentialsType? active) => _$this._active = active;
+  RegistrationFlowActiveEnum? _active;
+  RegistrationFlowActiveEnum? get active => _$this._active;
+  set active(RegistrationFlowActiveEnum? active) => _$this._active = active;
 
   DateTime? _expiresAt;
   DateTime? get expiresAt => _$this._expiresAt;
@@ -150,6 +278,11 @@ class RegistrationFlowBuilder
   set oauth2LoginRequest(OAuth2LoginRequestBuilder? oauth2LoginRequest) =>
       _$this._oauth2LoginRequest = oauth2LoginRequest;
 
+  String? _organizationId;
+  String? get organizationId => _$this._organizationId;
+  set organizationId(String? organizationId) =>
+      _$this._organizationId = organizationId;
+
   String? _requestUrl;
   String? get requestUrl => _$this._requestUrl;
   set requestUrl(String? requestUrl) => _$this._requestUrl = requestUrl;
@@ -157,6 +290,15 @@ class RegistrationFlowBuilder
   String? _returnTo;
   String? get returnTo => _$this._returnTo;
   set returnTo(String? returnTo) => _$this._returnTo = returnTo;
+
+  String? _sessionTokenExchangeCode;
+  String? get sessionTokenExchangeCode => _$this._sessionTokenExchangeCode;
+  set sessionTokenExchangeCode(String? sessionTokenExchangeCode) =>
+      _$this._sessionTokenExchangeCode = sessionTokenExchangeCode;
+
+  JsonObject? _state;
+  JsonObject? get state => _$this._state;
+  set state(JsonObject? state) => _$this._state = state;
 
   JsonObject? _transientPayload;
   JsonObject? get transientPayload => _$this._transientPayload;
@@ -184,8 +326,11 @@ class RegistrationFlowBuilder
       _issuedAt = $v.issuedAt;
       _oauth2LoginChallenge = $v.oauth2LoginChallenge;
       _oauth2LoginRequest = $v.oauth2LoginRequest?.toBuilder();
+      _organizationId = $v.organizationId;
       _requestUrl = $v.requestUrl;
       _returnTo = $v.returnTo;
+      _sessionTokenExchangeCode = $v.sessionTokenExchangeCode;
+      _state = $v.state;
       _transientPayload = $v.transientPayload;
       _type = $v.type;
       _ui = $v.ui.toBuilder();
@@ -222,9 +367,12 @@ class RegistrationFlowBuilder
                   issuedAt, r'RegistrationFlow', 'issuedAt'),
               oauth2LoginChallenge: oauth2LoginChallenge,
               oauth2LoginRequest: _oauth2LoginRequest?.build(),
+              organizationId: organizationId,
               requestUrl: BuiltValueNullFieldError.checkNotNull(
                   requestUrl, r'RegistrationFlow', 'requestUrl'),
               returnTo: returnTo,
+              sessionTokenExchangeCode: sessionTokenExchangeCode,
+              state: state,
               transientPayload: transientPayload,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'RegistrationFlow', 'type'),

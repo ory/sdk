@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the CreateJsonWebKeySet type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateJsonWebKeySet{}
 
 // CreateJsonWebKeySet Create JSON Web Key Set Request Body
 type CreateJsonWebKeySet struct {
@@ -23,7 +27,10 @@ type CreateJsonWebKeySet struct {
 	Kid string `json:"kid"`
 	// JSON Web Key Use  The \"use\" (public key use) parameter identifies the intended use of the public key. The \"use\" parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Valid values are \"enc\" and \"sig\".
 	Use string `json:"use"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateJsonWebKeySet CreateJsonWebKeySet
 
 // NewCreateJsonWebKeySet instantiates a new CreateJsonWebKeySet object
 // This constructor will assign default values to properties that have it defined,
@@ -118,17 +125,70 @@ func (o *CreateJsonWebKeySet) SetUse(v string) {
 }
 
 func (o CreateJsonWebKeySet) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["alg"] = o.Alg
-	}
-	if true {
-		toSerialize["kid"] = o.Kid
-	}
-	if true {
-		toSerialize["use"] = o.Use
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateJsonWebKeySet) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["alg"] = o.Alg
+	toSerialize["kid"] = o.Kid
+	toSerialize["use"] = o.Use
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *CreateJsonWebKeySet) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"alg",
+		"kid",
+		"use",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateJsonWebKeySet := _CreateJsonWebKeySet{}
+
+	err = json.Unmarshal(bytes, &varCreateJsonWebKeySet)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateJsonWebKeySet(varCreateJsonWebKeySet)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "alg")
+		delete(additionalProperties, "kid")
+		delete(additionalProperties, "use")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateJsonWebKeySet struct {

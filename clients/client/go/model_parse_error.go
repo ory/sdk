@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,12 +15,18 @@ import (
 	"encoding/json"
 )
 
+// checks if the ParseError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ParseError{}
+
 // ParseError struct for ParseError
 type ParseError struct {
 	End *SourcePosition `json:"end,omitempty"`
 	Message *string `json:"message,omitempty"`
 	Start *SourcePosition `json:"start,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ParseError ParseError
 
 // NewParseError instantiates a new ParseError object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,7 @@ func NewParseErrorWithDefaults() *ParseError {
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *ParseError) GetEnd() SourcePosition {
-	if o == nil || o.End == nil {
+	if o == nil || IsNil(o.End) {
 		var ret SourcePosition
 		return ret
 	}
@@ -51,7 +57,7 @@ func (o *ParseError) GetEnd() SourcePosition {
 // GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ParseError) GetEndOk() (*SourcePosition, bool) {
-	if o == nil || o.End == nil {
+	if o == nil || IsNil(o.End) {
 		return nil, false
 	}
 	return o.End, true
@@ -59,7 +65,7 @@ func (o *ParseError) GetEndOk() (*SourcePosition, bool) {
 
 // HasEnd returns a boolean if a field has been set.
 func (o *ParseError) HasEnd() bool {
-	if o != nil && o.End != nil {
+	if o != nil && !IsNil(o.End) {
 		return true
 	}
 
@@ -73,7 +79,7 @@ func (o *ParseError) SetEnd(v SourcePosition) {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ParseError) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -83,7 +89,7 @@ func (o *ParseError) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ParseError) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
 	return o.Message, true
@@ -91,7 +97,7 @@ func (o *ParseError) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ParseError) HasMessage() bool {
-	if o != nil && o.Message != nil {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -105,7 +111,7 @@ func (o *ParseError) SetMessage(v string) {
 
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *ParseError) GetStart() SourcePosition {
-	if o == nil || o.Start == nil {
+	if o == nil || IsNil(o.Start) {
 		var ret SourcePosition
 		return ret
 	}
@@ -115,7 +121,7 @@ func (o *ParseError) GetStart() SourcePosition {
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ParseError) GetStartOk() (*SourcePosition, bool) {
-	if o == nil || o.Start == nil {
+	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
 	return o.Start, true
@@ -123,7 +129,7 @@ func (o *ParseError) GetStartOk() (*SourcePosition, bool) {
 
 // HasStart returns a boolean if a field has been set.
 func (o *ParseError) HasStart() bool {
-	if o != nil && o.Start != nil {
+	if o != nil && !IsNil(o.Start) {
 		return true
 	}
 
@@ -136,17 +142,53 @@ func (o *ParseError) SetStart(v SourcePosition) {
 }
 
 func (o ParseError) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.End != nil {
-		toSerialize["end"] = o.End
-	}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
-	if o.Start != nil {
-		toSerialize["start"] = o.Start
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ParseError) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.End) {
+		toSerialize["end"] = o.End
+	}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.Start) {
+		toSerialize["start"] = o.Start
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *ParseError) UnmarshalJSON(data []byte) (err error) {
+	varParseError := _ParseError{}
+
+	err = json.Unmarshal(data, &varParseError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ParseError(varParseError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "end")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "start")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableParseError struct {

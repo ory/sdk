@@ -2,19 +2,29 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **str** | Error message  The error&#39;s message. | 
+**error** | [**GenericError**](GenericError.md) |  | [optional] 
 **redirect_browser_to** | **str** | Points to where to redirect the user to next. | 
-**code** | **int** | The status code | [optional] 
-**debug** | **str** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
-**details** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Further error details | [optional] 
-**id** | **str** | The error ID  Useful when trying to identify various errors in application logic. | [optional] 
-**reason** | **str** | A human-readable reason for the error | [optional] 
-**request** | **str** | The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID. | [optional] 
-**status** | **str** | The status description | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.needs_privileged_session_error import NeedsPrivilegedSessionError
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of NeedsPrivilegedSessionError from a JSON string
+needs_privileged_session_error_instance = NeedsPrivilegedSessionError.from_json(json)
+# print the JSON string representation of the object
+print(NeedsPrivilegedSessionError.to_json())
+
+# convert the object into a dict
+needs_privileged_session_error_dict = needs_privileged_session_error_instance.to_dict()
+# create an instance of NeedsPrivilegedSessionError from a dict
+needs_privileged_session_error_form_dict = needs_privileged_session_error.from_dict(needs_privileged_session_error_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

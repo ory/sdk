@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -14,7 +14,11 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the MessageDispatch type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MessageDispatch{}
 
 // MessageDispatch MessageDispatch represents an attempt of sending a courier message It contains the status of the attempt (failed or successful) and the error if any occured
 type MessageDispatch struct {
@@ -29,7 +33,10 @@ type MessageDispatch struct {
 	Status string `json:"status"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MessageDispatch MessageDispatch
 
 // NewMessageDispatch instantiates a new MessageDispatch object
 // This constructor will assign default values to properties that have it defined,
@@ -79,7 +86,7 @@ func (o *MessageDispatch) SetCreatedAt(v time.Time) {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *MessageDispatch) GetError() map[string]interface{} {
-	if o == nil || o.Error == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -89,15 +96,15 @@ func (o *MessageDispatch) GetError() map[string]interface{} {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDispatch) GetErrorOk() (map[string]interface{}, bool) {
-	if o == nil || o.Error == nil {
-		return nil, false
+	if o == nil || IsNil(o.Error) {
+		return map[string]interface{}{}, false
 	}
 	return o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *MessageDispatch) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -206,26 +213,80 @@ func (o *MessageDispatch) SetUpdatedAt(v time.Time) {
 }
 
 func (o MessageDispatch) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.Error != nil {
-		toSerialize["error"] = o.Error
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["message_id"] = o.MessageId
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MessageDispatch) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
+	toSerialize["id"] = o.Id
+	toSerialize["message_id"] = o.MessageId
+	toSerialize["status"] = o.Status
+	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *MessageDispatch) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"created_at",
+		"id",
+		"message_id",
+		"status",
+		"updated_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMessageDispatch := _MessageDispatch{}
+
+	err = json.Unmarshal(data, &varMessageDispatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MessageDispatch(varMessageDispatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "message_id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMessageDispatch struct {

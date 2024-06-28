@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -15,11 +15,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeleteMySessionsCount type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeleteMySessionsCount{}
+
 // DeleteMySessionsCount Deleted Session Count
 type DeleteMySessionsCount struct {
 	// The number of sessions that were revoked.
 	Count *int64 `json:"count,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeleteMySessionsCount DeleteMySessionsCount
 
 // NewDeleteMySessionsCount instantiates a new DeleteMySessionsCount object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewDeleteMySessionsCountWithDefaults() *DeleteMySessionsCount {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *DeleteMySessionsCount) GetCount() int64 {
-	if o == nil || o.Count == nil {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -50,7 +56,7 @@ func (o *DeleteMySessionsCount) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeleteMySessionsCount) GetCountOk() (*int64, bool) {
-	if o == nil || o.Count == nil {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -58,7 +64,7 @@ func (o *DeleteMySessionsCount) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *DeleteMySessionsCount) HasCount() bool {
-	if o != nil && o.Count != nil {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -71,11 +77,45 @@ func (o *DeleteMySessionsCount) SetCount(v int64) {
 }
 
 func (o DeleteMySessionsCount) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Count != nil {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeleteMySessionsCount) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *DeleteMySessionsCount) UnmarshalJSON(bytes []byte) (err error) {
+	varDeleteMySessionsCount := _DeleteMySessionsCount{}
+
+	err = json.Unmarshal(bytes, &varDeleteMySessionsCount)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DeleteMySessionsCount(varDeleteMySessionsCount)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeleteMySessionsCount struct {

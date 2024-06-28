@@ -1,6 +1,19 @@
-# Generated SDKs for the ORY Ecosystem
+# Generated SDKs for the Ory Ecosystem
 
 All SDKs provided in this repository are generated using openapi-generator.
+
+## Ory Network SDKs
+
+When developing against [Ory Network](https://www.ory.sh/docs/sdk), use the
+latest `client` or `ory-client` SDK for your preferred language. It bundles the
+individual SDKs (Identities, OAuth2, Permissions) and works with [Ory API
+keys](https://www.ory.sh/docs/concepts/personal-access-token).
+
+## Ory self-hosted SDKs
+
+When developing against self-hosted Ory components (Kratos, Hydra, Keto), use
+the corresponding individual SDKs for your language and match the SDK version to
+the version of Kratos/Hydra/Keto you have deployed.
 
 ## Publish the Docker Image
 
@@ -11,8 +24,8 @@ You may also manually build and publish this image using:
 
 ```shell script
 docker build --platform linux/amd64 -t oryd/sdk:latest .
-docker tag oryd/sdk:latest oryd/sdk:v0.0.34
-docker push oryd/sdk:v0.0.34
+docker tag oryd/sdk:latest oryd/sdk:v0.0.53
+docker push oryd/sdk:v0.0.53
 ```
 
 ## Running the Image Locally
@@ -20,18 +33,18 @@ docker push oryd/sdk:v0.0.34
 If you wish to debug some generators or build steps, you can run the image locally:
 
 ```shell script
-docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/sdk --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:latest /bin/sh
+docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:v0.0.51 /bin/sh
 ```
 
 ### Debugging Failing Tests on CI
 
-If a tests fails on CI, you may run the following code snippet to reproduce the failure locally:
+If a test fails in CI, you may run the following code snippet to reproduce the failure locally:
 
 ```shell script
-docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project -it oryd/sdk:v0.0.50 /bin/sh
+docker run --platform linux/amd64 --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd/sdk:v0.0.53 /bin/bash
 
-export FORCE_VERSION=v1.11.0
-export FORCE_PROJECT=hydra # or hydra or something else
+export FORCE_PROJECT=client # or hydra or something else
+export FORCE_VERSION=$(cat /project/spec/$FORCE_PROJECT/latest) # or a specific version, e.g. v1.2.17
 cd /project
 
 ./scripts/generate.sh

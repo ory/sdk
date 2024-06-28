@@ -18,6 +18,8 @@ class _$PlanDetails extends PlanDetails {
   @override
   final BuiltMap<String, GenericUsage> features;
   @override
+  final bool? latest;
+  @override
   final String name;
   @override
   final int version;
@@ -31,6 +33,7 @@ class _$PlanDetails extends PlanDetails {
       required this.custom,
       required this.description,
       required this.features,
+      this.latest,
       required this.name,
       required this.version})
       : super._() {
@@ -62,6 +65,7 @@ class _$PlanDetails extends PlanDetails {
         custom == other.custom &&
         description == other.description &&
         features == other.features &&
+        latest == other.latest &&
         name == other.name &&
         version == other.version;
   }
@@ -74,6 +78,7 @@ class _$PlanDetails extends PlanDetails {
     _$hash = $jc(_$hash, custom.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, features.hashCode);
+    _$hash = $jc(_$hash, latest.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, version.hashCode);
     _$hash = $jf(_$hash);
@@ -88,6 +93,7 @@ class _$PlanDetails extends PlanDetails {
           ..add('custom', custom)
           ..add('description', description)
           ..add('features', features)
+          ..add('latest', latest)
           ..add('name', name)
           ..add('version', version))
         .toString();
@@ -121,6 +127,10 @@ class PlanDetailsBuilder implements Builder<PlanDetails, PlanDetailsBuilder> {
   set features(MapBuilder<String, GenericUsage>? features) =>
       _$this._features = features;
 
+  bool? _latest;
+  bool? get latest => _$this._latest;
+  set latest(bool? latest) => _$this._latest = latest;
+
   String? _name;
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
@@ -141,6 +151,7 @@ class PlanDetailsBuilder implements Builder<PlanDetails, PlanDetailsBuilder> {
       _custom = $v.custom;
       _description = $v.description;
       _features = $v.features.toBuilder();
+      _latest = $v.latest;
       _name = $v.name;
       _version = $v.version;
       _$v = null;
@@ -176,6 +187,7 @@ class PlanDetailsBuilder implements Builder<PlanDetails, PlanDetailsBuilder> {
               description: BuiltValueNullFieldError.checkNotNull(
                   description, r'PlanDetails', 'description'),
               features: features.build(),
+              latest: latest,
               name: BuiltValueNullFieldError.checkNotNull(
                   name, r'PlanDetails', 'name'),
               version: BuiltValueNullFieldError.checkNotNull(

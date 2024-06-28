@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Value** | **string** | The address value  example foo@user.com | 
 **Verified** | **bool** | Indicates if the address has already been verified | 
 **VerifiedAt** | Pointer to **time.Time** |  | [optional] 
-**Via** | **string** | VerifiableAddressType must not exceed 16 characters as that is the limitation in the SQL Schema | 
+**Via** | **string** | The delivery method | 
 
 ## Methods
 

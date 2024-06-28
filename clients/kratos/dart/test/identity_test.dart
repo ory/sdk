@@ -37,6 +37,11 @@ void main() {
       // TODO
     });
 
+    // String organizationId
+    test('to test the property `organizationId`', () async {
+      // TODO
+    });
+
     // RecoveryAddresses contains all the addresses that can be used to recover an identity.
     // BuiltList<RecoveryIdentityAddress> recoveryAddresses
     test('to test the property `recoveryAddresses`', () async {
@@ -55,7 +60,8 @@ void main() {
       // TODO
     });
 
-    // IdentityState state
+    // State is the identity's state.  This value has currently no effect. active StateActive inactive StateInactive
+    // String state
     test('to test the property `state`', () async {
       // TODO
     });

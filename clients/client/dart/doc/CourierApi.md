@@ -5,7 +5,7 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -23,9 +23,6 @@ Gets a specific messages by the given ID.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getCourierApi();
 final String id = id_example; // String | MessageID is the ID of the message.
@@ -33,7 +30,7 @@ final String id = id_example; // String | MessageID is the ID of the message.
 try {
     final response = api.getCourierMessage(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling CourierApi->getCourierMessage: $e\n');
 }
 ```
@@ -69,9 +66,6 @@ Lists all messages by given status and recipient.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getCourierApi();
 final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
@@ -82,7 +76,7 @@ final String recipient = recipient_example; // String | Recipient filters out me
 try {
     final response = api.listCourierMessages(pageSize, pageToken, status, recipient);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling CourierApi->listCourierMessages: $e\n');
 }
 ```

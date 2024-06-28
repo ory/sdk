@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateSettingsFlowWithProfileMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSettingsFlowWithProfileMethod{}
 
 // UpdateSettingsFlowWithProfileMethod Update Settings Flow with Profile Method
 type UpdateSettingsFlowWithProfileMethod struct {
@@ -23,7 +27,12 @@ type UpdateSettingsFlowWithProfileMethod struct {
 	Method string `json:"method"`
 	// Traits  The identity's traits.
 	Traits map[string]interface{} `json:"traits"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSettingsFlowWithProfileMethod UpdateSettingsFlowWithProfileMethod
 
 // NewUpdateSettingsFlowWithProfileMethod instantiates a new UpdateSettingsFlowWithProfileMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +55,7 @@ func NewUpdateSettingsFlowWithProfileMethodWithDefaults() *UpdateSettingsFlowWit
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithProfileMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -56,7 +65,7 @@ func (o *UpdateSettingsFlowWithProfileMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithProfileMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -64,7 +73,7 @@ func (o *UpdateSettingsFlowWithProfileMethod) GetCsrfTokenOk() (*string, bool) {
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateSettingsFlowWithProfileMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -114,7 +123,7 @@ func (o *UpdateSettingsFlowWithProfileMethod) GetTraits() map[string]interface{}
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithProfileMethod) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Traits, true
 }
@@ -124,18 +133,108 @@ func (o *UpdateSettingsFlowWithProfileMethod) SetTraits(v map[string]interface{}
 	o.Traits = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithProfileMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithProfileMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithProfileMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateSettingsFlowWithProfileMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 func (o UpdateSettingsFlowWithProfileMethod) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
-		toSerialize["csrf_token"] = o.CsrfToken
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if true {
-		toSerialize["traits"] = o.Traits
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateSettingsFlowWithProfileMethod) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CsrfToken) {
+		toSerialize["csrf_token"] = o.CsrfToken
+	}
+	toSerialize["method"] = o.Method
+	toSerialize["traits"] = o.Traits
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UpdateSettingsFlowWithProfileMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"method",
+		"traits",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateSettingsFlowWithProfileMethod := _UpdateSettingsFlowWithProfileMethod{}
+
+	err = json.Unmarshal(data, &varUpdateSettingsFlowWithProfileMethod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateSettingsFlowWithProfileMethod(varUpdateSettingsFlowWithProfileMethod)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "traits")
+		delete(additionalProperties, "transient_payload")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSettingsFlowWithProfileMethod struct {

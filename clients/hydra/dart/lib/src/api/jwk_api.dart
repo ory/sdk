@@ -71,9 +71,10 @@ class JwkApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -85,22 +86,23 @@ class JwkApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonWebKeySet _responseData;
+    JsonWebKeySet? _responseData;
 
     try {
-      const _responseType = FullType(JsonWebKeySet);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonWebKeySet),
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<JsonWebKeySet>(
@@ -257,22 +259,23 @@ class JwkApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonWebKeySet _responseData;
+    JsonWebKeySet? _responseData;
 
     try {
-      const _responseType = FullType(JsonWebKeySet);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonWebKeySet),
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<JsonWebKeySet>(
@@ -331,22 +334,23 @@ class JwkApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonWebKeySet _responseData;
+    JsonWebKeySet? _responseData;
 
     try {
-      const _responseType = FullType(JsonWebKeySet);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonWebKeySet),
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<JsonWebKeySet>(
@@ -414,9 +418,10 @@ class JwkApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -428,22 +433,23 @@ class JwkApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonWebKey _responseData;
+    JsonWebKey? _responseData;
 
     try {
-      const _responseType = FullType(JsonWebKey);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonWebKey),
       ) as JsonWebKey;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<JsonWebKey>(
@@ -509,9 +515,10 @@ class JwkApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -523,22 +530,23 @@ class JwkApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonWebKeySet _responseData;
+    JsonWebKeySet? _responseData;
 
     try {
-      const _responseType = FullType(JsonWebKeySet);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonWebKeySet),
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<JsonWebKeySet>(

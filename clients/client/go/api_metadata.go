@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -14,13 +14,13 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
 
 
-type MetadataApi interface {
+type MetadataAPI interface {
 
 	/*
 	GetVersion Return Running Software Version.
@@ -34,66 +34,24 @@ Be aware that if you are running multiple nodes of this service, the version wil
 refer to the cluster state, only to a single instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return MetadataApiGetVersionRequest
+	@return MetadataAPIGetVersionRequest
 	*/
-	GetVersion(ctx context.Context) MetadataApiGetVersionRequest
+	GetVersion(ctx context.Context) MetadataAPIGetVersionRequest
 
 	// GetVersionExecute executes the request
 	//  @return GetVersion200Response
-	GetVersionExecute(r MetadataApiGetVersionRequest) (*GetVersion200Response, *http.Response, error)
-
-	/*
-	IsAlive Check HTTP Server Status
-
-	This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming
-HTTP requests. This status does currently not include checks whether the database connection is working.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of this service, the health status will never
-refer to the cluster state, only to a single instance.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return MetadataApiIsAliveRequest
-	*/
-	IsAlive(ctx context.Context) MetadataApiIsAliveRequest
-
-	// IsAliveExecute executes the request
-	//  @return HealthStatus
-	IsAliveExecute(r MetadataApiIsAliveRequest) (*HealthStatus, *http.Response, error)
-
-	/*
-	IsReady Check HTTP Server and Database Status
-
-	This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g.
-the database) are responsive as well.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of Ory Kratos, the health status will never
-refer to the cluster state, only to a single instance.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return MetadataApiIsReadyRequest
-	*/
-	IsReady(ctx context.Context) MetadataApiIsReadyRequest
-
-	// IsReadyExecute executes the request
-	//  @return IsReady200Response
-	IsReadyExecute(r MetadataApiIsReadyRequest) (*IsReady200Response, *http.Response, error)
+	GetVersionExecute(r MetadataAPIGetVersionRequest) (*GetVersion200Response, *http.Response, error)
 }
 
-// MetadataApiService MetadataApi service
-type MetadataApiService service
+// MetadataAPIService MetadataAPI service
+type MetadataAPIService service
 
-type MetadataApiGetVersionRequest struct {
+type MetadataAPIGetVersionRequest struct {
 	ctx context.Context
-	ApiService MetadataApi
+	ApiService MetadataAPI
 }
 
-func (r MetadataApiGetVersionRequest) Execute() (*GetVersion200Response, *http.Response, error) {
+func (r MetadataAPIGetVersionRequest) Execute() (*GetVersion200Response, *http.Response, error) {
 	return r.ApiService.GetVersionExecute(r)
 }
 
@@ -109,10 +67,10 @@ Be aware that if you are running multiple nodes of this service, the version wil
 refer to the cluster state, only to a single instance.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return MetadataApiGetVersionRequest
+ @return MetadataAPIGetVersionRequest
 */
-func (a *MetadataApiService) GetVersion(ctx context.Context) MetadataApiGetVersionRequest {
-	return MetadataApiGetVersionRequest{
+func (a *MetadataAPIService) GetVersion(ctx context.Context) MetadataAPIGetVersionRequest {
+	return MetadataAPIGetVersionRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -120,7 +78,7 @@ func (a *MetadataApiService) GetVersion(ctx context.Context) MetadataApiGetVersi
 
 // Execute executes the request
 //  @return GetVersion200Response
-func (a *MetadataApiService) GetVersionExecute(r MetadataApiGetVersionRequest) (*GetVersion200Response, *http.Response, error) {
+func (a *MetadataAPIService) GetVersionExecute(r MetadataAPIGetVersionRequest) (*GetVersion200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -128,7 +86,7 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiGetVersionRequest) (
 		localVarReturnValue  *GetVersion200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.GetVersion")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataAPIService.GetVersion")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -166,9 +124,9 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiGetVersionRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -177,236 +135,6 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiGetVersionRequest) (
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type MetadataApiIsAliveRequest struct {
-	ctx context.Context
-	ApiService MetadataApi
-}
-
-func (r MetadataApiIsAliveRequest) Execute() (*HealthStatus, *http.Response, error) {
-	return r.ApiService.IsAliveExecute(r)
-}
-
-/*
-IsAlive Check HTTP Server Status
-
-This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming
-HTTP requests. This status does currently not include checks whether the database connection is working.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of this service, the health status will never
-refer to the cluster state, only to a single instance.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return MetadataApiIsAliveRequest
-*/
-func (a *MetadataApiService) IsAlive(ctx context.Context) MetadataApiIsAliveRequest {
-	return MetadataApiIsAliveRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return HealthStatus
-func (a *MetadataApiService) IsAliveExecute(r MetadataApiIsAliveRequest) (*HealthStatus, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *HealthStatus
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.IsAlive")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/health/alive"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type MetadataApiIsReadyRequest struct {
-	ctx context.Context
-	ApiService MetadataApi
-}
-
-func (r MetadataApiIsReadyRequest) Execute() (*IsReady200Response, *http.Response, error) {
-	return r.ApiService.IsReadyExecute(r)
-}
-
-/*
-IsReady Check HTTP Server and Database Status
-
-This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g.
-the database) are responsive as well.
-
-If the service supports TLS Edge Termination, this endpoint does not require the
-`X-Forwarded-Proto` header to be set.
-
-Be aware that if you are running multiple nodes of Ory Kratos, the health status will never
-refer to the cluster state, only to a single instance.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return MetadataApiIsReadyRequest
-*/
-func (a *MetadataApiService) IsReady(ctx context.Context) MetadataApiIsReadyRequest {
-	return MetadataApiIsReadyRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return IsReady200Response
-func (a *MetadataApiService) IsReadyExecute(r MetadataApiIsReadyRequest) (*IsReady200Response, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *IsReady200Response
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.IsReady")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/health/ready"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 503 {
-			var v IsReady503Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

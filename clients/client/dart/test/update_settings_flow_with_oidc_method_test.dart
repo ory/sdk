@@ -31,13 +31,19 @@ void main() {
       // TODO
     });
 
+    // Transient data to pass along to any webhooks
+    // JsonObject transientPayload
+    test('to test the property `transientPayload`', () async {
+      // TODO
+    });
+
     // Unlink this provider  Either this or `link` must be set.  type: string in: body
     // String unlink
     test('to test the property `unlink`', () async {
       // TODO
     });
 
-    // UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+    // UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
     // JsonObject upstreamParameters
     test('to test the property `upstreamParameters`', () async {
       // TODO

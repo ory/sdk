@@ -12,12 +12,20 @@ part 'create_project_branding.g.dart';
 /// Create a Project Branding
 ///
 /// Properties:
+/// * [faviconType] 
+/// * [faviconUrl] 
 /// * [logoType] 
 /// * [logoUrl] 
 /// * [name] 
 /// * [theme] 
 @BuiltValue()
 abstract class CreateProjectBranding implements Built<CreateProjectBranding, CreateProjectBrandingBuilder> {
+  @BuiltValueField(wireName: r'favicon_type')
+  String? get faviconType;
+
+  @BuiltValueField(wireName: r'favicon_url')
+  String? get faviconUrl;
+
   @BuiltValueField(wireName: r'logo_type')
   String? get logoType;
 
@@ -53,6 +61,20 @@ class _$CreateProjectBrandingSerializer implements PrimitiveSerializer<CreatePro
     CreateProjectBranding object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.faviconType != null) {
+      yield r'favicon_type';
+      yield serializers.serialize(
+        object.faviconType,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.faviconUrl != null) {
+      yield r'favicon_url';
+      yield serializers.serialize(
+        object.faviconUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.logoType != null) {
       yield r'logo_type';
       yield serializers.serialize(
@@ -104,6 +126,20 @@ class _$CreateProjectBrandingSerializer implements PrimitiveSerializer<CreatePro
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'favicon_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.faviconType = valueDes;
+          break;
+        case r'favicon_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.faviconUrl = valueDes;
+          break;
         case r'logo_type':
           final valueDes = serializers.deserialize(
             value,

@@ -20,7 +20,9 @@ class _$VerificationFlow extends VerificationFlow {
   @override
   final String? returnTo;
   @override
-  final VerificationFlowState state;
+  final JsonObject? state;
+  @override
+  final JsonObject? transientPayload;
   @override
   final String type;
   @override
@@ -37,12 +39,12 @@ class _$VerificationFlow extends VerificationFlow {
       this.issuedAt,
       this.requestUrl,
       this.returnTo,
-      required this.state,
+      this.state,
+      this.transientPayload,
       required this.type,
       required this.ui})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'VerificationFlow', 'id');
-    BuiltValueNullFieldError.checkNotNull(state, r'VerificationFlow', 'state');
     BuiltValueNullFieldError.checkNotNull(type, r'VerificationFlow', 'type');
     BuiltValueNullFieldError.checkNotNull(ui, r'VerificationFlow', 'ui');
   }
@@ -66,6 +68,7 @@ class _$VerificationFlow extends VerificationFlow {
         requestUrl == other.requestUrl &&
         returnTo == other.returnTo &&
         state == other.state &&
+        transientPayload == other.transientPayload &&
         type == other.type &&
         ui == other.ui;
   }
@@ -80,6 +83,7 @@ class _$VerificationFlow extends VerificationFlow {
     _$hash = $jc(_$hash, requestUrl.hashCode);
     _$hash = $jc(_$hash, returnTo.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, ui.hashCode);
     _$hash = $jf(_$hash);
@@ -96,6 +100,7 @@ class _$VerificationFlow extends VerificationFlow {
           ..add('requestUrl', requestUrl)
           ..add('returnTo', returnTo)
           ..add('state', state)
+          ..add('transientPayload', transientPayload)
           ..add('type', type)
           ..add('ui', ui))
         .toString();
@@ -130,9 +135,14 @@ class VerificationFlowBuilder
   String? get returnTo => _$this._returnTo;
   set returnTo(String? returnTo) => _$this._returnTo = returnTo;
 
-  VerificationFlowState? _state;
-  VerificationFlowState? get state => _$this._state;
-  set state(VerificationFlowState? state) => _$this._state = state;
+  JsonObject? _state;
+  JsonObject? get state => _$this._state;
+  set state(JsonObject? state) => _$this._state = state;
+
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
 
   String? _type;
   String? get type => _$this._type;
@@ -156,6 +166,7 @@ class VerificationFlowBuilder
       _requestUrl = $v.requestUrl;
       _returnTo = $v.returnTo;
       _state = $v.state;
+      _transientPayload = $v.transientPayload;
       _type = $v.type;
       _ui = $v.ui.toBuilder();
       _$v = null;
@@ -189,8 +200,8 @@ class VerificationFlowBuilder
               issuedAt: issuedAt,
               requestUrl: requestUrl,
               returnTo: returnTo,
-              state: BuiltValueNullFieldError.checkNotNull(
-                  state, r'VerificationFlow', 'state'),
+              state: state,
+              transientPayload: transientPayload,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'VerificationFlow', 'type'),
               ui: ui.build());

@@ -1,6 +1,6 @@
 # PermissionApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -11,7 +11,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**postCheckPermissionOrError**](PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission |
 
 
-<a name="checkPermission"></a>
+<a id="checkPermission"></a>
 # **checkPermission**
 > CheckPermissionResult checkPermission(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth)
 
@@ -32,7 +32,7 @@ import sh.ory.api.PermissionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -94,7 +94,7 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="checkPermissionOrError"></a>
+<a id="checkPermissionOrError"></a>
 # **checkPermissionOrError**
 > CheckPermissionResult checkPermissionOrError(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth)
 
@@ -115,7 +115,7 @@ import sh.ory.api.PermissionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -178,7 +178,7 @@ public class Example {
 | **403** | checkPermissionResult |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="expandPermissions"></a>
+<a id="expandPermissions"></a>
 # **expandPermissions**
 > ExpandedPermissionTree expandPermissions(namespace, _object, relation, maxDepth)
 
@@ -199,7 +199,7 @@ import sh.ory.api.PermissionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -254,7 +254,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="postCheckPermission"></a>
+<a id="postCheckPermission"></a>
 # **postCheckPermission**
 > CheckPermissionResult postCheckPermission(maxDepth, postCheckPermissionBody)
 
@@ -275,7 +275,7 @@ import sh.ory.api.PermissionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -325,7 +325,7 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="postCheckPermissionOrError"></a>
+<a id="postCheckPermissionOrError"></a>
 # **postCheckPermissionOrError**
 > CheckPermissionResult postCheckPermissionOrError(maxDepth, postCheckPermissionOrErrorBody)
 
@@ -346,14 +346,14 @@ import sh.ory.api.PermissionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     PermissionApi apiInstance = new PermissionApi(defaultClient);
-    Long maxDepth = 56L; // Long | nolint:deadcode,unused
+    Long maxDepth = 56L; // Long | 
     PostCheckPermissionOrErrorBody postCheckPermissionOrErrorBody = new PostCheckPermissionOrErrorBody(); // PostCheckPermissionOrErrorBody | 
     try {
       CheckPermissionResult result = apiInstance.postCheckPermissionOrError(maxDepth, postCheckPermissionOrErrorBody);
@@ -373,7 +373,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **maxDepth** | **Long**| nolint:deadcode,unused | [optional] |
+| **maxDepth** | **Long**|  | [optional] |
 | **postCheckPermissionOrErrorBody** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)|  | [optional] |
 
 ### Return type

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,13 +15,19 @@ import (
 	"encoding/json"
 )
 
+// checks if the IdentityWithCredentialsPasswordConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdentityWithCredentialsPasswordConfig{}
+
 // IdentityWithCredentialsPasswordConfig Create Identity and Import Password Credentials Configuration
 type IdentityWithCredentialsPasswordConfig struct {
-	// The hashed password in [PHC format]( https://www.ory.sh/docs/kratos/concepts/credentials/username-email-password#hashed-password-format)
+	// The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)
 	HashedPassword *string `json:"hashed_password,omitempty"`
 	// The password in plain text if no hash is available.
 	Password *string `json:"password,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdentityWithCredentialsPasswordConfig IdentityWithCredentialsPasswordConfig
 
 // NewIdentityWithCredentialsPasswordConfig instantiates a new IdentityWithCredentialsPasswordConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +48,7 @@ func NewIdentityWithCredentialsPasswordConfigWithDefaults() *IdentityWithCredent
 
 // GetHashedPassword returns the HashedPassword field value if set, zero value otherwise.
 func (o *IdentityWithCredentialsPasswordConfig) GetHashedPassword() string {
-	if o == nil || o.HashedPassword == nil {
+	if o == nil || IsNil(o.HashedPassword) {
 		var ret string
 		return ret
 	}
@@ -52,7 +58,7 @@ func (o *IdentityWithCredentialsPasswordConfig) GetHashedPassword() string {
 // GetHashedPasswordOk returns a tuple with the HashedPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentialsPasswordConfig) GetHashedPasswordOk() (*string, bool) {
-	if o == nil || o.HashedPassword == nil {
+	if o == nil || IsNil(o.HashedPassword) {
 		return nil, false
 	}
 	return o.HashedPassword, true
@@ -60,7 +66,7 @@ func (o *IdentityWithCredentialsPasswordConfig) GetHashedPasswordOk() (*string, 
 
 // HasHashedPassword returns a boolean if a field has been set.
 func (o *IdentityWithCredentialsPasswordConfig) HasHashedPassword() bool {
-	if o != nil && o.HashedPassword != nil {
+	if o != nil && !IsNil(o.HashedPassword) {
 		return true
 	}
 
@@ -74,7 +80,7 @@ func (o *IdentityWithCredentialsPasswordConfig) SetHashedPassword(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *IdentityWithCredentialsPasswordConfig) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -84,7 +90,7 @@ func (o *IdentityWithCredentialsPasswordConfig) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IdentityWithCredentialsPasswordConfig) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -92,7 +98,7 @@ func (o *IdentityWithCredentialsPasswordConfig) GetPasswordOk() (*string, bool) 
 
 // HasPassword returns a boolean if a field has been set.
 func (o *IdentityWithCredentialsPasswordConfig) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -105,14 +111,49 @@ func (o *IdentityWithCredentialsPasswordConfig) SetPassword(v string) {
 }
 
 func (o IdentityWithCredentialsPasswordConfig) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.HashedPassword != nil {
-		toSerialize["hashed_password"] = o.HashedPassword
-	}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IdentityWithCredentialsPasswordConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.HashedPassword) {
+		toSerialize["hashed_password"] = o.HashedPassword
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *IdentityWithCredentialsPasswordConfig) UnmarshalJSON(data []byte) (err error) {
+	varIdentityWithCredentialsPasswordConfig := _IdentityWithCredentialsPasswordConfig{}
+
+	err = json.Unmarshal(data, &varIdentityWithCredentialsPasswordConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IdentityWithCredentialsPasswordConfig(varIdentityWithCredentialsPasswordConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hashed_password")
+		delete(additionalProperties, "password")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdentityWithCredentialsPasswordConfig struct {

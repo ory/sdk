@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateLoginFlowWithWebAuthnMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateLoginFlowWithWebAuthnMethod{}
 
 // UpdateLoginFlowWithWebAuthnMethod Update Login Flow with WebAuthn Method
 type UpdateLoginFlowWithWebAuthnMethod struct {
@@ -23,9 +27,14 @@ type UpdateLoginFlowWithWebAuthnMethod struct {
 	Identifier string `json:"identifier"`
 	// Method should be set to \"webAuthn\" when logging in using the WebAuthn strategy.
 	Method string `json:"method"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
 	WebauthnLogin *string `json:"webauthn_login,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateLoginFlowWithWebAuthnMethod UpdateLoginFlowWithWebAuthnMethod
 
 // NewUpdateLoginFlowWithWebAuthnMethod instantiates a new UpdateLoginFlowWithWebAuthnMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +57,7 @@ func NewUpdateLoginFlowWithWebAuthnMethodWithDefaults() *UpdateLoginFlowWithWebA
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithWebAuthnMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -58,7 +67,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithWebAuthnMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -66,7 +75,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) GetCsrfTokenOk() (*string, bool) {
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithWebAuthnMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -126,9 +135,41 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) SetMethod(v string) {
 	o.Method = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateLoginFlowWithWebAuthnMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoginFlowWithWebAuthnMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateLoginFlowWithWebAuthnMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateLoginFlowWithWebAuthnMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 // GetWebauthnLogin returns the WebauthnLogin field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithWebAuthnMethod) GetWebauthnLogin() string {
-	if o == nil || o.WebauthnLogin == nil {
+	if o == nil || IsNil(o.WebauthnLogin) {
 		var ret string
 		return ret
 	}
@@ -138,7 +179,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) GetWebauthnLogin() string {
 // GetWebauthnLoginOk returns a tuple with the WebauthnLogin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithWebAuthnMethod) GetWebauthnLoginOk() (*string, bool) {
-	if o == nil || o.WebauthnLogin == nil {
+	if o == nil || IsNil(o.WebauthnLogin) {
 		return nil, false
 	}
 	return o.WebauthnLogin, true
@@ -146,7 +187,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) GetWebauthnLoginOk() (*string, bool)
 
 // HasWebauthnLogin returns a boolean if a field has been set.
 func (o *UpdateLoginFlowWithWebAuthnMethod) HasWebauthnLogin() bool {
-	if o != nil && o.WebauthnLogin != nil {
+	if o != nil && !IsNil(o.WebauthnLogin) {
 		return true
 	}
 
@@ -159,20 +200,79 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) SetWebauthnLogin(v string) {
 }
 
 func (o UpdateLoginFlowWithWebAuthnMethod) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CsrfToken != nil {
-		toSerialize["csrf_token"] = o.CsrfToken
-	}
-	if true {
-		toSerialize["identifier"] = o.Identifier
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if o.WebauthnLogin != nil {
-		toSerialize["webauthn_login"] = o.WebauthnLogin
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateLoginFlowWithWebAuthnMethod) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CsrfToken) {
+		toSerialize["csrf_token"] = o.CsrfToken
+	}
+	toSerialize["identifier"] = o.Identifier
+	toSerialize["method"] = o.Method
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
+	if !IsNil(o.WebauthnLogin) {
+		toSerialize["webauthn_login"] = o.WebauthnLogin
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UpdateLoginFlowWithWebAuthnMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"identifier",
+		"method",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateLoginFlowWithWebAuthnMethod := _UpdateLoginFlowWithWebAuthnMethod{}
+
+	err = json.Unmarshal(data, &varUpdateLoginFlowWithWebAuthnMethod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateLoginFlowWithWebAuthnMethod(varUpdateLoginFlowWithWebAuthnMethod)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "transient_payload")
+		delete(additionalProperties, "webauthn_login")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateLoginFlowWithWebAuthnMethod struct {

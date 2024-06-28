@@ -6,7 +6,6 @@
 import 'package:ory_client/src/model/verifiable_identity_address.dart';
 import 'package:ory_client/src/model/recovery_identity_address.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/src/model/identity_state.dart';
 import 'package:ory_client/src/model/identity_credentials.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -22,10 +21,11 @@ part 'identity.g.dart';
 /// * [id] - ID is the identity's unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB.
 /// * [metadataAdmin] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 /// * [metadataPublic] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+/// * [organizationId] 
 /// * [recoveryAddresses] - RecoveryAddresses contains all the addresses that can be used to recover an identity.
 /// * [schemaId] - SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
 /// * [schemaUrl] - SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
-/// * [state] 
+/// * [state] - State is the identity's state.  This value has currently no effect. active StateActive inactive StateInactive
 /// * [stateChangedAt] 
 /// * [traits] - Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
 /// * [updatedAt] - UpdatedAt is a helper struct field for gobuffalo.pop.
@@ -52,6 +52,9 @@ abstract class Identity implements Built<Identity, IdentityBuilder> {
   @BuiltValueField(wireName: r'metadata_public')
   JsonObject? get metadataPublic;
 
+  @BuiltValueField(wireName: r'organization_id')
+  String? get organizationId;
+
   /// RecoveryAddresses contains all the addresses that can be used to recover an identity.
   @BuiltValueField(wireName: r'recovery_addresses')
   BuiltList<RecoveryIdentityAddress>? get recoveryAddresses;
@@ -64,8 +67,9 @@ abstract class Identity implements Built<Identity, IdentityBuilder> {
   @BuiltValueField(wireName: r'schema_url')
   String get schemaUrl;
 
+  /// State is the identity's state.  This value has currently no effect. active StateActive inactive StateInactive
   @BuiltValueField(wireName: r'state')
-  IdentityState? get state;
+  IdentityStateEnum? get state;
   // enum stateEnum {  active,  inactive,  };
 
   @BuiltValueField(wireName: r'state_changed_at')
@@ -139,6 +143,13 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
         specifiedType: const FullType.nullable(JsonObject),
       );
     }
+    if (object.organizationId != null) {
+      yield r'organization_id';
+      yield serializers.serialize(
+        object.organizationId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.recoveryAddresses != null) {
       yield r'recovery_addresses';
       yield serializers.serialize(
@@ -160,7 +171,7 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
       yield r'state';
       yield serializers.serialize(
         object.state,
-        specifiedType: const FullType(IdentityState),
+        specifiedType: const FullType(IdentityStateEnum),
       );
     }
     if (object.stateChangedAt != null) {
@@ -249,6 +260,14 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
           if (valueDes == null) continue;
           result.metadataPublic = valueDes;
           break;
+        case r'organization_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.organizationId = valueDes;
+          break;
         case r'recovery_addresses':
           final valueDes = serializers.deserialize(
             value,
@@ -273,8 +292,8 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
         case r'state':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(IdentityState),
-          ) as IdentityState;
+            specifiedType: const FullType(IdentityStateEnum),
+          ) as IdentityStateEnum;
           result.state = valueDes;
           break;
         case r'state_changed_at':
@@ -333,5 +352,22 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
     );
     return result.build();
   }
+}
+
+class IdentityStateEnum extends EnumClass {
+
+  /// State is the identity's state.  This value has currently no effect. active StateActive inactive StateInactive
+  @BuiltValueEnumConst(wireName: r'active')
+  static const IdentityStateEnum active = _$identityStateEnum_active;
+  /// State is the identity's state.  This value has currently no effect. active StateActive inactive StateInactive
+  @BuiltValueEnumConst(wireName: r'inactive')
+  static const IdentityStateEnum inactive = _$identityStateEnum_inactive;
+
+  static Serializer<IdentityStateEnum> get serializer => _$identityStateEnumSerializer;
+
+  const IdentityStateEnum._(String name): super(name);
+
+  static BuiltSet<IdentityStateEnum> get values => _$identityStateEnumValues;
+  static IdentityStateEnum valueOf(String name) => _$identityStateEnumValueOf(name);
 }
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,10 +15,16 @@ import (
 	"encoding/json"
 )
 
+// checks if the InternalGetProjectBrandingBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InternalGetProjectBrandingBody{}
+
 // InternalGetProjectBrandingBody Get Project Branding Request Body
 type InternalGetProjectBrandingBody struct {
 	Hostname *string `json:"hostname,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InternalGetProjectBrandingBody InternalGetProjectBrandingBody
 
 // NewInternalGetProjectBrandingBody instantiates a new InternalGetProjectBrandingBody object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,7 @@ func NewInternalGetProjectBrandingBodyWithDefaults() *InternalGetProjectBranding
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *InternalGetProjectBrandingBody) GetHostname() string {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
@@ -49,7 +55,7 @@ func (o *InternalGetProjectBrandingBody) GetHostname() string {
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InternalGetProjectBrandingBody) GetHostnameOk() (*string, bool) {
-	if o == nil || o.Hostname == nil {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
 	return o.Hostname, true
@@ -57,7 +63,7 @@ func (o *InternalGetProjectBrandingBody) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *InternalGetProjectBrandingBody) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
+	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
 
@@ -70,11 +76,45 @@ func (o *InternalGetProjectBrandingBody) SetHostname(v string) {
 }
 
 func (o InternalGetProjectBrandingBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Hostname != nil {
-		toSerialize["hostname"] = o.Hostname
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o InternalGetProjectBrandingBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Hostname) {
+		toSerialize["hostname"] = o.Hostname
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *InternalGetProjectBrandingBody) UnmarshalJSON(data []byte) (err error) {
+	varInternalGetProjectBrandingBody := _InternalGetProjectBrandingBody{}
+
+	err = json.Unmarshal(data, &varInternalGetProjectBrandingBody)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InternalGetProjectBrandingBody(varInternalGetProjectBrandingBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hostname")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInternalGetProjectBrandingBody struct {

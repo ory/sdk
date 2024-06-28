@@ -7,8 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(GenericUsage, () {
-    // AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
-    // int additionalPrice
+    // Money additionalPrice
     test('to test the property `additionalPrice`', () async {
       // TODO
     });

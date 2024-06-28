@@ -7,6 +7,28 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(Project, () {
+    // ProjectCors corsAdmin
+    test('to test the property `corsAdmin`', () async {
+      // TODO
+    });
+
+    // ProjectCors corsPublic
+    test('to test the property `corsPublic`', () async {
+      // TODO
+    });
+
+    // The environment of the project. prod Production stage Staging dev Development
+    // String environment
+    test('to test the property `environment`', () async {
+      // TODO
+    });
+
+    // The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global
+    // String homeRegion
+    test('to test the property `homeRegion`', () async {
+      // TODO
+    });
+
     // The project's ID.
     // String id
     test('to test the property `id`', () async {
@@ -36,9 +58,14 @@ void main() {
       // TODO
     });
 
-    // The state of the project. running Running halted Halted
+    // The state of the project. running Running halted Halted deleted Deleted
     // String state
     test('to test the property `state`', () async {
+      // TODO
+    });
+
+    // String workspaceId
+    test('to test the property `workspaceId`', () async {
       // TODO
     });
 

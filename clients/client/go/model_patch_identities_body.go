@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,11 +15,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the PatchIdentitiesBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchIdentitiesBody{}
+
 // PatchIdentitiesBody Patch Identities Body
 type PatchIdentitiesBody struct {
 	// Identities holds the list of patches to apply  required
 	Identities []IdentityPatch `json:"identities,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchIdentitiesBody PatchIdentitiesBody
 
 // NewPatchIdentitiesBody instantiates a new PatchIdentitiesBody object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewPatchIdentitiesBodyWithDefaults() *PatchIdentitiesBody {
 
 // GetIdentities returns the Identities field value if set, zero value otherwise.
 func (o *PatchIdentitiesBody) GetIdentities() []IdentityPatch {
-	if o == nil || o.Identities == nil {
+	if o == nil || IsNil(o.Identities) {
 		var ret []IdentityPatch
 		return ret
 	}
@@ -50,7 +56,7 @@ func (o *PatchIdentitiesBody) GetIdentities() []IdentityPatch {
 // GetIdentitiesOk returns a tuple with the Identities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchIdentitiesBody) GetIdentitiesOk() ([]IdentityPatch, bool) {
-	if o == nil || o.Identities == nil {
+	if o == nil || IsNil(o.Identities) {
 		return nil, false
 	}
 	return o.Identities, true
@@ -58,7 +64,7 @@ func (o *PatchIdentitiesBody) GetIdentitiesOk() ([]IdentityPatch, bool) {
 
 // HasIdentities returns a boolean if a field has been set.
 func (o *PatchIdentitiesBody) HasIdentities() bool {
-	if o != nil && o.Identities != nil {
+	if o != nil && !IsNil(o.Identities) {
 		return true
 	}
 
@@ -71,11 +77,45 @@ func (o *PatchIdentitiesBody) SetIdentities(v []IdentityPatch) {
 }
 
 func (o PatchIdentitiesBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Identities != nil {
-		toSerialize["identities"] = o.Identities
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PatchIdentitiesBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Identities) {
+		toSerialize["identities"] = o.Identities
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *PatchIdentitiesBody) UnmarshalJSON(data []byte) (err error) {
+	varPatchIdentitiesBody := _PatchIdentitiesBody{}
+
+	err = json.Unmarshal(data, &varPatchIdentitiesBody)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchIdentitiesBody(varPatchIdentitiesBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "identities")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchIdentitiesBody struct {

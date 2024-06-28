@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/model/workspace.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -13,18 +14,33 @@ part 'project_metadata.g.dart';
 ///
 /// Properties:
 /// * [createdAt] - The Project's Creation Date
+/// * [environment] - The environment of the project. prod Production stage Staging dev Development
+/// * [homeRegion] - The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
 /// * [hosts] 
 /// * [id] - The project's ID.
 /// * [name] - The project's name if set
 /// * [slug] - The project's slug
-/// * [state] - The state of the project. running Running halted Halted
+/// * [state] - The state of the project. running Running halted Halted deleted Deleted
 /// * [subscriptionId] 
+/// * [subscriptionPlan] 
 /// * [updatedAt] - Last Time Project was Updated
+/// * [workspace] 
+/// * [workspaceId] 
 @BuiltValue()
 abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadataBuilder> {
   /// The Project's Creation Date
   @BuiltValueField(wireName: r'created_at')
   DateTime get createdAt;
+
+  /// The environment of the project. prod Production stage Staging dev Development
+  @BuiltValueField(wireName: r'environment')
+  ProjectMetadataEnvironmentEnum get environment;
+  // enum environmentEnum {  prod,  stage,  dev,  };
+
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueField(wireName: r'home_region')
+  ProjectMetadataHomeRegionEnum get homeRegion;
+  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  global,  };
 
   @BuiltValueField(wireName: r'hosts')
   BuiltList<String> get hosts;
@@ -39,19 +55,28 @@ abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadata
 
   /// The project's slug
   @BuiltValueField(wireName: r'slug')
-  String? get slug;
+  String get slug;
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueField(wireName: r'state')
   ProjectMetadataStateEnum get state;
-  // enum stateEnum {  running,  halted,  };
+  // enum stateEnum {  running,  halted,  deleted,  };
 
   @BuiltValueField(wireName: r'subscription_id')
   String? get subscriptionId;
 
+  @BuiltValueField(wireName: r'subscription_plan')
+  String? get subscriptionPlan;
+
   /// Last Time Project was Updated
   @BuiltValueField(wireName: r'updated_at')
   DateTime get updatedAt;
+
+  @BuiltValueField(wireName: r'workspace')
+  Workspace? get workspace;
+
+  @BuiltValueField(wireName: r'workspace_id')
+  String? get workspaceId;
 
   ProjectMetadata._();
 
@@ -81,6 +106,16 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
       object.createdAt,
       specifiedType: const FullType(DateTime),
     );
+    yield r'environment';
+    yield serializers.serialize(
+      object.environment,
+      specifiedType: const FullType(ProjectMetadataEnvironmentEnum),
+    );
+    yield r'home_region';
+    yield serializers.serialize(
+      object.homeRegion,
+      specifiedType: const FullType(ProjectMetadataHomeRegionEnum),
+    );
     yield r'hosts';
     yield serializers.serialize(
       object.hosts,
@@ -96,13 +131,11 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
       object.name,
       specifiedType: const FullType(String),
     );
-    if (object.slug != null) {
-      yield r'slug';
-      yield serializers.serialize(
-        object.slug,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'slug';
+    yield serializers.serialize(
+      object.slug,
+      specifiedType: const FullType(String),
+    );
     yield r'state';
     yield serializers.serialize(
       object.state,
@@ -115,11 +148,32 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
         specifiedType: const FullType.nullable(String),
       );
     }
+    if (object.subscriptionPlan != null) {
+      yield r'subscription_plan';
+      yield serializers.serialize(
+        object.subscriptionPlan,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     yield r'updated_at';
     yield serializers.serialize(
       object.updatedAt,
       specifiedType: const FullType(DateTime),
     );
+    if (object.workspace != null) {
+      yield r'workspace';
+      yield serializers.serialize(
+        object.workspace,
+        specifiedType: const FullType(Workspace),
+      );
+    }
+    if (object.workspaceId != null) {
+      yield r'workspace_id';
+      yield serializers.serialize(
+        object.workspaceId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -149,6 +203,20 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'environment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ProjectMetadataEnvironmentEnum),
+          ) as ProjectMetadataEnvironmentEnum;
+          result.environment = valueDes;
+          break;
+        case r'home_region':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ProjectMetadataHomeRegionEnum),
+          ) as ProjectMetadataHomeRegionEnum;
+          result.homeRegion = valueDes;
           break;
         case r'hosts':
           final valueDes = serializers.deserialize(
@@ -193,12 +261,35 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
           if (valueDes == null) continue;
           result.subscriptionId = valueDes;
           break;
+        case r'subscription_plan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.subscriptionPlan = valueDes;
+          break;
         case r'updated_at':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.updatedAt = valueDes;
+          break;
+        case r'workspace':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Workspace),
+          ) as Workspace;
+          result.workspace.replace(valueDes);
+          break;
+        case r'workspace_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.workspaceId = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -229,14 +320,60 @@ class _$ProjectMetadataSerializer implements PrimitiveSerializer<ProjectMetadata
   }
 }
 
+class ProjectMetadataEnvironmentEnum extends EnumClass {
+
+  /// The environment of the project. prod Production stage Staging dev Development
+  @BuiltValueEnumConst(wireName: r'prod')
+  static const ProjectMetadataEnvironmentEnum prod = _$projectMetadataEnvironmentEnum_prod;
+  /// The environment of the project. prod Production stage Staging dev Development
+  @BuiltValueEnumConst(wireName: r'stage')
+  static const ProjectMetadataEnvironmentEnum stage = _$projectMetadataEnvironmentEnum_stage;
+  /// The environment of the project. prod Production stage Staging dev Development
+  @BuiltValueEnumConst(wireName: r'dev')
+  static const ProjectMetadataEnvironmentEnum dev = _$projectMetadataEnvironmentEnum_dev;
+
+  static Serializer<ProjectMetadataEnvironmentEnum> get serializer => _$projectMetadataEnvironmentEnumSerializer;
+
+  const ProjectMetadataEnvironmentEnum._(String name): super(name);
+
+  static BuiltSet<ProjectMetadataEnvironmentEnum> get values => _$projectMetadataEnvironmentEnumValues;
+  static ProjectMetadataEnvironmentEnum valueOf(String name) => _$projectMetadataEnvironmentEnumValueOf(name);
+}
+
+class ProjectMetadataHomeRegionEnum extends EnumClass {
+
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'eu-central')
+  static const ProjectMetadataHomeRegionEnum euCentral = _$projectMetadataHomeRegionEnum_euCentral;
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'us-east')
+  static const ProjectMetadataHomeRegionEnum usEast = _$projectMetadataHomeRegionEnum_usEast;
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'us-west')
+  static const ProjectMetadataHomeRegionEnum usWest = _$projectMetadataHomeRegionEnum_usWest;
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  @BuiltValueEnumConst(wireName: r'global')
+  static const ProjectMetadataHomeRegionEnum global = _$projectMetadataHomeRegionEnum_global;
+
+  static Serializer<ProjectMetadataHomeRegionEnum> get serializer => _$projectMetadataHomeRegionEnumSerializer;
+
+  const ProjectMetadataHomeRegionEnum._(String name): super(name);
+
+  static BuiltSet<ProjectMetadataHomeRegionEnum> get values => _$projectMetadataHomeRegionEnumValues;
+  static ProjectMetadataHomeRegionEnum valueOf(String name) => _$projectMetadataHomeRegionEnumValueOf(name);
+}
+
 class ProjectMetadataStateEnum extends EnumClass {
 
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueEnumConst(wireName: r'running')
   static const ProjectMetadataStateEnum running = _$projectMetadataStateEnum_running;
-  /// The state of the project. running Running halted Halted
+  /// The state of the project. running Running halted Halted deleted Deleted
   @BuiltValueEnumConst(wireName: r'halted')
   static const ProjectMetadataStateEnum halted = _$projectMetadataStateEnum_halted;
+  /// The state of the project. running Running halted Halted deleted Deleted
+  @BuiltValueEnumConst(wireName: r'deleted')
+  static const ProjectMetadataStateEnum deleted = _$projectMetadataStateEnum_deleted;
 
   static Serializer<ProjectMetadataStateEnum> get serializer => _$projectMetadataStateEnumSerializer;
 

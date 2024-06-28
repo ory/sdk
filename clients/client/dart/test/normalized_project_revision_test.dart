@@ -13,6 +13,18 @@ void main() {
       // TODO
     });
 
+    // Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+    // bool disableAccountExperienceWelcomeScreen
+    test('to test the property `disableAccountExperienceWelcomeScreen`', () async {
+      // TODO
+    });
+
+    // Whether the new account experience is enabled and reachable.
+    // bool enableAxV2
+    test('to test the property `enableAxV2`', () async {
+      // TODO
+    });
+
     // BuiltList<String> hydraOauth2AllowedTopLevelClaims
     test('to test the property `hydraOauth2AllowedTopLevelClaims`', () async {
       // TODO
@@ -48,6 +60,12 @@ void main() {
       // TODO
     });
 
+    // Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
+    // bool hydraOauth2MirrorTopLevelClaims
+    test('to test the property `hydraOauth2MirrorTopLevelClaims`', () async {
+      // TODO
+    });
+
     // Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
     // bool hydraOauth2PkceEnforced
     test('to test the property `hydraOauth2PkceEnforced`', () async {
@@ -63,6 +81,12 @@ void main() {
     // Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
     // String hydraOauth2RefreshTokenHook
     test('to test the property `hydraOauth2RefreshTokenHook`', () async {
+      // TODO
+    });
+
+    // Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook.url\" setting.
+    // String hydraOauth2TokenHook
+    test('to test the property `hydraOauth2TokenHook`', () async {
       // TODO
     });
 
@@ -98,17 +122,6 @@ void main() {
       // TODO
     });
 
-    // BuiltList<String> hydraServeAdminCorsAllowedOrigins
-    test('to test the property `hydraServeAdminCorsAllowedOrigins`', () async {
-      // TODO
-    });
-
-    // Configures the Ory Hydra CORS Settings  This governs the \"serve.admin.cors.enabled\" setting.
-    // bool hydraServeAdminCorsEnabled
-    test('to test the property `hydraServeAdminCorsEnabled`', () async {
-      // TODO
-    });
-
     // Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
     // bool hydraServeCookiesSameSiteLegacyWorkaround
     test('to test the property `hydraServeCookiesSameSiteLegacyWorkaround`', () async {
@@ -121,20 +134,15 @@ void main() {
       // TODO
     });
 
-    // BuiltList<String> hydraServePublicCorsAllowedOrigins
-    test('to test the property `hydraServePublicCorsAllowedOrigins`', () async {
-      // TODO
-    });
-
-    // Configures the Ory Hydra CORS Settings  This governs the \"serve.public.cors.enabled\" setting.
-    // bool hydraServePublicCorsEnabled
-    test('to test the property `hydraServePublicCorsEnabled`', () async {
-      // TODO
-    });
-
-    // Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+    // Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
     // String hydraStrategiesAccessToken (default value: 'opaque')
     test('to test the property `hydraStrategiesAccessToken`', () async {
+      // TODO
+    });
+
+    // Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+    // String hydraStrategiesJwtScopeClaim (default value: 'list')
+    test('to test the property `hydraStrategiesJwtScopeClaim`', () async {
       // TODO
     });
 
@@ -201,6 +209,12 @@ void main() {
     // When an OAuth2-related user agent requests to log out, they will be redirected to this url afterwards per default.  Defaults to the Ory Account Experience in development and your application in production mode when a custom domain is connected.  This governs the \"urls.post_logout_redirect\" setting.
     // String hydraUrlsPostLogoutRedirect
     test('to test the property `hydraUrlsPostLogoutRedirect`', () async {
+      // TODO
+    });
+
+    // Sets the OAuth2 Registration Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.registration\" setting.
+    // String hydraUrlsRegistration
+    test('to test the property `hydraUrlsRegistration`', () async {
       // TODO
     });
 
@@ -272,14 +286,80 @@ void main() {
       // TODO
     });
 
-    // int ketoReadMaxDepth
-    test('to test the property `ketoReadMaxDepth`', () async {
-      // TODO
-    });
-
     // Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
     // String kratosCookiesSameSite
     test('to test the property `kratosCookiesSameSite`', () async {
+      // TODO
+    });
+
+    // BuiltList<NormalizedProjectRevisionCourierChannel> kratosCourierChannels
+    test('to test the property `kratosCourierChannels`', () async {
+      // TODO
+    });
+
+    // The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
+    // String kratosCourierDeliveryStrategy (default value: 'smtp')
+    test('to test the property `kratosCourierDeliveryStrategy`', () async {
+      // TODO
+    });
+
+    // The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.auth.config.in\" setting
+    // String kratosCourierHttpRequestConfigAuthApiKeyIn
+    test('to test the property `kratosCourierHttpRequestConfigAuthApiKeyIn`', () async {
+      // TODO
+    });
+
+    // The name of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.name\" setting
+    // String kratosCourierHttpRequestConfigAuthApiKeyName
+    test('to test the property `kratosCourierHttpRequestConfigAuthApiKeyName`', () async {
+      // TODO
+    });
+
+    // The value of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.value\" setting
+    // String kratosCourierHttpRequestConfigAuthApiKeyValue
+    test('to test the property `kratosCourierHttpRequestConfigAuthApiKeyValue`', () async {
+      // TODO
+    });
+
+    // The password to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.password\" setting
+    // String kratosCourierHttpRequestConfigAuthBasicAuthPassword
+    test('to test the property `kratosCourierHttpRequestConfigAuthBasicAuthPassword`', () async {
+      // TODO
+    });
+
+    // The user to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.user\" setting
+    // String kratosCourierHttpRequestConfigAuthBasicAuthUser
+    test('to test the property `kratosCourierHttpRequestConfigAuthBasicAuthUser`', () async {
+      // TODO
+    });
+
+    // The authentication type to use while contacting the remote HTTP email sending service  `basic_auth`: Use Basic Authentication `api_key`: Use API Key Authentication in a header or cookie
+    // String kratosCourierHttpRequestConfigAuthType (default value: 'empty (no authentication)')
+    test('to test the property `kratosCourierHttpRequestConfigAuthType`', () async {
+      // TODO
+    });
+
+    // The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \"courier.http.body\" setting
+    // String kratosCourierHttpRequestConfigBody
+    test('to test the property `kratosCourierHttpRequestConfigBody`', () async {
+      // TODO
+    });
+
+    // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+    // JsonObject kratosCourierHttpRequestConfigHeaders
+    test('to test the property `kratosCourierHttpRequestConfigHeaders`', () async {
+      // TODO
+    });
+
+    // The http METHOD to use when calling the remote HTTP email sending service
+    // String kratosCourierHttpRequestConfigMethod (default value: 'POST')
+    test('to test the property `kratosCourierHttpRequestConfigMethod`', () async {
+      // TODO
+    });
+
+    // The URL of the remote HTTP email sending service  This governs the \"courier.http.url\" setting
+    // String kratosCourierHttpRequestConfigUrl
+    test('to test the property `kratosCourierHttpRequestConfigUrl`', () async {
       // TODO
     });
 
@@ -304,6 +384,36 @@ void main() {
     // NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
     // JsonObject kratosCourierSmtpHeaders
     test('to test the property `kratosCourierSmtpHeaders`', () async {
+      // TODO
+    });
+
+    // Configures the local_name to use in SMTP connections  This governs the \"courier.smtp.local_name\" setting.
+    // String kratosCourierSmtpLocalName
+    test('to test the property `kratosCourierSmtpLocalName`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.html\" setting.
+    // String kratosCourierTemplatesLoginCodeValidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesLoginCodeValidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesLoginCodeValidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \"courier.smtp.templates.login_code.valid.email.subject\" setting.
+    // String kratosCourierTemplatesLoginCodeValidEmailSubject
+    test('to test the property `kratosCourierTemplatesLoginCodeValidEmailSubject`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \"courier.smtp.templates.login_code.valid.sms.plaintext\" setting.
+    // String kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext
+    test('to test the property `kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext`', () async {
       // TODO
     });
 
@@ -379,6 +489,24 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Valid Registration via Code Email Body HTML Template  This governs the \"courier.smtp.templates.registration_code.valid.email.body.html\" setting.
+    // String kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml
+    test('to test the property `kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.registration_code.valid.email.body.plaintext\" setting.
+    // String kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext
+    test('to test the property `kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.email.subject\" setting.
+    // String kratosCourierTemplatesRegistrationCodeValidEmailSubject
+    test('to test the property `kratosCourierTemplatesRegistrationCodeValidEmailSubject`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
     // String kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
     test('to test the property `kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml`', () async {
@@ -412,6 +540,12 @@ void main() {
     // Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
     // String kratosCourierTemplatesVerificationCodeValidEmailSubject
     test('to test the property `kratosCourierTemplatesVerificationCodeValidEmailSubject`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext  This governs the \"courier.smtp.templates.verification_code.valid.sms.body.plaintext\" setting.
+    // String kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext
+    test('to test the property `kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext`', () async {
       // TODO
     });
 
@@ -457,6 +591,18 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
+    // String kratosFeatureFlagsCacheableSessionsMaxAge
+    test('to test the property `kratosFeatureFlagsCacheableSessionsMaxAge`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
+    // bool kratosFeatureFlagsUseContinueWithTransitions
+    test('to test the property `kratosFeatureFlagsUseContinueWithTransitions`', () async {
+      // TODO
+    });
+
     // BuiltList<NormalizedProjectRevisionIdentitySchema> kratosIdentitySchemas
     test('to test the property `kratosIdentitySchemas`', () async {
       // TODO
@@ -468,9 +614,21 @@ void main() {
       // TODO
     });
 
+    // Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
+    // bool kratosOauth2ProviderOverrideReturnTo
+    test('to test the property `kratosOauth2ProviderOverrideReturnTo`', () async {
+      // TODO
+    });
+
     // The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
     // String kratosOauth2ProviderUrl
     test('to test the property `kratosOauth2ProviderUrl`', () async {
+      // TODO
+    });
+
+    // Configures the default read consistency level for identity APIs  This governs the `preview.default_read_consistency_level` setting.  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution.
+    // String kratosPreviewDefaultReadConsistencyLevel
+    test('to test the property `kratosPreviewDefaultReadConsistencyLevel`', () async {
       // TODO
     });
 
@@ -506,8 +664,9 @@ void main() {
       // TODO
     });
 
-    // BuiltList<NormalizedProjectRevisionHook> kratosSelfserviceFlowsHooks
-    test('to test the property `kratosSelfserviceFlowsHooks`', () async {
+    // Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.code.after.password.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl`', () async {
       // TODO
     });
 
@@ -517,15 +676,33 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.lookup_secret.after.password.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl`', () async {
       // TODO
     });
 
+    // Configures the Ory Kratos Login After Passkey Default Return URL  This governs the \"selfservice.flows.login.after.passkey.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.totp.after.password.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl`', () async {
       // TODO
     });
 
@@ -589,6 +766,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Registration After Code Default Return URL  This governs the \"selfservice.flows.registration.after.code.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsRegistrationAfterCodeDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Registration Default Return URL  This governs the \"selfservice.flows.registration.after.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl`', () async {
@@ -601,15 +784,27 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Registration After Passkey Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl`', () async {
       // TODO
     });
 
-    // Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+    // Configures the Ory Kratos Registration After Webauthn Default Return URL  This governs the \"selfservice.flows.registration.after.webauthn.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Disable two-step registration  Two-step registration is a significantly improved sign up flow and recommended when using more than one sign up methods. To revert to one-step registration, set this to `true`.  This governs the \"selfservice.flows.registration.enable_legacy_one_step\" setting.
+    // bool kratosSelfserviceFlowsRegistrationEnableLegacyOneStep
+    test('to test the property `kratosSelfserviceFlowsRegistrationEnableLegacyOneStep`', () async {
       // TODO
     });
 
@@ -625,6 +820,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Registration Login Hints  Shows helpful information when a user tries to sign up with a duplicate account.  This governs the \"selfservice.flows.registration.login_hints\" setting.
+    // bool kratosSelfserviceFlowsRegistrationLoginHints
+    test('to test the property `kratosSelfserviceFlowsRegistrationLoginHints`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
     // String kratosSelfserviceFlowsRegistrationUiUrl
     test('to test the property `kratosSelfserviceFlowsRegistrationUiUrl`', () async {
@@ -637,6 +838,24 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Settings Default Return URL After Updating Lookup Secrets  This governs the \"selfservice.flows.settings.after.lookup_secret.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterLookupSecretDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Settings Default Return URL After Updating Social Sign In  This governs the \"selfservice.flows.settings.after.oidc.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterOidcDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Settings Default Return URL After Updating Passkey  This governs the \"selfservice.flows.settings.after.passkey.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterPasskeyDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \"selfservice.flows.settings.after.password.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl`', () async {
@@ -646,6 +865,18 @@ void main() {
     // Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \"selfservice.flows.settings.after.profile.default_browser_return_url\" setting.
     // String kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl
     test('to test the property `kratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Settings Default Return URL After Updating TOTP  This governs the \"selfservice.flows.settings.after.totp.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterTotpDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn  This governs the \"selfservice.flows.settings.after.webauthn.default_browser_return_url\" setting.
+    // String kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceFlowsSettingsAfterWebauthnDefaultBrowserReturnUrl`', () async {
       // TODO
     });
 
@@ -721,6 +952,24 @@ void main() {
       // TODO
     });
 
+    // Configures whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
+    // bool kratosSelfserviceMethodsCodeMfaEnabled
+    test('to test the property `kratosSelfserviceMethodsCodeMfaEnabled`', () async {
+      // TODO
+    });
+
+    // Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
+    // bool kratosSelfserviceMethodsCodePasswordlessEnabled
+    test('to test the property `kratosSelfserviceMethodsCodePasswordlessEnabled`', () async {
+      // TODO
+    });
+
+    // This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \"selfservice.methods.code.passwordless_login_fallback_enabled\" setting.
+    // bool kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled
+    test('to test the property `kratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled`', () async {
+      // TODO
+    });
+
     // Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
     // String kratosSelfserviceMethodsLinkConfigBaseUrl
     test('to test the property `kratosSelfserviceMethodsLinkConfigBaseUrl`', () async {
@@ -759,6 +1008,29 @@ void main() {
     // Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
     // bool kratosSelfserviceMethodsOidcEnabled
     test('to test the property `kratosSelfserviceMethodsOidcEnabled`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Passkey RP Display Name  This governs the \"selfservice.methods.passkey.config.rp.display_name\" setting.
+    // String kratosSelfserviceMethodsPasskeyConfigRpDisplayName
+    test('to test the property `kratosSelfserviceMethodsPasskeyConfigRpDisplayName`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Passkey RP ID  This governs the \"selfservice.methods.passkey.config.rp.id\" setting.
+    // String kratosSelfserviceMethodsPasskeyConfigRpId
+    test('to test the property `kratosSelfserviceMethodsPasskeyConfigRpId`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> kratosSelfserviceMethodsPasskeyConfigRpOrigins
+    test('to test the property `kratosSelfserviceMethodsPasskeyConfigRpOrigins`', () async {
+      // TODO
+    });
+
+    // Configures whether Ory Kratos Passkey authentication is enabled  This governs the \"selfservice.methods.passkey.enabled\" setting.
+    // bool kratosSelfserviceMethodsPasskeyEnabled
+    test('to test the property `kratosSelfserviceMethodsPasskeyEnabled`', () async {
       // TODO
     });
 
@@ -828,7 +1100,7 @@ void main() {
       // TODO
     });
 
-    // Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
+    // Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting. Deprecated: This value will be ignored due to security considerations.
     // String kratosSelfserviceMethodsWebauthnConfigRpIcon
     test('to test the property `kratosSelfserviceMethodsWebauthnConfigRpIcon`', () async {
       // TODO
@@ -840,9 +1112,8 @@ void main() {
       // TODO
     });
 
-    // Configures the Ory Kratos Webauthn RP Origin  This governs the \"selfservice.methods.webauthn.config.rp.origin\" setting.
-    // String kratosSelfserviceMethodsWebauthnConfigRpOrigin
-    test('to test the property `kratosSelfserviceMethodsWebauthnConfigRpOrigin`', () async {
+    // BuiltList<String> kratosSelfserviceMethodsWebauthnConfigRpOrigins
+    test('to test the property `kratosSelfserviceMethodsWebauthnConfigRpOrigins`', () async {
       // TODO
     });
 
@@ -876,21 +1147,53 @@ void main() {
       // TODO
     });
 
+    // BuiltList<NormalizedProjectRevisionTokenizerTemplate> kratosSessionWhoamiTokenizerTemplates
+    test('to test the property `kratosSessionWhoamiTokenizerTemplates`', () async {
+      // TODO
+    });
+
     // The project's name.
     // String name
     test('to test the property `name`', () async {
       // TODO
     });
 
-    // Whether this project is in production mode or not.  In development mode, a low-security profile is used making it easier to develop against your, for example, local environment.
-    // bool production
-    test('to test the property `production`', () async {
-      // TODO
-    });
-
     // The Revision's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
+      // TODO
+    });
+
+    // BuiltList<NormalizedProjectRevisionHook> projectRevisionHooks
+    test('to test the property `projectRevisionHooks`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> serveAdminCorsAllowedOrigins
+    test('to test the property `serveAdminCorsAllowedOrigins`', () async {
+      // TODO
+    });
+
+    // Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting.
+    // bool serveAdminCorsEnabled
+    test('to test the property `serveAdminCorsEnabled`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> servePublicCorsAllowedOrigins
+    test('to test the property `servePublicCorsAllowedOrigins`', () async {
+      // TODO
+    });
+
+    // Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting.
+    // bool servePublicCorsEnabled
+    test('to test the property `servePublicCorsEnabled`', () async {
+      // TODO
+    });
+
+    // Whether the project should employ strict security measures. Setting this to true is recommended for going into production.
+    // bool strictSecurity
+    test('to test the property `strictSecurity`', () async {
       // TODO
     });
 

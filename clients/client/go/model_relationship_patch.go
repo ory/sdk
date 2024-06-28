@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,11 +15,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the RelationshipPatch type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RelationshipPatch{}
+
 // RelationshipPatch Payload for patching a relationship
 type RelationshipPatch struct {
 	Action *string `json:"action,omitempty"`
 	RelationTuple *Relationship `json:"relation_tuple,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationshipPatch RelationshipPatch
 
 // NewRelationshipPatch instantiates a new RelationshipPatch object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewRelationshipPatchWithDefaults() *RelationshipPatch {
 
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *RelationshipPatch) GetAction() string {
-	if o == nil || o.Action == nil {
+	if o == nil || IsNil(o.Action) {
 		var ret string
 		return ret
 	}
@@ -50,7 +56,7 @@ func (o *RelationshipPatch) GetAction() string {
 // GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RelationshipPatch) GetActionOk() (*string, bool) {
-	if o == nil || o.Action == nil {
+	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
 	return o.Action, true
@@ -58,7 +64,7 @@ func (o *RelationshipPatch) GetActionOk() (*string, bool) {
 
 // HasAction returns a boolean if a field has been set.
 func (o *RelationshipPatch) HasAction() bool {
-	if o != nil && o.Action != nil {
+	if o != nil && !IsNil(o.Action) {
 		return true
 	}
 
@@ -72,7 +78,7 @@ func (o *RelationshipPatch) SetAction(v string) {
 
 // GetRelationTuple returns the RelationTuple field value if set, zero value otherwise.
 func (o *RelationshipPatch) GetRelationTuple() Relationship {
-	if o == nil || o.RelationTuple == nil {
+	if o == nil || IsNil(o.RelationTuple) {
 		var ret Relationship
 		return ret
 	}
@@ -82,7 +88,7 @@ func (o *RelationshipPatch) GetRelationTuple() Relationship {
 // GetRelationTupleOk returns a tuple with the RelationTuple field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RelationshipPatch) GetRelationTupleOk() (*Relationship, bool) {
-	if o == nil || o.RelationTuple == nil {
+	if o == nil || IsNil(o.RelationTuple) {
 		return nil, false
 	}
 	return o.RelationTuple, true
@@ -90,7 +96,7 @@ func (o *RelationshipPatch) GetRelationTupleOk() (*Relationship, bool) {
 
 // HasRelationTuple returns a boolean if a field has been set.
 func (o *RelationshipPatch) HasRelationTuple() bool {
-	if o != nil && o.RelationTuple != nil {
+	if o != nil && !IsNil(o.RelationTuple) {
 		return true
 	}
 
@@ -103,14 +109,49 @@ func (o *RelationshipPatch) SetRelationTuple(v Relationship) {
 }
 
 func (o RelationshipPatch) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Action != nil {
-		toSerialize["action"] = o.Action
-	}
-	if o.RelationTuple != nil {
-		toSerialize["relation_tuple"] = o.RelationTuple
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RelationshipPatch) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Action) {
+		toSerialize["action"] = o.Action
+	}
+	if !IsNil(o.RelationTuple) {
+		toSerialize["relation_tuple"] = o.RelationTuple
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *RelationshipPatch) UnmarshalJSON(data []byte) (err error) {
+	varRelationshipPatch := _RelationshipPatch{}
+
+	err = json.Unmarshal(data, &varRelationshipPatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RelationshipPatch(varRelationshipPatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "relation_tuple")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRelationshipPatch struct {

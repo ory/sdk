@@ -3,7 +3,7 @@ ORY Oathkeeper
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
-API version: v0.40.2
+API version: v0.40.6
 Contact: hi@ory.am
 */
 
@@ -21,7 +21,10 @@ type RuleHandler struct {
 	Config map[string]interface{} `json:"config,omitempty"`
 	// Handler identifies the implementation which will be used to handle this specific request. Please read the user guide for a complete list of available handlers.
 	Handler *string `json:"handler,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RuleHandler RuleHandler
 
 // NewRuleHandler instantiates a new RuleHandler object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +115,30 @@ func (o RuleHandler) MarshalJSON() ([]byte, error) {
 	if o.Handler != nil {
 		toSerialize["handler"] = o.Handler
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *RuleHandler) UnmarshalJSON(bytes []byte) (err error) {
+	varRuleHandler := _RuleHandler{}
+
+	if err = json.Unmarshal(bytes, &varRuleHandler); err == nil {
+		*o = RuleHandler(varRuleHandler)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "handler")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRuleHandler struct {

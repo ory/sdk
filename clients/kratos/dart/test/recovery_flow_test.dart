@@ -13,6 +13,12 @@ void main() {
       // TODO
     });
 
+    // Contains possible actions that could follow this flow
+    // BuiltList<ContinueWith> continueWith
+    test('to test the property `continueWith`', () async {
+      // TODO
+    });
+
     // ExpiresAt is the time (UTC) when the request expires. If the user still wishes to update the setting, a new request has to be initiated.
     // DateTime expiresAt
     test('to test the property `expiresAt`', () async {
@@ -43,7 +49,8 @@ void main() {
       // TODO
     });
 
-    // RecoveryFlowState state
+    // State represents the state of this request:  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+    // JsonObject state
     test('to test the property `state`', () async {
       // TODO
     });

@@ -1,14 +1,14 @@
 # Ory\Client\PermissionApi
 
-All URIs are relative to https://playground.projects.oryapis.com.
+All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**checkPermission()**](PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission
-[**checkPermissionOrError()**](PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission
-[**expandPermissions()**](PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
-[**postCheckPermission()**](PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission
-[**postCheckPermissionOrError()**](PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**checkPermission()**](PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission |
+| [**checkPermissionOrError()**](PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission |
+| [**expandPermissions()**](PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions. |
+| [**postCheckPermission()**](PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission |
+| [**postCheckPermissionOrError()**](PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission |
 
 
 ## `checkPermission()`
@@ -57,16 +57,16 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relationship | [optional]
- **object** | **string**| Object of the Relationship | [optional]
- **relation** | **string**| Relation of the Relationship | [optional]
- **subjectId** | **string**| SubjectID of the Relationship | [optional]
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **string**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
- **maxDepth** | **int**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **namespace** | **string**| Namespace of the Relationship | [optional] |
+| **object** | **string**| Object of the Relationship | [optional] |
+| **relation** | **string**| Relation of the Relationship | [optional] |
+| **subjectId** | **string**| SubjectID of the Relationship | [optional] |
+| **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **string**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] |
+| **maxDepth** | **int**|  | [optional] |
 
 ### Return type
 
@@ -131,16 +131,16 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relationship | [optional]
- **object** | **string**| Object of the Relationship | [optional]
- **relation** | **string**| Relation of the Relationship | [optional]
- **subjectId** | **string**| SubjectID of the Relationship | [optional]
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **string**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
- **maxDepth** | **int**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **namespace** | **string**| Namespace of the Relationship | [optional] |
+| **object** | **string**| Object of the Relationship | [optional] |
+| **relation** | **string**| Relation of the Relationship | [optional] |
+| **subjectId** | **string**| SubjectID of the Relationship | [optional] |
+| **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **string**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] |
+| **maxDepth** | **int**|  | [optional] |
 
 ### Return type
 
@@ -201,12 +201,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Subject Set |
- **object** | **string**| Object of the Subject Set |
- **relation** | **string**| Relation of the Subject Set |
- **maxDepth** | **int**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **namespace** | **string**| Namespace of the Subject Set | |
+| **object** | **string**| Object of the Subject Set | |
+| **relation** | **string**| Relation of the Subject Set | |
+| **maxDepth** | **int**|  | [optional] |
 
 ### Return type
 
@@ -265,10 +265,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **maxDepth** | **int**|  | [optional]
- **postCheckPermissionBody** | [**\Ory\Client\Model\PostCheckPermissionBody**](../Model/PostCheckPermissionBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **maxDepth** | **int**|  | [optional] |
+| **postCheckPermissionBody** | [**\Ory\Client\Model\PostCheckPermissionBody**](../Model/PostCheckPermissionBody.md)|  | [optional] |
 
 ### Return type
 
@@ -314,7 +314,7 @@ $apiInstance = new Ory\Client\Api\PermissionApi(
     new GuzzleHttp\Client(),
     $config
 );
-$maxDepth = 56; // int | nolint:deadcode,unused
+$maxDepth = 56; // int
 $postCheckPermissionOrErrorBody = new \Ory\Client\Model\PostCheckPermissionOrErrorBody(); // \Ory\Client\Model\PostCheckPermissionOrErrorBody
 
 try {
@@ -327,10 +327,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **maxDepth** | **int**| nolint:deadcode,unused | [optional]
- **postCheckPermissionOrErrorBody** | [**\Ory\Client\Model\PostCheckPermissionOrErrorBody**](../Model/PostCheckPermissionOrErrorBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **maxDepth** | **int**|  | [optional] |
+| **postCheckPermissionOrErrorBody** | [**\Ory\Client\Model\PostCheckPermissionOrErrorBody**](../Model/PostCheckPermissionOrErrorBody.md)|  | [optional] |
 
 ### Return type
 

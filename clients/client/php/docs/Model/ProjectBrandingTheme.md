@@ -9,15 +9,19 @@ Name | Type | Description | Notes
 **accentEmphasisColor** | **string** | AccentEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **accentMutedColor** | **string** | AccentMutedColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **accentSubtleColor** | **string** | AccentSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional]
+**accountExperienceVariables** | [**\Ory\Client\Model\AccountExperienceThemeVariables[]**](AccountExperienceThemeVariables.md) | The Account Experience Theme Variables. | [optional]
+**accountExperienceVariablesStylesheet** | **string** | AccountExperienceVariableStylesheet holds a reference to the current stylesheet that can be used in the AX | [optional]
 **backgroundCanvasColor** | **string** | BackgroundCanvasColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **backgroundSubtleColor** | **string** | BackgroundSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **backgroundSurfaceColor** | **string** | BackgroundSurfaceColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **borderDefaultColor** | **string** | BorderDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional]
-**createdAt** | **\DateTime** | The Customiation Creation Date | [readonly]
+**createdAt** | **\DateTime** | The Customization Creation Date. | [readonly]
 **errorDefaultColor** | **string** | ErrorDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **errorEmphasisColor** | **string** | ErrorEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **errorMutedColor** | **string** | ErrorMutedColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **errorSubtleColor** | **string** | ErrorSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional]
+**faviconType** | **string** | Favicon Type The Favicon mime type. | [optional]
+**faviconUrl** | **string** | Favicon URL Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket. | [optional]
 **foregroundDefaultColor** | **string** | ForegroundDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **foregroundDisabledColor** | **string** | ForegroundDisabledColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **foregroundMutedColor** | **string** | ForegroundMutedColor is a hex color code used by the Ory Account Experience theme. | [optional]
@@ -34,11 +38,11 @@ Name | Type | Description | Notes
 **logoUrl** | **string** | Logo URL Logo can be an https:// or base64:// URL. If the URL is not allowed, the logo will be stored inside the Ory Network storage bucket. | [optional]
 **name** | **string** | The customization theme name. |
 **primaryColor** | **string** | Primary color is an hsla color value used to derive the other colors from for the Ory Account Experience theme. | [optional]
-**projectBrandingId** | **string** | The ProjectBranding ID this customization is associated with |
+**projectBrandingId** | **string** | The ProjectBranding ID this customization is associated with. |
 **secondaryColor** | **string** | Secondary color is a hsla color code used to derive the other colors from for the Ory Account Experience theme. | [optional]
 **successEmphasisColor** | **string** | SuccessEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **textDefaultColor** | **string** | TextDefaultColor is a hex color code used by the Ory Account Experience theme. | [optional]
 **textDisabledColor** | **string** | TextDisabledColor is a hex color code used by the Ory Account Experience theme. | [optional]
-**updatedAt** | **\DateTime** | Last Time Branding was Updated | [readonly]
+**updatedAt** | **\DateTime** | Last Time Branding was Updated. | [readonly]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

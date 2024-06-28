@@ -11,6 +11,8 @@ class _$CreateRecoveryCodeForIdentityBody
   @override
   final String? expiresIn;
   @override
+  final String? flowType;
+  @override
   final String identityId;
 
   factory _$CreateRecoveryCodeForIdentityBody(
@@ -19,7 +21,7 @@ class _$CreateRecoveryCodeForIdentityBody
           ._build();
 
   _$CreateRecoveryCodeForIdentityBody._(
-      {this.expiresIn, required this.identityId})
+      {this.expiresIn, this.flowType, required this.identityId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         identityId, r'CreateRecoveryCodeForIdentityBody', 'identityId');
@@ -39,6 +41,7 @@ class _$CreateRecoveryCodeForIdentityBody
     if (identical(other, this)) return true;
     return other is CreateRecoveryCodeForIdentityBody &&
         expiresIn == other.expiresIn &&
+        flowType == other.flowType &&
         identityId == other.identityId;
   }
 
@@ -46,6 +49,7 @@ class _$CreateRecoveryCodeForIdentityBody
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, expiresIn.hashCode);
+    _$hash = $jc(_$hash, flowType.hashCode);
     _$hash = $jc(_$hash, identityId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -55,6 +59,7 @@ class _$CreateRecoveryCodeForIdentityBody
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateRecoveryCodeForIdentityBody')
           ..add('expiresIn', expiresIn)
+          ..add('flowType', flowType)
           ..add('identityId', identityId))
         .toString();
   }
@@ -70,6 +75,10 @@ class CreateRecoveryCodeForIdentityBodyBuilder
   String? get expiresIn => _$this._expiresIn;
   set expiresIn(String? expiresIn) => _$this._expiresIn = expiresIn;
 
+  String? _flowType;
+  String? get flowType => _$this._flowType;
+  set flowType(String? flowType) => _$this._flowType = flowType;
+
   String? _identityId;
   String? get identityId => _$this._identityId;
   set identityId(String? identityId) => _$this._identityId = identityId;
@@ -82,6 +91,7 @@ class CreateRecoveryCodeForIdentityBodyBuilder
     final $v = _$v;
     if ($v != null) {
       _expiresIn = $v.expiresIn;
+      _flowType = $v.flowType;
       _identityId = $v.identityId;
       _$v = null;
     }
@@ -107,6 +117,7 @@ class CreateRecoveryCodeForIdentityBodyBuilder
     final _$result = _$v ??
         new _$CreateRecoveryCodeForIdentityBody._(
             expiresIn: expiresIn,
+            flowType: flowType,
             identityId: BuiltValueNullFieldError.checkNotNull(identityId,
                 r'CreateRecoveryCodeForIdentityBody', 'identityId'));
     replace(_$result);

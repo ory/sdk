@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,10 +15,16 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetManagedIdentitySchemaLocation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetManagedIdentitySchemaLocation{}
+
 // GetManagedIdentitySchemaLocation Ory Identity Schema Location
 type GetManagedIdentitySchemaLocation struct {
 	Location *string `json:"location,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetManagedIdentitySchemaLocation GetManagedIdentitySchemaLocation
 
 // NewGetManagedIdentitySchemaLocation instantiates a new GetManagedIdentitySchemaLocation object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,7 @@ func NewGetManagedIdentitySchemaLocationWithDefaults() *GetManagedIdentitySchema
 
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *GetManagedIdentitySchemaLocation) GetLocation() string {
-	if o == nil || o.Location == nil {
+	if o == nil || IsNil(o.Location) {
 		var ret string
 		return ret
 	}
@@ -49,7 +55,7 @@ func (o *GetManagedIdentitySchemaLocation) GetLocation() string {
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetManagedIdentitySchemaLocation) GetLocationOk() (*string, bool) {
-	if o == nil || o.Location == nil {
+	if o == nil || IsNil(o.Location) {
 		return nil, false
 	}
 	return o.Location, true
@@ -57,7 +63,7 @@ func (o *GetManagedIdentitySchemaLocation) GetLocationOk() (*string, bool) {
 
 // HasLocation returns a boolean if a field has been set.
 func (o *GetManagedIdentitySchemaLocation) HasLocation() bool {
-	if o != nil && o.Location != nil {
+	if o != nil && !IsNil(o.Location) {
 		return true
 	}
 
@@ -70,11 +76,45 @@ func (o *GetManagedIdentitySchemaLocation) SetLocation(v string) {
 }
 
 func (o GetManagedIdentitySchemaLocation) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Location != nil {
-		toSerialize["location"] = o.Location
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetManagedIdentitySchemaLocation) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Location) {
+		toSerialize["location"] = o.Location
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *GetManagedIdentitySchemaLocation) UnmarshalJSON(data []byte) (err error) {
+	varGetManagedIdentitySchemaLocation := _GetManagedIdentitySchemaLocation{}
+
+	err = json.Unmarshal(data, &varGetManagedIdentitySchemaLocation)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetManagedIdentitySchemaLocation(varGetManagedIdentitySchemaLocation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "location")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetManagedIdentitySchemaLocation struct {

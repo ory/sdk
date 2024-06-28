@@ -3,10 +3,12 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/continue_with_recovery_ui.dart';
+import 'package:ory_client/src/model/continue_with_settings_ui.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/model/continue_with_recovery_ui_flow.dart';
 import 'package:ory_client/src/model/continue_with_set_ory_session_token.dart';
 import 'package:ory_client/src/model/continue_with_verification_ui.dart';
-import 'package:ory_client/src/model/continue_with_verification_ui_flow.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:one_of/one_of.dart';
@@ -16,20 +18,20 @@ part 'continue_with.g.dart';
 /// ContinueWith
 ///
 /// Properties:
-/// * [action] - Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+/// * [action] - Action will always be `show_recovery_ui` show_recovery_ui ContinueWithActionShowRecoveryUIString
 /// * [flow] 
 /// * [orySessionToken] - Token is the token of the session
 @BuiltValue()
 abstract class ContinueWith implements Built<ContinueWith, ContinueWithBuilder> {
-  /// One Of [ContinueWithSetOrySessionToken], [ContinueWithVerificationUi]
+  /// One Of [ContinueWithRecoveryUi], [ContinueWithSetOrySessionToken], [ContinueWithSettingsUi], [ContinueWithVerificationUi]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'action';
 
   static const Map<String, Type> discriminatorMapping = {
-    r'continueWithSetOrySessionToken': ContinueWithSetOrySessionToken,
-    r'continueWithVerificationUi': ContinueWithVerificationUi,
     r'set_ory_session_token': ContinueWithSetOrySessionToken,
+    r'show_recovery_ui': ContinueWithRecoveryUi,
+    r'show_settings_ui': ContinueWithSettingsUi,
     r'show_verification_ui': ContinueWithVerificationUi,
   };
 
@@ -42,6 +44,41 @@ abstract class ContinueWith implements Built<ContinueWith, ContinueWithBuilder> 
 
   @BuiltValueSerializer(custom: true)
   static Serializer<ContinueWith> get serializer => _$ContinueWithSerializer();
+}
+
+extension ContinueWithDiscriminatorExt on ContinueWith {
+    String? get discriminatorValue {
+        if (this is ContinueWithSetOrySessionToken) {
+            return r'set_ory_session_token';
+        }
+        if (this is ContinueWithRecoveryUi) {
+            return r'show_recovery_ui';
+        }
+        if (this is ContinueWithSettingsUi) {
+            return r'show_settings_ui';
+        }
+        if (this is ContinueWithVerificationUi) {
+            return r'show_verification_ui';
+        }
+        return null;
+    }
+}
+extension ContinueWithBuilderDiscriminatorExt on ContinueWithBuilder {
+    String? get discriminatorValue {
+        if (this is ContinueWithSetOrySessionTokenBuilder) {
+            return r'set_ory_session_token';
+        }
+        if (this is ContinueWithRecoveryUiBuilder) {
+            return r'show_recovery_ui';
+        }
+        if (this is ContinueWithSettingsUiBuilder) {
+            return r'show_settings_ui';
+        }
+        if (this is ContinueWithVerificationUiBuilder) {
+            return r'show_verification_ui';
+        }
+        return null;
+    }
 }
 
 class _$ContinueWithSerializer implements PrimitiveSerializer<ContinueWith> {
@@ -80,32 +117,32 @@ class _$ContinueWithSerializer implements PrimitiveSerializer<ContinueWith> {
     final discIndex = serializedList.indexOf(ContinueWith.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [ContinueWithSetOrySessionToken, ContinueWithVerificationUi, ContinueWithSetOrySessionToken, ContinueWithVerificationUi, ];
+    final oneOfTypes = [ContinueWithSetOrySessionToken, ContinueWithRecoveryUi, ContinueWithSettingsUi, ContinueWithVerificationUi, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
-      case 'continueWithSetOrySessionToken':
+      case r'set_ory_session_token':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(ContinueWithSetOrySessionToken),
         ) as ContinueWithSetOrySessionToken;
         oneOfType = ContinueWithSetOrySessionToken;
         break;
-      case 'continueWithVerificationUi':
+      case r'show_recovery_ui':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
-          specifiedType: FullType(ContinueWithVerificationUi),
-        ) as ContinueWithVerificationUi;
-        oneOfType = ContinueWithVerificationUi;
+          specifiedType: FullType(ContinueWithRecoveryUi),
+        ) as ContinueWithRecoveryUi;
+        oneOfType = ContinueWithRecoveryUi;
         break;
-      case 'set_ory_session_token':
+      case r'show_settings_ui':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
-          specifiedType: FullType(ContinueWithSetOrySessionToken),
-        ) as ContinueWithSetOrySessionToken;
-        oneOfType = ContinueWithSetOrySessionToken;
+          specifiedType: FullType(ContinueWithSettingsUi),
+        ) as ContinueWithSettingsUi;
+        oneOfType = ContinueWithSettingsUi;
         break;
-      case 'show_verification_ui':
+      case r'show_verification_ui':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
           specifiedType: FullType(ContinueWithVerificationUi),
@@ -122,12 +159,9 @@ class _$ContinueWithSerializer implements PrimitiveSerializer<ContinueWith> {
 
 class ContinueWithActionEnum extends EnumClass {
 
-  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
-  @BuiltValueEnumConst(wireName: r'set_ory_session_token')
-  static const ContinueWithActionEnum setOrySessionToken = _$continueWithActionEnum_setOrySessionToken;
-  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
-  @BuiltValueEnumConst(wireName: r'show_verification_ui')
-  static const ContinueWithActionEnum showVerificationUi = _$continueWithActionEnum_showVerificationUi;
+  /// Action will always be `show_recovery_ui` show_recovery_ui ContinueWithActionShowRecoveryUIString
+  @BuiltValueEnumConst(wireName: r'show_recovery_ui')
+  static const ContinueWithActionEnum showRecoveryUi = _$continueWithActionEnum_showRecoveryUi;
 
   static Serializer<ContinueWithActionEnum> get serializer => _$continueWithActionEnumSerializer;
 

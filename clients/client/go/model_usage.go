@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,10 +15,16 @@ import (
 	"encoding/json"
 )
 
+// checks if the Usage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Usage{}
+
 // Usage struct for Usage
 type Usage struct {
 	GenericUsage *GenericUsage `json:"GenericUsage,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Usage Usage
 
 // NewUsage instantiates a new Usage object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,7 @@ func NewUsageWithDefaults() *Usage {
 
 // GetGenericUsage returns the GenericUsage field value if set, zero value otherwise.
 func (o *Usage) GetGenericUsage() GenericUsage {
-	if o == nil || o.GenericUsage == nil {
+	if o == nil || IsNil(o.GenericUsage) {
 		var ret GenericUsage
 		return ret
 	}
@@ -49,7 +55,7 @@ func (o *Usage) GetGenericUsage() GenericUsage {
 // GetGenericUsageOk returns a tuple with the GenericUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Usage) GetGenericUsageOk() (*GenericUsage, bool) {
-	if o == nil || o.GenericUsage == nil {
+	if o == nil || IsNil(o.GenericUsage) {
 		return nil, false
 	}
 	return o.GenericUsage, true
@@ -57,7 +63,7 @@ func (o *Usage) GetGenericUsageOk() (*GenericUsage, bool) {
 
 // HasGenericUsage returns a boolean if a field has been set.
 func (o *Usage) HasGenericUsage() bool {
-	if o != nil && o.GenericUsage != nil {
+	if o != nil && !IsNil(o.GenericUsage) {
 		return true
 	}
 
@@ -70,11 +76,45 @@ func (o *Usage) SetGenericUsage(v GenericUsage) {
 }
 
 func (o Usage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.GenericUsage != nil {
-		toSerialize["GenericUsage"] = o.GenericUsage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Usage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.GenericUsage) {
+		toSerialize["GenericUsage"] = o.GenericUsage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *Usage) UnmarshalJSON(data []byte) (err error) {
+	varUsage := _Usage{}
+
+	err = json.Unmarshal(data, &varUsage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Usage(varUsage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "GenericUsage")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUsage struct {

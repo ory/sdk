@@ -18,6 +18,18 @@ void main() {
       // TODO
     });
 
+    // The environment of the project. prod Production stage Staging dev Development
+    // String environment
+    test('to test the property `environment`', () async {
+      // TODO
+    });
+
+    // The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global
+    // String homeRegion
+    test('to test the property `homeRegion`', () async {
+      // TODO
+    });
+
     // BuiltList<String> hosts
     test('to test the property `hosts`', () async {
       // TODO
@@ -35,7 +47,7 @@ void main() {
       // TODO
     });
 
-    // The state of the project. running Running halted Halted
+    // The state of the project. running Running halted Halted deleted Deleted
     // String state
     test('to test the property `state`', () async {
       // TODO
@@ -46,9 +58,24 @@ void main() {
       // TODO
     });
 
+    // String subscriptionPlan
+    test('to test the property `subscriptionPlan`', () async {
+      // TODO
+    });
+
     // Last Time Project was Updated
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
+      // TODO
+    });
+
+    // Workspace workspace
+    test('to test the property `workspace`', () async {
+      // TODO
+    });
+
+    // String workspaceId
+    test('to test the property `workspaceId`', () async {
       // TODO
     });
 

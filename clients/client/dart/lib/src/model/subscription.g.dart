@@ -6,6 +6,28 @@ part of 'subscription.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const SubscriptionCurrencyEnum _$subscriptionCurrencyEnum_usd =
+    const SubscriptionCurrencyEnum._('usd');
+const SubscriptionCurrencyEnum _$subscriptionCurrencyEnum_eur =
+    const SubscriptionCurrencyEnum._('eur');
+
+SubscriptionCurrencyEnum _$subscriptionCurrencyEnumValueOf(String name) {
+  switch (name) {
+    case 'usd':
+      return _$subscriptionCurrencyEnum_usd;
+    case 'eur':
+      return _$subscriptionCurrencyEnum_eur;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<SubscriptionCurrencyEnum> _$subscriptionCurrencyEnumValues =
+    new BuiltSet<SubscriptionCurrencyEnum>(const <SubscriptionCurrencyEnum>[
+  _$subscriptionCurrencyEnum_usd,
+  _$subscriptionCurrencyEnum_eur,
+]);
+
 const SubscriptionCurrentIntervalEnum
     _$subscriptionCurrentIntervalEnum_monthly =
     const SubscriptionCurrentIntervalEnum._('monthly');
@@ -31,9 +53,40 @@ final BuiltSet<SubscriptionCurrentIntervalEnum>
   _$subscriptionCurrentIntervalEnum_yearly,
 ]);
 
+Serializer<SubscriptionCurrencyEnum> _$subscriptionCurrencyEnumSerializer =
+    new _$SubscriptionCurrencyEnumSerializer();
 Serializer<SubscriptionCurrentIntervalEnum>
     _$subscriptionCurrentIntervalEnumSerializer =
     new _$SubscriptionCurrentIntervalEnumSerializer();
+
+class _$SubscriptionCurrencyEnumSerializer
+    implements PrimitiveSerializer<SubscriptionCurrencyEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'usd': 'usd',
+    'eur': 'eur',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'usd': 'usd',
+    'eur': 'eur',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[SubscriptionCurrencyEnum];
+  @override
+  final String wireName = 'SubscriptionCurrencyEnum';
+
+  @override
+  Object serialize(Serializers serializers, SubscriptionCurrencyEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  SubscriptionCurrencyEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      SubscriptionCurrencyEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
 
 class _$SubscriptionCurrentIntervalEnumSerializer
     implements PrimitiveSerializer<SubscriptionCurrentIntervalEnum> {
@@ -69,9 +122,13 @@ class _$Subscription extends Subscription {
   @override
   final DateTime createdAt;
   @override
+  final SubscriptionCurrencyEnum currency;
+  @override
   final SubscriptionCurrentIntervalEnum currentInterval;
   @override
   final String currentPlan;
+  @override
+  final PlanDetails? currentPlanDetails;
   @override
   final String customerId;
   @override
@@ -89,6 +146,8 @@ class _$Subscription extends Subscription {
   @override
   final String status;
   @override
+  final DateTime? stripeCheckoutExpiresAt;
+  @override
   final DateTime updatedAt;
 
   factory _$Subscription([void Function(SubscriptionBuilder)? updates]) =>
@@ -96,8 +155,10 @@ class _$Subscription extends Subscription {
 
   _$Subscription._(
       {required this.createdAt,
+      required this.currency,
       required this.currentInterval,
       required this.currentPlan,
+      this.currentPlanDetails,
       required this.customerId,
       required this.id,
       this.intervalChangesTo,
@@ -106,10 +167,13 @@ class _$Subscription extends Subscription {
       this.planChangesAt,
       this.planChangesTo,
       required this.status,
+      this.stripeCheckoutExpiresAt,
       required this.updatedAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'Subscription', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        currency, r'Subscription', 'currency');
     BuiltValueNullFieldError.checkNotNull(
         currentInterval, r'Subscription', 'currentInterval');
     BuiltValueNullFieldError.checkNotNull(
@@ -136,8 +200,10 @@ class _$Subscription extends Subscription {
     if (identical(other, this)) return true;
     return other is Subscription &&
         createdAt == other.createdAt &&
+        currency == other.currency &&
         currentInterval == other.currentInterval &&
         currentPlan == other.currentPlan &&
+        currentPlanDetails == other.currentPlanDetails &&
         customerId == other.customerId &&
         id == other.id &&
         intervalChangesTo == other.intervalChangesTo &&
@@ -146,6 +212,7 @@ class _$Subscription extends Subscription {
         planChangesAt == other.planChangesAt &&
         planChangesTo == other.planChangesTo &&
         status == other.status &&
+        stripeCheckoutExpiresAt == other.stripeCheckoutExpiresAt &&
         updatedAt == other.updatedAt;
   }
 
@@ -153,8 +220,10 @@ class _$Subscription extends Subscription {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, currency.hashCode);
     _$hash = $jc(_$hash, currentInterval.hashCode);
     _$hash = $jc(_$hash, currentPlan.hashCode);
+    _$hash = $jc(_$hash, currentPlanDetails.hashCode);
     _$hash = $jc(_$hash, customerId.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, intervalChangesTo.hashCode);
@@ -163,6 +232,7 @@ class _$Subscription extends Subscription {
     _$hash = $jc(_$hash, planChangesAt.hashCode);
     _$hash = $jc(_$hash, planChangesTo.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, stripeCheckoutExpiresAt.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -172,8 +242,10 @@ class _$Subscription extends Subscription {
   String toString() {
     return (newBuiltValueToStringHelper(r'Subscription')
           ..add('createdAt', createdAt)
+          ..add('currency', currency)
           ..add('currentInterval', currentInterval)
           ..add('currentPlan', currentPlan)
+          ..add('currentPlanDetails', currentPlanDetails)
           ..add('customerId', customerId)
           ..add('id', id)
           ..add('intervalChangesTo', intervalChangesTo)
@@ -182,6 +254,7 @@ class _$Subscription extends Subscription {
           ..add('planChangesAt', planChangesAt)
           ..add('planChangesTo', planChangesTo)
           ..add('status', status)
+          ..add('stripeCheckoutExpiresAt', stripeCheckoutExpiresAt)
           ..add('updatedAt', updatedAt))
         .toString();
   }
@@ -195,6 +268,11 @@ class SubscriptionBuilder
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
+  SubscriptionCurrencyEnum? _currency;
+  SubscriptionCurrencyEnum? get currency => _$this._currency;
+  set currency(SubscriptionCurrencyEnum? currency) =>
+      _$this._currency = currency;
+
   SubscriptionCurrentIntervalEnum? _currentInterval;
   SubscriptionCurrentIntervalEnum? get currentInterval =>
       _$this._currentInterval;
@@ -204,6 +282,12 @@ class SubscriptionBuilder
   String? _currentPlan;
   String? get currentPlan => _$this._currentPlan;
   set currentPlan(String? currentPlan) => _$this._currentPlan = currentPlan;
+
+  PlanDetailsBuilder? _currentPlanDetails;
+  PlanDetailsBuilder get currentPlanDetails =>
+      _$this._currentPlanDetails ??= new PlanDetailsBuilder();
+  set currentPlanDetails(PlanDetailsBuilder? currentPlanDetails) =>
+      _$this._currentPlanDetails = currentPlanDetails;
 
   String? _customerId;
   String? get customerId => _$this._customerId;
@@ -241,6 +325,11 @@ class SubscriptionBuilder
   String? get status => _$this._status;
   set status(String? status) => _$this._status = status;
 
+  DateTime? _stripeCheckoutExpiresAt;
+  DateTime? get stripeCheckoutExpiresAt => _$this._stripeCheckoutExpiresAt;
+  set stripeCheckoutExpiresAt(DateTime? stripeCheckoutExpiresAt) =>
+      _$this._stripeCheckoutExpiresAt = stripeCheckoutExpiresAt;
+
   DateTime? _updatedAt;
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
@@ -253,8 +342,10 @@ class SubscriptionBuilder
     final $v = _$v;
     if ($v != null) {
       _createdAt = $v.createdAt;
+      _currency = $v.currency;
       _currentInterval = $v.currentInterval;
       _currentPlan = $v.currentPlan;
+      _currentPlanDetails = $v.currentPlanDetails?.toBuilder();
       _customerId = $v.customerId;
       _id = $v.id;
       _intervalChangesTo = $v.intervalChangesTo;
@@ -263,6 +354,7 @@ class SubscriptionBuilder
       _planChangesAt = $v.planChangesAt;
       _planChangesTo = $v.planChangesTo;
       _status = $v.status;
+      _stripeCheckoutExpiresAt = $v.stripeCheckoutExpiresAt;
       _updatedAt = $v.updatedAt;
       _$v = null;
     }
@@ -284,28 +376,45 @@ class SubscriptionBuilder
   Subscription build() => _build();
 
   _$Subscription _build() {
-    final _$result = _$v ??
-        new _$Subscription._(
-            createdAt: BuiltValueNullFieldError.checkNotNull(
-                createdAt, r'Subscription', 'createdAt'),
-            currentInterval: BuiltValueNullFieldError.checkNotNull(
-                currentInterval, r'Subscription', 'currentInterval'),
-            currentPlan: BuiltValueNullFieldError.checkNotNull(
-                currentPlan, r'Subscription', 'currentPlan'),
-            customerId: BuiltValueNullFieldError.checkNotNull(
-                customerId, r'Subscription', 'customerId'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'Subscription', 'id'),
-            intervalChangesTo: intervalChangesTo,
-            ongoingStripeCheckoutId: ongoingStripeCheckoutId,
-            payedUntil: BuiltValueNullFieldError.checkNotNull(
-                payedUntil, r'Subscription', 'payedUntil'),
-            planChangesAt: planChangesAt,
-            planChangesTo: planChangesTo,
-            status: BuiltValueNullFieldError.checkNotNull(
-                status, r'Subscription', 'status'),
-            updatedAt: BuiltValueNullFieldError.checkNotNull(
-                updatedAt, r'Subscription', 'updatedAt'));
+    _$Subscription _$result;
+    try {
+      _$result = _$v ??
+          new _$Subscription._(
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'Subscription', 'createdAt'),
+              currency: BuiltValueNullFieldError.checkNotNull(
+                  currency, r'Subscription', 'currency'),
+              currentInterval: BuiltValueNullFieldError.checkNotNull(
+                  currentInterval, r'Subscription', 'currentInterval'),
+              currentPlan: BuiltValueNullFieldError.checkNotNull(
+                  currentPlan, r'Subscription', 'currentPlan'),
+              currentPlanDetails: _currentPlanDetails?.build(),
+              customerId: BuiltValueNullFieldError.checkNotNull(
+                  customerId, r'Subscription', 'customerId'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'Subscription', 'id'),
+              intervalChangesTo: intervalChangesTo,
+              ongoingStripeCheckoutId: ongoingStripeCheckoutId,
+              payedUntil: BuiltValueNullFieldError.checkNotNull(
+                  payedUntil, r'Subscription', 'payedUntil'),
+              planChangesAt: planChangesAt,
+              planChangesTo: planChangesTo,
+              status: BuiltValueNullFieldError.checkNotNull(
+                  status, r'Subscription', 'status'),
+              stripeCheckoutExpiresAt: stripeCheckoutExpiresAt,
+              updatedAt:
+                  BuiltValueNullFieldError.checkNotNull(updatedAt, r'Subscription', 'updatedAt'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'currentPlanDetails';
+        _currentPlanDetails?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Subscription', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

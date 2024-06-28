@@ -1,6 +1,6 @@
 # RelationshipApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -12,7 +12,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**patchRelationships**](RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships |
 
 
-<a name="checkOplSyntax"></a>
+<a id="checkOplSyntax"></a>
 # **checkOplSyntax**
 > CheckOplSyntaxResult checkOplSyntax(body)
 
@@ -33,7 +33,7 @@ import sh.ory.api.RelationshipApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -81,7 +81,7 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createRelationship"></a>
+<a id="createRelationship"></a>
 # **createRelationship**
 > Relationship createRelationship(createRelationshipBody)
 
@@ -102,7 +102,7 @@ import sh.ory.api.RelationshipApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -150,7 +150,7 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteRelationships"></a>
+<a id="deleteRelationships"></a>
 # **deleteRelationships**
 > deleteRelationships(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
 
@@ -171,7 +171,7 @@ import sh.ory.api.RelationshipApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -230,7 +230,7 @@ null (empty response body)
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getRelationships"></a>
+<a id="getRelationships"></a>
 # **getRelationships**
 > Relationships getRelationships(pageToken, pageSize, namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
 
@@ -251,7 +251,7 @@ import sh.ory.api.RelationshipApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -315,7 +315,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listRelationshipNamespaces"></a>
+<a id="listRelationshipNamespaces"></a>
 # **listRelationshipNamespaces**
 > RelationshipNamespaces listRelationshipNamespaces()
 
@@ -336,7 +336,7 @@ import sh.ory.api.RelationshipApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -379,7 +379,7 @@ This endpoint does not need any parameter.
 | **200** | relationshipNamespaces |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="patchRelationships"></a>
+<a id="patchRelationships"></a>
 # **patchRelationships**
 > patchRelationships(relationshipPatch)
 
@@ -400,7 +400,7 @@ import sh.ory.api.RelationshipApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    defaultClient.setBasePath("https://.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");

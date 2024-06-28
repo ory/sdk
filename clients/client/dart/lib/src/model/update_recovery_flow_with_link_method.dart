@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -13,7 +15,8 @@ part 'update_recovery_flow_with_link_method.g.dart';
 /// Properties:
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
 /// * [email] - Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-/// * [method] - Method supports `link` only right now.
+/// * [method] - Method is the method that should be used for this recovery flow  Allowed values are `link` and `code` link RecoveryStrategyLink code RecoveryStrategyCode
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateRecoveryFlowWithLinkMethod implements Built<UpdateRecoveryFlowWithLinkMethod, UpdateRecoveryFlowWithLinkMethodBuilder> {
   /// Sending the anti-csrf token is only required for browser login flows.
@@ -24,9 +27,14 @@ abstract class UpdateRecoveryFlowWithLinkMethod implements Built<UpdateRecoveryF
   @BuiltValueField(wireName: r'email')
   String get email;
 
-  /// Method supports `link` only right now.
+  /// Method is the method that should be used for this recovery flow  Allowed values are `link` and `code` link RecoveryStrategyLink code RecoveryStrategyCode
   @BuiltValueField(wireName: r'method')
-  String get method;
+  UpdateRecoveryFlowWithLinkMethodMethodEnum get method;
+  // enum methodEnum {  link,  code,  };
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateRecoveryFlowWithLinkMethod._();
 
@@ -66,8 +74,15 @@ class _$UpdateRecoveryFlowWithLinkMethodSerializer implements PrimitiveSerialize
     yield r'method';
     yield serializers.serialize(
       object.method,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(UpdateRecoveryFlowWithLinkMethodMethodEnum),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
   }
 
   @override
@@ -108,9 +123,16 @@ class _$UpdateRecoveryFlowWithLinkMethodSerializer implements PrimitiveSerialize
         case r'method':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(UpdateRecoveryFlowWithLinkMethodMethodEnum),
+          ) as UpdateRecoveryFlowWithLinkMethodMethodEnum;
           result.method = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -139,5 +161,22 @@ class _$UpdateRecoveryFlowWithLinkMethodSerializer implements PrimitiveSerialize
     );
     return result.build();
   }
+}
+
+class UpdateRecoveryFlowWithLinkMethodMethodEnum extends EnumClass {
+
+  /// Method is the method that should be used for this recovery flow  Allowed values are `link` and `code` link RecoveryStrategyLink code RecoveryStrategyCode
+  @BuiltValueEnumConst(wireName: r'link')
+  static const UpdateRecoveryFlowWithLinkMethodMethodEnum link = _$updateRecoveryFlowWithLinkMethodMethodEnum_link;
+  /// Method is the method that should be used for this recovery flow  Allowed values are `link` and `code` link RecoveryStrategyLink code RecoveryStrategyCode
+  @BuiltValueEnumConst(wireName: r'code')
+  static const UpdateRecoveryFlowWithLinkMethodMethodEnum code = _$updateRecoveryFlowWithLinkMethodMethodEnum_code;
+
+  static Serializer<UpdateRecoveryFlowWithLinkMethodMethodEnum> get serializer => _$updateRecoveryFlowWithLinkMethodMethodEnumSerializer;
+
+  const UpdateRecoveryFlowWithLinkMethodMethodEnum._(String name): super(name);
+
+  static BuiltSet<UpdateRecoveryFlowWithLinkMethodMethodEnum> get values => _$updateRecoveryFlowWithLinkMethodMethodEnumValues;
+  static UpdateRecoveryFlowWithLinkMethodMethodEnum valueOf(String name) => _$updateRecoveryFlowWithLinkMethodMethodEnumValueOf(name);
 }
 

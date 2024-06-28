@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,19 +13,28 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateRecoveryFlowWithCodeMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateRecoveryFlowWithCodeMethod{}
 
 // UpdateRecoveryFlowWithCodeMethod Update Recovery Flow with Code Method
 type UpdateRecoveryFlowWithCodeMethod struct {
-	// Code from recovery email  Sent to the user once a recovery has been initiated and is used to prove that the user is in possession of the email
+	// Code from the recovery email  If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
 	Code *string `json:"code,omitempty"`
 	// Sending the anti-csrf token is only required for browser login flows.
 	CsrfToken *string `json:"csrf_token,omitempty"`
-	// Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+	// The email address of the account to recover  If the email belongs to a valid account, a recovery email will be sent.  If you want to notify the email address if the account does not exist, see the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/account-recovery-password-reset#attempted-recovery-notifications)  If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.  format: email
 	Email *string `json:"email,omitempty"`
-	// Method supports `link` and `code` only right now.
+	// Method is the method that should be used for this recovery flow  Allowed values are `link` and `code`. link RecoveryStrategyLink code RecoveryStrategyCode
 	Method string `json:"method"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateRecoveryFlowWithCodeMethod UpdateRecoveryFlowWithCodeMethod
 
 // NewUpdateRecoveryFlowWithCodeMethod instantiates a new UpdateRecoveryFlowWithCodeMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +56,7 @@ func NewUpdateRecoveryFlowWithCodeMethodWithDefaults() *UpdateRecoveryFlowWithCo
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -57,7 +66,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -65,7 +74,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) HasCode() bool {
-	if o != nil && o.Code != nil {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -79,7 +88,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) SetCode(v string) {
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -89,7 +98,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -97,7 +106,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetCsrfTokenOk() (*string, bool) {
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -111,7 +120,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) SetCsrfToken(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -121,7 +130,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -129,7 +138,7 @@ func (o *UpdateRecoveryFlowWithCodeMethod) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *UpdateRecoveryFlowWithCodeMethod) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -165,21 +174,113 @@ func (o *UpdateRecoveryFlowWithCodeMethod) SetMethod(v string) {
 	o.Method = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateRecoveryFlowWithCodeMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateRecoveryFlowWithCodeMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateRecoveryFlowWithCodeMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateRecoveryFlowWithCodeMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 func (o UpdateRecoveryFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
-		toSerialize["code"] = o.Code
-	}
-	if o.CsrfToken != nil {
-		toSerialize["csrf_token"] = o.CsrfToken
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if true {
-		toSerialize["method"] = o.Method
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateRecoveryFlowWithCodeMethod) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.CsrfToken) {
+		toSerialize["csrf_token"] = o.CsrfToken
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	toSerialize["method"] = o.Method
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UpdateRecoveryFlowWithCodeMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"method",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateRecoveryFlowWithCodeMethod := _UpdateRecoveryFlowWithCodeMethod{}
+
+	err = json.Unmarshal(data, &varUpdateRecoveryFlowWithCodeMethod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateRecoveryFlowWithCodeMethod(varUpdateRecoveryFlowWithCodeMethod)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "transient_payload")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateRecoveryFlowWithCodeMethod struct {

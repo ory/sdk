@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **object** | Option<**String**> | Object to query | [optional]
 **relation** | Option<**String**> | Relation to query | [optional]
 **subject_id** | Option<**String**> | SubjectID to query  Either SubjectSet or SubjectID can be provided. | [optional]
-**subject_set** | Option<[**crate::models::SubjectSet**](subjectSet.md)> |  | [optional]
+**subject_set** | Option<[**models::SubjectSet**](subjectSet.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 	"time"
 )
+
+// checks if the NormalizedProjectRevisionIdentitySchema type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NormalizedProjectRevisionIdentitySchema{}
 
 // NormalizedProjectRevisionIdentitySchema struct for NormalizedProjectRevisionIdentitySchema
 type NormalizedProjectRevisionIdentitySchema struct {
@@ -36,7 +39,10 @@ type NormalizedProjectRevisionIdentitySchema struct {
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NormalizedProjectRevisionIdentitySchema NormalizedProjectRevisionIdentitySchema
 
 // NewNormalizedProjectRevisionIdentitySchema instantiates a new NormalizedProjectRevisionIdentitySchema object
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +63,7 @@ func NewNormalizedProjectRevisionIdentitySchemaWithDefaults() *NormalizedProject
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -67,7 +73,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -75,7 +81,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetCreatedAtOk() (*time.Time, 
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -89,7 +95,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetCreatedAt(v time.Time) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -99,7 +105,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -107,7 +113,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -121,7 +127,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetId(v string) {
 
 // GetIdentitySchema returns the IdentitySchema field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() ManagedIdentitySchema {
-	if o == nil || o.IdentitySchema == nil {
+	if o == nil || IsNil(o.IdentitySchema) {
 		var ret ManagedIdentitySchema
 		return ret
 	}
@@ -131,7 +137,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() ManagedIde
 // GetIdentitySchemaOk returns a tuple with the IdentitySchema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaOk() (*ManagedIdentitySchema, bool) {
-	if o == nil || o.IdentitySchema == nil {
+	if o == nil || IsNil(o.IdentitySchema) {
 		return nil, false
 	}
 	return o.IdentitySchema, true
@@ -139,7 +145,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaOk() (*Manage
 
 // HasIdentitySchema returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasIdentitySchema() bool {
-	if o != nil && o.IdentitySchema != nil {
+	if o != nil && !IsNil(o.IdentitySchema) {
 		return true
 	}
 
@@ -153,7 +159,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchema(v ManagedIde
 
 // GetIdentitySchemaId returns the IdentitySchemaId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaId() string {
-	if o == nil || o.IdentitySchemaId.Get() == nil {
+	if o == nil || IsNil(o.IdentitySchemaId.Get()) {
 		var ret string
 		return ret
 	}
@@ -195,7 +201,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) UnsetIdentitySchemaId() {
 
 // GetImportId returns the ImportId field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetImportId() string {
-	if o == nil || o.ImportId == nil {
+	if o == nil || IsNil(o.ImportId) {
 		var ret string
 		return ret
 	}
@@ -205,7 +211,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetImportId() string {
 // GetImportIdOk returns a tuple with the ImportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) GetImportIdOk() (*string, bool) {
-	if o == nil || o.ImportId == nil {
+	if o == nil || IsNil(o.ImportId) {
 		return nil, false
 	}
 	return o.ImportId, true
@@ -213,7 +219,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetImportIdOk() (*string, bool
 
 // HasImportId returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasImportId() bool {
-	if o != nil && o.ImportId != nil {
+	if o != nil && !IsNil(o.ImportId) {
 		return true
 	}
 
@@ -227,7 +233,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetImportId(v string) {
 
 // GetImportUrl returns the ImportUrl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetImportUrl() string {
-	if o == nil || o.ImportUrl == nil {
+	if o == nil || IsNil(o.ImportUrl) {
 		var ret string
 		return ret
 	}
@@ -237,7 +243,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetImportUrl() string {
 // GetImportUrlOk returns a tuple with the ImportUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) GetImportUrlOk() (*string, bool) {
-	if o == nil || o.ImportUrl == nil {
+	if o == nil || IsNil(o.ImportUrl) {
 		return nil, false
 	}
 	return o.ImportUrl, true
@@ -245,7 +251,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetImportUrlOk() (*string, boo
 
 // HasImportUrl returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasImportUrl() bool {
-	if o != nil && o.ImportUrl != nil {
+	if o != nil && !IsNil(o.ImportUrl) {
 		return true
 	}
 
@@ -259,7 +265,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetImportUrl(v string) {
 
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetIsDefault() bool {
-	if o == nil || o.IsDefault == nil {
+	if o == nil || IsNil(o.IsDefault) {
 		var ret bool
 		return ret
 	}
@@ -269,7 +275,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetIsDefault() bool {
 // GetIsDefaultOk returns a tuple with the IsDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) GetIsDefaultOk() (*bool, bool) {
-	if o == nil || o.IsDefault == nil {
+	if o == nil || IsNil(o.IsDefault) {
 		return nil, false
 	}
 	return o.IsDefault, true
@@ -277,7 +283,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetIsDefaultOk() (*bool, bool)
 
 // HasIsDefault returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasIsDefault() bool {
-	if o != nil && o.IsDefault != nil {
+	if o != nil && !IsNil(o.IsDefault) {
 		return true
 	}
 
@@ -291,7 +297,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetIsDefault(v bool) {
 
 // GetPreset returns the Preset field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetPreset() string {
-	if o == nil || o.Preset == nil {
+	if o == nil || IsNil(o.Preset) {
 		var ret string
 		return ret
 	}
@@ -301,7 +307,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetPreset() string {
 // GetPresetOk returns a tuple with the Preset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) GetPresetOk() (*string, bool) {
-	if o == nil || o.Preset == nil {
+	if o == nil || IsNil(o.Preset) {
 		return nil, false
 	}
 	return o.Preset, true
@@ -309,7 +315,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetPresetOk() (*string, bool) 
 
 // HasPreset returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasPreset() bool {
-	if o != nil && o.Preset != nil {
+	if o != nil && !IsNil(o.Preset) {
 		return true
 	}
 
@@ -323,7 +329,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetPreset(v string) {
 
 // GetProjectRevisionId returns the ProjectRevisionId field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetProjectRevisionId() string {
-	if o == nil || o.ProjectRevisionId == nil {
+	if o == nil || IsNil(o.ProjectRevisionId) {
 		var ret string
 		return ret
 	}
@@ -333,7 +339,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetProjectRevisionId() string 
 // GetProjectRevisionIdOk returns a tuple with the ProjectRevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) GetProjectRevisionIdOk() (*string, bool) {
-	if o == nil || o.ProjectRevisionId == nil {
+	if o == nil || IsNil(o.ProjectRevisionId) {
 		return nil, false
 	}
 	return o.ProjectRevisionId, true
@@ -341,7 +347,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetProjectRevisionIdOk() (*str
 
 // HasProjectRevisionId returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasProjectRevisionId() bool {
-	if o != nil && o.ProjectRevisionId != nil {
+	if o != nil && !IsNil(o.ProjectRevisionId) {
 		return true
 	}
 
@@ -355,7 +361,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetProjectRevisionId(v string)
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -365,7 +371,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -373,7 +379,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetUpdatedAtOk() (*time.Time, 
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -386,38 +392,81 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetUpdatedAt(v time.Time) {
 }
 
 func (o NormalizedProjectRevisionIdentitySchema) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o NormalizedProjectRevisionIdentitySchema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.IdentitySchema != nil {
+	if !IsNil(o.IdentitySchema) {
 		toSerialize["identity_schema"] = o.IdentitySchema
 	}
 	if o.IdentitySchemaId.IsSet() {
 		toSerialize["identity_schema_id"] = o.IdentitySchemaId.Get()
 	}
-	if o.ImportId != nil {
+	if !IsNil(o.ImportId) {
 		toSerialize["import_id"] = o.ImportId
 	}
-	if o.ImportUrl != nil {
+	if !IsNil(o.ImportUrl) {
 		toSerialize["import_url"] = o.ImportUrl
 	}
-	if o.IsDefault != nil {
+	if !IsNil(o.IsDefault) {
 		toSerialize["is_default"] = o.IsDefault
 	}
-	if o.Preset != nil {
+	if !IsNil(o.Preset) {
 		toSerialize["preset"] = o.Preset
 	}
-	if o.ProjectRevisionId != nil {
+	if !IsNil(o.ProjectRevisionId) {
 		toSerialize["project_revision_id"] = o.ProjectRevisionId
 	}
-	if o.UpdatedAt != nil {
+	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	return json.Marshal(toSerialize)
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *NormalizedProjectRevisionIdentitySchema) UnmarshalJSON(data []byte) (err error) {
+	varNormalizedProjectRevisionIdentitySchema := _NormalizedProjectRevisionIdentitySchema{}
+
+	err = json.Unmarshal(data, &varNormalizedProjectRevisionIdentitySchema)
+
+	if err != nil {
+		return err
+	}
+
+	*o = NormalizedProjectRevisionIdentitySchema(varNormalizedProjectRevisionIdentitySchema)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "identity_schema")
+		delete(additionalProperties, "identity_schema_id")
+		delete(additionalProperties, "import_id")
+		delete(additionalProperties, "import_url")
+		delete(additionalProperties, "is_default")
+		delete(additionalProperties, "preset")
+		delete(additionalProperties, "project_revision_id")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNormalizedProjectRevisionIdentitySchema struct {

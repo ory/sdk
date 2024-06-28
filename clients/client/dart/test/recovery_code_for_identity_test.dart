@@ -7,7 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(RecoveryCodeForIdentity, () {
-    // Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery link expires.
+    // Expires At is the timestamp of when the recovery flow expires  The timestamp when the recovery code expires.
     // DateTime expiresAt
     test('to test the property `expiresAt`', () async {
       // TODO

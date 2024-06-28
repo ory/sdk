@@ -7,19 +7,19 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UpdateLoginFlowBody, () {
-    // Sending the anti-csrf token is only required for browser login flows.
+    // CSRFToken is the anti-CSRF token
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
     });
 
-    // Identifier is the email or username of the user trying to log in.
+    // Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow.
     // String identifier
     test('to test the property `identifier`', () async {
       // TODO
     });
 
-    // Method should be set to \"lookup_secret\" when logging in using the lookup_secret strategy.
+    // Method should be set to \"code\" when logging in using the code strategy.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -37,6 +37,18 @@ void main() {
       // TODO
     });
 
+    // IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple
+    // String idToken
+    test('to test the property `idToken`', () async {
+      // TODO
+    });
+
+    // IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and required.
+    // String idTokenNonce
+    test('to test the property `idTokenNonce`', () async {
+      // TODO
+    });
+
     // The provider to register with
     // String provider
     test('to test the property `provider`', () async {
@@ -49,7 +61,7 @@ void main() {
       // TODO
     });
 
-    // UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
+    // UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
     // JsonObject upstreamParameters
     test('to test the property `upstreamParameters`', () async {
       // TODO
@@ -70,6 +82,18 @@ void main() {
     // The lookup secret.
     // String lookupSecret
     test('to test the property `lookupSecret`', () async {
+      // TODO
+    });
+
+    // Code is the 6 digits code sent to the user
+    // String code
+    test('to test the property `code`', () async {
+      // TODO
+    });
+
+    // Resend is set when the user wants to resend the code
+    // String resend
+    test('to test the property `resend`', () async {
       // TODO
     });
 

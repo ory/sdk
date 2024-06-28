@@ -12,6 +12,11 @@ void main() {
       // TODO
     });
 
+    // JsonObject context
+    test('to test the property `context`', () async {
+      // TODO
+    });
+
     // OAuth2ConsentSessionExpiresAt expiresAt
     test('to test the property `expiresAt`', () async {
       // TODO

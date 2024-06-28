@@ -8,6 +8,8 @@ part of 'project_api_key.dart';
 
 class _$ProjectApiKey extends ProjectApiKey {
   @override
+  final DateTime? createdAt;
+  @override
   final String id;
   @override
   final String name;
@@ -16,16 +18,20 @@ class _$ProjectApiKey extends ProjectApiKey {
   @override
   final String? projectId;
   @override
+  final DateTime? updatedAt;
+  @override
   final String? value;
 
   factory _$ProjectApiKey([void Function(ProjectApiKeyBuilder)? updates]) =>
       (new ProjectApiKeyBuilder()..update(updates))._build();
 
   _$ProjectApiKey._(
-      {required this.id,
+      {this.createdAt,
+      required this.id,
       required this.name,
       required this.ownerId,
       this.projectId,
+      this.updatedAt,
       this.value})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'ProjectApiKey', 'id');
@@ -44,20 +50,24 @@ class _$ProjectApiKey extends ProjectApiKey {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ProjectApiKey &&
+        createdAt == other.createdAt &&
         id == other.id &&
         name == other.name &&
         ownerId == other.ownerId &&
         projectId == other.projectId &&
+        updatedAt == other.updatedAt &&
         value == other.value;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, ownerId.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jc(_$hash, value.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -66,10 +76,12 @@ class _$ProjectApiKey extends ProjectApiKey {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectApiKey')
+          ..add('createdAt', createdAt)
           ..add('id', id)
           ..add('name', name)
           ..add('ownerId', ownerId)
           ..add('projectId', projectId)
+          ..add('updatedAt', updatedAt)
           ..add('value', value))
         .toString();
   }
@@ -78,6 +90,10 @@ class _$ProjectApiKey extends ProjectApiKey {
 class ProjectApiKeyBuilder
     implements Builder<ProjectApiKey, ProjectApiKeyBuilder> {
   _$ProjectApiKey? _$v;
+
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
   String? _id;
   String? get id => _$this._id;
@@ -95,6 +111,10 @@ class ProjectApiKeyBuilder
   String? get projectId => _$this._projectId;
   set projectId(String? projectId) => _$this._projectId = projectId;
 
+  DateTime? _updatedAt;
+  DateTime? get updatedAt => _$this._updatedAt;
+  set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
+
   String? _value;
   String? get value => _$this._value;
   set value(String? value) => _$this._value = value;
@@ -106,10 +126,12 @@ class ProjectApiKeyBuilder
   ProjectApiKeyBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _createdAt = $v.createdAt;
       _id = $v.id;
       _name = $v.name;
       _ownerId = $v.ownerId;
       _projectId = $v.projectId;
+      _updatedAt = $v.updatedAt;
       _value = $v.value;
       _$v = null;
     }
@@ -133,6 +155,7 @@ class ProjectApiKeyBuilder
   _$ProjectApiKey _build() {
     final _$result = _$v ??
         new _$ProjectApiKey._(
+            createdAt: createdAt,
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'ProjectApiKey', 'id'),
             name: BuiltValueNullFieldError.checkNotNull(
@@ -140,6 +163,7 @@ class ProjectApiKeyBuilder
             ownerId: BuiltValueNullFieldError.checkNotNull(
                 ownerId, r'ProjectApiKey', 'ownerId'),
             projectId: projectId,
+            updatedAt: updatedAt,
             value: value);
     replace(_$result);
     return _$result;

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdditionalPrice** | **int64** |  | 
+**AdditionalPrice** | **string** | The additional price per unit in cents. | 
 **CanUseMore** | **bool** |  | 
-**Feature** | **string** |  region_eu RegionEU region_us RegionUS region_apac RegionAPAC region_global RegionGlobal production_projects ProductionProjects daily_active_users DailyActiveUsers custom_domains CustomDomains sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions | 
+**Feature** | **string** |  production_projects ProductionProjects staging_projects StagingProjects development_projects DevelopmentProjects daily_active_users DailyActiveUsers custom_domains CustomDomains event_streams EventStreams event_stream_events EventStreamEvents sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport project_metrics ProjectMetrics project_metrics_time_window ProjectMetricsTimeWindow project_metrics_events_history ProjectMetricsEventsHistory organizations Organizations rop_grant ResourceOwnerPasswordGrant concierge_onboarding ConciergeOnboarding credit Credit data_location_global DataLocationGlobal m2m_token_issuance M2MTokenIssuance permission_checks PermissionChecks data_location_regional DataLocationRegional  Required Features rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList permission_checks_rate_limit_tier RateLimitTierPermissionChecks oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect | 
 **FeatureAvailable** | **bool** |  | 
 **Included** | **int64** |  | 
 **Used** | **int64** |  | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewQuotaUsage
 
-`func NewQuotaUsage(additionalPrice int64, canUseMore bool, feature string, featureAvailable bool, included int64, used int64, ) *QuotaUsage`
+`func NewQuotaUsage(additionalPrice string, canUseMore bool, feature string, featureAvailable bool, included int64, used int64, ) *QuotaUsage`
 
 NewQuotaUsage instantiates a new QuotaUsage object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAdditionalPrice
 
-`func (o *QuotaUsage) GetAdditionalPrice() int64`
+`func (o *QuotaUsage) GetAdditionalPrice() string`
 
 GetAdditionalPrice returns the AdditionalPrice field if non-nil, zero value otherwise.
 
 ### GetAdditionalPriceOk
 
-`func (o *QuotaUsage) GetAdditionalPriceOk() (*int64, bool)`
+`func (o *QuotaUsage) GetAdditionalPriceOk() (*string, bool)`
 
 GetAdditionalPriceOk returns a tuple with the AdditionalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdditionalPrice
 
-`func (o *QuotaUsage) SetAdditionalPrice(v int64)`
+`func (o *QuotaUsage) SetAdditionalPrice(v string)`
 
 SetAdditionalPrice sets AdditionalPrice field to given value.
 

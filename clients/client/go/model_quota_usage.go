@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,24 +13,32 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the QuotaUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &QuotaUsage{}
 
 // QuotaUsage struct for QuotaUsage
 type QuotaUsage struct {
-	AdditionalPrice int64 `json:"additional_price"`
+	// The additional price per unit in cents.
+	AdditionalPrice string `json:"additional_price"`
 	CanUseMore bool `json:"can_use_more"`
-	//  region_eu RegionEU region_us RegionUS region_apac RegionAPAC region_global RegionGlobal production_projects ProductionProjects daily_active_users DailyActiveUsers custom_domains CustomDomains sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions
+	//  production_projects ProductionProjects staging_projects StagingProjects development_projects DevelopmentProjects daily_active_users DailyActiveUsers custom_domains CustomDomains event_streams EventStreams event_stream_events EventStreamEvents sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport project_metrics ProjectMetrics project_metrics_time_window ProjectMetricsTimeWindow project_metrics_events_history ProjectMetricsEventsHistory organizations Organizations rop_grant ResourceOwnerPasswordGrant concierge_onboarding ConciergeOnboarding credit Credit data_location_global DataLocationGlobal m2m_token_issuance M2MTokenIssuance permission_checks PermissionChecks data_location_regional DataLocationRegional  Required Features rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList permission_checks_rate_limit_tier RateLimitTierPermissionChecks oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
 	Feature string `json:"feature"`
 	FeatureAvailable bool `json:"feature_available"`
 	Included int64 `json:"included"`
 	Used int64 `json:"used"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _QuotaUsage QuotaUsage
 
 // NewQuotaUsage instantiates a new QuotaUsage object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuotaUsage(additionalPrice int64, canUseMore bool, feature string, featureAvailable bool, included int64, used int64) *QuotaUsage {
+func NewQuotaUsage(additionalPrice string, canUseMore bool, feature string, featureAvailable bool, included int64, used int64) *QuotaUsage {
 	this := QuotaUsage{}
 	this.AdditionalPrice = additionalPrice
 	this.CanUseMore = canUseMore
@@ -50,9 +58,9 @@ func NewQuotaUsageWithDefaults() *QuotaUsage {
 }
 
 // GetAdditionalPrice returns the AdditionalPrice field value
-func (o *QuotaUsage) GetAdditionalPrice() int64 {
+func (o *QuotaUsage) GetAdditionalPrice() string {
 	if o == nil {
-		var ret int64
+		var ret string
 		return ret
 	}
 
@@ -61,7 +69,7 @@ func (o *QuotaUsage) GetAdditionalPrice() int64 {
 
 // GetAdditionalPriceOk returns a tuple with the AdditionalPrice field value
 // and a boolean to check if the value has been set.
-func (o *QuotaUsage) GetAdditionalPriceOk() (*int64, bool) {
+func (o *QuotaUsage) GetAdditionalPriceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +77,7 @@ func (o *QuotaUsage) GetAdditionalPriceOk() (*int64, bool) {
 }
 
 // SetAdditionalPrice sets field value
-func (o *QuotaUsage) SetAdditionalPrice(v int64) {
+func (o *QuotaUsage) SetAdditionalPrice(v string) {
 	o.AdditionalPrice = v
 }
 
@@ -194,26 +202,79 @@ func (o *QuotaUsage) SetUsed(v int64) {
 }
 
 func (o QuotaUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["additional_price"] = o.AdditionalPrice
-	}
-	if true {
-		toSerialize["can_use_more"] = o.CanUseMore
-	}
-	if true {
-		toSerialize["feature"] = o.Feature
-	}
-	if true {
-		toSerialize["feature_available"] = o.FeatureAvailable
-	}
-	if true {
-		toSerialize["included"] = o.Included
-	}
-	if true {
-		toSerialize["used"] = o.Used
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o QuotaUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["additional_price"] = o.AdditionalPrice
+	toSerialize["can_use_more"] = o.CanUseMore
+	toSerialize["feature"] = o.Feature
+	toSerialize["feature_available"] = o.FeatureAvailable
+	toSerialize["included"] = o.Included
+	toSerialize["used"] = o.Used
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *QuotaUsage) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"additional_price",
+		"can_use_more",
+		"feature",
+		"feature_available",
+		"included",
+		"used",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varQuotaUsage := _QuotaUsage{}
+
+	err = json.Unmarshal(data, &varQuotaUsage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = QuotaUsage(varQuotaUsage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "additional_price")
+		delete(additionalProperties, "can_use_more")
+		delete(additionalProperties, "feature")
+		delete(additionalProperties, "feature_available")
+		delete(additionalProperties, "included")
+		delete(additionalProperties, "used")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableQuotaUsage struct {

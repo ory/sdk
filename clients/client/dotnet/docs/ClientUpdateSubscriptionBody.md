@@ -1,5 +1,4 @@
 # Ory.Client.Model.ClientUpdateSubscriptionBody
-Update Subscription Request Body
 
 ## Properties
 

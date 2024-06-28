@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -13,13 +13,20 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the OAuth2RedirectTo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OAuth2RedirectTo{}
 
 // OAuth2RedirectTo Contains a redirect URL used to complete a login, consent, or logout request.
 type OAuth2RedirectTo struct {
 	// RedirectURL is the URL which you should redirect the user's browser to once the authentication process is completed.
 	RedirectTo string `json:"redirect_to"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OAuth2RedirectTo OAuth2RedirectTo
 
 // NewOAuth2RedirectTo instantiates a new OAuth2RedirectTo object
 // This constructor will assign default values to properties that have it defined,
@@ -64,11 +71,64 @@ func (o *OAuth2RedirectTo) SetRedirectTo(v string) {
 }
 
 func (o OAuth2RedirectTo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["redirect_to"] = o.RedirectTo
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o OAuth2RedirectTo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["redirect_to"] = o.RedirectTo
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *OAuth2RedirectTo) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"redirect_to",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varOAuth2RedirectTo := _OAuth2RedirectTo{}
+
+	err = json.Unmarshal(bytes, &varOAuth2RedirectTo)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OAuth2RedirectTo(varOAuth2RedirectTo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "redirect_to")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOAuth2RedirectTo struct {

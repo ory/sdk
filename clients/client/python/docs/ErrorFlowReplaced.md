@@ -3,19 +3,29 @@
 Is sent when a flow is replaced by a different flow of the same class
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **str** | Error message  The error&#39;s message. | 
-**code** | **int** | The status code | [optional] 
-**debug** | **str** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
-**details** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Further error details | [optional] 
-**id** | **str** | The error ID  Useful when trying to identify various errors in application logic. | [optional] 
-**reason** | **str** | A human-readable reason for the error | [optional] 
-**request** | **str** | The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID. | [optional] 
-**status** | **str** | The status description | [optional] 
+**error** | [**GenericError**](GenericError.md) |  | [optional] 
 **use_flow_id** | **str** | The flow ID that should be used for the new flow as it contains the correct messages. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.error_flow_replaced import ErrorFlowReplaced
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ErrorFlowReplaced from a JSON string
+error_flow_replaced_instance = ErrorFlowReplaced.from_json(json)
+# print the JSON string representation of the object
+print(ErrorFlowReplaced.to_json())
+
+# convert the object into a dict
+error_flow_replaced_dict = error_flow_replaced_instance.to_dict()
+# create an instance of ErrorFlowReplaced from a dict
+error_flow_replaced_form_dict = error_flow_replaced.from_dict(error_flow_replaced_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

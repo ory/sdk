@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -13,6 +14,7 @@ part 'accept_o_auth2_consent_request.g.dart';
 /// AcceptOAuth2ConsentRequest
 ///
 /// Properties:
+/// * [context] 
 /// * [grantAccessTokenAudience] 
 /// * [grantScope] 
 /// * [handledAt] 
@@ -21,6 +23,9 @@ part 'accept_o_auth2_consent_request.g.dart';
 /// * [session] 
 @BuiltValue()
 abstract class AcceptOAuth2ConsentRequest implements Built<AcceptOAuth2ConsentRequest, AcceptOAuth2ConsentRequestBuilder> {
+  @BuiltValueField(wireName: r'context')
+  JsonObject? get context;
+
   @BuiltValueField(wireName: r'grant_access_token_audience')
   BuiltList<String>? get grantAccessTokenAudience;
 
@@ -64,6 +69,13 @@ class _$AcceptOAuth2ConsentRequestSerializer implements PrimitiveSerializer<Acce
     AcceptOAuth2ConsentRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.context != null) {
+      yield r'context';
+      yield serializers.serialize(
+        object.context,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
     if (object.grantAccessTokenAudience != null) {
       yield r'grant_access_token_audience';
       yield serializers.serialize(
@@ -129,6 +141,13 @@ class _$AcceptOAuth2ConsentRequestSerializer implements PrimitiveSerializer<Acce
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'context':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.context = valueDes;
+          break;
         case r'grant_access_token_audience':
           final valueDes = serializers.deserialize(
             value,

@@ -4,6 +4,8 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/session.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/model/continue_with.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,10 +14,15 @@ part 'successful_native_login.g.dart';
 /// The Response for Login Flows via API
 ///
 /// Properties:
+/// * [continueWith] - Contains a list of actions, that could follow this flow  It can, for example, this will contain a reference to the verification flow, created as part of the user's registration or the token of the session.
 /// * [session] 
 /// * [sessionToken] - The Session Token  A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization Header:  Authorization: bearer ${session-token}  The session token is only issued for API flows, not for Browser flows!
 @BuiltValue()
 abstract class SuccessfulNativeLogin implements Built<SuccessfulNativeLogin, SuccessfulNativeLoginBuilder> {
+  /// Contains a list of actions, that could follow this flow  It can, for example, this will contain a reference to the verification flow, created as part of the user's registration or the token of the session.
+  @BuiltValueField(wireName: r'continue_with')
+  BuiltList<ContinueWith>? get continueWith;
+
   @BuiltValueField(wireName: r'session')
   Session get session;
 
@@ -46,6 +53,13 @@ class _$SuccessfulNativeLoginSerializer implements PrimitiveSerializer<Successfu
     SuccessfulNativeLogin object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.continueWith != null) {
+      yield r'continue_with';
+      yield serializers.serialize(
+        object.continueWith,
+        specifiedType: const FullType(BuiltList, [FullType(ContinueWith)]),
+      );
+    }
     yield r'session';
     yield serializers.serialize(
       object.session,
@@ -81,6 +95,13 @@ class _$SuccessfulNativeLoginSerializer implements PrimitiveSerializer<Successfu
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'continue_with':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ContinueWith)]),
+          ) as BuiltList<ContinueWith>;
+          result.continueWith.replace(valueDes);
+          break;
         case r'session':
           final valueDes = serializers.deserialize(
             value,

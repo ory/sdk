@@ -14,7 +14,9 @@ require 'ory-client'
 OryClient::ContinueWith.openapi_one_of
 # =>
 # [
+#   :'ContinueWithRecoveryUi',
 #   :'ContinueWithSetOrySessionToken',
+#   :'ContinueWithSettingsUi',
 #   :'ContinueWithVerificationUi'
 # ]
 ```
@@ -45,8 +47,11 @@ OryClient::ContinueWith.openapi_discriminator_mapping
 # =>
 # {
 #   :'set_ory_session_token' => :'ContinueWithSetOrySessionToken',
+#   :'show_recovery_ui' => :'ContinueWithRecoveryUi',
+#   :'show_settings_ui' => :'ContinueWithSettingsUi',
 #   :'show_verification_ui' => :'ContinueWithVerificationUi'
 # }
+```
 
 ### build
 
@@ -58,7 +63,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-client'
 
 OryClient::ContinueWith.build(data)
-# => #<ContinueWithSetOrySessionToken:0x00007fdd4aab02a0>
+# => #<ContinueWithRecoveryUi:0x00007fdd4aab02a0>
 
 OryClient::ContinueWith.build(data_that_doesnt_match)
 # => nil
@@ -72,7 +77,9 @@ OryClient::ContinueWith.build(data_that_doesnt_match)
 
 #### Return type
 
+- `ContinueWithRecoveryUi`
 - `ContinueWithSetOrySessionToken`
+- `ContinueWithSettingsUi`
 - `ContinueWithVerificationUi`
 - `nil` (if no type matches)
 

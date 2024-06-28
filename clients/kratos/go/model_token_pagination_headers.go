@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -15,13 +15,19 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenPaginationHeaders type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenPaginationHeaders{}
+
 // TokenPaginationHeaders struct for TokenPaginationHeaders
 type TokenPaginationHeaders struct {
 	// The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).  in: header
 	Link *string `json:"link,omitempty"`
 	// The total number of clients.  in: header
 	XTotalCount *string `json:"x-total-count,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TokenPaginationHeaders TokenPaginationHeaders
 
 // NewTokenPaginationHeaders instantiates a new TokenPaginationHeaders object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +48,7 @@ func NewTokenPaginationHeadersWithDefaults() *TokenPaginationHeaders {
 
 // GetLink returns the Link field value if set, zero value otherwise.
 func (o *TokenPaginationHeaders) GetLink() string {
-	if o == nil || o.Link == nil {
+	if o == nil || IsNil(o.Link) {
 		var ret string
 		return ret
 	}
@@ -52,7 +58,7 @@ func (o *TokenPaginationHeaders) GetLink() string {
 // GetLinkOk returns a tuple with the Link field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenPaginationHeaders) GetLinkOk() (*string, bool) {
-	if o == nil || o.Link == nil {
+	if o == nil || IsNil(o.Link) {
 		return nil, false
 	}
 	return o.Link, true
@@ -60,7 +66,7 @@ func (o *TokenPaginationHeaders) GetLinkOk() (*string, bool) {
 
 // HasLink returns a boolean if a field has been set.
 func (o *TokenPaginationHeaders) HasLink() bool {
-	if o != nil && o.Link != nil {
+	if o != nil && !IsNil(o.Link) {
 		return true
 	}
 
@@ -74,7 +80,7 @@ func (o *TokenPaginationHeaders) SetLink(v string) {
 
 // GetXTotalCount returns the XTotalCount field value if set, zero value otherwise.
 func (o *TokenPaginationHeaders) GetXTotalCount() string {
-	if o == nil || o.XTotalCount == nil {
+	if o == nil || IsNil(o.XTotalCount) {
 		var ret string
 		return ret
 	}
@@ -84,7 +90,7 @@ func (o *TokenPaginationHeaders) GetXTotalCount() string {
 // GetXTotalCountOk returns a tuple with the XTotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenPaginationHeaders) GetXTotalCountOk() (*string, bool) {
-	if o == nil || o.XTotalCount == nil {
+	if o == nil || IsNil(o.XTotalCount) {
 		return nil, false
 	}
 	return o.XTotalCount, true
@@ -92,7 +98,7 @@ func (o *TokenPaginationHeaders) GetXTotalCountOk() (*string, bool) {
 
 // HasXTotalCount returns a boolean if a field has been set.
 func (o *TokenPaginationHeaders) HasXTotalCount() bool {
-	if o != nil && o.XTotalCount != nil {
+	if o != nil && !IsNil(o.XTotalCount) {
 		return true
 	}
 
@@ -105,14 +111,49 @@ func (o *TokenPaginationHeaders) SetXTotalCount(v string) {
 }
 
 func (o TokenPaginationHeaders) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Link != nil {
-		toSerialize["link"] = o.Link
-	}
-	if o.XTotalCount != nil {
-		toSerialize["x-total-count"] = o.XTotalCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenPaginationHeaders) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Link) {
+		toSerialize["link"] = o.Link
+	}
+	if !IsNil(o.XTotalCount) {
+		toSerialize["x-total-count"] = o.XTotalCount
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *TokenPaginationHeaders) UnmarshalJSON(bytes []byte) (err error) {
+	varTokenPaginationHeaders := _TokenPaginationHeaders{}
+
+	err = json.Unmarshal(bytes, &varTokenPaginationHeaders)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TokenPaginationHeaders(varTokenPaginationHeaders)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "link")
+		delete(additionalProperties, "x-total-count")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTokenPaginationHeaders struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,10 +15,16 @@ import (
 	"encoding/json"
 )
 
+// checks if the RelationshipNamespaces type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RelationshipNamespaces{}
+
 // RelationshipNamespaces Relationship Namespace List
 type RelationshipNamespaces struct {
 	Namespaces []Namespace `json:"namespaces,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationshipNamespaces RelationshipNamespaces
 
 // NewRelationshipNamespaces instantiates a new RelationshipNamespaces object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,7 @@ func NewRelationshipNamespacesWithDefaults() *RelationshipNamespaces {
 
 // GetNamespaces returns the Namespaces field value if set, zero value otherwise.
 func (o *RelationshipNamespaces) GetNamespaces() []Namespace {
-	if o == nil || o.Namespaces == nil {
+	if o == nil || IsNil(o.Namespaces) {
 		var ret []Namespace
 		return ret
 	}
@@ -49,7 +55,7 @@ func (o *RelationshipNamespaces) GetNamespaces() []Namespace {
 // GetNamespacesOk returns a tuple with the Namespaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RelationshipNamespaces) GetNamespacesOk() ([]Namespace, bool) {
-	if o == nil || o.Namespaces == nil {
+	if o == nil || IsNil(o.Namespaces) {
 		return nil, false
 	}
 	return o.Namespaces, true
@@ -57,7 +63,7 @@ func (o *RelationshipNamespaces) GetNamespacesOk() ([]Namespace, bool) {
 
 // HasNamespaces returns a boolean if a field has been set.
 func (o *RelationshipNamespaces) HasNamespaces() bool {
-	if o != nil && o.Namespaces != nil {
+	if o != nil && !IsNil(o.Namespaces) {
 		return true
 	}
 
@@ -70,11 +76,45 @@ func (o *RelationshipNamespaces) SetNamespaces(v []Namespace) {
 }
 
 func (o RelationshipNamespaces) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Namespaces != nil {
-		toSerialize["namespaces"] = o.Namespaces
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RelationshipNamespaces) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Namespaces) {
+		toSerialize["namespaces"] = o.Namespaces
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *RelationshipNamespaces) UnmarshalJSON(data []byte) (err error) {
+	varRelationshipNamespaces := _RelationshipNamespaces{}
+
+	err = json.Unmarshal(data, &varRelationshipNamespaces)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RelationshipNamespaces(varRelationshipNamespaces)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "namespaces")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRelationshipNamespaces struct {

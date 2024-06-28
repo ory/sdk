@@ -13,14 +13,14 @@ part 'continue_with_verification_ui.g.dart';
 /// Indicates, that the UI flow could be continued by showing a verification ui
 ///
 /// Properties:
-/// * [action] - Action will always be `show_verification_ui` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+/// * [action] - Action will always be `show_verification_ui` show_verification_ui ContinueWithActionShowVerificationUIString
 /// * [flow] 
 @BuiltValue()
 abstract class ContinueWithVerificationUi implements Built<ContinueWithVerificationUi, ContinueWithVerificationUiBuilder> {
-  /// Action will always be `show_verification_ui` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+  /// Action will always be `show_verification_ui` show_verification_ui ContinueWithActionShowVerificationUIString
   @BuiltValueField(wireName: r'action')
   ContinueWithVerificationUiActionEnum get action;
-  // enum actionEnum {  set_ory_session_token,  show_verification_ui,  };
+  // enum actionEnum {  show_verification_ui,  };
 
   @BuiltValueField(wireName: r'flow')
   ContinueWithVerificationUiFlow get flow;
@@ -126,10 +126,7 @@ class _$ContinueWithVerificationUiSerializer implements PrimitiveSerializer<Cont
 
 class ContinueWithVerificationUiActionEnum extends EnumClass {
 
-  /// Action will always be `show_verification_ui` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
-  @BuiltValueEnumConst(wireName: r'set_ory_session_token')
-  static const ContinueWithVerificationUiActionEnum setOrySessionToken = _$continueWithVerificationUiActionEnum_setOrySessionToken;
-  /// Action will always be `show_verification_ui` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+  /// Action will always be `show_verification_ui` show_verification_ui ContinueWithActionShowVerificationUIString
   @BuiltValueEnumConst(wireName: r'show_verification_ui')
   static const ContinueWithVerificationUiActionEnum showVerificationUi = _$continueWithVerificationUiActionEnum_showVerificationUi;
 

@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.1.1
+API version: v2.2.0
 Contact: hi@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the OidcConfiguration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OidcConfiguration{}
 
 // OidcConfiguration Includes links to several endpoints (for example `/oauth2/token`) and exposes information on supported signature algorithms among others.
 type OidcConfiguration struct {
@@ -29,6 +33,10 @@ type OidcConfiguration struct {
 	ClaimsSupported []string `json:"claims_supported,omitempty"`
 	// OAuth 2.0 PKCE Supported Code Challenge Methods  JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
 	CodeChallengeMethodsSupported []string `json:"code_challenge_methods_supported,omitempty"`
+	// OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint.
+	CredentialsEndpointDraft00 *string `json:"credentials_endpoint_draft_00,omitempty"`
+	// OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server.
+	CredentialsSupportedDraft00 []CredentialSupportedDraft00 `json:"credentials_supported_draft_00,omitempty"`
 	// OpenID Connect End-Session Endpoint  URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
 	EndSessionEndpoint *string `json:"end_session_endpoint,omitempty"`
 	// OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also included in ID Tokens issued by the OP.
@@ -75,7 +83,10 @@ type OidcConfiguration struct {
 	UserinfoSignedResponseAlg []string `json:"userinfo_signed_response_alg"`
 	// OpenID Connect Supported Userinfo Signing Algorithm  JSON array containing a list of the JWS [JWS] signing algorithms (alg values) [JWA] supported by the UserInfo Endpoint to encode the Claims in a JWT [JWT].
 	UserinfoSigningAlgValuesSupported []string `json:"userinfo_signing_alg_values_supported,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OidcConfiguration OidcConfiguration
 
 // NewOidcConfiguration instantiates a new OidcConfiguration object
 // This constructor will assign default values to properties that have it defined,
@@ -129,7 +140,7 @@ func (o *OidcConfiguration) SetAuthorizationEndpoint(v string) {
 
 // GetBackchannelLogoutSessionSupported returns the BackchannelLogoutSessionSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetBackchannelLogoutSessionSupported() bool {
-	if o == nil || o.BackchannelLogoutSessionSupported == nil {
+	if o == nil || IsNil(o.BackchannelLogoutSessionSupported) {
 		var ret bool
 		return ret
 	}
@@ -139,7 +150,7 @@ func (o *OidcConfiguration) GetBackchannelLogoutSessionSupported() bool {
 // GetBackchannelLogoutSessionSupportedOk returns a tuple with the BackchannelLogoutSessionSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetBackchannelLogoutSessionSupportedOk() (*bool, bool) {
-	if o == nil || o.BackchannelLogoutSessionSupported == nil {
+	if o == nil || IsNil(o.BackchannelLogoutSessionSupported) {
 		return nil, false
 	}
 	return o.BackchannelLogoutSessionSupported, true
@@ -147,7 +158,7 @@ func (o *OidcConfiguration) GetBackchannelLogoutSessionSupportedOk() (*bool, boo
 
 // HasBackchannelLogoutSessionSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasBackchannelLogoutSessionSupported() bool {
-	if o != nil && o.BackchannelLogoutSessionSupported != nil {
+	if o != nil && !IsNil(o.BackchannelLogoutSessionSupported) {
 		return true
 	}
 
@@ -161,7 +172,7 @@ func (o *OidcConfiguration) SetBackchannelLogoutSessionSupported(v bool) {
 
 // GetBackchannelLogoutSupported returns the BackchannelLogoutSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetBackchannelLogoutSupported() bool {
-	if o == nil || o.BackchannelLogoutSupported == nil {
+	if o == nil || IsNil(o.BackchannelLogoutSupported) {
 		var ret bool
 		return ret
 	}
@@ -171,7 +182,7 @@ func (o *OidcConfiguration) GetBackchannelLogoutSupported() bool {
 // GetBackchannelLogoutSupportedOk returns a tuple with the BackchannelLogoutSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetBackchannelLogoutSupportedOk() (*bool, bool) {
-	if o == nil || o.BackchannelLogoutSupported == nil {
+	if o == nil || IsNil(o.BackchannelLogoutSupported) {
 		return nil, false
 	}
 	return o.BackchannelLogoutSupported, true
@@ -179,7 +190,7 @@ func (o *OidcConfiguration) GetBackchannelLogoutSupportedOk() (*bool, bool) {
 
 // HasBackchannelLogoutSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasBackchannelLogoutSupported() bool {
-	if o != nil && o.BackchannelLogoutSupported != nil {
+	if o != nil && !IsNil(o.BackchannelLogoutSupported) {
 		return true
 	}
 
@@ -193,7 +204,7 @@ func (o *OidcConfiguration) SetBackchannelLogoutSupported(v bool) {
 
 // GetClaimsParameterSupported returns the ClaimsParameterSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetClaimsParameterSupported() bool {
-	if o == nil || o.ClaimsParameterSupported == nil {
+	if o == nil || IsNil(o.ClaimsParameterSupported) {
 		var ret bool
 		return ret
 	}
@@ -203,7 +214,7 @@ func (o *OidcConfiguration) GetClaimsParameterSupported() bool {
 // GetClaimsParameterSupportedOk returns a tuple with the ClaimsParameterSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetClaimsParameterSupportedOk() (*bool, bool) {
-	if o == nil || o.ClaimsParameterSupported == nil {
+	if o == nil || IsNil(o.ClaimsParameterSupported) {
 		return nil, false
 	}
 	return o.ClaimsParameterSupported, true
@@ -211,7 +222,7 @@ func (o *OidcConfiguration) GetClaimsParameterSupportedOk() (*bool, bool) {
 
 // HasClaimsParameterSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasClaimsParameterSupported() bool {
-	if o != nil && o.ClaimsParameterSupported != nil {
+	if o != nil && !IsNil(o.ClaimsParameterSupported) {
 		return true
 	}
 
@@ -225,7 +236,7 @@ func (o *OidcConfiguration) SetClaimsParameterSupported(v bool) {
 
 // GetClaimsSupported returns the ClaimsSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetClaimsSupported() []string {
-	if o == nil || o.ClaimsSupported == nil {
+	if o == nil || IsNil(o.ClaimsSupported) {
 		var ret []string
 		return ret
 	}
@@ -235,7 +246,7 @@ func (o *OidcConfiguration) GetClaimsSupported() []string {
 // GetClaimsSupportedOk returns a tuple with the ClaimsSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetClaimsSupportedOk() ([]string, bool) {
-	if o == nil || o.ClaimsSupported == nil {
+	if o == nil || IsNil(o.ClaimsSupported) {
 		return nil, false
 	}
 	return o.ClaimsSupported, true
@@ -243,7 +254,7 @@ func (o *OidcConfiguration) GetClaimsSupportedOk() ([]string, bool) {
 
 // HasClaimsSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasClaimsSupported() bool {
-	if o != nil && o.ClaimsSupported != nil {
+	if o != nil && !IsNil(o.ClaimsSupported) {
 		return true
 	}
 
@@ -257,7 +268,7 @@ func (o *OidcConfiguration) SetClaimsSupported(v []string) {
 
 // GetCodeChallengeMethodsSupported returns the CodeChallengeMethodsSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetCodeChallengeMethodsSupported() []string {
-	if o == nil || o.CodeChallengeMethodsSupported == nil {
+	if o == nil || IsNil(o.CodeChallengeMethodsSupported) {
 		var ret []string
 		return ret
 	}
@@ -267,7 +278,7 @@ func (o *OidcConfiguration) GetCodeChallengeMethodsSupported() []string {
 // GetCodeChallengeMethodsSupportedOk returns a tuple with the CodeChallengeMethodsSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetCodeChallengeMethodsSupportedOk() ([]string, bool) {
-	if o == nil || o.CodeChallengeMethodsSupported == nil {
+	if o == nil || IsNil(o.CodeChallengeMethodsSupported) {
 		return nil, false
 	}
 	return o.CodeChallengeMethodsSupported, true
@@ -275,7 +286,7 @@ func (o *OidcConfiguration) GetCodeChallengeMethodsSupportedOk() ([]string, bool
 
 // HasCodeChallengeMethodsSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasCodeChallengeMethodsSupported() bool {
-	if o != nil && o.CodeChallengeMethodsSupported != nil {
+	if o != nil && !IsNil(o.CodeChallengeMethodsSupported) {
 		return true
 	}
 
@@ -287,9 +298,73 @@ func (o *OidcConfiguration) SetCodeChallengeMethodsSupported(v []string) {
 	o.CodeChallengeMethodsSupported = v
 }
 
+// GetCredentialsEndpointDraft00 returns the CredentialsEndpointDraft00 field value if set, zero value otherwise.
+func (o *OidcConfiguration) GetCredentialsEndpointDraft00() string {
+	if o == nil || IsNil(o.CredentialsEndpointDraft00) {
+		var ret string
+		return ret
+	}
+	return *o.CredentialsEndpointDraft00
+}
+
+// GetCredentialsEndpointDraft00Ok returns a tuple with the CredentialsEndpointDraft00 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcConfiguration) GetCredentialsEndpointDraft00Ok() (*string, bool) {
+	if o == nil || IsNil(o.CredentialsEndpointDraft00) {
+		return nil, false
+	}
+	return o.CredentialsEndpointDraft00, true
+}
+
+// HasCredentialsEndpointDraft00 returns a boolean if a field has been set.
+func (o *OidcConfiguration) HasCredentialsEndpointDraft00() bool {
+	if o != nil && !IsNil(o.CredentialsEndpointDraft00) {
+		return true
+	}
+
+	return false
+}
+
+// SetCredentialsEndpointDraft00 gets a reference to the given string and assigns it to the CredentialsEndpointDraft00 field.
+func (o *OidcConfiguration) SetCredentialsEndpointDraft00(v string) {
+	o.CredentialsEndpointDraft00 = &v
+}
+
+// GetCredentialsSupportedDraft00 returns the CredentialsSupportedDraft00 field value if set, zero value otherwise.
+func (o *OidcConfiguration) GetCredentialsSupportedDraft00() []CredentialSupportedDraft00 {
+	if o == nil || IsNil(o.CredentialsSupportedDraft00) {
+		var ret []CredentialSupportedDraft00
+		return ret
+	}
+	return o.CredentialsSupportedDraft00
+}
+
+// GetCredentialsSupportedDraft00Ok returns a tuple with the CredentialsSupportedDraft00 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcConfiguration) GetCredentialsSupportedDraft00Ok() ([]CredentialSupportedDraft00, bool) {
+	if o == nil || IsNil(o.CredentialsSupportedDraft00) {
+		return nil, false
+	}
+	return o.CredentialsSupportedDraft00, true
+}
+
+// HasCredentialsSupportedDraft00 returns a boolean if a field has been set.
+func (o *OidcConfiguration) HasCredentialsSupportedDraft00() bool {
+	if o != nil && !IsNil(o.CredentialsSupportedDraft00) {
+		return true
+	}
+
+	return false
+}
+
+// SetCredentialsSupportedDraft00 gets a reference to the given []CredentialSupportedDraft00 and assigns it to the CredentialsSupportedDraft00 field.
+func (o *OidcConfiguration) SetCredentialsSupportedDraft00(v []CredentialSupportedDraft00) {
+	o.CredentialsSupportedDraft00 = v
+}
+
 // GetEndSessionEndpoint returns the EndSessionEndpoint field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetEndSessionEndpoint() string {
-	if o == nil || o.EndSessionEndpoint == nil {
+	if o == nil || IsNil(o.EndSessionEndpoint) {
 		var ret string
 		return ret
 	}
@@ -299,7 +374,7 @@ func (o *OidcConfiguration) GetEndSessionEndpoint() string {
 // GetEndSessionEndpointOk returns a tuple with the EndSessionEndpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetEndSessionEndpointOk() (*string, bool) {
-	if o == nil || o.EndSessionEndpoint == nil {
+	if o == nil || IsNil(o.EndSessionEndpoint) {
 		return nil, false
 	}
 	return o.EndSessionEndpoint, true
@@ -307,7 +382,7 @@ func (o *OidcConfiguration) GetEndSessionEndpointOk() (*string, bool) {
 
 // HasEndSessionEndpoint returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasEndSessionEndpoint() bool {
-	if o != nil && o.EndSessionEndpoint != nil {
+	if o != nil && !IsNil(o.EndSessionEndpoint) {
 		return true
 	}
 
@@ -321,7 +396,7 @@ func (o *OidcConfiguration) SetEndSessionEndpoint(v string) {
 
 // GetFrontchannelLogoutSessionSupported returns the FrontchannelLogoutSessionSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetFrontchannelLogoutSessionSupported() bool {
-	if o == nil || o.FrontchannelLogoutSessionSupported == nil {
+	if o == nil || IsNil(o.FrontchannelLogoutSessionSupported) {
 		var ret bool
 		return ret
 	}
@@ -331,7 +406,7 @@ func (o *OidcConfiguration) GetFrontchannelLogoutSessionSupported() bool {
 // GetFrontchannelLogoutSessionSupportedOk returns a tuple with the FrontchannelLogoutSessionSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetFrontchannelLogoutSessionSupportedOk() (*bool, bool) {
-	if o == nil || o.FrontchannelLogoutSessionSupported == nil {
+	if o == nil || IsNil(o.FrontchannelLogoutSessionSupported) {
 		return nil, false
 	}
 	return o.FrontchannelLogoutSessionSupported, true
@@ -339,7 +414,7 @@ func (o *OidcConfiguration) GetFrontchannelLogoutSessionSupportedOk() (*bool, bo
 
 // HasFrontchannelLogoutSessionSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasFrontchannelLogoutSessionSupported() bool {
-	if o != nil && o.FrontchannelLogoutSessionSupported != nil {
+	if o != nil && !IsNil(o.FrontchannelLogoutSessionSupported) {
 		return true
 	}
 
@@ -353,7 +428,7 @@ func (o *OidcConfiguration) SetFrontchannelLogoutSessionSupported(v bool) {
 
 // GetFrontchannelLogoutSupported returns the FrontchannelLogoutSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetFrontchannelLogoutSupported() bool {
-	if o == nil || o.FrontchannelLogoutSupported == nil {
+	if o == nil || IsNil(o.FrontchannelLogoutSupported) {
 		var ret bool
 		return ret
 	}
@@ -363,7 +438,7 @@ func (o *OidcConfiguration) GetFrontchannelLogoutSupported() bool {
 // GetFrontchannelLogoutSupportedOk returns a tuple with the FrontchannelLogoutSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetFrontchannelLogoutSupportedOk() (*bool, bool) {
-	if o == nil || o.FrontchannelLogoutSupported == nil {
+	if o == nil || IsNil(o.FrontchannelLogoutSupported) {
 		return nil, false
 	}
 	return o.FrontchannelLogoutSupported, true
@@ -371,7 +446,7 @@ func (o *OidcConfiguration) GetFrontchannelLogoutSupportedOk() (*bool, bool) {
 
 // HasFrontchannelLogoutSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasFrontchannelLogoutSupported() bool {
-	if o != nil && o.FrontchannelLogoutSupported != nil {
+	if o != nil && !IsNil(o.FrontchannelLogoutSupported) {
 		return true
 	}
 
@@ -385,7 +460,7 @@ func (o *OidcConfiguration) SetFrontchannelLogoutSupported(v bool) {
 
 // GetGrantTypesSupported returns the GrantTypesSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetGrantTypesSupported() []string {
-	if o == nil || o.GrantTypesSupported == nil {
+	if o == nil || IsNil(o.GrantTypesSupported) {
 		var ret []string
 		return ret
 	}
@@ -395,7 +470,7 @@ func (o *OidcConfiguration) GetGrantTypesSupported() []string {
 // GetGrantTypesSupportedOk returns a tuple with the GrantTypesSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetGrantTypesSupportedOk() ([]string, bool) {
-	if o == nil || o.GrantTypesSupported == nil {
+	if o == nil || IsNil(o.GrantTypesSupported) {
 		return nil, false
 	}
 	return o.GrantTypesSupported, true
@@ -403,7 +478,7 @@ func (o *OidcConfiguration) GetGrantTypesSupportedOk() ([]string, bool) {
 
 // HasGrantTypesSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasGrantTypesSupported() bool {
-	if o != nil && o.GrantTypesSupported != nil {
+	if o != nil && !IsNil(o.GrantTypesSupported) {
 		return true
 	}
 
@@ -513,7 +588,7 @@ func (o *OidcConfiguration) SetJwksUri(v string) {
 
 // GetRegistrationEndpoint returns the RegistrationEndpoint field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetRegistrationEndpoint() string {
-	if o == nil || o.RegistrationEndpoint == nil {
+	if o == nil || IsNil(o.RegistrationEndpoint) {
 		var ret string
 		return ret
 	}
@@ -523,7 +598,7 @@ func (o *OidcConfiguration) GetRegistrationEndpoint() string {
 // GetRegistrationEndpointOk returns a tuple with the RegistrationEndpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetRegistrationEndpointOk() (*string, bool) {
-	if o == nil || o.RegistrationEndpoint == nil {
+	if o == nil || IsNil(o.RegistrationEndpoint) {
 		return nil, false
 	}
 	return o.RegistrationEndpoint, true
@@ -531,7 +606,7 @@ func (o *OidcConfiguration) GetRegistrationEndpointOk() (*string, bool) {
 
 // HasRegistrationEndpoint returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasRegistrationEndpoint() bool {
-	if o != nil && o.RegistrationEndpoint != nil {
+	if o != nil && !IsNil(o.RegistrationEndpoint) {
 		return true
 	}
 
@@ -545,7 +620,7 @@ func (o *OidcConfiguration) SetRegistrationEndpoint(v string) {
 
 // GetRequestObjectSigningAlgValuesSupported returns the RequestObjectSigningAlgValuesSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetRequestObjectSigningAlgValuesSupported() []string {
-	if o == nil || o.RequestObjectSigningAlgValuesSupported == nil {
+	if o == nil || IsNil(o.RequestObjectSigningAlgValuesSupported) {
 		var ret []string
 		return ret
 	}
@@ -555,7 +630,7 @@ func (o *OidcConfiguration) GetRequestObjectSigningAlgValuesSupported() []string
 // GetRequestObjectSigningAlgValuesSupportedOk returns a tuple with the RequestObjectSigningAlgValuesSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetRequestObjectSigningAlgValuesSupportedOk() ([]string, bool) {
-	if o == nil || o.RequestObjectSigningAlgValuesSupported == nil {
+	if o == nil || IsNil(o.RequestObjectSigningAlgValuesSupported) {
 		return nil, false
 	}
 	return o.RequestObjectSigningAlgValuesSupported, true
@@ -563,7 +638,7 @@ func (o *OidcConfiguration) GetRequestObjectSigningAlgValuesSupportedOk() ([]str
 
 // HasRequestObjectSigningAlgValuesSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasRequestObjectSigningAlgValuesSupported() bool {
-	if o != nil && o.RequestObjectSigningAlgValuesSupported != nil {
+	if o != nil && !IsNil(o.RequestObjectSigningAlgValuesSupported) {
 		return true
 	}
 
@@ -577,7 +652,7 @@ func (o *OidcConfiguration) SetRequestObjectSigningAlgValuesSupported(v []string
 
 // GetRequestParameterSupported returns the RequestParameterSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetRequestParameterSupported() bool {
-	if o == nil || o.RequestParameterSupported == nil {
+	if o == nil || IsNil(o.RequestParameterSupported) {
 		var ret bool
 		return ret
 	}
@@ -587,7 +662,7 @@ func (o *OidcConfiguration) GetRequestParameterSupported() bool {
 // GetRequestParameterSupportedOk returns a tuple with the RequestParameterSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetRequestParameterSupportedOk() (*bool, bool) {
-	if o == nil || o.RequestParameterSupported == nil {
+	if o == nil || IsNil(o.RequestParameterSupported) {
 		return nil, false
 	}
 	return o.RequestParameterSupported, true
@@ -595,7 +670,7 @@ func (o *OidcConfiguration) GetRequestParameterSupportedOk() (*bool, bool) {
 
 // HasRequestParameterSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasRequestParameterSupported() bool {
-	if o != nil && o.RequestParameterSupported != nil {
+	if o != nil && !IsNil(o.RequestParameterSupported) {
 		return true
 	}
 
@@ -609,7 +684,7 @@ func (o *OidcConfiguration) SetRequestParameterSupported(v bool) {
 
 // GetRequestUriParameterSupported returns the RequestUriParameterSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetRequestUriParameterSupported() bool {
-	if o == nil || o.RequestUriParameterSupported == nil {
+	if o == nil || IsNil(o.RequestUriParameterSupported) {
 		var ret bool
 		return ret
 	}
@@ -619,7 +694,7 @@ func (o *OidcConfiguration) GetRequestUriParameterSupported() bool {
 // GetRequestUriParameterSupportedOk returns a tuple with the RequestUriParameterSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetRequestUriParameterSupportedOk() (*bool, bool) {
-	if o == nil || o.RequestUriParameterSupported == nil {
+	if o == nil || IsNil(o.RequestUriParameterSupported) {
 		return nil, false
 	}
 	return o.RequestUriParameterSupported, true
@@ -627,7 +702,7 @@ func (o *OidcConfiguration) GetRequestUriParameterSupportedOk() (*bool, bool) {
 
 // HasRequestUriParameterSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasRequestUriParameterSupported() bool {
-	if o != nil && o.RequestUriParameterSupported != nil {
+	if o != nil && !IsNil(o.RequestUriParameterSupported) {
 		return true
 	}
 
@@ -641,7 +716,7 @@ func (o *OidcConfiguration) SetRequestUriParameterSupported(v bool) {
 
 // GetRequireRequestUriRegistration returns the RequireRequestUriRegistration field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetRequireRequestUriRegistration() bool {
-	if o == nil || o.RequireRequestUriRegistration == nil {
+	if o == nil || IsNil(o.RequireRequestUriRegistration) {
 		var ret bool
 		return ret
 	}
@@ -651,7 +726,7 @@ func (o *OidcConfiguration) GetRequireRequestUriRegistration() bool {
 // GetRequireRequestUriRegistrationOk returns a tuple with the RequireRequestUriRegistration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetRequireRequestUriRegistrationOk() (*bool, bool) {
-	if o == nil || o.RequireRequestUriRegistration == nil {
+	if o == nil || IsNil(o.RequireRequestUriRegistration) {
 		return nil, false
 	}
 	return o.RequireRequestUriRegistration, true
@@ -659,7 +734,7 @@ func (o *OidcConfiguration) GetRequireRequestUriRegistrationOk() (*bool, bool) {
 
 // HasRequireRequestUriRegistration returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasRequireRequestUriRegistration() bool {
-	if o != nil && o.RequireRequestUriRegistration != nil {
+	if o != nil && !IsNil(o.RequireRequestUriRegistration) {
 		return true
 	}
 
@@ -673,7 +748,7 @@ func (o *OidcConfiguration) SetRequireRequestUriRegistration(v bool) {
 
 // GetResponseModesSupported returns the ResponseModesSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetResponseModesSupported() []string {
-	if o == nil || o.ResponseModesSupported == nil {
+	if o == nil || IsNil(o.ResponseModesSupported) {
 		var ret []string
 		return ret
 	}
@@ -683,7 +758,7 @@ func (o *OidcConfiguration) GetResponseModesSupported() []string {
 // GetResponseModesSupportedOk returns a tuple with the ResponseModesSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetResponseModesSupportedOk() ([]string, bool) {
-	if o == nil || o.ResponseModesSupported == nil {
+	if o == nil || IsNil(o.ResponseModesSupported) {
 		return nil, false
 	}
 	return o.ResponseModesSupported, true
@@ -691,7 +766,7 @@ func (o *OidcConfiguration) GetResponseModesSupportedOk() ([]string, bool) {
 
 // HasResponseModesSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasResponseModesSupported() bool {
-	if o != nil && o.ResponseModesSupported != nil {
+	if o != nil && !IsNil(o.ResponseModesSupported) {
 		return true
 	}
 
@@ -729,7 +804,7 @@ func (o *OidcConfiguration) SetResponseTypesSupported(v []string) {
 
 // GetRevocationEndpoint returns the RevocationEndpoint field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetRevocationEndpoint() string {
-	if o == nil || o.RevocationEndpoint == nil {
+	if o == nil || IsNil(o.RevocationEndpoint) {
 		var ret string
 		return ret
 	}
@@ -739,7 +814,7 @@ func (o *OidcConfiguration) GetRevocationEndpoint() string {
 // GetRevocationEndpointOk returns a tuple with the RevocationEndpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetRevocationEndpointOk() (*string, bool) {
-	if o == nil || o.RevocationEndpoint == nil {
+	if o == nil || IsNil(o.RevocationEndpoint) {
 		return nil, false
 	}
 	return o.RevocationEndpoint, true
@@ -747,7 +822,7 @@ func (o *OidcConfiguration) GetRevocationEndpointOk() (*string, bool) {
 
 // HasRevocationEndpoint returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasRevocationEndpoint() bool {
-	if o != nil && o.RevocationEndpoint != nil {
+	if o != nil && !IsNil(o.RevocationEndpoint) {
 		return true
 	}
 
@@ -761,7 +836,7 @@ func (o *OidcConfiguration) SetRevocationEndpoint(v string) {
 
 // GetScopesSupported returns the ScopesSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetScopesSupported() []string {
-	if o == nil || o.ScopesSupported == nil {
+	if o == nil || IsNil(o.ScopesSupported) {
 		var ret []string
 		return ret
 	}
@@ -771,7 +846,7 @@ func (o *OidcConfiguration) GetScopesSupported() []string {
 // GetScopesSupportedOk returns a tuple with the ScopesSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetScopesSupportedOk() ([]string, bool) {
-	if o == nil || o.ScopesSupported == nil {
+	if o == nil || IsNil(o.ScopesSupported) {
 		return nil, false
 	}
 	return o.ScopesSupported, true
@@ -779,7 +854,7 @@ func (o *OidcConfiguration) GetScopesSupportedOk() ([]string, bool) {
 
 // HasScopesSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasScopesSupported() bool {
-	if o != nil && o.ScopesSupported != nil {
+	if o != nil && !IsNil(o.ScopesSupported) {
 		return true
 	}
 
@@ -841,7 +916,7 @@ func (o *OidcConfiguration) SetTokenEndpoint(v string) {
 
 // GetTokenEndpointAuthMethodsSupported returns the TokenEndpointAuthMethodsSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetTokenEndpointAuthMethodsSupported() []string {
-	if o == nil || o.TokenEndpointAuthMethodsSupported == nil {
+	if o == nil || IsNil(o.TokenEndpointAuthMethodsSupported) {
 		var ret []string
 		return ret
 	}
@@ -851,7 +926,7 @@ func (o *OidcConfiguration) GetTokenEndpointAuthMethodsSupported() []string {
 // GetTokenEndpointAuthMethodsSupportedOk returns a tuple with the TokenEndpointAuthMethodsSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetTokenEndpointAuthMethodsSupportedOk() ([]string, bool) {
-	if o == nil || o.TokenEndpointAuthMethodsSupported == nil {
+	if o == nil || IsNil(o.TokenEndpointAuthMethodsSupported) {
 		return nil, false
 	}
 	return o.TokenEndpointAuthMethodsSupported, true
@@ -859,7 +934,7 @@ func (o *OidcConfiguration) GetTokenEndpointAuthMethodsSupportedOk() ([]string, 
 
 // HasTokenEndpointAuthMethodsSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasTokenEndpointAuthMethodsSupported() bool {
-	if o != nil && o.TokenEndpointAuthMethodsSupported != nil {
+	if o != nil && !IsNil(o.TokenEndpointAuthMethodsSupported) {
 		return true
 	}
 
@@ -873,7 +948,7 @@ func (o *OidcConfiguration) SetTokenEndpointAuthMethodsSupported(v []string) {
 
 // GetUserinfoEndpoint returns the UserinfoEndpoint field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetUserinfoEndpoint() string {
-	if o == nil || o.UserinfoEndpoint == nil {
+	if o == nil || IsNil(o.UserinfoEndpoint) {
 		var ret string
 		return ret
 	}
@@ -883,7 +958,7 @@ func (o *OidcConfiguration) GetUserinfoEndpoint() string {
 // GetUserinfoEndpointOk returns a tuple with the UserinfoEndpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetUserinfoEndpointOk() (*string, bool) {
-	if o == nil || o.UserinfoEndpoint == nil {
+	if o == nil || IsNil(o.UserinfoEndpoint) {
 		return nil, false
 	}
 	return o.UserinfoEndpoint, true
@@ -891,7 +966,7 @@ func (o *OidcConfiguration) GetUserinfoEndpointOk() (*string, bool) {
 
 // HasUserinfoEndpoint returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasUserinfoEndpoint() bool {
-	if o != nil && o.UserinfoEndpoint != nil {
+	if o != nil && !IsNil(o.UserinfoEndpoint) {
 		return true
 	}
 
@@ -929,7 +1004,7 @@ func (o *OidcConfiguration) SetUserinfoSignedResponseAlg(v []string) {
 
 // GetUserinfoSigningAlgValuesSupported returns the UserinfoSigningAlgValuesSupported field value if set, zero value otherwise.
 func (o *OidcConfiguration) GetUserinfoSigningAlgValuesSupported() []string {
-	if o == nil || o.UserinfoSigningAlgValuesSupported == nil {
+	if o == nil || IsNil(o.UserinfoSigningAlgValuesSupported) {
 		var ret []string
 		return ret
 	}
@@ -939,7 +1014,7 @@ func (o *OidcConfiguration) GetUserinfoSigningAlgValuesSupported() []string {
 // GetUserinfoSigningAlgValuesSupportedOk returns a tuple with the UserinfoSigningAlgValuesSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OidcConfiguration) GetUserinfoSigningAlgValuesSupportedOk() ([]string, bool) {
-	if o == nil || o.UserinfoSigningAlgValuesSupported == nil {
+	if o == nil || IsNil(o.UserinfoSigningAlgValuesSupported) {
 		return nil, false
 	}
 	return o.UserinfoSigningAlgValuesSupported, true
@@ -947,7 +1022,7 @@ func (o *OidcConfiguration) GetUserinfoSigningAlgValuesSupportedOk() ([]string, 
 
 // HasUserinfoSigningAlgValuesSupported returns a boolean if a field has been set.
 func (o *OidcConfiguration) HasUserinfoSigningAlgValuesSupported() bool {
-	if o != nil && o.UserinfoSigningAlgValuesSupported != nil {
+	if o != nil && !IsNil(o.UserinfoSigningAlgValuesSupported) {
 		return true
 	}
 
@@ -960,95 +1035,176 @@ func (o *OidcConfiguration) SetUserinfoSigningAlgValuesSupported(v []string) {
 }
 
 func (o OidcConfiguration) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["authorization_endpoint"] = o.AuthorizationEndpoint
-	}
-	if o.BackchannelLogoutSessionSupported != nil {
-		toSerialize["backchannel_logout_session_supported"] = o.BackchannelLogoutSessionSupported
-	}
-	if o.BackchannelLogoutSupported != nil {
-		toSerialize["backchannel_logout_supported"] = o.BackchannelLogoutSupported
-	}
-	if o.ClaimsParameterSupported != nil {
-		toSerialize["claims_parameter_supported"] = o.ClaimsParameterSupported
-	}
-	if o.ClaimsSupported != nil {
-		toSerialize["claims_supported"] = o.ClaimsSupported
-	}
-	if o.CodeChallengeMethodsSupported != nil {
-		toSerialize["code_challenge_methods_supported"] = o.CodeChallengeMethodsSupported
-	}
-	if o.EndSessionEndpoint != nil {
-		toSerialize["end_session_endpoint"] = o.EndSessionEndpoint
-	}
-	if o.FrontchannelLogoutSessionSupported != nil {
-		toSerialize["frontchannel_logout_session_supported"] = o.FrontchannelLogoutSessionSupported
-	}
-	if o.FrontchannelLogoutSupported != nil {
-		toSerialize["frontchannel_logout_supported"] = o.FrontchannelLogoutSupported
-	}
-	if o.GrantTypesSupported != nil {
-		toSerialize["grant_types_supported"] = o.GrantTypesSupported
-	}
-	if true {
-		toSerialize["id_token_signed_response_alg"] = o.IdTokenSignedResponseAlg
-	}
-	if true {
-		toSerialize["id_token_signing_alg_values_supported"] = o.IdTokenSigningAlgValuesSupported
-	}
-	if true {
-		toSerialize["issuer"] = o.Issuer
-	}
-	if true {
-		toSerialize["jwks_uri"] = o.JwksUri
-	}
-	if o.RegistrationEndpoint != nil {
-		toSerialize["registration_endpoint"] = o.RegistrationEndpoint
-	}
-	if o.RequestObjectSigningAlgValuesSupported != nil {
-		toSerialize["request_object_signing_alg_values_supported"] = o.RequestObjectSigningAlgValuesSupported
-	}
-	if o.RequestParameterSupported != nil {
-		toSerialize["request_parameter_supported"] = o.RequestParameterSupported
-	}
-	if o.RequestUriParameterSupported != nil {
-		toSerialize["request_uri_parameter_supported"] = o.RequestUriParameterSupported
-	}
-	if o.RequireRequestUriRegistration != nil {
-		toSerialize["require_request_uri_registration"] = o.RequireRequestUriRegistration
-	}
-	if o.ResponseModesSupported != nil {
-		toSerialize["response_modes_supported"] = o.ResponseModesSupported
-	}
-	if true {
-		toSerialize["response_types_supported"] = o.ResponseTypesSupported
-	}
-	if o.RevocationEndpoint != nil {
-		toSerialize["revocation_endpoint"] = o.RevocationEndpoint
-	}
-	if o.ScopesSupported != nil {
-		toSerialize["scopes_supported"] = o.ScopesSupported
-	}
-	if true {
-		toSerialize["subject_types_supported"] = o.SubjectTypesSupported
-	}
-	if true {
-		toSerialize["token_endpoint"] = o.TokenEndpoint
-	}
-	if o.TokenEndpointAuthMethodsSupported != nil {
-		toSerialize["token_endpoint_auth_methods_supported"] = o.TokenEndpointAuthMethodsSupported
-	}
-	if o.UserinfoEndpoint != nil {
-		toSerialize["userinfo_endpoint"] = o.UserinfoEndpoint
-	}
-	if true {
-		toSerialize["userinfo_signed_response_alg"] = o.UserinfoSignedResponseAlg
-	}
-	if o.UserinfoSigningAlgValuesSupported != nil {
-		toSerialize["userinfo_signing_alg_values_supported"] = o.UserinfoSigningAlgValuesSupported
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o OidcConfiguration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["authorization_endpoint"] = o.AuthorizationEndpoint
+	if !IsNil(o.BackchannelLogoutSessionSupported) {
+		toSerialize["backchannel_logout_session_supported"] = o.BackchannelLogoutSessionSupported
+	}
+	if !IsNil(o.BackchannelLogoutSupported) {
+		toSerialize["backchannel_logout_supported"] = o.BackchannelLogoutSupported
+	}
+	if !IsNil(o.ClaimsParameterSupported) {
+		toSerialize["claims_parameter_supported"] = o.ClaimsParameterSupported
+	}
+	if !IsNil(o.ClaimsSupported) {
+		toSerialize["claims_supported"] = o.ClaimsSupported
+	}
+	if !IsNil(o.CodeChallengeMethodsSupported) {
+		toSerialize["code_challenge_methods_supported"] = o.CodeChallengeMethodsSupported
+	}
+	if !IsNil(o.CredentialsEndpointDraft00) {
+		toSerialize["credentials_endpoint_draft_00"] = o.CredentialsEndpointDraft00
+	}
+	if !IsNil(o.CredentialsSupportedDraft00) {
+		toSerialize["credentials_supported_draft_00"] = o.CredentialsSupportedDraft00
+	}
+	if !IsNil(o.EndSessionEndpoint) {
+		toSerialize["end_session_endpoint"] = o.EndSessionEndpoint
+	}
+	if !IsNil(o.FrontchannelLogoutSessionSupported) {
+		toSerialize["frontchannel_logout_session_supported"] = o.FrontchannelLogoutSessionSupported
+	}
+	if !IsNil(o.FrontchannelLogoutSupported) {
+		toSerialize["frontchannel_logout_supported"] = o.FrontchannelLogoutSupported
+	}
+	if !IsNil(o.GrantTypesSupported) {
+		toSerialize["grant_types_supported"] = o.GrantTypesSupported
+	}
+	toSerialize["id_token_signed_response_alg"] = o.IdTokenSignedResponseAlg
+	toSerialize["id_token_signing_alg_values_supported"] = o.IdTokenSigningAlgValuesSupported
+	toSerialize["issuer"] = o.Issuer
+	toSerialize["jwks_uri"] = o.JwksUri
+	if !IsNil(o.RegistrationEndpoint) {
+		toSerialize["registration_endpoint"] = o.RegistrationEndpoint
+	}
+	if !IsNil(o.RequestObjectSigningAlgValuesSupported) {
+		toSerialize["request_object_signing_alg_values_supported"] = o.RequestObjectSigningAlgValuesSupported
+	}
+	if !IsNil(o.RequestParameterSupported) {
+		toSerialize["request_parameter_supported"] = o.RequestParameterSupported
+	}
+	if !IsNil(o.RequestUriParameterSupported) {
+		toSerialize["request_uri_parameter_supported"] = o.RequestUriParameterSupported
+	}
+	if !IsNil(o.RequireRequestUriRegistration) {
+		toSerialize["require_request_uri_registration"] = o.RequireRequestUriRegistration
+	}
+	if !IsNil(o.ResponseModesSupported) {
+		toSerialize["response_modes_supported"] = o.ResponseModesSupported
+	}
+	toSerialize["response_types_supported"] = o.ResponseTypesSupported
+	if !IsNil(o.RevocationEndpoint) {
+		toSerialize["revocation_endpoint"] = o.RevocationEndpoint
+	}
+	if !IsNil(o.ScopesSupported) {
+		toSerialize["scopes_supported"] = o.ScopesSupported
+	}
+	toSerialize["subject_types_supported"] = o.SubjectTypesSupported
+	toSerialize["token_endpoint"] = o.TokenEndpoint
+	if !IsNil(o.TokenEndpointAuthMethodsSupported) {
+		toSerialize["token_endpoint_auth_methods_supported"] = o.TokenEndpointAuthMethodsSupported
+	}
+	if !IsNil(o.UserinfoEndpoint) {
+		toSerialize["userinfo_endpoint"] = o.UserinfoEndpoint
+	}
+	toSerialize["userinfo_signed_response_alg"] = o.UserinfoSignedResponseAlg
+	if !IsNil(o.UserinfoSigningAlgValuesSupported) {
+		toSerialize["userinfo_signing_alg_values_supported"] = o.UserinfoSigningAlgValuesSupported
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *OidcConfiguration) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"authorization_endpoint",
+		"id_token_signed_response_alg",
+		"id_token_signing_alg_values_supported",
+		"issuer",
+		"jwks_uri",
+		"response_types_supported",
+		"subject_types_supported",
+		"token_endpoint",
+		"userinfo_signed_response_alg",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varOidcConfiguration := _OidcConfiguration{}
+
+	err = json.Unmarshal(bytes, &varOidcConfiguration)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OidcConfiguration(varOidcConfiguration)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorization_endpoint")
+		delete(additionalProperties, "backchannel_logout_session_supported")
+		delete(additionalProperties, "backchannel_logout_supported")
+		delete(additionalProperties, "claims_parameter_supported")
+		delete(additionalProperties, "claims_supported")
+		delete(additionalProperties, "code_challenge_methods_supported")
+		delete(additionalProperties, "credentials_endpoint_draft_00")
+		delete(additionalProperties, "credentials_supported_draft_00")
+		delete(additionalProperties, "end_session_endpoint")
+		delete(additionalProperties, "frontchannel_logout_session_supported")
+		delete(additionalProperties, "frontchannel_logout_supported")
+		delete(additionalProperties, "grant_types_supported")
+		delete(additionalProperties, "id_token_signed_response_alg")
+		delete(additionalProperties, "id_token_signing_alg_values_supported")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "jwks_uri")
+		delete(additionalProperties, "registration_endpoint")
+		delete(additionalProperties, "request_object_signing_alg_values_supported")
+		delete(additionalProperties, "request_parameter_supported")
+		delete(additionalProperties, "request_uri_parameter_supported")
+		delete(additionalProperties, "require_request_uri_registration")
+		delete(additionalProperties, "response_modes_supported")
+		delete(additionalProperties, "response_types_supported")
+		delete(additionalProperties, "revocation_endpoint")
+		delete(additionalProperties, "scopes_supported")
+		delete(additionalProperties, "subject_types_supported")
+		delete(additionalProperties, "token_endpoint")
+		delete(additionalProperties, "token_endpoint_auth_methods_supported")
+		delete(additionalProperties, "userinfo_endpoint")
+		delete(additionalProperties, "userinfo_signed_response_alg")
+		delete(additionalProperties, "userinfo_signing_alg_values_supported")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOidcConfiguration struct {

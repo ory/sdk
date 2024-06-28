@@ -7,6 +7,8 @@ docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/CreateJsonWebKeySet.md
+docs/CreateVerifiableCredentialRequestBody.md
+docs/CredentialSupportedDraft00.md
 docs/ErrorOAuth2.md
 docs/GenericError.md
 docs/GetVersion200Response.md
@@ -39,6 +41,7 @@ docs/OidcConfiguration.md
 docs/OidcUserInfo.md
 docs/Pagination.md
 docs/PaginationHeaders.md
+docs/RFC6749ErrorJson.md
 docs/RejectOAuth2Request.md
 docs/StringSliceJSONFormat.md
 docs/TokenPagination.md
@@ -49,6 +52,9 @@ docs/TrustOAuth2JwtGrantIssuer.md
 docs/TrustedOAuth2JwtGrantIssuer.md
 docs/TrustedOAuth2JwtGrantIssuers.md
 docs/TrustedOAuth2JwtGrantJsonWebKey.md
+docs/VerifiableCredentialPrimingResponse.md
+docs/VerifiableCredentialProof.md
+docs/VerifiableCredentialResponse.md
 docs/Version.md
 docs/WellknownApi.md
 git_push.sh
@@ -68,6 +74,8 @@ ory_hydra_client/model/accept_o_auth2_consent_request.py
 ory_hydra_client/model/accept_o_auth2_consent_request_session.py
 ory_hydra_client/model/accept_o_auth2_login_request.py
 ory_hydra_client/model/create_json_web_key_set.py
+ory_hydra_client/model/create_verifiable_credential_request_body.py
+ory_hydra_client/model/credential_supported_draft00.py
 ory_hydra_client/model/error_o_auth2.py
 ory_hydra_client/model/generic_error.py
 ory_hydra_client/model/get_version200_response.py
@@ -97,6 +105,7 @@ ory_hydra_client/model/oidc_user_info.py
 ory_hydra_client/model/pagination.py
 ory_hydra_client/model/pagination_headers.py
 ory_hydra_client/model/reject_o_auth2_request.py
+ory_hydra_client/model/rfc6749_error_json.py
 ory_hydra_client/model/string_slice_json_format.py
 ory_hydra_client/model/token_pagination.py
 ory_hydra_client/model/token_pagination_headers.py
@@ -106,6 +115,9 @@ ory_hydra_client/model/trust_o_auth2_jwt_grant_issuer.py
 ory_hydra_client/model/trusted_o_auth2_jwt_grant_issuer.py
 ory_hydra_client/model/trusted_o_auth2_jwt_grant_issuers.py
 ory_hydra_client/model/trusted_o_auth2_jwt_grant_json_web_key.py
+ory_hydra_client/model/verifiable_credential_priming_response.py
+ory_hydra_client/model/verifiable_credential_proof.py
+ory_hydra_client/model/verifiable_credential_response.py
 ory_hydra_client/model/version.py
 ory_hydra_client/model_utils.py
 ory_hydra_client/models/__init__.py
@@ -119,6 +131,8 @@ test/test_accept_o_auth2_consent_request.py
 test/test_accept_o_auth2_consent_request_session.py
 test/test_accept_o_auth2_login_request.py
 test/test_create_json_web_key_set.py
+test/test_create_verifiable_credential_request_body.py
+test/test_credential_supported_draft00.py
 test/test_error_o_auth2.py
 test/test_generic_error.py
 test/test_get_version200_response.py
@@ -152,6 +166,7 @@ test/test_oidc_user_info.py
 test/test_pagination.py
 test/test_pagination_headers.py
 test/test_reject_o_auth2_request.py
+test/test_rfc6749_error_json.py
 test/test_string_slice_json_format.py
 test/test_token_pagination.py
 test/test_token_pagination_headers.py
@@ -161,6 +176,9 @@ test/test_trust_o_auth2_jwt_grant_issuer.py
 test/test_trusted_o_auth2_jwt_grant_issuer.py
 test/test_trusted_o_auth2_jwt_grant_issuers.py
 test/test_trusted_o_auth2_jwt_grant_json_web_key.py
+test/test_verifiable_credential_priming_response.py
+test/test_verifiable_credential_proof.py
+test/test_verifiable_credential_response.py
 test/test_version.py
 test/test_wellknown_api.py
 tox.ini

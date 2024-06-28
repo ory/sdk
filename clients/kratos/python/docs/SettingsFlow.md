@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **identity** | [**Identity**](Identity.md) |  | 
 **issued_at** | **datetime** | IssuedAt is the time (UTC) when the flow occurred. | 
 **request_url** | **str** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
-**state** | [**SettingsFlowState**](SettingsFlowState.md) |  | 
+**state** | **bool, date, datetime, dict, float, int, list, str, none_type** | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent. | 
 **type** | **str** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **ui** | [**UiContainer**](UiContainer.md) |  | 
 **active** | **str** | Active, if set, contains the registration method that is being used. It is initially not set. | [optional] 

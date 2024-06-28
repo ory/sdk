@@ -20,7 +20,7 @@ class _$VerificationFlow extends VerificationFlow {
   @override
   final String? returnTo;
   @override
-  final VerificationFlowState state;
+  final JsonObject? state;
   @override
   final String type;
   @override
@@ -37,12 +37,11 @@ class _$VerificationFlow extends VerificationFlow {
       this.issuedAt,
       this.requestUrl,
       this.returnTo,
-      required this.state,
+      this.state,
       required this.type,
       required this.ui})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'VerificationFlow', 'id');
-    BuiltValueNullFieldError.checkNotNull(state, r'VerificationFlow', 'state');
     BuiltValueNullFieldError.checkNotNull(type, r'VerificationFlow', 'type');
     BuiltValueNullFieldError.checkNotNull(ui, r'VerificationFlow', 'ui');
   }
@@ -130,9 +129,9 @@ class VerificationFlowBuilder
   String? get returnTo => _$this._returnTo;
   set returnTo(String? returnTo) => _$this._returnTo = returnTo;
 
-  VerificationFlowState? _state;
-  VerificationFlowState? get state => _$this._state;
-  set state(VerificationFlowState? state) => _$this._state = state;
+  JsonObject? _state;
+  JsonObject? get state => _$this._state;
+  set state(JsonObject? state) => _$this._state = state;
 
   String? _type;
   String? get type => _$this._type;
@@ -189,8 +188,7 @@ class VerificationFlowBuilder
               issuedAt: issuedAt,
               requestUrl: requestUrl,
               returnTo: returnTo,
-              state: BuiltValueNullFieldError.checkNotNull(
-                  state, r'VerificationFlow', 'state'),
+              state: state,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'VerificationFlow', 'type'),
               ui: ui.build());

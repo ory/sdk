@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,13 +15,19 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenPaginationRequestParameters type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenPaginationRequestParameters{}
+
 // TokenPaginationRequestParameters The `Link` HTTP header contains multiple links (`first`, `next`, `last`, `previous`) formatted as: `<https://{project-slug}.projects.oryapis.com/admin/clients?page_size={limit}&page_token={offset}>; rel=\"{page}\"`  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 type TokenPaginationRequestParameters struct {
 	// Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 	PageSize *int64 `json:"page_size,omitempty"`
 	// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 	PageToken *string `json:"page_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TokenPaginationRequestParameters TokenPaginationRequestParameters
 
 // NewTokenPaginationRequestParameters instantiates a new TokenPaginationRequestParameters object
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +56,7 @@ func NewTokenPaginationRequestParametersWithDefaults() *TokenPaginationRequestPa
 
 // GetPageSize returns the PageSize field value if set, zero value otherwise.
 func (o *TokenPaginationRequestParameters) GetPageSize() int64 {
-	if o == nil || o.PageSize == nil {
+	if o == nil || IsNil(o.PageSize) {
 		var ret int64
 		return ret
 	}
@@ -60,7 +66,7 @@ func (o *TokenPaginationRequestParameters) GetPageSize() int64 {
 // GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenPaginationRequestParameters) GetPageSizeOk() (*int64, bool) {
-	if o == nil || o.PageSize == nil {
+	if o == nil || IsNil(o.PageSize) {
 		return nil, false
 	}
 	return o.PageSize, true
@@ -68,7 +74,7 @@ func (o *TokenPaginationRequestParameters) GetPageSizeOk() (*int64, bool) {
 
 // HasPageSize returns a boolean if a field has been set.
 func (o *TokenPaginationRequestParameters) HasPageSize() bool {
-	if o != nil && o.PageSize != nil {
+	if o != nil && !IsNil(o.PageSize) {
 		return true
 	}
 
@@ -82,7 +88,7 @@ func (o *TokenPaginationRequestParameters) SetPageSize(v int64) {
 
 // GetPageToken returns the PageToken field value if set, zero value otherwise.
 func (o *TokenPaginationRequestParameters) GetPageToken() string {
-	if o == nil || o.PageToken == nil {
+	if o == nil || IsNil(o.PageToken) {
 		var ret string
 		return ret
 	}
@@ -92,7 +98,7 @@ func (o *TokenPaginationRequestParameters) GetPageToken() string {
 // GetPageTokenOk returns a tuple with the PageToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenPaginationRequestParameters) GetPageTokenOk() (*string, bool) {
-	if o == nil || o.PageToken == nil {
+	if o == nil || IsNil(o.PageToken) {
 		return nil, false
 	}
 	return o.PageToken, true
@@ -100,7 +106,7 @@ func (o *TokenPaginationRequestParameters) GetPageTokenOk() (*string, bool) {
 
 // HasPageToken returns a boolean if a field has been set.
 func (o *TokenPaginationRequestParameters) HasPageToken() bool {
-	if o != nil && o.PageToken != nil {
+	if o != nil && !IsNil(o.PageToken) {
 		return true
 	}
 
@@ -113,14 +119,49 @@ func (o *TokenPaginationRequestParameters) SetPageToken(v string) {
 }
 
 func (o TokenPaginationRequestParameters) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PageSize != nil {
-		toSerialize["page_size"] = o.PageSize
-	}
-	if o.PageToken != nil {
-		toSerialize["page_token"] = o.PageToken
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TokenPaginationRequestParameters) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PageSize) {
+		toSerialize["page_size"] = o.PageSize
+	}
+	if !IsNil(o.PageToken) {
+		toSerialize["page_token"] = o.PageToken
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *TokenPaginationRequestParameters) UnmarshalJSON(data []byte) (err error) {
+	varTokenPaginationRequestParameters := _TokenPaginationRequestParameters{}
+
+	err = json.Unmarshal(data, &varTokenPaginationRequestParameters)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TokenPaginationRequestParameters(varTokenPaginationRequestParameters)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "page_size")
+		delete(additionalProperties, "page_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTokenPaginationRequestParameters struct {

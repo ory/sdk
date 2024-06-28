@@ -7,17 +7,12 @@ part of 'continue_with_verification_ui.dart';
 // **************************************************************************
 
 const ContinueWithVerificationUiActionEnum
-    _$continueWithVerificationUiActionEnum_setOrySessionToken =
-    const ContinueWithVerificationUiActionEnum._('setOrySessionToken');
-const ContinueWithVerificationUiActionEnum
     _$continueWithVerificationUiActionEnum_showVerificationUi =
     const ContinueWithVerificationUiActionEnum._('showVerificationUi');
 
 ContinueWithVerificationUiActionEnum
     _$continueWithVerificationUiActionEnumValueOf(String name) {
   switch (name) {
-    case 'setOrySessionToken':
-      return _$continueWithVerificationUiActionEnum_setOrySessionToken;
     case 'showVerificationUi':
       return _$continueWithVerificationUiActionEnum_showVerificationUi;
     default:
@@ -28,7 +23,6 @@ ContinueWithVerificationUiActionEnum
 final BuiltSet<ContinueWithVerificationUiActionEnum>
     _$continueWithVerificationUiActionEnumValues = new BuiltSet<
         ContinueWithVerificationUiActionEnum>(const <ContinueWithVerificationUiActionEnum>[
-  _$continueWithVerificationUiActionEnum_setOrySessionToken,
   _$continueWithVerificationUiActionEnum_showVerificationUi,
 ]);
 
@@ -39,11 +33,9 @@ Serializer<ContinueWithVerificationUiActionEnum>
 class _$ContinueWithVerificationUiActionEnumSerializer
     implements PrimitiveSerializer<ContinueWithVerificationUiActionEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'setOrySessionToken': 'set_ory_session_token',
     'showVerificationUi': 'show_verification_ui',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'set_ory_session_token': 'setOrySessionToken',
     'show_verification_ui': 'showVerificationUi',
   };
 

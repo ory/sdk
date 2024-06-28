@@ -22,6 +22,11 @@ void main() {
       // TODO
     });
 
+    // String organization
+    test('to test the property `organization`', () async {
+      // TODO
+    });
+
     // String provider
     test('to test the property `provider`', () async {
       // TODO

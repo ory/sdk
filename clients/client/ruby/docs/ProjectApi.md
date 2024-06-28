@@ -4,19 +4,98 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations |  |
 | [**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project |
 | [**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API token |
+| [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project. |
 | [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
 | [**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
+| [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID. |
 | [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project |
-| [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project_id}/members | Get all members associated with this project |
+| [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project |
+| [**get_project_metrics**](ProjectApi.md#get_project_metrics) | **GET** /projects/{project_id}/metrics |  |
+| [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations |  |
 | [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects |
 | [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**purge_project**](ProjectApi.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
-| [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project_id}/members/{member_id} | Remove a member associated with this project |
+| [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**set_active_project_in_console**](ProjectApi.md#set_active_project_in_console) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console |
 | [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
+| [**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project. |
+
+
+## create_organization
+
+> <Organization> create_organization(project_id, opts)
+
+
+
+Create a B2B SSO Organization
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+opts = {
+  organization_body: OryClient::OrganizationBody.new # OrganizationBody | 
+}
+
+begin
+  
+  result = api_instance.create_organization(project_id, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->create_organization: #{e}"
+end
+```
+
+#### Using the create_organization_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Organization>, Integer, Hash)> create_organization_with_http_info(project_id, opts)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.create_organization_with_http_info(project_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Organization>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->create_organization_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **organization_body** | [**OrganizationBody**](OrganizationBody.md) |  | [optional] |
+
+### Return type
+
+[**Organization**](Organization.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## create_project
@@ -40,7 +119,7 @@ end
 
 api_instance = OryClient::ProjectApi.new
 opts = {
-  create_project_body: OryClient::CreateProjectBody.new({name: 'name_example'}) # CreateProjectBody | 
+  create_project_body: OryClient::CreateProjectBody.new({environment: 'prod', name: 'name_example'}) # CreateProjectBody | 
 }
 
 begin
@@ -160,6 +239,74 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## delete_organization
+
+> delete_organization(project_id, organization_id)
+
+Delete a B2B SSO Organization for a project.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
+
+begin
+  # Delete a B2B SSO Organization for a project.
+  api_instance.delete_organization(project_id, organization_id)
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->delete_organization: #{e}"
+end
+```
+
+#### Using the delete_organization_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> delete_organization_with_http_info(project_id, organization_id)
+
+```ruby
+begin
+  # Delete a B2B SSO Organization for a project.
+  data, status_code, headers = api_instance.delete_organization_with_http_info(project_id, organization_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->delete_organization_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **organization_id** | **String** | Organization ID  The Organization&#39;s ID. |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
@@ -299,6 +446,75 @@ This endpoint does not need any parameter.
 - **Accept**: application/json
 
 
+## get_organization
+
+> <GetOrganizationResponse> get_organization(project_id, organization_id)
+
+Returns a B2B SSO Organization for a project by it's ID.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
+
+begin
+  # Returns a B2B SSO Organization for a project by it's ID.
+  result = api_instance.get_organization(project_id, organization_id)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_organization: #{e}"
+end
+```
+
+#### Using the get_organization_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<GetOrganizationResponse>, Integer, Hash)> get_organization_with_http_info(project_id, organization_id)
+
+```ruby
+begin
+  # Returns a B2B SSO Organization for a project by it's ID.
+  data, status_code, headers = api_instance.get_organization_with_http_info(project_id, organization_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <GetOrganizationResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_organization_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **organization_id** | **String** | Organization ID  The Organization&#39;s ID. |  |
+
+### Return type
+
+[**GetOrganizationResponse**](GetOrganizationResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## get_project
 
 > <Project> get_project(project_id)
@@ -370,7 +586,7 @@ end
 
 ## get_project_members
 
-> <Array<CloudAccount>> get_project_members(project_id)
+> <Array<ProjectMember>> get_project_members(project)
 
 Get all members associated with this project
 
@@ -388,11 +604,11 @@ OryClient.configure do |config|
 end
 
 api_instance = OryClient::ProjectApi.new
-project_id = 'project_id_example' # String | Project ID  The project's ID.
+project = 'project_example' # String | 
 
 begin
   # Get all members associated with this project
-  result = api_instance.get_project_members(project_id)
+  result = api_instance.get_project_members(project)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling ProjectApi->get_project_members: #{e}"
@@ -403,17 +619,161 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Array<CloudAccount>>, Integer, Hash)> get_project_members_with_http_info(project_id)
+> <Array(<Array<ProjectMember>>, Integer, Hash)> get_project_members_with_http_info(project)
 
 ```ruby
 begin
   # Get all members associated with this project
-  data, status_code, headers = api_instance.get_project_members_with_http_info(project_id)
+  data, status_code, headers = api_instance.get_project_members_with_http_info(project)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Array<CloudAccount>>
+  p data # => <Array<ProjectMember>>
 rescue OryClient::ApiError => e
   puts "Error when calling ProjectApi->get_project_members_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project** | **String** |  |  |
+
+### Return type
+
+[**Array&lt;ProjectMember&gt;**](ProjectMember.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_project_metrics
+
+> <GetProjectMetricsResponse> get_project_metrics(project_id, event_type, resolution, from, to)
+
+
+
+Retrieves project metrics for the specified event type and time range
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID
+event_type = 'event_type_example' # String | The event type to query for
+resolution = 'resolution_example' # String | The resolution of the buckets  The minimum resolution is 1 minute.
+from = Time.parse('2013-10-20T19:20:30+01:00') # Time | The start RFC3339 date of the time window
+to = Time.parse('2013-10-20T19:20:30+01:00') # Time | The end RFC3339 date of the time window
+
+begin
+  
+  result = api_instance.get_project_metrics(project_id, event_type, resolution, from, to)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_project_metrics: #{e}"
+end
+```
+
+#### Using the get_project_metrics_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<GetProjectMetricsResponse>, Integer, Hash)> get_project_metrics_with_http_info(project_id, event_type, resolution, from, to)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_project_metrics_with_http_info(project_id, event_type, resolution, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <GetProjectMetricsResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_project_metrics_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID |  |
+| **event_type** | **String** | The event type to query for |  |
+| **resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 minute. |  |
+| **from** | **Time** | The start RFC3339 date of the time window |  |
+| **to** | **Time** | The end RFC3339 date of the time window |  |
+
+### Return type
+
+[**GetProjectMetricsResponse**](GetProjectMetricsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## list_organizations
+
+> <ListOrganizationsResponse> list_organizations(project_id)
+
+
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+
+begin
+  
+  result = api_instance.list_organizations(project_id)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->list_organizations: #{e}"
+end
+```
+
+#### Using the list_organizations_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ListOrganizationsResponse>, Integer, Hash)> list_organizations_with_http_info(project_id)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.list_organizations_with_http_info(project_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ListOrganizationsResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->list_organizations_with_http_info: #{e}"
 end
 ```
 
@@ -425,7 +785,7 @@ end
 
 ### Return type
 
-[**Array&lt;CloudAccount&gt;**](CloudAccount.md)
+[**ListOrganizationsResponse**](ListOrganizationsResponse.md)
 
 ### Authorization
 
@@ -715,7 +1075,7 @@ nil (empty response body)
 
 ## remove_project_member
 
-> remove_project_member(project_id, member_id)
+> remove_project_member(project, member)
 
 Remove a member associated with this project
 
@@ -733,12 +1093,12 @@ OryClient.configure do |config|
 end
 
 api_instance = OryClient::ProjectApi.new
-project_id = 'project_id_example' # String | Project ID  The project's ID.
-member_id = 'member_id_example' # String | Member ID
+project = 'project_example' # String | 
+member = 'member_example' # String | 
 
 begin
   # Remove a member associated with this project
-  api_instance.remove_project_member(project_id, member_id)
+  api_instance.remove_project_member(project, member)
 rescue OryClient::ApiError => e
   puts "Error when calling ProjectApi->remove_project_member: #{e}"
 end
@@ -748,12 +1108,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> remove_project_member_with_http_info(project_id, member_id)
+> <Array(nil, Integer, Hash)> remove_project_member_with_http_info(project, member)
 
 ```ruby
 begin
   # Remove a member associated with this project
-  data, status_code, headers = api_instance.remove_project_member_with_http_info(project_id, member_id)
+  data, status_code, headers = api_instance.remove_project_member_with_http_info(project, member)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -766,8 +1126,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
-| **member_id** | **String** | Member ID |  |
+| **project** | **String** |  |  |
+| **member** | **String** |  |  |
 
 ### Return type
 
@@ -875,7 +1235,7 @@ end
 api_instance = OryClient::ProjectApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 opts = {
-  set_project: OryClient::SetProject.new({name: 'name_example', services: OryClient::ProjectServices.new}) # SetProject | 
+  set_project: OryClient::SetProject.new({cors_admin: OryClient::ProjectCors.new, cors_public: OryClient::ProjectCors.new, name: 'name_example', services: OryClient::ProjectServices.new}) # SetProject | 
 }
 
 begin
@@ -915,6 +1275,79 @@ end
 ### Return type
 
 [**SuccessfulProjectUpdate**](SuccessfulProjectUpdate.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## update_organization
+
+> <Organization> update_organization(project_id, organization_id, opts)
+
+Update a B2B SSO Organization for a project.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
+opts = {
+  organization_body: OryClient::OrganizationBody.new # OrganizationBody | 
+}
+
+begin
+  # Update a B2B SSO Organization for a project.
+  result = api_instance.update_organization(project_id, organization_id, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->update_organization: #{e}"
+end
+```
+
+#### Using the update_organization_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Organization>, Integer, Hash)> update_organization_with_http_info(project_id, organization_id, opts)
+
+```ruby
+begin
+  # Update a B2B SSO Organization for a project.
+  data, status_code, headers = api_instance.update_organization_with_http_info(project_id, organization_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Organization>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->update_organization_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **organization_id** | **String** | Organization ID  The Organization&#39;s ID. |  |
+| **organization_body** | [**OrganizationBody**](OrganizationBody.md) |  | [optional] |
+
+### Return type
+
+[**Organization**](Organization.md)
 
 ### Authorization
 

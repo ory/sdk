@@ -114,6 +114,15 @@ typescript() {
   to_git "js" "yes"
 }
 
+typescript_fetch() {
+  dir="clients/${PROJECT}/typescript-fetch"
+
+  (cd "${dir}"; npm install; npm run build)
+  (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}" || true; npm publish --access public)
+
+  to_git "ts-fetch" "yes"
+}
+
 java() {
   gitdir=$(mktemp -d -t "${GIT_REPO}-java.XXXXXX")
   to_git "java" "no" "$gitdir"
@@ -157,7 +166,7 @@ ruby() {
 golang() {
   dir="clients/${PROJECT}/go"
 
-  (cd "${dir}"; go mod tidy)
+  (cd "${dir}"; go mod tidy -compat=1.17)
   to_git "go" "yes"
 }
 
@@ -186,21 +195,13 @@ dotnet() {
 
 dart() {
   dir="clients/${PROJECT}/dart"
-
   mkdir -p ~/.pub-cache || true
   set +x
-  cat <<EOF > ~/.pub-cache/credentials.json
-{
-  "accessToken":"${DART_ACCESS_TOKEN}",
-  "refreshToken":"${DART_REFRESH_TOKEN}",
-  "tokenEndpoint": "https://accounts.google.com/o/oauth2/token",
-  "scopes": [
-    "openid",
-    "https://www.googleapis.com/auth/userinfo.email"
-  ],
-  "expiration": 1611594593613
-}
-EOF
+  echo "$DART_SERVICE_ACCOUNT" | base64 -d > ~/.pub-cache/key-file.json
+  gcloud auth activate-service-account --key-file=~/.pub-cache/key-file.json
+  gcloud auth print-identity-token \
+    --audiences=https://pub.dev \
+    | dart pub token add https://pub.dev
   set -x
 
   (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
@@ -232,13 +233,14 @@ FAIL=0
 echo "starting"
 
 python || let "FAIL+=1"
-ruby || let "FAIL+=1"
+# ruby || let "FAIL+=1"
 golang || let "FAIL+=1"
 php || let "FAIL+=1"
 typescript || let "FAIL+=1"
-dart || let "FAIL+=1"
+typescript_fetch || let "FAIL+=1"
+# dart || let "FAIL+=1"
 rust || let "FAIL+=1"
-elixir || let "FAIL+=1"
+# elixir || let "FAIL+=1"
 java || let "FAIL+=1"
 dotnet || let "FAIL+=1"
 upstream || let "FAIL+=1"
@@ -251,4 +253,3 @@ else
   echo "One or more subtasks failed to complete."
   exit 1
 fi
-

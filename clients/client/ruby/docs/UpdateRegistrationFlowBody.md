@@ -14,6 +14,7 @@ require 'ory-client'
 OryClient::UpdateRegistrationFlowBody.openapi_one_of
 # =>
 # [
+#   :'UpdateRegistrationFlowWithCodeMethod',
 #   :'UpdateRegistrationFlowWithOidcMethod',
 #   :'UpdateRegistrationFlowWithPasswordMethod',
 #   :'UpdateRegistrationFlowWithWebAuthnMethod'
@@ -45,10 +46,12 @@ require 'ory-client'
 OryClient::UpdateRegistrationFlowBody.openapi_discriminator_mapping
 # =>
 # {
+#   :'code' => :'UpdateRegistrationFlowWithCodeMethod',
 #   :'oidc' => :'UpdateRegistrationFlowWithOidcMethod',
 #   :'password' => :'UpdateRegistrationFlowWithPasswordMethod',
 #   :'webauthn' => :'UpdateRegistrationFlowWithWebAuthnMethod'
 # }
+```
 
 ### build
 
@@ -60,7 +63,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-client'
 
 OryClient::UpdateRegistrationFlowBody.build(data)
-# => #<UpdateRegistrationFlowWithOidcMethod:0x00007fdd4aab02a0>
+# => #<UpdateRegistrationFlowWithCodeMethod:0x00007fdd4aab02a0>
 
 OryClient::UpdateRegistrationFlowBody.build(data_that_doesnt_match)
 # => nil
@@ -74,6 +77,7 @@ OryClient::UpdateRegistrationFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `UpdateRegistrationFlowWithCodeMethod`
 - `UpdateRegistrationFlowWithOidcMethod`
 - `UpdateRegistrationFlowWithPasswordMethod`
 - `UpdateRegistrationFlowWithWebAuthnMethod`

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/money.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,13 +12,12 @@ part 'generic_usage.g.dart';
 /// GenericUsage
 ///
 /// Properties:
-/// * [additionalPrice] - AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
+/// * [additionalPrice] 
 /// * [includedUsage] - IncludedUsage is the number of included items.
 @BuiltValue()
 abstract class GenericUsage implements Built<GenericUsage, GenericUsageBuilder> {
-  /// AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
   @BuiltValueField(wireName: r'additional_price')
-  int get additionalPrice;
+  Money get additionalPrice;
 
   /// IncludedUsage is the number of included items.
   @BuiltValueField(wireName: r'included_usage')
@@ -49,7 +49,7 @@ class _$GenericUsageSerializer implements PrimitiveSerializer<GenericUsage> {
     yield r'additional_price';
     yield serializers.serialize(
       object.additionalPrice,
-      specifiedType: const FullType(int),
+      specifiedType: const FullType(Money),
     );
     yield r'included_usage';
     yield serializers.serialize(
@@ -82,9 +82,9 @@ class _$GenericUsageSerializer implements PrimitiveSerializer<GenericUsage> {
         case r'additional_price':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.additionalPrice = valueDes;
+            specifiedType: const FullType(Money),
+          ) as Money;
+          result.additionalPrice.replace(valueDes);
           break;
         case r'included_usage':
           final valueDes = serializers.deserialize(

@@ -6,6 +6,69 @@ part of 'update_verification_flow_with_link_method.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UpdateVerificationFlowWithLinkMethodMethodEnum
+    _$updateVerificationFlowWithLinkMethodMethodEnum_link =
+    const UpdateVerificationFlowWithLinkMethodMethodEnum._('link');
+const UpdateVerificationFlowWithLinkMethodMethodEnum
+    _$updateVerificationFlowWithLinkMethodMethodEnum_code =
+    const UpdateVerificationFlowWithLinkMethodMethodEnum._('code');
+
+UpdateVerificationFlowWithLinkMethodMethodEnum
+    _$updateVerificationFlowWithLinkMethodMethodEnumValueOf(String name) {
+  switch (name) {
+    case 'link':
+      return _$updateVerificationFlowWithLinkMethodMethodEnum_link;
+    case 'code':
+      return _$updateVerificationFlowWithLinkMethodMethodEnum_code;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateVerificationFlowWithLinkMethodMethodEnum>
+    _$updateVerificationFlowWithLinkMethodMethodEnumValues = new BuiltSet<
+        UpdateVerificationFlowWithLinkMethodMethodEnum>(const <UpdateVerificationFlowWithLinkMethodMethodEnum>[
+  _$updateVerificationFlowWithLinkMethodMethodEnum_link,
+  _$updateVerificationFlowWithLinkMethodMethodEnum_code,
+]);
+
+Serializer<UpdateVerificationFlowWithLinkMethodMethodEnum>
+    _$updateVerificationFlowWithLinkMethodMethodEnumSerializer =
+    new _$UpdateVerificationFlowWithLinkMethodMethodEnumSerializer();
+
+class _$UpdateVerificationFlowWithLinkMethodMethodEnumSerializer
+    implements
+        PrimitiveSerializer<UpdateVerificationFlowWithLinkMethodMethodEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'link': 'link',
+    'code': 'code',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'link': 'link',
+    'code': 'code',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UpdateVerificationFlowWithLinkMethodMethodEnum
+  ];
+  @override
+  final String wireName = 'UpdateVerificationFlowWithLinkMethodMethodEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          UpdateVerificationFlowWithLinkMethodMethodEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateVerificationFlowWithLinkMethodMethodEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateVerificationFlowWithLinkMethodMethodEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateVerificationFlowWithLinkMethod
     extends UpdateVerificationFlowWithLinkMethod {
   @override
@@ -13,7 +76,9 @@ class _$UpdateVerificationFlowWithLinkMethod
   @override
   final String email;
   @override
-  final String method;
+  final UpdateVerificationFlowWithLinkMethodMethodEnum method;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateVerificationFlowWithLinkMethod(
           [void Function(UpdateVerificationFlowWithLinkMethodBuilder)?
@@ -22,7 +87,10 @@ class _$UpdateVerificationFlowWithLinkMethod
           ._build();
 
   _$UpdateVerificationFlowWithLinkMethod._(
-      {this.csrfToken, required this.email, required this.method})
+      {this.csrfToken,
+      required this.email,
+      required this.method,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         email, r'UpdateVerificationFlowWithLinkMethod', 'email');
@@ -45,7 +113,8 @@ class _$UpdateVerificationFlowWithLinkMethod
     return other is UpdateVerificationFlowWithLinkMethod &&
         csrfToken == other.csrfToken &&
         email == other.email &&
-        method == other.method;
+        method == other.method &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -54,6 +123,7 @@ class _$UpdateVerificationFlowWithLinkMethod
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -63,7 +133,8 @@ class _$UpdateVerificationFlowWithLinkMethod
     return (newBuiltValueToStringHelper(r'UpdateVerificationFlowWithLinkMethod')
           ..add('csrfToken', csrfToken)
           ..add('email', email)
-          ..add('method', method))
+          ..add('method', method)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -82,9 +153,15 @@ class UpdateVerificationFlowWithLinkMethodBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
-  String? _method;
-  String? get method => _$this._method;
-  set method(String? method) => _$this._method = method;
+  UpdateVerificationFlowWithLinkMethodMethodEnum? _method;
+  UpdateVerificationFlowWithLinkMethodMethodEnum? get method => _$this._method;
+  set method(UpdateVerificationFlowWithLinkMethodMethodEnum? method) =>
+      _$this._method = method;
+
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
 
   UpdateVerificationFlowWithLinkMethodBuilder() {
     UpdateVerificationFlowWithLinkMethod._defaults(this);
@@ -96,6 +173,7 @@ class UpdateVerificationFlowWithLinkMethodBuilder
       _csrfToken = $v.csrfToken;
       _email = $v.email;
       _method = $v.method;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -123,7 +201,8 @@ class UpdateVerificationFlowWithLinkMethodBuilder
             email: BuiltValueNullFieldError.checkNotNull(
                 email, r'UpdateVerificationFlowWithLinkMethod', 'email'),
             method: BuiltValueNullFieldError.checkNotNull(
-                method, r'UpdateVerificationFlowWithLinkMethod', 'method'));
+                method, r'UpdateVerificationFlowWithLinkMethod', 'method'),
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

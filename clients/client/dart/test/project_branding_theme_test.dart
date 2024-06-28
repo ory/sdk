@@ -37,6 +37,18 @@ void main() {
       // TODO
     });
 
+    // The Account Experience Theme Variables.
+    // BuiltList<AccountExperienceThemeVariables> accountExperienceVariables
+    test('to test the property `accountExperienceVariables`', () async {
+      // TODO
+    });
+
+    // AccountExperienceVariableStylesheet holds a reference to the current stylesheet that can be used in the AX
+    // String accountExperienceVariablesStylesheet
+    test('to test the property `accountExperienceVariablesStylesheet`', () async {
+      // TODO
+    });
+
     // BackgroundCanvasColor is a hex color code used by the Ory Account Experience theme.
     // String backgroundCanvasColor
     test('to test the property `backgroundCanvasColor`', () async {
@@ -61,7 +73,7 @@ void main() {
       // TODO
     });
 
-    // The Customiation Creation Date
+    // The Customization Creation Date.
     // DateTime createdAt
     test('to test the property `createdAt`', () async {
       // TODO
@@ -88,6 +100,18 @@ void main() {
     // ErrorSubtleColor is a hex color code used by the Ory Account Experience theme.
     // String errorSubtleColor
     test('to test the property `errorSubtleColor`', () async {
+      // TODO
+    });
+
+    // Favicon Type The Favicon mime type.
+    // String faviconType
+    test('to test the property `faviconType`', () async {
+      // TODO
+    });
+
+    // Favicon URL Favicon can be an https:// or base64:// URL. If the URL is not allowed, the favicon will be stored inside the Ory Network storage bucket.
+    // String faviconUrl
+    test('to test the property `faviconUrl`', () async {
       // TODO
     });
 
@@ -187,7 +211,7 @@ void main() {
       // TODO
     });
 
-    // The ProjectBranding ID this customization is associated with
+    // The ProjectBranding ID this customization is associated with.
     // String projectBrandingId
     test('to test the property `projectBrandingId`', () async {
       // TODO
@@ -217,7 +241,7 @@ void main() {
       // TODO
     });
 
-    // Last Time Branding was Updated
+    // Last Time Branding was Updated.
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
       // TODO

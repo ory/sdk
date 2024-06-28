@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,13 +15,19 @@ import (
 	"encoding/json"
 )
 
+// checks if the AcceptOAuth2ConsentRequestSession type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AcceptOAuth2ConsentRequestSession{}
+
 // AcceptOAuth2ConsentRequestSession struct for AcceptOAuth2ConsentRequestSession
 type AcceptOAuth2ConsentRequestSession struct {
 	// AccessToken sets session data for the access and refresh token, as well as any future tokens issued by the refresh grant. Keep in mind that this data will be available to anyone performing OAuth 2.0 Challenge Introspection. If only your services can perform OAuth 2.0 Challenge Introspection, this is usually fine. But if third parties can access that endpoint as well, sensitive data from the session might be exposed to them. Use with care!
 	AccessToken interface{} `json:"access_token,omitempty"`
 	// IDToken sets session data for the OpenID Connect ID token. Keep in mind that the session'id payloads are readable by anyone that has access to the ID Challenge. Use with care!
 	IdToken interface{} `json:"id_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AcceptOAuth2ConsentRequestSession AcceptOAuth2ConsentRequestSession
 
 // NewAcceptOAuth2ConsentRequestSession instantiates a new AcceptOAuth2ConsentRequestSession object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +59,7 @@ func (o *AcceptOAuth2ConsentRequestSession) GetAccessToken() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AcceptOAuth2ConsentRequestSession) GetAccessTokenOk() (*interface{}, bool) {
-	if o == nil || o.AccessToken == nil {
+	if o == nil || IsNil(o.AccessToken) {
 		return nil, false
 	}
 	return &o.AccessToken, true
@@ -61,7 +67,7 @@ func (o *AcceptOAuth2ConsentRequestSession) GetAccessTokenOk() (*interface{}, bo
 
 // HasAccessToken returns a boolean if a field has been set.
 func (o *AcceptOAuth2ConsentRequestSession) HasAccessToken() bool {
-	if o != nil && o.AccessToken != nil {
+	if o != nil && !IsNil(o.AccessToken) {
 		return true
 	}
 
@@ -86,7 +92,7 @@ func (o *AcceptOAuth2ConsentRequestSession) GetIdToken() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AcceptOAuth2ConsentRequestSession) GetIdTokenOk() (*interface{}, bool) {
-	if o == nil || o.IdToken == nil {
+	if o == nil || IsNil(o.IdToken) {
 		return nil, false
 	}
 	return &o.IdToken, true
@@ -94,7 +100,7 @@ func (o *AcceptOAuth2ConsentRequestSession) GetIdTokenOk() (*interface{}, bool) 
 
 // HasIdToken returns a boolean if a field has been set.
 func (o *AcceptOAuth2ConsentRequestSession) HasIdToken() bool {
-	if o != nil && o.IdToken != nil {
+	if o != nil && !IsNil(o.IdToken) {
 		return true
 	}
 
@@ -107,6 +113,14 @@ func (o *AcceptOAuth2ConsentRequestSession) SetIdToken(v interface{}) {
 }
 
 func (o AcceptOAuth2ConsentRequestSession) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o AcceptOAuth2ConsentRequestSession) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AccessToken != nil {
 		toSerialize["access_token"] = o.AccessToken
@@ -114,7 +128,34 @@ func (o AcceptOAuth2ConsentRequestSession) MarshalJSON() ([]byte, error) {
 	if o.IdToken != nil {
 		toSerialize["id_token"] = o.IdToken
 	}
-	return json.Marshal(toSerialize)
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *AcceptOAuth2ConsentRequestSession) UnmarshalJSON(data []byte) (err error) {
+	varAcceptOAuth2ConsentRequestSession := _AcceptOAuth2ConsentRequestSession{}
+
+	err = json.Unmarshal(data, &varAcceptOAuth2ConsentRequestSession)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AcceptOAuth2ConsentRequestSession(varAcceptOAuth2ConsentRequestSession)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_token")
+		delete(additionalProperties, "id_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAcceptOAuth2ConsentRequestSession struct {

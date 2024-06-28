@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Body** | **string** |  | 
+**Channel** | Pointer to **string** |  | [optional] 
 **CreatedAt** | **time.Time** | CreatedAt is a helper struct field for gobuffalo.pop. | 
 **Dispatches** | Pointer to [**[]MessageDispatch**](MessageDispatch.md) | Dispatches store information about the attempts of delivering a message May contain an error if any happened, or just the &#x60;success&#x60; state. | [optional] 
 **Id** | **string** |  | 
@@ -12,7 +13,7 @@ Name | Type | Description | Notes
 **SendCount** | **int64** |  | 
 **Status** | [**CourierMessageStatus**](CourierMessageStatus.md) |  | 
 **Subject** | **string** |  | 
-**TemplateType** | **string** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid otp TypeOTP stub TypeTestStub | 
+**TemplateType** | **string** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid | 
 **Type** | [**CourierMessageType**](CourierMessageType.md) |  | 
 **UpdatedAt** | **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | 
 
@@ -54,6 +55,31 @@ and a boolean to check if the value has been set.
 
 SetBody sets Body field to given value.
 
+
+### GetChannel
+
+`func (o *Message) GetChannel() string`
+
+GetChannel returns the Channel field if non-nil, zero value otherwise.
+
+### GetChannelOk
+
+`func (o *Message) GetChannelOk() (*string, bool)`
+
+GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChannel
+
+`func (o *Message) SetChannel(v string)`
+
+SetChannel sets Channel field to given value.
+
+### HasChannel
+
+`func (o *Message) HasChannel() bool`
+
+HasChannel returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the SubjectSet type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubjectSet{}
 
 // SubjectSet struct for SubjectSet
 type SubjectSet struct {
@@ -23,7 +27,10 @@ type SubjectSet struct {
 	Object string `json:"object"`
 	// Relation of the Subject Set
 	Relation string `json:"relation"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SubjectSet SubjectSet
 
 // NewSubjectSet instantiates a new SubjectSet object
 // This constructor will assign default values to properties that have it defined,
@@ -118,17 +125,70 @@ func (o *SubjectSet) SetRelation(v string) {
 }
 
 func (o SubjectSet) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["namespace"] = o.Namespace
-	}
-	if true {
-		toSerialize["object"] = o.Object
-	}
-	if true {
-		toSerialize["relation"] = o.Relation
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SubjectSet) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["namespace"] = o.Namespace
+	toSerialize["object"] = o.Object
+	toSerialize["relation"] = o.Relation
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *SubjectSet) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"namespace",
+		"object",
+		"relation",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubjectSet := _SubjectSet{}
+
+	err = json.Unmarshal(data, &varSubjectSet)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubjectSet(varSubjectSet)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "namespace")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "relation")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSubjectSet struct {

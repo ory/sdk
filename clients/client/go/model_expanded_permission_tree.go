@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the ExpandedPermissionTree type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExpandedPermissionTree{}
 
 // ExpandedPermissionTree struct for ExpandedPermissionTree
 type ExpandedPermissionTree struct {
@@ -22,7 +26,10 @@ type ExpandedPermissionTree struct {
 	Tuple *Relationship `json:"tuple,omitempty"`
 	// The type of the node. union TreeNodeUnion exclusion TreeNodeExclusion intersection TreeNodeIntersection leaf TreeNodeLeaf tuple_to_subject_set TreeNodeTupleToSubjectSet computed_subject_set TreeNodeComputedSubjectSet not TreeNodeNot unspecified TreeNodeUnspecified
 	Type string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ExpandedPermissionTree ExpandedPermissionTree
 
 // NewExpandedPermissionTree instantiates a new ExpandedPermissionTree object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +51,7 @@ func NewExpandedPermissionTreeWithDefaults() *ExpandedPermissionTree {
 
 // GetChildren returns the Children field value if set, zero value otherwise.
 func (o *ExpandedPermissionTree) GetChildren() []ExpandedPermissionTree {
-	if o == nil || o.Children == nil {
+	if o == nil || IsNil(o.Children) {
 		var ret []ExpandedPermissionTree
 		return ret
 	}
@@ -54,7 +61,7 @@ func (o *ExpandedPermissionTree) GetChildren() []ExpandedPermissionTree {
 // GetChildrenOk returns a tuple with the Children field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedPermissionTree) GetChildrenOk() ([]ExpandedPermissionTree, bool) {
-	if o == nil || o.Children == nil {
+	if o == nil || IsNil(o.Children) {
 		return nil, false
 	}
 	return o.Children, true
@@ -62,7 +69,7 @@ func (o *ExpandedPermissionTree) GetChildrenOk() ([]ExpandedPermissionTree, bool
 
 // HasChildren returns a boolean if a field has been set.
 func (o *ExpandedPermissionTree) HasChildren() bool {
-	if o != nil && o.Children != nil {
+	if o != nil && !IsNil(o.Children) {
 		return true
 	}
 
@@ -76,7 +83,7 @@ func (o *ExpandedPermissionTree) SetChildren(v []ExpandedPermissionTree) {
 
 // GetTuple returns the Tuple field value if set, zero value otherwise.
 func (o *ExpandedPermissionTree) GetTuple() Relationship {
-	if o == nil || o.Tuple == nil {
+	if o == nil || IsNil(o.Tuple) {
 		var ret Relationship
 		return ret
 	}
@@ -86,7 +93,7 @@ func (o *ExpandedPermissionTree) GetTuple() Relationship {
 // GetTupleOk returns a tuple with the Tuple field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedPermissionTree) GetTupleOk() (*Relationship, bool) {
-	if o == nil || o.Tuple == nil {
+	if o == nil || IsNil(o.Tuple) {
 		return nil, false
 	}
 	return o.Tuple, true
@@ -94,7 +101,7 @@ func (o *ExpandedPermissionTree) GetTupleOk() (*Relationship, bool) {
 
 // HasTuple returns a boolean if a field has been set.
 func (o *ExpandedPermissionTree) HasTuple() bool {
-	if o != nil && o.Tuple != nil {
+	if o != nil && !IsNil(o.Tuple) {
 		return true
 	}
 
@@ -131,17 +138,72 @@ func (o *ExpandedPermissionTree) SetType(v string) {
 }
 
 func (o ExpandedPermissionTree) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Children != nil {
-		toSerialize["children"] = o.Children
-	}
-	if o.Tuple != nil {
-		toSerialize["tuple"] = o.Tuple
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ExpandedPermissionTree) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Children) {
+		toSerialize["children"] = o.Children
+	}
+	if !IsNil(o.Tuple) {
+		toSerialize["tuple"] = o.Tuple
+	}
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *ExpandedPermissionTree) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varExpandedPermissionTree := _ExpandedPermissionTree{}
+
+	err = json.Unmarshal(data, &varExpandedPermissionTree)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ExpandedPermissionTree(varExpandedPermissionTree)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "children")
+		delete(additionalProperties, "tuple")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableExpandedPermissionTree struct {

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UiNodeImageAttributes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiNodeImageAttributes{}
 
 // UiNodeImageAttributes struct for UiNodeImageAttributes
 type UiNodeImageAttributes struct {
@@ -27,7 +31,10 @@ type UiNodeImageAttributes struct {
 	Src string `json:"src"`
 	// Width of the image
 	Width int64 `json:"width"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiNodeImageAttributes UiNodeImageAttributes
 
 // NewUiNodeImageAttributes instantiates a new UiNodeImageAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -172,23 +179,76 @@ func (o *UiNodeImageAttributes) SetWidth(v int64) {
 }
 
 func (o UiNodeImageAttributes) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["height"] = o.Height
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["node_type"] = o.NodeType
-	}
-	if true {
-		toSerialize["src"] = o.Src
-	}
-	if true {
-		toSerialize["width"] = o.Width
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UiNodeImageAttributes) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["height"] = o.Height
+	toSerialize["id"] = o.Id
+	toSerialize["node_type"] = o.NodeType
+	toSerialize["src"] = o.Src
+	toSerialize["width"] = o.Width
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UiNodeImageAttributes) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"height",
+		"id",
+		"node_type",
+		"src",
+		"width",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUiNodeImageAttributes := _UiNodeImageAttributes{}
+
+	err = json.Unmarshal(bytes, &varUiNodeImageAttributes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UiNodeImageAttributes(varUiNodeImageAttributes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "node_type")
+		delete(additionalProperties, "src")
+		delete(additionalProperties, "width")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiNodeImageAttributes struct {

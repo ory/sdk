@@ -4,7 +4,7 @@ defmodule Ory.Mixfile do
   def project do
     [
       app: :ory_keto,
-      version: "0.11.0-alpha.0",
+      version: "0.11.1-alpha.0",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,

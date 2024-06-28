@@ -3,7 +3,7 @@ ORY Oathkeeper
 
 ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
 
-API version: v0.40.2
+API version: v0.40.6
 Contact: hi@ory.am
 */
 
@@ -28,7 +28,10 @@ type Rule struct {
 	// Mutators is a list of mutation handlers that transform the HTTP request. A common use case is generating a new set of credentials (e.g. JWT) which then will be forwarded to the upstream server.  Mutations are performed iteratively from index 0 to n and should all succeed in order for the HTTP request to be forwarded.
 	Mutators []RuleHandler `json:"mutators,omitempty"`
 	Upstream *Upstream `json:"upstream,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Rule Rule
 
 // NewRule instantiates a new Rule object
 // This constructor will assign default values to properties that have it defined,
@@ -294,7 +297,35 @@ func (o Rule) MarshalJSON() ([]byte, error) {
 	if o.Upstream != nil {
 		toSerialize["upstream"] = o.Upstream
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return json.Marshal(toSerialize)
+}
+
+func (o *Rule) UnmarshalJSON(bytes []byte) (err error) {
+	varRule := _Rule{}
+
+	if err = json.Unmarshal(bytes, &varRule); err == nil {
+		*o = Rule(varRule)
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "authenticators")
+		delete(additionalProperties, "authorizer")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "match")
+		delete(additionalProperties, "mutators")
+		delete(additionalProperties, "upstream")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRule struct {

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,13 +15,19 @@ import (
 	"encoding/json"
 )
 
+// checks if the TrustedOAuth2JwtGrantJsonWebKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TrustedOAuth2JwtGrantJsonWebKey{}
+
 // TrustedOAuth2JwtGrantJsonWebKey OAuth2 JWT Bearer Grant Type Issuer Trusted JSON Web Key
 type TrustedOAuth2JwtGrantJsonWebKey struct {
 	// The \"key_id\" is key unique identifier (same as kid header in jws/jwt).
 	Kid *string `json:"kid,omitempty"`
 	// The \"set\" is basically a name for a group(set) of keys. Will be the same as \"issuer\" in grant.
 	Set *string `json:"set,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TrustedOAuth2JwtGrantJsonWebKey TrustedOAuth2JwtGrantJsonWebKey
 
 // NewTrustedOAuth2JwtGrantJsonWebKey instantiates a new TrustedOAuth2JwtGrantJsonWebKey object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +48,7 @@ func NewTrustedOAuth2JwtGrantJsonWebKeyWithDefaults() *TrustedOAuth2JwtGrantJson
 
 // GetKid returns the Kid field value if set, zero value otherwise.
 func (o *TrustedOAuth2JwtGrantJsonWebKey) GetKid() string {
-	if o == nil || o.Kid == nil {
+	if o == nil || IsNil(o.Kid) {
 		var ret string
 		return ret
 	}
@@ -52,7 +58,7 @@ func (o *TrustedOAuth2JwtGrantJsonWebKey) GetKid() string {
 // GetKidOk returns a tuple with the Kid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TrustedOAuth2JwtGrantJsonWebKey) GetKidOk() (*string, bool) {
-	if o == nil || o.Kid == nil {
+	if o == nil || IsNil(o.Kid) {
 		return nil, false
 	}
 	return o.Kid, true
@@ -60,7 +66,7 @@ func (o *TrustedOAuth2JwtGrantJsonWebKey) GetKidOk() (*string, bool) {
 
 // HasKid returns a boolean if a field has been set.
 func (o *TrustedOAuth2JwtGrantJsonWebKey) HasKid() bool {
-	if o != nil && o.Kid != nil {
+	if o != nil && !IsNil(o.Kid) {
 		return true
 	}
 
@@ -74,7 +80,7 @@ func (o *TrustedOAuth2JwtGrantJsonWebKey) SetKid(v string) {
 
 // GetSet returns the Set field value if set, zero value otherwise.
 func (o *TrustedOAuth2JwtGrantJsonWebKey) GetSet() string {
-	if o == nil || o.Set == nil {
+	if o == nil || IsNil(o.Set) {
 		var ret string
 		return ret
 	}
@@ -84,7 +90,7 @@ func (o *TrustedOAuth2JwtGrantJsonWebKey) GetSet() string {
 // GetSetOk returns a tuple with the Set field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TrustedOAuth2JwtGrantJsonWebKey) GetSetOk() (*string, bool) {
-	if o == nil || o.Set == nil {
+	if o == nil || IsNil(o.Set) {
 		return nil, false
 	}
 	return o.Set, true
@@ -92,7 +98,7 @@ func (o *TrustedOAuth2JwtGrantJsonWebKey) GetSetOk() (*string, bool) {
 
 // HasSet returns a boolean if a field has been set.
 func (o *TrustedOAuth2JwtGrantJsonWebKey) HasSet() bool {
-	if o != nil && o.Set != nil {
+	if o != nil && !IsNil(o.Set) {
 		return true
 	}
 
@@ -105,14 +111,49 @@ func (o *TrustedOAuth2JwtGrantJsonWebKey) SetSet(v string) {
 }
 
 func (o TrustedOAuth2JwtGrantJsonWebKey) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Kid != nil {
-		toSerialize["kid"] = o.Kid
-	}
-	if o.Set != nil {
-		toSerialize["set"] = o.Set
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TrustedOAuth2JwtGrantJsonWebKey) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Kid) {
+		toSerialize["kid"] = o.Kid
+	}
+	if !IsNil(o.Set) {
+		toSerialize["set"] = o.Set
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *TrustedOAuth2JwtGrantJsonWebKey) UnmarshalJSON(data []byte) (err error) {
+	varTrustedOAuth2JwtGrantJsonWebKey := _TrustedOAuth2JwtGrantJsonWebKey{}
+
+	err = json.Unmarshal(data, &varTrustedOAuth2JwtGrantJsonWebKey)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TrustedOAuth2JwtGrantJsonWebKey(varTrustedOAuth2JwtGrantJsonWebKey)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "kid")
+		delete(additionalProperties, "set")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTrustedOAuth2JwtGrantJsonWebKey struct {

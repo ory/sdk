@@ -59,13 +59,13 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | healthStatus |  -  |
-| **500** | genericError |  -  |
+| **0** | unexpectedError |  -  |
 
 <a name="isInstanceReady"></a>
 # **isInstanceReady**
@@ -118,11 +118,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | healthStatus |  -  |
 | **503** | healthNotReadyStatus |  -  |
+| **0** | unexpectedError |  -  |
 

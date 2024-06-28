@@ -1,16 +1,17 @@
 # Ory\Client\OidcApi
 
-All URIs are relative to https://playground.projects.oryapis.com.
+All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createOidcDynamicClient()**](OidcApi.md#createOidcDynamicClient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
-[**deleteOidcDynamicClient()**](OidcApi.md#deleteOidcDynamicClient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
-[**discoverOidcConfiguration()**](OidcApi.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**getOidcDynamicClient()**](OidcApi.md#getOidcDynamicClient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
-[**getOidcUserInfo()**](OidcApi.md#getOidcUserInfo) | **GET** /userinfo | OpenID Connect Userinfo
-[**revokeOidcSession()**](OidcApi.md#revokeOidcSession) | **GET** /oauth2/sessions/logout | OpenID Connect Front- and Back-channel Enabled Logout
-[**setOidcDynamicClient()**](OidcApi.md#setOidcDynamicClient) | **PUT** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createOidcDynamicClient()**](OidcApi.md#createOidcDynamicClient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration |
+| [**createVerifiableCredential()**](OidcApi.md#createVerifiableCredential) | **POST** /credentials | Issues a Verifiable Credential |
+| [**deleteOidcDynamicClient()**](OidcApi.md#deleteOidcDynamicClient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol |
+| [**discoverOidcConfiguration()**](OidcApi.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery |
+| [**getOidcDynamicClient()**](OidcApi.md#getOidcDynamicClient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration |
+| [**getOidcUserInfo()**](OidcApi.md#getOidcUserInfo) | **GET** /userinfo | OpenID Connect Userinfo |
+| [**revokeOidcSession()**](OidcApi.md#revokeOidcSession) | **GET** /oauth2/sessions/logout | OpenID Connect Front- and Back-channel Enabled Logout |
+| [**setOidcDynamicClient()**](OidcApi.md#setOidcDynamicClient) | **PUT** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration |
 
 
 ## `createOidcDynamicClient()`
@@ -48,13 +49,69 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| Dynamic Client Registration Request Body |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| Dynamic Client Registration Request Body | |
 
 ### Return type
 
 [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createVerifiableCredential()`
+
+```php
+createVerifiableCredential($createVerifiableCredentialRequestBody): \Ory\Client\Model\VerifiableCredentialResponse
+```
+
+Issues a Verifiable Credential
+
+This endpoint creates a verifiable credential that attests that the user authenticated with the provided access token owns a certain public/private key pair.  More information can be found at https://openid.net/specs/openid-connect-userinfo-vc-1_0.html.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\OidcApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$createVerifiableCredentialRequestBody = new \Ory\Client\Model\CreateVerifiableCredentialRequestBody(); // \Ory\Client\Model\CreateVerifiableCredentialRequestBody
+
+try {
+    $result = $apiInstance->createVerifiableCredential($createVerifiableCredentialRequestBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OidcApi->createVerifiableCredential: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **createVerifiableCredentialRequestBody** | [**\Ory\Client\Model\CreateVerifiableCredentialRequestBody**](../Model/CreateVerifiableCredentialRequestBody.md)|  | [optional] |
+
+### Return type
+
+[**\Ory\Client\Model\VerifiableCredentialResponse**](../Model/VerifiableCredentialResponse.md)
 
 ### Authorization
 
@@ -107,9 +164,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -220,9 +277,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -390,10 +447,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| OAuth 2.0 Client ID |
- **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| OAuth 2.0 Client Request Body |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| OAuth 2.0 Client ID | |
+| **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| OAuth 2.0 Client Request Body | |
 
 ### Return type
 

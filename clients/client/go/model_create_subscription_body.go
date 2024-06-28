@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,16 +13,25 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// CreateSubscriptionBody Create Subscription Request Body
+// checks if the CreateSubscriptionBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateSubscriptionBody{}
+
+// CreateSubscriptionBody struct for CreateSubscriptionBody
 type CreateSubscriptionBody struct {
+	//  usd USD eur Euro
+	Currency *string `json:"currency,omitempty"`
 	//  monthly Monthly yearly Yearly
 	Interval string `json:"interval"`
 	Plan string `json:"plan"`
 	ProvisionFirstProject string `json:"provision_first_project"`
 	ReturnTo *string `json:"return_to,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateSubscriptionBody CreateSubscriptionBody
 
 // NewCreateSubscriptionBody instantiates a new CreateSubscriptionBody object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +51,38 @@ func NewCreateSubscriptionBody(interval string, plan string, provisionFirstProje
 func NewCreateSubscriptionBodyWithDefaults() *CreateSubscriptionBody {
 	this := CreateSubscriptionBody{}
 	return &this
+}
+
+// GetCurrency returns the Currency field value if set, zero value otherwise.
+func (o *CreateSubscriptionBody) GetCurrency() string {
+	if o == nil || IsNil(o.Currency) {
+		var ret string
+		return ret
+	}
+	return *o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateSubscriptionBody) GetCurrencyOk() (*string, bool) {
+	if o == nil || IsNil(o.Currency) {
+		return nil, false
+	}
+	return o.Currency, true
+}
+
+// HasCurrency returns a boolean if a field has been set.
+func (o *CreateSubscriptionBody) HasCurrency() bool {
+	if o != nil && !IsNil(o.Currency) {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrency gets a reference to the given string and assigns it to the Currency field.
+func (o *CreateSubscriptionBody) SetCurrency(v string) {
+	o.Currency = &v
 }
 
 // GetInterval returns the Interval field value
@@ -118,7 +159,7 @@ func (o *CreateSubscriptionBody) SetProvisionFirstProject(v string) {
 
 // GetReturnTo returns the ReturnTo field value if set, zero value otherwise.
 func (o *CreateSubscriptionBody) GetReturnTo() string {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		var ret string
 		return ret
 	}
@@ -128,7 +169,7 @@ func (o *CreateSubscriptionBody) GetReturnTo() string {
 // GetReturnToOk returns a tuple with the ReturnTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSubscriptionBody) GetReturnToOk() (*string, bool) {
-	if o == nil || o.ReturnTo == nil {
+	if o == nil || IsNil(o.ReturnTo) {
 		return nil, false
 	}
 	return o.ReturnTo, true
@@ -136,7 +177,7 @@ func (o *CreateSubscriptionBody) GetReturnToOk() (*string, bool) {
 
 // HasReturnTo returns a boolean if a field has been set.
 func (o *CreateSubscriptionBody) HasReturnTo() bool {
-	if o != nil && o.ReturnTo != nil {
+	if o != nil && !IsNil(o.ReturnTo) {
 		return true
 	}
 
@@ -149,20 +190,78 @@ func (o *CreateSubscriptionBody) SetReturnTo(v string) {
 }
 
 func (o CreateSubscriptionBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["interval"] = o.Interval
-	}
-	if true {
-		toSerialize["plan"] = o.Plan
-	}
-	if true {
-		toSerialize["provision_first_project"] = o.ProvisionFirstProject
-	}
-	if o.ReturnTo != nil {
-		toSerialize["return_to"] = o.ReturnTo
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateSubscriptionBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Currency) {
+		toSerialize["currency"] = o.Currency
+	}
+	toSerialize["interval"] = o.Interval
+	toSerialize["plan"] = o.Plan
+	toSerialize["provision_first_project"] = o.ProvisionFirstProject
+	if !IsNil(o.ReturnTo) {
+		toSerialize["return_to"] = o.ReturnTo
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *CreateSubscriptionBody) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"interval",
+		"plan",
+		"provision_first_project",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateSubscriptionBody := _CreateSubscriptionBody{}
+
+	err = json.Unmarshal(data, &varCreateSubscriptionBody)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateSubscriptionBody(varCreateSubscriptionBody)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "provision_first_project")
+		delete(additionalProperties, "return_to")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateSubscriptionBody struct {

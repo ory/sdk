@@ -31,9 +31,14 @@ void main() {
       // TODO
     });
 
-    // Features are the feature definitions included in the plan.
     // BuiltMap<String, GenericUsage> features
     test('to test the property `features`', () async {
+      // TODO
+    });
+
+    // Latest is true if the plan is the latest version of a plan and should be available for self-service usage.
+    // bool latest
+    test('to test the property `latest`', () async {
       // TODO
     });
 

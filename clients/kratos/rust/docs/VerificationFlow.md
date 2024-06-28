@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **issued_at** | Option<**String**> | IssuedAt is the time (UTC) when the request occurred. | [optional]
 **request_url** | Option<**String**> | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example. | [optional]
 **return_to** | Option<**String**> | ReturnTo contains the requested return_to URL. | [optional]
-**state** | [**crate::models::VerificationFlowState**](verificationFlowState.md) |  | 
+**state** | Option<[**serde_json::Value**](.md)> | State represents the state of this request:  choose_method: ask the user to choose a method (e.g. verify your email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the verification challenge was passed. | 
 **_type** | **String** | The flow type can either be `api` or `browser`. | 
 **ui** | [**crate::models::UiContainer**](uiContainer.md) |  | 
 

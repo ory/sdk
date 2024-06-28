@@ -6,13 +6,97 @@ part of 'ui_node_anchor_attributes.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UiNodeAnchorAttributesNodeTypeEnum
+    _$uiNodeAnchorAttributesNodeTypeEnum_text =
+    const UiNodeAnchorAttributesNodeTypeEnum._('text');
+const UiNodeAnchorAttributesNodeTypeEnum
+    _$uiNodeAnchorAttributesNodeTypeEnum_input =
+    const UiNodeAnchorAttributesNodeTypeEnum._('input');
+const UiNodeAnchorAttributesNodeTypeEnum
+    _$uiNodeAnchorAttributesNodeTypeEnum_img =
+    const UiNodeAnchorAttributesNodeTypeEnum._('img');
+const UiNodeAnchorAttributesNodeTypeEnum
+    _$uiNodeAnchorAttributesNodeTypeEnum_a =
+    const UiNodeAnchorAttributesNodeTypeEnum._('a');
+const UiNodeAnchorAttributesNodeTypeEnum
+    _$uiNodeAnchorAttributesNodeTypeEnum_script =
+    const UiNodeAnchorAttributesNodeTypeEnum._('script');
+
+UiNodeAnchorAttributesNodeTypeEnum _$uiNodeAnchorAttributesNodeTypeEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'text':
+      return _$uiNodeAnchorAttributesNodeTypeEnum_text;
+    case 'input':
+      return _$uiNodeAnchorAttributesNodeTypeEnum_input;
+    case 'img':
+      return _$uiNodeAnchorAttributesNodeTypeEnum_img;
+    case 'a':
+      return _$uiNodeAnchorAttributesNodeTypeEnum_a;
+    case 'script':
+      return _$uiNodeAnchorAttributesNodeTypeEnum_script;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UiNodeAnchorAttributesNodeTypeEnum>
+    _$uiNodeAnchorAttributesNodeTypeEnumValues = new BuiltSet<
+        UiNodeAnchorAttributesNodeTypeEnum>(const <UiNodeAnchorAttributesNodeTypeEnum>[
+  _$uiNodeAnchorAttributesNodeTypeEnum_text,
+  _$uiNodeAnchorAttributesNodeTypeEnum_input,
+  _$uiNodeAnchorAttributesNodeTypeEnum_img,
+  _$uiNodeAnchorAttributesNodeTypeEnum_a,
+  _$uiNodeAnchorAttributesNodeTypeEnum_script,
+]);
+
+Serializer<UiNodeAnchorAttributesNodeTypeEnum>
+    _$uiNodeAnchorAttributesNodeTypeEnumSerializer =
+    new _$UiNodeAnchorAttributesNodeTypeEnumSerializer();
+
+class _$UiNodeAnchorAttributesNodeTypeEnumSerializer
+    implements PrimitiveSerializer<UiNodeAnchorAttributesNodeTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[UiNodeAnchorAttributesNodeTypeEnum];
+  @override
+  final String wireName = 'UiNodeAnchorAttributesNodeTypeEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, UiNodeAnchorAttributesNodeTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UiNodeAnchorAttributesNodeTypeEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UiNodeAnchorAttributesNodeTypeEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UiNodeAnchorAttributes extends UiNodeAnchorAttributes {
   @override
   final String href;
   @override
   final String id;
   @override
-  final String nodeType;
+  final UiNodeAnchorAttributesNodeTypeEnum nodeType;
   @override
   final UiText title;
 
@@ -88,9 +172,10 @@ class UiNodeAnchorAttributesBuilder
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
 
-  String? _nodeType;
-  String? get nodeType => _$this._nodeType;
-  set nodeType(String? nodeType) => _$this._nodeType = nodeType;
+  UiNodeAnchorAttributesNodeTypeEnum? _nodeType;
+  UiNodeAnchorAttributesNodeTypeEnum? get nodeType => _$this._nodeType;
+  set nodeType(UiNodeAnchorAttributesNodeTypeEnum? nodeType) =>
+      _$this._nodeType = nodeType;
 
   UiTextBuilder? _title;
   UiTextBuilder get title => _$this._title ??= new UiTextBuilder();

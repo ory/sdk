@@ -8,6 +8,10 @@ part of 'set_project_branding_theme_body.dart';
 
 class _$SetProjectBrandingThemeBody extends SetProjectBrandingThemeBody {
   @override
+  final String? faviconType;
+  @override
+  final String? faviconUrl;
+  @override
   final String? logoType;
   @override
   final String? logoUrl;
@@ -21,7 +25,12 @@ class _$SetProjectBrandingThemeBody extends SetProjectBrandingThemeBody {
       (new SetProjectBrandingThemeBodyBuilder()..update(updates))._build();
 
   _$SetProjectBrandingThemeBody._(
-      {this.logoType, this.logoUrl, this.name, this.theme})
+      {this.faviconType,
+      this.faviconUrl,
+      this.logoType,
+      this.logoUrl,
+      this.name,
+      this.theme})
       : super._();
 
   @override
@@ -37,6 +46,8 @@ class _$SetProjectBrandingThemeBody extends SetProjectBrandingThemeBody {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is SetProjectBrandingThemeBody &&
+        faviconType == other.faviconType &&
+        faviconUrl == other.faviconUrl &&
         logoType == other.logoType &&
         logoUrl == other.logoUrl &&
         name == other.name &&
@@ -46,6 +57,8 @@ class _$SetProjectBrandingThemeBody extends SetProjectBrandingThemeBody {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, faviconType.hashCode);
+    _$hash = $jc(_$hash, faviconUrl.hashCode);
     _$hash = $jc(_$hash, logoType.hashCode);
     _$hash = $jc(_$hash, logoUrl.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
@@ -57,6 +70,8 @@ class _$SetProjectBrandingThemeBody extends SetProjectBrandingThemeBody {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'SetProjectBrandingThemeBody')
+          ..add('faviconType', faviconType)
+          ..add('faviconUrl', faviconUrl)
           ..add('logoType', logoType)
           ..add('logoUrl', logoUrl)
           ..add('name', name)
@@ -70,6 +85,14 @@ class SetProjectBrandingThemeBodyBuilder
         Builder<SetProjectBrandingThemeBody,
             SetProjectBrandingThemeBodyBuilder> {
   _$SetProjectBrandingThemeBody? _$v;
+
+  String? _faviconType;
+  String? get faviconType => _$this._faviconType;
+  set faviconType(String? faviconType) => _$this._faviconType = faviconType;
+
+  String? _faviconUrl;
+  String? get faviconUrl => _$this._faviconUrl;
+  set faviconUrl(String? faviconUrl) => _$this._faviconUrl = faviconUrl;
 
   String? _logoType;
   String? get logoType => _$this._logoType;
@@ -95,6 +118,8 @@ class SetProjectBrandingThemeBodyBuilder
   SetProjectBrandingThemeBodyBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _faviconType = $v.faviconType;
+      _faviconUrl = $v.faviconUrl;
       _logoType = $v.logoType;
       _logoUrl = $v.logoUrl;
       _name = $v.name;
@@ -123,6 +148,8 @@ class SetProjectBrandingThemeBodyBuilder
     try {
       _$result = _$v ??
           new _$SetProjectBrandingThemeBody._(
+              faviconType: faviconType,
+              faviconUrl: faviconUrl,
               logoType: logoType,
               logoUrl: logoUrl,
               name: name,

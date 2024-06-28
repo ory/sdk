@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -14,36 +14,53 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the ProjectMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectMetadata{}
 
 // ProjectMetadata struct for ProjectMetadata
 type ProjectMetadata struct {
 	// The Project's Creation Date
 	CreatedAt time.Time `json:"created_at"`
+	// The environment of the project. prod Production stage Staging dev Development
+	Environment string `json:"environment"`
+	// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+	HomeRegion string `json:"home_region"`
 	Hosts []string `json:"hosts"`
 	// The project's ID.
 	Id string `json:"id"`
 	// The project's name if set
 	Name string `json:"name"`
 	// The project's slug
-	Slug *string `json:"slug,omitempty"`
-	// The state of the project. running Running halted Halted
+	Slug string `json:"slug"`
+	// The state of the project. running Running halted Halted deleted Deleted
 	State string `json:"state"`
 	SubscriptionId NullableString `json:"subscription_id,omitempty"`
+	SubscriptionPlan NullableString `json:"subscription_plan,omitempty"`
 	// Last Time Project was Updated
 	UpdatedAt time.Time `json:"updated_at"`
+	Workspace *Workspace `json:"workspace,omitempty"`
+	WorkspaceId NullableString `json:"workspace_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProjectMetadata ProjectMetadata
 
 // NewProjectMetadata instantiates a new ProjectMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectMetadata(createdAt time.Time, hosts []string, id string, name string, state string, updatedAt time.Time) *ProjectMetadata {
+func NewProjectMetadata(createdAt time.Time, environment string, homeRegion string, hosts []string, id string, name string, slug string, state string, updatedAt time.Time) *ProjectMetadata {
 	this := ProjectMetadata{}
 	this.CreatedAt = createdAt
+	this.Environment = environment
+	this.HomeRegion = homeRegion
 	this.Hosts = hosts
 	this.Id = id
 	this.Name = name
+	this.Slug = slug
 	this.State = state
 	this.UpdatedAt = updatedAt
 	return &this
@@ -79,6 +96,54 @@ func (o *ProjectMetadata) GetCreatedAtOk() (*time.Time, bool) {
 // SetCreatedAt sets field value
 func (o *ProjectMetadata) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
+}
+
+// GetEnvironment returns the Environment field value
+func (o *ProjectMetadata) GetEnvironment() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Environment
+}
+
+// GetEnvironmentOk returns a tuple with the Environment field value
+// and a boolean to check if the value has been set.
+func (o *ProjectMetadata) GetEnvironmentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Environment, true
+}
+
+// SetEnvironment sets field value
+func (o *ProjectMetadata) SetEnvironment(v string) {
+	o.Environment = v
+}
+
+// GetHomeRegion returns the HomeRegion field value
+func (o *ProjectMetadata) GetHomeRegion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HomeRegion
+}
+
+// GetHomeRegionOk returns a tuple with the HomeRegion field value
+// and a boolean to check if the value has been set.
+func (o *ProjectMetadata) GetHomeRegionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HomeRegion, true
+}
+
+// SetHomeRegion sets field value
+func (o *ProjectMetadata) SetHomeRegion(v string) {
+	o.HomeRegion = v
 }
 
 // GetHosts returns the Hosts field value
@@ -153,36 +218,28 @@ func (o *ProjectMetadata) SetName(v string) {
 	o.Name = v
 }
 
-// GetSlug returns the Slug field value if set, zero value otherwise.
+// GetSlug returns the Slug field value
 func (o *ProjectMetadata) GetSlug() string {
-	if o == nil || o.Slug == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Slug
+
+	return o.Slug
 }
 
-// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// GetSlugOk returns a tuple with the Slug field value
 // and a boolean to check if the value has been set.
 func (o *ProjectMetadata) GetSlugOk() (*string, bool) {
-	if o == nil || o.Slug == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Slug, true
+	return &o.Slug, true
 }
 
-// HasSlug returns a boolean if a field has been set.
-func (o *ProjectMetadata) HasSlug() bool {
-	if o != nil && o.Slug != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSlug gets a reference to the given string and assigns it to the Slug field.
+// SetSlug sets field value
 func (o *ProjectMetadata) SetSlug(v string) {
-	o.Slug = &v
+	o.Slug = v
 }
 
 // GetState returns the State field value
@@ -211,7 +268,7 @@ func (o *ProjectMetadata) SetState(v string) {
 
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProjectMetadata) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId.Get() == nil {
+	if o == nil || IsNil(o.SubscriptionId.Get()) {
 		var ret string
 		return ret
 	}
@@ -251,6 +308,48 @@ func (o *ProjectMetadata) UnsetSubscriptionId() {
 	o.SubscriptionId.Unset()
 }
 
+// GetSubscriptionPlan returns the SubscriptionPlan field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProjectMetadata) GetSubscriptionPlan() string {
+	if o == nil || IsNil(o.SubscriptionPlan.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SubscriptionPlan.Get()
+}
+
+// GetSubscriptionPlanOk returns a tuple with the SubscriptionPlan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectMetadata) GetSubscriptionPlanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SubscriptionPlan.Get(), o.SubscriptionPlan.IsSet()
+}
+
+// HasSubscriptionPlan returns a boolean if a field has been set.
+func (o *ProjectMetadata) HasSubscriptionPlan() bool {
+	if o != nil && o.SubscriptionPlan.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionPlan gets a reference to the given NullableString and assigns it to the SubscriptionPlan field.
+func (o *ProjectMetadata) SetSubscriptionPlan(v string) {
+	o.SubscriptionPlan.Set(&v)
+}
+// SetSubscriptionPlanNil sets the value for SubscriptionPlan to be an explicit nil
+func (o *ProjectMetadata) SetSubscriptionPlanNil() {
+	o.SubscriptionPlan.Set(nil)
+}
+
+// UnsetSubscriptionPlan ensures that no value is present for SubscriptionPlan, not even an explicit nil
+func (o *ProjectMetadata) UnsetSubscriptionPlan() {
+	o.SubscriptionPlan.Unset()
+}
+
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *ProjectMetadata) GetUpdatedAt() time.Time {
 	if o == nil {
@@ -275,33 +374,179 @@ func (o *ProjectMetadata) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
+// GetWorkspace returns the Workspace field value if set, zero value otherwise.
+func (o *ProjectMetadata) GetWorkspace() Workspace {
+	if o == nil || IsNil(o.Workspace) {
+		var ret Workspace
+		return ret
+	}
+	return *o.Workspace
+}
+
+// GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectMetadata) GetWorkspaceOk() (*Workspace, bool) {
+	if o == nil || IsNil(o.Workspace) {
+		return nil, false
+	}
+	return o.Workspace, true
+}
+
+// HasWorkspace returns a boolean if a field has been set.
+func (o *ProjectMetadata) HasWorkspace() bool {
+	if o != nil && !IsNil(o.Workspace) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkspace gets a reference to the given Workspace and assigns it to the Workspace field.
+func (o *ProjectMetadata) SetWorkspace(v Workspace) {
+	o.Workspace = &v
+}
+
+// GetWorkspaceId returns the WorkspaceId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProjectMetadata) GetWorkspaceId() string {
+	if o == nil || IsNil(o.WorkspaceId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.WorkspaceId.Get()
+}
+
+// GetWorkspaceIdOk returns a tuple with the WorkspaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectMetadata) GetWorkspaceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.WorkspaceId.Get(), o.WorkspaceId.IsSet()
+}
+
+// HasWorkspaceId returns a boolean if a field has been set.
+func (o *ProjectMetadata) HasWorkspaceId() bool {
+	if o != nil && o.WorkspaceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkspaceId gets a reference to the given NullableString and assigns it to the WorkspaceId field.
+func (o *ProjectMetadata) SetWorkspaceId(v string) {
+	o.WorkspaceId.Set(&v)
+}
+// SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
+func (o *ProjectMetadata) SetWorkspaceIdNil() {
+	o.WorkspaceId.Set(nil)
+}
+
+// UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
+func (o *ProjectMetadata) UnsetWorkspaceId() {
+	o.WorkspaceId.Unset()
+}
+
 func (o ProjectMetadata) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProjectMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["hosts"] = o.Hosts
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.Slug != nil {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["state"] = o.State
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["environment"] = o.Environment
+	toSerialize["home_region"] = o.HomeRegion
+	toSerialize["hosts"] = o.Hosts
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["slug"] = o.Slug
+	toSerialize["state"] = o.State
 	if o.SubscriptionId.IsSet() {
 		toSerialize["subscription_id"] = o.SubscriptionId.Get()
 	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
+	if o.SubscriptionPlan.IsSet() {
+		toSerialize["subscription_plan"] = o.SubscriptionPlan.Get()
 	}
-	return json.Marshal(toSerialize)
+	toSerialize["updated_at"] = o.UpdatedAt
+	if !IsNil(o.Workspace) {
+		toSerialize["workspace"] = o.Workspace
+	}
+	if o.WorkspaceId.IsSet() {
+		toSerialize["workspace_id"] = o.WorkspaceId.Get()
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *ProjectMetadata) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"created_at",
+		"environment",
+		"home_region",
+		"hosts",
+		"id",
+		"name",
+		"slug",
+		"state",
+		"updated_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varProjectMetadata := _ProjectMetadata{}
+
+	err = json.Unmarshal(data, &varProjectMetadata)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProjectMetadata(varProjectMetadata)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "environment")
+		delete(additionalProperties, "home_region")
+		delete(additionalProperties, "hosts")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "slug")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "subscription_id")
+		delete(additionalProperties, "subscription_plan")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "workspace")
+		delete(additionalProperties, "workspace_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProjectMetadata struct {

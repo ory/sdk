@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **MetadataAdmin** | Pointer to **interface{}** | Store metadata about the user which is only accessible through admin APIs such as &#x60;GET /admin/identities/&lt;id&gt;&#x60;. | [optional] 
 **MetadataPublic** | Pointer to **interface{}** | Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field. | [optional] 
 **SchemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. If set will update the Identity&#39;s SchemaID. | 
-**State** | [**IdentityState**](IdentityState.md) |  | 
+**State** | **string** | State is the identity&#39;s state. active StateActive inactive StateInactive | 
 **Traits** | **map[string]interface{}** | Traits represent an identity&#39;s traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in &#x60;schema_id&#x60;. | 
 
 ## Methods
 
 ### NewUpdateIdentityBody
 
-`func NewUpdateIdentityBody(schemaId string, state IdentityState, traits map[string]interface{}, ) *UpdateIdentityBody`
+`func NewUpdateIdentityBody(schemaId string, state string, traits map[string]interface{}, ) *UpdateIdentityBody`
 
 NewUpdateIdentityBody instantiates a new UpdateIdentityBody object
 This constructor will assign default values to properties that have it defined,
@@ -147,20 +147,20 @@ SetSchemaId sets SchemaId field to given value.
 
 ### GetState
 
-`func (o *UpdateIdentityBody) GetState() IdentityState`
+`func (o *UpdateIdentityBody) GetState() string`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *UpdateIdentityBody) GetStateOk() (*IdentityState, bool)`
+`func (o *UpdateIdentityBody) GetStateOk() (*string, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *UpdateIdentityBody) SetState(v IdentityState)`
+`func (o *UpdateIdentityBody) SetState(v string)`
 
 SetState sets State field to given value.
 

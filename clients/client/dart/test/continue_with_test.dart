@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ContinueWith, () {
-    // Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+    // Action will always be `show_recovery_ui` show_recovery_ui ContinueWithActionShowRecoveryUIString
     // String action
     test('to test the property `action`', () async {
       // TODO
     });
 
-    // ContinueWithVerificationUiFlow flow
+    // ContinueWithRecoveryUiFlow flow
     test('to test the property `flow`', () async {
       // TODO
     });

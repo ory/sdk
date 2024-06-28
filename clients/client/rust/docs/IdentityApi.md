@@ -1,10 +1,10 @@
 # \IdentityApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create and deletes multiple identities
+[**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create multiple identities
 [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity
 [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link
@@ -27,10 +27,10 @@ Method | HTTP request | Description
 
 ## batch_patch_identities
 
-> crate::models::BatchPatchIdentitiesResponse batch_patch_identities(patch_identities_body)
-Create and deletes multiple identities
+> models::BatchPatchIdentitiesResponse batch_patch_identities(patch_identities_body)
+Create multiple identities
 
-Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
 
 ### Parameters
 
@@ -41,7 +41,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::BatchPatchIdentitiesResponse**](batchPatchIdentitiesResponse.md)
+[**models::BatchPatchIdentitiesResponse**](batchPatchIdentitiesResponse.md)
 
 ### Authorization
 
@@ -57,7 +57,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_identity
 
-> crate::models::Identity create_identity(create_identity_body)
+> models::Identity create_identity(create_identity_body)
 Create an Identity
 
 Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
@@ -71,7 +71,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+[**models::Identity**](identity.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_recovery_code_for_identity
 
-> crate::models::RecoveryCodeForIdentity create_recovery_code_for_identity(create_recovery_code_for_identity_body)
+> models::RecoveryCodeForIdentity create_recovery_code_for_identity(create_recovery_code_for_identity_body)
 Create a Recovery Code
 
 This endpoint creates a recovery code which should be given to the user in order for them to recover (or activate) their account.
@@ -101,7 +101,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::RecoveryCodeForIdentity**](recoveryCodeForIdentity.md)
+[**models::RecoveryCodeForIdentity**](recoveryCodeForIdentity.md)
 
 ### Authorization
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_recovery_link_for_identity
 
-> crate::models::RecoveryLinkForIdentity create_recovery_link_for_identity(create_recovery_link_for_identity_body)
+> models::RecoveryLinkForIdentity create_recovery_link_for_identity(return_to, create_recovery_link_for_identity_body)
 Create a Recovery Link
 
 This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
@@ -127,11 +127,12 @@ This endpoint creates a recovery link which should be given to the user in order
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**return_to** | Option<**String**> |  |  |
 **create_recovery_link_for_identity_body** | Option<[**CreateRecoveryLinkForIdentityBody**](CreateRecoveryLinkForIdentityBody.md)> |  |  |
 
 ### Return type
 
-[**crate::models::RecoveryLinkForIdentity**](recoveryLinkForIdentity.md)
+[**models::RecoveryLinkForIdentity**](recoveryLinkForIdentity.md)
 
 ### Authorization
 
@@ -177,10 +178,10 @@ Name | Type | Description  | Required | Notes
 
 ## delete_identity_credentials
 
-> crate::models::Identity delete_identity_credentials(id, _type)
+> delete_identity_credentials(id, r#type, identifier)
 Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
 
 ### Parameters
 
@@ -188,11 +189,12 @@ Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID is the identity's ID. | [required] |
-**_type** | **String** | Type is the credential's Type. One of totp, webauthn, lookup | [required] |
+**r#type** | **String** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [required] |
+**identifier** | Option<**String**> | Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint. |  |
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+ (empty response body)
 
 ### Authorization
 
@@ -268,10 +270,10 @@ Name | Type | Description  | Required | Notes
 
 ## extend_session
 
-> crate::models::Session extend_session(id)
+> models::Session extend_session(id)
 Extend a Session
 
-Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
 ### Parameters
 
@@ -282,7 +284,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Session**](session.md)
+[**models::Session**](session.md)
 
 ### Authorization
 
@@ -298,7 +300,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_identity
 
-> crate::models::Identity get_identity(id, include_credential)
+> models::Identity get_identity(id, include_credential)
 Get an Identity
 
 Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
@@ -309,11 +311,11 @@ Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID must be set to the ID of identity you want to get | [required] |
-**include_credential** | Option<[**Vec<String>**](String.md)> | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. |  |
+**include_credential** | Option<[**Vec<String>**](String.md)> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. |  |
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+[**models::Identity**](identity.md)
 
 ### Authorization
 
@@ -359,7 +361,7 @@ No authorization required
 
 ## get_session
 
-> crate::models::Session get_session(id, expand)
+> models::Session get_session(id, expand)
 Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
@@ -374,7 +376,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Session**](session.md)
+[**models::Session**](session.md)
 
 ### Authorization
 
@@ -390,7 +392,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_identities
 
-> Vec<crate::models::Identity> list_identities(per_page, page, credentials_identifier)
+> Vec<models::Identity> list_identities(per_page, page, page_size, page_token, consistency, ids, credentials_identifier, preview_credentials_identifier_similar, include_credential)
 List Identities
 
 Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
@@ -400,13 +402,19 @@ Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-mod
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**per_page** | Option<**i64**> | Items per Page  This is the number of items per page. |  |[default to 250]
-**page** | Option<**i64**> | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. |  |[default to 1]
-**credentials_identifier** | Option<**String**> | CredentialsIdentifier is the identifier (username, email) of the credentials to look up. |  |
+**per_page** | Option<**i64**> | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. |  |[default to 250]
+**page** | Option<**i64**> | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
+**page_size** | Option<**i64**> | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
+**consistency** | Option<**String**> | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. |  |
+**ids** | Option<[**Vec<String>**](String.md)> | List of ids used to filter identities. If this list is empty, then no filter will be applied. |  |
+**credentials_identifier** | Option<**String**> | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. |  |
+**preview_credentials_identifier_similar** | Option<**String**> | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. |  |
+**include_credential** | Option<[**Vec<String>**](String.md)> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. |  |
 
 ### Return type
 
-[**Vec<crate::models::Identity>**](identity.md)
+[**Vec<models::Identity>**](identity.md)
 
 ### Authorization
 
@@ -422,7 +430,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_identity_schemas
 
-> Vec<crate::models::IdentitySchemaContainer> list_identity_schemas(per_page, page)
+> Vec<models::IdentitySchemaContainer> list_identity_schemas(per_page, page, page_size, page_token)
 Get all Identity Schemas
 
 Returns a list of all identity schemas currently in use.
@@ -432,12 +440,14 @@ Returns a list of all identity schemas currently in use.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**per_page** | Option<**i64**> | Items per Page  This is the number of items per page. |  |[default to 250]
-**page** | Option<**i64**> | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. |  |[default to 1]
+**per_page** | Option<**i64**> | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. |  |[default to 250]
+**page** | Option<**i64**> | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
+**page_size** | Option<**i64**> | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
 
 ### Return type
 
-[**Vec<crate::models::IdentitySchemaContainer>**](identitySchemaContainer.md)
+[**Vec<models::IdentitySchemaContainer>**](identitySchemaContainer.md)
 
 ### Authorization
 
@@ -453,7 +463,7 @@ No authorization required
 
 ## list_identity_sessions
 
-> Vec<crate::models::Session> list_identity_sessions(id, per_page, page, active)
+> Vec<models::Session> list_identity_sessions(id, per_page, page, page_size, page_token, active)
 List an Identity's Sessions
 
 This endpoint returns all sessions that belong to the given Identity.
@@ -464,13 +474,15 @@ This endpoint returns all sessions that belong to the given Identity.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID is the identity's ID. | [required] |
-**per_page** | Option<**i64**> | Items per Page  This is the number of items per page. |  |[default to 250]
-**page** | Option<**i64**> | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. |  |[default to 1]
+**per_page** | Option<**i64**> | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. |  |[default to 250]
+**page** | Option<**i64**> | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. |  |
+**page_size** | Option<**i64**> | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
 **active** | Option<**bool**> | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. |  |
 
 ### Return type
 
-[**Vec<crate::models::Session>**](session.md)
+[**Vec<models::Session>**](session.md)
 
 ### Authorization
 
@@ -486,7 +498,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_sessions
 
-> Vec<crate::models::Session> list_sessions(page_size, page_token, active, expand)
+> Vec<models::Session> list_sessions(page_size, page_token, active, expand)
 List All Sessions
 
 Listing all sessions that exist.
@@ -503,7 +515,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Session>**](session.md)
+[**Vec<models::Session>**](session.md)
 
 ### Authorization
 
@@ -519,7 +531,7 @@ Name | Type | Description  | Required | Notes
 
 ## patch_identity
 
-> crate::models::Identity patch_identity(id, json_patch)
+> models::Identity patch_identity(id, json_patch)
 Patch an Identity
 
 Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/). The fields `id`, `stateChangedAt` and `credentials` can not be updated using this method.
@@ -530,11 +542,11 @@ Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identi
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID must be set to the ID of identity you want to update | [required] |
-**json_patch** | Option<[**Vec<crate::models::JsonPatch>**](jsonPatch.md)> |  |  |
+**json_patch** | Option<[**Vec<models::JsonPatch>**](jsonPatch.md)> |  |  |
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+[**models::Identity**](identity.md)
 
 ### Authorization
 
@@ -550,7 +562,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_identity
 
-> crate::models::Identity update_identity(id, update_identity_body)
+> models::Identity update_identity(id, update_identity_body)
 Update an Identity
 
 This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity payload (except credentials) is expected. It is possible to update the identity's credentials as well.
@@ -565,7 +577,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Identity**](identity.md)
+[**models::Identity**](identity.md)
 
 ### Authorization
 

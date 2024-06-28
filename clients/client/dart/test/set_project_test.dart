@@ -7,6 +7,16 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(SetProject, () {
+    // ProjectCors corsAdmin
+    test('to test the property `corsAdmin`', () async {
+      // TODO
+    });
+
+    // ProjectCors corsPublic
+    test('to test the property `corsPublic`', () async {
+      // TODO
+    });
+
     // The name of the project.
     // String name
     test('to test the property `name`', () async {

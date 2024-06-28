@@ -12,14 +12,14 @@ part 'continue_with_set_ory_session_token.g.dart';
 /// Indicates that a session was issued, and the application should use this token for authenticated requests
 ///
 /// Properties:
-/// * [action] - Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+/// * [action] - Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString
 /// * [orySessionToken] - Token is the token of the session
 @BuiltValue()
 abstract class ContinueWithSetOrySessionToken implements Built<ContinueWithSetOrySessionToken, ContinueWithSetOrySessionTokenBuilder> {
-  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString
   @BuiltValueField(wireName: r'action')
   ContinueWithSetOrySessionTokenActionEnum get action;
-  // enum actionEnum {  set_ory_session_token,  show_verification_ui,  };
+  // enum actionEnum {  set_ory_session_token,  };
 
   /// Token is the token of the session
   @BuiltValueField(wireName: r'ory_session_token')
@@ -126,12 +126,9 @@ class _$ContinueWithSetOrySessionTokenSerializer implements PrimitiveSerializer<
 
 class ContinueWithSetOrySessionTokenActionEnum extends EnumClass {
 
-  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
+  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString
   @BuiltValueEnumConst(wireName: r'set_ory_session_token')
   static const ContinueWithSetOrySessionTokenActionEnum setOrySessionToken = _$continueWithSetOrySessionTokenActionEnum_setOrySessionToken;
-  /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionToken show_verification_ui ContinueWithActionShowVerificationUI
-  @BuiltValueEnumConst(wireName: r'show_verification_ui')
-  static const ContinueWithSetOrySessionTokenActionEnum showVerificationUi = _$continueWithSetOrySessionTokenActionEnum_showVerificationUi;
 
   static Serializer<ContinueWithSetOrySessionTokenActionEnum> get serializer => _$continueWithSetOrySessionTokenActionEnumSerializer;
 

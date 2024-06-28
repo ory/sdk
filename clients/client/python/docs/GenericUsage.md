@@ -2,12 +2,29 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**additional_price** | **int** | AdditionalPrice is the price per-unit exceeding IncludedUsage. A price of 0 means that no other items can be consumed. | 
+**additional_price** | [**Money**](Money.md) |  | 
 **included_usage** | **int** | IncludedUsage is the number of included items. | 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from ory_client.models.generic_usage import GenericUsage
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of GenericUsage from a JSON string
+generic_usage_instance = GenericUsage.from_json(json)
+# print the JSON string representation of the object
+print(GenericUsage.to_json())
+
+# convert the object into a dict
+generic_usage_dict = generic_usage_instance.to_dict()
+# create an instance of GenericUsage from a dict
+generic_usage_form_dict = generic_usage.from_dict(generic_usage_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ProjectApiKey, () {
+    // The token's creation date
+    // DateTime createdAt
+    test('to test the property `createdAt`', () async {
+      // TODO
+    });
+
     // The token's ID.
     // String id
     test('to test the property `id`', () async {
@@ -28,6 +34,12 @@ void main() {
     // The Token's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
+      // TODO
+    });
+
+    // The token's last update date
+    // DateTime updatedAt
+    test('to test the property `updatedAt`', () async {
       // TODO
     });
 

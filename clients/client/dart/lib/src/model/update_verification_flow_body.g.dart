@@ -6,6 +6,68 @@ part of 'update_verification_flow_body.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UpdateVerificationFlowBodyMethodEnum
+    _$updateVerificationFlowBodyMethodEnum_link =
+    const UpdateVerificationFlowBodyMethodEnum._('link');
+const UpdateVerificationFlowBodyMethodEnum
+    _$updateVerificationFlowBodyMethodEnum_code =
+    const UpdateVerificationFlowBodyMethodEnum._('code');
+
+UpdateVerificationFlowBodyMethodEnum
+    _$updateVerificationFlowBodyMethodEnumValueOf(String name) {
+  switch (name) {
+    case 'link':
+      return _$updateVerificationFlowBodyMethodEnum_link;
+    case 'code':
+      return _$updateVerificationFlowBodyMethodEnum_code;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateVerificationFlowBodyMethodEnum>
+    _$updateVerificationFlowBodyMethodEnumValues = new BuiltSet<
+        UpdateVerificationFlowBodyMethodEnum>(const <UpdateVerificationFlowBodyMethodEnum>[
+  _$updateVerificationFlowBodyMethodEnum_link,
+  _$updateVerificationFlowBodyMethodEnum_code,
+]);
+
+Serializer<UpdateVerificationFlowBodyMethodEnum>
+    _$updateVerificationFlowBodyMethodEnumSerializer =
+    new _$UpdateVerificationFlowBodyMethodEnumSerializer();
+
+class _$UpdateVerificationFlowBodyMethodEnumSerializer
+    implements PrimitiveSerializer<UpdateVerificationFlowBodyMethodEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'link': 'link',
+    'code': 'code',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'link': 'link',
+    'code': 'code',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UpdateVerificationFlowBodyMethodEnum
+  ];
+  @override
+  final String wireName = 'UpdateVerificationFlowBodyMethodEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, UpdateVerificationFlowBodyMethodEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateVerificationFlowBodyMethodEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateVerificationFlowBodyMethodEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateVerificationFlowBody extends UpdateVerificationFlowBody {
   @override
   final OneOf oneOf;

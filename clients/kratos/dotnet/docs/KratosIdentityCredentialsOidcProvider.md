@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **InitialAccessToken** | **string** |  | [optional] 
 **InitialIdToken** | **string** |  | [optional] 
 **InitialRefreshToken** | **string** |  | [optional] 
+**Organization** | **string** |  | [optional] 
 **Provider** | **string** |  | [optional] 
 **Subject** | **string** |  | [optional] 
 

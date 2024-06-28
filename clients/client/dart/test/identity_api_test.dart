@@ -7,9 +7,9 @@ void main() {
   final instance = OryClient().getIdentityApi();
 
   group(IdentityApi, () {
-    // Create and deletes multiple identities
+    // Create multiple identities
     //
-    // Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+    // Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
     //
     //Future<BatchPatchIdentitiesResponse> batchPatchIdentities({ PatchIdentitiesBody patchIdentitiesBody }) async
     test('test batchPatchIdentities', () async {
@@ -38,7 +38,7 @@ void main() {
     //
     // This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
     //
-    //Future<RecoveryLinkForIdentity> createRecoveryLinkForIdentity({ CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody }) async
+    //Future<RecoveryLinkForIdentity> createRecoveryLinkForIdentity({ String returnTo, CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody }) async
     test('test createRecoveryLinkForIdentity', () async {
       // TODO
     });
@@ -54,9 +54,9 @@ void main() {
 
     // Delete a credential for a specific identity
     //
-    // Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+    // Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
     //
-    //Future<Identity> deleteIdentityCredentials(String id, String type) async
+    //Future deleteIdentityCredentials(String id, String type, { String identifier }) async
     test('test deleteIdentityCredentials', () async {
       // TODO
     });
@@ -81,7 +81,7 @@ void main() {
 
     // Extend a Session
     //
-    // Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+    // Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
     //
     //Future<Session> extendSession(String id) async
     test('test extendSession', () async {
@@ -119,7 +119,7 @@ void main() {
     //
     // Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
     //
-    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, String credentialsIdentifier }) async
+    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, int pageSize, String pageToken, String consistency, BuiltList<String> ids, String credentialsIdentifier, String previewCredentialsIdentifierSimilar, BuiltList<String> includeCredential }) async
     test('test listIdentities', () async {
       // TODO
     });
@@ -128,7 +128,7 @@ void main() {
     //
     // Returns a list of all identity schemas currently in use.
     //
-    //Future<BuiltList<IdentitySchemaContainer>> listIdentitySchemas({ int perPage, int page }) async
+    //Future<BuiltList<IdentitySchemaContainer>> listIdentitySchemas({ int perPage, int page, int pageSize, String pageToken }) async
     test('test listIdentitySchemas', () async {
       // TODO
     });
@@ -137,7 +137,7 @@ void main() {
     //
     // This endpoint returns all sessions that belong to the given Identity.
     //
-    //Future<BuiltList<Session>> listIdentitySessions(String id, { int perPage, int page, bool active }) async
+    //Future<BuiltList<Session>> listIdentitySessions(String id, { int perPage, int page, int pageSize, String pageToken, bool active }) async
     test('test listIdentitySessions', () async {
       // TODO
     });

@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,14 +13,14 @@ part 'update_verification_flow_with_code_method.g.dart';
 /// UpdateVerificationFlowWithCodeMethod
 ///
 /// Properties:
-/// * [code] - The verification code
+/// * [code] - Code from the recovery email  If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
-/// * [email] - Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
-/// * [flow] - The id of the flow
-/// * [method] - Method is the recovery method
+/// * [email] - The email address to verify  If the email belongs to a valid account, a verifiation email will be sent.  If you want to notify the email address if the account does not exist, see the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)  If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.  format: email
+/// * [method] - Method is the method that should be used for this verification flow  Allowed values are `link` and `code`. link VerificationStrategyLink code VerificationStrategyCode
+/// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateVerificationFlowWithCodeMethod implements Built<UpdateVerificationFlowWithCodeMethod, UpdateVerificationFlowWithCodeMethodBuilder> {
-  /// The verification code
+  /// Code from the recovery email  If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
   @BuiltValueField(wireName: r'code')
   String? get code;
 
@@ -26,17 +28,18 @@ abstract class UpdateVerificationFlowWithCodeMethod implements Built<UpdateVerif
   @BuiltValueField(wireName: r'csrf_token')
   String? get csrfToken;
 
-  /// Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+  /// The email address to verify  If the email belongs to a valid account, a verifiation email will be sent.  If you want to notify the email address if the account does not exist, see the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)  If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.  format: email
   @BuiltValueField(wireName: r'email')
   String? get email;
 
-  /// The id of the flow
-  @BuiltValueField(wireName: r'flow')
-  String? get flow;
-
-  /// Method is the recovery method
+  /// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`. link VerificationStrategyLink code VerificationStrategyCode
   @BuiltValueField(wireName: r'method')
-  String? get method;
+  UpdateVerificationFlowWithCodeMethodMethodEnum get method;
+  // enum methodEnum {  link,  code,  };
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateVerificationFlowWithCodeMethod._();
 
@@ -82,18 +85,16 @@ class _$UpdateVerificationFlowWithCodeMethodSerializer implements PrimitiveSeria
         specifiedType: const FullType(String),
       );
     }
-    if (object.flow != null) {
-      yield r'flow';
+    yield r'method';
+    yield serializers.serialize(
+      object.method,
+      specifiedType: const FullType(UpdateVerificationFlowWithCodeMethodMethodEnum),
+    );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
       yield serializers.serialize(
-        object.flow,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.method != null) {
-      yield r'method';
-      yield serializers.serialize(
-        object.method,
-        specifiedType: const FullType(String),
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
       );
     }
   }
@@ -140,19 +141,19 @@ class _$UpdateVerificationFlowWithCodeMethodSerializer implements PrimitiveSeria
           ) as String;
           result.email = valueDes;
           break;
-        case r'flow':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.flow = valueDes;
-          break;
         case r'method':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(UpdateVerificationFlowWithCodeMethodMethodEnum),
+          ) as UpdateVerificationFlowWithCodeMethodMethodEnum;
           result.method = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -181,5 +182,22 @@ class _$UpdateVerificationFlowWithCodeMethodSerializer implements PrimitiveSeria
     );
     return result.build();
   }
+}
+
+class UpdateVerificationFlowWithCodeMethodMethodEnum extends EnumClass {
+
+  /// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`. link VerificationStrategyLink code VerificationStrategyCode
+  @BuiltValueEnumConst(wireName: r'link')
+  static const UpdateVerificationFlowWithCodeMethodMethodEnum link = _$updateVerificationFlowWithCodeMethodMethodEnum_link;
+  /// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`. link VerificationStrategyLink code VerificationStrategyCode
+  @BuiltValueEnumConst(wireName: r'code')
+  static const UpdateVerificationFlowWithCodeMethodMethodEnum code = _$updateVerificationFlowWithCodeMethodMethodEnum_code;
+
+  static Serializer<UpdateVerificationFlowWithCodeMethodMethodEnum> get serializer => _$updateVerificationFlowWithCodeMethodMethodEnumSerializer;
+
+  const UpdateVerificationFlowWithCodeMethodMethodEnum._(String name): super(name);
+
+  static BuiltSet<UpdateVerificationFlowWithCodeMethodMethodEnum> get values => _$updateVerificationFlowWithCodeMethodMethodEnumValues;
+  static UpdateVerificationFlowWithCodeMethodMethodEnum valueOf(String name) => _$updateVerificationFlowWithCodeMethodMethodEnumValueOf(name);
 }
 

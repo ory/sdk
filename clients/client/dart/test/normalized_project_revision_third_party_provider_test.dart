@@ -7,6 +7,11 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(NormalizedProjectRevisionThirdPartyProvider, () {
+    // BuiltList<String> additionalIdTokenAudiences
+    test('to test the property `additionalIdTokenAudiences`', () async {
+      // TODO
+    });
+
     // String applePrivateKey
     test('to test the property `applePrivateKey`', () async {
       // TODO
@@ -33,6 +38,11 @@ void main() {
     // Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.  Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
     // String azureTenant
     test('to test the property `azureTenant`', () async {
+      // TODO
+    });
+
+    // String claimsSource
+    test('to test the property `claimsSource`', () async {
       // TODO
     });
 
@@ -70,9 +80,14 @@ void main() {
       // TODO
     });
 
-    // Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.  It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
+    // Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
     // String mapperUrl
     test('to test the property `mapperUrl`', () async {
+      // TODO
+    });
+
+    // String organizationId
+    test('to test the property `organizationId`', () async {
       // TODO
     });
 
@@ -101,6 +116,12 @@ void main() {
 
     // BuiltList<String> scope
     test('to test the property `scope`', () async {
+      // TODO
+    });
+
+    // State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
+    // String state
+    test('to test the property `state`', () async {
       // TODO
     });
 

@@ -22,7 +22,6 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 import time
 import ory_oathkeeper_client
 from ory_oathkeeper_client.api import health_api
-from ory_oathkeeper_client.model.generic_error import GenericError
 from ory_oathkeeper_client.model.health_status import HealthStatus
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -61,7 +60,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 
 ### HTTP response details
@@ -69,7 +68,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | healthStatus |  -  |
-**500** | genericError |  -  |
+**0** | unexpectedError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -126,7 +125,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 
 ### HTTP response details
@@ -135,6 +134,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | healthStatus |  -  |
 **503** | healthNotReadyStatus |  -  |
+**0** | unexpectedError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

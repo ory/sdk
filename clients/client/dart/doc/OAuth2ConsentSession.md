@@ -9,6 +9,7 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **consentRequest** | [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] 
+**context** | [**JsonObject**](.md) |  | [optional] 
 **expiresAt** | [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] 
 **grantAccessTokenAudience** | **BuiltList&lt;String&gt;** |  | [optional] 
 **grantScope** | **BuiltList&lt;String&gt;** |  | [optional] 

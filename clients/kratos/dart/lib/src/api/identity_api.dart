@@ -88,9 +88,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -102,22 +103,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BatchPatchIdentitiesResponse _responseData;
+    BatchPatchIdentitiesResponse? _responseData;
 
     try {
-      const _responseType = FullType(BatchPatchIdentitiesResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BatchPatchIdentitiesResponse),
       ) as BatchPatchIdentitiesResponse;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BatchPatchIdentitiesResponse>(
@@ -188,9 +190,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -202,22 +205,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
+    Identity? _responseData;
 
     try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Identity),
       ) as Identity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Identity>(
@@ -288,9 +292,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -302,22 +307,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryCodeForIdentity _responseData;
+    RecoveryCodeForIdentity? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryCodeForIdentity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryCodeForIdentity),
       ) as RecoveryCodeForIdentity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryCodeForIdentity>(
@@ -336,6 +342,7 @@ class IdentityApi {
   /// This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
   ///
   /// Parameters:
+  /// * [returnTo] 
   /// * [createRecoveryLinkForIdentityBody] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -347,6 +354,7 @@ class IdentityApi {
   /// Returns a [Future] containing a [Response] with a [RecoveryLinkForIdentity] as data
   /// Throws [DioError] if API call or serialization fails
   Future<Response<RecoveryLinkForIdentity>> createRecoveryLinkForIdentity({ 
+    String? returnTo,
     CreateRecoveryLinkForIdentityBody? createRecoveryLinkForIdentityBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -376,6 +384,10 @@ class IdentityApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
+    };
+
     dynamic _bodyData;
 
     try {
@@ -387,37 +399,41 @@ class IdentityApi {
          requestOptions: _options.compose(
           _dio.options,
           _path,
+          queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
       _path,
       data: _bodyData,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
 
-    RecoveryLinkForIdentity _responseData;
+    RecoveryLinkForIdentity? _responseData;
 
     try {
-      const _responseType = FullType(RecoveryLinkForIdentity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecoveryLinkForIdentity),
       ) as RecoveryLinkForIdentity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<RecoveryLinkForIdentity>(
@@ -491,7 +507,7 @@ class IdentityApi {
   ///
   /// Parameters:
   /// * [id] - ID is the identity's ID.
-  /// * [type] - Type is the credential's Type. One of totp, webauthn, lookup
+  /// * [type] - Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -499,9 +515,9 @@ class IdentityApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [Identity] as data
+  /// Returns a [Future]
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<Identity>> deleteIdentityCredentials({ 
+  Future<Response<void>> deleteIdentityCredentials({ 
     required String id,
     required String type,
     CancelToken? cancelToken,
@@ -539,34 +555,7 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
-
-    try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
-      ) as Identity;
-
-    } catch (error, stackTrace) {
-      throw DioError(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioErrorType.other,
-        error: error,
-      )..stackTrace = stackTrace;
-    }
-
-    return Response<Identity>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
+    return _response;
   }
 
   /// Delete &amp; Invalidate an Identity&#39;s Sessions
@@ -728,22 +717,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Session _responseData;
+    Session? _responseData;
 
     try {
-      const _responseType = FullType(Session);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Session),
       ) as Session;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Session>(
@@ -763,7 +753,7 @@ class IdentityApi {
   ///
   /// Parameters:
   /// * [id] - ID must be set to the ID of identity you want to get
-  /// * [includeCredential] - Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+  /// * [includeCredential] - Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -816,22 +806,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
+    Identity? _responseData;
 
     try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Identity),
       ) as Identity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Identity>(
@@ -890,22 +881,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<JsonObject>(
@@ -978,22 +970,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Session _responseData;
+    Session? _responseData;
 
     try {
-      const _responseType = FullType(Session);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Session),
       ) as Session;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Session>(
@@ -1012,9 +1005,14 @@ class IdentityApi {
   /// Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
   ///
   /// Parameters:
-  /// * [perPage] - Items per Page  This is the number of items per page.
-  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-  /// * [credentialsIdentifier] - CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
+  /// * [perPage] - Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+  /// * [page] - Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+  /// * [pageSize] - Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [consistency] - Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+  /// * [ids] - List of ids used to filter identities. If this list is empty, then no filter will be applied.
+  /// * [credentialsIdentifier] - CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+  /// * [previewCredentialsIdentifierSimilar] - This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1026,8 +1024,13 @@ class IdentityApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<BuiltList<Identity>>> listIdentities({ 
     int? perPage = 250,
-    int? page = 1,
+    int? page,
+    int? pageSize = 250,
+    String? pageToken = '1',
+    String? consistency,
+    BuiltList<String>? ids,
     String? credentialsIdentifier,
+    String? previewCredentialsIdentifierSimilar,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1058,7 +1061,12 @@ class IdentityApi {
     final _queryParameters = <String, dynamic>{
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
+      if (consistency != null) r'consistency': encodeQueryParameter(_serializers, consistency, const FullType(String)),
+      if (ids != null) r'ids': encodeCollectionQueryParameter<String>(_serializers, ids, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
       if (credentialsIdentifier != null) r'credentials_identifier': encodeQueryParameter(_serializers, credentialsIdentifier, const FullType(String)),
+      if (previewCredentialsIdentifierSimilar != null) r'preview_credentials_identifier_similar': encodeQueryParameter(_serializers, previewCredentialsIdentifierSimilar, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1070,22 +1078,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Identity> _responseData;
+    BuiltList<Identity>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Identity)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Identity)]),
       ) as BuiltList<Identity>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Identity>>(
@@ -1104,8 +1113,10 @@ class IdentityApi {
   /// Returns a list of all identity schemas currently in use.
   ///
   /// Parameters:
-  /// * [perPage] - Items per Page  This is the number of items per page.
-  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  /// * [perPage] - Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+  /// * [page] - Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+  /// * [pageSize] - Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1117,7 +1128,9 @@ class IdentityApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<BuiltList<IdentitySchemaContainer>>> listIdentitySchemas({ 
     int? perPage = 250,
-    int? page = 1,
+    int? page,
+    int? pageSize = 250,
+    String? pageToken = '1',
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1141,6 +1154,8 @@ class IdentityApi {
     final _queryParameters = <String, dynamic>{
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1152,22 +1167,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<IdentitySchemaContainer> _responseData;
+    BuiltList<IdentitySchemaContainer>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(IdentitySchemaContainer)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(IdentitySchemaContainer)]),
       ) as BuiltList<IdentitySchemaContainer>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<IdentitySchemaContainer>>(
@@ -1187,8 +1203,10 @@ class IdentityApi {
   ///
   /// Parameters:
   /// * [id] - ID is the identity's ID.
-  /// * [perPage] - Items per Page  This is the number of items per page.
-  /// * [page] - Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+  /// * [perPage] - Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+  /// * [page] - Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+  /// * [pageSize] - Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [active] - Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1202,7 +1220,9 @@ class IdentityApi {
   Future<Response<BuiltList<Session>>> listIdentitySessions({ 
     required String id,
     int? perPage = 250,
-    int? page = 1,
+    int? page,
+    int? pageSize = 250,
+    String? pageToken = '1',
     bool? active,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1234,6 +1254,8 @@ class IdentityApi {
     final _queryParameters = <String, dynamic>{
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       if (active != null) r'active': encodeQueryParameter(_serializers, active, const FullType(bool)),
     };
 
@@ -1246,22 +1268,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Session> _responseData;
+    BuiltList<Session>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Session)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Session)]),
       ) as BuiltList<Session>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Session>>(
@@ -1341,22 +1364,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Session> _responseData;
+    BuiltList<Session>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(Session)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Session)]),
       ) as BuiltList<Session>;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<Session>>(
@@ -1429,9 +1453,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1443,22 +1468,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
+    Identity? _responseData;
 
     try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Identity),
       ) as Identity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Identity>(
@@ -1531,9 +1557,10 @@ class IdentityApi {
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1545,22 +1572,23 @@ class IdentityApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    Identity _responseData;
+    Identity? _responseData;
 
     try {
-      const _responseType = FullType(Identity);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Identity),
       ) as Identity;
 
     } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioErrorType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<Identity>(

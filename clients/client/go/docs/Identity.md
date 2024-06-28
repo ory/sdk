@@ -9,10 +9,11 @@ Name | Type | Description | Notes
 **Id** | **string** | ID is the identity&#39;s unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB. | 
 **MetadataAdmin** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **MetadataPublic** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
+**OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **RecoveryAddresses** | Pointer to [**[]RecoveryIdentityAddress**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional] 
 **SchemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. | 
 **SchemaUrl** | **string** | SchemaURL is the URL of the endpoint where the identity&#39;s traits schema can be fetched from.  format: url | 
-**State** | Pointer to [**IdentityState**](IdentityState.md) |  | [optional] 
+**State** | Pointer to **string** | State is the identity&#39;s state.  This value has currently no effect. active StateActive inactive StateInactive | [optional] 
 **StateChangedAt** | Pointer to **time.Time** |  | [optional] 
 **Traits** | **interface{}** | Traits represent an identity&#39;s traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in &#x60;schema_url&#x60;. | 
 **UpdatedAt** | Pointer to **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
@@ -177,6 +178,41 @@ HasMetadataPublic returns a boolean if a field has been set.
 `func (o *Identity) UnsetMetadataPublic()`
 
 UnsetMetadataPublic ensures that no value is present for MetadataPublic, not even an explicit nil
+### GetOrganizationId
+
+`func (o *Identity) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *Identity) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *Identity) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *Identity) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
+
+### SetOrganizationIdNil
+
+`func (o *Identity) SetOrganizationIdNil(b bool)`
+
+ SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+
+### UnsetOrganizationId
+`func (o *Identity) UnsetOrganizationId()`
+
+UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetRecoveryAddresses
 
 `func (o *Identity) GetRecoveryAddresses() []RecoveryIdentityAddress`
@@ -244,20 +280,20 @@ SetSchemaUrl sets SchemaUrl field to given value.
 
 ### GetState
 
-`func (o *Identity) GetState() IdentityState`
+`func (o *Identity) GetState() string`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *Identity) GetStateOk() (*IdentityState, bool)`
+`func (o *Identity) GetStateOk() (*string, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *Identity) SetState(v IdentityState)`
+`func (o *Identity) SetState(v string)`
 
 SetState sets State field to given value.
 

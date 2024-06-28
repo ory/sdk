@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,28 +13,36 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UpdateVerificationFlowWithCodeMethod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateVerificationFlowWithCodeMethod{}
 
 // UpdateVerificationFlowWithCodeMethod struct for UpdateVerificationFlowWithCodeMethod
 type UpdateVerificationFlowWithCodeMethod struct {
-	// The verification code
+	// Code from the recovery email  If you want to submit a code, use this field, but make sure to _not_ include the email field, as well.
 	Code *string `json:"code,omitempty"`
 	// Sending the anti-csrf token is only required for browser login flows.
 	CsrfToken *string `json:"csrf_token,omitempty"`
-	// Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+	// The email address to verify  If the email belongs to a valid account, a verifiation email will be sent.  If you want to notify the email address if the account does not exist, see the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)  If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.  format: email
 	Email *string `json:"email,omitempty"`
-	// The id of the flow
-	Flow *string `json:"flow,omitempty"`
-	// Method is the recovery method
-	Method *string `json:"method,omitempty"`
+	// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`. link VerificationStrategyLink code VerificationStrategyCode
+	Method string `json:"method"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateVerificationFlowWithCodeMethod UpdateVerificationFlowWithCodeMethod
 
 // NewUpdateVerificationFlowWithCodeMethod instantiates a new UpdateVerificationFlowWithCodeMethod object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateVerificationFlowWithCodeMethod() *UpdateVerificationFlowWithCodeMethod {
+func NewUpdateVerificationFlowWithCodeMethod(method string) *UpdateVerificationFlowWithCodeMethod {
 	this := UpdateVerificationFlowWithCodeMethod{}
+	this.Method = method
 	return &this
 }
 
@@ -48,7 +56,7 @@ func NewUpdateVerificationFlowWithCodeMethodWithDefaults() *UpdateVerificationFl
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *UpdateVerificationFlowWithCodeMethod) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -58,7 +66,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateVerificationFlowWithCodeMethod) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -66,7 +74,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *UpdateVerificationFlowWithCodeMethod) HasCode() bool {
-	if o != nil && o.Code != nil {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -80,7 +88,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) SetCode(v string) {
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
 func (o *UpdateVerificationFlowWithCodeMethod) GetCsrfToken() string {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		var ret string
 		return ret
 	}
@@ -90,7 +98,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) GetCsrfToken() string {
 // GetCsrfTokenOk returns a tuple with the CsrfToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateVerificationFlowWithCodeMethod) GetCsrfTokenOk() (*string, bool) {
-	if o == nil || o.CsrfToken == nil {
+	if o == nil || IsNil(o.CsrfToken) {
 		return nil, false
 	}
 	return o.CsrfToken, true
@@ -98,7 +106,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) GetCsrfTokenOk() (*string, bool) 
 
 // HasCsrfToken returns a boolean if a field has been set.
 func (o *UpdateVerificationFlowWithCodeMethod) HasCsrfToken() bool {
-	if o != nil && o.CsrfToken != nil {
+	if o != nil && !IsNil(o.CsrfToken) {
 		return true
 	}
 
@@ -112,7 +120,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) SetCsrfToken(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UpdateVerificationFlowWithCodeMethod) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -122,7 +130,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateVerificationFlowWithCodeMethod) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -130,7 +138,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *UpdateVerificationFlowWithCodeMethod) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -142,88 +150,137 @@ func (o *UpdateVerificationFlowWithCodeMethod) SetEmail(v string) {
 	o.Email = &v
 }
 
-// GetFlow returns the Flow field value if set, zero value otherwise.
-func (o *UpdateVerificationFlowWithCodeMethod) GetFlow() string {
-	if o == nil || o.Flow == nil {
-		var ret string
-		return ret
-	}
-	return *o.Flow
-}
-
-// GetFlowOk returns a tuple with the Flow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVerificationFlowWithCodeMethod) GetFlowOk() (*string, bool) {
-	if o == nil || o.Flow == nil {
-		return nil, false
-	}
-	return o.Flow, true
-}
-
-// HasFlow returns a boolean if a field has been set.
-func (o *UpdateVerificationFlowWithCodeMethod) HasFlow() bool {
-	if o != nil && o.Flow != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFlow gets a reference to the given string and assigns it to the Flow field.
-func (o *UpdateVerificationFlowWithCodeMethod) SetFlow(v string) {
-	o.Flow = &v
-}
-
-// GetMethod returns the Method field value if set, zero value otherwise.
+// GetMethod returns the Method field value
 func (o *UpdateVerificationFlowWithCodeMethod) GetMethod() string {
-	if o == nil || o.Method == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Method
+
+	return o.Method
 }
 
-// GetMethodOk returns a tuple with the Method field value if set, nil otherwise
+// GetMethodOk returns a tuple with the Method field value
 // and a boolean to check if the value has been set.
 func (o *UpdateVerificationFlowWithCodeMethod) GetMethodOk() (*string, bool) {
-	if o == nil || o.Method == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Method, true
+	return &o.Method, true
 }
 
-// HasMethod returns a boolean if a field has been set.
-func (o *UpdateVerificationFlowWithCodeMethod) HasMethod() bool {
-	if o != nil && o.Method != nil {
+// SetMethod sets field value
+func (o *UpdateVerificationFlowWithCodeMethod) SetMethod(v string) {
+	o.Method = v
+}
+
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateVerificationFlowWithCodeMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVerificationFlowWithCodeMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateVerificationFlowWithCodeMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
 		return true
 	}
 
 	return false
 }
 
-// SetMethod gets a reference to the given string and assigns it to the Method field.
-func (o *UpdateVerificationFlowWithCodeMethod) SetMethod(v string) {
-	o.Method = &v
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateVerificationFlowWithCodeMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
 }
 
 func (o UpdateVerificationFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
-		toSerialize["code"] = o.Code
-	}
-	if o.CsrfToken != nil {
-		toSerialize["csrf_token"] = o.CsrfToken
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.Flow != nil {
-		toSerialize["flow"] = o.Flow
-	}
-	if o.Method != nil {
-		toSerialize["method"] = o.Method
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateVerificationFlowWithCodeMethod) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.CsrfToken) {
+		toSerialize["csrf_token"] = o.CsrfToken
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	toSerialize["method"] = o.Method
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UpdateVerificationFlowWithCodeMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"method",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateVerificationFlowWithCodeMethod := _UpdateVerificationFlowWithCodeMethod{}
+
+	err = json.Unmarshal(data, &varUpdateVerificationFlowWithCodeMethod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateVerificationFlowWithCodeMethod(varUpdateVerificationFlowWithCodeMethod)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "csrf_token")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "transient_payload")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateVerificationFlowWithCodeMethod struct {

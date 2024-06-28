@@ -5,11 +5,11 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batchPatchIdentities**](IdentityApi.md#batchpatchidentities) | **PATCH** /admin/identities | Create and deletes multiple identities
+[**batchPatchIdentities**](IdentityApi.md#batchpatchidentities) | **PATCH** /admin/identities | Create multiple identities
 [**createIdentity**](IdentityApi.md#createidentity) | **POST** /admin/identities | Create an Identity
 [**createRecoveryCodeForIdentity**](IdentityApi.md#createrecoverycodeforidentity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**createRecoveryLinkForIdentity**](IdentityApi.md#createrecoverylinkforidentity) | **POST** /admin/recovery/link | Create a Recovery Link
@@ -32,16 +32,13 @@ Method | HTTP request | Description
 # **batchPatchIdentities**
 > BatchPatchIdentitiesResponse batchPatchIdentities(patchIdentitiesBody)
 
-Create and deletes multiple identities
+Create multiple identities
 
-Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final PatchIdentitiesBody patchIdentitiesBody = ; // PatchIdentitiesBody | 
@@ -49,7 +46,7 @@ final PatchIdentitiesBody patchIdentitiesBody = ; // PatchIdentitiesBody |
 try {
     final response = api.batchPatchIdentities(patchIdentitiesBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->batchPatchIdentities: $e\n');
 }
 ```
@@ -85,9 +82,6 @@ Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final CreateIdentityBody createIdentityBody = ; // CreateIdentityBody | 
@@ -95,7 +89,7 @@ final CreateIdentityBody createIdentityBody = ; // CreateIdentityBody |
 try {
     final response = api.createIdentity(createIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->createIdentity: $e\n');
 }
 ```
@@ -131,9 +125,6 @@ This endpoint creates a recovery code which should be given to the user in order
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final CreateRecoveryCodeForIdentityBody createRecoveryCodeForIdentityBody = ; // CreateRecoveryCodeForIdentityBody | 
@@ -141,7 +132,7 @@ final CreateRecoveryCodeForIdentityBody createRecoveryCodeForIdentityBody = ; //
 try {
     final response = api.createRecoveryCodeForIdentity(createRecoveryCodeForIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->createRecoveryCodeForIdentity: $e\n');
 }
 ```
@@ -168,7 +159,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createRecoveryLinkForIdentity**
-> RecoveryLinkForIdentity createRecoveryLinkForIdentity(createRecoveryLinkForIdentityBody)
+> RecoveryLinkForIdentity createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody)
 
 Create a Recovery Link
 
@@ -177,17 +168,15 @@ This endpoint creates a recovery link which should be given to the user in order
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
+final String returnTo = returnTo_example; // String | 
 final CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody = ; // CreateRecoveryLinkForIdentityBody | 
 
 try {
-    final response = api.createRecoveryLinkForIdentity(createRecoveryLinkForIdentityBody);
+    final response = api.createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->createRecoveryLinkForIdentity: $e\n');
 }
 ```
@@ -196,6 +185,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **returnTo** | **String**|  | [optional] 
  **createRecoveryLinkForIdentityBody** | [**CreateRecoveryLinkForIdentityBody**](CreateRecoveryLinkForIdentityBody.md)|  | [optional] 
 
 ### Return type
@@ -223,16 +213,13 @@ Calling this endpoint irrecoverably and permanently deletes the [identity](https
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
 
 try {
     api.deleteIdentity(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->deleteIdentity: $e\n');
 }
 ```
@@ -259,27 +246,24 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteIdentityCredentials**
-> Identity deleteIdentityCredentials(id, type)
+> deleteIdentityCredentials(id, type, identifier)
 
 Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
-final String type = type_example; // String | Type is the credential's Type. One of totp, webauthn, lookup
+final String type = type_example; // String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+final String identifier = identifier_example; // String | Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint.
 
 try {
-    final response = api.deleteIdentityCredentials(id, type);
-    print(response);
-} catch on DioError (e) {
+    api.deleteIdentityCredentials(id, type, identifier);
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->deleteIdentityCredentials: $e\n');
 }
 ```
@@ -289,11 +273,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the identity's ID. | 
- **type** | **String**| Type is the credential's Type. One of totp, webauthn, lookup | 
+ **type** | **String**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
+ **identifier** | **String**| Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint. | [optional] 
 
 ### Return type
 
-[**Identity**](Identity.md)
+void (empty response body)
 
 ### Authorization
 
@@ -316,16 +301,13 @@ Calling this endpoint irrecoverably and permanently deletes and invalidates all 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
 
 try {
     api.deleteIdentitySessions(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->deleteIdentitySessions: $e\n');
 }
 ```
@@ -361,16 +343,13 @@ Calling this endpoint deactivates the specified session. Session data is not del
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the session's ID.
 
 try {
     api.disableSession(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->disableSession: $e\n');
 }
 ```
@@ -401,14 +380,11 @@ void (empty response body)
 
 Extend a Session
 
-Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the session's ID.
@@ -416,7 +392,7 @@ final String id = id_example; // String | ID is the session's ID.
 try {
     final response = api.extendSession(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->extendSession: $e\n');
 }
 ```
@@ -452,18 +428,15 @@ Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID must be set to the ID of identity you want to get
-final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token.
+final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 
 try {
     final response = api.getIdentity(id, includeCredential);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->getIdentity: $e\n');
 }
 ```
@@ -473,7 +446,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID must be set to the ID of identity you want to get | 
- **includeCredential** | [**BuiltList&lt;String&gt;**](String.md)| Include Credentials in Response  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. | [optional] 
+ **includeCredential** | [**BuiltList&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
 
 ### Return type
 
@@ -507,7 +480,7 @@ final String id = id_example; // String | ID must be set to the ID of schema you
 try {
     final response = api.getIdentitySchema(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->getIdentitySchema: $e\n');
 }
 ```
@@ -543,9 +516,6 @@ This endpoint is useful for:  Getting a session object with all specified expand
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the session's ID.
@@ -554,7 +524,7 @@ final BuiltList<String> expand = ; // BuiltList<String> | ExpandOptions is a que
 try {
     final response = api.getSession(id, expand);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->getSession: $e\n');
 }
 ```
@@ -582,7 +552,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentities**
-> BuiltList<Identity> listIdentities(perPage, page, credentialsIdentifier)
+> BuiltList<Identity> listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential)
 
 List Identities
 
@@ -591,19 +561,22 @@ Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-mod
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
-final int perPage = 789; // int | Items per Page  This is the number of items per page.
-final int page = 789; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
-final String credentialsIdentifier = credentialsIdentifier_example; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up.
+final int perPage = 789; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+final int page = 789; // int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+final int pageSize = 789; // int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String consistency = consistency_example; // String | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+final BuiltList<String> ids = ; // BuiltList<String> | List of ids used to filter identities. If this list is empty, then no filter will be applied.
+final String credentialsIdentifier = credentialsIdentifier_example; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+final String previewCredentialsIdentifierSimilar = previewCredentialsIdentifierSimilar_example; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 
 try {
-    final response = api.listIdentities(perPage, page, credentialsIdentifier);
+    final response = api.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentities: $e\n');
 }
 ```
@@ -612,9 +585,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
- **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up. | [optional] 
+ **perPage** | **int**| Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. | [optional] 
+ **pageSize** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to '1']
+ **consistency** | **String**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] 
+ **ids** | [**BuiltList&lt;String&gt;**](String.md)| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] 
+ **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
+ **previewCredentialsIdentifierSimilar** | **String**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
+ **includeCredential** | [**BuiltList&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
 
 ### Return type
 
@@ -632,7 +611,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentitySchemas**
-> BuiltList<IdentitySchemaContainer> listIdentitySchemas(perPage, page)
+> BuiltList<IdentitySchemaContainer> listIdentitySchemas(perPage, page, pageSize, pageToken)
 
 Get all Identity Schemas
 
@@ -643,13 +622,15 @@ Returns a list of all identity schemas currently in use.
 import 'package:ory_client/api.dart';
 
 final api = OryClient().getIdentityApi();
-final int perPage = 789; // int | Items per Page  This is the number of items per page.
-final int page = 789; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+final int perPage = 789; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+final int page = 789; // int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+final int pageSize = 789; // int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 
 try {
-    final response = api.listIdentitySchemas(perPage, page);
+    final response = api.listIdentitySchemas(perPage, page, pageSize, pageToken);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentitySchemas: $e\n');
 }
 ```
@@ -658,8 +639,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+ **perPage** | **int**| Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. | [optional] 
+ **pageSize** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to '1']
 
 ### Return type
 
@@ -677,7 +660,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentitySessions**
-> BuiltList<Session> listIdentitySessions(id, perPage, page, active)
+> BuiltList<Session> listIdentitySessions(id, perPage, page, pageSize, pageToken, active)
 
 List an Identity's Sessions
 
@@ -686,20 +669,19 @@ This endpoint returns all sessions that belong to the given Identity.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
-final int perPage = 789; // int | Items per Page  This is the number of items per page.
-final int page = 789; // int | Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist.
+final int perPage = 789; // int | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
+final int page = 789; // int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
+final int pageSize = 789; // int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 final bool active = true; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
 
 try {
-    final response = api.listIdentitySessions(id, perPage, page, active);
+    final response = api.listIdentitySessions(id, perPage, page, pageSize, pageToken, active);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentitySessions: $e\n');
 }
 ```
@@ -709,8 +691,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the identity's ID. | 
- **perPage** | **int**| Items per Page  This is the number of items per page. | [optional] [default to 250]
- **page** | **int**| Pagination Page  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. | [optional] [default to 1]
+ **perPage** | **int**| Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. | [optional] [default to 250]
+ **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. | [optional] 
+ **pageSize** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to '1']
  **active** | **bool**| Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [optional] 
 
 ### Return type
@@ -738,9 +722,6 @@ Listing all sessions that exist.
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
@@ -751,7 +732,7 @@ final BuiltList<String> expand = ; // BuiltList<String> | ExpandOptions is a que
 try {
     final response = api.listSessions(pageSize, pageToken, active, expand);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listSessions: $e\n');
 }
 ```
@@ -790,9 +771,6 @@ Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identi
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID must be set to the ID of identity you want to update
@@ -801,7 +779,7 @@ final BuiltList<JsonPatch> jsonPatch = ; // BuiltList<JsonPatch> |
 try {
     final response = api.patchIdentity(id, jsonPatch);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->patchIdentity: $e\n');
 }
 ```
@@ -838,9 +816,6 @@ This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/iden
 ### Example
 ```dart
 import 'package:ory_client/api.dart';
-// TODO Configure HTTP basic authorization: oryAccessToken
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('oryAccessToken').password = 'YOUR_PASSWORD';
 
 final api = OryClient().getIdentityApi();
 final String id = id_example; // String | ID must be set to the ID of identity you want to update
@@ -849,7 +824,7 @@ final UpdateIdentityBody updateIdentityBody = ; // UpdateIdentityBody |
 try {
     final response = api.updateIdentity(id, updateIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->updateIdentity: $e\n');
 }
 ```

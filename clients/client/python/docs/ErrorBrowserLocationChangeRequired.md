@@ -2,19 +2,29 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **str** | Error message  The error&#39;s message. | 
-**code** | **int** | The status code | [optional] 
-**debug** | **str** | Debug information  This field is often not exposed to protect against leaking sensitive information. | [optional] 
-**details** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Further error details | [optional] 
-**id** | **str** | The error ID  Useful when trying to identify various errors in application logic. | [optional] 
-**reason** | **str** | A human-readable reason for the error | [optional] 
-**redirect_browser_to** | **str** | Since when the flow has expired | [optional] 
-**request** | **str** | The request ID  The request ID is often exposed internally in order to trace errors across service architectures. This is often a UUID. | [optional] 
-**status** | **str** | The status description | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**error** | [**ErrorGeneric**](ErrorGeneric.md) |  | [optional] 
+**redirect_browser_to** | **str** | Points to where to redirect the user to next. | [optional] 
 
+## Example
+
+```python
+from ory_client.models.error_browser_location_change_required import ErrorBrowserLocationChangeRequired
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ErrorBrowserLocationChangeRequired from a JSON string
+error_browser_location_change_required_instance = ErrorBrowserLocationChangeRequired.from_json(json)
+# print the JSON string representation of the object
+print(ErrorBrowserLocationChangeRequired.to_json())
+
+# convert the object into a dict
+error_browser_location_change_required_dict = error_browser_location_change_required_instance.to_dict()
+# create an instance of ErrorBrowserLocationChangeRequired from a dict
+error_browser_location_change_required_form_dict = error_browser_location_change_required.from_dict(error_browser_location_change_required_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -13,6 +13,12 @@ void main() {
       // TODO
     });
 
+    // The flow type can either be `api` or `browser`.
+    // String flowType
+    test('to test the property `flowType`', () async {
+      // TODO
+    });
+
     // Identity to Recover  The identity's ID you wish to recover.
     // String identityId
     test('to test the property `identityId`', () async {

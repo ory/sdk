@@ -43,8 +43,15 @@ void main() {
       // TODO
     });
 
-    // VerificationFlowState state
+    // State represents the state of this request:  choose_method: ask the user to choose a method (e.g. verify your email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the verification challenge was passed.
+    // JsonObject state
     test('to test the property `state`', () async {
+      // TODO
+    });
+
+    // TransientPayload is used to pass data from the verification flow to hooks and email templates
+    // JsonObject transientPayload
+    test('to test the property `transientPayload`', () async {
       // TODO
     });
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,11 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the UiContainer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiContainer{}
 
 // UiContainer Container represents a HTML Form. The container can work with both HTTP Form and JSON requests
 type UiContainer struct {
@@ -23,7 +27,10 @@ type UiContainer struct {
 	// Method is the form method (e.g. POST)
 	Method string `json:"method"`
 	Nodes []UiNode `json:"nodes"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UiContainer UiContainer
 
 // NewUiContainer instantiates a new UiContainer object
 // This constructor will assign default values to properties that have it defined,
@@ -71,7 +78,7 @@ func (o *UiContainer) SetAction(v string) {
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *UiContainer) GetMessages() []UiText {
-	if o == nil || o.Messages == nil {
+	if o == nil || IsNil(o.Messages) {
 		var ret []UiText
 		return ret
 	}
@@ -81,7 +88,7 @@ func (o *UiContainer) GetMessages() []UiText {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UiContainer) GetMessagesOk() ([]UiText, bool) {
-	if o == nil || o.Messages == nil {
+	if o == nil || IsNil(o.Messages) {
 		return nil, false
 	}
 	return o.Messages, true
@@ -89,7 +96,7 @@ func (o *UiContainer) GetMessagesOk() ([]UiText, bool) {
 
 // HasMessages returns a boolean if a field has been set.
 func (o *UiContainer) HasMessages() bool {
-	if o != nil && o.Messages != nil {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -150,20 +157,74 @@ func (o *UiContainer) SetNodes(v []UiNode) {
 }
 
 func (o UiContainer) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["action"] = o.Action
-	}
-	if o.Messages != nil {
-		toSerialize["messages"] = o.Messages
-	}
-	if true {
-		toSerialize["method"] = o.Method
-	}
-	if true {
-		toSerialize["nodes"] = o.Nodes
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UiContainer) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["action"] = o.Action
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
+	}
+	toSerialize["method"] = o.Method
+	toSerialize["nodes"] = o.Nodes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *UiContainer) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"action",
+		"method",
+		"nodes",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUiContainer := _UiContainer{}
+
+	err = json.Unmarshal(data, &varUiContainer)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UiContainer(varUiContainer)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "messages")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "nodes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUiContainer struct {

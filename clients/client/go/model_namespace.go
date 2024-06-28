@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -15,11 +15,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the Namespace type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Namespace{}
+
 // Namespace struct for Namespace
 type Namespace struct {
 	// Name of the namespace.
 	Name *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Namespace Namespace
 
 // NewNamespace instantiates a new Namespace object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewNamespaceWithDefaults() *Namespace {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Namespace) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -50,7 +56,7 @@ func (o *Namespace) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Namespace) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -58,7 +64,7 @@ func (o *Namespace) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Namespace) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -71,11 +77,45 @@ func (o *Namespace) SetName(v string) {
 }
 
 func (o Namespace) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Namespace) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *Namespace) UnmarshalJSON(data []byte) (err error) {
+	varNamespace := _Namespace{}
+
+	err = json.Unmarshal(data, &varNamespace)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Namespace(varNamespace)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNamespace struct {

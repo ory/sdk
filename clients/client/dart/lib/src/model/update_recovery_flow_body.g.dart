@@ -6,6 +6,64 @@ part of 'update_recovery_flow_body.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UpdateRecoveryFlowBodyMethodEnum _$updateRecoveryFlowBodyMethodEnum_link =
+    const UpdateRecoveryFlowBodyMethodEnum._('link');
+const UpdateRecoveryFlowBodyMethodEnum _$updateRecoveryFlowBodyMethodEnum_code =
+    const UpdateRecoveryFlowBodyMethodEnum._('code');
+
+UpdateRecoveryFlowBodyMethodEnum _$updateRecoveryFlowBodyMethodEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'link':
+      return _$updateRecoveryFlowBodyMethodEnum_link;
+    case 'code':
+      return _$updateRecoveryFlowBodyMethodEnum_code;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateRecoveryFlowBodyMethodEnum>
+    _$updateRecoveryFlowBodyMethodEnumValues = new BuiltSet<
+        UpdateRecoveryFlowBodyMethodEnum>(const <UpdateRecoveryFlowBodyMethodEnum>[
+  _$updateRecoveryFlowBodyMethodEnum_link,
+  _$updateRecoveryFlowBodyMethodEnum_code,
+]);
+
+Serializer<UpdateRecoveryFlowBodyMethodEnum>
+    _$updateRecoveryFlowBodyMethodEnumSerializer =
+    new _$UpdateRecoveryFlowBodyMethodEnumSerializer();
+
+class _$UpdateRecoveryFlowBodyMethodEnumSerializer
+    implements PrimitiveSerializer<UpdateRecoveryFlowBodyMethodEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'link': 'link',
+    'code': 'code',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'link': 'link',
+    'code': 'code',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[UpdateRecoveryFlowBodyMethodEnum];
+  @override
+  final String wireName = 'UpdateRecoveryFlowBodyMethodEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, UpdateRecoveryFlowBodyMethodEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateRecoveryFlowBodyMethodEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateRecoveryFlowBodyMethodEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateRecoveryFlowBody extends UpdateRecoveryFlowBody {
   @override
   final OneOf oneOf;

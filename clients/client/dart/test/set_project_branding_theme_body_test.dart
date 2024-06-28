@@ -7,6 +7,18 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(SetProjectBrandingThemeBody, () {
+    // Favicon Type
+    // String faviconType
+    test('to test the property `faviconType`', () async {
+      // TODO
+    });
+
+    // Favicon URL
+    // String faviconUrl
+    test('to test the property `faviconUrl`', () async {
+      // TODO
+    });
+
     // Logo type
     // String logoType
     test('to test the property `logoType`', () async {

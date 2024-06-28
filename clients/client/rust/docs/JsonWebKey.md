@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **p** | Option<**String**> |  | [optional]
 **q** | Option<**String**> |  | [optional]
 **qi** | Option<**String**> |  | [optional]
-**_use** | **String** | Use (\"public key use\") identifies the intended use of the public key. The \"use\" parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Values are commonly \"sig\" (signature) or \"enc\" (encryption). | 
+**r#use** | **String** | Use (\"public key use\") identifies the intended use of the public key. The \"use\" parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Values are commonly \"sig\" (signature) or \"enc\" (encryption). | 
 **x** | Option<**String**> |  | [optional]
 **x5c** | Option<**Vec<String>**> | The \"x5c\" (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates [RFC5280].  The certificate chain is represented as a JSON array of certificate value strings.  Each string in the array is a base64-encoded (Section 4 of [RFC4648] -- not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value. The PKIX certificate containing the key value MUST be the first certificate. | [optional]
 **y** | Option<**String**> |  | [optional]

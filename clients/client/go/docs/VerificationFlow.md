@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **IssuedAt** | Pointer to **time.Time** | IssuedAt is the time (UTC) when the request occurred. | [optional] 
 **RequestUrl** | Pointer to **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | [optional] 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
-**State** | [**VerificationFlowState**](VerificationFlowState.md) |  | 
+**State** | **interface{}** | State represents the state of this request:  choose_method: ask the user to choose a method (e.g. verify your email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the verification challenge was passed. | 
+**TransientPayload** | Pointer to **map[string]interface{}** | TransientPayload is used to pass data from the verification flow to hooks and email templates | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewVerificationFlow
 
-`func NewVerificationFlow(id string, state VerificationFlowState, type_ string, ui UiContainer, ) *VerificationFlow`
+`func NewVerificationFlow(id string, state interface{}, type_ string, ui UiContainer, ) *VerificationFlow`
 
 NewVerificationFlow instantiates a new VerificationFlow object
 This constructor will assign default values to properties that have it defined,
@@ -180,23 +181,58 @@ HasReturnTo returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *VerificationFlow) GetState() VerificationFlowState`
+`func (o *VerificationFlow) GetState() interface{}`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *VerificationFlow) GetStateOk() (*VerificationFlowState, bool)`
+`func (o *VerificationFlow) GetStateOk() (*interface{}, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *VerificationFlow) SetState(v VerificationFlowState)`
+`func (o *VerificationFlow) SetState(v interface{})`
 
 SetState sets State field to given value.
 
+
+### SetStateNil
+
+`func (o *VerificationFlow) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *VerificationFlow) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
+### GetTransientPayload
+
+`func (o *VerificationFlow) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *VerificationFlow) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *VerificationFlow) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *VerificationFlow) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 ### GetType
 

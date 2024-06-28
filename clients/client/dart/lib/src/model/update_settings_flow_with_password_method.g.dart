@@ -14,6 +14,8 @@ class _$UpdateSettingsFlowWithPasswordMethod
   final String method;
   @override
   final String password;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateSettingsFlowWithPasswordMethod(
           [void Function(UpdateSettingsFlowWithPasswordMethodBuilder)?
@@ -22,7 +24,10 @@ class _$UpdateSettingsFlowWithPasswordMethod
           ._build();
 
   _$UpdateSettingsFlowWithPasswordMethod._(
-      {this.csrfToken, required this.method, required this.password})
+      {this.csrfToken,
+      required this.method,
+      required this.password,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         method, r'UpdateSettingsFlowWithPasswordMethod', 'method');
@@ -45,7 +50,8 @@ class _$UpdateSettingsFlowWithPasswordMethod
     return other is UpdateSettingsFlowWithPasswordMethod &&
         csrfToken == other.csrfToken &&
         method == other.method &&
-        password == other.password;
+        password == other.password &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -54,6 +60,7 @@ class _$UpdateSettingsFlowWithPasswordMethod
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, password.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -63,7 +70,8 @@ class _$UpdateSettingsFlowWithPasswordMethod
     return (newBuiltValueToStringHelper(r'UpdateSettingsFlowWithPasswordMethod')
           ..add('csrfToken', csrfToken)
           ..add('method', method)
-          ..add('password', password))
+          ..add('password', password)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -86,6 +94,11 @@ class UpdateSettingsFlowWithPasswordMethodBuilder
   String? get password => _$this._password;
   set password(String? password) => _$this._password = password;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateSettingsFlowWithPasswordMethodBuilder() {
     UpdateSettingsFlowWithPasswordMethod._defaults(this);
   }
@@ -96,6 +109,7 @@ class UpdateSettingsFlowWithPasswordMethodBuilder
       _csrfToken = $v.csrfToken;
       _method = $v.method;
       _password = $v.password;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -123,7 +137,8 @@ class UpdateSettingsFlowWithPasswordMethodBuilder
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateSettingsFlowWithPasswordMethod', 'method'),
             password: BuiltValueNullFieldError.checkNotNull(
-                password, r'UpdateSettingsFlowWithPasswordMethod', 'password'));
+                password, r'UpdateSettingsFlowWithPasswordMethod', 'password'),
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

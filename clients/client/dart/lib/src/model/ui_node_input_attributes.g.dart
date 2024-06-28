@@ -56,6 +56,49 @@ final BuiltSet<UiNodeInputAttributesAutocompleteEnum>
   _$uiNodeInputAttributesAutocompleteEnum_oneTimeCode,
 ]);
 
+const UiNodeInputAttributesNodeTypeEnum
+    _$uiNodeInputAttributesNodeTypeEnum_text =
+    const UiNodeInputAttributesNodeTypeEnum._('text');
+const UiNodeInputAttributesNodeTypeEnum
+    _$uiNodeInputAttributesNodeTypeEnum_input =
+    const UiNodeInputAttributesNodeTypeEnum._('input');
+const UiNodeInputAttributesNodeTypeEnum
+    _$uiNodeInputAttributesNodeTypeEnum_img =
+    const UiNodeInputAttributesNodeTypeEnum._('img');
+const UiNodeInputAttributesNodeTypeEnum _$uiNodeInputAttributesNodeTypeEnum_a =
+    const UiNodeInputAttributesNodeTypeEnum._('a');
+const UiNodeInputAttributesNodeTypeEnum
+    _$uiNodeInputAttributesNodeTypeEnum_script =
+    const UiNodeInputAttributesNodeTypeEnum._('script');
+
+UiNodeInputAttributesNodeTypeEnum _$uiNodeInputAttributesNodeTypeEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'text':
+      return _$uiNodeInputAttributesNodeTypeEnum_text;
+    case 'input':
+      return _$uiNodeInputAttributesNodeTypeEnum_input;
+    case 'img':
+      return _$uiNodeInputAttributesNodeTypeEnum_img;
+    case 'a':
+      return _$uiNodeInputAttributesNodeTypeEnum_a;
+    case 'script':
+      return _$uiNodeInputAttributesNodeTypeEnum_script;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UiNodeInputAttributesNodeTypeEnum>
+    _$uiNodeInputAttributesNodeTypeEnumValues = new BuiltSet<
+        UiNodeInputAttributesNodeTypeEnum>(const <UiNodeInputAttributesNodeTypeEnum>[
+  _$uiNodeInputAttributesNodeTypeEnum_text,
+  _$uiNodeInputAttributesNodeTypeEnum_input,
+  _$uiNodeInputAttributesNodeTypeEnum_img,
+  _$uiNodeInputAttributesNodeTypeEnum_a,
+  _$uiNodeInputAttributesNodeTypeEnum_script,
+]);
+
 const UiNodeInputAttributesTypeEnum _$uiNodeInputAttributesTypeEnum_text =
     const UiNodeInputAttributesTypeEnum._('text');
 const UiNodeInputAttributesTypeEnum _$uiNodeInputAttributesTypeEnum_password =
@@ -134,6 +177,9 @@ final BuiltSet<UiNodeInputAttributesTypeEnum>
 Serializer<UiNodeInputAttributesAutocompleteEnum>
     _$uiNodeInputAttributesAutocompleteEnumSerializer =
     new _$UiNodeInputAttributesAutocompleteEnumSerializer();
+Serializer<UiNodeInputAttributesNodeTypeEnum>
+    _$uiNodeInputAttributesNodeTypeEnumSerializer =
+    new _$UiNodeInputAttributesNodeTypeEnumSerializer();
 Serializer<UiNodeInputAttributesTypeEnum>
     _$uiNodeInputAttributesTypeEnumSerializer =
     new _$UiNodeInputAttributesTypeEnumSerializer();
@@ -175,6 +221,42 @@ class _$UiNodeInputAttributesAutocompleteEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       UiNodeInputAttributesAutocompleteEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$UiNodeInputAttributesNodeTypeEnumSerializer
+    implements PrimitiveSerializer<UiNodeInputAttributesNodeTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[UiNodeInputAttributesNodeTypeEnum];
+  @override
+  final String wireName = 'UiNodeInputAttributesNodeTypeEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, UiNodeInputAttributesNodeTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UiNodeInputAttributesNodeTypeEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UiNodeInputAttributesNodeTypeEnum.valueOf(
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
@@ -238,9 +320,11 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
   @override
   final String name;
   @override
-  final String nodeType;
+  final UiNodeInputAttributesNodeTypeEnum nodeType;
   @override
   final String? onclick;
+  @override
+  final String? onload;
   @override
   final String? pattern;
   @override
@@ -261,6 +345,7 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
       required this.name,
       required this.nodeType,
       this.onclick,
+      this.onload,
       this.pattern,
       this.required_,
       required this.type,
@@ -295,6 +380,7 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
         name == other.name &&
         nodeType == other.nodeType &&
         onclick == other.onclick &&
+        onload == other.onload &&
         pattern == other.pattern &&
         required_ == other.required_ &&
         type == other.type &&
@@ -310,6 +396,7 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, nodeType.hashCode);
     _$hash = $jc(_$hash, onclick.hashCode);
+    _$hash = $jc(_$hash, onload.hashCode);
     _$hash = $jc(_$hash, pattern.hashCode);
     _$hash = $jc(_$hash, required_.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
@@ -327,6 +414,7 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
           ..add('name', name)
           ..add('nodeType', nodeType)
           ..add('onclick', onclick)
+          ..add('onload', onload)
           ..add('pattern', pattern)
           ..add('required_', required_)
           ..add('type', type)
@@ -357,13 +445,18 @@ class UiNodeInputAttributesBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  String? _nodeType;
-  String? get nodeType => _$this._nodeType;
-  set nodeType(String? nodeType) => _$this._nodeType = nodeType;
+  UiNodeInputAttributesNodeTypeEnum? _nodeType;
+  UiNodeInputAttributesNodeTypeEnum? get nodeType => _$this._nodeType;
+  set nodeType(UiNodeInputAttributesNodeTypeEnum? nodeType) =>
+      _$this._nodeType = nodeType;
 
   String? _onclick;
   String? get onclick => _$this._onclick;
   set onclick(String? onclick) => _$this._onclick = onclick;
+
+  String? _onload;
+  String? get onload => _$this._onload;
+  set onload(String? onload) => _$this._onload = onload;
 
   String? _pattern;
   String? get pattern => _$this._pattern;
@@ -394,6 +487,7 @@ class UiNodeInputAttributesBuilder
       _name = $v.name;
       _nodeType = $v.nodeType;
       _onclick = $v.onclick;
+      _onload = $v.onload;
       _pattern = $v.pattern;
       _required_ = $v.required_;
       _type = $v.type;
@@ -431,6 +525,7 @@ class UiNodeInputAttributesBuilder
               nodeType: BuiltValueNullFieldError.checkNotNull(
                   nodeType, r'UiNodeInputAttributes', 'nodeType'),
               onclick: onclick,
+              onload: onload,
               pattern: pattern,
               required_: required_,
               type: BuiltValueNullFieldError.checkNotNull(

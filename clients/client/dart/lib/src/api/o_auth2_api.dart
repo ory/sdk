@@ -49,7 +49,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2RedirectTo] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2RedirectTo>> acceptOAuth2ConsentRequest({ 
     required String consentChallenge,
     AcceptOAuth2ConsentRequest? acceptOAuth2ConsentRequest,
@@ -91,15 +91,16 @@ class OAuth2Api {
       _bodyData = acceptOAuth2ConsentRequest == null ? null : _serializers.serialize(acceptOAuth2ConsentRequest, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -112,22 +113,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -156,7 +158,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2RedirectTo] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2RedirectTo>> acceptOAuth2LoginRequest({ 
     required String loginChallenge,
     AcceptOAuth2LoginRequest? acceptOAuth2LoginRequest,
@@ -198,15 +200,16 @@ class OAuth2Api {
       _bodyData = acceptOAuth2LoginRequest == null ? null : _serializers.serialize(acceptOAuth2LoginRequest, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -219,22 +222,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -262,7 +266,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2RedirectTo] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2RedirectTo>> acceptOAuth2LogoutRequest({ 
     required String logoutChallenge,
     CancelToken? cancelToken,
@@ -304,22 +308,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -347,7 +352,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2Client] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2Client>> createOAuth2Client({ 
     required OAuth2Client oAuth2Client,
     CancelToken? cancelToken,
@@ -384,14 +389,15 @@ class OAuth2Api {
       _bodyData = _serializers.serialize(oAuth2Client, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -403,22 +409,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -446,7 +453,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> deleteOAuth2Client({ 
     required String id,
     CancelToken? cancelToken,
@@ -456,7 +463,7 @@ class OAuth2Api {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/clients/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/clients/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -499,7 +506,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> deleteOAuth2Token({ 
     required String clientId,
     CancelToken? cancelToken,
@@ -557,7 +564,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> deleteTrustedOAuth2JwtGrantIssuer({ 
     required String id,
     CancelToken? cancelToken,
@@ -567,7 +574,7 @@ class OAuth2Api {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/trust/grants/jwt-bearer/issuers/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/trust/grants/jwt-bearer/issuers/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -610,7 +617,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2Client] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2Client>> getOAuth2Client({ 
     required String id,
     CancelToken? cancelToken,
@@ -620,7 +627,7 @@ class OAuth2Api {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/clients/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/clients/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -647,22 +654,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -690,7 +698,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2ConsentRequest] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2ConsentRequest>> getOAuth2ConsentRequest({ 
     required String consentChallenge,
     CancelToken? cancelToken,
@@ -732,22 +740,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2ConsentRequest _responseData;
+    OAuth2ConsentRequest? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2ConsentRequest);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2ConsentRequest),
       ) as OAuth2ConsentRequest;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2ConsentRequest>(
@@ -775,7 +784,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2LoginRequest] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2LoginRequest>> getOAuth2LoginRequest({ 
     required String loginChallenge,
     CancelToken? cancelToken,
@@ -817,22 +826,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2LoginRequest _responseData;
+    OAuth2LoginRequest? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2LoginRequest);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2LoginRequest),
       ) as OAuth2LoginRequest;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2LoginRequest>(
@@ -860,7 +870,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2LogoutRequest] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2LogoutRequest>> getOAuth2LogoutRequest({ 
     required String logoutChallenge,
     CancelToken? cancelToken,
@@ -902,22 +912,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2LogoutRequest _responseData;
+    OAuth2LogoutRequest? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2LogoutRequest);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2LogoutRequest),
       ) as OAuth2LogoutRequest;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2LogoutRequest>(
@@ -945,7 +956,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [TrustedOAuth2JwtGrantIssuer] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<TrustedOAuth2JwtGrantIssuer>> getTrustedOAuth2JwtGrantIssuer({ 
     required String id,
     CancelToken? cancelToken,
@@ -955,7 +966,7 @@ class OAuth2Api {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/trust/grants/jwt-bearer/issuers/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/trust/grants/jwt-bearer/issuers/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -982,22 +993,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    TrustedOAuth2JwtGrantIssuer _responseData;
+    TrustedOAuth2JwtGrantIssuer? _responseData;
 
     try {
-      const _responseType = FullType(TrustedOAuth2JwtGrantIssuer);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TrustedOAuth2JwtGrantIssuer),
       ) as TrustedOAuth2JwtGrantIssuer;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<TrustedOAuth2JwtGrantIssuer>(
@@ -1026,7 +1038,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [IntrospectedOAuth2Token] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<IntrospectedOAuth2Token>> introspectOAuth2Token({ 
     required String token,
     String? scope,
@@ -1066,14 +1078,15 @@ class OAuth2Api {
       };
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1085,22 +1098,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    IntrospectedOAuth2Token _responseData;
+    IntrospectedOAuth2Token? _responseData;
 
     try {
-      const _responseType = FullType(IntrospectedOAuth2Token);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(IntrospectedOAuth2Token),
       ) as IntrospectedOAuth2Token;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<IntrospectedOAuth2Token>(
@@ -1131,7 +1145,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<OAuth2Client>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<OAuth2Client>>> listOAuth2Clients({ 
     int? pageSize = 250,
     String? pageToken = '1',
@@ -1179,22 +1193,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<OAuth2Client> _responseData;
+    BuiltList<OAuth2Client>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(OAuth2Client)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(OAuth2Client)]),
       ) as BuiltList<OAuth2Client>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<OAuth2Client>>(
@@ -1225,7 +1240,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<OAuth2ConsentSession>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<OAuth2ConsentSession>>> listOAuth2ConsentSessions({ 
     required String subject,
     int? pageSize = 250,
@@ -1273,22 +1288,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<OAuth2ConsentSession> _responseData;
+    BuiltList<OAuth2ConsentSession>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(OAuth2ConsentSession)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(OAuth2ConsentSession)]),
       ) as BuiltList<OAuth2ConsentSession>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<OAuth2ConsentSession>>(
@@ -1318,7 +1334,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<TrustedOAuth2JwtGrantIssuer>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<TrustedOAuth2JwtGrantIssuer>>> listTrustedOAuth2JwtGrantIssuers({ 
     int? maxItems,
     int? defaultItems,
@@ -1364,22 +1380,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<TrustedOAuth2JwtGrantIssuer> _responseData;
+    BuiltList<TrustedOAuth2JwtGrantIssuer>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(TrustedOAuth2JwtGrantIssuer)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(TrustedOAuth2JwtGrantIssuer)]),
       ) as BuiltList<TrustedOAuth2JwtGrantIssuer>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<BuiltList<TrustedOAuth2JwtGrantIssuer>>(
@@ -1406,7 +1423,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [ErrorOAuth2] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<ErrorOAuth2>> oAuth2Authorize({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1436,22 +1453,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ErrorOAuth2 _responseData;
+    ErrorOAuth2? _responseData;
 
     try {
-      const _responseType = FullType(ErrorOAuth2);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ErrorOAuth2),
       ) as ErrorOAuth2;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<ErrorOAuth2>(
@@ -1483,7 +1501,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2TokenExchange] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2TokenExchange>> oauth2TokenExchange({ 
     required String grantType,
     String? clientId,
@@ -1532,14 +1550,15 @@ class OAuth2Api {
       };
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1551,22 +1570,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2TokenExchange _responseData;
+    OAuth2TokenExchange? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2TokenExchange);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2TokenExchange),
       ) as OAuth2TokenExchange;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2TokenExchange>(
@@ -1595,7 +1615,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2Client] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2Client>> patchOAuth2Client({ 
     required String id,
     required BuiltList<JsonPatch> jsonPatch,
@@ -1606,7 +1626,7 @@ class OAuth2Api {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/clients/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/clients/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'PATCH',
       headers: <String, dynamic>{
@@ -1633,14 +1653,15 @@ class OAuth2Api {
       _bodyData = _serializers.serialize(jsonPatch, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1652,22 +1673,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -1696,7 +1718,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2RedirectTo] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2RedirectTo>> rejectOAuth2ConsentRequest({ 
     required String consentChallenge,
     RejectOAuth2Request? rejectOAuth2Request,
@@ -1738,15 +1760,16 @@ class OAuth2Api {
       _bodyData = rejectOAuth2Request == null ? null : _serializers.serialize(rejectOAuth2Request, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1759,22 +1782,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -1803,7 +1827,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2RedirectTo] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2RedirectTo>> rejectOAuth2LoginRequest({ 
     required String loginChallenge,
     RejectOAuth2Request? rejectOAuth2Request,
@@ -1845,15 +1869,16 @@ class OAuth2Api {
       _bodyData = rejectOAuth2Request == null ? null : _serializers.serialize(rejectOAuth2Request, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -1866,22 +1891,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2RedirectTo _responseData;
+    OAuth2RedirectTo? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2RedirectTo);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
       ) as OAuth2RedirectTo;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2RedirectTo>(
@@ -1909,7 +1935,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> rejectOAuth2LogoutRequest({ 
     required String logoutChallenge,
     CancelToken? cancelToken,
@@ -1969,7 +1995,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> revokeOAuth2ConsentSessions({ 
     required String subject,
     String? client,
@@ -2019,7 +2045,7 @@ class OAuth2Api {
   }
 
   /// Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
-  /// This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpennID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via &#x60;sid&#x60; query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+  /// This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via &#x60;sid&#x60; query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
   ///
   /// Parameters:
   /// * [subject] - OAuth 2.0 Subject  The subject to revoke authentication sessions for.
@@ -2032,7 +2058,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> revokeOAuth2LoginSessions({ 
     String? subject,
     String? sid,
@@ -2094,7 +2120,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> revokeOAuth2Token({ 
     required String token,
     String? clientId,
@@ -2139,14 +2165,15 @@ class OAuth2Api {
       };
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2175,7 +2202,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2Client] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2Client>> setOAuth2Client({ 
     required String id,
     required OAuth2Client oAuth2Client,
@@ -2186,7 +2213,7 @@ class OAuth2Api {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/clients/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/clients/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -2213,14 +2240,15 @@ class OAuth2Api {
       _bodyData = _serializers.serialize(oAuth2Client, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2232,22 +2260,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -2276,7 +2305,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [OAuth2Client] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<OAuth2Client>> setOAuth2ClientLifespans({ 
     required String id,
     OAuth2ClientTokenLifespans? oAuth2ClientTokenLifespans,
@@ -2287,7 +2316,7 @@ class OAuth2Api {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/clients/{id}/lifespans'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/clients/{id}/lifespans'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -2314,14 +2343,15 @@ class OAuth2Api {
       _bodyData = oAuth2ClientTokenLifespans == null ? null : _serializers.serialize(oAuth2ClientTokenLifespans, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2333,22 +2363,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    OAuth2Client _responseData;
+    OAuth2Client? _responseData;
 
     try {
-      const _responseType = FullType(OAuth2Client);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2Client),
       ) as OAuth2Client;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<OAuth2Client>(
@@ -2376,7 +2407,7 @@ class OAuth2Api {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [TrustedOAuth2JwtGrantIssuer] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<TrustedOAuth2JwtGrantIssuer>> trustOAuth2JwtGrantIssuer({ 
     TrustOAuth2JwtGrantIssuer? trustOAuth2JwtGrantIssuer,
     CancelToken? cancelToken,
@@ -2413,14 +2444,15 @@ class OAuth2Api {
       _bodyData = trustOAuth2JwtGrantIssuer == null ? null : _serializers.serialize(trustOAuth2JwtGrantIssuer, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     final _response = await _dio.request<Object>(
@@ -2432,22 +2464,23 @@ class OAuth2Api {
       onReceiveProgress: onReceiveProgress,
     );
 
-    TrustedOAuth2JwtGrantIssuer _responseData;
+    TrustedOAuth2JwtGrantIssuer? _responseData;
 
     try {
-      const _responseType = FullType(TrustedOAuth2JwtGrantIssuer);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TrustedOAuth2JwtGrantIssuer),
       ) as TrustedOAuth2JwtGrantIssuer;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<TrustedOAuth2JwtGrantIssuer>(

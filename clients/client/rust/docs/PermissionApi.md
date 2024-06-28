@@ -1,6 +1,6 @@
 # \PermissionApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## check_permission
 
-> crate::models::CheckPermissionResult check_permission(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation, max_depth)
+> models::CheckPermissionResult check_permission(namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation, max_depth)
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
@@ -28,14 +28,14 @@ Name | Type | Description  | Required | Notes
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
 **max_depth** | Option<**i64**> |  |  |
 
 ### Return type
 
-[**crate::models::CheckPermissionResult**](checkPermissionResult.md)
+[**models::CheckPermissionResult**](checkPermissionResult.md)
 
 ### Authorization
 
@@ -51,7 +51,7 @@ Name | Type | Description  | Required | Notes
 
 ## check_permission_or_error
 
-> crate::models::CheckPermissionResult check_permission_or_error(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation, max_depth)
+> models::CheckPermissionResult check_permission_or_error(namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation, max_depth)
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
@@ -65,14 +65,14 @@ Name | Type | Description  | Required | Notes
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
 **max_depth** | Option<**i64**> |  |  |
 
 ### Return type
 
-[**crate::models::CheckPermissionResult**](checkPermissionResult.md)
+[**models::CheckPermissionResult**](checkPermissionResult.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Required | Notes
 
 ## expand_permissions
 
-> crate::models::ExpandedPermissionTree expand_permissions(namespace, object, relation, max_depth)
+> models::ExpandedPermissionTree expand_permissions(namespace, object, relation, max_depth)
 Expand a Relationship into permissions.
 
 Use this endpoint to expand a relationship tuple into permissions.
@@ -105,7 +105,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::ExpandedPermissionTree**](expandedPermissionTree.md)
+[**models::ExpandedPermissionTree**](expandedPermissionTree.md)
 
 ### Authorization
 
@@ -121,7 +121,7 @@ Name | Type | Description  | Required | Notes
 
 ## post_check_permission
 
-> crate::models::CheckPermissionResult post_check_permission(max_depth, post_check_permission_body)
+> models::CheckPermissionResult post_check_permission(max_depth, post_check_permission_body)
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
@@ -136,7 +136,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::CheckPermissionResult**](checkPermissionResult.md)
+[**models::CheckPermissionResult**](checkPermissionResult.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Required | Notes
 
 ## post_check_permission_or_error
 
-> crate::models::CheckPermissionResult post_check_permission_or_error(max_depth, post_check_permission_or_error_body)
+> models::CheckPermissionResult post_check_permission_or_error(max_depth, post_check_permission_or_error_body)
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
@@ -162,12 +162,12 @@ To learn how relationship tuples and the check works, head over to [the document
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**max_depth** | Option<**i64**> | nolint:deadcode,unused |  |
+**max_depth** | Option<**i64**> |  |  |
 **post_check_permission_or_error_body** | Option<[**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)> |  |  |
 
 ### Return type
 
-[**crate::models::CheckPermissionResult**](checkPermissionResult.md)
+[**models::CheckPermissionResult**](checkPermissionResult.md)
 
 ### Authorization
 

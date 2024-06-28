@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -14,15 +14,22 @@ package client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
+
+// checks if the Subscription type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Subscription{}
 
 // Subscription struct for Subscription
 type Subscription struct {
 	CreatedAt time.Time `json:"created_at"`
+	// The currency of the subscription. To change this, a new subscription must be created. usd USD eur Euro
+	Currency string `json:"currency"`
 	// The currently active interval of the subscription monthly Monthly yearly Yearly
 	CurrentInterval string `json:"current_interval"`
 	// The currently active plan of the subscription
 	CurrentPlan string `json:"current_plan"`
+	CurrentPlanDetails *PlanDetails `json:"current_plan_details,omitempty"`
 	// The ID of the stripe customer
 	CustomerId string `json:"customer_id"`
 	// The ID of the subscription
@@ -33,18 +40,23 @@ type Subscription struct {
 	PayedUntil time.Time `json:"payed_until"`
 	PlanChangesAt *time.Time `json:"plan_changes_at,omitempty"`
 	PlanChangesTo NullableString `json:"plan_changes_to"`
-	// For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.  A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.  If subscription `collection_method=charge_automatically` it becomes `past_due` when payment to renew it fails and `canceled` or `unpaid` (depending on your subscriptions settings) when Stripe has exhausted all payment retry attempts.  If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
+	// For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this status can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` status. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal status, the open invoice will be voided and no further invoices will be generated.  A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.  A subscription can only enter a `paused` status [when a trial ends without a payment method](https://stripe.com/billing/subscriptions/trials#create-free-trials-without-payment). A `paused` subscription doesn't generate invoices and can be resumed after your customer adds their payment method. The `paused` status is different from [pausing collection](https://stripe.com/billing/subscriptions/pause-payment), which still generates invoices and leaves the subscription's status unchanged.  If subscription `collection_method=charge_automatically`, it becomes `past_due` when payment is required but cannot be paid (due to failed payment or awaiting additional user actions). Once Stripe has exhausted all payment retry attempts, the subscription will become `canceled` or `unpaid` (depending on your subscriptions settings).  If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
 	Status string `json:"status"`
+	StripeCheckoutExpiresAt *time.Time `json:"stripe_checkout_expires_at,omitempty"`
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Subscription Subscription
 
 // NewSubscription instantiates a new Subscription object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscription(createdAt time.Time, currentInterval string, currentPlan string, customerId string, id string, intervalChangesTo NullableString, payedUntil time.Time, planChangesTo NullableString, status string, updatedAt time.Time) *Subscription {
+func NewSubscription(createdAt time.Time, currency string, currentInterval string, currentPlan string, customerId string, id string, intervalChangesTo NullableString, payedUntil time.Time, planChangesTo NullableString, status string, updatedAt time.Time) *Subscription {
 	this := Subscription{}
 	this.CreatedAt = createdAt
+	this.Currency = currency
 	this.CurrentInterval = currentInterval
 	this.CurrentPlan = currentPlan
 	this.CustomerId = customerId
@@ -87,6 +99,30 @@ func (o *Subscription) GetCreatedAtOk() (*time.Time, bool) {
 // SetCreatedAt sets field value
 func (o *Subscription) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
+}
+
+// GetCurrency returns the Currency field value
+func (o *Subscription) GetCurrency() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetCurrencyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
+// SetCurrency sets field value
+func (o *Subscription) SetCurrency(v string) {
+	o.Currency = v
 }
 
 // GetCurrentInterval returns the CurrentInterval field value
@@ -135,6 +171,38 @@ func (o *Subscription) GetCurrentPlanOk() (*string, bool) {
 // SetCurrentPlan sets field value
 func (o *Subscription) SetCurrentPlan(v string) {
 	o.CurrentPlan = v
+}
+
+// GetCurrentPlanDetails returns the CurrentPlanDetails field value if set, zero value otherwise.
+func (o *Subscription) GetCurrentPlanDetails() PlanDetails {
+	if o == nil || IsNil(o.CurrentPlanDetails) {
+		var ret PlanDetails
+		return ret
+	}
+	return *o.CurrentPlanDetails
+}
+
+// GetCurrentPlanDetailsOk returns a tuple with the CurrentPlanDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetCurrentPlanDetailsOk() (*PlanDetails, bool) {
+	if o == nil || IsNil(o.CurrentPlanDetails) {
+		return nil, false
+	}
+	return o.CurrentPlanDetails, true
+}
+
+// HasCurrentPlanDetails returns a boolean if a field has been set.
+func (o *Subscription) HasCurrentPlanDetails() bool {
+	if o != nil && !IsNil(o.CurrentPlanDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrentPlanDetails gets a reference to the given PlanDetails and assigns it to the CurrentPlanDetails field.
+func (o *Subscription) SetCurrentPlanDetails(v PlanDetails) {
+	o.CurrentPlanDetails = &v
 }
 
 // GetCustomerId returns the CustomerId field value
@@ -213,7 +281,7 @@ func (o *Subscription) SetIntervalChangesTo(v string) {
 
 // GetOngoingStripeCheckoutId returns the OngoingStripeCheckoutId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Subscription) GetOngoingStripeCheckoutId() string {
-	if o == nil || o.OngoingStripeCheckoutId.Get() == nil {
+	if o == nil || IsNil(o.OngoingStripeCheckoutId.Get()) {
 		var ret string
 		return ret
 	}
@@ -279,7 +347,7 @@ func (o *Subscription) SetPayedUntil(v time.Time) {
 
 // GetPlanChangesAt returns the PlanChangesAt field value if set, zero value otherwise.
 func (o *Subscription) GetPlanChangesAt() time.Time {
-	if o == nil || o.PlanChangesAt == nil {
+	if o == nil || IsNil(o.PlanChangesAt) {
 		var ret time.Time
 		return ret
 	}
@@ -289,7 +357,7 @@ func (o *Subscription) GetPlanChangesAt() time.Time {
 // GetPlanChangesAtOk returns a tuple with the PlanChangesAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetPlanChangesAtOk() (*time.Time, bool) {
-	if o == nil || o.PlanChangesAt == nil {
+	if o == nil || IsNil(o.PlanChangesAt) {
 		return nil, false
 	}
 	return o.PlanChangesAt, true
@@ -297,7 +365,7 @@ func (o *Subscription) GetPlanChangesAtOk() (*time.Time, bool) {
 
 // HasPlanChangesAt returns a boolean if a field has been set.
 func (o *Subscription) HasPlanChangesAt() bool {
-	if o != nil && o.PlanChangesAt != nil {
+	if o != nil && !IsNil(o.PlanChangesAt) {
 		return true
 	}
 
@@ -359,6 +427,38 @@ func (o *Subscription) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetStripeCheckoutExpiresAt returns the StripeCheckoutExpiresAt field value if set, zero value otherwise.
+func (o *Subscription) GetStripeCheckoutExpiresAt() time.Time {
+	if o == nil || IsNil(o.StripeCheckoutExpiresAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.StripeCheckoutExpiresAt
+}
+
+// GetStripeCheckoutExpiresAtOk returns a tuple with the StripeCheckoutExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetStripeCheckoutExpiresAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.StripeCheckoutExpiresAt) {
+		return nil, false
+	}
+	return o.StripeCheckoutExpiresAt, true
+}
+
+// HasStripeCheckoutExpiresAt returns a boolean if a field has been set.
+func (o *Subscription) HasStripeCheckoutExpiresAt() bool {
+	if o != nil && !IsNil(o.StripeCheckoutExpiresAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetStripeCheckoutExpiresAt gets a reference to the given time.Time and assigns it to the StripeCheckoutExpiresAt field.
+func (o *Subscription) SetStripeCheckoutExpiresAt(v time.Time) {
+	o.StripeCheckoutExpiresAt = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *Subscription) GetUpdatedAt() time.Time {
 	if o == nil {
@@ -384,44 +484,110 @@ func (o *Subscription) SetUpdatedAt(v time.Time) {
 }
 
 func (o Subscription) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Subscription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["created_at"] = o.CreatedAt
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["currency"] = o.Currency
+	toSerialize["current_interval"] = o.CurrentInterval
+	toSerialize["current_plan"] = o.CurrentPlan
+	if !IsNil(o.CurrentPlanDetails) {
+		toSerialize["current_plan_details"] = o.CurrentPlanDetails
 	}
-	if true {
-		toSerialize["current_interval"] = o.CurrentInterval
-	}
-	if true {
-		toSerialize["current_plan"] = o.CurrentPlan
-	}
-	if true {
-		toSerialize["customer_id"] = o.CustomerId
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["interval_changes_to"] = o.IntervalChangesTo.Get()
-	}
+	toSerialize["customer_id"] = o.CustomerId
+	toSerialize["id"] = o.Id
+	toSerialize["interval_changes_to"] = o.IntervalChangesTo.Get()
 	if o.OngoingStripeCheckoutId.IsSet() {
 		toSerialize["ongoing_stripe_checkout_id"] = o.OngoingStripeCheckoutId.Get()
 	}
-	if true {
-		toSerialize["payed_until"] = o.PayedUntil
-	}
-	if o.PlanChangesAt != nil {
+	toSerialize["payed_until"] = o.PayedUntil
+	if !IsNil(o.PlanChangesAt) {
 		toSerialize["plan_changes_at"] = o.PlanChangesAt
 	}
-	if true {
-		toSerialize["plan_changes_to"] = o.PlanChangesTo.Get()
+	toSerialize["plan_changes_to"] = o.PlanChangesTo.Get()
+	toSerialize["status"] = o.Status
+	if !IsNil(o.StripeCheckoutExpiresAt) {
+		toSerialize["stripe_checkout_expires_at"] = o.StripeCheckoutExpiresAt
 	}
-	if true {
-		toSerialize["status"] = o.Status
+	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
-	if true {
-		toSerialize["updated_at"] = o.UpdatedAt
+
+	return toSerialize, nil
+}
+
+func (o *Subscription) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"created_at",
+		"currency",
+		"current_interval",
+		"current_plan",
+		"customer_id",
+		"id",
+		"interval_changes_to",
+		"payed_until",
+		"plan_changes_to",
+		"status",
+		"updated_at",
 	}
-	return json.Marshal(toSerialize)
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubscription := _Subscription{}
+
+	err = json.Unmarshal(data, &varSubscription)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Subscription(varSubscription)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "current_interval")
+		delete(additionalProperties, "current_plan")
+		delete(additionalProperties, "current_plan_details")
+		delete(additionalProperties, "customer_id")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "interval_changes_to")
+		delete(additionalProperties, "ongoing_stripe_checkout_id")
+		delete(additionalProperties, "payed_until")
+		delete(additionalProperties, "plan_changes_at")
+		delete(additionalProperties, "plan_changes_to")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "stripe_checkout_expires_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSubscription struct {

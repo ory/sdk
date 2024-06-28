@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.25
+API version: v1.12.1
 Contact: support@ory.sh
 */
 
@@ -14,14 +14,14 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-type OAuth2Api interface {
+type OAuth2API interface {
 
 	/*
 	AcceptOAuth2ConsentRequest Accept OAuth 2.0 Consent Request
@@ -44,13 +44,13 @@ The default consent provider is available via the Ory Managed Account Experience
 head over to the OAuth 2.0 documentation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiAcceptOAuth2ConsentRequestRequest
+	@return OAuth2APIAcceptOAuth2ConsentRequestRequest
 	*/
-	AcceptOAuth2ConsentRequest(ctx context.Context) OAuth2ApiAcceptOAuth2ConsentRequestRequest
+	AcceptOAuth2ConsentRequest(ctx context.Context) OAuth2APIAcceptOAuth2ConsentRequestRequest
 
 	// AcceptOAuth2ConsentRequestExecute executes the request
 	//  @return OAuth2RedirectTo
-	AcceptOAuth2ConsentRequestExecute(r OAuth2ApiAcceptOAuth2ConsentRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
+	AcceptOAuth2ConsentRequestExecute(r OAuth2APIAcceptOAuth2ConsentRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
 
 	/*
 	AcceptOAuth2LoginRequest Accept OAuth 2.0 Login Request
@@ -68,13 +68,13 @@ a cookie.
 The response contains a redirect URL which the login provider should redirect the user-agent to.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiAcceptOAuth2LoginRequestRequest
+	@return OAuth2APIAcceptOAuth2LoginRequestRequest
 	*/
-	AcceptOAuth2LoginRequest(ctx context.Context) OAuth2ApiAcceptOAuth2LoginRequestRequest
+	AcceptOAuth2LoginRequest(ctx context.Context) OAuth2APIAcceptOAuth2LoginRequestRequest
 
 	// AcceptOAuth2LoginRequestExecute executes the request
 	//  @return OAuth2RedirectTo
-	AcceptOAuth2LoginRequestExecute(r OAuth2ApiAcceptOAuth2LoginRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
+	AcceptOAuth2LoginRequestExecute(r OAuth2APIAcceptOAuth2LoginRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
 
 	/*
 	AcceptOAuth2LogoutRequest Accept OAuth 2.0 Session Logout Request
@@ -84,13 +84,13 @@ The response contains a redirect URL which the login provider should redirect th
 The response contains a redirect URL which the consent provider should redirect the user-agent to.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiAcceptOAuth2LogoutRequestRequest
+	@return OAuth2APIAcceptOAuth2LogoutRequestRequest
 	*/
-	AcceptOAuth2LogoutRequest(ctx context.Context) OAuth2ApiAcceptOAuth2LogoutRequestRequest
+	AcceptOAuth2LogoutRequest(ctx context.Context) OAuth2APIAcceptOAuth2LogoutRequestRequest
 
 	// AcceptOAuth2LogoutRequestExecute executes the request
 	//  @return OAuth2RedirectTo
-	AcceptOAuth2LogoutRequestExecute(r OAuth2ApiAcceptOAuth2LogoutRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
+	AcceptOAuth2LogoutRequestExecute(r OAuth2APIAcceptOAuth2LogoutRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
 
 	/*
 	CreateOAuth2Client Create OAuth 2.0 Client
@@ -99,13 +99,13 @@ The response contains a redirect URL which the consent provider should redirect 
 is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiCreateOAuth2ClientRequest
+	@return OAuth2APICreateOAuth2ClientRequest
 	*/
-	CreateOAuth2Client(ctx context.Context) OAuth2ApiCreateOAuth2ClientRequest
+	CreateOAuth2Client(ctx context.Context) OAuth2APICreateOAuth2ClientRequest
 
 	// CreateOAuth2ClientExecute executes the request
 	//  @return OAuth2Client
-	CreateOAuth2ClientExecute(r OAuth2ApiCreateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+	CreateOAuth2ClientExecute(r OAuth2APICreateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
 
 	/*
 	DeleteOAuth2Client Delete OAuth 2.0 Client
@@ -119,12 +119,12 @@ Make sure that this endpoint is well protected and only callable by first-party 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the OAuth 2.0 Client.
-	@return OAuth2ApiDeleteOAuth2ClientRequest
+	@return OAuth2APIDeleteOAuth2ClientRequest
 	*/
-	DeleteOAuth2Client(ctx context.Context, id string) OAuth2ApiDeleteOAuth2ClientRequest
+	DeleteOAuth2Client(ctx context.Context, id string) OAuth2APIDeleteOAuth2ClientRequest
 
 	// DeleteOAuth2ClientExecute executes the request
-	DeleteOAuth2ClientExecute(r OAuth2ApiDeleteOAuth2ClientRequest) (*http.Response, error)
+	DeleteOAuth2ClientExecute(r OAuth2APIDeleteOAuth2ClientRequest) (*http.Response, error)
 
 	/*
 	DeleteOAuth2Token Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
@@ -132,12 +132,12 @@ Make sure that this endpoint is well protected and only callable by first-party 
 	This endpoint deletes OAuth2 access tokens issued to an OAuth 2.0 Client from the database.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiDeleteOAuth2TokenRequest
+	@return OAuth2APIDeleteOAuth2TokenRequest
 	*/
-	DeleteOAuth2Token(ctx context.Context) OAuth2ApiDeleteOAuth2TokenRequest
+	DeleteOAuth2Token(ctx context.Context) OAuth2APIDeleteOAuth2TokenRequest
 
 	// DeleteOAuth2TokenExecute executes the request
-	DeleteOAuth2TokenExecute(r OAuth2ApiDeleteOAuth2TokenRequest) (*http.Response, error)
+	DeleteOAuth2TokenExecute(r OAuth2APIDeleteOAuth2TokenRequest) (*http.Response, error)
 
 	/*
 	DeleteTrustedOAuth2JwtGrantIssuer Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
@@ -150,12 +150,12 @@ for OAuth 2.0 Client Authentication and Authorization Grant.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the desired grant
-	@return OAuth2ApiDeleteTrustedOAuth2JwtGrantIssuerRequest
+	@return OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest
 	*/
-	DeleteTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) OAuth2ApiDeleteTrustedOAuth2JwtGrantIssuerRequest
+	DeleteTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest
 
 	// DeleteTrustedOAuth2JwtGrantIssuerExecute executes the request
-	DeleteTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiDeleteTrustedOAuth2JwtGrantIssuerRequest) (*http.Response, error)
+	DeleteTrustedOAuth2JwtGrantIssuerExecute(r OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest) (*http.Response, error)
 
 	/*
 	GetOAuth2Client Get an OAuth 2.0 Client
@@ -167,13 +167,13 @@ generated for applications which want to consume your OAuth 2.0 or OpenID Connec
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the OAuth 2.0 Client.
-	@return OAuth2ApiGetOAuth2ClientRequest
+	@return OAuth2APIGetOAuth2ClientRequest
 	*/
-	GetOAuth2Client(ctx context.Context, id string) OAuth2ApiGetOAuth2ClientRequest
+	GetOAuth2Client(ctx context.Context, id string) OAuth2APIGetOAuth2ClientRequest
 
 	// GetOAuth2ClientExecute executes the request
 	//  @return OAuth2Client
-	GetOAuth2ClientExecute(r OAuth2ApiGetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+	GetOAuth2ClientExecute(r OAuth2APIGetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
 
 	/*
 	GetOAuth2ConsentRequest Get OAuth 2.0 Consent Request
@@ -190,13 +190,13 @@ The default consent provider is available via the Ory Managed Account Experience
 head over to the OAuth 2.0 documentation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiGetOAuth2ConsentRequestRequest
+	@return OAuth2APIGetOAuth2ConsentRequestRequest
 	*/
-	GetOAuth2ConsentRequest(ctx context.Context) OAuth2ApiGetOAuth2ConsentRequestRequest
+	GetOAuth2ConsentRequest(ctx context.Context) OAuth2APIGetOAuth2ConsentRequestRequest
 
 	// GetOAuth2ConsentRequestExecute executes the request
 	//  @return OAuth2ConsentRequest
-	GetOAuth2ConsentRequestExecute(r OAuth2ApiGetOAuth2ConsentRequestRequest) (*OAuth2ConsentRequest, *http.Response, error)
+	GetOAuth2ConsentRequestExecute(r OAuth2APIGetOAuth2ConsentRequestRequest) (*OAuth2ConsentRequest, *http.Response, error)
 
 	/*
 	GetOAuth2LoginRequest Get OAuth 2.0 Login Request
@@ -212,13 +212,13 @@ The authentication challenge is appended to the login provider URL to which the 
 provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiGetOAuth2LoginRequestRequest
+	@return OAuth2APIGetOAuth2LoginRequestRequest
 	*/
-	GetOAuth2LoginRequest(ctx context.Context) OAuth2ApiGetOAuth2LoginRequestRequest
+	GetOAuth2LoginRequest(ctx context.Context) OAuth2APIGetOAuth2LoginRequestRequest
 
 	// GetOAuth2LoginRequestExecute executes the request
 	//  @return OAuth2LoginRequest
-	GetOAuth2LoginRequestExecute(r OAuth2ApiGetOAuth2LoginRequestRequest) (*OAuth2LoginRequest, *http.Response, error)
+	GetOAuth2LoginRequestExecute(r OAuth2APIGetOAuth2LoginRequestRequest) (*OAuth2LoginRequest, *http.Response, error)
 
 	/*
 	GetOAuth2LogoutRequest Get OAuth 2.0 Session Logout Request
@@ -226,13 +226,13 @@ provider uses that challenge to fetch information on the OAuth2 request and then
 	Use this endpoint to fetch an Ory OAuth 2.0 logout request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiGetOAuth2LogoutRequestRequest
+	@return OAuth2APIGetOAuth2LogoutRequestRequest
 	*/
-	GetOAuth2LogoutRequest(ctx context.Context) OAuth2ApiGetOAuth2LogoutRequestRequest
+	GetOAuth2LogoutRequest(ctx context.Context) OAuth2APIGetOAuth2LogoutRequestRequest
 
 	// GetOAuth2LogoutRequestExecute executes the request
 	//  @return OAuth2LogoutRequest
-	GetOAuth2LogoutRequestExecute(r OAuth2ApiGetOAuth2LogoutRequestRequest) (*OAuth2LogoutRequest, *http.Response, error)
+	GetOAuth2LogoutRequestExecute(r OAuth2APIGetOAuth2LogoutRequestRequest) (*OAuth2LogoutRequest, *http.Response, error)
 
 	/*
 	GetTrustedOAuth2JwtGrantIssuer Get Trusted OAuth2 JWT Bearer Grant Type Issuer
@@ -242,13 +242,13 @@ created the trust relationship.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the desired grant
-	@return OAuth2ApiGetTrustedOAuth2JwtGrantIssuerRequest
+	@return OAuth2APIGetTrustedOAuth2JwtGrantIssuerRequest
 	*/
-	GetTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) OAuth2ApiGetTrustedOAuth2JwtGrantIssuerRequest
+	GetTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) OAuth2APIGetTrustedOAuth2JwtGrantIssuerRequest
 
 	// GetTrustedOAuth2JwtGrantIssuerExecute executes the request
 	//  @return TrustedOAuth2JwtGrantIssuer
-	GetTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiGetTrustedOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error)
+	GetTrustedOAuth2JwtGrantIssuerExecute(r OAuth2APIGetTrustedOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error)
 
 	/*
 	IntrospectOAuth2Token Introspect OAuth2 Access and Refresh Tokens
@@ -258,13 +258,13 @@ is neither expired nor revoked. If a token is active, additional information on 
 set additional data for a token by setting `session.access_token` during the consent flow.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiIntrospectOAuth2TokenRequest
+	@return OAuth2APIIntrospectOAuth2TokenRequest
 	*/
-	IntrospectOAuth2Token(ctx context.Context) OAuth2ApiIntrospectOAuth2TokenRequest
+	IntrospectOAuth2Token(ctx context.Context) OAuth2APIIntrospectOAuth2TokenRequest
 
 	// IntrospectOAuth2TokenExecute executes the request
 	//  @return IntrospectedOAuth2Token
-	IntrospectOAuth2TokenExecute(r OAuth2ApiIntrospectOAuth2TokenRequest) (*IntrospectedOAuth2Token, *http.Response, error)
+	IntrospectOAuth2TokenExecute(r OAuth2APIIntrospectOAuth2TokenRequest) (*IntrospectedOAuth2Token, *http.Response, error)
 
 	/*
 	ListOAuth2Clients List OAuth 2.0 Clients
@@ -273,13 +273,13 @@ set additional data for a token by setting `session.access_token` during the con
 As a default it lists the first 100 clients.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiListOAuth2ClientsRequest
+	@return OAuth2APIListOAuth2ClientsRequest
 	*/
-	ListOAuth2Clients(ctx context.Context) OAuth2ApiListOAuth2ClientsRequest
+	ListOAuth2Clients(ctx context.Context) OAuth2APIListOAuth2ClientsRequest
 
 	// ListOAuth2ClientsExecute executes the request
 	//  @return []OAuth2Client
-	ListOAuth2ClientsExecute(r OAuth2ApiListOAuth2ClientsRequest) ([]OAuth2Client, *http.Response, error)
+	ListOAuth2ClientsExecute(r OAuth2APIListOAuth2ClientsRequest) ([]OAuth2Client, *http.Response, error)
 
 	/*
 	ListOAuth2ConsentSessions List OAuth 2.0 Consent Sessions of a Subject
@@ -289,13 +289,13 @@ If the subject is unknown or has not granted any consent sessions yet, the endpo
 empty JSON array with status code 200 OK.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiListOAuth2ConsentSessionsRequest
+	@return OAuth2APIListOAuth2ConsentSessionsRequest
 	*/
-	ListOAuth2ConsentSessions(ctx context.Context) OAuth2ApiListOAuth2ConsentSessionsRequest
+	ListOAuth2ConsentSessions(ctx context.Context) OAuth2APIListOAuth2ConsentSessionsRequest
 
 	// ListOAuth2ConsentSessionsExecute executes the request
 	//  @return []OAuth2ConsentSession
-	ListOAuth2ConsentSessionsExecute(r OAuth2ApiListOAuth2ConsentSessionsRequest) ([]OAuth2ConsentSession, *http.Response, error)
+	ListOAuth2ConsentSessionsExecute(r OAuth2APIListOAuth2ConsentSessionsRequest) ([]OAuth2ConsentSession, *http.Response, error)
 
 	/*
 	ListTrustedOAuth2JwtGrantIssuers List Trusted OAuth2 JWT Bearer Grant Type Issuers
@@ -303,13 +303,13 @@ empty JSON array with status code 200 OK.
 	Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest
+	@return OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest
 	*/
-	ListTrustedOAuth2JwtGrantIssuers(ctx context.Context) OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest
+	ListTrustedOAuth2JwtGrantIssuers(ctx context.Context) OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest
 
 	// ListTrustedOAuth2JwtGrantIssuersExecute executes the request
 	//  @return []TrustedOAuth2JwtGrantIssuer
-	ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest) ([]TrustedOAuth2JwtGrantIssuer, *http.Response, error)
+	ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest) ([]TrustedOAuth2JwtGrantIssuer, *http.Response, error)
 
 	/*
 	OAuth2Authorize OAuth 2.0 Authorize Endpoint
@@ -320,13 +320,13 @@ available for any programming language. You can find a list of libraries at http
 The Ory SDK is not yet able to this endpoint properly.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiOAuth2AuthorizeRequest
+	@return OAuth2APIOAuth2AuthorizeRequest
 	*/
-	OAuth2Authorize(ctx context.Context) OAuth2ApiOAuth2AuthorizeRequest
+	OAuth2Authorize(ctx context.Context) OAuth2APIOAuth2AuthorizeRequest
 
 	// OAuth2AuthorizeExecute executes the request
 	//  @return ErrorOAuth2
-	OAuth2AuthorizeExecute(r OAuth2ApiOAuth2AuthorizeRequest) (*ErrorOAuth2, *http.Response, error)
+	OAuth2AuthorizeExecute(r OAuth2APIOAuth2AuthorizeRequest) (*ErrorOAuth2, *http.Response, error)
 
 	/*
 	Oauth2TokenExchange The OAuth 2.0 Token Endpoint
@@ -337,13 +337,13 @@ available for any programming language. You can find a list of libraries here ht
 The Ory SDK is not yet able to this endpoint properly.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiOauth2TokenExchangeRequest
+	@return OAuth2APIOauth2TokenExchangeRequest
 	*/
-	Oauth2TokenExchange(ctx context.Context) OAuth2ApiOauth2TokenExchangeRequest
+	Oauth2TokenExchange(ctx context.Context) OAuth2APIOauth2TokenExchangeRequest
 
 	// Oauth2TokenExchangeExecute executes the request
 	//  @return OAuth2TokenExchange
-	Oauth2TokenExchangeExecute(r OAuth2ApiOauth2TokenExchangeRequest) (*OAuth2TokenExchange, *http.Response, error)
+	Oauth2TokenExchangeExecute(r OAuth2APIOauth2TokenExchangeRequest) (*OAuth2TokenExchange, *http.Response, error)
 
 	/*
 	PatchOAuth2Client Patch OAuth 2.0 Client
@@ -357,13 +357,13 @@ generated for applications which want to consume your OAuth 2.0 or OpenID Connec
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the OAuth 2.0 Client.
-	@return OAuth2ApiPatchOAuth2ClientRequest
+	@return OAuth2APIPatchOAuth2ClientRequest
 	*/
-	PatchOAuth2Client(ctx context.Context, id string) OAuth2ApiPatchOAuth2ClientRequest
+	PatchOAuth2Client(ctx context.Context, id string) OAuth2APIPatchOAuth2ClientRequest
 
 	// PatchOAuth2ClientExecute executes the request
 	//  @return OAuth2Client
-	PatchOAuth2ClientExecute(r OAuth2ApiPatchOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+	PatchOAuth2ClientExecute(r OAuth2APIPatchOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
 
 	/*
 	RejectOAuth2ConsentRequest Reject OAuth 2.0 Consent Request
@@ -385,13 +385,13 @@ The default consent provider is available via the Ory Managed Account Experience
 head over to the OAuth 2.0 documentation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiRejectOAuth2ConsentRequestRequest
+	@return OAuth2APIRejectOAuth2ConsentRequestRequest
 	*/
-	RejectOAuth2ConsentRequest(ctx context.Context) OAuth2ApiRejectOAuth2ConsentRequestRequest
+	RejectOAuth2ConsentRequest(ctx context.Context) OAuth2APIRejectOAuth2ConsentRequestRequest
 
 	// RejectOAuth2ConsentRequestExecute executes the request
 	//  @return OAuth2RedirectTo
-	RejectOAuth2ConsentRequestExecute(r OAuth2ApiRejectOAuth2ConsentRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
+	RejectOAuth2ConsentRequestExecute(r OAuth2APIRejectOAuth2ConsentRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
 
 	/*
 	RejectOAuth2LoginRequest Reject OAuth 2.0 Login Request
@@ -408,13 +408,13 @@ was denied.
 The response contains a redirect URL which the login provider should redirect the user-agent to.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiRejectOAuth2LoginRequestRequest
+	@return OAuth2APIRejectOAuth2LoginRequestRequest
 	*/
-	RejectOAuth2LoginRequest(ctx context.Context) OAuth2ApiRejectOAuth2LoginRequestRequest
+	RejectOAuth2LoginRequest(ctx context.Context) OAuth2APIRejectOAuth2LoginRequestRequest
 
 	// RejectOAuth2LoginRequestExecute executes the request
 	//  @return OAuth2RedirectTo
-	RejectOAuth2LoginRequestExecute(r OAuth2ApiRejectOAuth2LoginRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
+	RejectOAuth2LoginRequestExecute(r OAuth2APIRejectOAuth2LoginRequestRequest) (*OAuth2RedirectTo, *http.Response, error)
 
 	/*
 	RejectOAuth2LogoutRequest Reject OAuth 2.0 Session Logout Request
@@ -425,12 +425,12 @@ No HTTP request body is required.
 The response is empty as the logout provider has to chose what action to perform next.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiRejectOAuth2LogoutRequestRequest
+	@return OAuth2APIRejectOAuth2LogoutRequestRequest
 	*/
-	RejectOAuth2LogoutRequest(ctx context.Context) OAuth2ApiRejectOAuth2LogoutRequestRequest
+	RejectOAuth2LogoutRequest(ctx context.Context) OAuth2APIRejectOAuth2LogoutRequestRequest
 
 	// RejectOAuth2LogoutRequestExecute executes the request
-	RejectOAuth2LogoutRequestExecute(r OAuth2ApiRejectOAuth2LogoutRequestRequest) (*http.Response, error)
+	RejectOAuth2LogoutRequestExecute(r OAuth2APIRejectOAuth2LogoutRequestRequest) (*http.Response, error)
 
 	/*
 	RevokeOAuth2ConsentSessions Revoke OAuth 2.0 Consent Sessions of a Subject
@@ -439,12 +439,12 @@ The response is empty as the logout provider has to chose what action to perform
 associated OAuth 2.0 Access Tokens. You may also only revoke sessions for a specific OAuth 2.0 Client ID.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiRevokeOAuth2ConsentSessionsRequest
+	@return OAuth2APIRevokeOAuth2ConsentSessionsRequest
 	*/
-	RevokeOAuth2ConsentSessions(ctx context.Context) OAuth2ApiRevokeOAuth2ConsentSessionsRequest
+	RevokeOAuth2ConsentSessions(ctx context.Context) OAuth2APIRevokeOAuth2ConsentSessionsRequest
 
 	// RevokeOAuth2ConsentSessionsExecute executes the request
-	RevokeOAuth2ConsentSessionsExecute(r OAuth2ApiRevokeOAuth2ConsentSessionsRequest) (*http.Response, error)
+	RevokeOAuth2ConsentSessionsExecute(r OAuth2APIRevokeOAuth2ConsentSessionsRequest) (*http.Response, error)
 
 	/*
 	RevokeOAuth2LoginSessions Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
@@ -453,18 +453,18 @@ associated OAuth 2.0 Access Tokens. You may also only revoke sessions for a spec
 has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.
 
 If you send the subject in a query param, all authentication sessions that belong to that subject are revoked.
-No OpennID Connect Front- or Back-channel logout is performed in this case.
+No OpenID Connect Front- or Back-channel logout is performed in this case.
 
 Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
 to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiRevokeOAuth2LoginSessionsRequest
+	@return OAuth2APIRevokeOAuth2LoginSessionsRequest
 	*/
-	RevokeOAuth2LoginSessions(ctx context.Context) OAuth2ApiRevokeOAuth2LoginSessionsRequest
+	RevokeOAuth2LoginSessions(ctx context.Context) OAuth2APIRevokeOAuth2LoginSessionsRequest
 
 	// RevokeOAuth2LoginSessionsExecute executes the request
-	RevokeOAuth2LoginSessionsExecute(r OAuth2ApiRevokeOAuth2LoginSessionsRequest) (*http.Response, error)
+	RevokeOAuth2LoginSessionsExecute(r OAuth2APIRevokeOAuth2LoginSessionsRequest) (*http.Response, error)
 
 	/*
 	RevokeOAuth2Token Revoke OAuth 2.0 Access or Refresh Token
@@ -475,12 +475,12 @@ Revoking a refresh token also invalidates the access token that was created with
 the client the token was generated for.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiRevokeOAuth2TokenRequest
+	@return OAuth2APIRevokeOAuth2TokenRequest
 	*/
-	RevokeOAuth2Token(ctx context.Context) OAuth2ApiRevokeOAuth2TokenRequest
+	RevokeOAuth2Token(ctx context.Context) OAuth2APIRevokeOAuth2TokenRequest
 
 	// RevokeOAuth2TokenExecute executes the request
-	RevokeOAuth2TokenExecute(r OAuth2ApiRevokeOAuth2TokenRequest) (*http.Response, error)
+	RevokeOAuth2TokenExecute(r OAuth2APIRevokeOAuth2TokenRequest) (*http.Response, error)
 
 	/*
 	SetOAuth2Client Set OAuth 2.0 Client
@@ -495,13 +495,13 @@ generated for applications which want to consume your OAuth 2.0 or OpenID Connec
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id OAuth 2.0 Client ID
-	@return OAuth2ApiSetOAuth2ClientRequest
+	@return OAuth2APISetOAuth2ClientRequest
 	*/
-	SetOAuth2Client(ctx context.Context, id string) OAuth2ApiSetOAuth2ClientRequest
+	SetOAuth2Client(ctx context.Context, id string) OAuth2APISetOAuth2ClientRequest
 
 	// SetOAuth2ClientExecute executes the request
 	//  @return OAuth2Client
-	SetOAuth2ClientExecute(r OAuth2ApiSetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+	SetOAuth2ClientExecute(r OAuth2APISetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
 
 	/*
 	SetOAuth2ClientLifespans Set OAuth2 Client Token Lifespans
@@ -510,13 +510,13 @@ generated for applications which want to consume your OAuth 2.0 or OpenID Connec
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id OAuth 2.0 Client ID
-	@return OAuth2ApiSetOAuth2ClientLifespansRequest
+	@return OAuth2APISetOAuth2ClientLifespansRequest
 	*/
-	SetOAuth2ClientLifespans(ctx context.Context, id string) OAuth2ApiSetOAuth2ClientLifespansRequest
+	SetOAuth2ClientLifespans(ctx context.Context, id string) OAuth2APISetOAuth2ClientLifespansRequest
 
 	// SetOAuth2ClientLifespansExecute executes the request
 	//  @return OAuth2Client
-	SetOAuth2ClientLifespansExecute(r OAuth2ApiSetOAuth2ClientLifespansRequest) (*OAuth2Client, *http.Response, error)
+	SetOAuth2ClientLifespansExecute(r OAuth2APISetOAuth2ClientLifespansRequest) (*OAuth2Client, *http.Response, error)
 
 	/*
 	TrustOAuth2JwtGrantIssuer Trust OAuth2 JWT Bearer Grant Type Issuer
@@ -526,37 +526,37 @@ to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
 and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return OAuth2ApiTrustOAuth2JwtGrantIssuerRequest
+	@return OAuth2APITrustOAuth2JwtGrantIssuerRequest
 	*/
-	TrustOAuth2JwtGrantIssuer(ctx context.Context) OAuth2ApiTrustOAuth2JwtGrantIssuerRequest
+	TrustOAuth2JwtGrantIssuer(ctx context.Context) OAuth2APITrustOAuth2JwtGrantIssuerRequest
 
 	// TrustOAuth2JwtGrantIssuerExecute executes the request
 	//  @return TrustedOAuth2JwtGrantIssuer
-	TrustOAuth2JwtGrantIssuerExecute(r OAuth2ApiTrustOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error)
+	TrustOAuth2JwtGrantIssuerExecute(r OAuth2APITrustOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error)
 }
 
-// OAuth2ApiService OAuth2Api service
-type OAuth2ApiService service
+// OAuth2APIService OAuth2API service
+type OAuth2APIService service
 
-type OAuth2ApiAcceptOAuth2ConsentRequestRequest struct {
+type OAuth2APIAcceptOAuth2ConsentRequestRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	consentChallenge *string
 	acceptOAuth2ConsentRequest *AcceptOAuth2ConsentRequest
 }
 
 // OAuth 2.0 Consent Request Challenge
-func (r OAuth2ApiAcceptOAuth2ConsentRequestRequest) ConsentChallenge(consentChallenge string) OAuth2ApiAcceptOAuth2ConsentRequestRequest {
+func (r OAuth2APIAcceptOAuth2ConsentRequestRequest) ConsentChallenge(consentChallenge string) OAuth2APIAcceptOAuth2ConsentRequestRequest {
 	r.consentChallenge = &consentChallenge
 	return r
 }
 
-func (r OAuth2ApiAcceptOAuth2ConsentRequestRequest) AcceptOAuth2ConsentRequest(acceptOAuth2ConsentRequest AcceptOAuth2ConsentRequest) OAuth2ApiAcceptOAuth2ConsentRequestRequest {
+func (r OAuth2APIAcceptOAuth2ConsentRequestRequest) AcceptOAuth2ConsentRequest(acceptOAuth2ConsentRequest AcceptOAuth2ConsentRequest) OAuth2APIAcceptOAuth2ConsentRequestRequest {
 	r.acceptOAuth2ConsentRequest = &acceptOAuth2ConsentRequest
 	return r
 }
 
-func (r OAuth2ApiAcceptOAuth2ConsentRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
+func (r OAuth2APIAcceptOAuth2ConsentRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
 	return r.ApiService.AcceptOAuth2ConsentRequestExecute(r)
 }
 
@@ -581,10 +581,10 @@ The default consent provider is available via the Ory Managed Account Experience
 head over to the OAuth 2.0 documentation.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiAcceptOAuth2ConsentRequestRequest
+ @return OAuth2APIAcceptOAuth2ConsentRequestRequest
 */
-func (a *OAuth2ApiService) AcceptOAuth2ConsentRequest(ctx context.Context) OAuth2ApiAcceptOAuth2ConsentRequestRequest {
-	return OAuth2ApiAcceptOAuth2ConsentRequestRequest{
+func (a *OAuth2APIService) AcceptOAuth2ConsentRequest(ctx context.Context) OAuth2APIAcceptOAuth2ConsentRequestRequest {
+	return OAuth2APIAcceptOAuth2ConsentRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -592,7 +592,7 @@ func (a *OAuth2ApiService) AcceptOAuth2ConsentRequest(ctx context.Context) OAuth
 
 // Execute executes the request
 //  @return OAuth2RedirectTo
-func (a *OAuth2ApiService) AcceptOAuth2ConsentRequestExecute(r OAuth2ApiAcceptOAuth2ConsentRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
+func (a *OAuth2APIService) AcceptOAuth2ConsentRequestExecute(r OAuth2APIAcceptOAuth2ConsentRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -600,7 +600,7 @@ func (a *OAuth2ApiService) AcceptOAuth2ConsentRequestExecute(r OAuth2ApiAcceptOA
 		localVarReturnValue  *OAuth2RedirectTo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.AcceptOAuth2ConsentRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.AcceptOAuth2ConsentRequest")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -614,7 +614,7 @@ func (a *OAuth2ApiService) AcceptOAuth2ConsentRequestExecute(r OAuth2ApiAcceptOA
 		return localVarReturnValue, nil, reportError("consentChallenge is required and must be specified")
 	}
 
-	localVarQueryParams.Add("consent_challenge", parameterToString(*r.consentChallenge, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "consent_challenge", r.consentChallenge, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -644,9 +644,9 @@ func (a *OAuth2ApiService) AcceptOAuth2ConsentRequestExecute(r OAuth2ApiAcceptOA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -662,7 +662,8 @@ func (a *OAuth2ApiService) AcceptOAuth2ConsentRequestExecute(r OAuth2ApiAcceptOA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -678,25 +679,25 @@ func (a *OAuth2ApiService) AcceptOAuth2ConsentRequestExecute(r OAuth2ApiAcceptOA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiAcceptOAuth2LoginRequestRequest struct {
+type OAuth2APIAcceptOAuth2LoginRequestRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	loginChallenge *string
 	acceptOAuth2LoginRequest *AcceptOAuth2LoginRequest
 }
 
 // OAuth 2.0 Login Request Challenge
-func (r OAuth2ApiAcceptOAuth2LoginRequestRequest) LoginChallenge(loginChallenge string) OAuth2ApiAcceptOAuth2LoginRequestRequest {
+func (r OAuth2APIAcceptOAuth2LoginRequestRequest) LoginChallenge(loginChallenge string) OAuth2APIAcceptOAuth2LoginRequestRequest {
 	r.loginChallenge = &loginChallenge
 	return r
 }
 
-func (r OAuth2ApiAcceptOAuth2LoginRequestRequest) AcceptOAuth2LoginRequest(acceptOAuth2LoginRequest AcceptOAuth2LoginRequest) OAuth2ApiAcceptOAuth2LoginRequestRequest {
+func (r OAuth2APIAcceptOAuth2LoginRequestRequest) AcceptOAuth2LoginRequest(acceptOAuth2LoginRequest AcceptOAuth2LoginRequest) OAuth2APIAcceptOAuth2LoginRequestRequest {
 	r.acceptOAuth2LoginRequest = &acceptOAuth2LoginRequest
 	return r
 }
 
-func (r OAuth2ApiAcceptOAuth2LoginRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
+func (r OAuth2APIAcceptOAuth2LoginRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
 	return r.ApiService.AcceptOAuth2LoginRequestExecute(r)
 }
 
@@ -716,10 +717,10 @@ a cookie.
 The response contains a redirect URL which the login provider should redirect the user-agent to.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiAcceptOAuth2LoginRequestRequest
+ @return OAuth2APIAcceptOAuth2LoginRequestRequest
 */
-func (a *OAuth2ApiService) AcceptOAuth2LoginRequest(ctx context.Context) OAuth2ApiAcceptOAuth2LoginRequestRequest {
-	return OAuth2ApiAcceptOAuth2LoginRequestRequest{
+func (a *OAuth2APIService) AcceptOAuth2LoginRequest(ctx context.Context) OAuth2APIAcceptOAuth2LoginRequestRequest {
+	return OAuth2APIAcceptOAuth2LoginRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -727,7 +728,7 @@ func (a *OAuth2ApiService) AcceptOAuth2LoginRequest(ctx context.Context) OAuth2A
 
 // Execute executes the request
 //  @return OAuth2RedirectTo
-func (a *OAuth2ApiService) AcceptOAuth2LoginRequestExecute(r OAuth2ApiAcceptOAuth2LoginRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
+func (a *OAuth2APIService) AcceptOAuth2LoginRequestExecute(r OAuth2APIAcceptOAuth2LoginRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -735,7 +736,7 @@ func (a *OAuth2ApiService) AcceptOAuth2LoginRequestExecute(r OAuth2ApiAcceptOAut
 		localVarReturnValue  *OAuth2RedirectTo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.AcceptOAuth2LoginRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.AcceptOAuth2LoginRequest")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -749,7 +750,7 @@ func (a *OAuth2ApiService) AcceptOAuth2LoginRequestExecute(r OAuth2ApiAcceptOAut
 		return localVarReturnValue, nil, reportError("loginChallenge is required and must be specified")
 	}
 
-	localVarQueryParams.Add("login_challenge", parameterToString(*r.loginChallenge, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "login_challenge", r.loginChallenge, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -779,9 +780,9 @@ func (a *OAuth2ApiService) AcceptOAuth2LoginRequestExecute(r OAuth2ApiAcceptOAut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -797,7 +798,8 @@ func (a *OAuth2ApiService) AcceptOAuth2LoginRequestExecute(r OAuth2ApiAcceptOAut
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -813,19 +815,19 @@ func (a *OAuth2ApiService) AcceptOAuth2LoginRequestExecute(r OAuth2ApiAcceptOAut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiAcceptOAuth2LogoutRequestRequest struct {
+type OAuth2APIAcceptOAuth2LogoutRequestRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	logoutChallenge *string
 }
 
 // OAuth 2.0 Logout Request Challenge
-func (r OAuth2ApiAcceptOAuth2LogoutRequestRequest) LogoutChallenge(logoutChallenge string) OAuth2ApiAcceptOAuth2LogoutRequestRequest {
+func (r OAuth2APIAcceptOAuth2LogoutRequestRequest) LogoutChallenge(logoutChallenge string) OAuth2APIAcceptOAuth2LogoutRequestRequest {
 	r.logoutChallenge = &logoutChallenge
 	return r
 }
 
-func (r OAuth2ApiAcceptOAuth2LogoutRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
+func (r OAuth2APIAcceptOAuth2LogoutRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
 	return r.ApiService.AcceptOAuth2LogoutRequestExecute(r)
 }
 
@@ -837,10 +839,10 @@ When a user or an application requests Ory OAuth 2.0 to remove the session state
 The response contains a redirect URL which the consent provider should redirect the user-agent to.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiAcceptOAuth2LogoutRequestRequest
+ @return OAuth2APIAcceptOAuth2LogoutRequestRequest
 */
-func (a *OAuth2ApiService) AcceptOAuth2LogoutRequest(ctx context.Context) OAuth2ApiAcceptOAuth2LogoutRequestRequest {
-	return OAuth2ApiAcceptOAuth2LogoutRequestRequest{
+func (a *OAuth2APIService) AcceptOAuth2LogoutRequest(ctx context.Context) OAuth2APIAcceptOAuth2LogoutRequestRequest {
+	return OAuth2APIAcceptOAuth2LogoutRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -848,7 +850,7 @@ func (a *OAuth2ApiService) AcceptOAuth2LogoutRequest(ctx context.Context) OAuth2
 
 // Execute executes the request
 //  @return OAuth2RedirectTo
-func (a *OAuth2ApiService) AcceptOAuth2LogoutRequestExecute(r OAuth2ApiAcceptOAuth2LogoutRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
+func (a *OAuth2APIService) AcceptOAuth2LogoutRequestExecute(r OAuth2APIAcceptOAuth2LogoutRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -856,7 +858,7 @@ func (a *OAuth2ApiService) AcceptOAuth2LogoutRequestExecute(r OAuth2ApiAcceptOAu
 		localVarReturnValue  *OAuth2RedirectTo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.AcceptOAuth2LogoutRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.AcceptOAuth2LogoutRequest")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -870,7 +872,7 @@ func (a *OAuth2ApiService) AcceptOAuth2LogoutRequestExecute(r OAuth2ApiAcceptOAu
 		return localVarReturnValue, nil, reportError("logoutChallenge is required and must be specified")
 	}
 
-	localVarQueryParams.Add("logout_challenge", parameterToString(*r.logoutChallenge, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "logout_challenge", r.logoutChallenge, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -898,9 +900,9 @@ func (a *OAuth2ApiService) AcceptOAuth2LogoutRequestExecute(r OAuth2ApiAcceptOAu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -916,7 +918,8 @@ func (a *OAuth2ApiService) AcceptOAuth2LogoutRequestExecute(r OAuth2ApiAcceptOAu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -932,19 +935,19 @@ func (a *OAuth2ApiService) AcceptOAuth2LogoutRequestExecute(r OAuth2ApiAcceptOAu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiCreateOAuth2ClientRequest struct {
+type OAuth2APICreateOAuth2ClientRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	oAuth2Client *OAuth2Client
 }
 
 // OAuth 2.0 Client Request Body
-func (r OAuth2ApiCreateOAuth2ClientRequest) OAuth2Client(oAuth2Client OAuth2Client) OAuth2ApiCreateOAuth2ClientRequest {
+func (r OAuth2APICreateOAuth2ClientRequest) OAuth2Client(oAuth2Client OAuth2Client) OAuth2APICreateOAuth2ClientRequest {
 	r.oAuth2Client = &oAuth2Client
 	return r
 }
 
-func (r OAuth2ApiCreateOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+func (r OAuth2APICreateOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
 	return r.ApiService.CreateOAuth2ClientExecute(r)
 }
 
@@ -955,10 +958,10 @@ Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, o
 is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiCreateOAuth2ClientRequest
+ @return OAuth2APICreateOAuth2ClientRequest
 */
-func (a *OAuth2ApiService) CreateOAuth2Client(ctx context.Context) OAuth2ApiCreateOAuth2ClientRequest {
-	return OAuth2ApiCreateOAuth2ClientRequest{
+func (a *OAuth2APIService) CreateOAuth2Client(ctx context.Context) OAuth2APICreateOAuth2ClientRequest {
+	return OAuth2APICreateOAuth2ClientRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -966,7 +969,7 @@ func (a *OAuth2ApiService) CreateOAuth2Client(ctx context.Context) OAuth2ApiCrea
 
 // Execute executes the request
 //  @return OAuth2Client
-func (a *OAuth2ApiService) CreateOAuth2ClientExecute(r OAuth2ApiCreateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+func (a *OAuth2APIService) CreateOAuth2ClientExecute(r OAuth2APICreateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -974,7 +977,7 @@ func (a *OAuth2ApiService) CreateOAuth2ClientExecute(r OAuth2ApiCreateOAuth2Clie
 		localVarReturnValue  *OAuth2Client
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.CreateOAuth2Client")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.CreateOAuth2Client")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1017,9 +1020,9 @@ func (a *OAuth2ApiService) CreateOAuth2ClientExecute(r OAuth2ApiCreateOAuth2Clie
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1036,7 +1039,8 @@ func (a *OAuth2ApiService) CreateOAuth2ClientExecute(r OAuth2ApiCreateOAuth2Clie
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorOAuth2
@@ -1045,7 +1049,8 @@ func (a *OAuth2ApiService) CreateOAuth2ClientExecute(r OAuth2ApiCreateOAuth2Clie
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1061,13 +1066,13 @@ func (a *OAuth2ApiService) CreateOAuth2ClientExecute(r OAuth2ApiCreateOAuth2Clie
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiDeleteOAuth2ClientRequest struct {
+type OAuth2APIDeleteOAuth2ClientRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	id string
 }
 
-func (r OAuth2ApiDeleteOAuth2ClientRequest) Execute() (*http.Response, error) {
+func (r OAuth2APIDeleteOAuth2ClientRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteOAuth2ClientExecute(r)
 }
 
@@ -1083,10 +1088,10 @@ Make sure that this endpoint is well protected and only callable by first-party 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the OAuth 2.0 Client.
- @return OAuth2ApiDeleteOAuth2ClientRequest
+ @return OAuth2APIDeleteOAuth2ClientRequest
 */
-func (a *OAuth2ApiService) DeleteOAuth2Client(ctx context.Context, id string) OAuth2ApiDeleteOAuth2ClientRequest {
-	return OAuth2ApiDeleteOAuth2ClientRequest{
+func (a *OAuth2APIService) DeleteOAuth2Client(ctx context.Context, id string) OAuth2APIDeleteOAuth2ClientRequest {
+	return OAuth2APIDeleteOAuth2ClientRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -1094,20 +1099,20 @@ func (a *OAuth2ApiService) DeleteOAuth2Client(ctx context.Context, id string) OA
 }
 
 // Execute executes the request
-func (a *OAuth2ApiService) DeleteOAuth2ClientExecute(r OAuth2ApiDeleteOAuth2ClientRequest) (*http.Response, error) {
+func (a *OAuth2APIService) DeleteOAuth2ClientExecute(r OAuth2APIDeleteOAuth2ClientRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.DeleteOAuth2Client")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.DeleteOAuth2Client")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/clients/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1140,9 +1145,9 @@ func (a *OAuth2ApiService) DeleteOAuth2ClientExecute(r OAuth2ApiDeleteOAuth2Clie
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -1158,26 +1163,27 @@ func (a *OAuth2ApiService) DeleteOAuth2ClientExecute(r OAuth2ApiDeleteOAuth2Clie
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type OAuth2ApiDeleteOAuth2TokenRequest struct {
+type OAuth2APIDeleteOAuth2TokenRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	clientId *string
 }
 
 // OAuth 2.0 Client ID
-func (r OAuth2ApiDeleteOAuth2TokenRequest) ClientId(clientId string) OAuth2ApiDeleteOAuth2TokenRequest {
+func (r OAuth2APIDeleteOAuth2TokenRequest) ClientId(clientId string) OAuth2APIDeleteOAuth2TokenRequest {
 	r.clientId = &clientId
 	return r
 }
 
-func (r OAuth2ApiDeleteOAuth2TokenRequest) Execute() (*http.Response, error) {
+func (r OAuth2APIDeleteOAuth2TokenRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteOAuth2TokenExecute(r)
 }
 
@@ -1187,24 +1193,24 @@ DeleteOAuth2Token Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
 This endpoint deletes OAuth2 access tokens issued to an OAuth 2.0 Client from the database.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiDeleteOAuth2TokenRequest
+ @return OAuth2APIDeleteOAuth2TokenRequest
 */
-func (a *OAuth2ApiService) DeleteOAuth2Token(ctx context.Context) OAuth2ApiDeleteOAuth2TokenRequest {
-	return OAuth2ApiDeleteOAuth2TokenRequest{
+func (a *OAuth2APIService) DeleteOAuth2Token(ctx context.Context) OAuth2APIDeleteOAuth2TokenRequest {
+	return OAuth2APIDeleteOAuth2TokenRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *OAuth2ApiService) DeleteOAuth2TokenExecute(r OAuth2ApiDeleteOAuth2TokenRequest) (*http.Response, error) {
+func (a *OAuth2APIService) DeleteOAuth2TokenExecute(r OAuth2APIDeleteOAuth2TokenRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.DeleteOAuth2Token")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.DeleteOAuth2Token")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1218,7 +1224,7 @@ func (a *OAuth2ApiService) DeleteOAuth2TokenExecute(r OAuth2ApiDeleteOAuth2Token
 		return nil, reportError("clientId is required and must be specified")
 	}
 
-	localVarQueryParams.Add("client_id", parameterToString(*r.clientId, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1246,9 +1252,9 @@ func (a *OAuth2ApiService) DeleteOAuth2TokenExecute(r OAuth2ApiDeleteOAuth2Token
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -1264,20 +1270,21 @@ func (a *OAuth2ApiService) DeleteOAuth2TokenExecute(r OAuth2ApiDeleteOAuth2Token
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type OAuth2ApiDeleteTrustedOAuth2JwtGrantIssuerRequest struct {
+type OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	id string
 }
 
-func (r OAuth2ApiDeleteTrustedOAuth2JwtGrantIssuerRequest) Execute() (*http.Response, error) {
+func (r OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteTrustedOAuth2JwtGrantIssuerExecute(r)
 }
 
@@ -1292,10 +1299,10 @@ for OAuth 2.0 Client Authentication and Authorization Grant.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the desired grant
- @return OAuth2ApiDeleteTrustedOAuth2JwtGrantIssuerRequest
+ @return OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest
 */
-func (a *OAuth2ApiService) DeleteTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) OAuth2ApiDeleteTrustedOAuth2JwtGrantIssuerRequest {
-	return OAuth2ApiDeleteTrustedOAuth2JwtGrantIssuerRequest{
+func (a *OAuth2APIService) DeleteTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest {
+	return OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -1303,20 +1310,20 @@ func (a *OAuth2ApiService) DeleteTrustedOAuth2JwtGrantIssuer(ctx context.Context
 }
 
 // Execute executes the request
-func (a *OAuth2ApiService) DeleteTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiDeleteTrustedOAuth2JwtGrantIssuerRequest) (*http.Response, error) {
+func (a *OAuth2APIService) DeleteTrustedOAuth2JwtGrantIssuerExecute(r OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.DeleteTrustedOAuth2JwtGrantIssuer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.DeleteTrustedOAuth2JwtGrantIssuer")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/trust/grants/jwt-bearer/issuers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1349,9 +1356,9 @@ func (a *OAuth2ApiService) DeleteTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiD
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -1367,20 +1374,21 @@ func (a *OAuth2ApiService) DeleteTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiD
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type OAuth2ApiGetOAuth2ClientRequest struct {
+type OAuth2APIGetOAuth2ClientRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	id string
 }
 
-func (r OAuth2ApiGetOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+func (r OAuth2APIGetOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
 	return r.ApiService.GetOAuth2ClientExecute(r)
 }
 
@@ -1394,10 +1402,10 @@ generated for applications which want to consume your OAuth 2.0 or OpenID Connec
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the OAuth 2.0 Client.
- @return OAuth2ApiGetOAuth2ClientRequest
+ @return OAuth2APIGetOAuth2ClientRequest
 */
-func (a *OAuth2ApiService) GetOAuth2Client(ctx context.Context, id string) OAuth2ApiGetOAuth2ClientRequest {
-	return OAuth2ApiGetOAuth2ClientRequest{
+func (a *OAuth2APIService) GetOAuth2Client(ctx context.Context, id string) OAuth2APIGetOAuth2ClientRequest {
+	return OAuth2APIGetOAuth2ClientRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -1406,7 +1414,7 @@ func (a *OAuth2ApiService) GetOAuth2Client(ctx context.Context, id string) OAuth
 
 // Execute executes the request
 //  @return OAuth2Client
-func (a *OAuth2ApiService) GetOAuth2ClientExecute(r OAuth2ApiGetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+func (a *OAuth2APIService) GetOAuth2ClientExecute(r OAuth2APIGetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1414,13 +1422,13 @@ func (a *OAuth2ApiService) GetOAuth2ClientExecute(r OAuth2ApiGetOAuth2ClientRequ
 		localVarReturnValue  *OAuth2Client
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.GetOAuth2Client")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.GetOAuth2Client")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/clients/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1453,9 +1461,9 @@ func (a *OAuth2ApiService) GetOAuth2ClientExecute(r OAuth2ApiGetOAuth2ClientRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1471,7 +1479,8 @@ func (a *OAuth2ApiService) GetOAuth2ClientExecute(r OAuth2ApiGetOAuth2ClientRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1487,19 +1496,19 @@ func (a *OAuth2ApiService) GetOAuth2ClientExecute(r OAuth2ApiGetOAuth2ClientRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiGetOAuth2ConsentRequestRequest struct {
+type OAuth2APIGetOAuth2ConsentRequestRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	consentChallenge *string
 }
 
 // OAuth 2.0 Consent Request Challenge
-func (r OAuth2ApiGetOAuth2ConsentRequestRequest) ConsentChallenge(consentChallenge string) OAuth2ApiGetOAuth2ConsentRequestRequest {
+func (r OAuth2APIGetOAuth2ConsentRequestRequest) ConsentChallenge(consentChallenge string) OAuth2APIGetOAuth2ConsentRequestRequest {
 	r.consentChallenge = &consentChallenge
 	return r
 }
 
-func (r OAuth2ApiGetOAuth2ConsentRequestRequest) Execute() (*OAuth2ConsentRequest, *http.Response, error) {
+func (r OAuth2APIGetOAuth2ConsentRequestRequest) Execute() (*OAuth2ConsentRequest, *http.Response, error) {
 	return r.ApiService.GetOAuth2ConsentRequestExecute(r)
 }
 
@@ -1518,10 +1527,10 @@ The default consent provider is available via the Ory Managed Account Experience
 head over to the OAuth 2.0 documentation.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiGetOAuth2ConsentRequestRequest
+ @return OAuth2APIGetOAuth2ConsentRequestRequest
 */
-func (a *OAuth2ApiService) GetOAuth2ConsentRequest(ctx context.Context) OAuth2ApiGetOAuth2ConsentRequestRequest {
-	return OAuth2ApiGetOAuth2ConsentRequestRequest{
+func (a *OAuth2APIService) GetOAuth2ConsentRequest(ctx context.Context) OAuth2APIGetOAuth2ConsentRequestRequest {
+	return OAuth2APIGetOAuth2ConsentRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1529,7 +1538,7 @@ func (a *OAuth2ApiService) GetOAuth2ConsentRequest(ctx context.Context) OAuth2Ap
 
 // Execute executes the request
 //  @return OAuth2ConsentRequest
-func (a *OAuth2ApiService) GetOAuth2ConsentRequestExecute(r OAuth2ApiGetOAuth2ConsentRequestRequest) (*OAuth2ConsentRequest, *http.Response, error) {
+func (a *OAuth2APIService) GetOAuth2ConsentRequestExecute(r OAuth2APIGetOAuth2ConsentRequestRequest) (*OAuth2ConsentRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1537,7 +1546,7 @@ func (a *OAuth2ApiService) GetOAuth2ConsentRequestExecute(r OAuth2ApiGetOAuth2Co
 		localVarReturnValue  *OAuth2ConsentRequest
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.GetOAuth2ConsentRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.GetOAuth2ConsentRequest")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1551,7 +1560,7 @@ func (a *OAuth2ApiService) GetOAuth2ConsentRequestExecute(r OAuth2ApiGetOAuth2Co
 		return localVarReturnValue, nil, reportError("consentChallenge is required and must be specified")
 	}
 
-	localVarQueryParams.Add("consent_challenge", parameterToString(*r.consentChallenge, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "consent_challenge", r.consentChallenge, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1579,9 +1588,9 @@ func (a *OAuth2ApiService) GetOAuth2ConsentRequestExecute(r OAuth2ApiGetOAuth2Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1598,7 +1607,8 @@ func (a *OAuth2ApiService) GetOAuth2ConsentRequestExecute(r OAuth2ApiGetOAuth2Co
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorOAuth2
@@ -1607,7 +1617,8 @@ func (a *OAuth2ApiService) GetOAuth2ConsentRequestExecute(r OAuth2ApiGetOAuth2Co
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1623,19 +1634,19 @@ func (a *OAuth2ApiService) GetOAuth2ConsentRequestExecute(r OAuth2ApiGetOAuth2Co
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiGetOAuth2LoginRequestRequest struct {
+type OAuth2APIGetOAuth2LoginRequestRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	loginChallenge *string
 }
 
 // OAuth 2.0 Login Request Challenge
-func (r OAuth2ApiGetOAuth2LoginRequestRequest) LoginChallenge(loginChallenge string) OAuth2ApiGetOAuth2LoginRequestRequest {
+func (r OAuth2APIGetOAuth2LoginRequestRequest) LoginChallenge(loginChallenge string) OAuth2APIGetOAuth2LoginRequestRequest {
 	r.loginChallenge = &loginChallenge
 	return r
 }
 
-func (r OAuth2ApiGetOAuth2LoginRequestRequest) Execute() (*OAuth2LoginRequest, *http.Response, error) {
+func (r OAuth2APIGetOAuth2LoginRequestRequest) Execute() (*OAuth2LoginRequest, *http.Response, error) {
 	return r.ApiService.GetOAuth2LoginRequestExecute(r)
 }
 
@@ -1653,10 +1664,10 @@ The authentication challenge is appended to the login provider URL to which the 
 provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiGetOAuth2LoginRequestRequest
+ @return OAuth2APIGetOAuth2LoginRequestRequest
 */
-func (a *OAuth2ApiService) GetOAuth2LoginRequest(ctx context.Context) OAuth2ApiGetOAuth2LoginRequestRequest {
-	return OAuth2ApiGetOAuth2LoginRequestRequest{
+func (a *OAuth2APIService) GetOAuth2LoginRequest(ctx context.Context) OAuth2APIGetOAuth2LoginRequestRequest {
+	return OAuth2APIGetOAuth2LoginRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1664,7 +1675,7 @@ func (a *OAuth2ApiService) GetOAuth2LoginRequest(ctx context.Context) OAuth2ApiG
 
 // Execute executes the request
 //  @return OAuth2LoginRequest
-func (a *OAuth2ApiService) GetOAuth2LoginRequestExecute(r OAuth2ApiGetOAuth2LoginRequestRequest) (*OAuth2LoginRequest, *http.Response, error) {
+func (a *OAuth2APIService) GetOAuth2LoginRequestExecute(r OAuth2APIGetOAuth2LoginRequestRequest) (*OAuth2LoginRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1672,7 +1683,7 @@ func (a *OAuth2ApiService) GetOAuth2LoginRequestExecute(r OAuth2ApiGetOAuth2Logi
 		localVarReturnValue  *OAuth2LoginRequest
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.GetOAuth2LoginRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.GetOAuth2LoginRequest")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1686,7 +1697,7 @@ func (a *OAuth2ApiService) GetOAuth2LoginRequestExecute(r OAuth2ApiGetOAuth2Logi
 		return localVarReturnValue, nil, reportError("loginChallenge is required and must be specified")
 	}
 
-	localVarQueryParams.Add("login_challenge", parameterToString(*r.loginChallenge, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "login_challenge", r.loginChallenge, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1714,9 +1725,9 @@ func (a *OAuth2ApiService) GetOAuth2LoginRequestExecute(r OAuth2ApiGetOAuth2Logi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1733,7 +1744,8 @@ func (a *OAuth2ApiService) GetOAuth2LoginRequestExecute(r OAuth2ApiGetOAuth2Logi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorOAuth2
@@ -1742,7 +1754,8 @@ func (a *OAuth2ApiService) GetOAuth2LoginRequestExecute(r OAuth2ApiGetOAuth2Logi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1758,18 +1771,18 @@ func (a *OAuth2ApiService) GetOAuth2LoginRequestExecute(r OAuth2ApiGetOAuth2Logi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiGetOAuth2LogoutRequestRequest struct {
+type OAuth2APIGetOAuth2LogoutRequestRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	logoutChallenge *string
 }
 
-func (r OAuth2ApiGetOAuth2LogoutRequestRequest) LogoutChallenge(logoutChallenge string) OAuth2ApiGetOAuth2LogoutRequestRequest {
+func (r OAuth2APIGetOAuth2LogoutRequestRequest) LogoutChallenge(logoutChallenge string) OAuth2APIGetOAuth2LogoutRequestRequest {
 	r.logoutChallenge = &logoutChallenge
 	return r
 }
 
-func (r OAuth2ApiGetOAuth2LogoutRequestRequest) Execute() (*OAuth2LogoutRequest, *http.Response, error) {
+func (r OAuth2APIGetOAuth2LogoutRequestRequest) Execute() (*OAuth2LogoutRequest, *http.Response, error) {
 	return r.ApiService.GetOAuth2LogoutRequestExecute(r)
 }
 
@@ -1779,10 +1792,10 @@ GetOAuth2LogoutRequest Get OAuth 2.0 Session Logout Request
 Use this endpoint to fetch an Ory OAuth 2.0 logout request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiGetOAuth2LogoutRequestRequest
+ @return OAuth2APIGetOAuth2LogoutRequestRequest
 */
-func (a *OAuth2ApiService) GetOAuth2LogoutRequest(ctx context.Context) OAuth2ApiGetOAuth2LogoutRequestRequest {
-	return OAuth2ApiGetOAuth2LogoutRequestRequest{
+func (a *OAuth2APIService) GetOAuth2LogoutRequest(ctx context.Context) OAuth2APIGetOAuth2LogoutRequestRequest {
+	return OAuth2APIGetOAuth2LogoutRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1790,7 +1803,7 @@ func (a *OAuth2ApiService) GetOAuth2LogoutRequest(ctx context.Context) OAuth2Api
 
 // Execute executes the request
 //  @return OAuth2LogoutRequest
-func (a *OAuth2ApiService) GetOAuth2LogoutRequestExecute(r OAuth2ApiGetOAuth2LogoutRequestRequest) (*OAuth2LogoutRequest, *http.Response, error) {
+func (a *OAuth2APIService) GetOAuth2LogoutRequestExecute(r OAuth2APIGetOAuth2LogoutRequestRequest) (*OAuth2LogoutRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1798,7 +1811,7 @@ func (a *OAuth2ApiService) GetOAuth2LogoutRequestExecute(r OAuth2ApiGetOAuth2Log
 		localVarReturnValue  *OAuth2LogoutRequest
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.GetOAuth2LogoutRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.GetOAuth2LogoutRequest")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1812,7 +1825,7 @@ func (a *OAuth2ApiService) GetOAuth2LogoutRequestExecute(r OAuth2ApiGetOAuth2Log
 		return localVarReturnValue, nil, reportError("logoutChallenge is required and must be specified")
 	}
 
-	localVarQueryParams.Add("logout_challenge", parameterToString(*r.logoutChallenge, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "logout_challenge", r.logoutChallenge, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1840,9 +1853,9 @@ func (a *OAuth2ApiService) GetOAuth2LogoutRequestExecute(r OAuth2ApiGetOAuth2Log
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1859,7 +1872,8 @@ func (a *OAuth2ApiService) GetOAuth2LogoutRequestExecute(r OAuth2ApiGetOAuth2Log
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorOAuth2
@@ -1868,7 +1882,8 @@ func (a *OAuth2ApiService) GetOAuth2LogoutRequestExecute(r OAuth2ApiGetOAuth2Log
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1884,13 +1899,13 @@ func (a *OAuth2ApiService) GetOAuth2LogoutRequestExecute(r OAuth2ApiGetOAuth2Log
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiGetTrustedOAuth2JwtGrantIssuerRequest struct {
+type OAuth2APIGetTrustedOAuth2JwtGrantIssuerRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	id string
 }
 
-func (r OAuth2ApiGetTrustedOAuth2JwtGrantIssuerRequest) Execute() (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+func (r OAuth2APIGetTrustedOAuth2JwtGrantIssuerRequest) Execute() (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
 	return r.ApiService.GetTrustedOAuth2JwtGrantIssuerExecute(r)
 }
 
@@ -1902,10 +1917,10 @@ created the trust relationship.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the desired grant
- @return OAuth2ApiGetTrustedOAuth2JwtGrantIssuerRequest
+ @return OAuth2APIGetTrustedOAuth2JwtGrantIssuerRequest
 */
-func (a *OAuth2ApiService) GetTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) OAuth2ApiGetTrustedOAuth2JwtGrantIssuerRequest {
-	return OAuth2ApiGetTrustedOAuth2JwtGrantIssuerRequest{
+func (a *OAuth2APIService) GetTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) OAuth2APIGetTrustedOAuth2JwtGrantIssuerRequest {
+	return OAuth2APIGetTrustedOAuth2JwtGrantIssuerRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -1914,7 +1929,7 @@ func (a *OAuth2ApiService) GetTrustedOAuth2JwtGrantIssuer(ctx context.Context, i
 
 // Execute executes the request
 //  @return TrustedOAuth2JwtGrantIssuer
-func (a *OAuth2ApiService) GetTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiGetTrustedOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+func (a *OAuth2APIService) GetTrustedOAuth2JwtGrantIssuerExecute(r OAuth2APIGetTrustedOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1922,13 +1937,13 @@ func (a *OAuth2ApiService) GetTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiGetT
 		localVarReturnValue  *TrustedOAuth2JwtGrantIssuer
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.GetTrustedOAuth2JwtGrantIssuer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.GetTrustedOAuth2JwtGrantIssuer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/trust/grants/jwt-bearer/issuers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1961,9 +1976,9 @@ func (a *OAuth2ApiService) GetTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiGetT
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1979,7 +1994,8 @@ func (a *OAuth2ApiService) GetTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiGetT
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1995,26 +2011,26 @@ func (a *OAuth2ApiService) GetTrustedOAuth2JwtGrantIssuerExecute(r OAuth2ApiGetT
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiIntrospectOAuth2TokenRequest struct {
+type OAuth2APIIntrospectOAuth2TokenRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	token *string
 	scope *string
 }
 
 // The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned.
-func (r OAuth2ApiIntrospectOAuth2TokenRequest) Token(token string) OAuth2ApiIntrospectOAuth2TokenRequest {
+func (r OAuth2APIIntrospectOAuth2TokenRequest) Token(token string) OAuth2APIIntrospectOAuth2TokenRequest {
 	r.token = &token
 	return r
 }
 
 // An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false.
-func (r OAuth2ApiIntrospectOAuth2TokenRequest) Scope(scope string) OAuth2ApiIntrospectOAuth2TokenRequest {
+func (r OAuth2APIIntrospectOAuth2TokenRequest) Scope(scope string) OAuth2APIIntrospectOAuth2TokenRequest {
 	r.scope = &scope
 	return r
 }
 
-func (r OAuth2ApiIntrospectOAuth2TokenRequest) Execute() (*IntrospectedOAuth2Token, *http.Response, error) {
+func (r OAuth2APIIntrospectOAuth2TokenRequest) Execute() (*IntrospectedOAuth2Token, *http.Response, error) {
 	return r.ApiService.IntrospectOAuth2TokenExecute(r)
 }
 
@@ -2026,10 +2042,10 @@ is neither expired nor revoked. If a token is active, additional information on 
 set additional data for a token by setting `session.access_token` during the consent flow.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiIntrospectOAuth2TokenRequest
+ @return OAuth2APIIntrospectOAuth2TokenRequest
 */
-func (a *OAuth2ApiService) IntrospectOAuth2Token(ctx context.Context) OAuth2ApiIntrospectOAuth2TokenRequest {
-	return OAuth2ApiIntrospectOAuth2TokenRequest{
+func (a *OAuth2APIService) IntrospectOAuth2Token(ctx context.Context) OAuth2APIIntrospectOAuth2TokenRequest {
+	return OAuth2APIIntrospectOAuth2TokenRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -2037,7 +2053,7 @@ func (a *OAuth2ApiService) IntrospectOAuth2Token(ctx context.Context) OAuth2ApiI
 
 // Execute executes the request
 //  @return IntrospectedOAuth2Token
-func (a *OAuth2ApiService) IntrospectOAuth2TokenExecute(r OAuth2ApiIntrospectOAuth2TokenRequest) (*IntrospectedOAuth2Token, *http.Response, error) {
+func (a *OAuth2APIService) IntrospectOAuth2TokenExecute(r OAuth2APIIntrospectOAuth2TokenRequest) (*IntrospectedOAuth2Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -2045,7 +2061,7 @@ func (a *OAuth2ApiService) IntrospectOAuth2TokenExecute(r OAuth2ApiIntrospectOAu
 		localVarReturnValue  *IntrospectedOAuth2Token
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.IntrospectOAuth2Token")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.IntrospectOAuth2Token")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2077,9 +2093,9 @@ func (a *OAuth2ApiService) IntrospectOAuth2TokenExecute(r OAuth2ApiIntrospectOAu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.scope != nil {
-		localVarFormParams.Add("scope", parameterToString(*r.scope, ""))
+		parameterAddToHeaderOrQuery(localVarFormParams, "scope", r.scope, "")
 	}
-	localVarFormParams.Add("token", parameterToString(*r.token, ""))
+	parameterAddToHeaderOrQuery(localVarFormParams, "token", r.token, "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2090,9 +2106,9 @@ func (a *OAuth2ApiService) IntrospectOAuth2TokenExecute(r OAuth2ApiIntrospectOAu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2108,7 +2124,8 @@ func (a *OAuth2ApiService) IntrospectOAuth2TokenExecute(r OAuth2ApiIntrospectOAu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2124,9 +2141,9 @@ func (a *OAuth2ApiService) IntrospectOAuth2TokenExecute(r OAuth2ApiIntrospectOAu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiListOAuth2ClientsRequest struct {
+type OAuth2APIListOAuth2ClientsRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	pageSize *int64
 	pageToken *string
 	clientName *string
@@ -2134,30 +2151,30 @@ type OAuth2ApiListOAuth2ClientsRequest struct {
 }
 
 // Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-func (r OAuth2ApiListOAuth2ClientsRequest) PageSize(pageSize int64) OAuth2ApiListOAuth2ClientsRequest {
+func (r OAuth2APIListOAuth2ClientsRequest) PageSize(pageSize int64) OAuth2APIListOAuth2ClientsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-func (r OAuth2ApiListOAuth2ClientsRequest) PageToken(pageToken string) OAuth2ApiListOAuth2ClientsRequest {
+func (r OAuth2APIListOAuth2ClientsRequest) PageToken(pageToken string) OAuth2APIListOAuth2ClientsRequest {
 	r.pageToken = &pageToken
 	return r
 }
 
 // The name of the clients to filter by.
-func (r OAuth2ApiListOAuth2ClientsRequest) ClientName(clientName string) OAuth2ApiListOAuth2ClientsRequest {
+func (r OAuth2APIListOAuth2ClientsRequest) ClientName(clientName string) OAuth2APIListOAuth2ClientsRequest {
 	r.clientName = &clientName
 	return r
 }
 
 // The owner of the clients to filter by.
-func (r OAuth2ApiListOAuth2ClientsRequest) Owner(owner string) OAuth2ApiListOAuth2ClientsRequest {
+func (r OAuth2APIListOAuth2ClientsRequest) Owner(owner string) OAuth2APIListOAuth2ClientsRequest {
 	r.owner = &owner
 	return r
 }
 
-func (r OAuth2ApiListOAuth2ClientsRequest) Execute() ([]OAuth2Client, *http.Response, error) {
+func (r OAuth2APIListOAuth2ClientsRequest) Execute() ([]OAuth2Client, *http.Response, error) {
 	return r.ApiService.ListOAuth2ClientsExecute(r)
 }
 
@@ -2168,10 +2185,10 @@ This endpoint lists all clients in the database, and never returns client secret
 As a default it lists the first 100 clients.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiListOAuth2ClientsRequest
+ @return OAuth2APIListOAuth2ClientsRequest
 */
-func (a *OAuth2ApiService) ListOAuth2Clients(ctx context.Context) OAuth2ApiListOAuth2ClientsRequest {
-	return OAuth2ApiListOAuth2ClientsRequest{
+func (a *OAuth2APIService) ListOAuth2Clients(ctx context.Context) OAuth2APIListOAuth2ClientsRequest {
+	return OAuth2APIListOAuth2ClientsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -2179,7 +2196,7 @@ func (a *OAuth2ApiService) ListOAuth2Clients(ctx context.Context) OAuth2ApiListO
 
 // Execute executes the request
 //  @return []OAuth2Client
-func (a *OAuth2ApiService) ListOAuth2ClientsExecute(r OAuth2ApiListOAuth2ClientsRequest) ([]OAuth2Client, *http.Response, error) {
+func (a *OAuth2APIService) ListOAuth2ClientsExecute(r OAuth2APIListOAuth2ClientsRequest) ([]OAuth2Client, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2187,7 +2204,7 @@ func (a *OAuth2ApiService) ListOAuth2ClientsExecute(r OAuth2ApiListOAuth2Clients
 		localVarReturnValue  []OAuth2Client
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.ListOAuth2Clients")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.ListOAuth2Clients")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2199,16 +2216,22 @@ func (a *OAuth2ApiService) ListOAuth2ClientsExecute(r OAuth2ApiListOAuth2Clients
 	localVarFormParams := url.Values{}
 
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+	} else {
+		var defaultValue int64 = 250
+		r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
-		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+	} else {
+		var defaultValue string = "1"
+		r.pageToken = &defaultValue
 	}
 	if r.clientName != nil {
-		localVarQueryParams.Add("client_name", parameterToString(*r.clientName, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_name", r.clientName, "")
 	}
 	if r.owner != nil {
-		localVarQueryParams.Add("owner", parameterToString(*r.owner, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "owner", r.owner, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2237,9 +2260,9 @@ func (a *OAuth2ApiService) ListOAuth2ClientsExecute(r OAuth2ApiListOAuth2Clients
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2255,7 +2278,8 @@ func (a *OAuth2ApiService) ListOAuth2ClientsExecute(r OAuth2ApiListOAuth2Clients
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2271,9 +2295,9 @@ func (a *OAuth2ApiService) ListOAuth2ClientsExecute(r OAuth2ApiListOAuth2Clients
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiListOAuth2ConsentSessionsRequest struct {
+type OAuth2APIListOAuth2ConsentSessionsRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	subject *string
 	pageSize *int64
 	pageToken *string
@@ -2281,30 +2305,30 @@ type OAuth2ApiListOAuth2ConsentSessionsRequest struct {
 }
 
 // The subject to list the consent sessions for.
-func (r OAuth2ApiListOAuth2ConsentSessionsRequest) Subject(subject string) OAuth2ApiListOAuth2ConsentSessionsRequest {
+func (r OAuth2APIListOAuth2ConsentSessionsRequest) Subject(subject string) OAuth2APIListOAuth2ConsentSessionsRequest {
 	r.subject = &subject
 	return r
 }
 
 // Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-func (r OAuth2ApiListOAuth2ConsentSessionsRequest) PageSize(pageSize int64) OAuth2ApiListOAuth2ConsentSessionsRequest {
+func (r OAuth2APIListOAuth2ConsentSessionsRequest) PageSize(pageSize int64) OAuth2APIListOAuth2ConsentSessionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-func (r OAuth2ApiListOAuth2ConsentSessionsRequest) PageToken(pageToken string) OAuth2ApiListOAuth2ConsentSessionsRequest {
+func (r OAuth2APIListOAuth2ConsentSessionsRequest) PageToken(pageToken string) OAuth2APIListOAuth2ConsentSessionsRequest {
 	r.pageToken = &pageToken
 	return r
 }
 
 // The login session id to list the consent sessions for.
-func (r OAuth2ApiListOAuth2ConsentSessionsRequest) LoginSessionId(loginSessionId string) OAuth2ApiListOAuth2ConsentSessionsRequest {
+func (r OAuth2APIListOAuth2ConsentSessionsRequest) LoginSessionId(loginSessionId string) OAuth2APIListOAuth2ConsentSessionsRequest {
 	r.loginSessionId = &loginSessionId
 	return r
 }
 
-func (r OAuth2ApiListOAuth2ConsentSessionsRequest) Execute() ([]OAuth2ConsentSession, *http.Response, error) {
+func (r OAuth2APIListOAuth2ConsentSessionsRequest) Execute() ([]OAuth2ConsentSession, *http.Response, error) {
 	return r.ApiService.ListOAuth2ConsentSessionsExecute(r)
 }
 
@@ -2316,10 +2340,10 @@ If the subject is unknown or has not granted any consent sessions yet, the endpo
 empty JSON array with status code 200 OK.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiListOAuth2ConsentSessionsRequest
+ @return OAuth2APIListOAuth2ConsentSessionsRequest
 */
-func (a *OAuth2ApiService) ListOAuth2ConsentSessions(ctx context.Context) OAuth2ApiListOAuth2ConsentSessionsRequest {
-	return OAuth2ApiListOAuth2ConsentSessionsRequest{
+func (a *OAuth2APIService) ListOAuth2ConsentSessions(ctx context.Context) OAuth2APIListOAuth2ConsentSessionsRequest {
+	return OAuth2APIListOAuth2ConsentSessionsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -2327,7 +2351,7 @@ func (a *OAuth2ApiService) ListOAuth2ConsentSessions(ctx context.Context) OAuth2
 
 // Execute executes the request
 //  @return []OAuth2ConsentSession
-func (a *OAuth2ApiService) ListOAuth2ConsentSessionsExecute(r OAuth2ApiListOAuth2ConsentSessionsRequest) ([]OAuth2ConsentSession, *http.Response, error) {
+func (a *OAuth2APIService) ListOAuth2ConsentSessionsExecute(r OAuth2APIListOAuth2ConsentSessionsRequest) ([]OAuth2ConsentSession, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2335,7 +2359,7 @@ func (a *OAuth2ApiService) ListOAuth2ConsentSessionsExecute(r OAuth2ApiListOAuth
 		localVarReturnValue  []OAuth2ConsentSession
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.ListOAuth2ConsentSessions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.ListOAuth2ConsentSessions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2350,14 +2374,20 @@ func (a *OAuth2ApiService) ListOAuth2ConsentSessionsExecute(r OAuth2ApiListOAuth
 	}
 
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+	} else {
+		var defaultValue int64 = 250
+		r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
-		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+	} else {
+		var defaultValue string = "1"
+		r.pageToken = &defaultValue
 	}
-	localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "")
 	if r.loginSessionId != nil {
-		localVarQueryParams.Add("login_session_id", parameterToString(*r.loginSessionId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "login_session_id", r.loginSessionId, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2386,9 +2416,9 @@ func (a *OAuth2ApiService) ListOAuth2ConsentSessionsExecute(r OAuth2ApiListOAuth
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2404,7 +2434,8 @@ func (a *OAuth2ApiService) ListOAuth2ConsentSessionsExecute(r OAuth2ApiListOAuth
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2420,31 +2451,31 @@ func (a *OAuth2ApiService) ListOAuth2ConsentSessionsExecute(r OAuth2ApiListOAuth
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest struct {
+type OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	maxItems *int64
 	defaultItems *int64
 	issuer *string
 }
 
-func (r OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest) MaxItems(maxItems int64) OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest {
+func (r OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest) MaxItems(maxItems int64) OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest {
 	r.maxItems = &maxItems
 	return r
 }
 
-func (r OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest) DefaultItems(defaultItems int64) OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest {
+func (r OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest) DefaultItems(defaultItems int64) OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest {
 	r.defaultItems = &defaultItems
 	return r
 }
 
 // If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned.
-func (r OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest) Issuer(issuer string) OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest {
+func (r OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest) Issuer(issuer string) OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest {
 	r.issuer = &issuer
 	return r
 }
 
-func (r OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest) Execute() ([]TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+func (r OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest) Execute() ([]TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
 	return r.ApiService.ListTrustedOAuth2JwtGrantIssuersExecute(r)
 }
 
@@ -2454,10 +2485,10 @@ ListTrustedOAuth2JwtGrantIssuers List Trusted OAuth2 JWT Bearer Grant Type Issue
 Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest
+ @return OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest
 */
-func (a *OAuth2ApiService) ListTrustedOAuth2JwtGrantIssuers(ctx context.Context) OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest {
-	return OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest{
+func (a *OAuth2APIService) ListTrustedOAuth2JwtGrantIssuers(ctx context.Context) OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest {
+	return OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -2465,7 +2496,7 @@ func (a *OAuth2ApiService) ListTrustedOAuth2JwtGrantIssuers(ctx context.Context)
 
 // Execute executes the request
 //  @return []TrustedOAuth2JwtGrantIssuer
-func (a *OAuth2ApiService) ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2ApiListTrustedOAuth2JwtGrantIssuersRequest) ([]TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+func (a *OAuth2APIService) ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2APIListTrustedOAuth2JwtGrantIssuersRequest) ([]TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2473,7 +2504,7 @@ func (a *OAuth2ApiService) ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2ApiLi
 		localVarReturnValue  []TrustedOAuth2JwtGrantIssuer
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.ListTrustedOAuth2JwtGrantIssuers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.ListTrustedOAuth2JwtGrantIssuers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2485,13 +2516,13 @@ func (a *OAuth2ApiService) ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2ApiLi
 	localVarFormParams := url.Values{}
 
 	if r.maxItems != nil {
-		localVarQueryParams.Add("MaxItems", parameterToString(*r.maxItems, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "MaxItems", r.maxItems, "")
 	}
 	if r.defaultItems != nil {
-		localVarQueryParams.Add("DefaultItems", parameterToString(*r.defaultItems, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "DefaultItems", r.defaultItems, "")
 	}
 	if r.issuer != nil {
-		localVarQueryParams.Add("issuer", parameterToString(*r.issuer, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "issuer", r.issuer, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2520,9 +2551,9 @@ func (a *OAuth2ApiService) ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2ApiLi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2538,7 +2569,8 @@ func (a *OAuth2ApiService) ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2ApiLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2554,12 +2586,12 @@ func (a *OAuth2ApiService) ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2ApiLi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiOAuth2AuthorizeRequest struct {
+type OAuth2APIOAuth2AuthorizeRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 }
 
-func (r OAuth2ApiOAuth2AuthorizeRequest) Execute() (*ErrorOAuth2, *http.Response, error) {
+func (r OAuth2APIOAuth2AuthorizeRequest) Execute() (*ErrorOAuth2, *http.Response, error) {
 	return r.ApiService.OAuth2AuthorizeExecute(r)
 }
 
@@ -2572,10 +2604,10 @@ available for any programming language. You can find a list of libraries at http
 The Ory SDK is not yet able to this endpoint properly.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiOAuth2AuthorizeRequest
+ @return OAuth2APIOAuth2AuthorizeRequest
 */
-func (a *OAuth2ApiService) OAuth2Authorize(ctx context.Context) OAuth2ApiOAuth2AuthorizeRequest {
-	return OAuth2ApiOAuth2AuthorizeRequest{
+func (a *OAuth2APIService) OAuth2Authorize(ctx context.Context) OAuth2APIOAuth2AuthorizeRequest {
+	return OAuth2APIOAuth2AuthorizeRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -2583,7 +2615,7 @@ func (a *OAuth2ApiService) OAuth2Authorize(ctx context.Context) OAuth2ApiOAuth2A
 
 // Execute executes the request
 //  @return ErrorOAuth2
-func (a *OAuth2ApiService) OAuth2AuthorizeExecute(r OAuth2ApiOAuth2AuthorizeRequest) (*ErrorOAuth2, *http.Response, error) {
+func (a *OAuth2APIService) OAuth2AuthorizeExecute(r OAuth2APIOAuth2AuthorizeRequest) (*ErrorOAuth2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2591,7 +2623,7 @@ func (a *OAuth2ApiService) OAuth2AuthorizeExecute(r OAuth2ApiOAuth2AuthorizeRequ
 		localVarReturnValue  *ErrorOAuth2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.OAuth2Authorize")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.OAuth2Authorize")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2629,9 +2661,9 @@ func (a *OAuth2ApiService) OAuth2AuthorizeExecute(r OAuth2ApiOAuth2AuthorizeRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2647,7 +2679,8 @@ func (a *OAuth2ApiService) OAuth2AuthorizeExecute(r OAuth2ApiOAuth2AuthorizeRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2663,9 +2696,9 @@ func (a *OAuth2ApiService) OAuth2AuthorizeExecute(r OAuth2ApiOAuth2AuthorizeRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiOauth2TokenExchangeRequest struct {
+type OAuth2APIOauth2TokenExchangeRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	grantType *string
 	clientId *string
 	code *string
@@ -2673,32 +2706,32 @@ type OAuth2ApiOauth2TokenExchangeRequest struct {
 	refreshToken *string
 }
 
-func (r OAuth2ApiOauth2TokenExchangeRequest) GrantType(grantType string) OAuth2ApiOauth2TokenExchangeRequest {
+func (r OAuth2APIOauth2TokenExchangeRequest) GrantType(grantType string) OAuth2APIOauth2TokenExchangeRequest {
 	r.grantType = &grantType
 	return r
 }
 
-func (r OAuth2ApiOauth2TokenExchangeRequest) ClientId(clientId string) OAuth2ApiOauth2TokenExchangeRequest {
+func (r OAuth2APIOauth2TokenExchangeRequest) ClientId(clientId string) OAuth2APIOauth2TokenExchangeRequest {
 	r.clientId = &clientId
 	return r
 }
 
-func (r OAuth2ApiOauth2TokenExchangeRequest) Code(code string) OAuth2ApiOauth2TokenExchangeRequest {
+func (r OAuth2APIOauth2TokenExchangeRequest) Code(code string) OAuth2APIOauth2TokenExchangeRequest {
 	r.code = &code
 	return r
 }
 
-func (r OAuth2ApiOauth2TokenExchangeRequest) RedirectUri(redirectUri string) OAuth2ApiOauth2TokenExchangeRequest {
+func (r OAuth2APIOauth2TokenExchangeRequest) RedirectUri(redirectUri string) OAuth2APIOauth2TokenExchangeRequest {
 	r.redirectUri = &redirectUri
 	return r
 }
 
-func (r OAuth2ApiOauth2TokenExchangeRequest) RefreshToken(refreshToken string) OAuth2ApiOauth2TokenExchangeRequest {
+func (r OAuth2APIOauth2TokenExchangeRequest) RefreshToken(refreshToken string) OAuth2APIOauth2TokenExchangeRequest {
 	r.refreshToken = &refreshToken
 	return r
 }
 
-func (r OAuth2ApiOauth2TokenExchangeRequest) Execute() (*OAuth2TokenExchange, *http.Response, error) {
+func (r OAuth2APIOauth2TokenExchangeRequest) Execute() (*OAuth2TokenExchange, *http.Response, error) {
 	return r.ApiService.Oauth2TokenExchangeExecute(r)
 }
 
@@ -2711,10 +2744,10 @@ available for any programming language. You can find a list of libraries here ht
 The Ory SDK is not yet able to this endpoint properly.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiOauth2TokenExchangeRequest
+ @return OAuth2APIOauth2TokenExchangeRequest
 */
-func (a *OAuth2ApiService) Oauth2TokenExchange(ctx context.Context) OAuth2ApiOauth2TokenExchangeRequest {
-	return OAuth2ApiOauth2TokenExchangeRequest{
+func (a *OAuth2APIService) Oauth2TokenExchange(ctx context.Context) OAuth2APIOauth2TokenExchangeRequest {
+	return OAuth2APIOauth2TokenExchangeRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -2722,7 +2755,7 @@ func (a *OAuth2ApiService) Oauth2TokenExchange(ctx context.Context) OAuth2ApiOau
 
 // Execute executes the request
 //  @return OAuth2TokenExchange
-func (a *OAuth2ApiService) Oauth2TokenExchangeExecute(r OAuth2ApiOauth2TokenExchangeRequest) (*OAuth2TokenExchange, *http.Response, error) {
+func (a *OAuth2APIService) Oauth2TokenExchangeExecute(r OAuth2APIOauth2TokenExchangeRequest) (*OAuth2TokenExchange, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -2730,7 +2763,7 @@ func (a *OAuth2ApiService) Oauth2TokenExchangeExecute(r OAuth2ApiOauth2TokenExch
 		localVarReturnValue  *OAuth2TokenExchange
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.Oauth2TokenExchange")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.Oauth2TokenExchange")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2762,17 +2795,17 @@ func (a *OAuth2ApiService) Oauth2TokenExchangeExecute(r OAuth2ApiOauth2TokenExch
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.clientId != nil {
-		localVarFormParams.Add("client_id", parameterToString(*r.clientId, ""))
+		parameterAddToHeaderOrQuery(localVarFormParams, "client_id", r.clientId, "")
 	}
 	if r.code != nil {
-		localVarFormParams.Add("code", parameterToString(*r.code, ""))
+		parameterAddToHeaderOrQuery(localVarFormParams, "code", r.code, "")
 	}
-	localVarFormParams.Add("grant_type", parameterToString(*r.grantType, ""))
+	parameterAddToHeaderOrQuery(localVarFormParams, "grant_type", r.grantType, "")
 	if r.redirectUri != nil {
-		localVarFormParams.Add("redirect_uri", parameterToString(*r.redirectUri, ""))
+		parameterAddToHeaderOrQuery(localVarFormParams, "redirect_uri", r.redirectUri, "")
 	}
 	if r.refreshToken != nil {
-		localVarFormParams.Add("refresh_token", parameterToString(*r.refreshToken, ""))
+		parameterAddToHeaderOrQuery(localVarFormParams, "refresh_token", r.refreshToken, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2784,9 +2817,9 @@ func (a *OAuth2ApiService) Oauth2TokenExchangeExecute(r OAuth2ApiOauth2TokenExch
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2802,7 +2835,8 @@ func (a *OAuth2ApiService) Oauth2TokenExchangeExecute(r OAuth2ApiOauth2TokenExch
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2818,20 +2852,20 @@ func (a *OAuth2ApiService) Oauth2TokenExchangeExecute(r OAuth2ApiOauth2TokenExch
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiPatchOAuth2ClientRequest struct {
+type OAuth2APIPatchOAuth2ClientRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	id string
 	jsonPatch *[]JsonPatch
 }
 
 // OAuth 2.0 Client JSON Patch Body
-func (r OAuth2ApiPatchOAuth2ClientRequest) JsonPatch(jsonPatch []JsonPatch) OAuth2ApiPatchOAuth2ClientRequest {
+func (r OAuth2APIPatchOAuth2ClientRequest) JsonPatch(jsonPatch []JsonPatch) OAuth2APIPatchOAuth2ClientRequest {
 	r.jsonPatch = &jsonPatch
 	return r
 }
 
-func (r OAuth2ApiPatchOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+func (r OAuth2APIPatchOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
 	return r.ApiService.PatchOAuth2ClientExecute(r)
 }
 
@@ -2847,10 +2881,10 @@ generated for applications which want to consume your OAuth 2.0 or OpenID Connec
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the OAuth 2.0 Client.
- @return OAuth2ApiPatchOAuth2ClientRequest
+ @return OAuth2APIPatchOAuth2ClientRequest
 */
-func (a *OAuth2ApiService) PatchOAuth2Client(ctx context.Context, id string) OAuth2ApiPatchOAuth2ClientRequest {
-	return OAuth2ApiPatchOAuth2ClientRequest{
+func (a *OAuth2APIService) PatchOAuth2Client(ctx context.Context, id string) OAuth2APIPatchOAuth2ClientRequest {
+	return OAuth2APIPatchOAuth2ClientRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -2859,7 +2893,7 @@ func (a *OAuth2ApiService) PatchOAuth2Client(ctx context.Context, id string) OAu
 
 // Execute executes the request
 //  @return OAuth2Client
-func (a *OAuth2ApiService) PatchOAuth2ClientExecute(r OAuth2ApiPatchOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+func (a *OAuth2APIService) PatchOAuth2ClientExecute(r OAuth2APIPatchOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2867,13 +2901,13 @@ func (a *OAuth2ApiService) PatchOAuth2ClientExecute(r OAuth2ApiPatchOAuth2Client
 		localVarReturnValue  *OAuth2Client
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.PatchOAuth2Client")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.PatchOAuth2Client")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/clients/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2911,9 +2945,9 @@ func (a *OAuth2ApiService) PatchOAuth2ClientExecute(r OAuth2ApiPatchOAuth2Client
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2930,7 +2964,8 @@ func (a *OAuth2ApiService) PatchOAuth2ClientExecute(r OAuth2ApiPatchOAuth2Client
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorOAuth2
@@ -2939,7 +2974,8 @@ func (a *OAuth2ApiService) PatchOAuth2ClientExecute(r OAuth2ApiPatchOAuth2Client
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2955,25 +2991,25 @@ func (a *OAuth2ApiService) PatchOAuth2ClientExecute(r OAuth2ApiPatchOAuth2Client
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiRejectOAuth2ConsentRequestRequest struct {
+type OAuth2APIRejectOAuth2ConsentRequestRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	consentChallenge *string
 	rejectOAuth2Request *RejectOAuth2Request
 }
 
 // OAuth 2.0 Consent Request Challenge
-func (r OAuth2ApiRejectOAuth2ConsentRequestRequest) ConsentChallenge(consentChallenge string) OAuth2ApiRejectOAuth2ConsentRequestRequest {
+func (r OAuth2APIRejectOAuth2ConsentRequestRequest) ConsentChallenge(consentChallenge string) OAuth2APIRejectOAuth2ConsentRequestRequest {
 	r.consentChallenge = &consentChallenge
 	return r
 }
 
-func (r OAuth2ApiRejectOAuth2ConsentRequestRequest) RejectOAuth2Request(rejectOAuth2Request RejectOAuth2Request) OAuth2ApiRejectOAuth2ConsentRequestRequest {
+func (r OAuth2APIRejectOAuth2ConsentRequestRequest) RejectOAuth2Request(rejectOAuth2Request RejectOAuth2Request) OAuth2APIRejectOAuth2ConsentRequestRequest {
 	r.rejectOAuth2Request = &rejectOAuth2Request
 	return r
 }
 
-func (r OAuth2ApiRejectOAuth2ConsentRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
+func (r OAuth2APIRejectOAuth2ConsentRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
 	return r.ApiService.RejectOAuth2ConsentRequestExecute(r)
 }
 
@@ -2997,10 +3033,10 @@ The default consent provider is available via the Ory Managed Account Experience
 head over to the OAuth 2.0 documentation.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiRejectOAuth2ConsentRequestRequest
+ @return OAuth2APIRejectOAuth2ConsentRequestRequest
 */
-func (a *OAuth2ApiService) RejectOAuth2ConsentRequest(ctx context.Context) OAuth2ApiRejectOAuth2ConsentRequestRequest {
-	return OAuth2ApiRejectOAuth2ConsentRequestRequest{
+func (a *OAuth2APIService) RejectOAuth2ConsentRequest(ctx context.Context) OAuth2APIRejectOAuth2ConsentRequestRequest {
+	return OAuth2APIRejectOAuth2ConsentRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -3008,7 +3044,7 @@ func (a *OAuth2ApiService) RejectOAuth2ConsentRequest(ctx context.Context) OAuth
 
 // Execute executes the request
 //  @return OAuth2RedirectTo
-func (a *OAuth2ApiService) RejectOAuth2ConsentRequestExecute(r OAuth2ApiRejectOAuth2ConsentRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
+func (a *OAuth2APIService) RejectOAuth2ConsentRequestExecute(r OAuth2APIRejectOAuth2ConsentRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -3016,7 +3052,7 @@ func (a *OAuth2ApiService) RejectOAuth2ConsentRequestExecute(r OAuth2ApiRejectOA
 		localVarReturnValue  *OAuth2RedirectTo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.RejectOAuth2ConsentRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.RejectOAuth2ConsentRequest")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3030,7 +3066,7 @@ func (a *OAuth2ApiService) RejectOAuth2ConsentRequestExecute(r OAuth2ApiRejectOA
 		return localVarReturnValue, nil, reportError("consentChallenge is required and must be specified")
 	}
 
-	localVarQueryParams.Add("consent_challenge", parameterToString(*r.consentChallenge, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "consent_challenge", r.consentChallenge, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -3060,9 +3096,9 @@ func (a *OAuth2ApiService) RejectOAuth2ConsentRequestExecute(r OAuth2ApiRejectOA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3078,7 +3114,8 @@ func (a *OAuth2ApiService) RejectOAuth2ConsentRequestExecute(r OAuth2ApiRejectOA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -3094,25 +3131,25 @@ func (a *OAuth2ApiService) RejectOAuth2ConsentRequestExecute(r OAuth2ApiRejectOA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiRejectOAuth2LoginRequestRequest struct {
+type OAuth2APIRejectOAuth2LoginRequestRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	loginChallenge *string
 	rejectOAuth2Request *RejectOAuth2Request
 }
 
 // OAuth 2.0 Login Request Challenge
-func (r OAuth2ApiRejectOAuth2LoginRequestRequest) LoginChallenge(loginChallenge string) OAuth2ApiRejectOAuth2LoginRequestRequest {
+func (r OAuth2APIRejectOAuth2LoginRequestRequest) LoginChallenge(loginChallenge string) OAuth2APIRejectOAuth2LoginRequestRequest {
 	r.loginChallenge = &loginChallenge
 	return r
 }
 
-func (r OAuth2ApiRejectOAuth2LoginRequestRequest) RejectOAuth2Request(rejectOAuth2Request RejectOAuth2Request) OAuth2ApiRejectOAuth2LoginRequestRequest {
+func (r OAuth2APIRejectOAuth2LoginRequestRequest) RejectOAuth2Request(rejectOAuth2Request RejectOAuth2Request) OAuth2APIRejectOAuth2LoginRequestRequest {
 	r.rejectOAuth2Request = &rejectOAuth2Request
 	return r
 }
 
-func (r OAuth2ApiRejectOAuth2LoginRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
+func (r OAuth2APIRejectOAuth2LoginRequestRequest) Execute() (*OAuth2RedirectTo, *http.Response, error) {
 	return r.ApiService.RejectOAuth2LoginRequestExecute(r)
 }
 
@@ -3131,10 +3168,10 @@ was denied.
 The response contains a redirect URL which the login provider should redirect the user-agent to.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiRejectOAuth2LoginRequestRequest
+ @return OAuth2APIRejectOAuth2LoginRequestRequest
 */
-func (a *OAuth2ApiService) RejectOAuth2LoginRequest(ctx context.Context) OAuth2ApiRejectOAuth2LoginRequestRequest {
-	return OAuth2ApiRejectOAuth2LoginRequestRequest{
+func (a *OAuth2APIService) RejectOAuth2LoginRequest(ctx context.Context) OAuth2APIRejectOAuth2LoginRequestRequest {
+	return OAuth2APIRejectOAuth2LoginRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -3142,7 +3179,7 @@ func (a *OAuth2ApiService) RejectOAuth2LoginRequest(ctx context.Context) OAuth2A
 
 // Execute executes the request
 //  @return OAuth2RedirectTo
-func (a *OAuth2ApiService) RejectOAuth2LoginRequestExecute(r OAuth2ApiRejectOAuth2LoginRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
+func (a *OAuth2APIService) RejectOAuth2LoginRequestExecute(r OAuth2APIRejectOAuth2LoginRequestRequest) (*OAuth2RedirectTo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -3150,7 +3187,7 @@ func (a *OAuth2ApiService) RejectOAuth2LoginRequestExecute(r OAuth2ApiRejectOAut
 		localVarReturnValue  *OAuth2RedirectTo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.RejectOAuth2LoginRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.RejectOAuth2LoginRequest")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3164,7 +3201,7 @@ func (a *OAuth2ApiService) RejectOAuth2LoginRequestExecute(r OAuth2ApiRejectOAut
 		return localVarReturnValue, nil, reportError("loginChallenge is required and must be specified")
 	}
 
-	localVarQueryParams.Add("login_challenge", parameterToString(*r.loginChallenge, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "login_challenge", r.loginChallenge, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -3194,9 +3231,9 @@ func (a *OAuth2ApiService) RejectOAuth2LoginRequestExecute(r OAuth2ApiRejectOAut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3212,7 +3249,8 @@ func (a *OAuth2ApiService) RejectOAuth2LoginRequestExecute(r OAuth2ApiRejectOAut
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -3228,18 +3266,18 @@ func (a *OAuth2ApiService) RejectOAuth2LoginRequestExecute(r OAuth2ApiRejectOAut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiRejectOAuth2LogoutRequestRequest struct {
+type OAuth2APIRejectOAuth2LogoutRequestRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	logoutChallenge *string
 }
 
-func (r OAuth2ApiRejectOAuth2LogoutRequestRequest) LogoutChallenge(logoutChallenge string) OAuth2ApiRejectOAuth2LogoutRequestRequest {
+func (r OAuth2APIRejectOAuth2LogoutRequestRequest) LogoutChallenge(logoutChallenge string) OAuth2APIRejectOAuth2LogoutRequestRequest {
 	r.logoutChallenge = &logoutChallenge
 	return r
 }
 
-func (r OAuth2ApiRejectOAuth2LogoutRequestRequest) Execute() (*http.Response, error) {
+func (r OAuth2APIRejectOAuth2LogoutRequestRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RejectOAuth2LogoutRequestExecute(r)
 }
 
@@ -3252,24 +3290,24 @@ No HTTP request body is required.
 The response is empty as the logout provider has to chose what action to perform next.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiRejectOAuth2LogoutRequestRequest
+ @return OAuth2APIRejectOAuth2LogoutRequestRequest
 */
-func (a *OAuth2ApiService) RejectOAuth2LogoutRequest(ctx context.Context) OAuth2ApiRejectOAuth2LogoutRequestRequest {
-	return OAuth2ApiRejectOAuth2LogoutRequestRequest{
+func (a *OAuth2APIService) RejectOAuth2LogoutRequest(ctx context.Context) OAuth2APIRejectOAuth2LogoutRequestRequest {
+	return OAuth2APIRejectOAuth2LogoutRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *OAuth2ApiService) RejectOAuth2LogoutRequestExecute(r OAuth2ApiRejectOAuth2LogoutRequestRequest) (*http.Response, error) {
+func (a *OAuth2APIService) RejectOAuth2LogoutRequestExecute(r OAuth2APIRejectOAuth2LogoutRequestRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.RejectOAuth2LogoutRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.RejectOAuth2LogoutRequest")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3283,7 +3321,7 @@ func (a *OAuth2ApiService) RejectOAuth2LogoutRequestExecute(r OAuth2ApiRejectOAu
 		return nil, reportError("logoutChallenge is required and must be specified")
 	}
 
-	localVarQueryParams.Add("logout_challenge", parameterToString(*r.logoutChallenge, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "logout_challenge", r.logoutChallenge, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3311,9 +3349,9 @@ func (a *OAuth2ApiService) RejectOAuth2LogoutRequestExecute(r OAuth2ApiRejectOAu
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -3329,40 +3367,41 @@ func (a *OAuth2ApiService) RejectOAuth2LogoutRequestExecute(r OAuth2ApiRejectOAu
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type OAuth2ApiRevokeOAuth2ConsentSessionsRequest struct {
+type OAuth2APIRevokeOAuth2ConsentSessionsRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	subject *string
 	client *string
 	all *bool
 }
 
 // OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
-func (r OAuth2ApiRevokeOAuth2ConsentSessionsRequest) Subject(subject string) OAuth2ApiRevokeOAuth2ConsentSessionsRequest {
+func (r OAuth2APIRevokeOAuth2ConsentSessionsRequest) Subject(subject string) OAuth2APIRevokeOAuth2ConsentSessionsRequest {
 	r.subject = &subject
 	return r
 }
 
 // OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID.
-func (r OAuth2ApiRevokeOAuth2ConsentSessionsRequest) Client(client string) OAuth2ApiRevokeOAuth2ConsentSessionsRequest {
+func (r OAuth2APIRevokeOAuth2ConsentSessionsRequest) Client(client string) OAuth2APIRevokeOAuth2ConsentSessionsRequest {
 	r.client = &client
 	return r
 }
 
 // Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted.
-func (r OAuth2ApiRevokeOAuth2ConsentSessionsRequest) All(all bool) OAuth2ApiRevokeOAuth2ConsentSessionsRequest {
+func (r OAuth2APIRevokeOAuth2ConsentSessionsRequest) All(all bool) OAuth2APIRevokeOAuth2ConsentSessionsRequest {
 	r.all = &all
 	return r
 }
 
-func (r OAuth2ApiRevokeOAuth2ConsentSessionsRequest) Execute() (*http.Response, error) {
+func (r OAuth2APIRevokeOAuth2ConsentSessionsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RevokeOAuth2ConsentSessionsExecute(r)
 }
 
@@ -3373,24 +3412,24 @@ This endpoint revokes a subject's granted consent sessions and invalidates all
 associated OAuth 2.0 Access Tokens. You may also only revoke sessions for a specific OAuth 2.0 Client ID.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiRevokeOAuth2ConsentSessionsRequest
+ @return OAuth2APIRevokeOAuth2ConsentSessionsRequest
 */
-func (a *OAuth2ApiService) RevokeOAuth2ConsentSessions(ctx context.Context) OAuth2ApiRevokeOAuth2ConsentSessionsRequest {
-	return OAuth2ApiRevokeOAuth2ConsentSessionsRequest{
+func (a *OAuth2APIService) RevokeOAuth2ConsentSessions(ctx context.Context) OAuth2APIRevokeOAuth2ConsentSessionsRequest {
+	return OAuth2APIRevokeOAuth2ConsentSessionsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *OAuth2ApiService) RevokeOAuth2ConsentSessionsExecute(r OAuth2ApiRevokeOAuth2ConsentSessionsRequest) (*http.Response, error) {
+func (a *OAuth2APIService) RevokeOAuth2ConsentSessionsExecute(r OAuth2APIRevokeOAuth2ConsentSessionsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.RevokeOAuth2ConsentSessions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.RevokeOAuth2ConsentSessions")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3404,12 +3443,12 @@ func (a *OAuth2ApiService) RevokeOAuth2ConsentSessionsExecute(r OAuth2ApiRevokeO
 		return nil, reportError("subject is required and must be specified")
 	}
 
-	localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "")
 	if r.client != nil {
-		localVarQueryParams.Add("client", parameterToString(*r.client, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client", r.client, "")
 	}
 	if r.all != nil {
-		localVarQueryParams.Add("all", parameterToString(*r.all, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "all", r.all, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3438,9 +3477,9 @@ func (a *OAuth2ApiService) RevokeOAuth2ConsentSessionsExecute(r OAuth2ApiRevokeO
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -3456,33 +3495,34 @@ func (a *OAuth2ApiService) RevokeOAuth2ConsentSessionsExecute(r OAuth2ApiRevokeO
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type OAuth2ApiRevokeOAuth2LoginSessionsRequest struct {
+type OAuth2APIRevokeOAuth2LoginSessionsRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	subject *string
 	sid *string
 }
 
 // OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-func (r OAuth2ApiRevokeOAuth2LoginSessionsRequest) Subject(subject string) OAuth2ApiRevokeOAuth2LoginSessionsRequest {
+func (r OAuth2APIRevokeOAuth2LoginSessionsRequest) Subject(subject string) OAuth2APIRevokeOAuth2LoginSessionsRequest {
 	r.subject = &subject
 	return r
 }
 
 // OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-func (r OAuth2ApiRevokeOAuth2LoginSessionsRequest) Sid(sid string) OAuth2ApiRevokeOAuth2LoginSessionsRequest {
+func (r OAuth2APIRevokeOAuth2LoginSessionsRequest) Sid(sid string) OAuth2APIRevokeOAuth2LoginSessionsRequest {
 	r.sid = &sid
 	return r
 }
 
-func (r OAuth2ApiRevokeOAuth2LoginSessionsRequest) Execute() (*http.Response, error) {
+func (r OAuth2APIRevokeOAuth2LoginSessionsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RevokeOAuth2LoginSessionsExecute(r)
 }
 
@@ -3493,30 +3533,30 @@ This endpoint invalidates authentication sessions. After revoking the authentica
 has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.
 
 If you send the subject in a query param, all authentication sessions that belong to that subject are revoked.
-No OpennID Connect Front- or Back-channel logout is performed in this case.
+No OpenID Connect Front- or Back-channel logout is performed in this case.
 
 Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
 to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiRevokeOAuth2LoginSessionsRequest
+ @return OAuth2APIRevokeOAuth2LoginSessionsRequest
 */
-func (a *OAuth2ApiService) RevokeOAuth2LoginSessions(ctx context.Context) OAuth2ApiRevokeOAuth2LoginSessionsRequest {
-	return OAuth2ApiRevokeOAuth2LoginSessionsRequest{
+func (a *OAuth2APIService) RevokeOAuth2LoginSessions(ctx context.Context) OAuth2APIRevokeOAuth2LoginSessionsRequest {
+	return OAuth2APIRevokeOAuth2LoginSessionsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *OAuth2ApiService) RevokeOAuth2LoginSessionsExecute(r OAuth2ApiRevokeOAuth2LoginSessionsRequest) (*http.Response, error) {
+func (a *OAuth2APIService) RevokeOAuth2LoginSessionsExecute(r OAuth2APIRevokeOAuth2LoginSessionsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.RevokeOAuth2LoginSessions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.RevokeOAuth2LoginSessions")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3528,10 +3568,10 @@ func (a *OAuth2ApiService) RevokeOAuth2LoginSessionsExecute(r OAuth2ApiRevokeOAu
 	localVarFormParams := url.Values{}
 
 	if r.subject != nil {
-		localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "")
 	}
 	if r.sid != nil {
-		localVarQueryParams.Add("sid", parameterToString(*r.sid, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sid", r.sid, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3560,9 +3600,9 @@ func (a *OAuth2ApiService) RevokeOAuth2LoginSessionsExecute(r OAuth2ApiRevokeOAu
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -3578,37 +3618,38 @@ func (a *OAuth2ApiService) RevokeOAuth2LoginSessionsExecute(r OAuth2ApiRevokeOAu
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type OAuth2ApiRevokeOAuth2TokenRequest struct {
+type OAuth2APIRevokeOAuth2TokenRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	token *string
 	clientId *string
 	clientSecret *string
 }
 
-func (r OAuth2ApiRevokeOAuth2TokenRequest) Token(token string) OAuth2ApiRevokeOAuth2TokenRequest {
+func (r OAuth2APIRevokeOAuth2TokenRequest) Token(token string) OAuth2APIRevokeOAuth2TokenRequest {
 	r.token = &token
 	return r
 }
 
-func (r OAuth2ApiRevokeOAuth2TokenRequest) ClientId(clientId string) OAuth2ApiRevokeOAuth2TokenRequest {
+func (r OAuth2APIRevokeOAuth2TokenRequest) ClientId(clientId string) OAuth2APIRevokeOAuth2TokenRequest {
 	r.clientId = &clientId
 	return r
 }
 
-func (r OAuth2ApiRevokeOAuth2TokenRequest) ClientSecret(clientSecret string) OAuth2ApiRevokeOAuth2TokenRequest {
+func (r OAuth2APIRevokeOAuth2TokenRequest) ClientSecret(clientSecret string) OAuth2APIRevokeOAuth2TokenRequest {
 	r.clientSecret = &clientSecret
 	return r
 }
 
-func (r OAuth2ApiRevokeOAuth2TokenRequest) Execute() (*http.Response, error) {
+func (r OAuth2APIRevokeOAuth2TokenRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RevokeOAuth2TokenExecute(r)
 }
 
@@ -3621,24 +3662,24 @@ Revoking a refresh token also invalidates the access token that was created with
 the client the token was generated for.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiRevokeOAuth2TokenRequest
+ @return OAuth2APIRevokeOAuth2TokenRequest
 */
-func (a *OAuth2ApiService) RevokeOAuth2Token(ctx context.Context) OAuth2ApiRevokeOAuth2TokenRequest {
-	return OAuth2ApiRevokeOAuth2TokenRequest{
+func (a *OAuth2APIService) RevokeOAuth2Token(ctx context.Context) OAuth2APIRevokeOAuth2TokenRequest {
+	return OAuth2APIRevokeOAuth2TokenRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *OAuth2ApiService) RevokeOAuth2TokenExecute(r OAuth2ApiRevokeOAuth2TokenRequest) (*http.Response, error) {
+func (a *OAuth2APIService) RevokeOAuth2TokenExecute(r OAuth2APIRevokeOAuth2TokenRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.RevokeOAuth2Token")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.RevokeOAuth2Token")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3670,12 +3711,12 @@ func (a *OAuth2ApiService) RevokeOAuth2TokenExecute(r OAuth2ApiRevokeOAuth2Token
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.clientId != nil {
-		localVarFormParams.Add("client_id", parameterToString(*r.clientId, ""))
+		parameterAddToHeaderOrQuery(localVarFormParams, "client_id", r.clientId, "")
 	}
 	if r.clientSecret != nil {
-		localVarFormParams.Add("client_secret", parameterToString(*r.clientSecret, ""))
+		parameterAddToHeaderOrQuery(localVarFormParams, "client_secret", r.clientSecret, "")
 	}
-	localVarFormParams.Add("token", parameterToString(*r.token, ""))
+	parameterAddToHeaderOrQuery(localVarFormParams, "token", r.token, "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -3686,9 +3727,9 @@ func (a *OAuth2ApiService) RevokeOAuth2TokenExecute(r OAuth2ApiRevokeOAuth2Token
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -3704,27 +3745,28 @@ func (a *OAuth2ApiService) RevokeOAuth2TokenExecute(r OAuth2ApiRevokeOAuth2Token
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
 }
 
-type OAuth2ApiSetOAuth2ClientRequest struct {
+type OAuth2APISetOAuth2ClientRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	id string
 	oAuth2Client *OAuth2Client
 }
 
 // OAuth 2.0 Client Request Body
-func (r OAuth2ApiSetOAuth2ClientRequest) OAuth2Client(oAuth2Client OAuth2Client) OAuth2ApiSetOAuth2ClientRequest {
+func (r OAuth2APISetOAuth2ClientRequest) OAuth2Client(oAuth2Client OAuth2Client) OAuth2APISetOAuth2ClientRequest {
 	r.oAuth2Client = &oAuth2Client
 	return r
 }
 
-func (r OAuth2ApiSetOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+func (r OAuth2APISetOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
 	return r.ApiService.SetOAuth2ClientExecute(r)
 }
 
@@ -3741,10 +3783,10 @@ generated for applications which want to consume your OAuth 2.0 or OpenID Connec
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id OAuth 2.0 Client ID
- @return OAuth2ApiSetOAuth2ClientRequest
+ @return OAuth2APISetOAuth2ClientRequest
 */
-func (a *OAuth2ApiService) SetOAuth2Client(ctx context.Context, id string) OAuth2ApiSetOAuth2ClientRequest {
-	return OAuth2ApiSetOAuth2ClientRequest{
+func (a *OAuth2APIService) SetOAuth2Client(ctx context.Context, id string) OAuth2APISetOAuth2ClientRequest {
+	return OAuth2APISetOAuth2ClientRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -3753,7 +3795,7 @@ func (a *OAuth2ApiService) SetOAuth2Client(ctx context.Context, id string) OAuth
 
 // Execute executes the request
 //  @return OAuth2Client
-func (a *OAuth2ApiService) SetOAuth2ClientExecute(r OAuth2ApiSetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+func (a *OAuth2APIService) SetOAuth2ClientExecute(r OAuth2APISetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -3761,13 +3803,13 @@ func (a *OAuth2ApiService) SetOAuth2ClientExecute(r OAuth2ApiSetOAuth2ClientRequ
 		localVarReturnValue  *OAuth2Client
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.SetOAuth2Client")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.SetOAuth2Client")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/clients/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3805,9 +3847,9 @@ func (a *OAuth2ApiService) SetOAuth2ClientExecute(r OAuth2ApiSetOAuth2ClientRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3824,7 +3866,8 @@ func (a *OAuth2ApiService) SetOAuth2ClientExecute(r OAuth2ApiSetOAuth2ClientRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3834,7 +3877,8 @@ func (a *OAuth2ApiService) SetOAuth2ClientExecute(r OAuth2ApiSetOAuth2ClientRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorOAuth2
@@ -3843,7 +3887,8 @@ func (a *OAuth2ApiService) SetOAuth2ClientExecute(r OAuth2ApiSetOAuth2ClientRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -3859,19 +3904,19 @@ func (a *OAuth2ApiService) SetOAuth2ClientExecute(r OAuth2ApiSetOAuth2ClientRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiSetOAuth2ClientLifespansRequest struct {
+type OAuth2APISetOAuth2ClientLifespansRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	id string
 	oAuth2ClientTokenLifespans *OAuth2ClientTokenLifespans
 }
 
-func (r OAuth2ApiSetOAuth2ClientLifespansRequest) OAuth2ClientTokenLifespans(oAuth2ClientTokenLifespans OAuth2ClientTokenLifespans) OAuth2ApiSetOAuth2ClientLifespansRequest {
+func (r OAuth2APISetOAuth2ClientLifespansRequest) OAuth2ClientTokenLifespans(oAuth2ClientTokenLifespans OAuth2ClientTokenLifespans) OAuth2APISetOAuth2ClientLifespansRequest {
 	r.oAuth2ClientTokenLifespans = &oAuth2ClientTokenLifespans
 	return r
 }
 
-func (r OAuth2ApiSetOAuth2ClientLifespansRequest) Execute() (*OAuth2Client, *http.Response, error) {
+func (r OAuth2APISetOAuth2ClientLifespansRequest) Execute() (*OAuth2Client, *http.Response, error) {
 	return r.ApiService.SetOAuth2ClientLifespansExecute(r)
 }
 
@@ -3882,10 +3927,10 @@ Set lifespans of different token types issued for this OAuth 2.0 client. Does no
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id OAuth 2.0 Client ID
- @return OAuth2ApiSetOAuth2ClientLifespansRequest
+ @return OAuth2APISetOAuth2ClientLifespansRequest
 */
-func (a *OAuth2ApiService) SetOAuth2ClientLifespans(ctx context.Context, id string) OAuth2ApiSetOAuth2ClientLifespansRequest {
-	return OAuth2ApiSetOAuth2ClientLifespansRequest{
+func (a *OAuth2APIService) SetOAuth2ClientLifespans(ctx context.Context, id string) OAuth2APISetOAuth2ClientLifespansRequest {
+	return OAuth2APISetOAuth2ClientLifespansRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -3894,7 +3939,7 @@ func (a *OAuth2ApiService) SetOAuth2ClientLifespans(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return OAuth2Client
-func (a *OAuth2ApiService) SetOAuth2ClientLifespansExecute(r OAuth2ApiSetOAuth2ClientLifespansRequest) (*OAuth2Client, *http.Response, error) {
+func (a *OAuth2APIService) SetOAuth2ClientLifespansExecute(r OAuth2APISetOAuth2ClientLifespansRequest) (*OAuth2Client, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -3902,13 +3947,13 @@ func (a *OAuth2ApiService) SetOAuth2ClientLifespansExecute(r OAuth2ApiSetOAuth2C
 		localVarReturnValue  *OAuth2Client
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.SetOAuth2ClientLifespans")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.SetOAuth2ClientLifespans")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/admin/clients/{id}/lifespans"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3943,9 +3988,9 @@ func (a *OAuth2ApiService) SetOAuth2ClientLifespansExecute(r OAuth2ApiSetOAuth2C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3961,7 +4006,8 @@ func (a *OAuth2ApiService) SetOAuth2ClientLifespansExecute(r OAuth2ApiSetOAuth2C
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -3977,18 +4023,18 @@ func (a *OAuth2ApiService) SetOAuth2ClientLifespansExecute(r OAuth2ApiSetOAuth2C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OAuth2ApiTrustOAuth2JwtGrantIssuerRequest struct {
+type OAuth2APITrustOAuth2JwtGrantIssuerRequest struct {
 	ctx context.Context
-	ApiService OAuth2Api
+	ApiService OAuth2API
 	trustOAuth2JwtGrantIssuer *TrustOAuth2JwtGrantIssuer
 }
 
-func (r OAuth2ApiTrustOAuth2JwtGrantIssuerRequest) TrustOAuth2JwtGrantIssuer(trustOAuth2JwtGrantIssuer TrustOAuth2JwtGrantIssuer) OAuth2ApiTrustOAuth2JwtGrantIssuerRequest {
+func (r OAuth2APITrustOAuth2JwtGrantIssuerRequest) TrustOAuth2JwtGrantIssuer(trustOAuth2JwtGrantIssuer TrustOAuth2JwtGrantIssuer) OAuth2APITrustOAuth2JwtGrantIssuerRequest {
 	r.trustOAuth2JwtGrantIssuer = &trustOAuth2JwtGrantIssuer
 	return r
 }
 
-func (r OAuth2ApiTrustOAuth2JwtGrantIssuerRequest) Execute() (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+func (r OAuth2APITrustOAuth2JwtGrantIssuerRequest) Execute() (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
 	return r.ApiService.TrustOAuth2JwtGrantIssuerExecute(r)
 }
 
@@ -4000,10 +4046,10 @@ to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
 and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OAuth2ApiTrustOAuth2JwtGrantIssuerRequest
+ @return OAuth2APITrustOAuth2JwtGrantIssuerRequest
 */
-func (a *OAuth2ApiService) TrustOAuth2JwtGrantIssuer(ctx context.Context) OAuth2ApiTrustOAuth2JwtGrantIssuerRequest {
-	return OAuth2ApiTrustOAuth2JwtGrantIssuerRequest{
+func (a *OAuth2APIService) TrustOAuth2JwtGrantIssuer(ctx context.Context) OAuth2APITrustOAuth2JwtGrantIssuerRequest {
+	return OAuth2APITrustOAuth2JwtGrantIssuerRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -4011,7 +4057,7 @@ func (a *OAuth2ApiService) TrustOAuth2JwtGrantIssuer(ctx context.Context) OAuth2
 
 // Execute executes the request
 //  @return TrustedOAuth2JwtGrantIssuer
-func (a *OAuth2ApiService) TrustOAuth2JwtGrantIssuerExecute(r OAuth2ApiTrustOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+func (a *OAuth2APIService) TrustOAuth2JwtGrantIssuerExecute(r OAuth2APITrustOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -4019,7 +4065,7 @@ func (a *OAuth2ApiService) TrustOAuth2JwtGrantIssuerExecute(r OAuth2ApiTrustOAut
 		localVarReturnValue  *TrustedOAuth2JwtGrantIssuer
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2ApiService.TrustOAuth2JwtGrantIssuer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.TrustOAuth2JwtGrantIssuer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4059,9 +4105,9 @@ func (a *OAuth2ApiService) TrustOAuth2JwtGrantIssuerExecute(r OAuth2ApiTrustOAut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4077,7 +4123,8 @@ func (a *OAuth2ApiService) TrustOAuth2JwtGrantIssuerExecute(r OAuth2ApiTrustOAut
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

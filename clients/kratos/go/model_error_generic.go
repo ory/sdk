@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -13,12 +13,19 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the ErrorGeneric type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorGeneric{}
 
 // ErrorGeneric The standard Ory JSON API error format.
 type ErrorGeneric struct {
 	Error GenericError `json:"error"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ErrorGeneric ErrorGeneric
 
 // NewErrorGeneric instantiates a new ErrorGeneric object
 // This constructor will assign default values to properties that have it defined,
@@ -63,11 +70,64 @@ func (o *ErrorGeneric) SetError(v GenericError) {
 }
 
 func (o ErrorGeneric) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["error"] = o.Error
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ErrorGeneric) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["error"] = o.Error
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *ErrorGeneric) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"error",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varErrorGeneric := _ErrorGeneric{}
+
+	err = json.Unmarshal(bytes, &varErrorGeneric)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ErrorGeneric(varErrorGeneric)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableErrorGeneric struct {

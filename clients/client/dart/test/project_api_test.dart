@@ -7,6 +7,13 @@ void main() {
   final instance = OryClient().getProjectApi();
 
   group(ProjectApi, () {
+    // Create a B2B SSO Organization
+    //
+    //Future<Organization> createOrganization(String projectId, { OrganizationBody organizationBody }) async
+    test('test createOrganization', () async {
+      // TODO
+    });
+
     // Create a Project
     //
     // Creates a new project.
@@ -25,6 +32,13 @@ void main() {
       // TODO
     });
 
+    // Delete a B2B SSO Organization for a project
+    //
+    //Future deleteOrganization(String projectId, String organizationId) async
+    test('test deleteOrganization', () async {
+      // TODO
+    });
+
     // Delete project API token
     //
     // Deletes an API token and immediately removes it.
@@ -34,12 +48,10 @@ void main() {
       // TODO
     });
 
-    // Returns the Ory Network Project selected in the Ory Network Console
+    // Returns a B2B SSO Organization for a project by its ID
     //
-    // Use this API to get your active project in the Ory Network Console UI.
-    //
-    //Future<ActiveProjectInConsole> getActiveProjectInConsole() async
-    test('test getActiveProjectInConsole', () async {
+    //Future<GetOrganizationResponse> getOrganization(String projectId, String organizationId) async
+    test('test getOrganization', () async {
       // TODO
     });
 
@@ -56,8 +68,15 @@ void main() {
     //
     // This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
     //
-    //Future<BuiltList<CloudAccount>> getProjectMembers(String projectId) async
+    //Future<BuiltList<ProjectMember>> getProjectMembers(String project) async
     test('test getProjectMembers', () async {
+      // TODO
+    });
+
+    // List all B2B SSO Organizations for a project
+    //
+    //Future<ListOrganizationsResponse> listOrganizations(String projectId, { int pageSize, String pageToken, String domain }) async
+    test('test listOrganizations', () async {
       // TODO
     });
 
@@ -101,17 +120,8 @@ void main() {
     //
     // This also sets their invite status to `REMOVED`. This endpoint requires the user to be a member of the project with the role `OWNER`.
     //
-    //Future removeProjectMember(String projectId, String memberId) async
+    //Future removeProjectMember(String project, String member) async
     test('test removeProjectMember', () async {
-      // TODO
-    });
-
-    // Sets the Ory Network Project active in the Ory Network Console
-    //
-    // Use this API to set your active project in the Ory Network Console UI.
-    //
-    //Future setActiveProjectInConsole({ SetActiveProjectInConsoleBody setActiveProjectInConsoleBody }) async
-    test('test setActiveProjectInConsole', () async {
       // TODO
     });
 
@@ -121,6 +131,13 @@ void main() {
     //
     //Future<SuccessfulProjectUpdate> setProject(String projectId, { SetProject setProject }) async
     test('test setProject', () async {
+      // TODO
+    });
+
+    // Update a B2B SSO Organization for a project
+    //
+    //Future<Organization> updateOrganization(String projectId, String organizationId, { OrganizationBody organizationBody }) async
+    test('test updateOrganization', () async {
       // TODO
     });
 

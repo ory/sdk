@@ -6,6 +6,90 @@ part of 'ui_node_script_attributes.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UiNodeScriptAttributesNodeTypeEnum
+    _$uiNodeScriptAttributesNodeTypeEnum_text =
+    const UiNodeScriptAttributesNodeTypeEnum._('text');
+const UiNodeScriptAttributesNodeTypeEnum
+    _$uiNodeScriptAttributesNodeTypeEnum_input =
+    const UiNodeScriptAttributesNodeTypeEnum._('input');
+const UiNodeScriptAttributesNodeTypeEnum
+    _$uiNodeScriptAttributesNodeTypeEnum_img =
+    const UiNodeScriptAttributesNodeTypeEnum._('img');
+const UiNodeScriptAttributesNodeTypeEnum
+    _$uiNodeScriptAttributesNodeTypeEnum_a =
+    const UiNodeScriptAttributesNodeTypeEnum._('a');
+const UiNodeScriptAttributesNodeTypeEnum
+    _$uiNodeScriptAttributesNodeTypeEnum_script =
+    const UiNodeScriptAttributesNodeTypeEnum._('script');
+
+UiNodeScriptAttributesNodeTypeEnum _$uiNodeScriptAttributesNodeTypeEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'text':
+      return _$uiNodeScriptAttributesNodeTypeEnum_text;
+    case 'input':
+      return _$uiNodeScriptAttributesNodeTypeEnum_input;
+    case 'img':
+      return _$uiNodeScriptAttributesNodeTypeEnum_img;
+    case 'a':
+      return _$uiNodeScriptAttributesNodeTypeEnum_a;
+    case 'script':
+      return _$uiNodeScriptAttributesNodeTypeEnum_script;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UiNodeScriptAttributesNodeTypeEnum>
+    _$uiNodeScriptAttributesNodeTypeEnumValues = new BuiltSet<
+        UiNodeScriptAttributesNodeTypeEnum>(const <UiNodeScriptAttributesNodeTypeEnum>[
+  _$uiNodeScriptAttributesNodeTypeEnum_text,
+  _$uiNodeScriptAttributesNodeTypeEnum_input,
+  _$uiNodeScriptAttributesNodeTypeEnum_img,
+  _$uiNodeScriptAttributesNodeTypeEnum_a,
+  _$uiNodeScriptAttributesNodeTypeEnum_script,
+]);
+
+Serializer<UiNodeScriptAttributesNodeTypeEnum>
+    _$uiNodeScriptAttributesNodeTypeEnumSerializer =
+    new _$UiNodeScriptAttributesNodeTypeEnumSerializer();
+
+class _$UiNodeScriptAttributesNodeTypeEnumSerializer
+    implements PrimitiveSerializer<UiNodeScriptAttributesNodeTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[UiNodeScriptAttributesNodeTypeEnum];
+  @override
+  final String wireName = 'UiNodeScriptAttributesNodeTypeEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, UiNodeScriptAttributesNodeTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UiNodeScriptAttributesNodeTypeEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UiNodeScriptAttributesNodeTypeEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UiNodeScriptAttributes extends UiNodeScriptAttributes {
   @override
   final bool async_;
@@ -16,7 +100,7 @@ class _$UiNodeScriptAttributes extends UiNodeScriptAttributes {
   @override
   final String integrity;
   @override
-  final String nodeType;
+  final UiNodeScriptAttributesNodeTypeEnum nodeType;
   @override
   final String nonce;
   @override
@@ -136,9 +220,10 @@ class UiNodeScriptAttributesBuilder
   String? get integrity => _$this._integrity;
   set integrity(String? integrity) => _$this._integrity = integrity;
 
-  String? _nodeType;
-  String? get nodeType => _$this._nodeType;
-  set nodeType(String? nodeType) => _$this._nodeType = nodeType;
+  UiNodeScriptAttributesNodeTypeEnum? _nodeType;
+  UiNodeScriptAttributesNodeTypeEnum? get nodeType => _$this._nodeType;
+  set nodeType(UiNodeScriptAttributesNodeTypeEnum? nodeType) =>
+      _$this._nodeType = nodeType;
 
   String? _nonce;
   String? get nonce => _$this._nonce;

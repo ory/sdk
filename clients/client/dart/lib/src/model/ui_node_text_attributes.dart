@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/ui_text.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -13,7 +14,7 @@ part 'ui_node_text_attributes.g.dart';
 ///
 /// Properties:
 /// * [id] - A unique identifier
-/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\".
+/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script
 /// * [text] 
 @BuiltValue()
 abstract class UiNodeTextAttributes implements Built<UiNodeTextAttributes, UiNodeTextAttributesBuilder> {
@@ -21,9 +22,10 @@ abstract class UiNodeTextAttributes implements Built<UiNodeTextAttributes, UiNod
   @BuiltValueField(wireName: r'id')
   String get id;
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\".
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script
   @BuiltValueField(wireName: r'node_type')
-  String get nodeType;
+  UiNodeTextAttributesNodeTypeEnum get nodeType;
+  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  };
 
   @BuiltValueField(wireName: r'text')
   UiText get text;
@@ -59,7 +61,7 @@ class _$UiNodeTextAttributesSerializer implements PrimitiveSerializer<UiNodeText
     yield r'node_type';
     yield serializers.serialize(
       object.nodeType,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(UiNodeTextAttributesNodeTypeEnum),
     );
     yield r'text';
     yield serializers.serialize(
@@ -99,8 +101,8 @@ class _$UiNodeTextAttributesSerializer implements PrimitiveSerializer<UiNodeText
         case r'node_type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(UiNodeTextAttributesNodeTypeEnum),
+          ) as UiNodeTextAttributesNodeTypeEnum;
           result.nodeType = valueDes;
           break;
         case r'text':
@@ -137,5 +139,31 @@ class _$UiNodeTextAttributesSerializer implements PrimitiveSerializer<UiNodeText
     );
     return result.build();
   }
+}
+
+class UiNodeTextAttributesNodeTypeEnum extends EnumClass {
+
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'text')
+  static const UiNodeTextAttributesNodeTypeEnum text = _$uiNodeTextAttributesNodeTypeEnum_text;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'input')
+  static const UiNodeTextAttributesNodeTypeEnum input = _$uiNodeTextAttributesNodeTypeEnum_input;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'img')
+  static const UiNodeTextAttributesNodeTypeEnum img = _$uiNodeTextAttributesNodeTypeEnum_img;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'a')
+  static const UiNodeTextAttributesNodeTypeEnum a = _$uiNodeTextAttributesNodeTypeEnum_a;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'script')
+  static const UiNodeTextAttributesNodeTypeEnum script = _$uiNodeTextAttributesNodeTypeEnum_script;
+
+  static Serializer<UiNodeTextAttributesNodeTypeEnum> get serializer => _$uiNodeTextAttributesNodeTypeEnumSerializer;
+
+  const UiNodeTextAttributesNodeTypeEnum._(String name): super(name);
+
+  static BuiltSet<UiNodeTextAttributesNodeTypeEnum> get values => _$uiNodeTextAttributesNodeTypeEnumValues;
+  static UiNodeTextAttributesNodeTypeEnum valueOf(String name) => _$uiNodeTextAttributesNodeTypeEnumValueOf(name);
 }
 

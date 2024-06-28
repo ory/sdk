@@ -6,18 +6,23 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
+**Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
+**HomeRegion** | **string** | The project&#39;s data home region. eu-central EUCentral us-east USEast us-west USWest global Global | [readonly] 
 **Hosts** | **[]string** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
-**State** | **string** | The state of the project. running Running halted Halted | [readonly] 
+**State** | **string** | The state of the project. running Running halted Halted deleted Deleted | [readonly] 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
+**SubscriptionPlan** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | [readonly] 
+**Workspace** | Pointer to [**Workspace**](Workspace.md) |  | [optional] 
+**WorkspaceId** | **NullableString** |  | 
 
 ## Methods
 
 ### NewNormalizedProject
 
-`func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, hosts []string, id string, slug string, state string, updatedAt time.Time, ) *NormalizedProject`
+`func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, homeRegion string, hosts []string, id string, slug string, state string, updatedAt time.Time, workspaceId NullableString, ) *NormalizedProject`
 
 NewNormalizedProject instantiates a new NormalizedProject object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +75,46 @@ and a boolean to check if the value has been set.
 `func (o *NormalizedProject) SetCurrentRevision(v NormalizedProjectRevision)`
 
 SetCurrentRevision sets CurrentRevision field to given value.
+
+
+### GetEnvironment
+
+`func (o *NormalizedProject) GetEnvironment() string`
+
+GetEnvironment returns the Environment field if non-nil, zero value otherwise.
+
+### GetEnvironmentOk
+
+`func (o *NormalizedProject) GetEnvironmentOk() (*string, bool)`
+
+GetEnvironmentOk returns a tuple with the Environment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironment
+
+`func (o *NormalizedProject) SetEnvironment(v string)`
+
+SetEnvironment sets Environment field to given value.
+
+
+### GetHomeRegion
+
+`func (o *NormalizedProject) GetHomeRegion() string`
+
+GetHomeRegion returns the HomeRegion field if non-nil, zero value otherwise.
+
+### GetHomeRegionOk
+
+`func (o *NormalizedProject) GetHomeRegionOk() (*string, bool)`
+
+GetHomeRegionOk returns a tuple with the HomeRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHomeRegion
+
+`func (o *NormalizedProject) SetHomeRegion(v string)`
+
+SetHomeRegion sets HomeRegion field to given value.
 
 
 ### GetHosts
@@ -187,6 +232,41 @@ HasSubscriptionId returns a boolean if a field has been set.
 `func (o *NormalizedProject) UnsetSubscriptionId()`
 
 UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+### GetSubscriptionPlan
+
+`func (o *NormalizedProject) GetSubscriptionPlan() string`
+
+GetSubscriptionPlan returns the SubscriptionPlan field if non-nil, zero value otherwise.
+
+### GetSubscriptionPlanOk
+
+`func (o *NormalizedProject) GetSubscriptionPlanOk() (*string, bool)`
+
+GetSubscriptionPlanOk returns a tuple with the SubscriptionPlan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscriptionPlan
+
+`func (o *NormalizedProject) SetSubscriptionPlan(v string)`
+
+SetSubscriptionPlan sets SubscriptionPlan field to given value.
+
+### HasSubscriptionPlan
+
+`func (o *NormalizedProject) HasSubscriptionPlan() bool`
+
+HasSubscriptionPlan returns a boolean if a field has been set.
+
+### SetSubscriptionPlanNil
+
+`func (o *NormalizedProject) SetSubscriptionPlanNil(b bool)`
+
+ SetSubscriptionPlanNil sets the value for SubscriptionPlan to be an explicit nil
+
+### UnsetSubscriptionPlan
+`func (o *NormalizedProject) UnsetSubscriptionPlan()`
+
+UnsetSubscriptionPlan ensures that no value is present for SubscriptionPlan, not even an explicit nil
 ### GetUpdatedAt
 
 `func (o *NormalizedProject) GetUpdatedAt() time.Time`
@@ -207,6 +287,61 @@ and a boolean to check if the value has been set.
 SetUpdatedAt sets UpdatedAt field to given value.
 
 
+### GetWorkspace
+
+`func (o *NormalizedProject) GetWorkspace() Workspace`
+
+GetWorkspace returns the Workspace field if non-nil, zero value otherwise.
+
+### GetWorkspaceOk
+
+`func (o *NormalizedProject) GetWorkspaceOk() (*Workspace, bool)`
+
+GetWorkspaceOk returns a tuple with the Workspace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspace
+
+`func (o *NormalizedProject) SetWorkspace(v Workspace)`
+
+SetWorkspace sets Workspace field to given value.
+
+### HasWorkspace
+
+`func (o *NormalizedProject) HasWorkspace() bool`
+
+HasWorkspace returns a boolean if a field has been set.
+
+### GetWorkspaceId
+
+`func (o *NormalizedProject) GetWorkspaceId() string`
+
+GetWorkspaceId returns the WorkspaceId field if non-nil, zero value otherwise.
+
+### GetWorkspaceIdOk
+
+`func (o *NormalizedProject) GetWorkspaceIdOk() (*string, bool)`
+
+GetWorkspaceIdOk returns a tuple with the WorkspaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspaceId
+
+`func (o *NormalizedProject) SetWorkspaceId(v string)`
+
+SetWorkspaceId sets WorkspaceId field to given value.
+
+
+### SetWorkspaceIdNil
+
+`func (o *NormalizedProject) SetWorkspaceIdNil(b bool)`
+
+ SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
+
+### UnsetWorkspaceId
+`func (o *NormalizedProject) UnsetWorkspaceId()`
+
+UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

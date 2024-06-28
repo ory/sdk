@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v0.13.1
+API version: v1.1.0
 Contact: office@ory.sh
 */
 
@@ -18,11 +18,19 @@ import (
 
 // UpdateLoginFlowBody - struct for UpdateLoginFlowBody
 type UpdateLoginFlowBody struct {
+	UpdateLoginFlowWithCodeMethod *UpdateLoginFlowWithCodeMethod
 	UpdateLoginFlowWithLookupSecretMethod *UpdateLoginFlowWithLookupSecretMethod
 	UpdateLoginFlowWithOidcMethod *UpdateLoginFlowWithOidcMethod
 	UpdateLoginFlowWithPasswordMethod *UpdateLoginFlowWithPasswordMethod
 	UpdateLoginFlowWithTotpMethod *UpdateLoginFlowWithTotpMethod
 	UpdateLoginFlowWithWebAuthnMethod *UpdateLoginFlowWithWebAuthnMethod
+}
+
+// UpdateLoginFlowWithCodeMethodAsUpdateLoginFlowBody is a convenience function that returns UpdateLoginFlowWithCodeMethod wrapped in UpdateLoginFlowBody
+func UpdateLoginFlowWithCodeMethodAsUpdateLoginFlowBody(v *UpdateLoginFlowWithCodeMethod) UpdateLoginFlowBody {
+	return UpdateLoginFlowBody{
+		UpdateLoginFlowWithCodeMethod: v,
+	}
 }
 
 // UpdateLoginFlowWithLookupSecretMethodAsUpdateLoginFlowBody is a convenience function that returns UpdateLoginFlowWithLookupSecretMethod wrapped in UpdateLoginFlowBody
@@ -65,6 +73,19 @@ func UpdateLoginFlowWithWebAuthnMethodAsUpdateLoginFlowBody(v *UpdateLoginFlowWi
 func (dst *UpdateLoginFlowBody) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into UpdateLoginFlowWithCodeMethod
+	err = newStrictDecoder(data).Decode(&dst.UpdateLoginFlowWithCodeMethod)
+	if err == nil {
+		jsonUpdateLoginFlowWithCodeMethod, _ := json.Marshal(dst.UpdateLoginFlowWithCodeMethod)
+		if string(jsonUpdateLoginFlowWithCodeMethod) == "{}" { // empty struct
+			dst.UpdateLoginFlowWithCodeMethod = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.UpdateLoginFlowWithCodeMethod = nil
+	}
+
 	// try to unmarshal data into UpdateLoginFlowWithLookupSecretMethod
 	err = newStrictDecoder(data).Decode(&dst.UpdateLoginFlowWithLookupSecretMethod)
 	if err == nil {
@@ -132,22 +153,27 @@ func (dst *UpdateLoginFlowBody) UnmarshalJSON(data []byte) error {
 
 	if match > 1 { // more than 1 match
 		// reset to nil
+		dst.UpdateLoginFlowWithCodeMethod = nil
 		dst.UpdateLoginFlowWithLookupSecretMethod = nil
 		dst.UpdateLoginFlowWithOidcMethod = nil
 		dst.UpdateLoginFlowWithPasswordMethod = nil
 		dst.UpdateLoginFlowWithTotpMethod = nil
 		dst.UpdateLoginFlowWithWebAuthnMethod = nil
 
-		return fmt.Errorf("Data matches more than one schema in oneOf(UpdateLoginFlowBody)")
+		return fmt.Errorf("data matches more than one schema in oneOf(UpdateLoginFlowBody)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(UpdateLoginFlowBody)")
+		return fmt.Errorf("data failed to match schemas in oneOf(UpdateLoginFlowBody)")
 	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src UpdateLoginFlowBody) MarshalJSON() ([]byte, error) {
+	if src.UpdateLoginFlowWithCodeMethod != nil {
+		return json.Marshal(&src.UpdateLoginFlowWithCodeMethod)
+	}
+
 	if src.UpdateLoginFlowWithLookupSecretMethod != nil {
 		return json.Marshal(&src.UpdateLoginFlowWithLookupSecretMethod)
 	}
@@ -176,6 +202,10 @@ func (obj *UpdateLoginFlowBody) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.UpdateLoginFlowWithCodeMethod != nil {
+		return obj.UpdateLoginFlowWithCodeMethod
+	}
+
 	if obj.UpdateLoginFlowWithLookupSecretMethod != nil {
 		return obj.UpdateLoginFlowWithLookupSecretMethod
 	}

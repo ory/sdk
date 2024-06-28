@@ -54,8 +54,15 @@ void main() {
       // TODO
     });
 
-    // SettingsFlowState state
+    // State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent.
+    // JsonObject state
     test('to test the property `state`', () async {
+      // TODO
+    });
+
+    // TransientPayload is used to pass data from the settings flow to hooks and email templates
+    // JsonObject transientPayload
+    test('to test the property `transientPayload`', () async {
       // TODO
     });
 
