@@ -37,6 +37,7 @@ jobs:
         with:
           ruby-version: 2.7
       - uses: actions/checkout@v4
+      - run: ls -la .
       - name: Generate and Test
         uses: ./.github/actions/generate-and-test
         with:

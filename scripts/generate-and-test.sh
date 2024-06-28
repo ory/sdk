@@ -1,4 +1,5 @@
 #!/bin/bash
+set -Eeuxo pipefail
 
 # Mainly used by the CI tasks
 
