@@ -24,6 +24,7 @@ jobs:
             "dart",
           ]
     steps:
+      - uses: actions/checkout@v4
       - name: Generate and Test - ${{ matrix.language }}
         uses: ./.github/actions/generate-and-test
         with:
@@ -35,6 +36,7 @@ jobs:
         uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
         with:
           ruby-version: 2.7
+      - uses: actions/checkout@v4
       - name: Generate and Test
         uses: ./.github/actions/generate-and-test
         with:
