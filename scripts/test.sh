@@ -101,7 +101,7 @@ elixir () {
   (cd "${dir}"; mix test)
 }
 
-# elixir
+elixir
 typescript
 typescript_fetch
 rust
@@ -109,6 +109,6 @@ golang
 java
 php
 python
-# ruby
+ruby
 dart
 csharp

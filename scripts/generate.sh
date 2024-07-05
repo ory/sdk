@@ -303,7 +303,6 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-# elixir is broken right now: https://github.com/ory/sdk/issues/350
 elixir
 typescript
 typescript_fetch
@@ -313,7 +312,6 @@ java
 php
 python
 
-# ruby is broken right now: https://github.com/ory/sdk/issues/357
 ruby
 dotnet
 dart
