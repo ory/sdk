@@ -195,16 +195,26 @@ dotnet() {
 
 dart() {
   dir="clients/${PROJECT}/dart"
-  mkdir -p ~/.pub-cache || true
+  mkdir -p "$HOME/.pub-cache" || true
   set +x
 
   if [ -z ${DART_SERVICE_ACCOUNT+x} ]; then echo "Variable DART_SERVICE_ACCOUNT MUST be set."; fi
 
-  echo "$DART_SERVICE_ACCOUNT" | base64 -d > ~/.pub-cache/key-file.json
+  echo "$DART_SERVICE_ACCOUNT" | base64 -d > "$HOME/.pub-cache/key-file.json"
   set -x
-  ls ~/.pub-cache/
+  ls -lah "$HOME/.pub-cache/"
   set +x
-  gcloud auth activate-service-account --key-file=~/.pub-cache/key-file.json
+
+  # To generate this key run:
+  #
+  #  gcloud iam service-accounts keys create key-file.json \
+  #    --project=ory-web \
+  #    --iam-account=pub-dev@ory-web.iam.gserviceaccount.com
+  #  base64 key-file.json | pbcopy
+  #
+  # And copy it into the DART_SERVICE_ACCOUNT secret.
+
+  gcloud auth activate-service-account --key-file="$HOME/.pub-cache/key-file.json"
   gcloud auth print-identity-token \
     --audiences=https://pub.dev \
     | dart pub token add https://pub.dev
