@@ -120,7 +120,7 @@ typescript_fetch() {
   (cd "${dir}"; npm install; npm run build)
   (cd "${dir}"; npm version -f --no-git-tag-version "${VERSION}" || true; npm publish --access public)
 
-  to_git "ts-fetch" "yes"
+  to_git "typescript-fetch" "yes"
 }
 
 java() {
@@ -197,7 +197,13 @@ dart() {
   dir="clients/${PROJECT}/dart"
   mkdir -p ~/.pub-cache || true
   set +x
+
+  if [ -z ${DART_SERVICE_ACCOUNT+x} ]; then echo "Variable DART_SERVICE_ACCOUNT MUST be set."; fi
+
   echo "$DART_SERVICE_ACCOUNT" | base64 -d > ~/.pub-cache/key-file.json
+  set -x
+  ls ~/.pub-cache/
+  set +x
   gcloud auth activate-service-account --key-file=~/.pub-cache/key-file.json
   gcloud auth print-identity-token \
     --audiences=https://pub.dev \
