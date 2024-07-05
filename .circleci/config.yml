@@ -5,7 +5,7 @@ orbs:
 jobs:
   publish:
     docker:
-      - image: oryd/sdk:v0.0.53
+      - image: oryd/sdk:v0.0.54
     working_directory: /sdk
     steps:
       - checkout
