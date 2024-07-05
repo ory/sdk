@@ -345,8 +345,7 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-# elixir is broken right now: https://github.com/ory/sdk/issues/350
-#elixir
+elixir
 typescript
 typescript_fetch
 rust
