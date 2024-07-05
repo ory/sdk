@@ -1,5 +1,5 @@
 # can't use bookworm (latest LTS as of June23) yet, as elixir/erlang does not provide packages for it yet. Check if https://binaries.erlang-solutions.com/debian/dists/bookworm/ is available to change this
-FROM openjdk:21-bullseye
+FROM openjdk:21-bookworm
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates ssh bash
 
@@ -56,12 +56,12 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
 # the following is a workaround for openjdk-11-jre-headless erroring due to not having a man path in slim-debian
 RUN apt-get update -y
-RUN apt-get install -y --no-install-recommends python3 python3-dev python3-pip ruby jq gnupg git gettext libffi-dev libssl-dev php composer php-curl php-dom php-xml php-simplexml php-xmlwriter maven pkg-config twine sudo apt-transport-https
+RUN apt-get install -y --no-install-recommends python3 python3-dev python3-full python3-pip python3-venv ruby jq gnupg git gettext libffi-dev libssl-dev php composer php-curl php-dom php-xml php-simplexml php-xmlwriter maven pkg-config twine sudo apt-transport-https
 # RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby jq build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget php-dom php-xml php-simplexml php-xmlwriter maven
 
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-RUN sudo apt-get update && sudo apt-get install google-cloud-cli
+RUN sudo apt-get update -y && sudo apt-get install -y --no-install-recommends google-cloud-cli
 
 # https://stackoverflow.com/questions/35736598/cannot-pip-install-cryptography-in-docker-alpine-linux-3-3-with-openssl-1-0-2g
 #RUN apk add --no-cache \
@@ -76,9 +76,9 @@ RUN sudo apt-get update && sudo apt-get install google-cloud-cli
 
 # RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
 
-RUN npm install -g npm@7.21.0
+RUN npm install -g npm@10.8.1
 RUN npm i -g @openapitools/openapi-generator-cli
-RUN openapi-generator-cli version-manager set 5.2.1
+RUN openapi-generator-cli version-manager set 7.4.0
 
 # dotnet
 ENV PATH "$PATH:/root/.dotnet"
@@ -120,7 +120,7 @@ RUN td=$(mktemp) \
 
 RUN gem install bundler -v 2.3.26 && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends ruby-dev=1:2.7+2
+	apt-get install -y --no-install-recommends ruby-dev
 
 ADD go.mod go.mod
 ADD go.sum go.sum

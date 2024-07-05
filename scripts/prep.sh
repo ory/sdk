@@ -16,6 +16,11 @@ else
   version=${FORCE_VERSION}
 fi
 
+# Python
+
+python3 -m venv .venv
+source .venv/bin/activate
+
 ####################################
 
 if [ -z "${FORCE_PROJECT+x}" ]; then
