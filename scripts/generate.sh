@@ -41,7 +41,7 @@ typescript () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.7.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-axios \
     -o "$dir" \
@@ -65,7 +65,7 @@ typescript_fetch () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.7.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-fetch \
     -o "$dir" \
@@ -91,7 +91,9 @@ java () {
 
   # Upgrading Java requires adjusting the pom.xml files in contrib/client. Usually,
   # new versions of the generator introduce changes to the pom dependencies.
-  openapi-generator-cli version-manager set 7.3.0
+  #
+  # Read contrib/poms/README.md for upgrade instructions.
+  openapi-generator-cli version-manager set 7.7.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
@@ -100,53 +102,9 @@ java () {
     --git-host github.com \
     -c ./config/client/java.yml.proc.yml
 
+  # Read contrib/poms/README.md for upgrade instructions.
   cp "contrib/poms/${PROJECT}/pom.xml" "clients/${PROJECT}/java/pom.xml"
 
-  # POM modification is disabled because openapi-generator does not re-generate the POM anyways. If, for some reason,
-  # the POM file is lost, you can recover it:
-  #
-  #   $ cp contrib/clients/java/<project>/pom.xml.backup clients/<project>/java/pom.xml
-
-  # Insert correct pom values...
-  #  pom="clients/${PROJECT}/java/pom.xml"
-  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
-  #    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-01.xml)" "${pom}" \
-  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-  #
-  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
-  #    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-02.xml)" "${pom}" \
-  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-  #
-  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:build/p:plugins/p:plugin[last()]" -t elem -n plugin \
-  #    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/plugin-03.xml)" "${pom}" \
-  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-  #
-  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:profiles/p:profile[last()]" -t elem -n profile \
-  #    -v "$(xmlstarlet sel -t -c '//plugin/*' contrib/clients/java/profile-01.xml)" "${pom}" \
-  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-  #
-  #  xmlstarlet ed -N "p=http://maven.apache.org/POM/4.0.0" -a "/p:project/p:properties" -t elem -n distributionManagement \
-  #    -v "$(xmlstarlet sel -t -c '//distributionManagement/*' contrib/clients/java/distributionManagement.xml)" "${pom}" \
-  #    | xmlstarlet unesc | xml fo > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-  #
-  #  xmlstarlet ed --inplace -N "p=http://maven.apache.org/POM/4.0.0" \
-  #     --update "/p:project/p:version" \
-  #     --value '0.0.0-SNAPSHOT' \
-  #     --update "/p:project/p:url" \
-  #     --value "https://github.com/ory/${PROJECT}-client-java" \
-  #     --update "/p:project/p:description" \
-  #     --value "Java Client for ORY ${PROJECT}" \
-  #     --update "/p:project/p:scm/p:connection" \
-  #     --value "scm:git:git@github.com:ory/${PROJECT}-client-java.git" \
-  #     --update "/p:project/p:scm/p:developerConnection" \
-  #     --value "scm:git:git@github.com:ory/${PROJECT}-client-java.git" \
-  #     --update "/p:project/p:scm/p:url" \
-  #     --value "https://github.com/ory/${PROJECT}-client-java" \
-  #     "${pom}"
-  #
-  #  tail -n +2 < "${pom}" > tmp.$$.xml && mv tmp.$$.xml "${pom}"
-  #
-  # cat  "${pom}"
   cp "LICENSE" "clients/${PROJECT}/java"
 }
 
@@ -157,7 +115,7 @@ php() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.7.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
@@ -182,7 +140,7 @@ python () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.7.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
@@ -202,7 +160,7 @@ ruby () {
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.7.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
@@ -230,7 +188,7 @@ golang () {
 
   mkdir -p "${dir}"
 
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.6.0 # 7.7.0 has an issue with an unused import. We can upgrade once this is fixed.
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
@@ -256,7 +214,7 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.7.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp \
     -o "$dir" \
@@ -275,7 +233,7 @@ dart () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.7.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g dart-dio \
     -o "$dir" \
@@ -297,7 +255,7 @@ rust () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.4.0
+  openapi-generator-cli version-manager set 7.7.0
   # We use a custom rust template to fix some of the compilation issues:
   # - https://github.com/OpenAPITools/openapi-generator/issues/13257
   # - https://github.com/OpenAPITools/openapi-generator/issues/10845
@@ -329,8 +287,8 @@ elixir () {
 
   file="${dir}/mix.exs"
 
-  # 7.4.0
-  openapi-generator-cli version-manager set 7.4.0
+  # 7.7.0
+  openapi-generator-cli version-manager set 7.7.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     	-g elixir \
 	    -o "$dir" \
