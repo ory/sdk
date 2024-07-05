@@ -346,7 +346,7 @@ elixir () {
 }
 
 # elixir is broken right now: https://github.com/ory/sdk/issues/350
-#elixir
+elixir
 typescript
 typescript_fetch
 rust
@@ -356,7 +356,7 @@ php
 python
 
 # ruby is broken right now: https://github.com/ory/sdk/issues/357
-# ruby
+ruby
 dotnet
 dart
 
