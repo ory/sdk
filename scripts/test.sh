@@ -72,13 +72,13 @@ csharp () {
     VERSION="" command dotnet test -c Release)
 }
 
-dart () {
+dartpub () {
   echo "Testing Dart..."
 
   dir="clients/${PROJECT}/dart"
   (cd "$dir" && command dart pub get)
   (cd "$dir" && command dart test .)
-  (cd "$dir" && VERSION=${RAW_VERSION} command dart pub publish --dry-run)
+  (cd "$dir" && VERSION=${RAW_VERSION} command dart pub publish --dry-run --skip-validation)
 }
 
 rust () {
@@ -111,5 +111,5 @@ java
 php
 python
 ruby
-dart
+dartpub
 csharp

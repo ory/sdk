@@ -246,24 +246,24 @@ FAIL=0
 
 echo "starting"
 
-# python || let "FAIL+=1"
-# ruby || let "FAIL+=1"
-# golang || let "FAIL+=1"
-# php || let "FAIL+=1"
-# typescript || let "FAIL+=1"
-# typescript_fetch || let "FAIL+=1"
-dart # || let "FAIL+=1"
-# rust || let "FAIL+=1"
-# elixir || let "FAIL+=1"
-# java || let "FAIL+=1"
-# dotnet || let "FAIL+=1"
-# upstream || let "FAIL+=1"
-#
-#echo "$FAIL"
-#
-#if [ "$FAIL" == "0" ]; then
-#  echo "Everything ran to completion!"
-#else
-#  echo "One or more subtasks failed to complete."
-#  exit 1
-#fi
+python || let "FAIL+=1"
+ruby || let "FAIL+=1"
+golang || let "FAIL+=1"
+php || let "FAIL+=1"
+typescript || let "FAIL+=1"
+typescript_fetch || let "FAIL+=1"
+dart || let "FAIL+=1"
+rust || let "FAIL+=1"
+elixir || let "FAIL+=1"
+java || let "FAIL+=1"
+dotnet || let "FAIL+=1"
+upstream || let "FAIL+=1"
+
+echo "$FAIL"
+
+if [ "$FAIL" == "0" ]; then
+  echo "Everything ran to completion!"
+else
+  echo "One or more subtasks failed to complete."
+  exit 1
+fi
