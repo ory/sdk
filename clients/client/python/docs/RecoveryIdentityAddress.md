@@ -26,7 +26,7 @@ print(RecoveryIdentityAddress.to_json())
 # convert the object into a dict
 recovery_identity_address_dict = recovery_identity_address_instance.to_dict()
 # create an instance of RecoveryIdentityAddress from a dict
-recovery_identity_address_form_dict = recovery_identity_address.from_dict(recovery_identity_address_dict)
+recovery_identity_address_from_dict = RecoveryIdentityAddress.from_dict(recovery_identity_address_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

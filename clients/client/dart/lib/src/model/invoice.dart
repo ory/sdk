@@ -184,7 +184,7 @@ class InvoiceTypeEnum extends EnumClass {
   static const InvoiceTypeEnum usage = _$invoiceTypeEnum_usage;
   /// Type is the type of the invoice. usage InvoiceTypeUsage base InvoiceTypeBase
   @BuiltValueEnumConst(wireName: r'base')
-  static const InvoiceTypeEnum base = _$invoiceTypeEnum_base;
+  static const InvoiceTypeEnum base_ = _$invoiceTypeEnum_base_;
 
   static Serializer<InvoiceTypeEnum> get serializer => _$invoiceTypeEnumSerializer;
 

@@ -45,7 +45,7 @@ print(NormalizedProjectRevisionThirdPartyProvider.to_json())
 # convert the object into a dict
 normalized_project_revision_third_party_provider_dict = normalized_project_revision_third_party_provider_instance.to_dict()
 # create an instance of NormalizedProjectRevisionThirdPartyProvider from a dict
-normalized_project_revision_third_party_provider_form_dict = normalized_project_revision_third_party_provider.from_dict(normalized_project_revision_third_party_provider_dict)
+normalized_project_revision_third_party_provider_from_dict = NormalizedProjectRevisionThirdPartyProvider.from_dict(normalized_project_revision_third_party_provider_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

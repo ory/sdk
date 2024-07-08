@@ -23,7 +23,7 @@ print(CreateInviteResponse.to_json())
 # convert the object into a dict
 create_invite_response_dict = create_invite_response_instance.to_dict()
 # create an instance of CreateInviteResponse from a dict
-create_invite_response_form_dict = create_invite_response.from_dict(create_invite_response_dict)
+create_invite_response_from_dict = CreateInviteResponse.from_dict(create_invite_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -34,7 +34,7 @@ print(SettingsFlow.to_json())
 # convert the object into a dict
 settings_flow_dict = settings_flow_instance.to_dict()
 # create an instance of SettingsFlow from a dict
-settings_flow_form_dict = settings_flow.from_dict(settings_flow_dict)
+settings_flow_from_dict = SettingsFlow.from_dict(settings_flow_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

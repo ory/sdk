@@ -24,7 +24,7 @@ print(TrustedOAuth2JwtGrantJsonWebKey.to_json())
 # convert the object into a dict
 trusted_o_auth2_jwt_grant_json_web_key_dict = trusted_o_auth2_jwt_grant_json_web_key_instance.to_dict()
 # create an instance of TrustedOAuth2JwtGrantJsonWebKey from a dict
-trusted_o_auth2_jwt_grant_json_web_key_form_dict = trusted_o_auth2_jwt_grant_json_web_key.from_dict(trusted_o_auth2_jwt_grant_json_web_key_dict)
+trusted_o_auth2_jwt_grant_json_web_key_from_dict = TrustedOAuth2JwtGrantJsonWebKey.from_dict(trusted_o_auth2_jwt_grant_json_web_key_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

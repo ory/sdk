@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:ory_client, "~> v1.9.0"}]
+  [{:ory_client, "~> v1.13.3"}]
 end
 ```
 
@@ -31,14 +31,14 @@ You can override the URL of your server (e.g. if you have a separate development
 configuration files).
 
 ```elixir
-config :ory_client, base_url: "https://playground.projects.oryapis.com"
+config :ory_client, base_url: "https://.projects.oryapis.com"
 ```
 
 Multiple clients for the same API with different URLs can be created passing different `base_url`s when calling
 `Ory.Connection.new/1`:
 
 ```elixir
-client = Ory.Connection.new(base_url: "https://playground.projects.oryapis.com")
+client = Ory.Connection.new(base_url: "https://.projects.oryapis.com")
 ```
 
 [exdoc]: https://github.com/elixir-lang/ex_doc

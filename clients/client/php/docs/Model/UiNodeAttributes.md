@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **pattern** | **string** | The input&#39;s pattern. | [optional]
 **required** | **bool** | Mark this input field as required. | [optional]
 **type** | **string** | The script MIME type |
-**value** | **object** | The input&#39;s value. | [optional]
+**value** | **mixed** | The input&#39;s value. | [optional]
 **id** | **string** | A unique identifier |
 **text** | [**\Ory\Client\Model\UiText**](UiText.md) |  |
 **height** | **int** | Height of the image |

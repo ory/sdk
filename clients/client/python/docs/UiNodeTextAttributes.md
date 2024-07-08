@@ -24,7 +24,7 @@ print(UiNodeTextAttributes.to_json())
 # convert the object into a dict
 ui_node_text_attributes_dict = ui_node_text_attributes_instance.to_dict()
 # create an instance of UiNodeTextAttributes from a dict
-ui_node_text_attributes_form_dict = ui_node_text_attributes.from_dict(ui_node_text_attributes_dict)
+ui_node_text_attributes_from_dict = UiNodeTextAttributes.from_dict(ui_node_text_attributes_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

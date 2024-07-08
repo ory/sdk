@@ -23,7 +23,7 @@ print(SourcePosition.to_json())
 # convert the object into a dict
 source_position_dict = source_position_instance.to_dict()
 # create an instance of SourcePosition from a dict
-source_position_form_dict = source_position.from_dict(source_position_dict)
+source_position_from_dict = SourcePosition.from_dict(source_position_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -24,7 +24,7 @@ print(ContinueWithSettingsUi.to_json())
 # convert the object into a dict
 continue_with_settings_ui_dict = continue_with_settings_ui_instance.to_dict()
 # create an instance of ContinueWithSettingsUi from a dict
-continue_with_settings_ui_form_dict = continue_with_settings_ui.from_dict(continue_with_settings_ui_dict)
+continue_with_settings_ui_from_dict = ContinueWithSettingsUi.from_dict(continue_with_settings_ui_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

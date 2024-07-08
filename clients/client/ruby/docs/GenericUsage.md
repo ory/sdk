@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **additional_price** | **Integer** | AdditionalPrice is the price per-unit in cent exceeding IncludedUsage. A price of 0 means that no other items can be consumed. |  |
+| **additional_price** | [**Money**](Money.md) |  |  |
 | **included_usage** | **Integer** | IncludedUsage is the number of included items. |  |
 
 ## Example

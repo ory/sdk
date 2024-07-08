@@ -23,7 +23,7 @@ print(ErrorAuthenticatorAssuranceLevelNotSatisfied.to_json())
 # convert the object into a dict
 error_authenticator_assurance_level_not_satisfied_dict = error_authenticator_assurance_level_not_satisfied_instance.to_dict()
 # create an instance of ErrorAuthenticatorAssuranceLevelNotSatisfied from a dict
-error_authenticator_assurance_level_not_satisfied_form_dict = error_authenticator_assurance_level_not_satisfied.from_dict(error_authenticator_assurance_level_not_satisfied_dict)
+error_authenticator_assurance_level_not_satisfied_from_dict = ErrorAuthenticatorAssuranceLevelNotSatisfied.from_dict(error_authenticator_assurance_level_not_satisfied_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

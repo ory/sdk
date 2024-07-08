@@ -22,7 +22,7 @@ print(ProjectServiceOAuth2.to_json())
 # convert the object into a dict
 project_service_o_auth2_dict = project_service_o_auth2_instance.to_dict()
 # create an instance of ProjectServiceOAuth2 from a dict
-project_service_o_auth2_form_dict = project_service_o_auth2.from_dict(project_service_o_auth2_dict)
+project_service_o_auth2_from_dict = ProjectServiceOAuth2.from_dict(project_service_o_auth2_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

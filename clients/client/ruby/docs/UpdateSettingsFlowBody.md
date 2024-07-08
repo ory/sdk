@@ -16,6 +16,7 @@ OryClient::UpdateSettingsFlowBody.openapi_one_of
 # [
 #   :'UpdateSettingsFlowWithLookupMethod',
 #   :'UpdateSettingsFlowWithOidcMethod',
+#   :'UpdateSettingsFlowWithPasskeyMethod',
 #   :'UpdateSettingsFlowWithPasswordMethod',
 #   :'UpdateSettingsFlowWithProfileMethod',
 #   :'UpdateSettingsFlowWithTotpMethod',
@@ -50,6 +51,7 @@ OryClient::UpdateSettingsFlowBody.openapi_discriminator_mapping
 # {
 #   :'lookup_secret' => :'UpdateSettingsFlowWithLookupMethod',
 #   :'oidc' => :'UpdateSettingsFlowWithOidcMethod',
+#   :'passkey' => :'UpdateSettingsFlowWithPasskeyMethod',
 #   :'password' => :'UpdateSettingsFlowWithPasswordMethod',
 #   :'profile' => :'UpdateSettingsFlowWithProfileMethod',
 #   :'totp' => :'UpdateSettingsFlowWithTotpMethod',
@@ -83,6 +85,7 @@ OryClient::UpdateSettingsFlowBody.build(data_that_doesnt_match)
 
 - `UpdateSettingsFlowWithLookupMethod`
 - `UpdateSettingsFlowWithOidcMethod`
+- `UpdateSettingsFlowWithPasskeyMethod`
 - `UpdateSettingsFlowWithPasswordMethod`
 - `UpdateSettingsFlowWithProfileMethod`
 - `UpdateSettingsFlowWithTotpMethod`

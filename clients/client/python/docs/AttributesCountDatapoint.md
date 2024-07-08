@@ -23,7 +23,7 @@ print(AttributesCountDatapoint.to_json())
 # convert the object into a dict
 attributes_count_datapoint_dict = attributes_count_datapoint_instance.to_dict()
 # create an instance of AttributesCountDatapoint from a dict
-attributes_count_datapoint_form_dict = attributes_count_datapoint.from_dict(attributes_count_datapoint_dict)
+attributes_count_datapoint_from_dict = AttributesCountDatapoint.from_dict(attributes_count_datapoint_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

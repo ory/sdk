@@ -41,7 +41,7 @@ print(OidcUserInfo.to_json())
 # convert the object into a dict
 oidc_user_info_dict = oidc_user_info_instance.to_dict()
 # create an instance of OidcUserInfo from a dict
-oidc_user_info_form_dict = oidc_user_info.from_dict(oidc_user_info_dict)
+oidc_user_info_from_dict = OidcUserInfo.from_dict(oidc_user_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

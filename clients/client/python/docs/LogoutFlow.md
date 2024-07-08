@@ -24,7 +24,7 @@ print(LogoutFlow.to_json())
 # convert the object into a dict
 logout_flow_dict = logout_flow_instance.to_dict()
 # create an instance of LogoutFlow from a dict
-logout_flow_form_dict = logout_flow.from_dict(logout_flow_dict)
+logout_flow_from_dict = LogoutFlow.from_dict(logout_flow_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

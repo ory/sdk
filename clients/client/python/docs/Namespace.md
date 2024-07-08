@@ -22,7 +22,7 @@ print(Namespace.to_json())
 # convert the object into a dict
 namespace_dict = namespace_instance.to_dict()
 # create an instance of Namespace from a dict
-namespace_form_dict = namespace.from_dict(namespace_dict)
+namespace_from_dict = Namespace.from_dict(namespace_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

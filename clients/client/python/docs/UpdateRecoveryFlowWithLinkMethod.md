@@ -26,7 +26,7 @@ print(UpdateRecoveryFlowWithLinkMethod.to_json())
 # convert the object into a dict
 update_recovery_flow_with_link_method_dict = update_recovery_flow_with_link_method_instance.to_dict()
 # create an instance of UpdateRecoveryFlowWithLinkMethod from a dict
-update_recovery_flow_with_link_method_form_dict = update_recovery_flow_with_link_method.from_dict(update_recovery_flow_with_link_method_dict)
+update_recovery_flow_with_link_method_from_dict = UpdateRecoveryFlowWithLinkMethod.from_dict(update_recovery_flow_with_link_method_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

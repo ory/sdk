@@ -20,7 +20,7 @@ Is Owner For Project By Slug Request Body
 | Name | Value |
 |---- | -----|
 | USER | &quot;User&quot; |
-| _APIKEY | &quot; ApiKey&quot; |
+| _API_KEY | &quot; ApiKey&quot; |
 
 
 

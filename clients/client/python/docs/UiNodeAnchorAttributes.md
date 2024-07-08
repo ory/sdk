@@ -25,7 +25,7 @@ print(UiNodeAnchorAttributes.to_json())
 # convert the object into a dict
 ui_node_anchor_attributes_dict = ui_node_anchor_attributes_instance.to_dict()
 # create an instance of UiNodeAnchorAttributes from a dict
-ui_node_anchor_attributes_form_dict = ui_node_anchor_attributes.from_dict(ui_node_anchor_attributes_dict)
+ui_node_anchor_attributes_from_dict = UiNodeAnchorAttributes.from_dict(ui_node_anchor_attributes_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

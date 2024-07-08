@@ -22,7 +22,7 @@ print(ContinueWithSettingsUiFlow.to_json())
 # convert the object into a dict
 continue_with_settings_ui_flow_dict = continue_with_settings_ui_flow_instance.to_dict()
 # create an instance of ContinueWithSettingsUiFlow from a dict
-continue_with_settings_ui_flow_form_dict = continue_with_settings_ui_flow.from_dict(continue_with_settings_ui_flow_dict)
+continue_with_settings_ui_flow_from_dict = ContinueWithSettingsUiFlow.from_dict(continue_with_settings_ui_flow_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -34,7 +34,7 @@ print(ProjectMetadata.to_json())
 # convert the object into a dict
 project_metadata_dict = project_metadata_instance.to_dict()
 # create an instance of ProjectMetadata from a dict
-project_metadata_form_dict = project_metadata.from_dict(project_metadata_dict)
+project_metadata_from_dict = ProjectMetadata.from_dict(project_metadata_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

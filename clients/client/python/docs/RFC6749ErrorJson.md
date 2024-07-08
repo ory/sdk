@@ -26,7 +26,7 @@ print(RFC6749ErrorJson.to_json())
 # convert the object into a dict
 rfc6749_error_json_dict = rfc6749_error_json_instance.to_dict()
 # create an instance of RFC6749ErrorJson from a dict
-rfc6749_error_json_form_dict = rfc6749_error_json.from_dict(rfc6749_error_json_dict)
+rfc6749_error_json_from_dict = RFC6749ErrorJson.from_dict(rfc6749_error_json_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

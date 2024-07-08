@@ -27,7 +27,7 @@ print(PostCheckPermissionBody.to_json())
 # convert the object into a dict
 post_check_permission_body_dict = post_check_permission_body_instance.to_dict()
 # create an instance of PostCheckPermissionBody from a dict
-post_check_permission_body_form_dict = post_check_permission_body.from_dict(post_check_permission_body_dict)
+post_check_permission_body_from_dict = PostCheckPermissionBody.from_dict(post_check_permission_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

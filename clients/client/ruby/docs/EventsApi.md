@@ -1,6 +1,6 @@
 # OryClient::EventsApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
@@ -23,7 +23,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -71,7 +71,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -94,7 +94,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -141,7 +141,7 @@ nil (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -162,7 +162,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -208,7 +208,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -229,7 +229,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -281,7 +281,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

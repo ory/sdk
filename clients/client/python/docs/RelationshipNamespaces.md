@@ -23,7 +23,7 @@ print(RelationshipNamespaces.to_json())
 # convert the object into a dict
 relationship_namespaces_dict = relationship_namespaces_instance.to_dict()
 # create an instance of RelationshipNamespaces from a dict
-relationship_namespaces_form_dict = relationship_namespaces.from_dict(relationship_namespaces_dict)
+relationship_namespaces_from_dict = RelationshipNamespaces.from_dict(relationship_namespaces_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

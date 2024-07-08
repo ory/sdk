@@ -8,14 +8,15 @@ part of 'invoice.dart';
 
 const InvoiceTypeEnum _$invoiceTypeEnum_usage =
     const InvoiceTypeEnum._('usage');
-const InvoiceTypeEnum _$invoiceTypeEnum_base = const InvoiceTypeEnum._('base');
+const InvoiceTypeEnum _$invoiceTypeEnum_base_ =
+    const InvoiceTypeEnum._('base_');
 
 InvoiceTypeEnum _$invoiceTypeEnumValueOf(String name) {
   switch (name) {
     case 'usage':
       return _$invoiceTypeEnum_usage;
-    case 'base':
-      return _$invoiceTypeEnum_base;
+    case 'base_':
+      return _$invoiceTypeEnum_base_;
     default:
       throw new ArgumentError(name);
   }
@@ -24,7 +25,7 @@ InvoiceTypeEnum _$invoiceTypeEnumValueOf(String name) {
 final BuiltSet<InvoiceTypeEnum> _$invoiceTypeEnumValues =
     new BuiltSet<InvoiceTypeEnum>(const <InvoiceTypeEnum>[
   _$invoiceTypeEnum_usage,
-  _$invoiceTypeEnum_base,
+  _$invoiceTypeEnum_base_,
 ]);
 
 Serializer<InvoiceTypeEnum> _$invoiceTypeEnumSerializer =
@@ -34,11 +35,11 @@ class _$InvoiceTypeEnumSerializer
     implements PrimitiveSerializer<InvoiceTypeEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'usage': 'usage',
-    'base': 'base',
+    'base_': 'base',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'usage': 'usage',
-    'base': 'base',
+    'base': 'base_',
   };
 
   @override

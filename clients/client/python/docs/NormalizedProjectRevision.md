@@ -224,7 +224,7 @@ print(NormalizedProjectRevision.to_json())
 # convert the object into a dict
 normalized_project_revision_dict = normalized_project_revision_instance.to_dict()
 # create an instance of NormalizedProjectRevision from a dict
-normalized_project_revision_form_dict = normalized_project_revision.from_dict(normalized_project_revision_dict)
+normalized_project_revision_from_dict = NormalizedProjectRevision.from_dict(normalized_project_revision_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

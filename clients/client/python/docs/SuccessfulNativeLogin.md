@@ -25,7 +25,7 @@ print(SuccessfulNativeLogin.to_json())
 # convert the object into a dict
 successful_native_login_dict = successful_native_login_instance.to_dict()
 # create an instance of SuccessfulNativeLogin from a dict
-successful_native_login_form_dict = successful_native_login.from_dict(successful_native_login_dict)
+successful_native_login_from_dict = SuccessfulNativeLogin.from_dict(successful_native_login_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

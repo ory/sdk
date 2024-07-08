@@ -28,7 +28,7 @@ print(OAuth2TokenExchange.to_json())
 # convert the object into a dict
 o_auth2_token_exchange_dict = o_auth2_token_exchange_instance.to_dict()
 # create an instance of OAuth2TokenExchange from a dict
-o_auth2_token_exchange_form_dict = o_auth2_token_exchange.from_dict(o_auth2_token_exchange_dict)
+o_auth2_token_exchange_from_dict = OAuth2TokenExchange.from_dict(o_auth2_token_exchange_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -30,7 +30,7 @@ print(TrustedOAuth2JwtGrantIssuer.to_json())
 # convert the object into a dict
 trusted_o_auth2_jwt_grant_issuer_dict = trusted_o_auth2_jwt_grant_issuer_instance.to_dict()
 # create an instance of TrustedOAuth2JwtGrantIssuer from a dict
-trusted_o_auth2_jwt_grant_issuer_form_dict = trusted_o_auth2_jwt_grant_issuer.from_dict(trusted_o_auth2_jwt_grant_issuer_dict)
+trusted_o_auth2_jwt_grant_issuer_from_dict = TrustedOAuth2JwtGrantIssuer.from_dict(trusted_o_auth2_jwt_grant_issuer_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

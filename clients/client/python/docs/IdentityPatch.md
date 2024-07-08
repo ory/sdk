@@ -24,7 +24,7 @@ print(IdentityPatch.to_json())
 # convert the object into a dict
 identity_patch_dict = identity_patch_instance.to_dict()
 # create an instance of IdentityPatch from a dict
-identity_patch_form_dict = identity_patch.from_dict(identity_patch_dict)
+identity_patch_from_dict = IdentityPatch.from_dict(identity_patch_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

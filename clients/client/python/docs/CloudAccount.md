@@ -24,7 +24,7 @@ print(CloudAccount.to_json())
 # convert the object into a dict
 cloud_account_dict = cloud_account_instance.to_dict()
 # create an instance of CloudAccount from a dict
-cloud_account_form_dict = cloud_account.from_dict(cloud_account_dict)
+cloud_account_from_dict = CloudAccount.from_dict(cloud_account_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -2,10 +2,11 @@
 
 It can either be `email` or `phone`
 
-## Properties
+## Enum
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+* `EMAIL` (value: `'email'`)
+
+* `PHONE` (value: `'phone'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

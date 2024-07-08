@@ -25,7 +25,7 @@ print(CreateSubscriptionCommon.to_json())
 # convert the object into a dict
 create_subscription_common_dict = create_subscription_common_instance.to_dict()
 # create an instance of CreateSubscriptionCommon from a dict
-create_subscription_common_form_dict = create_subscription_common.from_dict(create_subscription_common_dict)
+create_subscription_common_from_dict = CreateSubscriptionCommon.from_dict(create_subscription_common_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

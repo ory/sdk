@@ -24,7 +24,7 @@ print(InternalIsAXWelcomeScreenEnabledForProjectBody.to_json())
 # convert the object into a dict
 internal_is_ax_welcome_screen_enabled_for_project_body_dict = internal_is_ax_welcome_screen_enabled_for_project_body_instance.to_dict()
 # create an instance of InternalIsAXWelcomeScreenEnabledForProjectBody from a dict
-internal_is_ax_welcome_screen_enabled_for_project_body_form_dict = internal_is_ax_welcome_screen_enabled_for_project_body.from_dict(internal_is_ax_welcome_screen_enabled_for_project_body_dict)
+internal_is_ax_welcome_screen_enabled_for_project_body_from_dict = InternalIsAXWelcomeScreenEnabledForProjectBody.from_dict(internal_is_ax_welcome_screen_enabled_for_project_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -25,7 +25,7 @@ print(SetEventStreamBody.to_json())
 # convert the object into a dict
 set_event_stream_body_dict = set_event_stream_body_instance.to_dict()
 # create an instance of SetEventStreamBody from a dict
-set_event_stream_body_form_dict = set_event_stream_body.from_dict(set_event_stream_body_dict)
+set_event_stream_body_from_dict = SetEventStreamBody.from_dict(set_event_stream_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

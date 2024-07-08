@@ -27,7 +27,7 @@ print(QuotaUsage.to_json())
 # convert the object into a dict
 quota_usage_dict = quota_usage_instance.to_dict()
 # create an instance of QuotaUsage from a dict
-quota_usage_form_dict = quota_usage.from_dict(quota_usage_dict)
+quota_usage_from_dict = QuotaUsage.from_dict(quota_usage_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

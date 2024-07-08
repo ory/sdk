@@ -24,7 +24,7 @@ print(SubjectSet.to_json())
 # convert the object into a dict
 subject_set_dict = subject_set_instance.to_dict()
 # create an instance of SubjectSet from a dict
-subject_set_form_dict = subject_set.from_dict(subject_set_dict)
+subject_set_from_dict = SubjectSet.from_dict(subject_set_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

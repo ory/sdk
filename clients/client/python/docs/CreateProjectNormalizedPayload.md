@@ -228,7 +228,7 @@ print(CreateProjectNormalizedPayload.to_json())
 # convert the object into a dict
 create_project_normalized_payload_dict = create_project_normalized_payload_instance.to_dict()
 # create an instance of CreateProjectNormalizedPayload from a dict
-create_project_normalized_payload_form_dict = create_project_normalized_payload.from_dict(create_project_normalized_payload_dict)
+create_project_normalized_payload_from_dict = CreateProjectNormalizedPayload.from_dict(create_project_normalized_payload_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

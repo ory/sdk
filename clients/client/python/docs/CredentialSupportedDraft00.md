@@ -26,7 +26,7 @@ print(CredentialSupportedDraft00.to_json())
 # convert the object into a dict
 credential_supported_draft00_dict = credential_supported_draft00_instance.to_dict()
 # create an instance of CredentialSupportedDraft00 from a dict
-credential_supported_draft00_form_dict = credential_supported_draft00.from_dict(credential_supported_draft00_dict)
+credential_supported_draft00_from_dict = CredentialSupportedDraft00.from_dict(credential_supported_draft00_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

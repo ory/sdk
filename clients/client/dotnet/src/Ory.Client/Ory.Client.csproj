@@ -12,13 +12,14 @@
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>No Copyright</Copyright>
     <RootNamespace>Ory.Client</RootNamespace>
-    <Version>1.12.2</Version>
+    <Version>1.13.3</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Ory.Client.xml</DocumentationFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ory/sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>Minor update</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,9 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Web" />
   </ItemGroup>
 </Project>

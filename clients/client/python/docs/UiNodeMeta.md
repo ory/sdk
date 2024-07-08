@@ -23,7 +23,7 @@ print(UiNodeMeta.to_json())
 # convert the object into a dict
 ui_node_meta_dict = ui_node_meta_instance.to_dict()
 # create an instance of UiNodeMeta from a dict
-ui_node_meta_form_dict = ui_node_meta.from_dict(ui_node_meta_dict)
+ui_node_meta_from_dict = UiNodeMeta.from_dict(ui_node_meta_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

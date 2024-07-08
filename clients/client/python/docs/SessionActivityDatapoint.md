@@ -24,7 +24,7 @@ print(SessionActivityDatapoint.to_json())
 # convert the object into a dict
 session_activity_datapoint_dict = session_activity_datapoint_instance.to_dict()
 # create an instance of SessionActivityDatapoint from a dict
-session_activity_datapoint_form_dict = session_activity_datapoint.from_dict(session_activity_datapoint_dict)
+session_activity_datapoint_from_dict = SessionActivityDatapoint.from_dict(session_activity_datapoint_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ print(DeleteMySessionsCount.to_json())
 # convert the object into a dict
 delete_my_sessions_count_dict = delete_my_sessions_count_instance.to_dict()
 # create an instance of DeleteMySessionsCount from a dict
-delete_my_sessions_count_form_dict = delete_my_sessions_count.from_dict(delete_my_sessions_count_dict)
+delete_my_sessions_count_from_dict = DeleteMySessionsCount.from_dict(delete_my_sessions_count_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

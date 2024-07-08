@@ -25,7 +25,7 @@ print(SetProject.to_json())
 # convert the object into a dict
 set_project_dict = set_project_instance.to_dict()
 # create an instance of SetProject from a dict
-set_project_form_dict = set_project.from_dict(set_project_dict)
+set_project_from_dict = SetProject.from_dict(set_project_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

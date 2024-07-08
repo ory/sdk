@@ -26,7 +26,7 @@ print(UiContainer.to_json())
 # convert the object into a dict
 ui_container_dict = ui_container_instance.to_dict()
 # create an instance of UiContainer from a dict
-ui_container_form_dict = ui_container.from_dict(ui_container_dict)
+ui_container_from_dict = UiContainer.from_dict(ui_container_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

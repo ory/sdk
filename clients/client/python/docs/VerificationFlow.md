@@ -32,7 +32,7 @@ print(VerificationFlow.to_json())
 # convert the object into a dict
 verification_flow_dict = verification_flow_instance.to_dict()
 # create an instance of VerificationFlow from a dict
-verification_flow_form_dict = verification_flow.from_dict(verification_flow_dict)
+verification_flow_from_dict = VerificationFlow.from_dict(verification_flow_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

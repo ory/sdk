@@ -31,7 +31,7 @@ print(MemberInvite.to_json())
 # convert the object into a dict
 member_invite_dict = member_invite_instance.to_dict()
 # create an instance of MemberInvite from a dict
-member_invite_form_dict = member_invite.from_dict(member_invite_dict)
+member_invite_from_dict = MemberInvite.from_dict(member_invite_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

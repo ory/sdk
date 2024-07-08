@@ -23,7 +23,7 @@ print(AddProjectToWorkspaceBody.to_json())
 # convert the object into a dict
 add_project_to_workspace_body_dict = add_project_to_workspace_body_instance.to_dict()
 # create an instance of AddProjectToWorkspaceBody from a dict
-add_project_to_workspace_body_form_dict = add_project_to_workspace_body.from_dict(add_project_to_workspace_body_dict)
+add_project_to_workspace_body_from_dict = AddProjectToWorkspaceBody.from_dict(add_project_to_workspace_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

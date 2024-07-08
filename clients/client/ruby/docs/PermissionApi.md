@@ -1,6 +1,6 @@
 # OryClient::PermissionApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |

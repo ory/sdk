@@ -8,6 +8,7 @@
 | **id** | **String** |  |  |
 | **name** | **String** |  |  |
 | **subscription_id** | **String** |  | [optional] |
+| **subscription_plan** | **String** |  | [optional] |
 | **updated_at** | **Time** |  |  |
 
 ## Example
@@ -20,6 +21,7 @@ instance = OryClient::Workspace.new(
   id: null,
   name: null,
   subscription_id: null,
+  subscription_plan: null,
   updated_at: null
 )
 ```

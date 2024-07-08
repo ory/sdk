@@ -30,7 +30,7 @@ print(OAuth2LoginRequest.to_json())
 # convert the object into a dict
 o_auth2_login_request_dict = o_auth2_login_request_instance.to_dict()
 # create an instance of OAuth2LoginRequest from a dict
-o_auth2_login_request_form_dict = o_auth2_login_request.from_dict(o_auth2_login_request_dict)
+o_auth2_login_request_from_dict = OAuth2LoginRequest.from_dict(o_auth2_login_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

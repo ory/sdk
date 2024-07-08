@@ -26,7 +26,7 @@ print(RejectOAuth2Request.to_json())
 # convert the object into a dict
 reject_o_auth2_request_dict = reject_o_auth2_request_instance.to_dict()
 # create an instance of RejectOAuth2Request from a dict
-reject_o_auth2_request_form_dict = reject_o_auth2_request.from_dict(reject_o_auth2_request_dict)
+reject_o_auth2_request_from_dict = RejectOAuth2Request.from_dict(reject_o_auth2_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

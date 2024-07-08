@@ -24,7 +24,7 @@ print(SuccessfulCodeExchangeResponse.to_json())
 # convert the object into a dict
 successful_code_exchange_response_dict = successful_code_exchange_response_instance.to_dict()
 # create an instance of SuccessfulCodeExchangeResponse from a dict
-successful_code_exchange_response_form_dict = successful_code_exchange_response.from_dict(successful_code_exchange_response_dict)
+successful_code_exchange_response_from_dict = SuccessfulCodeExchangeResponse.from_dict(successful_code_exchange_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

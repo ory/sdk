@@ -24,7 +24,7 @@ print(Relationships.to_json())
 # convert the object into a dict
 relationships_dict = relationships_instance.to_dict()
 # create an instance of Relationships from a dict
-relationships_form_dict = relationships.from_dict(relationships_dict)
+relationships_from_dict = Relationships.from_dict(relationships_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

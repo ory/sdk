@@ -27,7 +27,7 @@ print(LineItemV1.to_json())
 # convert the object into a dict
 line_item_v1_dict = line_item_v1_instance.to_dict()
 # create an instance of LineItemV1 from a dict
-line_item_v1_form_dict = line_item_v1.from_dict(line_item_v1_dict)
+line_item_v1_from_dict = LineItemV1.from_dict(line_item_v1_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

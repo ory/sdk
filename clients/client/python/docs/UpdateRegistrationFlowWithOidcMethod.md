@@ -30,7 +30,7 @@ print(UpdateRegistrationFlowWithOidcMethod.to_json())
 # convert the object into a dict
 update_registration_flow_with_oidc_method_dict = update_registration_flow_with_oidc_method_instance.to_dict()
 # create an instance of UpdateRegistrationFlowWithOidcMethod from a dict
-update_registration_flow_with_oidc_method_form_dict = update_registration_flow_with_oidc_method.from_dict(update_registration_flow_with_oidc_method_dict)
+update_registration_flow_with_oidc_method_from_dict = UpdateRegistrationFlowWithOidcMethod.from_dict(update_registration_flow_with_oidc_method_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -26,7 +26,7 @@ print(SessionDevice.to_json())
 # convert the object into a dict
 session_device_dict = session_device_instance.to_dict()
 # create an instance of SessionDevice from a dict
-session_device_form_dict = session_device.from_dict(session_device_dict)
+session_device_from_dict = SessionDevice.from_dict(session_device_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

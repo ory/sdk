@@ -26,7 +26,7 @@ print(OAuth2ConsentRequestOpenIDConnectContext.to_json())
 # convert the object into a dict
 o_auth2_consent_request_open_id_connect_context_dict = o_auth2_consent_request_open_id_connect_context_instance.to_dict()
 # create an instance of OAuth2ConsentRequestOpenIDConnectContext from a dict
-o_auth2_consent_request_open_id_connect_context_form_dict = o_auth2_consent_request_open_id_connect_context.from_dict(o_auth2_consent_request_open_id_connect_context_dict)
+o_auth2_consent_request_open_id_connect_context_from_dict = OAuth2ConsentRequestOpenIDConnectContext.from_dict(o_auth2_consent_request_open_id_connect_context_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

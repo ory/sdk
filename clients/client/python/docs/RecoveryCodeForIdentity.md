@@ -25,7 +25,7 @@ print(RecoveryCodeForIdentity.to_json())
 # convert the object into a dict
 recovery_code_for_identity_dict = recovery_code_for_identity_instance.to_dict()
 # create an instance of RecoveryCodeForIdentity from a dict
-recovery_code_for_identity_form_dict = recovery_code_for_identity.from_dict(recovery_code_for_identity_dict)
+recovery_code_for_identity_from_dict = RecoveryCodeForIdentity.from_dict(recovery_code_for_identity_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

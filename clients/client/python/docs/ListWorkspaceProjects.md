@@ -24,7 +24,7 @@ print(ListWorkspaceProjects.to_json())
 # convert the object into a dict
 list_workspace_projects_dict = list_workspace_projects_instance.to_dict()
 # create an instance of ListWorkspaceProjects from a dict
-list_workspace_projects_form_dict = list_workspace_projects.from_dict(list_workspace_projects_dict)
+list_workspace_projects_from_dict = ListWorkspaceProjects.from_dict(list_workspace_projects_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ print(Warning.to_json())
 # convert the object into a dict
 warning_dict = warning_instance.to_dict()
 # create an instance of Warning from a dict
-warning_form_dict = warning.from_dict(warning_dict)
+warning_from_dict = Warning.from_dict(warning_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

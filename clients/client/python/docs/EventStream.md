@@ -28,7 +28,7 @@ print(EventStream.to_json())
 # convert the object into a dict
 event_stream_dict = event_stream_instance.to_dict()
 # create an instance of EventStream from a dict
-event_stream_form_dict = event_stream.from_dict(event_stream_dict)
+event_stream_from_dict = EventStream.from_dict(event_stream_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

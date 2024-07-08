@@ -23,7 +23,7 @@ print(GenericUsage.to_json())
 # convert the object into a dict
 generic_usage_dict = generic_usage_instance.to_dict()
 # create an instance of GenericUsage from a dict
-generic_usage_form_dict = generic_usage.from_dict(generic_usage_dict)
+generic_usage_from_dict = GenericUsage.from_dict(generic_usage_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

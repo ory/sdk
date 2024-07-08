@@ -23,7 +23,7 @@ print(ActiveProjectInConsole.to_json())
 # convert the object into a dict
 active_project_in_console_dict = active_project_in_console_instance.to_dict()
 # create an instance of ActiveProjectInConsole from a dict
-active_project_in_console_form_dict = active_project_in_console.from_dict(active_project_in_console_dict)
+active_project_in_console_from_dict = ActiveProjectInConsole.from_dict(active_project_in_console_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -29,7 +29,7 @@ print(VerifiableCredentialPrimingResponse.to_json())
 # convert the object into a dict
 verifiable_credential_priming_response_dict = verifiable_credential_priming_response_instance.to_dict()
 # create an instance of VerifiableCredentialPrimingResponse from a dict
-verifiable_credential_priming_response_form_dict = verifiable_credential_priming_response.from_dict(verifiable_credential_priming_response_dict)
+verifiable_credential_priming_response_from_dict = VerifiableCredentialPrimingResponse.from_dict(verifiable_credential_priming_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

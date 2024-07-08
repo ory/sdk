@@ -24,7 +24,7 @@ print(IdentitySchemaContainer.to_json())
 # convert the object into a dict
 identity_schema_container_dict = identity_schema_container_instance.to_dict()
 # create an instance of IdentitySchemaContainer from a dict
-identity_schema_container_form_dict = identity_schema_container.from_dict(identity_schema_container_dict)
+identity_schema_container_from_dict = IdentitySchemaContainer.from_dict(identity_schema_container_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

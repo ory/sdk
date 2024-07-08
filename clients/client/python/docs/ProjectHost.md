@@ -24,7 +24,7 @@ print(ProjectHost.to_json())
 # convert the object into a dict
 project_host_dict = project_host_instance.to_dict()
 # create an instance of ProjectHost from a dict
-project_host_form_dict = project_host.from_dict(project_host_dict)
+project_host_from_dict = ProjectHost.from_dict(project_host_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

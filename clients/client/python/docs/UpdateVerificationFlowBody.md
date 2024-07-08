@@ -27,7 +27,7 @@ print(UpdateVerificationFlowBody.to_json())
 # convert the object into a dict
 update_verification_flow_body_dict = update_verification_flow_body_instance.to_dict()
 # create an instance of UpdateVerificationFlowBody from a dict
-update_verification_flow_body_form_dict = update_verification_flow_body.from_dict(update_verification_flow_body_dict)
+update_verification_flow_body_from_dict = UpdateVerificationFlowBody.from_dict(update_verification_flow_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

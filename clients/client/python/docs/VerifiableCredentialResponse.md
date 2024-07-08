@@ -23,7 +23,7 @@ print(VerifiableCredentialResponse.to_json())
 # convert the object into a dict
 verifiable_credential_response_dict = verifiable_credential_response_instance.to_dict()
 # create an instance of VerifiableCredentialResponse from a dict
-verifiable_credential_response_form_dict = verifiable_credential_response.from_dict(verifiable_credential_response_dict)
+verifiable_credential_response_from_dict = VerifiableCredentialResponse.from_dict(verifiable_credential_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

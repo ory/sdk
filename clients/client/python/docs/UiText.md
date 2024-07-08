@@ -25,7 +25,7 @@ print(UiText.to_json())
 # convert the object into a dict
 ui_text_dict = ui_text_instance.to_dict()
 # create an instance of UiText from a dict
-ui_text_form_dict = ui_text.from_dict(ui_text_dict)
+ui_text_from_dict = UiText.from_dict(ui_text_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

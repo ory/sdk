@@ -24,7 +24,7 @@ print(ContinueWithSetOrySessionToken.to_json())
 # convert the object into a dict
 continue_with_set_ory_session_token_dict = continue_with_set_ory_session_token_instance.to_dict()
 # create an instance of ContinueWithSetOrySessionToken from a dict
-continue_with_set_ory_session_token_form_dict = continue_with_set_ory_session_token.from_dict(continue_with_set_ory_session_token_dict)
+continue_with_set_ory_session_token_from_dict = ContinueWithSetOrySessionToken.from_dict(continue_with_set_ory_session_token_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

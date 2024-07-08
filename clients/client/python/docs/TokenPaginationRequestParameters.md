@@ -24,7 +24,7 @@ print(TokenPaginationRequestParameters.to_json())
 # convert the object into a dict
 token_pagination_request_parameters_dict = token_pagination_request_parameters_instance.to_dict()
 # create an instance of TokenPaginationRequestParameters from a dict
-token_pagination_request_parameters_form_dict = token_pagination_request_parameters.from_dict(token_pagination_request_parameters_dict)
+token_pagination_request_parameters_from_dict = TokenPaginationRequestParameters.from_dict(token_pagination_request_parameters_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

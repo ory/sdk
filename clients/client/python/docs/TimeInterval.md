@@ -23,7 +23,7 @@ print(TimeInterval.to_json())
 # convert the object into a dict
 time_interval_dict = time_interval_instance.to_dict()
 # create an instance of TimeInterval from a dict
-time_interval_form_dict = time_interval.from_dict(time_interval_dict)
+time_interval_from_dict = TimeInterval.from_dict(time_interval_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

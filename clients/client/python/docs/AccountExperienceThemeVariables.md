@@ -112,7 +112,7 @@ print(AccountExperienceThemeVariables.to_json())
 # convert the object into a dict
 account_experience_theme_variables_dict = account_experience_theme_variables_instance.to_dict()
 # create an instance of AccountExperienceThemeVariables from a dict
-account_experience_theme_variables_form_dict = account_experience_theme_variables.from_dict(account_experience_theme_variables_dict)
+account_experience_theme_variables_from_dict = AccountExperienceThemeVariables.from_dict(account_experience_theme_variables_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,7 +27,7 @@ print(SessionAuthenticationMethod.to_json())
 # convert the object into a dict
 session_authentication_method_dict = session_authentication_method_instance.to_dict()
 # create an instance of SessionAuthenticationMethod from a dict
-session_authentication_method_form_dict = session_authentication_method.from_dict(session_authentication_method_dict)
+session_authentication_method_from_dict = SessionAuthenticationMethod.from_dict(session_authentication_method_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

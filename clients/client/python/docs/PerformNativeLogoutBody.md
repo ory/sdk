@@ -23,7 +23,7 @@ print(PerformNativeLogoutBody.to_json())
 # convert the object into a dict
 perform_native_logout_body_dict = perform_native_logout_body_instance.to_dict()
 # create an instance of PerformNativeLogoutBody from a dict
-perform_native_logout_body_form_dict = perform_native_logout_body.from_dict(perform_native_logout_body_dict)
+perform_native_logout_body_from_dict = PerformNativeLogoutBody.from_dict(perform_native_logout_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

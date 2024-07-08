@@ -24,7 +24,7 @@ print(CreateVerifiableCredentialRequestBody.to_json())
 # convert the object into a dict
 create_verifiable_credential_request_body_dict = create_verifiable_credential_request_body_instance.to_dict()
 # create an instance of CreateVerifiableCredentialRequestBody from a dict
-create_verifiable_credential_request_body_form_dict = create_verifiable_credential_request_body.from_dict(create_verifiable_credential_request_body_dict)
+create_verifiable_credential_request_body_from_dict = CreateVerifiableCredentialRequestBody.from_dict(create_verifiable_credential_request_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,7 +28,7 @@ print(ProjectApiKey.to_json())
 # convert the object into a dict
 project_api_key_dict = project_api_key_instance.to_dict()
 # create an instance of ProjectApiKey from a dict
-project_api_key_form_dict = project_api_key.from_dict(project_api_key_dict)
+project_api_key_from_dict = ProjectApiKey.from_dict(project_api_key_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

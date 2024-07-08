@@ -36,7 +36,7 @@ print(IntrospectedOAuth2Token.to_json())
 # convert the object into a dict
 introspected_o_auth2_token_dict = introspected_o_auth2_token_instance.to_dict()
 # create an instance of IntrospectedOAuth2Token from a dict
-introspected_o_auth2_token_form_dict = introspected_o_auth2_token.from_dict(introspected_o_auth2_token_dict)
+introspected_o_auth2_token_from_dict = IntrospectedOAuth2Token.from_dict(introspected_o_auth2_token_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

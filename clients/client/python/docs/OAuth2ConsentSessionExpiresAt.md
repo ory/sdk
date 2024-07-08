@@ -26,7 +26,7 @@ print(OAuth2ConsentSessionExpiresAt.to_json())
 # convert the object into a dict
 o_auth2_consent_session_expires_at_dict = o_auth2_consent_session_expires_at_instance.to_dict()
 # create an instance of OAuth2ConsentSessionExpiresAt from a dict
-o_auth2_consent_session_expires_at_form_dict = o_auth2_consent_session_expires_at.from_dict(o_auth2_consent_session_expires_at_dict)
+o_auth2_consent_session_expires_at_from_dict = OAuth2ConsentSessionExpiresAt.from_dict(o_auth2_consent_session_expires_at_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

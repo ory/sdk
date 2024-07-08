@@ -23,7 +23,7 @@ print(IsOwnerForProjectBySlug.to_json())
 # convert the object into a dict
 is_owner_for_project_by_slug_dict = is_owner_for_project_by_slug_instance.to_dict()
 # create an instance of IsOwnerForProjectBySlug from a dict
-is_owner_for_project_by_slug_form_dict = is_owner_for_project_by_slug.from_dict(is_owner_for_project_by_slug_dict)
+is_owner_for_project_by_slug_from_dict = IsOwnerForProjectBySlug.from_dict(is_owner_for_project_by_slug_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

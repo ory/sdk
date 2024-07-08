@@ -27,7 +27,7 @@ print(OAuth2LogoutRequest.to_json())
 # convert the object into a dict
 o_auth2_logout_request_dict = o_auth2_logout_request_instance.to_dict()
 # create an instance of OAuth2LogoutRequest from a dict
-o_auth2_logout_request_form_dict = o_auth2_logout_request.from_dict(o_auth2_logout_request_dict)
+o_auth2_logout_request_from_dict = OAuth2LogoutRequest.from_dict(o_auth2_logout_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

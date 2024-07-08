@@ -28,7 +28,7 @@ print(IdentityCredentials.to_json())
 # convert the object into a dict
 identity_credentials_dict = identity_credentials_instance.to_dict()
 # create an instance of IdentityCredentials from a dict
-identity_credentials_form_dict = identity_credentials.from_dict(identity_credentials_dict)
+identity_credentials_from_dict = IdentityCredentials.from_dict(identity_credentials_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

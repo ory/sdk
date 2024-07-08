@@ -28,7 +28,7 @@ print(UpdateRegistrationFlowWithCodeMethod.to_json())
 # convert the object into a dict
 update_registration_flow_with_code_method_dict = update_registration_flow_with_code_method_instance.to_dict()
 # create an instance of UpdateRegistrationFlowWithCodeMethod from a dict
-update_registration_flow_with_code_method_form_dict = update_registration_flow_with_code_method.from_dict(update_registration_flow_with_code_method_dict)
+update_registration_flow_with_code_method_from_dict = UpdateRegistrationFlowWithCodeMethod.from_dict(update_registration_flow_with_code_method_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

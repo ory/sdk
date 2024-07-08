@@ -24,7 +24,7 @@ print(AttributeFilter.to_json())
 # convert the object into a dict
 attribute_filter_dict = attribute_filter_instance.to_dict()
 # create an instance of AttributeFilter from a dict
-attribute_filter_form_dict = attribute_filter.from_dict(attribute_filter_dict)
+attribute_filter_from_dict = AttributeFilter.from_dict(attribute_filter_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

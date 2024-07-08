@@ -23,7 +23,7 @@ print(EmailTemplateDataBody.to_json())
 # convert the object into a dict
 email_template_data_body_dict = email_template_data_body_instance.to_dict()
 # create an instance of EmailTemplateDataBody from a dict
-email_template_data_body_form_dict = email_template_data_body.from_dict(email_template_data_body_dict)
+email_template_data_body_from_dict = EmailTemplateDataBody.from_dict(email_template_data_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

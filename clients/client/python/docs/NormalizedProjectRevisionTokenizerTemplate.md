@@ -29,7 +29,7 @@ print(NormalizedProjectRevisionTokenizerTemplate.to_json())
 # convert the object into a dict
 normalized_project_revision_tokenizer_template_dict = normalized_project_revision_tokenizer_template_instance.to_dict()
 # create an instance of NormalizedProjectRevisionTokenizerTemplate from a dict
-normalized_project_revision_tokenizer_template_form_dict = normalized_project_revision_tokenizer_template.from_dict(normalized_project_revision_tokenizer_template_dict)
+normalized_project_revision_tokenizer_template_from_dict = NormalizedProjectRevisionTokenizerTemplate.from_dict(normalized_project_revision_tokenizer_template_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

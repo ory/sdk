@@ -23,7 +23,7 @@ print(ProjectCors.to_json())
 # convert the object into a dict
 project_cors_dict = project_cors_instance.to_dict()
 # create an instance of ProjectCors from a dict
-project_cors_form_dict = project_cors.from_dict(project_cors_dict)
+project_cors_from_dict = ProjectCors.from_dict(project_cors_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

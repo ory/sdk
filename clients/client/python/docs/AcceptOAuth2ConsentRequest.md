@@ -28,7 +28,7 @@ print(AcceptOAuth2ConsentRequest.to_json())
 # convert the object into a dict
 accept_o_auth2_consent_request_dict = accept_o_auth2_consent_request_instance.to_dict()
 # create an instance of AcceptOAuth2ConsentRequest from a dict
-accept_o_auth2_consent_request_form_dict = accept_o_auth2_consent_request.from_dict(accept_o_auth2_consent_request_dict)
+accept_o_auth2_consent_request_from_dict = AcceptOAuth2ConsentRequest.from_dict(accept_o_auth2_consent_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

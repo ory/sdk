@@ -23,7 +23,7 @@ print(VerifiableCredentialProof.to_json())
 # convert the object into a dict
 verifiable_credential_proof_dict = verifiable_credential_proof_instance.to_dict()
 # create an instance of VerifiableCredentialProof from a dict
-verifiable_credential_proof_form_dict = verifiable_credential_proof.from_dict(verifiable_credential_proof_dict)
+verifiable_credential_proof_from_dict = VerifiableCredentialProof.from_dict(verifiable_credential_proof_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

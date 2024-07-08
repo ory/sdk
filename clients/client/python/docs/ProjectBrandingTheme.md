@@ -61,7 +61,7 @@ print(ProjectBrandingTheme.to_json())
 # convert the object into a dict
 project_branding_theme_dict = project_branding_theme_instance.to_dict()
 # create an instance of ProjectBrandingTheme from a dict
-project_branding_theme_form_dict = project_branding_theme.from_dict(project_branding_theme_dict)
+project_branding_theme_from_dict = ProjectBrandingTheme.from_dict(project_branding_theme_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

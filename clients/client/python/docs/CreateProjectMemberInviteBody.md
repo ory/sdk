@@ -23,7 +23,7 @@ print(CreateProjectMemberInviteBody.to_json())
 # convert the object into a dict
 create_project_member_invite_body_dict = create_project_member_invite_body_instance.to_dict()
 # create an instance of CreateProjectMemberInviteBody from a dict
-create_project_member_invite_body_form_dict = create_project_member_invite_body.from_dict(create_project_member_invite_body_dict)
+create_project_member_invite_body_from_dict = CreateProjectMemberInviteBody.from_dict(create_project_member_invite_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

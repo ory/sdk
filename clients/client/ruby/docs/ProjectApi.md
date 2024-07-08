@@ -1,28 +1,25 @@
 # OryClient::ProjectApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations |  |
 | [**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project |
 | [**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API token |
-| [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project. |
+| [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} |  |
 | [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
-| [**get_active_project_in_console**](ProjectApi.md#get_active_project_in_console) | **GET** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console |
-| [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID. |
+| [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID |
 | [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project |
 | [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project |
-| [**get_project_metrics**](ProjectApi.md#get_project_metrics) | **GET** /projects/{project_id}/metrics |  |
 | [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations |  |
 | [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects |
 | [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**purge_project**](ProjectApi.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
 | [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
-| [**set_active_project_in_console**](ProjectApi.md#set_active_project_in_console) | **PUT** /console/active/project | Sets the Ory Network Project active in the Ory Network Console |
 | [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
-| [**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project. |
+| [**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} |  |
 
 
 ## create_organization
@@ -40,7 +37,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -90,7 +87,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -113,7 +110,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -161,7 +158,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -184,7 +181,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -234,7 +231,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -246,7 +243,9 @@ end
 
 > delete_organization(project_id, organization_id)
 
-Delete a B2B SSO Organization for a project.
+
+
+Delete a B2B SSO Organization for a project
 
 ### Examples
 
@@ -255,7 +254,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -264,7 +263,7 @@ project_id = 'project_id_example' # String | Project ID  The project's ID.
 organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
 
 begin
-  # Delete a B2B SSO Organization for a project.
+  
   api_instance.delete_organization(project_id, organization_id)
 rescue OryClient::ApiError => e
   puts "Error when calling ProjectApi->delete_organization: #{e}"
@@ -279,7 +278,7 @@ This returns an Array which contains the response data (`nil` in this case), sta
 
 ```ruby
 begin
-  # Delete a B2B SSO Organization for a project.
+  
   data, status_code, headers = api_instance.delete_organization_with_http_info(project_id, organization_id)
   p status_code # => 2xx
   p headers # => { ... }
@@ -302,7 +301,7 @@ nil (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -325,7 +324,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -372,73 +371,7 @@ nil (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## get_active_project_in_console
-
-> <ActiveProjectInConsole> get_active_project_in_console
-
-Returns the Ory Network Project selected in the Ory Network Console
-
-Use this API to get your active project in the Ory Network Console UI.
-
-### Examples
-
-```ruby
-require 'time'
-require 'ory-client'
-# setup authorization
-OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
-  config.access_token = 'YOUR_BEARER_TOKEN'
-end
-
-api_instance = OryClient::ProjectApi.new
-
-begin
-  # Returns the Ory Network Project selected in the Ory Network Console
-  result = api_instance.get_active_project_in_console
-  p result
-rescue OryClient::ApiError => e
-  puts "Error when calling ProjectApi->get_active_project_in_console: #{e}"
-end
-```
-
-#### Using the get_active_project_in_console_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<ActiveProjectInConsole>, Integer, Hash)> get_active_project_in_console_with_http_info
-
-```ruby
-begin
-  # Returns the Ory Network Project selected in the Ory Network Console
-  data, status_code, headers = api_instance.get_active_project_in_console_with_http_info
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <ActiveProjectInConsole>
-rescue OryClient::ApiError => e
-  puts "Error when calling ProjectApi->get_active_project_in_console_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ActiveProjectInConsole**](ActiveProjectInConsole.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -450,7 +383,7 @@ This endpoint does not need any parameter.
 
 > <GetOrganizationResponse> get_organization(project_id, organization_id)
 
-Returns a B2B SSO Organization for a project by it's ID.
+Returns a B2B SSO Organization for a project by its ID
 
 ### Examples
 
@@ -459,7 +392,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -468,7 +401,7 @@ project_id = 'project_id_example' # String | Project ID  The project's ID.
 organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
 
 begin
-  # Returns a B2B SSO Organization for a project by it's ID.
+  # Returns a B2B SSO Organization for a project by its ID
   result = api_instance.get_organization(project_id, organization_id)
   p result
 rescue OryClient::ApiError => e
@@ -484,7 +417,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Returns a B2B SSO Organization for a project by it's ID.
+  # Returns a B2B SSO Organization for a project by its ID
   data, status_code, headers = api_instance.get_organization_with_http_info(project_id, organization_id)
   p status_code # => 2xx
   p headers # => { ... }
@@ -507,7 +440,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -530,7 +463,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -576,7 +509,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -599,7 +532,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -645,84 +578,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## get_project_metrics
-
-> <GetProjectMetricsResponse> get_project_metrics(project_id, event_type, resolution, from, to)
-
-
-
-Retrieves project metrics for the specified event type and time range
-
-### Examples
-
-```ruby
-require 'time'
-require 'ory-client'
-# setup authorization
-OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
-  config.access_token = 'YOUR_BEARER_TOKEN'
-end
-
-api_instance = OryClient::ProjectApi.new
-project_id = 'project_id_example' # String | Project ID
-event_type = 'event_type_example' # String | The event type to query for
-resolution = 'resolution_example' # String | The resolution of the buckets  The minimum resolution is 1 minute.
-from = Time.parse('2013-10-20T19:20:30+01:00') # Time | The start RFC3339 date of the time window
-to = Time.parse('2013-10-20T19:20:30+01:00') # Time | The end RFC3339 date of the time window
-
-begin
-  
-  result = api_instance.get_project_metrics(project_id, event_type, resolution, from, to)
-  p result
-rescue OryClient::ApiError => e
-  puts "Error when calling ProjectApi->get_project_metrics: #{e}"
-end
-```
-
-#### Using the get_project_metrics_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<GetProjectMetricsResponse>, Integer, Hash)> get_project_metrics_with_http_info(project_id, event_type, resolution, from, to)
-
-```ruby
-begin
-  
-  data, status_code, headers = api_instance.get_project_metrics_with_http_info(project_id, event_type, resolution, from, to)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <GetProjectMetricsResponse>
-rescue OryClient::ApiError => e
-  puts "Error when calling ProjectApi->get_project_metrics_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **project_id** | **String** | Project ID |  |
-| **event_type** | **String** | The event type to query for |  |
-| **resolution** | **String** | The resolution of the buckets  The minimum resolution is 1 minute. |  |
-| **from** | **Time** | The start RFC3339 date of the time window |  |
-| **to** | **Time** | The end RFC3339 date of the time window |  |
-
-### Return type
-
-[**GetProjectMetricsResponse**](GetProjectMetricsResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -732,9 +588,11 @@ end
 
 ## list_organizations
 
-> <ListOrganizationsResponse> list_organizations(project_id)
+> <ListOrganizationsResponse> list_organizations(project_id, opts)
 
 
+
+List all B2B SSO Organizations for a project
 
 ### Examples
 
@@ -743,16 +601,21 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = OryClient::ProjectApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
+opts = {
+  page_size: 789, # Integer | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  domain: 'domain_example' # String | Domain  If set, only organizations with that domain will be returned.
+}
 
 begin
   
-  result = api_instance.list_organizations(project_id)
+  result = api_instance.list_organizations(project_id, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling ProjectApi->list_organizations: #{e}"
@@ -763,12 +626,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ListOrganizationsResponse>, Integer, Hash)> list_organizations_with_http_info(project_id)
+> <Array(<ListOrganizationsResponse>, Integer, Hash)> list_organizations_with_http_info(project_id, opts)
 
 ```ruby
 begin
   
-  data, status_code, headers = api_instance.list_organizations_with_http_info(project_id)
+  data, status_code, headers = api_instance.list_organizations_with_http_info(project_id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <ListOrganizationsResponse>
@@ -782,6 +645,9 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
+| **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
+| **domain** | **String** | Domain  If set, only organizations with that domain will be returned. | [optional] |
 
 ### Return type
 
@@ -789,7 +655,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -812,7 +678,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -858,7 +724,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -881,7 +747,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -924,7 +790,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -947,7 +813,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -997,7 +863,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1020,7 +886,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -1065,7 +931,7 @@ nil (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1088,7 +954,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -1135,81 +1001,11 @@ nil (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## set_active_project_in_console
-
-> set_active_project_in_console(opts)
-
-Sets the Ory Network Project active in the Ory Network Console
-
-Use this API to set your active project in the Ory Network Console UI.
-
-### Examples
-
-```ruby
-require 'time'
-require 'ory-client'
-# setup authorization
-OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
-  config.access_token = 'YOUR_BEARER_TOKEN'
-end
-
-api_instance = OryClient::ProjectApi.new
-opts = {
-  set_active_project_in_console_body: OryClient::SetActiveProjectInConsoleBody.new({project_id: 'project_id_example'}) # SetActiveProjectInConsoleBody | 
-}
-
-begin
-  # Sets the Ory Network Project active in the Ory Network Console
-  api_instance.set_active_project_in_console(opts)
-rescue OryClient::ApiError => e
-  puts "Error when calling ProjectApi->set_active_project_in_console: #{e}"
-end
-```
-
-#### Using the set_active_project_in_console_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> set_active_project_in_console_with_http_info(opts)
-
-```ruby
-begin
-  # Sets the Ory Network Project active in the Ory Network Console
-  data, status_code, headers = api_instance.set_active_project_in_console_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue OryClient::ApiError => e
-  puts "Error when calling ProjectApi->set_active_project_in_console_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **set_active_project_in_console_body** | [**SetActiveProjectInConsoleBody**](SetActiveProjectInConsoleBody.md) |  | [optional] |
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 
@@ -1228,7 +1024,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -1278,7 +1074,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1290,7 +1086,9 @@ end
 
 > <Organization> update_organization(project_id, organization_id, opts)
 
-Update a B2B SSO Organization for a project.
+
+
+Update a B2B SSO Organization for a project
 
 ### Examples
 
@@ -1299,7 +1097,7 @@ require 'time'
 require 'ory-client'
 # setup authorization
 OryClient.configure do |config|
-  # Configure Bearer authorization: oryAccessToken
+  # Configure Bearer authorization: oryWorkspaceApiKey
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
@@ -1311,7 +1109,7 @@ opts = {
 }
 
 begin
-  # Update a B2B SSO Organization for a project.
+  
   result = api_instance.update_organization(project_id, organization_id, opts)
   p result
 rescue OryClient::ApiError => e
@@ -1327,7 +1125,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Update a B2B SSO Organization for a project.
+  
   data, status_code, headers = api_instance.update_organization_with_http_info(project_id, organization_id, opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -1351,7 +1149,7 @@ end
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

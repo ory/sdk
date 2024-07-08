@@ -1,10 +1,10 @@
 # OryClient::IdentityApi
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create and deletes multiple identities |
+| [**batch_patch_identities**](IdentityApi.md#batch_patch_identities) | **PATCH** /admin/identities | Create multiple identities |
 | [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity |
 | [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code |
 | [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link |
@@ -28,9 +28,9 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 > <BatchPatchIdentitiesResponse> batch_patch_identities(opts)
 
-Create and deletes multiple identities
+Create multiple identities
 
-Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
 
 ### Examples
 
@@ -49,7 +49,7 @@ opts = {
 }
 
 begin
-  # Create and deletes multiple identities
+  # Create multiple identities
   result = api_instance.batch_patch_identities(opts)
   p result
 rescue OryClient::ApiError => e
@@ -65,7 +65,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Create and deletes multiple identities
+  # Create multiple identities
   data, status_code, headers = api_instance.batch_patch_identities_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -380,11 +380,11 @@ nil (empty response body)
 
 ## delete_identity_credentials
 
-> delete_identity_credentials(id, type)
+> delete_identity_credentials(id, type, opts)
 
 Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
 
 ### Examples
 
@@ -399,11 +399,14 @@ end
 
 api_instance = OryClient::IdentityApi.new
 id = 'id_example' # String | ID is the identity's ID.
-type = 'password' # String | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+type = 'password' # String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+opts = {
+  identifier: 'identifier_example' # String | Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint.
+}
 
 begin
   # Delete a credential for a specific identity
-  api_instance.delete_identity_credentials(id, type)
+  api_instance.delete_identity_credentials(id, type, opts)
 rescue OryClient::ApiError => e
   puts "Error when calling IdentityApi->delete_identity_credentials: #{e}"
 end
@@ -413,12 +416,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> delete_identity_credentials_with_http_info(id, type)
+> <Array(nil, Integer, Hash)> delete_identity_credentials_with_http_info(id, type, opts)
 
 ```ruby
 begin
   # Delete a credential for a specific identity
-  data, status_code, headers = api_instance.delete_identity_credentials_with_http_info(id, type)
+  data, status_code, headers = api_instance.delete_identity_credentials_with_http_info(id, type, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -432,7 +435,8 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID is the identity&#39;s ID. |  |
-| **type** | **String** | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode |  |
+| **type** | **String** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode |  |
+| **identifier** | **String** | Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;oidc&#x60; endpoint. | [optional] |
 
 ### Return type
 
@@ -590,7 +594,7 @@ nil (empty response body)
 
 Extend a Session
 
-Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
 ### Examples
 
@@ -812,7 +816,7 @@ end
 api_instance = OryClient::IdentityApi.new
 id = 'id_example' # String | ID is the session's ID.
 opts = {
-  expand: ['inner_example'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
+  expand: ['identity'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped.
 }
 
 begin
@@ -1127,7 +1131,7 @@ opts = {
   page_size: 789, # Integer | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   active: true, # Boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned.
-  expand: ['inner_example'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
+  expand: ['identity'] # Array<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped.
 }
 
 begin

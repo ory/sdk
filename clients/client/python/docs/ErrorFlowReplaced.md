@@ -24,7 +24,7 @@ print(ErrorFlowReplaced.to_json())
 # convert the object into a dict
 error_flow_replaced_dict = error_flow_replaced_instance.to_dict()
 # create an instance of ErrorFlowReplaced from a dict
-error_flow_replaced_form_dict = error_flow_replaced.from_dict(error_flow_replaced_dict)
+error_flow_replaced_from_dict = ErrorFlowReplaced.from_dict(error_flow_replaced_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

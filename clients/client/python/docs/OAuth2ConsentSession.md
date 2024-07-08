@@ -31,7 +31,7 @@ print(OAuth2ConsentSession.to_json())
 # convert the object into a dict
 o_auth2_consent_session_dict = o_auth2_consent_session_instance.to_dict()
 # create an instance of OAuth2ConsentSession from a dict
-o_auth2_consent_session_form_dict = o_auth2_consent_session.from_dict(o_auth2_consent_session_dict)
+o_auth2_consent_session_from_dict = OAuth2ConsentSession.from_dict(o_auth2_consent_session_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ print(InternalGetProjectBrandingBody.to_json())
 # convert the object into a dict
 internal_get_project_branding_body_dict = internal_get_project_branding_body_instance.to_dict()
 # create an instance of InternalGetProjectBrandingBody from a dict
-internal_get_project_branding_body_form_dict = internal_get_project_branding_body.from_dict(internal_get_project_branding_body_dict)
+internal_get_project_branding_body_from_dict = InternalGetProjectBrandingBody.from_dict(internal_get_project_branding_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

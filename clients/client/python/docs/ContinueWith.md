@@ -24,7 +24,7 @@ print(ContinueWith.to_json())
 # convert the object into a dict
 continue_with_dict = continue_with_instance.to_dict()
 # create an instance of ContinueWith from a dict
-continue_with_form_dict = continue_with.from_dict(continue_with_dict)
+continue_with_from_dict = ContinueWith.from_dict(continue_with_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

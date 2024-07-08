@@ -24,7 +24,7 @@ print(IdentityWithCredentialsPasswordConfig.to_json())
 # convert the object into a dict
 identity_with_credentials_password_config_dict = identity_with_credentials_password_config_instance.to_dict()
 # create an instance of IdentityWithCredentialsPasswordConfig from a dict
-identity_with_credentials_password_config_form_dict = identity_with_credentials_password_config.from_dict(identity_with_credentials_password_config_dict)
+identity_with_credentials_password_config_from_dict = IdentityWithCredentialsPasswordConfig.from_dict(identity_with_credentials_password_config_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

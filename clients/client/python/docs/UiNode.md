@@ -27,7 +27,7 @@ print(UiNode.to_json())
 # convert the object into a dict
 ui_node_dict = ui_node_instance.to_dict()
 # create an instance of UiNode from a dict
-ui_node_form_dict = ui_node.from_dict(ui_node_dict)
+ui_node_from_dict = UiNode.from_dict(ui_node_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

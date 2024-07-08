@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.12.2
+  version: v1.13.3
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -12319,7 +12319,7 @@ components:
 
         Once a login flow is completed successfully, a session cookie or session token will be issued.
       example:
-        requested_aal: null
+        requested_aal: aal0
         active: password
         created_at: 2000-01-23T04:56:07.000+00:00
         refresh: true
@@ -12825,8 +12825,8 @@ components:
         template_type: recovery_invalid
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         body: body
-        type: null
-        status: null
+        type: email
+        status: queued
       properties:
         body:
           type: string
@@ -18140,12 +18140,12 @@ components:
           method: link_recovery
           provider: provider
           organization: organization
-          aal: null
+          aal: aal0
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
           provider: provider
           organization: organization
-          aal: null
+          aal: aal0
         authenticator_assurance_level: null
         identity:
           traits: ""
@@ -18264,7 +18264,7 @@ components:
         method: link_recovery
         provider: provider
         organization: organization
-        aal: null
+        aal: aal0
       properties:
         aal:
           $ref: '#/components/schemas/authenticatorAssuranceLevel'
@@ -18812,12 +18812,12 @@ components:
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           authenticator_assurance_level: null
           identity:
             traits: ""
@@ -18981,12 +18981,12 @@ components:
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           authenticator_assurance_level: null
           identity:
             traits: ""

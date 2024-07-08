@@ -26,7 +26,7 @@ print(SuccessfulNativeRegistration.to_json())
 # convert the object into a dict
 successful_native_registration_dict = successful_native_registration_instance.to_dict()
 # create an instance of SuccessfulNativeRegistration from a dict
-successful_native_registration_form_dict = successful_native_registration.from_dict(successful_native_registration_dict)
+successful_native_registration_from_dict = SuccessfulNativeRegistration.from_dict(successful_native_registration_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

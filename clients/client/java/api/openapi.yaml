@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.12.2
+  version: v1.13.3
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -54,7 +54,8 @@ paths:
       summary: Discover Well-Known JSON Web Keys
       tags:
       - wellknown
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /.well-known/openid-configuration:
     get:
       description: |-
@@ -79,7 +80,8 @@ paths:
       summary: OpenID Connect Discovery
       tags:
       - oidc
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /.well-known/ory/webauthn.js:
     get:
       description: |-
@@ -103,7 +105,8 @@ paths:
       summary: Get WebAuthn JavaScript
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/clients:
     get:
       description: |-
@@ -177,7 +180,8 @@ paths:
       summary: List OAuth 2.0 Clients
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: |-
         Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret
@@ -216,7 +220,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/clients/{id}:
     delete:
       description: |-
@@ -252,7 +257,8 @@ paths:
       summary: Delete OAuth 2.0 Client
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: |-
         Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.
@@ -287,7 +293,8 @@ paths:
       summary: Get an OAuth 2.0 Client
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: |-
         Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret`
@@ -339,7 +346,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: |-
         Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used,
@@ -398,7 +406,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/clients/{id}/lifespans:
     put:
       description: Set lifespans of different token types issued for this OAuth 2.0
@@ -438,7 +447,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/courier/messages:
     get:
       description: Lists all messages by given status and recipient.
@@ -518,7 +528,8 @@ paths:
       summary: List Messages
       tags:
       - courier
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/courier/messages/{id}:
     get:
       description: Gets a specific messages by the given ID.
@@ -556,7 +567,8 @@ paths:
       summary: Get a Message
       tags:
       - courier
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/identities:
     get:
       description: "Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
@@ -733,7 +745,8 @@ paths:
       summary: List Identities
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: |-
         Creates multiple
@@ -779,7 +792,8 @@ paths:
       tags:
       - identity
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: |-
         Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
@@ -823,7 +837,8 @@ paths:
       tags:
       - identity
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/identities/{id}:
     delete:
       description: |-
@@ -862,7 +877,8 @@ paths:
       summary: Delete an Identity
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: |-
         Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
@@ -926,7 +942,8 @@ paths:
       summary: Get an Identity
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: |-
         Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
@@ -984,7 +1001,8 @@ paths:
       tags:
       - identity
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: |-
         This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
@@ -1042,7 +1060,8 @@ paths:
       tags:
       - identity
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/identities/{id}/credentials/{type}:
     delete:
       description: |-
@@ -1131,7 +1150,8 @@ paths:
       summary: Delete a credential for a specific identity
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/identities/{id}/sessions:
     delete:
       description: Calling this endpoint irrecoverably and permanently deletes and
@@ -1180,7 +1200,8 @@ paths:
       summary: Delete & Invalidate an Identity's Sessions
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: This endpoint returns all sessions that belong to the given Identity.
       operationId: listIdentitySessions
@@ -1300,7 +1321,8 @@ paths:
       summary: List an Identity's Sessions
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/keys/{set}:
     delete:
       description: |-
@@ -1333,7 +1355,8 @@ paths:
       summary: Delete JSON Web Key Set
       tags:
       - jwk
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: |-
         This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.
@@ -1367,7 +1390,8 @@ paths:
       summary: Retrieve a JSON Web Key Set
       tags:
       - jwk
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: |-
         This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.
@@ -1409,7 +1433,8 @@ paths:
       tags:
       - jwk
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: |-
         Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
@@ -1450,7 +1475,8 @@ paths:
       tags:
       - jwk
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/keys/{set}/{kid}:
     delete:
       description: |-
@@ -1494,7 +1520,8 @@ paths:
       summary: Delete JSON Web Key
       tags:
       - jwk
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: This endpoint returns a singular JSON Web Key contained in a set.
         It is identified by the set and the specific key ID (kid).
@@ -1534,7 +1561,8 @@ paths:
       summary: Get JSON Web Key
       tags:
       - jwk
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: |-
         Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
@@ -1583,7 +1611,8 @@ paths:
       tags:
       - jwk
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/requests/consent:
     get:
       description: |-
@@ -1631,7 +1660,8 @@ paths:
       summary: Get OAuth 2.0 Consent Request
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/requests/consent/accept:
     put:
       description: |-
@@ -1686,7 +1716,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/requests/consent/reject:
     put:
       description: |-
@@ -1740,7 +1771,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/requests/login:
     get:
       description: |-
@@ -1787,7 +1819,8 @@ paths:
       summary: Get OAuth 2.0 Login Request
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/requests/login/accept:
     put:
       description: |-
@@ -1837,7 +1870,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/requests/login/reject:
     put:
       description: |-
@@ -1886,7 +1920,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/requests/logout:
     get:
       description: Use this endpoint to fetch an Ory OAuth 2.0 logout request.
@@ -1923,7 +1958,8 @@ paths:
       summary: Get OAuth 2.0 Session Logout Request
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/requests/logout/accept:
     put:
       description: |-
@@ -1958,7 +1994,8 @@ paths:
       summary: Accept OAuth 2.0 Session Logout Request
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/requests/logout/reject:
     put:
       description: |-
@@ -1991,7 +2028,8 @@ paths:
       summary: Reject OAuth 2.0 Session Logout Request
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/sessions/consent:
     delete:
       description: |-
@@ -2048,7 +2086,8 @@ paths:
       summary: Revoke OAuth 2.0 Consent Sessions of a Subject
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: |-
         This endpoint lists all subject's granted consent sessions, including client and granted scope.
@@ -2120,7 +2159,8 @@ paths:
       summary: List OAuth 2.0 Consent Sessions of a Subject
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/auth/sessions/login:
     delete:
       description: |-
@@ -2172,7 +2212,8 @@ paths:
       summary: Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/introspect:
     post:
       description: |-
@@ -2204,7 +2245,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/x-www-form-urlencoded
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/oauth2/tokens:
     delete:
       description: This endpoint deletes OAuth2 access tokens issued to an OAuth 2.0
@@ -2235,7 +2277,8 @@ paths:
       summary: Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/recovery/code:
     post:
       description: |-
@@ -2279,7 +2322,8 @@ paths:
       tags:
       - identity
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/recovery/link:
     post:
       description: |-
@@ -2331,7 +2375,8 @@ paths:
       tags:
       - identity
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/relation-tuples:
     delete:
       description: Use this endpoint to delete relationships
@@ -2415,7 +2460,8 @@ paths:
       summary: Delete Relationships
       tags:
       - relationship
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Use this endpoint to patch one or more relationships.
       operationId: patchRelationships
@@ -2456,7 +2502,8 @@ paths:
       tags:
       - relationship
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Use this endpoint to create a relationship.
       operationId: createRelationship
@@ -2491,7 +2538,8 @@ paths:
       tags:
       - relationship
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/sessions:
     get:
       description: Listing all sessions that exist.
@@ -2578,7 +2626,8 @@ paths:
       summary: List All Sessions
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/sessions/{id}:
     delete:
       description: Calling this endpoint deactivates the specified session. Session
@@ -2621,7 +2670,8 @@ paths:
       summary: Deactivate a Session
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: |-
         This endpoint is useful for:
@@ -2677,7 +2727,8 @@ paths:
       summary: Get Session
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/sessions/{id}/extend:
     patch:
       description: |-
@@ -2736,7 +2787,8 @@ paths:
       summary: Extend a Session
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/trust/grants/jwt-bearer/issuers:
     get:
       description: Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
@@ -2785,7 +2837,8 @@ paths:
       summary: List Trusted OAuth2 JWT Bearer Grant Type Issuers
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: |-
         Use this endpoint to establish a trust relationship for a JWT issuer
@@ -2817,7 +2870,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/trust/grants/jwt-bearer/issuers/{id}:
     delete:
       description: |-
@@ -2852,7 +2906,8 @@ paths:
       summary: Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: |-
         Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you
@@ -2885,7 +2940,8 @@ paths:
       summary: Get Trusted OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /credentials:
     post:
       description: |-
@@ -2925,7 +2981,8 @@ paths:
       tags:
       - oidc
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /namespaces:
     get:
       description: Get all namespaces
@@ -2948,7 +3005,8 @@ paths:
       summary: Query namespaces
       tags:
       - relationship
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /oauth2/auth:
     get:
       description: |-
@@ -2971,7 +3029,8 @@ paths:
       summary: OAuth 2.0 Authorize Endpoint
       tags:
       - oAuth2
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /oauth2/register:
     post:
       description: |-
@@ -3018,7 +3077,8 @@ paths:
       tags:
       - oidc
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /oauth2/register/{id}:
     delete:
       description: |-
@@ -3060,7 +3120,8 @@ paths:
         Management Protocol
       tags:
       - oidc
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: |-
         This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the
@@ -3098,7 +3159,8 @@ paths:
       summary: Get OAuth2 Client using OpenID Dynamic Client Registration
       tags:
       - oidc
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: |-
         This endpoint behaves like the administrative counterpart (`setOAuth2Client`) but is capable of facing the
@@ -3159,7 +3221,8 @@ paths:
       tags:
       - oidc
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /oauth2/revoke:
     post:
       description: |-
@@ -3191,7 +3254,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/x-www-form-urlencoded
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /oauth2/sessions/logout:
     get:
       description: |-
@@ -3210,7 +3274,8 @@ paths:
       summary: OpenID Connect Front- and Back-channel Enabled Logout
       tags:
       - oidc
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /oauth2/token:
     post:
       description: |-
@@ -3244,7 +3309,8 @@ paths:
       tags:
       - oAuth2
       x-content-type: application/x-www-form-urlencoded
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /opl/syntax/check:
     post:
       description: The OPL file is expected in the body of the request.
@@ -3280,7 +3346,8 @@ paths:
       tags:
       - relationship
       x-content-type: text/plain
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects:
     get:
       description: Lists all projects you have access to.
@@ -3325,7 +3392,8 @@ paths:
       summary: List All Projects
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new project.
       operationId: createProject
@@ -3376,7 +3444,8 @@ paths:
       tags:
       - project
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects/{project_id}:
     delete:
       description: |-
@@ -3437,7 +3506,8 @@ paths:
       summary: Irrecoverably purge a project
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get a projects you have access to by its ID.
       operationId: getProject
@@ -3493,7 +3563,8 @@ paths:
       summary: Get a Project
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: |-
         Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
@@ -3581,7 +3652,8 @@ paths:
       tags:
       - project
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: |-
         This endpoints allows you to update the Ory Network project configuration for
@@ -3668,7 +3740,8 @@ paths:
       tags:
       - project
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects/{project_id}/eventstreams:
     get:
       operationId: listEventStreams
@@ -3718,7 +3791,8 @@ paths:
       summary: List all event streams for the project. This endpoint is not paginated.
       tags:
       - events
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       operationId: createEventStream
       parameters:
@@ -3781,7 +3855,8 @@ paths:
       tags:
       - events
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects/{project_id}/eventstreams/{event_stream_id}:
     delete:
       description: Remove an event stream from a project.
@@ -3847,7 +3922,8 @@ paths:
       summary: Remove an event stream from a project
       tags:
       - events
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       operationId: setEventStream
       parameters:
@@ -3920,7 +3996,8 @@ paths:
       tags:
       - events
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects/{project_id}/organizations:
     get:
       description: List all B2B SSO Organizations for a project
@@ -4009,7 +4086,8 @@ paths:
         url: https://api.console.ory.sh
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Create a B2B SSO Organization
       operationId: createOrganization
@@ -4071,7 +4149,8 @@ paths:
       tags:
       - project
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects/{project_id}/organizations/{organization_id}:
     delete:
       description: Delete a B2B SSO Organization for a project
@@ -4142,7 +4221,8 @@ paths:
         url: https://api.console.ory.sh
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       operationId: getOrganization
       parameters:
@@ -4202,7 +4282,8 @@ paths:
       summary: Returns a B2B SSO Organization for a project by its ID
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Update a B2B SSO Organization for a project
       operationId: updateOrganization
@@ -4281,7 +4362,8 @@ paths:
       tags:
       - project
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects/{project}/members:
     get:
       description: This endpoint requires the user to be a member of the project with
@@ -4329,7 +4411,8 @@ paths:
       summary: Get all members associated with this project
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects/{project}/members/{member}:
     delete:
       description: |-
@@ -4383,7 +4466,8 @@ paths:
       summary: Remove a member associated with this project
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects/{project}/tokens:
     get:
       description: A list of all the project's API tokens.
@@ -4419,7 +4503,8 @@ paths:
       summary: List a project's API Tokens
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Create an API token for a project.
       operationId: createProjectApiKey
@@ -4461,7 +4546,8 @@ paths:
       tags:
       - project
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /projects/{project}/tokens/{token_id}:
     delete:
       description: Deletes an API token and immediately removes it.
@@ -4503,7 +4589,8 @@ paths:
       summary: Delete project API token
       tags:
       - project
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /relation-tuples:
     get:
       description: Get all relationships that match the query. Only the namespace
@@ -4605,7 +4692,8 @@ paths:
       summary: Query relationships
       tags:
       - relationship
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /relation-tuples/check:
     get:
       description: "To learn how relationship tuples and the check works, head over\
@@ -4706,7 +4794,8 @@ paths:
       summary: Check a permission
       tags:
       - permission
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: "To learn how relationship tuples and the check works, head over\
         \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
@@ -4757,7 +4846,8 @@ paths:
       tags:
       - permission
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /relation-tuples/check/openapi:
     get:
       description: "To learn how relationship tuples and the check works, head over\
@@ -4852,7 +4942,8 @@ paths:
       summary: Check a permission
       tags:
       - permission
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: "To learn how relationship tuples and the check works, head over\
         \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
@@ -4897,7 +4988,8 @@ paths:
       tags:
       - permission
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /relation-tuples/expand:
     get:
       description: Use this endpoint to expand a relationship tuple into permissions.
@@ -4965,7 +5057,8 @@ paths:
       summary: Expand a Relationship into permissions.
       tags:
       - permission
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /schemas:
     get:
       description: Returns a list of all identity schemas currently in use.
@@ -5053,7 +5146,8 @@ paths:
       summary: Get all Identity Schemas
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /schemas/{id}:
     get:
       description: Return a specific identity schema.
@@ -5089,7 +5183,8 @@ paths:
       summary: Get Identity JSON Schema
       tags:
       - identity
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/errors:
     get:
       description: |-
@@ -5138,7 +5233,8 @@ paths:
       summary: Get User-Flow Errors
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/login:
     post:
       description: |-
@@ -5252,7 +5348,8 @@ paths:
       tags:
       - frontend
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/login/api:
     get:
       description: |-
@@ -5362,7 +5459,8 @@ paths:
       summary: Create Login Flow for Native Apps
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/login/browser:
     get:
       description: |-
@@ -5496,7 +5594,8 @@ paths:
       summary: Create Login Flow for Browsers
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/login/flows:
     get:
       description: |-
@@ -5583,7 +5682,8 @@ paths:
       summary: Get Login Flow
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/logout:
     get:
       description: |-
@@ -5652,7 +5752,8 @@ paths:
       summary: Update Logout Flow
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/logout/api:
     delete:
       description: |-
@@ -5693,7 +5794,8 @@ paths:
       tags:
       - frontend
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/logout/browser:
     get:
       description: |-
@@ -5761,7 +5863,8 @@ paths:
       summary: Create a Logout URL for Browsers
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/recovery:
     post:
       description: |-
@@ -5870,7 +5973,8 @@ paths:
       tags:
       - frontend
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/recovery/api:
     get:
       description: |-
@@ -5910,7 +6014,8 @@ paths:
       summary: Create Recovery Flow for Native Apps
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/recovery/browser:
     get:
       description: |-
@@ -5960,7 +6065,8 @@ paths:
       summary: Create Recovery Flow for Browsers
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/recovery/flows:
     get:
       description: |-
@@ -6036,7 +6142,8 @@ paths:
       summary: Get Recovery Flow
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/registration:
     post:
       description: |-
@@ -6143,7 +6250,8 @@ paths:
       tags:
       - frontend
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/registration/api:
     get:
       description: |-
@@ -6208,7 +6316,8 @@ paths:
       summary: Create Registration Flow for Native Apps
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/registration/browser:
     get:
       description: |-
@@ -6297,7 +6406,8 @@ paths:
       summary: Create Registration Flow for Browsers
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/registration/flows:
     get:
       description: |-
@@ -6384,7 +6494,8 @@ paths:
       summary: Get Registration Flow
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/settings:
     post:
       description: |-
@@ -6528,7 +6639,8 @@ paths:
       tags:
       - frontend
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/settings/api:
     get:
       description: |-
@@ -6586,7 +6698,8 @@ paths:
       summary: Create Settings Flow for Native Apps
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/settings/browser:
     get:
       description: |-
@@ -6676,7 +6789,8 @@ paths:
       summary: Create Settings Flow for Browsers
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/settings/flows:
     get:
       description: |-
@@ -6777,7 +6891,8 @@ paths:
       summary: Get Settings Flow
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/verification:
     post:
       description: |-
@@ -6880,7 +6995,8 @@ paths:
       tags:
       - frontend
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/verification/api:
     get:
       description: |-
@@ -6918,7 +7034,8 @@ paths:
       summary: Create Verification Flow for Native Apps
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/verification/browser:
     get:
       description: |-
@@ -6960,7 +7077,8 @@ paths:
       summary: Create Verification Flow for Browser Clients
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /self-service/verification/flows:
     get:
       description: |-
@@ -7036,7 +7154,8 @@ paths:
       summary: Get Verification Flow
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sessions:
     delete:
       description: |-
@@ -7094,7 +7213,8 @@ paths:
       summary: Disable my other sessions
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: |-
         This endpoints returns all other active sessions that belong to the logged-in user.
@@ -7219,7 +7339,8 @@ paths:
       summary: Get My Active Sessions
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sessions/token-exchange:
     get:
       operationId: exchangeSessionToken
@@ -7274,7 +7395,8 @@ paths:
       summary: Exchange Session Token
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sessions/whoami:
     get:
       description: |-
@@ -7402,7 +7524,8 @@ paths:
       summary: Check Who the Current HTTP Session Belongs To
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sessions/{id}:
     delete:
       description: |-
@@ -7466,7 +7589,8 @@ paths:
       summary: Disable one of my sessions
       tags:
       - frontend
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /userinfo:
     get:
       description: |-
@@ -7495,7 +7619,8 @@ paths:
       summary: OpenID Connect Userinfo
       tags:
       - oidc
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /version:
     get:
       description: |-
@@ -7519,7 +7644,8 @@ paths:
       summary: Return Running Software Version.
       tags:
       - metadata
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /workspaces:
     get:
       operationId: listWorkspaces
@@ -7598,7 +7724,8 @@ paths:
       summary: List workspaces the user is a member of
       tags:
       - workspace
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       operationId: createWorkspace
       requestBody:
@@ -7654,7 +7781,8 @@ paths:
       tags:
       - workspace
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /workspaces/{workspace}:
     get:
       description: Any workspace member can access this endpoint.
@@ -7713,7 +7841,8 @@ paths:
       summary: Get a workspace
       tags:
       - workspace
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Workspace members with the role `OWNER` can access this endpoint.
       operationId: updateWorkspace
@@ -7778,7 +7907,8 @@ paths:
       tags:
       - workspace
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /workspaces/{workspace}/projects:
     get:
       description: Any workspace member can access this endpoint.
@@ -7837,7 +7967,8 @@ paths:
       summary: List all projects of a workspace
       tags:
       - workspace
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   responses:
     emptyResponse:
@@ -12495,7 +12626,7 @@ components:
 
         Once a login flow is completed successfully, a session cookie or session token will be issued.
       example:
-        requested_aal: null
+        requested_aal: aal0
         active: password
         created_at: 2000-01-23T04:56:07.000+00:00
         refresh: true
@@ -13001,8 +13132,8 @@ components:
         template_type: recovery_invalid
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         body: body
-        type: null
-        status: null
+        type: email
+        status: queued
       properties:
         body:
           type: string
@@ -18316,12 +18447,12 @@ components:
           method: link_recovery
           provider: provider
           organization: organization
-          aal: null
+          aal: aal0
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
           provider: provider
           organization: organization
-          aal: null
+          aal: aal0
         authenticator_assurance_level: null
         identity:
           traits: ""
@@ -18440,7 +18571,7 @@ components:
         method: link_recovery
         provider: provider
         organization: organization
-        aal: null
+        aal: aal0
       properties:
         aal:
           $ref: '#/components/schemas/authenticatorAssuranceLevel'
@@ -18988,12 +19119,12 @@ components:
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           authenticator_assurance_level: null
           identity:
             traits: ""
@@ -19157,12 +19288,12 @@ components:
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           authenticator_assurance_level: null
           identity:
             traits: ""

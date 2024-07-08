@@ -23,7 +23,7 @@ print(KetoNamespace.to_json())
 # convert the object into a dict
 keto_namespace_dict = keto_namespace_instance.to_dict()
 # create an instance of KetoNamespace from a dict
-keto_namespace_form_dict = keto_namespace.from_dict(keto_namespace_dict)
+keto_namespace_from_dict = KetoNamespace.from_dict(keto_namespace_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

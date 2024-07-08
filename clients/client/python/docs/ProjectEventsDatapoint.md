@@ -24,7 +24,7 @@ print(ProjectEventsDatapoint.to_json())
 # convert the object into a dict
 project_events_datapoint_dict = project_events_datapoint_instance.to_dict()
 # create an instance of ProjectEventsDatapoint from a dict
-project_events_datapoint_form_dict = project_events_datapoint.from_dict(project_events_datapoint_dict)
+project_events_datapoint_from_dict = ProjectEventsDatapoint.from_dict(project_events_datapoint_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

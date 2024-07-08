@@ -27,7 +27,7 @@ print(RelationQuery.to_json())
 # convert the object into a dict
 relation_query_dict = relation_query_instance.to_dict()
 # create an instance of RelationQuery from a dict
-relation_query_form_dict = relation_query.from_dict(relation_query_dict)
+relation_query_from_dict = RelationQuery.from_dict(relation_query_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

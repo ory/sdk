@@ -25,7 +25,7 @@ print(CreateJsonWebKeySet.to_json())
 # convert the object into a dict
 create_json_web_key_set_dict = create_json_web_key_set_instance.to_dict()
 # create an instance of CreateJsonWebKeySet from a dict
-create_json_web_key_set_form_dict = create_json_web_key_set.from_dict(create_json_web_key_set_dict)
+create_json_web_key_set_from_dict = CreateJsonWebKeySet.from_dict(create_json_web_key_set_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

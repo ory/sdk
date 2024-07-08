@@ -32,7 +32,7 @@ print(InvoiceDataV1.to_json())
 # convert the object into a dict
 invoice_data_v1_dict = invoice_data_v1_instance.to_dict()
 # create an instance of InvoiceDataV1 from a dict
-invoice_data_v1_form_dict = invoice_data_v1.from_dict(invoice_data_v1_dict)
+invoice_data_v1_from_dict = InvoiceDataV1.from_dict(invoice_data_v1_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

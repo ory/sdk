@@ -28,7 +28,7 @@ print(UpdateSettingsFlowWithWebAuthnMethod.to_json())
 # convert the object into a dict
 update_settings_flow_with_web_authn_method_dict = update_settings_flow_with_web_authn_method_instance.to_dict()
 # create an instance of UpdateSettingsFlowWithWebAuthnMethod from a dict
-update_settings_flow_with_web_authn_method_form_dict = update_settings_flow_with_web_authn_method.from_dict(update_settings_flow_with_web_authn_method_dict)
+update_settings_flow_with_web_authn_method_from_dict = UpdateSettingsFlowWithWebAuthnMethod.from_dict(update_settings_flow_with_web_authn_method_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

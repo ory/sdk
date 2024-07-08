@@ -29,7 +29,7 @@ print(UpdateSettingsFlowWithOidcMethod.to_json())
 # convert the object into a dict
 update_settings_flow_with_oidc_method_dict = update_settings_flow_with_oidc_method_instance.to_dict()
 # create an instance of UpdateSettingsFlowWithOidcMethod from a dict
-update_settings_flow_with_oidc_method_form_dict = update_settings_flow_with_oidc_method.from_dict(update_settings_flow_with_oidc_method_dict)
+update_settings_flow_with_oidc_method_from_dict = UpdateSettingsFlowWithOidcMethod.from_dict(update_settings_flow_with_oidc_method_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

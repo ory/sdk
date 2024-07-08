@@ -23,7 +23,7 @@ print(TokenPaginationHeaders.to_json())
 # convert the object into a dict
 token_pagination_headers_dict = token_pagination_headers_instance.to_dict()
 # create an instance of TokenPaginationHeaders from a dict
-token_pagination_headers_form_dict = token_pagination_headers.from_dict(token_pagination_headers_dict)
+token_pagination_headers_from_dict = TokenPaginationHeaders.from_dict(token_pagination_headers_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

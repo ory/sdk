@@ -23,7 +23,7 @@ print(OAuth2RedirectTo.to_json())
 # convert the object into a dict
 o_auth2_redirect_to_dict = o_auth2_redirect_to_instance.to_dict()
 # create an instance of OAuth2RedirectTo from a dict
-o_auth2_redirect_to_form_dict = o_auth2_redirect_to.from_dict(o_auth2_redirect_to_dict)
+o_auth2_redirect_to_from_dict = OAuth2RedirectTo.from_dict(o_auth2_redirect_to_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

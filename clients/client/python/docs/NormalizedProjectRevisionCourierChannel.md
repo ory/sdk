@@ -34,7 +34,7 @@ print(NormalizedProjectRevisionCourierChannel.to_json())
 # convert the object into a dict
 normalized_project_revision_courier_channel_dict = normalized_project_revision_courier_channel_instance.to_dict()
 # create an instance of NormalizedProjectRevisionCourierChannel from a dict
-normalized_project_revision_courier_channel_form_dict = normalized_project_revision_courier_channel.from_dict(normalized_project_revision_courier_channel_dict)
+normalized_project_revision_courier_channel_from_dict = NormalizedProjectRevisionCourierChannel.from_dict(normalized_project_revision_courier_channel_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

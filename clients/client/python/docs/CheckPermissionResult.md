@@ -23,7 +23,7 @@ print(CheckPermissionResult.to_json())
 # convert the object into a dict
 check_permission_result_dict = check_permission_result_instance.to_dict()
 # create an instance of CheckPermissionResult from a dict
-check_permission_result_form_dict = check_permission_result.from_dict(check_permission_result_dict)
+check_permission_result_from_dict = CheckPermissionResult.from_dict(check_permission_result_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -30,7 +30,7 @@ print(VerifiableIdentityAddress.to_json())
 # convert the object into a dict
 verifiable_identity_address_dict = verifiable_identity_address_instance.to_dict()
 # create an instance of VerifiableIdentityAddress from a dict
-verifiable_identity_address_form_dict = verifiable_identity_address.from_dict(verifiable_identity_address_dict)
+verifiable_identity_address_from_dict = VerifiableIdentityAddress.from_dict(verifiable_identity_address_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

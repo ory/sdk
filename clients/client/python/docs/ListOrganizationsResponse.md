@@ -25,7 +25,7 @@ print(ListOrganizationsResponse.to_json())
 # convert the object into a dict
 list_organizations_response_dict = list_organizations_response_instance.to_dict()
 # create an instance of ListOrganizationsResponse from a dict
-list_organizations_response_form_dict = list_organizations_response.from_dict(list_organizations_response_dict)
+list_organizations_response_from_dict = ListOrganizationsResponse.from_dict(list_organizations_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

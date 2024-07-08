@@ -28,7 +28,7 @@ print(CreateProjectBranding.to_json())
 # convert the object into a dict
 create_project_branding_dict = create_project_branding_instance.to_dict()
 # create an instance of CreateProjectBranding from a dict
-create_project_branding_form_dict = create_project_branding.from_dict(create_project_branding_dict)
+create_project_branding_from_dict = CreateProjectBranding.from_dict(create_project_branding_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

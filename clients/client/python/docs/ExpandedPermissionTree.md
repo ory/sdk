@@ -24,7 +24,7 @@ print(ExpandedPermissionTree.to_json())
 # convert the object into a dict
 expanded_permission_tree_dict = expanded_permission_tree_instance.to_dict()
 # create an instance of ExpandedPermissionTree from a dict
-expanded_permission_tree_form_dict = expanded_permission_tree.from_dict(expanded_permission_tree_dict)
+expanded_permission_tree_from_dict = ExpandedPermissionTree.from_dict(expanded_permission_tree_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

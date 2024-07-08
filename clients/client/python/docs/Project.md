@@ -32,7 +32,7 @@ print(Project.to_json())
 # convert the object into a dict
 project_dict = project_instance.to_dict()
 # create an instance of Project from a dict
-project_form_dict = project.from_dict(project_dict)
+project_from_dict = Project.from_dict(project_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

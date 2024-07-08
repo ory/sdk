@@ -23,7 +23,7 @@ print(SuccessfulProjectUpdate.to_json())
 # convert the object into a dict
 successful_project_update_dict = successful_project_update_instance.to_dict()
 # create an instance of SuccessfulProjectUpdate from a dict
-successful_project_update_form_dict = successful_project_update.from_dict(successful_project_update_dict)
+successful_project_update_from_dict = SuccessfulProjectUpdate.from_dict(successful_project_update_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

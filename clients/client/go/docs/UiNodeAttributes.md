@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Pattern** | Pointer to **string** | The input&#39;s pattern. | [optional] 
 **Required** | Pointer to **bool** | Mark this input field as required. | [optional] 
 **Type** | **string** | The script MIME type | 
-**Value** | Pointer to **map[string]interface{}** | The input&#39;s value. | [optional] 
+**Value** | Pointer to **interface{}** | The input&#39;s value. | [optional] 
 **Id** | **string** | A unique identifier | 
 **Text** | [**UiText**](UiText.md) |  | 
 **Height** | **int64** | Height of the image | 
@@ -279,20 +279,20 @@ SetType sets Type field to given value.
 
 ### GetValue
 
-`func (o *UiNodeAttributes) GetValue() map[string]interface{}`
+`func (o *UiNodeAttributes) GetValue() interface{}`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *UiNodeAttributes) GetValueOk() (*map[string]interface{}, bool)`
+`func (o *UiNodeAttributes) GetValueOk() (*interface{}, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *UiNodeAttributes) SetValue(v map[string]interface{})`
+`func (o *UiNodeAttributes) SetValue(v interface{})`
 
 SetValue sets Value field to given value.
 

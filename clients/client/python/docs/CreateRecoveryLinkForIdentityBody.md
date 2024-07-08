@@ -24,7 +24,7 @@ print(CreateRecoveryLinkForIdentityBody.to_json())
 # convert the object into a dict
 create_recovery_link_for_identity_body_dict = create_recovery_link_for_identity_body_instance.to_dict()
 # create an instance of CreateRecoveryLinkForIdentityBody from a dict
-create_recovery_link_for_identity_body_form_dict = create_recovery_link_for_identity_body.from_dict(create_recovery_link_for_identity_body_dict)
+create_recovery_link_for_identity_body_from_dict = CreateRecoveryLinkForIdentityBody.from_dict(create_recovery_link_for_identity_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

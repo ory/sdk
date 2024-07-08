@@ -33,7 +33,7 @@ print(RecoveryFlow.to_json())
 # convert the object into a dict
 recovery_flow_dict = recovery_flow_instance.to_dict()
 # create an instance of RecoveryFlow from a dict
-recovery_flow_form_dict = recovery_flow.from_dict(recovery_flow_dict)
+recovery_flow_from_dict = RecoveryFlow.from_dict(recovery_flow_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

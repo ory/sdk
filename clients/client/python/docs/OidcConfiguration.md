@@ -53,7 +53,7 @@ print(OidcConfiguration.to_json())
 # convert the object into a dict
 oidc_configuration_dict = oidc_configuration_instance.to_dict()
 # create an instance of OidcConfiguration from a dict
-oidc_configuration_form_dict = oidc_configuration.from_dict(oidc_configuration_dict)
+oidc_configuration_from_dict = OidcConfiguration.from_dict(oidc_configuration_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

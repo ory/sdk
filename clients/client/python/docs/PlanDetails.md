@@ -29,7 +29,7 @@ print(PlanDetails.to_json())
 # convert the object into a dict
 plan_details_dict = plan_details_instance.to_dict()
 # create an instance of PlanDetails from a dict
-plan_details_form_dict = plan_details.from_dict(plan_details_dict)
+plan_details_from_dict = PlanDetails.from_dict(plan_details_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

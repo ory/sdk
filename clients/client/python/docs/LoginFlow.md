@@ -40,7 +40,7 @@ print(LoginFlow.to_json())
 # convert the object into a dict
 login_flow_dict = login_flow_instance.to_dict()
 # create an instance of LoginFlow from a dict
-login_flow_form_dict = login_flow.from_dict(login_flow_dict)
+login_flow_from_dict = LoginFlow.from_dict(login_flow_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

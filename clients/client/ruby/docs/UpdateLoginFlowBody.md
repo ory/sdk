@@ -17,6 +17,7 @@ OryClient::UpdateLoginFlowBody.openapi_one_of
 #   :'UpdateLoginFlowWithCodeMethod',
 #   :'UpdateLoginFlowWithLookupSecretMethod',
 #   :'UpdateLoginFlowWithOidcMethod',
+#   :'UpdateLoginFlowWithPasskeyMethod',
 #   :'UpdateLoginFlowWithPasswordMethod',
 #   :'UpdateLoginFlowWithTotpMethod',
 #   :'UpdateLoginFlowWithWebAuthnMethod'
@@ -51,6 +52,7 @@ OryClient::UpdateLoginFlowBody.openapi_discriminator_mapping
 #   :'code' => :'UpdateLoginFlowWithCodeMethod',
 #   :'lookup_secret' => :'UpdateLoginFlowWithLookupSecretMethod',
 #   :'oidc' => :'UpdateLoginFlowWithOidcMethod',
+#   :'passkey' => :'UpdateLoginFlowWithPasskeyMethod',
 #   :'password' => :'UpdateLoginFlowWithPasswordMethod',
 #   :'totp' => :'UpdateLoginFlowWithTotpMethod',
 #   :'webauthn' => :'UpdateLoginFlowWithWebAuthnMethod'
@@ -84,6 +86,7 @@ OryClient::UpdateLoginFlowBody.build(data_that_doesnt_match)
 - `UpdateLoginFlowWithCodeMethod`
 - `UpdateLoginFlowWithLookupSecretMethod`
 - `UpdateLoginFlowWithOidcMethod`
+- `UpdateLoginFlowWithPasskeyMethod`
 - `UpdateLoginFlowWithPasswordMethod`
 - `UpdateLoginFlowWithTotpMethod`
 - `UpdateLoginFlowWithWebAuthnMethod`

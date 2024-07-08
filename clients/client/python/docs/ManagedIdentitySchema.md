@@ -29,7 +29,7 @@ print(ManagedIdentitySchema.to_json())
 # convert the object into a dict
 managed_identity_schema_dict = managed_identity_schema_instance.to_dict()
 # create an instance of ManagedIdentitySchema from a dict
-managed_identity_schema_form_dict = managed_identity_schema.from_dict(managed_identity_schema_dict)
+managed_identity_schema_from_dict = ManagedIdentitySchema.from_dict(managed_identity_schema_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

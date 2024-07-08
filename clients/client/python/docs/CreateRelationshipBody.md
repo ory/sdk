@@ -27,7 +27,7 @@ print(CreateRelationshipBody.to_json())
 # convert the object into a dict
 create_relationship_body_dict = create_relationship_body_instance.to_dict()
 # create an instance of CreateRelationshipBody from a dict
-create_relationship_body_form_dict = create_relationship_body.from_dict(create_relationship_body_dict)
+create_relationship_body_from_dict = CreateRelationshipBody.from_dict(create_relationship_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

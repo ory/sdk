@@ -24,7 +24,7 @@ print(MetricsDatapoint.to_json())
 # convert the object into a dict
 metrics_datapoint_dict = metrics_datapoint_instance.to_dict()
 # create an instance of MetricsDatapoint from a dict
-metrics_datapoint_form_dict = metrics_datapoint.from_dict(metrics_datapoint_dict)
+metrics_datapoint_from_dict = MetricsDatapoint.from_dict(metrics_datapoint_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

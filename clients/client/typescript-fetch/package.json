@@ -1,6 +1,6 @@
 {
   "name": "@ory/client-fetch",
-  "version": "v1.12.2",
+  "version": "v1.13.3",
   "description": "OpenAPI client for @ory/client-fetch",
   "author": "Ory Corp",
   "repository": {
@@ -16,7 +16,7 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
-    "typescript": "^4.0"
+    "typescript": "^4.0 || ^5.0"
   },
   "license": "Apache-2.0"
 }

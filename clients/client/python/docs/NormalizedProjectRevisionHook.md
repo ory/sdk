@@ -39,7 +39,7 @@ print(NormalizedProjectRevisionHook.to_json())
 # convert the object into a dict
 normalized_project_revision_hook_dict = normalized_project_revision_hook_instance.to_dict()
 # create an instance of NormalizedProjectRevisionHook from a dict
-normalized_project_revision_hook_form_dict = normalized_project_revision_hook.from_dict(normalized_project_revision_hook_dict)
+normalized_project_revision_hook_from_dict = NormalizedProjectRevisionHook.from_dict(normalized_project_revision_hook_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

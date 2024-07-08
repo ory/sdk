@@ -24,7 +24,7 @@ print(TokenPaginationResponseHeaders.to_json())
 # convert the object into a dict
 token_pagination_response_headers_dict = token_pagination_response_headers_instance.to_dict()
 # create an instance of TokenPaginationResponseHeaders from a dict
-token_pagination_response_headers_form_dict = token_pagination_response_headers.from_dict(token_pagination_response_headers_dict)
+token_pagination_response_headers_from_dict = TokenPaginationResponseHeaders.from_dict(token_pagination_response_headers_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -24,7 +24,7 @@ print(RelationshipPatch.to_json())
 # convert the object into a dict
 relationship_patch_dict = relationship_patch_instance.to_dict()
 # create an instance of RelationshipPatch from a dict
-relationship_patch_form_dict = relationship_patch.from_dict(relationship_patch_dict)
+relationship_patch_from_dict = RelationshipPatch.from_dict(relationship_patch_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

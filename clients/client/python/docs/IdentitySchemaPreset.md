@@ -23,7 +23,7 @@ print(IdentitySchemaPreset.to_json())
 # convert the object into a dict
 identity_schema_preset_dict = identity_schema_preset_instance.to_dict()
 # create an instance of IdentitySchemaPreset from a dict
-identity_schema_preset_form_dict = identity_schema_preset.from_dict(identity_schema_preset_dict)
+identity_schema_preset_from_dict = IdentitySchemaPreset.from_dict(identity_schema_preset_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

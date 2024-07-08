@@ -24,7 +24,7 @@ print(BillingPeriodBucket.to_json())
 # convert the object into a dict
 billing_period_bucket_dict = billing_period_bucket_instance.to_dict()
 # create an instance of BillingPeriodBucket from a dict
-billing_period_bucket_form_dict = billing_period_bucket.from_dict(billing_period_bucket_dict)
+billing_period_bucket_from_dict = BillingPeriodBucket.from_dict(billing_period_bucket_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

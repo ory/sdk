@@ -22,7 +22,7 @@ print(IdentityCredentialsOidc.to_json())
 # convert the object into a dict
 identity_credentials_oidc_dict = identity_credentials_oidc_instance.to_dict()
 # create an instance of IdentityCredentialsOidc from a dict
-identity_credentials_oidc_form_dict = identity_credentials_oidc.from_dict(identity_credentials_oidc_dict)
+identity_credentials_oidc_from_dict = IdentityCredentialsOidc.from_dict(identity_credentials_oidc_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

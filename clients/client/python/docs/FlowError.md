@@ -25,7 +25,7 @@ print(FlowError.to_json())
 # convert the object into a dict
 flow_error_dict = flow_error_instance.to_dict()
 # create an instance of FlowError from a dict
-flow_error_form_dict = flow_error.from_dict(flow_error_dict)
+flow_error_from_dict = FlowError.from_dict(flow_error_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

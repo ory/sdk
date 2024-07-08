@@ -23,7 +23,7 @@ print(BatchPatchIdentitiesResponse.to_json())
 # convert the object into a dict
 batch_patch_identities_response_dict = batch_patch_identities_response_instance.to_dict()
 # create an instance of BatchPatchIdentitiesResponse from a dict
-batch_patch_identities_response_form_dict = batch_patch_identities_response.from_dict(batch_patch_identities_response_dict)
+batch_patch_identities_response_from_dict = BatchPatchIdentitiesResponse.from_dict(batch_patch_identities_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

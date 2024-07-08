@@ -23,7 +23,7 @@ print(ConsistencyRequestParameters.to_json())
 # convert the object into a dict
 consistency_request_parameters_dict = consistency_request_parameters_instance.to_dict()
 # create an instance of ConsistencyRequestParameters from a dict
-consistency_request_parameters_form_dict = consistency_request_parameters.from_dict(consistency_request_parameters_dict)
+consistency_request_parameters_from_dict = ConsistencyRequestParameters.from_dict(consistency_request_parameters_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

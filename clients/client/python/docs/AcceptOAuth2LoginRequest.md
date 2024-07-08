@@ -30,7 +30,7 @@ print(AcceptOAuth2LoginRequest.to_json())
 # convert the object into a dict
 accept_o_auth2_login_request_dict = accept_o_auth2_login_request_instance.to_dict()
 # create an instance of AcceptOAuth2LoginRequest from a dict
-accept_o_auth2_login_request_form_dict = accept_o_auth2_login_request.from_dict(accept_o_auth2_login_request_dict)
+accept_o_auth2_login_request_from_dict = AcceptOAuth2LoginRequest.from_dict(accept_o_auth2_login_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

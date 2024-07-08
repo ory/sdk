@@ -24,7 +24,7 @@ print(Money.to_json())
 # convert the object into a dict
 money_dict = money_instance.to_dict()
 # create an instance of Money from a dict
-money_form_dict = money.from_dict(money_dict)
+money_from_dict = Money.from_dict(money_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

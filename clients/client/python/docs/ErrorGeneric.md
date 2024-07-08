@@ -23,7 +23,7 @@ print(ErrorGeneric.to_json())
 # convert the object into a dict
 error_generic_dict = error_generic_instance.to_dict()
 # create an instance of ErrorGeneric from a dict
-error_generic_form_dict = error_generic.from_dict(error_generic_dict)
+error_generic_from_dict = ErrorGeneric.from_dict(error_generic_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

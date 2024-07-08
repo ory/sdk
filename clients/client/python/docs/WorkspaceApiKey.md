@@ -28,7 +28,7 @@ print(WorkspaceApiKey.to_json())
 # convert the object into a dict
 workspace_api_key_dict = workspace_api_key_instance.to_dict()
 # create an instance of WorkspaceApiKey from a dict
-workspace_api_key_form_dict = workspace_api_key.from_dict(workspace_api_key_dict)
+workspace_api_key_from_dict = WorkspaceApiKey.from_dict(workspace_api_key_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ print(PatchIdentitiesBody.to_json())
 # convert the object into a dict
 patch_identities_body_dict = patch_identities_body_instance.to_dict()
 # create an instance of PatchIdentitiesBody from a dict
-patch_identities_body_form_dict = patch_identities_body.from_dict(patch_identities_body_dict)
+patch_identities_body_from_dict = PatchIdentitiesBody.from_dict(patch_identities_body_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
