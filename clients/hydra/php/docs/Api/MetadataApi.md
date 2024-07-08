@@ -1,18 +1,18 @@
 # Ory\Hydra\Client\MetadataApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getVersion()**](MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
-[**isAlive()**](MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
-[**isReady()**](MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getVersion()**](MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version. |
+| [**isAlive()**](MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status |
+| [**isReady()**](MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status |
 
 
 ## `getVersion()`
 
 ```php
-getVersion(): \Ory\Hydra\Client\Model\InlineResponse2001
+getVersion(): \Ory\Hydra\Client\Model\GetVersion200Response
 ```
 
 Return Running Software Version.
@@ -47,7 +47,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\InlineResponse2001**](../Model/InlineResponse2001.md)
+[**\Ory\Hydra\Client\Model\GetVersion200Response**](../Model/GetVersion200Response.md)
 
 ### Authorization
 
@@ -118,7 +118,7 @@ No authorization required
 ## `isReady()`
 
 ```php
-isReady(): \Ory\Hydra\Client\Model\InlineResponse200
+isReady(): \Ory\Hydra\Client\Model\IsReady200Response
 ```
 
 Check HTTP Server and Database Status
@@ -153,7 +153,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Hydra\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+[**\Ory\Hydra\Client\Model\IsReady200Response**](../Model/IsReady200Response.md)
 
 ### Authorization
 

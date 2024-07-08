@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -67,7 +67,7 @@ func (o *AcceptOAuth2ConsentRequestSession) GetAccessTokenOk() (*interface{}, bo
 
 // HasAccessToken returns a boolean if a field has been set.
 func (o *AcceptOAuth2ConsentRequestSession) HasAccessToken() bool {
-	if o != nil && IsNil(o.AccessToken) {
+	if o != nil && !IsNil(o.AccessToken) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *AcceptOAuth2ConsentRequestSession) GetIdTokenOk() (*interface{}, bool) 
 
 // HasIdToken returns a boolean if a field has been set.
 func (o *AcceptOAuth2ConsentRequestSession) HasIdToken() bool {
-	if o != nil && IsNil(o.IdToken) {
+	if o != nil && !IsNil(o.IdToken) {
 		return true
 	}
 
@@ -136,10 +136,10 @@ func (o AcceptOAuth2ConsentRequestSession) ToMap() (map[string]interface{}, erro
 	return toSerialize, nil
 }
 
-func (o *AcceptOAuth2ConsentRequestSession) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AcceptOAuth2ConsentRequestSession) UnmarshalJSON(data []byte) (err error) {
 	varAcceptOAuth2ConsentRequestSession := _AcceptOAuth2ConsentRequestSession{}
 
-	err = json.Unmarshal(bytes, &varAcceptOAuth2ConsentRequestSession)
+	err = json.Unmarshal(data, &varAcceptOAuth2ConsentRequestSession)
 
 	if err != nil {
 		return err
@@ -149,7 +149,7 @@ func (o *AcceptOAuth2ConsentRequestSession) UnmarshalJSON(bytes []byte) (err err
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "access_token")
 		delete(additionalProperties, "id_token")
 		o.AdditionalProperties = additionalProperties

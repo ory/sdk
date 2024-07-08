@@ -7,7 +7,7 @@ All URIs are relative to *http://localhost*
 | [**discoverJsonWebKeys**](WellknownApi.md#discoverJsonWebKeys) | **GET** /.well-known/jwks.json | Discover Well-Known JSON Web Keys |
 
 
-<a name="discoverJsonWebKeys"></a>
+<a id="discoverJsonWebKeys"></a>
 # **discoverJsonWebKeys**
 > JsonWebKeySet discoverJsonWebKeys()
 

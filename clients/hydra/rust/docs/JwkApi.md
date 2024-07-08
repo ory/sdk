@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## create_json_web_key_set
 
-> crate::models::JsonWebKeySet create_json_web_key_set(set, create_json_web_key_set)
+> models::JsonWebKeySet create_json_web_key_set(set, create_json_web_key_set)
 Create JSON Web Key
 
 This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
@@ -31,7 +31,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
+[**models::JsonWebKeySet**](jsonWebKeySet.md)
 
 ### Authorization
 
@@ -108,7 +108,7 @@ No authorization required
 
 ## get_json_web_key
 
-> crate::models::JsonWebKeySet get_json_web_key(set, kid)
+> models::JsonWebKeySet get_json_web_key(set, kid)
 Get JSON Web Key
 
 This endpoint returns a singular JSON Web Key contained in a set. It is identified by the set and the specific key ID (kid).
@@ -123,7 +123,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
+[**models::JsonWebKeySet**](jsonWebKeySet.md)
 
 ### Authorization
 
@@ -139,7 +139,7 @@ No authorization required
 
 ## get_json_web_key_set
 
-> crate::models::JsonWebKeySet get_json_web_key_set(set)
+> models::JsonWebKeySet get_json_web_key_set(set)
 Retrieve a JSON Web Key Set
 
 This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
@@ -153,7 +153,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
+[**models::JsonWebKeySet**](jsonWebKeySet.md)
 
 ### Authorization
 
@@ -169,7 +169,7 @@ No authorization required
 
 ## set_json_web_key
 
-> crate::models::JsonWebKey set_json_web_key(set, kid, json_web_key)
+> models::JsonWebKey set_json_web_key(set, kid, json_web_key)
 Set JSON Web Key
 
 Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
@@ -185,7 +185,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::JsonWebKey**](jsonWebKey.md)
+[**models::JsonWebKey**](jsonWebKey.md)
 
 ### Authorization
 
@@ -201,7 +201,7 @@ No authorization required
 
 ## set_json_web_key_set
 
-> crate::models::JsonWebKeySet set_json_web_key_set(set, json_web_key_set)
+> models::JsonWebKeySet set_json_web_key_set(set, json_web_key_set)
 Update a JSON Web Key Set
 
 Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
@@ -216,7 +216,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
+[**models::JsonWebKeySet**](jsonWebKeySet.md)
 
 ### Authorization
 

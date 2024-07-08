@@ -33,7 +33,7 @@ class MetadataApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [GetVersion200Response] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<GetVersion200Response>> getVersion({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -73,10 +73,10 @@ class MetadataApi {
       ) as GetVersion200Response;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -106,7 +106,7 @@ class MetadataApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [HealthStatus] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<HealthStatus>> isAlive({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -146,10 +146,10 @@ class MetadataApi {
       ) as HealthStatus;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -179,7 +179,7 @@ class MetadataApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [IsReady200Response] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<IsReady200Response>> isReady({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -219,10 +219,10 @@ class MetadataApi {
       ) as IsReady200Response;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

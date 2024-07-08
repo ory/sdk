@@ -117,8 +117,6 @@ spec/api/metadata_api_spec.rb
 spec/api/o_auth2_api_spec.rb
 spec/api/oidc_api_spec.rb
 spec/api/wellknown_api_spec.rb
-spec/api_client_spec.rb
-spec/configuration_spec.rb
 spec/models/accept_o_auth2_consent_request_session_spec.rb
 spec/models/accept_o_auth2_consent_request_spec.rb
 spec/models/accept_o_auth2_login_request_spec.rb

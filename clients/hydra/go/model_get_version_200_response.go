@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -97,10 +97,10 @@ func (o GetVersion200Response) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetVersion200Response) UnmarshalJSON(bytes []byte) (err error) {
+func (o *GetVersion200Response) UnmarshalJSON(data []byte) (err error) {
 	varGetVersion200Response := _GetVersion200Response{}
 
-	err = json.Unmarshal(bytes, &varGetVersion200Response)
+	err = json.Unmarshal(data, &varGetVersion200Response)
 
 	if err != nil {
 		return err
@@ -110,7 +110,7 @@ func (o *GetVersion200Response) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties
 	}

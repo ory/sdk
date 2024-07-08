@@ -20,11 +20,11 @@ This endpoint returns the version of Ory Hydra.  If the service supports TLS Edg
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import metadata_api
-from ory_hydra_client.model.get_version200_response import GetVersion200Response
+from ory_hydra_client.models.get_version200_response import GetVersion200Response
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -33,21 +33,23 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = metadata_api.MetadataApi(api_client)
+    api_instance = ory_hydra_client.MetadataApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Return Running Software Version.
         api_response = api_instance.get_version()
+        print("The response of MetadataApi->get_version:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling MetadataApi->get_version: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -62,7 +64,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -83,12 +84,11 @@ This endpoint returns a HTTP 200 status code when Ory Hydra is accepting incomin
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import metadata_api
-from ory_hydra_client.model.generic_error import GenericError
-from ory_hydra_client.model.health_status import HealthStatus
+from ory_hydra_client.models.health_status import HealthStatus
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -97,21 +97,23 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = metadata_api.MetadataApi(api_client)
+    api_instance = ory_hydra_client.MetadataApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Check HTTP Server Status
         api_response = api_instance.is_alive()
+        print("The response of MetadataApi->is_alive:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling MetadataApi->is_alive: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -126,7 +128,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -148,12 +149,11 @@ This endpoint returns a HTTP 200 status code when Ory Hydra is up running and th
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import metadata_api
-from ory_hydra_client.model.is_ready503_response import IsReady503Response
-from ory_hydra_client.model.is_ready200_response import IsReady200Response
+from ory_hydra_client.models.is_ready200_response import IsReady200Response
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -162,21 +162,23 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = metadata_api.MetadataApi(api_client)
+    api_instance = ory_hydra_client.MetadataApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Check HTTP Server and Database Status
         api_response = api_instance.is_ready()
+        print("The response of MetadataApi->is_ready:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling MetadataApi->is_ready: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -191,7 +193,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 

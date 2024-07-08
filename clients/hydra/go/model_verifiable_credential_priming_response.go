@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -348,10 +348,10 @@ func (o VerifiableCredentialPrimingResponse) ToMap() (map[string]interface{}, er
 	return toSerialize, nil
 }
 
-func (o *VerifiableCredentialPrimingResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *VerifiableCredentialPrimingResponse) UnmarshalJSON(data []byte) (err error) {
 	varVerifiableCredentialPrimingResponse := _VerifiableCredentialPrimingResponse{}
 
-	err = json.Unmarshal(bytes, &varVerifiableCredentialPrimingResponse)
+	err = json.Unmarshal(data, &varVerifiableCredentialPrimingResponse)
 
 	if err != nil {
 		return err
@@ -361,7 +361,7 @@ func (o *VerifiableCredentialPrimingResponse) UnmarshalJSON(bytes []byte) (err e
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "c_nonce")
 		delete(additionalProperties, "c_nonce_expires_in")
 		delete(additionalProperties, "error")

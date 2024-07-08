@@ -2,12 +2,11 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DiscoverJsonWebKeys**](WellknownApi.md#discoverjsonwebkeys) | **GET** /.well-known/jwks.json | Discover Well-Known JSON Web Keys
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DiscoverJsonWebKeys**](WellknownApi.md#discoverjsonwebkeys) | **GET** /.well-known/jwks.json | Discover Well-Known JSON Web Keys |
 
-
-<a name="discoverjsonwebkeys"></a>
+<a id="discoverjsonwebkeys"></a>
 # **DiscoverJsonWebKeys**
 > HydraJsonWebKeySet DiscoverJsonWebKeys ()
 
@@ -41,8 +40,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling WellknownApi.DiscoverJsonWebKeys: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling WellknownApi.DiscoverJsonWebKeys: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -50,9 +49,28 @@ namespace Example
 }
 ```
 
+#### Using the DiscoverJsonWebKeysWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Discover Well-Known JSON Web Keys
+    ApiResponse<HydraJsonWebKeySet> response = apiInstance.DiscoverJsonWebKeysWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WellknownApi.DiscoverJsonWebKeysWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**HydraJsonWebKeySet**](HydraJsonWebKeySet.md)

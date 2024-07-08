@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -134,10 +134,10 @@ func (o TrustedOAuth2JwtGrantJsonWebKey) ToMap() (map[string]interface{}, error)
 	return toSerialize, nil
 }
 
-func (o *TrustedOAuth2JwtGrantJsonWebKey) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TrustedOAuth2JwtGrantJsonWebKey) UnmarshalJSON(data []byte) (err error) {
 	varTrustedOAuth2JwtGrantJsonWebKey := _TrustedOAuth2JwtGrantJsonWebKey{}
 
-	err = json.Unmarshal(bytes, &varTrustedOAuth2JwtGrantJsonWebKey)
+	err = json.Unmarshal(data, &varTrustedOAuth2JwtGrantJsonWebKey)
 
 	if err != nil {
 		return err
@@ -147,7 +147,7 @@ func (o *TrustedOAuth2JwtGrantJsonWebKey) UnmarshalJSON(bytes []byte) (err error
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "kid")
 		delete(additionalProperties, "set")
 		o.AdditionalProperties = additionalProperties

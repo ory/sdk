@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## discover_json_web_keys
 
-> crate::models::JsonWebKeySet discover_json_web_keys()
+> models::JsonWebKeySet discover_json_web_keys()
 Discover Well-Known JSON Web Keys
 
 This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and, if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
@@ -21,7 +21,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
+[**models::JsonWebKeySet**](jsonWebKeySet.md)
 
 ### Authorization
 

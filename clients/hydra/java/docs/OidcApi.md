@@ -14,7 +14,7 @@ All URIs are relative to *http://localhost*
 | [**setOidcDynamicClient**](OidcApi.md#setOidcDynamicClient) | **PUT** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration |
 
 
-<a name="createOidcDynamicClient"></a>
+<a id="createOidcDynamicClient"></a>
 # **createOidcDynamicClient**
 > OAuth2Client createOidcDynamicClient(oauth2Client)
 
@@ -78,7 +78,7 @@ No authorization required
 | **400** | Bad Request Error Response |  -  |
 | **0** | Default Error Response |  -  |
 
-<a name="createVerifiableCredential"></a>
+<a id="createVerifiableCredential"></a>
 # **createVerifiableCredential**
 > VerifiableCredentialResponse createVerifiableCredential(createVerifiableCredentialRequestBody)
 
@@ -142,7 +142,7 @@ No authorization required
 | **400** | verifiableCredentialPrimingResponse |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="deleteOidcDynamicClient"></a>
+<a id="deleteOidcDynamicClient"></a>
 # **deleteOidcDynamicClient**
 > deleteOidcDynamicClient(id)
 
@@ -209,7 +209,7 @@ null (empty response body)
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | genericError |  -  |
 
-<a name="discoverOidcConfiguration"></a>
+<a id="discoverOidcConfiguration"></a>
 # **discoverOidcConfiguration**
 > OidcConfiguration discoverOidcConfiguration()
 
@@ -268,7 +268,7 @@ No authorization required
 | **200** | oidcConfiguration |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="getOidcDynamicClient"></a>
+<a id="getOidcDynamicClient"></a>
 # **getOidcDynamicClient**
 > OAuth2Client getOidcDynamicClient(id)
 
@@ -336,7 +336,7 @@ public class Example {
 | **200** | oAuth2Client |  -  |
 | **0** | Default Error Response |  -  |
 
-<a name="getOidcUserInfo"></a>
+<a id="getOidcUserInfo"></a>
 # **getOidcUserInfo**
 > OidcUserInfo getOidcUserInfo()
 
@@ -400,7 +400,7 @@ This endpoint does not need any parameter.
 | **200** | oidcUserInfo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="revokeOidcSession"></a>
+<a id="revokeOidcSession"></a>
 # **revokeOidcSession**
 > revokeOidcSession()
 
@@ -457,7 +457,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 
-<a name="setOidcDynamicClient"></a>
+<a id="setOidcDynamicClient"></a>
 # **setOidcDynamicClient**
 > OAuth2Client setOidcDynamicClient(id, oauth2Client)
 

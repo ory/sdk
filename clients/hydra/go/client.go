@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -43,7 +43,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the Ory Hydra API API vv2.2.0
+// APIClient manages communication with the Ory Hydra API API vv2.2.1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -176,7 +176,7 @@ func parameterAddToHeaderOrQuery(headerOrQueryParams interface{}, keyPrefix stri
 					return
 				}
 				if t, ok := obj.(time.Time); ok {
-					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, t.Format(time.RFC3339), collectionType)
+					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, t.Format(time.RFC3339Nano), collectionType)
 					return
 				}
 				value = v.Type().String() + " value"

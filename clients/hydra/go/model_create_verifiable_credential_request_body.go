@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -168,10 +168,10 @@ func (o CreateVerifiableCredentialRequestBody) ToMap() (map[string]interface{}, 
 	return toSerialize, nil
 }
 
-func (o *CreateVerifiableCredentialRequestBody) UnmarshalJSON(bytes []byte) (err error) {
+func (o *CreateVerifiableCredentialRequestBody) UnmarshalJSON(data []byte) (err error) {
 	varCreateVerifiableCredentialRequestBody := _CreateVerifiableCredentialRequestBody{}
 
-	err = json.Unmarshal(bytes, &varCreateVerifiableCredentialRequestBody)
+	err = json.Unmarshal(data, &varCreateVerifiableCredentialRequestBody)
 
 	if err != nil {
 		return err
@@ -181,7 +181,7 @@ func (o *CreateVerifiableCredentialRequestBody) UnmarshalJSON(bytes []byte) (err
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "format")
 		delete(additionalProperties, "proof")
 		delete(additionalProperties, "types")

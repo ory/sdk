@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Hydra API
-  version: v2.2.0
+  version: v2.2.1
 servers:
 - url: /
 tags:
@@ -2155,6 +2155,15 @@ components:
           type: integer
       type: object
     genericError:
+      example:
+        reason: User with ID 1234 does not exist.
+        request: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+        code: 404
+        debug: SQL field "foo" is not a bool.
+        details: ""
+        id: id
+        message: The resource could not be found
+        status: Not Found
       properties:
         code:
           description: The status code
@@ -4442,6 +4451,15 @@ components:
     unexpectedError:
       type: string
     verifiableCredentialPrimingResponse:
+      example:
+        c_nonce_expires_in: 0
+        error_debug: error_debug
+        status_code: 6
+        c_nonce: c_nonce
+        error_description: error_description
+        format: format
+        error: error
+        error_hint: error_hint
       properties:
         c_nonce:
           type: string
@@ -4511,6 +4529,9 @@ components:
           type: string
       type: object
     isReady_503_response:
+      example:
+        errors:
+          key: errors
       properties:
         errors:
           additionalProperties:

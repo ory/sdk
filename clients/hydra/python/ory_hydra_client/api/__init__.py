@@ -1,3 +1,9 @@
-# do not import all apis into this module because that uses a lot of memory and stack frames
-# if you need the ability to import all apis from one package, import them with
-# from ory_hydra_client.apis import JwkApi
+# flake8: noqa
+
+# import apis into api package
+from ory_hydra_client.api.jwk_api import JwkApi
+from ory_hydra_client.api.metadata_api import MetadataApi
+from ory_hydra_client.api.o_auth2_api import OAuth2Api
+from ory_hydra_client.api.oidc_api import OidcApi
+from ory_hydra_client.api.wellknown_api import WellknownApi
+

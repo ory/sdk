@@ -1,4 +1,4 @@
-## @ory/hydra-client@v2.2.0
+## @ory/hydra-client@v2.2.1
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -15,7 +15,7 @@ Module system
 * CommonJS
 * ES6 module system
 
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
+It can be used in both TypeScript and JavaScript. In TypeScript, the definition will be automatically resolved via `package.json`. ([Reference](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html))
 
 ### Building
 
@@ -27,7 +27,7 @@ npm run build
 
 ### Publishing
 
-First build the package then run ```npm publish```
+First build the package then run `npm publish`
 
 ### Consuming
 
@@ -36,10 +36,11 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/hydra-client@v2.2.0 --save
+npm install @ory/hydra-client@v2.2.1 --save
 ```
 
 _unPublished (not recommended):_
 
 ```
 npm install PATH_TO_GENERATED_PACKAGE --save
+```

@@ -30,7 +30,7 @@ final api = OryHydraClient().getMetadataApi();
 try {
     final response = api.getVersion();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling MetadataApi->getVersion: $e\n');
 }
 ```
@@ -69,7 +69,7 @@ final api = OryHydraClient().getMetadataApi();
 try {
     final response = api.isAlive();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling MetadataApi->isAlive: $e\n');
 }
 ```
@@ -108,7 +108,7 @@ final api = OryHydraClient().getMetadataApi();
 try {
     final response = api.isReady();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling MetadataApi->isReady: $e\n');
 }
 ```

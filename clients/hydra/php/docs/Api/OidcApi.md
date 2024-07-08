@@ -1,17 +1,17 @@
 # Ory\Hydra\Client\OidcApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createOidcDynamicClient()**](OidcApi.md#createOidcDynamicClient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration
-[**createVerifiableCredential()**](OidcApi.md#createVerifiableCredential) | **POST** /credentials | Issues a Verifiable Credential
-[**deleteOidcDynamicClient()**](OidcApi.md#deleteOidcDynamicClient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
-[**discoverOidcConfiguration()**](OidcApi.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery
-[**getOidcDynamicClient()**](OidcApi.md#getOidcDynamicClient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration
-[**getOidcUserInfo()**](OidcApi.md#getOidcUserInfo) | **GET** /userinfo | OpenID Connect Userinfo
-[**revokeOidcSession()**](OidcApi.md#revokeOidcSession) | **GET** /oauth2/sessions/logout | OpenID Connect Front- and Back-channel Enabled Logout
-[**setOidcDynamicClient()**](OidcApi.md#setOidcDynamicClient) | **PUT** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createOidcDynamicClient()**](OidcApi.md#createOidcDynamicClient) | **POST** /oauth2/register | Register OAuth2 Client using OpenID Dynamic Client Registration |
+| [**createVerifiableCredential()**](OidcApi.md#createVerifiableCredential) | **POST** /credentials | Issues a Verifiable Credential |
+| [**deleteOidcDynamicClient()**](OidcApi.md#deleteOidcDynamicClient) | **DELETE** /oauth2/register/{id} | Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol |
+| [**discoverOidcConfiguration()**](OidcApi.md#discoverOidcConfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect Discovery |
+| [**getOidcDynamicClient()**](OidcApi.md#getOidcDynamicClient) | **GET** /oauth2/register/{id} | Get OAuth2 Client using OpenID Dynamic Client Registration |
+| [**getOidcUserInfo()**](OidcApi.md#getOidcUserInfo) | **GET** /userinfo | OpenID Connect Userinfo |
+| [**revokeOidcSession()**](OidcApi.md#revokeOidcSession) | **GET** /oauth2/sessions/logout | OpenID Connect Front- and Back-channel Enabled Logout |
+| [**setOidcDynamicClient()**](OidcApi.md#setOidcDynamicClient) | **PUT** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration |
 
 
 ## `createOidcDynamicClient()`
@@ -49,9 +49,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **oAuth2Client** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| Dynamic Client Registration Request Body |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **oAuth2Client** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| Dynamic Client Registration Request Body | |
 
 ### Return type
 
@@ -105,9 +105,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createVerifiableCredentialRequestBody** | [**\Ory\Hydra\Client\Model\CreateVerifiableCredentialRequestBody**](../Model/CreateVerifiableCredentialRequestBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **createVerifiableCredentialRequestBody** | [**\Ory\Hydra\Client\Model\CreateVerifiableCredentialRequestBody**](../Model/CreateVerifiableCredentialRequestBody.md)|  | [optional] |
 
 ### Return type
 
@@ -164,9 +164,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -277,9 +277,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The id of the OAuth 2.0 Client. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the OAuth 2.0 Client. | |
 
 ### Return type
 
@@ -447,10 +447,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| OAuth 2.0 Client ID |
- **oAuth2Client** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| OAuth 2.0 Client Request Body |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| OAuth 2.0 Client ID | |
+| **oAuth2Client** | [**\Ory\Hydra\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| OAuth 2.0 Client Request Body | |
 
 ### Return type
 

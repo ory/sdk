@@ -36,7 +36,7 @@ final CreateJsonWebKeySet createJsonWebKeySet = ; // CreateJsonWebKeySet |
 try {
     final response = api.createJsonWebKeySet(set_, createJsonWebKeySet);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->createJsonWebKeySet: $e\n');
 }
 ```
@@ -80,7 +80,7 @@ final String kid = kid_example; // String | The JSON Web Key ID (kid)
 
 try {
     api.deleteJsonWebKey(set_, kid);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->deleteJsonWebKey: $e\n');
 }
 ```
@@ -123,7 +123,7 @@ final String set_ = set__example; // String | The JSON Web Key Set
 
 try {
     api.deleteJsonWebKeySet(set_);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->deleteJsonWebKeySet: $e\n');
 }
 ```
@@ -167,7 +167,7 @@ final String kid = kid_example; // String | JSON Web Key ID
 try {
     final response = api.getJsonWebKey(set_, kid);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->getJsonWebKey: $e\n');
 }
 ```
@@ -211,7 +211,7 @@ final String set_ = set__example; // String | JSON Web Key Set ID
 try {
     final response = api.getJsonWebKeySet(set_);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->getJsonWebKeySet: $e\n');
 }
 ```
@@ -256,7 +256,7 @@ final JsonWebKey jsonWebKey = ; // JsonWebKey |
 try {
     final response = api.setJsonWebKey(set_, kid, jsonWebKey);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->setJsonWebKey: $e\n');
 }
 ```
@@ -302,7 +302,7 @@ final JsonWebKeySet jsonWebKeySet = ; // JsonWebKeySet |
 try {
     final response = api.setJsonWebKeySet(set_, jsonWebKeySet);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling JwkApi->setJsonWebKeySet: $e\n');
 }
 ```

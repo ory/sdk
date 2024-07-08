@@ -34,7 +34,7 @@ All URIs are relative to *http://localhost*
 | [**trustOAuth2JwtGrantIssuer**](OAuth2Api.md#trustOAuth2JwtGrantIssuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer |
 
 
-<a name="acceptOAuth2ConsentRequest"></a>
+<a id="acceptOAuth2ConsentRequest"></a>
 # **acceptOAuth2ConsentRequest**
 > OAuth2RedirectTo acceptOAuth2ConsentRequest(consentChallenge, acceptOAuth2ConsentRequest)
 
@@ -99,7 +99,7 @@ No authorization required
 | **200** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="acceptOAuth2LoginRequest"></a>
+<a id="acceptOAuth2LoginRequest"></a>
 # **acceptOAuth2LoginRequest**
 > OAuth2RedirectTo acceptOAuth2LoginRequest(loginChallenge, acceptOAuth2LoginRequest)
 
@@ -164,7 +164,7 @@ No authorization required
 | **200** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="acceptOAuth2LogoutRequest"></a>
+<a id="acceptOAuth2LogoutRequest"></a>
 # **acceptOAuth2LogoutRequest**
 > OAuth2RedirectTo acceptOAuth2LogoutRequest(logoutChallenge)
 
@@ -227,7 +227,7 @@ No authorization required
 | **200** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="createOAuth2Client"></a>
+<a id="createOAuth2Client"></a>
 # **createOAuth2Client**
 > OAuth2Client createOAuth2Client(oauth2Client)
 
@@ -291,7 +291,7 @@ No authorization required
 | **400** | Bad Request Error Response |  -  |
 | **0** | Default Error Response |  -  |
 
-<a name="deleteOAuth2Client"></a>
+<a id="deleteOAuth2Client"></a>
 # **deleteOAuth2Client**
 > deleteOAuth2Client(id)
 
@@ -353,7 +353,7 @@ No authorization required
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | genericError |  -  |
 
-<a name="deleteOAuth2Token"></a>
+<a id="deleteOAuth2Token"></a>
 # **deleteOAuth2Token**
 > deleteOAuth2Token(clientId)
 
@@ -415,7 +415,7 @@ No authorization required
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="deleteTrustedOAuth2JwtGrantIssuer"></a>
+<a id="deleteTrustedOAuth2JwtGrantIssuer"></a>
 # **deleteTrustedOAuth2JwtGrantIssuer**
 > deleteTrustedOAuth2JwtGrantIssuer(id)
 
@@ -477,7 +477,7 @@ No authorization required
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | genericError |  -  |
 
-<a name="getOAuth2Client"></a>
+<a id="getOAuth2Client"></a>
 # **getOAuth2Client**
 > OAuth2Client getOAuth2Client(id)
 
@@ -540,7 +540,7 @@ No authorization required
 | **200** | oAuth2Client |  -  |
 | **0** | Default Error Response |  -  |
 
-<a name="getOAuth2ConsentRequest"></a>
+<a id="getOAuth2ConsentRequest"></a>
 # **getOAuth2ConsentRequest**
 > OAuth2ConsentRequest getOAuth2ConsentRequest(consentChallenge)
 
@@ -604,7 +604,7 @@ No authorization required
 | **410** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="getOAuth2LoginRequest"></a>
+<a id="getOAuth2LoginRequest"></a>
 # **getOAuth2LoginRequest**
 > OAuth2LoginRequest getOAuth2LoginRequest(loginChallenge)
 
@@ -668,7 +668,7 @@ No authorization required
 | **410** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="getOAuth2LogoutRequest"></a>
+<a id="getOAuth2LogoutRequest"></a>
 # **getOAuth2LogoutRequest**
 > OAuth2LogoutRequest getOAuth2LogoutRequest(logoutChallenge)
 
@@ -732,7 +732,7 @@ No authorization required
 | **410** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="getTrustedOAuth2JwtGrantIssuer"></a>
+<a id="getTrustedOAuth2JwtGrantIssuer"></a>
 # **getTrustedOAuth2JwtGrantIssuer**
 > TrustedOAuth2JwtGrantIssuer getTrustedOAuth2JwtGrantIssuer(id)
 
@@ -795,7 +795,7 @@ No authorization required
 | **200** | trustedOAuth2JwtGrantIssuer |  -  |
 | **0** | genericError |  -  |
 
-<a name="introspectOAuth2Token"></a>
+<a id="introspectOAuth2Token"></a>
 # **introspectOAuth2Token**
 > IntrospectedOAuth2Token introspectOAuth2Token(token, scope)
 
@@ -860,7 +860,7 @@ No authorization required
 | **200** | introspectedOAuth2Token |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="listOAuth2Clients"></a>
+<a id="listOAuth2Clients"></a>
 # **listOAuth2Clients**
 > List&lt;OAuth2Client&gt; listOAuth2Clients(pageSize, pageToken, clientName, owner)
 
@@ -929,7 +929,7 @@ No authorization required
 | **200** | Paginated OAuth2 Client List Response |  -  |
 | **0** | Default Error Response |  -  |
 
-<a name="listOAuth2ConsentSessions"></a>
+<a id="listOAuth2ConsentSessions"></a>
 # **listOAuth2ConsentSessions**
 > List&lt;OAuth2ConsentSession&gt; listOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId)
 
@@ -998,7 +998,7 @@ No authorization required
 | **200** | oAuth2ConsentSessions |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="listTrustedOAuth2JwtGrantIssuers"></a>
+<a id="listTrustedOAuth2JwtGrantIssuers"></a>
 # **listTrustedOAuth2JwtGrantIssuers**
 > List&lt;TrustedOAuth2JwtGrantIssuer&gt; listTrustedOAuth2JwtGrantIssuers(maxItems, defaultItems, issuer)
 
@@ -1065,7 +1065,7 @@ No authorization required
 | **200** | trustedOAuth2JwtGrantIssuers |  -  |
 | **0** | genericError |  -  |
 
-<a name="oAuth2Authorize"></a>
+<a id="oAuth2Authorize"></a>
 # **oAuth2Authorize**
 > ErrorOAuth2 oAuth2Authorize()
 
@@ -1124,7 +1124,7 @@ No authorization required
 | **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="oauth2TokenExchange"></a>
+<a id="oauth2TokenExchange"></a>
 # **oauth2TokenExchange**
 > OAuth2TokenExchange oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken)
 
@@ -1205,7 +1205,7 @@ public class Example {
 | **200** | oAuth2TokenExchange |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="patchOAuth2Client"></a>
+<a id="patchOAuth2Client"></a>
 # **patchOAuth2Client**
 > OAuth2Client patchOAuth2Client(id, jsonPatch)
 
@@ -1271,7 +1271,7 @@ No authorization required
 | **404** | Not Found Error Response |  -  |
 | **0** | Default Error Response |  -  |
 
-<a name="rejectOAuth2ConsentRequest"></a>
+<a id="rejectOAuth2ConsentRequest"></a>
 # **rejectOAuth2ConsentRequest**
 > OAuth2RedirectTo rejectOAuth2ConsentRequest(consentChallenge, rejectOAuth2Request)
 
@@ -1336,7 +1336,7 @@ No authorization required
 | **200** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="rejectOAuth2LoginRequest"></a>
+<a id="rejectOAuth2LoginRequest"></a>
 # **rejectOAuth2LoginRequest**
 > OAuth2RedirectTo rejectOAuth2LoginRequest(loginChallenge, rejectOAuth2Request)
 
@@ -1401,7 +1401,7 @@ No authorization required
 | **200** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="rejectOAuth2LogoutRequest"></a>
+<a id="rejectOAuth2LogoutRequest"></a>
 # **rejectOAuth2LogoutRequest**
 > rejectOAuth2LogoutRequest(logoutChallenge)
 
@@ -1463,7 +1463,7 @@ No authorization required
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="revokeOAuth2ConsentSessions"></a>
+<a id="revokeOAuth2ConsentSessions"></a>
 # **revokeOAuth2ConsentSessions**
 > revokeOAuth2ConsentSessions(subject, client, all)
 
@@ -1529,7 +1529,7 @@ No authorization required
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="revokeOAuth2LoginSessions"></a>
+<a id="revokeOAuth2LoginSessions"></a>
 # **revokeOAuth2LoginSessions**
 > revokeOAuth2LoginSessions(subject, sid)
 
@@ -1593,7 +1593,7 @@ No authorization required
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="revokeOAuth2Token"></a>
+<a id="revokeOAuth2Token"></a>
 # **revokeOAuth2Token**
 > revokeOAuth2Token(token, clientId, clientSecret)
 
@@ -1669,7 +1669,7 @@ null (empty response body)
 | **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="setOAuth2Client"></a>
+<a id="setOAuth2Client"></a>
 # **setOAuth2Client**
 > OAuth2Client setOAuth2Client(id, oauth2Client)
 
@@ -1736,7 +1736,7 @@ No authorization required
 | **404** | Not Found Error Response |  -  |
 | **0** | Default Error Response |  -  |
 
-<a name="setOAuth2ClientLifespans"></a>
+<a id="setOAuth2ClientLifespans"></a>
 # **setOAuth2ClientLifespans**
 > OAuth2Client setOAuth2ClientLifespans(id, oauth2ClientTokenLifespans)
 
@@ -1801,7 +1801,7 @@ No authorization required
 | **200** | oAuth2Client |  -  |
 | **0** | genericError |  -  |
 
-<a name="trustOAuth2JwtGrantIssuer"></a>
+<a id="trustOAuth2JwtGrantIssuer"></a>
 # **trustOAuth2JwtGrantIssuer**
 > TrustedOAuth2JwtGrantIssuer trustOAuth2JwtGrantIssuer(trustOAuth2JwtGrantIssuer)
 

@@ -57,7 +57,7 @@ final AcceptOAuth2ConsentRequest acceptOAuth2ConsentRequest = ; // AcceptOAuth2C
 try {
     final response = api.acceptOAuth2ConsentRequest(consentChallenge, acceptOAuth2ConsentRequest);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->acceptOAuth2ConsentRequest: $e\n');
 }
 ```
@@ -102,7 +102,7 @@ final AcceptOAuth2LoginRequest acceptOAuth2LoginRequest = ; // AcceptOAuth2Login
 try {
     final response = api.acceptOAuth2LoginRequest(loginChallenge, acceptOAuth2LoginRequest);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->acceptOAuth2LoginRequest: $e\n');
 }
 ```
@@ -146,7 +146,7 @@ final String logoutChallenge = logoutChallenge_example; // String | OAuth 2.0 Lo
 try {
     final response = api.acceptOAuth2LogoutRequest(logoutChallenge);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->acceptOAuth2LogoutRequest: $e\n');
 }
 ```
@@ -189,7 +189,7 @@ final OAuth2Client oAuth2Client = ; // OAuth2Client | OAuth 2.0 Client Request B
 try {
     final response = api.createOAuth2Client(oAuth2Client);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->createOAuth2Client: $e\n');
 }
 ```
@@ -231,7 +231,7 @@ final String id = id_example; // String | The id of the OAuth 2.0 Client.
 
 try {
     api.deleteOAuth2Client(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->deleteOAuth2Client: $e\n');
 }
 ```
@@ -273,7 +273,7 @@ final String clientId = clientId_example; // String | OAuth 2.0 Client ID
 
 try {
     api.deleteOAuth2Token(clientId);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->deleteOAuth2Token: $e\n');
 }
 ```
@@ -315,7 +315,7 @@ final String id = id_example; // String | The id of the desired grant
 
 try {
     api.deleteTrustedOAuth2JwtGrantIssuer(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->deleteTrustedOAuth2JwtGrantIssuer: $e\n');
 }
 ```
@@ -358,7 +358,7 @@ final String id = id_example; // String | The id of the OAuth 2.0 Client.
 try {
     final response = api.getOAuth2Client(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getOAuth2Client: $e\n');
 }
 ```
@@ -401,7 +401,7 @@ final String consentChallenge = consentChallenge_example; // String | OAuth 2.0 
 try {
     final response = api.getOAuth2ConsentRequest(consentChallenge);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getOAuth2ConsentRequest: $e\n');
 }
 ```
@@ -444,7 +444,7 @@ final String loginChallenge = loginChallenge_example; // String | OAuth 2.0 Logi
 try {
     final response = api.getOAuth2LoginRequest(loginChallenge);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getOAuth2LoginRequest: $e\n');
 }
 ```
@@ -487,7 +487,7 @@ final String logoutChallenge = logoutChallenge_example; // String |
 try {
     final response = api.getOAuth2LogoutRequest(logoutChallenge);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getOAuth2LogoutRequest: $e\n');
 }
 ```
@@ -530,7 +530,7 @@ final String id = id_example; // String | The id of the desired grant
 try {
     final response = api.getTrustedOAuth2JwtGrantIssuer(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->getTrustedOAuth2JwtGrantIssuer: $e\n');
 }
 ```
@@ -574,7 +574,7 @@ final String scope = scope_example; // String | An optional, space separated lis
 try {
     final response = api.introspectOAuth2Token(token, scope);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->introspectOAuth2Token: $e\n');
 }
 ```
@@ -621,7 +621,7 @@ final String owner = owner_example; // String | The owner of the clients to filt
 try {
     final response = api.listOAuth2Clients(pageSize, pageToken, clientName, owner);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->listOAuth2Clients: $e\n');
 }
 ```
@@ -670,7 +670,7 @@ final String loginSessionId = loginSessionId_example; // String | The login sess
 try {
     final response = api.listOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->listOAuth2ConsentSessions: $e\n');
 }
 ```
@@ -718,7 +718,7 @@ final String issuer = issuer_example; // String | If optional \"issuer\" is supp
 try {
     final response = api.listTrustedOAuth2JwtGrantIssuers(maxItems, defaultItems, issuer);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->listTrustedOAuth2JwtGrantIssuers: $e\n');
 }
 ```
@@ -762,7 +762,7 @@ final api = OryHydraClient().getOAuth2Api();
 try {
     final response = api.oAuth2Authorize();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->oAuth2Authorize: $e\n');
 }
 ```
@@ -811,7 +811,7 @@ final String refreshToken = refreshToken_example; // String |
 try {
     final response = api.oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->oauth2TokenExchange: $e\n');
 }
 ```
@@ -859,7 +859,7 @@ final BuiltList<JsonPatch> jsonPatch = ; // BuiltList<JsonPatch> | OAuth 2.0 Cli
 try {
     final response = api.patchOAuth2Client(id, jsonPatch);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->patchOAuth2Client: $e\n');
 }
 ```
@@ -904,7 +904,7 @@ final RejectOAuth2Request rejectOAuth2Request = ; // RejectOAuth2Request |
 try {
     final response = api.rejectOAuth2ConsentRequest(consentChallenge, rejectOAuth2Request);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->rejectOAuth2ConsentRequest: $e\n');
 }
 ```
@@ -949,7 +949,7 @@ final RejectOAuth2Request rejectOAuth2Request = ; // RejectOAuth2Request |
 try {
     final response = api.rejectOAuth2LoginRequest(loginChallenge, rejectOAuth2Request);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->rejectOAuth2LoginRequest: $e\n');
 }
 ```
@@ -992,7 +992,7 @@ final String logoutChallenge = logoutChallenge_example; // String |
 
 try {
     api.rejectOAuth2LogoutRequest(logoutChallenge);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->rejectOAuth2LogoutRequest: $e\n');
 }
 ```
@@ -1036,7 +1036,7 @@ final bool all = true; // bool | Revoke All Consent Sessions  If set to `true` d
 
 try {
     api.revokeOAuth2ConsentSessions(subject, client, all);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->revokeOAuth2ConsentSessions: $e\n');
 }
 ```
@@ -1081,7 +1081,7 @@ final String sid = sid_example; // String | OAuth 2.0 Subject  The subject to re
 
 try {
     api.revokeOAuth2LoginSessions(subject, sid);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->revokeOAuth2LoginSessions: $e\n');
 }
 ```
@@ -1131,7 +1131,7 @@ final String clientSecret = clientSecret_example; // String |
 
 try {
     api.revokeOAuth2Token(token, clientId, clientSecret);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->revokeOAuth2Token: $e\n');
 }
 ```
@@ -1177,7 +1177,7 @@ final OAuth2Client oAuth2Client = ; // OAuth2Client | OAuth 2.0 Client Request B
 try {
     final response = api.setOAuth2Client(id, oAuth2Client);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->setOAuth2Client: $e\n');
 }
 ```
@@ -1222,7 +1222,7 @@ final OAuth2ClientTokenLifespans oAuth2ClientTokenLifespans = ; // OAuth2ClientT
 try {
     final response = api.setOAuth2ClientLifespans(id, oAuth2ClientTokenLifespans);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->setOAuth2ClientLifespans: $e\n');
 }
 ```
@@ -1266,7 +1266,7 @@ final TrustOAuth2JwtGrantIssuer trustOAuth2JwtGrantIssuer = ; // TrustOAuth2JwtG
 try {
     final response = api.trustOAuth2JwtGrantIssuer(trustOAuth2JwtGrantIssuer);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling OAuth2Api->trustOAuth2JwtGrantIssuer: $e\n');
 }
 ```

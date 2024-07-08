@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -73,7 +73,7 @@ func (o *AcceptOAuth2ConsentRequest) GetContextOk() (*interface{}, bool) {
 
 // HasContext returns a boolean if a field has been set.
 func (o *AcceptOAuth2ConsentRequest) HasContext() bool {
-	if o != nil && IsNil(o.Context) {
+	if o != nil && !IsNil(o.Context) {
 		return true
 	}
 
@@ -316,10 +316,10 @@ func (o AcceptOAuth2ConsentRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *AcceptOAuth2ConsentRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AcceptOAuth2ConsentRequest) UnmarshalJSON(data []byte) (err error) {
 	varAcceptOAuth2ConsentRequest := _AcceptOAuth2ConsentRequest{}
 
-	err = json.Unmarshal(bytes, &varAcceptOAuth2ConsentRequest)
+	err = json.Unmarshal(data, &varAcceptOAuth2ConsentRequest)
 
 	if err != nil {
 		return err
@@ -329,7 +329,7 @@ func (o *AcceptOAuth2ConsentRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "context")
 		delete(additionalProperties, "grant_access_token_audience")
 		delete(additionalProperties, "grant_scope")

@@ -18,12 +18,11 @@ This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Toke
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import wellknown_api
-from ory_hydra_client.model.json_web_key_set import JsonWebKeySet
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.json_web_key_set import JsonWebKeySet
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -32,21 +31,23 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = wellknown_api.WellknownApi(api_client)
+    api_instance = ory_hydra_client.WellknownApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Discover Well-Known JSON Web Keys
         api_response = api_instance.discover_json_web_keys()
+        print("The response of WellknownApi->discover_json_web_keys:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling WellknownApi->discover_json_web_keys: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -61,7 +62,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 

@@ -1,8 +1,9 @@
 # hydra-client
 
 Ory Hydra API
-- API version: v2.2.0
-  - Build date: 2024-02-12T11:42:01.945599172Z[Etc/UTC]
+- API version: v2.2.1
+  - Build date: 2024-07-08T13:20:22.059623837Z[Etc/UTC]
+  - Generator version: 7.7.0
 
 Documentation for all of Ory Hydra's APIs.
 
@@ -41,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.hydra</groupId>
   <artifactId>hydra-client</artifactId>
-  <version>v2.2.0</version>
+  <version>v2.2.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.hydra:hydra-client:v2.2.0"
+     implementation "sh.ory.hydra:hydra-client:v2.2.1"
   }
 ```
 
@@ -71,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v2.2.0.jar`
+* `target/hydra-client-v2.2.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -213,17 +214,22 @@ Class | Method | HTTP request | Description
  - [Version](docs/Version.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
+
 Authentication schemes defined for the API:
+<a id="basic"></a>
 ### basic
 
 - **Type**: HTTP basic authentication
 
+<a id="bearer"></a>
 ### bearer
 
-- **Type**: HTTP basic authentication
+- **Type**: HTTP Bearer Token authentication
 
+<a id="oauth2"></a>
 ### oauth2
 
 - **Type**: OAuth

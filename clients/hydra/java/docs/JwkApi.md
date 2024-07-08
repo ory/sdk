@@ -13,7 +13,7 @@ All URIs are relative to *http://localhost*
 | [**setJsonWebKeySet**](JwkApi.md#setJsonWebKeySet) | **PUT** /admin/keys/{set} | Update a JSON Web Key Set |
 
 
-<a name="createJsonWebKeySet"></a>
+<a id="createJsonWebKeySet"></a>
 # **createJsonWebKeySet**
 > JsonWebKeySet createJsonWebKeySet(set, createJsonWebKeySet)
 
@@ -78,7 +78,7 @@ No authorization required
 | **201** | jsonWebKeySet |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="deleteJsonWebKey"></a>
+<a id="deleteJsonWebKey"></a>
 # **deleteJsonWebKey**
 > deleteJsonWebKey(set, kid)
 
@@ -142,7 +142,7 @@ No authorization required
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="deleteJsonWebKeySet"></a>
+<a id="deleteJsonWebKeySet"></a>
 # **deleteJsonWebKeySet**
 > deleteJsonWebKeySet(set)
 
@@ -204,7 +204,7 @@ No authorization required
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="getJsonWebKey"></a>
+<a id="getJsonWebKey"></a>
 # **getJsonWebKey**
 > JsonWebKeySet getJsonWebKey(set, kid)
 
@@ -269,7 +269,7 @@ No authorization required
 | **200** | jsonWebKeySet |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="getJsonWebKeySet"></a>
+<a id="getJsonWebKeySet"></a>
 # **getJsonWebKeySet**
 > JsonWebKeySet getJsonWebKeySet(set)
 
@@ -332,7 +332,7 @@ No authorization required
 | **200** | jsonWebKeySet |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="setJsonWebKey"></a>
+<a id="setJsonWebKey"></a>
 # **setJsonWebKey**
 > JsonWebKey setJsonWebKey(set, kid, jsonWebKey)
 
@@ -399,7 +399,7 @@ No authorization required
 | **200** | jsonWebKey |  -  |
 | **0** | errorOAuth2 |  -  |
 
-<a name="setJsonWebKeySet"></a>
+<a id="setJsonWebKeySet"></a>
 # **setJsonWebKeySet**
 > JsonWebKeySet setJsonWebKeySet(set, jsonWebKeySet)
 

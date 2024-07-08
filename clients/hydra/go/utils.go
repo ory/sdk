@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -321,7 +321,7 @@ func NewNullableTime(val *time.Time) *NullableTime {
 }
 
 func (v NullableTime) MarshalJSON() ([]byte, error) {
-	return v.value.MarshalJSON()
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTime) UnmarshalJSON(src []byte) error {

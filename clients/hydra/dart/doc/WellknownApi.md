@@ -28,7 +28,7 @@ final api = OryHydraClient().getWellknownApi();
 try {
     final response = api.discoverJsonWebKeys();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling WellknownApi->discoverJsonWebKeys: $e\n');
 }
 ```

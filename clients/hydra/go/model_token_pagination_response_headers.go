@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -134,10 +134,10 @@ func (o TokenPaginationResponseHeaders) ToMap() (map[string]interface{}, error) 
 	return toSerialize, nil
 }
 
-func (o *TokenPaginationResponseHeaders) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TokenPaginationResponseHeaders) UnmarshalJSON(data []byte) (err error) {
 	varTokenPaginationResponseHeaders := _TokenPaginationResponseHeaders{}
 
-	err = json.Unmarshal(bytes, &varTokenPaginationResponseHeaders)
+	err = json.Unmarshal(data, &varTokenPaginationResponseHeaders)
 
 	if err != nil {
 		return err
@@ -147,7 +147,7 @@ func (o *TokenPaginationResponseHeaders) UnmarshalJSON(bytes []byte) (err error)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "link")
 		delete(additionalProperties, "x-total-count")
 		o.AdditionalProperties = additionalProperties

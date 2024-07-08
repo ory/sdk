@@ -35,7 +35,7 @@ Method | HTTP request | Description
 
 
 # **accept_o_auth2_consent_request**
-> OAuth2RedirectTo accept_o_auth2_consent_request(consent_challenge)
+> OAuth2RedirectTo accept_o_auth2_consent_request(consent_challenge, accept_o_auth2_consent_request=accept_o_auth2_consent_request)
 
 Accept OAuth 2.0 Consent Request
 
@@ -45,13 +45,12 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.accept_o_auth2_consent_request import AcceptOAuth2ConsentRequest
-from ory_hydra_client.model.o_auth2_redirect_to import OAuth2RedirectTo
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.accept_o_auth2_consent_request import AcceptOAuth2ConsentRequest
+from ory_hydra_client.models.o_auth2_redirect_to import OAuth2RedirectTo
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -60,52 +59,30 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    consent_challenge = "consent_challenge_example" # str | OAuth 2.0 Consent Request Challenge
-    accept_o_auth2_consent_request = AcceptOAuth2ConsentRequest(
-        context=None,
-        grant_access_token_audience=StringSliceJSONFormat([
-            "grant_access_token_audience_example",
-        ]),
-        grant_scope=StringSliceJSONFormat([
-            "grant_scope_example",
-        ]),
-        handled_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        remember=True,
-        remember_for=1,
-        session=AcceptOAuth2ConsentRequestSession(
-            access_token=None,
-            id_token=None,
-        ),
-    ) # AcceptOAuth2ConsentRequest |  (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    consent_challenge = 'consent_challenge_example' # str | OAuth 2.0 Consent Request Challenge
+    accept_o_auth2_consent_request = ory_hydra_client.AcceptOAuth2ConsentRequest() # AcceptOAuth2ConsentRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Accept OAuth 2.0 Consent Request
-        api_response = api_instance.accept_o_auth2_consent_request(consent_challenge)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->accept_o_auth2_consent_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Accept OAuth 2.0 Consent Request
         api_response = api_instance.accept_o_auth2_consent_request(consent_challenge, accept_o_auth2_consent_request=accept_o_auth2_consent_request)
+        print("The response of OAuth2Api->accept_o_auth2_consent_request:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->accept_o_auth2_consent_request: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent_challenge** | **str**| OAuth 2.0 Consent Request Challenge |
- **accept_o_auth2_consent_request** | [**AcceptOAuth2ConsentRequest**](AcceptOAuth2ConsentRequest.md)|  | [optional]
+ **consent_challenge** | **str**| OAuth 2.0 Consent Request Challenge | 
+ **accept_o_auth2_consent_request** | [**AcceptOAuth2ConsentRequest**](AcceptOAuth2ConsentRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -119,7 +96,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -131,7 +107,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accept_o_auth2_login_request**
-> OAuth2RedirectTo accept_o_auth2_login_request(login_challenge)
+> OAuth2RedirectTo accept_o_auth2_login_request(login_challenge, accept_o_auth2_login_request=accept_o_auth2_login_request)
 
 Accept OAuth 2.0 Login Request
 
@@ -141,13 +117,12 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_redirect_to import OAuth2RedirectTo
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
-from ory_hydra_client.model.accept_o_auth2_login_request import AcceptOAuth2LoginRequest
+from ory_hydra_client.models.accept_o_auth2_login_request import AcceptOAuth2LoginRequest
+from ory_hydra_client.models.o_auth2_redirect_to import OAuth2RedirectTo
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -156,49 +131,30 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    login_challenge = "login_challenge_example" # str | OAuth 2.0 Login Request Challenge
-    accept_o_auth2_login_request = AcceptOAuth2LoginRequest(
-        acr="acr_example",
-        amr=StringSliceJSONFormat([
-            "amr_example",
-        ]),
-        context=None,
-        extend_session_lifespan=True,
-        force_subject_identifier="force_subject_identifier_example",
-        identity_provider_session_id="identity_provider_session_id_example",
-        remember=True,
-        remember_for=1,
-        subject="subject_example",
-    ) # AcceptOAuth2LoginRequest |  (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    login_challenge = 'login_challenge_example' # str | OAuth 2.0 Login Request Challenge
+    accept_o_auth2_login_request = ory_hydra_client.AcceptOAuth2LoginRequest() # AcceptOAuth2LoginRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Accept OAuth 2.0 Login Request
-        api_response = api_instance.accept_o_auth2_login_request(login_challenge)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->accept_o_auth2_login_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Accept OAuth 2.0 Login Request
         api_response = api_instance.accept_o_auth2_login_request(login_challenge, accept_o_auth2_login_request=accept_o_auth2_login_request)
+        print("The response of OAuth2Api->accept_o_auth2_login_request:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->accept_o_auth2_login_request: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **login_challenge** | **str**| OAuth 2.0 Login Request Challenge |
- **accept_o_auth2_login_request** | [**AcceptOAuth2LoginRequest**](AcceptOAuth2LoginRequest.md)|  | [optional]
+ **login_challenge** | **str**| OAuth 2.0 Login Request Challenge | 
+ **accept_o_auth2_login_request** | [**AcceptOAuth2LoginRequest**](AcceptOAuth2LoginRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -212,7 +168,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -234,12 +189,11 @@ When a user or an application requests Ory OAuth 2.0 to remove the session state
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_redirect_to import OAuth2RedirectTo
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.o_auth2_redirect_to import OAuth2RedirectTo
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -248,26 +202,28 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    logout_challenge = "logout_challenge_example" # str | OAuth 2.0 Logout Request Challenge
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    logout_challenge = 'logout_challenge_example' # str | OAuth 2.0 Logout Request Challenge
 
-    # example passing only required values which don't have defaults set
     try:
         # Accept OAuth 2.0 Session Logout Request
         api_response = api_instance.accept_o_auth2_logout_request(logout_challenge)
+        print("The response of OAuth2Api->accept_o_auth2_logout_request:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->accept_o_auth2_logout_request: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logout_challenge** | **str**| OAuth 2.0 Logout Request Challenge |
+ **logout_challenge** | **str**| OAuth 2.0 Logout Request Challenge | 
 
 ### Return type
 
@@ -281,7 +237,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -303,12 +258,11 @@ Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, o
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.o_auth2_client import OAuth2Client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -317,91 +271,28 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    o_auth2_client = OAuth2Client(
-        access_token_strategy="access_token_strategy_example",
-        allowed_cors_origins=StringSliceJSONFormat([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSliceJSONFormat([
-            "audience_example",
-        ]),
-        authorization_code_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        authorization_code_grant_id_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        authorization_code_grant_refresh_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_credentials_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSliceJSONFormat([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSliceJSONFormat([
-            "grant_types_example",
-        ]),
-        implicit_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        implicit_grant_id_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        jwks=None,
-        jwks_uri="jwks_uri_example",
-        jwt_bearer_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        logo_uri="logo_uri_example",
-        metadata=None,
-        owner="owner_example",
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSliceJSONFormat([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSliceJSONFormat([
-            "redirect_uris_example",
-        ]),
-        refresh_token_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        refresh_token_grant_id_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        refresh_token_grant_refresh_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        registration_access_token="registration_access_token_example",
-        registration_client_uri="registration_client_uri_example",
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSliceJSONFormat([
-            "request_uris_example",
-        ]),
-        response_types=StringSliceJSONFormat([
-            "response_types_example",
-        ]),
-        scope="scope1 scope-2 scope.3 scope:4",
-        sector_identifier_uri="sector_identifier_uri_example",
-        skip_consent=True,
-        skip_logout_consent=True,
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="client_secret_basic",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | OAuth 2.0 Client Request Body
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    o_auth2_client = ory_hydra_client.OAuth2Client() # OAuth2Client | OAuth 2.0 Client Request Body
 
-    # example passing only required values which don't have defaults set
     try:
         # Create OAuth 2.0 Client
         api_response = api_instance.create_o_auth2_client(o_auth2_client)
+        print("The response of OAuth2Api->create_o_auth2_client:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->create_o_auth2_client: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)| OAuth 2.0 Client Request Body |
+ **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)| OAuth 2.0 Client Request Body | 
 
 ### Return type
 
@@ -415,7 +306,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -438,11 +328,10 @@ Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to pe
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -451,25 +340,26 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    id = 'id_example' # str | The id of the OAuth 2.0 Client.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete OAuth 2.0 Client
         api_instance.delete_o_auth2_client(id)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->delete_o_auth2_client: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
+ **id** | **str**| The id of the OAuth 2.0 Client. | 
 
 ### Return type
 
@@ -483,7 +373,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -505,11 +394,10 @@ This endpoint deletes OAuth2 access tokens issued to an OAuth 2.0 Client from th
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -518,25 +406,26 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    client_id = "client_id_example" # str | OAuth 2.0 Client ID
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    client_id = 'client_id_example' # str | OAuth 2.0 Client ID
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
         api_instance.delete_o_auth2_token(client_id)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->delete_o_auth2_token: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **client_id** | **str**| OAuth 2.0 Client ID |
+ **client_id** | **str**| OAuth 2.0 Client ID | 
 
 ### Return type
 
@@ -550,7 +439,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -572,11 +460,10 @@ Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the 
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.generic_error import GenericError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -585,25 +472,26 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    id = "id_example" # str | The id of the desired grant
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    id = 'id_example' # str | The id of the desired grant
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
         api_instance.delete_trusted_o_auth2_jwt_grant_issuer(id)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->delete_trusted_o_auth2_jwt_grant_issuer: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the desired grant |
+ **id** | **str**| The id of the desired grant | 
 
 ### Return type
 
@@ -617,7 +505,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -639,12 +526,11 @@ Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.o_auth2_client import OAuth2Client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -653,26 +539,28 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    id = 'id_example' # str | The id of the OAuth 2.0 Client.
 
-    # example passing only required values which don't have defaults set
     try:
         # Get an OAuth 2.0 Client
         api_response = api_instance.get_o_auth2_client(id)
+        print("The response of OAuth2Api->get_o_auth2_client:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->get_o_auth2_client: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
+ **id** | **str**| The id of the OAuth 2.0 Client. | 
 
 ### Return type
 
@@ -686,7 +574,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -708,13 +595,11 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_redirect_to import OAuth2RedirectTo
-from ory_hydra_client.model.o_auth2_consent_request import OAuth2ConsentRequest
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.o_auth2_consent_request import OAuth2ConsentRequest
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -723,26 +608,28 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    consent_challenge = "consent_challenge_example" # str | OAuth 2.0 Consent Request Challenge
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    consent_challenge = 'consent_challenge_example' # str | OAuth 2.0 Consent Request Challenge
 
-    # example passing only required values which don't have defaults set
     try:
         # Get OAuth 2.0 Consent Request
         api_response = api_instance.get_o_auth2_consent_request(consent_challenge)
+        print("The response of OAuth2Api->get_o_auth2_consent_request:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->get_o_auth2_consent_request: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent_challenge** | **str**| OAuth 2.0 Consent Request Challenge |
+ **consent_challenge** | **str**| OAuth 2.0 Consent Request Challenge | 
 
 ### Return type
 
@@ -756,7 +643,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -779,13 +665,11 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_redirect_to import OAuth2RedirectTo
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
-from ory_hydra_client.model.o_auth2_login_request import OAuth2LoginRequest
+from ory_hydra_client.models.o_auth2_login_request import OAuth2LoginRequest
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -794,26 +678,28 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    login_challenge = "login_challenge_example" # str | OAuth 2.0 Login Request Challenge
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    login_challenge = 'login_challenge_example' # str | OAuth 2.0 Login Request Challenge
 
-    # example passing only required values which don't have defaults set
     try:
         # Get OAuth 2.0 Login Request
         api_response = api_instance.get_o_auth2_login_request(login_challenge)
+        print("The response of OAuth2Api->get_o_auth2_login_request:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->get_o_auth2_login_request: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **login_challenge** | **str**| OAuth 2.0 Login Request Challenge |
+ **login_challenge** | **str**| OAuth 2.0 Login Request Challenge | 
 
 ### Return type
 
@@ -827,7 +713,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -850,13 +735,11 @@ Use this endpoint to fetch an Ory OAuth 2.0 logout request.
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_logout_request import OAuth2LogoutRequest
-from ory_hydra_client.model.o_auth2_redirect_to import OAuth2RedirectTo
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.o_auth2_logout_request import OAuth2LogoutRequest
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -865,26 +748,28 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    logout_challenge = "logout_challenge_example" # str | 
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    logout_challenge = 'logout_challenge_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Get OAuth 2.0 Session Logout Request
         api_response = api_instance.get_o_auth2_logout_request(logout_challenge)
+        print("The response of OAuth2Api->get_o_auth2_logout_request:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->get_o_auth2_logout_request: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logout_challenge** | **str**|  |
+ **logout_challenge** | **str**|  | 
 
 ### Return type
 
@@ -898,7 +783,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -921,12 +805,11 @@ Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the o
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.generic_error import GenericError
-from ory_hydra_client.model.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtGrantIssuer
+from ory_hydra_client.models.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtGrantIssuer
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -935,26 +818,28 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    id = "id_example" # str | The id of the desired grant
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    id = 'id_example' # str | The id of the desired grant
 
-    # example passing only required values which don't have defaults set
     try:
         # Get Trusted OAuth2 JWT Bearer Grant Type Issuer
         api_response = api_instance.get_trusted_o_auth2_jwt_grant_issuer(id)
+        print("The response of OAuth2Api->get_trusted_o_auth2_jwt_grant_issuer:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->get_trusted_o_auth2_jwt_grant_issuer: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the desired grant |
+ **id** | **str**| The id of the desired grant | 
 
 ### Return type
 
@@ -969,7 +854,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -980,7 +864,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **introspect_o_auth2_token**
-> IntrospectedOAuth2Token introspect_o_auth2_token(token)
+> IntrospectedOAuth2Token introspect_o_auth2_token(token, scope=scope)
 
 Introspect OAuth2 Access and Refresh Tokens
 
@@ -990,12 +874,11 @@ The introspection endpoint allows to check if a token (both refresh and access) 
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
-from ory_hydra_client.model.introspected_o_auth2_token import IntrospectedOAuth2Token
+from ory_hydra_client.models.introspected_o_auth2_token import IntrospectedOAuth2Token
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1004,37 +887,30 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    token = "token_example" # str | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
-    scope = "scope_example" # str | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    token = 'token_example' # str | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
+    scope = 'scope_example' # str | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Introspect OAuth2 Access and Refresh Tokens
-        api_response = api_instance.introspect_o_auth2_token(token)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->introspect_o_auth2_token: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Introspect OAuth2 Access and Refresh Tokens
         api_response = api_instance.introspect_o_auth2_token(token, scope=scope)
+        print("The response of OAuth2Api->introspect_o_auth2_token:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->introspect_o_auth2_token: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **str**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. |
- **scope** | **str**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional]
+ **token** | **str**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. | 
+ **scope** | **str**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional] 
 
 ### Return type
 
@@ -1049,7 +925,6 @@ No authorization required
  - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1060,7 +935,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_o_auth2_clients**
-> [OAuth2Client] list_o_auth2_clients()
+> List[OAuth2Client] list_o_auth2_clients(page_size=page_size, page_token=page_token, client_name=client_name, owner=owner)
 
 List OAuth 2.0 Clients
 
@@ -1070,12 +945,11 @@ This endpoint lists all clients in the database, and never returns client secret
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.o_auth2_client import OAuth2Client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1084,37 +958,38 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    page_size = 250 # int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of 250
-    page_token = "1" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of "1"
-    client_name = "client_name_example" # str | The name of the clients to filter by. (optional)
-    owner = "owner_example" # str | The owner of the clients to filter by. (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    page_size = 250 # int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+    page_token = '1' # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to '1')
+    client_name = 'client_name_example' # str | The name of the clients to filter by. (optional)
+    owner = 'owner_example' # str | The owner of the clients to filter by. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List OAuth 2.0 Clients
         api_response = api_instance.list_o_auth2_clients(page_size=page_size, page_token=page_token, client_name=client_name, owner=owner)
+        print("The response of OAuth2Api->list_o_auth2_clients:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->list_o_auth2_clients: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page_size** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
- **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of "1"
- **client_name** | **str**| The name of the clients to filter by. | [optional]
- **owner** | **str**| The owner of the clients to filter by. | [optional]
+ **page_size** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
+ **client_name** | **str**| The name of the clients to filter by. | [optional] 
+ **owner** | **str**| The owner of the clients to filter by. | [optional] 
 
 ### Return type
 
-[**[OAuth2Client]**](OAuth2Client.md)
+[**List[OAuth2Client]**](OAuth2Client.md)
 
 ### Authorization
 
@@ -1124,7 +999,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1136,7 +1010,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_o_auth2_consent_sessions**
-> OAuth2ConsentSessions list_o_auth2_consent_sessions(subject)
+> List[OAuth2ConsentSession] list_o_auth2_consent_sessions(subject, page_size=page_size, page_token=page_token, login_session_id=login_session_id)
 
 List OAuth 2.0 Consent Sessions of a Subject
 
@@ -1146,12 +1020,11 @@ This endpoint lists all subject's granted consent sessions, including client and
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_consent_sessions import OAuth2ConsentSessions
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.o_auth2_consent_session import OAuth2ConsentSession
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1160,45 +1033,38 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    subject = "subject_example" # str | The subject to list the consent sessions for.
-    page_size = 250 # int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of 250
-    page_token = "1" # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) if omitted the server will use the default value of "1"
-    login_session_id = "login_session_id_example" # str | The login session id to list the consent sessions for. (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    subject = 'subject_example' # str | The subject to list the consent sessions for.
+    page_size = 250 # int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+    page_token = '1' # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to '1')
+    login_session_id = 'login_session_id_example' # str | The login session id to list the consent sessions for. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List OAuth 2.0 Consent Sessions of a Subject
-        api_response = api_instance.list_o_auth2_consent_sessions(subject)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->list_o_auth2_consent_sessions: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List OAuth 2.0 Consent Sessions of a Subject
         api_response = api_instance.list_o_auth2_consent_sessions(subject, page_size=page_size, page_token=page_token, login_session_id=login_session_id)
+        print("The response of OAuth2Api->list_o_auth2_consent_sessions:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->list_o_auth2_consent_sessions: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **str**| The subject to list the consent sessions for. |
- **page_size** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of 250
- **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] if omitted the server will use the default value of "1"
- **login_session_id** | **str**| The login session id to list the consent sessions for. | [optional]
+ **subject** | **str**| The subject to list the consent sessions for. | 
+ **page_size** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;]
+ **login_session_id** | **str**| The login session id to list the consent sessions for. | [optional] 
 
 ### Return type
 
-[**OAuth2ConsentSessions**](OAuth2ConsentSessions.md)
+[**List[OAuth2ConsentSession]**](OAuth2ConsentSession.md)
 
 ### Authorization
 
@@ -1208,7 +1074,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1220,7 +1085,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_trusted_o_auth2_jwt_grant_issuers**
-> TrustedOAuth2JwtGrantIssuers list_trusted_o_auth2_jwt_grant_issuers()
+> List[TrustedOAuth2JwtGrantIssuer] list_trusted_o_auth2_jwt_grant_issuers(max_items=max_items, default_items=default_items, issuer=issuer)
 
 List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
@@ -1230,12 +1095,11 @@ Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.generic_error import GenericError
-from ory_hydra_client.model.trusted_o_auth2_jwt_grant_issuers import TrustedOAuth2JwtGrantIssuers
+from ory_hydra_client.models.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtGrantIssuer
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1244,35 +1108,36 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    max_items = 1 # int |  (optional)
-    default_items = 1 # int |  (optional)
-    issuer = "issuer_example" # str | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    max_items = 56 # int |  (optional)
+    default_items = 56 # int |  (optional)
+    issuer = 'issuer_example' # str | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Trusted OAuth2 JWT Bearer Grant Type Issuers
         api_response = api_instance.list_trusted_o_auth2_jwt_grant_issuers(max_items=max_items, default_items=default_items, issuer=issuer)
+        print("The response of OAuth2Api->list_trusted_o_auth2_jwt_grant_issuers:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->list_trusted_o_auth2_jwt_grant_issuers: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_items** | **int**|  | [optional]
- **default_items** | **int**|  | [optional]
- **issuer** | **str**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional]
+ **max_items** | **int**|  | [optional] 
+ **default_items** | **int**|  | [optional] 
+ **issuer** | **str**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional] 
 
 ### Return type
 
-[**TrustedOAuth2JwtGrantIssuers**](TrustedOAuth2JwtGrantIssuers.md)
+[**List[TrustedOAuth2JwtGrantIssuer]**](TrustedOAuth2JwtGrantIssuer.md)
 
 ### Authorization
 
@@ -1282,7 +1147,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1304,11 +1168,11 @@ Use open source libraries to perform OAuth 2.0 and OpenID Connect available for 
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1317,21 +1181,23 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # OAuth 2.0 Authorize Endpoint
         api_response = api_instance.o_auth2_authorize()
+        print("The response of OAuth2Api->o_auth2_authorize:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->o_auth2_authorize: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1347,7 +1213,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1358,7 +1223,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **oauth2_token_exchange**
-> OAuth2TokenExchange oauth2_token_exchange(grant_type)
+> OAuth2TokenExchange oauth2_token_exchange(grant_type, client_id=client_id, code=code, redirect_uri=redirect_uri, refresh_token=refresh_token)
 
 The OAuth 2.0 Token Endpoint
 
@@ -1370,12 +1235,11 @@ Use open source libraries to perform OAuth 2.0 and OpenID Connect available for 
 * OAuth Authentication (oauth2):
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
-from ory_hydra_client.model.o_auth2_token_exchange import OAuth2TokenExchange
+from ory_hydra_client.models.o_auth2_token_exchange import OAuth2TokenExchange
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1389,54 +1253,43 @@ configuration = ory_hydra_client.Configuration(
 
 # Configure HTTP basic authorization: basic
 configuration = ory_hydra_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = ory_hydra_client.Configuration(
-    host = "http://localhost"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    grant_type = "grant_type_example" # str | 
-    client_id = "client_id_example" # str |  (optional)
-    code = "code_example" # str |  (optional)
-    redirect_uri = "redirect_uri_example" # str |  (optional)
-    refresh_token = "refresh_token_example" # str |  (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    grant_type = 'grant_type_example' # str | 
+    client_id = 'client_id_example' # str |  (optional)
+    code = 'code_example' # str |  (optional)
+    redirect_uri = 'redirect_uri_example' # str |  (optional)
+    refresh_token = 'refresh_token_example' # str |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # The OAuth 2.0 Token Endpoint
-        api_response = api_instance.oauth2_token_exchange(grant_type)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->oauth2_token_exchange: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # The OAuth 2.0 Token Endpoint
         api_response = api_instance.oauth2_token_exchange(grant_type, client_id=client_id, code=code, redirect_uri=redirect_uri, refresh_token=refresh_token)
+        print("The response of OAuth2Api->oauth2_token_exchange:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->oauth2_token_exchange: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grant_type** | **str**|  |
- **client_id** | **str**|  | [optional]
- **code** | **str**|  | [optional]
- **redirect_uri** | **str**|  | [optional]
- **refresh_token** | **str**|  | [optional]
+ **grant_type** | **str**|  | 
+ **client_id** | **str**|  | [optional] 
+ **code** | **str**|  | [optional] 
+ **redirect_uri** | **str**|  | [optional] 
+ **refresh_token** | **str**|  | [optional] 
 
 ### Return type
 
@@ -1451,7 +1304,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1462,7 +1314,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_o_auth2_client**
-> OAuth2Client patch_o_auth2_client(id, json_patch_document)
+> OAuth2Client patch_o_auth2_client(id, json_patch)
 
 Patch OAuth 2.0 Client
 
@@ -1472,13 +1324,12 @@ Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret`
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
-from ory_hydra_client.model.json_patch_document import JsonPatchDocument
+from ory_hydra_client.models.json_patch import JsonPatch
+from ory_hydra_client.models.o_auth2_client import OAuth2Client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1487,35 +1338,30 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
-    json_patch_document = JsonPatchDocument([
-        JsonPatch(
-            _from="/name",
-            op="replace",
-            path="/name",
-            value=None,
-        ),
-    ]) # JsonPatchDocument | OAuth 2.0 Client JSON Patch Body
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    id = 'id_example' # str | The id of the OAuth 2.0 Client.
+    json_patch = [ory_hydra_client.JsonPatch()] # List[JsonPatch] | OAuth 2.0 Client JSON Patch Body
 
-    # example passing only required values which don't have defaults set
     try:
         # Patch OAuth 2.0 Client
-        api_response = api_instance.patch_o_auth2_client(id, json_patch_document)
+        api_response = api_instance.patch_o_auth2_client(id, json_patch)
+        print("The response of OAuth2Api->patch_o_auth2_client:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->patch_o_auth2_client: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
- **json_patch_document** | [**JsonPatchDocument**](JsonPatchDocument.md)| OAuth 2.0 Client JSON Patch Body |
+ **id** | **str**| The id of the OAuth 2.0 Client. | 
+ **json_patch** | [**List[JsonPatch]**](JsonPatch.md)| OAuth 2.0 Client JSON Patch Body | 
 
 ### Return type
 
@@ -1530,7 +1376,6 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1542,7 +1387,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reject_o_auth2_consent_request**
-> OAuth2RedirectTo reject_o_auth2_consent_request(consent_challenge)
+> OAuth2RedirectTo reject_o_auth2_consent_request(consent_challenge, reject_o_auth2_request=reject_o_auth2_request)
 
 Reject OAuth 2.0 Consent Request
 
@@ -1552,13 +1397,12 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_redirect_to import OAuth2RedirectTo
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
-from ory_hydra_client.model.reject_o_auth2_request import RejectOAuth2Request
+from ory_hydra_client.models.o_auth2_redirect_to import OAuth2RedirectTo
+from ory_hydra_client.models.reject_o_auth2_request import RejectOAuth2Request
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1567,43 +1411,30 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    consent_challenge = "consent_challenge_example" # str | OAuth 2.0 Consent Request Challenge
-    reject_o_auth2_request = RejectOAuth2Request(
-        error="error_example",
-        error_debug="error_debug_example",
-        error_description="error_description_example",
-        error_hint="error_hint_example",
-        status_code=1,
-    ) # RejectOAuth2Request |  (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    consent_challenge = 'consent_challenge_example' # str | OAuth 2.0 Consent Request Challenge
+    reject_o_auth2_request = ory_hydra_client.RejectOAuth2Request() # RejectOAuth2Request |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Reject OAuth 2.0 Consent Request
-        api_response = api_instance.reject_o_auth2_consent_request(consent_challenge)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->reject_o_auth2_consent_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Reject OAuth 2.0 Consent Request
         api_response = api_instance.reject_o_auth2_consent_request(consent_challenge, reject_o_auth2_request=reject_o_auth2_request)
+        print("The response of OAuth2Api->reject_o_auth2_consent_request:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->reject_o_auth2_consent_request: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent_challenge** | **str**| OAuth 2.0 Consent Request Challenge |
- **reject_o_auth2_request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional]
+ **consent_challenge** | **str**| OAuth 2.0 Consent Request Challenge | 
+ **reject_o_auth2_request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional] 
 
 ### Return type
 
@@ -1617,7 +1448,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1629,7 +1459,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reject_o_auth2_login_request**
-> OAuth2RedirectTo reject_o_auth2_login_request(login_challenge)
+> OAuth2RedirectTo reject_o_auth2_login_request(login_challenge, reject_o_auth2_request=reject_o_auth2_request)
 
 Reject OAuth 2.0 Login Request
 
@@ -1639,13 +1469,12 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_redirect_to import OAuth2RedirectTo
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
-from ory_hydra_client.model.reject_o_auth2_request import RejectOAuth2Request
+from ory_hydra_client.models.o_auth2_redirect_to import OAuth2RedirectTo
+from ory_hydra_client.models.reject_o_auth2_request import RejectOAuth2Request
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1654,43 +1483,30 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    login_challenge = "login_challenge_example" # str | OAuth 2.0 Login Request Challenge
-    reject_o_auth2_request = RejectOAuth2Request(
-        error="error_example",
-        error_debug="error_debug_example",
-        error_description="error_description_example",
-        error_hint="error_hint_example",
-        status_code=1,
-    ) # RejectOAuth2Request |  (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    login_challenge = 'login_challenge_example' # str | OAuth 2.0 Login Request Challenge
+    reject_o_auth2_request = ory_hydra_client.RejectOAuth2Request() # RejectOAuth2Request |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Reject OAuth 2.0 Login Request
-        api_response = api_instance.reject_o_auth2_login_request(login_challenge)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->reject_o_auth2_login_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Reject OAuth 2.0 Login Request
         api_response = api_instance.reject_o_auth2_login_request(login_challenge, reject_o_auth2_request=reject_o_auth2_request)
+        print("The response of OAuth2Api->reject_o_auth2_login_request:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->reject_o_auth2_login_request: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **login_challenge** | **str**| OAuth 2.0 Login Request Challenge |
- **reject_o_auth2_request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional]
+ **login_challenge** | **str**| OAuth 2.0 Login Request Challenge | 
+ **reject_o_auth2_request** | [**RejectOAuth2Request**](RejectOAuth2Request.md)|  | [optional] 
 
 ### Return type
 
@@ -1704,7 +1520,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1726,11 +1541,10 @@ When a user or an application requests Ory OAuth 2.0 to remove the session state
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1739,25 +1553,26 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    logout_challenge = "logout_challenge_example" # str | 
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    logout_challenge = 'logout_challenge_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Reject OAuth 2.0 Session Logout Request
         api_instance.reject_o_auth2_logout_request(logout_challenge)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->reject_o_auth2_logout_request: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logout_challenge** | **str**|  |
+ **logout_challenge** | **str**|  | 
 
 ### Return type
 
@@ -1771,7 +1586,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1783,7 +1597,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_o_auth2_consent_sessions**
-> revoke_o_auth2_consent_sessions(subject)
+> revoke_o_auth2_consent_sessions(subject, client=client, all=all)
 
 Revoke OAuth 2.0 Consent Sessions of a Subject
 
@@ -1793,11 +1607,10 @@ This endpoint revokes a subject's granted consent sessions and invalidates all a
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1806,37 +1619,30 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    subject = "subject_example" # str | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
-    client = "client_example" # str | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    subject = 'subject_example' # str | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
+    client = 'client_example' # str | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. (optional)
     all = True # bool | Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Revoke OAuth 2.0 Consent Sessions of a Subject
-        api_instance.revoke_o_auth2_consent_sessions(subject)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->revoke_o_auth2_consent_sessions: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Revoke OAuth 2.0 Consent Sessions of a Subject
         api_instance.revoke_o_auth2_consent_sessions(subject, client=client, all=all)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->revoke_o_auth2_consent_sessions: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **str**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. |
- **client** | **str**| OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional]
- **all** | **bool**| Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional]
+ **subject** | **str**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | 
+ **client** | **str**| OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional] 
+ **all** | **bool**| Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional] 
 
 ### Return type
 
@@ -1850,7 +1656,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1862,7 +1667,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_o_auth2_login_sessions**
-> revoke_o_auth2_login_sessions()
+> revoke_o_auth2_login_sessions(subject=subject, sid=sid)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
@@ -1872,11 +1677,10 @@ This endpoint invalidates authentication sessions. After revoking the authentica
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1885,28 +1689,28 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    subject = "subject_example" # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
-    sid = "sid_example" # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    subject = 'subject_example' # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
+    sid = 'sid_example' # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
         api_instance.revoke_o_auth2_login_sessions(subject=subject, sid=sid)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->revoke_o_auth2_login_sessions: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
- **sid** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional]
+ **subject** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
+ **sid** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
 
 ### Return type
 
@@ -1921,7 +1725,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1932,7 +1735,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_o_auth2_token**
-> revoke_o_auth2_token(token)
+> revoke_o_auth2_token(token, client_id=client_id, client_secret=client_secret)
 
 Revoke OAuth 2.0 Access or Refresh Token
 
@@ -1944,11 +1747,10 @@ Revoking a token (both access and refresh) means that the tokens will be invalid
 * OAuth Authentication (oauth2):
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -1962,48 +1764,37 @@ configuration = ory_hydra_client.Configuration(
 
 # Configure HTTP basic authorization: basic
 configuration = ory_hydra_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = ory_hydra_client.Configuration(
-    host = "http://localhost"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    token = "token_example" # str | 
-    client_id = "client_id_example" # str |  (optional)
-    client_secret = "client_secret_example" # str |  (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    token = 'token_example' # str | 
+    client_id = 'client_id_example' # str |  (optional)
+    client_secret = 'client_secret_example' # str |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Revoke OAuth 2.0 Access or Refresh Token
-        api_instance.revoke_o_auth2_token(token)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->revoke_o_auth2_token: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Revoke OAuth 2.0 Access or Refresh Token
         api_instance.revoke_o_auth2_token(token, client_id=client_id, client_secret=client_secret)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->revoke_o_auth2_token: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **str**|  |
- **client_id** | **str**|  | [optional]
- **client_secret** | **str**|  | [optional]
+ **token** | **str**|  | 
+ **client_id** | **str**|  | [optional] 
+ **client_secret** | **str**|  | [optional] 
 
 ### Return type
 
@@ -2017,7 +1808,6 @@ void (empty response body)
 
  - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2039,12 +1829,11 @@ Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `cl
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.models.o_auth2_client import OAuth2Client
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -2053,93 +1842,30 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    id = "id_example" # str | OAuth 2.0 Client ID
-    o_auth2_client = OAuth2Client(
-        access_token_strategy="access_token_strategy_example",
-        allowed_cors_origins=StringSliceJSONFormat([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSliceJSONFormat([
-            "audience_example",
-        ]),
-        authorization_code_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        authorization_code_grant_id_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        authorization_code_grant_refresh_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_credentials_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSliceJSONFormat([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSliceJSONFormat([
-            "grant_types_example",
-        ]),
-        implicit_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        implicit_grant_id_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        jwks=None,
-        jwks_uri="jwks_uri_example",
-        jwt_bearer_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        logo_uri="logo_uri_example",
-        metadata=None,
-        owner="owner_example",
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSliceJSONFormat([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSliceJSONFormat([
-            "redirect_uris_example",
-        ]),
-        refresh_token_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        refresh_token_grant_id_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        refresh_token_grant_refresh_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        registration_access_token="registration_access_token_example",
-        registration_client_uri="registration_client_uri_example",
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSliceJSONFormat([
-            "request_uris_example",
-        ]),
-        response_types=StringSliceJSONFormat([
-            "response_types_example",
-        ]),
-        scope="scope1 scope-2 scope.3 scope:4",
-        sector_identifier_uri="sector_identifier_uri_example",
-        skip_consent=True,
-        skip_logout_consent=True,
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="client_secret_basic",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | OAuth 2.0 Client Request Body
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    id = 'id_example' # str | OAuth 2.0 Client ID
+    o_auth2_client = ory_hydra_client.OAuth2Client() # OAuth2Client | OAuth 2.0 Client Request Body
 
-    # example passing only required values which don't have defaults set
     try:
         # Set OAuth 2.0 Client
         api_response = api_instance.set_o_auth2_client(id, o_auth2_client)
+        print("The response of OAuth2Api->set_o_auth2_client:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->set_o_auth2_client: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| OAuth 2.0 Client ID |
- **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)| OAuth 2.0 Client Request Body |
+ **id** | **str**| OAuth 2.0 Client ID | 
+ **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)| OAuth 2.0 Client Request Body | 
 
 ### Return type
 
@@ -2153,7 +1879,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2167,7 +1892,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_o_auth2_client_lifespans**
-> OAuth2Client set_o_auth2_client_lifespans(id)
+> OAuth2Client set_o_auth2_client_lifespans(id, o_auth2_client_token_lifespans=o_auth2_client_token_lifespans)
 
 Set OAuth2 Client Token Lifespans
 
@@ -2177,13 +1902,12 @@ Set lifespans of different token types issued for this OAuth 2.0 client. Does no
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.generic_error import GenericError
-from ory_hydra_client.model.o_auth2_client_token_lifespans import OAuth2ClientTokenLifespans
+from ory_hydra_client.models.o_auth2_client import OAuth2Client
+from ory_hydra_client.models.o_auth2_client_token_lifespans import OAuth2ClientTokenLifespans
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -2192,48 +1916,30 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    id = "id_example" # str | OAuth 2.0 Client ID
-    o_auth2_client_token_lifespans = OAuth2ClientTokenLifespans(
-        authorization_code_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        authorization_code_grant_id_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        authorization_code_grant_refresh_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        client_credentials_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        implicit_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        implicit_grant_id_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        jwt_bearer_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        refresh_token_grant_access_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        refresh_token_grant_id_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-        refresh_token_grant_refresh_token_lifespan=NullDuration("80728ms0015280217980962255008507620686293393339756506851391026912917327294786014820265m1272755041757701929816286488291663322877m21919116647837856387556598683615248784425528468720999697682157936442848967131857636391us382249351630745068057172793570606620664962415415434479790599868759540626151494012626h19118476173237968022090825677715773090491175877238622700367804481067589385995284318716971h809437255518186242126631124808712420936114222us1109826538733395457796110376067381730053899858052502h9559516531751128043086958209868597220486555936412006917239720304955737734452346677471754449209840m308684917330882243035942890m0673685589682196092806879799560883895980413852591093704397513us546060652528654068834561751457882958790974352941056503031506863433940h59325594064046466694586076706109594796867002468642449871184ms977583459814832574743930384284266731620716351898465ms529386339022152609092509344996631299698075356us34890990125995414960453920343154842307899106337980741065ms35834077484739706353881us714470s2628582763368571328507679471307057663772614811507328336080145326834191317716504454477932763323597ns81241407647h0432196393721552124808999238986208055750640221ms235s"),
-    ) # OAuth2ClientTokenLifespans |  (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    id = 'id_example' # str | OAuth 2.0 Client ID
+    o_auth2_client_token_lifespans = ory_hydra_client.OAuth2ClientTokenLifespans() # OAuth2ClientTokenLifespans |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Set OAuth2 Client Token Lifespans
-        api_response = api_instance.set_o_auth2_client_lifespans(id)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling OAuth2Api->set_o_auth2_client_lifespans: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Set OAuth2 Client Token Lifespans
         api_response = api_instance.set_o_auth2_client_lifespans(id, o_auth2_client_token_lifespans=o_auth2_client_token_lifespans)
+        print("The response of OAuth2Api->set_o_auth2_client_lifespans:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->set_o_auth2_client_lifespans: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| OAuth 2.0 Client ID |
- **o_auth2_client_token_lifespans** | [**OAuth2ClientTokenLifespans**](OAuth2ClientTokenLifespans.md)|  | [optional]
+ **id** | **str**| OAuth 2.0 Client ID | 
+ **o_auth2_client_token_lifespans** | [**OAuth2ClientTokenLifespans**](OAuth2ClientTokenLifespans.md)|  | [optional] 
 
 ### Return type
 
@@ -2248,7 +1954,6 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -2259,7 +1964,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **trust_o_auth2_jwt_grant_issuer**
-> TrustedOAuth2JwtGrantIssuer trust_o_auth2_jwt_grant_issuer()
+> TrustedOAuth2JwtGrantIssuer trust_o_auth2_jwt_grant_issuer(trust_o_auth2_jwt_grant_issuer=trust_o_auth2_jwt_grant_issuer)
 
 Trust OAuth2 JWT Bearer Grant Type Issuer
 
@@ -2269,13 +1974,12 @@ Use this endpoint to establish a trust relationship for a JWT issuer to perform 
 
 
 ```python
-import time
 import ory_hydra_client
-from ory_hydra_client.api import o_auth2_api
-from ory_hydra_client.model.generic_error import GenericError
-from ory_hydra_client.model.trust_o_auth2_jwt_grant_issuer import TrustOAuth2JwtGrantIssuer
-from ory_hydra_client.model.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtGrantIssuer
+from ory_hydra_client.models.trust_o_auth2_jwt_grant_issuer import TrustOAuth2JwtGrantIssuer
+from ory_hydra_client.models.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtGrantIssuer
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_hydra_client.Configuration(
@@ -2284,54 +1988,28 @@ configuration = ory_hydra_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with ory_hydra_client.ApiClient() as api_client:
+with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = o_auth2_api.OAuth2Api(api_client)
-    trust_o_auth2_jwt_grant_issuer = TrustOAuth2JwtGrantIssuer(
-        allow_any_subject=True,
-        expires_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        issuer="https://jwt-idp.example.com",
-        jwk=JsonWebKey(
-            alg="RS256",
-            crv="P-256",
-            d="T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE",
-            dp="G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0",
-            dq="s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk",
-            e="AQAB",
-            k="GawgguFyGrWKav7AX4VKUg",
-            kid="1603dfe0af8f4596",
-            kty="RSA",
-            n="vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0",
-            p="6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ",
-            q="0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ",
-            qi="GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU",
-            use="sig",
-            x="f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU",
-            x5c=[
-                "x5c_example",
-            ],
-            y="x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0",
-        ),
-        scope=["openid","offline"],
-        subject="mike@example.com",
-    ) # TrustOAuth2JwtGrantIssuer |  (optional)
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    trust_o_auth2_jwt_grant_issuer = ory_hydra_client.TrustOAuth2JwtGrantIssuer() # TrustOAuth2JwtGrantIssuer |  (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Trust OAuth2 JWT Bearer Grant Type Issuer
         api_response = api_instance.trust_o_auth2_jwt_grant_issuer(trust_o_auth2_jwt_grant_issuer=trust_o_auth2_jwt_grant_issuer)
+        print("The response of OAuth2Api->trust_o_auth2_jwt_grant_issuer:\n")
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling OAuth2Api->trust_o_auth2_jwt_grant_issuer: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trust_o_auth2_jwt_grant_issuer** | [**TrustOAuth2JwtGrantIssuer**](TrustOAuth2JwtGrantIssuer.md)|  | [optional]
+ **trust_o_auth2_jwt_grant_issuer** | [**TrustOAuth2JwtGrantIssuer**](TrustOAuth2JwtGrantIssuer.md)|  | [optional] 
 
 ### Return type
 
@@ -2345,7 +2023,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 

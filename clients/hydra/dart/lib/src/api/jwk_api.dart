@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:ory_hydra_client/src/api_util.dart';
 import 'package:ory_hydra_client/src/model/create_json_web_key_set.dart';
 import 'package:ory_hydra_client/src/model/error_o_auth2.dart';
 import 'package:ory_hydra_client/src/model/json_web_key.dart';
@@ -34,7 +35,7 @@ class JwkApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [JsonWebKeySet] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<JsonWebKeySet>> createJsonWebKeySet({ 
     required String set_,
     required CreateJsonWebKeySet createJsonWebKeySet,
@@ -45,7 +46,7 @@ class JwkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/keys/{set}'.replaceAll('{' r'set' '}', set_.toString());
+    final _path = r'/admin/keys/{set}'.replaceAll('{' r'set' '}', encodeQueryParameter(_serializers, set_, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -66,12 +67,12 @@ class JwkApi {
       _bodyData = _serializers.serialize(createJsonWebKeySet, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -96,10 +97,10 @@ class JwkApi {
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -131,7 +132,7 @@ class JwkApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> deleteJsonWebKey({ 
     required String set_,
     required String kid,
@@ -142,7 +143,7 @@ class JwkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/keys/{set}/{kid}'.replaceAll('{' r'set' '}', set_.toString()).replaceAll('{' r'kid' '}', kid.toString());
+    final _path = r'/admin/keys/{set}/{kid}'.replaceAll('{' r'set' '}', encodeQueryParameter(_serializers, set_, const FullType(String)).toString()).replaceAll('{' r'kid' '}', encodeQueryParameter(_serializers, kid, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -179,7 +180,7 @@ class JwkApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> deleteJsonWebKeySet({ 
     required String set_,
     CancelToken? cancelToken,
@@ -189,7 +190,7 @@ class JwkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/keys/{set}'.replaceAll('{' r'set' '}', set_.toString());
+    final _path = r'/admin/keys/{set}'.replaceAll('{' r'set' '}', encodeQueryParameter(_serializers, set_, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -227,7 +228,7 @@ class JwkApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [JsonWebKeySet] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<JsonWebKeySet>> getJsonWebKey({ 
     required String set_,
     required String kid,
@@ -238,7 +239,7 @@ class JwkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/keys/{set}/{kid}'.replaceAll('{' r'set' '}', set_.toString()).replaceAll('{' r'kid' '}', kid.toString());
+    final _path = r'/admin/keys/{set}/{kid}'.replaceAll('{' r'set' '}', encodeQueryParameter(_serializers, set_, const FullType(String)).toString()).replaceAll('{' r'kid' '}', encodeQueryParameter(_serializers, kid, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -269,10 +270,10 @@ class JwkApi {
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -303,7 +304,7 @@ class JwkApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [JsonWebKeySet] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<JsonWebKeySet>> getJsonWebKeySet({ 
     required String set_,
     CancelToken? cancelToken,
@@ -313,7 +314,7 @@ class JwkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/keys/{set}'.replaceAll('{' r'set' '}', set_.toString());
+    final _path = r'/admin/keys/{set}'.replaceAll('{' r'set' '}', encodeQueryParameter(_serializers, set_, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -344,10 +345,10 @@ class JwkApi {
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -380,7 +381,7 @@ class JwkApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [JsonWebKey] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<JsonWebKey>> setJsonWebKey({ 
     required String set_,
     required String kid,
@@ -392,7 +393,7 @@ class JwkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/keys/{set}/{kid}'.replaceAll('{' r'set' '}', set_.toString()).replaceAll('{' r'kid' '}', kid.toString());
+    final _path = r'/admin/keys/{set}/{kid}'.replaceAll('{' r'set' '}', encodeQueryParameter(_serializers, set_, const FullType(String)).toString()).replaceAll('{' r'kid' '}', encodeQueryParameter(_serializers, kid, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -413,12 +414,12 @@ class JwkApi {
       _bodyData = jsonWebKey == null ? null : _serializers.serialize(jsonWebKey, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -443,10 +444,10 @@ class JwkApi {
       ) as JsonWebKey;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -478,7 +479,7 @@ class JwkApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [JsonWebKeySet] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<JsonWebKeySet>> setJsonWebKeySet({ 
     required String set_,
     JsonWebKeySet? jsonWebKeySet,
@@ -489,7 +490,7 @@ class JwkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/keys/{set}'.replaceAll('{' r'set' '}', set_.toString());
+    final _path = r'/admin/keys/{set}'.replaceAll('{' r'set' '}', encodeQueryParameter(_serializers, set_, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -510,12 +511,12 @@ class JwkApi {
       _bodyData = jsonWebKeySet == null ? null : _serializers.serialize(jsonWebKeySet, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -540,10 +541,10 @@ class JwkApi {
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

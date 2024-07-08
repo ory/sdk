@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.0
+API version: v2.2.1
 Contact: hi@ory.sh
 */
 
@@ -142,10 +142,10 @@ func (o TokenPagination) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *TokenPagination) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TokenPagination) UnmarshalJSON(data []byte) (err error) {
 	varTokenPagination := _TokenPagination{}
 
-	err = json.Unmarshal(bytes, &varTokenPagination)
+	err = json.Unmarshal(data, &varTokenPagination)
 
 	if err != nil {
 		return err
@@ -155,7 +155,7 @@ func (o *TokenPagination) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "page_size")
 		delete(additionalProperties, "page_token")
 		o.AdditionalProperties = additionalProperties
