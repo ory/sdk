@@ -172,7 +172,7 @@ golang() {
 
 python() {
   dir="clients/${PROJECT}/python"
-  (cd "${dir}"; rm -rf "dist" || true; python3 setup.py sdist bdist_wheel; python3 -m twine upload "dist/*")
+  (cd "${dir}"; rm -rf "dist" || true; pip install wheel; python3 setup.py sdist bdist_wheel; python3 -m twine upload "dist/*")
   to_git "python" "yes"
 }
 
@@ -246,24 +246,25 @@ FAIL=0
 
 echo "starting"
 
-python || let "FAIL+=1"
-ruby || let "FAIL+=1"
-golang || let "FAIL+=1"
-php || let "FAIL+=1"
-typescript || let "FAIL+=1"
-typescript_fetch || let "FAIL+=1"
-dart || let "FAIL+=1"
-rust || let "FAIL+=1"
-elixir || let "FAIL+=1"
-java || let "FAIL+=1"
-dotnet || let "FAIL+=1"
-upstream || let "FAIL+=1"
+python || let "FAIL+=1" && let "FAIL_REASON+=python,"
+ruby || let "FAIL+=1" && let "FAIL_REASON+=ruby,"
+golang || let "FAIL+=1" && let "FAIL_REASON+=golang,"
+php || let "FAIL+=1" && let "FAIL_REASON+=php,"
+typescript || let "FAIL+=1" && let "FAIL_REASON+=typescript,"
+typescript_fetch || let "FAIL+=1" && let "FAIL_REASON+=typescript_fetch,"
+dart || let "FAIL+=1" && let "FAIL_REASON+=dart,"
+rust || let "FAIL+=1" && let "FAIL_REASON+=rust,"
+elixir || let "FAIL+=1" && let "FAIL_REASON+=elixir,"
+java || let "FAIL+=1" && let "FAIL_REASON+=java,"
+dotnet || let "FAIL+=1" && let "FAIL_REASON+=dotnet,"
+upstream || let "FAIL+=1" && let "FAIL_REASON+=upstream,"
 
 echo "$FAIL"
 
 if [ "$FAIL" == "0" ]; then
   echo "Everything ran to completion!"
 else
-  echo "One or more subtasks failed to complete."
+  echo "One or more subtasks failed to complete: $FAIL"
+  echo "Subtask that failed: $FAIL_REASON"
   exit 1
 fi
