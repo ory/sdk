@@ -1,6 +1,6 @@
 [package]
 name = "ory-client"
-version = "1.13.4"
+version = "1.13.6"
 authors = ["support@ory.sh"]
 description = "Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. "
 license = "Apache 2.0"
