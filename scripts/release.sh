@@ -201,9 +201,6 @@ dart() {
   if [ -z ${DART_SERVICE_ACCOUNT+x} ]; then echo "Variable DART_SERVICE_ACCOUNT MUST be set."; fi
 
   echo "$DART_SERVICE_ACCOUNT" | base64 -d > "$HOME/.pub-cache/key-file.json"
-  set -x
-  ls -lah "$HOME/.pub-cache/"
-  set +x
 
   # To generate this key run:
   #
@@ -215,9 +212,10 @@ dart() {
   # And copy it into the DART_SERVICE_ACCOUNT secret.
 
   gcloud auth activate-service-account --key-file="$HOME/.pub-cache/key-file.json"
+  export DART_PUB_TOKEN=$(gcloud auth print-identity-token --audiences=https://pub.dev)
   gcloud auth print-identity-token \
     --audiences=https://pub.dev \
-    | dart pub token add https://pub.dev
+    | command dart pub token add https://pub.dev
   set -x
 
   (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
@@ -248,24 +246,24 @@ FAIL=0
 
 echo "starting"
 
-python || let "FAIL+=1"
-ruby || let "FAIL+=1"
-golang || let "FAIL+=1"
-php || let "FAIL+=1"
-typescript || let "FAIL+=1"
-typescript_fetch || let "FAIL+=1"
-dart || let "FAIL+=1"
-rust || let "FAIL+=1"
-elixir || let "FAIL+=1"
-java || let "FAIL+=1"
-dotnet || let "FAIL+=1"
-upstream || let "FAIL+=1"
-
-echo "$FAIL"
-
-if [ "$FAIL" == "0" ]; then
-  echo "Everything ran to completion!"
-else
-  echo "One or more subtasks failed to complete."
-  exit 1
-fi
+# python || let "FAIL+=1"
+# ruby || let "FAIL+=1"
+# golang || let "FAIL+=1"
+# php || let "FAIL+=1"
+# typescript || let "FAIL+=1"
+# typescript_fetch || let "FAIL+=1"
+dart # || let "FAIL+=1"
+# rust || let "FAIL+=1"
+# elixir || let "FAIL+=1"
+# java || let "FAIL+=1"
+# dotnet || let "FAIL+=1"
+# upstream || let "FAIL+=1"
+#
+#echo "$FAIL"
+#
+#if [ "$FAIL" == "0" ]; then
+#  echo "Everything ran to completion!"
+#else
+#  echo "One or more subtasks failed to complete."
+#  exit 1
+#fi

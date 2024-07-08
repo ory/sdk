@@ -54,12 +54,12 @@ golang () {
   dir="clients/${PROJECT}/go"
   if [ -f "$dir/README.md" ]; then
     # assuming swagger 3 in this case
-    (cd "${dir}" && go mod tidy -compat=1.17 && go build -o "$(mktemp)" .)
+    (cd "${dir}" && command go mod tidy -compat=1.17 && command go build -o "$(mktemp)" .)
   else
     # assuming swagger 2
-    (cd "${dir}" && go mod tidy -compat=1.17)
-    (cd "${dir}/client" && go build -o "$(mktemp)" .)
-    (cd "${dir}/models" && go build -o "$(mktemp)" .)
+    (cd "${dir}" && command go mod tidy -compat=1.17)
+    (cd "${dir}/client" && command go build -o "$(mktemp)" .)
+    (cd "${dir}/models" && command go build -o "$(mktemp)" .)
   fi
 }
 
@@ -68,8 +68,8 @@ csharp () {
 
   dir="clients/${PROJECT}/dotnet"
   (cd "${dir}" && \
-    VERSION="" dotnet build -c Release && \
-    VERSION="" dotnet test -c Release)
+    VERSION="" command dotnet build -c Release && \
+    VERSION="" command dotnet test -c Release)
 }
 
 dart () {
@@ -78,6 +78,7 @@ dart () {
   dir="clients/${PROJECT}/dart"
   (cd "$dir" && command dart pub get)
   (cd "$dir" && command dart test .)
+  (cd "$dir" && VERSION=${RAW_VERSION} command dart pub publish --dry-run)
 }
 
 rust () {
