@@ -243,6 +243,7 @@ elixir() {
 
 
 FAIL=0
+FAIL_REASON=""
 
 echo "starting"
 
