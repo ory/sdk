@@ -11,10 +11,13 @@ InputAttributes represents the attributes of an input node
 |**autocomplete** | [**AutocompleteEnum**](#AutocompleteEnum) | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode |  [optional] |
 |**disabled** | **Boolean** | Sets the input&#39;s disabled field to true or false. |  |
 |**label** | [**UiText**](UiText.md) |  |  [optional] |
+|**maxlength** | **Long** | MaxLength may contain the input&#39;s maximum length. |  [optional] |
 |**name** | **String** | The input&#39;s element name. |  |
 |**nodeType** | [**NodeTypeEnum**](#NodeTypeEnum) | NodeType represents this node&#39;s types. It is a mirror of &#x60;node.type&#x60; and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \&quot;input\&quot;. text Text input Input img Image a Anchor script Script |  |
-|**onclick** | **String** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. |  [optional] |
-|**onload** | **String** | OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn. |  [optional] |
+|**onclick** | **String** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead. |  [optional] |
+|**onclickTrigger** | [**OnclickTriggerEnum**](#OnclickTriggerEnum) | OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration |  [optional] |
+|**onload** | **String** | OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead. |  [optional] |
+|**onloadTrigger** | [**OnloadTriggerEnum**](#OnloadTriggerEnum) | OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration |  [optional] |
 |**pattern** | **String** | The input&#39;s pattern. |  [optional] |
 |**required** | **Boolean** | Mark this input field as required. |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) | The input&#39;s element type. text InputAttributeTypeText password InputAttributeTypePassword number InputAttributeTypeNumber checkbox InputAttributeTypeCheckbox hidden InputAttributeTypeHidden email InputAttributeTypeEmail tel InputAttributeTypeTel submit InputAttributeTypeSubmit button InputAttributeTypeButton datetime-local InputAttributeTypeDateTimeLocal date InputAttributeTypeDate url InputAttributeTypeURI |  |
@@ -44,6 +47,32 @@ InputAttributes represents the attributes of an input node
 | IMG | &quot;img&quot; |
 | A | &quot;a&quot; |
 | SCRIPT | &quot;script&quot; |
+
+
+
+## Enum: OnclickTriggerEnum
+
+| Name | Value |
+|---- | -----|
+| ORY_WEB_AUTHN_REGISTRATION | &quot;oryWebAuthnRegistration&quot; |
+| ORY_WEB_AUTHN_LOGIN | &quot;oryWebAuthnLogin&quot; |
+| ORY_PASSKEY_LOGIN | &quot;oryPasskeyLogin&quot; |
+| ORY_PASSKEY_LOGIN_AUTOCOMPLETE_INIT | &quot;oryPasskeyLoginAutocompleteInit&quot; |
+| ORY_PASSKEY_REGISTRATION | &quot;oryPasskeyRegistration&quot; |
+| ORY_PASSKEY_SETTINGS_REGISTRATION | &quot;oryPasskeySettingsRegistration&quot; |
+
+
+
+## Enum: OnloadTriggerEnum
+
+| Name | Value |
+|---- | -----|
+| ORY_WEB_AUTHN_REGISTRATION | &quot;oryWebAuthnRegistration&quot; |
+| ORY_WEB_AUTHN_LOGIN | &quot;oryWebAuthnLogin&quot; |
+| ORY_PASSKEY_LOGIN | &quot;oryPasskeyLogin&quot; |
+| ORY_PASSKEY_LOGIN_AUTOCOMPLETE_INIT | &quot;oryPasskeyLoginAutocompleteInit&quot; |
+| ORY_PASSKEY_REGISTRATION | &quot;oryPasskeyRegistration&quot; |
+| ORY_PASSKEY_SETTINGS_REGISTRATION | &quot;oryPasskeySettingsRegistration&quot; |
 
 
 

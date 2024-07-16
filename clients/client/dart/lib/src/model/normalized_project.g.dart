@@ -43,6 +43,8 @@ const NormalizedProjectHomeRegionEnum _$normalizedProjectHomeRegionEnum_usEast =
     const NormalizedProjectHomeRegionEnum._('usEast');
 const NormalizedProjectHomeRegionEnum _$normalizedProjectHomeRegionEnum_usWest =
     const NormalizedProjectHomeRegionEnum._('usWest');
+const NormalizedProjectHomeRegionEnum _$normalizedProjectHomeRegionEnum_us =
+    const NormalizedProjectHomeRegionEnum._('us');
 const NormalizedProjectHomeRegionEnum _$normalizedProjectHomeRegionEnum_global =
     const NormalizedProjectHomeRegionEnum._('global');
 
@@ -55,6 +57,8 @@ NormalizedProjectHomeRegionEnum _$normalizedProjectHomeRegionEnumValueOf(
       return _$normalizedProjectHomeRegionEnum_usEast;
     case 'usWest':
       return _$normalizedProjectHomeRegionEnum_usWest;
+    case 'us':
+      return _$normalizedProjectHomeRegionEnum_us;
     case 'global':
       return _$normalizedProjectHomeRegionEnum_global;
     default:
@@ -68,6 +72,7 @@ final BuiltSet<NormalizedProjectHomeRegionEnum>
   _$normalizedProjectHomeRegionEnum_euCentral,
   _$normalizedProjectHomeRegionEnum_usEast,
   _$normalizedProjectHomeRegionEnum_usWest,
+  _$normalizedProjectHomeRegionEnum_us,
   _$normalizedProjectHomeRegionEnum_global,
 ]);
 
@@ -145,12 +150,14 @@ class _$NormalizedProjectHomeRegionEnumSerializer
     'euCentral': 'eu-central',
     'usEast': 'us-east',
     'usWest': 'us-west',
+    'us': 'us',
     'global': 'global',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'eu-central': 'euCentral',
     'us-east': 'usEast',
     'us-west': 'usWest',
+    'us': 'us',
     'global': 'global',
   };
 

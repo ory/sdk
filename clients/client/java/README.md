@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.13.10
-  - Build date: 2024-07-08T12:39:54.834737774Z[Etc/UTC]
+- API version: v1.14.0
+  - Build date: 2024-07-16T11:36:53.318846628Z[Etc/UTC]
   - Generator version: 7.7.0
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
@@ -43,7 +43,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.13.10</version>
+  <version>v1.14.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -59,7 +59,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.13.10"
+     implementation "sh.ory:client:v1.14.0"
   }
 ```
 
@@ -73,7 +73,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.13.10.jar`
+* `target/client-v1.14.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -225,22 +225,22 @@ Class | Method | HTTP request | Description
 *PermissionApi* | [**expandPermissions**](docs/PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
 *PermissionApi* | [**postCheckPermission**](docs/PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission
 *PermissionApi* | [**postCheckPermissionOrError**](docs/PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission
-*ProjectApi* | [**createOrganization**](docs/ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | 
+*ProjectApi* | [**createOrganization**](docs/ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
 *ProjectApi* | [**createProject**](docs/ProjectApi.md#createProject) | **POST** /projects | Create a Project
 *ProjectApi* | [**createProjectApiKey**](docs/ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token
-*ProjectApi* | [**deleteOrganization**](docs/ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | 
+*ProjectApi* | [**deleteOrganization**](docs/ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
 *ProjectApi* | [**deleteProjectApiKey**](docs/ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
-*ProjectApi* | [**getOrganization**](docs/ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID
+*ProjectApi* | [**getOrganization**](docs/ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 *ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
 *ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project
-*ProjectApi* | [**listOrganizations**](docs/ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | 
+*ProjectApi* | [**listOrganizations**](docs/ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
 *ProjectApi* | [**listProjectApiKeys**](docs/ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 *ProjectApi* | [**listProjects**](docs/ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 *ProjectApi* | [**purgeProject**](docs/ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
 *ProjectApi* | [**removeProjectMember**](docs/ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 *ProjectApi* | [**setProject**](docs/ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
-*ProjectApi* | [**updateOrganization**](docs/ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | 
+*ProjectApi* | [**updateOrganization**](docs/ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
 *RelationshipApi* | [**checkOplSyntax**](docs/RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
 *RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship
 *RelationshipApi* | [**deleteRelationships**](docs/RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
@@ -249,7 +249,10 @@ Class | Method | HTTP request | Description
 *RelationshipApi* | [**patchRelationships**](docs/RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships
 *WellknownApi* | [**discoverJsonWebKeys**](docs/WellknownApi.md#discoverJsonWebKeys) | **GET** /.well-known/jwks.json | Discover Well-Known JSON Web Keys
 *WorkspaceApi* | [**createWorkspace**](docs/WorkspaceApi.md#createWorkspace) | **POST** /workspaces | Create a new workspace
+*WorkspaceApi* | [**createWorkspaceApiKey**](docs/WorkspaceApi.md#createWorkspaceApiKey) | **POST** /workspaces/{workspace}/tokens | Create workspace API key
+*WorkspaceApi* | [**deleteWorkspaceApiKey**](docs/WorkspaceApi.md#deleteWorkspaceApiKey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token
 *WorkspaceApi* | [**getWorkspace**](docs/WorkspaceApi.md#getWorkspace) | **GET** /workspaces/{workspace} | Get a workspace
+*WorkspaceApi* | [**listWorkspaceApiKeys**](docs/WorkspaceApi.md#listWorkspaceApiKeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens
 *WorkspaceApi* | [**listWorkspaceProjects**](docs/WorkspaceApi.md#listWorkspaceProjects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace
 *WorkspaceApi* | [**listWorkspaces**](docs/WorkspaceApi.md#listWorkspaces) | **GET** /workspaces | List workspaces the user is a member of
 *WorkspaceApi* | [**updateWorkspace**](docs/WorkspaceApi.md#updateWorkspace) | **PUT** /workspaces/{workspace} | Update an workspace
@@ -277,6 +280,7 @@ Class | Method | HTTP request | Description
  - [ContinueWith](docs/ContinueWith.md)
  - [ContinueWithRecoveryUi](docs/ContinueWithRecoveryUi.md)
  - [ContinueWithRecoveryUiFlow](docs/ContinueWithRecoveryUiFlow.md)
+ - [ContinueWithRedirectBrowserTo](docs/ContinueWithRedirectBrowserTo.md)
  - [ContinueWithSetOrySessionToken](docs/ContinueWithSetOrySessionToken.md)
  - [ContinueWithSettingsUi](docs/ContinueWithSettingsUi.md)
  - [ContinueWithSettingsUiFlow](docs/ContinueWithSettingsUiFlow.md)
@@ -300,6 +304,7 @@ Class | Method | HTTP request | Description
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
  - [CreateSubscriptionCommon](docs/CreateSubscriptionCommon.md)
  - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
+ - [CreateWorkspaceApiKeyBody](docs/CreateWorkspaceApiKeyBody.md)
  - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
  - [CreateWorkspaceMemberInviteBody](docs/CreateWorkspaceMemberInviteBody.md)
  - [CreateWorkspaceSubscriptionBody](docs/CreateWorkspaceSubscriptionBody.md)
@@ -479,6 +484,7 @@ Class | Method | HTTP request | Description
  - [UpdateIdentityBody](docs/UpdateIdentityBody.md)
  - [UpdateLoginFlowBody](docs/UpdateLoginFlowBody.md)
  - [UpdateLoginFlowWithCodeMethod](docs/UpdateLoginFlowWithCodeMethod.md)
+ - [UpdateLoginFlowWithIdentifierFirstMethod](docs/UpdateLoginFlowWithIdentifierFirstMethod.md)
  - [UpdateLoginFlowWithLookupSecretMethod](docs/UpdateLoginFlowWithLookupSecretMethod.md)
  - [UpdateLoginFlowWithOidcMethod](docs/UpdateLoginFlowWithOidcMethod.md)
  - [UpdateLoginFlowWithPasskeyMethod](docs/UpdateLoginFlowWithPasskeyMethod.md)

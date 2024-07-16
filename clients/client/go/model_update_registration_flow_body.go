@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ type UpdateRegistrationFlowBody struct {
 	UpdateRegistrationFlowWithOidcMethod *UpdateRegistrationFlowWithOidcMethod
 	UpdateRegistrationFlowWithPasskeyMethod *UpdateRegistrationFlowWithPasskeyMethod
 	UpdateRegistrationFlowWithPasswordMethod *UpdateRegistrationFlowWithPasswordMethod
+	UpdateRegistrationFlowWithProfileMethod *UpdateRegistrationFlowWithProfileMethod
 	UpdateRegistrationFlowWithWebAuthnMethod *UpdateRegistrationFlowWithWebAuthnMethod
 }
 
@@ -50,6 +51,13 @@ func UpdateRegistrationFlowWithPasskeyMethodAsUpdateRegistrationFlowBody(v *Upda
 func UpdateRegistrationFlowWithPasswordMethodAsUpdateRegistrationFlowBody(v *UpdateRegistrationFlowWithPasswordMethod) UpdateRegistrationFlowBody {
 	return UpdateRegistrationFlowBody{
 		UpdateRegistrationFlowWithPasswordMethod: v,
+	}
+}
+
+// UpdateRegistrationFlowWithProfileMethodAsUpdateRegistrationFlowBody is a convenience function that returns UpdateRegistrationFlowWithProfileMethod wrapped in UpdateRegistrationFlowBody
+func UpdateRegistrationFlowWithProfileMethodAsUpdateRegistrationFlowBody(v *UpdateRegistrationFlowWithProfileMethod) UpdateRegistrationFlowBody {
+	return UpdateRegistrationFlowBody{
+		UpdateRegistrationFlowWithProfileMethod: v,
 	}
 }
 
@@ -95,8 +103,8 @@ func (dst *UpdateRegistrationFlowBody) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// check if the discriminator value is 'passKey'
-	if jsonDict["method"] == "passKey" {
+	// check if the discriminator value is 'passkey'
+	if jsonDict["method"] == "passkey" {
 		// try to unmarshal JSON data into UpdateRegistrationFlowWithPasskeyMethod
 		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithPasskeyMethod)
 		if err == nil {
@@ -116,6 +124,18 @@ func (dst *UpdateRegistrationFlowBody) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.UpdateRegistrationFlowWithPasswordMethod = nil
 			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithPasswordMethod: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'profile'
+	if jsonDict["method"] == "profile" {
+		// try to unmarshal JSON data into UpdateRegistrationFlowWithProfileMethod
+		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithProfileMethod)
+		if err == nil {
+			return nil // data stored in dst.UpdateRegistrationFlowWithProfileMethod, return on the first match
+		} else {
+			dst.UpdateRegistrationFlowWithProfileMethod = nil
+			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithProfileMethod: %s", err.Error())
 		}
 	}
 
@@ -179,6 +199,18 @@ func (dst *UpdateRegistrationFlowBody) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'updateRegistrationFlowWithProfileMethod'
+	if jsonDict["method"] == "updateRegistrationFlowWithProfileMethod" {
+		// try to unmarshal JSON data into UpdateRegistrationFlowWithProfileMethod
+		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithProfileMethod)
+		if err == nil {
+			return nil // data stored in dst.UpdateRegistrationFlowWithProfileMethod, return on the first match
+		} else {
+			dst.UpdateRegistrationFlowWithProfileMethod = nil
+			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithProfileMethod: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'updateRegistrationFlowWithWebAuthnMethod'
 	if jsonDict["method"] == "updateRegistrationFlowWithWebAuthnMethod" {
 		// try to unmarshal JSON data into UpdateRegistrationFlowWithWebAuthnMethod
@@ -212,6 +244,10 @@ func (src UpdateRegistrationFlowBody) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.UpdateRegistrationFlowWithPasswordMethod)
 	}
 
+	if src.UpdateRegistrationFlowWithProfileMethod != nil {
+		return json.Marshal(&src.UpdateRegistrationFlowWithProfileMethod)
+	}
+
 	if src.UpdateRegistrationFlowWithWebAuthnMethod != nil {
 		return json.Marshal(&src.UpdateRegistrationFlowWithWebAuthnMethod)
 	}
@@ -238,6 +274,10 @@ func (obj *UpdateRegistrationFlowBody) GetActualInstance() (interface{}) {
 
 	if obj.UpdateRegistrationFlowWithPasswordMethod != nil {
 		return obj.UpdateRegistrationFlowWithPasswordMethod
+	}
+
+	if obj.UpdateRegistrationFlowWithProfileMethod != nil {
+		return obj.UpdateRegistrationFlowWithProfileMethod
 	}
 
 	if obj.UpdateRegistrationFlowWithWebAuthnMethod != nil {

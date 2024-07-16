@@ -9,8 +9,8 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **csrfToken** | **String** | Sending the anti-csrf token is only required for browser login flows. | 
-**identifier** | **String** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | 
-**method** | **String** | Method should be set to \"passkey\" when logging in using the Passkey strategy. | 
+**identifier** | **String** | Identifier is the email or username of the user trying to log in. | 
+**method** | **String** | Method should be set to \"password\" when logging in using the identifier and password strategy. | 
 **password** | **String** | The user's password. | 
 **passwordIdentifier** | **String** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **transientPayload** | [**JsonObject**](.md) | Transient data to pass along to any webhooks | [optional] 

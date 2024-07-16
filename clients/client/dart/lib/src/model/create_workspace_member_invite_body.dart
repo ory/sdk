@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,11 +13,17 @@ part 'create_workspace_member_invite_body.g.dart';
 ///
 /// Properties:
 /// * [inviteeEmail] - A email to invite
+/// * [role] - The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper
 @BuiltValue()
 abstract class CreateWorkspaceMemberInviteBody implements Built<CreateWorkspaceMemberInviteBody, CreateWorkspaceMemberInviteBodyBuilder> {
   /// A email to invite
   @BuiltValueField(wireName: r'invitee_email')
-  String? get inviteeEmail;
+  String get inviteeEmail;
+
+  /// The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper
+  @BuiltValueField(wireName: r'role')
+  CreateWorkspaceMemberInviteBodyRoleEnum get role;
+  // enum roleEnum {  owner,  developer,  };
 
   CreateWorkspaceMemberInviteBody._();
 
@@ -41,13 +48,16 @@ class _$CreateWorkspaceMemberInviteBodySerializer implements PrimitiveSerializer
     CreateWorkspaceMemberInviteBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.inviteeEmail != null) {
-      yield r'invitee_email';
-      yield serializers.serialize(
-        object.inviteeEmail,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'invitee_email';
+    yield serializers.serialize(
+      object.inviteeEmail,
+      specifiedType: const FullType(String),
+    );
+    yield r'role';
+    yield serializers.serialize(
+      object.role,
+      specifiedType: const FullType(CreateWorkspaceMemberInviteBodyRoleEnum),
+    );
   }
 
   @override
@@ -78,6 +88,13 @@ class _$CreateWorkspaceMemberInviteBodySerializer implements PrimitiveSerializer
           ) as String;
           result.inviteeEmail = valueDes;
           break;
+        case r'role':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CreateWorkspaceMemberInviteBodyRoleEnum),
+          ) as CreateWorkspaceMemberInviteBodyRoleEnum;
+          result.role = valueDes;
+          break;
         default:
           unhandled.add(key);
           unhandled.add(value);
@@ -105,5 +122,22 @@ class _$CreateWorkspaceMemberInviteBodySerializer implements PrimitiveSerializer
     );
     return result.build();
   }
+}
+
+class CreateWorkspaceMemberInviteBodyRoleEnum extends EnumClass {
+
+  /// The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper
+  @BuiltValueEnumConst(wireName: r'owner')
+  static const CreateWorkspaceMemberInviteBodyRoleEnum owner = _$createWorkspaceMemberInviteBodyRoleEnum_owner;
+  /// The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper
+  @BuiltValueEnumConst(wireName: r'developer')
+  static const CreateWorkspaceMemberInviteBodyRoleEnum developer = _$createWorkspaceMemberInviteBodyRoleEnum_developer;
+
+  static Serializer<CreateWorkspaceMemberInviteBodyRoleEnum> get serializer => _$createWorkspaceMemberInviteBodyRoleEnumSerializer;
+
+  const CreateWorkspaceMemberInviteBodyRoleEnum._(String name): super(name);
+
+  static BuiltSet<CreateWorkspaceMemberInviteBodyRoleEnum> get values => _$createWorkspaceMemberInviteBodyRoleEnumValues;
+  static CreateWorkspaceMemberInviteBodyRoleEnum valueOf(String name) => _$createWorkspaceMemberInviteBodyRoleEnumValueOf(name);
 }
 

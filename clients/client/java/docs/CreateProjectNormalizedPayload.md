@@ -12,7 +12,7 @@ Create project (normalized) request payload
 |**disableAccountExperienceWelcomeScreen** | **Boolean** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. |  [optional] |
 |**enableAxV2** | **Boolean** | Whether the new account experience is enabled and reachable. |  [optional] |
 |**environment** | [**EnvironmentEnum**](#EnvironmentEnum) |  prod Production stage Staging dev Development |  |
-|**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) |  eu-central EUCentral us-east USEast us-west USWest global Global |  [optional] |
+|**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) |  eu-central EUCentral us-east USEast us-west USWest us US global Global |  [optional] |
 |**hydraOauth2AllowedTopLevelClaims** | **List&lt;String&gt;** |  |  [optional] |
 |**hydraOauth2ClientCredentialsDefaultGrantAllowedScope** | **Boolean** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. |  [optional] |
 |**hydraOauth2ExcludeNotBeforeClaim** | **Boolean** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. |  [optional] |
@@ -110,6 +110,7 @@ Create project (normalized) request payload
 |**kratosCourierTemplatesVerificationValidEmailSubject** | **String** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. |  [optional] |
 |**kratosFeatureFlagsCacheableSessions** | **Boolean** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. |  [optional] |
 |**kratosFeatureFlagsCacheableSessionsMaxAge** | **String** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. |  [optional] |
+|**kratosFeatureFlagsFasterSessionExtend** | **Boolean** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \&quot;feature_flags.faster_session_extend\&quot; setting. |  [optional] |
 |**kratosFeatureFlagsUseContinueWithTransitions** | **Boolean** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. |  [optional] |
 |**kratosIdentitySchemas** | [**List&lt;NormalizedProjectRevisionIdentitySchema&gt;**](NormalizedProjectRevisionIdentitySchema.md) |  |  [optional] |
 |**kratosOauth2ProviderHeaders** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- |  [optional] |
@@ -234,6 +235,7 @@ Create project (normalized) request payload
 | EU_CENTRAL | &quot;eu-central&quot; |
 | US_EAST | &quot;us-east&quot; |
 | US_WEST | &quot;us-west&quot; |
+| US | &quot;us&quot; |
 | GLOBAL | &quot;global&quot; |
 
 

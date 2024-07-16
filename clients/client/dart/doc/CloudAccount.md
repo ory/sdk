@@ -9,6 +9,7 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **String** |  | 
+**emailVerified** | **bool** |  | 
 **id** | **String** |  | 
 **name** | **String** |  | 
 

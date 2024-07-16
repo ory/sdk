@@ -22,6 +22,7 @@ doc/ConsistencyRequestParameters.md
 doc/ContinueWith.md
 doc/ContinueWithRecoveryUi.md
 doc/ContinueWithRecoveryUiFlow.md
+doc/ContinueWithRedirectBrowserTo.md
 doc/ContinueWithSetOrySessionToken.md
 doc/ContinueWithSettingsUi.md
 doc/ContinueWithSettingsUiFlow.md
@@ -46,6 +47,7 @@ doc/CreateRelationshipBody.md
 doc/CreateSubscriptionBody.md
 doc/CreateSubscriptionCommon.md
 doc/CreateVerifiableCredentialRequestBody.md
+doc/CreateWorkspaceApiKeyBody.md
 doc/CreateWorkspaceBody.md
 doc/CreateWorkspaceMemberInviteBody.md
 doc/CreateWorkspaceSubscriptionBody.md
@@ -235,6 +237,7 @@ doc/UiText.md
 doc/UpdateIdentityBody.md
 doc/UpdateLoginFlowBody.md
 doc/UpdateLoginFlowWithCodeMethod.md
+doc/UpdateLoginFlowWithIdentifierFirstMethod.md
 doc/UpdateLoginFlowWithLookupSecretMethod.md
 doc/UpdateLoginFlowWithOidcMethod.md
 doc/UpdateLoginFlowWithPasskeyMethod.md
@@ -319,6 +322,7 @@ lib/src/model/consistency_request_parameters.dart
 lib/src/model/continue_with.dart
 lib/src/model/continue_with_recovery_ui.dart
 lib/src/model/continue_with_recovery_ui_flow.dart
+lib/src/model/continue_with_redirect_browser_to.dart
 lib/src/model/continue_with_set_ory_session_token.dart
 lib/src/model/continue_with_settings_ui.dart
 lib/src/model/continue_with_settings_ui_flow.dart
@@ -342,6 +346,7 @@ lib/src/model/create_relationship_body.dart
 lib/src/model/create_subscription_body.dart
 lib/src/model/create_subscription_common.dart
 lib/src/model/create_verifiable_credential_request_body.dart
+lib/src/model/create_workspace_api_key_body.dart
 lib/src/model/create_workspace_body.dart
 lib/src/model/create_workspace_member_invite_body.dart
 lib/src/model/create_workspace_subscription_body.dart
@@ -522,6 +527,7 @@ lib/src/model/ui_text.dart
 lib/src/model/update_identity_body.dart
 lib/src/model/update_login_flow_body.dart
 lib/src/model/update_login_flow_with_code_method.dart
+lib/src/model/update_login_flow_with_identifier_first_method.dart
 lib/src/model/update_login_flow_with_lookup_secret_method.dart
 lib/src/model/update_login_flow_with_oidc_method.dart
 lib/src/model/update_login_flow_with_passkey_method.dart
@@ -583,6 +589,7 @@ test/cloud_account_test.dart
 test/consistency_request_parameters_test.dart
 test/continue_with_recovery_ui_flow_test.dart
 test/continue_with_recovery_ui_test.dart
+test/continue_with_redirect_browser_to_test.dart
 test/continue_with_set_ory_session_token_test.dart
 test/continue_with_settings_ui_flow_test.dart
 test/continue_with_settings_ui_test.dart
@@ -608,6 +615,7 @@ test/create_relationship_body_test.dart
 test/create_subscription_body_test.dart
 test/create_subscription_common_test.dart
 test/create_verifiable_credential_request_body_test.dart
+test/create_workspace_api_key_body_test.dart
 test/create_workspace_body_test.dart
 test/create_workspace_member_invite_body_test.dart
 test/create_workspace_subscription_body_test.dart
@@ -797,6 +805,7 @@ test/ui_text_test.dart
 test/update_identity_body_test.dart
 test/update_login_flow_body_test.dart
 test/update_login_flow_with_code_method_test.dart
+test/update_login_flow_with_identifier_first_method_test.dart
 test/update_login_flow_with_lookup_secret_method_test.dart
 test/update_login_flow_with_oidc_method_test.dart
 test/update_login_flow_with_passkey_method_test.dart

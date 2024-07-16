@@ -23,7 +23,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [disableAccountExperienceWelcomeScreen] - Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
 /// * [enableAxV2] - Whether the new account experience is enabled and reachable.
 /// * [environment] -  prod Production stage Staging dev Development
-/// * [homeRegion] -  eu-central EUCentral us-east USEast us-west USWest global Global
+/// * [homeRegion] -  eu-central EUCentral us-east USEast us-west USWest us US global Global
 /// * [hydraOauth2AllowedTopLevelClaims] 
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 /// * [hydraOauth2ExcludeNotBeforeClaim] - Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
@@ -121,6 +121,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosCourierTemplatesVerificationValidEmailSubject] - Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
 /// * [kratosFeatureFlagsCacheableSessions] - Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
 /// * [kratosFeatureFlagsCacheableSessionsMaxAge] - Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
+/// * [kratosFeatureFlagsFasterSessionExtend] - Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
 /// * [kratosFeatureFlagsUseContinueWithTransitions] - Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 /// * [kratosIdentitySchemas] 
 /// * [kratosOauth2ProviderHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
@@ -244,10 +245,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   CreateProjectNormalizedPayloadEnvironmentEnum get environment;
   // enum environmentEnum {  prod,  stage,  dev,  };
 
-  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueField(wireName: r'home_region')
   CreateProjectNormalizedPayloadHomeRegionEnum? get homeRegion;
-  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  global,  };
+  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  us,  global,  };
 
   @BuiltValueField(wireName: r'hydra_oauth2_allowed_top_level_claims')
   BuiltList<String>? get hydraOauth2AllowedTopLevelClaims;
@@ -629,6 +630,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   /// Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_cacheable_sessions_max_age')
   String? get kratosFeatureFlagsCacheableSessionsMaxAge;
+
+  /// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
+  @BuiltValueField(wireName: r'kratos_feature_flags_faster_session_extend')
+  bool? get kratosFeatureFlagsFasterSessionExtend;
 
   /// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_use_continue_with_transitions')
@@ -1780,6 +1785,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.kratosFeatureFlagsCacheableSessionsMaxAge,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosFeatureFlagsFasterSessionExtend != null) {
+      yield r'kratos_feature_flags_faster_session_extend';
+      yield serializers.serialize(
+        object.kratosFeatureFlagsFasterSessionExtend,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosFeatureFlagsUseContinueWithTransitions != null) {
@@ -3247,6 +3259,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
           ) as String;
           result.kratosFeatureFlagsCacheableSessionsMaxAge = valueDes;
           break;
+        case r'kratos_feature_flags_faster_session_extend':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosFeatureFlagsFasterSessionExtend = valueDes;
+          break;
         case r'kratos_feature_flags_use_continue_with_transitions':
           final valueDes = serializers.deserialize(
             value,
@@ -4027,16 +4046,19 @@ class CreateProjectNormalizedPayloadEnvironmentEnum extends EnumClass {
 
 class CreateProjectNormalizedPayloadHomeRegionEnum extends EnumClass {
 
-  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'eu-central')
   static const CreateProjectNormalizedPayloadHomeRegionEnum euCentral = _$createProjectNormalizedPayloadHomeRegionEnum_euCentral;
-  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-east')
   static const CreateProjectNormalizedPayloadHomeRegionEnum usEast = _$createProjectNormalizedPayloadHomeRegionEnum_usEast;
-  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-west')
   static const CreateProjectNormalizedPayloadHomeRegionEnum usWest = _$createProjectNormalizedPayloadHomeRegionEnum_usWest;
-  ///  eu-central EUCentral us-east USEast us-west USWest global Global
+  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
+  @BuiltValueEnumConst(wireName: r'us')
+  static const CreateProjectNormalizedPayloadHomeRegionEnum us = _$createProjectNormalizedPayloadHomeRegionEnum_us;
+  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'global')
   static const CreateProjectNormalizedPayloadHomeRegionEnum global = _$createProjectNormalizedPayloadHomeRegionEnum_global;
 

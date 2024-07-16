@@ -6,10 +6,10 @@ Update Registration Request Body
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**csrf_token** | **str** | CSRFToken is the anti-CSRF token | [optional] 
-**method** | **str** | Method  Should be set to \&quot;passkey\&quot; when trying to add, update, or remove a Passkey. | 
+**csrf_token** | **str** | The Anti-CSRF Token  This token is only required when performing browser flows. | [optional] 
+**method** | **str** | Method  Should be set to profile when trying to update a profile. | 
 **password** | **str** | Password to sign the user up with | 
-**traits** | **object** | The identity&#39;s traits | 
+**traits** | **object** | Traits  The identity&#39;s traits. | 
 **transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] 
 **id_token** | **str** | IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider&#39;s public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the &#x60;traits&#x60; field to populate the identity&#39;s traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple | [optional] 
 **id_token_nonce** | **str** | IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and is required. | [optional] 
@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **code** | **str** | The OTP Code sent to the user | [optional] 
 **resend** | **str** | Resend restarts the flow with a new code | [optional] 
 **passkey_register** | **str** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] 
+**screen** | **str** | Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. | [optional] 
 
 ## Example
 

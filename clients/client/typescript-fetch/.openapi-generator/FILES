@@ -38,6 +38,7 @@ src/models/ConsistencyRequestParameters.ts
 src/models/ContinueWith.ts
 src/models/ContinueWithRecoveryUi.ts
 src/models/ContinueWithRecoveryUiFlow.ts
+src/models/ContinueWithRedirectBrowserTo.ts
 src/models/ContinueWithSetOrySessionToken.ts
 src/models/ContinueWithSettingsUi.ts
 src/models/ContinueWithSettingsUiFlow.ts
@@ -61,6 +62,7 @@ src/models/CreateRelationshipBody.ts
 src/models/CreateSubscriptionBody.ts
 src/models/CreateSubscriptionCommon.ts
 src/models/CreateVerifiableCredentialRequestBody.ts
+src/models/CreateWorkspaceApiKeyBody.ts
 src/models/CreateWorkspaceBody.ts
 src/models/CreateWorkspaceMemberInviteBody.ts
 src/models/CreateWorkspaceSubscriptionBody.ts
@@ -240,6 +242,7 @@ src/models/UiText.ts
 src/models/UpdateIdentityBody.ts
 src/models/UpdateLoginFlowBody.ts
 src/models/UpdateLoginFlowWithCodeMethod.ts
+src/models/UpdateLoginFlowWithIdentifierFirstMethod.ts
 src/models/UpdateLoginFlowWithLookupSecretMethod.ts
 src/models/UpdateLoginFlowWithOidcMethod.ts
 src/models/UpdateLoginFlowWithPasskeyMethod.ts

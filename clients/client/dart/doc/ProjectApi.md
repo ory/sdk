@@ -9,30 +9,30 @@ All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | 
+[**createOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
 [**createProject**](ProjectApi.md#createproject) | **POST** /projects | Create a Project
 [**createProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API token
-[**deleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | 
+[**deleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
 [**deleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
-[**getOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID
+[**getOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 [**getProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
 [**getProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
-[**listOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | 
+[**listOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
 [**listProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**listProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 [**patchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**purgeProject**](ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
 [**removeProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**setProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
-[**updateOrganization**](ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | 
+[**updateOrganization**](ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
 
 
 # **createOrganization**
 > Organization createOrganization(projectId, organizationBody)
 
+Create an Enterprise SSO Organization
 
-
-Create a B2B SSO Organization
+Creates an Enterprise SSO Organization in a project.
 
 ### Example
 ```dart
@@ -163,9 +163,9 @@ Name | Type | Description  | Notes
 # **deleteOrganization**
 > deleteOrganization(projectId, organizationId)
 
+Delete Enterprise SSO Organization
 
-
-Delete a B2B SSO Organization for a project
+Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 ```dart
@@ -251,7 +251,9 @@ void (empty response body)
 # **getOrganization**
 > GetOrganizationResponse getOrganization(projectId, organizationId)
 
-Returns a B2B SSO Organization for a project by its ID
+Get Enterprise SSO Organization by ID
+
+Retrieves an Enterprise SSO Organization for a project by its ID
 
 ### Example
 ```dart
@@ -380,9 +382,9 @@ Name | Type | Description  | Notes
 # **listOrganizations**
 > ListOrganizationsResponse listOrganizations(projectId, pageSize, pageToken, domain)
 
+List all Enterprise SSO organizations
 
-
-List all B2B SSO Organizations for a project
+Lists all Enterprise SSO organizations in a project.
 
 ### Example
 ```dart
@@ -687,9 +689,9 @@ Name | Type | Description  | Notes
 # **updateOrganization**
 > Organization updateOrganization(projectId, organizationId, organizationBody)
 
+Update an Enterprise SSO Organization
 
-
-Update a B2B SSO Organization for a project
+Updates an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 ```dart

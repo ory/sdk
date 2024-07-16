@@ -8,11 +8,13 @@ defmodule Ory.Model.ContinueWithSettingsUiFlow do
 
   @derive Jason.Encoder
   defstruct [
-    :id
+    :id,
+    :url
   ]
 
   @type t :: %__MODULE__{
-    :id => String.t
+    :id => String.t,
+    :url => String.t | nil
   }
 
   def decode(value) do

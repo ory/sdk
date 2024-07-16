@@ -10,13 +10,15 @@ defmodule Ory.Model.ContinueWith do
   defstruct [
     :action,
     :flow,
-    :ory_session_token
+    :ory_session_token,
+    :redirect_browser_to
   ]
 
   @type t :: %__MODULE__{
     :action => String.t,
     :flow => Ory.Model.ContinueWithRecoveryUiFlow.t,
-    :ory_session_token => String.t
+    :ory_session_token => String.t,
+    :redirect_browser_to => String.t
   }
 
   alias Ory.Deserializer

@@ -5,7 +5,10 @@ All URIs are relative to *https://.projects.oryapis.com*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_workspace**](WorkspaceApi.md#create_workspace) | **POST** /workspaces | Create a new workspace |
+| [**create_workspace_api_key**](WorkspaceApi.md#create_workspace_api_key) | **POST** /workspaces/{workspace}/tokens | Create workspace API key |
+| [**delete_workspace_api_key**](WorkspaceApi.md#delete_workspace_api_key) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token |
 | [**get_workspace**](WorkspaceApi.md#get_workspace) | **GET** /workspaces/{workspace} | Get a workspace |
+| [**list_workspace_api_keys**](WorkspaceApi.md#list_workspace_api_keys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens |
 | [**list_workspace_projects**](WorkspaceApi.md#list_workspace_projects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace |
 | [**list_workspaces**](WorkspaceApi.md#list_workspaces) | **GET** /workspaces | List workspaces the user is a member of |
 | [**update_workspace**](WorkspaceApi.md#update_workspace) | **PUT** /workspaces/{workspace} | Update an workspace |
@@ -80,6 +83,149 @@ end
 - **Accept**: application/json
 
 
+## create_workspace_api_key
+
+> <WorkspaceApiKey> create_workspace_api_key(workspace, opts)
+
+Create workspace API key
+
+Create an API key for a workspace.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryWorkspaceApiKey
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::WorkspaceApi.new
+workspace = 'workspace_example' # String | The Workspace ID
+opts = {
+  create_workspace_api_key_body: OryClient::CreateWorkspaceApiKeyBody.new({name: 'name_example'}) # CreateWorkspaceApiKeyBody | 
+}
+
+begin
+  # Create workspace API key
+  result = api_instance.create_workspace_api_key(workspace, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling WorkspaceApi->create_workspace_api_key: #{e}"
+end
+```
+
+#### Using the create_workspace_api_key_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<WorkspaceApiKey>, Integer, Hash)> create_workspace_api_key_with_http_info(workspace, opts)
+
+```ruby
+begin
+  # Create workspace API key
+  data, status_code, headers = api_instance.create_workspace_api_key_with_http_info(workspace, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <WorkspaceApiKey>
+rescue OryClient::ApiError => e
+  puts "Error when calling WorkspaceApi->create_workspace_api_key_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **workspace** | **String** | The Workspace ID |  |
+| **create_workspace_api_key_body** | [**CreateWorkspaceApiKeyBody**](CreateWorkspaceApiKeyBody.md) |  | [optional] |
+
+### Return type
+
+[**WorkspaceApiKey**](WorkspaceApiKey.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## delete_workspace_api_key
+
+> delete_workspace_api_key(workspace, token_id)
+
+Delete workspace API token
+
+Deletes an API token and immediately removes it.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryWorkspaceApiKey
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::WorkspaceApi.new
+workspace = 'workspace_example' # String | The Workspace ID or Workspace slug
+token_id = 'token_id_example' # String | The Token ID
+
+begin
+  # Delete workspace API token
+  api_instance.delete_workspace_api_key(workspace, token_id)
+rescue OryClient::ApiError => e
+  puts "Error when calling WorkspaceApi->delete_workspace_api_key: #{e}"
+end
+```
+
+#### Using the delete_workspace_api_key_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> delete_workspace_api_key_with_http_info(workspace, token_id)
+
+```ruby
+begin
+  # Delete workspace API token
+  data, status_code, headers = api_instance.delete_workspace_api_key_with_http_info(workspace, token_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryClient::ApiError => e
+  puts "Error when calling WorkspaceApi->delete_workspace_api_key_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **workspace** | **String** | The Workspace ID or Workspace slug |  |
+| **token_id** | **String** | The Token ID |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## get_workspace
 
 > <Workspace> get_workspace(workspace)
@@ -138,6 +284,75 @@ end
 ### Return type
 
 [**Workspace**](Workspace.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## list_workspace_api_keys
+
+> <Array<WorkspaceApiKey>> list_workspace_api_keys(workspace)
+
+List a workspace's API Tokens
+
+A list of all the workspace's API tokens.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryWorkspaceApiKey
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::WorkspaceApi.new
+workspace = 'workspace_example' # String | The Workspace ID or Workspace slug
+
+begin
+  # List a workspace's API Tokens
+  result = api_instance.list_workspace_api_keys(workspace)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling WorkspaceApi->list_workspace_api_keys: #{e}"
+end
+```
+
+#### Using the list_workspace_api_keys_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<WorkspaceApiKey>>, Integer, Hash)> list_workspace_api_keys_with_http_info(workspace)
+
+```ruby
+begin
+  # List a workspace's API Tokens
+  data, status_code, headers = api_instance.list_workspace_api_keys_with_http_info(workspace)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<WorkspaceApiKey>>
+rescue OryClient::ApiError => e
+  puts "Error when calling WorkspaceApi->list_workspace_api_keys_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **workspace** | **String** | The Workspace ID or Workspace slug |  |
+
+### Return type
+
+[**Array&lt;WorkspaceApiKey&gt;**](WorkspaceApiKey.md)
 
 ### Authorization
 

@@ -10,7 +10,10 @@ All URIs are relative to *https://.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createWorkspace**](WorkspaceApi.md#createworkspace) | **POST** /workspaces | Create a new workspace
+[**createWorkspaceApiKey**](WorkspaceApi.md#createworkspaceapikey) | **POST** /workspaces/{workspace}/tokens | Create workspace API key
+[**deleteWorkspaceApiKey**](WorkspaceApi.md#deleteworkspaceapikey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token
 [**getWorkspace**](WorkspaceApi.md#getworkspace) | **GET** /workspaces/{workspace} | Get a workspace
+[**listWorkspaceApiKeys**](WorkspaceApi.md#listworkspaceapikeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens
 [**listWorkspaceProjects**](WorkspaceApi.md#listworkspaceprojects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace
 [**listWorkspaces**](WorkspaceApi.md#listworkspaces) | **GET** /workspaces | List workspaces the user is a member of
 [**updateWorkspace**](WorkspaceApi.md#updateworkspace) | **PUT** /workspaces/{workspace} | Update an workspace
@@ -57,6 +60,95 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **createWorkspaceApiKey**
+> WorkspaceApiKey createWorkspaceApiKey(workspace, createWorkspaceApiKeyBody)
+
+Create workspace API key
+
+Create an API key for a workspace.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getWorkspaceApi();
+final String workspace = workspace_example; // String | The Workspace ID
+final CreateWorkspaceApiKeyBody createWorkspaceApiKeyBody = ; // CreateWorkspaceApiKeyBody | 
+
+try {
+    final response = api.createWorkspaceApiKey(workspace, createWorkspaceApiKeyBody);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling WorkspaceApi->createWorkspaceApiKey: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspace** | **String**| The Workspace ID | 
+ **createWorkspaceApiKeyBody** | [**CreateWorkspaceApiKeyBody**](CreateWorkspaceApiKeyBody.md)|  | [optional] 
+
+### Return type
+
+[**WorkspaceApiKey**](WorkspaceApiKey.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteWorkspaceApiKey**
+> deleteWorkspaceApiKey(workspace, tokenId)
+
+Delete workspace API token
+
+Deletes an API token and immediately removes it.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getWorkspaceApi();
+final String workspace = workspace_example; // String | The Workspace ID or Workspace slug
+final String tokenId = tokenId_example; // String | The Token ID
+
+try {
+    api.deleteWorkspaceApiKey(workspace, tokenId);
+} catch on DioException (e) {
+    print('Exception when calling WorkspaceApi->deleteWorkspaceApiKey: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspace** | **String**| The Workspace ID or Workspace slug | 
+ **tokenId** | **String**| The Token ID | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getWorkspace**
 > Workspace getWorkspace(workspace)
 
@@ -88,6 +180,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Workspace**](Workspace.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listWorkspaceApiKeys**
+> BuiltList<WorkspaceApiKey> listWorkspaceApiKeys(workspace)
+
+List a workspace's API Tokens
+
+A list of all the workspace's API tokens.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getWorkspaceApi();
+final String workspace = workspace_example; // String | The Workspace ID or Workspace slug
+
+try {
+    final response = api.listWorkspaceApiKeys(workspace);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling WorkspaceApi->listWorkspaceApiKeys: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspace** | **String**| The Workspace ID or Workspace slug | 
+
+### Return type
+
+[**BuiltList&lt;WorkspaceApiKey&gt;**](WorkspaceApiKey.md)
 
 ### Authorization
 

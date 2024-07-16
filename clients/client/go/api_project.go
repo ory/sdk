@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -24,9 +24,9 @@ import (
 type ProjectAPI interface {
 
 	/*
-	CreateOrganization Method for CreateOrganization
+	CreateOrganization Create an Enterprise SSO Organization
 
-	Create a B2B SSO Organization
+	Creates an Enterprise SSO Organization in a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -68,9 +68,9 @@ type ProjectAPI interface {
 	CreateProjectApiKeyExecute(r ProjectAPICreateProjectApiKeyRequest) (*ProjectApiKey, *http.Response, error)
 
 	/*
-	DeleteOrganization Method for DeleteOrganization
+	DeleteOrganization Delete Enterprise SSO Organization
 
-	Delete a B2B SSO Organization for a project
+	Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -98,7 +98,9 @@ type ProjectAPI interface {
 	DeleteProjectApiKeyExecute(r ProjectAPIDeleteProjectApiKeyRequest) (*http.Response, error)
 
 	/*
-	GetOrganization Returns a B2B SSO Organization for a project by its ID
+	GetOrganization Get Enterprise SSO Organization by ID
+
+	Retrieves an Enterprise SSO Organization for a project by its ID
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -142,9 +144,9 @@ type ProjectAPI interface {
 	GetProjectMembersExecute(r ProjectAPIGetProjectMembersRequest) ([]ProjectMember, *http.Response, error)
 
 	/*
-	ListOrganizations Method for ListOrganizations
+	ListOrganizations List all Enterprise SSO organizations
 
-	List all B2B SSO Organizations for a project
+	Lists all Enterprise SSO organizations in a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -284,9 +286,9 @@ service!
 	SetProjectExecute(r ProjectAPISetProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error)
 
 	/*
-	UpdateOrganization Method for UpdateOrganization
+	UpdateOrganization Update an Enterprise SSO Organization
 
-	Update a B2B SSO Organization for a project
+	Updates an Enterprise SSO Organization in a project by its ID.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -320,9 +322,9 @@ func (r ProjectAPICreateOrganizationRequest) Execute() (*Organization, *http.Res
 }
 
 /*
-CreateOrganization Method for CreateOrganization
+CreateOrganization Create an Enterprise SSO Organization
 
-Create a B2B SSO Organization
+Creates an Enterprise SSO Organization in a project.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.
@@ -734,9 +736,9 @@ func (r ProjectAPIDeleteOrganizationRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteOrganization Method for DeleteOrganization
+DeleteOrganization Delete Enterprise SSO Organization
 
-Delete a B2B SSO Organization for a project
+Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.
@@ -986,7 +988,9 @@ func (r ProjectAPIGetOrganizationRequest) Execute() (*GetOrganizationResponse, *
 }
 
 /*
-GetOrganization Returns a B2B SSO Organization for a project by its ID
+GetOrganization Get Enterprise SSO Organization by ID
+
+Retrieves an Enterprise SSO Organization for a project by its ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.
@@ -1418,9 +1422,9 @@ func (r ProjectAPIListOrganizationsRequest) Execute() (*ListOrganizationsRespons
 }
 
 /*
-ListOrganizations Method for ListOrganizations
+ListOrganizations List all Enterprise SSO organizations
 
-List all B2B SSO Organizations for a project
+Lists all Enterprise SSO organizations in a project.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.
@@ -2445,9 +2449,9 @@ func (r ProjectAPIUpdateOrganizationRequest) Execute() (*Organization, *http.Res
 }
 
 /*
-UpdateOrganization Method for UpdateOrganization
+UpdateOrganization Update an Enterprise SSO Organization
 
-Update a B2B SSO Organization for a project
+Updates an Enterprise SSO Organization in a project by its ID.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.

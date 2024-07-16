@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **DisableAccountExperienceWelcomeScreen** | Pointer to **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] 
 **EnableAxV2** | Pointer to **bool** | Whether the new account experience is enabled and reachable. | [optional] 
 **Environment** | **string** |  prod Production stage Staging dev Development | 
-**HomeRegion** | Pointer to **string** |  eu-central EUCentral us-east USEast us-west USWest global Global | [optional] 
+**HomeRegion** | Pointer to **string** |  eu-central EUCentral us-east USEast us-west USWest us US global Global | [optional] 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** |  | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
@@ -106,6 +106,7 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesVerificationValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] 
 **KratosFeatureFlagsCacheableSessions** | Pointer to **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
 **KratosFeatureFlagsCacheableSessionsMaxAge** | Pointer to **string** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] 
+**KratosFeatureFlagsFasterSessionExtend** | Pointer to **bool** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \&quot;feature_flags.faster_session_extend\&quot; setting. | [optional] 
 **KratosFeatureFlagsUseContinueWithTransitions** | Pointer to **bool** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] 
 **KratosIdentitySchemas** | Pointer to [**[]NormalizedProjectRevisionIdentitySchema**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **KratosOauth2ProviderHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
@@ -2794,6 +2795,31 @@ SetKratosFeatureFlagsCacheableSessionsMaxAge sets KratosFeatureFlagsCacheableSes
 `func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsCacheableSessionsMaxAge() bool`
 
 HasKratosFeatureFlagsCacheableSessionsMaxAge returns a boolean if a field has been set.
+
+### GetKratosFeatureFlagsFasterSessionExtend
+
+`func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsFasterSessionExtend() bool`
+
+GetKratosFeatureFlagsFasterSessionExtend returns the KratosFeatureFlagsFasterSessionExtend field if non-nil, zero value otherwise.
+
+### GetKratosFeatureFlagsFasterSessionExtendOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsFasterSessionExtendOk() (*bool, bool)`
+
+GetKratosFeatureFlagsFasterSessionExtendOk returns a tuple with the KratosFeatureFlagsFasterSessionExtend field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosFeatureFlagsFasterSessionExtend
+
+`func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsFasterSessionExtend(v bool)`
+
+SetKratosFeatureFlagsFasterSessionExtend sets KratosFeatureFlagsFasterSessionExtend field to given value.
+
+### HasKratosFeatureFlagsFasterSessionExtend
+
+`func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsFasterSessionExtend() bool`
+
+HasKratosFeatureFlagsFasterSessionExtend returns a boolean if a field has been set.
 
 ### GetKratosFeatureFlagsUseContinueWithTransitions
 

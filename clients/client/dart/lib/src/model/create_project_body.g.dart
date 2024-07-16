@@ -43,6 +43,8 @@ const CreateProjectBodyHomeRegionEnum _$createProjectBodyHomeRegionEnum_usEast =
     const CreateProjectBodyHomeRegionEnum._('usEast');
 const CreateProjectBodyHomeRegionEnum _$createProjectBodyHomeRegionEnum_usWest =
     const CreateProjectBodyHomeRegionEnum._('usWest');
+const CreateProjectBodyHomeRegionEnum _$createProjectBodyHomeRegionEnum_us =
+    const CreateProjectBodyHomeRegionEnum._('us');
 const CreateProjectBodyHomeRegionEnum _$createProjectBodyHomeRegionEnum_global =
     const CreateProjectBodyHomeRegionEnum._('global');
 
@@ -55,6 +57,8 @@ CreateProjectBodyHomeRegionEnum _$createProjectBodyHomeRegionEnumValueOf(
       return _$createProjectBodyHomeRegionEnum_usEast;
     case 'usWest':
       return _$createProjectBodyHomeRegionEnum_usWest;
+    case 'us':
+      return _$createProjectBodyHomeRegionEnum_us;
     case 'global':
       return _$createProjectBodyHomeRegionEnum_global;
     default:
@@ -68,6 +72,7 @@ final BuiltSet<CreateProjectBodyHomeRegionEnum>
   _$createProjectBodyHomeRegionEnum_euCentral,
   _$createProjectBodyHomeRegionEnum_usEast,
   _$createProjectBodyHomeRegionEnum_usWest,
+  _$createProjectBodyHomeRegionEnum_us,
   _$createProjectBodyHomeRegionEnum_global,
 ]);
 
@@ -116,12 +121,14 @@ class _$CreateProjectBodyHomeRegionEnumSerializer
     'euCentral': 'eu-central',
     'usEast': 'us-east',
     'usWest': 'us-west',
+    'us': 'us',
     'global': 'global',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'eu-central': 'euCentral',
     'us-east': 'usEast',
     'us-west': 'usWest',
+    'us': 'us',
     'global': 'global',
   };
 

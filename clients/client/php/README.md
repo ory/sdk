@@ -181,22 +181,22 @@ Class | Method | HTTP request | Description
 *PermissionApi* | [**expandPermissions**](docs/Api/PermissionApi.md#expandpermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
 *PermissionApi* | [**postCheckPermission**](docs/Api/PermissionApi.md#postcheckpermission) | **POST** /relation-tuples/check/openapi | Check a permission
 *PermissionApi* | [**postCheckPermissionOrError**](docs/Api/PermissionApi.md#postcheckpermissionorerror) | **POST** /relation-tuples/check | Check a permission
-*ProjectApi* | [**createOrganization**](docs/Api/ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | 
+*ProjectApi* | [**createOrganization**](docs/Api/ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
 *ProjectApi* | [**createProject**](docs/Api/ProjectApi.md#createproject) | **POST** /projects | Create a Project
 *ProjectApi* | [**createProjectApiKey**](docs/Api/ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API token
-*ProjectApi* | [**deleteOrganization**](docs/Api/ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | 
+*ProjectApi* | [**deleteOrganization**](docs/Api/ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
 *ProjectApi* | [**deleteProjectApiKey**](docs/Api/ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
-*ProjectApi* | [**getOrganization**](docs/Api/ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID
+*ProjectApi* | [**getOrganization**](docs/Api/ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 *ProjectApi* | [**getProject**](docs/Api/ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
 *ProjectApi* | [**getProjectMembers**](docs/Api/ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
-*ProjectApi* | [**listOrganizations**](docs/Api/ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | 
+*ProjectApi* | [**listOrganizations**](docs/Api/ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
 *ProjectApi* | [**listProjectApiKeys**](docs/Api/ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 *ProjectApi* | [**listProjects**](docs/Api/ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/Api/ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 *ProjectApi* | [**purgeProject**](docs/Api/ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
 *ProjectApi* | [**removeProjectMember**](docs/Api/ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 *ProjectApi* | [**setProject**](docs/Api/ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
-*ProjectApi* | [**updateOrganization**](docs/Api/ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | 
+*ProjectApi* | [**updateOrganization**](docs/Api/ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
 *RelationshipApi* | [**checkOplSyntax**](docs/Api/RelationshipApi.md#checkoplsyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
 *RelationshipApi* | [**createRelationship**](docs/Api/RelationshipApi.md#createrelationship) | **PUT** /admin/relation-tuples | Create a Relationship
 *RelationshipApi* | [**deleteRelationships**](docs/Api/RelationshipApi.md#deleterelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
@@ -205,7 +205,10 @@ Class | Method | HTTP request | Description
 *RelationshipApi* | [**patchRelationships**](docs/Api/RelationshipApi.md#patchrelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships
 *WellknownApi* | [**discoverJsonWebKeys**](docs/Api/WellknownApi.md#discoverjsonwebkeys) | **GET** /.well-known/jwks.json | Discover Well-Known JSON Web Keys
 *WorkspaceApi* | [**createWorkspace**](docs/Api/WorkspaceApi.md#createworkspace) | **POST** /workspaces | Create a new workspace
+*WorkspaceApi* | [**createWorkspaceApiKey**](docs/Api/WorkspaceApi.md#createworkspaceapikey) | **POST** /workspaces/{workspace}/tokens | Create workspace API key
+*WorkspaceApi* | [**deleteWorkspaceApiKey**](docs/Api/WorkspaceApi.md#deleteworkspaceapikey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token
 *WorkspaceApi* | [**getWorkspace**](docs/Api/WorkspaceApi.md#getworkspace) | **GET** /workspaces/{workspace} | Get a workspace
+*WorkspaceApi* | [**listWorkspaceApiKeys**](docs/Api/WorkspaceApi.md#listworkspaceapikeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens
 *WorkspaceApi* | [**listWorkspaceProjects**](docs/Api/WorkspaceApi.md#listworkspaceprojects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace
 *WorkspaceApi* | [**listWorkspaces**](docs/Api/WorkspaceApi.md#listworkspaces) | **GET** /workspaces | List workspaces the user is a member of
 *WorkspaceApi* | [**updateWorkspace**](docs/Api/WorkspaceApi.md#updateworkspace) | **PUT** /workspaces/{workspace} | Update an workspace
@@ -232,6 +235,7 @@ Class | Method | HTTP request | Description
 - [ContinueWith](docs/Model/ContinueWith.md)
 - [ContinueWithRecoveryUi](docs/Model/ContinueWithRecoveryUi.md)
 - [ContinueWithRecoveryUiFlow](docs/Model/ContinueWithRecoveryUiFlow.md)
+- [ContinueWithRedirectBrowserTo](docs/Model/ContinueWithRedirectBrowserTo.md)
 - [ContinueWithSetOrySessionToken](docs/Model/ContinueWithSetOrySessionToken.md)
 - [ContinueWithSettingsUi](docs/Model/ContinueWithSettingsUi.md)
 - [ContinueWithSettingsUiFlow](docs/Model/ContinueWithSettingsUiFlow.md)
@@ -255,6 +259,7 @@ Class | Method | HTTP request | Description
 - [CreateSubscriptionBody](docs/Model/CreateSubscriptionBody.md)
 - [CreateSubscriptionCommon](docs/Model/CreateSubscriptionCommon.md)
 - [CreateVerifiableCredentialRequestBody](docs/Model/CreateVerifiableCredentialRequestBody.md)
+- [CreateWorkspaceApiKeyBody](docs/Model/CreateWorkspaceApiKeyBody.md)
 - [CreateWorkspaceBody](docs/Model/CreateWorkspaceBody.md)
 - [CreateWorkspaceMemberInviteBody](docs/Model/CreateWorkspaceMemberInviteBody.md)
 - [CreateWorkspaceSubscriptionBody](docs/Model/CreateWorkspaceSubscriptionBody.md)
@@ -434,6 +439,7 @@ Class | Method | HTTP request | Description
 - [UpdateIdentityBody](docs/Model/UpdateIdentityBody.md)
 - [UpdateLoginFlowBody](docs/Model/UpdateLoginFlowBody.md)
 - [UpdateLoginFlowWithCodeMethod](docs/Model/UpdateLoginFlowWithCodeMethod.md)
+- [UpdateLoginFlowWithIdentifierFirstMethod](docs/Model/UpdateLoginFlowWithIdentifierFirstMethod.md)
 - [UpdateLoginFlowWithLookupSecretMethod](docs/Model/UpdateLoginFlowWithLookupSecretMethod.md)
 - [UpdateLoginFlowWithOidcMethod](docs/Model/UpdateLoginFlowWithOidcMethod.md)
 - [UpdateLoginFlowWithPasskeyMethod](docs/Model/UpdateLoginFlowWithPasskeyMethod.md)
@@ -521,6 +527,6 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.13.10`
+- API version: `v1.14.0`
     - Generator version: `7.7.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

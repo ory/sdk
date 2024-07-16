@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **disableAccountExperienceWelcomeScreen** | **bool** | Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`. | [optional] 
 **enableAxV2** | **bool** | Whether the new account experience is enabled and reachable. | [optional] 
 **environment** | **String** |  prod Production stage Staging dev Development | 
-**homeRegion** | **String** |  eu-central EUCentral us-east USEast us-west USWest global Global | [optional] 
+**homeRegion** | **String** |  eu-central EUCentral us-east USEast us-west USWest us US global Global | [optional] 
 **hydraOauth2AllowedTopLevelClaims** | **BuiltList&lt;String&gt;** |  | [optional] 
 **hydraOauth2ClientCredentialsDefaultGrantAllowedScope** | **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting. | [optional] 
 **hydraOauth2ExcludeNotBeforeClaim** | **bool** | Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting. | [optional] 
@@ -110,6 +110,7 @@ Name | Type | Description | Notes
 **kratosCourierTemplatesVerificationValidEmailSubject** | **String** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting. | [optional] 
 **kratosFeatureFlagsCacheableSessions** | **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting. | [optional] 
 **kratosFeatureFlagsCacheableSessionsMaxAge** | **String** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting. | [optional] 
+**kratosFeatureFlagsFasterSessionExtend** | **bool** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting. | [optional] 
 **kratosFeatureFlagsUseContinueWithTransitions** | **bool** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting. | [optional] 
 **kratosIdentitySchemas** | [**BuiltList&lt;NormalizedProjectRevisionIdentitySchema&gt;**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **kratosOauth2ProviderHeaders** | [**JsonObject**](.md) | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -34,6 +34,7 @@ type MemberInvite struct {
 	// The invite owner's ID Usually the project's owner
 	OwnerId string `json:"owner_id"`
 	ProjectId NullableString `json:"project_id,omitempty"`
+	Role NullableString `json:"role,omitempty"`
 	// The invite's status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED
 	Status string `json:"status"`
 	// Last Time Project's Revision was Updated
@@ -272,6 +273,48 @@ func (o *MemberInvite) UnsetProjectId() {
 	o.ProjectId.Unset()
 }
 
+// GetRole returns the Role field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MemberInvite) GetRole() string {
+	if o == nil || IsNil(o.Role.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Role.Get()
+}
+
+// GetRoleOk returns a tuple with the Role field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MemberInvite) GetRoleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Role.Get(), o.Role.IsSet()
+}
+
+// HasRole returns a boolean if a field has been set.
+func (o *MemberInvite) HasRole() bool {
+	if o != nil && o.Role.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRole gets a reference to the given NullableString and assigns it to the Role field.
+func (o *MemberInvite) SetRole(v string) {
+	o.Role.Set(&v)
+}
+// SetRoleNil sets the value for Role to be an explicit nil
+func (o *MemberInvite) SetRoleNil() {
+	o.Role.Set(nil)
+}
+
+// UnsetRole ensures that no value is present for Role, not even an explicit nil
+func (o *MemberInvite) UnsetRole() {
+	o.Role.Unset()
+}
+
 // GetStatus returns the Status field value
 func (o *MemberInvite) GetStatus() string {
 	if o == nil {
@@ -383,6 +426,9 @@ func (o MemberInvite) ToMap() (map[string]interface{}, error) {
 	if o.ProjectId.IsSet() {
 		toSerialize["project_id"] = o.ProjectId.Get()
 	}
+	if o.Role.IsSet() {
+		toSerialize["role"] = o.Role.Get()
+	}
 	toSerialize["status"] = o.Status
 	toSerialize["updated_at"] = o.UpdatedAt
 	if o.WorkspaceId.IsSet() {
@@ -444,6 +490,7 @@ func (o *MemberInvite) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "owner_email")
 		delete(additionalProperties, "owner_id")
 		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "role")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "workspace_id")

@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**createdAt** | **OffsetDateTime** | The Project&#39;s Creation Date |  |
 |**environment** | [**EnvironmentEnum**](#EnvironmentEnum) | The environment of the project. prod Production stage Staging dev Development |  |
-|**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) | The project&#39;s data home region eu-central EUCentral us-east USEast us-west USWest global Global |  |
+|**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) | The project&#39;s data home region eu-central EUCentral us-east USEast us-west USWest us US global Global |  |
 |**hosts** | **List&lt;String&gt;** |  |  |
 |**id** | **String** | The project&#39;s ID. |  [readonly] |
 |**name** | **String** | The project&#39;s name if set |  |
@@ -40,6 +40,7 @@
 | EU_CENTRAL | &quot;eu-central&quot; |
 | US_EAST | &quot;us-east&quot; |
 | US_WEST | &quot;us-west&quot; |
+| US | &quot;us&quot; |
 | GLOBAL | &quot;global&quot; |
 
 

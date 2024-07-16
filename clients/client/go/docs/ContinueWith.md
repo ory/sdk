@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **string** | Action will always be &#x60;show_recovery_ui&#x60; show_recovery_ui ContinueWithActionShowRecoveryUIString | 
+**Action** | **string** | Action will always be &#x60;redirect_browser_to&#x60; redirect_browser_to ContinueWithActionRedirectBrowserToString | 
 **Flow** | [**ContinueWithRecoveryUiFlow**](ContinueWithRecoveryUiFlow.md) |  | 
 **OrySessionToken** | **string** | Token is the token of the session | 
+**RedirectBrowserTo** | **string** | The URL to redirect the browser to | 
 
 ## Methods
 
 ### NewContinueWith
 
-`func NewContinueWith(action string, flow ContinueWithRecoveryUiFlow, orySessionToken string, ) *ContinueWith`
+`func NewContinueWith(action string, flow ContinueWithRecoveryUiFlow, orySessionToken string, redirectBrowserTo string, ) *ContinueWith`
 
 NewContinueWith instantiates a new ContinueWith object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *ContinueWith) SetOrySessionToken(v string)`
 
 SetOrySessionToken sets OrySessionToken field to given value.
+
+
+### GetRedirectBrowserTo
+
+`func (o *ContinueWith) GetRedirectBrowserTo() string`
+
+GetRedirectBrowserTo returns the RedirectBrowserTo field if non-nil, zero value otherwise.
+
+### GetRedirectBrowserToOk
+
+`func (o *ContinueWith) GetRedirectBrowserToOk() (*string, bool)`
+
+GetRedirectBrowserToOk returns a tuple with the RedirectBrowserTo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedirectBrowserTo
+
+`func (o *ContinueWith) SetRedirectBrowserTo(v string)`
+
+SetRedirectBrowserTo sets RedirectBrowserTo field to given value.
 
 
 

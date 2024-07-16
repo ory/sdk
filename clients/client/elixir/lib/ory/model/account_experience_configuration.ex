@@ -9,17 +9,25 @@ defmodule Ory.Model.AccountExperienceConfiguration do
   @derive Jason.Encoder
   defstruct [
     :account_experience_theme_stylesheet,
+    :favicon_type,
+    :favicon_url,
     :kratos_selfservice_flows_recovery_enabled,
     :kratos_selfservice_flows_registration_enabled,
     :kratos_selfservice_flows_verification_enabled,
+    :logo_url,
+    :name,
     :organization_map
   ]
 
   @type t :: %__MODULE__{
     :account_experience_theme_stylesheet => String.t | nil,
+    :favicon_type => String.t | nil,
+    :favicon_url => String.t | nil,
     :kratos_selfservice_flows_recovery_enabled => boolean() | nil,
     :kratos_selfservice_flows_registration_enabled => boolean() | nil,
     :kratos_selfservice_flows_verification_enabled => boolean() | nil,
+    :logo_url => String.t | nil,
+    :name => String.t | nil,
     :organization_map => %{optional(String.t) => String.t} | nil
   }
 

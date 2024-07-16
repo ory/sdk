@@ -13,7 +13,7 @@ void main() {
       // TODO
     });
 
-    // Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global
+    // Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global
     // String homeRegion
     test('to test the property `homeRegion`', () async {
       // TODO

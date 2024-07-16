@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -21,9 +21,13 @@ var _ MappedNullable = &AccountExperienceConfiguration{}
 // AccountExperienceConfiguration struct for AccountExperienceConfiguration
 type AccountExperienceConfiguration struct {
 	AccountExperienceThemeStylesheet *string `json:"account_experience_theme_stylesheet,omitempty"`
+	FaviconType *string `json:"favicon_type,omitempty"`
+	FaviconUrl *string `json:"favicon_url,omitempty"`
 	KratosSelfserviceFlowsRecoveryEnabled *bool `json:"kratos_selfservice_flows_recovery_enabled,omitempty"`
 	KratosSelfserviceFlowsRegistrationEnabled *bool `json:"kratos_selfservice_flows_registration_enabled,omitempty"`
 	KratosSelfserviceFlowsVerificationEnabled *bool `json:"kratos_selfservice_flows_verification_enabled,omitempty"`
+	LogoUrl *string `json:"logo_url,omitempty"`
+	Name *string `json:"name,omitempty"`
 	OrganizationMap *map[string]string `json:"organization_map,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -77,6 +81,70 @@ func (o *AccountExperienceConfiguration) HasAccountExperienceThemeStylesheet() b
 // SetAccountExperienceThemeStylesheet gets a reference to the given string and assigns it to the AccountExperienceThemeStylesheet field.
 func (o *AccountExperienceConfiguration) SetAccountExperienceThemeStylesheet(v string) {
 	o.AccountExperienceThemeStylesheet = &v
+}
+
+// GetFaviconType returns the FaviconType field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetFaviconType() string {
+	if o == nil || IsNil(o.FaviconType) {
+		var ret string
+		return ret
+	}
+	return *o.FaviconType
+}
+
+// GetFaviconTypeOk returns a tuple with the FaviconType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetFaviconTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.FaviconType) {
+		return nil, false
+	}
+	return o.FaviconType, true
+}
+
+// HasFaviconType returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasFaviconType() bool {
+	if o != nil && !IsNil(o.FaviconType) {
+		return true
+	}
+
+	return false
+}
+
+// SetFaviconType gets a reference to the given string and assigns it to the FaviconType field.
+func (o *AccountExperienceConfiguration) SetFaviconType(v string) {
+	o.FaviconType = &v
+}
+
+// GetFaviconUrl returns the FaviconUrl field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetFaviconUrl() string {
+	if o == nil || IsNil(o.FaviconUrl) {
+		var ret string
+		return ret
+	}
+	return *o.FaviconUrl
+}
+
+// GetFaviconUrlOk returns a tuple with the FaviconUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetFaviconUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.FaviconUrl) {
+		return nil, false
+	}
+	return o.FaviconUrl, true
+}
+
+// HasFaviconUrl returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasFaviconUrl() bool {
+	if o != nil && !IsNil(o.FaviconUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetFaviconUrl gets a reference to the given string and assigns it to the FaviconUrl field.
+func (o *AccountExperienceConfiguration) SetFaviconUrl(v string) {
+	o.FaviconUrl = &v
 }
 
 // GetKratosSelfserviceFlowsRecoveryEnabled returns the KratosSelfserviceFlowsRecoveryEnabled field value if set, zero value otherwise.
@@ -175,6 +243,70 @@ func (o *AccountExperienceConfiguration) SetKratosSelfserviceFlowsVerificationEn
 	o.KratosSelfserviceFlowsVerificationEnabled = &v
 }
 
+// GetLogoUrl returns the LogoUrl field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetLogoUrl() string {
+	if o == nil || IsNil(o.LogoUrl) {
+		var ret string
+		return ret
+	}
+	return *o.LogoUrl
+}
+
+// GetLogoUrlOk returns a tuple with the LogoUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetLogoUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.LogoUrl) {
+		return nil, false
+	}
+	return o.LogoUrl, true
+}
+
+// HasLogoUrl returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasLogoUrl() bool {
+	if o != nil && !IsNil(o.LogoUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogoUrl gets a reference to the given string and assigns it to the LogoUrl field.
+func (o *AccountExperienceConfiguration) SetLogoUrl(v string) {
+	o.LogoUrl = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *AccountExperienceConfiguration) SetName(v string) {
+	o.Name = &v
+}
+
 // GetOrganizationMap returns the OrganizationMap field value if set, zero value otherwise.
 func (o *AccountExperienceConfiguration) GetOrganizationMap() map[string]string {
 	if o == nil || IsNil(o.OrganizationMap) {
@@ -220,6 +352,12 @@ func (o AccountExperienceConfiguration) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.AccountExperienceThemeStylesheet) {
 		toSerialize["account_experience_theme_stylesheet"] = o.AccountExperienceThemeStylesheet
 	}
+	if !IsNil(o.FaviconType) {
+		toSerialize["favicon_type"] = o.FaviconType
+	}
+	if !IsNil(o.FaviconUrl) {
+		toSerialize["favicon_url"] = o.FaviconUrl
+	}
 	if !IsNil(o.KratosSelfserviceFlowsRecoveryEnabled) {
 		toSerialize["kratos_selfservice_flows_recovery_enabled"] = o.KratosSelfserviceFlowsRecoveryEnabled
 	}
@@ -228,6 +366,12 @@ func (o AccountExperienceConfiguration) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosSelfserviceFlowsVerificationEnabled) {
 		toSerialize["kratos_selfservice_flows_verification_enabled"] = o.KratosSelfserviceFlowsVerificationEnabled
+	}
+	if !IsNil(o.LogoUrl) {
+		toSerialize["logo_url"] = o.LogoUrl
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.OrganizationMap) {
 		toSerialize["organization_map"] = o.OrganizationMap
@@ -255,9 +399,13 @@ func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) 
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "account_experience_theme_stylesheet")
+		delete(additionalProperties, "favicon_type")
+		delete(additionalProperties, "favicon_url")
 		delete(additionalProperties, "kratos_selfservice_flows_recovery_enabled")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_enabled")
 		delete(additionalProperties, "kratos_selfservice_flows_verification_enabled")
+		delete(additionalProperties, "logo_url")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "organization_map")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -4,31 +4,31 @@ All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations | 
+[**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
 [**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project
 [**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API token
-[**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | 
+[**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
 [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
-[**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID
+[**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
 [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project
-[**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | 
+[**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
 [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project's API Tokens
 [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects
 [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**purge_project**](ProjectApi.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
 [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
-[**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | 
+[**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
 
 
 
 ## create_organization
 
 > models::Organization create_organization(project_id, organization_body)
+Create an Enterprise SSO Organization
 
-
-Create a B2B SSO Organization
+Creates an Enterprise SSO Organization in a project.
 
 ### Parameters
 
@@ -118,9 +118,9 @@ Name | Type | Description  | Required | Notes
 ## delete_organization
 
 > delete_organization(project_id, organization_id)
+Delete Enterprise SSO Organization
 
-
-Delete a B2B SSO Organization for a project
+Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 ### Parameters
 
@@ -180,7 +180,9 @@ Name | Type | Description  | Required | Notes
 ## get_organization
 
 > models::GetOrganizationResponse get_organization(project_id, organization_id)
-Returns a B2B SSO Organization for a project by its ID
+Get Enterprise SSO Organization by ID
+
+Retrieves an Enterprise SSO Organization for a project by its ID
 
 ### Parameters
 
@@ -269,9 +271,9 @@ Name | Type | Description  | Required | Notes
 ## list_organizations
 
 > models::ListOrganizationsResponse list_organizations(project_id, page_size, page_token, domain)
+List all Enterprise SSO organizations
 
-
-List all B2B SSO Organizations for a project
+Lists all Enterprise SSO organizations in a project.
 
 ### Parameters
 
@@ -482,9 +484,9 @@ Name | Type | Description  | Required | Notes
 ## update_organization
 
 > models::Organization update_organization(project_id, organization_id, organization_body)
+Update an Enterprise SSO Organization
 
-
-Update a B2B SSO Organization for a project
+Updates an Enterprise SSO Organization in a project by its ID.
 
 ### Parameters
 

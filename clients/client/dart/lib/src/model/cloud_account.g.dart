@@ -10,6 +10,8 @@ class _$CloudAccount extends CloudAccount {
   @override
   final String email;
   @override
+  final bool emailVerified;
+  @override
   final String id;
   @override
   final String name;
@@ -17,9 +19,15 @@ class _$CloudAccount extends CloudAccount {
   factory _$CloudAccount([void Function(CloudAccountBuilder)? updates]) =>
       (new CloudAccountBuilder()..update(updates))._build();
 
-  _$CloudAccount._({required this.email, required this.id, required this.name})
+  _$CloudAccount._(
+      {required this.email,
+      required this.emailVerified,
+      required this.id,
+      required this.name})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(email, r'CloudAccount', 'email');
+    BuiltValueNullFieldError.checkNotNull(
+        emailVerified, r'CloudAccount', 'emailVerified');
     BuiltValueNullFieldError.checkNotNull(id, r'CloudAccount', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'CloudAccount', 'name');
   }
@@ -36,6 +44,7 @@ class _$CloudAccount extends CloudAccount {
     if (identical(other, this)) return true;
     return other is CloudAccount &&
         email == other.email &&
+        emailVerified == other.emailVerified &&
         id == other.id &&
         name == other.name;
   }
@@ -44,6 +53,7 @@ class _$CloudAccount extends CloudAccount {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, emailVerified.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jf(_$hash);
@@ -54,6 +64,7 @@ class _$CloudAccount extends CloudAccount {
   String toString() {
     return (newBuiltValueToStringHelper(r'CloudAccount')
           ..add('email', email)
+          ..add('emailVerified', emailVerified)
           ..add('id', id)
           ..add('name', name))
         .toString();
@@ -67,6 +78,11 @@ class CloudAccountBuilder
   String? _email;
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
+
+  bool? _emailVerified;
+  bool? get emailVerified => _$this._emailVerified;
+  set emailVerified(bool? emailVerified) =>
+      _$this._emailVerified = emailVerified;
 
   String? _id;
   String? get id => _$this._id;
@@ -84,6 +100,7 @@ class CloudAccountBuilder
     final $v = _$v;
     if ($v != null) {
       _email = $v.email;
+      _emailVerified = $v.emailVerified;
       _id = $v.id;
       _name = $v.name;
       _$v = null;
@@ -110,6 +127,8 @@ class CloudAccountBuilder
         new _$CloudAccount._(
             email: BuiltValueNullFieldError.checkNotNull(
                 email, r'CloudAccount', 'email'),
+            emailVerified: BuiltValueNullFieldError.checkNotNull(
+                emailVerified, r'CloudAccount', 'emailVerified'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'CloudAccount', 'id'),
             name: BuiltValueNullFieldError.checkNotNull(

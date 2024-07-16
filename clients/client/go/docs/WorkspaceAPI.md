@@ -5,7 +5,10 @@ All URIs are relative to *https://.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateWorkspace**](WorkspaceAPI.md#CreateWorkspace) | **Post** /workspaces | Create a new workspace
+[**CreateWorkspaceApiKey**](WorkspaceAPI.md#CreateWorkspaceApiKey) | **Post** /workspaces/{workspace}/tokens | Create workspace API key
+[**DeleteWorkspaceApiKey**](WorkspaceAPI.md#DeleteWorkspaceApiKey) | **Delete** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token
 [**GetWorkspace**](WorkspaceAPI.md#GetWorkspace) | **Get** /workspaces/{workspace} | Get a workspace
+[**ListWorkspaceApiKeys**](WorkspaceAPI.md#ListWorkspaceApiKeys) | **Get** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens
 [**ListWorkspaceProjects**](WorkspaceAPI.md#ListWorkspaceProjects) | **Get** /workspaces/{workspace}/projects | List all projects of a workspace
 [**ListWorkspaces**](WorkspaceAPI.md#ListWorkspaces) | **Get** /workspaces | List workspaces the user is a member of
 [**UpdateWorkspace**](WorkspaceAPI.md#UpdateWorkspace) | **Put** /workspaces/{workspace} | Update an workspace
@@ -76,6 +79,149 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateWorkspaceApiKey
+
+> WorkspaceApiKey CreateWorkspaceApiKey(ctx, workspace).CreateWorkspaceApiKeyBody(createWorkspaceApiKeyBody).Execute()
+
+Create workspace API key
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	workspace := "workspace_example" // string | The Workspace ID
+	createWorkspaceApiKeyBody := *openapiclient.NewCreateWorkspaceApiKeyBody("Name_example") // CreateWorkspaceApiKeyBody |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspaceAPI.CreateWorkspaceApiKey(context.Background(), workspace).CreateWorkspaceApiKeyBody(createWorkspaceApiKeyBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceAPI.CreateWorkspaceApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateWorkspaceApiKey`: WorkspaceApiKey
+	fmt.Fprintf(os.Stdout, "Response from `WorkspaceAPI.CreateWorkspaceApiKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workspace** | **string** | The Workspace ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorkspaceApiKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createWorkspaceApiKeyBody** | [**CreateWorkspaceApiKeyBody**](CreateWorkspaceApiKeyBody.md) |  | 
+
+### Return type
+
+[**WorkspaceApiKey**](WorkspaceApiKey.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteWorkspaceApiKey
+
+> DeleteWorkspaceApiKey(ctx, workspace, tokenId).Execute()
+
+Delete workspace API token
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	workspace := "workspace_example" // string | The Workspace ID or Workspace slug
+	tokenId := "tokenId_example" // string | The Token ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.WorkspaceAPI.DeleteWorkspaceApiKey(context.Background(), workspace, tokenId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceAPI.DeleteWorkspaceApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workspace** | **string** | The Workspace ID or Workspace slug | 
+**tokenId** | **string** | The Token ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteWorkspaceApiKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetWorkspace
 
 > Workspace GetWorkspace(ctx, workspace).Execute()
@@ -131,6 +277,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Workspace**](Workspace.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListWorkspaceApiKeys
+
+> []WorkspaceApiKey ListWorkspaceApiKeys(ctx, workspace).Execute()
+
+List a workspace's API Tokens
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	workspace := "workspace_example" // string | The Workspace ID or Workspace slug
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkspaceAPI.ListWorkspaceApiKeys(context.Background(), workspace).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkspaceAPI.ListWorkspaceApiKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListWorkspaceApiKeys`: []WorkspaceApiKey
+	fmt.Fprintf(os.Stdout, "Response from `WorkspaceAPI.ListWorkspaceApiKeys`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workspace** | **string** | The Workspace ID or Workspace slug | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorkspaceApiKeysRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**[]WorkspaceApiKey**](WorkspaceApiKey.md)
 
 ### Authorization
 

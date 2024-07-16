@@ -5,9 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountExperienceThemeStylesheet** | Pointer to **string** |  | [optional] 
+**FaviconType** | Pointer to **string** |  | [optional] 
+**FaviconUrl** | Pointer to **string** |  | [optional] 
 **KratosSelfserviceFlowsRecoveryEnabled** | Pointer to **bool** |  | [optional] 
 **KratosSelfserviceFlowsRegistrationEnabled** | Pointer to **bool** |  | [optional] 
 **KratosSelfserviceFlowsVerificationEnabled** | Pointer to **bool** |  | [optional] 
+**LogoUrl** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **OrganizationMap** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
@@ -53,6 +57,56 @@ SetAccountExperienceThemeStylesheet sets AccountExperienceThemeStylesheet field 
 `func (o *AccountExperienceConfiguration) HasAccountExperienceThemeStylesheet() bool`
 
 HasAccountExperienceThemeStylesheet returns a boolean if a field has been set.
+
+### GetFaviconType
+
+`func (o *AccountExperienceConfiguration) GetFaviconType() string`
+
+GetFaviconType returns the FaviconType field if non-nil, zero value otherwise.
+
+### GetFaviconTypeOk
+
+`func (o *AccountExperienceConfiguration) GetFaviconTypeOk() (*string, bool)`
+
+GetFaviconTypeOk returns a tuple with the FaviconType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFaviconType
+
+`func (o *AccountExperienceConfiguration) SetFaviconType(v string)`
+
+SetFaviconType sets FaviconType field to given value.
+
+### HasFaviconType
+
+`func (o *AccountExperienceConfiguration) HasFaviconType() bool`
+
+HasFaviconType returns a boolean if a field has been set.
+
+### GetFaviconUrl
+
+`func (o *AccountExperienceConfiguration) GetFaviconUrl() string`
+
+GetFaviconUrl returns the FaviconUrl field if non-nil, zero value otherwise.
+
+### GetFaviconUrlOk
+
+`func (o *AccountExperienceConfiguration) GetFaviconUrlOk() (*string, bool)`
+
+GetFaviconUrlOk returns a tuple with the FaviconUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFaviconUrl
+
+`func (o *AccountExperienceConfiguration) SetFaviconUrl(v string)`
+
+SetFaviconUrl sets FaviconUrl field to given value.
+
+### HasFaviconUrl
+
+`func (o *AccountExperienceConfiguration) HasFaviconUrl() bool`
+
+HasFaviconUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRecoveryEnabled
 
@@ -128,6 +182,56 @@ SetKratosSelfserviceFlowsVerificationEnabled sets KratosSelfserviceFlowsVerifica
 `func (o *AccountExperienceConfiguration) HasKratosSelfserviceFlowsVerificationEnabled() bool`
 
 HasKratosSelfserviceFlowsVerificationEnabled returns a boolean if a field has been set.
+
+### GetLogoUrl
+
+`func (o *AccountExperienceConfiguration) GetLogoUrl() string`
+
+GetLogoUrl returns the LogoUrl field if non-nil, zero value otherwise.
+
+### GetLogoUrlOk
+
+`func (o *AccountExperienceConfiguration) GetLogoUrlOk() (*string, bool)`
+
+GetLogoUrlOk returns a tuple with the LogoUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogoUrl
+
+`func (o *AccountExperienceConfiguration) SetLogoUrl(v string)`
+
+SetLogoUrl sets LogoUrl field to given value.
+
+### HasLogoUrl
+
+`func (o *AccountExperienceConfiguration) HasLogoUrl() bool`
+
+HasLogoUrl returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *AccountExperienceConfiguration) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *AccountExperienceConfiguration) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *AccountExperienceConfiguration) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *AccountExperienceConfiguration) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetOrganizationMap
 

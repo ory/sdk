@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **str** |  | 
+**email_verified** | **bool** |  | 
 **id** | **str** |  | 
 **name** | **str** |  | 
 **role** | **str** |  | 

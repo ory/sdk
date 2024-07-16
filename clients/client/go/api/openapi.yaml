@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.13.10
+  version: v1.14.0
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -3814,7 +3814,7 @@ paths:
       - events
   /projects/{project_id}/organizations:
     get:
-      description: List all B2B SSO Organizations for a project
+      description: Lists all Enterprise SSO organizations in a project.
       operationId: listOrganizations
       parameters:
       - description: |-
@@ -3898,10 +3898,11 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
+      summary: List all Enterprise SSO organizations
       tags:
       - project
     post:
-      description: Create a B2B SSO Organization
+      description: Creates an Enterprise SSO Organization in a project.
       operationId: createOrganization
       parameters:
       - description: |-
@@ -3958,11 +3959,13 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
+      summary: Create an Enterprise SSO Organization
       tags:
       - project
   /projects/{project_id}/organizations/{organization_id}:
     delete:
-      description: Delete a B2B SSO Organization for a project
+      description: Irrecoverably deletes an Enterprise SSO Organization in a project
+        by its ID.
       operationId: deleteOrganization
       parameters:
       - description: |-
@@ -4028,9 +4031,11 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
+      summary: Delete Enterprise SSO Organization
       tags:
       - project
     get:
+      description: Retrieves an Enterprise SSO Organization for a project by its ID
       operationId: getOrganization
       parameters:
       - description: |-
@@ -4086,11 +4091,11 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
-      summary: Returns a B2B SSO Organization for a project by its ID
+      summary: Get Enterprise SSO Organization by ID
       tags:
       - project
     put:
-      description: Update a B2B SSO Organization for a project
+      description: Updates an Enterprise SSO Organization in a project by its ID.
       operationId: updateOrganization
       parameters:
       - description: |-
@@ -4164,6 +4169,7 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
+      summary: Update an Enterprise SSO Organization
       tags:
       - project
   /projects/{project}/members:
@@ -7662,6 +7668,122 @@ paths:
       summary: List all projects of a workspace
       tags:
       - workspace
+  /workspaces/{workspace}/tokens:
+    get:
+      description: A list of all the workspace's API tokens.
+      operationId: listWorkspaceApiKeys
+      parameters:
+      - description: The Workspace ID or Workspace slug
+        explode: false
+        in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workspaceApiKeys'
+          description: workspaceApiKeys
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: List a workspace's API Tokens
+      tags:
+      - workspace
+    post:
+      description: Create an API key for a workspace.
+      operationId: createWorkspaceApiKey
+      parameters:
+      - description: The Workspace ID
+        explode: false
+        in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceApiKeyBody'
+        x-originalParamName: Body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workspaceApiKey'
+          description: workspaceApiKey
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Create workspace API key
+      tags:
+      - workspace
+  /workspaces/{workspace}/tokens/{token_id}:
+    delete:
+      description: Deletes an API token and immediately removes it.
+      operationId: deleteWorkspaceApiKey
+      parameters:
+      - description: The Workspace ID or Workspace slug
+        explode: false
+        in: path
+        name: workspace
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The Token ID
+        explode: false
+        in: path
+        name: token_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Delete workspace API token
+      tags:
+      - workspace
 components:
   responses:
     emptyResponse:
@@ -7861,17 +7983,20 @@ components:
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
           enum:
           - eu-central
           - us-east
           - us-west
+          - us
           - global
           type: string
           x-go-enum-desc: |-
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
         hydra_oauth2_allowed_top_level_claims:
           items:
@@ -8534,6 +8659,15 @@ components:
 
             This governs the "feature_flags.cacheable_sessions_max_age" setting.
           type: string
+        kratos_feature_flags_faster_session_extend:
+          description: |-
+            Configures the Ory Kratos Faster Session Extend setting
+
+            If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200.
+            Disabling this feature will be deprecated in the future.
+
+            This governs the "feature_flags.faster_session_extend" setting.
+          type: boolean
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
             Configures the Ory Kratos Session use_continue_with_transitions flag
@@ -9237,12 +9371,40 @@ components:
       title: CreateVerifiableCredentialRequestBody contains the request body to request
         a verifiable credential.
       type: object
+    CreateWorkspaceApiKeyBody:
+      example:
+        name: name
+      properties:
+        name:
+          description: |-
+            The API Key Name
+
+            A descriptive name for the API key.
+          type: string
+      required:
+      - name
+      type: object
     CreateWorkspaceMemberInviteBody:
       description: Create Workspace Invite Request Body
       properties:
         invitee_email:
           description: A email to invite
           type: string
+        role:
+          description: |-
+            The role the user will have in the workspace
+            owner WorkspaceMemberRoleOwner
+            developer WorkspaceMemberRoleDeveloper
+          enum:
+          - owner
+          - developer
+          type: string
+          x-go-enum-desc: |-
+            owner WorkspaceMemberRoleOwner
+            developer WorkspaceMemberRoleDeveloper
+      required:
+      - invitee_email
+      - role
       type: object
     CustomHostnameStatus:
       title: CustomHostnameStatus is the enumeration of valid state values in the
@@ -9849,12 +10011,20 @@ components:
       properties:
         account_experience_theme_stylesheet:
           type: string
+        favicon_type:
+          type: string
+        favicon_url:
+          type: string
         kratos_selfservice_flows_recovery_enabled:
           type: boolean
         kratos_selfservice_flows_registration_enabled:
           type: boolean
         kratos_selfservice_flows_verification_enabled:
           type: boolean
+        logo_url:
+          type: string
+        name:
+          type: string
         organization_map:
           additionalProperties:
             type: string
@@ -10176,6 +10346,8 @@ components:
       properties:
         email:
           type: string
+        email_verified:
+          type: boolean
         id:
           format: uuid
           type: string
@@ -10183,6 +10355,7 @@ components:
           type: string
       required:
       - email
+      - email_verified
       - id
       - name
       type: object
@@ -10223,6 +10396,7 @@ components:
     continueWith:
       discriminator:
         mapping:
+          redirect_browser_to: '#/components/schemas/continueWithRedirectBrowserTo'
           set_ory_session_token: '#/components/schemas/continueWithSetOrySessionToken'
           show_recovery_ui: '#/components/schemas/continueWithRecoveryUi'
           show_settings_ui: '#/components/schemas/continueWithSettingsUi'
@@ -10233,6 +10407,7 @@ components:
       - $ref: '#/components/schemas/continueWithSetOrySessionToken'
       - $ref: '#/components/schemas/continueWithSettingsUi'
       - $ref: '#/components/schemas/continueWithRecoveryUi'
+      - $ref: '#/components/schemas/continueWithRedirectBrowserTo'
     continueWithRecoveryUi:
       description: "Indicates, that the UI flow could be continued by showing a recovery\
         \ ui"
@@ -10258,10 +10433,32 @@ components:
           format: uuid
           type: string
         url:
-          description: The URL of the recovery flow
+          description: |-
+            The URL of the recovery flow
+
+            If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
           type: string
       required:
       - id
+      type: object
+    continueWithRedirectBrowserTo:
+      description: "Indicates, that the UI flow could be continued by showing a recovery\
+        \ ui"
+      properties:
+        action:
+          description: |-
+            Action will always be `redirect_browser_to`
+            redirect_browser_to ContinueWithActionRedirectBrowserToString
+          enum:
+          - redirect_browser_to
+          type: string
+          x-go-enum-desc: redirect_browser_to ContinueWithActionRedirectBrowserToString
+        redirect_browser_to:
+          description: The URL to redirect the browser to
+          type: string
+      required:
+      - action
+      - redirect_browser_to
       type: object
     continueWithSetOrySessionToken:
       description: "Indicates that a session was issued, and the application should\
@@ -10306,6 +10503,12 @@ components:
           description: The ID of the settings flow
           format: uuid
           type: string
+        url:
+          description: |-
+            The URL of the settings flow
+
+            If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
+          type: string
       required:
       - id
       type: object
@@ -10344,7 +10547,10 @@ components:
           format: uuid
           type: string
         url:
-          description: The URL of the verification flow
+          description: |-
+            The URL of the verification flow
+
+            If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
           type: string
         verifiable_address:
           description: The address that should be verified in this flow
@@ -10524,17 +10730,20 @@ components:
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
           enum:
           - eu-central
           - us-east
           - us-west
+          - us
           - global
           type: string
           x-go-enum-desc: |-
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
         name:
           description: The name of the project to be created
@@ -11579,6 +11788,12 @@ components:
         hashed_password:
           description: HashedPassword is a hash-representation of the password.
           type: string
+        use_password_migration_hook:
+          description: |-
+            UsePasswordMigrationHook is set to true if the password should be migrated
+            using the password migration hook. If set, and the HashedPassword is empty, a
+            webhook will be called during login to migrate the password.
+          type: boolean
       title: CredentialsPassword is contains the configuration for credentials of
         the type password.
       type: object
@@ -12436,21 +12651,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           - meta:
@@ -12469,21 +12687,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           method: method
@@ -12752,6 +12973,9 @@ components:
           type: string
         project_id:
           format: uuid4
+          nullable: true
+          type: string
+        role:
           nullable: true
           type: string
         status:
@@ -13029,11 +13253,13 @@ components:
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
           enum:
           - eu-central
           - us-east
           - us-west
+          - us
           - global
           readOnly: true
           type: string
@@ -13041,6 +13267,7 @@ components:
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
         hosts:
           items:
@@ -13778,6 +14005,15 @@ components:
 
             This governs the "feature_flags.cacheable_sessions_max_age" setting.
           type: string
+        kratos_feature_flags_faster_session_extend:
+          description: |-
+            Configures the Ory Kratos Faster Session Extend setting
+
+            If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200.
+            Disabling this feature will be deprecated in the future.
+
+            This governs the "feature_flags.faster_session_extend" setting.
+          type: boolean
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
             Configures the Ory Kratos Session use_continue_with_transitions flag
@@ -16561,17 +16797,20 @@ components:
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
           enum:
           - eu-central
           - us-east
           - us-west
+          - us
           - global
           type: string
           x-go-enum-desc: |-
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
         id:
           description: The project's ID.
@@ -17055,6 +17294,7 @@ components:
       type: object
     projectMember:
       example:
+        email_verified: true
         role: role
         name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -17062,6 +17302,8 @@ components:
       properties:
         email:
           type: string
+        email_verified:
+          type: boolean
         id:
           format: uuid
           type: string
@@ -17071,6 +17313,7 @@ components:
           type: string
       required:
       - email
+      - email_verified
       - id
       - name
       - role
@@ -17128,17 +17371,20 @@ components:
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
           enum:
           - eu-central
           - us-east
           - us-west
+          - us
           - global
           type: string
           x-go-enum-desc: |-
             eu-central EUCentral
             us-east USEast
             us-west USWest
+            us US
             global Global
         hosts:
           items:
@@ -17294,6 +17540,7 @@ components:
             concierge_onboarding ConciergeOnboarding
             credit Credit
             data_location_global DataLocationGlobal
+            data_location_us DataLocationUS
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             data_location_regional DataLocationRegional  Required Features
@@ -17323,6 +17570,7 @@ components:
           - concierge_onboarding
           - credit
           - data_location_global
+          - data_location_us
           - m2m_token_issuance
           - permission_checks
           - data_location_regional
@@ -17353,6 +17601,7 @@ components:
             concierge_onboarding ConciergeOnboarding
             credit Credit
             data_location_global DataLocationGlobal
+            data_location_us DataLocationUS
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             data_location_regional DataLocationRegional  Required Features
@@ -17431,21 +17680,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           - meta:
@@ -17464,21 +17716,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           method: method
@@ -17754,21 +18009,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           - meta:
@@ -17787,21 +18045,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           method: method
@@ -18444,21 +18705,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           - meta:
@@ -18477,21 +18741,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           method: method
@@ -19373,21 +19640,24 @@ components:
             text: text
             type: info
           attributes:
-            node_type: text
             autocomplete: email
+            maxlength: 6
             onclick: onclick
-            name: name
             pattern: pattern
-            disabled: true
+            onclickTrigger: oryWebAuthnRegistration
             label:
               context: "{}"
               id: 0
               text: text
               type: info
             type: text
-            value: ""
             required: true
             onload: onload
+            node_type: text
+            onloadTrigger: oryWebAuthnRegistration
+            name: name
+            disabled: true
+            value: ""
           type: text
           group: default
         - meta:
@@ -19406,21 +19676,24 @@ components:
             text: text
             type: info
           attributes:
-            node_type: text
             autocomplete: email
+            maxlength: 6
             onclick: onclick
-            name: name
             pattern: pattern
-            disabled: true
+            onclickTrigger: oryWebAuthnRegistration
             label:
               context: "{}"
               id: 0
               text: text
               type: info
             type: text
-            value: ""
             required: true
             onload: onload
+            node_type: text
+            onloadTrigger: oryWebAuthnRegistration
+            name: name
+            disabled: true
+            value: ""
           type: text
           group: default
         method: method
@@ -19476,21 +19749,24 @@ components:
           text: text
           type: info
         attributes:
-          node_type: text
           autocomplete: email
+          maxlength: 6
           onclick: onclick
-          name: name
           pattern: pattern
-          disabled: true
+          onclickTrigger: oryWebAuthnRegistration
           label:
             context: "{}"
             id: 0
             text: text
             type: info
           type: text
-          value: ""
           required: true
           onload: onload
+          node_type: text
+          onloadTrigger: oryWebAuthnRegistration
+          name: name
+          disabled: true
+          value: ""
         type: text
         group: default
       properties:
@@ -19509,6 +19785,7 @@ components:
             lookup_secret LookupGroup
             webauthn WebAuthnGroup
             passkey PasskeyGroup
+            identifier_first IdentifierFirstGroup
           enum:
           - default
           - password
@@ -19520,6 +19797,7 @@ components:
           - lookup_secret
           - webauthn
           - passkey
+          - identifier_first
           type: string
           x-go-enum-desc: |-
             default DefaultGroup
@@ -19532,6 +19810,7 @@ components:
             lookup_secret LookupGroup
             webauthn WebAuthnGroup
             passkey PasskeyGroup
+            identifier_first IdentifierFirstGroup
         messages:
           items:
             $ref: '#/components/schemas/uiText'
@@ -19677,21 +19956,24 @@ components:
     uiNodeInputAttributes:
       description: InputAttributes represents the attributes of an input node
       example:
-        node_type: text
         autocomplete: email
+        maxlength: 6
         onclick: onclick
-        name: name
         pattern: pattern
-        disabled: true
+        onclickTrigger: oryWebAuthnRegistration
         label:
           context: "{}"
           id: 0
           text: text
           type: info
         type: text
-        value: ""
         required: true
         onload: onload
+        node_type: text
+        onloadTrigger: oryWebAuthnRegistration
+        name: name
+        disabled: true
+        value: ""
       properties:
         autocomplete:
           description: |-
@@ -19722,6 +20004,10 @@ components:
           type: boolean
         label:
           $ref: '#/components/schemas/uiText'
+        maxlength:
+          description: MaxLength may contain the input's maximum length.
+          format: int64
+          type: integer
         name:
           description: The input's element name.
           type: string
@@ -19751,12 +20037,68 @@ components:
           description: |-
             OnClick may contain javascript which should be executed on click. This is primarily
             used for WebAuthn.
+
+            Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead.
           type: string
+        onclickTrigger:
+          description: |-
+            OnClickTrigger may contain a WebAuthn trigger which should be executed on click.
+
+            The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login.
+            oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration
+            oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin
+            oryPasskeyLogin WebAuthnTriggersPasskeyLogin
+            oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit
+            oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration
+            oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+          enum:
+          - oryWebAuthnRegistration
+          - oryWebAuthnLogin
+          - oryPasskeyLogin
+          - oryPasskeyLoginAutocompleteInit
+          - oryPasskeyRegistration
+          - oryPasskeySettingsRegistration
+          type: string
+          x-go-enum-desc: |-
+            oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration
+            oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin
+            oryPasskeyLogin WebAuthnTriggersPasskeyLogin
+            oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit
+            oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration
+            oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
         onload:
           description: |-
             OnLoad may contain javascript which should be executed on load. This is primarily
             used for WebAuthn.
+
+            Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead.
           type: string
+        onloadTrigger:
+          description: |-
+            OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.
+
+            The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login.
+            oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration
+            oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin
+            oryPasskeyLogin WebAuthnTriggersPasskeyLogin
+            oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit
+            oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration
+            oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+          enum:
+          - oryWebAuthnRegistration
+          - oryWebAuthnLogin
+          - oryPasskeyLogin
+          - oryPasskeyLoginAutocompleteInit
+          - oryPasskeyRegistration
+          - oryPasskeySettingsRegistration
+          type: string
+          x-go-enum-desc: |-
+            oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration
+            oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin
+            oryPasskeyLogin WebAuthnTriggersPasskeyLogin
+            oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit
+            oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration
+            oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
         pattern:
           description: The input's pattern.
           type: string
@@ -20019,6 +20361,7 @@ components:
       discriminator:
         mapping:
           code: '#/components/schemas/updateLoginFlowWithCodeMethod'
+          identifier_first: '#/components/schemas/updateLoginFlowWithIdentifierFirstMethod'
           lookup_secret: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
           oidc: '#/components/schemas/updateLoginFlowWithOidcMethod'
           passkey: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
@@ -20034,6 +20377,7 @@ components:
       - $ref: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithCodeMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
+      - $ref: '#/components/schemas/updateLoginFlowWithIdentifierFirstMethod'
     updateLoginFlowWithCodeMethod:
       description: Update Login flow using the code method
       properties:
@@ -20060,6 +20404,28 @@ components:
           type: object
       required:
       - csrf_token
+      - method
+      type: object
+    updateLoginFlowWithIdentifierFirstMethod:
+      description: Update Login Flow with Multi-Step Method
+      properties:
+        csrf_token:
+          description: Sending the anti-csrf token is only required for browser login
+            flows.
+          type: string
+        identifier:
+          description: Identifier is the email or username of the user trying to log
+            in.
+          type: string
+        method:
+          description: Method should be set to "password" when logging in using the
+            identifier and password strategy.
+          type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - identifier
       - method
       type: object
     updateLoginFlowWithLookupSecretMethod:
@@ -20333,8 +20699,9 @@ components:
         mapping:
           code: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
           oidc: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
-          passKey: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
+          passkey: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
           password: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
+          profile: '#/components/schemas/updateRegistrationFlowWithProfileMethod'
           webauthn: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
         propertyName: method
       oneOf:
@@ -20343,6 +20710,7 @@ components:
       - $ref: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
+      - $ref: '#/components/schemas/updateRegistrationFlowWithProfileMethod'
     updateRegistrationFlowWithCodeMethod:
       description: Update Registration Flow with Code Method
       properties:
@@ -21045,21 +21413,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           - meta:
@@ -21078,21 +21449,24 @@ components:
               text: text
               type: info
             attributes:
-              node_type: text
               autocomplete: email
+              maxlength: 6
               onclick: onclick
-              name: name
               pattern: pattern
-              disabled: true
+              onclickTrigger: oryWebAuthnRegistration
               label:
                 context: "{}"
                 id: 0
                 text: text
                 type: info
               type: text
-              value: ""
               required: true
               onload: onload
+              node_type: text
+              onloadTrigger: oryWebAuthnRegistration
+              name: name
+              disabled: true
+              value: ""
             type: text
             group: default
           method: method
@@ -21225,6 +21599,14 @@ components:
       - updated_at
       type: object
     workspaceApiKey:
+      example:
+        workspace_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        owner_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        value: value
       properties:
         created_at:
           description: The API key's creation date

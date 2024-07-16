@@ -12,12 +12,16 @@ part 'cloud_account.g.dart';
 ///
 /// Properties:
 /// * [email] 
+/// * [emailVerified] 
 /// * [id] 
 /// * [name] 
 @BuiltValue()
 abstract class CloudAccount implements Built<CloudAccount, CloudAccountBuilder> {
   @BuiltValueField(wireName: r'email')
   String get email;
+
+  @BuiltValueField(wireName: r'email_verified')
+  bool get emailVerified;
 
   @BuiltValueField(wireName: r'id')
   String get id;
@@ -52,6 +56,11 @@ class _$CloudAccountSerializer implements PrimitiveSerializer<CloudAccount> {
     yield serializers.serialize(
       object.email,
       specifiedType: const FullType(String),
+    );
+    yield r'email_verified';
+    yield serializers.serialize(
+      object.emailVerified,
+      specifiedType: const FullType(bool),
     );
     yield r'id';
     yield serializers.serialize(
@@ -92,6 +101,13 @@ class _$CloudAccountSerializer implements PrimitiveSerializer<CloudAccount> {
             specifiedType: const FullType(String),
           ) as String;
           result.email = valueDes;
+          break;
+        case r'email_verified':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.emailVerified = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(

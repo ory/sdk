@@ -103,6 +103,8 @@ class _$MemberInvite extends MemberInvite {
   @override
   final String? projectId;
   @override
+  final String? role;
+  @override
   final MemberInviteStatusEnum status;
   @override
   final DateTime updatedAt;
@@ -120,6 +122,7 @@ class _$MemberInvite extends MemberInvite {
       required this.ownerEmail,
       required this.ownerId,
       this.projectId,
+      this.role,
       required this.status,
       required this.updatedAt,
       this.workspaceId})
@@ -155,6 +158,7 @@ class _$MemberInvite extends MemberInvite {
         ownerEmail == other.ownerEmail &&
         ownerId == other.ownerId &&
         projectId == other.projectId &&
+        role == other.role &&
         status == other.status &&
         updatedAt == other.updatedAt &&
         workspaceId == other.workspaceId;
@@ -170,6 +174,7 @@ class _$MemberInvite extends MemberInvite {
     _$hash = $jc(_$hash, ownerEmail.hashCode);
     _$hash = $jc(_$hash, ownerId.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
+    _$hash = $jc(_$hash, role.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jc(_$hash, workspaceId.hashCode);
@@ -187,6 +192,7 @@ class _$MemberInvite extends MemberInvite {
           ..add('ownerEmail', ownerEmail)
           ..add('ownerId', ownerId)
           ..add('projectId', projectId)
+          ..add('role', role)
           ..add('status', status)
           ..add('updatedAt', updatedAt)
           ..add('workspaceId', workspaceId))
@@ -226,6 +232,10 @@ class MemberInviteBuilder
   String? get projectId => _$this._projectId;
   set projectId(String? projectId) => _$this._projectId = projectId;
 
+  String? _role;
+  String? get role => _$this._role;
+  set role(String? role) => _$this._role = role;
+
   MemberInviteStatusEnum? _status;
   MemberInviteStatusEnum? get status => _$this._status;
   set status(MemberInviteStatusEnum? status) => _$this._status = status;
@@ -252,6 +262,7 @@ class MemberInviteBuilder
       _ownerEmail = $v.ownerEmail;
       _ownerId = $v.ownerId;
       _projectId = $v.projectId;
+      _role = $v.role;
       _status = $v.status;
       _updatedAt = $v.updatedAt;
       _workspaceId = $v.workspaceId;
@@ -289,6 +300,7 @@ class MemberInviteBuilder
             ownerId: BuiltValueNullFieldError.checkNotNull(
                 ownerId, r'MemberInvite', 'ownerId'),
             projectId: projectId,
+            role: role,
             status: BuiltValueNullFieldError.checkNotNull(
                 status, r'MemberInvite', 'status'),
             updatedAt: BuiltValueNullFieldError.checkNotNull(

@@ -5,7 +5,10 @@ All URIs are relative to *https://.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_workspace**](WorkspaceApi.md#create_workspace) | **POST** /workspaces | Create a new workspace
+[**create_workspace_api_key**](WorkspaceApi.md#create_workspace_api_key) | **POST** /workspaces/{workspace}/tokens | Create workspace API key
+[**delete_workspace_api_key**](WorkspaceApi.md#delete_workspace_api_key) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token
 [**get_workspace**](WorkspaceApi.md#get_workspace) | **GET** /workspaces/{workspace} | Get a workspace
+[**list_workspace_api_keys**](WorkspaceApi.md#list_workspace_api_keys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens
 [**list_workspace_projects**](WorkspaceApi.md#list_workspace_projects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace
 [**list_workspaces**](WorkspaceApi.md#list_workspaces) | **GET** /workspaces | List workspaces the user is a member of
 [**update_workspace**](WorkspaceApi.md#update_workspace) | **PUT** /workspaces/{workspace} | Update an workspace
@@ -93,6 +96,166 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_workspace_api_key**
+> WorkspaceApiKey create_workspace_api_key(workspace, create_workspace_api_key_body=create_workspace_api_key_body)
+
+Create workspace API key
+
+Create an API key for a workspace.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.models.create_workspace_api_key_body import CreateWorkspaceApiKeyBody
+from ory_client.models.workspace_api_key import WorkspaceApiKey
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.WorkspaceApi(api_client)
+    workspace = 'workspace_example' # str | The Workspace ID
+    create_workspace_api_key_body = ory_client.CreateWorkspaceApiKeyBody() # CreateWorkspaceApiKeyBody |  (optional)
+
+    try:
+        # Create workspace API key
+        api_response = api_instance.create_workspace_api_key(workspace, create_workspace_api_key_body=create_workspace_api_key_body)
+        print("The response of WorkspaceApi->create_workspace_api_key:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkspaceApi->create_workspace_api_key: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspace** | **str**| The Workspace ID | 
+ **create_workspace_api_key_body** | [**CreateWorkspaceApiKeyBody**](CreateWorkspaceApiKeyBody.md)|  | [optional] 
+
+### Return type
+
+[**WorkspaceApiKey**](WorkspaceApiKey.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | workspaceApiKey |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_workspace_api_key**
+> delete_workspace_api_key(workspace, token_id)
+
+Delete workspace API token
+
+Deletes an API token and immediately removes it.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.WorkspaceApi(api_client)
+    workspace = 'workspace_example' # str | The Workspace ID or Workspace slug
+    token_id = 'token_id_example' # str | The Token ID
+
+    try:
+        # Delete workspace API token
+        api_instance.delete_workspace_api_key(workspace, token_id)
+    except Exception as e:
+        print("Exception when calling WorkspaceApi->delete_workspace_api_key: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspace** | **str**| The Workspace ID or Workspace slug | 
+ **token_id** | **str**| The Token ID | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_workspace**
 > Workspace get_workspace(workspace)
 
@@ -172,6 +335,85 @@ Name | Type | Description  | Notes
 **401** | errorGeneric |  -  |
 **403** | errorGeneric |  -  |
 **500** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_workspace_api_keys**
+> List[WorkspaceApiKey] list_workspace_api_keys(workspace)
+
+List a workspace's API Tokens
+
+A list of all the workspace's API tokens.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.models.workspace_api_key import WorkspaceApiKey
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.WorkspaceApi(api_client)
+    workspace = 'workspace_example' # str | The Workspace ID or Workspace slug
+
+    try:
+        # List a workspace's API Tokens
+        api_response = api_instance.list_workspace_api_keys(workspace)
+        print("The response of WorkspaceApi->list_workspace_api_keys:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkspaceApi->list_workspace_api_keys: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspace** | **str**| The Workspace ID or Workspace slug | 
+
+### Return type
+
+[**List[WorkspaceApiKey]**](WorkspaceApiKey.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | workspaceApiKeys |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

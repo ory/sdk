@@ -27,6 +27,7 @@ docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
+docs/ContinueWithRedirectBrowserTo.md
 docs/ContinueWithSetOrySessionToken.md
 docs/ContinueWithSettingsUi.md
 docs/ContinueWithSettingsUiFlow.md
@@ -51,6 +52,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
+docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspaceSubscriptionBody.md
@@ -240,6 +242,7 @@ docs/UiText.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
+docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasskeyMethod.md
@@ -320,6 +323,7 @@ lib/ory-client/models/consistency_request_parameters.rb
 lib/ory-client/models/continue_with.rb
 lib/ory-client/models/continue_with_recovery_ui.rb
 lib/ory-client/models/continue_with_recovery_ui_flow.rb
+lib/ory-client/models/continue_with_redirect_browser_to.rb
 lib/ory-client/models/continue_with_set_ory_session_token.rb
 lib/ory-client/models/continue_with_settings_ui.rb
 lib/ory-client/models/continue_with_settings_ui_flow.rb
@@ -343,6 +347,7 @@ lib/ory-client/models/create_relationship_body.rb
 lib/ory-client/models/create_subscription_body.rb
 lib/ory-client/models/create_subscription_common.rb
 lib/ory-client/models/create_verifiable_credential_request_body.rb
+lib/ory-client/models/create_workspace_api_key_body.rb
 lib/ory-client/models/create_workspace_body.rb
 lib/ory-client/models/create_workspace_member_invite_body.rb
 lib/ory-client/models/create_workspace_subscription_body.rb
@@ -522,6 +527,7 @@ lib/ory-client/models/ui_text.rb
 lib/ory-client/models/update_identity_body.rb
 lib/ory-client/models/update_login_flow_body.rb
 lib/ory-client/models/update_login_flow_with_code_method.rb
+lib/ory-client/models/update_login_flow_with_identifier_first_method.rb
 lib/ory-client/models/update_login_flow_with_lookup_secret_method.rb
 lib/ory-client/models/update_login_flow_with_oidc_method.rb
 lib/ory-client/models/update_login_flow_with_passkey_method.rb
@@ -596,6 +602,7 @@ spec/models/cloud_account_spec.rb
 spec/models/consistency_request_parameters_spec.rb
 spec/models/continue_with_recovery_ui_flow_spec.rb
 spec/models/continue_with_recovery_ui_spec.rb
+spec/models/continue_with_redirect_browser_to_spec.rb
 spec/models/continue_with_set_ory_session_token_spec.rb
 spec/models/continue_with_settings_ui_flow_spec.rb
 spec/models/continue_with_settings_ui_spec.rb
@@ -620,6 +627,7 @@ spec/models/create_relationship_body_spec.rb
 spec/models/create_subscription_body_spec.rb
 spec/models/create_subscription_common_spec.rb
 spec/models/create_verifiable_credential_request_body_spec.rb
+spec/models/create_workspace_api_key_body_spec.rb
 spec/models/create_workspace_body_spec.rb
 spec/models/create_workspace_member_invite_body_spec.rb
 spec/models/create_workspace_subscription_body_spec.rb
@@ -799,6 +807,7 @@ spec/models/ui_text_spec.rb
 spec/models/update_identity_body_spec.rb
 spec/models/update_login_flow_body_spec.rb
 spec/models/update_login_flow_with_code_method_spec.rb
+spec/models/update_login_flow_with_identifier_first_method_spec.rb
 spec/models/update_login_flow_with_lookup_secret_method_spec.rb
 spec/models/update_login_flow_with_oidc_method_spec.rb
 spec/models/update_login_flow_with_passkey_method_spec.rb

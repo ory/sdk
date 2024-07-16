@@ -15,7 +15,7 @@ part 'project_metadata.g.dart';
 /// Properties:
 /// * [createdAt] - The Project's Creation Date
 /// * [environment] - The environment of the project. prod Production stage Staging dev Development
-/// * [homeRegion] - The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+/// * [homeRegion] - The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global
 /// * [hosts] 
 /// * [id] - The project's ID.
 /// * [name] - The project's name if set
@@ -37,10 +37,10 @@ abstract class ProjectMetadata implements Built<ProjectMetadata, ProjectMetadata
   ProjectMetadataEnvironmentEnum get environment;
   // enum environmentEnum {  prod,  stage,  dev,  };
 
-  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueField(wireName: r'home_region')
   ProjectMetadataHomeRegionEnum get homeRegion;
-  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  global,  };
+  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  us,  global,  };
 
   @BuiltValueField(wireName: r'hosts')
   BuiltList<String> get hosts;
@@ -342,16 +342,19 @@ class ProjectMetadataEnvironmentEnum extends EnumClass {
 
 class ProjectMetadataHomeRegionEnum extends EnumClass {
 
-  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'eu-central')
   static const ProjectMetadataHomeRegionEnum euCentral = _$projectMetadataHomeRegionEnum_euCentral;
-  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-east')
   static const ProjectMetadataHomeRegionEnum usEast = _$projectMetadataHomeRegionEnum_usEast;
-  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-west')
   static const ProjectMetadataHomeRegionEnum usWest = _$projectMetadataHomeRegionEnum_usWest;
-  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global
+  @BuiltValueEnumConst(wireName: r'us')
+  static const ProjectMetadataHomeRegionEnum us = _$projectMetadataHomeRegionEnum_us;
+  /// The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'global')
   static const ProjectMetadataHomeRegionEnum global = _$projectMetadataHomeRegionEnum_global;
 

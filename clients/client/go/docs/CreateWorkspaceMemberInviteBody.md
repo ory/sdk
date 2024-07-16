@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InviteeEmail** | Pointer to **string** | A email to invite | [optional] 
+**InviteeEmail** | **string** | A email to invite | 
+**Role** | **string** | The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper | 
 
 ## Methods
 
 ### NewCreateWorkspaceMemberInviteBody
 
-`func NewCreateWorkspaceMemberInviteBody() *CreateWorkspaceMemberInviteBody`
+`func NewCreateWorkspaceMemberInviteBody(inviteeEmail string, role string, ) *CreateWorkspaceMemberInviteBody`
 
 NewCreateWorkspaceMemberInviteBody instantiates a new CreateWorkspaceMemberInviteBody object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +45,26 @@ and a boolean to check if the value has been set.
 
 SetInviteeEmail sets InviteeEmail field to given value.
 
-### HasInviteeEmail
 
-`func (o *CreateWorkspaceMemberInviteBody) HasInviteeEmail() bool`
+### GetRole
 
-HasInviteeEmail returns a boolean if a field has been set.
+`func (o *CreateWorkspaceMemberInviteBody) GetRole() string`
+
+GetRole returns the Role field if non-nil, zero value otherwise.
+
+### GetRoleOk
+
+`func (o *CreateWorkspaceMemberInviteBody) GetRoleOk() (*string, bool)`
+
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRole
+
+`func (o *CreateWorkspaceMemberInviteBody) SetRole(v string)`
+
+SetRole sets Role field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

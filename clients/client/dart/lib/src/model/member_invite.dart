@@ -19,6 +19,7 @@ part 'member_invite.g.dart';
 /// * [ownerEmail] - The invite owner's email Usually the project's owner email
 /// * [ownerId] - The invite owner's ID Usually the project's owner
 /// * [projectId] 
+/// * [role] 
 /// * [status] - The invite's status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED
 /// * [updatedAt] - Last Time Project's Revision was Updated
 /// * [workspaceId] 
@@ -49,6 +50,9 @@ abstract class MemberInvite implements Built<MemberInvite, MemberInviteBuilder> 
 
   @BuiltValueField(wireName: r'project_id')
   String? get projectId;
+
+  @BuiltValueField(wireName: r'role')
+  String? get role;
 
   /// The invite's status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED
   @BuiltValueField(wireName: r'status')
@@ -121,6 +125,13 @@ class _$MemberInviteSerializer implements PrimitiveSerializer<MemberInvite> {
       yield r'project_id';
       yield serializers.serialize(
         object.projectId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.role != null) {
+      yield r'role';
+      yield serializers.serialize(
+        object.role,
         specifiedType: const FullType.nullable(String),
       );
     }
@@ -214,6 +225,14 @@ class _$MemberInviteSerializer implements PrimitiveSerializer<MemberInvite> {
           ) as String?;
           if (valueDes == null) continue;
           result.projectId = valueDes;
+          break;
+        case r'role':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.role = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(

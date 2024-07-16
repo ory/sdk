@@ -4,30 +4,30 @@ All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**CreateOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations |  |
+| [**CreateOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
 | [**CreateProject**](ProjectApi.md#createproject) | **POST** /projects | Create a Project |
 | [**CreateProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API token |
-| [**DeleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} |  |
+| [**DeleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
 | [**DeleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
-| [**GetOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID |
+| [**GetOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
 | [**GetProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project |
 | [**GetProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project |
-| [**ListOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations |  |
+| [**ListOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
 | [**ListProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**ListProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects |
 | [**PatchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**PurgeProject**](ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
 | [**RemoveProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**SetProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
-| [**UpdateOrganization**](ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} |  |
+| [**UpdateOrganization**](ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization |
 
 <a id="createorganization"></a>
 # **CreateOrganization**
 > ClientOrganization CreateOrganization (string projectId, ClientOrganizationBody? clientOrganizationBody = null)
 
+Create an Enterprise SSO Organization
 
-
-Create a B2B SSO Organization
+Creates an Enterprise SSO Organization in a project.
 
 ### Example
 ```csharp
@@ -54,6 +54,7 @@ namespace Example
 
             try
             {
+                // Create an Enterprise SSO Organization
                 ClientOrganization result = apiInstance.CreateOrganization(projectId, clientOrganizationBody);
                 Debug.WriteLine(result);
             }
@@ -74,6 +75,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Create an Enterprise SSO Organization
     ApiResponse<ClientOrganization> response = apiInstance.CreateOrganizationWithHttpInfo(projectId, clientOrganizationBody);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -318,9 +320,9 @@ catch (ApiException e)
 # **DeleteOrganization**
 > void DeleteOrganization (string projectId, string organizationId)
 
+Delete Enterprise SSO Organization
 
-
-Delete a B2B SSO Organization for a project
+Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 ```csharp
@@ -347,6 +349,7 @@ namespace Example
 
             try
             {
+                // Delete Enterprise SSO Organization
                 apiInstance.DeleteOrganization(projectId, organizationId);
             }
             catch (ApiException  e)
@@ -366,6 +369,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Delete Enterprise SSO Organization
     apiInstance.DeleteOrganizationWithHttpInfo(projectId, organizationId);
 }
 catch (ApiException e)
@@ -506,7 +510,9 @@ void (empty response body)
 # **GetOrganization**
 > ClientGetOrganizationResponse GetOrganization (string projectId, string organizationId)
 
-Returns a B2B SSO Organization for a project by its ID
+Get Enterprise SSO Organization by ID
+
+Retrieves an Enterprise SSO Organization for a project by its ID
 
 ### Example
 ```csharp
@@ -533,7 +539,7 @@ namespace Example
 
             try
             {
-                // Returns a B2B SSO Organization for a project by its ID
+                // Get Enterprise SSO Organization by ID
                 ClientGetOrganizationResponse result = apiInstance.GetOrganization(projectId, organizationId);
                 Debug.WriteLine(result);
             }
@@ -554,7 +560,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Returns a B2B SSO Organization for a project by its ID
+    // Get Enterprise SSO Organization by ID
     ApiResponse<ClientGetOrganizationResponse> response = apiInstance.GetOrganizationWithHttpInfo(projectId, organizationId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -798,9 +804,9 @@ catch (ApiException e)
 # **ListOrganizations**
 > ClientListOrganizationsResponse ListOrganizations (string projectId, long? pageSize = null, string? pageToken = null, string? domain = null)
 
+List all Enterprise SSO organizations
 
-
-List all B2B SSO Organizations for a project
+Lists all Enterprise SSO organizations in a project.
 
 ### Example
 ```csharp
@@ -829,6 +835,7 @@ namespace Example
 
             try
             {
+                // List all Enterprise SSO organizations
                 ClientListOrganizationsResponse result = apiInstance.ListOrganizations(projectId, pageSize, pageToken, domain);
                 Debug.WriteLine(result);
             }
@@ -849,6 +856,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // List all Enterprise SSO organizations
     ApiResponse<ClientListOrganizationsResponse> response = apiInstance.ListOrganizationsWithHttpInfo(projectId, pageSize, pageToken, domain);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1478,9 +1486,9 @@ catch (ApiException e)
 # **UpdateOrganization**
 > ClientOrganization UpdateOrganization (string projectId, string organizationId, ClientOrganizationBody? clientOrganizationBody = null)
 
+Update an Enterprise SSO Organization
 
-
-Update a B2B SSO Organization for a project
+Updates an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 ```csharp
@@ -1508,6 +1516,7 @@ namespace Example
 
             try
             {
+                // Update an Enterprise SSO Organization
                 ClientOrganization result = apiInstance.UpdateOrganization(projectId, organizationId, clientOrganizationBody);
                 Debug.WriteLine(result);
             }
@@ -1528,6 +1537,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Update an Enterprise SSO Organization
     ApiResponse<ClientOrganization> response = apiInstance.UpdateOrganizationWithHttpInfo(projectId, organizationId, clientOrganizationBody);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

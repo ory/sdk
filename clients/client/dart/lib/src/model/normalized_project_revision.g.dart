@@ -554,6 +554,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosFeatureFlagsCacheableSessionsMaxAge;
   @override
+  final bool? kratosFeatureFlagsFasterSessionExtend;
+  @override
   final bool? kratosFeatureFlagsUseContinueWithTransitions;
   @override
   final BuiltList<NormalizedProjectRevisionIdentitySchema>?
@@ -882,6 +884,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosCourierTemplatesVerificationValidEmailSubject,
       this.kratosFeatureFlagsCacheableSessions,
       this.kratosFeatureFlagsCacheableSessionsMaxAge,
+      this.kratosFeatureFlagsFasterSessionExtend,
       this.kratosFeatureFlagsUseContinueWithTransitions,
       this.kratosIdentitySchemas,
       this.kratosOauth2ProviderHeaders,
@@ -1172,6 +1175,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosFeatureFlagsCacheableSessions &&
         kratosFeatureFlagsCacheableSessionsMaxAge ==
             other.kratosFeatureFlagsCacheableSessionsMaxAge &&
+        kratosFeatureFlagsFasterSessionExtend ==
+            other.kratosFeatureFlagsFasterSessionExtend &&
         kratosFeatureFlagsUseContinueWithTransitions ==
             other.kratosFeatureFlagsUseContinueWithTransitions &&
         kratosIdentitySchemas == other.kratosIdentitySchemas &&
@@ -1525,6 +1530,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         _$hash, kratosCourierTemplatesVerificationValidEmailSubject.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessions.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessionsMaxAge.hashCode);
+    _$hash = $jc(_$hash, kratosFeatureFlagsFasterSessionExtend.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsUseContinueWithTransitions.hashCode);
     _$hash = $jc(_$hash, kratosIdentitySchemas.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderHeaders.hashCode);
@@ -1882,6 +1888,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosFeatureFlagsCacheableSessions)
           ..add('kratosFeatureFlagsCacheableSessionsMaxAge',
               kratosFeatureFlagsCacheableSessionsMaxAge)
+          ..add('kratosFeatureFlagsFasterSessionExtend',
+              kratosFeatureFlagsFasterSessionExtend)
           ..add('kratosFeatureFlagsUseContinueWithTransitions',
               kratosFeatureFlagsUseContinueWithTransitions)
           ..add('kratosIdentitySchemas', kratosIdentitySchemas)
@@ -2818,6 +2826,14 @@ class NormalizedProjectRevisionBuilder
           String? kratosFeatureFlagsCacheableSessionsMaxAge) =>
       _$this._kratosFeatureFlagsCacheableSessionsMaxAge =
           kratosFeatureFlagsCacheableSessionsMaxAge;
+
+  bool? _kratosFeatureFlagsFasterSessionExtend;
+  bool? get kratosFeatureFlagsFasterSessionExtend =>
+      _$this._kratosFeatureFlagsFasterSessionExtend;
+  set kratosFeatureFlagsFasterSessionExtend(
+          bool? kratosFeatureFlagsFasterSessionExtend) =>
+      _$this._kratosFeatureFlagsFasterSessionExtend =
+          kratosFeatureFlagsFasterSessionExtend;
 
   bool? _kratosFeatureFlagsUseContinueWithTransitions;
   bool? get kratosFeatureFlagsUseContinueWithTransitions =>
@@ -3822,6 +3838,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosFeatureFlagsCacheableSessions;
       _kratosFeatureFlagsCacheableSessionsMaxAge =
           $v.kratosFeatureFlagsCacheableSessionsMaxAge;
+      _kratosFeatureFlagsFasterSessionExtend =
+          $v.kratosFeatureFlagsFasterSessionExtend;
       _kratosFeatureFlagsUseContinueWithTransitions =
           $v.kratosFeatureFlagsUseContinueWithTransitions;
       _kratosIdentitySchemas = $v.kratosIdentitySchemas?.toBuilder();
@@ -4192,6 +4210,7 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsCacheableSessionsMaxAge: kratosFeatureFlagsCacheableSessionsMaxAge,
+              kratosFeatureFlagsFasterSessionExtend: kratosFeatureFlagsFasterSessionExtend,
               kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,

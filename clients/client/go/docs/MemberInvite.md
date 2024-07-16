@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **OwnerEmail** | **string** | The invite owner&#39;s email Usually the project&#39;s owner email | 
 **OwnerId** | **string** | The invite owner&#39;s ID Usually the project&#39;s owner | 
 **ProjectId** | Pointer to **NullableString** |  | [optional] 
+**Role** | Pointer to **NullableString** |  | [optional] 
 **Status** | **string** | The invite&#39;s status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED | 
 **UpdatedAt** | **time.Time** | Last Time Project&#39;s Revision was Updated | [readonly] 
 **WorkspaceId** | Pointer to **NullableString** |  | [optional] 
@@ -204,6 +205,41 @@ HasProjectId returns a boolean if a field has been set.
 `func (o *MemberInvite) UnsetProjectId()`
 
 UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
+### GetRole
+
+`func (o *MemberInvite) GetRole() string`
+
+GetRole returns the Role field if non-nil, zero value otherwise.
+
+### GetRoleOk
+
+`func (o *MemberInvite) GetRoleOk() (*string, bool)`
+
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRole
+
+`func (o *MemberInvite) SetRole(v string)`
+
+SetRole sets Role field to given value.
+
+### HasRole
+
+`func (o *MemberInvite) HasRole() bool`
+
+HasRole returns a boolean if a field has been set.
+
+### SetRoleNil
+
+`func (o *MemberInvite) SetRoleNil(b bool)`
+
+ SetRoleNil sets the value for Role to be an explicit nil
+
+### UnsetRole
+`func (o *MemberInvite) UnsetRole()`
+
+UnsetRole ensures that no value is present for Role, not even an explicit nil
 ### GetStatus
 
 `func (o *MemberInvite) GetStatus() string`

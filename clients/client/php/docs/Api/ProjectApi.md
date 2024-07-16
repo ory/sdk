@@ -4,22 +4,22 @@ All URIs are relative to https://.projects.oryapis.com, except if the operation 
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**createOrganization()**](ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations |  |
+| [**createOrganization()**](ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
 | [**createProject()**](ProjectApi.md#createProject) | **POST** /projects | Create a Project |
 | [**createProjectApiKey()**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token |
-| [**deleteOrganization()**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} |  |
+| [**deleteOrganization()**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
 | [**deleteProjectApiKey()**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
-| [**getOrganization()**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID |
+| [**getOrganization()**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
 | [**getProject()**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
 | [**getProjectMembers()**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
-| [**listOrganizations()**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations |  |
+| [**listOrganizations()**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
 | [**listProjectApiKeys()**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**listProjects()**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects |
 | [**patchProject()**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**purgeProject()**](ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
 | [**removeProjectMember()**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**setProject()**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
-| [**updateOrganization()**](ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} |  |
+| [**updateOrganization()**](ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization |
 
 
 ## `createOrganization()`
@@ -29,9 +29,9 @@ createOrganization($projectId, $organizationBody): \Ory\Client\Model\Organizatio
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
+Create an Enterprise SSO Organization
 
-
-Create a B2B SSO Organization
+Creates an Enterprise SSO Organization in a project.
 
 ### Example
 
@@ -234,9 +234,9 @@ deleteOrganization($projectId, $organizationId)
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
+Delete Enterprise SSO Organization
 
-
-Delete a B2B SSO Organization for a project
+Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 
@@ -370,7 +370,9 @@ getOrganization($projectId, $organizationId): \Ory\Client\Model\GetOrganizationR
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
-Returns a B2B SSO Organization for a project by its ID
+Get Enterprise SSO Organization by ID
+
+Retrieves an Enterprise SSO Organization for a project by its ID
 
 ### Example
 
@@ -571,9 +573,9 @@ listOrganizations($projectId, $pageSize, $pageToken, $domain): \Ory\Client\Model
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
+List all Enterprise SSO organizations
 
-
-List all B2B SSO Organizations for a project
+Lists all Enterprise SSO organizations in a project.
 
 ### Example
 
@@ -1047,9 +1049,9 @@ updateOrganization($projectId, $organizationId, $organizationBody): \Ory\Client\
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
+Update an Enterprise SSO Organization
 
-
-Update a B2B SSO Organization for a project
+Updates an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 

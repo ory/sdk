@@ -7,13 +7,16 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/api_util.dart';
+import 'package:ory_client/src/model/create_workspace_api_key_body.dart';
 import 'package:ory_client/src/model/create_workspace_body.dart';
 import 'package:ory_client/src/model/error_generic.dart';
 import 'package:ory_client/src/model/list_workspace_projects.dart';
 import 'package:ory_client/src/model/list_workspaces.dart';
 import 'package:ory_client/src/model/update_workspace_body.dart';
 import 'package:ory_client/src/model/workspace.dart';
+import 'package:ory_client/src/model/workspace_api_key.dart';
 
 class WorkspaceApi {
 
@@ -124,6 +127,164 @@ class WorkspaceApi {
     );
   }
 
+  /// Create workspace API key
+  /// Create an API key for a workspace.
+  ///
+  /// Parameters:
+  /// * [workspace] - The Workspace ID
+  /// * [createWorkspaceApiKeyBody] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [WorkspaceApiKey] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<WorkspaceApiKey>> createWorkspaceApiKey({ 
+    required String workspace,
+    CreateWorkspaceApiKeyBody? createWorkspaceApiKeyBody,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/workspaces/{workspace}/tokens'.replaceAll('{' r'workspace' '}', encodeQueryParameter(_serializers, workspace, const FullType(String)).toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(CreateWorkspaceApiKeyBody);
+      _bodyData = createWorkspaceApiKeyBody == null ? null : _serializers.serialize(createWorkspaceApiKeyBody, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    WorkspaceApiKey? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(WorkspaceApiKey),
+      ) as WorkspaceApiKey;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<WorkspaceApiKey>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Delete workspace API token
+  /// Deletes an API token and immediately removes it.
+  ///
+  /// Parameters:
+  /// * [workspace] - The Workspace ID or Workspace slug
+  /// * [tokenId] - The Token ID
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future]
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> deleteWorkspaceApiKey({ 
+    required String workspace,
+    required String tokenId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/workspaces/{workspace}/tokens/{token_id}'.replaceAll('{' r'workspace' '}', encodeQueryParameter(_serializers, workspace, const FullType(String)).toString()).replaceAll('{' r'token_id' '}', encodeQueryParameter(_serializers, tokenId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    return _response;
+  }
+
   /// Get a workspace
   /// Any workspace member can access this endpoint.
   ///
@@ -194,6 +355,87 @@ class WorkspaceApi {
     }
 
     return Response<Workspace>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// List a workspace&#39;s API Tokens
+  /// A list of all the workspace&#39;s API tokens.
+  ///
+  /// Parameters:
+  /// * [workspace] - The Workspace ID or Workspace slug
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BuiltList<WorkspaceApiKey>] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BuiltList<WorkspaceApiKey>>> listWorkspaceApiKeys({ 
+    required String workspace,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/workspaces/{workspace}/tokens'.replaceAll('{' r'workspace' '}', encodeQueryParameter(_serializers, workspace, const FullType(String)).toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<WorkspaceApiKey>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(WorkspaceApiKey)]),
+      ) as BuiltList<WorkspaceApiKey>;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<WorkspaceApiKey>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

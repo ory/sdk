@@ -119,6 +119,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosCourierTemplatesVerificationValidEmailSubject] - Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
 /// * [kratosFeatureFlagsCacheableSessions] - Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
 /// * [kratosFeatureFlagsCacheableSessionsMaxAge] - Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
+/// * [kratosFeatureFlagsFasterSessionExtend] - Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
 /// * [kratosFeatureFlagsUseContinueWithTransitions] - Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 /// * [kratosIdentitySchemas] 
 /// * [kratosOauth2ProviderHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
@@ -616,6 +617,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_cacheable_sessions_max_age')
   String? get kratosFeatureFlagsCacheableSessionsMaxAge;
+
+  /// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
+  @BuiltValueField(wireName: r'kratos_feature_flags_faster_session_extend')
+  bool? get kratosFeatureFlagsFasterSessionExtend;
 
   /// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_use_continue_with_transitions')
@@ -1752,6 +1757,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosFeatureFlagsCacheableSessionsMaxAge,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosFeatureFlagsFasterSessionExtend != null) {
+      yield r'kratos_feature_flags_faster_session_extend';
+      yield serializers.serialize(
+        object.kratosFeatureFlagsFasterSessionExtend,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosFeatureFlagsUseContinueWithTransitions != null) {
@@ -3197,6 +3209,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosFeatureFlagsCacheableSessionsMaxAge = valueDes;
+          break;
+        case r'kratos_feature_flags_faster_session_extend':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosFeatureFlagsFasterSessionExtend = valueDes;
           break;
         case r'kratos_feature_flags_use_continue_with_transitions':
           final valueDes = serializers.deserialize(

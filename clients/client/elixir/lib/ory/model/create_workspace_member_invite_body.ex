@@ -8,11 +8,13 @@ defmodule Ory.Model.CreateWorkspaceMemberInviteBody do
 
   @derive Jason.Encoder
   defstruct [
-    :invitee_email
+    :invitee_email,
+    :role
   ]
 
   @type t :: %__MODULE__{
-    :invitee_email => String.t | nil
+    :invitee_email => String.t,
+    :role => String.t
   }
 
   def decode(value) do

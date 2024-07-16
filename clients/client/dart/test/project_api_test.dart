@@ -7,7 +7,9 @@ void main() {
   final instance = OryClient().getProjectApi();
 
   group(ProjectApi, () {
-    // Create a B2B SSO Organization
+    // Create an Enterprise SSO Organization
+    //
+    // Creates an Enterprise SSO Organization in a project.
     //
     //Future<Organization> createOrganization(String projectId, { OrganizationBody organizationBody }) async
     test('test createOrganization', () async {
@@ -32,7 +34,9 @@ void main() {
       // TODO
     });
 
-    // Delete a B2B SSO Organization for a project
+    // Delete Enterprise SSO Organization
+    //
+    // Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
     //
     //Future deleteOrganization(String projectId, String organizationId) async
     test('test deleteOrganization', () async {
@@ -48,7 +52,9 @@ void main() {
       // TODO
     });
 
-    // Returns a B2B SSO Organization for a project by its ID
+    // Get Enterprise SSO Organization by ID
+    //
+    // Retrieves an Enterprise SSO Organization for a project by its ID
     //
     //Future<GetOrganizationResponse> getOrganization(String projectId, String organizationId) async
     test('test getOrganization', () async {
@@ -73,7 +79,9 @@ void main() {
       // TODO
     });
 
-    // List all B2B SSO Organizations for a project
+    // List all Enterprise SSO organizations
+    //
+    // Lists all Enterprise SSO organizations in a project.
     //
     //Future<ListOrganizationsResponse> listOrganizations(String projectId, { int pageSize, String pageToken, String domain }) async
     test('test listOrganizations', () async {
@@ -134,7 +142,9 @@ void main() {
       // TODO
     });
 
-    // Update a B2B SSO Organization for a project
+    // Update an Enterprise SSO Organization
+    //
+    // Updates an Enterprise SSO Organization in a project by its ID.
     //
     //Future<Organization> updateOrganization(String projectId, String organizationId, { OrganizationBody organizationBody }) async
     test('test updateOrganization', () async {

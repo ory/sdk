@@ -10,7 +10,8 @@ defmodule Ory.Api.Project do
   import Ory.RequestBuilder
 
   @doc """
-  Create a B2B SSO Organization
+  Create an Enterprise SSO Organization
+  Creates an Enterprise SSO Organization in a project.
 
   ### Parameters
 
@@ -128,7 +129,8 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
-  Delete a B2B SSO Organization for a project
+  Delete Enterprise SSO Organization
+  Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
   ### Parameters
 
@@ -195,7 +197,8 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
-  Returns a B2B SSO Organization for a project by its ID
+  Get Enterprise SSO Organization by ID
+  Retrieves an Enterprise SSO Organization for a project by its ID
 
   ### Parameters
 
@@ -295,7 +298,8 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
-  List all B2B SSO Organizations for a project
+  List all Enterprise SSO organizations
+  Lists all Enterprise SSO organizations in a project.
 
   ### Parameters
 
@@ -553,7 +557,8 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
-  Update a B2B SSO Organization for a project
+  Update an Enterprise SSO Organization
+  Updates an Enterprise SSO Organization in a project by its ID.
 
   ### Parameters
 

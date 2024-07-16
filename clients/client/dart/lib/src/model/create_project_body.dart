@@ -13,7 +13,7 @@ part 'create_project_body.g.dart';
 ///
 /// Properties:
 /// * [environment] - The environment of the project. prod Production stage Staging dev Development
-/// * [homeRegion] - Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global
+/// * [homeRegion] - Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global
 /// * [name] - The name of the project to be created
 /// * [workspaceId] - The workspace to create the project in.
 @BuiltValue()
@@ -23,10 +23,10 @@ abstract class CreateProjectBody implements Built<CreateProjectBody, CreateProje
   CreateProjectBodyEnvironmentEnum get environment;
   // enum environmentEnum {  prod,  stage,  dev,  };
 
-  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global
+  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueField(wireName: r'home_region')
   CreateProjectBodyHomeRegionEnum? get homeRegion;
-  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  global,  };
+  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  us,  global,  };
 
   /// The name of the project to be created
   @BuiltValueField(wireName: r'name')
@@ -185,16 +185,19 @@ class CreateProjectBodyEnvironmentEnum extends EnumClass {
 
 class CreateProjectBodyHomeRegionEnum extends EnumClass {
 
-  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global
+  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'eu-central')
   static const CreateProjectBodyHomeRegionEnum euCentral = _$createProjectBodyHomeRegionEnum_euCentral;
-  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global
+  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-east')
   static const CreateProjectBodyHomeRegionEnum usEast = _$createProjectBodyHomeRegionEnum_usEast;
-  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global
+  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-west')
   static const CreateProjectBodyHomeRegionEnum usWest = _$createProjectBodyHomeRegionEnum_usWest;
-  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global
+  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  @BuiltValueEnumConst(wireName: r'us')
+  static const CreateProjectBodyHomeRegionEnum us = _$createProjectBodyHomeRegionEnum_us;
+  /// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'global')
   static const CreateProjectBodyHomeRegionEnum global = _$createProjectBodyHomeRegionEnum_global;
 

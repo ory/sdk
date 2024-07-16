@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **csrf_token** | **str** | Sending the anti-csrf token is only required for browser login flows. | 
-**identifier** | **str** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | 
-**method** | **str** | Method should be set to \&quot;passkey\&quot; when logging in using the Passkey strategy. | 
+**identifier** | **str** | Identifier is the email or username of the user trying to log in. | 
+**method** | **str** | Method should be set to \&quot;password\&quot; when logging in using the identifier and password strategy. | 
 **password** | **str** | The user&#39;s password. | 
 **password_identifier** | **str** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] 

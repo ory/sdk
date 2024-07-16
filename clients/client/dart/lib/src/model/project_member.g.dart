@@ -10,6 +10,8 @@ class _$ProjectMember extends ProjectMember {
   @override
   final String email;
   @override
+  final bool emailVerified;
+  @override
   final String id;
   @override
   final String name;
@@ -21,11 +23,14 @@ class _$ProjectMember extends ProjectMember {
 
   _$ProjectMember._(
       {required this.email,
+      required this.emailVerified,
       required this.id,
       required this.name,
       required this.role})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(email, r'ProjectMember', 'email');
+    BuiltValueNullFieldError.checkNotNull(
+        emailVerified, r'ProjectMember', 'emailVerified');
     BuiltValueNullFieldError.checkNotNull(id, r'ProjectMember', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'ProjectMember', 'name');
     BuiltValueNullFieldError.checkNotNull(role, r'ProjectMember', 'role');
@@ -43,6 +48,7 @@ class _$ProjectMember extends ProjectMember {
     if (identical(other, this)) return true;
     return other is ProjectMember &&
         email == other.email &&
+        emailVerified == other.emailVerified &&
         id == other.id &&
         name == other.name &&
         role == other.role;
@@ -52,6 +58,7 @@ class _$ProjectMember extends ProjectMember {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, emailVerified.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, role.hashCode);
@@ -63,6 +70,7 @@ class _$ProjectMember extends ProjectMember {
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectMember')
           ..add('email', email)
+          ..add('emailVerified', emailVerified)
           ..add('id', id)
           ..add('name', name)
           ..add('role', role))
@@ -77,6 +85,11 @@ class ProjectMemberBuilder
   String? _email;
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
+
+  bool? _emailVerified;
+  bool? get emailVerified => _$this._emailVerified;
+  set emailVerified(bool? emailVerified) =>
+      _$this._emailVerified = emailVerified;
 
   String? _id;
   String? get id => _$this._id;
@@ -98,6 +111,7 @@ class ProjectMemberBuilder
     final $v = _$v;
     if ($v != null) {
       _email = $v.email;
+      _emailVerified = $v.emailVerified;
       _id = $v.id;
       _name = $v.name;
       _role = $v.role;
@@ -125,6 +139,8 @@ class ProjectMemberBuilder
         new _$ProjectMember._(
             email: BuiltValueNullFieldError.checkNotNull(
                 email, r'ProjectMember', 'email'),
+            emailVerified: BuiltValueNullFieldError.checkNotNull(
+                emailVerified, r'ProjectMember', 'emailVerified'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'ProjectMember', 'id'),
             name: BuiltValueNullFieldError.checkNotNull(

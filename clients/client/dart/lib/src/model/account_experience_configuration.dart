@@ -13,14 +13,24 @@ part 'account_experience_configuration.g.dart';
 ///
 /// Properties:
 /// * [accountExperienceThemeStylesheet] 
+/// * [faviconType] 
+/// * [faviconUrl] 
 /// * [kratosSelfserviceFlowsRecoveryEnabled] 
 /// * [kratosSelfserviceFlowsRegistrationEnabled] 
 /// * [kratosSelfserviceFlowsVerificationEnabled] 
+/// * [logoUrl] 
+/// * [name] 
 /// * [organizationMap] 
 @BuiltValue()
 abstract class AccountExperienceConfiguration implements Built<AccountExperienceConfiguration, AccountExperienceConfigurationBuilder> {
   @BuiltValueField(wireName: r'account_experience_theme_stylesheet')
   String? get accountExperienceThemeStylesheet;
+
+  @BuiltValueField(wireName: r'favicon_type')
+  String? get faviconType;
+
+  @BuiltValueField(wireName: r'favicon_url')
+  String? get faviconUrl;
 
   @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_enabled')
   bool? get kratosSelfserviceFlowsRecoveryEnabled;
@@ -30,6 +40,12 @@ abstract class AccountExperienceConfiguration implements Built<AccountExperience
 
   @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_enabled')
   bool? get kratosSelfserviceFlowsVerificationEnabled;
+
+  @BuiltValueField(wireName: r'logo_url')
+  String? get logoUrl;
+
+  @BuiltValueField(wireName: r'name')
+  String? get name;
 
   @BuiltValueField(wireName: r'organization_map')
   BuiltMap<String, String>? get organizationMap;
@@ -64,6 +80,20 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
         specifiedType: const FullType(String),
       );
     }
+    if (object.faviconType != null) {
+      yield r'favicon_type';
+      yield serializers.serialize(
+        object.faviconType,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.faviconUrl != null) {
+      yield r'favicon_url';
+      yield serializers.serialize(
+        object.faviconUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.kratosSelfserviceFlowsRecoveryEnabled != null) {
       yield r'kratos_selfservice_flows_recovery_enabled';
       yield serializers.serialize(
@@ -83,6 +113,20 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.kratosSelfserviceFlowsVerificationEnabled,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.logoUrl != null) {
+      yield r'logo_url';
+      yield serializers.serialize(
+        object.logoUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
       );
     }
     if (object.organizationMap != null) {
@@ -122,6 +166,20 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
           ) as String;
           result.accountExperienceThemeStylesheet = valueDes;
           break;
+        case r'favicon_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.faviconType = valueDes;
+          break;
+        case r'favicon_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.faviconUrl = valueDes;
+          break;
         case r'kratos_selfservice_flows_recovery_enabled':
           final valueDes = serializers.deserialize(
             value,
@@ -142,6 +200,20 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(bool),
           ) as bool;
           result.kratosSelfserviceFlowsVerificationEnabled = valueDes;
+          break;
+        case r'logo_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.logoUrl = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
           break;
         case r'organization_map':
           final valueDes = serializers.deserialize(

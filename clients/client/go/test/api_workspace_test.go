@@ -34,6 +34,34 @@ func Test_client_WorkspaceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test WorkspaceAPIService CreateWorkspaceApiKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var workspace string
+
+		resp, httpRes, err := apiClient.WorkspaceAPI.CreateWorkspaceApiKey(context.Background(), workspace).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test WorkspaceAPIService DeleteWorkspaceApiKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var workspace string
+		var tokenId string
+
+		httpRes, err := apiClient.WorkspaceAPI.DeleteWorkspaceApiKey(context.Background(), workspace, tokenId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test WorkspaceAPIService GetWorkspace", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -41,6 +69,20 @@ func Test_client_WorkspaceAPIService(t *testing.T) {
 		var workspace string
 
 		resp, httpRes, err := apiClient.WorkspaceAPI.GetWorkspace(context.Background(), workspace).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test WorkspaceAPIService ListWorkspaceApiKeys", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var workspace string
+
+		resp, httpRes, err := apiClient.WorkspaceAPI.ListWorkspaceApiKeys(context.Background(), workspace).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

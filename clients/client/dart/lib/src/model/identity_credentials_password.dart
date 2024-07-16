@@ -12,11 +12,16 @@ part 'identity_credentials_password.g.dart';
 ///
 /// Properties:
 /// * [hashedPassword] - HashedPassword is a hash-representation of the password.
+/// * [usePasswordMigrationHook] - UsePasswordMigrationHook is set to true if the password should be migrated using the password migration hook. If set, and the HashedPassword is empty, a webhook will be called during login to migrate the password.
 @BuiltValue()
 abstract class IdentityCredentialsPassword implements Built<IdentityCredentialsPassword, IdentityCredentialsPasswordBuilder> {
   /// HashedPassword is a hash-representation of the password.
   @BuiltValueField(wireName: r'hashed_password')
   String? get hashedPassword;
+
+  /// UsePasswordMigrationHook is set to true if the password should be migrated using the password migration hook. If set, and the HashedPassword is empty, a webhook will be called during login to migrate the password.
+  @BuiltValueField(wireName: r'use_password_migration_hook')
+  bool? get usePasswordMigrationHook;
 
   IdentityCredentialsPassword._();
 
@@ -48,6 +53,13 @@ class _$IdentityCredentialsPasswordSerializer implements PrimitiveSerializer<Ide
         specifiedType: const FullType(String),
       );
     }
+    if (object.usePasswordMigrationHook != null) {
+      yield r'use_password_migration_hook';
+      yield serializers.serialize(
+        object.usePasswordMigrationHook,
+        specifiedType: const FullType(bool),
+      );
+    }
   }
 
   @override
@@ -77,6 +89,13 @@ class _$IdentityCredentialsPasswordSerializer implements PrimitiveSerializer<Ide
             specifiedType: const FullType(String),
           ) as String;
           result.hashedPassword = valueDes;
+          break;
+        case r'use_password_migration_hook':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.usePasswordMigrationHook = valueDes;
           break;
         default:
           unhandled.add(key);

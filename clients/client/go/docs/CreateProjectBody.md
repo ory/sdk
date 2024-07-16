@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
-**HomeRegion** | Pointer to **string** | Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global | [optional] 
+**HomeRegion** | Pointer to **string** | Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global | [optional] 
 **Name** | **string** | The name of the project to be created | 
 **WorkspaceId** | Pointer to **string** | The workspace to create the project in. | [optional] 
 

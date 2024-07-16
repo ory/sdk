@@ -50,6 +50,76 @@ defmodule Ory.Api.Workspace do
   end
 
   @doc """
+  Create workspace API key
+  Create an API key for a workspace.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `workspace` (String.t): The Workspace ID
+  - `opts` (keyword): Optional parameters
+    - `:body` (CreateWorkspaceApiKeyBody): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.WorkspaceApiKey.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec create_workspace_api_key(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.WorkspaceApiKey.t} | {:error, Tesla.Env.t}
+  def create_workspace_api_key(connection, workspace, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:post)
+      |> url("/workspaces/#{workspace}/tokens")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, Ory.Model.WorkspaceApiKey},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  Delete workspace API token
+  Deletes an API token and immediately removes it.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `workspace` (String.t): The Workspace ID or Workspace slug
+  - `token_id` (String.t): The Token ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, nil}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec delete_workspace_api_key(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
+  def delete_workspace_api_key(connection, workspace, token_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:delete)
+      |> url("/workspaces/#{workspace}/tokens/#{token_id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {204, false},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Get a workspace
   Any workspace member can access this endpoint.
 
@@ -80,6 +150,37 @@ defmodule Ory.Api.Workspace do
       {401, Ory.Model.ErrorGeneric},
       {403, Ory.Model.ErrorGeneric},
       {500, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  List a workspace's API Tokens
+  A list of all the workspace's API tokens.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `workspace` (String.t): The Workspace ID or Workspace slug
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, [%WorkspaceApiKey{}, ...]}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec list_workspace_api_keys(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, [Ory.Model.WorkspaceApiKey.t]} | {:error, Tesla.Env.t}
+  def list_workspace_api_keys(connection, workspace, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/workspaces/#{workspace}/tokens")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.WorkspaceApiKey},
       {:default, Ory.Model.ErrorGeneric}
     ])
   end

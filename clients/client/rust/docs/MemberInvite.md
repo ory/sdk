@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **owner_email** | **String** | The invite owner's email Usually the project's owner email | 
 **owner_id** | **String** | The invite owner's ID Usually the project's owner | 
 **project_id** | Option<**String**> |  | [optional]
+**role** | Option<**String**> |  | [optional]
 **status** | **String** | The invite's status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED | 
 **updated_at** | **String** | Last Time Project's Revision was Updated | [readonly]
 **workspace_id** | Option<**String**> |  | [optional]

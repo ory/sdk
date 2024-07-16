@@ -24,6 +24,7 @@ docs/ClientConsistencyRequestParameters.md
 docs/ClientContinueWith.md
 docs/ClientContinueWithRecoveryUi.md
 docs/ClientContinueWithRecoveryUiFlow.md
+docs/ClientContinueWithRedirectBrowserTo.md
 docs/ClientContinueWithSetOrySessionToken.md
 docs/ClientContinueWithSettingsUi.md
 docs/ClientContinueWithSettingsUiFlow.md
@@ -47,6 +48,7 @@ docs/ClientCreateRelationshipBody.md
 docs/ClientCreateSubscriptionBody.md
 docs/ClientCreateSubscriptionCommon.md
 docs/ClientCreateVerifiableCredentialRequestBody.md
+docs/ClientCreateWorkspaceApiKeyBody.md
 docs/ClientCreateWorkspaceBody.md
 docs/ClientCreateWorkspaceMemberInviteBody.md
 docs/ClientCreateWorkspaceSubscriptionBody.md
@@ -226,6 +228,7 @@ docs/ClientUiText.md
 docs/ClientUpdateIdentityBody.md
 docs/ClientUpdateLoginFlowBody.md
 docs/ClientUpdateLoginFlowWithCodeMethod.md
+docs/ClientUpdateLoginFlowWithIdentifierFirstMethod.md
 docs/ClientUpdateLoginFlowWithLookupSecretMethod.md
 docs/ClientUpdateLoginFlowWithOidcMethod.md
 docs/ClientUpdateLoginFlowWithPasskeyMethod.md
@@ -312,6 +315,7 @@ src/Ory.Client.Test/Model/ClientCloudAccountTests.cs
 src/Ory.Client.Test/Model/ClientConsistencyRequestParametersTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithRecoveryUiFlowTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithRecoveryUiTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithRedirectBrowserToTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithSetOrySessionTokenTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithSettingsUiFlowTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithSettingsUiTests.cs
@@ -336,6 +340,7 @@ src/Ory.Client.Test/Model/ClientCreateRelationshipBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateSubscriptionBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateSubscriptionCommonTests.cs
 src/Ory.Client.Test/Model/ClientCreateVerifiableCredentialRequestBodyTests.cs
+src/Ory.Client.Test/Model/ClientCreateWorkspaceApiKeyBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceMemberInviteBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceSubscriptionBodyTests.cs
@@ -515,6 +520,7 @@ src/Ory.Client.Test/Model/ClientUiTextTests.cs
 src/Ory.Client.Test/Model/ClientUpdateIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithCodeMethodTests.cs
+src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithIdentifierFirstMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithLookupSecretMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithOidcMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithPasskeyMethodTests.cs
@@ -609,6 +615,7 @@ src/Ory.Client/Model/ClientConsistencyRequestParameters.cs
 src/Ory.Client/Model/ClientContinueWith.cs
 src/Ory.Client/Model/ClientContinueWithRecoveryUi.cs
 src/Ory.Client/Model/ClientContinueWithRecoveryUiFlow.cs
+src/Ory.Client/Model/ClientContinueWithRedirectBrowserTo.cs
 src/Ory.Client/Model/ClientContinueWithSetOrySessionToken.cs
 src/Ory.Client/Model/ClientContinueWithSettingsUi.cs
 src/Ory.Client/Model/ClientContinueWithSettingsUiFlow.cs
@@ -632,6 +639,7 @@ src/Ory.Client/Model/ClientCreateRelationshipBody.cs
 src/Ory.Client/Model/ClientCreateSubscriptionBody.cs
 src/Ory.Client/Model/ClientCreateSubscriptionCommon.cs
 src/Ory.Client/Model/ClientCreateVerifiableCredentialRequestBody.cs
+src/Ory.Client/Model/ClientCreateWorkspaceApiKeyBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceMemberInviteBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceSubscriptionBody.cs
@@ -811,6 +819,7 @@ src/Ory.Client/Model/ClientUiText.cs
 src/Ory.Client/Model/ClientUpdateIdentityBody.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowBody.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithCodeMethod.cs
+src/Ory.Client/Model/ClientUpdateLoginFlowWithIdentifierFirstMethod.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithLookupSecretMethod.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithOidcMethod.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithPasskeyMethod.cs

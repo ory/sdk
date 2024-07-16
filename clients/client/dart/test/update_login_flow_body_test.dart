@@ -13,13 +13,13 @@ void main() {
       // TODO
     });
 
-    // Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow.
+    // Identifier is the email or username of the user trying to log in.
     // String identifier
     test('to test the property `identifier`', () async {
       // TODO
     });
 
-    // Method should be set to \"passkey\" when logging in using the Passkey strategy.
+    // Method should be set to \"password\" when logging in using the identifier and password strategy.
     // String method
     test('to test the property `method`', () async {
       // TODO

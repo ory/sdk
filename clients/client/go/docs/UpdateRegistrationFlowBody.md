@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CsrfToken** | Pointer to **string** | CSRFToken is the anti-CSRF token | [optional] 
-**Method** | **string** | Method  Should be set to \&quot;passkey\&quot; when trying to add, update, or remove a Passkey. | 
+**CsrfToken** | Pointer to **string** | The Anti-CSRF Token  This token is only required when performing browser flows. | [optional] 
+**Method** | **string** | Method  Should be set to profile when trying to update a profile. | 
 **Password** | **string** | Password to sign the user up with | 
-**Traits** | **map[string]interface{}** | The identity&#39;s traits | 
+**Traits** | **map[string]interface{}** | Traits  The identity&#39;s traits. | 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 **IdToken** | Pointer to **string** | IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider&#39;s public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the &#x60;traits&#x60; field to populate the identity&#39;s traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple | [optional] 
 **IdTokenNonce** | Pointer to **string** | IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and is required. | [optional] 
@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Code** | Pointer to **string** | The OTP Code sent to the user | [optional] 
 **Resend** | Pointer to **string** | Resend restarts the flow with a new code | [optional] 
 **PasskeyRegister** | Pointer to **string** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] 
+**Screen** | Pointer to **string** | Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. | [optional] 
 
 ## Methods
 
@@ -367,6 +368,31 @@ SetPasskeyRegister sets PasskeyRegister field to given value.
 `func (o *UpdateRegistrationFlowBody) HasPasskeyRegister() bool`
 
 HasPasskeyRegister returns a boolean if a field has been set.
+
+### GetScreen
+
+`func (o *UpdateRegistrationFlowBody) GetScreen() string`
+
+GetScreen returns the Screen field if non-nil, zero value otherwise.
+
+### GetScreenOk
+
+`func (o *UpdateRegistrationFlowBody) GetScreenOk() (*string, bool)`
+
+GetScreenOk returns a tuple with the Screen field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScreen
+
+`func (o *UpdateRegistrationFlowBody) SetScreen(v string)`
+
+SetScreen sets Screen field to given value.
+
+### HasScreen
+
+`func (o *UpdateRegistrationFlowBody) HasScreen() bool`
+
+HasScreen returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -5,7 +5,10 @@ All URIs are relative to *https://.projects.oryapis.com*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CreateWorkspace**](WorkspaceApi.md#createworkspace) | **POST** /workspaces | Create a new workspace |
+| [**CreateWorkspaceApiKey**](WorkspaceApi.md#createworkspaceapikey) | **POST** /workspaces/{workspace}/tokens | Create workspace API key |
+| [**DeleteWorkspaceApiKey**](WorkspaceApi.md#deleteworkspaceapikey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token |
 | [**GetWorkspace**](WorkspaceApi.md#getworkspace) | **GET** /workspaces/{workspace} | Get a workspace |
+| [**ListWorkspaceApiKeys**](WorkspaceApi.md#listworkspaceapikeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens |
 | [**ListWorkspaceProjects**](WorkspaceApi.md#listworkspaceprojects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace |
 | [**ListWorkspaces**](WorkspaceApi.md#listworkspaces) | **GET** /workspaces | List workspaces the user is a member of |
 | [**UpdateWorkspace**](WorkspaceApi.md#updateworkspace) | **PUT** /workspaces/{workspace} | Update an workspace |
@@ -107,6 +110,196 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="createworkspaceapikey"></a>
+# **CreateWorkspaceApiKey**
+> ClientWorkspaceApiKey CreateWorkspaceApiKey (string workspace, ClientCreateWorkspaceApiKeyBody? clientCreateWorkspaceApiKeyBody = null)
+
+Create workspace API key
+
+Create an API key for a workspace.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateWorkspaceApiKeyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new WorkspaceApi(config);
+            var workspace = "workspace_example";  // string | The Workspace ID
+            var clientCreateWorkspaceApiKeyBody = new ClientCreateWorkspaceApiKeyBody?(); // ClientCreateWorkspaceApiKeyBody? |  (optional) 
+
+            try
+            {
+                // Create workspace API key
+                ClientWorkspaceApiKey result = apiInstance.CreateWorkspaceApiKey(workspace, clientCreateWorkspaceApiKeyBody);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WorkspaceApi.CreateWorkspaceApiKey: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateWorkspaceApiKeyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create workspace API key
+    ApiResponse<ClientWorkspaceApiKey> response = apiInstance.CreateWorkspaceApiKeyWithHttpInfo(workspace, clientCreateWorkspaceApiKeyBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WorkspaceApi.CreateWorkspaceApiKeyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **workspace** | **string** | The Workspace ID |  |
+| **clientCreateWorkspaceApiKeyBody** | [**ClientCreateWorkspaceApiKeyBody?**](ClientCreateWorkspaceApiKeyBody?.md) |  | [optional]  |
+
+### Return type
+
+[**ClientWorkspaceApiKey**](ClientWorkspaceApiKey.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | workspaceApiKey |  -  |
+| **0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteworkspaceapikey"></a>
+# **DeleteWorkspaceApiKey**
+> void DeleteWorkspaceApiKey (string workspace, string tokenId)
+
+Delete workspace API token
+
+Deletes an API token and immediately removes it.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class DeleteWorkspaceApiKeyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new WorkspaceApi(config);
+            var workspace = "workspace_example";  // string | The Workspace ID or Workspace slug
+            var tokenId = "tokenId_example";  // string | The Token ID
+
+            try
+            {
+                // Delete workspace API token
+                apiInstance.DeleteWorkspaceApiKey(workspace, tokenId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WorkspaceApi.DeleteWorkspaceApiKey: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteWorkspaceApiKeyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete workspace API token
+    apiInstance.DeleteWorkspaceApiKeyWithHttpInfo(workspace, tokenId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WorkspaceApi.DeleteWorkspaceApiKeyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **workspace** | **string** | The Workspace ID or Workspace slug |  |
+| **tokenId** | **string** | The Token ID |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getworkspace"></a>
 # **GetWorkspace**
 > ClientWorkspace GetWorkspace (string workspace)
@@ -202,6 +395,101 @@ catch (ApiException e)
 | **401** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
 | **500** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listworkspaceapikeys"></a>
+# **ListWorkspaceApiKeys**
+> List&lt;ClientWorkspaceApiKey&gt; ListWorkspaceApiKeys (string workspace)
+
+List a workspace's API Tokens
+
+A list of all the workspace's API tokens.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ListWorkspaceApiKeysExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new WorkspaceApi(config);
+            var workspace = "workspace_example";  // string | The Workspace ID or Workspace slug
+
+            try
+            {
+                // List a workspace's API Tokens
+                List<ClientWorkspaceApiKey> result = apiInstance.ListWorkspaceApiKeys(workspace);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WorkspaceApi.ListWorkspaceApiKeys: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListWorkspaceApiKeysWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List a workspace's API Tokens
+    ApiResponse<List<ClientWorkspaceApiKey>> response = apiInstance.ListWorkspaceApiKeysWithHttpInfo(workspace);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WorkspaceApi.ListWorkspaceApiKeysWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **workspace** | **string** | The Workspace ID or Workspace slug |  |
+
+### Return type
+
+[**List&lt;ClientWorkspaceApiKey&gt;**](ClientWorkspaceApiKey.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | workspaceApiKeys |  -  |
 | **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

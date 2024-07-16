@@ -34,6 +34,7 @@ import 'package:ory_client/src/model/consistency_request_parameters.dart';
 import 'package:ory_client/src/model/continue_with.dart';
 import 'package:ory_client/src/model/continue_with_recovery_ui.dart';
 import 'package:ory_client/src/model/continue_with_recovery_ui_flow.dart';
+import 'package:ory_client/src/model/continue_with_redirect_browser_to.dart';
 import 'package:ory_client/src/model/continue_with_set_ory_session_token.dart';
 import 'package:ory_client/src/model/continue_with_settings_ui.dart';
 import 'package:ory_client/src/model/continue_with_settings_ui_flow.dart';
@@ -57,6 +58,7 @@ import 'package:ory_client/src/model/create_relationship_body.dart';
 import 'package:ory_client/src/model/create_subscription_body.dart';
 import 'package:ory_client/src/model/create_subscription_common.dart';
 import 'package:ory_client/src/model/create_verifiable_credential_request_body.dart';
+import 'package:ory_client/src/model/create_workspace_api_key_body.dart';
 import 'package:ory_client/src/model/create_workspace_body.dart';
 import 'package:ory_client/src/model/create_workspace_member_invite_body.dart';
 import 'package:ory_client/src/model/create_workspace_subscription_body.dart';
@@ -236,6 +238,7 @@ import 'package:ory_client/src/model/ui_text.dart';
 import 'package:ory_client/src/model/update_identity_body.dart';
 import 'package:ory_client/src/model/update_login_flow_body.dart';
 import 'package:ory_client/src/model/update_login_flow_with_code_method.dart';
+import 'package:ory_client/src/model/update_login_flow_with_identifier_first_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_lookup_secret_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_oidc_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_passkey_method.dart';
@@ -300,6 +303,7 @@ part 'serializers.g.dart';
   ContinueWith,
   ContinueWithRecoveryUi,
   ContinueWithRecoveryUiFlow,
+  ContinueWithRedirectBrowserTo,
   ContinueWithSetOrySessionToken,
   ContinueWithSettingsUi,
   ContinueWithSettingsUiFlow,
@@ -323,6 +327,7 @@ part 'serializers.g.dart';
   CreateSubscriptionBody,
   CreateSubscriptionCommon,
   CreateVerifiableCredentialRequestBody,
+  CreateWorkspaceApiKeyBody,
   CreateWorkspaceBody,
   CreateWorkspaceMemberInviteBody,
   CreateWorkspaceSubscriptionBody,
@@ -502,6 +507,7 @@ part 'serializers.g.dart';
   UpdateIdentityBody,
   UpdateLoginFlowBody,
   UpdateLoginFlowWithCodeMethod,
+  UpdateLoginFlowWithIdentifierFirstMethod,
   UpdateLoginFlowWithLookupSecretMethod,
   UpdateLoginFlowWithOidcMethod,
   UpdateLoginFlowWithPasskeyMethod,
@@ -595,6 +601,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectApiKey)]),
         () => ListBuilder<ProjectApiKey>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(WorkspaceApiKey)]),
+        () => ListBuilder<WorkspaceApiKey>(),
       )
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())

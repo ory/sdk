@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ var _ MappedNullable = &CloudAccount{}
 // CloudAccount struct for CloudAccount
 type CloudAccount struct {
 	Email string `json:"email"`
+	EmailVerified bool `json:"email_verified"`
 	Id string `json:"id"`
 	Name string `json:"name"`
 	AdditionalProperties map[string]interface{}
@@ -33,9 +34,10 @@ type _CloudAccount CloudAccount
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCloudAccount(email string, id string, name string) *CloudAccount {
+func NewCloudAccount(email string, emailVerified bool, id string, name string) *CloudAccount {
 	this := CloudAccount{}
 	this.Email = email
+	this.EmailVerified = emailVerified
 	this.Id = id
 	this.Name = name
 	return &this
@@ -71,6 +73,30 @@ func (o *CloudAccount) GetEmailOk() (*string, bool) {
 // SetEmail sets field value
 func (o *CloudAccount) SetEmail(v string) {
 	o.Email = v
+}
+
+// GetEmailVerified returns the EmailVerified field value
+func (o *CloudAccount) GetEmailVerified() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EmailVerified
+}
+
+// GetEmailVerifiedOk returns a tuple with the EmailVerified field value
+// and a boolean to check if the value has been set.
+func (o *CloudAccount) GetEmailVerifiedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EmailVerified, true
+}
+
+// SetEmailVerified sets field value
+func (o *CloudAccount) SetEmailVerified(v bool) {
+	o.EmailVerified = v
 }
 
 // GetId returns the Id field value
@@ -132,6 +158,7 @@ func (o CloudAccount) MarshalJSON() ([]byte, error) {
 func (o CloudAccount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["email"] = o.Email
+	toSerialize["email_verified"] = o.EmailVerified
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 
@@ -148,6 +175,7 @@ func (o *CloudAccount) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"email",
+		"email_verified",
 		"id",
 		"name",
 	}
@@ -180,6 +208,7 @@ func (o *CloudAccount) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "email")
+		delete(additionalProperties, "email_verified")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties

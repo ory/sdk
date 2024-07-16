@@ -13,5 +13,11 @@ void main() {
       // TODO
     });
 
+    // The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper
+    // String role
+    test('to test the property `role`', () async {
+      // TODO
+    });
+
   });
 }

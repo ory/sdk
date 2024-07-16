@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &CreateProjectBody{}
 type CreateProjectBody struct {
 	// The environment of the project. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
-	// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global
+	// Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest us US global Global
 	HomeRegion *string `json:"home_region,omitempty"`
 	// The name of the project to be created
 	Name string `json:"name"`

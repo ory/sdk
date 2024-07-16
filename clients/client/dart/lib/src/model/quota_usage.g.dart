@@ -47,6 +47,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_credit =
     const QuotaUsageFeatureEnum._('credit');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationGlobal =
     const QuotaUsageFeatureEnum._('dataLocationGlobal');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationUs =
+    const QuotaUsageFeatureEnum._('dataLocationUs');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_m2mTokenIssuance =
     const QuotaUsageFeatureEnum._('m2mTokenIssuance');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_permissionChecks =
@@ -109,6 +111,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_credit;
     case 'dataLocationGlobal':
       return _$quotaUsageFeatureEnum_dataLocationGlobal;
+    case 'dataLocationUs':
+      return _$quotaUsageFeatureEnum_dataLocationUs;
     case 'm2mTokenIssuance':
       return _$quotaUsageFeatureEnum_m2mTokenIssuance;
     case 'permissionChecks':
@@ -152,6 +156,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_conciergeOnboarding,
   _$quotaUsageFeatureEnum_credit,
   _$quotaUsageFeatureEnum_dataLocationGlobal,
+  _$quotaUsageFeatureEnum_dataLocationUs,
   _$quotaUsageFeatureEnum_m2mTokenIssuance,
   _$quotaUsageFeatureEnum_permissionChecks,
   _$quotaUsageFeatureEnum_dataLocationRegional,
@@ -188,6 +193,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'conciergeOnboarding': 'concierge_onboarding',
     'credit': 'credit',
     'dataLocationGlobal': 'data_location_global',
+    'dataLocationUs': 'data_location_us',
     'm2mTokenIssuance': 'm2m_token_issuance',
     'permissionChecks': 'permission_checks',
     'dataLocationRegional': 'data_location_regional',
@@ -218,6 +224,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'concierge_onboarding': 'conciergeOnboarding',
     'credit': 'credit',
     'data_location_global': 'dataLocationGlobal',
+    'data_location_us': 'dataLocationUs',
     'm2m_token_issuance': 'm2mTokenIssuance',
     'permission_checks': 'permissionChecks',
     'data_location_regional': 'dataLocationRegional',

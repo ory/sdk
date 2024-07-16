@@ -15,6 +15,7 @@ OryClient::ContinueWith.openapi_one_of
 # =>
 # [
 #   :'ContinueWithRecoveryUi',
+#   :'ContinueWithRedirectBrowserTo',
 #   :'ContinueWithSetOrySessionToken',
 #   :'ContinueWithSettingsUi',
 #   :'ContinueWithVerificationUi'
@@ -46,6 +47,7 @@ require 'ory-client'
 OryClient::ContinueWith.openapi_discriminator_mapping
 # =>
 # {
+#   :'redirect_browser_to' => :'ContinueWithRedirectBrowserTo',
 #   :'set_ory_session_token' => :'ContinueWithSetOrySessionToken',
 #   :'show_recovery_ui' => :'ContinueWithRecoveryUi',
 #   :'show_settings_ui' => :'ContinueWithSettingsUi',
@@ -78,6 +80,7 @@ OryClient::ContinueWith.build(data_that_doesnt_match)
 #### Return type
 
 - `ContinueWithRecoveryUi`
+- `ContinueWithRedirectBrowserTo`
 - `ContinueWithSetOrySessionToken`
 - `ContinueWithSettingsUi`
 - `ContinueWithVerificationUi`

@@ -597,6 +597,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
+    // bool kratosFeatureFlagsFasterSessionExtend
+    test('to test the property `kratosFeatureFlagsFasterSessionExtend`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
     // bool kratosFeatureFlagsUseContinueWithTransitions
     test('to test the property `kratosFeatureFlagsUseContinueWithTransitions`', () async {

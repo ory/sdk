@@ -31,7 +31,7 @@ void main() {
       // TODO
     });
 
-    //  eu-central EUCentral us-east USEast us-west USWest global Global
+    //  eu-central EUCentral us-east USEast us-west USWest us US global Global
     // String homeRegion
     test('to test the property `homeRegion`', () async {
       // TODO
@@ -606,6 +606,12 @@ void main() {
     // Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
     // String kratosFeatureFlagsCacheableSessionsMaxAge
     test('to test the property `kratosFeatureFlagsCacheableSessionsMaxAge`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
+    // bool kratosFeatureFlagsFasterSessionExtend
+    test('to test the property `kratosFeatureFlagsFasterSessionExtend`', () async {
       // TODO
     });
 

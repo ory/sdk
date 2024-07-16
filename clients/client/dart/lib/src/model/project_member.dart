@@ -12,6 +12,7 @@ part 'project_member.g.dart';
 ///
 /// Properties:
 /// * [email] 
+/// * [emailVerified] 
 /// * [id] 
 /// * [name] 
 /// * [role] 
@@ -19,6 +20,9 @@ part 'project_member.g.dart';
 abstract class ProjectMember implements Built<ProjectMember, ProjectMemberBuilder> {
   @BuiltValueField(wireName: r'email')
   String get email;
+
+  @BuiltValueField(wireName: r'email_verified')
+  bool get emailVerified;
 
   @BuiltValueField(wireName: r'id')
   String get id;
@@ -56,6 +60,11 @@ class _$ProjectMemberSerializer implements PrimitiveSerializer<ProjectMember> {
     yield serializers.serialize(
       object.email,
       specifiedType: const FullType(String),
+    );
+    yield r'email_verified';
+    yield serializers.serialize(
+      object.emailVerified,
+      specifiedType: const FullType(bool),
     );
     yield r'id';
     yield serializers.serialize(
@@ -101,6 +110,13 @@ class _$ProjectMemberSerializer implements PrimitiveSerializer<ProjectMember> {
             specifiedType: const FullType(String),
           ) as String;
           result.email = valueDes;
+          break;
+        case r'email_verified':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.emailVerified = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(

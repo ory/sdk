@@ -9,6 +9,7 @@ defmodule Ory.Model.ProjectMember do
   @derive Jason.Encoder
   defstruct [
     :email,
+    :email_verified,
     :id,
     :name,
     :role
@@ -16,6 +17,7 @@ defmodule Ory.Model.ProjectMember do
 
   @type t :: %__MODULE__{
     :email => String.t,
+    :email_verified => boolean(),
     :id => String.t,
     :name => String.t,
     :role => String.t

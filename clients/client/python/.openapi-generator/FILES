@@ -24,6 +24,7 @@ docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
+docs/ContinueWithRedirectBrowserTo.md
 docs/ContinueWithSetOrySessionToken.md
 docs/ContinueWithSettingsUi.md
 docs/ContinueWithSettingsUiFlow.md
@@ -48,6 +49,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
+docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspaceSubscriptionBody.md
@@ -237,6 +239,7 @@ docs/UiText.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
+docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasskeyMethod.md
@@ -320,6 +323,7 @@ ory_client/models/consistency_request_parameters.py
 ory_client/models/continue_with.py
 ory_client/models/continue_with_recovery_ui.py
 ory_client/models/continue_with_recovery_ui_flow.py
+ory_client/models/continue_with_redirect_browser_to.py
 ory_client/models/continue_with_set_ory_session_token.py
 ory_client/models/continue_with_settings_ui.py
 ory_client/models/continue_with_settings_ui_flow.py
@@ -343,6 +347,7 @@ ory_client/models/create_relationship_body.py
 ory_client/models/create_subscription_body.py
 ory_client/models/create_subscription_common.py
 ory_client/models/create_verifiable_credential_request_body.py
+ory_client/models/create_workspace_api_key_body.py
 ory_client/models/create_workspace_body.py
 ory_client/models/create_workspace_member_invite_body.py
 ory_client/models/create_workspace_subscription_body.py
@@ -522,6 +527,7 @@ ory_client/models/ui_text.py
 ory_client/models/update_identity_body.py
 ory_client/models/update_login_flow_body.py
 ory_client/models/update_login_flow_with_code_method.py
+ory_client/models/update_login_flow_with_identifier_first_method.py
 ory_client/models/update_login_flow_with_lookup_secret_method.py
 ory_client/models/update_login_flow_with_oidc_method.py
 ory_client/models/update_login_flow_with_passkey_method.py
@@ -590,6 +596,7 @@ test/test_consistency_request_parameters.py
 test/test_continue_with.py
 test/test_continue_with_recovery_ui.py
 test/test_continue_with_recovery_ui_flow.py
+test/test_continue_with_redirect_browser_to.py
 test/test_continue_with_set_ory_session_token.py
 test/test_continue_with_settings_ui.py
 test/test_continue_with_settings_ui_flow.py
@@ -614,6 +621,7 @@ test/test_create_relationship_body.py
 test/test_create_subscription_body.py
 test/test_create_subscription_common.py
 test/test_create_verifiable_credential_request_body.py
+test/test_create_workspace_api_key_body.py
 test/test_create_workspace_body.py
 test/test_create_workspace_member_invite_body.py
 test/test_create_workspace_subscription_body.py
@@ -803,6 +811,7 @@ test/test_ui_text.py
 test/test_update_identity_body.py
 test/test_update_login_flow_body.py
 test/test_update_login_flow_with_code_method.py
+test/test_update_login_flow_with_identifier_first_method.py
 test/test_update_login_flow_with_lookup_secret_method.py
 test/test_update_login_flow_with_oidc_method.py
 test/test_update_login_flow_with_passkey_method.py

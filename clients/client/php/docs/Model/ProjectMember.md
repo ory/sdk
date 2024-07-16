@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **string** |  |
+**emailVerified** | **bool** |  |
 **id** | **string** |  |
 **name** | **string** |  |
 **role** | **string** |  |

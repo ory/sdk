@@ -26,6 +26,7 @@ docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
+docs/ContinueWithRedirectBrowserTo.md
 docs/ContinueWithSetOrySessionToken.md
 docs/ContinueWithSettingsUi.md
 docs/ContinueWithSettingsUiFlow.md
@@ -50,6 +51,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
+docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspaceSubscriptionBody.md
@@ -239,6 +241,7 @@ docs/UiText.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
+docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasskeyMethod.md
@@ -345,6 +348,7 @@ src/main/java/sh/ory/model/ConsistencyRequestParameters.java
 src/main/java/sh/ory/model/ContinueWith.java
 src/main/java/sh/ory/model/ContinueWithRecoveryUi.java
 src/main/java/sh/ory/model/ContinueWithRecoveryUiFlow.java
+src/main/java/sh/ory/model/ContinueWithRedirectBrowserTo.java
 src/main/java/sh/ory/model/ContinueWithSetOrySessionToken.java
 src/main/java/sh/ory/model/ContinueWithSettingsUi.java
 src/main/java/sh/ory/model/ContinueWithSettingsUiFlow.java
@@ -368,6 +372,7 @@ src/main/java/sh/ory/model/CreateRelationshipBody.java
 src/main/java/sh/ory/model/CreateSubscriptionBody.java
 src/main/java/sh/ory/model/CreateSubscriptionCommon.java
 src/main/java/sh/ory/model/CreateVerifiableCredentialRequestBody.java
+src/main/java/sh/ory/model/CreateWorkspaceApiKeyBody.java
 src/main/java/sh/ory/model/CreateWorkspaceBody.java
 src/main/java/sh/ory/model/CreateWorkspaceMemberInviteBody.java
 src/main/java/sh/ory/model/CreateWorkspaceSubscriptionBody.java
@@ -547,6 +552,7 @@ src/main/java/sh/ory/model/UiText.java
 src/main/java/sh/ory/model/UpdateIdentityBody.java
 src/main/java/sh/ory/model/UpdateLoginFlowBody.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithCodeMethod.java
+src/main/java/sh/ory/model/UpdateLoginFlowWithIdentifierFirstMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithLookupSecretMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithOidcMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithPasskeyMethod.java
@@ -619,6 +625,7 @@ src/test/java/sh/ory/model/CloudAccountTest.java
 src/test/java/sh/ory/model/ConsistencyRequestParametersTest.java
 src/test/java/sh/ory/model/ContinueWithRecoveryUiFlowTest.java
 src/test/java/sh/ory/model/ContinueWithRecoveryUiTest.java
+src/test/java/sh/ory/model/ContinueWithRedirectBrowserToTest.java
 src/test/java/sh/ory/model/ContinueWithSetOrySessionTokenTest.java
 src/test/java/sh/ory/model/ContinueWithSettingsUiFlowTest.java
 src/test/java/sh/ory/model/ContinueWithSettingsUiTest.java
@@ -643,6 +650,7 @@ src/test/java/sh/ory/model/CreateRelationshipBodyTest.java
 src/test/java/sh/ory/model/CreateSubscriptionBodyTest.java
 src/test/java/sh/ory/model/CreateSubscriptionCommonTest.java
 src/test/java/sh/ory/model/CreateVerifiableCredentialRequestBodyTest.java
+src/test/java/sh/ory/model/CreateWorkspaceApiKeyBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceMemberInviteBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceSubscriptionBodyTest.java
@@ -822,6 +830,7 @@ src/test/java/sh/ory/model/UiTextTest.java
 src/test/java/sh/ory/model/UpdateIdentityBodyTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithCodeMethodTest.java
+src/test/java/sh/ory/model/UpdateLoginFlowWithIdentifierFirstMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithLookupSecretMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithOidcMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithPasskeyMethodTest.java

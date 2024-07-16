@@ -24,6 +24,12 @@ void main() {
       // TODO
     });
 
+    // MaxLength may contain the input's maximum length.
+    // int maxlength
+    test('to test the property `maxlength`', () async {
+      // TODO
+    });
+
     // The input's element name.
     // String name
     test('to test the property `name`', () async {
@@ -36,15 +42,27 @@ void main() {
       // TODO
     });
 
-    // OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
+    // OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead.
     // String onclick
     test('to test the property `onclick`', () async {
       // TODO
     });
 
-    // OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.
+    // OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+    // String onclickTrigger
+    test('to test the property `onclickTrigger`', () async {
+      // TODO
+    });
+
+    // OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead.
     // String onload
     test('to test the property `onload`', () async {
+      // TODO
+    });
+
+    // OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+    // String onloadTrigger
+    test('to test the property `onloadTrigger`', () async {
       // TODO
     });
 

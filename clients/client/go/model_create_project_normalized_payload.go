@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -30,7 +30,7 @@ type CreateProjectNormalizedPayload struct {
 	EnableAxV2 *bool `json:"enable_ax_v2,omitempty"`
 	//  prod Production stage Staging dev Development
 	Environment string `json:"environment"`
-	//  eu-central EUCentral us-east USEast us-west USWest global Global
+	//  eu-central EUCentral us-east USEast us-west USWest us US global Global
 	HomeRegion *string `json:"home_region,omitempty"`
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
@@ -216,6 +216,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosFeatureFlagsCacheableSessions *bool `json:"kratos_feature_flags_cacheable_sessions,omitempty"`
 	// Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
 	KratosFeatureFlagsCacheableSessionsMaxAge *string `json:"kratos_feature_flags_cacheable_sessions_max_age,omitempty"`
+	// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
+	KratosFeatureFlagsFasterSessionExtend *bool `json:"kratos_feature_flags_faster_session_extend,omitempty"`
 	// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 	KratosFeatureFlagsUseContinueWithTransitions *bool `json:"kratos_feature_flags_use_continue_with_transitions,omitempty"`
 	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
@@ -3739,6 +3741,38 @@ func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsCacheableSessionsM
 // SetKratosFeatureFlagsCacheableSessionsMaxAge gets a reference to the given string and assigns it to the KratosFeatureFlagsCacheableSessionsMaxAge field.
 func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsCacheableSessionsMaxAge(v string) {
 	o.KratosFeatureFlagsCacheableSessionsMaxAge = &v
+}
+
+// GetKratosFeatureFlagsFasterSessionExtend returns the KratosFeatureFlagsFasterSessionExtend field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsFasterSessionExtend() bool {
+	if o == nil || IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosFeatureFlagsFasterSessionExtend
+}
+
+// GetKratosFeatureFlagsFasterSessionExtendOk returns a tuple with the KratosFeatureFlagsFasterSessionExtend field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsFasterSessionExtendOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsFasterSessionExtend, true
+}
+
+// HasKratosFeatureFlagsFasterSessionExtend returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsFasterSessionExtend() bool {
+	if o != nil && !IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsFasterSessionExtend gets a reference to the given bool and assigns it to the KratosFeatureFlagsFasterSessionExtend field.
+func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsFasterSessionExtend(v bool) {
+	o.KratosFeatureFlagsFasterSessionExtend = &v
 }
 
 // GetKratosFeatureFlagsUseContinueWithTransitions returns the KratosFeatureFlagsUseContinueWithTransitions field value if set, zero value otherwise.
@@ -7376,6 +7410,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosFeatureFlagsCacheableSessionsMaxAge) {
 		toSerialize["kratos_feature_flags_cacheable_sessions_max_age"] = o.KratosFeatureFlagsCacheableSessionsMaxAge
 	}
+	if !IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
+		toSerialize["kratos_feature_flags_faster_session_extend"] = o.KratosFeatureFlagsFasterSessionExtend
+	}
 	if !IsNil(o.KratosFeatureFlagsUseContinueWithTransitions) {
 		toSerialize["kratos_feature_flags_use_continue_with_transitions"] = o.KratosFeatureFlagsUseContinueWithTransitions
 	}
@@ -7832,6 +7869,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_courier_templates_verification_valid_email_subject")
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions")
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions_max_age")
+		delete(additionalProperties, "kratos_feature_flags_faster_session_extend")
 		delete(additionalProperties, "kratos_feature_flags_use_continue_with_transitions")
 		delete(additionalProperties, "kratos_identity_schemas")
 		delete(additionalProperties, "kratos_oauth2_provider_headers")

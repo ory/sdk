@@ -15,6 +15,7 @@ defmodule Ory.Model.MemberInvite do
     :owner_email,
     :owner_id,
     :project_id,
+    :role,
     :status,
     :updated_at,
     :workspace_id
@@ -28,6 +29,7 @@ defmodule Ory.Model.MemberInvite do
     :owner_email => String.t,
     :owner_id => String.t,
     :project_id => String.t | nil,
+    :role => String.t | nil,
     :status => String.t,
     :updated_at => DateTime.t,
     :workspace_id => String.t | nil

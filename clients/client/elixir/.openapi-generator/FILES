@@ -39,6 +39,7 @@ lib/ory/model/consistency_request_parameters.ex
 lib/ory/model/continue_with.ex
 lib/ory/model/continue_with_recovery_ui.ex
 lib/ory/model/continue_with_recovery_ui_flow.ex
+lib/ory/model/continue_with_redirect_browser_to.ex
 lib/ory/model/continue_with_set_ory_session_token.ex
 lib/ory/model/continue_with_settings_ui.ex
 lib/ory/model/continue_with_settings_ui_flow.ex
@@ -62,6 +63,7 @@ lib/ory/model/create_relationship_body.ex
 lib/ory/model/create_subscription_body.ex
 lib/ory/model/create_subscription_common.ex
 lib/ory/model/create_verifiable_credential_request_body.ex
+lib/ory/model/create_workspace_api_key_body.ex
 lib/ory/model/create_workspace_body.ex
 lib/ory/model/create_workspace_member_invite_body.ex
 lib/ory/model/create_workspace_subscription_body.ex
@@ -241,6 +243,7 @@ lib/ory/model/ui_text.ex
 lib/ory/model/update_identity_body.ex
 lib/ory/model/update_login_flow_body.ex
 lib/ory/model/update_login_flow_with_code_method.ex
+lib/ory/model/update_login_flow_with_identifier_first_method.ex
 lib/ory/model/update_login_flow_with_lookup_secret_method.ex
 lib/ory/model/update_login_flow_with_oidc_method.ex
 lib/ory/model/update_login_flow_with_passkey_method.ex

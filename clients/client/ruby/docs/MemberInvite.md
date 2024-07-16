@@ -11,6 +11,7 @@
 | **owner_email** | **String** | The invite owner&#39;s email Usually the project&#39;s owner email |  |
 | **owner_id** | **String** | The invite owner&#39;s ID Usually the project&#39;s owner |  |
 | **project_id** | **String** |  | [optional] |
+| **role** | **String** |  | [optional] |
 | **status** | **String** | The invite&#39;s status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED |  |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [readonly] |
 | **workspace_id** | **String** |  | [optional] |
@@ -28,6 +29,7 @@ instance = OryClient::MemberInvite.new(
   owner_email: null,
   owner_id: null,
   project_id: null,
+  role: null,
   status: null,
   updated_at: null,
   workspace_id: null

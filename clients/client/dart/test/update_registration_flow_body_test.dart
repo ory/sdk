@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UpdateRegistrationFlowBody, () {
-    // CSRFToken is the anti-CSRF token
+    // The Anti-CSRF Token  This token is only required when performing browser flows.
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
     });
 
-    // Method  Should be set to \"passkey\" when trying to add, update, or remove a Passkey.
+    // Method  Should be set to profile when trying to update a profile.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -25,7 +25,7 @@ void main() {
       // TODO
     });
 
-    // The identity's traits
+    // Traits  The identity's traits.
     // JsonObject traits
     test('to test the property `traits`', () async {
       // TODO
@@ -88,6 +88,12 @@ void main() {
     // Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
     // String passkeyRegister
     test('to test the property `passkeyRegister`', () async {
+      // TODO
+    });
+
+    // Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen.
+    // String screen
+    test('to test the property `screen`', () async {
       // TODO
     });
 

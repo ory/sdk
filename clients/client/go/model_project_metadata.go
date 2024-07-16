@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -26,7 +26,7 @@ type ProjectMetadata struct {
 	CreatedAt time.Time `json:"created_at"`
 	// The environment of the project. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
-	// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+	// The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global
 	HomeRegion string `json:"home_region"`
 	Hosts []string `json:"hosts"`
 	// The project's ID.

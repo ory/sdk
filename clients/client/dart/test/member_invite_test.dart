@@ -47,6 +47,11 @@ void main() {
       // TODO
     });
 
+    // String role
+    test('to test the property `role`', () async {
+      // TODO
+    });
+
     // The invite's status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED
     // String status
     test('to test the property `status`', () async {

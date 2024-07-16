@@ -12,6 +12,16 @@ void main() {
       // TODO
     });
 
+    // String faviconType
+    test('to test the property `faviconType`', () async {
+      // TODO
+    });
+
+    // String faviconUrl
+    test('to test the property `faviconUrl`', () async {
+      // TODO
+    });
+
     // bool kratosSelfserviceFlowsRecoveryEnabled
     test('to test the property `kratosSelfserviceFlowsRecoveryEnabled`', () async {
       // TODO
@@ -24,6 +34,16 @@ void main() {
 
     // bool kratosSelfserviceFlowsVerificationEnabled
     test('to test the property `kratosSelfserviceFlowsVerificationEnabled`', () async {
+      // TODO
+    });
+
+    // String logoUrl
+    test('to test the property `logoUrl`', () async {
+      // TODO
+    });
+
+    // String name
+    test('to test the property `name`', () async {
       // TODO
     });
 

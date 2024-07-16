@@ -48,6 +48,9 @@ const CreateProjectNormalizedPayloadHomeRegionEnum
     _$createProjectNormalizedPayloadHomeRegionEnum_usWest =
     const CreateProjectNormalizedPayloadHomeRegionEnum._('usWest');
 const CreateProjectNormalizedPayloadHomeRegionEnum
+    _$createProjectNormalizedPayloadHomeRegionEnum_us =
+    const CreateProjectNormalizedPayloadHomeRegionEnum._('us');
+const CreateProjectNormalizedPayloadHomeRegionEnum
     _$createProjectNormalizedPayloadHomeRegionEnum_global =
     const CreateProjectNormalizedPayloadHomeRegionEnum._('global');
 
@@ -60,6 +63,8 @@ CreateProjectNormalizedPayloadHomeRegionEnum
       return _$createProjectNormalizedPayloadHomeRegionEnum_usEast;
     case 'usWest':
       return _$createProjectNormalizedPayloadHomeRegionEnum_usWest;
+    case 'us':
+      return _$createProjectNormalizedPayloadHomeRegionEnum_us;
     case 'global':
       return _$createProjectNormalizedPayloadHomeRegionEnum_global;
     default:
@@ -73,6 +78,7 @@ final BuiltSet<CreateProjectNormalizedPayloadHomeRegionEnum>
   _$createProjectNormalizedPayloadHomeRegionEnum_euCentral,
   _$createProjectNormalizedPayloadHomeRegionEnum_usEast,
   _$createProjectNormalizedPayloadHomeRegionEnum_usWest,
+  _$createProjectNormalizedPayloadHomeRegionEnum_us,
   _$createProjectNormalizedPayloadHomeRegionEnum_global,
 ]);
 
@@ -297,12 +303,14 @@ class _$CreateProjectNormalizedPayloadHomeRegionEnumSerializer
     'euCentral': 'eu-central',
     'usEast': 'us-east',
     'usWest': 'us-west',
+    'us': 'us',
     'global': 'global',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'eu-central': 'euCentral',
     'us-east': 'usEast',
     'us-west': 'usWest',
+    'us': 'us',
     'global': 'global',
   };
 
@@ -720,6 +728,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final String? kratosFeatureFlagsCacheableSessionsMaxAge;
   @override
+  final bool? kratosFeatureFlagsFasterSessionExtend;
+  @override
   final bool? kratosFeatureFlagsUseContinueWithTransitions;
   @override
   final BuiltList<NormalizedProjectRevisionIdentitySchema>?
@@ -1052,6 +1062,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosCourierTemplatesVerificationValidEmailSubject,
       this.kratosFeatureFlagsCacheableSessions,
       this.kratosFeatureFlagsCacheableSessionsMaxAge,
+      this.kratosFeatureFlagsFasterSessionExtend,
       this.kratosFeatureFlagsUseContinueWithTransitions,
       this.kratosIdentitySchemas,
       this.kratosOauth2ProviderHeaders,
@@ -1347,6 +1358,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.kratosFeatureFlagsCacheableSessions &&
         kratosFeatureFlagsCacheableSessionsMaxAge ==
             other.kratosFeatureFlagsCacheableSessionsMaxAge &&
+        kratosFeatureFlagsFasterSessionExtend ==
+            other.kratosFeatureFlagsFasterSessionExtend &&
         kratosFeatureFlagsUseContinueWithTransitions ==
             other.kratosFeatureFlagsUseContinueWithTransitions &&
         kratosIdentitySchemas == other.kratosIdentitySchemas &&
@@ -1703,6 +1716,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         _$hash, kratosCourierTemplatesVerificationValidEmailSubject.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessions.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessionsMaxAge.hashCode);
+    _$hash = $jc(_$hash, kratosFeatureFlagsFasterSessionExtend.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsUseContinueWithTransitions.hashCode);
     _$hash = $jc(_$hash, kratosIdentitySchemas.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderHeaders.hashCode);
@@ -2063,6 +2077,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosFeatureFlagsCacheableSessions)
           ..add('kratosFeatureFlagsCacheableSessionsMaxAge',
               kratosFeatureFlagsCacheableSessionsMaxAge)
+          ..add('kratosFeatureFlagsFasterSessionExtend',
+              kratosFeatureFlagsFasterSessionExtend)
           ..add('kratosFeatureFlagsUseContinueWithTransitions',
               kratosFeatureFlagsUseContinueWithTransitions)
           ..add('kratosIdentitySchemas', kratosIdentitySchemas)
@@ -3013,6 +3029,14 @@ class CreateProjectNormalizedPayloadBuilder
           String? kratosFeatureFlagsCacheableSessionsMaxAge) =>
       _$this._kratosFeatureFlagsCacheableSessionsMaxAge =
           kratosFeatureFlagsCacheableSessionsMaxAge;
+
+  bool? _kratosFeatureFlagsFasterSessionExtend;
+  bool? get kratosFeatureFlagsFasterSessionExtend =>
+      _$this._kratosFeatureFlagsFasterSessionExtend;
+  set kratosFeatureFlagsFasterSessionExtend(
+          bool? kratosFeatureFlagsFasterSessionExtend) =>
+      _$this._kratosFeatureFlagsFasterSessionExtend =
+          kratosFeatureFlagsFasterSessionExtend;
 
   bool? _kratosFeatureFlagsUseContinueWithTransitions;
   bool? get kratosFeatureFlagsUseContinueWithTransitions =>
@@ -4023,6 +4047,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosFeatureFlagsCacheableSessions;
       _kratosFeatureFlagsCacheableSessionsMaxAge =
           $v.kratosFeatureFlagsCacheableSessionsMaxAge;
+      _kratosFeatureFlagsFasterSessionExtend =
+          $v.kratosFeatureFlagsFasterSessionExtend;
       _kratosFeatureFlagsUseContinueWithTransitions =
           $v.kratosFeatureFlagsUseContinueWithTransitions;
       _kratosIdentitySchemas = $v.kratosIdentitySchemas?.toBuilder();
@@ -4362,6 +4388,7 @@ class CreateProjectNormalizedPayloadBuilder
               kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsCacheableSessionsMaxAge: kratosFeatureFlagsCacheableSessionsMaxAge,
+              kratosFeatureFlagsFasterSessionExtend: kratosFeatureFlagsFasterSessionExtend,
               kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,

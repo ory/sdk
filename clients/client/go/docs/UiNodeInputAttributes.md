@@ -7,10 +7,13 @@ Name | Type | Description | Notes
 **Autocomplete** | Pointer to **string** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode | [optional] 
 **Disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
 **Label** | Pointer to [**UiText**](UiText.md) |  | [optional] 
+**Maxlength** | Pointer to **int64** | MaxLength may contain the input&#39;s maximum length. | [optional] 
 **Name** | **string** | The input&#39;s element name. | 
 **NodeType** | **string** | NodeType represents this node&#39;s types. It is a mirror of &#x60;node.type&#x60; and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \&quot;input\&quot;. text Text input Input img Image a Anchor script Script | 
-**Onclick** | Pointer to **string** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. | [optional] 
-**Onload** | Pointer to **string** | OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn. | [optional] 
+**Onclick** | Pointer to **string** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead. | [optional] 
+**OnclickTrigger** | Pointer to **string** | OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration | [optional] 
+**Onload** | Pointer to **string** | OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead. | [optional] 
+**OnloadTrigger** | Pointer to **string** | OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration | [optional] 
 **Pattern** | Pointer to **string** | The input&#39;s pattern. | [optional] 
 **Required** | Pointer to **bool** | Mark this input field as required. | [optional] 
 **Type** | **string** | The input&#39;s element type. text InputAttributeTypeText password InputAttributeTypePassword number InputAttributeTypeNumber checkbox InputAttributeTypeCheckbox hidden InputAttributeTypeHidden email InputAttributeTypeEmail tel InputAttributeTypeTel submit InputAttributeTypeSubmit button InputAttributeTypeButton datetime-local InputAttributeTypeDateTimeLocal date InputAttributeTypeDate url InputAttributeTypeURI | 
@@ -105,6 +108,31 @@ SetLabel sets Label field to given value.
 
 HasLabel returns a boolean if a field has been set.
 
+### GetMaxlength
+
+`func (o *UiNodeInputAttributes) GetMaxlength() int64`
+
+GetMaxlength returns the Maxlength field if non-nil, zero value otherwise.
+
+### GetMaxlengthOk
+
+`func (o *UiNodeInputAttributes) GetMaxlengthOk() (*int64, bool)`
+
+GetMaxlengthOk returns a tuple with the Maxlength field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxlength
+
+`func (o *UiNodeInputAttributes) SetMaxlength(v int64)`
+
+SetMaxlength sets Maxlength field to given value.
+
+### HasMaxlength
+
+`func (o *UiNodeInputAttributes) HasMaxlength() bool`
+
+HasMaxlength returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *UiNodeInputAttributes) GetName() string`
@@ -170,6 +198,31 @@ SetOnclick sets Onclick field to given value.
 
 HasOnclick returns a boolean if a field has been set.
 
+### GetOnclickTrigger
+
+`func (o *UiNodeInputAttributes) GetOnclickTrigger() string`
+
+GetOnclickTrigger returns the OnclickTrigger field if non-nil, zero value otherwise.
+
+### GetOnclickTriggerOk
+
+`func (o *UiNodeInputAttributes) GetOnclickTriggerOk() (*string, bool)`
+
+GetOnclickTriggerOk returns a tuple with the OnclickTrigger field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnclickTrigger
+
+`func (o *UiNodeInputAttributes) SetOnclickTrigger(v string)`
+
+SetOnclickTrigger sets OnclickTrigger field to given value.
+
+### HasOnclickTrigger
+
+`func (o *UiNodeInputAttributes) HasOnclickTrigger() bool`
+
+HasOnclickTrigger returns a boolean if a field has been set.
+
 ### GetOnload
 
 `func (o *UiNodeInputAttributes) GetOnload() string`
@@ -194,6 +247,31 @@ SetOnload sets Onload field to given value.
 `func (o *UiNodeInputAttributes) HasOnload() bool`
 
 HasOnload returns a boolean if a field has been set.
+
+### GetOnloadTrigger
+
+`func (o *UiNodeInputAttributes) GetOnloadTrigger() string`
+
+GetOnloadTrigger returns the OnloadTrigger field if non-nil, zero value otherwise.
+
+### GetOnloadTriggerOk
+
+`func (o *UiNodeInputAttributes) GetOnloadTriggerOk() (*string, bool)`
+
+GetOnloadTriggerOk returns a tuple with the OnloadTrigger field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnloadTrigger
+
+`func (o *UiNodeInputAttributes) SetOnloadTrigger(v string)`
+
+SetOnloadTrigger sets OnloadTrigger field to given value.
+
+### HasOnloadTrigger
+
+`func (o *UiNodeInputAttributes) HasOnloadTrigger() bool`
+
+HasOnloadTrigger returns a boolean if a field has been set.
 
 ### GetPattern
 

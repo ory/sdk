@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &ContinueWithRecoveryUiFlow{}
 type ContinueWithRecoveryUiFlow struct {
 	// The ID of the recovery flow
 	Id string `json:"id"`
-	// The URL of the recovery flow
+	// The URL of the recovery flow  If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
 	Url *string `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

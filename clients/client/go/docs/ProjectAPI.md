@@ -4,22 +4,22 @@ All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateOrganization**](ProjectAPI.md#CreateOrganization) | **Post** /projects/{project_id}/organizations | 
+[**CreateOrganization**](ProjectAPI.md#CreateOrganization) | **Post** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
 [**CreateProject**](ProjectAPI.md#CreateProject) | **Post** /projects | Create a Project
 [**CreateProjectApiKey**](ProjectAPI.md#CreateProjectApiKey) | **Post** /projects/{project}/tokens | Create project API token
-[**DeleteOrganization**](ProjectAPI.md#DeleteOrganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | 
+[**DeleteOrganization**](ProjectAPI.md#DeleteOrganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
 [**DeleteProjectApiKey**](ProjectAPI.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
-[**GetOrganization**](ProjectAPI.md#GetOrganization) | **Get** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID
+[**GetOrganization**](ProjectAPI.md#GetOrganization) | **Get** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 [**GetProject**](ProjectAPI.md#GetProject) | **Get** /projects/{project_id} | Get a Project
 [**GetProjectMembers**](ProjectAPI.md#GetProjectMembers) | **Get** /projects/{project}/members | Get all members associated with this project
-[**ListOrganizations**](ProjectAPI.md#ListOrganizations) | **Get** /projects/{project_id}/organizations | 
+[**ListOrganizations**](ProjectAPI.md#ListOrganizations) | **Get** /projects/{project_id}/organizations | List all Enterprise SSO organizations
 [**ListProjectApiKeys**](ProjectAPI.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**ListProjects**](ProjectAPI.md#ListProjects) | **Get** /projects | List All Projects
 [**PatchProject**](ProjectAPI.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**PurgeProject**](ProjectAPI.md#PurgeProject) | **Delete** /projects/{project_id} | Irrecoverably purge a project
 [**RemoveProjectMember**](ProjectAPI.md#RemoveProjectMember) | **Delete** /projects/{project}/members/{member} | Remove a member associated with this project
 [**SetProject**](ProjectAPI.md#SetProject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
-[**UpdateOrganization**](ProjectAPI.md#UpdateOrganization) | **Put** /projects/{project_id}/organizations/{organization_id} | 
+[**UpdateOrganization**](ProjectAPI.md#UpdateOrganization) | **Put** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
 
 
 
@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 > Organization CreateOrganization(ctx, projectId).OrganizationBody(organizationBody).Execute()
 
-
+Create an Enterprise SSO Organization
 
 
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 > DeleteOrganization(ctx, projectId, organizationId).Execute()
 
-
+Delete Enterprise SSO Organization
 
 
 
@@ -379,7 +379,9 @@ Name | Type | Description  | Notes
 
 > GetOrganizationResponse GetOrganization(ctx, projectId, organizationId).Execute()
 
-Returns a B2B SSO Organization for a project by its ID
+Get Enterprise SSO Organization by ID
+
+
 
 ### Example
 
@@ -590,7 +592,7 @@ Name | Type | Description  | Notes
 
 > ListOrganizationsResponse ListOrganizations(ctx, projectId).PageSize(pageSize).PageToken(pageToken).Domain(domain).Execute()
 
-
+List all Enterprise SSO organizations
 
 
 
@@ -1080,7 +1082,7 @@ Name | Type | Description  | Notes
 
 > Organization UpdateOrganization(ctx, projectId, organizationId).OrganizationBody(organizationBody).Execute()
 
-
+Update an Enterprise SSO Organization
 
 
 

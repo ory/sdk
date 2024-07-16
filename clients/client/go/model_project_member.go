@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.13.10
+API version: v1.14.0
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ var _ MappedNullable = &ProjectMember{}
 // ProjectMember struct for ProjectMember
 type ProjectMember struct {
 	Email string `json:"email"`
+	EmailVerified bool `json:"email_verified"`
 	Id string `json:"id"`
 	Name string `json:"name"`
 	Role string `json:"role"`
@@ -34,9 +35,10 @@ type _ProjectMember ProjectMember
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectMember(email string, id string, name string, role string) *ProjectMember {
+func NewProjectMember(email string, emailVerified bool, id string, name string, role string) *ProjectMember {
 	this := ProjectMember{}
 	this.Email = email
+	this.EmailVerified = emailVerified
 	this.Id = id
 	this.Name = name
 	this.Role = role
@@ -73,6 +75,30 @@ func (o *ProjectMember) GetEmailOk() (*string, bool) {
 // SetEmail sets field value
 func (o *ProjectMember) SetEmail(v string) {
 	o.Email = v
+}
+
+// GetEmailVerified returns the EmailVerified field value
+func (o *ProjectMember) GetEmailVerified() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EmailVerified
+}
+
+// GetEmailVerifiedOk returns a tuple with the EmailVerified field value
+// and a boolean to check if the value has been set.
+func (o *ProjectMember) GetEmailVerifiedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EmailVerified, true
+}
+
+// SetEmailVerified sets field value
+func (o *ProjectMember) SetEmailVerified(v bool) {
+	o.EmailVerified = v
 }
 
 // GetId returns the Id field value
@@ -158,6 +184,7 @@ func (o ProjectMember) MarshalJSON() ([]byte, error) {
 func (o ProjectMember) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["email"] = o.Email
+	toSerialize["email_verified"] = o.EmailVerified
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["role"] = o.Role
@@ -175,6 +202,7 @@ func (o *ProjectMember) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"email",
+		"email_verified",
 		"id",
 		"name",
 		"role",
@@ -208,6 +236,7 @@ func (o *ProjectMember) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "email")
+		delete(additionalProperties, "email_verified")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "role")

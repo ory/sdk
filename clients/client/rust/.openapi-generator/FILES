@@ -23,6 +23,7 @@ docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
+docs/ContinueWithRedirectBrowserTo.md
 docs/ContinueWithSetOrySessionToken.md
 docs/ContinueWithSettingsUi.md
 docs/ContinueWithSettingsUiFlow.md
@@ -47,6 +48,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateSubscriptionCommon.md
 docs/CreateVerifiableCredentialRequestBody.md
+docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspaceSubscriptionBody.md
@@ -236,6 +238,7 @@ docs/UiText.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
+docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasskeyMethod.md
@@ -315,6 +318,7 @@ src/models/consistency_request_parameters.rs
 src/models/continue_with.rs
 src/models/continue_with_recovery_ui.rs
 src/models/continue_with_recovery_ui_flow.rs
+src/models/continue_with_redirect_browser_to.rs
 src/models/continue_with_set_ory_session_token.rs
 src/models/continue_with_settings_ui.rs
 src/models/continue_with_settings_ui_flow.rs
@@ -338,6 +342,7 @@ src/models/create_relationship_body.rs
 src/models/create_subscription_body.rs
 src/models/create_subscription_common.rs
 src/models/create_verifiable_credential_request_body.rs
+src/models/create_workspace_api_key_body.rs
 src/models/create_workspace_body.rs
 src/models/create_workspace_member_invite_body.rs
 src/models/create_workspace_subscription_body.rs
@@ -518,6 +523,7 @@ src/models/ui_text.rs
 src/models/update_identity_body.rs
 src/models/update_login_flow_body.rs
 src/models/update_login_flow_with_code_method.rs
+src/models/update_login_flow_with_identifier_first_method.rs
 src/models/update_login_flow_with_lookup_secret_method.rs
 src/models/update_login_flow_with_oidc_method.rs
 src/models/update_login_flow_with_passkey_method.rs

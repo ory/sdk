@@ -6,9 +6,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_experience_theme_stylesheet** | **str** |  | [optional] 
+**favicon_type** | **str** |  | [optional] 
+**favicon_url** | **str** |  | [optional] 
 **kratos_selfservice_flows_recovery_enabled** | **bool** |  | [optional] 
 **kratos_selfservice_flows_registration_enabled** | **bool** |  | [optional] 
 **kratos_selfservice_flows_verification_enabled** | **bool** |  | [optional] 
+**logo_url** | **str** |  | [optional] 
+**name** | **str** |  | [optional] 
 **organization_map** | **Dict[str, str]** |  | [optional] 
 
 ## Example

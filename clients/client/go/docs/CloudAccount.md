@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** |  | 
+**EmailVerified** | **bool** |  | 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 
@@ -12,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewCloudAccount
 
-`func NewCloudAccount(email string, id string, name string, ) *CloudAccount`
+`func NewCloudAccount(email string, emailVerified bool, id string, name string, ) *CloudAccount`
 
 NewCloudAccount instantiates a new CloudAccount object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +46,26 @@ and a boolean to check if the value has been set.
 `func (o *CloudAccount) SetEmail(v string)`
 
 SetEmail sets Email field to given value.
+
+
+### GetEmailVerified
+
+`func (o *CloudAccount) GetEmailVerified() bool`
+
+GetEmailVerified returns the EmailVerified field if non-nil, zero value otherwise.
+
+### GetEmailVerifiedOk
+
+`func (o *CloudAccount) GetEmailVerifiedOk() (*bool, bool)`
+
+GetEmailVerifiedOk returns a tuple with the EmailVerified field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmailVerified
+
+`func (o *CloudAccount) SetEmailVerified(v bool)`
+
+SetEmailVerified sets EmailVerified field to given value.
 
 
 ### GetId

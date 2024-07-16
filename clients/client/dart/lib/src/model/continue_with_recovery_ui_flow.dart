@@ -12,14 +12,14 @@ part 'continue_with_recovery_ui_flow.g.dart';
 ///
 /// Properties:
 /// * [id] - The ID of the recovery flow
-/// * [url] - The URL of the recovery flow
+/// * [url] - The URL of the recovery flow  If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
 @BuiltValue()
 abstract class ContinueWithRecoveryUiFlow implements Built<ContinueWithRecoveryUiFlow, ContinueWithRecoveryUiFlowBuilder> {
   /// The ID of the recovery flow
   @BuiltValueField(wireName: r'id')
   String get id;
 
-  /// The URL of the recovery flow
+  /// The URL of the recovery flow  If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
   @BuiltValueField(wireName: r'url')
   String? get url;
 

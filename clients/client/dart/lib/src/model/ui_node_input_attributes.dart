@@ -17,10 +17,13 @@ part 'ui_node_input_attributes.g.dart';
 /// * [autocomplete] - The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
 /// * [disabled] - Sets the input's disabled field to true or false.
 /// * [label] 
+/// * [maxlength] - MaxLength may contain the input's maximum length.
 /// * [name] - The input's element name.
 /// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
-/// * [onclick] - OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
-/// * [onload] - OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.
+/// * [onclick] - OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead.
+/// * [onclickTrigger] - OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+/// * [onload] - OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead.
+/// * [onloadTrigger] - OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
 /// * [pattern] - The input's pattern.
 /// * [required_] - Mark this input field as required.
 /// * [type] - The input's element type. text InputAttributeTypeText password InputAttributeTypePassword number InputAttributeTypeNumber checkbox InputAttributeTypeCheckbox hidden InputAttributeTypeHidden email InputAttributeTypeEmail tel InputAttributeTypeTel submit InputAttributeTypeSubmit button InputAttributeTypeButton datetime-local InputAttributeTypeDateTimeLocal date InputAttributeTypeDate url InputAttributeTypeURI
@@ -39,6 +42,10 @@ abstract class UiNodeInputAttributes implements Built<UiNodeInputAttributes, UiN
   @BuiltValueField(wireName: r'label')
   UiText? get label;
 
+  /// MaxLength may contain the input's maximum length.
+  @BuiltValueField(wireName: r'maxlength')
+  int? get maxlength;
+
   /// The input's element name.
   @BuiltValueField(wireName: r'name')
   String get name;
@@ -48,13 +55,23 @@ abstract class UiNodeInputAttributes implements Built<UiNodeInputAttributes, UiN
   UiNodeInputAttributesNodeTypeEnum get nodeType;
   // enum nodeTypeEnum {  text,  input,  img,  a,  script,  };
 
-  /// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
+  /// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead.
   @BuiltValueField(wireName: r'onclick')
   String? get onclick;
 
-  /// OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.
+  /// OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueField(wireName: r'onclickTrigger')
+  UiNodeInputAttributesOnclickTriggerEnum? get onclickTrigger;
+  // enum onclickTriggerEnum {  oryWebAuthnRegistration,  oryWebAuthnLogin,  oryPasskeyLogin,  oryPasskeyLoginAutocompleteInit,  oryPasskeyRegistration,  oryPasskeySettingsRegistration,  };
+
+  /// OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead.
   @BuiltValueField(wireName: r'onload')
   String? get onload;
+
+  /// OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueField(wireName: r'onloadTrigger')
+  UiNodeInputAttributesOnloadTriggerEnum? get onloadTrigger;
+  // enum onloadTriggerEnum {  oryWebAuthnRegistration,  oryWebAuthnLogin,  oryPasskeyLogin,  oryPasskeyLoginAutocompleteInit,  oryPasskeyRegistration,  oryPasskeySettingsRegistration,  };
 
   /// The input's pattern.
   @BuiltValueField(wireName: r'pattern')
@@ -115,6 +132,13 @@ class _$UiNodeInputAttributesSerializer implements PrimitiveSerializer<UiNodeInp
         specifiedType: const FullType(UiText),
       );
     }
+    if (object.maxlength != null) {
+      yield r'maxlength';
+      yield serializers.serialize(
+        object.maxlength,
+        specifiedType: const FullType(int),
+      );
+    }
     yield r'name';
     yield serializers.serialize(
       object.name,
@@ -132,11 +156,25 @@ class _$UiNodeInputAttributesSerializer implements PrimitiveSerializer<UiNodeInp
         specifiedType: const FullType(String),
       );
     }
+    if (object.onclickTrigger != null) {
+      yield r'onclickTrigger';
+      yield serializers.serialize(
+        object.onclickTrigger,
+        specifiedType: const FullType(UiNodeInputAttributesOnclickTriggerEnum),
+      );
+    }
     if (object.onload != null) {
       yield r'onload';
       yield serializers.serialize(
         object.onload,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.onloadTrigger != null) {
+      yield r'onloadTrigger';
+      yield serializers.serialize(
+        object.onloadTrigger,
+        specifiedType: const FullType(UiNodeInputAttributesOnloadTriggerEnum),
       );
     }
     if (object.pattern != null) {
@@ -209,6 +247,13 @@ class _$UiNodeInputAttributesSerializer implements PrimitiveSerializer<UiNodeInp
           ) as UiText;
           result.label.replace(valueDes);
           break;
+        case r'maxlength':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.maxlength = valueDes;
+          break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
@@ -230,12 +275,26 @@ class _$UiNodeInputAttributesSerializer implements PrimitiveSerializer<UiNodeInp
           ) as String;
           result.onclick = valueDes;
           break;
+        case r'onclickTrigger':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(UiNodeInputAttributesOnclickTriggerEnum),
+          ) as UiNodeInputAttributesOnclickTriggerEnum;
+          result.onclickTrigger = valueDes;
+          break;
         case r'onload':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.onload = valueDes;
+          break;
+        case r'onloadTrigger':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(UiNodeInputAttributesOnloadTriggerEnum),
+          ) as UiNodeInputAttributesOnloadTriggerEnum;
+          result.onloadTrigger = valueDes;
           break;
         case r'pattern':
           final valueDes = serializers.deserialize(
@@ -348,6 +407,64 @@ class UiNodeInputAttributesNodeTypeEnum extends EnumClass {
 
   static BuiltSet<UiNodeInputAttributesNodeTypeEnum> get values => _$uiNodeInputAttributesNodeTypeEnumValues;
   static UiNodeInputAttributesNodeTypeEnum valueOf(String name) => _$uiNodeInputAttributesNodeTypeEnumValueOf(name);
+}
+
+class UiNodeInputAttributesOnclickTriggerEnum extends EnumClass {
+
+  /// OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryWebAuthnRegistration')
+  static const UiNodeInputAttributesOnclickTriggerEnum oryWebAuthnRegistration = _$uiNodeInputAttributesOnclickTriggerEnum_oryWebAuthnRegistration;
+  /// OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryWebAuthnLogin')
+  static const UiNodeInputAttributesOnclickTriggerEnum oryWebAuthnLogin = _$uiNodeInputAttributesOnclickTriggerEnum_oryWebAuthnLogin;
+  /// OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryPasskeyLogin')
+  static const UiNodeInputAttributesOnclickTriggerEnum oryPasskeyLogin = _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyLogin;
+  /// OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryPasskeyLoginAutocompleteInit')
+  static const UiNodeInputAttributesOnclickTriggerEnum oryPasskeyLoginAutocompleteInit = _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyLoginAutocompleteInit;
+  /// OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryPasskeyRegistration')
+  static const UiNodeInputAttributesOnclickTriggerEnum oryPasskeyRegistration = _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyRegistration;
+  /// OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryPasskeySettingsRegistration')
+  static const UiNodeInputAttributesOnclickTriggerEnum oryPasskeySettingsRegistration = _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeySettingsRegistration;
+
+  static Serializer<UiNodeInputAttributesOnclickTriggerEnum> get serializer => _$uiNodeInputAttributesOnclickTriggerEnumSerializer;
+
+  const UiNodeInputAttributesOnclickTriggerEnum._(String name): super(name);
+
+  static BuiltSet<UiNodeInputAttributesOnclickTriggerEnum> get values => _$uiNodeInputAttributesOnclickTriggerEnumValues;
+  static UiNodeInputAttributesOnclickTriggerEnum valueOf(String name) => _$uiNodeInputAttributesOnclickTriggerEnumValueOf(name);
+}
+
+class UiNodeInputAttributesOnloadTriggerEnum extends EnumClass {
+
+  /// OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryWebAuthnRegistration')
+  static const UiNodeInputAttributesOnloadTriggerEnum oryWebAuthnRegistration = _$uiNodeInputAttributesOnloadTriggerEnum_oryWebAuthnRegistration;
+  /// OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryWebAuthnLogin')
+  static const UiNodeInputAttributesOnloadTriggerEnum oryWebAuthnLogin = _$uiNodeInputAttributesOnloadTriggerEnum_oryWebAuthnLogin;
+  /// OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryPasskeyLogin')
+  static const UiNodeInputAttributesOnloadTriggerEnum oryPasskeyLogin = _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyLogin;
+  /// OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryPasskeyLoginAutocompleteInit')
+  static const UiNodeInputAttributesOnloadTriggerEnum oryPasskeyLoginAutocompleteInit = _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyLoginAutocompleteInit;
+  /// OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryPasskeyRegistration')
+  static const UiNodeInputAttributesOnloadTriggerEnum oryPasskeyRegistration = _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyRegistration;
+  /// OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+  @BuiltValueEnumConst(wireName: r'oryPasskeySettingsRegistration')
+  static const UiNodeInputAttributesOnloadTriggerEnum oryPasskeySettingsRegistration = _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeySettingsRegistration;
+
+  static Serializer<UiNodeInputAttributesOnloadTriggerEnum> get serializer => _$uiNodeInputAttributesOnloadTriggerEnumSerializer;
+
+  const UiNodeInputAttributesOnloadTriggerEnum._(String name): super(name);
+
+  static BuiltSet<UiNodeInputAttributesOnloadTriggerEnum> get values => _$uiNodeInputAttributesOnloadTriggerEnumValues;
+  static UiNodeInputAttributesOnloadTriggerEnum valueOf(String name) => _$uiNodeInputAttributesOnloadTriggerEnumValueOf(name);
 }
 
 class UiNodeInputAttributesTypeEnum extends EnumClass {
