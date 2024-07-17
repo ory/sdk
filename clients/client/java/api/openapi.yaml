@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.14.0
+  version: v1.14.1
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -12254,6 +12254,10 @@ components:
         password:
           description: The password in plain text if no hash is available.
           type: string
+        use_password_migration_hook:
+          description: "If set to true, the password will be migrated using the password\
+            \ migration hook."
+          type: boolean
       type: object
     internalGetProjectBrandingBody:
       description: Get Project Branding Request Body

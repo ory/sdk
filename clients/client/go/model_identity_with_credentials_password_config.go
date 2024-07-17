@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.14.0
+API version: v1.14.1
 Contact: support@ory.sh
 */
 
@@ -24,6 +24,8 @@ type IdentityWithCredentialsPasswordConfig struct {
 	HashedPassword *string `json:"hashed_password,omitempty"`
 	// The password in plain text if no hash is available.
 	Password *string `json:"password,omitempty"`
+	// If set to true, the password will be migrated using the password migration hook.
+	UsePasswordMigrationHook *bool `json:"use_password_migration_hook,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -110,6 +112,38 @@ func (o *IdentityWithCredentialsPasswordConfig) SetPassword(v string) {
 	o.Password = &v
 }
 
+// GetUsePasswordMigrationHook returns the UsePasswordMigrationHook field value if set, zero value otherwise.
+func (o *IdentityWithCredentialsPasswordConfig) GetUsePasswordMigrationHook() bool {
+	if o == nil || IsNil(o.UsePasswordMigrationHook) {
+		var ret bool
+		return ret
+	}
+	return *o.UsePasswordMigrationHook
+}
+
+// GetUsePasswordMigrationHookOk returns a tuple with the UsePasswordMigrationHook field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdentityWithCredentialsPasswordConfig) GetUsePasswordMigrationHookOk() (*bool, bool) {
+	if o == nil || IsNil(o.UsePasswordMigrationHook) {
+		return nil, false
+	}
+	return o.UsePasswordMigrationHook, true
+}
+
+// HasUsePasswordMigrationHook returns a boolean if a field has been set.
+func (o *IdentityWithCredentialsPasswordConfig) HasUsePasswordMigrationHook() bool {
+	if o != nil && !IsNil(o.UsePasswordMigrationHook) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsePasswordMigrationHook gets a reference to the given bool and assigns it to the UsePasswordMigrationHook field.
+func (o *IdentityWithCredentialsPasswordConfig) SetUsePasswordMigrationHook(v bool) {
+	o.UsePasswordMigrationHook = &v
+}
+
 func (o IdentityWithCredentialsPasswordConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -125,6 +159,9 @@ func (o IdentityWithCredentialsPasswordConfig) ToMap() (map[string]interface{}, 
 	}
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.UsePasswordMigrationHook) {
+		toSerialize["use_password_migration_hook"] = o.UsePasswordMigrationHook
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -150,6 +187,7 @@ func (o *IdentityWithCredentialsPasswordConfig) UnmarshalJSON(data []byte) (err 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "hashed_password")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "use_password_migration_hook")
 		o.AdditionalProperties = additionalProperties
 	}
 
