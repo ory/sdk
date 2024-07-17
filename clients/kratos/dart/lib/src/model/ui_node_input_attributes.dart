@@ -18,8 +18,9 @@ part 'ui_node_input_attributes.g.dart';
 /// * [disabled] - Sets the input's disabled field to true or false.
 /// * [label] 
 /// * [name] - The input's element name.
-/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\".
+/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
 /// * [onclick] - OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
+/// * [onload] - OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.
 /// * [pattern] - The input's pattern.
 /// * [required_] - Mark this input field as required.
 /// * [type] - The input's element type. text InputAttributeTypeText password InputAttributeTypePassword number InputAttributeTypeNumber checkbox InputAttributeTypeCheckbox hidden InputAttributeTypeHidden email InputAttributeTypeEmail tel InputAttributeTypeTel submit InputAttributeTypeSubmit button InputAttributeTypeButton datetime-local InputAttributeTypeDateTimeLocal date InputAttributeTypeDate url InputAttributeTypeURI
@@ -42,13 +43,18 @@ abstract class UiNodeInputAttributes implements Built<UiNodeInputAttributes, UiN
   @BuiltValueField(wireName: r'name')
   String get name;
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\".
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
   @BuiltValueField(wireName: r'node_type')
-  String get nodeType;
+  UiNodeInputAttributesNodeTypeEnum get nodeType;
+  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  };
 
   /// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
   @BuiltValueField(wireName: r'onclick')
   String? get onclick;
+
+  /// OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.
+  @BuiltValueField(wireName: r'onload')
+  String? get onload;
 
   /// The input's pattern.
   @BuiltValueField(wireName: r'pattern')
@@ -117,12 +123,19 @@ class _$UiNodeInputAttributesSerializer implements PrimitiveSerializer<UiNodeInp
     yield r'node_type';
     yield serializers.serialize(
       object.nodeType,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(UiNodeInputAttributesNodeTypeEnum),
     );
     if (object.onclick != null) {
       yield r'onclick';
       yield serializers.serialize(
         object.onclick,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.onload != null) {
+      yield r'onload';
+      yield serializers.serialize(
+        object.onload,
         specifiedType: const FullType(String),
       );
     }
@@ -206,8 +219,8 @@ class _$UiNodeInputAttributesSerializer implements PrimitiveSerializer<UiNodeInp
         case r'node_type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(UiNodeInputAttributesNodeTypeEnum),
+          ) as UiNodeInputAttributesNodeTypeEnum;
           result.nodeType = valueDes;
           break;
         case r'onclick':
@@ -216,6 +229,13 @@ class _$UiNodeInputAttributesSerializer implements PrimitiveSerializer<UiNodeInp
             specifiedType: const FullType(String),
           ) as String;
           result.onclick = valueDes;
+          break;
+        case r'onload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.onload = valueDes;
           break;
         case r'pattern':
           final valueDes = serializers.deserialize(
@@ -302,6 +322,32 @@ class UiNodeInputAttributesAutocompleteEnum extends EnumClass {
 
   static BuiltSet<UiNodeInputAttributesAutocompleteEnum> get values => _$uiNodeInputAttributesAutocompleteEnumValues;
   static UiNodeInputAttributesAutocompleteEnum valueOf(String name) => _$uiNodeInputAttributesAutocompleteEnumValueOf(name);
+}
+
+class UiNodeInputAttributesNodeTypeEnum extends EnumClass {
+
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'text')
+  static const UiNodeInputAttributesNodeTypeEnum text = _$uiNodeInputAttributesNodeTypeEnum_text;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'input')
+  static const UiNodeInputAttributesNodeTypeEnum input = _$uiNodeInputAttributesNodeTypeEnum_input;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'img')
+  static const UiNodeInputAttributesNodeTypeEnum img = _$uiNodeInputAttributesNodeTypeEnum_img;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'a')
+  static const UiNodeInputAttributesNodeTypeEnum a = _$uiNodeInputAttributesNodeTypeEnum_a;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
+  @BuiltValueEnumConst(wireName: r'script')
+  static const UiNodeInputAttributesNodeTypeEnum script = _$uiNodeInputAttributesNodeTypeEnum_script;
+
+  static Serializer<UiNodeInputAttributesNodeTypeEnum> get serializer => _$uiNodeInputAttributesNodeTypeEnumSerializer;
+
+  const UiNodeInputAttributesNodeTypeEnum._(String name): super(name);
+
+  static BuiltSet<UiNodeInputAttributesNodeTypeEnum> get values => _$uiNodeInputAttributesNodeTypeEnumValues;
+  static UiNodeInputAttributesNodeTypeEnum valueOf(String name) => _$uiNodeInputAttributesNodeTypeEnumValueOf(name);
 }
 
 class UiNodeInputAttributesTypeEnum extends EnumClass {

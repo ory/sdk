@@ -17,6 +17,8 @@ class _$UpdateSettingsFlowWithOidcMethod
   @override
   final JsonObject? traits;
   @override
+  final JsonObject? transientPayload;
+  @override
   final String? unlink;
   @override
   final JsonObject? upstreamParameters;
@@ -30,6 +32,7 @@ class _$UpdateSettingsFlowWithOidcMethod
       this.link,
       required this.method,
       this.traits,
+      this.transientPayload,
       this.unlink,
       this.upstreamParameters})
       : super._() {
@@ -54,6 +57,7 @@ class _$UpdateSettingsFlowWithOidcMethod
         link == other.link &&
         method == other.method &&
         traits == other.traits &&
+        transientPayload == other.transientPayload &&
         unlink == other.unlink &&
         upstreamParameters == other.upstreamParameters;
   }
@@ -65,6 +69,7 @@ class _$UpdateSettingsFlowWithOidcMethod
     _$hash = $jc(_$hash, link.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, traits.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, unlink.hashCode);
     _$hash = $jc(_$hash, upstreamParameters.hashCode);
     _$hash = $jf(_$hash);
@@ -78,6 +83,7 @@ class _$UpdateSettingsFlowWithOidcMethod
           ..add('link', link)
           ..add('method', method)
           ..add('traits', traits)
+          ..add('transientPayload', transientPayload)
           ..add('unlink', unlink)
           ..add('upstreamParameters', upstreamParameters))
         .toString();
@@ -106,6 +112,11 @@ class UpdateSettingsFlowWithOidcMethodBuilder
   JsonObject? get traits => _$this._traits;
   set traits(JsonObject? traits) => _$this._traits = traits;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   String? _unlink;
   String? get unlink => _$this._unlink;
   set unlink(String? unlink) => _$this._unlink = unlink;
@@ -126,6 +137,7 @@ class UpdateSettingsFlowWithOidcMethodBuilder
       _link = $v.link;
       _method = $v.method;
       _traits = $v.traits;
+      _transientPayload = $v.transientPayload;
       _unlink = $v.unlink;
       _upstreamParameters = $v.upstreamParameters;
       _$v = null;
@@ -155,6 +167,7 @@ class UpdateSettingsFlowWithOidcMethodBuilder
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateSettingsFlowWithOidcMethod', 'method'),
             traits: traits,
+            transientPayload: transientPayload,
             unlink: unlink,
             upstreamParameters: upstreamParameters);
     replace(_$result);

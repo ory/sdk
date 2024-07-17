@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_web_authn_method.dart';
+import 'package:ory_kratos_client/src/model/update_registration_flow_with_passkey_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_password_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_code_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_oidc_method.dart';
@@ -17,8 +18,8 @@ part 'update_registration_flow_body.g.dart';
 /// Update Registration Request Body
 ///
 /// Properties:
-/// * [csrfToken] - The CSRF Token
-/// * [method] - Method to use  This field must be set to `code` when using the code method.
+/// * [csrfToken] - CSRFToken is the anti-CSRF token
+/// * [method] - Method  Should be set to \"passkey\" when trying to add, update, or remove a Passkey.
 /// * [password] - Password to sign the user up with
 /// * [traits] - The identity's traits
 /// * [transientPayload] - Transient data to pass along to any webhooks
@@ -30,9 +31,10 @@ part 'update_registration_flow_body.g.dart';
 /// * [webauthnRegisterDisplayname] - Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
 /// * [code] - The OTP Code sent to the user
 /// * [resend] - Resend restarts the flow with a new code
+/// * [passkeyRegister] - Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
 @BuiltValue()
 abstract class UpdateRegistrationFlowBody implements Built<UpdateRegistrationFlowBody, UpdateRegistrationFlowBodyBuilder> {
-  /// One Of [UpdateRegistrationFlowWithCodeMethod], [UpdateRegistrationFlowWithOidcMethod], [UpdateRegistrationFlowWithPasswordMethod], [UpdateRegistrationFlowWithWebAuthnMethod]
+  /// One Of [UpdateRegistrationFlowWithCodeMethod], [UpdateRegistrationFlowWithOidcMethod], [UpdateRegistrationFlowWithPasskeyMethod], [UpdateRegistrationFlowWithPasswordMethod], [UpdateRegistrationFlowWithWebAuthnMethod]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'method';
@@ -40,6 +42,7 @@ abstract class UpdateRegistrationFlowBody implements Built<UpdateRegistrationFlo
   static const Map<String, Type> discriminatorMapping = {
     r'code': UpdateRegistrationFlowWithCodeMethod,
     r'oidc': UpdateRegistrationFlowWithOidcMethod,
+    r'passKey': UpdateRegistrationFlowWithPasskeyMethod,
     r'password': UpdateRegistrationFlowWithPasswordMethod,
     r'webauthn': UpdateRegistrationFlowWithWebAuthnMethod,
   };
@@ -63,6 +66,9 @@ extension UpdateRegistrationFlowBodyDiscriminatorExt on UpdateRegistrationFlowBo
         if (this is UpdateRegistrationFlowWithOidcMethod) {
             return r'oidc';
         }
+        if (this is UpdateRegistrationFlowWithPasskeyMethod) {
+            return r'passKey';
+        }
         if (this is UpdateRegistrationFlowWithPasswordMethod) {
             return r'password';
         }
@@ -79,6 +85,9 @@ extension UpdateRegistrationFlowBodyBuilderDiscriminatorExt on UpdateRegistratio
         }
         if (this is UpdateRegistrationFlowWithOidcMethodBuilder) {
             return r'oidc';
+        }
+        if (this is UpdateRegistrationFlowWithPasskeyMethodBuilder) {
+            return r'passKey';
         }
         if (this is UpdateRegistrationFlowWithPasswordMethodBuilder) {
             return r'password';
@@ -126,7 +135,7 @@ class _$UpdateRegistrationFlowBodySerializer implements PrimitiveSerializer<Upda
     final discIndex = serializedList.indexOf(UpdateRegistrationFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateRegistrationFlowWithCodeMethod, UpdateRegistrationFlowWithOidcMethod, UpdateRegistrationFlowWithPasswordMethod, UpdateRegistrationFlowWithWebAuthnMethod, ];
+    final oneOfTypes = [UpdateRegistrationFlowWithCodeMethod, UpdateRegistrationFlowWithOidcMethod, UpdateRegistrationFlowWithPasskeyMethod, UpdateRegistrationFlowWithPasswordMethod, UpdateRegistrationFlowWithWebAuthnMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
@@ -143,6 +152,13 @@ class _$UpdateRegistrationFlowBodySerializer implements PrimitiveSerializer<Upda
           specifiedType: FullType(UpdateRegistrationFlowWithOidcMethod),
         ) as UpdateRegistrationFlowWithOidcMethod;
         oneOfType = UpdateRegistrationFlowWithOidcMethod;
+        break;
+      case r'passKey':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UpdateRegistrationFlowWithPasskeyMethod),
+        ) as UpdateRegistrationFlowWithPasskeyMethod;
+        oneOfType = UpdateRegistrationFlowWithPasskeyMethod;
         break;
       case r'password':
         oneOfResult = serializers.deserialize(

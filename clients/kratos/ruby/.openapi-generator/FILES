@@ -99,6 +99,7 @@ docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
+docs/UpdateLoginFlowWithPasskeyMethod.md
 docs/UpdateLoginFlowWithPasswordMethod.md
 docs/UpdateLoginFlowWithTotpMethod.md
 docs/UpdateLoginFlowWithWebAuthnMethod.md
@@ -108,11 +109,14 @@ docs/UpdateRecoveryFlowWithLinkMethod.md
 docs/UpdateRegistrationFlowBody.md
 docs/UpdateRegistrationFlowWithCodeMethod.md
 docs/UpdateRegistrationFlowWithOidcMethod.md
+docs/UpdateRegistrationFlowWithPasskeyMethod.md
 docs/UpdateRegistrationFlowWithPasswordMethod.md
+docs/UpdateRegistrationFlowWithProfileMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
+docs/UpdateSettingsFlowWithPasskeyMethod.md
 docs/UpdateSettingsFlowWithPasswordMethod.md
 docs/UpdateSettingsFlowWithProfileMethod.md
 docs/UpdateSettingsFlowWithTotpMethod.md
@@ -221,6 +225,7 @@ lib/ory-kratos-client/models/update_login_flow_body.rb
 lib/ory-kratos-client/models/update_login_flow_with_code_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_lookup_secret_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_oidc_method.rb
+lib/ory-kratos-client/models/update_login_flow_with_passkey_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_password_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_totp_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_web_authn_method.rb
@@ -230,11 +235,14 @@ lib/ory-kratos-client/models/update_recovery_flow_with_link_method.rb
 lib/ory-kratos-client/models/update_registration_flow_body.rb
 lib/ory-kratos-client/models/update_registration_flow_with_code_method.rb
 lib/ory-kratos-client/models/update_registration_flow_with_oidc_method.rb
+lib/ory-kratos-client/models/update_registration_flow_with_passkey_method.rb
 lib/ory-kratos-client/models/update_registration_flow_with_password_method.rb
+lib/ory-kratos-client/models/update_registration_flow_with_profile_method.rb
 lib/ory-kratos-client/models/update_registration_flow_with_web_authn_method.rb
 lib/ory-kratos-client/models/update_settings_flow_body.rb
 lib/ory-kratos-client/models/update_settings_flow_with_lookup_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_oidc_method.rb
+lib/ory-kratos-client/models/update_settings_flow_with_passkey_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_password_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_profile_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_totp_method.rb
@@ -252,8 +260,6 @@ spec/api/courier_api_spec.rb
 spec/api/frontend_api_spec.rb
 spec/api/identity_api_spec.rb
 spec/api/metadata_api_spec.rb
-spec/api_client_spec.rb
-spec/configuration_spec.rb
 spec/models/authenticator_assurance_level_spec.rb
 spec/models/batch_patch_identities_response_spec.rb
 spec/models/consistency_request_parameters_spec.rb
@@ -342,6 +348,7 @@ spec/models/update_login_flow_body_spec.rb
 spec/models/update_login_flow_with_code_method_spec.rb
 spec/models/update_login_flow_with_lookup_secret_method_spec.rb
 spec/models/update_login_flow_with_oidc_method_spec.rb
+spec/models/update_login_flow_with_passkey_method_spec.rb
 spec/models/update_login_flow_with_password_method_spec.rb
 spec/models/update_login_flow_with_totp_method_spec.rb
 spec/models/update_login_flow_with_web_authn_method_spec.rb
@@ -351,11 +358,14 @@ spec/models/update_recovery_flow_with_link_method_spec.rb
 spec/models/update_registration_flow_body_spec.rb
 spec/models/update_registration_flow_with_code_method_spec.rb
 spec/models/update_registration_flow_with_oidc_method_spec.rb
+spec/models/update_registration_flow_with_passkey_method_spec.rb
 spec/models/update_registration_flow_with_password_method_spec.rb
+spec/models/update_registration_flow_with_profile_method_spec.rb
 spec/models/update_registration_flow_with_web_authn_method_spec.rb
 spec/models/update_settings_flow_body_spec.rb
 spec/models/update_settings_flow_with_lookup_method_spec.rb
 spec/models/update_settings_flow_with_oidc_method_spec.rb
+spec/models/update_settings_flow_with_passkey_method_spec.rb
 spec/models/update_settings_flow_with_password_method_spec.rb
 spec/models/update_settings_flow_with_profile_method_spec.rb
 spec/models/update_settings_flow_with_totp_method_spec.rb

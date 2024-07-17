@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -27,6 +27,8 @@ type UpdateLoginFlowWithWebAuthnMethod struct {
 	Identifier string `json:"identifier"`
 	// Method should be set to \"webAuthn\" when logging in using the WebAuthn strategy.
 	Method string `json:"method"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
 	WebauthnLogin *string `json:"webauthn_login,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -133,6 +135,38 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) SetMethod(v string) {
 	o.Method = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateLoginFlowWithWebAuthnMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoginFlowWithWebAuthnMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateLoginFlowWithWebAuthnMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateLoginFlowWithWebAuthnMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 // GetWebauthnLogin returns the WebauthnLogin field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithWebAuthnMethod) GetWebauthnLogin() string {
 	if o == nil || IsNil(o.WebauthnLogin) {
@@ -180,6 +214,9 @@ func (o UpdateLoginFlowWithWebAuthnMethod) ToMap() (map[string]interface{}, erro
 	}
 	toSerialize["identifier"] = o.Identifier
 	toSerialize["method"] = o.Method
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 	if !IsNil(o.WebauthnLogin) {
 		toSerialize["webauthn_login"] = o.WebauthnLogin
 	}
@@ -191,8 +228,8 @@ func (o UpdateLoginFlowWithWebAuthnMethod) ToMap() (map[string]interface{}, erro
 	return toSerialize, nil
 }
 
-func (o *UpdateLoginFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *UpdateLoginFlowWithWebAuthnMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -202,7 +239,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err err
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -216,7 +253,7 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err err
 
 	varUpdateLoginFlowWithWebAuthnMethod := _UpdateLoginFlowWithWebAuthnMethod{}
 
-	err = json.Unmarshal(bytes, &varUpdateLoginFlowWithWebAuthnMethod)
+	err = json.Unmarshal(data, &varUpdateLoginFlowWithWebAuthnMethod)
 
 	if err != nil {
 		return err
@@ -226,10 +263,11 @@ func (o *UpdateLoginFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err err
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "csrf_token")
 		delete(additionalProperties, "identifier")
 		delete(additionalProperties, "method")
+		delete(additionalProperties, "transient_payload")
 		delete(additionalProperties, "webauthn_login")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -20,6 +20,8 @@ const UiNodeGroupEnum _$uiNodeGroupEnum_lookupSecret =
     const UiNodeGroupEnum._('lookupSecret');
 const UiNodeGroupEnum _$uiNodeGroupEnum_webauthn =
     const UiNodeGroupEnum._('webauthn');
+const UiNodeGroupEnum _$uiNodeGroupEnum_passkey =
+    const UiNodeGroupEnum._('passkey');
 
 UiNodeGroupEnum _$uiNodeGroupEnumValueOf(String name) {
   switch (name) {
@@ -41,6 +43,8 @@ UiNodeGroupEnum _$uiNodeGroupEnumValueOf(String name) {
       return _$uiNodeGroupEnum_lookupSecret;
     case 'webauthn':
       return _$uiNodeGroupEnum_webauthn;
+    case 'passkey':
+      return _$uiNodeGroupEnum_passkey;
     default:
       throw new ArgumentError(name);
   }
@@ -57,6 +61,7 @@ final BuiltSet<UiNodeGroupEnum> _$uiNodeGroupEnumValues =
   _$uiNodeGroupEnum_totp,
   _$uiNodeGroupEnum_lookupSecret,
   _$uiNodeGroupEnum_webauthn,
+  _$uiNodeGroupEnum_passkey,
 ]);
 
 const UiNodeTypeEnum _$uiNodeTypeEnum_text = const UiNodeTypeEnum._('text');
@@ -108,6 +113,7 @@ class _$UiNodeGroupEnumSerializer
     'totp': 'totp',
     'lookupSecret': 'lookup_secret',
     'webauthn': 'webauthn',
+    'passkey': 'passkey',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'default': 'default_',
@@ -119,6 +125,7 @@ class _$UiNodeGroupEnumSerializer
     'totp': 'totp',
     'lookup_secret': 'lookupSecret',
     'webauthn': 'webauthn',
+    'passkey': 'passkey',
   };
 
   @override

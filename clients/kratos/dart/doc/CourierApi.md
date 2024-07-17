@@ -34,7 +34,7 @@ final String id = id_example; // String | MessageID is the ID of the message.
 try {
     final response = api.getCourierMessage(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling CourierApi->getCourierMessage: $e\n');
 }
 ```
@@ -84,7 +84,7 @@ final String recipient = recipient_example; // String | Recipient filters out me
 try {
     final response = api.listCourierMessages(pageSize, pageToken, status, recipient);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling CourierApi->listCourierMessages: $e\n');
 }
 ```

@@ -54,9 +54,51 @@ final BuiltSet<UiNodeAttributesAutocompleteEnum>
   _$uiNodeAttributesAutocompleteEnum_oneTimeCode,
 ]);
 
+const UiNodeAttributesNodeTypeEnum _$uiNodeAttributesNodeTypeEnum_text =
+    const UiNodeAttributesNodeTypeEnum._('text');
+const UiNodeAttributesNodeTypeEnum _$uiNodeAttributesNodeTypeEnum_input =
+    const UiNodeAttributesNodeTypeEnum._('input');
+const UiNodeAttributesNodeTypeEnum _$uiNodeAttributesNodeTypeEnum_img =
+    const UiNodeAttributesNodeTypeEnum._('img');
+const UiNodeAttributesNodeTypeEnum _$uiNodeAttributesNodeTypeEnum_a =
+    const UiNodeAttributesNodeTypeEnum._('a');
+const UiNodeAttributesNodeTypeEnum _$uiNodeAttributesNodeTypeEnum_script =
+    const UiNodeAttributesNodeTypeEnum._('script');
+
+UiNodeAttributesNodeTypeEnum _$uiNodeAttributesNodeTypeEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'text':
+      return _$uiNodeAttributesNodeTypeEnum_text;
+    case 'input':
+      return _$uiNodeAttributesNodeTypeEnum_input;
+    case 'img':
+      return _$uiNodeAttributesNodeTypeEnum_img;
+    case 'a':
+      return _$uiNodeAttributesNodeTypeEnum_a;
+    case 'script':
+      return _$uiNodeAttributesNodeTypeEnum_script;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UiNodeAttributesNodeTypeEnum>
+    _$uiNodeAttributesNodeTypeEnumValues = new BuiltSet<
+        UiNodeAttributesNodeTypeEnum>(const <UiNodeAttributesNodeTypeEnum>[
+  _$uiNodeAttributesNodeTypeEnum_text,
+  _$uiNodeAttributesNodeTypeEnum_input,
+  _$uiNodeAttributesNodeTypeEnum_img,
+  _$uiNodeAttributesNodeTypeEnum_a,
+  _$uiNodeAttributesNodeTypeEnum_script,
+]);
+
 Serializer<UiNodeAttributesAutocompleteEnum>
     _$uiNodeAttributesAutocompleteEnumSerializer =
     new _$UiNodeAttributesAutocompleteEnumSerializer();
+Serializer<UiNodeAttributesNodeTypeEnum>
+    _$uiNodeAttributesNodeTypeEnumSerializer =
+    new _$UiNodeAttributesNodeTypeEnumSerializer();
 
 class _$UiNodeAttributesAutocompleteEnumSerializer
     implements PrimitiveSerializer<UiNodeAttributesAutocompleteEnum> {
@@ -93,6 +135,41 @@ class _$UiNodeAttributesAutocompleteEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       UiNodeAttributesAutocompleteEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$UiNodeAttributesNodeTypeEnumSerializer
+    implements PrimitiveSerializer<UiNodeAttributesNodeTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[UiNodeAttributesNodeTypeEnum];
+  @override
+  final String wireName = 'UiNodeAttributesNodeTypeEnum';
+
+  @override
+  Object serialize(Serializers serializers, UiNodeAttributesNodeTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UiNodeAttributesNodeTypeEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UiNodeAttributesNodeTypeEnum.valueOf(
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 

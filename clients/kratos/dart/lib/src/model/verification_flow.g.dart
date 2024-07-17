@@ -22,6 +22,8 @@ class _$VerificationFlow extends VerificationFlow {
   @override
   final JsonObject? state;
   @override
+  final JsonObject? transientPayload;
+  @override
   final String type;
   @override
   final UiContainer ui;
@@ -38,6 +40,7 @@ class _$VerificationFlow extends VerificationFlow {
       this.requestUrl,
       this.returnTo,
       this.state,
+      this.transientPayload,
       required this.type,
       required this.ui})
       : super._() {
@@ -65,6 +68,7 @@ class _$VerificationFlow extends VerificationFlow {
         requestUrl == other.requestUrl &&
         returnTo == other.returnTo &&
         state == other.state &&
+        transientPayload == other.transientPayload &&
         type == other.type &&
         ui == other.ui;
   }
@@ -79,6 +83,7 @@ class _$VerificationFlow extends VerificationFlow {
     _$hash = $jc(_$hash, requestUrl.hashCode);
     _$hash = $jc(_$hash, returnTo.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, ui.hashCode);
     _$hash = $jf(_$hash);
@@ -95,6 +100,7 @@ class _$VerificationFlow extends VerificationFlow {
           ..add('requestUrl', requestUrl)
           ..add('returnTo', returnTo)
           ..add('state', state)
+          ..add('transientPayload', transientPayload)
           ..add('type', type)
           ..add('ui', ui))
         .toString();
@@ -133,6 +139,11 @@ class VerificationFlowBuilder
   JsonObject? get state => _$this._state;
   set state(JsonObject? state) => _$this._state = state;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   String? _type;
   String? get type => _$this._type;
   set type(String? type) => _$this._type = type;
@@ -155,6 +166,7 @@ class VerificationFlowBuilder
       _requestUrl = $v.requestUrl;
       _returnTo = $v.returnTo;
       _state = $v.state;
+      _transientPayload = $v.transientPayload;
       _type = $v.type;
       _ui = $v.ui.toBuilder();
       _$v = null;
@@ -189,6 +201,7 @@ class VerificationFlowBuilder
               requestUrl: requestUrl,
               returnTo: returnTo,
               state: state,
+              transientPayload: transientPayload,
               type: BuiltValueNullFieldError.checkNotNull(
                   type, r'VerificationFlow', 'type'),
               ui: ui.build());

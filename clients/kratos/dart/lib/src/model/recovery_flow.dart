@@ -23,6 +23,7 @@ part 'recovery_flow.g.dart';
 /// * [requestUrl] - RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
 /// * [state] - State represents the state of this request:  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+/// * [transientPayload] - TransientPayload is used to pass data from the recovery flow to hooks and email templates
 /// * [type] - The flow type can either be `api` or `browser`.
 /// * [ui] 
 @BuiltValue()
@@ -58,6 +59,10 @@ abstract class RecoveryFlow implements Built<RecoveryFlow, RecoveryFlowBuilder> 
   /// State represents the state of this request:  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
   @BuiltValueField(wireName: r'state')
   JsonObject? get state;
+
+  /// TransientPayload is used to pass data from the recovery flow to hooks and email templates
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   /// The flow type can either be `api` or `browser`.
   @BuiltValueField(wireName: r'type')
@@ -135,6 +140,13 @@ class _$RecoveryFlowSerializer implements PrimitiveSerializer<RecoveryFlow> {
       object.state,
       specifiedType: const FullType.nullable(JsonObject),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
     yield r'type';
     yield serializers.serialize(
       object.type,
@@ -224,6 +236,13 @@ class _$RecoveryFlowSerializer implements PrimitiveSerializer<RecoveryFlow> {
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.state = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(

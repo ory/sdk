@@ -47,6 +47,7 @@ OryKratosClient::UpdateVerificationFlowBody.openapi_discriminator_mapping
 #   :'code' => :'UpdateVerificationFlowWithCodeMethod',
 #   :'link' => :'UpdateVerificationFlowWithLinkMethod'
 # }
+```
 
 ### build
 

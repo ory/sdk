@@ -16,6 +16,7 @@ OryKratosClient::UpdateSettingsFlowBody.openapi_one_of
 # [
 #   :'UpdateSettingsFlowWithLookupMethod',
 #   :'UpdateSettingsFlowWithOidcMethod',
+#   :'UpdateSettingsFlowWithPasskeyMethod',
 #   :'UpdateSettingsFlowWithPasswordMethod',
 #   :'UpdateSettingsFlowWithProfileMethod',
 #   :'UpdateSettingsFlowWithTotpMethod',
@@ -50,11 +51,13 @@ OryKratosClient::UpdateSettingsFlowBody.openapi_discriminator_mapping
 # {
 #   :'lookup_secret' => :'UpdateSettingsFlowWithLookupMethod',
 #   :'oidc' => :'UpdateSettingsFlowWithOidcMethod',
+#   :'passkey' => :'UpdateSettingsFlowWithPasskeyMethod',
 #   :'password' => :'UpdateSettingsFlowWithPasswordMethod',
 #   :'profile' => :'UpdateSettingsFlowWithProfileMethod',
 #   :'totp' => :'UpdateSettingsFlowWithTotpMethod',
 #   :'webauthn' => :'UpdateSettingsFlowWithWebAuthnMethod'
 # }
+```
 
 ### build
 
@@ -82,6 +85,7 @@ OryKratosClient::UpdateSettingsFlowBody.build(data_that_doesnt_match)
 
 - `UpdateSettingsFlowWithLookupMethod`
 - `UpdateSettingsFlowWithOidcMethod`
+- `UpdateSettingsFlowWithPasskeyMethod`
 - `UpdateSettingsFlowWithPasswordMethod`
 - `UpdateSettingsFlowWithProfileMethod`
 - `UpdateSettingsFlowWithTotpMethod`

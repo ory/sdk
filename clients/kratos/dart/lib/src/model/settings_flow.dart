@@ -25,6 +25,7 @@ part 'settings_flow.g.dart';
 /// * [requestUrl] - RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example.
 /// * [returnTo] - ReturnTo contains the requested return_to URL.
 /// * [state] - State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent.
+/// * [transientPayload] - TransientPayload is used to pass data from the settings flow to hooks and email templates
 /// * [type] - The flow type can either be `api` or `browser`.
 /// * [ui] 
 @BuiltValue()
@@ -63,6 +64,10 @@ abstract class SettingsFlow implements Built<SettingsFlow, SettingsFlowBuilder> 
   /// State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent.
   @BuiltValueField(wireName: r'state')
   JsonObject? get state;
+
+  /// TransientPayload is used to pass data from the settings flow to hooks and email templates
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   /// The flow type can either be `api` or `browser`.
   @BuiltValueField(wireName: r'type')
@@ -145,6 +150,13 @@ class _$SettingsFlowSerializer implements PrimitiveSerializer<SettingsFlow> {
       object.state,
       specifiedType: const FullType.nullable(JsonObject),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
     yield r'type';
     yield serializers.serialize(
       object.type,
@@ -241,6 +253,13 @@ class _$SettingsFlowSerializer implements PrimitiveSerializer<SettingsFlow> {
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.state = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(

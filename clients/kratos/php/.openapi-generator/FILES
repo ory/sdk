@@ -1,6 +1,6 @@
 .gitignore
 .openapi-generator-ignore
-.php_cs
+.php-cs-fixer.dist.php
 .travis.yml
 README.md
 composer.json
@@ -31,6 +31,7 @@ docs/Model/ErrorFlowReplaced.md
 docs/Model/ErrorGeneric.md
 docs/Model/FlowError.md
 docs/Model/GenericError.md
+docs/Model/GetVersion200Response.md
 docs/Model/HealthNotReadyStatus.md
 docs/Model/HealthStatus.md
 docs/Model/Identity.md
@@ -48,9 +49,8 @@ docs/Model/IdentityWithCredentialsOidcConfig.md
 docs/Model/IdentityWithCredentialsOidcConfigProvider.md
 docs/Model/IdentityWithCredentialsPassword.md
 docs/Model/IdentityWithCredentialsPasswordConfig.md
-docs/Model/InlineResponse200.md
-docs/Model/InlineResponse2001.md
-docs/Model/InlineResponse503.md
+docs/Model/IsAlive200Response.md
+docs/Model/IsReady503Response.md
 docs/Model/JsonPatch.md
 docs/Model/LoginFlow.md
 docs/Model/LoginFlowState.md
@@ -96,6 +96,7 @@ docs/Model/UpdateLoginFlowBody.md
 docs/Model/UpdateLoginFlowWithCodeMethod.md
 docs/Model/UpdateLoginFlowWithLookupSecretMethod.md
 docs/Model/UpdateLoginFlowWithOidcMethod.md
+docs/Model/UpdateLoginFlowWithPasskeyMethod.md
 docs/Model/UpdateLoginFlowWithPasswordMethod.md
 docs/Model/UpdateLoginFlowWithTotpMethod.md
 docs/Model/UpdateLoginFlowWithWebAuthnMethod.md
@@ -105,11 +106,14 @@ docs/Model/UpdateRecoveryFlowWithLinkMethod.md
 docs/Model/UpdateRegistrationFlowBody.md
 docs/Model/UpdateRegistrationFlowWithCodeMethod.md
 docs/Model/UpdateRegistrationFlowWithOidcMethod.md
+docs/Model/UpdateRegistrationFlowWithPasskeyMethod.md
 docs/Model/UpdateRegistrationFlowWithPasswordMethod.md
+docs/Model/UpdateRegistrationFlowWithProfileMethod.md
 docs/Model/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/Model/UpdateSettingsFlowBody.md
 docs/Model/UpdateSettingsFlowWithLookupMethod.md
 docs/Model/UpdateSettingsFlowWithOidcMethod.md
+docs/Model/UpdateSettingsFlowWithPasskeyMethod.md
 docs/Model/UpdateSettingsFlowWithPasswordMethod.md
 docs/Model/UpdateSettingsFlowWithProfileMethod.md
 docs/Model/UpdateSettingsFlowWithTotpMethod.md
@@ -152,6 +156,7 @@ lib/Model/ErrorFlowReplaced.php
 lib/Model/ErrorGeneric.php
 lib/Model/FlowError.php
 lib/Model/GenericError.php
+lib/Model/GetVersion200Response.php
 lib/Model/HealthNotReadyStatus.php
 lib/Model/HealthStatus.php
 lib/Model/Identity.php
@@ -169,9 +174,8 @@ lib/Model/IdentityWithCredentialsOidcConfig.php
 lib/Model/IdentityWithCredentialsOidcConfigProvider.php
 lib/Model/IdentityWithCredentialsPassword.php
 lib/Model/IdentityWithCredentialsPasswordConfig.php
-lib/Model/InlineResponse200.php
-lib/Model/InlineResponse2001.php
-lib/Model/InlineResponse503.php
+lib/Model/IsAlive200Response.php
+lib/Model/IsReady503Response.php
 lib/Model/JsonPatch.php
 lib/Model/LoginFlow.php
 lib/Model/LoginFlowState.php
@@ -218,6 +222,7 @@ lib/Model/UpdateLoginFlowBody.php
 lib/Model/UpdateLoginFlowWithCodeMethod.php
 lib/Model/UpdateLoginFlowWithLookupSecretMethod.php
 lib/Model/UpdateLoginFlowWithOidcMethod.php
+lib/Model/UpdateLoginFlowWithPasskeyMethod.php
 lib/Model/UpdateLoginFlowWithPasswordMethod.php
 lib/Model/UpdateLoginFlowWithTotpMethod.php
 lib/Model/UpdateLoginFlowWithWebAuthnMethod.php
@@ -227,11 +232,14 @@ lib/Model/UpdateRecoveryFlowWithLinkMethod.php
 lib/Model/UpdateRegistrationFlowBody.php
 lib/Model/UpdateRegistrationFlowWithCodeMethod.php
 lib/Model/UpdateRegistrationFlowWithOidcMethod.php
+lib/Model/UpdateRegistrationFlowWithPasskeyMethod.php
 lib/Model/UpdateRegistrationFlowWithPasswordMethod.php
+lib/Model/UpdateRegistrationFlowWithProfileMethod.php
 lib/Model/UpdateRegistrationFlowWithWebAuthnMethod.php
 lib/Model/UpdateSettingsFlowBody.php
 lib/Model/UpdateSettingsFlowWithLookupMethod.php
 lib/Model/UpdateSettingsFlowWithOidcMethod.php
+lib/Model/UpdateSettingsFlowWithPasskeyMethod.php
 lib/Model/UpdateSettingsFlowWithPasswordMethod.php
 lib/Model/UpdateSettingsFlowWithProfileMethod.php
 lib/Model/UpdateSettingsFlowWithTotpMethod.php
@@ -272,6 +280,7 @@ test/Model/ErrorFlowReplacedTest.php
 test/Model/ErrorGenericTest.php
 test/Model/FlowErrorTest.php
 test/Model/GenericErrorTest.php
+test/Model/GetVersion200ResponseTest.php
 test/Model/HealthNotReadyStatusTest.php
 test/Model/HealthStatusTest.php
 test/Model/IdentityCredentialsCodeTest.php
@@ -289,9 +298,8 @@ test/Model/IdentityWithCredentialsOidcTest.php
 test/Model/IdentityWithCredentialsPasswordConfigTest.php
 test/Model/IdentityWithCredentialsPasswordTest.php
 test/Model/IdentityWithCredentialsTest.php
-test/Model/InlineResponse2001Test.php
-test/Model/InlineResponse200Test.php
-test/Model/InlineResponse503Test.php
+test/Model/IsAlive200ResponseTest.php
+test/Model/IsReady503ResponseTest.php
 test/Model/JsonPatchTest.php
 test/Model/LoginFlowStateTest.php
 test/Model/LoginFlowTest.php
@@ -337,6 +345,7 @@ test/Model/UpdateLoginFlowBodyTest.php
 test/Model/UpdateLoginFlowWithCodeMethodTest.php
 test/Model/UpdateLoginFlowWithLookupSecretMethodTest.php
 test/Model/UpdateLoginFlowWithOidcMethodTest.php
+test/Model/UpdateLoginFlowWithPasskeyMethodTest.php
 test/Model/UpdateLoginFlowWithPasswordMethodTest.php
 test/Model/UpdateLoginFlowWithTotpMethodTest.php
 test/Model/UpdateLoginFlowWithWebAuthnMethodTest.php
@@ -346,11 +355,14 @@ test/Model/UpdateRecoveryFlowWithLinkMethodTest.php
 test/Model/UpdateRegistrationFlowBodyTest.php
 test/Model/UpdateRegistrationFlowWithCodeMethodTest.php
 test/Model/UpdateRegistrationFlowWithOidcMethodTest.php
+test/Model/UpdateRegistrationFlowWithPasskeyMethodTest.php
 test/Model/UpdateRegistrationFlowWithPasswordMethodTest.php
+test/Model/UpdateRegistrationFlowWithProfileMethodTest.php
 test/Model/UpdateRegistrationFlowWithWebAuthnMethodTest.php
 test/Model/UpdateSettingsFlowBodyTest.php
 test/Model/UpdateSettingsFlowWithLookupMethodTest.php
 test/Model/UpdateSettingsFlowWithOidcMethodTest.php
+test/Model/UpdateSettingsFlowWithPasskeyMethodTest.php
 test/Model/UpdateSettingsFlowWithPasswordMethodTest.php
 test/Model/UpdateSettingsFlowWithProfileMethodTest.php
 test/Model/UpdateSettingsFlowWithTotpMethodTest.php

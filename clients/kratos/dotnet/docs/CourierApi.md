@@ -2,13 +2,12 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetCourierMessage**](CourierApi.md#getcouriermessage) | **GET** /admin/courier/messages/{id} | Get a Message
-[**ListCourierMessages**](CourierApi.md#listcouriermessages) | **GET** /admin/courier/messages | List Messages
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetCourierMessage**](CourierApi.md#getcouriermessage) | **GET** /admin/courier/messages/{id} | Get a Message |
+| [**ListCourierMessages**](CourierApi.md#listcouriermessages) | **GET** /admin/courier/messages | List Messages |
 
-
-<a name="getcouriermessage"></a>
+<a id="getcouriermessage"></a>
 # **GetCourierMessage**
 > KratosMessage GetCourierMessage (string id)
 
@@ -48,8 +47,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CourierApi.GetCourierMessage: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling CourierApi.GetCourierMessage: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -57,11 +56,31 @@ namespace Example
 }
 ```
 
+#### Using the GetCourierMessageWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a Message
+    ApiResponse<KratosMessage> response = apiInstance.GetCourierMessageWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CourierApi.GetCourierMessageWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| MessageID is the ID of the message. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | MessageID is the ID of the message. |  |
 
 ### Return type
 
@@ -86,9 +105,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listcouriermessages"></a>
+<a id="listcouriermessages"></a>
 # **ListCourierMessages**
-> List&lt;KratosMessage&gt; ListCourierMessages (long? pageSize = null, string pageToken = null, KratosCourierMessageStatus? status = null, string recipient = null)
+> List&lt;KratosMessage&gt; ListCourierMessages (long? pageSize = null, string? pageToken = null, KratosCourierMessageStatus? status = null, string? recipient = null)
 
 List Messages
 
@@ -117,9 +136,9 @@ namespace Example
 
             var apiInstance = new CourierApi(config);
             var pageSize = 250L;  // long? | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)  (default to 250)
-            var pageToken = "pageToken_example";  // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) 
-            var status = (KratosCourierMessageStatus) "queued";  // KratosCourierMessageStatus? | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter. (optional) 
-            var recipient = "recipient_example";  // string | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter. (optional) 
+            var pageToken = "pageToken_example";  // string? | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) 
+            var status = new KratosCourierMessageStatus?(); // KratosCourierMessageStatus? | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter. (optional) 
+            var recipient = "recipient_example";  // string? | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter. (optional) 
 
             try
             {
@@ -129,8 +148,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CourierApi.ListCourierMessages: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling CourierApi.ListCourierMessages: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -138,14 +157,34 @@ namespace Example
 }
 ```
 
+#### Using the ListCourierMessagesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Messages
+    ApiResponse<List<KratosMessage>> response = apiInstance.ListCourierMessagesWithHttpInfo(pageSize, pageToken, status, recipient);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CourierApi.ListCourierMessagesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageSize** | **long?**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
- **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] 
- **status** | **KratosCourierMessageStatus?**| Status filters out messages based on status. If no value is provided, it doesn&#39;t take effect on filter. | [optional] 
- **recipient** | **string**| Recipient filters out messages based on recipient. If no value is provided, it doesn&#39;t take effect on filter. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **pageSize** | **long?** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string?** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]  |
+| **status** | [**KratosCourierMessageStatus?**](KratosCourierMessageStatus?.md) | Status filters out messages based on status. If no value is provided, it doesn&#39;t take effect on filter. | [optional]  |
+| **recipient** | **string?** | Recipient filters out messages based on recipient. If no value is provided, it doesn&#39;t take effect on filter. | [optional]  |
 
 ### Return type
 

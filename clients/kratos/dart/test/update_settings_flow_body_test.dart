@@ -13,7 +13,7 @@ void main() {
       // TODO
     });
 
-    // Method  Should be set to \"lookup\" when trying to add, update, or remove a lookup pairing.
+    // Method  Should be set to \"passkey\" when trying to add, update, or remove a webAuthn pairing.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -22,6 +22,12 @@ void main() {
     // Password is the updated password
     // String password
     test('to test the property `password`', () async {
+      // TODO
+    });
+
+    // Transient data to pass along to any webhooks
+    // JsonObject transientPayload
+    test('to test the property `transientPayload`', () async {
       // TODO
     });
 
@@ -106,6 +112,18 @@ void main() {
     // If set to true will reveal the lookup secrets
     // bool lookupSecretReveal
     test('to test the property `lookupSecretReveal`', () async {
+      // TODO
+    });
+
+    // Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
+    // String passkeyRemove
+    test('to test the property `passkeyRemove`', () async {
+      // TODO
+    });
+
+    // Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
+    // String passkeySettingsRegister
+    test('to test the property `passkeySettingsRegister`', () async {
       // TODO
     });
 

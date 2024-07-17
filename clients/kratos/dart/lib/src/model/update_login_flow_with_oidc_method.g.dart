@@ -20,6 +20,8 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
   @override
   final JsonObject? traits;
   @override
+  final JsonObject? transientPayload;
+  @override
   final JsonObject? upstreamParameters;
 
   factory _$UpdateLoginFlowWithOidcMethod(
@@ -33,6 +35,7 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
       required this.method,
       required this.provider,
       this.traits,
+      this.transientPayload,
       this.upstreamParameters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -60,6 +63,7 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
         method == other.method &&
         provider == other.provider &&
         traits == other.traits &&
+        transientPayload == other.transientPayload &&
         upstreamParameters == other.upstreamParameters;
   }
 
@@ -72,6 +76,7 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, traits.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jc(_$hash, upstreamParameters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -86,6 +91,7 @@ class _$UpdateLoginFlowWithOidcMethod extends UpdateLoginFlowWithOidcMethod {
           ..add('method', method)
           ..add('provider', provider)
           ..add('traits', traits)
+          ..add('transientPayload', transientPayload)
           ..add('upstreamParameters', upstreamParameters))
         .toString();
   }
@@ -121,6 +127,11 @@ class UpdateLoginFlowWithOidcMethodBuilder
   JsonObject? get traits => _$this._traits;
   set traits(JsonObject? traits) => _$this._traits = traits;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   JsonObject? _upstreamParameters;
   JsonObject? get upstreamParameters => _$this._upstreamParameters;
   set upstreamParameters(JsonObject? upstreamParameters) =>
@@ -139,6 +150,7 @@ class UpdateLoginFlowWithOidcMethodBuilder
       _method = $v.method;
       _provider = $v.provider;
       _traits = $v.traits;
+      _transientPayload = $v.transientPayload;
       _upstreamParameters = $v.upstreamParameters;
       _$v = null;
     }
@@ -170,6 +182,7 @@ class UpdateLoginFlowWithOidcMethodBuilder
             provider: BuiltValueNullFieldError.checkNotNull(
                 provider, r'UpdateLoginFlowWithOidcMethod', 'provider'),
             traits: traits,
+            transientPayload: transientPayload,
             upstreamParameters: upstreamParameters);
     replace(_$result);
     return _$result;

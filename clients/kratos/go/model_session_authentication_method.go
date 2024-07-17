@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -244,10 +244,10 @@ func (o SessionAuthenticationMethod) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *SessionAuthenticationMethod) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SessionAuthenticationMethod) UnmarshalJSON(data []byte) (err error) {
 	varSessionAuthenticationMethod := _SessionAuthenticationMethod{}
 
-	err = json.Unmarshal(bytes, &varSessionAuthenticationMethod)
+	err = json.Unmarshal(data, &varSessionAuthenticationMethod)
 
 	if err != nil {
 		return err
@@ -257,7 +257,7 @@ func (o *SessionAuthenticationMethod) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "aal")
 		delete(additionalProperties, "completed_at")
 		delete(additionalProperties, "method")

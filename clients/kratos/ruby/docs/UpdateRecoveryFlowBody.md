@@ -47,6 +47,7 @@ OryKratosClient::UpdateRecoveryFlowBody.openapi_discriminator_mapping
 #   :'code' => :'UpdateRecoveryFlowWithCodeMethod',
 #   :'link' => :'UpdateRecoveryFlowWithLinkMethod'
 # }
+```
 
 ### build
 

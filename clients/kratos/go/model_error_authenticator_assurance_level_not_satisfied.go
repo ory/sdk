@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -133,10 +133,10 @@ func (o ErrorAuthenticatorAssuranceLevelNotSatisfied) ToMap() (map[string]interf
 	return toSerialize, nil
 }
 
-func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) UnmarshalJSON(data []byte) (err error) {
 	varErrorAuthenticatorAssuranceLevelNotSatisfied := _ErrorAuthenticatorAssuranceLevelNotSatisfied{}
 
-	err = json.Unmarshal(bytes, &varErrorAuthenticatorAssuranceLevelNotSatisfied)
+	err = json.Unmarshal(data, &varErrorAuthenticatorAssuranceLevelNotSatisfied)
 
 	if err != nil {
 		return err
@@ -146,7 +146,7 @@ func (o *ErrorAuthenticatorAssuranceLevelNotSatisfied) UnmarshalJSON(bytes []byt
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "error")
 		delete(additionalProperties, "redirect_browser_to")
 		o.AdditionalProperties = additionalProperties

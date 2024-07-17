@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,6 +15,7 @@ part 'update_login_flow_with_web_authn_method.g.dart';
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
 /// * [identifier] - Identifier is the email or username of the user trying to log in.
 /// * [method] - Method should be set to \"webAuthn\" when logging in using the WebAuthn strategy.
+/// * [transientPayload] - Transient data to pass along to any webhooks
 /// * [webauthnLogin] - Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
 @BuiltValue()
 abstract class UpdateLoginFlowWithWebAuthnMethod implements Built<UpdateLoginFlowWithWebAuthnMethod, UpdateLoginFlowWithWebAuthnMethodBuilder> {
@@ -28,6 +30,10 @@ abstract class UpdateLoginFlowWithWebAuthnMethod implements Built<UpdateLoginFlo
   /// Method should be set to \"webAuthn\" when logging in using the WebAuthn strategy.
   @BuiltValueField(wireName: r'method')
   String get method;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   /// Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
   @BuiltValueField(wireName: r'webauthn_login')
@@ -73,6 +79,13 @@ class _$UpdateLoginFlowWithWebAuthnMethodSerializer implements PrimitiveSerializ
       object.method,
       specifiedType: const FullType(String),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
     if (object.webauthnLogin != null) {
       yield r'webauthn_login';
       yield serializers.serialize(
@@ -123,6 +136,13 @@ class _$UpdateLoginFlowWithWebAuthnMethodSerializer implements PrimitiveSerializ
             specifiedType: const FullType(String),
           ) as String;
           result.method = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         case r'webauthn_login':
           final valueDes = serializers.deserialize(

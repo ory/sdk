@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -13,6 +14,7 @@ part 'update_settings_flow_with_web_authn_method.g.dart';
 /// Properties:
 /// * [csrfToken] - CSRFToken is the anti-CSRF token
 /// * [method] - Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
+/// * [transientPayload] - Transient data to pass along to any webhooks
 /// * [webauthnRegister] - Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
 /// * [webauthnRegisterDisplayname] - Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
 /// * [webauthnRemove] - Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
@@ -25,6 +27,10 @@ abstract class UpdateSettingsFlowWithWebAuthnMethod implements Built<UpdateSetti
   /// Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
   @BuiltValueField(wireName: r'method')
   String get method;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   /// Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
   @BuiltValueField(wireName: r'webauthn_register')
@@ -73,6 +79,13 @@ class _$UpdateSettingsFlowWithWebAuthnMethodSerializer implements PrimitiveSeria
       object.method,
       specifiedType: const FullType(String),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
     if (object.webauthnRegister != null) {
       yield r'webauthn_register';
       yield serializers.serialize(
@@ -130,6 +143,13 @@ class _$UpdateSettingsFlowWithWebAuthnMethodSerializer implements PrimitiveSeria
             specifiedType: const FullType(String),
           ) as String;
           result.method = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         case r'webauthn_register':
           final valueDes = serializers.deserialize(

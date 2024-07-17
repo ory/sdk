@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -29,6 +29,8 @@ type UpdateSettingsFlowWithOidcMethod struct {
 	Method string `json:"method"`
 	// The identity's traits  in: body
 	Traits map[string]interface{} `json:"traits,omitempty"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// Unlink this provider  Either this or `link` must be set.  type: string in: body
 	Unlink *string `json:"unlink,omitempty"`
 	// UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
@@ -176,6 +178,38 @@ func (o *UpdateSettingsFlowWithOidcMethod) SetTraits(v map[string]interface{}) {
 	o.Traits = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithOidcMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithOidcMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithOidcMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateSettingsFlowWithOidcMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 // GetUnlink returns the Unlink field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithOidcMethod) GetUnlink() string {
 	if o == nil || IsNil(o.Unlink) {
@@ -260,6 +294,9 @@ func (o UpdateSettingsFlowWithOidcMethod) ToMap() (map[string]interface{}, error
 	if !IsNil(o.Traits) {
 		toSerialize["traits"] = o.Traits
 	}
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 	if !IsNil(o.Unlink) {
 		toSerialize["unlink"] = o.Unlink
 	}
@@ -274,8 +311,8 @@ func (o UpdateSettingsFlowWithOidcMethod) ToMap() (map[string]interface{}, error
 	return toSerialize, nil
 }
 
-func (o *UpdateSettingsFlowWithOidcMethod) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *UpdateSettingsFlowWithOidcMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -284,7 +321,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) UnmarshalJSON(bytes []byte) (err erro
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -298,7 +335,7 @@ func (o *UpdateSettingsFlowWithOidcMethod) UnmarshalJSON(bytes []byte) (err erro
 
 	varUpdateSettingsFlowWithOidcMethod := _UpdateSettingsFlowWithOidcMethod{}
 
-	err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithOidcMethod)
+	err = json.Unmarshal(data, &varUpdateSettingsFlowWithOidcMethod)
 
 	if err != nil {
 		return err
@@ -308,11 +345,12 @@ func (o *UpdateSettingsFlowWithOidcMethod) UnmarshalJSON(bytes []byte) (err erro
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "flow")
 		delete(additionalProperties, "link")
 		delete(additionalProperties, "method")
 		delete(additionalProperties, "traits")
+		delete(additionalProperties, "transient_payload")
 		delete(additionalProperties, "unlink")
 		delete(additionalProperties, "upstream_parameters")
 		o.AdditionalProperties = additionalProperties

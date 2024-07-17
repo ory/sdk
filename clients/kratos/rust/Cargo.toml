@@ -1,22 +1,15 @@
 [package]
 name = "ory-kratos-client"
-version = "1.1.0"
-description = "SDK Client for Ory Kratos"
-documentation = "https://www.ory.sh/kratos/docs/sdk"
-homepage = "https://www.ory.sh"
-license = "Apache-2.0"
-authors = ["OpenAPI Generator team and contributors"]
-edition = "2018"
+version = "1.2.1"
+authors = ["office@ory.sh"]
+description = "This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. "
+license = "Apache 2.0"
+edition = "2021"
 
 [dependencies]
-num-traits = { version = "^0.2", default-features = false }
-serde = "^1.0"
-serde_derive = "^1.0"
+serde = { version = "^1.0", features = ["derive"] }
+serde_with = { version = "^3.8", default-features = false, features = ["base64", "std", "macros"] }
 serde_json = "^1.0"
-url = "^2.2"
-[dependencies.reqwest]
-version = "^0.11"
-default-features = false
-features = ["json", "multipart"]
-
-[dev-dependencies]
+url = "^2.5"
+uuid = { version = "^1.8", features = ["serde", "v4"] }
+reqwest = { version = "^0.12", features = ["json", "multipart"] }

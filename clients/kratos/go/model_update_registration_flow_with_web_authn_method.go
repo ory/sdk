@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -265,8 +265,8 @@ func (o UpdateRegistrationFlowWithWebAuthnMethod) ToMap() (map[string]interface{
 	return toSerialize, nil
 }
 
-func (o *UpdateRegistrationFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *UpdateRegistrationFlowWithWebAuthnMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -276,7 +276,7 @@ func (o *UpdateRegistrationFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -290,7 +290,7 @@ func (o *UpdateRegistrationFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (
 
 	varUpdateRegistrationFlowWithWebAuthnMethod := _UpdateRegistrationFlowWithWebAuthnMethod{}
 
-	err = json.Unmarshal(bytes, &varUpdateRegistrationFlowWithWebAuthnMethod)
+	err = json.Unmarshal(data, &varUpdateRegistrationFlowWithWebAuthnMethod)
 
 	if err != nil {
 		return err
@@ -300,7 +300,7 @@ func (o *UpdateRegistrationFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "csrf_token")
 		delete(additionalProperties, "method")
 		delete(additionalProperties, "traits")

@@ -18,6 +18,10 @@ const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_webauthn =
     const RegistrationFlowActiveEnum._('webauthn');
 const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_code =
     const RegistrationFlowActiveEnum._('code');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_passkey =
+    const RegistrationFlowActiveEnum._('passkey');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_profile =
+    const RegistrationFlowActiveEnum._('profile');
 const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_linkRecovery =
     const RegistrationFlowActiveEnum._('linkRecovery');
 const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_codeRecovery =
@@ -37,6 +41,10 @@ RegistrationFlowActiveEnum _$registrationFlowActiveEnumValueOf(String name) {
       return _$registrationFlowActiveEnum_webauthn;
     case 'code':
       return _$registrationFlowActiveEnum_code;
+    case 'passkey':
+      return _$registrationFlowActiveEnum_passkey;
+    case 'profile':
+      return _$registrationFlowActiveEnum_profile;
     case 'linkRecovery':
       return _$registrationFlowActiveEnum_linkRecovery;
     case 'codeRecovery':
@@ -54,6 +62,8 @@ final BuiltSet<RegistrationFlowActiveEnum> _$registrationFlowActiveEnumValues =
   _$registrationFlowActiveEnum_lookupSecret,
   _$registrationFlowActiveEnum_webauthn,
   _$registrationFlowActiveEnum_code,
+  _$registrationFlowActiveEnum_passkey,
+  _$registrationFlowActiveEnum_profile,
   _$registrationFlowActiveEnum_linkRecovery,
   _$registrationFlowActiveEnum_codeRecovery,
 ]);
@@ -70,6 +80,8 @@ class _$RegistrationFlowActiveEnumSerializer
     'lookupSecret': 'lookup_secret',
     'webauthn': 'webauthn',
     'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
   };
@@ -80,6 +92,8 @@ class _$RegistrationFlowActiveEnumSerializer
     'lookup_secret': 'lookupSecret',
     'webauthn': 'webauthn',
     'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
   };

@@ -8,6 +8,8 @@ part of 'successful_native_login.dart';
 
 class _$SuccessfulNativeLogin extends SuccessfulNativeLogin {
   @override
+  final BuiltList<ContinueWith>? continueWith;
+  @override
   final Session session;
   @override
   final String? sessionToken;
@@ -16,7 +18,8 @@ class _$SuccessfulNativeLogin extends SuccessfulNativeLogin {
           [void Function(SuccessfulNativeLoginBuilder)? updates]) =>
       (new SuccessfulNativeLoginBuilder()..update(updates))._build();
 
-  _$SuccessfulNativeLogin._({required this.session, this.sessionToken})
+  _$SuccessfulNativeLogin._(
+      {this.continueWith, required this.session, this.sessionToken})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         session, r'SuccessfulNativeLogin', 'session');
@@ -35,6 +38,7 @@ class _$SuccessfulNativeLogin extends SuccessfulNativeLogin {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is SuccessfulNativeLogin &&
+        continueWith == other.continueWith &&
         session == other.session &&
         sessionToken == other.sessionToken;
   }
@@ -42,6 +46,7 @@ class _$SuccessfulNativeLogin extends SuccessfulNativeLogin {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, continueWith.hashCode);
     _$hash = $jc(_$hash, session.hashCode);
     _$hash = $jc(_$hash, sessionToken.hashCode);
     _$hash = $jf(_$hash);
@@ -51,6 +56,7 @@ class _$SuccessfulNativeLogin extends SuccessfulNativeLogin {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'SuccessfulNativeLogin')
+          ..add('continueWith', continueWith)
           ..add('session', session)
           ..add('sessionToken', sessionToken))
         .toString();
@@ -60,6 +66,12 @@ class _$SuccessfulNativeLogin extends SuccessfulNativeLogin {
 class SuccessfulNativeLoginBuilder
     implements Builder<SuccessfulNativeLogin, SuccessfulNativeLoginBuilder> {
   _$SuccessfulNativeLogin? _$v;
+
+  ListBuilder<ContinueWith>? _continueWith;
+  ListBuilder<ContinueWith> get continueWith =>
+      _$this._continueWith ??= new ListBuilder<ContinueWith>();
+  set continueWith(ListBuilder<ContinueWith>? continueWith) =>
+      _$this._continueWith = continueWith;
 
   SessionBuilder? _session;
   SessionBuilder get session => _$this._session ??= new SessionBuilder();
@@ -76,6 +88,7 @@ class SuccessfulNativeLoginBuilder
   SuccessfulNativeLoginBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _continueWith = $v.continueWith?.toBuilder();
       _session = $v.session.toBuilder();
       _sessionToken = $v.sessionToken;
       _$v = null;
@@ -102,10 +115,14 @@ class SuccessfulNativeLoginBuilder
     try {
       _$result = _$v ??
           new _$SuccessfulNativeLogin._(
-              session: session.build(), sessionToken: sessionToken);
+              continueWith: _continueWith?.build(),
+              session: session.build(),
+              sessionToken: sessionToken);
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'continueWith';
+        _continueWith?.build();
         _$failedField = 'session';
         session.build();
       } catch (e) {

@@ -2,6 +2,7 @@
 .openapi-generator-ignore
 Ory.Kratos.Client.sln
 README.md
+api/openapi.yaml
 appveyor.yml
 docs/CourierApi.md
 docs/FrontendApi.md
@@ -29,6 +30,7 @@ docs/KratosErrorFlowReplaced.md
 docs/KratosErrorGeneric.md
 docs/KratosFlowError.md
 docs/KratosGenericError.md
+docs/KratosGetVersion200Response.md
 docs/KratosHealthNotReadyStatus.md
 docs/KratosHealthStatus.md
 docs/KratosIdentity.md
@@ -46,9 +48,8 @@ docs/KratosIdentityWithCredentialsOidcConfig.md
 docs/KratosIdentityWithCredentialsOidcConfigProvider.md
 docs/KratosIdentityWithCredentialsPassword.md
 docs/KratosIdentityWithCredentialsPasswordConfig.md
-docs/KratosInlineResponse200.md
-docs/KratosInlineResponse2001.md
-docs/KratosInlineResponse503.md
+docs/KratosIsAlive200Response.md
+docs/KratosIsReady503Response.md
 docs/KratosJsonPatch.md
 docs/KratosLoginFlow.md
 docs/KratosLoginFlowState.md
@@ -94,6 +95,7 @@ docs/KratosUpdateLoginFlowBody.md
 docs/KratosUpdateLoginFlowWithCodeMethod.md
 docs/KratosUpdateLoginFlowWithLookupSecretMethod.md
 docs/KratosUpdateLoginFlowWithOidcMethod.md
+docs/KratosUpdateLoginFlowWithPasskeyMethod.md
 docs/KratosUpdateLoginFlowWithPasswordMethod.md
 docs/KratosUpdateLoginFlowWithTotpMethod.md
 docs/KratosUpdateLoginFlowWithWebAuthnMethod.md
@@ -103,11 +105,14 @@ docs/KratosUpdateRecoveryFlowWithLinkMethod.md
 docs/KratosUpdateRegistrationFlowBody.md
 docs/KratosUpdateRegistrationFlowWithCodeMethod.md
 docs/KratosUpdateRegistrationFlowWithOidcMethod.md
+docs/KratosUpdateRegistrationFlowWithPasskeyMethod.md
 docs/KratosUpdateRegistrationFlowWithPasswordMethod.md
+docs/KratosUpdateRegistrationFlowWithProfileMethod.md
 docs/KratosUpdateRegistrationFlowWithWebAuthnMethod.md
 docs/KratosUpdateSettingsFlowBody.md
 docs/KratosUpdateSettingsFlowWithLookupMethod.md
 docs/KratosUpdateSettingsFlowWithOidcMethod.md
+docs/KratosUpdateSettingsFlowWithPasskeyMethod.md
 docs/KratosUpdateSettingsFlowWithPasswordMethod.md
 docs/KratosUpdateSettingsFlowWithProfileMethod.md
 docs/KratosUpdateSettingsFlowWithTotpMethod.md
@@ -148,6 +153,7 @@ src/Ory.Kratos.Client.Test/Model/KratosErrorFlowReplacedTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosErrorGenericTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosFlowErrorTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosGenericErrorTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosGetVersion200ResponseTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosHealthNotReadyStatusTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosHealthStatusTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityCredentialsCodeTests.cs
@@ -165,9 +171,8 @@ src/Ory.Kratos.Client.Test/Model/KratosIdentityWithCredentialsOidcTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityWithCredentialsPasswordConfigTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityWithCredentialsPasswordTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosIdentityWithCredentialsTests.cs
-src/Ory.Kratos.Client.Test/Model/KratosInlineResponse2001Tests.cs
-src/Ory.Kratos.Client.Test/Model/KratosInlineResponse200Tests.cs
-src/Ory.Kratos.Client.Test/Model/KratosInlineResponse503Tests.cs
+src/Ory.Kratos.Client.Test/Model/KratosIsAlive200ResponseTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosIsReady503ResponseTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosJsonPatchTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosLoginFlowStateTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosLoginFlowTests.cs
@@ -213,6 +218,7 @@ src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowBodyTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithCodeMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithLookupSecretMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithOidcMethodTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithPasskeyMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithPasswordMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithTotpMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateLoginFlowWithWebAuthnMethodTests.cs
@@ -222,11 +228,14 @@ src/Ory.Kratos.Client.Test/Model/KratosUpdateRecoveryFlowWithLinkMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowBodyTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithCodeMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithOidcMethodTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithPasskeyMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithPasswordMethodTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithProfileMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateRegistrationFlowWithWebAuthnMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowBodyTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowWithLookupMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowWithOidcMethodTests.cs
+src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowWithPasskeyMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowWithPasswordMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowWithProfileMethodTests.cs
 src/Ory.Kratos.Client.Test/Model/KratosUpdateSettingsFlowWithTotpMethodTests.cs
@@ -283,6 +292,7 @@ src/Ory.Kratos.Client/Model/KratosErrorFlowReplaced.cs
 src/Ory.Kratos.Client/Model/KratosErrorGeneric.cs
 src/Ory.Kratos.Client/Model/KratosFlowError.cs
 src/Ory.Kratos.Client/Model/KratosGenericError.cs
+src/Ory.Kratos.Client/Model/KratosGetVersion200Response.cs
 src/Ory.Kratos.Client/Model/KratosHealthNotReadyStatus.cs
 src/Ory.Kratos.Client/Model/KratosHealthStatus.cs
 src/Ory.Kratos.Client/Model/KratosIdentity.cs
@@ -300,9 +310,8 @@ src/Ory.Kratos.Client/Model/KratosIdentityWithCredentialsOidcConfig.cs
 src/Ory.Kratos.Client/Model/KratosIdentityWithCredentialsOidcConfigProvider.cs
 src/Ory.Kratos.Client/Model/KratosIdentityWithCredentialsPassword.cs
 src/Ory.Kratos.Client/Model/KratosIdentityWithCredentialsPasswordConfig.cs
-src/Ory.Kratos.Client/Model/KratosInlineResponse200.cs
-src/Ory.Kratos.Client/Model/KratosInlineResponse2001.cs
-src/Ory.Kratos.Client/Model/KratosInlineResponse503.cs
+src/Ory.Kratos.Client/Model/KratosIsAlive200Response.cs
+src/Ory.Kratos.Client/Model/KratosIsReady503Response.cs
 src/Ory.Kratos.Client/Model/KratosJsonPatch.cs
 src/Ory.Kratos.Client/Model/KratosLoginFlow.cs
 src/Ory.Kratos.Client/Model/KratosLoginFlowState.cs
@@ -348,6 +357,7 @@ src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowBody.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithCodeMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithLookupSecretMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithOidcMethod.cs
+src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithPasskeyMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithPasswordMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithTotpMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateLoginFlowWithWebAuthnMethod.cs
@@ -357,11 +367,14 @@ src/Ory.Kratos.Client/Model/KratosUpdateRecoveryFlowWithLinkMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowBody.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithCodeMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithOidcMethod.cs
+src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithPasskeyMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithPasswordMethod.cs
+src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithProfileMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateRegistrationFlowWithWebAuthnMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowBody.cs
 src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowWithLookupMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowWithOidcMethod.cs
+src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowWithPasskeyMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowWithPasswordMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowWithProfileMethod.cs
 src/Ory.Kratos.Client/Model/KratosUpdateSettingsFlowWithTotpMethod.cs

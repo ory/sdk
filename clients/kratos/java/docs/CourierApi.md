@@ -8,7 +8,7 @@ All URIs are relative to *http://localhost*
 | [**listCourierMessages**](CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages |
 
 
-<a name="getCourierMessage"></a>
+<a id="getCourierMessage"></a>
 # **getCourierMessage**
 > Message getCourierMessage(id)
 
@@ -79,7 +79,7 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listCourierMessages"></a>
+<a id="listCourierMessages"></a>
 # **listCourierMessages**
 > List&lt;Message&gt; listCourierMessages(pageSize, pageToken, status, recipient)
 

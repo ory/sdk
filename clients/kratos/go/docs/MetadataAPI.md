@@ -24,23 +24,23 @@ Return Running Software Version.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/kratos-client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/kratos-client-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetadataAPI.GetVersion(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetadataAPI.GetVersion``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetVersion`: GetVersion200Response
-    fmt.Fprintf(os.Stdout, "Response from `MetadataAPI.GetVersion`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetadataAPI.GetVersion(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetadataAPI.GetVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVersion`: GetVersion200Response
+	fmt.Fprintf(os.Stdout, "Response from `MetadataAPI.GetVersion`: %v\n", resp)
 }
 ```
 
@@ -85,23 +85,23 @@ Check HTTP Server Status
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/kratos-client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/kratos-client-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetadataAPI.IsAlive(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetadataAPI.IsAlive``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `IsAlive`: IsAlive200Response
-    fmt.Fprintf(os.Stdout, "Response from `MetadataAPI.IsAlive`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetadataAPI.IsAlive(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetadataAPI.IsAlive``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `IsAlive`: IsAlive200Response
+	fmt.Fprintf(os.Stdout, "Response from `MetadataAPI.IsAlive`: %v\n", resp)
 }
 ```
 
@@ -146,23 +146,23 @@ Check HTTP Server and Database Status
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/kratos-client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/kratos-client-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetadataAPI.IsReady(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetadataAPI.IsReady``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `IsReady`: IsAlive200Response
-    fmt.Fprintf(os.Stdout, "Response from `MetadataAPI.IsReady`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetadataAPI.IsReady(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetadataAPI.IsReady``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `IsReady`: IsAlive200Response
+	fmt.Fprintf(os.Stdout, "Response from `MetadataAPI.IsReady`: %v\n", resp)
 }
 ```
 

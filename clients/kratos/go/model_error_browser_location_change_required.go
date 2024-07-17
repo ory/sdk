@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -133,10 +133,10 @@ func (o ErrorBrowserLocationChangeRequired) ToMap() (map[string]interface{}, err
 	return toSerialize, nil
 }
 
-func (o *ErrorBrowserLocationChangeRequired) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ErrorBrowserLocationChangeRequired) UnmarshalJSON(data []byte) (err error) {
 	varErrorBrowserLocationChangeRequired := _ErrorBrowserLocationChangeRequired{}
 
-	err = json.Unmarshal(bytes, &varErrorBrowserLocationChangeRequired)
+	err = json.Unmarshal(data, &varErrorBrowserLocationChangeRequired)
 
 	if err != nil {
 		return err
@@ -146,7 +146,7 @@ func (o *ErrorBrowserLocationChangeRequired) UnmarshalJSON(bytes []byte) (err er
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "error")
 		delete(additionalProperties, "redirect_browser_to")
 		o.AdditionalProperties = additionalProperties

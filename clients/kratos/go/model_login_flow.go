@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &LoginFlow{}
 
 // LoginFlow This object represents a login flow. A login flow is initiated at the \"Initiate Login API / Browser Flow\" endpoint by a client.  Once a login flow is completed successfully, a session cookie or session token will be issued.
 type LoginFlow struct {
-	// The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	// The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	Active *string `json:"active,omitempty"`
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -47,6 +47,8 @@ type LoginFlow struct {
 	SessionTokenExchangeCode *string `json:"session_token_exchange_code,omitempty"`
 	// State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
 	State interface{} `json:"state"`
+	// TransientPayload is used to pass data from the login to hooks and email templates
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
@@ -501,6 +503,38 @@ func (o *LoginFlow) SetState(v interface{}) {
 	o.State = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *LoginFlow) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoginFlow) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *LoginFlow) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *LoginFlow) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 // GetType returns the Type field value
 func (o *LoginFlow) GetType() string {
 	if o == nil {
@@ -625,6 +659,9 @@ func (o LoginFlow) ToMap() (map[string]interface{}, error) {
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 	toSerialize["type"] = o.Type
 	toSerialize["ui"] = o.Ui
 	if !IsNil(o.UpdatedAt) {
@@ -638,8 +675,8 @@ func (o LoginFlow) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *LoginFlow) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *LoginFlow) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -654,7 +691,7 @@ func (o *LoginFlow) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -668,7 +705,7 @@ func (o *LoginFlow) UnmarshalJSON(bytes []byte) (err error) {
 
 	varLoginFlow := _LoginFlow{}
 
-	err = json.Unmarshal(bytes, &varLoginFlow)
+	err = json.Unmarshal(data, &varLoginFlow)
 
 	if err != nil {
 		return err
@@ -678,7 +715,7 @@ func (o *LoginFlow) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "active")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "expires_at")
@@ -693,6 +730,7 @@ func (o *LoginFlow) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "return_to")
 		delete(additionalProperties, "session_token_exchange_code")
 		delete(additionalProperties, "state")
+		delete(additionalProperties, "transient_payload")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "ui")
 		delete(additionalProperties, "updated_at")

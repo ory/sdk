@@ -11,10 +11,10 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Recipient** | **string** |  | 
 **SendCount** | **long** |  | 
-**Status** | [**KratosCourierMessageStatus**](KratosCourierMessageStatus.md) |  | 
+**Status** | **KratosCourierMessageStatus** |  | 
 **Subject** | **string** |  | 
 **TemplateType** | **string** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid | 
-**Type** | [**KratosCourierMessageType**](KratosCourierMessageType.md) |  | 
+**Type** | **KratosCourierMessageType** |  | 
 **UpdatedAt** | **DateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -39,6 +39,8 @@ type SettingsFlow struct {
 	ReturnTo *string `json:"return_to,omitempty"`
 	// State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent.
 	State interface{} `json:"state"`
+	// TransientPayload is used to pass data from the settings flow to hooks and email templates
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// The flow type can either be `api` or `browser`.
 	Type string `json:"type"`
 	Ui UiContainer `json:"ui"`
@@ -314,6 +316,38 @@ func (o *SettingsFlow) SetState(v interface{}) {
 	o.State = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *SettingsFlow) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SettingsFlow) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *SettingsFlow) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *SettingsFlow) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 // GetType returns the Type field value
 func (o *SettingsFlow) GetType() string {
 	if o == nil {
@@ -389,6 +423,9 @@ func (o SettingsFlow) ToMap() (map[string]interface{}, error) {
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 	toSerialize["type"] = o.Type
 	toSerialize["ui"] = o.Ui
 
@@ -399,8 +436,8 @@ func (o SettingsFlow) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *SettingsFlow) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *SettingsFlow) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -416,7 +453,7 @@ func (o *SettingsFlow) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -430,7 +467,7 @@ func (o *SettingsFlow) UnmarshalJSON(bytes []byte) (err error) {
 
 	varSettingsFlow := _SettingsFlow{}
 
-	err = json.Unmarshal(bytes, &varSettingsFlow)
+	err = json.Unmarshal(data, &varSettingsFlow)
 
 	if err != nil {
 		return err
@@ -440,7 +477,7 @@ func (o *SettingsFlow) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "active")
 		delete(additionalProperties, "continue_with")
 		delete(additionalProperties, "expires_at")
@@ -450,6 +487,7 @@ func (o *SettingsFlow) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "request_url")
 		delete(additionalProperties, "return_to")
 		delete(additionalProperties, "state")
+		delete(additionalProperties, "transient_payload")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "ui")
 		o.AdditionalProperties = additionalProperties

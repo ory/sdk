@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -29,7 +29,7 @@ type UiNodeScriptAttributes struct {
 	Id string `json:"id"`
 	// The script's integrity hash
 	Integrity string `json:"integrity"`
-	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\".
+	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
 	NodeType string `json:"node_type"`
 	// Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
 	Nonce string `json:"nonce"`
@@ -313,8 +313,8 @@ func (o UiNodeScriptAttributes) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UiNodeScriptAttributes) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *UiNodeScriptAttributes) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -331,7 +331,7 @@ func (o *UiNodeScriptAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -345,7 +345,7 @@ func (o *UiNodeScriptAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	varUiNodeScriptAttributes := _UiNodeScriptAttributes{}
 
-	err = json.Unmarshal(bytes, &varUiNodeScriptAttributes)
+	err = json.Unmarshal(data, &varUiNodeScriptAttributes)
 
 	if err != nil {
 		return err
@@ -355,7 +355,7 @@ func (o *UiNodeScriptAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "async")
 		delete(additionalProperties, "crossorigin")
 		delete(additionalProperties, "id")

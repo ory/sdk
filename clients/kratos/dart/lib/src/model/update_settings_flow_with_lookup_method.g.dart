@@ -20,6 +20,8 @@ class _$UpdateSettingsFlowWithLookupMethod
   final bool? lookupSecretReveal;
   @override
   final String method;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateSettingsFlowWithLookupMethod(
           [void Function(UpdateSettingsFlowWithLookupMethodBuilder)?
@@ -33,7 +35,8 @@ class _$UpdateSettingsFlowWithLookupMethod
       this.lookupSecretDisable,
       this.lookupSecretRegenerate,
       this.lookupSecretReveal,
-      required this.method})
+      required this.method,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         method, r'UpdateSettingsFlowWithLookupMethod', 'method');
@@ -57,7 +60,8 @@ class _$UpdateSettingsFlowWithLookupMethod
         lookupSecretDisable == other.lookupSecretDisable &&
         lookupSecretRegenerate == other.lookupSecretRegenerate &&
         lookupSecretReveal == other.lookupSecretReveal &&
-        method == other.method;
+        method == other.method &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -69,6 +73,7 @@ class _$UpdateSettingsFlowWithLookupMethod
     _$hash = $jc(_$hash, lookupSecretRegenerate.hashCode);
     _$hash = $jc(_$hash, lookupSecretReveal.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -81,7 +86,8 @@ class _$UpdateSettingsFlowWithLookupMethod
           ..add('lookupSecretDisable', lookupSecretDisable)
           ..add('lookupSecretRegenerate', lookupSecretRegenerate)
           ..add('lookupSecretReveal', lookupSecretReveal)
-          ..add('method', method))
+          ..add('method', method)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -120,6 +126,11 @@ class UpdateSettingsFlowWithLookupMethodBuilder
   String? get method => _$this._method;
   set method(String? method) => _$this._method = method;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateSettingsFlowWithLookupMethodBuilder() {
     UpdateSettingsFlowWithLookupMethod._defaults(this);
   }
@@ -133,6 +144,7 @@ class UpdateSettingsFlowWithLookupMethodBuilder
       _lookupSecretRegenerate = $v.lookupSecretRegenerate;
       _lookupSecretReveal = $v.lookupSecretReveal;
       _method = $v.method;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -162,7 +174,8 @@ class UpdateSettingsFlowWithLookupMethodBuilder
             lookupSecretRegenerate: lookupSecretRegenerate,
             lookupSecretReveal: lookupSecretReveal,
             method: BuiltValueNullFieldError.checkNotNull(
-                method, r'UpdateSettingsFlowWithLookupMethod', 'method'));
+                method, r'UpdateSettingsFlowWithLookupMethod', 'method'),
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

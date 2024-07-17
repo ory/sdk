@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -937,6 +937,7 @@ type FrontendAPICreateBrowserLoginFlowRequest struct {
 	cookie *string
 	loginChallenge *string
 	organization *string
+	via *string
 }
 
 // Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
@@ -972,6 +973,12 @@ func (r FrontendAPICreateBrowserLoginFlowRequest) LoginChallenge(loginChallenge 
 // An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
 func (r FrontendAPICreateBrowserLoginFlowRequest) Organization(organization string) FrontendAPICreateBrowserLoginFlowRequest {
 	r.organization = &organization
+	return r
+}
+
+// Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.
+func (r FrontendAPICreateBrowserLoginFlowRequest) Via(via string) FrontendAPICreateBrowserLoginFlowRequest {
+	r.via = &via
 	return r
 }
 
@@ -1051,6 +1058,9 @@ func (a *FrontendAPIService) CreateBrowserLoginFlowExecute(r FrontendAPICreateBr
 	}
 	if r.organization != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "organization", r.organization, "")
+	}
+	if r.via != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "via", r.via, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

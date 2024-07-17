@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -142,10 +142,10 @@ func (o TokenPagination) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *TokenPagination) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TokenPagination) UnmarshalJSON(data []byte) (err error) {
 	varTokenPagination := _TokenPagination{}
 
-	err = json.Unmarshal(bytes, &varTokenPagination)
+	err = json.Unmarshal(data, &varTokenPagination)
 
 	if err != nil {
 		return err
@@ -155,7 +155,7 @@ func (o *TokenPagination) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "page_size")
 		delete(additionalProperties, "page_token")
 		o.AdditionalProperties = additionalProperties

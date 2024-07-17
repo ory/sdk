@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -823,7 +823,7 @@ func (o *OAuth2Client) GetJwksOk() (*interface{}, bool) {
 
 // HasJwks returns a boolean if a field has been set.
 func (o *OAuth2Client) HasJwks() bool {
-	if o != nil && IsNil(o.Jwks) {
+	if o != nil && !IsNil(o.Jwks) {
 		return true
 	}
 
@@ -952,7 +952,7 @@ func (o *OAuth2Client) GetMetadataOk() (*interface{}, bool) {
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *OAuth2Client) HasMetadata() bool {
-	if o != nil && IsNil(o.Metadata) {
+	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
 
@@ -1830,10 +1830,10 @@ func (o OAuth2Client) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *OAuth2Client) UnmarshalJSON(bytes []byte) (err error) {
+func (o *OAuth2Client) UnmarshalJSON(data []byte) (err error) {
 	varOAuth2Client := _OAuth2Client{}
 
-	err = json.Unmarshal(bytes, &varOAuth2Client)
+	err = json.Unmarshal(data, &varOAuth2Client)
 
 	if err != nil {
 		return err
@@ -1843,7 +1843,7 @@ func (o *OAuth2Client) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "access_token_strategy")
 		delete(additionalProperties, "allowed_cors_origins")
 		delete(additionalProperties, "audience")

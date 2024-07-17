@@ -18,6 +18,8 @@ class _$UpdateLoginFlowWithPasswordMethod
   final String password;
   @override
   final String? passwordIdentifier;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateLoginFlowWithPasswordMethod(
           [void Function(UpdateLoginFlowWithPasswordMethodBuilder)? updates]) =>
@@ -29,7 +31,8 @@ class _$UpdateLoginFlowWithPasswordMethod
       required this.identifier,
       required this.method,
       required this.password,
-      this.passwordIdentifier})
+      this.passwordIdentifier,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         identifier, r'UpdateLoginFlowWithPasswordMethod', 'identifier');
@@ -56,7 +59,8 @@ class _$UpdateLoginFlowWithPasswordMethod
         identifier == other.identifier &&
         method == other.method &&
         password == other.password &&
-        passwordIdentifier == other.passwordIdentifier;
+        passwordIdentifier == other.passwordIdentifier &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -67,6 +71,7 @@ class _$UpdateLoginFlowWithPasswordMethod
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, password.hashCode);
     _$hash = $jc(_$hash, passwordIdentifier.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -78,7 +83,8 @@ class _$UpdateLoginFlowWithPasswordMethod
           ..add('identifier', identifier)
           ..add('method', method)
           ..add('password', password)
-          ..add('passwordIdentifier', passwordIdentifier))
+          ..add('passwordIdentifier', passwordIdentifier)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -110,6 +116,11 @@ class UpdateLoginFlowWithPasswordMethodBuilder
   set passwordIdentifier(String? passwordIdentifier) =>
       _$this._passwordIdentifier = passwordIdentifier;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateLoginFlowWithPasswordMethodBuilder() {
     UpdateLoginFlowWithPasswordMethod._defaults(this);
   }
@@ -122,6 +133,7 @@ class UpdateLoginFlowWithPasswordMethodBuilder
       _method = $v.method;
       _password = $v.password;
       _passwordIdentifier = $v.passwordIdentifier;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -152,7 +164,8 @@ class UpdateLoginFlowWithPasswordMethodBuilder
                 method, r'UpdateLoginFlowWithPasswordMethod', 'method'),
             password: BuiltValueNullFieldError.checkNotNull(
                 password, r'UpdateLoginFlowWithPasswordMethod', 'password'),
-            passwordIdentifier: passwordIdentifier);
+            passwordIdentifier: passwordIdentifier,
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

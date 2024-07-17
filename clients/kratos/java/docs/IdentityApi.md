@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**batchPatchIdentities**](IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create and deletes multiple identities |
+| [**batchPatchIdentities**](IdentityApi.md#batchPatchIdentities) | **PATCH** /admin/identities | Create multiple identities |
 | [**createIdentity**](IdentityApi.md#createIdentity) | **POST** /admin/identities | Create an Identity |
 | [**createRecoveryCodeForIdentity**](IdentityApi.md#createRecoveryCodeForIdentity) | **POST** /admin/recovery/code | Create a Recovery Code |
 | [**createRecoveryLinkForIdentity**](IdentityApi.md#createRecoveryLinkForIdentity) | **POST** /admin/recovery/link | Create a Recovery Link |
@@ -24,13 +24,13 @@ All URIs are relative to *http://localhost*
 | [**updateIdentity**](IdentityApi.md#updateIdentity) | **PUT** /admin/identities/{id} | Update an Identity |
 
 
-<a name="batchPatchIdentities"></a>
+<a id="batchPatchIdentities"></a>
 # **batchPatchIdentities**
 > BatchPatchIdentitiesResponse batchPatchIdentities(patchIdentitiesBody)
 
-Create and deletes multiple identities
+Create multiple identities
 
-Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
 
 ### Example
 ```java
@@ -96,7 +96,7 @@ public class Example {
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createIdentity"></a>
+<a id="createIdentity"></a>
 # **createIdentity**
 > Identity createIdentity(createIdentityBody)
 
@@ -168,7 +168,7 @@ public class Example {
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createRecoveryCodeForIdentity"></a>
+<a id="createRecoveryCodeForIdentity"></a>
 # **createRecoveryCodeForIdentity**
 > RecoveryCodeForIdentity createRecoveryCodeForIdentity(createRecoveryCodeForIdentityBody)
 
@@ -240,7 +240,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createRecoveryLinkForIdentity"></a>
+<a id="createRecoveryLinkForIdentity"></a>
 # **createRecoveryLinkForIdentity**
 > RecoveryLinkForIdentity createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody)
 
@@ -314,7 +314,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteIdentity"></a>
+<a id="deleteIdentity"></a>
 # **deleteIdentity**
 > deleteIdentity(id)
 
@@ -384,7 +384,7 @@ null (empty response body)
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteIdentityCredentials"></a>
+<a id="deleteIdentityCredentials"></a>
 # **deleteIdentityCredentials**
 > deleteIdentityCredentials(id, type)
 
@@ -415,7 +415,7 @@ public class Example {
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID is the identity's ID.
-    String type = "password"; // String | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    String type = "password"; // String | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
     try {
       apiInstance.deleteIdentityCredentials(id, type);
     } catch (ApiException e) {
@@ -434,7 +434,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID is the identity&#39;s ID. | |
-| **type** | **String**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [enum: password, oidc, totp, lookup_secret, webauthn, code, link_recovery, code_recovery] |
+| **type** | **String**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, link_recovery, code_recovery] |
 
 ### Return type
 
@@ -456,7 +456,7 @@ null (empty response body)
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteIdentitySessions"></a>
+<a id="deleteIdentitySessions"></a>
 # **deleteIdentitySessions**
 > deleteIdentitySessions(id)
 
@@ -528,7 +528,7 @@ null (empty response body)
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="disableSession"></a>
+<a id="disableSession"></a>
 # **disableSession**
 > disableSession(id)
 
@@ -599,7 +599,7 @@ null (empty response body)
 | **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="extendSession"></a>
+<a id="extendSession"></a>
 # **extendSession**
 > Session extendSession(id)
 
@@ -671,7 +671,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getIdentity"></a>
+<a id="getIdentity"></a>
 # **getIdentity**
 > Identity getIdentity(id, includeCredential)
 
@@ -722,7 +722,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID must be set to the ID of identity you want to get | |
-| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] [enum: password, oidc, totp, lookup_secret, webauthn, code, link_recovery, code_recovery] |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, link_recovery, code_recovery] |
 
 ### Return type
 
@@ -744,7 +744,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getIdentitySchema"></a>
+<a id="getIdentitySchema"></a>
 # **getIdentitySchema**
 > Object getIdentitySchema(id)
 
@@ -808,7 +808,7 @@ No authorization required
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getSession"></a>
+<a id="getSession"></a>
 # **getSession**
 > Session getSession(id, expand)
 
@@ -881,9 +881,9 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listIdentities"></a>
+<a id="listIdentities"></a>
 # **listIdentities**
-> List&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar)
+> List&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential)
 
 List Identities
 
@@ -919,8 +919,9 @@ public class Example {
     List<String> ids = Arrays.asList(); // List<String> | List of ids used to filter identities. If this list is empty, then no filter will be applied.
     String credentialsIdentifier = "credentialsIdentifier_example"; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     String previewCredentialsIdentifierSimilar = "previewCredentialsIdentifierSimilar_example"; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+    List<String> includeCredential = Arrays.asList(); // List<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
     try {
-      List<Identity> result = apiInstance.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar);
+      List<Identity> result = apiInstance.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentities");
@@ -945,6 +946,7 @@ public class Example {
 | **ids** | [**List&lt;String&gt;**](String.md)| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] |
 | **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **previewCredentialsIdentifierSimilar** | **String**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
 
 ### Return type
 
@@ -965,7 +967,7 @@ public class Example {
 | **200** | Paginated Identity List Response |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listIdentitySchemas"></a>
+<a id="listIdentitySchemas"></a>
 # **listIdentitySchemas**
 > List&lt;IdentitySchemaContainer&gt; listIdentitySchemas(perPage, page, pageSize, pageToken)
 
@@ -1034,7 +1036,7 @@ No authorization required
 | **200** | List Identity JSON Schemas Response |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listIdentitySessions"></a>
+<a id="listIdentitySessions"></a>
 # **listIdentitySessions**
 > List&lt;Session&gt; listIdentitySessions(id, perPage, page, pageSize, pageToken, active)
 
@@ -1116,7 +1118,7 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listSessions"></a>
+<a id="listSessions"></a>
 # **listSessions**
 > List&lt;Session&gt; listSessions(pageSize, pageToken, active, expand)
 
@@ -1193,7 +1195,7 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="patchIdentity"></a>
+<a id="patchIdentity"></a>
 # **patchIdentity**
 > Identity patchIdentity(id, jsonPatch)
 
@@ -1268,7 +1270,7 @@ public class Example {
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateIdentity"></a>
+<a id="updateIdentity"></a>
 # **updateIdentity**
 > Identity updateIdentity(id, updateIdentityBody)
 

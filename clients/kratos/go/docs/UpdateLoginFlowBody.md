@@ -4,11 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CsrfToken** | **string** | CSRFToken is the anti-CSRF token | 
+**CsrfToken** | **string** | Sending the anti-csrf token is only required for browser login flows. | 
 **Identifier** | **string** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | 
-**Method** | **string** | Method should be set to \&quot;code\&quot; when logging in using the code strategy. | 
+**Method** | **string** | Method should be set to \&quot;passkey\&quot; when logging in using the Passkey strategy. | 
 **Password** | **string** | The user&#39;s password. | 
 **PasswordIdentifier** | Pointer to **string** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 **IdToken** | Pointer to **string** | IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider&#39;s public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the &#x60;traits&#x60; field to populate the identity&#39;s traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple | [optional] 
 **IdTokenNonce** | Pointer to **string** | IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and required. | [optional] 
 **Provider** | **string** | The provider to register with | 
@@ -19,6 +20,7 @@ Name | Type | Description | Notes
 **LookupSecret** | **string** | The lookup secret. | 
 **Code** | Pointer to **string** | Code is the 6 digits code sent to the user | [optional] 
 **Resend** | Pointer to **string** | Resend is set when the user wants to resend the code | [optional] 
+**PasskeyLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 
 ## Methods
 
@@ -143,6 +145,31 @@ SetPasswordIdentifier sets PasswordIdentifier field to given value.
 `func (o *UpdateLoginFlowBody) HasPasswordIdentifier() bool`
 
 HasPasswordIdentifier returns a boolean if a field has been set.
+
+### GetTransientPayload
+
+`func (o *UpdateLoginFlowBody) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateLoginFlowBody) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateLoginFlowBody) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateLoginFlowBody) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 ### GetIdToken
 
@@ -378,6 +405,31 @@ SetResend sets Resend field to given value.
 `func (o *UpdateLoginFlowBody) HasResend() bool`
 
 HasResend returns a boolean if a field has been set.
+
+### GetPasskeyLogin
+
+`func (o *UpdateLoginFlowBody) GetPasskeyLogin() string`
+
+GetPasskeyLogin returns the PasskeyLogin field if non-nil, zero value otherwise.
+
+### GetPasskeyLoginOk
+
+`func (o *UpdateLoginFlowBody) GetPasskeyLoginOk() (*string, bool)`
+
+GetPasskeyLoginOk returns a tuple with the PasskeyLogin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasskeyLogin
+
+`func (o *UpdateLoginFlowBody) SetPasskeyLogin(v string)`
+
+SetPasskeyLogin sets PasskeyLogin field to given value.
+
+### HasPasskeyLogin
+
+`func (o *UpdateLoginFlowBody) HasPasskeyLogin() bool`
+
+HasPasskeyLogin returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

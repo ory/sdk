@@ -30,7 +30,7 @@ void main() {
       // TODO
     });
 
-    // NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\".
+    // NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
     // String nodeType
     test('to test the property `nodeType`', () async {
       // TODO
@@ -39,6 +39,12 @@ void main() {
     // OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
     // String onclick
     test('to test the property `onclick`', () async {
+      // TODO
+    });
+
+    // OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.
+    // String onload
+    test('to test the property `onload`', () async {
       // TODO
     });
 

@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 | [**isReady**](MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status |
 
 
-<a name="getVersion"></a>
+<a id="getVersion"></a>
 # **getVersion**
 > GetVersion200Response getVersion()
 
@@ -67,7 +67,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Returns the Ory Kratos version. |  -  |
 
-<a name="isAlive"></a>
+<a id="isAlive"></a>
 # **isAlive**
 > IsAlive200Response isAlive()
 
@@ -126,7 +126,7 @@ No authorization required
 | **200** | Ory Kratos is ready to accept connections. |  -  |
 | **0** | Unexpected error |  -  |
 
-<a name="isReady"></a>
+<a id="isReady"></a>
 # **isReady**
 > IsAlive200Response isReady()
 

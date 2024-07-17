@@ -6,7 +6,7 @@ Nodes are represented as HTML elements or their native UI equivalents. For examp
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | [**KratosUiNodeAttributes**](KratosUiNodeAttributes.md) |  | 
-**Group** | **string** | Group specifies which group (e.g. password authenticator) this node belongs to. default DefaultGroup password PasswordGroup oidc OpenIDConnectGroup profile ProfileGroup link LinkGroup code CodeGroup totp TOTPGroup lookup_secret LookupGroup webauthn WebAuthnGroup | 
+**Group** | **string** | Group specifies which group (e.g. password authenticator) this node belongs to. default DefaultGroup password PasswordGroup oidc OpenIDConnectGroup profile ProfileGroup link LinkGroup code CodeGroup totp TOTPGroup lookup_secret LookupGroup webauthn WebAuthnGroup passkey PasskeyGroup | 
 **Messages** | [**List&lt;KratosUiText&gt;**](KratosUiText.md) |  | 
 **Meta** | [**KratosUiNodeMeta**](KratosUiNodeMeta.md) |  | 
 **Type** | **string** | The node&#39;s type text Text input Input img Image a Anchor script Script | 

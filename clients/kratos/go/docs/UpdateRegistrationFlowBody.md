@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CsrfToken** | Pointer to **string** | The CSRF Token | [optional] 
-**Method** | **string** | Method to use  This field must be set to &#x60;code&#x60; when using the code method. | 
+**CsrfToken** | Pointer to **string** | CSRFToken is the anti-CSRF token | [optional] 
+**Method** | **string** | Method  Should be set to \&quot;passkey\&quot; when trying to add, update, or remove a Passkey. | 
 **Password** | **string** | Password to sign the user up with | 
 **Traits** | **map[string]interface{}** | The identity&#39;s traits | 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **WebauthnRegisterDisplayname** | Pointer to **string** | Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added. | [optional] 
 **Code** | Pointer to **string** | The OTP Code sent to the user | [optional] 
 **Resend** | Pointer to **string** | Resend restarts the flow with a new code | [optional] 
+**PasskeyRegister** | Pointer to **string** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] 
 
 ## Methods
 
@@ -341,6 +342,31 @@ SetResend sets Resend field to given value.
 `func (o *UpdateRegistrationFlowBody) HasResend() bool`
 
 HasResend returns a boolean if a field has been set.
+
+### GetPasskeyRegister
+
+`func (o *UpdateRegistrationFlowBody) GetPasskeyRegister() string`
+
+GetPasskeyRegister returns the PasskeyRegister field if non-nil, zero value otherwise.
+
+### GetPasskeyRegisterOk
+
+`func (o *UpdateRegistrationFlowBody) GetPasskeyRegisterOk() (*string, bool)`
+
+GetPasskeyRegisterOk returns a tuple with the PasskeyRegister field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasskeyRegister
+
+`func (o *UpdateRegistrationFlowBody) SetPasskeyRegister(v string)`
+
+SetPasskeyRegister sets PasskeyRegister field to given value.
+
+### HasPasskeyRegister
+
+`func (o *UpdateRegistrationFlowBody) HasPasskeyRegister() bool`
+
+HasPasskeyRegister returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

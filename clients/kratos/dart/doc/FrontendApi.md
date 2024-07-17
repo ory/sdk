@@ -42,7 +42,7 @@ Method | HTTP request | Description
 
 
 # **createBrowserLoginFlow**
-> LoginFlow createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization)
+> LoginFlow createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via)
 
 Create Login Flow for Browsers
 
@@ -59,11 +59,12 @@ final String returnTo = returnTo_example; // String | The URL to return the brow
 final String cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 final String loginChallenge = loginChallenge_example; // String | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
 final String organization = organization_example; // String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
+final String via = via_example; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
 
 try {
-    final response = api.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization);
+    final response = api.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createBrowserLoginFlow: $e\n');
 }
 ```
@@ -78,6 +79,7 @@ Name | Type | Description  | Notes
  **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
  **loginChallenge** | **String**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). | [optional] 
  **organization** | **String**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
+ **via** | **String**| Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
 
 ### Return type
 
@@ -112,7 +114,7 @@ final String returnTo = returnTo_example; // String | Return to URL  The URL to 
 try {
     final response = api.createBrowserLogoutFlow(cookie, returnTo);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createBrowserLogoutFlow: $e\n');
 }
 ```
@@ -156,7 +158,7 @@ final String returnTo = returnTo_example; // String | The URL to return the brow
 try {
     final response = api.createBrowserRecoveryFlow(returnTo);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createBrowserRecoveryFlow: $e\n');
 }
 ```
@@ -202,7 +204,7 @@ final String organization = organization_example; // String |
 try {
     final response = api.createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createBrowserRegistrationFlow: $e\n');
 }
 ```
@@ -249,7 +251,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.createBrowserSettingsFlow(returnTo, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createBrowserSettingsFlow: $e\n');
 }
 ```
@@ -293,7 +295,7 @@ final String returnTo = returnTo_example; // String | The URL to return the brow
 try {
     final response = api.createBrowserVerificationFlow(returnTo);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createBrowserVerificationFlow: $e\n');
 }
 ```
@@ -341,7 +343,7 @@ final String via = via_example; // String | Via should contain the identity's cr
 try {
     final response = api.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createNativeLoginFlow: $e\n');
 }
 ```
@@ -388,7 +390,7 @@ final api = OryKratosClient().getFrontendApi();
 try {
     final response = api.createNativeRecoveryFlow();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createNativeRecoveryFlow: $e\n');
 }
 ```
@@ -429,7 +431,7 @@ final String returnTo = returnTo_example; // String | The URL to return the brow
 try {
     final response = api.createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createNativeRegistrationFlow: $e\n');
 }
 ```
@@ -473,7 +475,7 @@ final String xSessionToken = xSessionToken_example; // String | The Session Toke
 try {
     final response = api.createNativeSettingsFlow(xSessionToken);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createNativeSettingsFlow: $e\n');
 }
 ```
@@ -515,7 +517,7 @@ final api = OryKratosClient().getFrontendApi();
 try {
     final response = api.createNativeVerificationFlow();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->createNativeVerificationFlow: $e\n');
 }
 ```
@@ -556,7 +558,7 @@ final String cookie = cookie_example; // String | Set the Cookie Header. This is
 try {
     final response = api.disableMyOtherSessions(xSessionToken, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->disableMyOtherSessions: $e\n');
 }
 ```
@@ -601,7 +603,7 @@ final String cookie = cookie_example; // String | Set the Cookie Header. This is
 
 try {
     api.disableMySession(id, xSessionToken, cookie);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->disableMySession: $e\n');
 }
 ```
@@ -645,7 +647,7 @@ final String returnToCode = returnToCode_example; // String | The part of the co
 try {
     final response = api.exchangeSessionToken(initCode, returnToCode);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->exchangeSessionToken: $e\n');
 }
 ```
@@ -689,7 +691,7 @@ final String id = id_example; // String | Error is the error's ID
 try {
     final response = api.getFlowError(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->getFlowError: $e\n');
 }
 ```
@@ -733,7 +735,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.getLoginFlow(id, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->getLoginFlow: $e\n');
 }
 ```
@@ -778,7 +780,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.getRecoveryFlow(id, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->getRecoveryFlow: $e\n');
 }
 ```
@@ -823,7 +825,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.getRegistrationFlow(id, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->getRegistrationFlow: $e\n');
 }
 ```
@@ -869,7 +871,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.getSettingsFlow(id, xSessionToken, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->getSettingsFlow: $e\n');
 }
 ```
@@ -915,7 +917,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.getVerificationFlow(id, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->getVerificationFlow: $e\n');
 }
 ```
@@ -958,7 +960,7 @@ final api = OryKratosClient().getFrontendApi();
 try {
     final response = api.getWebAuthnJavaScript();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->getWebAuthnJavaScript: $e\n');
 }
 ```
@@ -1003,7 +1005,7 @@ final String cookie = cookie_example; // String | Set the Cookie Header. This is
 try {
     final response = api.listMySessions(perPage, page, pageSize, pageToken, xSessionToken, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->listMySessions: $e\n');
 }
 ```
@@ -1050,7 +1052,7 @@ final PerformNativeLogoutBody performNativeLogoutBody = ; // PerformNativeLogout
 
 try {
     api.performNativeLogout(performNativeLogoutBody);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->performNativeLogout: $e\n');
 }
 ```
@@ -1095,7 +1097,7 @@ final String tokenizeAs = tokenizeAs_example; // String | Returns the session ad
 try {
     final response = api.toSession(xSessionToken, cookie, tokenizeAs);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->toSession: $e\n');
 }
 ```
@@ -1143,7 +1145,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.updateLoginFlow(flow, updateLoginFlowBody, xSessionToken, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->updateLoginFlow: $e\n');
 }
 ```
@@ -1190,7 +1192,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 
 try {
     api.updateLogoutFlow(token, returnTo, cookie);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->updateLogoutFlow: $e\n');
 }
 ```
@@ -1238,7 +1240,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.updateRecoveryFlow(flow, updateRecoveryFlowBody, token, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->updateRecoveryFlow: $e\n');
 }
 ```
@@ -1286,7 +1288,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.updateRegistrationFlow(flow, updateRegistrationFlowBody, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->updateRegistrationFlow: $e\n');
 }
 ```
@@ -1334,7 +1336,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.updateSettingsFlow(flow, updateSettingsFlowBody, xSessionToken, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->updateSettingsFlow: $e\n');
 }
 ```
@@ -1383,7 +1385,7 @@ final String cookie = cookie_example; // String | HTTP Cookies  When using the S
 try {
     final response = api.updateVerificationFlow(flow, updateVerificationFlowBody, token, cookie);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling FrontendApi->updateVerificationFlow: $e\n');
 }
 ```

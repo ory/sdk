@@ -102,6 +102,7 @@ import 'package:ory_kratos_client/src/model/update_login_flow_body.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_with_code_method.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_with_lookup_secret_method.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_with_oidc_method.dart';
+import 'package:ory_kratos_client/src/model/update_login_flow_with_passkey_method.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_with_password_method.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_with_totp_method.dart';
 import 'package:ory_kratos_client/src/model/update_login_flow_with_web_authn_method.dart';
@@ -111,11 +112,14 @@ import 'package:ory_kratos_client/src/model/update_recovery_flow_with_link_metho
 import 'package:ory_kratos_client/src/model/update_registration_flow_body.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_code_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_oidc_method.dart';
+import 'package:ory_kratos_client/src/model/update_registration_flow_with_passkey_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_password_method.dart';
+import 'package:ory_kratos_client/src/model/update_registration_flow_with_profile_method.dart';
 import 'package:ory_kratos_client/src/model/update_registration_flow_with_web_authn_method.dart';
 import 'package:ory_kratos_client/src/model/update_settings_flow_body.dart';
 import 'package:ory_kratos_client/src/model/update_settings_flow_with_lookup_method.dart';
 import 'package:ory_kratos_client/src/model/update_settings_flow_with_oidc_method.dart';
+import 'package:ory_kratos_client/src/model/update_settings_flow_with_passkey_method.dart';
 import 'package:ory_kratos_client/src/model/update_settings_flow_with_password_method.dart';
 import 'package:ory_kratos_client/src/model/update_settings_flow_with_profile_method.dart';
 import 'package:ory_kratos_client/src/model/update_settings_flow_with_totp_method.dart';
@@ -219,6 +223,7 @@ part 'serializers.g.dart';
   UpdateLoginFlowWithCodeMethod,
   UpdateLoginFlowWithLookupSecretMethod,
   UpdateLoginFlowWithOidcMethod,
+  UpdateLoginFlowWithPasskeyMethod,
   UpdateLoginFlowWithPasswordMethod,
   UpdateLoginFlowWithTotpMethod,
   UpdateLoginFlowWithWebAuthnMethod,
@@ -228,11 +233,14 @@ part 'serializers.g.dart';
   UpdateRegistrationFlowBody,
   UpdateRegistrationFlowWithCodeMethod,
   UpdateRegistrationFlowWithOidcMethod,
+  UpdateRegistrationFlowWithPasskeyMethod,
   UpdateRegistrationFlowWithPasswordMethod,
+  UpdateRegistrationFlowWithProfileMethod,
   UpdateRegistrationFlowWithWebAuthnMethod,
   UpdateSettingsFlowBody,
   UpdateSettingsFlowWithLookupMethod,
   UpdateSettingsFlowWithOidcMethod,
+  UpdateSettingsFlowWithPasskeyMethod,
   UpdateSettingsFlowWithPasswordMethod,
   UpdateSettingsFlowWithProfileMethod,
   UpdateSettingsFlowWithTotpMethod,

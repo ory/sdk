@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -29,6 +29,8 @@ type UpdateVerificationFlowWithCodeMethod struct {
 	Email *string `json:"email,omitempty"`
 	// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`. link VerificationStrategyLink code VerificationStrategyCode
 	Method string `json:"method"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -172,6 +174,38 @@ func (o *UpdateVerificationFlowWithCodeMethod) SetMethod(v string) {
 	o.Method = v
 }
 
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateVerificationFlowWithCodeMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVerificationFlowWithCodeMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateVerificationFlowWithCodeMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateVerificationFlowWithCodeMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
+}
+
 func (o UpdateVerificationFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -192,6 +226,9 @@ func (o UpdateVerificationFlowWithCodeMethod) ToMap() (map[string]interface{}, e
 		toSerialize["email"] = o.Email
 	}
 	toSerialize["method"] = o.Method
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -200,8 +237,8 @@ func (o UpdateVerificationFlowWithCodeMethod) ToMap() (map[string]interface{}, e
 	return toSerialize, nil
 }
 
-func (o *UpdateVerificationFlowWithCodeMethod) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *UpdateVerificationFlowWithCodeMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -210,7 +247,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) UnmarshalJSON(bytes []byte) (err 
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -224,7 +261,7 @@ func (o *UpdateVerificationFlowWithCodeMethod) UnmarshalJSON(bytes []byte) (err 
 
 	varUpdateVerificationFlowWithCodeMethod := _UpdateVerificationFlowWithCodeMethod{}
 
-	err = json.Unmarshal(bytes, &varUpdateVerificationFlowWithCodeMethod)
+	err = json.Unmarshal(data, &varUpdateVerificationFlowWithCodeMethod)
 
 	if err != nil {
 		return err
@@ -234,11 +271,12 @@ func (o *UpdateVerificationFlowWithCodeMethod) UnmarshalJSON(bytes []byte) (err 
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "code")
 		delete(additionalProperties, "csrf_token")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "method")
+		delete(additionalProperties, "transient_payload")
 		o.AdditionalProperties = additionalProperties
 	}
 

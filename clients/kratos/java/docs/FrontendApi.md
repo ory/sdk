@@ -36,9 +36,9 @@ All URIs are relative to *http://localhost*
 | [**updateVerificationFlow**](FrontendApi.md#updateVerificationFlow) | **POST** /self-service/verification | Complete Verification Flow |
 
 
-<a name="createBrowserLoginFlow"></a>
+<a id="createBrowserLoginFlow"></a>
 # **createBrowserLoginFlow**
-> LoginFlow createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization)
+> LoginFlow createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via)
 
 Create Login Flow for Browsers
 
@@ -65,8 +65,9 @@ public class Example {
     String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     String loginChallenge = "loginChallenge_example"; // String | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
     String organization = "organization_example"; // String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
+    String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
     try {
-      LoginFlow result = apiInstance.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization);
+      LoginFlow result = apiInstance.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createBrowserLoginFlow");
@@ -89,6 +90,7 @@ public class Example {
 | **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 | **loginChallenge** | **String**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] |
 | **organization** | **String**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
+| **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] |
 
 ### Return type
 
@@ -111,7 +113,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createBrowserLogoutFlow"></a>
+<a id="createBrowserLogoutFlow"></a>
 # **createBrowserLogoutFlow**
 > LogoutFlow createBrowserLogoutFlow(cookie, returnTo)
 
@@ -178,7 +180,7 @@ No authorization required
 | **401** | errorGeneric |  -  |
 | **500** | errorGeneric |  -  |
 
-<a name="createBrowserRecoveryFlow"></a>
+<a id="createBrowserRecoveryFlow"></a>
 # **createBrowserRecoveryFlow**
 > RecoveryFlow createBrowserRecoveryFlow(returnTo)
 
@@ -243,7 +245,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createBrowserRegistrationFlow"></a>
+<a id="createBrowserRegistrationFlow"></a>
 # **createBrowserRegistrationFlow**
 > RegistrationFlow createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization)
 
@@ -313,7 +315,7 @@ No authorization required
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createBrowserSettingsFlow"></a>
+<a id="createBrowserSettingsFlow"></a>
 # **createBrowserSettingsFlow**
 > SettingsFlow createBrowserSettingsFlow(returnTo, cookie)
 
@@ -382,7 +384,7 @@ No authorization required
 | **403** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createBrowserVerificationFlow"></a>
+<a id="createBrowserVerificationFlow"></a>
 # **createBrowserVerificationFlow**
 > VerificationFlow createBrowserVerificationFlow(returnTo)
 
@@ -446,7 +448,7 @@ No authorization required
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeLoginFlow"></a>
+<a id="createNativeLoginFlow"></a>
 # **createNativeLoginFlow**
 > LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via)
 
@@ -520,7 +522,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeRecoveryFlow"></a>
+<a id="createNativeRecoveryFlow"></a>
 # **createNativeRecoveryFlow**
 > RecoveryFlow createNativeRecoveryFlow()
 
@@ -580,7 +582,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeRegistrationFlow"></a>
+<a id="createNativeRegistrationFlow"></a>
 # **createNativeRegistrationFlow**
 > RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo)
 
@@ -646,7 +648,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeSettingsFlow"></a>
+<a id="createNativeSettingsFlow"></a>
 # **createNativeSettingsFlow**
 > SettingsFlow createNativeSettingsFlow(xSessionToken)
 
@@ -710,7 +712,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createNativeVerificationFlow"></a>
+<a id="createNativeVerificationFlow"></a>
 # **createNativeVerificationFlow**
 > VerificationFlow createNativeVerificationFlow()
 
@@ -770,7 +772,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="disableMyOtherSessions"></a>
+<a id="disableMyOtherSessions"></a>
 # **disableMyOtherSessions**
 > DeleteMySessionsCount disableMyOtherSessions(xSessionToken, cookie)
 
@@ -837,7 +839,7 @@ No authorization required
 | **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="disableMySession"></a>
+<a id="disableMySession"></a>
 # **disableMySession**
 > disableMySession(id, xSessionToken, cookie)
 
@@ -905,7 +907,7 @@ No authorization required
 | **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="exchangeSessionToken"></a>
+<a id="exchangeSessionToken"></a>
 # **exchangeSessionToken**
 > SuccessfulNativeLogin exchangeSessionToken(initCode, returnToCode)
 
@@ -971,7 +973,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getFlowError"></a>
+<a id="getFlowError"></a>
 # **getFlowError**
 > FlowError getFlowError(id)
 
@@ -1036,7 +1038,7 @@ No authorization required
 | **404** | errorGeneric |  -  |
 | **500** | errorGeneric |  -  |
 
-<a name="getLoginFlow"></a>
+<a id="getLoginFlow"></a>
 # **getLoginFlow**
 > LoginFlow getLoginFlow(id, cookie)
 
@@ -1104,7 +1106,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getRecoveryFlow"></a>
+<a id="getRecoveryFlow"></a>
 # **getRecoveryFlow**
 > RecoveryFlow getRecoveryFlow(id, cookie)
 
@@ -1171,7 +1173,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getRegistrationFlow"></a>
+<a id="getRegistrationFlow"></a>
 # **getRegistrationFlow**
 > RegistrationFlow getRegistrationFlow(id, cookie)
 
@@ -1239,7 +1241,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getSettingsFlow"></a>
+<a id="getSettingsFlow"></a>
 # **getSettingsFlow**
 > SettingsFlow getSettingsFlow(id, xSessionToken, cookie)
 
@@ -1310,7 +1312,7 @@ No authorization required
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getVerificationFlow"></a>
+<a id="getVerificationFlow"></a>
 # **getVerificationFlow**
 > VerificationFlow getVerificationFlow(id, cookie)
 
@@ -1377,7 +1379,7 @@ No authorization required
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getWebAuthnJavaScript"></a>
+<a id="getWebAuthnJavaScript"></a>
 # **getWebAuthnJavaScript**
 > String getWebAuthnJavaScript()
 
@@ -1435,7 +1437,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | webAuthnJavaScript |  -  |
 
-<a name="listMySessions"></a>
+<a id="listMySessions"></a>
 # **listMySessions**
 > List&lt;Session&gt; listMySessions(perPage, page, pageSize, pageToken, xSessionToken, cookie)
 
@@ -1510,7 +1512,7 @@ No authorization required
 | **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="performNativeLogout"></a>
+<a id="performNativeLogout"></a>
 # **performNativeLogout**
 > performNativeLogout(performNativeLogoutBody)
 
@@ -1573,7 +1575,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="toSession"></a>
+<a id="toSession"></a>
 # **toSession**
 > Session toSession(xSessionToken, cookie, tokenizeAs)
 
@@ -1642,7 +1644,7 @@ No authorization required
 | **403** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateLoginFlow"></a>
+<a id="updateLoginFlow"></a>
 # **updateLoginFlow**
 > SuccessfulNativeLogin updateLoginFlow(flow, updateLoginFlowBody, xSessionToken, cookie)
 
@@ -1715,7 +1717,7 @@ No authorization required
 | **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateLogoutFlow"></a>
+<a id="updateLogoutFlow"></a>
 # **updateLogoutFlow**
 > updateLogoutFlow(token, returnTo, cookie)
 
@@ -1782,7 +1784,7 @@ No authorization required
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateRecoveryFlow"></a>
+<a id="updateRecoveryFlow"></a>
 # **updateRecoveryFlow**
 > RecoveryFlow updateRecoveryFlow(flow, updateRecoveryFlowBody, token, cookie)
 
@@ -1855,7 +1857,7 @@ No authorization required
 | **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateRegistrationFlow"></a>
+<a id="updateRegistrationFlow"></a>
 # **updateRegistrationFlow**
 > SuccessfulNativeRegistration updateRegistrationFlow(flow, updateRegistrationFlowBody, cookie)
 
@@ -1926,7 +1928,7 @@ No authorization required
 | **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateSettingsFlow"></a>
+<a id="updateSettingsFlow"></a>
 # **updateSettingsFlow**
 > SettingsFlow updateSettingsFlow(flow, updateSettingsFlowBody, xSessionToken, cookie)
 
@@ -2001,7 +2003,7 @@ No authorization required
 | **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="updateVerificationFlow"></a>
+<a id="updateVerificationFlow"></a>
 # **updateVerificationFlow**
 > VerificationFlow updateVerificationFlow(flow, updateVerificationFlowBody, token, cookie)
 

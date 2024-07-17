@@ -7,7 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UpdateLoginFlowBody, () {
-    // CSRFToken is the anti-CSRF token
+    // Sending the anti-csrf token is only required for browser login flows.
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
@@ -19,7 +19,7 @@ void main() {
       // TODO
     });
 
-    // Method should be set to \"code\" when logging in using the code strategy.
+    // Method should be set to \"passkey\" when logging in using the Passkey strategy.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -34,6 +34,12 @@ void main() {
     // Identifier is the email or username of the user trying to log in. This field is deprecated!
     // String passwordIdentifier
     test('to test the property `passwordIdentifier`', () async {
+      // TODO
+    });
+
+    // Transient data to pass along to any webhooks
+    // JsonObject transientPayload
+    test('to test the property `transientPayload`', () async {
       // TODO
     });
 
@@ -94,6 +100,12 @@ void main() {
     // Resend is set when the user wants to resend the code
     // String resend
     test('to test the property `resend`', () async {
+      // TODO
+    });
+
+    // Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
+    // String passkeyLogin
+    test('to test the property `passkeyLogin`', () async {
       // TODO
     });
 

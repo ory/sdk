@@ -23,24 +23,24 @@ Get a Message
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/kratos-client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/kratos-client-go"
 )
 
 func main() {
-    id := "id_example" // string | MessageID is the ID of the message.
+	id := "id_example" // string | MessageID is the ID of the message.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CourierAPI.GetCourierMessage(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CourierAPI.GetCourierMessage``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetCourierMessage`: Message
-    fmt.Fprintf(os.Stdout, "Response from `CourierAPI.GetCourierMessage`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CourierAPI.GetCourierMessage(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CourierAPI.GetCourierMessage``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCourierMessage`: Message
+	fmt.Fprintf(os.Stdout, "Response from `CourierAPI.GetCourierMessage`: %v\n", resp)
 }
 ```
 
@@ -93,27 +93,27 @@ List Messages
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/ory/kratos-client-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/kratos-client-go"
 )
 
 func main() {
-    pageSize := int64(789) // int64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
-    pageToken := "pageToken_example" // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
-    status := openapiclient.courierMessageStatus("queued") // CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter. (optional)
-    recipient := "recipient_example" // string | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter. (optional)
+	pageSize := int64(789) // int64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+	pageToken := "pageToken_example" // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+	status := openapiclient.courierMessageStatus("queued") // CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter. (optional)
+	recipient := "recipient_example" // string | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CourierAPI.ListCourierMessages(context.Background()).PageSize(pageSize).PageToken(pageToken).Status(status).Recipient(recipient).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CourierAPI.ListCourierMessages``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListCourierMessages`: []Message
-    fmt.Fprintf(os.Stdout, "Response from `CourierAPI.ListCourierMessages`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CourierAPI.ListCourierMessages(context.Background()).PageSize(pageSize).PageToken(pageToken).Status(status).Recipient(recipient).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CourierAPI.ListCourierMessages``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListCourierMessages`: []Message
+	fmt.Fprintf(os.Stdout, "Response from `CourierAPI.ListCourierMessages`: %v\n", resp)
 }
 ```
 

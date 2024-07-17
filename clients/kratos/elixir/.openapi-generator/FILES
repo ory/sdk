@@ -98,6 +98,7 @@ lib/ory/model/update_login_flow_body.ex
 lib/ory/model/update_login_flow_with_code_method.ex
 lib/ory/model/update_login_flow_with_lookup_secret_method.ex
 lib/ory/model/update_login_flow_with_oidc_method.ex
+lib/ory/model/update_login_flow_with_passkey_method.ex
 lib/ory/model/update_login_flow_with_password_method.ex
 lib/ory/model/update_login_flow_with_totp_method.ex
 lib/ory/model/update_login_flow_with_web_authn_method.ex
@@ -107,11 +108,14 @@ lib/ory/model/update_recovery_flow_with_link_method.ex
 lib/ory/model/update_registration_flow_body.ex
 lib/ory/model/update_registration_flow_with_code_method.ex
 lib/ory/model/update_registration_flow_with_oidc_method.ex
+lib/ory/model/update_registration_flow_with_passkey_method.ex
 lib/ory/model/update_registration_flow_with_password_method.ex
+lib/ory/model/update_registration_flow_with_profile_method.ex
 lib/ory/model/update_registration_flow_with_web_authn_method.ex
 lib/ory/model/update_settings_flow_body.ex
 lib/ory/model/update_settings_flow_with_lookup_method.ex
 lib/ory/model/update_settings_flow_with_oidc_method.ex
+lib/ory/model/update_settings_flow_with_passkey_method.ex
 lib/ory/model/update_settings_flow_with_password_method.ex
 lib/ory/model/update_settings_flow_with_profile_method.ex
 lib/ory/model/update_settings_flow_with_totp_method.ex

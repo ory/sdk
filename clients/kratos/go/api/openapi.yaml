@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Identities API
-  version: v1.1.0
+  version: v1.2.1
 servers:
 - url: /
 tags:
@@ -303,6 +303,20 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          Include Credentials in Response
+
+          Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+        explode: true
+        in: query
+        name: include_credential
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -325,7 +339,7 @@ paths:
       - identity
     patch:
       description: |-
-        Creates or delete multiple
+        Creates multiple
         [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
         This endpoint can also be used to [import
         credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
@@ -364,7 +378,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: Create and deletes multiple identities
+      summary: Create multiple identities
       tags:
       - identity
     post:
@@ -478,6 +492,8 @@ paths:
             - lookup_secret
             - webauthn
             - code
+            - passkey
+            - profile
             - link_recovery
             - code_recovery
             type: string
@@ -642,6 +658,8 @@ paths:
           lookup_secret CredentialsTypeLookup
           webauthn CredentialsTypeWebAuthn
           code CredentialsTypeCodeAuth
+          passkey CredentialsTypePasskey
+          profile CredentialsTypeProfile
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
         explode: false
@@ -656,6 +674,8 @@ paths:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -667,6 +687,8 @@ paths:
           lookup_secret CredentialsTypeLookup
           webauthn CredentialsTypeWebAuthn
           code CredentialsTypeCodeAuth
+          passkey CredentialsTypePasskey
+          profile CredentialsTypeProfile
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
       responses:
@@ -998,10 +1020,10 @@ paths:
         name: expand
         required: false
         schema:
-          enum:
-          - identity
-          - devices
           items:
+            enum:
+            - identity
+            - devices
             type: string
           type: array
         style: form
@@ -1091,10 +1113,10 @@ paths:
         name: expand
         required: false
         schema:
-          enum:
-          - identity
-          - devices
           items:
+            enum:
+            - identity
+            - devices
             type: string
           type: array
         style: form
@@ -1723,6 +1745,15 @@ paths:
         explode: true
         in: query
         name: organization
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Via should contain the identity's credential the code should
+          be sent to. Only relevant in aal2 flows.
+        explode: true
+        in: query
+        name: via
         required: false
         schema:
           type: string
@@ -4485,6 +4516,12 @@ components:
     continueWithVerificationUi:
       description: "Indicates, that the UI flow could be continued by showing a verification\
         \ ui"
+      example:
+        action: show_verification_ui
+        flow:
+          verifiable_address: verifiable_address
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          url: url
       properties:
         action:
           description: |-
@@ -4501,6 +4538,10 @@ components:
       - flow
       type: object
     continueWithVerificationUiFlow:
+      example:
+        verifiable_address: verifiable_address
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        url: url
       properties:
         id:
           description: The ID of the verification flow
@@ -4600,6 +4641,10 @@ components:
             `selfservice.methods.code.config.lifespan`.
           pattern: "^([0-9]+(ns|us|ms|s|m|h))*$"
           type: string
+        flow_type:
+          description: The flow type can either be `api` or `browser`.
+          title: Type is the flow type.
+          type: string
         identity_id:
           description: |-
             Identity to Recover
@@ -4652,6 +4697,18 @@ components:
         not satisfied.
       type: object
     errorBrowserLocationChangeRequired:
+      example:
+        error:
+          error:
+            reason: User with ID 1234 does not exist.
+            request: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+            code: 404
+            debug: SQL field "foo" is not a bool.
+            details: "{}"
+            id: id
+            message: The resource could not be found
+            status: Not Found
+        redirect_browser_to: redirect_browser_to
       properties:
         error:
           $ref: '#/components/schemas/errorGeneric'
@@ -4674,6 +4731,16 @@ components:
       type: object
     errorGeneric:
       description: The standard Ory JSON API error format.
+      example:
+        error:
+          reason: User with ID 1234 does not exist.
+          request: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+          code: 404
+          debug: SQL field "foo" is not a bool.
+          details: "{}"
+          id: id
+          message: The resource could not be found
+          status: Not Found
       properties:
         error:
           $ref: '#/components/schemas/genericError'
@@ -4706,6 +4773,15 @@ components:
       - id
       type: object
     genericError:
+      example:
+        reason: User with ID 1234 does not exist.
+        request: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+        code: 404
+        debug: SQL field "foo" is not a bool.
+        details: "{}"
+        id: id
+        message: The resource could not be found
+        status: Not Found
       properties:
         code:
           description: The status code
@@ -4764,12 +4840,14 @@ components:
           description: Errors contains a list of errors that caused the not ready
             status.
           type: object
+      title: The not ready status of the service.
       type: object
     healthStatus:
       properties:
         status:
           description: Status always contains "ok".
           type: string
+      title: The health status of the service.
       type: object
     identity:
       description: "An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
@@ -4948,6 +5026,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -4957,6 +5037,8 @@ components:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -4967,6 +5049,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         updated_at:
@@ -5193,7 +5277,7 @@ components:
 
         Once a login flow is completed successfully, a session cookie or session token will be issued.
       example:
-        requested_aal: null
+        requested_aal: aal0
         active: password
         created_at: 2000-01-23T04:56:07.000+00:00
         refresh: true
@@ -5291,6 +5375,7 @@ components:
           requested_scope:
           - requested_scope
           - requested_scope
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -5308,7 +5393,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -5326,7 +5426,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -5357,6 +5472,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -5366,6 +5483,8 @@ components:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -5376,6 +5495,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         created_at:
@@ -5437,6 +5558,10 @@ components:
             choose_method: ask the user to choose a method to sign in with
             sent_email: the email has been sent to the user
             passed_challenge: the request was successful and the login challenge was passed.
+        transient_payload:
+          description: TransientPayload is used to pass data from the login to hooks
+            and email templates
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -5513,8 +5638,8 @@ components:
         template_type: recovery_invalid
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         body: body
-        type: null
-        status: null
+        type: email
+        status: queued
       properties:
         body:
           type: string
@@ -5738,6 +5863,7 @@ components:
         We recommend reading the [Account Recovery Documentation](../self-service/flows/password-reset-account-recovery)
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -5755,7 +5881,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -5773,7 +5914,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -5788,8 +5944,16 @@ components:
             text: text
             type: info
         continue_with:
-        - null
-        - null
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -5839,6 +6003,10 @@ components:
             choose_method: ask the user to choose a method (e.g. recover account via email)
             sent_email: the email has been sent to the user
             passed_challenge: the request was successful and the recovery challenge was passed.
+        transient_payload:
+          description: TransientPayload is used to pass data from the recovery flow
+            to hooks and email templates
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -6036,7 +6204,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -6054,7 +6237,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -6083,6 +6281,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -6092,6 +6292,8 @@ components:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -6102,6 +6304,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         expires_at:
@@ -6229,12 +6433,12 @@ components:
           method: link_recovery
           provider: provider
           organization: organization
-          aal: null
+          aal: aal0
         - completed_at: 2000-01-23T04:56:07.000+00:00
           method: link_recovery
           provider: provider
           organization: organization
-          aal: null
+          aal: aal0
         authenticator_assurance_level: null
         identity:
           traits: ""
@@ -6353,7 +6557,7 @@ components:
         method: link_recovery
         provider: provider
         organization: organization
-        aal: null
+        aal: aal0
       properties:
         aal:
           $ref: '#/components/schemas/authenticatorAssuranceLevel'
@@ -6420,6 +6624,7 @@ components:
         We recommend reading the [User Settings Documentation](../self-service/flows/user-settings)
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -6437,7 +6642,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -6455,7 +6675,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -6520,8 +6755,16 @@ components:
           state: active
           metadata_public: ""
         continue_with:
-        - null
-        - null
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -6578,6 +6821,10 @@ components:
             success: Indicates that the settings flow has been updated successfully with the provided data.
             Done will stay true when repeatedly checking. If set to true, done will revert back to false only
             when a flow with invalid (e.g. "please use a valid phone number") data was sent.
+        transient_payload:
+          description: TransientPayload is used to pass data from the settings flow
+            to hooks and email templates
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -6646,12 +6893,12 @@ components:
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           authenticator_assurance_level: null
           identity:
             traits: ""
@@ -6707,7 +6954,27 @@ components:
           active: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           issued_at: 2000-01-23T04:56:07.000+00:00
+        continue_with:
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
       properties:
+        continue_with:
+          description: |-
+            Contains a list of actions, that could follow this flow
+
+            It can, for example, this will contain a reference to the verification flow, created as part of the user's
+            registration or the token of the session.
+          items:
+            $ref: '#/components/schemas/continueWith'
+          type: array
         session:
           $ref: '#/components/schemas/session'
         session_token:
@@ -6795,12 +7062,12 @@ components:
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           - completed_at: 2000-01-23T04:56:07.000+00:00
             method: link_recovery
             provider: provider
             organization: organization
-            aal: null
+            aal: aal0
           authenticator_assurance_level: null
           identity:
             traits: ""
@@ -6857,8 +7124,16 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           issued_at: 2000-01-23T04:56:07.000+00:00
         continue_with:
-        - null
-        - null
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
       properties:
         continue_with:
           description: |-
@@ -6949,7 +7224,22 @@ components:
             id: 6
             text: text
             type: info
-          attributes: null
+          attributes:
+            node_type: text
+            autocomplete: email
+            onclick: onclick
+            name: name
+            pattern: pattern
+            disabled: true
+            label:
+              context: "{}"
+              id: 6
+              text: text
+              type: info
+            type: text
+            value: ""
+            required: true
+            onload: onload
           type: text
           group: default
         - meta:
@@ -6967,7 +7257,22 @@ components:
             id: 6
             text: text
             type: info
-          attributes: null
+          attributes:
+            node_type: text
+            autocomplete: email
+            onclick: onclick
+            name: name
+            pattern: pattern
+            disabled: true
+            label:
+              context: "{}"
+              id: 6
+              text: text
+              type: info
+            type: text
+            value: ""
+            required: true
+            onload: onload
           type: text
           group: default
         method: method
@@ -7022,7 +7327,22 @@ components:
           id: 6
           text: text
           type: info
-        attributes: null
+        attributes:
+          node_type: text
+          autocomplete: email
+          onclick: onclick
+          name: name
+          pattern: pattern
+          disabled: true
+          label:
+            context: "{}"
+            id: 6
+            text: text
+            type: info
+          type: text
+          value: ""
+          required: true
+          onload: onload
         type: text
         group: default
       properties:
@@ -7040,6 +7360,7 @@ components:
             totp TOTPGroup
             lookup_secret LookupGroup
             webauthn WebAuthnGroup
+            passkey PasskeyGroup
           enum:
           - default
           - password
@@ -7050,6 +7371,7 @@ components:
           - totp
           - lookup_secret
           - webauthn
+          - passkey
           type: string
           x-go-enum-desc: |-
             default DefaultGroup
@@ -7061,6 +7383,7 @@ components:
             totp TOTPGroup
             lookup_secret LookupGroup
             webauthn WebAuthnGroup
+            passkey PasskeyGroup
         messages:
           items:
             $ref: '#/components/schemas/uiText'
@@ -7111,7 +7434,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "a".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         title:
           $ref: '#/components/schemas/uiText'
       required:
@@ -7150,7 +7490,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "img".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         src:
           description: |-
             The image's source URL.
@@ -7171,6 +7528,22 @@ components:
       type: object
     uiNodeInputAttributes:
       description: InputAttributes represents the attributes of an input node
+      example:
+        node_type: text
+        autocomplete: email
+        onclick: onclick
+        name: name
+        pattern: pattern
+        disabled: true
+        label:
+          context: "{}"
+          id: 6
+          text: text
+          type: info
+        type: text
+        value: ""
+        required: true
+        onload: onload
       properties:
         autocomplete:
           description: |-
@@ -7208,10 +7581,32 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "input".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         onclick:
           description: |-
             OnClick may contain javascript which should be executed on click. This is primarily
+            used for WebAuthn.
+          type: string
+        onload:
+          description: |-
+            OnLoad may contain javascript which should be executed on load. This is primarily
             used for WebAuthn.
           type: string
         pattern:
@@ -7304,7 +7699,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is "script".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         nonce:
           description: |-
             Nonce for CSP
@@ -7343,7 +7755,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "text".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         text:
           $ref: '#/components/schemas/uiText'
       required:
@@ -7444,6 +7873,7 @@ components:
           code: '#/components/schemas/updateLoginFlowWithCodeMethod'
           lookup_secret: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
           oidc: '#/components/schemas/updateLoginFlowWithOidcMethod'
+          passkey: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
           password: '#/components/schemas/updateLoginFlowWithPasswordMethod'
           totp: '#/components/schemas/updateLoginFlowWithTotpMethod'
           webauthn: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
@@ -7455,6 +7885,7 @@ components:
       - $ref: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithCodeMethod'
+      - $ref: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
     updateLoginFlowWithCodeMethod:
       description: Update Login flow using the code method
       properties:
@@ -7476,6 +7907,9 @@ components:
         resend:
           description: Resend is set when the user wants to resend the code
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - csrf_token
       - method
@@ -7534,6 +7968,9 @@ components:
           description: The identity traits. This is a placeholder for the registration
             flow.
           type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
         upstream_parameters:
           description: |-
             UpstreamParameters are the parameters that are passed to the upstream identity provider.
@@ -7547,6 +7984,26 @@ components:
       required:
       - method
       - provider
+      type: object
+    updateLoginFlowWithPasskeyMethod:
+      description: Update Login Flow with Passkey Method
+      properties:
+        csrf_token:
+          description: Sending the anti-csrf token is only required for browser login
+            flows.
+          type: string
+        method:
+          description: Method should be set to "passkey" when logging in using the
+            Passkey strategy.
+          type: string
+        passkey_login:
+          description: |-
+            Login a WebAuthn Security Key
+
+            This must contain the ID of the WebAuthN connection.
+          type: string
+      required:
+      - method
       type: object
     updateLoginFlowWithPasswordMethod:
       description: Update Login Flow with Password Method
@@ -7571,6 +8028,9 @@ components:
             Identifier is the email or username of the user trying to log in.
             This field is deprecated!
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - identifier
       - method
@@ -7590,6 +8050,9 @@ components:
         totp_code:
           description: The TOTP code.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       - totp_code
@@ -7609,6 +8072,9 @@ components:
           description: Method should be set to "webAuthn" when logging in using the
             WebAuthn strategy.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
         webauthn_login:
           description: |-
             Login a WebAuthn Security Key
@@ -7669,6 +8135,9 @@ components:
           x-go-enum-desc: |-
             link RecoveryStrategyLink
             code RecoveryStrategyCode
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       type: object
@@ -7703,6 +8172,9 @@ components:
           x-go-enum-desc: |-
             link RecoveryStrategyLink
             code RecoveryStrategyCode
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - email
       - method
@@ -7713,6 +8185,7 @@ components:
         mapping:
           code: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
           oidc: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
+          passKey: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
           password: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
           webauthn: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
         propertyName: method
@@ -7721,6 +8194,7 @@ components:
       - $ref: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
+      - $ref: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
     updateRegistrationFlowWithCodeMethod:
       description: Update Registration Flow with Code Method
       properties:
@@ -7801,6 +8275,35 @@ components:
       - method
       - provider
       type: object
+    updateRegistrationFlowWithPasskeyMethod:
+      description: Update Registration Flow with Passkey Method
+      properties:
+        csrf_token:
+          description: CSRFToken is the anti-CSRF token
+          type: string
+        method:
+          description: |-
+            Method
+
+            Should be set to "passkey" when trying to add, update, or remove a Passkey.
+          type: string
+        passkey_register:
+          description: |-
+            Register a WebAuthn Security Key
+
+            It is expected that the JSON returned by the WebAuthn registration process
+            is included here.
+          type: string
+        traits:
+          description: The identity's traits
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
+      - traits
+      type: object
     updateRegistrationFlowWithPasswordMethod:
       description: Update Registration Flow with Password Method
       properties:
@@ -7825,6 +8328,41 @@ components:
       required:
       - method
       - password
+      - traits
+      type: object
+    updateRegistrationFlowWithProfileMethod:
+      description: Update Registration Flow with Profile Method
+      properties:
+        csrf_token:
+          description: |-
+            The Anti-CSRF Token
+
+            This token is only required when performing browser flows.
+          type: string
+        method:
+          description: |-
+            Method
+
+            Should be set to profile when trying to update a profile.
+          type: string
+        screen:
+          description: |-
+            Screen requests navigation to a previous screen.
+
+            This must be set to credential-selection to go back to the credential
+            selection screen.
+          type: string
+        traits:
+          description: |-
+            Traits
+
+            The identity's traits.
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
       - traits
       type: object
     updateRegistrationFlowWithWebAuthnMethod:
@@ -7868,6 +8406,7 @@ components:
         mapping:
           lookup_secret: '#/components/schemas/updateSettingsFlowWithLookupMethod'
           oidc: '#/components/schemas/updateSettingsFlowWithOidcMethod'
+          passkey: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
           password: '#/components/schemas/updateSettingsFlowWithPasswordMethod'
           profile: '#/components/schemas/updateSettingsFlowWithProfileMethod'
           totp: '#/components/schemas/updateSettingsFlowWithTotpMethod'
@@ -7877,10 +8416,10 @@ components:
       - $ref: '#/components/schemas/updateSettingsFlowWithPasswordMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithProfileMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithOidcMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithOidcMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithTotpMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithLookupMethod'
+      - $ref: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
     updateSettingsFlowWithLookupMethod:
       description: Update Settings Flow with Lookup Method
       properties:
@@ -7905,6 +8444,9 @@ components:
 
             Should be set to "lookup" when trying to add, update, or remove a lookup pairing.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       type: object
@@ -7938,6 +8480,9 @@ components:
 
             in: body
           type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
         unlink:
           description: |-
             Unlink this provider
@@ -7960,6 +8505,34 @@ components:
       required:
       - method
       type: object
+    updateSettingsFlowWithPasskeyMethod:
+      description: Update Settings Flow with Passkey Method
+      properties:
+        csrf_token:
+          description: CSRFToken is the anti-CSRF token
+          type: string
+        method:
+          description: |-
+            Method
+
+            Should be set to "passkey" when trying to add, update, or remove a webAuthn pairing.
+          type: string
+        passkey_remove:
+          description: |-
+            Remove a WebAuthn Security Key
+
+            This must contain the ID of the WebAuthN connection.
+          type: string
+        passkey_settings_register:
+          description: |-
+            Register a WebAuthn Security Key
+
+            It is expected that the JSON returned by the WebAuthn registration process
+            is included here.
+          type: string
+      required:
+      - method
+      type: object
     updateSettingsFlowWithPasswordMethod:
       description: Update Settings Flow with Password Method
       properties:
@@ -7975,6 +8548,9 @@ components:
         password:
           description: Password is the updated password
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       - password
@@ -7999,6 +8575,9 @@ components:
             Traits
 
             The identity's traits.
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
           type: object
       required:
       - method
@@ -8025,6 +8604,9 @@ components:
             effectively removing the credential. This can be used
             to set up a new TOTP device.
           type: boolean
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       type: object
@@ -8040,6 +8622,9 @@ components:
 
             Should be set to "webauthn" when trying to add, update, or remove a webAuthn pairing.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
         webauthn_register:
           description: |-
             Register a WebAuthn Security Key
@@ -8111,6 +8696,9 @@ components:
           x-go-enum-desc: |-
             link VerificationStrategyLink
             code VerificationStrategyCode
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       type: object
@@ -8145,6 +8733,9 @@ components:
           x-go-enum-desc: |-
             link VerificationStrategyLink
             code VerificationStrategyCode
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - email
       - method
@@ -8214,6 +8805,7 @@ components:
         For more information head over to: https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
+        transient_payload: "{}"
         ui:
           nodes:
           - meta:
@@ -8231,7 +8823,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -8249,7 +8856,22 @@ components:
               id: 6
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 6
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -8310,6 +8932,10 @@ components:
             choose_method: ask the user to choose a method (e.g. verify your email)
             sent_email: the email has been sent to the user
             passed_challenge: the request was successful and the verification challenge was passed.
+        transient_payload:
+          description: TransientPayload is used to pass data from the verification
+            flow to hooks and email templates
+          type: object
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -8355,6 +8981,9 @@ components:
       - status
       type: object
     isReady_503_response:
+      example:
+        errors:
+          key: errors
       properties:
         errors:
           additionalProperties:

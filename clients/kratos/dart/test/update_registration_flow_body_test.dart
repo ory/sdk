@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UpdateRegistrationFlowBody, () {
-    // The CSRF Token
+    // CSRFToken is the anti-CSRF token
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
     });
 
-    // Method to use  This field must be set to `code` when using the code method.
+    // Method  Should be set to \"passkey\" when trying to add, update, or remove a Passkey.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -82,6 +82,12 @@ void main() {
     // Resend restarts the flow with a new code
     // String resend
     test('to test the property `resend`', () async {
+      // TODO
+    });
+
+    // Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
+    // String passkeyRegister
+    test('to test the property `passkeyRegister`', () async {
       // TODO
     });
 

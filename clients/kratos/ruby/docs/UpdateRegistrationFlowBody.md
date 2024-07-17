@@ -16,6 +16,7 @@ OryKratosClient::UpdateRegistrationFlowBody.openapi_one_of
 # [
 #   :'UpdateRegistrationFlowWithCodeMethod',
 #   :'UpdateRegistrationFlowWithOidcMethod',
+#   :'UpdateRegistrationFlowWithPasskeyMethod',
 #   :'UpdateRegistrationFlowWithPasswordMethod',
 #   :'UpdateRegistrationFlowWithWebAuthnMethod'
 # ]
@@ -48,9 +49,11 @@ OryKratosClient::UpdateRegistrationFlowBody.openapi_discriminator_mapping
 # {
 #   :'code' => :'UpdateRegistrationFlowWithCodeMethod',
 #   :'oidc' => :'UpdateRegistrationFlowWithOidcMethod',
+#   :'passKey' => :'UpdateRegistrationFlowWithPasskeyMethod',
 #   :'password' => :'UpdateRegistrationFlowWithPasswordMethod',
 #   :'webauthn' => :'UpdateRegistrationFlowWithWebAuthnMethod'
 # }
+```
 
 ### build
 
@@ -78,6 +81,7 @@ OryKratosClient::UpdateRegistrationFlowBody.build(data_that_doesnt_match)
 
 - `UpdateRegistrationFlowWithCodeMethod`
 - `UpdateRegistrationFlowWithOidcMethod`
+- `UpdateRegistrationFlowWithPasskeyMethod`
 - `UpdateRegistrationFlowWithPasswordMethod`
 - `UpdateRegistrationFlowWithWebAuthnMethod`
 - `nil` (if no type matches)

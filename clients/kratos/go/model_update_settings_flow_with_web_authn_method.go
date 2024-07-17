@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -25,6 +25,8 @@ type UpdateSettingsFlowWithWebAuthnMethod struct {
 	CsrfToken *string `json:"csrf_token,omitempty"`
 	// Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
 	Method string `json:"method"`
+	// Transient data to pass along to any webhooks
+	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	// Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
 	WebauthnRegister *string `json:"webauthn_register,omitempty"`
 	// Name of the WebAuthn Security Key to be Added  A human-readable name for the security key which will be added.
@@ -108,6 +110,38 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) GetMethodOk() (*string, bool) {
 // SetMethod sets field value
 func (o *UpdateSettingsFlowWithWebAuthnMethod) SetMethod(v string) {
 	o.Method = v
+}
+
+// GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithWebAuthnMethod) GetTransientPayload() map[string]interface{} {
+	if o == nil || IsNil(o.TransientPayload) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TransientPayload
+}
+
+// GetTransientPayloadOk returns a tuple with the TransientPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithWebAuthnMethod) GetTransientPayloadOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TransientPayload) {
+		return map[string]interface{}{}, false
+	}
+	return o.TransientPayload, true
+}
+
+// HasTransientPayload returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithWebAuthnMethod) HasTransientPayload() bool {
+	if o != nil && !IsNil(o.TransientPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientPayload gets a reference to the given map[string]interface{} and assigns it to the TransientPayload field.
+func (o *UpdateSettingsFlowWithWebAuthnMethod) SetTransientPayload(v map[string]interface{}) {
+	o.TransientPayload = v
 }
 
 // GetWebauthnRegister returns the WebauthnRegister field value if set, zero value otherwise.
@@ -220,6 +254,9 @@ func (o UpdateSettingsFlowWithWebAuthnMethod) ToMap() (map[string]interface{}, e
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
 	toSerialize["method"] = o.Method
+	if !IsNil(o.TransientPayload) {
+		toSerialize["transient_payload"] = o.TransientPayload
+	}
 	if !IsNil(o.WebauthnRegister) {
 		toSerialize["webauthn_register"] = o.WebauthnRegister
 	}
@@ -237,8 +274,8 @@ func (o UpdateSettingsFlowWithWebAuthnMethod) ToMap() (map[string]interface{}, e
 	return toSerialize, nil
 }
 
-func (o *UpdateSettingsFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *UpdateSettingsFlowWithWebAuthnMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -247,7 +284,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err 
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -261,7 +298,7 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err 
 
 	varUpdateSettingsFlowWithWebAuthnMethod := _UpdateSettingsFlowWithWebAuthnMethod{}
 
-	err = json.Unmarshal(bytes, &varUpdateSettingsFlowWithWebAuthnMethod)
+	err = json.Unmarshal(data, &varUpdateSettingsFlowWithWebAuthnMethod)
 
 	if err != nil {
 		return err
@@ -271,9 +308,10 @@ func (o *UpdateSettingsFlowWithWebAuthnMethod) UnmarshalJSON(bytes []byte) (err 
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "csrf_token")
 		delete(additionalProperties, "method")
+		delete(additionalProperties, "transient_payload")
 		delete(additionalProperties, "webauthn_register")
 		delete(additionalProperties, "webauthn_register_displayname")
 		delete(additionalProperties, "webauthn_remove")

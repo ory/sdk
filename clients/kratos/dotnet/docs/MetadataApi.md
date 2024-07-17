@@ -2,16 +2,15 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetVersion**](MetadataApi.md#getversion) | **GET** /version | Return Running Software Version.
-[**IsAlive**](MetadataApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status
-[**IsReady**](MetadataApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetVersion**](MetadataApi.md#getversion) | **GET** /version | Return Running Software Version. |
+| [**IsAlive**](MetadataApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status |
+| [**IsReady**](MetadataApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status |
 
-
-<a name="getversion"></a>
+<a id="getversion"></a>
 # **GetVersion**
-> KratosInlineResponse2001 GetVersion ()
+> KratosGetVersion200Response GetVersion ()
 
 Return Running Software Version.
 
@@ -38,13 +37,13 @@ namespace Example
             try
             {
                 // Return Running Software Version.
-                KratosInlineResponse2001 result = apiInstance.GetVersion();
+                KratosGetVersion200Response result = apiInstance.GetVersion();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling MetadataApi.GetVersion: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling MetadataApi.GetVersion: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -52,12 +51,31 @@ namespace Example
 }
 ```
 
+#### Using the GetVersionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Return Running Software Version.
+    ApiResponse<KratosGetVersion200Response> response = apiInstance.GetVersionWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MetadataApi.GetVersionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
-[**KratosInlineResponse2001**](KratosInlineResponse2001.md)
+[**KratosGetVersion200Response**](KratosGetVersion200Response.md)
 
 ### Authorization
 
@@ -76,9 +94,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="isalive"></a>
+<a id="isalive"></a>
 # **IsAlive**
-> KratosInlineResponse200 IsAlive ()
+> KratosIsAlive200Response IsAlive ()
 
 Check HTTP Server Status
 
@@ -105,13 +123,13 @@ namespace Example
             try
             {
                 // Check HTTP Server Status
-                KratosInlineResponse200 result = apiInstance.IsAlive();
+                KratosIsAlive200Response result = apiInstance.IsAlive();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling MetadataApi.IsAlive: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling MetadataApi.IsAlive: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -119,12 +137,31 @@ namespace Example
 }
 ```
 
+#### Using the IsAliveWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Check HTTP Server Status
+    ApiResponse<KratosIsAlive200Response> response = apiInstance.IsAliveWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MetadataApi.IsAliveWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
-[**KratosInlineResponse200**](KratosInlineResponse200.md)
+[**KratosIsAlive200Response**](KratosIsAlive200Response.md)
 
 ### Authorization
 
@@ -144,9 +181,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="isready"></a>
+<a id="isready"></a>
 # **IsReady**
-> KratosInlineResponse200 IsReady ()
+> KratosIsAlive200Response IsReady ()
 
 Check HTTP Server and Database Status
 
@@ -173,13 +210,13 @@ namespace Example
             try
             {
                 // Check HTTP Server and Database Status
-                KratosInlineResponse200 result = apiInstance.IsReady();
+                KratosIsAlive200Response result = apiInstance.IsReady();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling MetadataApi.IsReady: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling MetadataApi.IsReady: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -187,12 +224,31 @@ namespace Example
 }
 ```
 
+#### Using the IsReadyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Check HTTP Server and Database Status
+    ApiResponse<KratosIsAlive200Response> response = apiInstance.IsReadyWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MetadataApi.IsReadyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
-[**KratosInlineResponse200**](KratosInlineResponse200.md)
+[**KratosIsAlive200Response**](KratosIsAlive200Response.md)
 
 ### Authorization
 

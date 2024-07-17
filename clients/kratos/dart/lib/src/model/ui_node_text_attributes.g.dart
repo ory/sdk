@@ -6,11 +6,92 @@ part of 'ui_node_text_attributes.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnum_text =
+    const UiNodeTextAttributesNodeTypeEnum._('text');
+const UiNodeTextAttributesNodeTypeEnum
+    _$uiNodeTextAttributesNodeTypeEnum_input =
+    const UiNodeTextAttributesNodeTypeEnum._('input');
+const UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnum_img =
+    const UiNodeTextAttributesNodeTypeEnum._('img');
+const UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnum_a =
+    const UiNodeTextAttributesNodeTypeEnum._('a');
+const UiNodeTextAttributesNodeTypeEnum
+    _$uiNodeTextAttributesNodeTypeEnum_script =
+    const UiNodeTextAttributesNodeTypeEnum._('script');
+
+UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'text':
+      return _$uiNodeTextAttributesNodeTypeEnum_text;
+    case 'input':
+      return _$uiNodeTextAttributesNodeTypeEnum_input;
+    case 'img':
+      return _$uiNodeTextAttributesNodeTypeEnum_img;
+    case 'a':
+      return _$uiNodeTextAttributesNodeTypeEnum_a;
+    case 'script':
+      return _$uiNodeTextAttributesNodeTypeEnum_script;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UiNodeTextAttributesNodeTypeEnum>
+    _$uiNodeTextAttributesNodeTypeEnumValues = new BuiltSet<
+        UiNodeTextAttributesNodeTypeEnum>(const <UiNodeTextAttributesNodeTypeEnum>[
+  _$uiNodeTextAttributesNodeTypeEnum_text,
+  _$uiNodeTextAttributesNodeTypeEnum_input,
+  _$uiNodeTextAttributesNodeTypeEnum_img,
+  _$uiNodeTextAttributesNodeTypeEnum_a,
+  _$uiNodeTextAttributesNodeTypeEnum_script,
+]);
+
+Serializer<UiNodeTextAttributesNodeTypeEnum>
+    _$uiNodeTextAttributesNodeTypeEnumSerializer =
+    new _$UiNodeTextAttributesNodeTypeEnumSerializer();
+
+class _$UiNodeTextAttributesNodeTypeEnumSerializer
+    implements PrimitiveSerializer<UiNodeTextAttributesNodeTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'text': 'text',
+    'input': 'input',
+    'img': 'img',
+    'a': 'a',
+    'script': 'script',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[UiNodeTextAttributesNodeTypeEnum];
+  @override
+  final String wireName = 'UiNodeTextAttributesNodeTypeEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, UiNodeTextAttributesNodeTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UiNodeTextAttributesNodeTypeEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UiNodeTextAttributesNodeTypeEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UiNodeTextAttributes extends UiNodeTextAttributes {
   @override
   final String id;
   @override
-  final String nodeType;
+  final UiNodeTextAttributesNodeTypeEnum nodeType;
   @override
   final UiText text;
 
@@ -74,9 +155,10 @@ class UiNodeTextAttributesBuilder
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
 
-  String? _nodeType;
-  String? get nodeType => _$this._nodeType;
-  set nodeType(String? nodeType) => _$this._nodeType = nodeType;
+  UiNodeTextAttributesNodeTypeEnum? _nodeType;
+  UiNodeTextAttributesNodeTypeEnum? get nodeType => _$this._nodeType;
+  set nodeType(UiNodeTextAttributesNodeTypeEnum? nodeType) =>
+      _$this._nodeType = nodeType;
 
   UiTextBuilder? _text;
   UiTextBuilder get text => _$this._text ??= new UiTextBuilder();

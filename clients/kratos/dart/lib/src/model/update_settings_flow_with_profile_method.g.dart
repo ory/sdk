@@ -14,6 +14,8 @@ class _$UpdateSettingsFlowWithProfileMethod
   final String method;
   @override
   final JsonObject traits;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateSettingsFlowWithProfileMethod(
           [void Function(UpdateSettingsFlowWithProfileMethodBuilder)?
@@ -22,7 +24,10 @@ class _$UpdateSettingsFlowWithProfileMethod
           ._build();
 
   _$UpdateSettingsFlowWithProfileMethod._(
-      {this.csrfToken, required this.method, required this.traits})
+      {this.csrfToken,
+      required this.method,
+      required this.traits,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         method, r'UpdateSettingsFlowWithProfileMethod', 'method');
@@ -45,7 +50,8 @@ class _$UpdateSettingsFlowWithProfileMethod
     return other is UpdateSettingsFlowWithProfileMethod &&
         csrfToken == other.csrfToken &&
         method == other.method &&
-        traits == other.traits;
+        traits == other.traits &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -54,6 +60,7 @@ class _$UpdateSettingsFlowWithProfileMethod
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, traits.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -63,7 +70,8 @@ class _$UpdateSettingsFlowWithProfileMethod
     return (newBuiltValueToStringHelper(r'UpdateSettingsFlowWithProfileMethod')
           ..add('csrfToken', csrfToken)
           ..add('method', method)
-          ..add('traits', traits))
+          ..add('traits', traits)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -86,6 +94,11 @@ class UpdateSettingsFlowWithProfileMethodBuilder
   JsonObject? get traits => _$this._traits;
   set traits(JsonObject? traits) => _$this._traits = traits;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateSettingsFlowWithProfileMethodBuilder() {
     UpdateSettingsFlowWithProfileMethod._defaults(this);
   }
@@ -96,6 +109,7 @@ class UpdateSettingsFlowWithProfileMethodBuilder
       _csrfToken = $v.csrfToken;
       _method = $v.method;
       _traits = $v.traits;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -123,7 +137,8 @@ class UpdateSettingsFlowWithProfileMethodBuilder
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateSettingsFlowWithProfileMethod', 'method'),
             traits: BuiltValueNullFieldError.checkNotNull(
-                traits, r'UpdateSettingsFlowWithProfileMethod', 'traits'));
+                traits, r'UpdateSettingsFlowWithProfileMethod', 'traits'),
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }

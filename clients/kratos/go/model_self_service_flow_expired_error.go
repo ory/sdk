@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.1.0
+API version: v1.2.1
 Contact: office@ory.sh
 */
 
@@ -208,10 +208,10 @@ func (o SelfServiceFlowExpiredError) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *SelfServiceFlowExpiredError) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SelfServiceFlowExpiredError) UnmarshalJSON(data []byte) (err error) {
 	varSelfServiceFlowExpiredError := _SelfServiceFlowExpiredError{}
 
-	err = json.Unmarshal(bytes, &varSelfServiceFlowExpiredError)
+	err = json.Unmarshal(data, &varSelfServiceFlowExpiredError)
 
 	if err != nil {
 		return err
@@ -221,7 +221,7 @@ func (o *SelfServiceFlowExpiredError) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "error")
 		delete(additionalProperties, "expired_at")
 		delete(additionalProperties, "since")

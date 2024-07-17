@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batchPatchIdentities**](IdentityApi.md#batchpatchidentities) | **PATCH** /admin/identities | Create and deletes multiple identities
+[**batchPatchIdentities**](IdentityApi.md#batchpatchidentities) | **PATCH** /admin/identities | Create multiple identities
 [**createIdentity**](IdentityApi.md#createidentity) | **POST** /admin/identities | Create an Identity
 [**createRecoveryCodeForIdentity**](IdentityApi.md#createrecoverycodeforidentity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**createRecoveryLinkForIdentity**](IdentityApi.md#createrecoverylinkforidentity) | **POST** /admin/recovery/link | Create a Recovery Link
@@ -32,9 +32,9 @@ Method | HTTP request | Description
 # **batchPatchIdentities**
 > BatchPatchIdentitiesResponse batchPatchIdentities(patchIdentitiesBody)
 
-Create and deletes multiple identities
+Create multiple identities
 
-Creates or delete multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
 
 ### Example
 ```dart
@@ -50,7 +50,7 @@ final PatchIdentitiesBody patchIdentitiesBody = ; // PatchIdentitiesBody |
 try {
     final response = api.batchPatchIdentities(patchIdentitiesBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->batchPatchIdentities: $e\n');
 }
 ```
@@ -97,7 +97,7 @@ final CreateIdentityBody createIdentityBody = ; // CreateIdentityBody |
 try {
     final response = api.createIdentity(createIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->createIdentity: $e\n');
 }
 ```
@@ -144,7 +144,7 @@ final CreateRecoveryCodeForIdentityBody createRecoveryCodeForIdentityBody = ; //
 try {
     final response = api.createRecoveryCodeForIdentity(createRecoveryCodeForIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->createRecoveryCodeForIdentity: $e\n');
 }
 ```
@@ -192,7 +192,7 @@ final CreateRecoveryLinkForIdentityBody createRecoveryLinkForIdentityBody = ; //
 try {
     final response = api.createRecoveryLinkForIdentity(returnTo, createRecoveryLinkForIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->createRecoveryLinkForIdentity: $e\n');
 }
 ```
@@ -239,7 +239,7 @@ final String id = id_example; // String | ID is the identity's ID.
 
 try {
     api.deleteIdentity(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->deleteIdentity: $e\n');
 }
 ```
@@ -282,11 +282,11 @@ import 'package:ory_kratos_client/api.dart';
 
 final api = OryKratosClient().getIdentityApi();
 final String id = id_example; // String | ID is the identity's ID.
-final String type = type_example; // String | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+final String type = type_example; // String | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 
 try {
     api.deleteIdentityCredentials(id, type);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->deleteIdentityCredentials: $e\n');
 }
 ```
@@ -296,7 +296,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID is the identity's ID. | 
- **type** | **String**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
+ **type** | **String**| Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
 
 ### Return type
 
@@ -333,7 +333,7 @@ final String id = id_example; // String | ID is the identity's ID.
 
 try {
     api.deleteIdentitySessions(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->deleteIdentitySessions: $e\n');
 }
 ```
@@ -379,7 +379,7 @@ final String id = id_example; // String | ID is the session's ID.
 
 try {
     api.disableSession(id);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->disableSession: $e\n');
 }
 ```
@@ -426,7 +426,7 @@ final String id = id_example; // String | ID is the session's ID.
 try {
     final response = api.extendSession(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->extendSession: $e\n');
 }
 ```
@@ -474,7 +474,7 @@ final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Cre
 try {
     final response = api.getIdentity(id, includeCredential);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->getIdentity: $e\n');
 }
 ```
@@ -518,7 +518,7 @@ final String id = id_example; // String | ID must be set to the ID of schema you
 try {
     final response = api.getIdentitySchema(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->getIdentitySchema: $e\n');
 }
 ```
@@ -566,7 +566,7 @@ final BuiltList<String> expand = ; // BuiltList<String> | ExpandOptions is a que
 try {
     final response = api.getSession(id, expand);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->getSession: $e\n');
 }
 ```
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentities**
-> BuiltList<Identity> listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar)
+> BuiltList<Identity> listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential)
 
 List Identities
 
@@ -617,11 +617,12 @@ final String consistency = consistency_example; // String | Read Consistency Lev
 final BuiltList<String> ids = ; // BuiltList<String> | List of ids used to filter identities. If this list is empty, then no filter will be applied.
 final String credentialsIdentifier = credentialsIdentifier_example; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
 final String previewCredentialsIdentifierSimilar = previewCredentialsIdentifierSimilar_example; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
+final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
 
 try {
-    final response = api.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar);
+    final response = api.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentities: $e\n');
 }
 ```
@@ -638,6 +639,7 @@ Name | Type | Description  | Notes
  **ids** | [**BuiltList&lt;String&gt;**](String.md)| List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] 
  **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
  **previewCredentialsIdentifierSimilar** | **String**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
+ **includeCredential** | [**BuiltList&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
 
 ### Return type
 
@@ -674,7 +676,7 @@ final String pageToken = pageToken_example; // String | Next Page Token  The nex
 try {
     final response = api.listIdentitySchemas(perPage, page, pageSize, pageToken);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentitySchemas: $e\n');
 }
 ```
@@ -729,7 +731,7 @@ final bool active = true; // bool | Active is a boolean flag that filters out se
 try {
     final response = api.listIdentitySessions(id, perPage, page, pageSize, pageToken, active);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentitySessions: $e\n');
 }
 ```
@@ -784,7 +786,7 @@ final BuiltList<String> expand = ; // BuiltList<String> | ExpandOptions is a que
 try {
     final response = api.listSessions(pageSize, pageToken, active, expand);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->listSessions: $e\n');
 }
 ```
@@ -835,7 +837,7 @@ final BuiltList<JsonPatch> jsonPatch = ; // BuiltList<JsonPatch> |
 try {
     final response = api.patchIdentity(id, jsonPatch);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->patchIdentity: $e\n');
 }
 ```
@@ -884,7 +886,7 @@ final UpdateIdentityBody updateIdentityBody = ; // UpdateIdentityBody |
 try {
     final response = api.updateIdentity(id, updateIdentityBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling IdentityApi->updateIdentity: $e\n');
 }
 ```

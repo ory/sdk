@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ExpiresIn** | Pointer to **string** | Code Expires In  The recovery code will expire after that amount of time has passed. Defaults to the configuration value of &#x60;selfservice.methods.code.config.lifespan&#x60;. | [optional] 
+**FlowType** | Pointer to **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [optional] 
 **IdentityId** | **string** | Identity to Recover  The identity&#39;s ID you wish to recover. | 
 
 ## Methods
@@ -50,6 +51,31 @@ SetExpiresIn sets ExpiresIn field to given value.
 `func (o *CreateRecoveryCodeForIdentityBody) HasExpiresIn() bool`
 
 HasExpiresIn returns a boolean if a field has been set.
+
+### GetFlowType
+
+`func (o *CreateRecoveryCodeForIdentityBody) GetFlowType() string`
+
+GetFlowType returns the FlowType field if non-nil, zero value otherwise.
+
+### GetFlowTypeOk
+
+`func (o *CreateRecoveryCodeForIdentityBody) GetFlowTypeOk() (*string, bool)`
+
+GetFlowTypeOk returns a tuple with the FlowType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFlowType
+
+`func (o *CreateRecoveryCodeForIdentityBody) SetFlowType(v string)`
+
+SetFlowType sets FlowType field to given value.
+
+### HasFlowType
+
+`func (o *CreateRecoveryCodeForIdentityBody) HasFlowType() bool`
+
+HasFlowType returns a boolean if a field has been set.
 
 ### GetIdentityId
 

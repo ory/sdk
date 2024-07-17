@@ -16,6 +16,7 @@ part 'update_settings_flow_with_oidc_method.g.dart';
 /// * [link] - Link this provider  Either this or `unlink` must be set.  type: string in: body
 /// * [method] - Method  Should be set to profile when trying to update a profile.
 /// * [traits] - The identity's traits  in: body
+/// * [transientPayload] - Transient data to pass along to any webhooks
 /// * [unlink] - Unlink this provider  Either this or `link` must be set.  type: string in: body
 /// * [upstreamParameters] - UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session. `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`. `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
 @BuiltValue()
@@ -35,6 +36,10 @@ abstract class UpdateSettingsFlowWithOidcMethod implements Built<UpdateSettingsF
   /// The identity's traits  in: body
   @BuiltValueField(wireName: r'traits')
   JsonObject? get traits;
+
+  /// Transient data to pass along to any webhooks
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   /// Unlink this provider  Either this or `link` must be set.  type: string in: body
   @BuiltValueField(wireName: r'unlink')
@@ -90,6 +95,13 @@ class _$UpdateSettingsFlowWithOidcMethodSerializer implements PrimitiveSerialize
       yield r'traits';
       yield serializers.serialize(
         object.traits,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
         specifiedType: const FullType(JsonObject),
       );
     }
@@ -157,6 +169,13 @@ class _$UpdateSettingsFlowWithOidcMethodSerializer implements PrimitiveSerialize
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.traits = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         case r'unlink':
           final valueDes = serializers.deserialize(

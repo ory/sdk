@@ -51,6 +51,7 @@ OryKratosClient::ContinueWith.openapi_discriminator_mapping
 #   :'show_settings_ui' => :'ContinueWithSettingsUi',
 #   :'show_verification_ui' => :'ContinueWithVerificationUi'
 # }
+```
 
 ### build
 
