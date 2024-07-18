@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.14.1
+  version: v1.14.2
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -37,6 +37,9 @@ paths:
         This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and,
         if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like
         [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
+
+        Adding custom keys requires first creating a keyset via the createJsonWebKeySet operation,
+        and then configuring the webfinger.jwks.broadcast_keys configuration value to include the keyset name.
       operationId: discoverJsonWebKeys
       responses:
         "200":
