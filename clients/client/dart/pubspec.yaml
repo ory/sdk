@@ -1,5 +1,5 @@
 name: ory_client
-version: 1.14.2
+version: 1.14.3
 description: OpenAPI API client for Ory Network, Ory&#39;s web-scale API for identity and access control.
 homepage: https://www.ory.sh
 repository: https://github.com/ory/sdk/tree/master/clients/client/dart
