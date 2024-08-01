@@ -74,6 +74,9 @@ typescript_fetch () {
     --git-host github.com \
     -c ./config/client/typescript-fetch.yml.proc.yml
 
+  echo "Adding contrib files to barrel export..."
+  echo "export * from './contrib';" >> "${dir}/src/index.ts"
+
   file="${dir}/package.json"
   jq -r ".author = "'"'"Ory Corp"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
      > tmp.$$.json && mv tmp.$$.json "${file}"
@@ -303,17 +306,17 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-elixir
-typescript
+# elixir
+# typescript
 typescript_fetch
-rust
-golang
-java
-php
-python
+# rust
+# golang
+# java
+# php
+# python
 
-ruby
-dotnet
-dart
+# ruby
+# dotnet
+# dart
 
 cleanup
