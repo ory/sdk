@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.14.3
+  version: v1.14.4
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -3291,7 +3291,9 @@ paths:
         Using this API endpoint you can purge (completely delete) a project and its data.
         This action can not be undone and will delete ALL your data.
 
-        !! Use with extreme caution !!
+        Calling this endpoint will additionally delete custom domains and other related data.
+
+        If the project is linked to a subscription, the subscription needs to be unlinked first.
       operationId: purgeProject
       parameters:
       - description: |-
@@ -4492,6 +4494,50 @@ paths:
       summary: Query relationships
       tags:
       - relationship
+  /relation-tuples/batch/check:
+    post:
+      description: "To learn how relationship tuples and the check works, head over\
+        \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
+      operationId: batchCheckPermission
+      parameters:
+      - explode: true
+        in: query
+        name: max-depth
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/batchCheckPermissionBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchCheckPermissionResult'
+          description: batchCheckPermissionResult
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Batch check permissions
+      tags:
+      - permission
   /relation-tuples/check:
     get:
       description: "To learn how relationship tuples and the check works, head over\
@@ -9435,6 +9481,10 @@ components:
           description: The currency of the invoice.
           readOnly: true
           type: string
+        deleted:
+          description: Deleted is true if the invoice has been soft-deleted.
+          readOnly: true
+          type: boolean
         items:
           description: The items that are part of this invoice.
           items:
@@ -9442,7 +9492,8 @@ components:
           readOnly: true
           type: array
         plan:
-          description: The plan that this invoice is based on.
+          description: "The plan that this invoice is based on, in the format \"Name@version\"\
+            ."
           readOnly: true
           type: string
         stripe_invoice_item:
@@ -10268,6 +10319,32 @@ components:
       - aal3
       title: Authenticator Assurance Level (AAL)
       type: string
+    batchCheckPermissionBody:
+      description: Batch Check Permission Body
+      properties:
+        tuples:
+          items:
+            $ref: '#/components/schemas/relationship'
+          type: array
+      type: object
+    batchCheckPermissionResult:
+      description: Batch Check Permission Result
+      example:
+        results:
+        - allowed: true
+          error: error
+        - allowed: true
+          error: error
+      properties:
+        results:
+          description: An array of check results. The order aligns with the input
+            order.
+          items:
+            $ref: '#/components/schemas/checkPermissionResultWithError'
+          type: array
+      required:
+      - results
+      type: object
     batchPatchIdentitiesResponse:
       description: Patch identities response
       example:
@@ -10326,6 +10403,21 @@ components:
       required:
       - allowed
       title: Check Permission Result
+      type: object
+    checkPermissionResultWithError:
+      description: Check Permission Result With Error
+      example:
+        allowed: true
+        error: error
+      properties:
+        allowed:
+          description: whether the relation tuple is allowed
+          type: boolean
+        error:
+          description: any error generated while checking the relation tuple
+          type: string
+      required:
+      - allowed
       type: object
     cloudAccount:
       properties:

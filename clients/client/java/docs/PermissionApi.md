@@ -4,12 +4,84 @@ All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**batchCheckPermission**](PermissionApi.md#batchCheckPermission) | **POST** /relation-tuples/batch/check | Batch check permissions |
 | [**checkPermission**](PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission |
 | [**checkPermissionOrError**](PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission |
 | [**expandPermissions**](PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions. |
 | [**postCheckPermission**](PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission |
 | [**postCheckPermissionOrError**](PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission |
 
+
+<a id="batchCheckPermission"></a>
+# **batchCheckPermission**
+> BatchCheckPermissionResult batchCheckPermission(maxDepth, batchCheckPermissionBody)
+
+Batch check permissions
+
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.PermissionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    PermissionApi apiInstance = new PermissionApi(defaultClient);
+    Long maxDepth = 56L; // Long | 
+    BatchCheckPermissionBody batchCheckPermissionBody = new BatchCheckPermissionBody(); // BatchCheckPermissionBody | 
+    try {
+      BatchCheckPermissionResult result = apiInstance.batchCheckPermission(maxDepth, batchCheckPermissionBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PermissionApi#batchCheckPermission");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **maxDepth** | **Long**|  | [optional] |
+| **batchCheckPermissionBody** | [**BatchCheckPermissionBody**](BatchCheckPermissionBody.md)|  | [optional] |
+
+### Return type
+
+[**BatchCheckPermissionResult**](BatchCheckPermissionResult.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | batchCheckPermissionResult |  -  |
+| **400** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
 
 <a id="checkPermission"></a>
 # **checkPermission**

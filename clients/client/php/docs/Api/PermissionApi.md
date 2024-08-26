@@ -4,12 +4,75 @@ All URIs are relative to https://.projects.oryapis.com, except if the operation 
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**batchCheckPermission()**](PermissionApi.md#batchCheckPermission) | **POST** /relation-tuples/batch/check | Batch check permissions |
 | [**checkPermission()**](PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission |
 | [**checkPermissionOrError()**](PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission |
 | [**expandPermissions()**](PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions. |
 | [**postCheckPermission()**](PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission |
 | [**postCheckPermissionOrError()**](PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission |
 
+
+## `batchCheckPermission()`
+
+```php
+batchCheckPermission($maxDepth, $batchCheckPermissionBody): \Ory\Client\Model\BatchCheckPermissionResult
+```
+
+Batch check permissions
+
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\PermissionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$maxDepth = 56; // int
+$batchCheckPermissionBody = new \Ory\Client\Model\BatchCheckPermissionBody(); // \Ory\Client\Model\BatchCheckPermissionBody
+
+try {
+    $result = $apiInstance->batchCheckPermission($maxDepth, $batchCheckPermissionBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PermissionApi->batchCheckPermission: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **maxDepth** | **int**|  | [optional] |
+| **batchCheckPermissionBody** | [**\Ory\Client\Model\BatchCheckPermissionBody**](../Model/BatchCheckPermissionBody.md)|  | [optional] |
+
+### Return type
+
+[**\Ory\Client\Model\BatchCheckPermissionResult**](../Model/BatchCheckPermissionResult.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `checkPermission()`
 

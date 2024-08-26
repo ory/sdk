@@ -14,10 +14,13 @@ docs/Attribute.md
 docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BatchCheckPermissionBody.md
+docs/BatchCheckPermissionResult.md
 docs/BatchPatchIdentitiesResponse.md
 docs/BillingPeriodBucket.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
+docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
 docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
@@ -309,10 +312,13 @@ src/models/attribute.rs
 src/models/attribute_filter.rs
 src/models/attributes_count_datapoint.rs
 src/models/authenticator_assurance_level.rs
+src/models/batch_check_permission_body.rs
+src/models/batch_check_permission_result.rs
 src/models/batch_patch_identities_response.rs
 src/models/billing_period_bucket.rs
 src/models/check_opl_syntax_result.rs
 src/models/check_permission_result.rs
+src/models/check_permission_result_with_error.rs
 src/models/cloud_account.rs
 src/models/consistency_request_parameters.rs
 src/models/continue_with.rs

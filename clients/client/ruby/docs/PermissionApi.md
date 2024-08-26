@@ -4,11 +4,85 @@ All URIs are relative to *https://.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**batch_check_permission**](PermissionApi.md#batch_check_permission) | **POST** /relation-tuples/batch/check | Batch check permissions |
 | [**check_permission**](PermissionApi.md#check_permission) | **GET** /relation-tuples/check/openapi | Check a permission |
 | [**check_permission_or_error**](PermissionApi.md#check_permission_or_error) | **GET** /relation-tuples/check | Check a permission |
 | [**expand_permissions**](PermissionApi.md#expand_permissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions. |
 | [**post_check_permission**](PermissionApi.md#post_check_permission) | **POST** /relation-tuples/check/openapi | Check a permission |
 | [**post_check_permission_or_error**](PermissionApi.md#post_check_permission_or_error) | **POST** /relation-tuples/check | Check a permission |
+
+
+## batch_check_permission
+
+> <BatchCheckPermissionResult> batch_check_permission(opts)
+
+Batch check permissions
+
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::PermissionApi.new
+opts = {
+  max_depth: 789, # Integer | 
+  batch_check_permission_body: OryClient::BatchCheckPermissionBody.new # BatchCheckPermissionBody | 
+}
+
+begin
+  # Batch check permissions
+  result = api_instance.batch_check_permission(opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling PermissionApi->batch_check_permission: #{e}"
+end
+```
+
+#### Using the batch_check_permission_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<BatchCheckPermissionResult>, Integer, Hash)> batch_check_permission_with_http_info(opts)
+
+```ruby
+begin
+  # Batch check permissions
+  data, status_code, headers = api_instance.batch_check_permission_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <BatchCheckPermissionResult>
+rescue OryClient::ApiError => e
+  puts "Error when calling PermissionApi->batch_check_permission_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **max_depth** | **Integer** |  | [optional] |
+| **batch_check_permission_body** | [**BatchCheckPermissionBody**](BatchCheckPermissionBody.md) |  | [optional] |
+
+### Return type
+
+[**BatchCheckPermissionResult**](BatchCheckPermissionResult.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## check_permission

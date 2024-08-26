@@ -4,12 +4,81 @@ All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**BatchCheckPermission**](PermissionAPI.md#BatchCheckPermission) | **Post** /relation-tuples/batch/check | Batch check permissions
 [**CheckPermission**](PermissionAPI.md#CheckPermission) | **Get** /relation-tuples/check/openapi | Check a permission
 [**CheckPermissionOrError**](PermissionAPI.md#CheckPermissionOrError) | **Get** /relation-tuples/check | Check a permission
 [**ExpandPermissions**](PermissionAPI.md#ExpandPermissions) | **Get** /relation-tuples/expand | Expand a Relationship into permissions.
 [**PostCheckPermission**](PermissionAPI.md#PostCheckPermission) | **Post** /relation-tuples/check/openapi | Check a permission
 [**PostCheckPermissionOrError**](PermissionAPI.md#PostCheckPermissionOrError) | **Post** /relation-tuples/check | Check a permission
 
+
+
+## BatchCheckPermission
+
+> BatchCheckPermissionResult BatchCheckPermission(ctx).MaxDepth(maxDepth).BatchCheckPermissionBody(batchCheckPermissionBody).Execute()
+
+Batch check permissions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	maxDepth := int64(789) // int64 |  (optional)
+	batchCheckPermissionBody := *openapiclient.NewBatchCheckPermissionBody() // BatchCheckPermissionBody |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PermissionAPI.BatchCheckPermission(context.Background()).MaxDepth(maxDepth).BatchCheckPermissionBody(batchCheckPermissionBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PermissionAPI.BatchCheckPermission``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `BatchCheckPermission`: BatchCheckPermissionResult
+	fmt.Fprintf(os.Stdout, "Response from `PermissionAPI.BatchCheckPermission`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBatchCheckPermissionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **maxDepth** | **int64** |  | 
+ **batchCheckPermissionBody** | [**BatchCheckPermissionBody**](BatchCheckPermissionBody.md) |  | 
+
+### Return type
+
+[**BatchCheckPermissionResult**](BatchCheckPermissionResult.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CheckPermission

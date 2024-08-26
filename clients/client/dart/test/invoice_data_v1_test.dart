@@ -18,13 +18,19 @@ void main() {
       // TODO
     });
 
+    // Deleted is true if the invoice has been soft-deleted.
+    // bool deleted
+    test('to test the property `deleted`', () async {
+      // TODO
+    });
+
     // The items that are part of this invoice.
     // BuiltList<LineItemV1> items
     test('to test the property `items`', () async {
       // TODO
     });
 
-    // The plan that this invoice is based on.
+    // The plan that this invoice is based on, in the format \"Name@version\".
     // String plan
     test('to test the property `plan`', () async {
       // TODO

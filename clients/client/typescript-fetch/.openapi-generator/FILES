@@ -29,10 +29,13 @@ src/models/Attribute.ts
 src/models/AttributeFilter.ts
 src/models/AttributesCountDatapoint.ts
 src/models/AuthenticatorAssuranceLevel.ts
+src/models/BatchCheckPermissionBody.ts
+src/models/BatchCheckPermissionResult.ts
 src/models/BatchPatchIdentitiesResponse.ts
 src/models/BillingPeriodBucket.ts
 src/models/CheckOplSyntaxResult.ts
 src/models/CheckPermissionResult.ts
+src/models/CheckPermissionResultWithError.ts
 src/models/CloudAccount.ts
 src/models/ConsistencyRequestParameters.ts
 src/models/ContinueWith.ts

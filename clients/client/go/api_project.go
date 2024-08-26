@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.14.3
+API version: v1.14.4
 Contact: support@ory.sh
 */
 
@@ -226,7 +226,9 @@ to help you understand which parts of your config could not be processed.
 Using this API endpoint you can purge (completely delete) a project and its data.
 This action can not be undone and will delete ALL your data.
 
-!! Use with extreme caution !!
+Calling this endpoint will additionally delete custom domains and other related data.
+
+If the project is linked to a subscription, the subscription needs to be unlinked first.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID  The project's ID.
@@ -2004,7 +2006,9 @@ PurgeProject Irrecoverably purge a project
 Using this API endpoint you can purge (completely delete) a project and its data.
 This action can not be undone and will delete ALL your data.
 
-!! Use with extreme caution !!
+Calling this endpoint will additionally delete custom domains and other related data.
+
+If the project is linked to a subscription, the subscription needs to be unlinked first.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId Project ID  The project's ID.

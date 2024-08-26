@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.14.3
+API version: v1.14.4
 Contact: support@ory.sh
 */
 
@@ -24,9 +24,11 @@ type InvoiceDataV1 struct {
 	BillingPeriod TimeInterval `json:"billing_period"`
 	// The currency of the invoice.
 	Currency string `json:"currency"`
+	// Deleted is true if the invoice has been soft-deleted.
+	Deleted *bool `json:"deleted,omitempty"`
 	// The items that are part of this invoice.
 	Items []LineItemV1 `json:"items"`
-	// The plan that this invoice is based on.
+	// The plan that this invoice is based on, in the format \"Name@version\".
 	Plan *string `json:"plan,omitempty"`
 	StripeInvoiceItem *string `json:"stripe_invoice_item,omitempty"`
 	// The status of the invoice, one of `draft`, `open`, `paid`, `uncollectible`, or `void`. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview)
@@ -112,6 +114,38 @@ func (o *InvoiceDataV1) GetCurrencyOk() (*string, bool) {
 // SetCurrency sets field value
 func (o *InvoiceDataV1) SetCurrency(v string) {
 	o.Currency = v
+}
+
+// GetDeleted returns the Deleted field value if set, zero value otherwise.
+func (o *InvoiceDataV1) GetDeleted() bool {
+	if o == nil || IsNil(o.Deleted) {
+		var ret bool
+		return ret
+	}
+	return *o.Deleted
+}
+
+// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InvoiceDataV1) GetDeletedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Deleted) {
+		return nil, false
+	}
+	return o.Deleted, true
+}
+
+// HasDeleted returns a boolean if a field has been set.
+func (o *InvoiceDataV1) HasDeleted() bool {
+	if o != nil && !IsNil(o.Deleted) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeleted gets a reference to the given bool and assigns it to the Deleted field.
+func (o *InvoiceDataV1) SetDeleted(v bool) {
+	o.Deleted = &v
 }
 
 // GetItems returns the Items field value
@@ -390,6 +424,9 @@ func (o InvoiceDataV1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["billing_period"] = o.BillingPeriod
 	toSerialize["currency"] = o.Currency
+	if !IsNil(o.Deleted) {
+		toSerialize["deleted"] = o.Deleted
+	}
 	toSerialize["items"] = o.Items
 	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
@@ -460,6 +497,7 @@ func (o *InvoiceDataV1) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "billing_period")
 		delete(additionalProperties, "currency")
+		delete(additionalProperties, "deleted")
 		delete(additionalProperties, "items")
 		delete(additionalProperties, "plan")
 		delete(additionalProperties, "stripe_invoice_item")

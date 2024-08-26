@@ -21,10 +21,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AttributeFilterConditionEnum.serializer)
       ..add(AttributesCountDatapoint.serializer)
       ..add(AuthenticatorAssuranceLevel.serializer)
+      ..add(BatchCheckPermissionBody.serializer)
+      ..add(BatchCheckPermissionResult.serializer)
       ..add(BatchPatchIdentitiesResponse.serializer)
       ..add(BillingPeriodBucket.serializer)
       ..add(CheckOplSyntaxResult.serializer)
       ..add(CheckPermissionResult.serializer)
+      ..add(CheckPermissionResultWithError.serializer)
       ..add(CloudAccount.serializer)
       ..add(ConsistencyRequestParameters.serializer)
       ..add(ConsistencyRequestParametersConsistencyEnum.serializer)
@@ -381,6 +384,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(BillingPeriodBucket)]),
           () => new ListBuilder<BillingPeriodBucket>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(CheckPermissionResultWithError)]),
+          () => new ListBuilder<CheckPermissionResultWithError>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ContinueWith)]),
           () => new ListBuilder<ContinueWith>())
       ..addBuilderFactory(
@@ -464,6 +471,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(VerifiableIdentityAddress)]),
           () => new ListBuilder<VerifiableIdentityAddress>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Relationship)]),
+          () => new ListBuilder<Relationship>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Relationship)]),
           () => new ListBuilder<Relationship>())
