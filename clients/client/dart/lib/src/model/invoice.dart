@@ -13,14 +13,14 @@ part 'invoice.g.dart';
 /// Invoice
 ///
 /// Properties:
-/// * [id] - The ID of the subscription
+/// * [id] - The ID of the invoice.
 /// * [invoicedAt] 
 /// * [type] - Type is the type of the invoice. usage InvoiceTypeUsage base InvoiceTypeBase
 /// * [updatedAt] 
 /// * [v1] 
 @BuiltValue()
 abstract class Invoice implements Built<Invoice, InvoiceBuilder> {
-  /// The ID of the subscription
+  /// The ID of the invoice.
   @BuiltValueField(wireName: r'id')
   String get id;
 

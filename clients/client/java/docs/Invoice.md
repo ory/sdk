@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | The ID of the subscription |  [readonly] |
+|**id** | **String** | The ID of the invoice. |  [readonly] |
 |**invoicedAt** | **OffsetDateTime** |  |  |
 |**type** | [**TypeEnum**](#TypeEnum) | Type is the type of the invoice. usage InvoiceTypeUsage base InvoiceTypeBase |  [readonly] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |

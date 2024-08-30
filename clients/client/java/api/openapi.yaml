@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.14.4
+  version: v1.14.5
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -9419,6 +9419,12 @@ components:
 
             This governs the "selfservice.methods.code.config.lifespan" setting.
           type: string
+        kratos_selfservice_methods_code_config_missing_credential_fallback_enabled:
+          description: |-
+            Enables a fallback method required in certain legacy use cases.
+
+            This governs the "selfservice.methods.code.config.missing_credential_fallback_enabled" setting.
+          type: boolean
         kratos_selfservice_methods_code_enabled:
           description: |-
             Configures whether Ory Kratos Code Method is enabled
@@ -12515,7 +12521,7 @@ components:
     invoice:
       properties:
         id:
-          description: The ID of the subscription
+          description: The ID of the invoice.
           format: uuid
           readOnly: true
           type: string
@@ -14815,6 +14821,12 @@ components:
 
             This governs the "selfservice.methods.code.config.lifespan" setting.
           type: string
+        kratos_selfservice_methods_code_config_missing_credential_fallback_enabled:
+          description: |-
+            Enables a fallback method required in certain legacy use cases.
+
+            This governs the "selfservice.methods.code.config.missing_credential_fallback_enabled" setting.
+          type: boolean
         kratos_selfservice_methods_code_enabled:
           description: |-
             Configures whether Ory Kratos Code Method is enabled
@@ -20879,6 +20891,7 @@ components:
 
             Supported providers are
             Apple
+            Google
           type: string
         id_token_nonce:
           description: |-
@@ -21172,6 +21185,7 @@ components:
 
             Supported providers are
             Apple
+            Google
           type: string
         id_token_nonce:
           description: |-

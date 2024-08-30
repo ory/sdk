@@ -8,7 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | The ID of the subscription | 
+**id** | **String** | The ID of the invoice. | 
 **invoicedAt** | [**DateTime**](DateTime.md) |  | 
 **type** | **String** | Type is the type of the invoice. usage InvoiceTypeUsage base InvoiceTypeBase | 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 

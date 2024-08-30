@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.14.4
+API version: v1.14.5
 Contact: support@ory.sh
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &UpdateRegistrationFlowWithOidcMethod{}
 type UpdateRegistrationFlowWithOidcMethod struct {
 	// The CSRF Token
 	CsrfToken *string `json:"csrf_token,omitempty"`
-	// IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple
+	// IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple Google
 	IdToken *string `json:"id_token,omitempty"`
 	// IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and is required.
 	IdTokenNonce *string `json:"id_token_nonce,omitempty"`

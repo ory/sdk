@@ -862,6 +862,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final String? kratosSelfserviceMethodsCodeConfigLifespan;
   @override
+  final bool?
+      kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled;
+  @override
   final bool? kratosSelfserviceMethodsCodeEnabled;
   @override
   final bool? kratosSelfserviceMethodsCodeMfaEnabled;
@@ -1122,6 +1125,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosSelfserviceFlowsVerificationUiUrl,
       this.kratosSelfserviceFlowsVerificationUse,
       this.kratosSelfserviceMethodsCodeConfigLifespan,
+      this.kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled,
       this.kratosSelfserviceMethodsCodeEnabled,
       this.kratosSelfserviceMethodsCodeMfaEnabled,
       this.kratosSelfserviceMethodsCodePasswordlessEnabled,
@@ -1490,6 +1494,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.kratosSelfserviceFlowsVerificationUse &&
         kratosSelfserviceMethodsCodeConfigLifespan ==
             other.kratosSelfserviceMethodsCodeConfigLifespan &&
+        kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled ==
+            other
+                .kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled &&
         kratosSelfserviceMethodsCodeEnabled ==
             other.kratosSelfserviceMethodsCodeEnabled &&
         kratosSelfserviceMethodsCodeMfaEnabled ==
@@ -1841,6 +1848,10 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationUiUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationUse.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeConfigLifespan.hashCode);
+    _$hash = $jc(
+        _$hash,
+        kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
+            .hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeMfaEnabled.hashCode);
     _$hash =
@@ -2209,6 +2220,9 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosSelfserviceFlowsVerificationUse)
           ..add('kratosSelfserviceMethodsCodeConfigLifespan',
               kratosSelfserviceMethodsCodeConfigLifespan)
+          ..add(
+              'kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled',
+              kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled)
           ..add('kratosSelfserviceMethodsCodeEnabled',
               kratosSelfserviceMethodsCodeEnabled)
           ..add('kratosSelfserviceMethodsCodeMfaEnabled',
@@ -3540,6 +3554,16 @@ class CreateProjectNormalizedPayloadBuilder
       _$this._kratosSelfserviceMethodsCodeConfigLifespan =
           kratosSelfserviceMethodsCodeConfigLifespan;
 
+  bool? _kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled;
+  bool? get kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled =>
+      _$this
+          ._kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled;
+  set kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled(
+          bool?
+              kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled) =>
+      _$this._kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled =
+          kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled;
+
   bool? _kratosSelfserviceMethodsCodeEnabled;
   bool? get kratosSelfserviceMethodsCodeEnabled =>
       _$this._kratosSelfserviceMethodsCodeEnabled;
@@ -4158,6 +4182,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosSelfserviceFlowsVerificationUse;
       _kratosSelfserviceMethodsCodeConfigLifespan =
           $v.kratosSelfserviceMethodsCodeConfigLifespan;
+      _kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled =
+          $v.kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled;
       _kratosSelfserviceMethodsCodeEnabled =
           $v.kratosSelfserviceMethodsCodeEnabled;
       _kratosSelfserviceMethodsCodeMfaEnabled =
@@ -4448,6 +4474,7 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSelfserviceFlowsVerificationUiUrl: kratosSelfserviceFlowsVerificationUiUrl,
               kratosSelfserviceFlowsVerificationUse: kratosSelfserviceFlowsVerificationUse,
               kratosSelfserviceMethodsCodeConfigLifespan: kratosSelfserviceMethodsCodeConfigLifespan,
+              kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled: kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled,
               kratosSelfserviceMethodsCodeEnabled: kratosSelfserviceMethodsCodeEnabled,
               kratosSelfserviceMethodsCodeMfaEnabled: kratosSelfserviceMethodsCodeMfaEnabled,
               kratosSelfserviceMethodsCodePasswordlessEnabled: kratosSelfserviceMethodsCodePasswordlessEnabled,

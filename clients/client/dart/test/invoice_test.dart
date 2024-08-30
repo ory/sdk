@@ -7,7 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(Invoice, () {
-    // The ID of the subscription
+    // The ID of the invoice.
     // String id
     test('to test the property `id`', () async {
       // TODO

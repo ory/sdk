@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The ID of the subscription | [readonly] 
+**id** | **str** | The ID of the invoice. | [readonly] 
 **invoiced_at** | **datetime** |  | 
 **type** | **str** | Type is the type of the invoice. usage InvoiceTypeUsage base InvoiceTypeBase | [readonly] 
 **updated_at** | **datetime** |  | [optional] 
