@@ -16,6 +16,7 @@ All URIs are relative to *https://.projects.oryapis.com*
 | [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects |
 | [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
+| [**patch_project_with_revision**](ProjectApi.md#patch_project_with_revision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID |
 | [**purge_project**](ProjectApi.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
 | [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
@@ -857,6 +858,81 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **json_patch** | [**Array&lt;JsonPatch&gt;**](JsonPatch.md) |  | [optional] |
+
+### Return type
+
+[**SuccessfulProjectUpdate**](SuccessfulProjectUpdate.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## patch_project_with_revision
+
+> <SuccessfulProjectUpdate> patch_project_with_revision(project_id, revision_id, opts)
+
+Patch an Ory Network Project Configuration based on a revision ID
+
+This endpoints allows you to patch individual Ory Network Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryWorkspaceApiKey
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+revision_id = 'revision_id_example' # String | Revision ID  The revision ID that this patch was generated for.
+opts = {
+  json_patch: [OryClient::JsonPatch.new({op: 'add', path: '/name'})] # Array<JsonPatch> | 
+}
+
+begin
+  # Patch an Ory Network Project Configuration based on a revision ID
+  result = api_instance.patch_project_with_revision(project_id, revision_id, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->patch_project_with_revision: #{e}"
+end
+```
+
+#### Using the patch_project_with_revision_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<SuccessfulProjectUpdate>, Integer, Hash)> patch_project_with_revision_with_http_info(project_id, revision_id, opts)
+
+```ruby
+begin
+  # Patch an Ory Network Project Configuration based on a revision ID
+  data, status_code, headers = api_instance.patch_project_with_revision_with_http_info(project_id, revision_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <SuccessfulProjectUpdate>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->patch_project_with_revision_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **revision_id** | **String** | Revision ID  The revision ID that this patch was generated for. |  |
 | **json_patch** | [**Array&lt;JsonPatch&gt;**](JsonPatch.md) |  | [optional] |
 
 ### Return type

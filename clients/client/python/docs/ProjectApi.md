@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects
 [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
+[**patch_project_with_revision**](ProjectApi.md#patch_project_with_revision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID
 [**purge_project**](ProjectApi.md#purge_project) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
 [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
@@ -980,6 +981,94 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **json_patch** | [**List[JsonPatch]**](JsonPatch.md)|  | [optional] 
+
+### Return type
+
+[**SuccessfulProjectUpdate**](SuccessfulProjectUpdate.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successfulProjectUpdate |  -  |
+**400** | errorGeneric |  -  |
+**401** | errorGeneric |  -  |
+**403** | errorGeneric |  -  |
+**404** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patch_project_with_revision**
+> SuccessfulProjectUpdate patch_project_with_revision(project_id, revision_id, json_patch=json_patch)
+
+Patch an Ory Network Project Configuration based on a revision ID
+
+This endpoints allows you to patch individual Ory Network Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.models.json_patch import JsonPatch
+from ory_client.models.successful_project_update import SuccessfulProjectUpdate
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.ProjectApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    revision_id = 'revision_id_example' # str | Revision ID  The revision ID that this patch was generated for.
+    json_patch = [ory_client.JsonPatch()] # List[JsonPatch] |  (optional)
+
+    try:
+        # Patch an Ory Network Project Configuration based on a revision ID
+        api_response = api_instance.patch_project_with_revision(project_id, revision_id, json_patch=json_patch)
+        print("The response of ProjectApi->patch_project_with_revision:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectApi->patch_project_with_revision: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **revision_id** | **str**| Revision ID  The revision ID that this patch was generated for. | 
  **json_patch** | [**List[JsonPatch]**](JsonPatch.md)|  | [optional] 
 
 ### Return type

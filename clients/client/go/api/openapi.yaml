@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.14.5
+  version: v1.15.0
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -4175,6 +4175,102 @@ paths:
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
       summary: Update an Enterprise SSO Organization
+      tags:
+      - project
+  /projects/{project_id}/revision/{revision_id}:
+    patch:
+      description: |-
+        This endpoints allows you to patch individual Ory Network Project configuration keys for
+        Ory's services (identity, permission, ...). The configuration format is fully compatible
+        with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+        This endpoint expects the `version` key to be set in the payload. If it is unset, it
+        will try to import the config as if it is from the most recent version.
+
+        If you have an older version of a configuration, you should set the version key in the payload!
+
+        While this endpoint is able to process all configuration items related to features (e.g. password reset),
+        it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+        open source.
+
+        For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings
+        to help you understand which parts of your config could not be processed.
+      operationId: patchProjectWithRevision
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Revision ID
+
+          The revision ID that this patch was generated for.
+        explode: false
+        in: path
+        name: revision_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/jsonPatch'
+              type: array
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulProjectUpdate'
+          description: successfulProjectUpdate
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Patch an Ory Network Project Configuration based on a revision ID
       tags:
       - project
   /projects/{project}/members:
@@ -17654,6 +17750,7 @@ components:
             data_location_us DataLocationUS
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
+            captcha Captcha
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -17684,6 +17781,7 @@ components:
           - data_location_us
           - m2m_token_issuance
           - permission_checks
+          - captcha
           - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
@@ -17715,6 +17813,7 @@ components:
             data_location_us DataLocationUS
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
+            captcha Captcha
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions

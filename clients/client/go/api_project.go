@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.14.5
+API version: v1.15.0
 Contact: support@ory.sh
 */
 
@@ -217,6 +217,36 @@ to help you understand which parts of your config could not be processed.
 	// PatchProjectExecute executes the request
 	//  @return SuccessfulProjectUpdate
 	PatchProjectExecute(r ProjectAPIPatchProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error)
+
+	/*
+	PatchProjectWithRevision Patch an Ory Network Project Configuration based on a revision ID
+
+	This endpoints allows you to patch individual Ory Network Project configuration keys for
+Ory's services (identity, permission, ...). The configuration format is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project ID  The project's ID.
+	@param revisionId Revision ID  The revision ID that this patch was generated for.
+	@return ProjectAPIPatchProjectWithRevisionRequest
+	*/
+	PatchProjectWithRevision(ctx context.Context, projectId string, revisionId string) ProjectAPIPatchProjectWithRevisionRequest
+
+	// PatchProjectWithRevisionExecute executes the request
+	//  @return SuccessfulProjectUpdate
+	PatchProjectWithRevisionExecute(r ProjectAPIPatchProjectWithRevisionRequest) (*SuccessfulProjectUpdate, *http.Response, error)
 
 	/*
 	PurgeProject Irrecoverably purge a project
@@ -1875,6 +1905,187 @@ func (a *ProjectAPIService) PatchProjectExecute(r ProjectAPIPatchProjectRequest)
 
 	localVarPath := localBasePath + "/projects/{project_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.jsonPatch
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProjectAPIPatchProjectWithRevisionRequest struct {
+	ctx context.Context
+	ApiService ProjectAPI
+	projectId string
+	revisionId string
+	jsonPatch *[]JsonPatch
+}
+
+func (r ProjectAPIPatchProjectWithRevisionRequest) JsonPatch(jsonPatch []JsonPatch) ProjectAPIPatchProjectWithRevisionRequest {
+	r.jsonPatch = &jsonPatch
+	return r
+}
+
+func (r ProjectAPIPatchProjectWithRevisionRequest) Execute() (*SuccessfulProjectUpdate, *http.Response, error) {
+	return r.ApiService.PatchProjectWithRevisionExecute(r)
+}
+
+/*
+PatchProjectWithRevision Patch an Ory Network Project Configuration based on a revision ID
+
+This endpoints allows you to patch individual Ory Network Project configuration keys for
+Ory's services (identity, permission, ...). The configuration format is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId Project ID  The project's ID.
+ @param revisionId Revision ID  The revision ID that this patch was generated for.
+ @return ProjectAPIPatchProjectWithRevisionRequest
+*/
+func (a *ProjectAPIService) PatchProjectWithRevision(ctx context.Context, projectId string, revisionId string) ProjectAPIPatchProjectWithRevisionRequest {
+	return ProjectAPIPatchProjectWithRevisionRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+		revisionId: revisionId,
+	}
+}
+
+// Execute executes the request
+//  @return SuccessfulProjectUpdate
+func (a *ProjectAPIService) PatchProjectWithRevisionExecute(r ProjectAPIPatchProjectWithRevisionRequest) (*SuccessfulProjectUpdate, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SuccessfulProjectUpdate
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectAPIService.PatchProjectWithRevision")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project_id}/revision/{revision_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"revision_id"+"}", url.PathEscape(parameterValueToString(r.revisionId, "revisionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

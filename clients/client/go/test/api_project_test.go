@@ -187,6 +187,21 @@ func Test_client_ProjectAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ProjectAPIService PatchProjectWithRevision", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+		var revisionId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.PatchProjectWithRevision(context.Background(), projectId, revisionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ProjectAPIService PurgeProject", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

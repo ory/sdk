@@ -16,6 +16,7 @@ All URIs are relative to *https://.projects.oryapis.com*
 | [**listProjectApiKeys**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**listProjects**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects |
 | [**patchProject**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
+| [**patchProjectWithRevision**](ProjectApi.md#patchProjectWithRevision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID |
 | [**purgeProject**](ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
 | [**removeProjectMember**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**setProject**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
@@ -851,6 +852,82 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **jsonPatch** | [**List&lt;JsonPatch&gt;**](JsonPatch.md)|  | [optional] |
+
+### Return type
+
+[**SuccessfulProjectUpdate**](SuccessfulProjectUpdate.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successfulProjectUpdate |  -  |
+| **400** | errorGeneric |  -  |
+| **401** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="patchProjectWithRevision"></a>
+# **patchProjectWithRevision**
+> SuccessfulProjectUpdate patchProjectWithRevision(projectId, revisionId, jsonPatch)
+
+Patch an Ory Network Project Configuration based on a revision ID
+
+This endpoints allows you to patch individual Ory Network Project configuration keys for Ory&#39;s services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the &#x60;version&#x60; key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    String revisionId = "revisionId_example"; // String | Revision ID  The revision ID that this patch was generated for.
+    List<JsonPatch> jsonPatch = Arrays.asList(); // List<JsonPatch> | 
+    try {
+      SuccessfulProjectUpdate result = apiInstance.patchProjectWithRevision(projectId, revisionId, jsonPatch);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#patchProjectWithRevision");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **revisionId** | **String**| Revision ID  The revision ID that this patch was generated for. | |
 | **jsonPatch** | [**List&lt;JsonPatch&gt;**](JsonPatch.md)|  | [optional] |
 
 ### Return type
