@@ -22,6 +22,18 @@ func Test_client_PermissionAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test PermissionAPIService BatchCheckPermission", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.PermissionAPI.BatchCheckPermission(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test PermissionAPIService CheckPermission", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

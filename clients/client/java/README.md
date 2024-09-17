@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.14.3
-  - Build date: 2024-07-26T11:58:14.260098998Z[Etc/UTC]
+- API version: v1.15.0
+  - Build date: 2024-09-11T14:16:56.042339805Z[Etc/UTC]
   - Generator version: 7.7.0
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
@@ -43,7 +43,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.14.3</version>
+  <version>v1.15.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -59,7 +59,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.14.3"
+     implementation "sh.ory:client:v1.15.0"
   }
 ```
 
@@ -73,7 +73,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.14.3.jar`
+* `target/client-v1.15.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -220,6 +220,7 @@ Class | Method | HTTP request | Description
 *OidcApi* | [**getOidcUserInfo**](docs/OidcApi.md#getOidcUserInfo) | **GET** /userinfo | OpenID Connect Userinfo
 *OidcApi* | [**revokeOidcSession**](docs/OidcApi.md#revokeOidcSession) | **GET** /oauth2/sessions/logout | OpenID Connect Front- and Back-channel Enabled Logout
 *OidcApi* | [**setOidcDynamicClient**](docs/OidcApi.md#setOidcDynamicClient) | **PUT** /oauth2/register/{id} | Set OAuth2 Client using OpenID Dynamic Client Registration
+*PermissionApi* | [**batchCheckPermission**](docs/PermissionApi.md#batchCheckPermission) | **POST** /relation-tuples/batch/check | Batch check permissions
 *PermissionApi* | [**checkPermission**](docs/PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission
 *PermissionApi* | [**checkPermissionOrError**](docs/PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission
 *PermissionApi* | [**expandPermissions**](docs/PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
@@ -237,6 +238,7 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**listProjectApiKeys**](docs/ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
 *ProjectApi* | [**listProjects**](docs/ProjectApi.md#listProjects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
+*ProjectApi* | [**patchProjectWithRevision**](docs/ProjectApi.md#patchProjectWithRevision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID
 *ProjectApi* | [**purgeProject**](docs/ProjectApi.md#purgeProject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project
 *ProjectApi* | [**removeProjectMember**](docs/ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 *ProjectApi* | [**setProject**](docs/ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
@@ -271,10 +273,13 @@ Class | Method | HTTP request | Description
  - [AttributeFilter](docs/AttributeFilter.md)
  - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
+ - [BatchCheckPermissionBody](docs/BatchCheckPermissionBody.md)
+ - [BatchCheckPermissionResult](docs/BatchCheckPermissionResult.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
  - [BillingPeriodBucket](docs/BillingPeriodBucket.md)
  - [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
  - [CheckPermissionResult](docs/CheckPermissionResult.md)
+ - [CheckPermissionResultWithError](docs/CheckPermissionResultWithError.md)
  - [CloudAccount](docs/CloudAccount.md)
  - [ConsistencyRequestParameters](docs/ConsistencyRequestParameters.md)
  - [ContinueWith](docs/ContinueWith.md)

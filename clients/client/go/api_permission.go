@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.14.3
+API version: v1.15.0
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,20 @@ import (
 
 
 type PermissionAPI interface {
+
+	/*
+	BatchCheckPermission Batch check permissions
+
+	To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return PermissionAPIBatchCheckPermissionRequest
+	*/
+	BatchCheckPermission(ctx context.Context) PermissionAPIBatchCheckPermissionRequest
+
+	// BatchCheckPermissionExecute executes the request
+	//  @return BatchCheckPermissionResult
+	BatchCheckPermissionExecute(r PermissionAPIBatchCheckPermissionRequest) (*BatchCheckPermissionResult, *http.Response, error)
 
 	/*
 	CheckPermission Check a permission
@@ -95,6 +109,141 @@ type PermissionAPI interface {
 
 // PermissionAPIService PermissionAPI service
 type PermissionAPIService service
+
+type PermissionAPIBatchCheckPermissionRequest struct {
+	ctx context.Context
+	ApiService PermissionAPI
+	maxDepth *int64
+	batchCheckPermissionBody *BatchCheckPermissionBody
+}
+
+func (r PermissionAPIBatchCheckPermissionRequest) MaxDepth(maxDepth int64) PermissionAPIBatchCheckPermissionRequest {
+	r.maxDepth = &maxDepth
+	return r
+}
+
+func (r PermissionAPIBatchCheckPermissionRequest) BatchCheckPermissionBody(batchCheckPermissionBody BatchCheckPermissionBody) PermissionAPIBatchCheckPermissionRequest {
+	r.batchCheckPermissionBody = &batchCheckPermissionBody
+	return r
+}
+
+func (r PermissionAPIBatchCheckPermissionRequest) Execute() (*BatchCheckPermissionResult, *http.Response, error) {
+	return r.ApiService.BatchCheckPermissionExecute(r)
+}
+
+/*
+BatchCheckPermission Batch check permissions
+
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return PermissionAPIBatchCheckPermissionRequest
+*/
+func (a *PermissionAPIService) BatchCheckPermission(ctx context.Context) PermissionAPIBatchCheckPermissionRequest {
+	return PermissionAPIBatchCheckPermissionRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return BatchCheckPermissionResult
+func (a *PermissionAPIService) BatchCheckPermissionExecute(r PermissionAPIBatchCheckPermissionRequest) (*BatchCheckPermissionResult, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *BatchCheckPermissionResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PermissionAPIService.BatchCheckPermission")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/relation-tuples/batch/check"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.maxDepth != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "max-depth", r.maxDepth, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.batchCheckPermissionBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type PermissionAPICheckPermissionRequest struct {
 	ctx context.Context

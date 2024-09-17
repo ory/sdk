@@ -16,6 +16,7 @@ All URIs are relative to *https://.projects.oryapis.com*
 | [**ListProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
 | [**ListProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects |
 | [**PatchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
+| [**PatchProjectWithRevision**](ProjectApi.md#patchprojectwithrevision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID |
 | [**PurgeProject**](ProjectApi.md#purgeproject) | **DELETE** /projects/{project_id} | Irrecoverably purge a project |
 | [**RemoveProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**SetProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
@@ -1192,13 +1193,116 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="patchprojectwithrevision"></a>
+# **PatchProjectWithRevision**
+> ClientSuccessfulProjectUpdate PatchProjectWithRevision (string projectId, string revisionId, List<ClientJsonPatch>? clientJsonPatch = null)
+
+Patch an Ory Network Project Configuration based on a revision ID
+
+This endpoints allows you to patch individual Ory Network Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class PatchProjectWithRevisionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://.projects.oryapis.com";
+            // Configure Bearer token for authorization: oryWorkspaceApiKey
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new ProjectApi(config);
+            var projectId = "projectId_example";  // string | Project ID  The project's ID.
+            var revisionId = "revisionId_example";  // string | Revision ID  The revision ID that this patch was generated for.
+            var clientJsonPatch = new List<ClientJsonPatch>?(); // List<ClientJsonPatch>? |  (optional) 
+
+            try
+            {
+                // Patch an Ory Network Project Configuration based on a revision ID
+                ClientSuccessfulProjectUpdate result = apiInstance.PatchProjectWithRevision(projectId, revisionId, clientJsonPatch);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ProjectApi.PatchProjectWithRevision: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PatchProjectWithRevisionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Patch an Ory Network Project Configuration based on a revision ID
+    ApiResponse<ClientSuccessfulProjectUpdate> response = apiInstance.PatchProjectWithRevisionWithHttpInfo(projectId, revisionId, clientJsonPatch);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProjectApi.PatchProjectWithRevisionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | Project ID  The project&#39;s ID. |  |
+| **revisionId** | **string** | Revision ID  The revision ID that this patch was generated for. |  |
+| **clientJsonPatch** | [**List&lt;ClientJsonPatch&gt;?**](ClientJsonPatch.md) |  | [optional]  |
+
+### Return type
+
+[**ClientSuccessfulProjectUpdate**](ClientSuccessfulProjectUpdate.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successfulProjectUpdate |  -  |
+| **400** | errorGeneric |  -  |
+| **401** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="purgeproject"></a>
 # **PurgeProject**
 > void PurgeProject (string projectId)
 
 Irrecoverably purge a project
 
-!! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  !! Use with extreme caution !!
+!! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  Calling this endpoint will additionally delete custom domains and other related data.  If the project is linked to a subscription, the subscription needs to be unlinked first.
 
 ### Example
 ```csharp

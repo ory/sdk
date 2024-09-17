@@ -164,6 +164,7 @@
 | **kratos_selfservice_flows_verification_ui_url** | **String** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_use** | **String** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] |
 | **kratos_selfservice_methods_code_config_lifespan** | **String** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_code_config_missing_credential_fallback_enabled** | **Boolean** | Enables a fallback method required in certain legacy use cases.  This governs the \&quot;selfservice.methods.code.config.missing_credential_fallback_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_enabled** | **Boolean** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_mfa_enabled** | **Boolean** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_passwordless_enabled** | **Boolean** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] |
@@ -375,6 +376,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_selfservice_flows_verification_ui_url: null,
   kratos_selfservice_flows_verification_use: null,
   kratos_selfservice_methods_code_config_lifespan: null,
+  kratos_selfservice_methods_code_config_missing_credential_fallback_enabled: null,
   kratos_selfservice_methods_code_enabled: null,
   kratos_selfservice_methods_code_mfa_enabled: null,
   kratos_selfservice_methods_code_passwordless_enabled: null,

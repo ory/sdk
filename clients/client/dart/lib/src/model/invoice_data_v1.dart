@@ -17,8 +17,9 @@ part 'invoice_data_v1.g.dart';
 /// Properties:
 /// * [billingPeriod] 
 /// * [currency] - The currency of the invoice.
+/// * [deleted] - Deleted is true if the invoice has been soft-deleted.
 /// * [items] - The items that are part of this invoice.
-/// * [plan] - The plan that this invoice is based on.
+/// * [plan] - The plan that this invoice is based on, in the format \"Name@version\".
 /// * [stripeInvoiceItem] 
 /// * [stripeInvoiceStatus] - The status of the invoice, one of `draft`, `open`, `paid`, `uncollectible`, or `void`. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview)
 /// * [stripeLink] - An optional link to the invoice on Stripe.
@@ -35,11 +36,15 @@ abstract class InvoiceDataV1 implements Built<InvoiceDataV1, InvoiceDataV1Builde
   @BuiltValueField(wireName: r'currency')
   String get currency;
 
+  /// Deleted is true if the invoice has been soft-deleted.
+  @BuiltValueField(wireName: r'deleted')
+  bool? get deleted;
+
   /// The items that are part of this invoice.
   @BuiltValueField(wireName: r'items')
   BuiltList<LineItemV1> get items;
 
-  /// The plan that this invoice is based on.
+  /// The plan that this invoice is based on, in the format \"Name@version\".
   @BuiltValueField(wireName: r'plan')
   String? get plan;
 
@@ -101,6 +106,13 @@ class _$InvoiceDataV1Serializer implements PrimitiveSerializer<InvoiceDataV1> {
       object.currency,
       specifiedType: const FullType(String),
     );
+    if (object.deleted != null) {
+      yield r'deleted';
+      yield serializers.serialize(
+        object.deleted,
+        specifiedType: const FullType(bool),
+      );
+    }
     yield r'items';
     yield serializers.serialize(
       object.items,
@@ -194,6 +206,13 @@ class _$InvoiceDataV1Serializer implements PrimitiveSerializer<InvoiceDataV1> {
             specifiedType: const FullType(String),
           ) as String;
           result.currency = valueDes;
+          break;
+        case r'deleted':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.deleted = valueDes;
           break;
         case r'items':
           final valueDes = serializers.deserialize(

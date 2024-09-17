@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**ListProjectApiKeys**](ProjectAPI.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**ListProjects**](ProjectAPI.md#ListProjects) | **Get** /projects | List All Projects
 [**PatchProject**](ProjectAPI.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
+[**PatchProjectWithRevision**](ProjectAPI.md#PatchProjectWithRevision) | **Patch** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID
 [**PurgeProject**](ProjectAPI.md#PurgeProject) | **Delete** /projects/{project_id} | Irrecoverably purge a project
 [**RemoveProjectMember**](ProjectAPI.md#RemoveProjectMember) | **Delete** /projects/{project}/members/{member} | Remove a member associated with this project
 [**SetProject**](ProjectAPI.md#SetProject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
@@ -846,6 +847,81 @@ Other parameters are passed through a pointer to a apiPatchProjectRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
+ **jsonPatch** | [**[]JsonPatch**](JsonPatch.md) |  | 
+
+### Return type
+
+[**SuccessfulProjectUpdate**](SuccessfulProjectUpdate.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PatchProjectWithRevision
+
+> SuccessfulProjectUpdate PatchProjectWithRevision(ctx, projectId, revisionId).JsonPatch(jsonPatch).Execute()
+
+Patch an Ory Network Project Configuration based on a revision ID
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	projectId := "projectId_example" // string | Project ID  The project's ID.
+	revisionId := "revisionId_example" // string | Revision ID  The revision ID that this patch was generated for.
+	jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/name")} // []JsonPatch |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProjectAPI.PatchProjectWithRevision(context.Background(), projectId, revisionId).JsonPatch(jsonPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.PatchProjectWithRevision``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchProjectWithRevision`: SuccessfulProjectUpdate
+	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.PatchProjectWithRevision`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | Project ID  The project&#39;s ID. | 
+**revisionId** | **string** | Revision ID  The revision ID that this patch was generated for. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchProjectWithRevisionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
  **jsonPatch** | [**[]JsonPatch**](JsonPatch.md) |  | 
 

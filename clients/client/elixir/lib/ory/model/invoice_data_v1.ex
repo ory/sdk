@@ -10,6 +10,7 @@ defmodule Ory.Model.InvoiceDataV1 do
   defstruct [
     :billing_period,
     :currency,
+    :deleted,
     :items,
     :plan,
     :stripe_invoice_item,
@@ -24,6 +25,7 @@ defmodule Ory.Model.InvoiceDataV1 do
   @type t :: %__MODULE__{
     :billing_period => Ory.Model.TimeInterval.t,
     :currency => String.t,
+    :deleted => boolean() | nil,
     :items => [Ory.Model.LineItemV1.t],
     :plan => String.t | nil,
     :stripe_invoice_item => String.t | nil,

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.14.3
+  version: v1.15.0
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -3457,7 +3457,9 @@ paths:
         Using this API endpoint you can purge (completely delete) a project and its data.
         This action can not be undone and will delete ALL your data.
 
-        !! Use with extreme caution !!
+        Calling this endpoint will additionally delete custom domains and other related data.
+
+        If the project is linked to a subscription, the subscription needs to be unlinked first.
       operationId: purgeProject
       parameters:
       - description: |-
@@ -4373,6 +4375,105 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /projects/{project_id}/revision/{revision_id}:
+    patch:
+      description: |-
+        This endpoints allows you to patch individual Ory Network Project configuration keys for
+        Ory's services (identity, permission, ...). The configuration format is fully compatible
+        with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+        This endpoint expects the `version` key to be set in the payload. If it is unset, it
+        will try to import the config as if it is from the most recent version.
+
+        If you have an older version of a configuration, you should set the version key in the payload!
+
+        While this endpoint is able to process all configuration items related to features (e.g. password reset),
+        it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+        open source.
+
+        For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings
+        to help you understand which parts of your config could not be processed.
+      operationId: patchProjectWithRevision
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Revision ID
+
+          The revision ID that this patch was generated for.
+        explode: false
+        in: path
+        name: revision_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/jsonPatch'
+              type: array
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulProjectUpdate'
+          description: successfulProjectUpdate
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Patch an Ory Network Project Configuration based on a revision ID
+      tags:
+      - project
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /projects/{project}/members:
     get:
       description: This endpoint requires the user to be a member of the project with
@@ -4701,6 +4802,53 @@ paths:
       summary: Query relationships
       tags:
       - relationship
+      x-accepts:
+      - application/json
+  /relation-tuples/batch/check:
+    post:
+      description: "To learn how relationship tuples and the check works, head over\
+        \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
+      operationId: batchCheckPermission
+      parameters:
+      - explode: true
+        in: query
+        name: max-depth
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/batchCheckPermissionBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchCheckPermissionResult'
+          description: batchCheckPermissionResult
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Batch check permissions
+      tags:
+      - permission
+      x-content-type: application/json
       x-accepts:
       - application/json
   /relation-tuples/check:
@@ -9370,6 +9518,12 @@ components:
 
             This governs the "selfservice.methods.code.config.lifespan" setting.
           type: string
+        kratos_selfservice_methods_code_config_missing_credential_fallback_enabled:
+          description: |-
+            Enables a fallback method required in certain legacy use cases.
+
+            This governs the "selfservice.methods.code.config.missing_credential_fallback_enabled" setting.
+          type: boolean
         kratos_selfservice_methods_code_enabled:
           description: |-
             Configures whether Ory Kratos Code Method is enabled
@@ -9759,6 +9913,10 @@ components:
           description: The currency of the invoice.
           readOnly: true
           type: string
+        deleted:
+          description: Deleted is true if the invoice has been soft-deleted.
+          readOnly: true
+          type: boolean
         items:
           description: The items that are part of this invoice.
           items:
@@ -9766,7 +9924,8 @@ components:
           readOnly: true
           type: array
         plan:
-          description: The plan that this invoice is based on.
+          description: "The plan that this invoice is based on, in the format \"Name@version\"\
+            ."
           readOnly: true
           type: string
         stripe_invoice_item:
@@ -10600,6 +10759,32 @@ components:
       - aal3
       title: Authenticator Assurance Level (AAL)
       type: string
+    batchCheckPermissionBody:
+      description: Batch Check Permission Body
+      properties:
+        tuples:
+          items:
+            $ref: '#/components/schemas/relationship'
+          type: array
+      type: object
+    batchCheckPermissionResult:
+      description: Batch Check Permission Result
+      example:
+        results:
+        - allowed: true
+          error: error
+        - allowed: true
+          error: error
+      properties:
+        results:
+          description: An array of check results. The order aligns with the input
+            order.
+          items:
+            $ref: '#/components/schemas/checkPermissionResultWithError'
+          type: array
+      required:
+      - results
+      type: object
     batchPatchIdentitiesResponse:
       description: Patch identities response
       example:
@@ -10658,6 +10843,21 @@ components:
       required:
       - allowed
       title: Check Permission Result
+      type: object
+    checkPermissionResultWithError:
+      description: Check Permission Result With Error
+      example:
+        allowed: true
+        error: error
+      properties:
+        allowed:
+          description: whether the relation tuple is allowed
+          type: boolean
+        error:
+          description: any error generated while checking the relation tuple
+          type: string
+      required:
+      - allowed
       type: object
     cloudAccount:
       properties:
@@ -12420,7 +12620,7 @@ components:
     invoice:
       properties:
         id:
-          description: The ID of the subscription
+          description: The ID of the invoice.
           format: uuid
           readOnly: true
           type: string
@@ -14720,6 +14920,12 @@ components:
 
             This governs the "selfservice.methods.code.config.lifespan" setting.
           type: string
+        kratos_selfservice_methods_code_config_missing_credential_fallback_enabled:
+          description: |-
+            Enables a fallback method required in certain legacy use cases.
+
+            This governs the "selfservice.methods.code.config.missing_credential_fallback_enabled" setting.
+          type: boolean
         kratos_selfservice_methods_code_enabled:
           description: |-
             Configures whether Ory Kratos Code Method is enabled
@@ -17864,6 +18070,7 @@ components:
             data_location_us DataLocationUS
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
+            captcha Captcha
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -17894,6 +18101,7 @@ components:
           - data_location_us
           - m2m_token_issuance
           - permission_checks
+          - captcha
           - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
@@ -17925,6 +18133,7 @@ components:
             data_location_us DataLocationUS
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
+            captcha Captcha
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -20784,6 +20993,7 @@ components:
 
             Supported providers are
             Apple
+            Google
           type: string
         id_token_nonce:
           description: |-
@@ -21077,6 +21287,7 @@ components:
 
             Supported providers are
             Apple
+            Google
           type: string
         id_token_nonce:
           description: |-

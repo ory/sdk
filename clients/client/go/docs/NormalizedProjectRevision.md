@@ -164,6 +164,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationUiUrl** | Pointer to **string** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
 **KratosSelfserviceMethodsCodeConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled** | Pointer to **bool** | Enables a fallback method required in certain legacy use cases.  This governs the \&quot;selfservice.methods.code.config.missing_credential_fallback_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeEnabled** | Pointer to **bool** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeMfaEnabled** | Pointer to **bool** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessEnabled** | Pointer to **bool** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
@@ -4257,6 +4258,31 @@ SetKratosSelfserviceMethodsCodeConfigLifespan sets KratosSelfserviceMethodsCodeC
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeConfigLifespan() bool`
 
 HasKratosSelfserviceMethodsCodeConfigLifespan returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled() bool`
+
+GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled returns the KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabledOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabledOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabledOk returns a tuple with the KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled(v bool)`
+
+SetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled sets KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled field to given value.
+
+### HasKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled() bool`
+
+HasKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsCodeEnabled
 

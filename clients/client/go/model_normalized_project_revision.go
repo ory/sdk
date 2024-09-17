@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.14.3
+API version: v1.15.0
 Contact: support@ory.sh
 */
 
@@ -327,6 +327,8 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsVerificationUse *string `json:"kratos_selfservice_flows_verification_use,omitempty"`
 	// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 	KratosSelfserviceMethodsCodeConfigLifespan *string `json:"kratos_selfservice_methods_code_config_lifespan,omitempty"`
+	// Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
+	KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled *bool `json:"kratos_selfservice_methods_code_config_missing_credential_fallback_enabled,omitempty"`
 	// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
 	KratosSelfserviceMethodsCodeEnabled *bool `json:"kratos_selfservice_methods_code_enabled,omitempty"`
 	// Configures whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
@@ -5602,6 +5604,38 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeConfigLifespa
 	o.KratosSelfserviceMethodsCodeConfigLifespan = &v
 }
 
+// GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled returns the KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
+}
+
+// GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabledOk returns a tuple with the KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled, true
+}
+
+// HasKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled(v bool) {
+	o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled = &v
+}
+
 // GetKratosSelfserviceMethodsCodeEnabled returns the KratosSelfserviceMethodsCodeEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeEnabled() bool {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsCodeEnabled) {
@@ -7492,6 +7526,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KratosSelfserviceMethodsCodeConfigLifespan) {
 		toSerialize["kratos_selfservice_methods_code_config_lifespan"] = o.KratosSelfserviceMethodsCodeConfigLifespan
 	}
+	if !IsNil(o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled) {
+		toSerialize["kratos_selfservice_methods_code_config_missing_credential_fallback_enabled"] = o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
+	}
 	if !IsNil(o.KratosSelfserviceMethodsCodeEnabled) {
 		toSerialize["kratos_selfservice_methods_code_enabled"] = o.KratosSelfserviceMethodsCodeEnabled
 	}
@@ -7825,6 +7862,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_flows_verification_ui_url")
 		delete(additionalProperties, "kratos_selfservice_flows_verification_use")
 		delete(additionalProperties, "kratos_selfservice_methods_code_config_lifespan")
+		delete(additionalProperties, "kratos_selfservice_methods_code_config_missing_credential_fallback_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_mfa_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_enabled")

@@ -53,6 +53,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_m2mTokenIssuance =
     const QuotaUsageFeatureEnum._('m2mTokenIssuance');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_permissionChecks =
     const QuotaUsageFeatureEnum._('permissionChecks');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_captcha =
+    const QuotaUsageFeatureEnum._('captcha');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationRegional =
     const QuotaUsageFeatureEnum._('dataLocationRegional');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
@@ -117,6 +119,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_m2mTokenIssuance;
     case 'permissionChecks':
       return _$quotaUsageFeatureEnum_permissionChecks;
+    case 'captcha':
+      return _$quotaUsageFeatureEnum_captcha;
     case 'dataLocationRegional':
       return _$quotaUsageFeatureEnum_dataLocationRegional;
     case 'rateLimitTier':
@@ -159,6 +163,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_dataLocationUs,
   _$quotaUsageFeatureEnum_m2mTokenIssuance,
   _$quotaUsageFeatureEnum_permissionChecks,
+  _$quotaUsageFeatureEnum_captcha,
   _$quotaUsageFeatureEnum_dataLocationRegional,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
@@ -196,6 +201,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'dataLocationUs': 'data_location_us',
     'm2mTokenIssuance': 'm2m_token_issuance',
     'permissionChecks': 'permission_checks',
+    'captcha': 'captcha',
     'dataLocationRegional': 'data_location_regional',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
@@ -227,6 +233,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'data_location_us': 'dataLocationUs',
     'm2m_token_issuance': 'm2mTokenIssuance',
     'permission_checks': 'permissionChecks',
+    'captcha': 'captcha',
     'data_location_regional': 'dataLocationRegional',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',

@@ -964,6 +964,12 @@ void main() {
       // TODO
     });
 
+    // Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
+    // bool kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
+    test('to test the property `kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled`', () async {
+      // TODO
+    });
+
     // Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
     // bool kratosSelfserviceMethodsCodeEnabled
     test('to test the property `kratosSelfserviceMethodsCodeEnabled`', () async {

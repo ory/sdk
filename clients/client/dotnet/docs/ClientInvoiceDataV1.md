@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingPeriod** | [**ClientTimeInterval**](ClientTimeInterval.md) |  | 
 **Currency** | **string** | The currency of the invoice. | [readonly] 
+**Deleted** | **bool** | Deleted is true if the invoice has been soft-deleted. | [optional] [readonly] 
 **Items** | [**List&lt;ClientLineItemV1&gt;**](ClientLineItemV1.md) | The items that are part of this invoice. | [readonly] 
-**Plan** | **string** | The plan that this invoice is based on. | [optional] [readonly] 
+**Plan** | **string** | The plan that this invoice is based on, in the format \&quot;Name@version\&quot;. | [optional] [readonly] 
 **StripeInvoiceItem** | **string** |  | [optional] 
 **StripeInvoiceStatus** | **string** | The status of the invoice, one of &#x60;draft&#x60;, &#x60;open&#x60;, &#x60;paid&#x60;, &#x60;uncollectible&#x60;, or &#x60;void&#x60;. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview) | [optional] 
 **StripeLink** | **string** | An optional link to the invoice on Stripe. | [optional] [readonly] 

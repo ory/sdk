@@ -179,6 +179,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationUiUrl] - Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
+/// * [kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled] - Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
 /// * [kratosSelfserviceMethodsCodeEnabled] - Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
 /// * [kratosSelfserviceMethodsCodeMfaEnabled] - Configures whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
 /// * [kratosSelfserviceMethodsCodePasswordlessEnabled] - Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \"selfservice.methods.code.passwordless_enabled\" setting.
@@ -854,6 +855,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_config_lifespan')
   String? get kratosSelfserviceMethodsCodeConfigLifespan;
+
+  /// Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_code_config_missing_credential_fallback_enabled')
+  bool? get kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled;
 
   /// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_enabled')
@@ -2177,6 +2182,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosSelfserviceMethodsCodeConfigLifespan,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled != null) {
+      yield r'kratos_selfservice_methods_code_config_missing_credential_fallback_enabled';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsCodeEnabled != null) {
@@ -3630,6 +3642,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceMethodsCodeConfigLifespan = valueDes;
+          break;
+        case r'kratos_selfservice_methods_code_config_missing_credential_fallback_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_code_enabled':
           final valueDes = serializers.deserialize(

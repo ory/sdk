@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.14.3
+API version: v1.15.0
 Contact: support@ory.sh
 */
 
@@ -202,6 +202,12 @@ func NewConfiguration() *Configuration {
 				},
 			},
 			"ProjectAPIService.PatchProject": {
+				{
+					URL: "https://api.console.ory.sh",
+					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",
+				},
+			},
+			"ProjectAPIService.PatchProjectWithRevision": {
 				{
 					URL: "https://api.console.ory.sh",
 					Description: "The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.",

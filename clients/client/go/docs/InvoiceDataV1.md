@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingPeriod** | [**TimeInterval**](TimeInterval.md) |  | 
 **Currency** | **string** | The currency of the invoice. | [readonly] 
+**Deleted** | Pointer to **bool** | Deleted is true if the invoice has been soft-deleted. | [optional] [readonly] 
 **Items** | [**[]LineItemV1**](LineItemV1.md) | The items that are part of this invoice. | [readonly] 
-**Plan** | Pointer to **string** | The plan that this invoice is based on. | [optional] [readonly] 
+**Plan** | Pointer to **string** | The plan that this invoice is based on, in the format \&quot;Name@version\&quot;. | [optional] [readonly] 
 **StripeInvoiceItem** | Pointer to **string** |  | [optional] 
 **StripeInvoiceStatus** | Pointer to **string** | The status of the invoice, one of &#x60;draft&#x60;, &#x60;open&#x60;, &#x60;paid&#x60;, &#x60;uncollectible&#x60;, or &#x60;void&#x60;. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview) | [optional] 
 **StripeLink** | Pointer to **string** | An optional link to the invoice on Stripe. | [optional] [readonly] 
@@ -74,6 +75,31 @@ and a boolean to check if the value has been set.
 
 SetCurrency sets Currency field to given value.
 
+
+### GetDeleted
+
+`func (o *InvoiceDataV1) GetDeleted() bool`
+
+GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+
+### GetDeletedOk
+
+`func (o *InvoiceDataV1) GetDeletedOk() (*bool, bool)`
+
+GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleted
+
+`func (o *InvoiceDataV1) SetDeleted(v bool)`
+
+SetDeleted sets Deleted field to given value.
+
+### HasDeleted
+
+`func (o *InvoiceDataV1) HasDeleted() bool`
+
+HasDeleted returns a boolean if a field has been set.
 
 ### GetItems
 

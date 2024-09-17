@@ -29,10 +29,13 @@ docs/Attribute.md
 docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BatchCheckPermissionBody.md
+docs/BatchCheckPermissionResult.md
 docs/BatchPatchIdentitiesResponse.md
 docs/BillingPeriodBucket.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
+docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
 docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
@@ -310,10 +313,13 @@ model_attribute.go
 model_attribute_filter.go
 model_attributes_count_datapoint.go
 model_authenticator_assurance_level.go
+model_batch_check_permission_body.go
+model_batch_check_permission_result.go
 model_batch_patch_identities_response.go
 model_billing_period_bucket.go
 model_check_opl_syntax_result.go
 model_check_permission_result.go
+model_check_permission_result_with_error.go
 model_cloud_account.go
 model_consistency_request_parameters.go
 model_continue_with.go

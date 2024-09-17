@@ -25,10 +25,13 @@ import 'package:ory_client/src/model/attribute.dart';
 import 'package:ory_client/src/model/attribute_filter.dart';
 import 'package:ory_client/src/model/attributes_count_datapoint.dart';
 import 'package:ory_client/src/model/authenticator_assurance_level.dart';
+import 'package:ory_client/src/model/batch_check_permission_body.dart';
+import 'package:ory_client/src/model/batch_check_permission_result.dart';
 import 'package:ory_client/src/model/batch_patch_identities_response.dart';
 import 'package:ory_client/src/model/billing_period_bucket.dart';
 import 'package:ory_client/src/model/check_opl_syntax_result.dart';
 import 'package:ory_client/src/model/check_permission_result.dart';
+import 'package:ory_client/src/model/check_permission_result_with_error.dart';
 import 'package:ory_client/src/model/cloud_account.dart';
 import 'package:ory_client/src/model/consistency_request_parameters.dart';
 import 'package:ory_client/src/model/continue_with.dart';
@@ -294,10 +297,13 @@ part 'serializers.g.dart';
   AttributeFilter,
   AttributesCountDatapoint,
   AuthenticatorAssuranceLevel,
+  BatchCheckPermissionBody,
+  BatchCheckPermissionResult,
   BatchPatchIdentitiesResponse,
   BillingPeriodBucket,
   CheckOplSyntaxResult,
   CheckPermissionResult,
+  CheckPermissionResultWithError,
   CloudAccount,
   ConsistencyRequestParameters,
   ContinueWith,

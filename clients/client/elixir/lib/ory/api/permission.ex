@@ -10,6 +10,46 @@ defmodule Ory.Api.Permission do
   import Ory.RequestBuilder
 
   @doc """
+  Batch check permissions
+  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+    - `:"max-depth"` (integer()): 
+    - `:body` (BatchCheckPermissionBody): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.BatchCheckPermissionResult.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec batch_check_permission(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.BatchCheckPermissionResult.t} | {:error, Tesla.Env.t}
+  def batch_check_permission(connection, opts \\ []) do
+    optional_params = %{
+      :"max-depth" => :query,
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:post)
+      |> url("/relation-tuples/batch/check")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.BatchCheckPermissionResult},
+      {400, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Check a permission
   To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
 

@@ -30,10 +30,13 @@ lib/ory/model/attribute.ex
 lib/ory/model/attribute_filter.ex
 lib/ory/model/attributes_count_datapoint.ex
 lib/ory/model/authenticator_assurance_level.ex
+lib/ory/model/batch_check_permission_body.ex
+lib/ory/model/batch_check_permission_result.ex
 lib/ory/model/batch_patch_identities_response.ex
 lib/ory/model/billing_period_bucket.ex
 lib/ory/model/check_opl_syntax_result.ex
 lib/ory/model/check_permission_result.ex
+lib/ory/model/check_permission_result_with_error.ex
 lib/ory/model/cloud_account.ex
 lib/ory/model/consistency_request_parameters.ex
 lib/ory/model/continue_with.ex

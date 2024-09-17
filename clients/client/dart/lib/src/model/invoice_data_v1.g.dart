@@ -12,6 +12,8 @@ class _$InvoiceDataV1 extends InvoiceDataV1 {
   @override
   final String currency;
   @override
+  final bool? deleted;
+  @override
   final BuiltList<LineItemV1> items;
   @override
   final String? plan;
@@ -36,6 +38,7 @@ class _$InvoiceDataV1 extends InvoiceDataV1 {
   _$InvoiceDataV1._(
       {required this.billingPeriod,
       required this.currency,
+      this.deleted,
       required this.items,
       this.plan,
       this.stripeInvoiceItem,
@@ -69,6 +72,7 @@ class _$InvoiceDataV1 extends InvoiceDataV1 {
     return other is InvoiceDataV1 &&
         billingPeriod == other.billingPeriod &&
         currency == other.currency &&
+        deleted == other.deleted &&
         items == other.items &&
         plan == other.plan &&
         stripeInvoiceItem == other.stripeInvoiceItem &&
@@ -85,6 +89,7 @@ class _$InvoiceDataV1 extends InvoiceDataV1 {
     var _$hash = 0;
     _$hash = $jc(_$hash, billingPeriod.hashCode);
     _$hash = $jc(_$hash, currency.hashCode);
+    _$hash = $jc(_$hash, deleted.hashCode);
     _$hash = $jc(_$hash, items.hashCode);
     _$hash = $jc(_$hash, plan.hashCode);
     _$hash = $jc(_$hash, stripeInvoiceItem.hashCode);
@@ -103,6 +108,7 @@ class _$InvoiceDataV1 extends InvoiceDataV1 {
     return (newBuiltValueToStringHelper(r'InvoiceDataV1')
           ..add('billingPeriod', billingPeriod)
           ..add('currency', currency)
+          ..add('deleted', deleted)
           ..add('items', items)
           ..add('plan', plan)
           ..add('stripeInvoiceItem', stripeInvoiceItem)
@@ -129,6 +135,10 @@ class InvoiceDataV1Builder
   String? _currency;
   String? get currency => _$this._currency;
   set currency(String? currency) => _$this._currency = currency;
+
+  bool? _deleted;
+  bool? get deleted => _$this._deleted;
+  set deleted(bool? deleted) => _$this._deleted = deleted;
 
   ListBuilder<LineItemV1>? _items;
   ListBuilder<LineItemV1> get items =>
@@ -178,6 +188,7 @@ class InvoiceDataV1Builder
     if ($v != null) {
       _billingPeriod = $v.billingPeriod.toBuilder();
       _currency = $v.currency;
+      _deleted = $v.deleted;
       _items = $v.items.toBuilder();
       _plan = $v.plan;
       _stripeInvoiceItem = $v.stripeInvoiceItem;
@@ -214,6 +225,7 @@ class InvoiceDataV1Builder
               billingPeriod: billingPeriod.build(),
               currency: BuiltValueNullFieldError.checkNotNull(
                   currency, r'InvoiceDataV1', 'currency'),
+              deleted: deleted,
               items: items.build(),
               plan: plan,
               stripeInvoiceItem: stripeInvoiceItem,
