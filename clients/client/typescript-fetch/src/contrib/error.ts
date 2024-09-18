@@ -62,6 +62,7 @@ export function isSelfServiceFlowDisabled(
 ): response is GenericError {
   return (
     isGenericErrorResponse(response) &&
+    isGenericErrorResponse(response) &&
     response.error.id === "self_service_flow_disabled"
   );
 }
@@ -74,6 +75,7 @@ export function isBrowserLocationChangeRequired(
   response: unknown
 ): response is ErrorBrowserLocationChangeRequired {
   return (
+    isGenericErrorResponse(response) &&
     isGenericErrorResponse(response) &&
     response.error.id === "browser_location_change_required"
   );

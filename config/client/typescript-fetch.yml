@@ -8,9 +8,6 @@ disallowAdditionalPropertiesIfNotPresent: false
 withInterfaces: false
 useSingleRequestParameter: true
 files:
-  contrib/fetch/src/client.ts:
-    folder: src/contrib
-    destinationFilename: client.ts
   contrib/fetch/src/continueWith.ts:
     folder: src/contrib
     destinationFilename: continueWith.ts
