@@ -17,6 +17,13 @@ src/apis/RelationshipApi.ts
 src/apis/WellknownApi.ts
 src/apis/WorkspaceApi.ts
 src/apis/index.ts
+src/contrib/continueWith.ts
+src/contrib/error.ts
+src/contrib/flowTypes.ts
+src/contrib/index.ts
+src/contrib/ui.ts
+src/contrib/urlHelpers.ts
+src/contrib/utils.ts
 src/index.ts
 src/models/AcceptOAuth2ConsentRequest.ts
 src/models/AcceptOAuth2ConsentRequestSession.ts
